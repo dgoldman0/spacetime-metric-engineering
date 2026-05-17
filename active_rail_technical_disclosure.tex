@@ -1,0 +1,450 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array,booktabs,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\setlength{\headheight}{14pt}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{caption}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc,fit}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Active-Rail Spacetime Metric Engineering Technical Disclosure}
+\rhead{Technical Disclosure}
+\cfoot{\thepage\ of \pageref{LastPage}}
+
+\titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.5em}{}
+\setlist[itemize]{nosep,leftmargin=1.2em}
+\setlist[enumerate]{nosep,leftmargin=1.4em}
+\renewcommand{\arraystretch}{1.18}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\sig}{\sigma}
+\newcommand{\Rpass}{R_{\mathrm{pass}}}
+\newcommand{\Rth}{R_{\mathrm{th}}}
+\newcommand{\ROm}{R_{\Omega}}
+\newcommand{\wth}{w_{\mathrm{th}}}
+\newcommand{\wpass}{w_{\mathrm{pass}}}
+\newcommand{\Tkk}{T_{kk}}
+\newcommand{\jl}{j_l}
+\newcommand{\rhoADM}{\rho_{\mathrm{ADM}}}
+\newcommand{\delrho}{\Delta \rho_{\mathrm{ADM}}}
+\newcommand{\delj}{\Delta j_l}
+
+\begin{document}
+
+\begin{center}
+{\LARGE \bfseries Active-Rail Spacetime Metric Engineering System}\\[0.35em]
+{\Large \bfseries Technical Disclosure and Prototype Plan}\\[0.9em]
+{\bfseries Primary Operating Embodiment: Service Factor $V=5$}\\[0.2em]
+{\bfseries High-Stress Operating Embodiment: Service Factor $V=10$}\\[0.8em]
+\end{center}
+
+\noindent\textbf{Document purpose.} This document discloses an active-rail spacetime metric engineering architecture, a source-placement control structure, and an engineering prototype plan. The disclosure is organized in a patent-style technical format and emphasizes system components, operating modes, diagnostic procedures, acceptance criteria, and prototype implementation stages.
+
+\section{Abstract}
+
+An active-rail spacetime metric engineering system is disclosed. The system includes a prepared standing support substrate, a protected live packet corridor, a support-contained radial shift carrier, a locked-lead catch/rematch layer, a radial support-edge softening layer, a lapse-cushion sector, an angular support jacket, and a localized catch-edge absorber. The architecture separates baseline infrastructure support from service-induced transport demand. A dimensionless service factor $V$ specifies the operating load applied to the carried-shift sector of the reduced metric. In a representative operating embodiment at $V=5$, the system preserves packet causal safety and localizes the service-induced ADM momentum increment primarily into a packet-adjacent catch/rematch handoff channel. A high-stress operating embodiment at $V=10$ exercises the same architecture near its recognized edge rating. The prototype plan translates the reduced metric fields into ADM variables, computes constraint-ledger fields, subtracts standing substrate demand from live service demand, and screens source-family candidates against localized component roles.
+
+\section{Technical Field}
+
+The disclosure relates to prescribed spacetime metric engineering, numerical relativity scaffolding, source-placement architectures, and controlled metric-service systems. More particularly, the disclosure relates to a staged rail-like spacetime metric in which prepared infrastructure bears broad geometric support while live service demand is routed through localized handoff windows and packet-adjacent control regions.
+
+\section{Engineering Objective}
+
+A practical spacetime metric engineering architecture benefits from explicit source placement. The disclosed system assigns standing radial support, angular support, lapse safety, carried shift, catch/rematch correction, packet release, and reset operations to distinct service components. The engineering objective is to provide a reduced metric and prototype process that:
+
+\begin{enumerate}
+\item separates prepared substrate support from live transport increments;
+\item keeps the protected packet corridor causally safe throughout live service;
+\item localizes service-induced momentum demand into catch/rematch and support handoff regions;
+\item expresses the reduced metric in ADM variables for constraint-ledger diagnosis;
+\item subtracts the standing substrate from live service fields to isolate transport demand;
+\item supports a staged transition from prescribed reduced geometry to a coarse 3+1 constraint prototype.
+\end{enumerate}
+
+\section{Overview of the Active-Rail System}
+
+The active rail operates as a staged metric service. A prepared standing substrate supplies the baseline throat, support shell, angular jacket, and lapse structure. A live packet corridor lies inside the support shell. A radial shift field carries the service demand through the prepared support rather than through a broad passenger-facing shell. A locked-lead catch/rematch layer absorbs the carried shift and returns the packet toward ordinary local geometry. A compact absorber is applied near the inward packet edge during catch/rematch to address localized handoff demand.
+
+The invention-level structure is the componentized service architecture. The service factor $V$ is an operating-load parameter used to rate embodiments, select support/cushion/absorber settings, and compare source-demand scaling. The core system remains the staged active rail: prepared support substrate, protected packet corridor, support-contained carried shift, locked-lead catch/rematch, packet-adjacent absorber, and resettable infrastructure.
+
+\section{Definitions}
+
+\begin{longtable}{p{0.27\linewidth}p{0.66\linewidth}}
+\toprule
+\textbf{Term} & \textbf{Meaning in this disclosure} \\
+\midrule
+Active rail & A staged spacetime metric service in which prepared infrastructure supports the transport geometry and a live packet is carried through a protected corridor. \\
+Service factor $V$ & A dimensionless operating-load parameter controlling the magnitude of the support-contained radial shift field during the carried-service portion of the reduced metric. In units with $c=1$, $V$ is the nominal effective transport factor imposed on the metric service and the load rating used for engineering comparison. \\
+Primary operating embodiment & The representative service configuration evaluated at $V=5$, selected as the principal prototype target. \\
+High-stress operating embodiment & The representative service configuration evaluated at $V=10$, selected as an edge-condition test for the same architecture. \\
+Standing substrate & Prepared support geometry including throat/core support, radial support shell, angular jacket, and baseline lapse structure. \\
+Live packet & Passenger-facing corridor whose causal and source-exposure properties are monitored during live service. \\
+Support shell & Wider infrastructure region enclosing the live packet and carrying broad support demand. \\
+Locked-lead catch & Timing rule in which infrastructure-side catch begins slightly before packet rematch while packet rematch remains tightly coupled. \\
+Catch/rematch absorber & Localized packet-edge source or control component assigned to remaining null/momentum handoff demand. \\
+Radial support edge & Transition layer controlling radial pressure demand and support-shell coupling. \\
+Lapse cushion & Lapse-sector compensator that preserves causal margin consumed by stronger support-edge shaping. \\
+Standing substrate subtraction & Diagnostic subtraction of a prepared beta-off or ready-state substrate from live service fields to isolate service-induced ADM demand. \\
+\bottomrule
+\end{longtable}
+
+\section{Operating Regime and Role of $V$}
+
+The parameter $V$ is used as a design-rating parameter. Increasing $V$ increases the carried-shift service demand and exposes how the same support geometry responds to higher transport load. The parameter therefore functions as a controlled stress dial for the reduced architecture. It supports comparison across operating embodiments without making the invention depend on a single numerical target.
+
+In representative diagnostics, $V=5$ provides the primary engineering target. It gives a clean platform for ADM translation, standing-substrate subtraction, catch/rematch source-law development, and source-family screening. The $V=10$ embodiment exercises the same architecture at a high-stress edge rating. The $V=10$ case is useful because it intensifies the catch/rematch handoff channel while preserving the same source-placement pattern observed at the primary target.
+
+\section{Representative Reduced Metric}
+
+A representative reduced metric is expressed as
+\begin{equation}
+\dd s^2 = -\alpha(l,\sig)^2\dd\sig^2
++ A(l,\sig)\left(\dd l+\beta(l,\sig)\dd\sig\right)^2
++ B(l,\sig)\dd\Omega^2,
+\label{eq:metric}
+\end{equation}
+where $l$ is a rail coordinate, $\sig$ is a service scheduling parameter, $\alpha$ is the lapse, $\beta=\beta^l$ is the radial shift, $A=\gamma_{ll}$ is the radial spatial metric component, and $B=\gamma_{\Omega\Omega}$ is the angular spatial metric component.
+
+Representative parameter values for one embodiment are listed in Table~\ref{tab:params}. The values define a prototype design point and may be varied according to engineering load rating, source-family selection, grid resolution, or constraint-solve requirements.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Parameter & Representative value \\
+\midrule
+Primary service factor & $V=5$ \\
+High-stress service factor & $V=10$ \\
+Packet radius & $\Rpass=0.35$ \\
+Support radius & $\Rth=1.75$ \\
+Angular jacket radius & $\ROm=1.75$ \\
+Radial support width & $\wth=0.569$ \\
+Packet transition width & $\wpass=0.06$ \\
+Angular jacket width & $w_\Omega=1.4$ \\
+Angular jacket amplitude & $a_\Omega=0.20$ \\
+Lapse cushion strength & $\eta_N=2.00$ \\
+Support catch center and width & $x=-0.05$, $w=0.32$ \\
+Packet rematch center and width & $x=0.00$, $w=0.32$ \\
+Catch/rematch profile & minimum-jerk \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Representative active-rail parameters.}
+\label{tab:params}
+\end{center}
+
+\section{Service Sequence}
+
+A representative service cycle proceeds through the following phases:
+\begin{equation}
+\begin{array}{c}
+\text{prepared substrate}\rightarrow\text{ready support plant}\rightarrow\text{packet entry}\rightarrow\text{locked-lead catch/rematch}\\
+\rightarrow\text{support-contained shift handoff}\rightarrow\text{packet release}\rightarrow\text{infrastructure reset}.
+\end{array}
+\end{equation}
+
+Passenger-facing accounting is assigned to packet entry, catch/rematch, carried service, release, and any selected live buffer window. Reset and decompression are infrastructure operations unless a diagnostic window intentionally includes them for system-level energy accounting.
+
+\section{ADM Translation}
+
+The metric of Eq.~\eqref{eq:metric} is expressed in ADM form through
+\begin{equation}
+\gamma_{ij}=\mathrm{diag}\left(A,B,B\sin^2\theta\right),\qquad
+\beta^i=(\beta,0,0),\qquad
+\beta_i=(A\beta,0,0).
+\end{equation}
+The unit normal to a $\sig=\mathrm{constant}$ slice is
+\begin{equation}
+n^\mu=\left(\frac{1}{\alpha},-\frac{\beta}{\alpha},0,0\right),
+\qquad n_\mu=(-\alpha,0,0,0).
+\end{equation}
+
+Using dot notation for $\partial_\sig$ and prime notation for $\partial_l$, and adopting the convention
+\begin{equation}
+K_{ij}=\frac{1}{2\alpha}\left(D_i\beta_j+D_j\beta_i-\partial_\sig\gamma_{ij}\right),
+\end{equation}
+the independent extrinsic-curvature components are
+\begin{align}
+K_{ll}&=\frac{1}{2\alpha}\left(2A\beta'+A'\beta-\dot A\right),\\
+K_{\theta\theta}&=\frac{1}{2\alpha}\left(\beta B'-\dot B\right),\\
+K_{\phi\phi}&=K_{\theta\theta}\sin^2\theta.
+\end{align}
+The mixed eigenvalue-like quantities are
+\begin{align}
+k_l&=K^l_{\ l}=\frac{1}{2\alpha}\left(2\beta'+\beta\frac{A'}{A}-\frac{\dot A}{A}\right),\\
+k_\Omega&=K^\theta_{\ \theta}=K^\phi_{\ \phi}
+=\frac{1}{2\alpha}\left(\beta\frac{B'}{B}-\frac{\dot B}{B}\right).
+\end{align}
+Thus
+\begin{equation}
+K=k_l+2k_\Omega,
+\qquad
+K_{ij}K^{ij}=k_l^2+2k_\Omega^2.
+\end{equation}
+For spatial line element $\dd l_3^2=A\dd l^2+B\dd\Omega^2$, the scalar curvature is
+\begin{equation}
+{}^{(3)}R
+= -\frac{2B''}{AB}
++\frac{(B')^2}{2AB^2}
++\frac{A'B'}{A^2B}
++\frac{2}{B}.
+\end{equation}
+The Hamiltonian and radial momentum constraints produce the ADM ledger fields
+\begin{align}
+16\pi\rhoADM &= {}^{(3)}R+K^2-K_{ij}K^{ij}
+= {}^{(3)}R+4k_lk_\Omega+2k_\Omega^2,\\
+8\pi j_l&=-2k_\Omega'+\frac{B'}{B}(k_l-k_\Omega),\\
+j_\theta&=0,\qquad j_\phi=0.
+\end{align}
+
+\section{Source-Placement Ledger}
+
+The source-placement ledger assigns demanded source roles to system components. The ledger is used for engineering localization, source-family screening, and prototype acceptance.
+
+\begin{longtable}{p{0.28\linewidth}p{0.40\linewidth}p{0.22\linewidth}}
+\toprule
+\textbf{Source role} & \textbf{Engineering assignment} & \textbf{Primary diagnostic} \\
+\midrule
+Standing support shell & Prepared substrate and throat/core support & baseline $\rhoADM$ \\
+Radial support edge & Radial pressure reduction and support-shell shaping & edge gradients \\
+Angular jacket & Broad angular/effective support & angular support burden \\
+Lapse cushion & Causal-margin compensator & packet norm margin \\
+Shift packet carrier & Support-contained carrying field & momentum localization \\
+Catch/rematch absorber & Inner packet-edge handoff absorber & $\Delta j_l$, $\Tkk$ residual \\
+Release/fade correction & Controlled shift fade after packet normalization & release-edge leakage \\
+Reset/decompression infrastructure & Reset after live service & infrastructure ledger \\
+\bottomrule
+\end{longtable}
+
+The representative diagnostics indicate that the live service increment appears primarily in $j_l$ during catch/rematch. The absolute $\rhoADM$ activity within the packet corridor is substantially attributable to standing substrate curvature, as demonstrated by standing substrate subtraction.
+
+\section{Catch-Edge Control Law}
+
+Let
+\begin{equation}
+\xi=l-s(\sig)
+\end{equation}
+be a packet-centered radial coordinate. A preferred absorber amplitude is a compact kinematic handoff law multiplied by an inner-edge envelope:
+\begin{equation}
+A_{\mathrm{catch}}(\xi,\sig)
+= W_{\mathrm{catch}}(\sig)
+\left[a\,H_{\mathrm{shift}}(\xi,\sig)+b\,B_{\mathrm{inner}}(\xi)\right],
+\end{equation}
+where $W_{\mathrm{catch}}$ is a locked-lead timing window, $H_{\mathrm{shift}}$ is a smooth shift-handoff or shift-mismatch measure, and $B_{\mathrm{inner}}$ is a compact bump centered near $\xi=-\Rpass$. A residual-responsive limiter may bound the amplitude:
+\begin{equation}
+A_{\mathrm{catch}}\leq C\left(\left[R_{\Tkk}\right]_+\right),
+\end{equation}
+where $C$ denotes a smooth cap and $R_{\Tkk}$ denotes the predicted radial-null residual. The primary control law is kinematic; the residual-responsive term supplies protective limiting and diagnostic alignment.
+
+\section{Standing Substrate Subtraction}
+
+Standing substrate subtraction isolates service-induced ADM demand from prepared infrastructure demand. For a live service field $F_{\mathrm{live}}$ and a time-matched prepared beta-off substrate field $F_{\mathrm{sub}}$, define
+\begin{align}
+\delrho&=\rho_{\mathrm{ADM,live}}-\rho_{\mathrm{ADM,sub}},\\
+\delj&=j_{l,\mathrm{live}}-j_{l,\mathrm{sub}}.
+\end{align}
+This diagnostic determines whether packet-region ADM activity belongs to baseline support curvature or to the active service increment.
+
+In the representative $V=5$ primary embodiment, exact-builder ADM diagnostics give the results in Table~\ref{tab:v5diag}.
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Observable & Representative diagnostic result \\
+\midrule
+Positive live packet norm samples & $0$ \\
+Maximum live packet norm & $-180.546$ \\
+Live packet fraction of $|j_l|$ & $7.85\%$ \\
+Live packet fraction of $|\rhoADM|$ & $27.06\%$ \\
+Live packet fraction of negative $\rhoADM$ & $0.00\%$ \\
+Subtracted packet $\Delta\rho$ relative to live packet $\rho$ & about $0.000295\%$ \\
+Subtracted live-packet $\Delta j_l$ fraction & about $11.75\%$ \\
+\bottomrule
+\end{tabular}
+\captionof{table}{Representative $V=5$ ADM and substrate-subtraction diagnostics.}
+\label{tab:v5diag}
+\end{center}
+
+In the $V=10$ high-stress embodiment, the subtracted $\Delta\rho$ remains small while catch/rematch-localized $\Delta j_l$ increases to about $19.25\%$ of live-packet $j_l$. Approximately $97.94\%$ of the live-packet $\Delta j_l$ burden is localized in catch/rematch. The comparison supports use of $V=5$ as the primary prototype target and $V=10$ as the edge-condition test.
+
+\section{Prototype Plan}
+
+\subsection{Prototype Objective}
+
+The prototype objective is to construct a coarse ADM diagnostic scaffold for the $V=5$ active-rail service and determine whether the prescribed reduced metric produces a constraint-readable source-placement target. The prototype begins with prescribed geometry, then proceeds toward constraint-compatible source modeling.
+
+\subsection{Stage 1: Exact Field Builder and ADM Ledger}
+
+Inputs:
+\begin{itemize}
+\item exact field functions $\alpha(l,\sig)$, $\beta(l,\sig)$, $A(l,\sig)$, and $B(l,\sig)$;
+\item packet, support, stage, and region labels;
+\item primary $V=5$ operating target and high-stress $V=10$ comparison case.
+\end{itemize}
+
+Outputs:
+\begin{itemize}
+\item maps of $k_l$, $k_\Omega$, $K$, ${}^{(3)}R$, $\rhoADM$, and $j_l$;
+\item region and stage burden tables;
+\item packet norm and packet exposure diagnostics.
+\end{itemize}
+
+Acceptance criteria:
+\begin{enumerate}
+\item all live-packet norm samples remain negative;
+\item ADM fields remain finite on the diagnostic grid;
+\item live momentum burden concentrates in support/catch/rematch rather than packet interior;
+\item live negative $\rhoADM$ packet burden remains zero or negligible.
+\end{enumerate}
+
+\subsection{Stage 2: Standing Substrate Subtraction}
+
+Compute beta-off or ready-state substrate fields and subtract them from live service fields. The objective is to identify the service-induced $\Delta\rho$ and $\Delta j_l$ increments.
+
+Acceptance criteria:
+\begin{enumerate}
+\item $\Delta\rho$ remains small inside the live packet;
+\item $\Delta j_l$ is localized near catch/rematch and support-side handoff regions;
+\item the $V=10$ case increases handoff demand while preserving the qualitative localization pattern observed at $V=5$.
+\end{enumerate}
+
+\subsection{Stage 3: Compact Source-Control Law}
+
+Replace fitted modal catch-edge components with a compact control law. The preferred embodiment uses a kinematic handoff amplitude and an inner-edge spatial envelope. The law is tested against residual maps and ADM $\Delta j_l$ maps.
+
+Acceptance criteria:
+\begin{enumerate}
+\item the law captures the majority of catch/rematch $\Delta j_l$ demand at $V=5$;
+\item the support remains localized near $\xi=-\Rpass$;
+\item packet-region $\Delta\rho$ remains small;
+\item scaling from $V=5$ toward $V=10$ remains smooth.
+\end{enumerate}
+
+\subsection{Stage 4: Coarse 3+1 Constraint Prototype}
+
+A coarse 3+1 prototype imposes or solves partial constraint data using the ADM scaffold as the target. Candidate subtests include:
+\begin{itemize}
+\item fixing $\gamma_{ij}$ and computing compatible source ledgers;
+\item smoothing or regularizing the catch-edge $\Delta j_l$ layer;
+\item comparing beta-off, low-beta, and full-beta substrate choices;
+\item testing convergence of $\Delta\rho$ and $\Delta j_l$ under grid refinement;
+\item repeating the acceptance suite at $V=10$ as an edge-condition comparison.
+\end{itemize}
+
+\subsection{Stage 5: Source-Family Screening}
+
+Candidate source families are screened against the component ledger. Source families may be assigned to standing support, angular jacket, lapse support, shift carrier, and catch-edge absorber roles. Preference is given to source families that keep amplitudes bounded, preserve packet-region safety, and maintain localized support roles under refinement.
+
+\section{Engineering Acceptance Criteria}
+
+\begin{longtable}{p{0.31\linewidth}p{0.50\linewidth}p{0.11\linewidth}}
+\toprule
+\textbf{Criterion} & \textbf{Meaning} & \textbf{Gate} \\
+\midrule
+Packet norm safety & All live packet norm samples remain negative & Required \\
+Substrate-separated density & Packet $\Delta\rho$ remains small after subtraction & Required \\
+Handoff localization & Service $\Delta j_l$ concentrates in catch/rematch and support handoff & Required \\
+Residual localization & Residual maps show localized packet-edge and support-region structure & Required \\
+$V=5$ stability & Primary target remains stable under grid and seed variation & Required \\
+$V=10$ edge behavior & High-stress case intensifies the handoff channel while preserving source placement & Desired \\
+Compact absorber law & Catch-edge absorber is expressible as a bounded control law & Required \\
+Constraint compatibility & Coarse 3+1 prototype maintains stable constraint behavior & Required \\
+\bottomrule
+\end{longtable}
+
+\section{Risk Controls and Diagnostic Alarms}
+
+\begin{enumerate}
+\item \textbf{Packet-region density increment.} A large $\Delta\rho$ concentration inside the protected packet would trigger packet-corridor redesign.
+\item \textbf{Refinement-sharpening catch layer.} A catch-edge layer that sharpens under grid refinement would trigger absorber broadening or source-family rejection.
+\item \textbf{Angular jacket leakage.} Angular support entering the packet region would trigger redesign of the angular jacket or support-shell partition.
+\item \textbf{Momentum delocalization.} $\Delta j_l$ spreading across the packet interior would trigger revision of the handoff model.
+\item \textbf{High-stress qualitative transition.} A $V=10$ source pattern that changes category rather than magnitude would place the edge case outside the primary prototype rating.
+\item \textbf{Constraint instability.} Growing constraint residuals in the coarse 3+1 scaffold would trigger smoothing, reparameterization, or source-ledger redesign.
+\end{enumerate}
+
+\section{Illustrative System Diagram}
+
+\begin{center}
+\begin{tikzpicture}[
+  node distance=1.0cm,
+  block/.style={draw, rounded corners, align=center, minimum height=0.85cm, minimum width=2.45cm},
+  arrow/.style={-Latex, thick}
+]
+\node[block] (sub) {Standing\\substrate};
+\node[block, right=of sub] (support) {Support shell\\and jacket};
+\node[block, right=of support] (packet) {Live packet\\corridor};
+\node[block, below=of packet] (catch) {Locked-lead\\catch/rematch};
+\node[block, left=of catch] (abs) {Inner-edge\\absorber};
+\node[block, left=of abs] (adm) {ADM ledger\\$\rho$, $j_l$};
+\draw[arrow] (sub) -- (support);
+\draw[arrow] (support) -- (packet);
+\draw[arrow] (packet) -- (catch);
+\draw[arrow] (catch) -- (abs);
+\draw[arrow] (abs) -- (adm);
+\draw[arrow] (support.south) |- (catch.west);
+\end{tikzpicture}
+\end{center}
+
+\section{Claim-Oriented Embodiments}
+
+The following claim-oriented embodiments clarify the technical scope of the disclosure.
+
+\begin{enumerate}
+\item A method of operating a prescribed spacetime metric service, comprising preparing a standing support substrate, defining a live packet corridor within a larger support shell, routing a radial shift field through the support shell, and applying a locked-lead catch/rematch control window to localize service-induced momentum demand near a packet edge.
+
+\item The method of item 1, wherein the live packet corridor has radius $\Rpass$ smaller than a support radius $\Rth$, and wherein a radial support-edge width $\wth$ is selected to reduce radial pressure burden while a lapse cushion preserves packet causal margin.
+
+\item The method of item 1, wherein a dimensionless service factor $V$ controls the carried-shift operating load, and wherein $V$ is used to select support, lapse-cushion, and catch/rematch absorber settings.
+
+\item The method of item 3, wherein a primary operating embodiment is rated at $V=5$ and a high-stress operating embodiment is rated at $V=10$.
+
+\item The method of item 1, wherein an ADM diagnostic ledger is computed from fields $\alpha$, $\beta$, $A=\gamma_{ll}$, and $B=\gamma_{\Omega\Omega}$, and wherein the ledger includes $\rhoADM$ and $j_l$.
+
+\item The method of item 5, further comprising subtracting a time-matched standing substrate from a live service field to identify $\Delta\rho$ and $\Delta j_l$.
+
+\item The method of item 6, wherein a service pass is accepted when $\Delta\rho$ remains small inside the live packet and $\Delta j_l$ is localized near a catch/rematch handoff layer.
+
+\item A spacetime metric engineering system comprising a standing support shell, an angular jacket, a lapse-cushion sector, a support-contained shift carrier, a live packet corridor, and a packet-edge catch/rematch absorber.
+
+\item The system of item 8, wherein the packet-edge catch/rematch absorber comprises a kinematic handoff law multiplied by a compact inner-edge spatial envelope centered near $\xi=-\Rpass$.
+
+\item The system of item 9, wherein a residual-responsive limiter bounds the absorber amplitude.
+
+\item A numerical prototype process comprising constructing an exact field builder for $\alpha$, $\beta$, $A$, and $B$; computing ADM constraint fields; performing standing substrate subtraction; and screening source-family candidates against component-specific source roles.
+\end{enumerate}
+
+\section{Prototype Deliverables}
+
+The prototype deliverables for the primary $V=5$ operating embodiment are:
+\begin{enumerate}
+\item exact-builder ADM implementation package;
+\item substrate-subtracted $\rhoADM$ and $j_l$ maps;
+\item catch-edge absorber law specification;
+\item $V=5$ acceptance report;
+\item $V=10$ high-stress comparison appendix;
+\item source-family screening matrix;
+\item coarse 3+1 constraint prototype specification.
+\end{enumerate}
+
+\section{Conclusion}
+
+The active-rail system organizes spacetime metric engineering as a source-placement architecture. The primary $V=5$ operating embodiment separates standing substrate curvature from live service demand and localizes the principal service increment into a packet-adjacent catch/rematch momentum channel. The $V=10$ operating embodiment supplies an edge-condition comparison for the same architecture. The engineering path proceeds through exact-builder ADM diagnostics, standing substrate subtraction, compact absorber-law specification, source-family screening, and coarse 3+1 constraint prototyping.
+
+\end{document}
