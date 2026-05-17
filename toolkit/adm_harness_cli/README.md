@@ -48,15 +48,28 @@ Or run the same sequence with:
 bash scripts/run_local_smoke.sh
 ```
 
-## Run the V5 validation ladder
+## Run the validation ladder
 
-The V5 support-shell target can be checked with the staged validation ladder:
+The support-shell target can be checked with the staged validation ladder. The default run is the primary `V=5` service-factor case:
 
 ```bash
-python scripts/run_v5_validation_ladder.py
+python scripts/run_validation_ladder.py
 ```
 
-This runs the flow-off baseline, the promoted positive support-shell target, a generated negative counterpart, the packet-safety overlay on the tuned V5 branch, the richer multi-channel source objective, the signed source/objective comparison, reduced balance bookkeeping, and a positive-amplitude load-bearing ramp. Outputs are written to `runs/v5_validation_ladder/`.
+This runs the flow-off baseline, the promoted positive support-shell target, a generated negative counterpart, the packet-safety overlay on the matching tuned branch, the richer multi-channel source objective, the signed source/objective comparison, reduced balance bookkeeping, and a positive-amplitude load-bearing ramp. Outputs are written to `runs/<v_label>_validation_ladder/` unless `--output-root` is set.
+
+For the `V=10` edge comparison, the same command infers the `V10` packet member and output directory from the configs:
+
+```bash
+python scripts/run_validation_ladder.py \
+  --baseline-config configs/v10_service_flow_off.yaml \
+  --target-config configs/v10_service_support_shell_target.yaml \
+  --max-packet-j-fraction 1e-4 \
+  --max-packet-abs-delta-rho 1e-12 \
+  --max-rich-packet-increment-abs 1e-10
+```
+
+The old `scripts/run_v5_validation_ladder.py` entry point remains as a compatibility wrapper.
 
 ## Send results back
 
