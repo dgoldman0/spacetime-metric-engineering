@@ -1,0 +1,65 @@
+run_name: v5_service_carrying_flow_localizer
+
+service:
+  velocity: 5.0
+
+  carrying_flow:
+    enabled: true
+    law: compact_momentum_localizer
+    scope: catch_rematch_edge
+    signal: delta_j_l
+    amplitude: 0.002
+    gain: 1.0
+    max_abs_change: 0.002
+    smoothness_order: 2
+    packet_exclusion: 0.40
+    support_shell_gain: 0.50
+    edge_bias: 0.25
+
+  clock_lapse:
+    enabled: false
+    law: windowed_scale
+    scope: support_shell
+    amplitude: 0.0
+    max_abs_change: 0.0
+
+  rail_stretch:
+    enabled: false
+    law: windowed_scale
+    scope: support_shell
+    amplitude: 0.0
+    max_abs_change: 0.0
+
+  throat_capacity:
+    enabled: false
+    law: windowed_scale
+    scope: support_shell
+    amplitude: 0.0
+    max_abs_change: 0.0
+
+inputs:
+  exact_fields: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: /mnt/data/adm_harness_v03_data/substrate_subtraction_fields_v5.npz
+
+substrate:
+  mode: carrying_flow_off
+
+synthesis:
+  enabled: true
+
+validation:
+  identity_self_check: true
+  identity_tolerance: 1.0e-10
+
+thresholds:
+  max_abs_delta_rho_packet: 0.000001
+  max_abs_delta_j_packet: 0.0001
+  min_catch_rematch_localization_fraction: 0.50
+
+outputs:
+  root: /mnt/data/adm_harness_service_runs
+  format: csv
+  figures: false
+  report: true
+  overwrite: true
