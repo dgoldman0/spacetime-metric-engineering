@@ -89,6 +89,8 @@ class SourceParams:
     support_shell_packet_exclusion: float = 1.0
     support_shell_time_anchor: float | None = None
     support_shell_catch_edge_width: float | None = None
+    support_shell_clock_lapse_log_gain: float = 0.0
+    support_shell_rail_stretch_log_gain: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -195,6 +197,10 @@ def support_shell_delta_beta(s: float, l: float, params: SourceParams) -> float:
     return float(params.support_shell_amplitude) * support_shell_overlay_window(s, l, params)
 
 
+def support_shell_metric_factor(log_gain: float, window: float) -> float:
+    return float(math.exp(float(log_gain) * float(window)))
+
+
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
@@ -215,12 +221,18 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     shoulder = np.exp(-((np.abs(l_arr) - 1.05) / 0.35) ** 2)
     n_cushion = np.exp(params.eta_N * 0.18 * q * shoulder)
 
+    shell_window = support_shell_overlay_window(float(s), float(l), params)
     beta_base = -u_beta * e_release * (w_support ** params.p_beta) * s_packet / b_angular
-    delta_beta_shell = support_shell_delta_beta(float(s), float(l), params)
+    delta_beta_shell = float(params.support_shell_amplitude) * shell_window if params.support_shell_overlay_enabled else 0.0
     beta = beta_base + delta_beta_shell
-    alpha = n_cushion * t_lapse
-    sqrt_gamma_ll = b_angular * a_spatial
-    gamma_ll = sqrt_gamma_ll * sqrt_gamma_ll
+    alpha_base = n_cushion * t_lapse
+    clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
+    alpha = alpha_base * clock_lapse_factor
+    sqrt_gamma_ll_base = b_angular * a_spatial
+    gamma_ll_base = sqrt_gamma_ll_base * sqrt_gamma_ll_base
+    rail_stretch_factor = support_shell_metric_factor(params.support_shell_rail_stretch_log_gain, shell_window)
+    gamma_ll = gamma_ll_base * rail_stretch_factor
+    sqrt_gamma_ll = np.sqrt(gamma_ll)
     vcoord = u_packet / b_angular
     gtt = -alpha * alpha + gamma_ll * beta * beta
     packet_norm = -alpha * alpha + gamma_ll * (vcoord + beta) ** 2
@@ -244,8 +256,14 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "beta": float(beta),
         "alpha": float(alpha),
         "beta_base": float(beta_base),
-        "support_shell_window": support_shell_overlay_window(float(s), float(l), params),
+        "alpha_base": float(alpha_base),
+        "gamma_ll_base": float(gamma_ll_base),
+        "support_shell_window": float(shell_window),
         "support_shell_delta_beta": float(delta_beta_shell),
+        "support_shell_clock_lapse_factor": float(clock_lapse_factor),
+        "support_shell_delta_alpha": float(alpha - alpha_base),
+        "support_shell_rail_stretch_factor": float(rail_stretch_factor),
+        "support_shell_delta_gamma_ll": float(gamma_ll - gamma_ll_base),
         "sqrt_gamma_ll": float(sqrt_gamma_ll),
         "gamma_ll": float(gamma_ll),
         "vcoord": float(vcoord),
@@ -394,8 +412,14 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "alpha",
             "beta",
             "beta_base",
+            "alpha_base",
+            "gamma_ll_base",
             "support_shell_window",
             "support_shell_delta_beta",
+            "support_shell_clock_lapse_factor",
+            "support_shell_delta_alpha",
+            "support_shell_rail_stretch_factor",
+            "support_shell_delta_gamma_ll",
             "gamma_ll",
             "gamma_omega",
             "COmega",
@@ -688,7 +712,11 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_lead{_token(params.support_shell_catch_lead)}"
             f"_tw{_token(params.support_shell_temporal_width)}"
         )
-        note = f"{note}; continuous frozen support-shell carrying-flow overlay"
+        if params.support_shell_clock_lapse_log_gain:
+            case_name = f"{case_name}_cl{_token(params.support_shell_clock_lapse_log_gain)}"
+        if params.support_shell_rail_stretch_log_gain:
+            case_name = f"{case_name}_rs{_token(params.support_shell_rail_stretch_log_gain)}"
+        note = f"{note}; continuous support-shell metric overlay"
     return SourceCase(case_name, params, note)
 
 

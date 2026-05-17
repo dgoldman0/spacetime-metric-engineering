@@ -55,6 +55,8 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "support_shell_packet_exclusion": args.support_shell_packet_exclusion,
         "support_shell_time_anchor": args.support_shell_time_anchor,
         "support_shell_catch_edge_width": args.support_shell_catch_edge_width,
+        "support_shell_clock_lapse_log_gain": args.support_shell_clock_lapse_log_gain,
+        "support_shell_rail_stretch_log_gain": args.support_shell_rail_stretch_log_gain,
     }
 
 
@@ -149,6 +151,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--support-shell-packet-exclusion", type=float, default=None)
     parser.add_argument("--support-shell-time-anchor", type=float, default=None)
     parser.add_argument("--support-shell-catch-edge-width", type=float, default=None)
+    parser.add_argument("--support-shell-clock-lapse-log-gain", type=float, default=None)
+    parser.add_argument("--support-shell-rail-stretch-log-gain", type=float, default=None)
 
     parser.add_argument(
         "--reference",

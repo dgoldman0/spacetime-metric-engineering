@@ -158,6 +158,8 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             "tuned_w0569_eta200",
             service_factor=5.0,
             support_shell_overlay_enabled=True,
+            support_shell_clock_lapse_log_gain=0.10,
+            support_shell_rail_stretch_log_gain=-0.05,
         )
         points = source_ledger.compute_case(
             case,
@@ -173,12 +175,24 @@ class ValidationLadderHardeningTests(unittest.TestCase):
 
         self.assertIn("support_shell_window", points.columns)
         self.assertIn("support_shell_delta_beta", points.columns)
+        self.assertIn("support_shell_delta_alpha", points.columns)
+        self.assertIn("support_shell_delta_gamma_ll", points.columns)
         self.assertGreater(float(points["support_shell_window"].max()), 0.0)
         self.assertLessEqual(float(points["support_shell_window"].max()), 1.0)
         self.assertGreater(float(points["support_shell_delta_beta"].abs().max()), 0.0)
+        self.assertGreater(float(points["support_shell_delta_alpha"].abs().max()), 0.0)
+        self.assertGreater(float(points["support_shell_delta_gamma_ll"].abs().max()), 0.0)
         self.assertLess(
             float((points["beta"] - points["beta_base"] - points["support_shell_delta_beta"]).abs().max()),
             1.0e-15,
+        )
+        self.assertLess(
+            float((points["alpha"] - points["alpha_base"] - points["support_shell_delta_alpha"]).abs().max()),
+            1.0e-15,
+        )
+        self.assertLess(
+            float((points["gamma_ll"] - points["gamma_ll_base"] - points["support_shell_delta_gamma_ll"]).abs().max()),
+            1.0e-12,
         )
         self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
 

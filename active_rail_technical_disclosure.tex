@@ -46,6 +46,10 @@
 \newcommand{\rhoADM}{\rho_{\mathrm{ADM}}}
 \newcommand{\delrho}{\Delta \rho_{\mathrm{ADM}}}
 \newcommand{\delj}{\Delta j_l}
+\newcommand{\Grail}{G}
+\newcommand{\Gthroat}{Q}
+\newcommand{\Wsh}{W_{\mathrm{sh}}}
+\newcommand{\Npkt}{\mathcal{N}_{\mathrm{pkt}}}
 
 \begin{document}
 
@@ -56,11 +60,11 @@
 {\bfseries Edge-Load Operating Embodiment: Service Factor $V=10$}\\[0.8em]
 \end{center}
 
-\noindent\textbf{Document purpose.} This document discloses an active-rail spacetime metric engineering architecture, a source-placement control structure, and an engineering prototype plan. The disclosure is organized in a patent-style technical format and emphasizes system components, operating modes, diagnostic procedures, acceptance criteria, and prototype implementation stages.
+\noindent\textbf{Document purpose.} This document discloses an active-rail spacetime metric engineering architecture, a source-placement control structure, and the current state of an engineering prototype program. The disclosure is organized in a patent-style technical format and emphasizes system components, operating modes, metric components, diagnostic procedures, acceptance criteria, prototype status, and remaining development work.
 
 \section{Abstract}
 
-An active-rail spacetime metric engineering system is disclosed. The system includes a prepared standing support substrate, a protected live packet corridor, a support-contained radial shift carrier, a locked-lead catch/rematch layer, a radial support-edge softening layer, a lapse-cushion sector, an angular support jacket, and a localized catch-edge absorber. The architecture separates baseline infrastructure support from service-induced transport demand. A dimensionless service factor $V$ specifies the operating load applied to the carried-shift sector of the reduced metric. In a representative operating embodiment at $V=5$, the system preserves packet causal safety and localizes the service-induced ADM momentum increment primarily into a packet-adjacent catch/rematch handoff channel. An edge-load operating embodiment at $V=10$ exercises the same architecture near its recognized edge rating. The prototype plan translates the reduced metric fields into ADM variables, computes constraint-ledger fields, subtracts standing substrate demand from live service demand, and screens source-family candidates against localized component roles.
+An active-rail spacetime metric engineering system is disclosed. The system includes a prepared standing support substrate, a protected live packet corridor, a support-contained carrying-flow field, a locked timing layer for catch/rematch, a radial support-edge softening layer, a clock-lapse cushion, a rail-stretch sector, a throat-capacity/angular jacket, and localized support-shell control components. The architecture separates baseline infrastructure support from service-induced transport demand. A dimensionless service factor $V$ specifies the carrying-flow operating load applied to the reduced metric. In a representative operating embodiment at $V=5$, the system preserves packet causal safety and localizes small service-induced ADM momentum increments primarily into catch/rematch and support-shell infrastructure. An edge-load operating embodiment at $V=10$ exercises the same architecture near its recognized edge rating. Current prototype results support a frozen small support-shell control component and show that larger load-bearing 4D source redistribution requires timed, coupled metric shaping across carrying-flow, clock-lapse, rail-stretch, and throat-capacity sectors.
 
 \section{Technical Field}
 
@@ -68,22 +72,23 @@ The disclosure relates to prescribed spacetime metric engineering, numerical rel
 
 \section{Engineering Objective}
 
-A practical spacetime metric engineering architecture benefits from explicit source placement. The disclosed system assigns standing radial support, angular support, lapse safety, carried shift, catch/rematch correction, packet release, and reset operations to distinct service components. The engineering objective is to provide a reduced metric and prototype process that:
+A practical spacetime metric engineering architecture benefits from explicit source placement and explicit service timing. The disclosed system assigns standing radial support, throat/angular support, clock-lapse safety, carrying-flow load, catch/rematch correction, packet release, support-shell timing, and reset operations to distinct service components. The engineering objective is to provide a reduced metric and prototype process that:
 
 \begin{enumerate}
 \item separates prepared substrate support from live transport increments;
 \item keeps the protected packet corridor causally safe throughout live service;
-\item localizes service-induced momentum demand into catch/rematch and support handoff regions;
+\item localizes small service-induced momentum demand into catch/rematch and support-shell handoff regions;
 \item expresses the reduced metric in ADM variables for constraint-ledger diagnosis;
 \item subtracts the standing substrate from live service fields to isolate transport demand;
-\item supports a staged transition from prescribed reduced geometry to a coarse 3+1 constraint prototype.
+\item tests 4D demanded-source responses before promoting any component as load-bearing;
+\item supports a staged transition from prescribed reduced geometry to coupled metric-family screening and a coarse 3+1 constraint prototype.
 \end{enumerate}
 
 \section{Overview of the Active-Rail System}
 
-The active rail operates as a staged metric service. A prepared standing substrate supplies the baseline throat, support shell, angular jacket, and lapse structure. A live packet corridor lies inside the support shell. A radial shift field carries the service demand through the prepared support rather than through a broad passenger-facing shell. A locked-lead catch/rematch layer absorbs the carried shift and returns the packet toward ordinary local geometry. A compact absorber is applied near the inward packet edge during catch/rematch to address localized handoff demand.
+The active rail operates as a staged metric service. A prepared standing substrate supplies the baseline throat, support shell, angular jacket, rail stretch, and clock-lapse structure. A live packet corridor lies inside the support shell. A carrying-flow field expresses the commanded service load through the prepared support infrastructure. A locked timing layer coordinates support-side catch with packet rematch and returns the packet toward ordinary local geometry. Packet-edge and support-shell control components are applied during catch/rematch to address localized handoff demand.
 
-The invention-level structure is the componentized service architecture. The service factor $V$ is an operating-load parameter used to rate embodiments, select support/cushion/absorber settings, and compare source-demand scaling. The core system remains the staged active rail: prepared support substrate, protected packet corridor, support-contained carried shift, locked-lead catch/rematch, packet-adjacent absorber, and resettable infrastructure.
+The invention-level structure is the componentized service architecture. The service factor $V$ is an operating-load parameter used to rate embodiments, select support/cushion/timing settings, and compare source-demand scaling. The current understanding is that small support-shell carrying-flow components are packet-safe and controllable. Larger 4D source redistribution requires coupled timing among carrying-flow, clock-lapse, rail-stretch, and possibly throat-capacity metric components.
 
 \section{Definitions}
 
@@ -92,52 +97,59 @@ The invention-level structure is the componentized service architecture. The ser
 \textbf{Term} & \textbf{Meaning in this disclosure} \\
 \midrule
 Active rail & A staged spacetime metric service in which prepared infrastructure supports the transport geometry and a live packet is carried through a protected corridor. \\
-Service factor $V$ & A dimensionless operating-load parameter controlling the magnitude of the support-contained radial shift field during the carried-service portion of the reduced metric. In units with $c=1$, $V$ is the nominal effective transport factor imposed on the metric service and the load rating used for engineering comparison. \\
+Service factor $V$ & A dimensionless carried-flow service setting. It sets the scheduled plateau level of the support-contained carrying-flow field and the packet-frame comparison schedule used for causal-margin accounting. \\
 Primary operating embodiment & The representative service configuration evaluated at $V=5$, selected as the principal prototype target. \\
 Edge-load operating embodiment & The representative service configuration evaluated at $V=10$, selected as an edge-condition test for the same architecture. \\
 Standing substrate & Prepared support geometry including throat/core support, radial support shell, angular jacket, and baseline lapse structure. \\
 Live packet & Passenger-facing corridor whose causal and source-exposure properties are monitored during live service. \\
-Support shell & Wider infrastructure region enclosing the live packet and carrying broad support demand. \\
-Locked-lead catch & Timing rule in which infrastructure-side catch begins slightly before packet rematch while packet rematch remains tightly coupled. \\
+Support shell & Wider infrastructure region enclosing the live packet and carrying broad support demand. In the support-shell control overlays, the active support-shell band is an annular infrastructure band at the support edge. \\
+Carrying-flow field & The service-facing name for the radial shift component $\beta$. It carries the scheduled service load through prepared support infrastructure. \\
+Clock-lapse field & The service-facing name for the lapse component $\alpha$. It supplies causal margin and can be used as a timed partner to carrying-flow control. \\
+Rail-stretch field & The service-facing name for the radial spatial metric component $\Grail=\gamma_{ll}$. It sets radial metric capacity and affects how carrying-flow gradients appear in the source ledger. \\
+Throat-capacity field & The service-facing name for the angular metric component $\Gthroat=\gamma_{\Omega\Omega}$. It includes throat and angular-jacket capacity. \\
+Locked timing & Timing rule in which support-side catch begins with a controlled lead relative to packet rematch while packet-frame safety remains constrained. \\
 Catch/rematch absorber & Localized packet-edge source or control component assigned to remaining null/momentum handoff demand. \\
 Radial support edge & Transition layer controlling radial pressure demand and support-shell coupling. \\
-Lapse cushion & Lapse-sector compensator that preserves causal margin consumed by stronger support-edge shaping. \\
+Lapse cushion & Clock-lapse-sector compensator that preserves causal margin consumed by stronger support-edge shaping. \\
+Support-shell overlay & A localized metric-side support-shell component applied through a smooth timing and radial window $\Wsh(\sig,l)$. It may act on carrying-flow alone or in coupled form with clock-lapse and rail-stretch partners. \\
+4D demanded-source ledger & Finite-difference evaluation of $T_{\mu\nu}^{\mathrm{dem}}=G_{\mu\nu}[g]/(8\pi)$ for the prescribed metric. It diagnoses radial null, radial pressure, angular pressure, current, and packet-comoving density demands. \\
+Strong 4D source redistribution & A source-ledger result in which a metric component measurably reduces or reroutes expensive demanded-source channels while preserving packet safety and numerical robustness. \\
 Standing substrate subtraction & Diagnostic subtraction of a prepared beta-off or ready-state substrate from live service fields to isolate service-induced ADM demand. \\
 \bottomrule
 \end{longtable}
 
-\section{Operating Regime and Role of $V$}
+\section{Operating Regime and Role of \texorpdfstring{$V$}{V}}
 
-The service factor $V$ is the operating rating assigned to the carried-shift sector of the reduced active-rail metric. It is a natural focus knob because one scalar sets the plateau level of the carried service before the architecture distributes that service through support-side catch, packet rematch, radial support, and release/fade envelopes. Holding the geometric support parameters fixed while varying $V$ therefore tests how a selected rail architecture responds to a higher or lower commanded carried-shift load.
+The service factor $V$ is the operating rating assigned to the carrying-flow sector of the reduced active-rail metric. It is a natural focus parameter because one scalar sets the plateau level of the scheduled carrying-flow service before the architecture distributes that service through support-side catch, packet rematch, radial support, and release/fade envelopes. Holding the geometric support parameters fixed while varying $V$ therefore tests how a selected rail architecture responds to a higher or lower commanded carrying-flow load.
 
-The scheduled support-side shift factor and the packet-frame comparison factor are obtained by blending $V$ with an exit or residual service factor $v_{\mathrm{exit}}$ through the locked-lead catch/rematch schedules:
+The scheduled support-side carrying-flow factor and the packet-frame comparison factor are obtained by blending $V$ with an exit or residual service factor $v_{\mathrm{exit}}$ through the locked timing schedules:
 \begin{align}
 U_{\beta}(\sig) &= v_{\mathrm{exit}}+\left(V-v_{\mathrm{exit}}\right)C_{\beta}(\sig),\\
 U_{\mathrm{pkt}}(\sig) &= v_{\mathrm{exit}}+\left(V-v_{\mathrm{exit}}\right)C_{\mathrm{pkt}}(\sig),
 \end{align}
-where $C_{\beta}$ is the support-side catch schedule and $C_{\mathrm{pkt}}$ is the packet rematch schedule. In the locked-lead branch, $C_{\beta}$ begins slightly earlier while $C_{\mathrm{pkt}}$ remains closely coupled. Thus $V$ selects the service level, while the choreography determines where and when that service level is expressed.
+where $C_{\beta}$ is the support-side catch schedule and $C_{\mathrm{pkt}}$ is the packet rematch schedule. In the locked-timing branch, $C_{\beta}$ begins with a controlled support-side lead while $C_{\mathrm{pkt}}$ remains closely coupled by packet-norm safety. Thus $V$ selects the service level, while the choreography determines where and when that service level is expressed.
 
-The carried-shift factor enters the representative metric through the radial shift field. A compact form of the support-contained shift ansatz is
+The carrying-flow factor enters the representative metric through the carrying-flow field $\beta$. A compact form of the support-contained carrying-flow ansatz is
 \begin{equation}
 \beta(l,\sig)=
--\,\frac{U_{\beta}(\sig)\,E(\sig)\,W(l)^{p_{\beta}}\,S(l,\sig)}{B(l,\sig)},
+-\,\frac{U_{\beta}(\sig)\,E(\sig)\,W(l)^{p_{\beta}}\,S(l,\sig)}{\Gthroat(l,\sig)},
 \label{eq:v_beta_ansatz}
 \end{equation}
-where $E$ is the release/fade envelope, $W$ is the support-shell radial window, $S$ is the packet-adjacent service envelope, and $B=\gamma_{\Omega\Omega}$ is the angular metric component. The packet-frame comparison uses
+where $E$ is the release/fade envelope, $W$ is the support-shell radial window, $S$ is the packet-adjacent service envelope, and $\Gthroat=\gamma_{\Omega\Omega}$ is the throat-capacity field. The packet-frame comparison uses
 \begin{equation}
-u_{\mathrm{pkt}}^{\,l}(\sig,l)=\frac{U_{\mathrm{pkt}}(\sig)}{B(l,\sig)},
+u_{\mathrm{pkt}}^{\,l}(\sig,l)=\frac{U_{\mathrm{pkt}}(\sig)}{\Gthroat(l,\sig)},
 \qquad
-\mathcal{N}_{\mathrm{pkt}}
-=-\alpha^2+A\left(u_{\mathrm{pkt}}^{\,l}+\beta\right)^2,
+\Npkt
+=-\alpha^2+\Grail\left(u_{\mathrm{pkt}}^{\,l}+\beta\right)^2,
 \label{eq:v_packet_norm}
 \end{equation}
-with packet causal safety requiring $\mathcal{N}_{\mathrm{pkt}}<0$ on the live packet corridor. In this sense, $V$ drives the metric service along the path
+with packet causal safety requiring $\Npkt<0$ on the live packet corridor. In this sense, $V$ drives the metric service along the path
 \begin{equation}
 V \rightarrow U_{\beta},U_{\mathrm{pkt}}
-\rightarrow \beta,\mathcal{N}_{\mathrm{pkt}}
+\rightarrow \beta,\Npkt
 \rightarrow K_{ij},\rho_{\mathrm{ADM}},j_l ,
 \end{equation}
-so a $V$-sweep probes the same architecture's carried-shift load, packet causal margin, and ADM source-placement response.
+so a $V$-sweep probes the same architecture's carried-flow load, packet causal margin, and ADM source-placement response.
 
 In representative diagnostics, $V=5$ provides the primary engineering target. It gives a clean platform for ADM translation, standing-substrate subtraction, catch/rematch source-law development, and source-family screening. The $V=10$ embodiment exercises the same architecture at an edge-load rating. The $V=10$ case is useful because it intensifies the catch/rematch handoff channel while preserving the same source-placement pattern observed at the primary target.
 
@@ -146,18 +158,52 @@ In representative diagnostics, $V=5$ provides the primary engineering target. It
 A representative reduced metric is expressed as
 \begin{equation}
 \dd s^2 = -\alpha(l,\sig)^2\dd\sig^2
-+ A(l,\sig)\left(\dd l+\beta(l,\sig)\dd\sig\right)^2
-+ B(l,\sig)\dd\Omega^2,
++ \Grail(l,\sig)\left(\dd l+\beta(l,\sig)\dd\sig\right)^2
++ \Gthroat(l,\sig)\dd\Omega^2,
 \label{eq:metric}
 \end{equation}
-where $l$ is a rail coordinate, $\sig$ is a service scheduling parameter, $\alpha$ is the lapse, $\beta=\beta^l$ is the radial shift, $A=\gamma_{ll}$ is the radial spatial metric component, and $B=\gamma_{\Omega\Omega}$ is the angular spatial metric component.
+where $l$ is the rail coordinate and $\sig$ is the service scheduling coordinate. The four metric-side service fields are:
+\begin{align}
+\alpha(l,\sig) &\quad\text{clock-lapse field},\\
+\beta(l,\sig) &\quad\text{carrying-flow field},\\
+\Grail(l,\sig)=\gamma_{ll} &\quad\text{rail-stretch field},\\
+\Gthroat(l,\sig)=\gamma_{\Omega\Omega} &\quad\text{throat-capacity field}.
+\end{align}
+This notation keeps the amplitude symbol available for control amplitudes and avoids using the same letter for a metric component and a support-shell overlay strength.
 
-Representative parameter values for one embodiment are listed in Table~\ref{tab:params}. The values define a prototype design point and may be varied according to engineering load rating, source-family selection, grid resolution, or constraint-solve requirements.
+\subsection{General Component Form}
+
+The present prototype family can be described as a shaped baseline plus localized support-shell partners:
+\begin{align}
+\beta(l,\sig)&=\beta_0(l,\sig)+a_\beta \Wsh(l,\sig),\\
+\alpha(l,\sig)&=\alpha_0(l,\sig)\exp\!\left(\kappa_\alpha \Wsh(l,\sig)\right),\\
+\Grail(l,\sig)&=\Grail_0(l,\sig)\exp\!\left(\kappa_G \Wsh(l,\sig)\right),\\
+\Gthroat(l,\sig)&=\Gthroat_0(l,\sig)\exp\!\left(\kappa_Q \Wsh(l,\sig)\right).
+\label{eq:component_family}
+\end{align}
+The baseline fields $\alpha_0,\beta_0,\Grail_0,\Gthroat_0$ include the prepared throat, angular jacket, radial support-edge softening, lapse cushion, shaped catch/rematch timing, service release, and packet-frame comparison structure. The localized partners are support-shell metric overlays. The currently implemented continuous partners are carrying-flow ($a_\beta$), clock-lapse ($\kappa_\alpha$), and rail-stretch ($\kappa_G$). The throat-capacity partner $\kappa_Q$ is retained in the general form because the angular/throat channel is a natural remaining degree of freedom for source-family screening and angular-pressure control.
+
+The support-shell window is an annular, timed, packet-excluding window:
+\begin{equation}
+\Wsh(l,\sig)=R_{\mathrm{sh}}(|l|)\,
+T_{\mathrm{sh}}(\sig;\lambda_c,\tau_c)\,
+P_{\mathrm{excl}}(l,\sig),
+\label{eq:wsh}
+\end{equation}
+where $R_{\mathrm{sh}}$ selects support-edge infrastructure, $T_{\mathrm{sh}}$ places the control action relative to catch/rematch, and $P_{\mathrm{excl}}$ suppresses direct live-packet overlap. In the current implementation,
+\begin{equation}
+0.65\,\Rth\leq |l|\leq 1.20\,\Rth
+\end{equation}
+is the nominal support-shell band, $\lambda_c$ is the support-shell catch lead, and $\tau_c$ is the temporal width of the support-shell timing envelope.
+
+\subsection{Representative Settings}
+
+Representative parameter values for the current prototype understanding are listed in Table~\ref{tab:params}. The values define a working design point and nearby tested refinements.
 
 \begin{center}
-\begin{tabular}{ll}
+\begin{tabularx}{\linewidth}{lX}
 \toprule
-Parameter & Representative value \\
+Parameter & Representative value or status \\
 \midrule
 Primary service factor & $V=5$ \\
 Edge-load service factor & $V=10$ \\
@@ -166,15 +212,18 @@ Support radius & $\Rth=1.75$ \\
 Angular jacket radius & $\ROm=1.75$ \\
 Radial support width & $\wth=0.569$ \\
 Packet transition width & $\wpass=0.06$ \\
-Angular jacket width & $w_\Omega=1.4$ \\
-Angular jacket amplitude & $a_\Omega=0.20$ \\
+Angular jacket width and amplitude & $w_\Omega=1.4$, $a_\Omega=0.20$ \\
 Lapse cushion strength & $\eta_N=2.00$ \\
-Support catch center and width & $x=-0.05$, $w=0.32$ \\
-Packet rematch center and width & $x=0.00$, $w=0.32$ \\
-Catch/rematch profile & minimum-jerk \\
+Catch/rematch profile & minimum-jerk timing with shaped catch and packet rematch \\
+Frozen reduced support-shell overlay & $a_\beta=+10^{-7}$, $\lambda_c=1.0$, $\tau_c=0.35$, smoothness order $1$, packet exclusion $1.0$ \\
+Support-shell radial band & $0.65\,\Rth\leq |l|\leq 1.20\,\Rth$ \\
+High-amplitude 4D timing candidate & positive $a_\beta$, $\lambda_c=1.25$, $\tau_c=0.35$ in the latest V5 timing checks \\
+Clock-lapse partner & $\kappa_\alpha/a_\beta$ near $0.25$--$0.5$ is the current useful exploratory range \\
+Rail-stretch partner & $\kappa_G/a_\beta=0$ remains best by aggregate burden in the latest checks; positive rail-stretch remains useful as a point-peak and packet-drift comparator \\
+Throat-capacity partner & retained as an unscreened metric partner for angular/throat-capacity refinement \\
 \bottomrule
-\end{tabular}
-\captionof{table}{Representative active-rail parameters.}
+\end{tabularx}
+\captionof{table}{Representative active-rail parameters and current functional implementation decisions.}
 \label{tab:params}
 \end{center}
 
@@ -183,8 +232,8 @@ Catch/rematch profile & minimum-jerk \\
 A representative service cycle proceeds through the following phases:
 \begin{equation}
 \begin{array}{c}
-\text{prepared substrate}\rightarrow\text{ready support plant}\rightarrow\text{packet entry}\rightarrow\text{locked-lead catch/rematch}\\
-\rightarrow\text{support-contained shift handoff}\rightarrow\text{packet release}\rightarrow\text{infrastructure reset}.
+\text{prepared substrate}\rightarrow\text{ready support plant}\rightarrow\text{packet entry}\rightarrow\text{locked catch/rematch}\\
+\rightarrow\text{support-contained carrying-flow handoff}\rightarrow\text{packet release}\rightarrow\text{infrastructure reset}.
 \end{array}
 \end{equation}
 
@@ -194,9 +243,9 @@ Passenger-facing accounting is assigned to packet entry, catch/rematch, carried 
 
 The metric of Eq.~\eqref{eq:metric} is expressed in ADM form through
 \begin{equation}
-\gamma_{ij}=\mathrm{diag}\left(A,B,B\sin^2\theta\right),\qquad
+\gamma_{ij}=\mathrm{diag}\left(\Grail,\Gthroat,\Gthroat\sin^2\theta\right),\qquad
 \beta^i=(\beta,0,0),\qquad
-\beta_i=(A\beta,0,0).
+\beta_i=(\Grail\beta,0,0).
 \end{equation}
 The unit normal to a $\sig=\mathrm{constant}$ slice is
 \begin{equation}
@@ -210,15 +259,15 @@ K_{ij}=\frac{1}{2\alpha}\left(D_i\beta_j+D_j\beta_i-\partial_\sig\gamma_{ij}\rig
 \end{equation}
 the independent extrinsic-curvature components are
 \begin{align}
-K_{ll}&=\frac{1}{2\alpha}\left(2A\beta'+A'\beta-\dot A\right),\\
-K_{\theta\theta}&=\frac{1}{2\alpha}\left(\beta B'-\dot B\right),\\
+K_{ll}&=\frac{1}{2\alpha}\left(2\Grail\beta'+\Grail'\beta-\dot{\Grail}\right),\\
+K_{\theta\theta}&=\frac{1}{2\alpha}\left(\beta\Gthroat'-\dot{\Gthroat}\right),\\
 K_{\phi\phi}&=K_{\theta\theta}\sin^2\theta.
 \end{align}
 The mixed eigenvalue-like quantities are
 \begin{align}
-k_l&=K^l_{\ l}=\frac{1}{2\alpha}\left(2\beta'+\beta\frac{A'}{A}-\frac{\dot A}{A}\right),\\
+k_l&=K^l_{\ l}=\frac{1}{2\alpha}\left(2\beta'+\beta\frac{\Grail'}{\Grail}-\frac{\dot{\Grail}}{\Grail}\right),\\
 k_\Omega&=K^\theta_{\ \theta}=K^\phi_{\ \phi}
-=\frac{1}{2\alpha}\left(\beta\frac{B'}{B}-\frac{\dot B}{B}\right).
+=\frac{1}{2\alpha}\left(\beta\frac{\Gthroat'}{\Gthroat}-\frac{\dot{\Gthroat}}{\Gthroat}\right).
 \end{align}
 Thus
 \begin{equation}
@@ -226,19 +275,19 @@ K=k_l+2k_\Omega,
 \qquad
 K_{ij}K^{ij}=k_l^2+2k_\Omega^2.
 \end{equation}
-For spatial line element $\dd l_3^2=A\dd l^2+B\dd\Omega^2$, the scalar curvature is
+For spatial line element $\dd l_3^2=\Grail\dd l^2+\Gthroat\dd\Omega^2$, the scalar curvature is
 \begin{equation}
 {}^{(3)}R
-= -\frac{2B''}{AB}
-+\frac{(B')^2}{2AB^2}
-+\frac{A'B'}{A^2B}
-+\frac{2}{B}.
+= -\frac{2\Gthroat''}{\Grail\Gthroat}
++\frac{(\Gthroat')^2}{2\Grail\Gthroat^2}
++\frac{\Grail'\Gthroat'}{\Grail^2\Gthroat}
++\frac{2}{\Gthroat}.
 \end{equation}
 The Hamiltonian and radial momentum constraints produce the ADM ledger fields
 \begin{align}
 16\pi\rhoADM &= {}^{(3)}R+K^2-K_{ij}K^{ij}
 = {}^{(3)}R+4k_lk_\Omega+2k_\Omega^2,\\
-8\pi j_l&=-2k_\Omega'+\frac{B'}{B}(k_l-k_\Omega),\\
+8\pi j_l&=-2k_\Omega'+\frac{\Gthroat'}{\Gthroat}(k_l-k_\Omega),\\
 j_\theta&=0,\qquad j_\phi=0.
 \end{align}
 
@@ -246,22 +295,23 @@ j_\theta&=0,\qquad j_\phi=0.
 
 The source-placement ledger assigns demanded source roles to system components. The ledger is used for engineering localization, source-family screening, and prototype acceptance.
 
-\begin{longtable}{p{0.28\linewidth}p{0.40\linewidth}p{0.22\linewidth}}
+\begin{longtable}{p{0.26\linewidth}p{0.43\linewidth}p{0.22\linewidth}}
 \toprule
 \textbf{Source role} & \textbf{Engineering assignment} & \textbf{Primary diagnostic} \\
 \midrule
-Standing support shell & Prepared substrate and throat/core support & baseline $\rhoADM$ \\
-Radial support edge & Radial pressure reduction and support-shell shaping & edge gradients \\
-Angular jacket & Broad angular/effective support & angular support burden \\
-Lapse cushion & Causal-margin compensator & packet norm margin \\
-Shift packet carrier & Support-contained carrying field & momentum localization \\
+Standing support substrate & Prepared throat/core, support shell, baseline clock-lapse, and angular jacket & baseline $\rhoADM$ and pressure channels \\
+Radial support edge & Radial softening and support-shell gradient control & $p_l$, edge gradients \\
+Throat-capacity/angular jacket & Angular and throat support capacity & $p_\Omega$, $\Tkk$ side effects \\
+Clock-lapse cushion & Causal-margin and timing support & packet norm margin, $\Tkk$ response \\
+Carrying-flow field & Support-contained scheduled service flow & $\Delta j_l$, packet norm \\
+Support-shell overlay & Annular support infrastructure timing component & catch/support $\Delta j_l$ fraction, 4D source ratios \\
 Catch/rematch absorber & Inner packet-edge handoff absorber & $\Delta j_l$, $\Tkk$ residual \\
-Release/fade correction & Controlled shift fade after packet normalization & release-edge leakage \\
-Reset/decompression infrastructure & Reset after live service & infrastructure ledger \\
+Release/fade correction & Controlled carrying-flow fade after packet normalization & release-edge leakage \\
+Reset/decompression infrastructure & Post-service restoration of support state & infrastructure ledger \\
 \bottomrule
 \end{longtable}
 
-The representative diagnostics indicate that the live service increment appears primarily in $j_l$ during catch/rematch. The absolute $\rhoADM$ activity within the packet corridor is substantially attributable to standing substrate curvature, as demonstrated by standing substrate subtraction.
+The reduced ADM diagnostics indicate that the selected small support-shell overlay places its incremental $j_l$ demand overwhelmingly in catch/rematch support infrastructure while keeping packet $\Delta\rho$ effectively quiet. The 4D demanded-source diagnostics sharpen that result: the same component is packet-safe and controllable as a continuous metric overlay, while larger single-channel carrying-flow amplitude adds radial-null and current burden. The current source-placement hypothesis is therefore a coupled metric-family hypothesis: support-shell carrying-flow is retained, but load-bearing source redistribution requires timed clock-lapse, rail-stretch, and possibly throat-capacity partners.
 
 \section{Catch-Edge Control Law}
 
@@ -273,125 +323,101 @@ be a packet-centered radial coordinate. A preferred absorber amplitude is a comp
 \begin{equation}
 A_{\mathrm{catch}}(\xi,\sig)
 = W_{\mathrm{catch}}(\sig)
-\left[a\,H_{\mathrm{shift}}(\xi,\sig)+b\,B_{\mathrm{inner}}(\xi)\right],
+\left[a\,H_{\mathrm{flow}}(\xi,\sig)+b\,B_{\mathrm{inner}}(\xi)\right],
 \end{equation}
-where $W_{\mathrm{catch}}$ is a locked-lead timing window, $H_{\mathrm{shift}}$ is a smooth shift-handoff or shift-mismatch measure, and $B_{\mathrm{inner}}$ is a compact bump centered near $\xi=-\Rpass$. A residual-responsive limiter may bound the amplitude:
+where $W_{\mathrm{catch}}$ is a locked timing window, $H_{\mathrm{flow}}$ is a smooth carrying-flow handoff or flow-mismatch measure, and $B_{\mathrm{inner}}$ is a compact bump centered near $\xi=-\Rpass$. A residual-responsive limiter may bound the amplitude:
 \begin{equation}
 A_{\mathrm{catch}}\leq C\left(\left[R_{\Tkk}\right]_+\right),
 \end{equation}
 where $C$ denotes a smooth cap and $R_{\Tkk}$ denotes the predicted radial-null residual. The primary control law is kinematic; the residual-responsive term supplies protective limiting and diagnostic alignment.
 
-\section{Standing Substrate Subtraction}
+\section{Standing Substrate and Source-Ledger Results}
 
-Standing substrate subtraction isolates service-induced ADM demand from prepared infrastructure demand. For a live service field $F_{\mathrm{live}}$ and a time-matched prepared beta-off substrate field $F_{\mathrm{sub}}$, define
+Standing substrate subtraction isolates service-induced ADM demand from prepared infrastructure demand. For a live service field $F_{\mathrm{live}}$ and a time-matched prepared carrying-flow-off substrate field $F_{\mathrm{sub}}$, define
 \begin{align}
 \delrho&=\rho_{\mathrm{ADM,live}}-\rho_{\mathrm{ADM,sub}},\\
 \delj&=j_{l,\mathrm{live}}-j_{l,\mathrm{sub}}.
 \end{align}
-This diagnostic determines whether packet-region ADM activity belongs to baseline support curvature or to the active service increment.
-
-In the representative $V=5$ primary embodiment, exact-builder ADM diagnostics give the results in Table~\ref{tab:v5diag}.
+This diagnostic separates baseline support curvature from active service increments. The heavier demanded-source ledger evaluates
+\begin{equation}
+T_{\mu\nu}^{\mathrm{dem}}=\frac{1}{8\pi}G_{\mu\nu}[g]
+\end{equation}
+from the prescribed four-dimensional metric and reports radial null demand, radial pressure, angular pressure, radial current, and packet-comoving density.
 
 \begin{center}
-\begin{tabular}{ll}
+\begin{tabularx}{\linewidth}{lX}
 \toprule
-Observable & Representative diagnostic result \\
+Diagnostic layer & Current result \\
 \midrule
-Positive live packet norm samples & $0$ \\
-Maximum live packet norm & $-180.546$ \\
-Live packet fraction of $|j_l|$ & $7.85\%$ \\
-Live packet fraction of $|\rhoADM|$ & $27.06\%$ \\
-Live packet fraction of negative $\rhoADM$ & $0.00\%$ \\
-Subtracted packet $\Delta\rho$ relative to live packet $\rho$ & about $0.000295\%$ \\
-Subtracted live-packet $\Delta j_l$ fraction & about $11.75\%$ \\
+$V=5$ exact ADM and substrate subtraction & Live packet norm samples remain safe. The packet contribution to subtracted $\Delta\rho$ is about $0.000295\%$ of live-packet $\rho$, while live-packet $\Delta j_l$ is about $11.75\%$ of live-packet $j_l$. \\
+$V=10$ edge-load comparison & Subtracted $\Delta\rho$ remains small. The live-packet $\Delta j_l$ fraction rises to about $19.25\%$, with about $97.94\%$ of live-packet $\Delta j_l$ localized in catch/rematch. \\
+Frozen reduced support-shell target & At $V=5$, the frozen $a_\beta=+10^{-7}$ target gives catch/support incremental $\Delta j_l$ fraction $0.9928425$, packet incremental $\Delta j_l$ fraction $3.19\times10^{-7}$, packet incremental $\Delta\rho=5.44\times10^{-16}$, and no packet norm violations. \\
+Selected-target $V=10$ survival & The same small support-shell target remains packet-safe at the edge-load setting and preserves catch/support localization above $0.9927$. \\
+Single-channel continuous carrying-flow overlay & High-amplitude continuous carrying-flow overlays remain packet-safe at $V=5$, but increase radial-null and current burden. At $a_\beta=+0.5$ on the high-resolution check, max total burden ratio is about $1.090805$, radial-null ratio about $1.056153$, and radial-current ratio about $1.040020$. \\
+Timed coupled support-shell refinement & With $\lambda_c=1.25$, $\tau_c=0.35$, and $a_\beta=+0.5$, the aggregate high-resolution check improves when a clock-lapse partner is added: $\kappa_\alpha/a_\beta=0.5$, $\kappa_G/a_\beta=0$ gives max total burden ratio about $1.066421$ and packet-norm drift about $0.031977$. A combined clock-lapse/rail-stretch case lowers point-peak and packet-drift measures but carries a higher aggregate burden than clock-lapse alone. \\
 \bottomrule
-\end{tabular}
-\captionof{table}{Representative $V=5$ ADM and substrate-subtraction diagnostics.}
-\label{tab:v5diag}
+\end{tabularx}
+\captionof{table}{Current reduced ADM and 4D demanded-source evidence.}
+\label{tab:current_results}
 \end{center}
 
-In the $V=10$ edge-load embodiment, the subtracted $\Delta\rho$ remains small while catch/rematch-localized $\Delta j_l$ increases to about $19.25\%$ of live-packet $j_l$. Approximately $97.94\%$ of the live-packet $\Delta j_l$ burden is localized in catch/rematch. The comparison supports use of $V=5$ as the primary prototype target and $V=10$ as the edge-condition test.
+The combined evidence defines the current design interpretation. The small support-shell overlay is a reliable reduced-harness support-routing component. The larger 4D source-relief objective needs coupled metric timing. Clock-lapse timing is presently the strongest partner for aggregate burden reduction, while rail-stretch remains a live comparator for peak shaping, packet-drift control, and angular-pressure side effects.
 
-\section{Prototype Plan}
+\section{Prototype Status and Remaining Plan}
 
-\subsection{Prototype Objective}
+\subsection{Completed Prototype Layers}
 
-The prototype objective is to construct a coarse ADM diagnostic scaffold for the $V=5$ active-rail service and determine whether the prescribed reduced metric produces a constraint-readable source-placement target. The prototype begins with prescribed geometry, then proceeds toward constraint-compatible source modeling.
-
-\subsection{Stage 1: Exact Field Builder and ADM Ledger}
-
-Inputs:
-\begin{itemize}
-\item exact field functions $\alpha(l,\sig)$, $\beta(l,\sig)$, $A(l,\sig)$, and $B(l,\sig)$;
-\item packet, support, stage, and region labels;
-\item primary $V=5$ operating target and edge-load $V=10$ comparison case.
-\end{itemize}
-
-Outputs:
-\begin{itemize}
-\item maps of $k_l$, $k_\Omega$, $K$, ${}^{(3)}R$, $\rhoADM$, and $j_l$;
-\item region and stage burden tables;
-\item packet norm and packet exposure diagnostics.
-\end{itemize}
-
-Acceptance criteria:
+The prototype program has completed the following reusable layers:
 \begin{enumerate}
-\item all live-packet norm samples remain negative;
-\item ADM fields remain finite on the diagnostic grid;
-\item live momentum burden concentrates in support/catch/rematch rather than packet interior;
-\item live negative $\rhoADM$ packet burden remains zero or negligible.
+\item Exact reduced-field builder and ADM ledger for $\alpha$, $\beta$, $\Grail$, and $\Gthroat$, including packet norm, region labels, stage labels, $\rhoADM$, and $j_l$.
+\item Standing substrate subtraction using carrying-flow-off or ready-state fields to isolate service-induced $\Delta\rho$ and $\Delta j_l$.
+\item V5 support-shell ansatz screening, selecting the direct annular support-shell window over momentum-following variants.
+\item Reduced validation ladder for the selected support-shell target, including target gates, rich objective scoring, sign comparison, packet-safety overlay, balance bookkeeping, and ramp classification.
+\item V10 edge-load checks for the selected small support-shell target.
+\item Continuous metric-side source-ledger promotion of the support-shell carrying-flow overlay.
+\item First coupled timing sweeps adding clock-lapse and rail-stretch partners to the continuous support-shell metric expression.
+\item Arbitrary service-factor input generation for reduced ADM ladder hardening and interpolation checks.
 \end{enumerate}
 
-\subsection{Stage 2: Standing Substrate Subtraction}
+\subsection{Remaining Prototype Work}
 
-Compute beta-off or ready-state substrate fields and subtract them from live service fields. The objective is to identify the service-induced $\Delta\rho$ and $\Delta j_l$ increments.
-
-Acceptance criteria:
+The remaining prototype work is now narrower and more diagnostic:
 \begin{enumerate}
-\item $\Delta\rho$ remains small inside the live packet;
-\item $\Delta j_l$ is localized near catch/rematch and support-side handoff regions;
-\item the $V=10$ case increases handoff demand while preserving the qualitative localization pattern observed at $V=5$.
+\item Run high-resolution coupled timing sweeps around $\lambda_c=1.25$, $\tau_c=0.35$, positive $a_\beta$, and clock-lapse ratios near $0.25$--$0.5$, with convergence checks tied to the compact-grid screening results.
+\item Add and screen the throat-capacity partner $\kappa_Q$ so angular/throat support can participate in the 4D demanded-source redistribution test.
+\item Build a 4D source objective that scores radial-null burden, radial current, radial pressure, angular pressure, packet-comoving density, packet norm margin, and support-region localization together.
+\item Check off-axis, angular, and alternate-null exposures for the surviving coupled metric families.
+\item Screen source-family candidates against the component ledger and assign candidate families to standing support, angular jacket, clock-lapse, carrying-flow, support-shell timing, and catch/rematch absorber roles.
+\item Construct a coarse 3+1 constraint prototype for the surviving coupled family, including constraint residual convergence and source regularization tests.
 \end{enumerate}
 
-\subsection{Stage 3: Compact Source-Control Law}
+\subsection{Promotion Standard}
 
-Replace fitted modal catch-edge components with a compact control law. The preferred embodiment uses a kinematic handoff amplitude and an inner-edge spatial envelope. The law is tested against residual maps and ADM $\Delta j_l$ maps.
-
-Acceptance criteria:
+A support-shell metric family should be promoted from prototype to report-grade load-bearing candidate only when it satisfies all of the following:
 \begin{enumerate}
-\item the law captures the majority of catch/rematch $\Delta j_l$ demand at $V=5$;
-\item the support remains localized near $\xi=-\Rpass$;
-\item packet-region $\Delta\rho$ remains small;
-\item scaling from $V=5$ toward $V=10$ remains smooth.
+\item live packet norm remains safely negative under the selected service factor and edge-load comparison;
+\item packet $\Delta\rho$ and packet-comoving negative-density increments remain quiet;
+\item incremental ADM momentum remains localized in catch/rematch support infrastructure;
+\item 4D demanded-source channels show measurable relief or controlled redistribution, especially in radial-null and current channels;
+\item point peaks and angular-pressure leakage remain bounded under grid refinement;
+\item the component can be stated as a continuous metric expression with clear source-role assignments.
 \end{enumerate}
-
-\subsection{Stage 4: Coarse 3+1 Constraint Prototype}
-
-A coarse 3+1 prototype imposes or solves partial constraint data using the ADM scaffold as the target. Candidate subtests include:
-\begin{itemize}
-\item fixing $\gamma_{ij}$ and computing compatible source ledgers;
-\item smoothing or regularizing the catch-edge $\Delta j_l$ layer;
-\item comparing beta-off, low-beta, and full-beta substrate choices;
-\item testing convergence of $\Delta\rho$ and $\Delta j_l$ under grid refinement;
-\item repeating the acceptance suite at $V=10$ as an edge-condition comparison.
-\end{itemize}
-
-\subsection{Stage 5: Source-Family Screening}
-
-Candidate source families are screened against the component ledger. Source families may be assigned to standing support, angular jacket, lapse support, shift carrier, and catch-edge absorber roles. Preference is given to source families that keep amplitudes bounded, preserve packet-region safety, and maintain localized support roles under refinement.
 
 \section{Engineering Acceptance Criteria}
 
-\begin{longtable}{p{0.31\linewidth}p{0.50\linewidth}p{0.11\linewidth}}
+\begin{longtable}{p{0.28\linewidth}p{0.48\linewidth}p{0.16\linewidth}}
 \toprule
 \textbf{Criterion} & \textbf{Meaning} & \textbf{Gate} \\
 \midrule
 Packet norm safety & All live packet norm samples remain negative & Required \\
 Substrate-separated density & Packet $\Delta\rho$ remains small after subtraction & Required \\
-Handoff localization & Service $\Delta j_l$ concentrates in catch/rematch and support handoff & Required \\
+Handoff localization & Service $\Delta j_l$ concentrates in catch/rematch and support-shell handoff & Required \\
+Reduced support target & Frozen support-shell target preserves catch/support fraction, rich packet quietness, and partition closure & Required \\
+Continuous metric expression & Support-shell component is represented directly in $\alpha,\beta,\Grail,\Gthroat$ as a continuous metric component & Required \\
+4D demanded-source behavior & Radial-null, radial-current, pressure, and packet-comoving density channels remain bounded and improve or redistribute under coupled timing & Required for load-bearing promotion \\
 Residual localization & Residual maps show localized packet-edge and support-region structure & Required \\
 $V=5$ stability & Primary target remains stable under grid and seed variation & Required \\
-$V=10$ edge behavior & Edge-load case intensifies the handoff channel while preserving source placement & Desired \\
+$V=10$ edge behavior & Edge-load case intensifies the handoff channel while preserving source placement and packet safety & Desired \\
 Compact absorber law & Catch-edge absorber is expressible as a bounded control law & Required \\
 Constraint compatibility & Coarse 3+1 prototype maintains stable constraint behavior & Required \\
 \bottomrule
@@ -402,9 +428,11 @@ Constraint compatibility & Coarse 3+1 prototype maintains stable constraint beha
 \begin{enumerate}
 \item \textbf{Packet-region density increment.} A large $\Delta\rho$ concentration inside the protected packet would trigger packet-corridor redesign.
 \item \textbf{Refinement-sharpening catch layer.} A catch-edge layer that sharpens under grid refinement would trigger absorber broadening or source-family rejection.
-\item \textbf{Angular jacket leakage.} Angular support entering the packet region would trigger redesign of the angular jacket or support-shell partition.
+\item \textbf{Angular-pressure leakage.} Excess growth in $p_\Omega$ or angular support entering the packet region would trigger redesign of the throat-capacity/angular jacket sector.
 \item \textbf{Momentum delocalization.} $\Delta j_l$ spreading across the packet interior would trigger revision of the handoff model.
-\item \textbf{Edge-load qualitative transition.} A $V=10$ source pattern that changes category rather than magnitude would place the edge case outside the primary prototype rating.
+\item \textbf{Single-channel additive burden.} Carrying-flow amplitude that increases radial-null or radial-current burden without compensating relief would trigger coupled clock-lapse, rail-stretch, or throat-capacity refinement.
+\item \textbf{Point-peak growth.} A source-ledger case with acceptable integrated burden but growing local peaks would trigger broader timing shoulders, radial broadening, or source-family smoothing.
+\item \textbf{Edge-load qualitative transition.} A $V=10$ source pattern with a category-level change would place the edge case outside the primary prototype rating.
 \item \textbf{Constraint instability.} Growing constraint residuals in the coarse 3+1 scaffold would trigger smoothing, reparameterization, or source-ledger redesign.
 \end{enumerate}
 
@@ -436,44 +464,67 @@ Constraint compatibility & Coarse 3+1 prototype maintains stable constraint beha
 The following claim-oriented embodiments clarify the technical scope of the disclosure.
 
 \begin{enumerate}
-\item A method of operating a prescribed spacetime metric service, comprising preparing a standing support substrate, defining a live packet corridor within a larger support shell, routing a radial shift field through the support shell, and applying a locked-lead catch/rematch control window to localize service-induced momentum demand near a packet edge.
+\item A method of operating a prescribed spacetime metric service, comprising preparing a standing support substrate, defining a live packet corridor within a larger support shell, routing a carrying-flow field through the support shell, and applying a locked catch/rematch control window to localize service-induced momentum demand near a packet edge.
 
 \item The method of item 1, wherein the live packet corridor has radius $\Rpass$ smaller than a support radius $\Rth$, and wherein a radial support-edge width $\wth$ is selected to reduce radial pressure burden while a lapse cushion preserves packet causal margin.
 
-\item The method of item 1, wherein a dimensionless service factor $V$ controls the carried-shift operating load, and wherein $V$ is used to select support, lapse-cushion, and catch/rematch absorber settings.
+\item The method of item 1, wherein a dimensionless service factor $V$ sets the scheduled carrying-flow level and packet-frame comparison schedule, and wherein $V$ is used to compare primary and edge-load embodiments.
 
 \item The method of item 3, wherein a primary operating embodiment is rated at $V=5$ and an edge-load operating embodiment is rated at $V=10$.
 
-\item The method of item 1, wherein an ADM diagnostic ledger is computed from fields $\alpha$, $\beta$, $A=\gamma_{ll}$, and $B=\gamma_{\Omega\Omega}$, and wherein the ledger includes $\rhoADM$ and $j_l$.
+\item The method of item 1, wherein an ADM diagnostic ledger is computed from fields $\alpha$, $\beta$, $\Grail=\gamma_{ll}$, and $\Gthroat=\gamma_{\Omega\Omega}$, and wherein the ledger includes $\rhoADM$ and $j_l$.
 
 \item The method of item 5, further comprising subtracting a time-matched standing substrate from a live service field to identify $\Delta\rho$ and $\Delta j_l$.
 
 \item The method of item 6, wherein a service pass is accepted when $\Delta\rho$ remains small inside the live packet and $\Delta j_l$ is localized near a catch/rematch handoff layer.
 
-\item A spacetime metric engineering system comprising a standing support shell, an angular jacket, a lapse-cushion sector, a support-contained shift carrier, a live packet corridor, and a packet-edge catch/rematch absorber.
+\item A spacetime metric engineering system comprising a standing support shell, an angular jacket, a clock-lapse cushion, a support-contained carrying-flow field, a live packet corridor, and a packet-edge catch/rematch absorber.
 
 \item The system of item 8, wherein the packet-edge catch/rematch absorber comprises a kinematic handoff law multiplied by a compact inner-edge spatial envelope centered near $\xi=-\Rpass$.
 
 \item The system of item 9, wherein a residual-responsive limiter bounds the absorber amplitude.
 
-\item A numerical prototype process comprising constructing an exact field builder for $\alpha$, $\beta$, $A$, and $B$; computing ADM constraint fields; performing standing substrate subtraction; and screening source-family candidates against component-specific source roles.
+\item The system of item 8, wherein a support-shell overlay is applied through an annular timing window $\Wsh$ and modifies one or more of $\beta$, $\alpha$, $\Grail$, and $\Gthroat$.
+
+\item The system of item 11, wherein the support-shell overlay includes
+\[
+\beta=\beta_0+a_\beta\Wsh,\quad
+\alpha=\alpha_0 e^{\kappa_\alpha\Wsh},\quad
+\Grail=\Grail_0 e^{\kappa_G\Wsh},\quad
+\Gthroat=\Gthroat_0 e^{\kappa_Q\Wsh}.
+\]
+
+\item A numerical prototype process comprising constructing an exact field builder for $\alpha$, $\beta$, $\Grail$, and $\Gthroat$; computing ADM constraint fields; performing standing substrate subtraction; computing a 4D demanded-source ledger; and screening source-family candidates against component-specific source roles.
 \end{enumerate}
 
 \section{Prototype Deliverables}
 
-The prototype deliverables for the primary $V=5$ operating embodiment are:
+Completed deliverables for the current primary $V=5$ operating embodiment include:
 \begin{enumerate}
 \item exact-builder ADM implementation package;
 \item substrate-subtracted $\rhoADM$ and $j_l$ maps;
-\item catch-edge absorber law specification;
-\item $V=5$ acceptance report;
-\item $V=10$ edge-load comparison appendix;
-\item source-family screening matrix;
-\item coarse 3+1 constraint prototype specification.
+\item reduced support-shell ansatz screen and final frozen target report;
+\item generalized validation ladder with target/ramp separation and service-factor input generation;
+\item V10 selected-target edge-load comparison;
+\item continuous support-shell 4D demanded-source ledger path;
+\item first coupled timing sweep for carrying-flow, clock-lapse, and rail-stretch support-shell partners.
+\end{enumerate}
+
+Remaining deliverables are:
+\begin{enumerate}
+\item high-resolution coupled timing and convergence report;
+\item throat-capacity partner sweep and angular-pressure accounting;
+\item source-aware 4D objective specification;
+\item source-family screening matrix tied to the component ledger;
+\item coarse 3+1 constraint prototype specification and residual report.
 \end{enumerate}
 
 \section{Conclusion}
 
-The active-rail system organizes spacetime metric engineering as a source-placement architecture. The primary $V=5$ operating embodiment separates standing substrate curvature from live service demand and localizes the principal service increment into a packet-adjacent catch/rematch momentum channel. The $V=10$ operating embodiment supplies an edge-condition comparison for the same architecture. The engineering path proceeds through exact-builder ADM diagnostics, standing substrate subtraction, compact absorber-law specification, source-family screening, and coarse 3+1 constraint prototyping.
+The active-rail system organizes spacetime metric engineering as a source-placement architecture. The primary $V=5$ operating embodiment separates standing substrate curvature from live service demand and localizes the selected small support-shell service increment into catch/rematch support infrastructure while preserving packet safety. The $V=10$ operating embodiment supplies an edge-condition comparison for the same architecture and confirms the survival of the selected small support-shell target.
+
+The refined metric understanding is componentized: carrying-flow $\beta$ expresses scheduled service load, clock-lapse $\alpha$ protects timing and causal margin, rail-stretch $\Grail$ controls radial metric capacity, and throat-capacity $\Gthroat$ carries angular/throat support. The continuous support-shell overlay is now written as a metric-side family. Current demanded-source results indicate that the single-channel carrying-flow overlay is a stable support-routing component, while report-grade load-bearing redistribution requires coupled timing among carrying-flow, clock-lapse, rail-stretch, and likely throat-capacity partners.
+
+The remaining engineering path is therefore focused: finish high-resolution coupled 4D source-ledger checks, add throat-capacity screening, formalize the source-aware objective, assign source families to component roles, and then build the coarse 3+1 constraint prototype around the surviving coupled metric family.
 
 \end{document}

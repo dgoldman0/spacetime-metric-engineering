@@ -130,6 +130,19 @@ python scripts/run_source_overlay_sweep.py \
   --signs pos neg
 ```
 
+Coupled metric-side timing/refinement sweeps can add support-shell clock-lapse and rail-stretch partners as log-gain ratios against the signed carrying-flow amplitude:
+
+```bash
+python scripts/run_source_overlay_sweep.py \
+  --outdir runs/source_overlay_sweep_v5_coupled \
+  --amplitudes 0.5 \
+  --signs pos \
+  --catch-leads 1.0 1.25 \
+  --temporal-widths 0.35 0.5 \
+  --clock-lapse-ratios 0 0.25 0.5 \
+  --rail-stretch-ratios 0 0.5
+```
+
 ## Send results back
 
 After the smoke suite finishes, create a results ZIP:
