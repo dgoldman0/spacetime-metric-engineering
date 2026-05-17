@@ -17,8 +17,8 @@ service:
     support_shell_gain: 0.0
     edge_bias: 0.0
     target_service_field: carrying_flow
-    catch_lead: 0.75
-    temporal_width: 0.5
+    catch_lead: 1.0
+    temporal_width: 0.35
 
   clock_lapse:
     enabled: false
