@@ -143,6 +143,8 @@ python scripts/run_source_overlay_sweep.py \
   --rail-stretch-ratios 0 0.5
 ```
 
+Overlay sweeps also write `source_overlay_sweep_shell_throat_overlap.csv`. This table measures each demanded-source channel inside the band where the support-shell window overlaps the support/throat gradient. It is intended to catch warp-shell/throat-mismatch behavior: radial-null, radial-current, angular-pressure, or point-peak growth concentrated in the active shell/throat overlap rather than distributed across the full grid.
+
 ## Send results back
 
 After the smoke suite finishes, create a results ZIP:

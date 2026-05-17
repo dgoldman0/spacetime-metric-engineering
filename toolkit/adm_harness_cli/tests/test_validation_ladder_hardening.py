@@ -14,6 +14,7 @@ if str(SCRIPTS_DIR) not in sys.path:
 
 import generate_service_factor_inputs as generator
 import run_source_ledger as source_runner
+import run_source_overlay_sweep as overlay_sweep
 import run_validation_ladder as ladder
 from adm_harness import source_ledger
 
@@ -195,6 +196,50 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             1.0e-12,
         )
         self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
+
+    def test_source_overlay_sweep_reports_shell_throat_overlap(self):
+        grid = {
+            "ns": 5,
+            "nl": 9,
+            "s_min": -1.0,
+            "s_max": 0.4,
+            "l_min": -2.8,
+            "l_max": 2.8,
+            "h_s": 2.5e-3,
+            "h_l": 2.5e-3,
+        }
+        base_case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        overlay_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+            support_shell_amplitude=0.5,
+            support_shell_catch_lead=1.0,
+            support_shell_temporal_width=0.35,
+        )
+        base_points = source_ledger.compute_case(base_case, progress=False, **grid)
+        overlay_points = source_ledger.compute_case(overlay_case, progress=False, **grid)
+
+        summary, _channels, shell_throat = overlay_sweep._compare_case(
+            base_points,
+            overlay_points,
+            {
+                "abs_amplitude": 0.5,
+                "sign": "pos",
+                "amplitude": 0.5,
+                "catch_lead": 1.0,
+                "temporal_width": 0.35,
+                "clock_lapse_ratio": 0.0,
+                "clock_lapse_log_gain": 0.0,
+                "rail_stretch_ratio": 0.0,
+                "rail_stretch_log_gain": 0.0,
+            },
+        )
+
+        self.assertGreater(summary["shell_throat_overlap_points"], 0)
+        self.assertIn("neg_Tkk_radial_shell_throat_weighted_ratio", summary)
+        self.assertIn("abs_j_l_shell_throat_peak_ratio", summary)
+        self.assertEqual({row["channel"] for row in shell_throat}, set(source_ledger.CHANNELS))
 
 
 if __name__ == "__main__":

@@ -72,10 +72,124 @@ def _compare_channels(base_compact: pd.DataFrame, overlay_compact: pd.DataFrame,
     return rows
 
 
-def _compare_case(base_points: pd.DataFrame, overlay_points: pd.DataFrame, spec: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+def _gradient_by_s(points: pd.DataFrame, value_col: str) -> pd.Series:
+    gradients = pd.Series(np.nan, index=points.index, dtype=float)
+    for _, group in points.sort_values(["s", "l"]).groupby("s", sort=False):
+        values = group[value_col].astype(float).to_numpy()
+        coords = group["l"].astype(float).to_numpy()
+        if len(group) < 2:
+            continue
+        edge_order = 2 if len(group) > 2 else 1
+        gradients.loc[group.index] = np.gradient(values, coords, edge_order=edge_order)
+    return gradients
+
+
+def _with_shell_throat_diagnostics(points: pd.DataFrame) -> pd.DataFrame:
+    diag = points.copy()
+    for col in ["alpha", "beta", "gamma_ll", "gamma_omega", "support_shell_window"]:
+        diag[f"d_{col}_dl"] = _gradient_by_s(diag, col)
+    eps = 1.0e-12
+    diag["shell_throat_gradient"] = (
+        diag["d_gamma_ll_dl"].abs() / np.maximum(diag["gamma_ll"].abs(), eps)
+        + diag["d_gamma_omega_dl"].abs() / np.maximum(diag["gamma_omega"].abs(), eps)
+    )
+    active = diag["support_shell_window"].astype(float).abs() > 1.0e-3
+    support = diag["region"].astype(str).isin(["support_edge", "core_throat"])
+    active_gradient = diag.loc[active & support, "shell_throat_gradient"].replace([np.inf, -np.inf], np.nan).dropna()
+    threshold = float(active_gradient.quantile(0.50)) if len(active_gradient) else math.inf
+    diag["shell_throat_overlap"] = active & support & (diag["shell_throat_gradient"] >= threshold)
+    scale = max(threshold, 1.0e-12) if math.isfinite(threshold) else 1.0
+    diag["shell_throat_weight"] = np.where(
+        diag["shell_throat_overlap"],
+        diag["support_shell_window"].astype(float).abs() * diag["shell_throat_gradient"].astype(float) / scale,
+        0.0,
+    )
+    return diag
+
+
+def _compare_shell_throat_overlap(
+    base_points: pd.DataFrame,
+    overlay_points: pd.DataFrame,
+    spec: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    overlay_diag = _with_shell_throat_diagnostics(overlay_points)
+    base_diag = _with_shell_throat_diagnostics(base_points)
+    merged = overlay_diag.merge(base_diag, on=["s", "l"], suffixes=("_overlay", "_base"))
+    overlap = merged["shell_throat_overlap_overlay"].astype(bool)
+    weight = merged["shell_throat_weight_overlay"].astype(float).clip(lower=0.0).to_numpy()
+
+    rows: list[dict[str, Any]] = []
+    for channel in CHANNELS:
+        base_values = merged[f"volume_burden_{channel}_base"].astype(float).to_numpy()
+        overlay_values = merged[f"volume_burden_{channel}_overlay"].astype(float).to_numpy()
+        base_point = merged[f"bad_{channel}_base"].astype(float).to_numpy()
+        overlay_point = merged[f"bad_{channel}_overlay"].astype(float).to_numpy()
+
+        base_global = float(np.nansum(base_values))
+        overlay_global = float(np.nansum(overlay_values))
+        global_delta = overlay_global - base_global
+        base_band = float(np.nansum(base_values[overlap]))
+        overlay_band = float(np.nansum(overlay_values[overlap]))
+        band_delta = overlay_band - base_band
+        base_weighted = float(np.nansum(base_values * weight))
+        overlay_weighted = float(np.nansum(overlay_values * weight))
+        weighted_delta = overlay_weighted - base_weighted
+        base_peak = float(np.nanmax(base_point[overlap])) if overlap.any() else math.nan
+        overlay_peak = float(np.nanmax(overlay_point[overlap])) if overlap.any() else math.nan
+        rows.append({
+            **spec,
+            "channel": channel,
+            "shell_throat_overlap_points": int(overlap.sum()),
+            "shell_throat_weight_sum": float(np.nansum(weight)),
+            "shell_throat_gradient_max": float(merged.loc[overlap, "shell_throat_gradient_overlay"].astype(float).max()) if overlap.any() else math.nan,
+            "global_burden_base": base_global,
+            "global_burden_overlay": overlay_global,
+            "global_burden_delta": global_delta,
+            "shell_throat_burden_base": base_band,
+            "shell_throat_burden_overlay": overlay_band,
+            "shell_throat_burden_delta": band_delta,
+            "shell_throat_burden_ratio": overlay_band / base_band if base_band else math.nan,
+            "shell_throat_overlay_share": overlay_band / overlay_global if overlay_global else math.nan,
+            "shell_throat_delta_fraction_of_global_delta": band_delta / global_delta if global_delta else math.nan,
+            "shell_throat_weighted_burden_base": base_weighted,
+            "shell_throat_weighted_burden_overlay": overlay_weighted,
+            "shell_throat_weighted_burden_delta": weighted_delta,
+            "shell_throat_weighted_burden_ratio": overlay_weighted / base_weighted if base_weighted else math.nan,
+            "shell_throat_weighted_delta_fraction_of_global_delta": weighted_delta / global_delta if global_delta else math.nan,
+            "shell_throat_point_peak_base": base_peak,
+            "shell_throat_point_peak_overlay": overlay_peak,
+            "shell_throat_point_peak_ratio": overlay_peak / base_peak if base_peak else math.nan,
+        })
+
+    focus = {row["channel"]: row for row in rows}
+    summary: dict[str, Any] = {
+        "shell_throat_overlap_points": int(overlap.sum()),
+        "shell_throat_weight_sum": float(np.nansum(weight)),
+        "shell_throat_gradient_max": float(merged.loc[overlap, "shell_throat_gradient_overlay"].astype(float).max()) if overlap.any() else math.nan,
+    }
+    finite_weighted = [row["shell_throat_weighted_burden_ratio"] for row in rows if math.isfinite(row["shell_throat_weighted_burden_ratio"])]
+    finite_peaks = [row["shell_throat_point_peak_ratio"] for row in rows if math.isfinite(row["shell_throat_point_peak_ratio"])]
+    summary["max_shell_throat_weighted_burden_ratio"] = max(finite_weighted) if finite_weighted else math.nan
+    summary["max_shell_throat_point_peak_ratio"] = max(finite_peaks) if finite_peaks else math.nan
+    for channel in ["neg_Tkk_radial", "abs_p_l", "abs_pOmega", "abs_j_l", "neg_rho_packet"]:
+        row = focus[channel]
+        summary[f"{channel}_shell_throat_weighted_ratio"] = row["shell_throat_weighted_burden_ratio"]
+        summary[f"{channel}_shell_throat_peak_ratio"] = row["shell_throat_point_peak_ratio"]
+        summary[f"{channel}_shell_throat_overlay_share"] = row["shell_throat_overlay_share"]
+        summary[f"{channel}_shell_throat_delta_fraction"] = row["shell_throat_delta_fraction_of_global_delta"]
+        summary[f"{channel}_shell_throat_weighted_delta_fraction"] = row["shell_throat_weighted_delta_fraction_of_global_delta"]
+    return summary, rows
+
+
+def _compare_case(
+    base_points: pd.DataFrame,
+    overlay_points: pd.DataFrame,
+    spec: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
     base_compact = _compact_by_channel(base_points)
     overlay_compact = _compact_by_channel(overlay_points)
     channel_rows = _compare_channels(base_compact, overlay_compact, spec)
+    shell_throat_summary, shell_throat_rows = _compare_shell_throat_overlap(base_points, overlay_points, spec)
 
     merged = overlay_points.merge(base_points, on=["s", "l"], suffixes=("_overlay", "_base"))
     live = merged["inside_packet_live_overlay"].astype(bool).to_numpy()
@@ -109,6 +223,7 @@ def _compare_case(base_points: pd.DataFrame, overlay_points: pd.DataFrame, spec:
         "min_total_burden_ratio": min(burden_ratios) if burden_ratios else math.nan,
         "max_live_packet_burden_ratio": max(live_ratios) if live_ratios else math.nan,
         "max_point_peak_ratio": max(peak_ratios) if peak_ratios else math.nan,
+        **shell_throat_summary,
     }
 
     focus = {row["channel"]: row for row in channel_rows}
@@ -119,7 +234,7 @@ def _compare_case(base_points: pd.DataFrame, overlay_points: pd.DataFrame, spec:
         summary[f"{channel}_live_delta"] = row["live_packet_burden_delta"]
         summary[f"{channel}_live_ratio"] = row["live_packet_burden_ratio"]
         summary[f"{channel}_peak_ratio"] = row["point_peak_ratio"]
-    return summary, channel_rows
+    return summary, channel_rows, shell_throat_rows
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -186,6 +301,7 @@ def main() -> int:
 
     summary_rows: list[dict[str, Any]] = []
     channel_rows: list[dict[str, Any]] = []
+    shell_throat_rows: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
     total = (
         len(args.amplitudes)
@@ -241,9 +357,10 @@ def main() -> int:
                                     support_shell_rail_stretch_log_gain=rail_stretch_log_gain,
                                 )
                                 overlay_points = compute_case(overlay_case, progress=False, **grid)
-                                summary, channels = _compare_case(base_points, overlay_points, spec)
+                                summary, channels, shell_throat = _compare_case(base_points, overlay_points, spec)
                                 summary_rows.append(summary)
                                 channel_rows.extend(channels)
+                                shell_throat_rows.extend(shell_throat)
                             except Exception as exc:
                                 failures.append({**spec, "error": repr(exc)})
 
@@ -257,13 +374,16 @@ def main() -> int:
     ]
     summary_df = pd.DataFrame(summary_rows).sort_values(sort_cols)
     channel_df = pd.DataFrame(channel_rows).sort_values([*sort_cols, "channel"])
+    shell_throat_df = pd.DataFrame(shell_throat_rows).sort_values([*sort_cols, "channel"])
     failure_df = pd.DataFrame(failures)
 
     summary_path = args.outdir / "source_overlay_sweep_summary.csv"
     channel_path = args.outdir / "source_overlay_sweep_channel_deltas.csv"
+    shell_throat_path = args.outdir / "source_overlay_sweep_shell_throat_overlap.csv"
     failure_path = args.outdir / "source_overlay_sweep_failures.csv"
     summary_df.to_csv(summary_path, index=False)
     channel_df.to_csv(channel_path, index=False)
+    shell_throat_df.to_csv(shell_throat_path, index=False)
     failure_df.to_csv(failure_path, index=False)
 
     metadata = {
@@ -284,6 +404,7 @@ def main() -> int:
         "files": {
             "summary": str(summary_path),
             "channel_deltas": str(channel_path),
+            "shell_throat_overlap": str(shell_throat_path),
             "failures": str(failure_path),
         },
         "failures": len(failures),
