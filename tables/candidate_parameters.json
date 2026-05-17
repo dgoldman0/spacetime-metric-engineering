@@ -1,0 +1,45 @@
+{
+  "design_name": "R1.75 shaped catch radial-soft lapse-cushion v1",
+  "candidate_case": "V10_tuned_w0569_eta200",
+  "status": "reduced-geometry freeze candidate; prescribed-geometry source-ledger diagnostic, not a matter model",
+  "V": 10.0,
+  "validity_note": "Validated as a tuned V=10 branch; lower V branches are safe; V>10 fails quickly in the current uniform radial-softening architecture.",
+  "packet": {
+    "Rpass": 0.35,
+    "w_pass": 0.06
+  },
+  "support": {
+    "Rth": 1.75,
+    "w_th": 0.569,
+    "radial_softening": "uniform support-edge widening near high-resolution safety boundary"
+  },
+  "lapse_cushion": {
+    "eta_N": 2.0,
+    "role": "restores packet causal margin spent by radial softening"
+  },
+  "catch_rematch": {
+    "support_side_catch": {
+      "x_catch": -0.05,
+      "w_catch": 0.32,
+      "profile": "minimum jerk"
+    },
+    "packet_rematch": {
+      "x_catch": 0.0,
+      "w_catch": 0.32,
+      "profile": "minimum jerk"
+    },
+    "lesson": "support-side catch may lead slightly; packet rematch must remain tightly locked"
+  },
+  "angular_jacket": {
+    "ROmega": 1.75,
+    "wOmega": 1.4,
+    "aOmega": 0.2
+  },
+  "core_lessons": [
+    "Tkk exposure responds to shaped locked-lead catch/rematch timing.",
+    "Radial pressure p_l responds to radial support-edge widening.",
+    "Packet safety responds to lapse cushioning.",
+    "Uniform radial softening has a narrow high-resolution safety cliff near V=10.",
+    "The naive asymmetric radial shoulder did not outperform ordinary widening in the tested proxy branch."
+  ]
+}

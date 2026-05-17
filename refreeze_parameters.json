@@ -1,0 +1,36 @@
+{
+  "design_name": "R1.75 shaped catch radial-soft lapse-cushion v1",
+  "status": "refrozen reduced-model V=10 active-rail candidate; source-proxy finish-line plausible, not a physical matter construction",
+  "validated_V": [
+    2,
+    5,
+    10
+  ],
+  "upper_headroom": "V=11+ failed in tested branch; fast scan found cliff just above V=10 for tuned branch",
+  "geometry": {
+    "Rpass": 0.35,
+    "Rth": 1.75,
+    "ROmega": 1.75,
+    "w_th": 0.569,
+    "w_pass": 0.06,
+    "wOmega": 1.4,
+    "aOmega": 0.2,
+    "eta_N": 2.0,
+    "q_s": "minimum-jerk decompression"
+  },
+  "catch_rematch": {
+    "support_catch_profile": "minimum jerk",
+    "support_catch_x": -0.05,
+    "support_catch_w": 0.32,
+    "packet_rematch_profile": "minimum jerk",
+    "packet_rematch_x": 0.0,
+    "packet_rematch_w": 0.32,
+    "principle": "support-side catch may lead slightly, but packet rematch must remain tightly locked"
+  },
+  "source_proxy": {
+    "p_l": "handled by radial support-edge widening; proxy fit good",
+    "Tkk": "handled by shaped catch plus modal catch-edge source absorber; live catch underfit below 5% in modal proxy",
+    "packet_safety": "handled by lapse cushion, but with narrow ridge",
+    "pOmega": "live packet burden small; global angular proxy basis remains crude"
+  }
+}

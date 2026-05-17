@@ -1,0 +1,9 @@
+knob,primary_channel,lesson
+catch timing/profile,negative radial-null Tkk exposure,"Minimum-jerk locked-lead catch reduces live Tkk; support can lead slightly, packet rematch must stay locked."
+radial support width w_th,radial pressure p_l and Tkk burden,"Wider edge reduces p_l and Tkk, but rapidly consumes packet safety margin."
+lapse cushion eta_N,packet causal safety margin,Does not directly solve p_l; buys room to use stronger radial softening.
+packet transition width w_pass,packet/support coupling,Small smoothing may help Tkk; did not materially solve p_l; excessive smoothing risks exposure.
+support radius Rth,quarantine separation,Moving shell outward improves fractions but increases infrastructure burden; R1.75 was better compromise than R2.0.
+angular jacket ROmega/wOmega/aOmega,angular pressure support,"Live packet pOmega is already tiny; global fit requires better basis, not urgent for passenger exposure."
+modal catch-edge absorber basis,catch/rematch Tkk residual,Several localized time/edge modes work better than one smooth geometry-side lump.
+V service/stress parameter,speed/service stress and safety cliff,Candidate is validated as V=10 tuned branch; safe at V=2/5/10; fails just beyond V=10 in tested branch.
