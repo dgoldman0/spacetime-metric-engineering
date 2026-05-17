@@ -1,2 +1,0 @@
-block,service_field,delta_name,law,requested_law,scope,amplitude,gain,max_abs_change,window_abs_sum,window_max,window_total_abs,window_packet_edge_abs,window_support_shell_abs,window_packet_live_abs,window_packet_edge_fraction,window_support_shell_fraction,window_packet_live_fraction,min,max,linf,l1,nonzero_points
-carrying_flow,carrying_flow,delta_carrying_flow,identity,identity,global,0.0,1.0,,29161.0,1.0,29161.0,629.0,3528.0,2552.0,0.021569905010116252,0.12098350536675696,0.08751414560543191,0.0,0.0,0.0,0.0,0

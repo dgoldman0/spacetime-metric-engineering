@@ -1,43 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(pwd)"
-OUT_ROOT="$ROOT/runs/v5_screen"
-CONFIG_ROOT="$OUT_ROOT/configs"
-RESULT_ZIP="$ROOT/v5_screen_results.zip"
+OUT_ROOT="runs/v5_screen"
+RESULT_ZIP="v5_screen_results.zip"
 
-BASE_CONFIG="$ROOT/configs/v5_service_carrying_flow_localizer.yaml"
-FLOW_OFF_CONFIG="$ROOT/configs/v5_service_flow_off.yaml"
+BASE_CONFIG="configs/v5_service_carrying_flow_localizer.yaml"
+FLOW_OFF_CONFIG="configs/v5_service_flow_off.yaml"
 
-EXACT_FIELDS="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz"
-STAGE_REGION="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_stage_region_V5p0.csv"
-POINT_LEDGER="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_point_ledger_V5p0.csv"
-SUBSTRATE_FIELDS="$ROOT/data/sample_v5/standing_substrate_subtraction_v5/substrate_fields_V5p0.npz"
+mkdir -p "$OUT_ROOT"
+rm -f configs/screen_v5_*.yaml
+rm -rf "$OUT_ROOT"
 
-mkdir -p "$OUT_ROOT" "$CONFIG_ROOT"
-
-echo "Checking package root..."
-test -f "$BASE_CONFIG"
-test -f "$FLOW_OFF_CONFIG"
-test -f "$EXACT_FIELDS"
-test -f "$STAGE_REGION"
-test -f "$POINT_LEDGER"
+mkdir -p "$OUT_ROOT"
 
 echo "Preparing V=5 one-factor screen configs..."
 
-python - <<PY
+python - <<'PY'
 from pathlib import Path
 import copy
 import yaml
 
-base_path = Path("$BASE_CONFIG")
-config_root = Path("$CONFIG_ROOT")
-config_root.mkdir(parents=True, exist_ok=True)
-
-exact_fields = "$EXACT_FIELDS"
-stage_region = "$STAGE_REGION"
-point_ledger = "$POINT_LEDGER"
-substrate_fields = "$SUBSTRATE_FIELDS"
+base_path = Path("configs/v5_service_carrying_flow_localizer.yaml")
 
 with base_path.open("r", encoding="utf-8") as f:
     base = yaml.safe_load(f)
@@ -48,20 +31,9 @@ def set_nested(d, path, value):
         cur = cur.setdefault(key, {})
     cur[path[-1]] = value
 
-def force_input_paths(cfg):
-    cfg.setdefault("inputs", {})
-    cfg["inputs"]["exact_fields"] = exact_fields
-    cfg["inputs"]["stage_region"] = stage_region
-    cfg["inputs"]["point_ledger"] = point_ledger
-
-    cfg.setdefault("substrate", {})
-    if Path(substrate_fields).exists():
-        cfg["substrate"]["fields"] = substrate_fields
-
 def make_config(name, changes):
     cfg = copy.deepcopy(base)
     cfg["run_name"] = name
-    force_input_paths(cfg)
 
     set_nested(cfg, ["service", "carrying_flow", "enabled"], True)
     set_nested(cfg, ["service", "carrying_flow", "law"], "compact_momentum_localizer")
@@ -71,7 +43,7 @@ def make_config(name, changes):
     for path, value in changes.items():
         set_nested(cfg, path.split("."), value)
 
-    out = config_root / f"{name}.yaml"
+    out = Path("configs") / f"screen_v5_{name}.yaml"
     with out.open("w", encoding="utf-8") as f:
         yaml.safe_dump(cfg, f, sort_keys=False)
 
@@ -125,7 +97,7 @@ for lead in [-0.75, -0.5, 0.0, 0.5, 0.75]:
 for name, changes in variants:
     make_config(name, changes)
 
-print(f"Wrote {len(variants)} configs to {config_root}")
+print(f"Wrote {len(variants)} configs into configs/")
 PY
 
 echo "Running baseline flow-off reference..."
@@ -135,14 +107,15 @@ python -m adm_harness.cli validate \
 
 python -m adm_harness.cli run \
   -c "$FLOW_OFF_CONFIG" \
-  --output-dir "$OUT_ROOT/baseline_flow_off"
+  --output-dir "$OUT_ROOT"
 
 echo "Running screen variants..."
-RUN_DIRS=("$OUT_ROOT/baseline_flow_off")
+RUN_DIRS=("$OUT_ROOT/v5_service_flow_off")
 
-for cfg in "$CONFIG_ROOT"/*.yaml; do
+for cfg in configs/screen_v5_*.yaml; do
   name="$(basename "$cfg" .yaml)"
-  run_dir="$OUT_ROOT/$name"
+  name="${name#screen_v5_}"
+
   validation_json="$OUT_ROOT/validation_$name.json"
 
   echo "==> $name"
@@ -153,9 +126,9 @@ for cfg in "$CONFIG_ROOT"/*.yaml; do
 
   python -m adm_harness.cli run \
     -c "$cfg" \
-    --output-dir "$run_dir"
+    --output-dir "$OUT_ROOT"
 
-  RUN_DIRS+=("$run_dir")
+  RUN_DIRS+=("$OUT_ROOT/$name")
 done
 
 echo "Comparing all runs..."
@@ -183,12 +156,12 @@ if rows:
     out.to_csv(root / "all_decision_sheets.csv", index=False)
     print(f"Wrote {root / 'all_decision_sheets.csv'}")
 else:
-    print("No decision sheets found.")
+    raise SystemExit("No decision sheets found.")
 PY
 
 echo "Creating ZIP..."
 rm -f "$RESULT_ZIP"
-zip -r "$RESULT_ZIP" "$OUT_ROOT" >/dev/null
+zip -r "$RESULT_ZIP" "$OUT_ROOT" configs/screen_v5_*.yaml >/dev/null
 
 echo
 echo "Done."

@@ -144,6 +144,33 @@ def _gaussian_axis(values: np.ndarray, center: float | None, width: float | None
     return np.exp(-0.5 * ((values - float(center)) / width) ** 2)
 
 
+def _has_value(value: object) -> bool:
+    return value is not None and value != ""
+
+
+def _weighted_axis_center(values: np.ndarray, weights: np.ndarray, axis: int) -> float:
+    axis_weights = np.asarray(weights, dtype=float).sum(axis=axis)
+    total = float(axis_weights.sum())
+    if total <= 0.0:
+        return float(np.mean(values))
+    return float(np.dot(values, axis_weights) / total)
+
+
+def _weighted_axis_width(values: np.ndarray, weights: np.ndarray, axis: int) -> float:
+    axis_weights = np.asarray(weights, dtype=float).sum(axis=axis)
+    total = float(axis_weights.sum())
+    if total <= 0.0:
+        span = float(np.max(values) - np.min(values)) if len(values) else 1.0
+        return max(span / 4.0, 1e-12)
+    center = float(np.dot(values, axis_weights) / total)
+    variance = float(np.dot((values - center) ** 2, axis_weights) / total)
+    if variance <= 0.0:
+        positive = values[axis_weights > 0]
+        span = float(np.max(positive) - np.min(positive)) if len(positive) else 0.0
+        return max(span / 4.0, 1e-12)
+    return max(variance ** 0.5, 1e-12)
+
+
 def _mixed_catch_window(ledger: pd.DataFrame, shape: tuple[int, int], spec: dict[str, Any]) -> np.ndarray:
     """Build a catch/rematch window with preserved edge/support allocation.
 
@@ -196,8 +223,25 @@ def build_service_window(fields: dict[str, np.ndarray], ledger: pd.DataFrame, sp
 
     s = fields["s_grid"]
     l = fields["l_grid"]
-    sw = _gaussian_axis(s, spec.get("schedule_center", spec.get("time_center")), spec.get("schedule_width", spec.get("temporal_width")))
-    lw = _gaussian_axis(l, spec.get("radial_center"), spec.get("radial_width"))
+    schedule_width = spec.get("schedule_width", spec.get("temporal_width"))
+    schedule_center = spec.get("schedule_center", spec.get("time_center"))
+    catch_lead = spec.get("catch_lead")
+    if not _has_value(schedule_center) and (_has_value(schedule_width) or _has_value(catch_lead)):
+        schedule_center = _weighted_axis_center(s, np.abs(window), axis=1)
+    if not _has_value(schedule_width) and _has_value(catch_lead):
+        schedule_width = spec.get("catch_lead_width", _weighted_axis_width(s, np.abs(window), axis=1))
+    if _has_value(catch_lead):
+        # Positive catch lead means the support-side modifier is applied
+        # earlier along the service coordinate.
+        schedule_center = float(schedule_center) - float(catch_lead)
+
+    radial_width = spec.get("radial_width")
+    radial_center = spec.get("radial_center")
+    if not _has_value(radial_center) and _has_value(radial_width):
+        radial_center = _weighted_axis_center(l, np.abs(window), axis=0)
+
+    sw = _gaussian_axis(s, schedule_center, schedule_width)
+    lw = _gaussian_axis(l, radial_center, radial_width)
     window *= sw[:, None] * lw[None, :]
 
     stage_weights = spec.get("stage_weights") or {}

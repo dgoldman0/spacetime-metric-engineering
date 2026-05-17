@@ -1,5 +1,0 @@
-channel,peak_abs,signed_value,s,l,stage,region,inside_packet_live,packet_edge,support_shell
-rho,0.012442905166369431,-0.012442905166369431,-0.35,-2.59,catch_rematch,outer_quarantine_shell,False,False,False
-j_l,0.02048485387767075,0.02048485387767075,1.65,1.5166666666666666,reset_decompression,packet_in_support,False,False,True
-delta_rho,2.0127391563238423e-07,-2.0127391563238423e-07,0.8666666666666666,1.1199999999999997,release_shift_fade,packet_in_support,True,True,False
-delta_j_l,2.580641304625458e-05,2.580641304625458e-05,-0.35,-0.3500000000000001,catch_rematch,packet_in_support,True,False,False

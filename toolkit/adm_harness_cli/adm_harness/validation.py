@@ -211,9 +211,9 @@ def _validate_modifier_spec(report: ValidationReport, block_name: str, spec: dic
     if law == "compact_momentum_localizer" and target_service != "carrying_flow":
         report.errors.append(f"{block_name}: compact_momentum_localizer can only target carrying_flow")
 
-    for key in ["amplitude", "strength", "gain", "max_abs_change", "max_abs_delta", "radial_center", "schedule_center", "time_center", "edge_bias", "support_shell_gain"]:
+    for key in ["amplitude", "strength", "gain", "max_abs_change", "max_abs_delta", "radial_center", "schedule_center", "time_center", "edge_bias", "support_shell_gain", "catch_lead"]:
         _as_number(report, spec, key, block_name)
-    for key in ["radial_width", "schedule_width", "temporal_width"]:
+    for key in ["radial_width", "schedule_width", "temporal_width", "catch_lead_width"]:
         _as_number(report, spec, key, block_name, minimum=0.0)
     for key in ["packet_exclusion"]:
         _as_number(report, spec, key, block_name, minimum=0.0, maximum=1.0)

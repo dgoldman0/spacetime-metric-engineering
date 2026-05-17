@@ -1,0 +1,16 @@
+# Python/runtime byproducts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local environments/build outputs
+.venv/
+build/
+dist/
+*.egg-info/
+
+# ADM harness local/generated outputs
+toolkit/adm_harness_cli/runs/
+toolkit/adm_harness_cli/configs/screen_v5_*.yaml
+toolkit/adm_harness_cli/*_results.zip
+toolkit/adm_harness_cli/local_test_results.zip

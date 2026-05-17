@@ -138,6 +138,74 @@ class ServiceSynthesisValidationTests(unittest.TestCase):
         self.assertGreater(mixed_summary["window_support_shell_fraction"], old_summary["window_support_shell_fraction"])
         self.assertLess(mixed_summary["window_packet_edge_fraction"], old_summary["window_packet_edge_fraction"])
 
+    def test_temporal_width_without_center_shapes_window(self):
+        from adm_harness.service_modifiers import build_service_window
+
+        fields = self._fields()
+        ledger = self._ledger(fields)
+        narrow = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "temporal_width": 0.1,
+            "smoothness_order": 0,
+        })
+        wide = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "temporal_width": 10.0,
+            "smoothness_order": 0,
+        })
+        self.assertFalse(np.allclose(narrow, wide))
+        self.assertLess(float(narrow.sum()), float(wide.sum()))
+
+    def test_radial_width_without_center_shapes_window(self):
+        from adm_harness.service_modifiers import build_service_window
+
+        fields = self._fields()
+        ledger = self._ledger(fields)
+        narrow = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "radial_width": 0.2,
+            "smoothness_order": 0,
+        })
+        wide = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "radial_width": 10.0,
+            "smoothness_order": 0,
+        })
+        self.assertFalse(np.allclose(narrow, wide))
+        self.assertLess(float(narrow.sum()), float(wide.sum()))
+
+    def test_catch_lead_shifts_temporal_window(self):
+        from adm_harness.service_modifiers import build_service_window
+
+        fields = self._fields()
+        ledger = self._ledger(fields)
+        earlier = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "catch_lead": 0.25,
+            "smoothness_order": 0,
+        })
+        later = build_service_window(fields, ledger, {
+            "scope": "catch_rematch_edge",
+            "catch_lead": -0.25,
+            "smoothness_order": 0,
+        })
+        s = fields["s_grid"]
+        earlier_center = float((earlier.sum(axis=1) @ s) / earlier.sum())
+        later_center = float((later.sum(axis=1) @ s) / later.sum())
+        self.assertLess(earlier_center, later_center)
+
+    def test_config_validation_rejects_non_numeric_catch_lead(self):
+        from adm_harness.validation import validate_config_contract
+
+        cfg = {
+            "inputs": {"exact_fields": "dummy.npz"},
+            "synthesis": {"enabled": True},
+            "service": {"carrying_flow": {"enabled": True, "law": "compact_momentum_localizer", "catch_lead": "early"}},
+        }
+        report = validate_config_contract(cfg)
+        self.assertFalse(report.ok)
+        self.assertTrue(any("catch_lead must be numeric" in e for e in report.errors))
+
 
 if __name__ == "__main__":
     unittest.main()
