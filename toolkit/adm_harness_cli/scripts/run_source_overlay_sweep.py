@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
@@ -29,6 +30,30 @@ def _token(value: float) -> str:
     return text.replace("-", "m").replace("+", "").replace(".", "p").replace("e", "e")
 
 
+def _case_slug(spec: dict[str, Any]) -> str:
+    return "_".join([
+        f"a{_token(spec['abs_amplitude'])}",
+        str(spec["sign"]),
+        f"lead{_token(spec['catch_lead'])}",
+        f"tw{_token(spec['temporal_width'])}",
+        f"cl{_token(spec['clock_lapse_ratio'])}",
+        f"rs{_token(spec['rail_stretch_ratio'])}",
+        f"tc{_token(spec['throat_capacity_ratio'])}",
+    ])
+
+
+def _sort_cols() -> list[str]:
+    return [
+        "abs_amplitude",
+        "sign",
+        "catch_lead",
+        "temporal_width",
+        "clock_lapse_ratio",
+        "rail_stretch_ratio",
+        "throat_capacity_ratio",
+    ]
+
+
 def _resolve_grid(args: argparse.Namespace, overlay_case) -> dict[str, Any]:
     params = overlay_case.params
     s_max = float(args.s_max)
@@ -53,6 +78,63 @@ def _resolve_grid(args: argparse.Namespace, overlay_case) -> dict[str, Any]:
 def _compact_by_channel(points: pd.DataFrame) -> pd.DataFrame:
     _, compact, _, _, _ = summarize(points)
     return compact.set_index("channel")
+
+
+def _finite(value: Any, default: float = 0.0) -> float:
+    try:
+        result = float(value)
+    except (TypeError, ValueError):
+        return default
+    return result if math.isfinite(result) else default
+
+
+def _ratio_excess(summary: dict[str, Any], key: str) -> float:
+    value = _finite(summary.get(key), 1.0)
+    return max(value - 1.0, 0.0)
+
+
+def _positive_fraction(summary: dict[str, Any], key: str) -> float:
+    value = _finite(summary.get(key), 0.0)
+    return max(value, 0.0)
+
+
+def _add_source_objective(summary: dict[str, Any]) -> None:
+    aggregate = _ratio_excess(summary, "max_total_burden_ratio")
+    radial_null = _ratio_excess(summary, "neg_Tkk_radial_total_ratio")
+    radial_current = _ratio_excess(summary, "abs_j_l_total_ratio")
+    angular_pressure = _ratio_excess(summary, "abs_pOmega_total_ratio")
+    packet_drift = _finite(summary.get("packet_norm_live_delta_max_abs"))
+    packet_unsafe = 10.0 if int(summary.get("positive_packet_norm_live", 0)) > 0 else 0.0
+    packet_density = _ratio_excess(summary, "neg_rho_packet_total_ratio")
+    point_peak = _ratio_excess(summary, "max_point_peak_ratio")
+    shell_null = _ratio_excess(summary, "neg_Tkk_radial_shell_throat_weighted_ratio")
+    shell_current_fraction = _positive_fraction(summary, "abs_j_l_shell_throat_delta_fraction")
+    shell_angular_fraction = _positive_fraction(summary, "abs_pOmega_shell_throat_delta_fraction")
+
+    packet_safety_score = packet_unsafe + 0.25 * packet_drift + packet_density
+    shell_throat_score = 0.25 * shell_null + 0.25 * shell_current_fraction + 0.25 * shell_angular_fraction
+    radial_transport_score = radial_null + radial_current
+    angular_support_score = angular_pressure
+    aggregate_source_score = aggregate
+    point_peak_score = point_peak
+
+    summary.update({
+        "aggregate_source_score": aggregate_source_score,
+        "packet_safety_score": packet_safety_score,
+        "point_peak_score": point_peak_score,
+        "shell_throat_score": shell_throat_score,
+        "radial_transport_score": radial_transport_score,
+        "angular_support_score": angular_support_score,
+        "source_objective_score": (
+            4.0 * aggregate_source_score
+            + 2.0 * radial_null
+            + 1.5 * radial_current
+            + 1.5 * angular_pressure
+            + packet_safety_score
+            + 0.5 * point_peak_score
+            + shell_throat_score
+        ),
+    })
 
 
 def _compare_channels(base_compact: pd.DataFrame, overlay_compact: pd.DataFrame, spec: dict[str, Any]) -> list[dict[str, Any]]:
@@ -215,6 +297,7 @@ def _compare_case(
         "support_shell_delta_beta_abs_max": float(overlay_points["support_shell_delta_beta"].astype(float).abs().max()),
         "support_shell_delta_alpha_abs_max": float(overlay_points["support_shell_delta_alpha"].astype(float).abs().max()),
         "support_shell_delta_gamma_ll_abs_max": float(overlay_points["support_shell_delta_gamma_ll"].astype(float).abs().max()),
+        "support_shell_delta_gamma_omega_abs_max": float(overlay_points["support_shell_delta_gamma_omega"].astype(float).abs().max()),
         "support_shell_window_peak_s": float(max_window_row["s"]),
         "support_shell_window_peak_l": float(max_window_row["l"]),
         "support_shell_window_peak_stage": str(max_window_row["stage"]),
@@ -227,14 +310,133 @@ def _compare_case(
     }
 
     focus = {row["channel"]: row for row in channel_rows}
-    for channel in ["neg_Tkk_radial", "abs_p_l", "abs_j_l", "neg_rho_packet"]:
+    for channel in ["neg_Tkk_radial", "abs_p_l", "abs_pOmega", "abs_j_l", "neg_rho_euler", "neg_rho_packet"]:
         row = focus[channel]
         summary[f"{channel}_total_delta"] = row["total_burden_delta"]
         summary[f"{channel}_total_ratio"] = row["total_burden_ratio"]
         summary[f"{channel}_live_delta"] = row["live_packet_burden_delta"]
         summary[f"{channel}_live_ratio"] = row["live_packet_burden_ratio"]
         summary[f"{channel}_peak_ratio"] = row["point_peak_ratio"]
+    _add_source_objective(summary)
     return summary, channel_rows, shell_throat_rows
+
+
+def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
+    specs: list[dict[str, Any]] = []
+    for abs_amplitude in args.amplitudes:
+        for sign_name in args.signs:
+            sign = 1.0 if sign_name == "pos" else -1.0
+            amplitude = sign * float(abs_amplitude)
+            for catch_lead in args.catch_leads:
+                for temporal_width in args.temporal_widths:
+                    for clock_lapse_ratio in args.clock_lapse_ratios:
+                        for rail_stretch_ratio in args.rail_stretch_ratios:
+                            for throat_capacity_ratio in args.throat_capacity_ratios:
+                                specs.append({
+                                    "abs_amplitude": float(abs_amplitude),
+                                    "sign": sign_name,
+                                    "amplitude": amplitude,
+                                    "catch_lead": float(catch_lead),
+                                    "temporal_width": float(temporal_width),
+                                    "clock_lapse_ratio": float(clock_lapse_ratio),
+                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
+                                    "rail_stretch_ratio": float(rail_stretch_ratio),
+                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
+                                    "throat_capacity_ratio": float(throat_capacity_ratio),
+                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
+                                })
+    return specs
+
+
+def _overlay_config(args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        "variant": args.variant,
+        "service_factor": float(args.service_factor),
+        "smoothness_order": int(args.smoothness_order),
+        "support_shell_inner_multiplier": float(args.support_shell_inner_multiplier),
+        "support_shell_radial_multiplier": float(args.support_shell_radial_multiplier),
+        "support_shell_radial_width": args.support_shell_radial_width,
+        "packet_exclusion": float(args.packet_exclusion),
+    }
+
+
+def _run_overlay_spec(
+    spec: dict[str, Any],
+    base_points: pd.DataFrame,
+    grid: dict[str, Any],
+    config: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
+    overlay_case = branch_case(
+        config["variant"],
+        config["service_factor"],
+        support_shell_overlay_enabled=True,
+        support_shell_amplitude=spec["amplitude"],
+        support_shell_catch_lead=spec["catch_lead"],
+        support_shell_temporal_width=spec["temporal_width"],
+        support_shell_smoothness_order=config["smoothness_order"],
+        support_shell_inner_multiplier=config["support_shell_inner_multiplier"],
+        support_shell_radial_multiplier=config["support_shell_radial_multiplier"],
+        support_shell_radial_width=config["support_shell_radial_width"],
+        support_shell_packet_exclusion=config["packet_exclusion"],
+        support_shell_clock_lapse_log_gain=spec["clock_lapse_log_gain"],
+        support_shell_rail_stretch_log_gain=spec["rail_stretch_log_gain"],
+        support_shell_throat_capacity_log_gain=spec["throat_capacity_log_gain"],
+    )
+    overlay_points = compute_case(overlay_case, progress=False, **grid)
+    return _compare_case(base_points, overlay_points, spec)
+
+
+def _case_dir(outdir: Path, spec: dict[str, Any]) -> Path:
+    return outdir / "cases" / _case_slug(spec)
+
+
+def _case_output_paths(outdir: Path, spec: dict[str, Any]) -> dict[str, Path]:
+    case_dir = _case_dir(outdir, spec)
+    return {
+        "summary": case_dir / "summary.csv",
+        "channel_deltas": case_dir / "channel_deltas.csv",
+        "shell_throat_overlap": case_dir / "shell_throat_overlap.csv",
+        "failure": case_dir / "failure.json",
+    }
+
+
+def _write_case_outputs(
+    outdir: Path,
+    summary: dict[str, Any],
+    channels: list[dict[str, Any]],
+    shell_throat: list[dict[str, Any]],
+) -> None:
+    spec = summary
+    case_dir = _case_dir(outdir, spec)
+    case_dir.mkdir(parents=True, exist_ok=True)
+    paths = _case_output_paths(outdir, spec)
+    pd.DataFrame([summary]).to_csv(paths["summary"], index=False)
+    pd.DataFrame(channels).to_csv(paths["channel_deltas"], index=False)
+    pd.DataFrame(shell_throat).to_csv(paths["shell_throat_overlap"], index=False)
+    if paths["failure"].exists():
+        paths["failure"].unlink()
+
+
+def _write_case_failure(outdir: Path, failure: dict[str, Any]) -> None:
+    case_dir = _case_dir(outdir, failure)
+    case_dir.mkdir(parents=True, exist_ok=True)
+    paths = _case_output_paths(outdir, failure)
+    paths["failure"].write_text(json.dumps(failure, indent=2), encoding="utf-8")
+
+
+def _load_case_outputs(
+    outdir: Path,
+    spec: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]] | None:
+    paths = _case_output_paths(outdir, spec)
+    if not (paths["summary"].exists() and paths["channel_deltas"].exists() and paths["shell_throat_overlap"].exists()):
+        return None
+    summary_rows = pd.read_csv(paths["summary"]).to_dict("records")
+    if not summary_rows:
+        return None
+    channels = pd.read_csv(paths["channel_deltas"]).to_dict("records")
+    shell_throat = pd.read_csv(paths["shell_throat_overlap"]).to_dict("records")
+    return summary_rows[0], channels, shell_throat
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -260,6 +462,13 @@ def build_parser() -> argparse.ArgumentParser:
         default=[0.0],
         help="Log-gain ratios against the signed carrying-flow amplitude for the support-shell rail-stretch partner.",
     )
+    parser.add_argument(
+        "--throat-capacity-ratios",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Log-gain ratios against the signed carrying-flow amplitude for the support-shell throat-capacity partner.",
+    )
     parser.add_argument("--smoothness-order", type=int, default=1)
     parser.add_argument("--support-shell-inner-multiplier", type=float, default=0.65)
     parser.add_argument("--support-shell-radial-multiplier", type=float, default=1.20)
@@ -273,6 +482,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--l-max", type=float, default=2.80)
     parser.add_argument("--h-s", type=float, default=2.5e-3)
     parser.add_argument("--h-l", type=float, default=2.5e-3)
+    parser.add_argument("--jobs", type=int, default=1, help="Number of worker processes for overlay cases.")
+    parser.add_argument("--resume", action="store_true", help="Reuse completed per-case outputs when available.")
+    parser.add_argument("--case-output", action="store_true", help="Write per-case outputs as each overlay case finishes.")
+    parser.add_argument("--fail-fast", action="store_true", help="Stop the sweep at the first overlay failure.")
     parser.add_argument("--quiet", action="store_true")
     return parser
 
@@ -294,96 +507,117 @@ def main() -> int:
         support_shell_packet_exclusion=args.packet_exclusion,
         support_shell_clock_lapse_log_gain=0.0,
         support_shell_rail_stretch_log_gain=0.0,
+        support_shell_throat_capacity_log_gain=0.0,
     )
     grid = _resolve_grid(args, grid_case)
     base_case = branch_case(args.variant, args.service_factor)
     base_points = compute_case(base_case, progress=not args.quiet, **grid)
+    specs = _build_specs(args)
+    case_output = bool(args.case_output or args.resume)
+    config = _overlay_config(args)
 
     summary_rows: list[dict[str, Any]] = []
     channel_rows: list[dict[str, Any]] = []
     shell_throat_rows: list[dict[str, Any]] = []
     failures: list[dict[str, Any]] = []
-    total = (
-        len(args.amplitudes)
-        * len(args.signs)
-        * len(args.catch_leads)
-        * len(args.temporal_widths)
-        * len(args.clock_lapse_ratios)
-        * len(args.rail_stretch_ratios)
-    )
-    index = 0
-    for abs_amplitude in args.amplitudes:
-        for sign_name in args.signs:
-            sign = 1.0 if sign_name == "pos" else -1.0
-            for catch_lead in args.catch_leads:
-                for temporal_width in args.temporal_widths:
-                    for clock_lapse_ratio in args.clock_lapse_ratios:
-                        for rail_stretch_ratio in args.rail_stretch_ratios:
-                            index += 1
-                            amplitude = sign * float(abs_amplitude)
-                            clock_lapse_log_gain = amplitude * float(clock_lapse_ratio)
-                            rail_stretch_log_gain = amplitude * float(rail_stretch_ratio)
-                            spec = {
-                                "abs_amplitude": float(abs_amplitude),
-                                "sign": sign_name,
-                                "amplitude": amplitude,
-                                "catch_lead": float(catch_lead),
-                                "temporal_width": float(temporal_width),
-                                "clock_lapse_ratio": float(clock_lapse_ratio),
-                                "clock_lapse_log_gain": float(clock_lapse_log_gain),
-                                "rail_stretch_ratio": float(rail_stretch_ratio),
-                                "rail_stretch_log_gain": float(rail_stretch_log_gain),
-                            }
-                            if not args.quiet:
-                                print(
-                                    f"[{index}/{total}] amp={amplitude:g} lead={catch_lead:g} tw={temporal_width:g} "
-                                    f"cl={clock_lapse_log_gain:g} rs={rail_stretch_log_gain:g}",
-                                    flush=True,
-                                )
-                            try:
-                                overlay_case = branch_case(
-                                    args.variant,
-                                    args.service_factor,
-                                    support_shell_overlay_enabled=True,
-                                    support_shell_amplitude=amplitude,
-                                    support_shell_catch_lead=catch_lead,
-                                    support_shell_temporal_width=temporal_width,
-                                    support_shell_smoothness_order=args.smoothness_order,
-                                    support_shell_inner_multiplier=args.support_shell_inner_multiplier,
-                                    support_shell_radial_multiplier=args.support_shell_radial_multiplier,
-                                    support_shell_radial_width=args.support_shell_radial_width,
-                                    support_shell_packet_exclusion=args.packet_exclusion,
-                                    support_shell_clock_lapse_log_gain=clock_lapse_log_gain,
-                                    support_shell_rail_stretch_log_gain=rail_stretch_log_gain,
-                                )
-                                overlay_points = compute_case(overlay_case, progress=False, **grid)
-                                summary, channels, shell_throat = _compare_case(base_points, overlay_points, spec)
-                                summary_rows.append(summary)
-                                channel_rows.extend(channels)
-                                shell_throat_rows.extend(shell_throat)
-                            except Exception as exc:
-                                failures.append({**spec, "error": repr(exc)})
+    remaining_specs: list[dict[str, Any]] = []
+    resumed = 0
+    for spec in specs:
+        loaded = _load_case_outputs(args.outdir, spec) if args.resume else None
+        if loaded is None:
+            remaining_specs.append(spec)
+            continue
+        summary, channels, shell_throat = loaded
+        summary_rows.append(summary)
+        channel_rows.extend(channels)
+        shell_throat_rows.extend(shell_throat)
+        resumed += 1
 
-    sort_cols = [
-        "abs_amplitude",
-        "sign",
-        "catch_lead",
-        "temporal_width",
-        "clock_lapse_ratio",
-        "rail_stretch_ratio",
-    ]
-    summary_df = pd.DataFrame(summary_rows).sort_values(sort_cols)
-    channel_df = pd.DataFrame(channel_rows).sort_values([*sort_cols, "channel"])
-    shell_throat_df = pd.DataFrame(shell_throat_rows).sort_values([*sort_cols, "channel"])
+    def record_success(summary: dict[str, Any], channels: list[dict[str, Any]], shell_throat: list[dict[str, Any]]) -> None:
+        summary_rows.append(summary)
+        channel_rows.extend(channels)
+        shell_throat_rows.extend(shell_throat)
+        if case_output:
+            _write_case_outputs(args.outdir, summary, channels, shell_throat)
+
+    def record_failure(spec: dict[str, Any], exc: Exception) -> None:
+        failure = {**spec, "error": repr(exc)}
+        failures.append(failure)
+        if case_output:
+            _write_case_failure(args.outdir, failure)
+
+    fail_fast_triggered = False
+    total = len(specs)
+    if remaining_specs and int(args.jobs) > 1:
+        workers = max(1, int(args.jobs))
+        with ProcessPoolExecutor(max_workers=workers) as pool:
+            futures = {
+                pool.submit(_run_overlay_spec, spec, base_points, grid, config): spec
+                for spec in remaining_specs
+            }
+            completed = resumed
+            for future in as_completed(futures):
+                spec = futures[future]
+                completed += 1
+                if not args.quiet:
+                    print(
+                        f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
+                        f"tw={spec['temporal_width']:g} cl={spec['clock_lapse_log_gain']:g} "
+                        f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
+                        flush=True,
+                    )
+                try:
+                    summary, channels, shell_throat = future.result()
+                    record_success(summary, channels, shell_throat)
+                except Exception as exc:
+                    record_failure(spec, exc)
+                    if args.fail_fast:
+                        fail_fast_triggered = True
+                        for pending in futures:
+                            pending.cancel()
+                        break
+    else:
+        completed = resumed
+        for spec in remaining_specs:
+            completed += 1
+            if not args.quiet:
+                print(
+                    f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
+                    f"tw={spec['temporal_width']:g} cl={spec['clock_lapse_log_gain']:g} "
+                    f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
+                    flush=True,
+                )
+            try:
+                summary, channels, shell_throat = _run_overlay_spec(spec, base_points, grid, config)
+                record_success(summary, channels, shell_throat)
+            except Exception as exc:
+                record_failure(spec, exc)
+                if args.fail_fast:
+                    fail_fast_triggered = True
+                    break
+
+    sort_cols = _sort_cols()
+    summary_df = pd.DataFrame(summary_rows)
+    channel_df = pd.DataFrame(channel_rows)
+    shell_throat_df = pd.DataFrame(shell_throat_rows)
+    if not summary_df.empty:
+        summary_df = summary_df.sort_values(sort_cols)
+    if not channel_df.empty:
+        channel_df = channel_df.sort_values([*sort_cols, "channel"])
+    if not shell_throat_df.empty:
+        shell_throat_df = shell_throat_df.sort_values([*sort_cols, "channel"])
     failure_df = pd.DataFrame(failures)
 
     summary_path = args.outdir / "source_overlay_sweep_summary.csv"
     channel_path = args.outdir / "source_overlay_sweep_channel_deltas.csv"
     shell_throat_path = args.outdir / "source_overlay_sweep_shell_throat_overlap.csv"
+    objective_path = args.outdir / "source_overlay_sweep_objective_ranking.csv"
     failure_path = args.outdir / "source_overlay_sweep_failures.csv"
     summary_df.to_csv(summary_path, index=False)
     channel_df.to_csv(channel_path, index=False)
     shell_throat_df.to_csv(shell_throat_path, index=False)
+    objective_df = summary_df.sort_values(["source_objective_score", *sort_cols]) if not summary_df.empty else summary_df
+    objective_df.to_csv(objective_path, index=False)
     failure_df.to_csv(failure_path, index=False)
 
     metadata = {
@@ -396,22 +630,36 @@ def main() -> int:
         "temporal_widths": args.temporal_widths,
         "clock_lapse_ratios": args.clock_lapse_ratios,
         "rail_stretch_ratios": args.rail_stretch_ratios,
+        "throat_capacity_ratios": args.throat_capacity_ratios,
         "smoothness_order": args.smoothness_order,
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,
         "support_shell_radial_multiplier": args.support_shell_radial_multiplier,
         "support_shell_radial_width": args.support_shell_radial_width,
         "packet_exclusion": args.packet_exclusion,
+        "jobs": int(args.jobs),
+        "resume": bool(args.resume),
+        "case_output": case_output,
+        "resumed_cases": resumed,
+        "requested_cases": len(specs),
+        "completed_cases": len(summary_df),
         "files": {
             "summary": str(summary_path),
             "channel_deltas": str(channel_path),
             "shell_throat_overlap": str(shell_throat_path),
+            "objective_ranking": str(objective_path),
             "failures": str(failure_path),
         },
         "failures": len(failures),
     }
     write_manifest(args.outdir / "source_overlay_sweep_metadata.json", metadata)
-    print(json.dumps({"ok": len(failures) == 0, "outdir": str(args.outdir), "rows": len(summary_df), "failures": len(failures)}, indent=2))
-    return 0 if not failures else 1
+    print(json.dumps({
+        "ok": len(failures) == 0 and not fail_fast_triggered,
+        "outdir": str(args.outdir),
+        "rows": len(summary_df),
+        "failures": len(failures),
+        "resumed": resumed,
+    }, indent=2))
+    return 0 if not failures and not fail_fast_triggered else 1
 
 
 if __name__ == "__main__":

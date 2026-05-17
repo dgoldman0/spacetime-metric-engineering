@@ -143,6 +143,25 @@ python scripts/run_source_overlay_sweep.py \
   --rail-stretch-ratios 0 0.5
 ```
 
+The same sweep driver also supports a throat-capacity partner, parallel execution, resumable per-case outputs, and a source-objective ranking table:
+
+```bash
+python scripts/run_source_overlay_sweep.py \
+  --outdir runs/source_overlay_sweep_v5_throat_capacity \
+  --amplitudes 0.5 \
+  --signs pos \
+  --catch-leads 1.45 1.55 \
+  --temporal-widths 0.30 \
+  --clock-lapse-ratios 0.375 0.5 \
+  --rail-stretch-ratios 0 \
+  --throat-capacity-ratios -0.5 -0.25 0 0.25 0.5 \
+  --jobs 4 \
+  --case-output \
+  --resume
+```
+
+The throat-capacity ratio is a log-gain against the signed carrying-flow amplitude applied to `gamma_omega`. The summary table includes `support_shell_delta_gamma_omega_abs_max`, channel ratios for angular pressure, named source-objective sub-scores, and `source_objective_score`. The sorted objective table is written to `source_overlay_sweep_objective_ranking.csv`.
+
 Overlay sweeps also write `source_overlay_sweep_shell_throat_overlap.csv`. This table measures each demanded-source channel inside the band where the support-shell window overlaps the support/throat gradient. It is intended to catch warp-shell/throat-mismatch behavior: radial-null, radial-current, angular-pressure, or point-peak growth concentrated in the active shell/throat overlap rather than distributed across the full grid.
 
 ## Send results back

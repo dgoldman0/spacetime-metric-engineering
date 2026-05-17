@@ -161,6 +161,7 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             support_shell_overlay_enabled=True,
             support_shell_clock_lapse_log_gain=0.10,
             support_shell_rail_stretch_log_gain=-0.05,
+            support_shell_throat_capacity_log_gain=0.025,
         )
         points = source_ledger.compute_case(
             case,
@@ -178,11 +179,13 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertIn("support_shell_delta_beta", points.columns)
         self.assertIn("support_shell_delta_alpha", points.columns)
         self.assertIn("support_shell_delta_gamma_ll", points.columns)
+        self.assertIn("support_shell_delta_gamma_omega", points.columns)
         self.assertGreater(float(points["support_shell_window"].max()), 0.0)
         self.assertLessEqual(float(points["support_shell_window"].max()), 1.0)
         self.assertGreater(float(points["support_shell_delta_beta"].abs().max()), 0.0)
         self.assertGreater(float(points["support_shell_delta_alpha"].abs().max()), 0.0)
         self.assertGreater(float(points["support_shell_delta_gamma_ll"].abs().max()), 0.0)
+        self.assertGreater(float(points["support_shell_delta_gamma_omega"].abs().max()), 0.0)
         self.assertLess(
             float((points["beta"] - points["beta_base"] - points["support_shell_delta_beta"]).abs().max()),
             1.0e-15,
@@ -193,6 +196,10 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         )
         self.assertLess(
             float((points["gamma_ll"] - points["gamma_ll_base"] - points["support_shell_delta_gamma_ll"]).abs().max()),
+            1.0e-12,
+        )
+        self.assertLess(
+            float((points["gamma_omega"] - points["gamma_omega_base"] - points["support_shell_delta_gamma_omega"]).abs().max()),
             1.0e-12,
         )
         self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
@@ -233,13 +240,37 @@ class ValidationLadderHardeningTests(unittest.TestCase):
                 "clock_lapse_log_gain": 0.0,
                 "rail_stretch_ratio": 0.0,
                 "rail_stretch_log_gain": 0.0,
+                "throat_capacity_ratio": 0.0,
+                "throat_capacity_log_gain": 0.0,
             },
         )
 
         self.assertGreater(summary["shell_throat_overlap_points"], 0)
         self.assertIn("neg_Tkk_radial_shell_throat_weighted_ratio", summary)
         self.assertIn("abs_j_l_shell_throat_peak_ratio", summary)
+        self.assertIn("abs_pOmega_total_ratio", summary)
+        self.assertIn("source_objective_score", summary)
+        self.assertIn("support_shell_delta_gamma_omega_abs_max", summary)
         self.assertEqual({row["channel"] for row in shell_throat}, set(source_ledger.CHANNELS))
+
+    def test_source_overlay_sweep_specs_include_throat_capacity(self):
+        args = SimpleNamespace(
+            amplitudes=[0.5],
+            signs=["pos"],
+            catch_leads=[1.45],
+            temporal_widths=[0.30],
+            clock_lapse_ratios=[0.375, 0.5],
+            rail_stretch_ratios=[0.0],
+            throat_capacity_ratios=[-0.25, 0.0, 0.25],
+        )
+
+        specs = overlay_sweep._build_specs(args)
+
+        self.assertEqual(len(specs), 6)
+        self.assertEqual({spec["throat_capacity_ratio"] for spec in specs}, {-0.25, 0.0, 0.25})
+        for spec in specs:
+            self.assertAlmostEqual(spec["throat_capacity_log_gain"], spec["amplitude"] * spec["throat_capacity_ratio"])
+            self.assertIn("tc", overlay_sweep._case_slug(spec))
 
 
 if __name__ == "__main__":

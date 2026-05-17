@@ -91,6 +91,7 @@ class SourceParams:
     support_shell_catch_edge_width: float | None = None
     support_shell_clock_lapse_log_gain: float = 0.0
     support_shell_rail_stretch_log_gain: float = 0.0
+    support_shell_throat_capacity_log_gain: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -240,7 +241,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     w_omega = bump_sq(l_arr * l_arr, params.ROmega, params.wOmega)
     q_omega = falloff(s_arr - params.xOmega, params.wtOmega)
     c_omega = np.exp(params.aOmega * q_omega * w_omega)
-    gamma_omega = (l_arr * l_arr + params.Rth * params.Rth) * c_omega * c_omega
+    gamma_omega_base = (l_arr * l_arr + params.Rth * params.Rth) * c_omega * c_omega
+    throat_capacity_factor = support_shell_metric_factor(params.support_shell_throat_capacity_log_gain, shell_window)
+    gamma_omega = gamma_omega_base * throat_capacity_factor
 
     return {
         "U_beta": float(u_beta),
@@ -264,6 +267,8 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "support_shell_delta_alpha": float(alpha - alpha_base),
         "support_shell_rail_stretch_factor": float(rail_stretch_factor),
         "support_shell_delta_gamma_ll": float(gamma_ll - gamma_ll_base),
+        "support_shell_throat_capacity_factor": float(throat_capacity_factor),
+        "support_shell_delta_gamma_omega": float(gamma_omega - gamma_omega_base),
         "sqrt_gamma_ll": float(sqrt_gamma_ll),
         "gamma_ll": float(gamma_ll),
         "vcoord": float(vcoord),
@@ -272,6 +277,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "WOmega": float(w_omega),
         "QOmega": float(q_omega),
         "COmega": float(c_omega),
+        "gamma_omega_base": float(gamma_omega_base),
         "gamma_omega": float(gamma_omega),
     }
 
@@ -420,7 +426,10 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "support_shell_delta_alpha",
             "support_shell_rail_stretch_factor",
             "support_shell_delta_gamma_ll",
+            "support_shell_throat_capacity_factor",
+            "support_shell_delta_gamma_omega",
             "gamma_ll",
+            "gamma_omega_base",
             "gamma_omega",
             "COmega",
         ]},
@@ -716,6 +725,8 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             case_name = f"{case_name}_cl{_token(params.support_shell_clock_lapse_log_gain)}"
         if params.support_shell_rail_stretch_log_gain:
             case_name = f"{case_name}_rs{_token(params.support_shell_rail_stretch_log_gain)}"
+        if params.support_shell_throat_capacity_log_gain:
+            case_name = f"{case_name}_tc{_token(params.support_shell_throat_capacity_log_gain)}"
         note = f"{note}; continuous support-shell metric overlay"
     return SourceCase(case_name, params, note)
 
