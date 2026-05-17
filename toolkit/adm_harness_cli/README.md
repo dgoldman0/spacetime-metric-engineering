@@ -56,7 +56,7 @@ The V5 support-shell target can be checked with the staged validation ladder:
 python scripts/run_v5_validation_ladder.py
 ```
 
-This runs the flow-off baseline, the promoted positive support-shell target, a generated negative counterpart, the packet-safety overlay on the tuned V5 branch, the signed source/objective comparison, and reduced balance bookkeeping. Outputs are written to `runs/v5_validation_ladder/`.
+This runs the flow-off baseline, the promoted positive support-shell target, a generated negative counterpart, the packet-safety overlay on the tuned V5 branch, the richer multi-channel source objective, the signed source/objective comparison, reduced balance bookkeeping, and a positive-amplitude load-bearing ramp. Outputs are written to `runs/v5_validation_ladder/`.
 
 ## Send results back
 

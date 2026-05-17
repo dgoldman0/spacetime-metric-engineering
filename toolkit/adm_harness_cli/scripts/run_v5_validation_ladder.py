@@ -27,6 +27,34 @@ from test_support_shell_packet_safety import run_overlay
 
 DEFAULT_PACKET_INPUT = REPO_ROOT / "included_bundles" / "active_rail_v_sweep.zip"
 DEFAULT_PACKET_MEMBER = "highres_41x73/V5_tuned_w0569_eta200.csv"
+SOURCE_CHANNELS = ["rho", "j_l", "delta_rho", "delta_j_l"]
+SOURCE_SCOPES = ["global", "catch_support", "support", "packet", "catch_packet", "other"]
+RICH_OBJECTIVE_WEIGHTS = {
+    "rho": {
+        "global_abs_change": 1.0e3,
+        "packet_increment_abs": 1.0e6,
+        "packet_peak_growth": 1.0e6,
+        "catch_support_increment_abs": 1.0e2,
+    },
+    "j_l": {
+        "global_abs_change": 0.25,
+        "packet_increment_abs": 2.5,
+        "packet_peak_growth": 250.0,
+        "catch_support_increment_abs": 0.025,
+    },
+    "delta_rho": {
+        "global_abs_change": 1.0e3,
+        "packet_increment_abs": 1.0e6,
+        "packet_peak_growth": 1.0e6,
+        "catch_support_increment_abs": 1.0e2,
+    },
+    "delta_j_l": {
+        "global_abs_change": 1.0,
+        "packet_increment_abs": 10.0,
+        "packet_peak_growth": 1000.0,
+        "catch_support_increment_abs": 0.1,
+    },
+}
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
@@ -92,9 +120,163 @@ def _baseline_frame(baseline_dir: Path) -> pd.DataFrame:
     missing = required - set(baseline.columns)
     if missing:
         raise SystemExit(f"{baseline_dir / 'point_ledger.csv'} missing columns: {sorted(missing)}")
-    return baseline[["s", "l", "delta_j_l", "delta_rho"]].rename(
-        columns={"delta_j_l": "baseline_delta_j_l", "delta_rho": "baseline_delta_rho"}
+    cols = ["s", "l"] + [channel for channel in SOURCE_CHANNELS if channel in baseline.columns]
+    return baseline[cols].rename(columns={channel: f"baseline_{channel}" for channel in SOURCE_CHANNELS})
+
+
+def _token(value: float) -> str:
+    text = f"{value:.10g}"
+    return text.replace("-", "m").replace("+", "").replace(".", "p").replace("e", "e")
+
+
+def _v_label(cfg: dict[str, Any]) -> str:
+    v_value = cfg.get("velocity", (cfg.get("service", {}) or {}).get("velocity"))
+    try:
+        v = float(v_value)
+    except (TypeError, ValueError):
+        return "v"
+    if v.is_integer():
+        return f"v{int(v)}"
+    return f"v{_token(v)}"
+
+
+def _has_positive_marker(run_name: str) -> bool:
+    return "_pos_" in run_name or run_name.endswith("_pos")
+
+
+def _positive_target_config(target_config: Path, output_root: Path) -> Path:
+    cfg = load_config(target_config)
+    run_name = str(cfg.get("run_name", target_config.stem))
+    carrying_flow = cfg.get("service", {}).get("carrying_flow", {})
+    amplitude = float(carrying_flow.get("amplitude", 0.0))
+    if amplitude <= 0.0 or _has_positive_marker(run_name):
+        return target_config
+
+    pos_cfg = copy.deepcopy(cfg)
+    if run_name.endswith("_target"):
+        pos_cfg["run_name"] = run_name.replace("_target", "_pos_target")
+    else:
+        pos_cfg["run_name"] = f"{run_name}_pos"
+
+    out_dir = output_root / "_generated_configs"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"{target_config.stem}_positive_counterpart.yaml"
+    out_path.write_text(yaml.safe_dump(pos_cfg, sort_keys=False), encoding="utf-8")
+    return out_path
+
+
+def _scope_masks(df: pd.DataFrame) -> dict[str, pd.Series]:
+    packet = df["packet_live"].astype(bool)
+    support = df["support_shell"].astype(bool)
+    catch = df["stage"].astype(str).eq("catch_rematch")
+    catch_support = catch & support
+    catch_packet = catch & packet
+    return {
+        "global": pd.Series(True, index=df.index),
+        "catch_support": catch_support,
+        "support": support,
+        "packet": packet,
+        "catch_packet": catch_packet,
+        "other": ~(catch_support | packet),
+    }
+
+
+def _channel_rich_metrics(df: pd.DataFrame, channel: str, masks: dict[str, pd.Series]) -> dict[str, Any]:
+    base_col = f"baseline_{channel}"
+    run = df[channel].astype(float)
+    base = df[base_col].astype(float)
+    vol = df["volume"].astype(float)
+    inc = run - base
+
+    row: dict[str, Any] = {
+        "channel": channel,
+        "global_base_abs_burden": float((base.abs() * vol).sum()),
+        "global_run_abs_burden": float((run.abs() * vol).sum()),
+        "global_abs_change": float((run.abs() * vol).sum() - (base.abs() * vol).sum()),
+        "global_increment_abs": float((inc.abs() * vol).sum()),
+        "global_signed_increment": float((inc * vol).sum()),
+        "global_peak_abs_change": float(run.abs().max() - base.abs().max()),
+    }
+    for scope, mask in masks.items():
+        scoped_inc = inc[mask]
+        scoped_base = base[mask]
+        scoped_run = run[mask]
+        scoped_vol = vol[mask]
+        increment_abs = float((scoped_inc.abs() * scoped_vol).sum())
+        aligned = float((np.sign(scoped_base) * scoped_inc * scoped_vol).sum()) if increment_abs else 0.0
+        row[f"{scope}_increment_abs"] = increment_abs
+        row[f"{scope}_signed_increment"] = float((scoped_inc * scoped_vol).sum())
+        row[f"{scope}_abs_change"] = float((scoped_run.abs() * scoped_vol).sum() - (scoped_base.abs() * scoped_vol).sum())
+        row[f"{scope}_baseline_opposition_fraction"] = -aligned / increment_abs if increment_abs else 0.0
+        row[f"{scope}_peak_abs_change"] = (
+            float(scoped_run.abs().max() - scoped_base.abs().max()) if len(scoped_run) else 0.0
+        )
+    row["packet_fraction_of_increment_abs"] = (
+        row["packet_increment_abs"] / row["global_increment_abs"] if row["global_increment_abs"] else 0.0
     )
+    row["catch_support_fraction_of_increment_abs"] = (
+        row["catch_support_increment_abs"] / row["global_increment_abs"] if row["global_increment_abs"] else 0.0
+    )
+    return row
+
+
+def _rich_source_objective_summary(root: Path, baseline_run: str, run_names: list[str]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    baseline = _baseline_frame(root / baseline_run)
+    channel_rows = []
+    aggregate_rows = []
+    for run_name in run_names:
+        merged = _merge_with_baseline(root / run_name, baseline)
+        available = [channel for channel in SOURCE_CHANNELS if channel in merged.columns and f"baseline_{channel}" in merged.columns]
+        if not available:
+            raise SystemExit(f"No source channels available for richer objective in {run_name}")
+        masks = _scope_masks(merged)
+        objective = 0.0
+        aggregate: dict[str, Any] = {
+            "run_name": run_name,
+            "channels": ",".join(available),
+            "global_increment_abs_all_channels": 0.0,
+            "packet_increment_abs_all_channels": 0.0,
+            "catch_support_increment_abs_all_channels": 0.0,
+            "positive_packet_peak_growth_all_channels": 0.0,
+        }
+        for channel in available:
+            metrics = _channel_rich_metrics(merged, channel, masks)
+            metrics["run_name"] = run_name
+            channel_rows.append(metrics)
+            weights = RICH_OBJECTIVE_WEIGHTS[channel]
+            objective += weights["global_abs_change"] * metrics["global_abs_change"]
+            objective += weights["packet_increment_abs"] * metrics["packet_increment_abs"]
+            objective += weights["catch_support_increment_abs"] * metrics["catch_support_increment_abs"]
+            objective += weights["packet_peak_growth"] * max(0.0, metrics["packet_peak_abs_change"])
+            aggregate[f"{channel}_global_increment_abs"] = metrics["global_increment_abs"]
+            aggregate[f"{channel}_packet_increment_abs"] = metrics["packet_increment_abs"]
+            aggregate[f"{channel}_catch_support_increment_abs"] = metrics["catch_support_increment_abs"]
+            aggregate[f"{channel}_global_abs_change"] = metrics["global_abs_change"]
+            aggregate[f"{channel}_packet_peak_abs_change"] = metrics["packet_peak_abs_change"]
+            aggregate[f"{channel}_catch_support_opposition_fraction"] = metrics["catch_support_baseline_opposition_fraction"]
+            aggregate["global_increment_abs_all_channels"] += metrics["global_increment_abs"]
+            aggregate["packet_increment_abs_all_channels"] += metrics["packet_increment_abs"]
+            aggregate["catch_support_increment_abs_all_channels"] += metrics["catch_support_increment_abs"]
+            aggregate["positive_packet_peak_growth_all_channels"] += max(0.0, metrics["packet_peak_abs_change"])
+        aggregate["packet_fraction_all_channels"] = (
+            aggregate["packet_increment_abs_all_channels"] / aggregate["global_increment_abs_all_channels"]
+            if aggregate["global_increment_abs_all_channels"]
+            else 0.0
+        )
+        aggregate["catch_support_fraction_all_channels"] = (
+            aggregate["catch_support_increment_abs_all_channels"] / aggregate["global_increment_abs_all_channels"]
+            if aggregate["global_increment_abs_all_channels"]
+            else 0.0
+        )
+        aggregate["rich_source_objective_lower_better"] = float(objective)
+        aggregate["rich_source_relief_score_higher_better"] = -float(objective)
+        aggregate_rows.append(aggregate)
+
+    channels = pd.DataFrame(channel_rows)
+    summary = pd.DataFrame(aggregate_rows).sort_values("rich_source_objective_lower_better")
+    channels.to_csv(root / "validation_ladder_rich_source_objective_channels.csv", index=False)
+    summary.to_csv(root / "validation_ladder_rich_source_objective_summary.csv", index=False)
+    return summary, channels
 
 
 def _routing_summary(root: Path, baseline_run: str, run_names: list[str]) -> pd.DataFrame:
@@ -221,6 +403,7 @@ def _balance_summary(root: Path, baseline_run: str, run_names: list[str]) -> pd.
 
 
 def _packet_overlay(args: argparse.Namespace, root: Path) -> pd.DataFrame:
+    amplitudes = getattr(args, "overlay_amplitudes", args.amplitudes)
     overlay_args = SimpleNamespace(
         input=str(args.packet_input),
         member=args.packet_member,
@@ -230,7 +413,7 @@ def _packet_overlay(args: argparse.Namespace, root: Path) -> pd.DataFrame:
         catch_lead=args.catch_lead,
         temporal_width=args.temporal_width,
         smoothing_passes=args.smoothing_passes,
-        amplitudes=args.amplitudes,
+        amplitudes=amplitudes,
     )
     summary, _ = run_overlay(overlay_args)
     return summary
@@ -245,11 +428,201 @@ def _target_packet_row(packet_summary: pd.DataFrame, target_amplitude: float) ->
     return packet_summary[mask].iloc[0]
 
 
+def _support_shell_amplitude_config(target_config: Path, output_root: Path, amplitude: float) -> Path:
+    cfg = load_config(target_config)
+    amp = float(amplitude)
+    sign_name = "pos" if amp >= 0.0 else "neg"
+    abs_amp = abs(amp)
+    run_name = f"{_v_label(cfg)}_support_shell_ramp_{sign_name}_a{_token(abs_amp)}"
+    cfg["run_name"] = run_name
+    carrying_flow = cfg.setdefault("service", {}).setdefault("carrying_flow", {})
+    carrying_flow["amplitude"] = amp
+    carrying_flow["max_abs_change"] = abs_amp
+
+    out_dir = output_root / "_generated_configs" / "amplitude_ramp"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"{run_name}.yaml"
+    out_path.write_text(yaml.safe_dump(cfg, sort_keys=False), encoding="utf-8")
+    return out_path
+
+
+def _run_amplitude_ramp(args: argparse.Namespace, root: Path, target_config: Path) -> pd.DataFrame:
+    rows = []
+    if args.skip_amplitude_ramp:
+        out = pd.DataFrame(rows)
+        out.to_csv(root / "validation_ladder_amplitude_ramp_runs.csv", index=False)
+        return out
+
+    for amplitude in args.ramp_amplitudes:
+        cfg = _support_shell_amplitude_config(target_config, root, float(amplitude))
+        run_name = str(load_config(cfg)["run_name"])
+        row: dict[str, Any] = {
+            "run_name": run_name,
+            "amplitude": float(amplitude),
+            "config": str(cfg),
+            "run_status": "ok",
+            "error": "",
+        }
+        try:
+            _run_validated_config(cfg, root, f"ramp_{_token(float(amplitude))}")
+        except (Exception, SystemExit) as exc:
+            row["run_status"] = "failed"
+            row["error"] = str(exc)
+        rows.append(row)
+
+    out = pd.DataFrame(rows)
+    out.to_csv(root / "validation_ladder_amplitude_ramp_runs.csv", index=False)
+    return out
+
+
+def _packet_row_for_amplitude(packet_summary: pd.DataFrame, amplitude: float) -> pd.Series | None:
+    sign = "pos" if amplitude > 0 else "neg"
+    abs_amp = abs(float(amplitude))
+    mask = packet_summary["sign"].eq(sign) & np.isclose(packet_summary["abs_amplitude"].astype(float), abs_amp)
+    if not mask.any():
+        return None
+    return packet_summary[mask].iloc[0]
+
+
+def _amplitude_ramp_summary(
+    *,
+    root: Path,
+    ramp_runs: pd.DataFrame,
+    routing: pd.DataFrame,
+    rich_summary: pd.DataFrame,
+    packet_summary: pd.DataFrame,
+    args: argparse.Namespace,
+) -> pd.DataFrame:
+    rows = []
+    if ramp_runs.empty:
+        out = pd.DataFrame(rows)
+        out.to_csv(root / "validation_ladder_amplitude_ramp_summary.csv", index=False)
+        return out
+
+    for _, run in ramp_runs.iterrows():
+        run_name = str(run["run_name"])
+        amplitude = float(run["amplitude"])
+        row: dict[str, Any] = {
+            "run_name": run_name,
+            "amplitude": amplitude,
+            "run_status": run["run_status"],
+            "error": run["error"],
+        }
+        if run["run_status"] != "ok":
+            row["hard_gate_passed"] = False
+            row["warning_flag"] = True
+            row["status_class"] = "run_failed"
+            rows.append(row)
+            continue
+
+        route = routing[routing["run_name"].eq(run_name)]
+        rich = rich_summary[rich_summary["run_name"].eq(run_name)]
+        packet = _packet_row_for_amplitude(packet_summary, amplitude)
+        if route.empty or rich.empty or packet is None:
+            row["hard_gate_passed"] = False
+            row["warning_flag"] = True
+            row["status_class"] = "missing_metrics"
+            rows.append(row)
+            continue
+
+        route_row = route.iloc[0]
+        rich_row = rich.iloc[0]
+        max_packet_norm = float(packet["max_packet_norm_live"])
+        baseline_margin = -float(packet["baseline_max_packet_norm_live"])
+        packet_margin = -max_packet_norm
+        max_abs_packet_change = float(packet["max_abs_packet_norm_live_change"])
+        packet_change_fraction = max_abs_packet_change / baseline_margin if baseline_margin else float("inf")
+        packet_margin_fraction = packet_margin / baseline_margin if baseline_margin else float("-inf")
+
+        routing_passed = (
+            float(route_row["catch_support_incremental_fraction"]) >= args.min_catch_support_fraction
+            and float(route_row["packet_incremental_j_fraction"]) <= args.max_packet_j_fraction
+            and float(route_row["packet_abs_incremental_delta_rho"]) <= args.max_packet_abs_delta_rho
+        )
+        packet_passed = bool(packet["packet_safe"]) and int(packet["positive_packet_norm_live"]) == 0
+        rich_packet_passed = float(rich_row["packet_increment_abs_all_channels"]) <= args.max_rich_packet_increment_abs
+        hard_gate_passed = bool(routing_passed and packet_passed and rich_packet_passed)
+        warning_flag = bool(
+            packet_change_fraction >= args.ramp_warning_fraction
+            or packet_margin_fraction <= 1.0 - args.ramp_warning_fraction
+            or not hard_gate_passed
+        )
+
+        row.update(
+            {
+                "global_abs_incremental_delta_j_l": float(route_row["global_abs_incremental_delta_j_l"]),
+                "catch_support_incremental_fraction": float(route_row["catch_support_incremental_fraction"]),
+                "packet_incremental_j_fraction": float(route_row["packet_incremental_j_fraction"]),
+                "packet_abs_incremental_delta_rho": float(route_row["packet_abs_incremental_delta_rho"]),
+                "rich_source_objective_lower_better": float(rich_row["rich_source_objective_lower_better"]),
+                "rich_packet_increment_abs_all_channels": float(rich_row["packet_increment_abs_all_channels"]),
+                "rich_packet_fraction_all_channels": float(rich_row["packet_fraction_all_channels"]),
+                "max_packet_norm_live": max_packet_norm,
+                "packet_margin": packet_margin,
+                "packet_margin_fraction_of_baseline": packet_margin_fraction,
+                "max_abs_packet_norm_live_change": max_abs_packet_change,
+                "packet_norm_change_fraction_of_baseline_margin": packet_change_fraction,
+                "packet_safe": bool(packet["packet_safe"]),
+                "positive_packet_norm_live": int(packet["positive_packet_norm_live"]),
+                "routing_gate_passed": bool(routing_passed),
+                "packet_gate_passed": bool(packet_passed),
+                "rich_packet_gate_passed": bool(rich_packet_passed),
+                "hard_gate_passed": hard_gate_passed,
+                "warning_flag": warning_flag,
+                "status_class": "pass" if hard_gate_passed and not warning_flag else ("warning" if hard_gate_passed else "fail"),
+            }
+        )
+        rows.append(row)
+
+    out = pd.DataFrame(rows).sort_values("amplitude")
+    out.to_csv(root / "validation_ladder_amplitude_ramp_summary.csv", index=False)
+    v_label = _v_label(load_config(Path(args.target_config))) if hasattr(args, "target_config") else "v"
+    _write_amplitude_ramp_report(root, out, v_label)
+    return out
+
+
+def _write_amplitude_ramp_report(root: Path, ramp_summary: pd.DataFrame, v_label: str) -> None:
+    with (root / "validation_ladder_amplitude_ramp_report.md").open("w", encoding="utf-8") as f:
+        f.write(f"# {v_label.upper()} Support-Shell Amplitude Ramp\n\n")
+        if ramp_summary.empty:
+            f.write("Amplitude ramp was skipped.\n")
+            return
+        ok = ramp_summary[ramp_summary["run_status"].eq("ok")]
+        hard_pass = ok[ok["hard_gate_passed"].astype(bool)] if "hard_gate_passed" in ok.columns else pd.DataFrame()
+        clean_pass = ok[ok["status_class"].eq("pass")] if "status_class" in ok.columns else pd.DataFrame()
+        warnings = ok[ok["warning_flag"].astype(bool)] if "warning_flag" in ok.columns else pd.DataFrame()
+        failures = ramp_summary[~ramp_summary["status_class"].isin(["pass", "warning"])] if "status_class" in ramp_summary.columns else pd.DataFrame()
+        last_clean_pass = float(clean_pass["amplitude"].max()) if len(clean_pass) else float("nan")
+        last_hard_pass = float(hard_pass["amplitude"].max()) if len(hard_pass) else float("nan")
+        first_warning = float(warnings["amplitude"].min()) if len(warnings) else float("nan")
+        first_failure = float(failures["amplitude"].min()) if len(failures) else float("nan")
+        f.write(f"Last no-warning pass amplitude: `{last_clean_pass:.6g}`.\n\n")
+        f.write(f"Last hard-pass amplitude: `{last_hard_pass:.6g}`.\n\n")
+        f.write(f"First warning amplitude: `{first_warning:.6g}`.\n\n")
+        f.write(f"First failure amplitude: `{first_failure:.6g}`.\n\n")
+        cols = [
+            "amplitude",
+            "status_class",
+            "hard_gate_passed",
+            "catch_support_incremental_fraction",
+            "packet_incremental_j_fraction",
+            "rich_packet_increment_abs_all_channels",
+            "max_packet_norm_live",
+            "packet_margin_fraction_of_baseline",
+            "packet_norm_change_fraction_of_baseline_margin",
+        ]
+        present = [col for col in cols if col in ramp_summary.columns]
+        f.write("## Ramp Summary\n\n")
+        f.write(ramp_summary[present].to_markdown(index=False))
+        f.write("\n")
+
+
 def _decision_sheet(
     *,
     root: Path,
     target_run: str,
     routing: pd.DataFrame,
+    rich_summary: pd.DataFrame,
     packet_summary: pd.DataFrame,
     signed_summary: pd.DataFrame,
     sign_pairs: pd.DataFrame,
@@ -258,6 +631,7 @@ def _decision_sheet(
     args: argparse.Namespace,
 ) -> pd.DataFrame:
     target_routing = routing[routing["run_name"].eq(target_run)].iloc[0]
+    target_rich = rich_summary[rich_summary["run_name"].eq(target_run)].iloc[0]
     target_packet = _target_packet_row(packet_summary, target_amplitude)
     target_signed = signed_summary[signed_summary["run_name"].eq(target_run)].iloc[0]
     target_balance = balance[balance["run_name"].eq(target_run)].iloc[0]
@@ -277,6 +651,9 @@ def _decision_sheet(
         float(target_balance["abs_partition_closure_error_delta_rho"]),
         float(target_balance["signed_partition_closure_error_delta_rho"]),
     )
+    nominal_overlay = packet_summary[
+        packet_summary["abs_amplitude"].astype(float).isin([abs(float(a)) for a in args.amplitudes])
+    ]
 
     rows = [
         {
@@ -317,12 +694,30 @@ def _decision_sheet(
         },
         {
             "stage": "packet_overlay",
-            "check": "all_tested_overlay_variants_safe",
-            "value": float(packet_summary["packet_safe"].astype(bool).all()),
+            "check": "nominal_overlay_variants_safe",
+            "value": float(nominal_overlay["packet_safe"].astype(bool).all()),
             "threshold": "true",
             "required": True,
-            "passed": bool(packet_summary["packet_safe"].astype(bool).all()),
-            "note": "the default sign/amplitude ladder should remain packet-safe",
+            "passed": bool(nominal_overlay["packet_safe"].astype(bool).all()),
+            "note": "the nominal sign/amplitude ladder should remain packet-safe; load ramp failures are summarized separately",
+        },
+        {
+            "stage": "rich_source_objective",
+            "check": "packet_increment_abs_all_channels",
+            "value": float(target_rich["packet_increment_abs_all_channels"]),
+            "threshold": f"<= {args.max_rich_packet_increment_abs:g}",
+            "required": True,
+            "passed": bool(target_rich["packet_increment_abs_all_channels"] <= args.max_rich_packet_increment_abs),
+            "note": "rho/j_l/delta_rho/delta_j_l packet exposure should remain quiet as a group",
+        },
+        {
+            "stage": "rich_source_objective",
+            "check": "rich_source_objective",
+            "value": float(target_rich["rich_source_objective_lower_better"]),
+            "threshold": "diagnostic",
+            "required": False,
+            "passed": True,
+            "note": "weighted multi-channel source objective; lower is better",
         },
         {
             "stage": "signed_objective",
@@ -360,20 +755,24 @@ def _decision_sheet(
 def _write_ladder_report(
     *,
     root: Path,
+    v_label: str,
     baseline_run: str,
     target_run: str,
     negative_run: str,
     target_amplitude: float,
     decision: pd.DataFrame,
     routing: pd.DataFrame,
+    rich_summary: pd.DataFrame,
     packet_summary: pd.DataFrame,
     signed_summary: pd.DataFrame,
     sign_pairs: pd.DataFrame,
     balance: pd.DataFrame,
+    ramp_summary: pd.DataFrame,
 ) -> None:
     required = decision[decision["required"].astype(bool)]
     passed = bool(required["passed"].astype(bool).all())
     target_routing = routing[routing["run_name"].eq(target_run)]
+    target_rich = rich_summary[rich_summary["run_name"].eq(target_run)]
     target_packet = _target_packet_row(packet_summary, target_amplitude).to_frame().T
     target_signed = signed_summary[signed_summary["run_name"].eq(target_run)]
     target_balance = balance[balance["run_name"].eq(target_run)]
@@ -406,6 +805,15 @@ def _write_ladder_report(
         "packet_rho_abs_change",
         "signed_source_objective_delta_lower_better",
     ]
+    rich_cols = [
+        "run_name",
+        "rich_source_objective_lower_better",
+        "global_increment_abs_all_channels",
+        "catch_support_increment_abs_all_channels",
+        "packet_increment_abs_all_channels",
+        "packet_fraction_all_channels",
+        "delta_j_l_catch_support_opposition_fraction",
+    ]
     balance_cols = [
         "run_name",
         "global_abs_incremental_delta_j",
@@ -417,7 +825,7 @@ def _write_ladder_report(
     ]
 
     with (root / "validation_ladder_report.md").open("w", encoding="utf-8") as f:
-        f.write("# V5 Validation Ladder\n\n")
+        f.write(f"# {v_label.upper()} Validation Ladder\n\n")
         f.write(f"Baseline run: `{baseline_run}`. Target run: `{target_run}`. Negative counterpart: `{negative_run}`.\n\n")
         f.write(f"Required-gate result: `{'PASS' if passed else 'FAIL'}`.\n\n")
         f.write("## Decision Sheet\n\n")
@@ -426,8 +834,16 @@ def _write_ladder_report(
         f.write(target_routing[routing_cols].to_markdown(index=False))
         f.write("\n\n## Packet-Safety Overlay\n\n")
         f.write(target_packet[packet_cols].to_markdown(index=False))
-        f.write("\n\nAll tested overlay variants packet-safe: ")
+        nominal_rows = decision[decision["check"].eq("nominal_overlay_variants_safe")]
+        nominal_safe = bool(nominal_rows.iloc[0]["passed"]) if len(nominal_rows) else False
+        f.write("\n\nNominal overlay variants packet-safe: ")
+        f.write(f"`{nominal_safe}`.\n\n")
+        f.write("All overlay variants, including load-ramp amplitudes, packet-safe: ")
         f.write(f"`{bool(packet_summary['packet_safe'].astype(bool).all())}`.\n\n")
+        f.write("## Rich Source Objective\n\n")
+        f.write("This aggregates `rho`, `j_l`, `delta_rho`, and `delta_j_l` over global, catch-support, support, packet, catch-packet, and other masks.\n\n")
+        f.write(target_rich[[col for col in rich_cols if col in target_rich.columns]].to_markdown(index=False))
+        f.write("\n\n")
         f.write("## Signed Objective\n\n")
         f.write(target_signed[signed_cols].to_markdown(index=False))
         f.write("\n\n")
@@ -438,12 +854,29 @@ def _write_ladder_report(
         f.write("\n\n## Conservation-Style Balance\n\n")
         f.write("This is reduced ledger bookkeeping, not a continuum conservation proof.\n\n")
         f.write(target_balance[balance_cols].to_markdown(index=False))
+        if not ramp_summary.empty:
+            f.write("\n\n## Load-Bearing Amplitude Ramp\n\n")
+            ramp_cols = [
+                "amplitude",
+                "status_class",
+                "hard_gate_passed",
+                "catch_support_incremental_fraction",
+                "packet_incremental_j_fraction",
+                "rich_packet_increment_abs_all_channels",
+                "max_packet_norm_live",
+                "packet_norm_change_fraction_of_baseline_margin",
+            ]
+            present = [col for col in ramp_cols if col in ramp_summary.columns]
+            f.write(ramp_summary[present].to_markdown(index=False))
         f.write("\n\n## Files\n\n")
         f.write("- `validation_ladder_decision_sheet.csv`\n")
         f.write("- `validation_ladder_routing_summary.csv`\n")
+        f.write("- `validation_ladder_rich_source_objective_summary.csv`\n")
+        f.write("- `validation_ladder_rich_source_objective_channels.csv`\n")
         f.write("- `validation_ladder_signed_objective_summary.csv`\n")
         f.write("- `validation_ladder_signed_objective_pair_comparison.csv`\n")
         f.write("- `validation_ladder_balance_summary.csv`\n")
+        f.write("- `validation_ladder_amplitude_ramp_summary.csv`\n")
         f.write("- `packet_safety_overlay/support_shell_packet_safety_summary.csv`\n")
 
 
@@ -452,26 +885,55 @@ def run_ladder(args: argparse.Namespace) -> Path:
     root.mkdir(parents=True, exist_ok=True)
 
     baseline_config = Path(args.baseline_config)
-    target_config = Path(args.target_config)
+    target_config_input = Path(args.target_config)
+    target_config = _positive_target_config(target_config_input, root)
     target_cfg = load_config(target_config)
+    v_label = _v_label(target_cfg)
     target_run = str(target_cfg["run_name"])
     baseline_run = str(load_config(baseline_config)["run_name"])
     target_amplitude = float(target_cfg.get("service", {}).get("carrying_flow", {}).get("amplitude", 0.0))
     negative_config = _negative_counterpart_config(target_config, root)
     negative_run = str(load_config(negative_config)["run_name"])
+    args.overlay_amplitudes = sorted(
+        {
+            abs(float(a))
+            for a in [
+                *args.amplitudes,
+                *([] if args.skip_amplitude_ramp else args.ramp_amplitudes),
+                abs(target_amplitude),
+            ]
+        }
+    )
 
     baseline_dir = _run_validated_config(baseline_config, root, "baseline")
     target_dir = _run_validated_config(target_config, root, "target")
     negative_dir = _run_validated_config(negative_config, root, "negative_counterpart")
+    ramp_runs = _run_amplitude_ramp(args, root, target_config)
+    ramp_ok_names = (
+        ramp_runs[ramp_runs["run_status"].eq("ok")]["run_name"].astype(str).tolist()
+        if not ramp_runs.empty
+        else []
+    )
+    analyzed_run_names = [target_dir.name, negative_dir.name] + ramp_ok_names
 
-    routing = _routing_summary(root, baseline_dir.name, [target_dir.name, negative_dir.name])
+    routing = _routing_summary(root, baseline_dir.name, analyzed_run_names)
     packet_summary = _packet_overlay(args, root)
     signed_summary, sign_pairs = _signed_objective(root, baseline_run)
-    balance = _balance_summary(root, baseline_run, [target_run, negative_run])
+    rich_summary, _rich_channels = _rich_source_objective_summary(root, baseline_run, analyzed_run_names)
+    balance = _balance_summary(root, baseline_run, analyzed_run_names)
+    ramp_summary = _amplitude_ramp_summary(
+        root=root,
+        ramp_runs=ramp_runs,
+        routing=routing,
+        rich_summary=rich_summary,
+        packet_summary=packet_summary,
+        args=args,
+    )
     decision = _decision_sheet(
         root=root,
         target_run=target_run,
         routing=routing,
+        rich_summary=rich_summary,
         packet_summary=packet_summary,
         signed_summary=signed_summary,
         sign_pairs=sign_pairs,
@@ -481,28 +943,36 @@ def run_ladder(args: argparse.Namespace) -> Path:
     )
     _write_ladder_report(
         root=root,
+        v_label=v_label,
         baseline_run=baseline_run,
         target_run=target_run,
         negative_run=negative_run,
         target_amplitude=target_amplitude,
         decision=decision,
         routing=routing,
+        rich_summary=rich_summary,
         packet_summary=packet_summary,
         signed_summary=signed_summary,
         sign_pairs=sign_pairs,
         balance=balance,
+        ramp_summary=ramp_summary,
     )
 
     required = decision[decision["required"].astype(bool)]
     metadata = {
         "baseline_config": str(baseline_config),
         "target_config": str(target_config),
+        "input_target_config": str(target_config_input),
         "negative_counterpart_config": str(negative_config),
+        "v_label": v_label,
         "baseline_run": baseline_run,
         "target_run": target_run,
         "negative_run": negative_run,
         "packet_input": str(args.packet_input),
         "packet_member": args.packet_member,
+        "overlay_amplitudes": args.overlay_amplitudes,
+        "ramp_enabled": not args.skip_amplitude_ramp,
+        "ramp_amplitudes": [] if args.skip_amplitude_ramp else args.ramp_amplitudes,
         "required_gate_passed": bool(required["passed"].astype(bool).all()),
     }
     _write_json(root / "validation_ladder_metadata.json", metadata)
@@ -510,7 +980,7 @@ def run_ladder(args: argparse.Namespace) -> Path:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run the V5 active-rail validation ladder for the support-shell target.")
+    parser = argparse.ArgumentParser(description="Run the active-rail validation ladder for a support-shell target.")
     parser.add_argument("--baseline-config", default="configs/v5_service_flow_off.yaml")
     parser.add_argument("--target-config", default="configs/v5_service_support_shell_target.yaml")
     parser.add_argument("--output-root", default="runs/v5_validation_ladder")
@@ -527,9 +997,19 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="+",
         default=[5e-8, 1e-7, 2.5e-7, 5e-7, 1e-6, 2.5e-6, 5e-6, 1e-5],
     )
+    parser.add_argument(
+        "--ramp-amplitudes",
+        type=float,
+        nargs="+",
+        default=[1e-7, 2.5e-7, 5e-7, 1e-6, 2.5e-6, 5e-6, 1e-5, 2.5e-5, 5e-5, 1e-4, 2.5e-4, 5e-4, 1e-3, 2.5e-3, 5e-3, 7.5e-3, 1e-2],
+        help="Positive support-shell amplitudes to run for the load-bearing envelope.",
+    )
+    parser.add_argument("--skip-amplitude-ramp", action="store_true", help="Run only the target/negative validation pair.")
     parser.add_argument("--min-catch-support-fraction", type=float, default=0.99)
     parser.add_argument("--max-packet-j-fraction", type=float, default=1e-4)
     parser.add_argument("--max-packet-abs-delta-rho", type=float, default=1e-12)
+    parser.add_argument("--max-rich-packet-increment-abs", type=float, default=1e-10)
+    parser.add_argument("--ramp-warning-fraction", type=float, default=0.10)
     parser.add_argument("--max-partition-closure-error", type=float, default=1e-18)
     return parser
 
@@ -538,7 +1018,7 @@ def main() -> int:
     args = build_parser().parse_args()
     root = run_ladder(args)
     metadata = json.loads((root / "validation_ladder_metadata.json").read_text(encoding="utf-8"))
-    print(f"Wrote V5 validation ladder: {root}")
+    print(f"Wrote {metadata.get('v_label', 'v').upper()} validation ladder: {root}")
     print("required gates: pass" if metadata["required_gate_passed"] else "required gates: fail")
     return 0 if metadata["required_gate_passed"] else 1
 
