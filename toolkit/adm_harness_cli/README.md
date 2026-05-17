@@ -48,6 +48,16 @@ Or run the same sequence with:
 bash scripts/run_local_smoke.sh
 ```
 
+## Run the V5 validation ladder
+
+The V5 support-shell target can be checked with the staged validation ladder:
+
+```bash
+python scripts/run_v5_validation_ladder.py
+```
+
+This runs the flow-off baseline, the promoted positive support-shell target, a generated negative counterpart, the packet-safety overlay on the tuned V5 branch, the signed source/objective comparison, and reduced balance bookkeeping. Outputs are written to `runs/v5_validation_ladder/`.
+
 ## Send results back
 
 After the smoke suite finishes, create a results ZIP:
