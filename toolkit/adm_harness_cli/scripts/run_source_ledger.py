@@ -27,6 +27,12 @@ from adm_harness.source_ledger import (  # noqa: E402
 )
 
 
+DEFAULT_S_MIN = -0.35
+DEFAULT_S_MAX = 1.65
+DEFAULT_S_STEP = 0.05
+DEFAULT_NS = 41
+
+
 def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
     return {
         "w_th": args.w_th,
@@ -38,6 +44,42 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "x_catch_packet": args.x_catch_packet,
         "w_catch_beta": args.w_catch_beta,
         "w_catch_packet": args.w_catch_packet,
+        "support_shell_overlay_enabled": args.support_shell_overlay,
+        "support_shell_amplitude": args.support_shell_amplitude,
+        "support_shell_catch_lead": args.support_shell_catch_lead,
+        "support_shell_temporal_width": args.support_shell_temporal_width,
+        "support_shell_smoothness_order": args.support_shell_smoothness_order,
+        "support_shell_inner_multiplier": args.support_shell_inner_multiplier,
+        "support_shell_radial_multiplier": args.support_shell_radial_multiplier,
+        "support_shell_radial_width": args.support_shell_radial_width,
+        "support_shell_packet_exclusion": args.support_shell_packet_exclusion,
+        "support_shell_time_anchor": args.support_shell_time_anchor,
+        "support_shell_catch_edge_width": args.support_shell_catch_edge_width,
+    }
+
+
+def _resolve_grid(args: argparse.Namespace, case) -> dict[str, Any]:
+    params = case.params
+    s_max = float(args.s_max)
+    s_min = DEFAULT_S_MIN if args.s_min is None else float(args.s_min)
+    if args.s_min is None and params.support_shell_overlay_enabled:
+        catch_width = max(params.w_catch_packet, params.w_catch_beta)
+        edge_width = params.support_shell_catch_edge_width if params.support_shell_catch_edge_width is not None else catch_width / 4.0
+        s_min = min(s_min, params.x_catch_packet - 2.0 * catch_width - 4.0 * edge_width)
+
+    ns = int(args.ns) if args.ns is not None else int(round((s_max - s_min) / DEFAULT_S_STEP)) + 1
+    if not params.support_shell_overlay_enabled and args.s_min is None and args.ns is None:
+        ns = DEFAULT_NS
+
+    return {
+        "ns": ns,
+        "nl": int(args.nl),
+        "s_min": s_min,
+        "s_max": s_max,
+        "l_min": float(args.l_min),
+        "l_max": float(args.l_max),
+        "h_s": float(args.h_s),
+        "h_l": float(args.h_l),
     }
 
 
@@ -72,10 +114,10 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--service-factor", type=float, default=5.0)
     parser.add_argument("--outdir", type=Path, default=None)
-    parser.add_argument("--ns", type=int, default=41)
+    parser.add_argument("--ns", type=int, default=None)
     parser.add_argument("--nl", type=int, default=73)
-    parser.add_argument("--s-min", type=float, default=-0.35)
-    parser.add_argument("--s-max", type=float, default=1.65)
+    parser.add_argument("--s-min", type=float, default=None)
+    parser.add_argument("--s-max", type=float, default=DEFAULT_S_MAX)
     parser.add_argument("--l-min", type=float, default=-2.80)
     parser.add_argument("--l-max", type=float, default=2.80)
     parser.add_argument("--h-s", type=float, default=2.5e-3)
@@ -93,6 +135,22 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--w-catch-packet", type=float, default=None)
 
     parser.add_argument(
+        "--support-shell-overlay",
+        action="store_true",
+        help="Add the frozen continuous support-shell carrying-flow overlay to the source metric.",
+    )
+    parser.add_argument("--support-shell-amplitude", type=float, default=None)
+    parser.add_argument("--support-shell-catch-lead", type=float, default=None)
+    parser.add_argument("--support-shell-temporal-width", type=float, default=None)
+    parser.add_argument("--support-shell-smoothness-order", type=int, default=None)
+    parser.add_argument("--support-shell-inner-multiplier", type=float, default=None)
+    parser.add_argument("--support-shell-radial-multiplier", type=float, default=None)
+    parser.add_argument("--support-shell-radial-width", type=float, default=None)
+    parser.add_argument("--support-shell-packet-exclusion", type=float, default=None)
+    parser.add_argument("--support-shell-time-anchor", type=float, default=None)
+    parser.add_argument("--support-shell-catch-edge-width", type=float, default=None)
+
+    parser.add_argument(
         "--reference",
         default=None,
         help="Optional reference CSV, or zip path plus member as bundle.zip::member.csv.",
@@ -104,6 +162,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = build_parser().parse_args()
     case = branch_case(args.variant, args.service_factor, **_case_overrides(args))
+    grid = _resolve_grid(args, case)
     outdir = args.outdir or Path("runs") / "source_ledgers" / case.name
     outdir.mkdir(parents=True, exist_ok=True)
 
@@ -114,14 +173,14 @@ def main() -> int:
     else:
         points = compute_case(
             case,
-            args.ns,
-            args.nl,
-            args.s_min,
-            args.s_max,
-            args.l_min,
-            args.l_max,
-            args.h_s,
-            args.h_l,
+            grid["ns"],
+            grid["nl"],
+            grid["s_min"],
+            grid["s_max"],
+            grid["l_min"],
+            grid["l_max"],
+            grid["h_s"],
+            grid["h_l"],
             progress=not args.quiet,
         )
         cache_status = "computed"
@@ -143,16 +202,6 @@ def main() -> int:
             "columns_compared": int(len(comparison)),
         }
 
-    grid = {
-        "ns": args.ns,
-        "nl": args.nl,
-        "s_min": args.s_min,
-        "s_max": args.s_max,
-        "l_min": args.l_min,
-        "l_max": args.l_max,
-        "h_s": args.h_s,
-        "h_l": args.h_l,
-    }
     file_strings = {key: str(path) for key, path in files.items()}
     if comparison_path:
         file_strings["reference_comparison"] = str(comparison_path)

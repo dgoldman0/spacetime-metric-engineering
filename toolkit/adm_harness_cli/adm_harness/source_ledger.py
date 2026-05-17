@@ -34,6 +34,11 @@ STAGE_ORDER = [
 ]
 
 
+def _token(value: float) -> str:
+    text = f"{float(value):.10g}"
+    return text.replace("-", "m").replace("+", "").replace(".", "p").replace("e", "e")
+
+
 @dataclass(frozen=True)
 class SourceParams:
     V: float = 5.0
@@ -70,6 +75,20 @@ class SourceParams:
     wtOmega: float = 0.60
 
     live_packet_end_margin_widths: float = 2.0
+
+    # Frozen support-shell carrying-flow overlay. Disabled by default so the
+    # regenerated reference ledgers still reproduce the historical bundles.
+    support_shell_overlay_enabled: bool = False
+    support_shell_amplitude: float = 1.0e-7
+    support_shell_catch_lead: float = 1.0
+    support_shell_temporal_width: float = 0.35
+    support_shell_smoothness_order: int = 1
+    support_shell_inner_multiplier: float = 0.65
+    support_shell_radial_multiplier: float = 1.20
+    support_shell_radial_width: float | None = None
+    support_shell_packet_exclusion: float = 1.0
+    support_shell_time_anchor: float | None = None
+    support_shell_catch_edge_width: float | None = None
 
 
 @dataclass(frozen=True)
@@ -120,6 +139,62 @@ def support_bump(l: np.ndarray | float, params: SourceParams) -> np.ndarray:
     return bump_sq(l_arr * l_arr, params.Rth, width)
 
 
+def smooth_box(x: np.ndarray | float, lo: float, hi: float, edge_width: float) -> np.ndarray:
+    values = np.asarray(x, dtype=float)
+    edge = max(float(edge_width), 1.0e-12)
+    left = 1.0 - falloff(values - lo, edge)
+    right = falloff(values - hi, edge)
+    return np.clip(left * right, 0.0, 1.0)
+
+
+def support_shell_overlay_window(s: float, l: float, params: SourceParams) -> float:
+    if not params.support_shell_overlay_enabled:
+        return 0.0
+
+    s_arr = np.asarray(s, dtype=float)
+    l_arr = np.asarray(l, dtype=float)
+
+    support_inner = params.Rth * params.support_shell_inner_multiplier
+    support_outer = params.Rth * params.support_shell_radial_multiplier
+    if support_inner >= support_outer:
+        raise ValueError("support-shell inner multiplier must be smaller than outer multiplier")
+    default_radial_width = max((support_outer - support_inner) / 8.0, 1.0e-12)
+    support_width = params.support_shell_radial_width if params.support_shell_radial_width is not None else default_radial_width
+    support = smooth_box(np.abs(l_arr), support_inner, support_outer, support_width)
+
+    catch_width = max(params.w_catch_packet, params.w_catch_beta)
+    lo = params.x_catch_packet - 2.0 * catch_width
+    hi = params.x_catch_packet + 2.0 * catch_width
+    edge_width = params.support_shell_catch_edge_width if params.support_shell_catch_edge_width is not None else catch_width / 4.0
+    catch = smooth_box(s_arr, lo, hi, edge_width)
+
+    anchor = params.support_shell_time_anchor
+    if anchor is None:
+        anchor = params.x_catch_packet
+    center = float(anchor) - params.support_shell_catch_lead
+    temporal_width = max(float(params.support_shell_temporal_width), 1.0e-12)
+    temporal = np.exp(-0.5 * ((s_arr - center) / temporal_width) ** 2)
+    closest_in_catch = min(max(center, lo), hi)
+    temporal_norm = math.exp(-0.5 * ((closest_in_catch - center) / temporal_width) ** 2)
+    temporal = np.clip(temporal / max(temporal_norm, 1.0e-12), 0.0, 1.0)
+
+    packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
+    live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    live_schedule = falloff(s_arr - live_end, params.w_beta)
+    packet_exclusion = np.clip(1.0 - params.support_shell_packet_exclusion * packet * live_schedule, 0.0, 1.0)
+
+    window = support * catch * temporal * packet_exclusion
+    for _ in range(max(0, int(params.support_shell_smoothness_order))):
+        window = smoothstep_minjerk(window)
+    return float(np.clip(window, 0.0, 1.0))
+
+
+def support_shell_delta_beta(s: float, l: float, params: SourceParams) -> float:
+    if not params.support_shell_overlay_enabled:
+        return 0.0
+    return float(params.support_shell_amplitude) * support_shell_overlay_window(s, l, params)
+
+
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
@@ -140,7 +215,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     shoulder = np.exp(-((np.abs(l_arr) - 1.05) / 0.35) ** 2)
     n_cushion = np.exp(params.eta_N * 0.18 * q * shoulder)
 
-    beta = -u_beta * e_release * (w_support ** params.p_beta) * s_packet / b_angular
+    beta_base = -u_beta * e_release * (w_support ** params.p_beta) * s_packet / b_angular
+    delta_beta_shell = support_shell_delta_beta(float(s), float(l), params)
+    beta = beta_base + delta_beta_shell
     alpha = n_cushion * t_lapse
     sqrt_gamma_ll = b_angular * a_spatial
     gamma_ll = sqrt_gamma_ll * sqrt_gamma_ll
@@ -166,6 +243,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "N": float(n_cushion),
         "beta": float(beta),
         "alpha": float(alpha),
+        "beta_base": float(beta_base),
+        "support_shell_window": support_shell_overlay_window(float(s), float(l), params),
+        "support_shell_delta_beta": float(delta_beta_shell),
         "sqrt_gamma_ll": float(sqrt_gamma_ll),
         "gamma_ll": float(gamma_ll),
         "vcoord": float(vcoord),
@@ -301,7 +381,25 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
         "packet_norm": norm,
         "gtt": sc["gtt"],
         "spatial_volume_density": sqrt_gamma_ll * gamma_omega,
-        **{k: sc[k] for k in ["W", "S", "q", "E", "U_beta", "U_packet", "B", "A", "T", "alpha", "beta", "gamma_ll", "gamma_omega", "COmega"]},
+        **{k: sc[k] for k in [
+            "W",
+            "S",
+            "q",
+            "E",
+            "U_beta",
+            "U_packet",
+            "B",
+            "A",
+            "T",
+            "alpha",
+            "beta",
+            "beta_base",
+            "support_shell_window",
+            "support_shell_delta_beta",
+            "gamma_ll",
+            "gamma_omega",
+            "COmega",
+        ]},
     }
 
 
@@ -584,6 +682,13 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
     if filtered:
         params = replace(params, **filtered)
     case_name = f"V{params.V:g}_{name}"
+    if params.support_shell_overlay_enabled:
+        case_name = (
+            f"{case_name}_shell_a{_token(params.support_shell_amplitude)}"
+            f"_lead{_token(params.support_shell_catch_lead)}"
+            f"_tw{_token(params.support_shell_temporal_width)}"
+        )
+        note = f"{note}; continuous frozen support-shell carrying-flow overlay"
     return SourceCase(case_name, params, note)
 
 

@@ -13,6 +13,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 import generate_service_factor_inputs as generator
+import run_source_ledger as source_runner
 import run_validation_ladder as ladder
 from adm_harness import source_ledger
 
@@ -125,6 +126,61 @@ class ValidationLadderHardeningTests(unittest.TestCase):
 
         self.assertGreater(len(comparison), 0)
         self.assertEqual(float(comparison["max_abs_error"].max()), 0.0)
+
+    def test_source_ledger_overlay_grid_expands_for_lead_window(self):
+        args = SimpleNamespace(
+            s_min=None,
+            s_max=1.65,
+            ns=None,
+            nl=73,
+            l_min=-2.8,
+            l_max=2.8,
+            h_s=2.5e-3,
+            h_l=2.5e-3,
+        )
+        baseline = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        overlay = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+        )
+
+        baseline_grid = source_runner._resolve_grid(args, baseline)
+        overlay_grid = source_runner._resolve_grid(args, overlay)
+
+        self.assertEqual(baseline_grid["s_min"], -0.35)
+        self.assertEqual(baseline_grid["ns"], 41)
+        self.assertLess(overlay_grid["s_min"], -0.35)
+        self.assertGreater(overlay_grid["ns"], 41)
+
+    def test_source_ledger_support_shell_overlay_changes_metric_smoothly(self):
+        case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+        )
+        points = source_ledger.compute_case(
+            case,
+            ns=5,
+            nl=7,
+            s_min=-1.0,
+            s_max=0.4,
+            l_min=-2.8,
+            l_max=2.8,
+            progress=False,
+        )
+        safety = source_ledger.summarize_safety(points)
+
+        self.assertIn("support_shell_window", points.columns)
+        self.assertIn("support_shell_delta_beta", points.columns)
+        self.assertGreater(float(points["support_shell_window"].max()), 0.0)
+        self.assertLessEqual(float(points["support_shell_window"].max()), 1.0)
+        self.assertGreater(float(points["support_shell_delta_beta"].abs().max()), 0.0)
+        self.assertLess(
+            float((points["beta"] - points["beta_base"] - points["support_shell_delta_beta"]).abs().max()),
+            1.0e-15,
+        )
+        self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
 
 
 if __name__ == "__main__":

@@ -107,7 +107,28 @@ python scripts/run_source_ledger.py \
   --reference-case V5_tuned_w0569_eta200
 ```
 
-The current 4D source-ledger path covers the continuous shaped-catch/radial-soft/lapse-cushion branch. A support-shell control overlay should be promoted to this report-grade path only after its continuous metric expression is defined, rather than interpolating a grid-only ADM delta.
+The frozen support-shell carrying-flow overlay can be included directly in the metric expression:
+
+```bash
+python scripts/run_source_ledger.py \
+  --variant tuned_w0569_eta200 \
+  --service-factor 5 \
+  --support-shell-overlay \
+  --outdir runs/source_ledgers/V5_tuned_w0569_eta200_support_shell
+```
+
+The overlay defaults to the frozen reduced-harness target: amplitude `1e-7`, catch lead `1.0`, temporal width `0.35`, smoothness order `1`, packet exclusion `1.0`, and an annular support-shell band from `0.65 Rth` to `1.20 Rth`. The point ledger records `beta_base`, `support_shell_window`, and `support_shell_delta_beta` so the metric-side contribution can be audited separately from the baseline shaped-catch/radial-soft/lapse-cushion branch.
+
+Overlay runs expand the default `s` range when needed to include the leading catch/support window while preserving roughly the standard `ds = 0.05` sampling. Pin `--s-min` and `--ns` explicitly when comparing against a fixed historical source-ledger grid.
+
+To ramp the continuous overlay and compare each case against a matched baseline source ledger:
+
+```bash
+python scripts/run_source_overlay_sweep.py \
+  --outdir runs/source_overlay_sweep_v5 \
+  --amplitudes 1e-7 1e-6 1e-5 1e-4 1e-3 1e-2 \
+  --signs pos neg
+```
 
 ## Send results back
 
