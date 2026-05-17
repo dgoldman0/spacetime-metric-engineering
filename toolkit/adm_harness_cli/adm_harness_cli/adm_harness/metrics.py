@@ -81,6 +81,7 @@ def build_point_ledger(
     point_ledger_path: str | Path | None = None,
     substrate_fields: dict[str, np.ndarray] | None = None,
     substrate_mode: str | None = None,
+    recompute_substrate_delta: bool = False,
 ) -> pd.DataFrame:
     """Build one flattened point ledger from exact field arrays and optional bundle ledgers."""
     base: pd.DataFrame | None = None
@@ -123,11 +124,24 @@ def build_point_ledger(
         for out_col, arr_key in mask_sources.items():
             if arr_key in substrate_fields:
                 base[out_col] = _as_bool_array(substrate_fields[arr_key]).ravel()
-        d_rho, d_j = DELTA_MAP.get(substrate_mode, DELTA_MAP.get(str(substrate_mode).lower(), (None, None)))
-        if d_rho and d_rho in substrate_fields:
-            base["delta_rho"] = substrate_fields[d_rho].ravel()
-        if d_j and d_j in substrate_fields:
-            base["delta_j_l"] = substrate_fields[d_j].ravel()
+        mode_key = str(substrate_mode).lower() if substrate_mode is not None else substrate_mode
+        d_rho, d_j = DELTA_MAP.get(substrate_mode, DELTA_MAP.get(mode_key, (None, None)))
+        if recompute_substrate_delta:
+            if mode_key in {"betaoff", "beta_off", "time_matched_betaoff"}:
+                if "betaoff_rho" not in substrate_fields or "betaoff_j_l" not in substrate_fields:
+                    raise KeyError("Cannot recompute betaoff deltas without substrate betaoff_rho and betaoff_j_l arrays.")
+                base["delta_rho"] = base["rho"].to_numpy() - substrate_fields["betaoff_rho"].ravel()
+                base["delta_j_l"] = base["j_l"].to_numpy() - substrate_fields["betaoff_j_l"].ravel()
+            elif mode_key in {"static", "static_ready"}:
+                if "static_rho" not in substrate_fields or "static_j_l" not in substrate_fields:
+                    raise KeyError("Cannot recompute static deltas without substrate static_rho and static_j_l arrays.")
+                base["delta_rho"] = base["rho"].to_numpy() - substrate_fields["static_rho"].ravel()
+                base["delta_j_l"] = base["j_l"].to_numpy() - substrate_fields["static_j_l"].ravel()
+        else:
+            if d_rho and d_rho in substrate_fields:
+                base["delta_rho"] = substrate_fields[d_rho].ravel()
+            if d_j and d_j in substrate_fields:
+                base["delta_j_l"] = substrate_fields[d_j].ravel()
     if "delta_rho" not in base.columns:
         base["delta_rho"] = 0.0
     if "delta_j_l" not in base.columns:

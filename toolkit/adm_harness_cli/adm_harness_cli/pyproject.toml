@@ -1,7 +1,7 @@
 [project]
 name = "adm-harness"
-version = "0.1.0"
-description = "CLI harness for exact-builder ADM ledger runs and active-rail variant comparisons"
+version = "0.2.0"
+description = "CLI harness for exact-builder ADM ledger runs and active-rail variant comparisons with narrow absorber-field synthesis"
 requires-python = ">=3.10"
 dependencies = ["numpy", "pandas", "matplotlib", "pyyaml"]
 

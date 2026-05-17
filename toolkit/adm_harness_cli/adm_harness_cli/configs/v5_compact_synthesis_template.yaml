@@ -1,0 +1,41 @@
+run_name: v5_compact_synthesis_betaoff
+velocity: 5.0
+
+inputs:
+  exact_fields: /path/to/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: /path/to/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: /path/to/substrate_subtraction_fields_v5.npz
+
+substrate:
+  mode: betaoff
+
+synthesis:
+  enabled: true
+  smoothing_passes: 2
+
+absorber:
+  mode: compact_beta_localizer
+  law: compact_beta_localizer
+  target_field: beta
+  support_mask: catch_rematch_edge
+  signal: delta_j_l
+  coefficients:
+    amplitude: 0.002
+    gain: 1.0
+    max_abs_delta: 0.002
+
+validation:
+  identity_self_check: true
+  identity_tolerance: 1.0e-10
+
+thresholds:
+  max_abs_delta_rho_packet: 0.000001
+  max_abs_delta_j_packet: 0.0001
+  min_catch_rematch_localization_fraction: 0.50
+
+outputs:
+  root: runs
+  format: csv
+  figures: true
+  report: true
+  overwrite: true
