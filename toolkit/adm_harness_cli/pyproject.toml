@@ -1,9 +1,9 @@
 [project]
 name = "adm-harness"
-version = "0.3.0"
+version = "0.5.2"
 description = "CLI harness for active-rail ADM ledger runs with whole-service field synthesis"
 requires-python = ">=3.10"
-dependencies = ["numpy", "pandas", "matplotlib", "pyyaml"]
+dependencies = ["numpy", "pandas", "matplotlib", "pyyaml", "tabulate"]
 
 [project.scripts]
 adm-harness = "adm_harness.cli:main"

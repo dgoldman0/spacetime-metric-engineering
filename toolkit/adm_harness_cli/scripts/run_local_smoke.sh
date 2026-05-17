@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+mkdir -p runs
 python -m unittest discover -s tests
 python -m adm_harness.cli validate -c configs/v5_service_baseline.yaml --output-json runs/validation_baseline.json
 python -m adm_harness.cli validate -c configs/v5_service_flow_off.yaml --output-json runs/validation_flow_off.json

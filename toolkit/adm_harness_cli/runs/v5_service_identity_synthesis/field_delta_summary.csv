@@ -1,0 +1,2 @@
+service_field,delta_name,min,max,linf,l1,nonzero_points
+carrying_flow,delta_carrying_flow,0.0,0.0,0.0,0.0,0

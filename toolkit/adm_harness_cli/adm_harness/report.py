@@ -9,7 +9,12 @@ import pandas as pd
 def _md_table(df: pd.DataFrame, max_rows: int = 20) -> str:
     if df is None or len(df) == 0:
         return "\n_no rows_\n"
-    return df.head(max_rows).to_markdown(index=False)
+    frame = df.head(max_rows)
+    try:
+        return frame.to_markdown(index=False)
+    except ImportError:
+        # Fallback for environments missing pandas' optional tabulate dependency.
+        return frame.to_csv(index=False)
 
 
 def write_run_report(

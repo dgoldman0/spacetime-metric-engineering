@@ -4,8 +4,8 @@ service:
   velocity: 5.0
 
 inputs:
-  exact_fields: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
-  exact_point_ledger: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  exact_fields: ../data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: ../data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
 
 substrate:
   mode: none
@@ -14,7 +14,7 @@ control_law:
   mode: none
 
 outputs:
-  root: /mnt/data/adm_harness_service_runs
+  root: ../runs
   format: csv
   figures: false
   report: true

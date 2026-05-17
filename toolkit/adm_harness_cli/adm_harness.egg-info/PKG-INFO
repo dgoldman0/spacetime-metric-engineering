@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: adm-harness
-Version: 0.5.1
-Summary: CLI harness for active-rail ADM ledger runs with whole-service field synthesis
-Requires-Python: >=3.10
-Requires-Dist: numpy
-Requires-Dist: pandas
-Requires-Dist: matplotlib
-Requires-Dist: pyyaml

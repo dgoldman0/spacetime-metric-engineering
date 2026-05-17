@@ -1,0 +1,397 @@
+{
+  "checks": {
+    "config": {
+      "checks": {
+        "modifier:carrying_flow": {
+          "law": "identity",
+          "scope": "global",
+          "target_service_field": "carrying_flow"
+        }
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": [
+        "synthesis is enabled but no non-identity service modifier is active; run will be an identity operation"
+      ]
+    },
+    "exact_fields": {
+      "checks": {
+        "field:K": {
+          "finite_fraction": 1.0,
+          "max": 1.2312821825267357,
+          "mean": 0.21655432111813325,
+          "min": -0.008259875330076131,
+          "size": 29161
+        },
+        "field:R3": {
+          "finite_fraction": 1.0,
+          "max": 0.48907300700356515,
+          "mean": 0.155376692730514,
+          "min": -0.6254487282894517,
+          "size": 29161
+        },
+        "field:carrying_flow": {
+          "finite_fraction": 1.0,
+          "max": -0.0,
+          "mean": -0.01313154472543313,
+          "min": -0.47738925186291326,
+          "size": 29161
+        },
+        "field:clock_lapse": {
+          "finite_fraction": 1.0,
+          "max": 452.33613066306367,
+          "mean": 81.51940960946852,
+          "min": 1.0097702710829224,
+          "size": 29161
+        },
+        "field:gtt": {
+          "finite_fraction": 1.0,
+          "max": -1.0196360003628786,
+          "mean": -22351.42945084675,
+          "min": -203636.8255383766,
+          "size": 29161
+        },
+        "field:j_l": {
+          "finite_fraction": 1.0,
+          "max": 0.02048485387768379,
+          "mean": 1.0105606929141119e-06,
+          "min": -0.020484828377545228,
+          "size": 29161
+        },
+        "field:k_l": {
+          "finite_fraction": 1.0,
+          "max": 1.1681843645124952,
+          "mean": 0.20932444723966712,
+          "min": -0.008438524291224388,
+          "size": 29161
+        },
+        "field:k_omega": {
+          "finite_fraction": 1.0,
+          "max": 0.03506488882206865,
+          "mean": 0.0036149369392330525,
+          "min": -5.0983327719423325e-05,
+          "size": 29161
+        },
+        "field:packet_norm": {
+          "finite_fraction": 1.0,
+          "max": 4589.931741664595,
+          "mean": -18736.589883763474,
+          "min": -196302.0624801959,
+          "size": 29161
+        },
+        "field:rail_stretch": {
+          "finite_fraction": 1.0,
+          "max": 393792.1490726547,
+          "mean": 40681.54182368723,
+          "min": 1.0357911853639181,
+          "size": 29161
+        },
+        "field:rho": {
+          "finite_fraction": 1.0,
+          "max": 0.011992306126764257,
+          "mean": 0.00327978539030092,
+          "min": -0.012442905166369433,
+          "size": 29161
+        },
+        "field:throat_capacity": {
+          "finite_fraction": 1.0,
+          "max": 11.459209473301932,
+          "mean": 6.811938750410491,
+          "min": 3.8818858654713684,
+          "size": 29161
+        },
+        "grid_shape": [
+          121,
+          241
+        ],
+        "l_range": [
+          -2.8,
+          2.8
+        ],
+        "s_range": [
+          -0.35,
+          1.65
+        ]
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": []
+    },
+    "field_delta": {
+      "checks": {
+        "delta:carrying_flow": {
+          "finite_fraction": 1.0,
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "size": 29161
+        }
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": []
+    },
+    "identity_self_check": {
+      "channels": {
+        "K": {
+          "max_abs_error": 3.70536934468646e-14,
+          "passed": true
+        },
+        "j_l": {
+          "max_abs_error": 4.283986360098524e-14,
+          "passed": true
+        },
+        "k_l": {
+          "max_abs_error": 1.3503087537003466e-14,
+          "passed": true
+        },
+        "k_omega": {
+          "max_abs_error": 1.517536096784511e-14,
+          "passed": true
+        },
+        "rho": {
+          "max_abs_error": 7.684824998577255e-16,
+          "passed": true
+        }
+      },
+      "passed": true,
+      "tolerance": 1e-10
+    },
+    "modified_adm_fields": {
+      "checks": {
+        "field:K": {
+          "finite_fraction": 1.0,
+          "max": 1.231282182526736,
+          "mean": 0.21655432111813322,
+          "min": -0.008259875330076204,
+          "size": 29161
+        },
+        "field:R3": {
+          "finite_fraction": 1.0,
+          "max": 0.48907300700356515,
+          "mean": 0.155376692730514,
+          "min": -0.6254487282894517,
+          "size": 29161
+        },
+        "field:carrying_flow": {
+          "finite_fraction": 1.0,
+          "max": 0.0,
+          "mean": -0.01313154472543313,
+          "min": -0.47738925186291326,
+          "size": 29161
+        },
+        "field:clock_lapse": {
+          "finite_fraction": 1.0,
+          "max": 452.33613066306367,
+          "mean": 81.51940960946852,
+          "min": 1.0097702710829224,
+          "size": 29161
+        },
+        "field:gtt": {
+          "finite_fraction": 1.0,
+          "max": -1.0196360003628786,
+          "mean": -22351.42945084675,
+          "min": -203636.8255383766,
+          "size": 29161
+        },
+        "field:j_l": {
+          "finite_fraction": 1.0,
+          "max": 0.02048485387767075,
+          "mean": 1.0105606929141974e-06,
+          "min": -0.020484828377532186,
+          "size": 29161
+        },
+        "field:k_l": {
+          "finite_fraction": 1.0,
+          "max": 1.1681843645125007,
+          "mean": 0.20932444723966712,
+          "min": -0.008438524291224447,
+          "size": 29161
+        },
+        "field:k_omega": {
+          "finite_fraction": 1.0,
+          "max": 0.03506488882206353,
+          "mean": 0.003614936939233043,
+          "min": -5.098332771942396e-05,
+          "size": 29161
+        },
+        "field:packet_norm": {
+          "finite_fraction": 1.0,
+          "max": 4589.931741664595,
+          "mean": -18736.589883763474,
+          "min": -196302.0624801959,
+          "size": 29161
+        },
+        "field:rail_stretch": {
+          "finite_fraction": 1.0,
+          "max": 393792.1490726547,
+          "mean": 40681.54182368723,
+          "min": 1.0357911853639181,
+          "size": 29161
+        },
+        "field:rho": {
+          "finite_fraction": 1.0,
+          "max": 0.011992306126764052,
+          "mean": 0.003279785390300919,
+          "min": -0.012442905166369431,
+          "size": 29161
+        },
+        "field:throat_capacity": {
+          "finite_fraction": 1.0,
+          "max": 11.459209473301932,
+          "mean": 6.811938750410491,
+          "min": 3.8818858654713684,
+          "size": 29161
+        },
+        "grid_shape": [
+          121,
+          241
+        ],
+        "l_range": [
+          -2.8,
+          2.8
+        ],
+        "s_range": [
+          -0.35,
+          1.65
+        ]
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": []
+    },
+    "modified_base_fields": {
+      "checks": {
+        "field:K": {
+          "finite_fraction": 1.0,
+          "max": 1.2312821825267357,
+          "mean": 0.21655432111813325,
+          "min": -0.008259875330076131,
+          "size": 29161
+        },
+        "field:R3": {
+          "finite_fraction": 1.0,
+          "max": 0.48907300700356515,
+          "mean": 0.155376692730514,
+          "min": -0.6254487282894517,
+          "size": 29161
+        },
+        "field:carrying_flow": {
+          "finite_fraction": 1.0,
+          "max": 0.0,
+          "mean": -0.01313154472543313,
+          "min": -0.47738925186291326,
+          "size": 29161
+        },
+        "field:clock_lapse": {
+          "finite_fraction": 1.0,
+          "max": 452.33613066306367,
+          "mean": 81.51940960946852,
+          "min": 1.0097702710829224,
+          "size": 29161
+        },
+        "field:gtt": {
+          "finite_fraction": 1.0,
+          "max": -1.0196360003628786,
+          "mean": -22351.42945084675,
+          "min": -203636.8255383766,
+          "size": 29161
+        },
+        "field:j_l": {
+          "finite_fraction": 1.0,
+          "max": 0.02048485387768379,
+          "mean": 1.0105606929141119e-06,
+          "min": -0.020484828377545228,
+          "size": 29161
+        },
+        "field:k_l": {
+          "finite_fraction": 1.0,
+          "max": 1.1681843645124952,
+          "mean": 0.20932444723966712,
+          "min": -0.008438524291224388,
+          "size": 29161
+        },
+        "field:k_omega": {
+          "finite_fraction": 1.0,
+          "max": 0.03506488882206865,
+          "mean": 0.0036149369392330525,
+          "min": -5.0983327719423325e-05,
+          "size": 29161
+        },
+        "field:packet_norm": {
+          "finite_fraction": 1.0,
+          "max": 4589.931741664595,
+          "mean": -18736.589883763474,
+          "min": -196302.0624801959,
+          "size": 29161
+        },
+        "field:rail_stretch": {
+          "finite_fraction": 1.0,
+          "max": 393792.1490726547,
+          "mean": 40681.54182368723,
+          "min": 1.0357911853639181,
+          "size": 29161
+        },
+        "field:rho": {
+          "finite_fraction": 1.0,
+          "max": 0.011992306126764257,
+          "mean": 0.00327978539030092,
+          "min": -0.012442905166369433,
+          "size": 29161
+        },
+        "field:throat_capacity": {
+          "finite_fraction": 1.0,
+          "max": 11.459209473301932,
+          "mean": 6.811938750410491,
+          "min": 3.8818858654713684,
+          "size": 29161
+        },
+        "grid_shape": [
+          121,
+          241
+        ],
+        "l_range": [
+          -2.8,
+          2.8
+        ],
+        "s_range": [
+          -0.35,
+          1.65
+        ]
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": []
+    },
+    "substrate": {
+      "checks": {
+        "substrate_keys": [
+          "betaoff_j_l",
+          "betaoff_rho",
+          "delta_betaoff_j_l",
+          "delta_betaoff_rho",
+          "delta_static_j_l",
+          "delta_static_rho",
+          "l_grid",
+          "live_j_l",
+          "live_rho",
+          "packet_edge",
+          "packet_live",
+          "s_grid",
+          "static_j_l",
+          "static_rho",
+          "support_shell",
+          "volume"
+        ]
+      },
+      "errors": [],
+      "ok": true,
+      "warnings": []
+    }
+  },
+  "errors": [],
+  "ok": true,
+  "warnings": [
+    "config: synthesis is enabled but no non-identity service modifier is active; run will be an identity operation"
+  ]
+}

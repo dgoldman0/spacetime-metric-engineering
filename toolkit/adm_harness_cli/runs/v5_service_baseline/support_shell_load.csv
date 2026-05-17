@@ -1,0 +1,5 @@
+channel,points,abs_burden,signed_burden,neg_burden,pos_burden,peak_abs,peak_signed,min_signed,global_abs_burden,support_shell_load_fraction
+rho,0,0.0,0.0,0.0,0.0,,,,49.92799405001247,0.0
+j_l,0,0.0,0.0,0.0,0.0,,,,2.1818372665442665,0.0
+delta_rho,0,0.0,0.0,0.0,0.0,,,,0.0,0.0
+delta_j_l,0,0.0,0.0,0.0,0.0,,,,0.0,0.0

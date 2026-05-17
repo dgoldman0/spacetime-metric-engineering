@@ -1,2 +1,0 @@
-[console_scripts]
-adm-harness = adm_harness.cli:main

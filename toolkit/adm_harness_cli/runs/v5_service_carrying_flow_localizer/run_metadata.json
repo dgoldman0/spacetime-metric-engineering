@@ -1,0 +1,71 @@
+{
+  "absorber": {},
+  "control_law": {},
+  "inputs": {
+    "exact_fields": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz",
+    "exact_point_ledger": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv",
+    "substrate_fields": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/substrate_subtraction_fields_v5.npz"
+  },
+  "outputs": {
+    "figures": false,
+    "format": "csv",
+    "overwrite": true,
+    "report": true,
+    "root": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs"
+  },
+  "run_name": "v5_service_carrying_flow_localizer",
+  "service": {
+    "carrying_flow": {
+      "allocation_mode": "edge_support_mix",
+      "amplitude": 0.002,
+      "edge_bias": 0.25,
+      "enabled": true,
+      "gain": 1.0,
+      "law": "compact_momentum_localizer",
+      "max_abs_change": 0.002,
+      "packet_exclusion": 0.4,
+      "scope": "catch_rematch_edge_support_mix",
+      "signal": "delta_j_l",
+      "smoothness_order": 2,
+      "support_shell_gain": 0.5
+    },
+    "clock_lapse": {
+      "amplitude": 0.0,
+      "enabled": false,
+      "law": "windowed_scale",
+      "max_abs_change": 0.0,
+      "scope": "support_shell"
+    },
+    "rail_stretch": {
+      "amplitude": 0.0,
+      "enabled": false,
+      "law": "windowed_scale",
+      "max_abs_change": 0.0,
+      "scope": "support_shell"
+    },
+    "throat_capacity": {
+      "amplitude": 0.0,
+      "enabled": false,
+      "law": "windowed_scale",
+      "max_abs_change": 0.0,
+      "scope": "support_shell"
+    },
+    "velocity": 5.0
+  },
+  "substrate": {
+    "mode": "carrying_flow_off"
+  },
+  "synthesis": {
+    "enabled": true
+  },
+  "thresholds": {
+    "max_abs_delta_j_packet": 0.0001,
+    "max_abs_delta_rho_packet": 1e-06,
+    "min_catch_rematch_localization_fraction": 0.5
+  },
+  "validation": {
+    "identity_self_check": true,
+    "identity_tolerance": 1e-10
+  },
+  "velocity": 5.0
+}

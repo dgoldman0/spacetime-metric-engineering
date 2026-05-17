@@ -1,0 +1,5 @@
+channel,peak_abs,signed_value,s,l,stage,region,inside_packet_live,packet_edge,support_shell
+rho,0.012442905166369433,-0.012442905166369433,-0.35,-2.59,catch_rematch,outer_quarantine_shell,False,False,False
+j_l,0.02048485387768379,0.02048485387768379,1.65,1.5166666666666666,reset_decompression,packet_in_support,False,False,False
+delta_rho,0.0,0.0,-0.35,-2.8,catch_rematch,outer_quarantine_shell,False,False,False
+delta_j_l,0.0,0.0,-0.35,-2.8,catch_rematch,outer_quarantine_shell,False,False,False

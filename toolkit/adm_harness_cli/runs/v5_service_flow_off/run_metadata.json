@@ -1,0 +1,31 @@
+{
+  "absorber": {},
+  "control_law": {
+    "mode": "none"
+  },
+  "inputs": {
+    "exact_fields": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz",
+    "exact_point_ledger": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv",
+    "substrate_fields": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/data/sample_v5/substrate_subtraction_fields_v5.npz"
+  },
+  "outputs": {
+    "figures": false,
+    "format": "csv",
+    "overwrite": true,
+    "report": true,
+    "root": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs"
+  },
+  "run_name": "v5_service_flow_off",
+  "service": {
+    "velocity": 5.0
+  },
+  "substrate": {
+    "mode": "carrying_flow_off"
+  },
+  "thresholds": {
+    "max_abs_delta_j_packet": 0.0001,
+    "max_abs_delta_rho_packet": 1e-06,
+    "min_catch_rematch_localization_fraction": 0.5
+  },
+  "velocity": 5.0
+}

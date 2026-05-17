@@ -1,0 +1,33 @@
+{
+  "enabled_modifiers": 1,
+  "modified_service_fields": [
+    "carrying_flow"
+  ],
+  "modifiers": [
+    {
+      "amplitude": 0.002,
+      "block": "carrying_flow",
+      "delta_name": "delta_carrying_flow",
+      "gain": 1.0,
+      "l1": 0.6502113510051645,
+      "law": "compact_momentum_localizer",
+      "linf": 0.002,
+      "max": 4.448812716890929e-18,
+      "max_abs_change": 0.002,
+      "min": -0.002,
+      "nonzero_points": 1150,
+      "requested_law": "compact_momentum_localizer",
+      "scope": "catch_rematch_edge_support_mix",
+      "service_field": "carrying_flow",
+      "window_abs_sum": 3809.610206604004,
+      "window_max": 1.0,
+      "window_packet_edge_abs": 272.1868076324463,
+      "window_packet_edge_fraction": 0.07144741663086876,
+      "window_packet_live_abs": 277.48216438293457,
+      "window_packet_live_fraction": 0.07283741625374585,
+      "window_support_shell_abs": 3500.3147583007812,
+      "window_support_shell_fraction": 0.9188117861068685,
+      "window_total_abs": 3809.610206604004
+    }
+  ]
+}
