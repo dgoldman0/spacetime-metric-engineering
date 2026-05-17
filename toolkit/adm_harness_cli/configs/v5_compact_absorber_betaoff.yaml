@@ -1,0 +1,29 @@
+run_name: v5_compact_absorber_betaoff
+velocity: 5.0
+
+inputs:
+  exact_fields: /mnt/data/adm_harness_work/extracted/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: /mnt/data/adm_harness_work/extracted/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: /mnt/data/adm_harness_work/extracted/substrate_subtraction_fields_v5.npz
+
+substrate:
+  mode: betaoff
+
+absorber:
+  mode: compact
+  selected_fit: source_absorber_compact
+  selected_candidate: compact_handoff
+  fit_summary: /mnt/data/adm_harness_work/extracted/active_rail_source_absorber_modal/modal_source_fit_summary.csv
+  candidate_scores: /mnt/data/adm_harness_work/extracted/control_law_candidate_scores.csv
+
+thresholds:
+  max_abs_delta_rho_packet: 0.000001
+  max_abs_delta_j_packet: 0.0001
+  min_catch_rematch_localization_fraction: 0.50
+
+outputs:
+  root: /mnt/data/adm_harness_runs
+  format: csv
+  figures: true
+  report: true
+  overwrite: true
