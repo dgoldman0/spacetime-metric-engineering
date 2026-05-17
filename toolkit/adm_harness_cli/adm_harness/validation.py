@@ -5,7 +5,8 @@ from typing import Any
 
 import numpy as np
 
-from .field_names import SERVICE_TO_INTERNAL, internal_field_name
+from .field_names import internal_field_name, service_check_name, service_field_name
+from .service_modifiers import ALLOWED_SERVICE_LAWS, normalize_service_law
 
 REQUIRED_FIELD_KEYS = {
     "s_grid",
@@ -22,6 +23,7 @@ DERIVED_FIELD_KEYS = {"k_l", "k_omega", "K", "R3"}
 ALLOWED_DELTA_KEYS = {"alpha", "beta", "gamma_ll", "gamma_omega"}
 ALLOWED_SERVICE_FIELDS = {"carrying_flow", "clock_lapse", "rail_stretch", "throat_capacity"}
 POSITIVE_FIELD_KEYS = {"alpha", "gamma_ll", "gamma_omega"}
+ALLOWED_SIGNALS = {"rho", "j_l", "delta_rho", "delta_j_l"}
 
 
 @dataclass
@@ -69,6 +71,10 @@ def _finite_stats(arr: np.ndarray) -> dict[str, Any]:
     }
 
 
+def _service_label(key: str) -> str:
+    return service_field_name(key) if key in {"alpha", "beta", "gamma_ll", "gamma_omega"} else key
+
+
 def validate_fields(fields: dict[str, np.ndarray], require_derived: bool = False) -> ValidationReport:
     report = ValidationReport()
     required = set(REQUIRED_FIELD_KEYS)
@@ -76,7 +82,7 @@ def validate_fields(fields: dict[str, np.ndarray], require_derived: bool = False
         required |= DERIVED_FIELD_KEYS
     missing = sorted(k for k in required if k not in fields)
     if missing:
-        report.errors.append(f"missing required field arrays: {missing}")
+        report.errors.append(f"missing required field arrays: {[_service_label(k) for k in missing]}")
         return report
 
     s = np.asarray(fields["s_grid"])
@@ -102,15 +108,16 @@ def validate_fields(fields: dict[str, np.ndarray], require_derived: bool = False
             if not np.all(np.isfinite(arr)):
                 report.errors.append(f"{key} contains non-finite values")
             continue
+        label = _service_label(key)
         if arr.shape != shape:
-            report.errors.append(f"{key} shape {arr.shape} does not match grid shape {shape}")
+            report.errors.append(f"{label} shape {arr.shape} does not match grid shape {shape}")
             continue
         stats = _finite_stats(arr)
-        report.checks[f"field:{key}"] = stats
+        report.checks[service_check_name("field", key) if key in {"alpha", "beta", "gamma_ll", "gamma_omega"} else f"field:{key}"] = stats
         if stats["finite_fraction"] != 1.0:
-            report.errors.append(f"{key} contains non-finite values")
+            report.errors.append(f"{label} contains non-finite values")
         if key in POSITIVE_FIELD_KEYS and np.nanmin(arr) <= 0:
-            report.errors.append(f"{key} must stay strictly positive; min={float(np.nanmin(arr))}")
+            report.errors.append(f"{label} must stay strictly positive; min={float(np.nanmin(arr))}")
 
     return report
 
@@ -148,22 +155,98 @@ def validate_field_delta(delta: dict[str, np.ndarray], fields: dict[str, np.ndar
         report.errors.append(f"field delta contains unsupported target fields: {unknown}")
     for key, arr in delta.items():
         arr = np.asarray(arr)
+        label = _service_label(key)
         if arr.shape != shape:
-            report.errors.append(f"delta_{key} shape {arr.shape} does not match grid shape {shape}")
+            report.errors.append(f"delta_{label} shape {arr.shape} does not match grid shape {shape}")
             continue
         stats = _finite_stats(arr)
-        report.checks[f"delta:{key}"] = stats
+        report.checks[service_check_name("delta", key) if key in ALLOWED_DELTA_KEYS else f"delta:{key}"] = stats
         if stats["finite_fraction"] != 1.0:
-            report.errors.append(f"delta_{key} contains non-finite values")
+            report.errors.append(f"delta_{label} contains non-finite values")
         if key in POSITIVE_FIELD_KEYS:
             modified = np.asarray(fields[key]) + arr
             if np.nanmin(modified) <= 0:
                 report.errors.append(
-                    f"delta_{key} would make {key} non-positive; modified min={float(np.nanmin(modified))}"
+                    f"delta_{label} would make {label} non-positive; modified min={float(np.nanmin(modified))}"
                 )
     if not delta:
         report.warnings.append("field delta is empty; synthesis is an identity operation")
     return report
+
+
+def _as_number(report: ValidationReport, spec: dict[str, Any], key: str, block_name: str, *, minimum: float | None = None, maximum: float | None = None) -> None:
+    if key not in spec or spec[key] is None:
+        return
+    try:
+        value = float(spec[key])
+    except Exception:
+        report.errors.append(f"{block_name}.{key} must be numeric")
+        return
+    if minimum is not None and value < minimum:
+        report.errors.append(f"{block_name}.{key} must be >= {minimum}")
+    if maximum is not None and value > maximum:
+        report.errors.append(f"{block_name}.{key} must be <= {maximum}")
+
+
+def _validate_modifier_spec(report: ValidationReport, block_name: str, spec: dict[str, Any], *, default_target: str) -> bool:
+    if not isinstance(spec, dict) or not spec.get("enabled", True):
+        return False
+    law_raw = spec.get("law", spec.get("mode", "identity"))
+    try:
+        law = normalize_service_law(law_raw)
+    except ValueError as exc:
+        report.errors.append(f"{block_name}: {exc}")
+        return True
+    if str(law_raw).strip().lower() == "compact_shift_localizer":
+        report.warnings.append(f"{block_name}: compact_shift_localizer is a legacy alias; use compact_momentum_localizer")
+
+    target = spec.get("target_service_field", spec.get("target_field", default_target))
+    try:
+        target_internal = internal_field_name(target)
+    except ValueError as exc:
+        report.errors.append(f"{block_name}: {exc}")
+        return True
+    target_service = service_field_name(target_internal)
+
+    if law == "compact_momentum_localizer" and target_service != "carrying_flow":
+        report.errors.append(f"{block_name}: compact_momentum_localizer can only target carrying_flow")
+
+    for key in ["amplitude", "strength", "gain", "max_abs_change", "max_abs_delta", "radial_center", "schedule_center", "time_center", "edge_bias", "support_shell_gain"]:
+        _as_number(report, spec, key, block_name)
+    for key in ["radial_width", "schedule_width", "temporal_width"]:
+        _as_number(report, spec, key, block_name, minimum=0.0)
+    for key in ["packet_exclusion"]:
+        _as_number(report, spec, key, block_name, minimum=0.0, maximum=1.0)
+
+    if "smoothness_order" in spec:
+        try:
+            smooth = int(spec["smoothness_order"])
+            if smooth < 0:
+                raise ValueError
+        except Exception:
+            report.errors.append(f"{block_name}.smoothness_order must be a non-negative integer")
+
+    signal = spec.get("signal")
+    if signal is not None and str(signal) not in ALLOWED_SIGNALS:
+        report.errors.append(f"{block_name}.signal must be one of {sorted(ALLOWED_SIGNALS)}")
+
+    stage_weights = spec.get("stage_weights")
+    if stage_weights is not None:
+        if not isinstance(stage_weights, dict):
+            report.errors.append(f"{block_name}.stage_weights must be a mapping")
+        else:
+            for stage_name, weight in stage_weights.items():
+                try:
+                    float(weight)
+                except Exception:
+                    report.errors.append(f"{block_name}.stage_weights[{stage_name!r}] must be numeric")
+
+    report.checks[f"modifier:{block_name}"] = {
+        "law": law,
+        "target_service_field": target_service,
+        "scope": spec.get("scope", spec.get("support_scope", spec.get("support_mask", "global"))),
+    }
+    return law != "identity"
 
 
 def validate_config_contract(cfg: dict[str, Any]) -> ValidationReport:
@@ -172,28 +255,26 @@ def validate_config_contract(cfg: dict[str, Any]) -> ValidationReport:
         report.errors.append("config must include inputs")
     if "exact_fields" not in cfg.get("inputs", {}):
         report.errors.append("config must include inputs.exact_fields")
+
     synthesis = cfg.get("synthesis", {}) or {}
     service = cfg.get("service", {}) or {}
-    absorber = cfg.get("absorber", {}) or {}
+    control = cfg.get("control_law", {}) or cfg.get("absorber", {}) or {}
+    if "absorber" in cfg and cfg.get("absorber") and "control_law" not in cfg:
+        report.warnings.append("absorber is a legacy config block; use control_law")
+
     if synthesis.get("enabled", False):
         has_service_modifier = False
-        for block in ALLOWED_SERVICE_FIELDS:
+        for block in sorted(ALLOWED_SERVICE_FIELDS):
             spec = service.get(block)
-            if isinstance(spec, dict) and spec.get("enabled", True) and (spec.get("law") or spec.get("mode")):
-                has_service_modifier = True
-                target = spec.get("target_service_field", spec.get("target_field", block))
-                try:
-                    internal_field_name(target)
-                except ValueError as exc:
-                    report.errors.append(str(exc))
-        absorber_law = absorber.get("law") or absorber.get("mode")
-        if absorber and absorber_law not in {None, "none"}:
-            has_service_modifier = True
-            target = absorber.get("target_service_field", absorber.get("target_field", "carrying_flow"))
-            try:
-                internal_field_name(target)
-            except ValueError as exc:
-                report.errors.append(str(exc))
+            if isinstance(spec, dict):
+                active = _validate_modifier_spec(report, block, spec, default_target=block)
+                has_service_modifier = has_service_modifier or active
+
+        law = control.get("law") or control.get("mode")
+        if control and law not in {None, "none"}:
+            active = _validate_modifier_spec(report, "control_law", control, default_target="carrying_flow")
+            has_service_modifier = has_service_modifier or active
+
         if not has_service_modifier:
-            report.warnings.append("synthesis is enabled but no service modifier is active; run will be an identity operation")
+            report.warnings.append("synthesis is enabled but no non-identity service modifier is active; run will be an identity operation")
     return report

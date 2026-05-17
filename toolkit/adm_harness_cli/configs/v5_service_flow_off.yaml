@@ -11,7 +11,7 @@ inputs:
 substrate:
   mode: carrying_flow_off
 
-absorber:
+control_law:
   mode: none
 
 thresholds:

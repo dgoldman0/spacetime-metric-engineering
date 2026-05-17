@@ -1,6 +1,6 @@
 # ADM Harness CLI
 
-Command-line harness for active-rail ADM ledger runs, substrate subtraction, whole-service field synthesis, and compact catch/rematch control tests.
+Command-line harness for active-rail ADM ledger runs, substrate subtraction, whole-service field synthesis, and compact catch/rematch control-law tests.
 
 ## Commands
 

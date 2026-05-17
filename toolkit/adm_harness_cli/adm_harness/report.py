@@ -46,7 +46,7 @@ def write_run_report(
         "```",
         "",
         "## Notes",
-        "Absorber diagnostics are reported as sidecar metrics unless the config supplies a coupled field/ledger variant. This version does not synthesize a new ADM field from absorber coefficients.",
+        "Whole-service synthesis is active when `synthesis.enabled` is true. Catch/rematch control laws are treated as service modifiers; sidecar-only control metrics are only used when synthesis is disabled.",
         "",
     ]
     Path(out_path).write_text("\n".join(text), encoding="utf-8")

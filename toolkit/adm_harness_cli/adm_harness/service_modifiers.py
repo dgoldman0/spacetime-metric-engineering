@@ -8,6 +8,32 @@ import pandas as pd
 
 from .field_names import FIELD_BLOCKS, internal_field_name, service_field_name, service_delta_name
 
+IDENTITY_LAWS = {"none", "identity", "removed", "zero", "off"}
+ADDITIVE_WINDOW_LAWS = {"windowed_adjustment", "additive_window", "service_window"}
+SCALE_EXISTING_LAWS = {"scale_existing", "fractional_window", "windowed_scale"}
+COMPACT_LOCALIZER_LAWS = {
+    "compact_momentum_localizer",
+    "compact_carrying_flow_localizer",
+    "counterflow_localizer",
+    # Legacy alias accepted for old configs. Metadata is canonicalized.
+    "compact_shift_localizer",
+}
+ALLOWED_SERVICE_LAWS = IDENTITY_LAWS | ADDITIVE_WINDOW_LAWS | SCALE_EXISTING_LAWS | COMPACT_LOCALIZER_LAWS
+CANONICAL_LAW = {
+    **{name: "identity" for name in IDENTITY_LAWS},
+    **{name: "windowed_adjustment" for name in ADDITIVE_WINDOW_LAWS},
+    **{name: "scale_existing" for name in SCALE_EXISTING_LAWS},
+    **{name: "compact_momentum_localizer" for name in COMPACT_LOCALIZER_LAWS},
+}
+
+
+def normalize_service_law(law: object) -> str:
+    name = str(law or "identity").strip().lower()
+    if name not in ALLOWED_SERVICE_LAWS:
+        allowed = sorted(k for k in ALLOWED_SERVICE_LAWS if "shift" not in k)
+        raise ValueError(f"Unknown service modifier law {name!r}. Use one of: {allowed}")
+    return CANONICAL_LAW[name]
+
 
 @dataclass
 class FieldDeltaResult:
@@ -47,6 +73,7 @@ def mask_from_ledger(ledger: pd.DataFrame, name: str | None, shape: tuple[int, i
         "handoff": "catch_rematch",
         "release": "release_shift_fade",
         "fade": "release_shift_fade",
+        "release_fade": "release_shift_fade",
         "release_shift_fade": "release_shift_fade",
         "reset": "reset_decompression",
         "decompression": "reset_decompression",
@@ -164,19 +191,20 @@ def _delta_for_modifier(fields: dict[str, np.ndarray], ledger: pd.DataFrame, blo
     service_name = spec.get("target_service_field", spec.get("target_field", block_name))
     internal = internal_field_name(service_name)
     canonical = service_field_name(internal)
-    law = str(spec.get("law", spec.get("mode", "identity"))).lower()
+    raw_law = str(spec.get("law", spec.get("mode", "identity"))).lower()
+    law = normalize_service_law(raw_law)
 
     window = build_service_window(fields, ledger, spec, default_scope=spec.get("scope", "global"))
     amplitude = float(spec.get("amplitude", spec.get("strength", 0.0)) or 0.0)
     gain = float(spec.get("gain", 1.0) or 1.0)
 
-    if law in {"none", "identity", "removed", "zero", "off"} or not spec.get("enabled", True):
+    if law == "identity" or not spec.get("enabled", True):
         delta = np.zeros(shape, dtype=float)
-    elif law in {"windowed_adjustment", "additive_window", "service_window"}:
+    elif law == "windowed_adjustment":
         delta = amplitude * gain * window
-    elif law in {"scale_existing", "fractional_window", "windowed_scale"}:
+    elif law == "scale_existing":
         delta = fields[internal] * amplitude * gain * window
-    elif law in {"compact_momentum_localizer", "compact_carrying_flow_localizer", "counterflow_localizer", "compact_shift_localizer"}:
+    elif law == "compact_momentum_localizer":
         if internal != "beta":
             raise ValueError(f"{law} only applies to carrying_flow")
         signal_name = spec.get("signal", "delta_j_l")
@@ -191,6 +219,7 @@ def _delta_for_modifier(fields: dict[str, np.ndarray], ledger: pd.DataFrame, blo
         "service_field": canonical,
         "delta_name": service_delta_name(internal),
         "law": law,
+        "requested_law": raw_law,
         "scope": spec.get("scope", spec.get("support_scope", spec.get("support_mask", "global"))),
         "amplitude": amplitude,
         "gain": gain,
@@ -216,17 +245,19 @@ def _service_modifier_specs(cfg: dict[str, Any]) -> list[tuple[str, dict[str, An
             spec.setdefault("target_service_field", block_name)
             specs.append((block_name, spec))
 
-    # Treat absorber/control law as a modifier inside the carrying-flow service.
-    absorber = cfg.get("absorber", {}) or {}
-    if absorber and absorber.get("mode", absorber.get("law", "none")) not in {"none", None}:
-        spec = dict(absorber)
+    # Treat catch/rematch control law as a modifier inside the carrying-flow service.
+    # ``absorber`` is accepted as a legacy config block. New configs should use
+    # ``control_law``.
+    control = cfg.get("control_law", {}) or cfg.get("absorber", {}) or {}
+    if control and control.get("mode", control.get("law", "none")) not in {"none", None}:
+        spec = dict(control)
         spec.setdefault("target_service_field", "carrying_flow")
         spec.setdefault("scope", spec.get("support_mask", "catch_rematch_edge"))
         if "coefficients" in spec and isinstance(spec["coefficients"], dict):
             merged = dict(spec["coefficients"])
             merged.update({k: v for k, v in spec.items() if k != "coefficients"})
             spec = merged
-        specs.append(("absorber_control", spec))
+        specs.append(("catch_rematch_control", spec))
     return specs
 
 

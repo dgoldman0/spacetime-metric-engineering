@@ -74,9 +74,33 @@ class ServiceSynthesisValidationTests(unittest.TestCase):
             },
         }
         result = compute_service_field_delta(fields, ledger, cfg)
-        self.assertIn("beta", result.delta)
+        self.assertIn("beta", result.delta)  # internal bundle key for the public carrying_flow field
         self.assertLessEqual(np.max(np.abs(result.delta["beta"])), 0.005 + 1e-15)
         self.assertEqual(result.metadata["modified_service_fields"], ["carrying_flow"])
+
+    def test_config_validation_rejects_unknown_service_law(self):
+        from adm_harness.validation import validate_config_contract
+
+        cfg = {
+            "inputs": {"exact_fields": "dummy.npz"},
+            "synthesis": {"enabled": True},
+            "service": {"carrying_flow": {"enabled": True, "law": "bogus_law"}},
+        }
+        report = validate_config_contract(cfg)
+        self.assertFalse(report.ok)
+        self.assertTrue(any("Unknown service modifier law" in e for e in report.errors))
+
+    def test_config_validation_rejects_compact_law_on_wrong_service_field(self):
+        from adm_harness.validation import validate_config_contract
+
+        cfg = {
+            "inputs": {"exact_fields": "dummy.npz"},
+            "synthesis": {"enabled": True},
+            "service": {"clock_lapse": {"enabled": True, "law": "compact_momentum_localizer"}},
+        }
+        report = validate_config_contract(cfg)
+        self.assertFalse(report.ok)
+        self.assertTrue(any("can only target carrying_flow" in e for e in report.errors))
 
 
 if __name__ == "__main__":

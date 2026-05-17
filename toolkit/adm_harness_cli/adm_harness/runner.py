@@ -8,7 +8,7 @@ import pandas as pd
 
 from .adm import apply_field_delta, recompute_adm_fields
 from .service_modifiers import compute_service_field_delta
-from .field_names import normalize_substrate_mode, service_field_name
+from .field_names import normalize_substrate_mode, public_substrate_mode, service_field_name, service_facing_dataframe
 from .config import load_config, require_path
 from .io import load_npz, write_json, write_table, read_table
 from .metrics import (
@@ -20,7 +20,7 @@ from .metrics import (
     peak_locations,
     scope_burdens,
     stage_region_burdens,
-    summarize_absorber,
+    summarize_control_law,
     support_shell_load,
 )
 from .plots import plot_fields
@@ -151,21 +151,27 @@ def run_from_config(config_path: str | Path, output_dir: str | Path | None = Non
     support = support_shell_load(ledger)
     catch = catch_rematch_localization(ledger)
     peaks = peak_locations(ledger, channels)
-    absorber_summary = summarize_absorber(cfg.get("absorber", {}))
+    control_cfg = cfg.get("control_law", {}) or cfg.get("absorber", {}) or {}
+    control_summary = summarize_control_law(control_cfg)
+    service_modifier_mode = "none"
     if field_delta_metadata:
-        absorber_summary.update({f"synthesis_{k}": v for k, v in field_delta_metadata.items()})
+        control_summary.update({f"service_synthesis_{k}": v for k, v in field_delta_metadata.items()})
+        laws = sorted({str(m.get("law", "unknown")) for m in field_delta_metadata.get("modifiers", [])})
+        if laws:
+            service_modifier_mode = "+".join(laws)
     decision = decision_sheet(
         ledger,
         run_name=run_name,
         velocity=velocity,
-        absorber_mode=cfg.get("absorber", {}).get("mode", cfg.get("absorber", {}).get("law", "none")),
-        substrate_mode=substrate_mode_user,
+        control_law_mode=control_cfg.get("mode", control_cfg.get("law", "none")),
+        substrate_mode=public_substrate_mode(substrate_mode_user),
         thresholds=GateThresholds.from_config(cfg.get("thresholds", {})),
-        absorber_summary=absorber_summary,
+        service_modifier_mode=service_modifier_mode,
+        control_summary=control_summary,
     )
 
     # Write products.
-    write_table(ledger, out_dir / "point_ledger", table_format)
+    write_table(service_facing_dataframe(ledger), out_dir / "point_ledger", table_format)
     write_table(stage_region, out_dir / "stage_region_burden", "csv")
     write_table(scopes, out_dir / "scope_burden", "csv")
     write_table(packet, out_dir / "packet_exposure", "csv")
@@ -193,17 +199,18 @@ def run_from_config(config_path: str | Path, output_dir: str | Path | None = Non
         "exact_fields": str(exact_fields_path),
         "exact_point_ledger": str(point_ledger_path) if point_ledger_path else None,
         "substrate_fields": str(substrate_fields_path) if substrate_fields_path else None,
-        "substrate_mode": substrate_mode_user,
-        "absorber_mode": cfg.get("absorber", {}).get("mode", "none"),
+        "substrate_mode": public_substrate_mode(substrate_mode_user),
+        "control_law_mode": control_cfg.get("mode", control_cfg.get("law", "none")),
         "service_modifiers": field_delta_metadata.get("modified_service_fields", []) if field_delta_metadata else [],
+        "service_modifier_mode": service_modifier_mode,
         "synthesis_enabled": synthesis_enabled,
         "rows": int(len(ledger)),
         "outputs": sorted(p.name for p in out_dir.iterdir() if p.is_file()),
         "caveats": [],
     }
-    if cfg.get("absorber", {}).get("mode", "none") != "none" and not synthesis_enabled:
+    if control_cfg.get("mode", control_cfg.get("law", "none")) != "none" and not synthesis_enabled:
         status["caveats"].append(
-            "Absorber metrics are sidecar diagnostics unless synthesis.enabled is true or coupled field inputs are supplied."
+            "Catch/rematch control metrics are sidecar diagnostics unless synthesis.enabled is true or coupled field inputs are supplied."
         )
     if synthesis_enabled and field_delta_metadata and any(name in {"rail_stretch", "throat_capacity"} for name in field_delta_metadata.get("modified_service_fields", [])):
         status["caveats"].append("Geometry-field synthesis uses a numerical R3 recomputation path.")

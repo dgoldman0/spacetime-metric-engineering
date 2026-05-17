@@ -52,7 +52,8 @@ def load_config(path: str | Path) -> dict[str, Any]:
         cfg["velocity"] = cfg["service"].get("velocity")
     cfg.setdefault("velocity", None)
     cfg.setdefault("substrate", {})
-    cfg.setdefault("absorber", {})
+    cfg.setdefault("control_law", {})
+    cfg.setdefault("absorber", {})  # legacy alias accepted by the runner
     cfg.setdefault("outputs", {})
     cfg.setdefault("thresholds", {})
     return cfg

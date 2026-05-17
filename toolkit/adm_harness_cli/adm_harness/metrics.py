@@ -24,8 +24,9 @@ FIELD_COLUMNS = [
 ]
 
 DELTA_MAP = {
-    "flow_off": ("delta_betaoff_rho", "delta_betaoff_j_l"),
     "carrying_flow_off": ("delta_betaoff_rho", "delta_betaoff_j_l"),
+    # Legacy aliases accepted when reading old configs.
+    "flow_off": ("delta_betaoff_rho", "delta_betaoff_j_l"),
     "shift_off": ("delta_betaoff_rho", "delta_betaoff_j_l"),
     "betaoff": ("delta_betaoff_rho", "delta_betaoff_j_l"),
     "beta_off": ("delta_betaoff_rho", "delta_betaoff_j_l"),
@@ -130,9 +131,9 @@ def build_point_ledger(
         mode_key = str(substrate_mode).lower() if substrate_mode is not None else substrate_mode
         d_rho, d_j = DELTA_MAP.get(substrate_mode, DELTA_MAP.get(mode_key, (None, None)))
         if recompute_substrate_delta:
-            if mode_key in {"flow_off", "carrying_flow_off", "shift_off", "betaoff", "beta_off", "time_matched_betaoff"}:
+            if mode_key in {"carrying_flow_off", "flow_off", "shift_off", "betaoff", "beta_off", "time_matched_betaoff"}:
                 if "betaoff_rho" not in substrate_fields or "betaoff_j_l" not in substrate_fields:
-                    raise KeyError("Cannot recompute carrying-flow-off deltas without substrate betaoff_rho and betaoff_j_l arrays.")
+                    raise KeyError("Cannot recompute carrying_flow_off deltas without substrate betaoff_rho and betaoff_j_l arrays.")
                 base["delta_rho"] = base["rho"].to_numpy() - substrate_fields["betaoff_rho"].ravel()
                 base["delta_j_l"] = base["j_l"].to_numpy() - substrate_fields["betaoff_j_l"].ravel()
             elif mode_key in {"static", "static_ready"}:
@@ -346,10 +347,11 @@ def decision_sheet(
     df: pd.DataFrame,
     run_name: str,
     velocity: float | None,
-    absorber_mode: str | None,
+    control_law_mode: str | None,
     substrate_mode: str | None,
     thresholds: GateThresholds,
-    absorber_summary: dict | None = None,
+    service_modifier_mode: str | None = None,
+    control_summary: dict | None = None,
 ) -> pd.DataFrame:
     packet = _mask(df, "packet_live")
     support = _mask(df, "support_shell")
@@ -391,7 +393,8 @@ def decision_sheet(
     row = {
         "run_name": run_name,
         "velocity": velocity,
-        "absorber_mode": absorber_mode or "none",
+        "control_law_mode": control_law_mode or "none",
+        "service_modifier_mode": service_modifier_mode or "none",
         "substrate_mode": substrate_mode or "none",
         "max_abs_delta_rho_packet": d_rho_packet["peak_abs"],
         "max_abs_delta_j_packet": d_j_packet["peak_abs"],
@@ -407,18 +410,22 @@ def decision_sheet(
         "passes_support_shell_gate": passes_support,
         "recommended_next_step": recommended,
     }
-    if absorber_summary:
-        row.update({f"absorber_{k}": v for k, v in absorber_summary.items()})
+    if control_summary:
+        for k, v in control_summary.items():
+            if str(k).startswith("service_synthesis_"):
+                row[k] = v
+            else:
+                row[f"control_law_{k}"] = v
     return pd.DataFrame([row])
 
 
-def summarize_absorber(absorber_cfg: dict) -> dict:
-    """Read optional absorber score/fit files and return compact sidecar metrics."""
-    mode = absorber_cfg.get("mode", "none")
+def summarize_control_law(control_cfg: dict) -> dict:
+    """Read optional catch/rematch control score/fit files and return compact sidecar metrics."""
+    mode = control_cfg.get("mode", control_cfg.get("law", "none"))
     out: dict = {"mode": mode}
-    fit_summary = absorber_cfg.get("fit_summary")
-    candidate_scores = absorber_cfg.get("candidate_scores")
-    selected = absorber_cfg.get("selected_fit") or absorber_cfg.get("selected_candidate")
+    fit_summary = control_cfg.get("fit_summary")
+    candidate_scores = control_cfg.get("candidate_scores")
+    selected = control_cfg.get("selected_fit") or control_cfg.get("selected_candidate")
     if fit_summary and Path(fit_summary).exists():
         df = pd.read_csv(fit_summary)
         key_col = "fit" if "fit" in df.columns else df.columns[0]
@@ -445,7 +452,7 @@ def summarize_absorber(absorber_cfg: dict) -> dict:
         out.update({
             "candidate": str(row.get("candidate", "unknown")),
             "coverage_pct_of_target_underfit": float(row.get("coverage_pct_of_target_underfit", np.nan)),
-            "post_absorber_live_catch_underfit_pct_of_actual": float(row.get("post_absorber_live_catch_underfit_pct_of_actual", np.nan)),
+            "post_control_live_catch_underfit_pct_of_actual": float(row.get("post_absorber_live_catch_underfit_pct_of_actual", np.nan)),
             "selection_score_lower_better": float(row.get("selection_score_lower_better", np.nan)),
         })
     return out
