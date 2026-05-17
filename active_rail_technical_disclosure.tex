@@ -169,7 +169,7 @@ where $l$ is the rail coordinate and $\sig$ is the service scheduling coordinate
 \Grail(l,\sig)=\gamma_{ll} &\quad\text{rail-stretch field},\\
 \Gthroat(l,\sig)=\gamma_{\Omega\Omega} &\quad\text{throat-capacity field}.
 \end{align}
-This notation keeps the amplitude symbol available for control amplitudes and avoids using the same letter for a metric component and a support-shell overlay strength.
+This notation reserves distinct symbols for metric components and support-shell overlay amplitudes.
 
 \subsection{General Component Form}
 
@@ -237,7 +237,7 @@ A representative service cycle proceeds through the following phases:
 \end{array}
 \end{equation}
 
-Passenger-facing accounting is assigned to packet entry, catch/rematch, carried service, release, and any selected live buffer window. Reset and decompression are infrastructure operations unless a diagnostic window intentionally includes them for system-level energy accounting.
+Passenger-facing accounting is assigned to packet entry, catch/rematch, carried service, release, and selected live buffer windows. System-level ledgers may include reset and decompression through an explicitly selected infrastructure diagnostic window.
 
 \section{ADM Translation}
 
@@ -363,6 +363,22 @@ Timed coupled support-shell refinement & With $\lambda_c=1.25$, $\tau_c=0.35$, a
 
 The combined evidence defines the current design interpretation. The small support-shell overlay is a reliable reduced-harness support-routing component. The larger 4D source-relief objective needs coupled metric timing. Clock-lapse timing is presently the strongest partner for aggregate burden reduction, while rail-stretch remains a live comparator for peak shaping, packet-drift control, and angular-pressure side effects.
 
+\section{Shell-Throat Correspondence Diagnostic}
+
+Garattini and Zatrimaylov describe a wormhole--warp-drive correspondence in which a Morris--Thorne wormhole metric can be written in a warp-drive-like form by allowing nonzero intrinsic spatial curvature in the warp-drive metric \cite{GarattiniZatrimaylov2024}. In their preprint, the problematic layer is the shell region where a warp interpolation function overlaps the wormhole throat geometry. The relevant algebra contains mixed shell/throat terms: the warp interpolation profile, the shift-like sector, the wormhole intrinsic metric factor, and derivatives of the intrinsic metric factor all enter the same curvature expressions.
+
+The active-rail support-shell results show an apparent structural intersection with that mechanism. In the present notation, the support-shell timing window $\Wsh$ plays the role of the localized shell/interpolation profile, $\beta$ is the carrying-flow or shift-like sector, and $\Grail,\Gthroat$ are the intrinsic support/throat metric components. A single-channel overlay
+\begin{equation}
+\beta=\beta_0+a_\beta\Wsh
+\end{equation}
+therefore supplies a shell-like carrying-flow feature while assigning the intrinsic metric response to the $\Grail$ and $\Gthroat$ partners. The demanded-source ledger then detects burden where $\Wsh$ overlaps gradients in $\Grail$ and $\Gthroat$.
+
+This interpretation is supported by the shell-throat overlap probe. At $V=5$, $a_\beta=+0.5$, and $\tau_c=0.35$, a deliberately mistimed carrying-flow-only case with $\lambda_c=0.5$ raises the global radial-null burden ratio to about $1.181757$ and the shell-throat weighted radial-null ratio to about $3.054431$. With the refined timing $\lambda_c=1.25$, the corresponding carrying-flow-only ratios fall to about $1.035649$ and $2.023817$. Across the same probe family, about $86\%$--$89\%$ of the added radial-current burden lands in the shell-throat overlap band, and a large share of the added angular-pressure burden lands there as well. The failure signature is therefore localized: it concentrates where the active shell window intersects the support/throat metric-gradient layer.
+
+The best present conclusion is that the Garattini--Zatrimaylov correspondence identifies a conditional failure-mode mechanism for the active rail. In the active-rail data, that mechanism lights up when timing or metric coupling lets the support-shell carrying-flow overlay behave like a separable shell crossing an already-shaped support/throat geometry. In that decoupled regime, the source ledger pays cost in the same structural layer highlighted by Garattini and Zatrimaylov: shell interpolation meeting intrinsic throat curvature. Refined support timing moves the design away from that regime. Clock-lapse coupling improves causal margin and aggregate burden, while shell-throat concentration remains a distinct timing/coupling diagnostic.
+
+The next diagnostic should establish whether the overlap is a true algebraic intersection by isolating the mixed terms. The practical test is to run matched controls that flatten or smooth the support/throat gradients while keeping $\Wsh$, keep the throat/support geometry while broadening or shifting $\Wsh$, and compare carrying-flow-only, clock-lapse-only, rail-stretch-only, and throat-capacity-only variants. A proof-grade intersection would show that the measured $\Tkk$, $j_l$, and $p_\Omega$ deltas collapse when either the shell-gradient factor or the intrinsic throat-gradient factor is removed, and that a mixed-term proxy built from derivatives of $\Wsh$, $\beta$, $\Grail$, and $\Gthroat$ spatially correlates with the demanded-source delta maps.
+
 \section{Prototype Status and Remaining Plan}
 
 \subsection{Completed Prototype Layers}
@@ -386,6 +402,7 @@ The remaining prototype work is now narrower and more diagnostic:
 \item Run high-resolution coupled timing sweeps around $\lambda_c=1.25$, $\tau_c=0.35$, positive $a_\beta$, and clock-lapse ratios near $0.25$--$0.5$, with convergence checks tied to the compact-grid screening results.
 \item Add and screen the throat-capacity partner $\kappa_Q$ so angular/throat support can participate in the 4D demanded-source redistribution test.
 \item Build a 4D source objective that scores radial-null burden, radial current, radial pressure, angular pressure, packet-comoving density, packet norm margin, and support-region localization together.
+\item Add proof-grade shell-throat intersection tests: flattened-throat controls, support-shell broadening controls, mixed-term proxy maps, and correlations between the predicted mixed shell/throat terms and the measured demanded-source deltas.
 \item Check off-axis, angular, and alternate-null exposures for the surviving coupled metric families.
 \item Screen source-family candidates against the component ledger and assign candidate families to standing support, angular jacket, clock-lapse, carrying-flow, support-shell timing, and catch/rematch absorber roles.
 \item Construct a coarse 3+1 constraint prototype for the surviving coupled family, including constraint residual convergence and source regularization tests.
@@ -430,7 +447,8 @@ Constraint compatibility & Coarse 3+1 prototype maintains stable constraint beha
 \item \textbf{Refinement-sharpening catch layer.} A catch-edge layer that sharpens under grid refinement would trigger absorber broadening or source-family rejection.
 \item \textbf{Angular-pressure leakage.} Excess growth in $p_\Omega$ or angular support entering the packet region would trigger redesign of the throat-capacity/angular jacket sector.
 \item \textbf{Momentum delocalization.} $\Delta j_l$ spreading across the packet interior would trigger revision of the handoff model.
-\item \textbf{Single-channel additive burden.} Carrying-flow amplitude that increases radial-null or radial-current burden without compensating relief would trigger coupled clock-lapse, rail-stretch, or throat-capacity refinement.
+\item \textbf{Single-channel additive burden.} Carrying-flow amplitude that adds radial-null or radial-current burden would trigger coupled clock-lapse, rail-stretch, or throat-capacity refinement.
+\item \textbf{Shell-throat overlap concentration.} Added radial-null, radial-current, or angular-pressure burden concentrated where $\Wsh$ overlaps $\Grail,\Gthroat$ gradients would trigger timing broadening or intrinsic-metric partner refinement.
 \item \textbf{Point-peak growth.} A source-ledger case with acceptable integrated burden but growing local peaks would trigger broader timing shoulders, radial broadening, or source-family smoothing.
 \item \textbf{Edge-load qualitative transition.} A $V=10$ source pattern with a category-level change would place the edge case outside the primary prototype rating.
 \item \textbf{Constraint instability.} Growing constraint residuals in the coarse 3+1 scaffold would trigger smoothing, reparameterization, or source-ledger redesign.
@@ -526,5 +544,15 @@ The active-rail system organizes spacetime metric engineering as a source-placem
 The refined metric understanding is componentized: carrying-flow $\beta$ expresses scheduled service load, clock-lapse $\alpha$ protects timing and causal margin, rail-stretch $\Grail$ controls radial metric capacity, and throat-capacity $\Gthroat$ carries angular/throat support. The continuous support-shell overlay is now written as a metric-side family. Current demanded-source results indicate that the single-channel carrying-flow overlay is a stable support-routing component, while report-grade load-bearing redistribution requires coupled timing among carrying-flow, clock-lapse, rail-stretch, and likely throat-capacity partners.
 
 The remaining engineering path is therefore focused: finish high-resolution coupled 4D source-ledger checks, add throat-capacity screening, formalize the source-aware objective, assign source families to component roles, and then build the coarse 3+1 constraint prototype around the surviving coupled metric family.
+
+\begin{thebibliography}{9}
+
+\bibitem{GarattiniZatrimaylov2024}
+R. Garattini and K. Zatrimaylov,
+\textit{On the Wormhole--Warp Drive Correspondence},
+arXiv:2401.15136, 2024.
+doi: \href{https://doi.org/10.48550/ARXIV.2401.15136}{10.48550/ARXIV.2401.15136}.
+
+\end{thebibliography}
 
 \end{document}
