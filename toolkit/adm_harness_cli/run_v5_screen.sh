@@ -1,24 +1,43 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE_CONFIG="configs/v5_service_carrying_flow_localizer.yaml"
-OUT_ROOT="runs/v5_screen"
-CONFIG_ROOT="configs/v5_screen"
-BASELINE_RUN="runs/v5_screen/baseline_flow_off"
-RESULT_ZIP="v5_screen_results.zip"
+ROOT="$(pwd)"
+OUT_ROOT="$ROOT/runs/v5_screen"
+CONFIG_ROOT="$OUT_ROOT/configs"
+RESULT_ZIP="$ROOT/v5_screen_results.zip"
+
+BASE_CONFIG="$ROOT/configs/v5_service_carrying_flow_localizer.yaml"
+FLOW_OFF_CONFIG="$ROOT/configs/v5_service_flow_off.yaml"
+
+EXACT_FIELDS="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz"
+STAGE_REGION="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_stage_region_V5p0.csv"
+POINT_LEDGER="$ROOT/data/sample_v5/exact_builder_adm_v5/adm_point_ledger_V5p0.csv"
+SUBSTRATE_FIELDS="$ROOT/data/sample_v5/standing_substrate_subtraction_v5/substrate_fields_V5p0.npz"
 
 mkdir -p "$OUT_ROOT" "$CONFIG_ROOT"
 
+echo "Checking package root..."
+test -f "$BASE_CONFIG"
+test -f "$FLOW_OFF_CONFIG"
+test -f "$EXACT_FIELDS"
+test -f "$STAGE_REGION"
+test -f "$POINT_LEDGER"
+
 echo "Preparing V=5 one-factor screen configs..."
 
-python - <<'PY'
+python - <<PY
 from pathlib import Path
 import copy
 import yaml
 
-base_path = Path("configs/v5_service_carrying_flow_localizer.yaml")
-config_root = Path("configs/v5_screen")
+base_path = Path("$BASE_CONFIG")
+config_root = Path("$CONFIG_ROOT")
 config_root.mkdir(parents=True, exist_ok=True)
+
+exact_fields = "$EXACT_FIELDS"
+stage_region = "$STAGE_REGION"
+point_ledger = "$POINT_LEDGER"
+substrate_fields = "$SUBSTRATE_FIELDS"
 
 with base_path.open("r", encoding="utf-8") as f:
     base = yaml.safe_load(f)
@@ -29,11 +48,21 @@ def set_nested(d, path, value):
         cur = cur.setdefault(key, {})
     cur[path[-1]] = value
 
+def force_input_paths(cfg):
+    cfg.setdefault("inputs", {})
+    cfg["inputs"]["exact_fields"] = exact_fields
+    cfg["inputs"]["stage_region"] = stage_region
+    cfg["inputs"]["point_ledger"] = point_ledger
+
+    cfg.setdefault("substrate", {})
+    if Path(substrate_fields).exists():
+        cfg["substrate"]["fields"] = substrate_fields
+
 def make_config(name, changes):
     cfg = copy.deepcopy(base)
     cfg["run_name"] = name
+    force_input_paths(cfg)
 
-    # Ensure synthesis/control layer is enabled.
     set_nested(cfg, ["service", "carrying_flow", "enabled"], True)
     set_nested(cfg, ["service", "carrying_flow", "law"], "compact_momentum_localizer")
     set_nested(cfg, ["service", "carrying_flow", "scope"], "catch_rematch_edge_support_mix")
@@ -48,7 +77,6 @@ def make_config(name, changes):
 
 variants = []
 
-# Baseline localizer amplitudes.
 for amp in [0.001, 0.002, 0.004, 0.008, 0.012]:
     variants.append((
         f"amp_{str(amp).replace('.', 'p')}",
@@ -58,28 +86,24 @@ for amp in [0.001, 0.002, 0.004, 0.008, 0.012]:
         },
     ))
 
-# Support-shell allocation.
 for gain in [0.25, 0.5, 1.0, 2.0, 3.0]:
     variants.append((
         f"support_gain_{str(gain).replace('.', 'p')}",
         {"service.carrying_flow.support_shell_gain": gain},
     ))
 
-# Packet exclusion.
 for excl in [0.0, 0.2, 0.5, 0.8, 0.95]:
     variants.append((
         f"packet_exclusion_{str(excl).replace('.', 'p')}",
         {"service.carrying_flow.packet_exclusion": excl},
     ))
 
-# Edge bias.
 for bias in [0.0, 0.25, 0.5, 0.75, 1.0]:
     variants.append((
         f"edge_bias_{str(bias).replace('.', 'p')}",
         {"service.carrying_flow.edge_bias": bias},
     ))
 
-# Widths.
 for width in [0.5, 0.75, 1.0, 1.5, 2.0]:
     variants.append((
         f"temporal_width_{str(width).replace('.', 'p')}",
@@ -92,7 +116,6 @@ for width in [0.5, 0.75, 1.0, 1.5, 2.0]:
         {"service.carrying_flow.radial_width": width},
     ))
 
-# Timing/lead.
 for lead in [-0.75, -0.5, 0.0, 0.5, 0.75]:
     variants.append((
         f"catch_lead_{str(lead).replace('-', 'm').replace('.', 'p')}",
@@ -107,15 +130,15 @@ PY
 
 echo "Running baseline flow-off reference..."
 python -m adm_harness.cli validate \
-  -c configs/v5_service_flow_off.yaml \
+  -c "$FLOW_OFF_CONFIG" \
   --output-json "$OUT_ROOT/validation_baseline_flow_off.json"
 
 python -m adm_harness.cli run \
-  -c configs/v5_service_flow_off.yaml \
-  --output-dir "$BASELINE_RUN"
+  -c "$FLOW_OFF_CONFIG" \
+  --output-dir "$OUT_ROOT/baseline_flow_off"
 
 echo "Running screen variants..."
-RUN_DIRS=("$BASELINE_RUN")
+RUN_DIRS=("$OUT_ROOT/baseline_flow_off")
 
 for cfg in "$CONFIG_ROOT"/*.yaml; do
   name="$(basename "$cfg" .yaml)"
@@ -165,7 +188,7 @@ PY
 
 echo "Creating ZIP..."
 rm -f "$RESULT_ZIP"
-zip -r "$RESULT_ZIP" "$OUT_ROOT" "$CONFIG_ROOT" >/dev/null
+zip -r "$RESULT_ZIP" "$OUT_ROOT" >/dev/null
 
 echo
 echo "Done."
