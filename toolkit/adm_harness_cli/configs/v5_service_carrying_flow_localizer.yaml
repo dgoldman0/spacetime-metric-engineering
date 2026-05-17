@@ -6,7 +6,8 @@ service:
   carrying_flow:
     enabled: true
     law: compact_momentum_localizer
-    scope: catch_rematch_edge
+    scope: catch_rematch_edge_support_mix
+    allocation_mode: edge_support_mix
     signal: delta_j_l
     amplitude: 0.002
     gain: 1.0

@@ -26,6 +26,19 @@ CANONICAL_LAW = {
     **{name: "compact_momentum_localizer" for name in COMPACT_LOCALIZER_LAWS},
 }
 
+# Service-facing scopes that intentionally mix packet-edge and support-shell
+# allocation during catch/rematch. These are different from a plain
+# ``catch_rematch_edge`` mask: the support-shell component is present before
+# smoothing and before final normalization, so support_shell_gain and
+# edge_bias affect the actual geometry of the modifier window.
+MIXED_CATCH_SCOPES = {
+    "catch_rematch_mixed",
+    "catch_rematch_edge_support_mix",
+    "catch_support_edge_mix",
+    "handoff_mixed",
+    "handoff_edge_support_mix",
+}
+
 
 def normalize_service_law(law: object) -> str:
     name = str(law or "identity").strip().lower()
@@ -131,10 +144,55 @@ def _gaussian_axis(values: np.ndarray, center: float | None, width: float | None
     return np.exp(-0.5 * ((values - float(center)) / width) ** 2)
 
 
+def _mixed_catch_window(ledger: pd.DataFrame, shape: tuple[int, int], spec: dict[str, Any]) -> np.ndarray:
+    """Build a catch/rematch window with preserved edge/support allocation.
+
+    A plain mask such as ``catch_rematch_edge`` starts from the packet edge
+    only, so support-shell weights cannot change anything outside that mask.
+    This mixed window starts with separate packet-edge and support-shell
+    components, applies their weights while they are still separate, then
+    combines them before smoothing and final max-normalization.
+    """
+    edge = mask_from_ledger(ledger, "catch_rematch_edge", shape).astype(float)
+    support = mask_from_ledger(ledger, "catch_rematch_support_shell", shape).astype(float)
+
+    packet_exclusion = float(spec.get("packet_exclusion", 0.0) or 0.0)
+    edge_bias = float(spec.get("edge_bias", 0.0) or 0.0)
+    support_shell_gain = float(spec.get("support_shell_gain", 0.0) or 0.0)
+    edge_weight = float(spec.get("packet_edge_weight", 1.0) or 1.0)
+    support_weight = float(spec.get("support_shell_weight", 1.0) or 1.0)
+
+    # Packet exclusion should damp packet-side allocation without erasing the
+    # support-side component. Edge bias and support gain remain component-local.
+    edge_factor = edge_weight * max(0.0, 1.0 - packet_exclusion) * (1.0 + edge_bias)
+    support_factor = support_weight * (1.0 + support_shell_gain)
+    return edge_factor * edge + support_factor * support
+
+
 def build_service_window(fields: dict[str, np.ndarray], ledger: pd.DataFrame, spec: dict[str, Any], default_scope: str = "global") -> np.ndarray:
     shape = fields["rho"].shape
-    scope = spec.get("scope", spec.get("support_scope", spec.get("support_mask", default_scope)))
-    window = mask_from_ledger(ledger, scope, shape).astype(float)
+    scope = str(spec.get("scope", spec.get("support_scope", spec.get("support_mask", default_scope))) or "global").lower()
+    allocation_mode = str(spec.get("allocation_mode", "")).lower()
+
+    if scope in MIXED_CATCH_SCOPES or allocation_mode in {"edge_support_mix", "preserve_edge_support", "mixed_catch"}:
+        window = _mixed_catch_window(ledger, shape, spec)
+    else:
+        window = mask_from_ledger(ledger, scope, shape).astype(float)
+
+        packet_exclusion = float(spec.get("packet_exclusion", 0.0) or 0.0)
+        if packet_exclusion:
+            packet_live = mask_from_ledger(ledger, "packet_live", shape).astype(float)
+            window *= np.clip(1.0 - packet_exclusion * packet_live, 0.0, 1.0)
+
+        support_shell_gain = float(spec.get("support_shell_gain", 0.0) or 0.0)
+        if support_shell_gain:
+            support_shell = mask_from_ledger(ledger, "support_shell", shape).astype(float)
+            window *= 1.0 + support_shell_gain * support_shell
+
+        edge_bias = float(spec.get("edge_bias", 0.0) or 0.0)
+        if edge_bias:
+            packet_edge = mask_from_ledger(ledger, "packet_edge", shape).astype(float)
+            window *= 1.0 + edge_bias * packet_edge
 
     s = fields["s_grid"]
     l = fields["l_grid"]
@@ -150,24 +208,27 @@ def build_service_window(fields: dict[str, np.ndarray], ledger: pd.DataFrame, sp
             stage_factor[stage == str(stage_name)] += float(weight)
         window *= stage_factor
 
-    packet_exclusion = float(spec.get("packet_exclusion", 0.0) or 0.0)
-    if packet_exclusion:
-        packet_live = mask_from_ledger(ledger, "packet_live", shape).astype(float)
-        window *= np.clip(1.0 - packet_exclusion * packet_live, 0.0, 1.0)
-
-    support_shell_gain = float(spec.get("support_shell_gain", 0.0) or 0.0)
-    if support_shell_gain:
-        support_shell = mask_from_ledger(ledger, "support_shell", shape).astype(float)
-        window *= 1.0 + support_shell_gain * support_shell
-
-    edge_bias = float(spec.get("edge_bias", 0.0) or 0.0)
-    if edge_bias:
-        packet_edge = mask_from_ledger(ledger, "packet_edge", shape).astype(float)
-        window *= 1.0 + edge_bias * packet_edge
-
     smoothness = int(spec.get("smoothness_order", spec.get("smoothing_passes", 2)) or 0)
     window = _smooth_window(window, smoothness)
     return window
+
+
+def summarize_window_allocation(ledger: pd.DataFrame, window: np.ndarray) -> dict[str, Any]:
+    shape = window.shape
+    abs_window = np.abs(window)
+    total = float(abs_window.sum())
+    edge = mask_from_ledger(ledger, "catch_rematch_edge", shape)
+    support = mask_from_ledger(ledger, "catch_rematch_support_shell", shape)
+    packet_live = mask_from_ledger(ledger, "packet_live", shape)
+    return {
+        "window_total_abs": total,
+        "window_packet_edge_abs": float(abs_window[edge].sum()),
+        "window_support_shell_abs": float(abs_window[support].sum()),
+        "window_packet_live_abs": float(abs_window[packet_live].sum()),
+        "window_packet_edge_fraction": float(abs_window[edge].sum() / total) if total else 0.0,
+        "window_support_shell_fraction": float(abs_window[support].sum() / total) if total else 0.0,
+        "window_packet_live_fraction": float(abs_window[packet_live].sum() / total) if total else 0.0,
+    }
 
 
 def _normalized_signal(ledger: pd.DataFrame, signal_name: str, window: np.ndarray, shape: tuple[int, int]) -> np.ndarray:
@@ -226,6 +287,7 @@ def _delta_for_modifier(fields: dict[str, np.ndarray], ledger: pd.DataFrame, blo
         "max_abs_change": spec.get("max_abs_change", spec.get("max_abs_delta")),
         "window_abs_sum": float(np.abs(window).sum()),
         "window_max": float(np.nanmax(window)) if window.size else 0.0,
+        **summarize_window_allocation(ledger, window),
         "min": float(delta.min()),
         "max": float(delta.max()),
         "linf": float(np.abs(delta).max()),

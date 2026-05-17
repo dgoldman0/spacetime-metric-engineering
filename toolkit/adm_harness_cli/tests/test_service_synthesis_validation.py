@@ -102,6 +102,42 @@ class ServiceSynthesisValidationTests(unittest.TestCase):
         self.assertFalse(report.ok)
         self.assertTrue(any("can only target carrying_flow" in e for e in report.errors))
 
+    def test_mixed_catch_window_preserves_support_allocation(self):
+        from adm_harness.service_modifiers import build_service_window, summarize_window_allocation
+
+        fields = self._fields()
+        ledger = self._ledger(fields).copy()
+        # Split the toy ledger so the old packet-edge-only scope and the
+        # support-shell component occupy different points.
+        n = len(ledger)
+        ledger["packet_edge"] = False
+        ledger.loc[: n // 2 - 1, "packet_edge"] = True
+        ledger["packet_live"] = ledger["packet_edge"]
+        ledger["support_shell"] = False
+        ledger.loc[n // 2 :, "support_shell"] = True
+        mixed = {
+            "scope": "catch_rematch_edge_support_mix",
+            "allocation_mode": "edge_support_mix",
+            "packet_exclusion": 0.8,
+            "support_shell_gain": 2.0,
+            "edge_bias": 0.0,
+            "smoothness_order": 0,
+        }
+        old = {
+            "scope": "catch_rematch_edge",
+            "packet_exclusion": 0.8,
+            "support_shell_gain": 2.0,
+            "edge_bias": 0.0,
+            "smoothness_order": 0,
+        }
+        mixed_window = build_service_window(fields, ledger, mixed)
+        old_window = build_service_window(fields, ledger, old)
+        mixed_summary = summarize_window_allocation(ledger, mixed_window)
+        old_summary = summarize_window_allocation(ledger, old_window)
+        self.assertGreater(mixed_summary["window_support_shell_fraction"], 0.0)
+        self.assertGreater(mixed_summary["window_support_shell_fraction"], old_summary["window_support_shell_fraction"])
+        self.assertLess(mixed_summary["window_packet_edge_fraction"], old_summary["window_packet_edge_fraction"])
+
 
 if __name__ == "__main__":
     unittest.main()

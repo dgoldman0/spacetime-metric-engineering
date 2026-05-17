@@ -41,7 +41,8 @@ service:
   carrying_flow:
     enabled: true
     law: compact_momentum_localizer
-    scope: catch_rematch_edge
+    scope: catch_rematch_edge_support_mix
+    allocation_mode: edge_support_mix
     signal: delta_j_l
     amplitude: 0.002
     gain: 1.0
@@ -90,6 +91,9 @@ compact_momentum_localizer
 
 The `compact_momentum_localizer` law is intended for the carrying-flow service field. It uses a selected residual channel, usually `delta_j_l`, builds a compact window, applies the bounded counterflow, recomputes `k_l`, `k_omega`, `K`, `rho`, and `j_l`, then recomputes `delta_rho` and `delta_j_l` against the selected substrate.
 
+
+For mixed packet-edge/support-shell catch windows, use `scope: catch_rematch_edge_support_mix` or `allocation_mode: edge_support_mix`. The harness builds the packet-edge and support-shell components separately, applies `packet_exclusion`, `edge_bias`, and `support_shell_gain` before smoothing/normalization, and records the resulting allocation fractions in `service_modifier_summary.csv`.
+
 ## Adjustable knobs in this revision
 
 Service knobs:
@@ -115,6 +119,9 @@ smoothness_order
 packet_exclusion
 support_shell_gain
 edge_bias
+packet_edge_weight
+support_shell_weight
+allocation_mode: edge_support_mix
 ```
 
 Substrate knobs:
