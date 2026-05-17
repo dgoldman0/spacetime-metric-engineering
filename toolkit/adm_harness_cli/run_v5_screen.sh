@@ -159,6 +159,111 @@ else:
     raise SystemExit("No decision sheets found.")
 PY
 
+echo "Scoring incremental routing..."
+python - <<'PY'
+from pathlib import Path
+import pandas as pd
+
+root = Path("runs/v5_screen")
+baseline_dir = root / "v5_service_flow_off"
+baseline_path = baseline_dir / "point_ledger.csv"
+if not baseline_path.exists():
+    raise SystemExit(f"Missing baseline point ledger: {baseline_path}")
+
+baseline = pd.read_csv(baseline_path)
+required = {"s", "l", "delta_j_l", "delta_rho", "volume", "stage", "packet_live", "support_shell"}
+missing = required - set(baseline.columns)
+if missing:
+    raise SystemExit(f"Baseline point ledger missing columns: {sorted(missing)}")
+
+key_cols = ["s", "l"]
+base = baseline[key_cols + ["delta_j_l", "delta_rho"]].rename(
+    columns={"delta_j_l": "baseline_delta_j_l", "delta_rho": "baseline_delta_rho"}
+)
+
+rows = []
+for ledger_path in sorted(root.glob("*/point_ledger.csv")):
+    run_dir = ledger_path.parent
+    if run_dir == baseline_dir or "comparison" in ledger_path.parts:
+        continue
+
+    df = pd.read_csv(ledger_path)
+    missing = required - set(df.columns)
+    if missing:
+        raise SystemExit(f"{ledger_path} missing columns: {sorted(missing)}")
+
+    merged = df.merge(base, on=key_cols, how="left", validate="one_to_one")
+    if merged["baseline_delta_j_l"].isna().any():
+        raise SystemExit(f"{ledger_path} did not align with baseline grid")
+
+    vol = merged["volume"].astype(float)
+    inc_j = merged["delta_j_l"].astype(float) - merged["baseline_delta_j_l"].astype(float)
+    inc_rho = merged["delta_rho"].astype(float) - merged["baseline_delta_rho"].astype(float)
+    abs_inc_j = inc_j.abs() * vol
+    abs_inc_rho = inc_rho.abs() * vol
+
+    packet = merged["packet_live"].astype(bool)
+    support = merged["support_shell"].astype(bool)
+    catch = merged["stage"].astype(str).eq("catch_rematch")
+    catch_support = catch & support
+    catch_packet = catch & packet
+
+    global_inc_j = float(abs_inc_j.sum())
+    catch_inc_j = float(abs_inc_j[catch].sum())
+    support_inc_j = float(abs_inc_j[support].sum())
+    catch_support_inc_j = float(abs_inc_j[catch_support].sum())
+    packet_inc_j = float(abs_inc_j[packet].sum())
+    packet_inc_rho = float(abs_inc_rho[packet].sum())
+
+    catch_frac = catch_inc_j / global_inc_j if global_inc_j else 0.0
+    support_frac = support_inc_j / global_inc_j if global_inc_j else 0.0
+    catch_support_frac = catch_support_inc_j / global_inc_j if global_inc_j else 0.0
+    packet_j_frac = packet_inc_j / global_inc_j if global_inc_j else 0.0
+
+    # Lower is better. Reward routing into catch/support, penalize packet
+    # exposure and total added demand.
+    routing_penalty = (
+        global_inc_j
+        * (1.0 - catch_frac)
+        * (1.0 - support_frac)
+        * (1.0 + 10.0 * packet_j_frac)
+        * (1.0 + 1.0e6 * packet_inc_rho)
+    )
+
+    rows.append({
+        "run_name": run_dir.name,
+        "global_abs_incremental_delta_j_l": global_inc_j,
+        "catch_abs_incremental_delta_j_l": catch_inc_j,
+        "support_abs_incremental_delta_j_l": support_inc_j,
+        "catch_support_abs_incremental_delta_j_l": catch_support_inc_j,
+        "packet_abs_incremental_delta_j_l": packet_inc_j,
+        "packet_abs_incremental_delta_rho": packet_inc_rho,
+        "catch_incremental_fraction": catch_frac,
+        "support_incremental_fraction": support_frac,
+        "catch_support_incremental_fraction": catch_support_frac,
+        "packet_incremental_j_fraction": packet_j_frac,
+        "routing_penalty_lower_better": routing_penalty,
+    })
+
+summary = pd.DataFrame(rows)
+if summary.empty:
+    raise SystemExit("No run point ledgers found for routing summary.")
+
+summary = summary.sort_values(["routing_penalty_lower_better", "global_abs_incremental_delta_j_l"])
+summary.insert(0, "routing_rank", range(1, len(summary) + 1))
+summary.to_csv(root / "incremental_routing_summary.csv", index=False)
+print(f"Wrote {root / 'incremental_routing_summary.csv'}")
+
+top = summary.head(12)
+with (root / "incremental_routing_report.md").open("w", encoding="utf-8") as f:
+    f.write("# V5 incremental routing screen\n\n")
+    f.write("Baseline: `v5_service_flow_off`. Incremental channels are pointwise run minus baseline before burden aggregation.\n\n")
+    f.write("Lower `routing_penalty_lower_better` is better; it rewards catch/support routing and penalizes packet exposure plus total added demand.\n\n")
+    f.write(top.to_markdown(index=False))
+    f.write("\n")
+print(f"Wrote {root / 'incremental_routing_report.md'}")
+PY
+
 echo "Creating ZIP..."
 rm -f "$RESULT_ZIP"
 zip -r "$RESULT_ZIP" "$OUT_ROOT" configs/screen_v5_*.yaml >/dev/null
