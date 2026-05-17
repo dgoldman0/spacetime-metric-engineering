@@ -11,7 +11,15 @@ dist/
 
 # ADM harness local/generated outputs
 toolkit/adm_harness_cli/runs/
+toolkit/adm_harness_cli/configs/generated/
+toolkit/adm_harness_cli/data/generated_service_factors/
 toolkit/adm_harness_cli/configs/screen_v5_*.yaml
 toolkit/adm_harness_cli/configs/screen_v10_*.yaml
 toolkit/adm_harness_cli/*_results.zip
 toolkit/adm_harness_cli/local_test_results.zip
+
+# Local LaTeX compile byproducts
+active_rail_technical_disclosure.aux
+active_rail_technical_disclosure.log
+active_rail_technical_disclosure.out
+active_rail_technical_disclosure.pdf

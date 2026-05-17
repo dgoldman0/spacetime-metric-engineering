@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -11,7 +12,9 @@ SCRIPTS_DIR = Path(__file__).resolve().parents[1] / "scripts"
 if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
+import generate_service_factor_inputs as generator
 import run_validation_ladder as ladder
+from adm_harness import source_ledger
 
 
 class ValidationLadderHardeningTests(unittest.TestCase):
@@ -58,6 +61,70 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertEqual(envelope["first_warning_amplitude"], 5e-4)
         self.assertEqual(envelope["first_hard_failure_amplitude"], 1e-3)
         self.assertEqual(envelope["status_counts"], {"fail": 1, "pass": 1, "warning": 1})
+
+    def test_service_factor_generator_writes_reusable_inputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            metadata = generator.generate_products(
+                SimpleNamespace(
+                    service_factor=6.0,
+                    output_dir=base / "data",
+                    config_dir=base / "configs",
+                    ns=9,
+                    nl=13,
+                    w_th=0.569,
+                    eta_N=2.0,
+                    support_radius=1.75,
+                )
+            )
+
+            for path in metadata["files"].values():
+                self.assertTrue(Path(path).exists(), path)
+            self.assertEqual(metadata["service_factor_label"], "v6")
+            self.assertIn("max_live_packet_norm", metadata["diagnostics"])
+            self.assertIn("catch_support_delta_j_l_fraction", metadata["diagnostics"])
+
+    def test_service_factor_generator_rejects_invalid_inputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            args = SimpleNamespace(
+                service_factor=0.0,
+                output_dir=base / "data",
+                config_dir=base / "configs",
+                ns=9,
+                nl=13,
+                w_th=0.569,
+                eta_N=2.0,
+                support_radius=1.75,
+            )
+
+            with self.assertRaises(SystemExit):
+                generator.generate_products(args)
+
+    def test_source_ledger_small_grid_has_heavy_channels(self):
+        case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        points = source_ledger.compute_case(case, ns=3, nl=3, progress=False)
+        summary, compact, stage, safety, decision = source_ledger.summarize(points)
+
+        self.assertEqual(len(points), 9)
+        self.assertIn("Tkk_min_radial", points.columns)
+        self.assertIn("p_l_unit", points.columns)
+        self.assertIn("rho_packet", points.columns)
+        self.assertIn("neg_Tkk_radial", set(compact["channel"]))
+        self.assertIn("abs_p_l", set(compact["channel"]))
+        self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
+        self.assertIn("score", decision.columns)
+        self.assertFalse(summary.empty)
+        self.assertFalse(stage.empty)
+        self.assertFalse(source_ledger.top_bad_points(points, limit=2).empty)
+
+    def test_source_ledger_reference_compare_identity(self):
+        case = source_ledger.branch_case("conservative_w0565_eta200", service_factor=5.0)
+        points = source_ledger.compute_case(case, ns=3, nl=3, progress=False)
+        comparison = source_ledger.compare_to_reference(points, points, reference_case=case.name)
+
+        self.assertGreater(len(comparison), 0)
+        self.assertEqual(float(comparison["max_abs_error"].max()), 0.0)
 
 
 if __name__ == "__main__":

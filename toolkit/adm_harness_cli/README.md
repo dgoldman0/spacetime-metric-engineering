@@ -71,6 +71,44 @@ python scripts/run_validation_ladder.py \
 
 The old `scripts/run_v5_validation_ladder.py` entry point remains as a compatibility wrapper.
 
+### Generate arbitrary service-factor inputs
+
+For an intermediate or exploratory `V` value, the ladder can generate reduced ADM exact-field, substrate-subtraction, point-ledger, and config inputs before it runs:
+
+```bash
+python scripts/run_validation_ladder.py \
+  --service-factor 7 \
+  --generate-service-inputs \
+  --skip-amplitude-ramp
+```
+
+The generated products are written under `data/generated_service_factors/<v_label>/` and `configs/generated/`, then the ladder consumes those products directly. This path is intended for service-factor hardening and interpolation checks between the tracked reference products. It uses the reduced ADM field builder; pressure/null 4D source projections remain separate heavier diagnostics.
+
+Useful low-cost diagnostics are recorded in `validation_ladder_metadata.json` and `validation_ladder_decision_sheet.csv`, including generated-input provenance, packet norm counts, packet/source fractions, partition closure, and a `gate_margin` value for each hard decision row.
+
+## Regenerate the 4D demanded-source ledger
+
+The report-grade source ledger can be regenerated from the toolkit, rather than treated as an opaque bundle-only artifact:
+
+```bash
+python scripts/run_source_ledger.py \
+  --variant tuned_w0569_eta200 \
+  --service-factor 5 \
+  --outdir runs/source_ledgers/V5_tuned_w0569_eta200
+```
+
+This computes the finite-difference demanded-source projections `T_munu = G_munu[g] / (8*pi)`, then writes point, summary, stage, safety, decision, top-bad-point, and manifest tables. Use `--reference` to compare a regenerated ledger to a saved artifact:
+
+```bash
+python scripts/run_source_ledger.py \
+  --variant tuned_w0569_eta200 \
+  --service-factor 5 \
+  --reference ../../included_bundles/active_rail_v_sweep.zip::highres_41x73/V5_tuned_w0569_eta200.csv \
+  --reference-case V5_tuned_w0569_eta200
+```
+
+The current 4D source-ledger path covers the continuous shaped-catch/radial-soft/lapse-cushion branch. A support-shell control overlay should be promoted to this report-grade path only after its continuous metric expression is defined, rather than interpolating a grid-only ADM delta.
+
 ## Send results back
 
 After the smoke suite finishes, create a results ZIP:

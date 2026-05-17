@@ -23,6 +23,7 @@ for import_root in (PACKAGE_ROOT, SCRIPT_DIR):
 from adm_harness.config import load_config
 from adm_harness.runner import run_from_config, validate_config_file
 from analyze_signed_objective import analyze_run, build_pair_summary, prepare_baseline, write_report as write_signed_report
+from generate_service_factor_inputs import generate_products
 from test_support_shell_packet_safety import run_overlay
 
 
@@ -831,6 +832,7 @@ def _decision_sheet(
             "check": "catch_support_incremental_fraction",
             "value": float(target_routing["catch_support_incremental_fraction"]),
             "threshold": f">= {args.min_catch_support_fraction:g}",
+            "gate_margin": float(target_routing["catch_support_incremental_fraction"]) - args.min_catch_support_fraction,
             "required": True,
             "passed": bool(target_routing["catch_support_incremental_fraction"] >= args.min_catch_support_fraction),
             "note": "incremental delta_j_l should land in catch/support infrastructure",
@@ -840,6 +842,7 @@ def _decision_sheet(
             "check": "packet_incremental_j_fraction",
             "value": float(target_routing["packet_incremental_j_fraction"]),
             "threshold": f"<= {args.max_packet_j_fraction:g}",
+            "gate_margin": args.max_packet_j_fraction - float(target_routing["packet_incremental_j_fraction"]),
             "required": True,
             "passed": bool(target_routing["packet_incremental_j_fraction"] <= args.max_packet_j_fraction),
             "note": "packet momentum contamination should stay quiet",
@@ -849,6 +852,7 @@ def _decision_sheet(
             "check": "packet_abs_incremental_delta_rho",
             "value": float(target_routing["packet_abs_incremental_delta_rho"]),
             "threshold": f"<= {args.max_packet_abs_delta_rho:g}",
+            "gate_margin": args.max_packet_abs_delta_rho - float(target_routing["packet_abs_incremental_delta_rho"]),
             "required": True,
             "passed": bool(target_routing["packet_abs_incremental_delta_rho"] <= args.max_packet_abs_delta_rho),
             "note": "packet density increment should stay quiet",
@@ -858,6 +862,7 @@ def _decision_sheet(
             "check": "target_positive_packet_norm_live",
             "value": float(target_packet["positive_packet_norm_live"]),
             "threshold": "== 0",
+            "gate_margin": -float(target_packet["positive_packet_norm_live"]),
             "required": True,
             "passed": bool(int(target_packet["positive_packet_norm_live"]) == 0),
             "note": "target overlay should leave all live packet norms negative",
@@ -867,6 +872,7 @@ def _decision_sheet(
             "check": "nominal_overlay_variants_safe",
             "value": float(nominal_overlay["packet_safe"].astype(bool).all()),
             "threshold": "true",
+            "gate_margin": float(nominal_overlay["packet_safe"].astype(bool).all()),
             "required": True,
             "passed": bool(nominal_overlay["packet_safe"].astype(bool).all()),
             "note": "the nominal sign/amplitude ladder should remain packet-safe; load ramp failures are summarized separately",
@@ -876,6 +882,7 @@ def _decision_sheet(
             "check": "packet_increment_abs_all_channels",
             "value": float(target_rich["packet_increment_abs_all_channels"]),
             "threshold": f"<= {args.max_rich_packet_increment_abs:g}",
+            "gate_margin": args.max_rich_packet_increment_abs - float(target_rich["packet_increment_abs_all_channels"]),
             "required": True,
             "passed": bool(target_rich["packet_increment_abs_all_channels"] <= args.max_rich_packet_increment_abs),
             "note": "rho/j_l/delta_rho/delta_j_l packet exposure should remain quiet as a group",
@@ -885,6 +892,7 @@ def _decision_sheet(
             "check": "rich_source_objective",
             "value": float(target_rich["rich_source_objective_lower_better"]),
             "threshold": "diagnostic",
+            "gate_margin": None,
             "required": False,
             "passed": True,
             "note": "weighted multi-channel source objective; lower is better",
@@ -894,6 +902,7 @@ def _decision_sheet(
             "check": "positive_sign_pair_winner",
             "value": 1.0 if pair_winner == "pos" else 0.0,
             "threshold": "diagnostic",
+            "gate_margin": None,
             "required": False,
             "passed": bool(pair_winner in {"pos", "none"}),
             "note": f"winner={pair_winner}, relative_gap={pair_gap:.6g}; sign remains a tie-breaker unless the gap grows",
@@ -903,6 +912,7 @@ def _decision_sheet(
             "check": "target_objective_delta",
             "value": float(target_signed["signed_source_objective_delta_lower_better"]),
             "threshold": "diagnostic",
+            "gate_margin": None,
             "required": False,
             "passed": True,
             "note": "lower is better; used for comparison, not as a hard V5 safety gate",
@@ -912,6 +922,7 @@ def _decision_sheet(
             "check": "partition_closure_error",
             "value": closure_error,
             "threshold": f"<= {args.max_partition_closure_error:g}",
+            "gate_margin": args.max_partition_closure_error - closure_error,
             "required": True,
             "passed": bool(closure_error <= args.max_partition_closure_error),
             "note": "reduced ledger bookkeeping should close across disjoint masks",
@@ -1053,12 +1064,47 @@ def _write_ladder_report(
 def run_ladder(args: argparse.Namespace) -> Path:
     baseline_config = Path(args.baseline_config)
     target_config_input = Path(args.target_config)
-    baseline_cfg_input = load_config(baseline_config)
-    target_cfg_input = load_config(target_config_input)
-    service_factor = _infer_service_factor(args, baseline_cfg_input, target_cfg_input)
+    if args.generate_service_inputs and args.service_factor is not None:
+        baseline_cfg_input: dict[str, Any] = {}
+        target_cfg_input: dict[str, Any] = {}
+    else:
+        baseline_cfg_input = load_config(baseline_config)
+        target_cfg_input = load_config(target_config_input)
+
+    if args.generate_service_inputs:
+        if args.service_factor is None:
+            service_factor = _infer_service_factor(args, baseline_cfg_input, target_cfg_input)
+        else:
+            service_factor = float(args.service_factor)
+        generated = generate_products(
+            SimpleNamespace(
+                service_factor=service_factor,
+                output_dir=args.generated_data_dir,
+                config_dir=args.generated_config_dir,
+                ns=args.input_grid_ns,
+                nl=args.input_grid_nl,
+                w_th=args.w_th,
+                eta_N=args.eta_N,
+                support_radius=args.support_radius,
+            )
+        )
+        baseline_config = Path(generated["files"]["baseline_config"])
+        target_config_input = Path(generated["files"]["target_config"])
+        baseline_cfg_input = load_config(baseline_config)
+        target_cfg_input = load_config(target_config_input)
+        args.packet_input = Path(generated["files"]["point_ledger"])
+        args.packet_member = None
+    else:
+        generated = None
+        service_factor = _infer_service_factor(args, baseline_cfg_input, target_cfg_input)
+
     v_label = _service_factor_label(service_factor)
     root, output_root_inferred = _resolve_output_root(args, v_label)
-    packet_member, packet_member_inferred = _resolve_packet_member(args, service_factor)
+    if generated is not None:
+        packet_member = None
+        packet_member_inferred = False
+    else:
+        packet_member, packet_member_inferred = _resolve_packet_member(args, service_factor)
     args.packet_member = packet_member
 
     root.mkdir(parents=True, exist_ok=True)
@@ -1154,6 +1200,8 @@ def run_ladder(args: argparse.Namespace) -> Path:
         "packet_member": args.packet_member,
         "packet_member_inferred": packet_member_inferred,
         "output_root_inferred": output_root_inferred,
+        "generated_service_inputs": generated is not None,
+        "generated_service_input_files": generated["files"] if generated else None,
         "overlay_amplitudes": args.overlay_amplitudes,
         "ramp_enabled": not args.skip_amplitude_ramp,
         "ramp_amplitudes": [] if args.skip_amplitude_ramp else args.ramp_amplitudes,
@@ -1186,6 +1234,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--baseline-config", default="configs/v5_service_flow_off.yaml")
     parser.add_argument("--target-config", default="configs/v5_service_support_shell_target.yaml")
+    parser.add_argument(
+        "--generate-service-inputs",
+        action="store_true",
+        help="Generate reduced ADM exact/substrate/ledger products for --service-factor before running the ladder.",
+    )
+    parser.add_argument("--generated-data-dir", default="data/generated_service_factors")
+    parser.add_argument("--generated-config-dir", default="configs/generated")
+    parser.add_argument("--input-grid-ns", type=int, default=121)
+    parser.add_argument("--input-grid-nl", type=int, default=241)
+    parser.add_argument("--w-th", type=float, default=0.569)
+    parser.add_argument("--eta-N", type=float, default=2.0)
     parser.add_argument("--output-root", default=None, help="Output directory. Defaults to runs/<v_label>_validation_ladder.")
     parser.add_argument("--packet-input", type=Path, default=DEFAULT_PACKET_INPUT)
     parser.add_argument(
