@@ -82,6 +82,9 @@ class SourceParams:
     support_shell_amplitude: float = 1.0e-7
     support_shell_catch_lead: float = 1.0
     support_shell_temporal_width: float = 0.35
+    support_shell_temporal_profile: str = "gaussian"
+    support_shell_temporal_shoulder: float | None = None
+    support_shell_radial_profile: str = "smooth_box"
     support_shell_smoothness_order: int = 1
     support_shell_inner_multiplier: float = 0.65
     support_shell_radial_multiplier: float = 1.20
@@ -150,6 +153,78 @@ def smooth_box(x: np.ndarray | float, lo: float, hi: float, edge_width: float) -
     return np.clip(left * right, 0.0, 1.0)
 
 
+def raised_cosine_compact(distance: np.ndarray | float, radius: float) -> np.ndarray:
+    values = np.asarray(distance, dtype=float)
+    scale = max(float(radius), 1.0e-12)
+    x = np.clip(values / scale, 0.0, 1.0)
+    window = 0.5 * (1.0 + np.cos(math.pi * x))
+    return np.where(values <= scale, window, 0.0)
+
+
+def minjerk_compact(distance: np.ndarray | float, radius: float) -> np.ndarray:
+    values = np.asarray(distance, dtype=float)
+    scale = max(float(radius), 1.0e-12)
+    x = np.clip(values / scale, 0.0, 1.0)
+    window = 1.0 - smoothstep_minjerk(x)
+    return np.where(values <= scale, window, 0.0)
+
+
+def support_shell_radial_window(abs_l: np.ndarray | float, inner: float, outer: float, width: float, profile: str) -> np.ndarray:
+    profile_key = profile.strip().lower()
+    values = np.asarray(abs_l, dtype=float)
+    if profile_key == "smooth_box":
+        return smooth_box(values, inner, outer, width)
+
+    center = 0.5 * (inner + outer)
+    default_half_width = max(0.5 * (outer - inner), 1.0e-12)
+    if profile_key == "gaussian_annulus":
+        sigma = max(float(width), default_half_width / 2.0, 1.0e-12)
+        return np.exp(-0.5 * ((values - center) / sigma) ** 2)
+    if profile_key == "raised_cosine_annulus":
+        half_width = max(float(width), default_half_width, 1.0e-12)
+        return raised_cosine_compact(np.abs(values - center), half_width)
+    raise ValueError(f"Unknown support-shell radial profile: {profile}")
+
+
+def support_shell_temporal_window(
+    s: np.ndarray | float,
+    center: float,
+    width: float,
+    catch_lo: float,
+    catch_hi: float,
+    profile: str,
+    shoulder: float | None,
+) -> np.ndarray:
+    values = np.asarray(s, dtype=float)
+    scale = max(float(width), 1.0e-12)
+    closest_in_catch = min(max(center, catch_lo), catch_hi)
+    profile_key = profile.strip().lower()
+
+    if profile_key == "gaussian":
+        temporal = np.exp(-0.5 * ((values - center) / scale) ** 2)
+        temporal_norm = math.exp(-0.5 * ((closest_in_catch - center) / scale) ** 2)
+        return np.clip(temporal / max(temporal_norm, 1.0e-12), 0.0, 1.0)
+
+    distance_to_catch = abs(closest_in_catch - center)
+    compact_radius = max(distance_to_catch + scale, 1.0e-12)
+    raw_distance = np.abs(values - center)
+    norm_distance = abs(closest_in_catch - center)
+
+    if profile_key == "raised_cosine":
+        temporal = raised_cosine_compact(raw_distance, compact_radius)
+        temporal_norm = float(raised_cosine_compact(norm_distance, compact_radius))
+    elif profile_key == "minjerk_pulse":
+        temporal = minjerk_compact(raw_distance, compact_radius)
+        temporal_norm = float(minjerk_compact(norm_distance, compact_radius))
+    elif profile_key == "smooth_box":
+        edge = max(float(shoulder) if shoulder is not None else scale / 4.0, 1.0e-12)
+        temporal = smooth_box(raw_distance, 0.0, compact_radius, edge)
+        temporal_norm = float(smooth_box(norm_distance, 0.0, compact_radius, edge))
+    else:
+        raise ValueError(f"Unknown support-shell temporal profile: {profile}")
+    return np.clip(temporal / max(temporal_norm, 1.0e-12), 0.0, 1.0)
+
+
 def support_shell_overlay_window(s: float, l: float, params: SourceParams) -> float:
     if not params.support_shell_overlay_enabled:
         return 0.0
@@ -163,7 +238,13 @@ def support_shell_overlay_window(s: float, l: float, params: SourceParams) -> fl
         raise ValueError("support-shell inner multiplier must be smaller than outer multiplier")
     default_radial_width = max((support_outer - support_inner) / 8.0, 1.0e-12)
     support_width = params.support_shell_radial_width if params.support_shell_radial_width is not None else default_radial_width
-    support = smooth_box(np.abs(l_arr), support_inner, support_outer, support_width)
+    support = support_shell_radial_window(
+        np.abs(l_arr),
+        support_inner,
+        support_outer,
+        support_width,
+        params.support_shell_radial_profile,
+    )
 
     catch_width = max(params.w_catch_packet, params.w_catch_beta)
     lo = params.x_catch_packet - 2.0 * catch_width
@@ -176,10 +257,15 @@ def support_shell_overlay_window(s: float, l: float, params: SourceParams) -> fl
         anchor = params.x_catch_packet
     center = float(anchor) - params.support_shell_catch_lead
     temporal_width = max(float(params.support_shell_temporal_width), 1.0e-12)
-    temporal = np.exp(-0.5 * ((s_arr - center) / temporal_width) ** 2)
-    closest_in_catch = min(max(center, lo), hi)
-    temporal_norm = math.exp(-0.5 * ((closest_in_catch - center) / temporal_width) ** 2)
-    temporal = np.clip(temporal / max(temporal_norm, 1.0e-12), 0.0, 1.0)
+    temporal = support_shell_temporal_window(
+        s_arr,
+        center,
+        temporal_width,
+        lo,
+        hi,
+        params.support_shell_temporal_profile,
+        params.support_shell_temporal_shoulder,
+    )
 
     packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
     live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
@@ -721,6 +807,12 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_lead{_token(params.support_shell_catch_lead)}"
             f"_tw{_token(params.support_shell_temporal_width)}"
         )
+        if params.support_shell_temporal_profile != "gaussian":
+            case_name = f"{case_name}_tp{params.support_shell_temporal_profile}"
+        if params.support_shell_temporal_shoulder is not None:
+            case_name = f"{case_name}_ts{_token(params.support_shell_temporal_shoulder)}"
+        if params.support_shell_radial_profile != "smooth_box":
+            case_name = f"{case_name}_rp{params.support_shell_radial_profile}"
         if params.support_shell_clock_lapse_log_gain:
             case_name = f"{case_name}_cl{_token(params.support_shell_clock_lapse_log_gain)}"
         if params.support_shell_rail_stretch_log_gain:

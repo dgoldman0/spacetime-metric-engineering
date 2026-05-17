@@ -162,6 +162,8 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             support_shell_clock_lapse_log_gain=0.10,
             support_shell_rail_stretch_log_gain=-0.05,
             support_shell_throat_capacity_log_gain=0.025,
+            support_shell_temporal_profile="minjerk_pulse",
+            support_shell_radial_profile="raised_cosine_annulus",
         )
         points = source_ledger.compute_case(
             case,
@@ -236,6 +238,10 @@ class ValidationLadderHardeningTests(unittest.TestCase):
                 "amplitude": 0.5,
                 "catch_lead": 1.0,
                 "temporal_width": 0.35,
+                "temporal_profile": "gaussian",
+                "temporal_shoulder": None,
+                "radial_profile": "smooth_box",
+                "support_shell_radial_width": None,
                 "clock_lapse_ratio": 0.0,
                 "clock_lapse_log_gain": 0.0,
                 "rail_stretch_ratio": 0.0,
@@ -259,6 +265,10 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             signs=["pos"],
             catch_leads=[1.45],
             temporal_widths=[0.30],
+            temporal_profiles=["gaussian", "minjerk_pulse"],
+            temporal_shoulders=[None],
+            radial_profiles=["smooth_box"],
+            support_shell_radial_widths=[None, 0.12],
             clock_lapse_ratios=[0.375, 0.5],
             rail_stretch_ratios=[0.0],
             throat_capacity_ratios=[-0.25, 0.0, 0.25],
@@ -266,11 +276,139 @@ class ValidationLadderHardeningTests(unittest.TestCase):
 
         specs = overlay_sweep._build_specs(args)
 
-        self.assertEqual(len(specs), 6)
+        self.assertEqual(len(specs), 24)
         self.assertEqual({spec["throat_capacity_ratio"] for spec in specs}, {-0.25, 0.0, 0.25})
+        self.assertEqual({spec["temporal_profile"] for spec in specs}, {"gaussian", "minjerk_pulse"})
+        self.assertEqual({spec["support_shell_radial_width"] for spec in specs}, {None, 0.12})
         for spec in specs:
             self.assertAlmostEqual(spec["throat_capacity_log_gain"], spec["amplitude"] * spec["throat_capacity_ratio"])
-            self.assertIn("tc", overlay_sweep._case_slug(spec))
+            slug = overlay_sweep._case_slug(spec)
+            self.assertIn("tp", slug)
+            self.assertIn("rp", slug)
+            self.assertIn("tc", slug)
+
+    def test_source_overlay_sweep_can_normalize_delta_beta_strength_by_shape(self):
+        args = SimpleNamespace(
+            amplitudes=[0.5],
+            signs=["pos"],
+            catch_leads=[1.45],
+            temporal_widths=[0.25],
+            temporal_profiles=["gaussian"],
+            temporal_shoulders=[None],
+            radial_profiles=["smooth_box", "raised_cosine_annulus"],
+            support_shell_radial_widths=[None],
+            clock_lapse_ratios=[0.375],
+            rail_stretch_ratios=[0.0],
+            throat_capacity_ratios=[0.0],
+        )
+        config = {
+            "variant": "tuned_w0569_eta200",
+            "service_factor": 5.0,
+            "smoothness_order": 1,
+            "support_shell_inner_multiplier": 0.65,
+            "support_shell_radial_multiplier": 1.20,
+            "support_shell_radial_width": None,
+            "packet_exclusion": 1.0,
+        }
+        grid = {
+            "ns": 9,
+            "nl": 13,
+            "s_min": -0.96,
+            "s_max": 0.4,
+            "l_min": -2.8,
+            "l_max": 2.8,
+        }
+
+        specs = overlay_sweep._apply_delta_beta_normalization(
+            overlay_sweep._build_specs(args),
+            grid,
+            config,
+            target_delta_beta_abs_max=0.2,
+        )
+
+        self.assertEqual(len(specs), 2)
+        self.assertEqual({spec["amplitude_normalization"] for spec in specs}, {"target_delta_beta_abs_max"})
+        self.assertEqual({spec["target_delta_beta_abs_max"] for spec in specs}, {0.2})
+        self.assertNotEqual(specs[0]["abs_amplitude"], specs[1]["abs_amplitude"])
+        for spec in specs:
+            self.assertAlmostEqual(spec["abs_amplitude"] * spec["window_max_for_normalization"], 0.2)
+            self.assertAlmostEqual(spec["clock_lapse_log_gain"], spec["amplitude"] * spec["clock_lapse_ratio"])
+            self.assertIn("tdb0p2", overlay_sweep._case_slug(spec))
+
+    def test_source_overlay_sweep_expands_multiple_delta_beta_targets(self):
+        args = SimpleNamespace(
+            amplitudes=[0.5],
+            signs=["pos"],
+            catch_leads=[1.45],
+            temporal_widths=[0.30],
+            temporal_profiles=["gaussian"],
+            temporal_shoulders=[None],
+            radial_profiles=["raised_cosine_annulus"],
+            support_shell_radial_widths=[0.48125],
+            clock_lapse_ratios=[0.375],
+            rail_stretch_ratios=[0.0],
+            throat_capacity_ratios=[0.0],
+        )
+        config = {
+            "variant": "tuned_w0569_eta200",
+            "service_factor": 5.0,
+            "smoothness_order": 1,
+            "support_shell_inner_multiplier": 0.65,
+            "support_shell_radial_multiplier": 1.20,
+            "support_shell_radial_width": None,
+            "packet_exclusion": 1.0,
+        }
+        grid = {
+            "ns": 9,
+            "nl": 13,
+            "s_min": -0.96,
+            "s_max": 0.4,
+            "l_min": -2.8,
+            "l_max": 2.8,
+        }
+        base_specs = overlay_sweep._build_specs(args)
+
+        specs = [
+            spec
+            for target in [0.15, 0.25]
+            for spec in overlay_sweep._apply_delta_beta_normalization(base_specs, grid, config, target)
+        ]
+
+        self.assertEqual(len(specs), 2)
+        self.assertEqual({spec["target_delta_beta_abs_max"] for spec in specs}, {0.15, 0.25})
+        self.assertEqual(len({overlay_sweep._case_slug(spec) for spec in specs}), 2)
+
+    def test_support_shell_shape_defaults_are_compatible_and_profiles_change_window(self):
+        default_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+        )
+        explicit_default_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+            support_shell_temporal_profile="gaussian",
+            support_shell_radial_profile="smooth_box",
+        )
+        shaped_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            support_shell_overlay_enabled=True,
+            support_shell_temporal_profile="minjerk_pulse",
+            support_shell_radial_profile="raised_cosine_annulus",
+        )
+
+        s = -0.50
+        l = 1.55
+        default_window = source_ledger.support_shell_overlay_window(s, l, default_case.params)
+        explicit_default_window = source_ledger.support_shell_overlay_window(s, l, explicit_default_case.params)
+        shaped_window = source_ledger.support_shell_overlay_window(s, l, shaped_case.params)
+
+        self.assertAlmostEqual(default_window, explicit_default_window)
+        self.assertGreater(default_window, 0.0)
+        self.assertGreater(shaped_window, 0.0)
+        self.assertNotAlmostEqual(default_window, shaped_window)
 
 
 if __name__ == "__main__":

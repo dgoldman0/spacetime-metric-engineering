@@ -17,7 +17,15 @@ import sys
 if str(PACKAGE_ROOT) not in sys.path:
     sys.path.insert(0, str(PACKAGE_ROOT))
 
-from adm_harness.source_ledger import CHANNELS, branch_case, compute_case, summarize, summarize_safety, write_manifest  # noqa: E402
+from adm_harness.source_ledger import (  # noqa: E402
+    CHANNELS,
+    branch_case,
+    compute_case,
+    summarize,
+    summarize_safety,
+    support_shell_overlay_window,
+    write_manifest,
+)
 
 
 DEFAULT_S_MIN = -0.35
@@ -31,23 +39,37 @@ def _token(value: float) -> str:
 
 
 def _case_slug(spec: dict[str, Any]) -> str:
-    return "_".join([
+    temporal_shoulder = spec.get("temporal_shoulder")
+    radial_width = spec.get("support_shell_radial_width")
+    parts = [
         f"a{_token(spec['abs_amplitude'])}",
         str(spec["sign"]),
         f"lead{_token(spec['catch_lead'])}",
         f"tw{_token(spec['temporal_width'])}",
+        f"tp{spec['temporal_profile']}",
+        f"ts{_token(temporal_shoulder) if temporal_shoulder is not None else 'none'}",
+        f"rp{spec['radial_profile']}",
+        f"rw{_token(radial_width) if radial_width is not None else 'default'}",
         f"cl{_token(spec['clock_lapse_ratio'])}",
         f"rs{_token(spec['rail_stretch_ratio'])}",
         f"tc{_token(spec['throat_capacity_ratio'])}",
-    ])
+    ]
+    if spec.get("target_delta_beta_abs_max") is not None:
+        parts.append(f"tdb{_token(spec['target_delta_beta_abs_max'])}")
+    return "_".join(parts)
 
 
 def _sort_cols() -> list[str]:
     return [
+        "nominal_abs_amplitude",
         "abs_amplitude",
         "sign",
         "catch_lead",
         "temporal_width",
+        "temporal_profile",
+        "temporal_shoulder",
+        "radial_profile",
+        "support_shell_radial_width",
         "clock_lapse_ratio",
         "rail_stretch_ratio",
         "throat_capacity_ratio",
@@ -329,23 +351,120 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
             amplitude = sign * float(abs_amplitude)
             for catch_lead in args.catch_leads:
                 for temporal_width in args.temporal_widths:
-                    for clock_lapse_ratio in args.clock_lapse_ratios:
-                        for rail_stretch_ratio in args.rail_stretch_ratios:
-                            for throat_capacity_ratio in args.throat_capacity_ratios:
-                                specs.append({
-                                    "abs_amplitude": float(abs_amplitude),
-                                    "sign": sign_name,
-                                    "amplitude": amplitude,
-                                    "catch_lead": float(catch_lead),
-                                    "temporal_width": float(temporal_width),
-                                    "clock_lapse_ratio": float(clock_lapse_ratio),
-                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
-                                    "rail_stretch_ratio": float(rail_stretch_ratio),
-                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
-                                    "throat_capacity_ratio": float(throat_capacity_ratio),
-                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
-                                })
+                    for temporal_profile in args.temporal_profiles:
+                        for temporal_shoulder in args.temporal_shoulders:
+                            for radial_profile in args.radial_profiles:
+                                for radial_width in args.support_shell_radial_widths:
+                                    for clock_lapse_ratio in args.clock_lapse_ratios:
+                                        for rail_stretch_ratio in args.rail_stretch_ratios:
+                                            for throat_capacity_ratio in args.throat_capacity_ratios:
+                                                specs.append({
+                                                    "nominal_abs_amplitude": float(abs_amplitude),
+                                                    "abs_amplitude": float(abs_amplitude),
+                                                    "sign": sign_name,
+                                                    "amplitude": amplitude,
+                                                    "catch_lead": float(catch_lead),
+                                                    "temporal_width": float(temporal_width),
+                                                    "temporal_profile": str(temporal_profile),
+                                                    "temporal_shoulder": None if temporal_shoulder is None else float(temporal_shoulder),
+                                                    "radial_profile": str(radial_profile),
+                                                    "support_shell_radial_width": None if radial_width is None else float(radial_width),
+                                                    "clock_lapse_ratio": float(clock_lapse_ratio),
+                                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
+                                                    "rail_stretch_ratio": float(rail_stretch_ratio),
+                                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
+                                                    "throat_capacity_ratio": float(throat_capacity_ratio),
+                                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
+                                                    "amplitude_normalization": "none",
+                                                    "target_delta_beta_abs_max": None,
+                                                    "window_max_for_normalization": None,
+                                                })
     return specs
+
+
+def _normalization_key(spec: dict[str, Any], config: dict[str, Any]) -> tuple[Any, ...]:
+    return (
+        spec["catch_lead"],
+        spec["temporal_width"],
+        spec["temporal_profile"],
+        spec["temporal_shoulder"],
+        spec["radial_profile"],
+        spec["support_shell_radial_width"],
+        config["variant"],
+        config["service_factor"],
+        config["smoothness_order"],
+        config["support_shell_inner_multiplier"],
+        config["support_shell_radial_multiplier"],
+        config["support_shell_radial_width"],
+        config["packet_exclusion"],
+    )
+
+
+def _window_max_for_spec(spec: dict[str, Any], grid: dict[str, Any], config: dict[str, Any]) -> float:
+    overlay_case = branch_case(
+        config["variant"],
+        config["service_factor"],
+        support_shell_overlay_enabled=True,
+        support_shell_amplitude=1.0,
+        support_shell_catch_lead=spec["catch_lead"],
+        support_shell_temporal_width=spec["temporal_width"],
+        support_shell_temporal_profile=spec["temporal_profile"],
+        support_shell_temporal_shoulder=spec["temporal_shoulder"],
+        support_shell_radial_profile=spec["radial_profile"],
+        support_shell_smoothness_order=config["smoothness_order"],
+        support_shell_inner_multiplier=config["support_shell_inner_multiplier"],
+        support_shell_radial_multiplier=config["support_shell_radial_multiplier"],
+        support_shell_radial_width=spec["support_shell_radial_width"],
+        support_shell_packet_exclusion=config["packet_exclusion"],
+    )
+    params = overlay_case.params
+    s_values = np.linspace(float(grid["s_min"]), float(grid["s_max"]), int(grid["ns"]))
+    l_values = np.linspace(float(grid["l_min"]), float(grid["l_max"]), int(grid["nl"]))
+    peak = 0.0
+    for s in s_values:
+        for l in l_values:
+            peak = max(peak, abs(float(support_shell_overlay_window(float(s), float(l), params))))
+    return peak
+
+
+def _apply_delta_beta_normalization(
+    specs: list[dict[str, Any]],
+    grid: dict[str, Any],
+    config: dict[str, Any],
+    target_delta_beta_abs_max: float | None,
+) -> list[dict[str, Any]]:
+    if target_delta_beta_abs_max is None:
+        return specs
+    target = abs(float(target_delta_beta_abs_max))
+    if target <= 0.0:
+        raise ValueError("--target-delta-beta-abs-max must be positive")
+
+    window_cache: dict[tuple[Any, ...], float] = {}
+    normalized: list[dict[str, Any]] = []
+    for spec in specs:
+        key = _normalization_key(spec, config)
+        window_max = window_cache.get(key)
+        if window_max is None:
+            window_max = _window_max_for_spec(spec, grid, config)
+            window_cache[key] = window_max
+        if window_max <= 0.0 or not math.isfinite(window_max):
+            raise ValueError(f"Cannot normalize support shell with zero window max: {spec}")
+        abs_amplitude = target / window_max
+        sign = 1.0 if spec["sign"] == "pos" else -1.0
+        amplitude = sign * abs_amplitude
+        next_spec = {
+            **spec,
+            "abs_amplitude": abs_amplitude,
+            "amplitude": amplitude,
+            "clock_lapse_log_gain": amplitude * float(spec["clock_lapse_ratio"]),
+            "rail_stretch_log_gain": amplitude * float(spec["rail_stretch_ratio"]),
+            "throat_capacity_log_gain": amplitude * float(spec["throat_capacity_ratio"]),
+            "amplitude_normalization": "target_delta_beta_abs_max",
+            "target_delta_beta_abs_max": target,
+            "window_max_for_normalization": window_max,
+        }
+        normalized.append(next_spec)
+    return normalized
 
 
 def _overlay_config(args: argparse.Namespace) -> dict[str, Any]:
@@ -373,10 +492,13 @@ def _run_overlay_spec(
         support_shell_amplitude=spec["amplitude"],
         support_shell_catch_lead=spec["catch_lead"],
         support_shell_temporal_width=spec["temporal_width"],
+        support_shell_temporal_profile=spec["temporal_profile"],
+        support_shell_temporal_shoulder=spec["temporal_shoulder"],
+        support_shell_radial_profile=spec["radial_profile"],
         support_shell_smoothness_order=config["smoothness_order"],
         support_shell_inner_multiplier=config["support_shell_inner_multiplier"],
         support_shell_radial_multiplier=config["support_shell_radial_multiplier"],
-        support_shell_radial_width=config["support_shell_radial_width"],
+        support_shell_radial_width=spec["support_shell_radial_width"],
         support_shell_packet_exclusion=config["packet_exclusion"],
         support_shell_clock_lapse_log_gain=spec["clock_lapse_log_gain"],
         support_shell_rail_stretch_log_gain=spec["rail_stretch_log_gain"],
@@ -445,9 +567,40 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--service-factor", type=float, default=5.0)
     parser.add_argument("--outdir", type=Path, default=Path("runs/source_overlay_sweep_v5"))
     parser.add_argument("--amplitudes", type=float, nargs="+", default=[1.0e-7, 1.0e-6, 1.0e-5, 1.0e-4, 1.0e-3, 1.0e-2])
+    parser.add_argument(
+        "--target-delta-beta-abs-max",
+        type=float,
+        nargs="+",
+        default=None,
+        help=(
+            "Normalize each case amplitude so max |support_shell_delta_beta| matches one or more targets. "
+            "This gives fair shape comparisons when radial/temporal windows have different peak values."
+        ),
+    )
     parser.add_argument("--signs", choices=["pos", "neg"], nargs="+", default=["pos", "neg"])
     parser.add_argument("--catch-leads", type=float, nargs="+", default=[1.0])
     parser.add_argument("--temporal-widths", type=float, nargs="+", default=[0.35])
+    parser.add_argument(
+        "--temporal-profiles",
+        choices=["gaussian", "raised_cosine", "minjerk_pulse", "smooth_box"],
+        nargs="+",
+        default=["gaussian"],
+        help="Support-shell temporal window families.",
+    )
+    parser.add_argument(
+        "--temporal-shoulders",
+        type=float,
+        nargs="+",
+        default=[None],
+        help="Optional temporal shoulder widths for smooth_box profiles.",
+    )
+    parser.add_argument(
+        "--radial-profiles",
+        choices=["smooth_box", "gaussian_annulus", "raised_cosine_annulus"],
+        nargs="+",
+        default=["smooth_box"],
+        help="Support-shell radial window families.",
+    )
     parser.add_argument(
         "--clock-lapse-ratios",
         type=float,
@@ -473,6 +626,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--support-shell-inner-multiplier", type=float, default=0.65)
     parser.add_argument("--support-shell-radial-multiplier", type=float, default=1.20)
     parser.add_argument("--support-shell-radial-width", type=float, default=None)
+    parser.add_argument(
+        "--support-shell-radial-widths",
+        type=float,
+        nargs="+",
+        default=None,
+        help="Optional sweep list for radial shoulder/sigma/half-width values.",
+    )
     parser.add_argument("--packet-exclusion", type=float, default=1.0)
     parser.add_argument("--ns", type=int, default=None)
     parser.add_argument("--nl", type=int, default=73)
@@ -500,10 +660,13 @@ def main() -> int:
         support_shell_overlay_enabled=True,
         support_shell_catch_lead=args.catch_leads[0],
         support_shell_temporal_width=args.temporal_widths[0],
+        support_shell_temporal_profile=args.temporal_profiles[0],
+        support_shell_temporal_shoulder=args.temporal_shoulders[0],
+        support_shell_radial_profile=args.radial_profiles[0],
         support_shell_smoothness_order=args.smoothness_order,
         support_shell_inner_multiplier=args.support_shell_inner_multiplier,
         support_shell_radial_multiplier=args.support_shell_radial_multiplier,
-        support_shell_radial_width=args.support_shell_radial_width,
+        support_shell_radial_width=(args.support_shell_radial_widths or [args.support_shell_radial_width])[0],
         support_shell_packet_exclusion=args.packet_exclusion,
         support_shell_clock_lapse_log_gain=0.0,
         support_shell_rail_stretch_log_gain=0.0,
@@ -512,9 +675,21 @@ def main() -> int:
     grid = _resolve_grid(args, grid_case)
     base_case = branch_case(args.variant, args.service_factor)
     base_points = compute_case(base_case, progress=not args.quiet, **grid)
-    specs = _build_specs(args)
-    case_output = bool(args.case_output or args.resume)
+    args.support_shell_radial_widths = args.support_shell_radial_widths or [args.support_shell_radial_width]
     config = _overlay_config(args)
+    base_specs = _build_specs(args)
+    target_delta_beta_abs_maxs = args.target_delta_beta_abs_max or [None]
+    specs = [
+        spec
+        for target_delta_beta_abs_max in target_delta_beta_abs_maxs
+        for spec in _apply_delta_beta_normalization(
+            base_specs,
+            grid,
+            config,
+            target_delta_beta_abs_max,
+        )
+    ]
+    case_output = bool(args.case_output or args.resume)
 
     summary_rows: list[dict[str, Any]] = []
     channel_rows: list[dict[str, Any]] = []
@@ -562,7 +737,8 @@ def main() -> int:
                 if not args.quiet:
                     print(
                         f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
-                        f"tw={spec['temporal_width']:g} cl={spec['clock_lapse_log_gain']:g} "
+                        f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
+                        f"cl={spec['clock_lapse_log_gain']:g} "
                         f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
                         flush=True,
                     )
@@ -583,7 +759,8 @@ def main() -> int:
             if not args.quiet:
                 print(
                     f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
-                    f"tw={spec['temporal_width']:g} cl={spec['clock_lapse_log_gain']:g} "
+                    f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
+                    f"cl={spec['clock_lapse_log_gain']:g} "
                     f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
                     flush=True,
                 )
@@ -601,11 +778,11 @@ def main() -> int:
     channel_df = pd.DataFrame(channel_rows)
     shell_throat_df = pd.DataFrame(shell_throat_rows)
     if not summary_df.empty:
-        summary_df = summary_df.sort_values(sort_cols)
+        summary_df = summary_df.sort_values([col for col in sort_cols if col in summary_df.columns])
     if not channel_df.empty:
-        channel_df = channel_df.sort_values([*sort_cols, "channel"])
+        channel_df = channel_df.sort_values([col for col in [*sort_cols, "channel"] if col in channel_df.columns])
     if not shell_throat_df.empty:
-        shell_throat_df = shell_throat_df.sort_values([*sort_cols, "channel"])
+        shell_throat_df = shell_throat_df.sort_values([col for col in [*sort_cols, "channel"] if col in shell_throat_df.columns])
     failure_df = pd.DataFrame(failures)
 
     summary_path = args.outdir / "source_overlay_sweep_summary.csv"
@@ -616,7 +793,11 @@ def main() -> int:
     summary_df.to_csv(summary_path, index=False)
     channel_df.to_csv(channel_path, index=False)
     shell_throat_df.to_csv(shell_throat_path, index=False)
-    objective_df = summary_df.sort_values(["source_objective_score", *sort_cols]) if not summary_df.empty else summary_df
+    objective_df = (
+        summary_df.sort_values([col for col in ["source_objective_score", *sort_cols] if col in summary_df.columns])
+        if not summary_df.empty
+        else summary_df
+    )
     objective_df.to_csv(objective_path, index=False)
     failure_df.to_csv(failure_path, index=False)
 
@@ -625,9 +806,13 @@ def main() -> int:
         "service_factor": args.service_factor,
         "grid": grid,
         "amplitudes": args.amplitudes,
+        "target_delta_beta_abs_max": args.target_delta_beta_abs_max,
         "signs": args.signs,
         "catch_leads": args.catch_leads,
         "temporal_widths": args.temporal_widths,
+        "temporal_profiles": args.temporal_profiles,
+        "temporal_shoulders": args.temporal_shoulders,
+        "radial_profiles": args.radial_profiles,
         "clock_lapse_ratios": args.clock_lapse_ratios,
         "rail_stretch_ratios": args.rail_stretch_ratios,
         "throat_capacity_ratios": args.throat_capacity_ratios,
@@ -635,6 +820,7 @@ def main() -> int:
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,
         "support_shell_radial_multiplier": args.support_shell_radial_multiplier,
         "support_shell_radial_width": args.support_shell_radial_width,
+        "support_shell_radial_widths": args.support_shell_radial_widths,
         "packet_exclusion": args.packet_exclusion,
         "jobs": int(args.jobs),
         "resume": bool(args.resume),

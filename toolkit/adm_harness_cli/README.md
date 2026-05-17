@@ -162,6 +162,49 @@ python scripts/run_source_overlay_sweep.py \
 
 The throat-capacity ratio is a log-gain against the signed carrying-flow amplitude applied to `gamma_omega`. The summary table includes `support_shell_delta_gamma_omega_abs_max`, channel ratios for angular pressure, named source-objective sub-scores, and `source_objective_score`. The sorted objective table is written to `source_overlay_sweep_objective_ranking.csv`.
 
+Shape-selection sweeps can vary the support-shell temporal and radial window families while keeping the same coupled metric amplitudes:
+
+```bash
+python scripts/run_source_overlay_sweep.py \
+  --outdir runs/source_overlay_sweep_v5_shape_screen \
+  --amplitudes 0.5 \
+  --signs pos \
+  --catch-leads 1.45 1.55 \
+  --temporal-widths 0.25 0.30 0.35 \
+  --temporal-profiles gaussian raised_cosine minjerk_pulse \
+  --radial-profiles smooth_box raised_cosine_annulus \
+  --clock-lapse-ratios 0.375 0.5 \
+  --rail-stretch-ratios 0 \
+  --throat-capacity-ratios 0 \
+  --jobs 4 \
+  --case-output \
+  --resume
+```
+
+The default `gaussian` temporal profile and `smooth_box` radial profile preserve the earlier support-shell window. Compact temporal profiles are normalized against the active catch/rematch edge, so they remain usable when the nominal support-shell center is earlier than the catch/rematch band. The radial profile options are `smooth_box`, `gaussian_annulus`, and `raised_cosine_annulus`.
+
+For fair shape comparisons, use `--target-delta-beta-abs-max` to normalize each case to the same effective peak support-shell carrying-flow strength:
+
+```bash
+python scripts/run_source_overlay_sweep.py \
+  --outdir runs/source_overlay_sweep_v5_shape_normalized \
+  --amplitudes 0.5 \
+  --target-delta-beta-abs-max 0.15 0.20 0.25 0.30 0.35 \
+  --signs pos \
+  --catch-leads 1.45 1.55 \
+  --temporal-widths 0.25 0.30 \
+  --temporal-profiles gaussian minjerk_pulse \
+  --radial-profiles smooth_box raised_cosine_annulus \
+  --clock-lapse-ratios 0.375 0.5 \
+  --rail-stretch-ratios 0 \
+  --throat-capacity-ratios 0 \
+  --jobs 4 \
+  --case-output \
+  --resume
+```
+
+The nominal value passed through `--amplitudes` remains in the output as `nominal_abs_amplitude`; the normalized per-case value is written as `abs_amplitude`, with each matching target and measured window peak recorded in `target_delta_beta_abs_max` and `window_max_for_normalization`.
+
 Overlay sweeps also write `source_overlay_sweep_shell_throat_overlap.csv`. This table measures each demanded-source channel inside the band where the support-shell window overlaps the support/throat gradient. It is intended to catch warp-shell/throat-mismatch behavior: radial-null, radial-current, angular-pressure, or point-peak growth concentrated in the active shell/throat overlap rather than distributed across the full grid.
 
 ## Send results back

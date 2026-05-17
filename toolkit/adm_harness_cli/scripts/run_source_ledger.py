@@ -48,6 +48,9 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "support_shell_amplitude": args.support_shell_amplitude,
         "support_shell_catch_lead": args.support_shell_catch_lead,
         "support_shell_temporal_width": args.support_shell_temporal_width,
+        "support_shell_temporal_profile": args.support_shell_temporal_profile,
+        "support_shell_temporal_shoulder": args.support_shell_temporal_shoulder,
+        "support_shell_radial_profile": args.support_shell_radial_profile,
         "support_shell_smoothness_order": args.support_shell_smoothness_order,
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,
         "support_shell_radial_multiplier": args.support_shell_radial_multiplier,
@@ -145,6 +148,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--support-shell-amplitude", type=float, default=None)
     parser.add_argument("--support-shell-catch-lead", type=float, default=None)
     parser.add_argument("--support-shell-temporal-width", type=float, default=None)
+    parser.add_argument(
+        "--support-shell-temporal-profile",
+        choices=["gaussian", "raised_cosine", "minjerk_pulse", "smooth_box"],
+        default=None,
+    )
+    parser.add_argument("--support-shell-temporal-shoulder", type=float, default=None)
+    parser.add_argument(
+        "--support-shell-radial-profile",
+        choices=["smooth_box", "gaussian_annulus", "raised_cosine_annulus"],
+        default=None,
+    )
     parser.add_argument("--support-shell-smoothness-order", type=int, default=None)
     parser.add_argument("--support-shell-inner-multiplier", type=float, default=None)
     parser.add_argument("--support-shell-radial-multiplier", type=float, default=None)
