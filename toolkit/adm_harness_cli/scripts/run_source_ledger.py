@@ -61,6 +61,10 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "support_shell_clock_lapse_log_gain": args.support_shell_clock_lapse_log_gain,
         "support_shell_rail_stretch_log_gain": args.support_shell_rail_stretch_log_gain,
         "support_shell_throat_capacity_log_gain": args.support_shell_throat_capacity_log_gain,
+        "standing_support_packet_exclusion": args.standing_support_packet_exclusion,
+        "standing_support_packet_exclusion_radius_multiplier": args.standing_support_packet_exclusion_radius_multiplier,
+        "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
+        "standing_support_packet_exclusion_schedule": args.standing_support_packet_exclusion_schedule,
     }
 
 
@@ -169,6 +173,20 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--support-shell-clock-lapse-log-gain", type=float, default=None)
     parser.add_argument("--support-shell-rail-stretch-log-gain", type=float, default=None)
     parser.add_argument("--support-shell-throat-capacity-log-gain", type=float, default=None)
+
+    parser.add_argument(
+        "--standing-support-packet-exclusion",
+        type=float,
+        default=None,
+        help="Experimental carve-out strength applied to the standing support bump under the packet tube.",
+    )
+    parser.add_argument("--standing-support-packet-exclusion-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-exclusion-schedule",
+        choices=["live_only", "entry_catch_release", "always"],
+        default=None,
+    )
 
     parser.add_argument(
         "--reference",

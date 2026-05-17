@@ -31,6 +31,7 @@ from adm_harness.source_ledger import (  # noqa: E402
 DEFAULT_S_MIN = -0.35
 DEFAULT_S_MAX = 1.65
 DEFAULT_S_STEP = 0.05
+HARD_EXPOSURE_CHANNELS = ["neg_Tkk_radial", "abs_p_l", "neg_rho_euler", "neg_rho_packet"]
 
 
 def _token(value: float) -> str:
@@ -53,6 +54,10 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"cl{_token(spec['clock_lapse_ratio'])}",
         f"rs{_token(spec['rail_stretch_ratio'])}",
         f"tc{_token(spec['throat_capacity_ratio'])}",
+        f"wc{_token(spec['standing_support_packet_exclusion'])}",
+        f"wcr{_token(spec['standing_support_packet_exclusion_radius_multiplier'])}",
+        f"wcw{_token(spec['standing_support_packet_exclusion_width_multiplier'])}",
+        f"wcs{spec['standing_support_packet_exclusion_schedule']}",
     ]
     if spec.get("target_delta_beta_abs_max") is not None:
         parts.append(f"tdb{_token(spec['target_delta_beta_abs_max'])}")
@@ -73,6 +78,10 @@ def _sort_cols() -> list[str]:
         "clock_lapse_ratio",
         "rail_stretch_ratio",
         "throat_capacity_ratio",
+        "standing_support_packet_exclusion",
+        "standing_support_packet_exclusion_radius_multiplier",
+        "standing_support_packet_exclusion_width_multiplier",
+        "standing_support_packet_exclusion_schedule",
     ]
 
 
@@ -157,6 +166,69 @@ def _add_source_objective(summary: dict[str, Any]) -> None:
             + shell_throat_score
         ),
     })
+
+
+def _add_worldtube_exposure_summary(summary: dict[str, Any], points: pd.DataFrame) -> None:
+    live = points["inside_packet_live"].astype(bool)
+    geom = points["inside_packet_geom"].astype(bool)
+    packet_in_support = points["region"].astype(str).eq("packet_in_support")
+    active_shell = points["support_shell_window"].astype(float).abs() > 1.0e-3
+
+    max_live_fraction = 0.0
+    max_geom_fraction = 0.0
+    top_hard_live = 0
+    top_hard_geom = 0
+    hard_top_regions: list[str] = []
+    hard_top_stages: list[str] = []
+    for channel in CHANNELS:
+        burden_col = f"volume_burden_{channel}"
+        total = float(np.nansum(points[burden_col].astype(float).to_numpy()))
+        live_burden = float(np.nansum(points.loc[live, burden_col].astype(float).to_numpy()))
+        geom_burden = float(np.nansum(points.loc[geom, burden_col].astype(float).to_numpy()))
+        packet_support_burden = float(np.nansum(points.loc[packet_in_support, burden_col].astype(float).to_numpy()))
+        live_fraction = live_burden / total if total > 0.0 else math.nan
+        geom_fraction = geom_burden / total if total > 0.0 else math.nan
+        summary[f"{channel}_live_packet_fraction_absolute"] = live_fraction
+        summary[f"{channel}_geometric_packet_fraction_absolute"] = geom_fraction
+        summary[f"{channel}_packet_in_support_burden"] = packet_support_burden
+        summary[f"{channel}_packet_in_support_fraction"] = packet_support_burden / total if total > 0.0 else math.nan
+        if math.isfinite(live_fraction):
+            max_live_fraction = max(max_live_fraction, live_fraction)
+        if math.isfinite(geom_fraction):
+            max_geom_fraction = max(max_geom_fraction, geom_fraction)
+
+        if channel in HARD_EXPOSURE_CHANNELS and len(points):
+            top = points.sort_values(burden_col, ascending=False).iloc[0]
+            if bool(top["inside_packet_live"]):
+                top_hard_live += 1
+            if bool(top["inside_packet_geom"]):
+                top_hard_geom += 1
+            hard_top_regions.append(str(top["region"]))
+            hard_top_stages.append(str(top["stage"]))
+
+    summary["max_live_packet_fraction_any_channel_absolute"] = max_live_fraction
+    summary["max_geometric_packet_fraction_any_channel_absolute"] = max_geom_fraction
+    summary["top_hard_channels_in_live_packet"] = top_hard_live
+    summary["top_hard_channels_in_geometric_packet"] = top_hard_geom
+    summary["live_packet_active_shell_points"] = int((live & active_shell).sum())
+    summary["geometric_packet_active_shell_points"] = int((geom & active_shell).sum())
+    summary["hard_top_point_regions"] = ";".join(hard_top_regions)
+    summary["hard_top_point_stages"] = ";".join(hard_top_stages)
+
+    packet_unsafe = 10.0 if int(summary.get("positive_packet_norm_live", 0)) > 0 else 0.0
+    live_tkk = _finite(summary.get("neg_Tkk_radial_live_packet_fraction_absolute"))
+    live_pl = _finite(summary.get("abs_p_l_live_packet_fraction_absolute"))
+    live_density = _finite(summary.get("neg_rho_packet_live_packet_fraction_absolute"))
+    active_shell_penalty = 1.0 if int(summary["live_packet_active_shell_points"]) > 0 else 0.0
+    top_hard_penalty = float(top_hard_live)
+    summary["worldtube_exposure_score"] = (
+        packet_unsafe
+        + 4.0 * live_tkk
+        + 4.0 * live_pl
+        + 2.0 * live_density
+        + top_hard_penalty
+        + active_shell_penalty
+    )
 
 
 def _compare_channels(base_compact: pd.DataFrame, overlay_compact: pd.DataFrame, spec: dict[str, Any]) -> list[dict[str, Any]]:
@@ -339,12 +411,17 @@ def _compare_case(
         summary[f"{channel}_live_delta"] = row["live_packet_burden_delta"]
         summary[f"{channel}_live_ratio"] = row["live_packet_burden_ratio"]
         summary[f"{channel}_peak_ratio"] = row["point_peak_ratio"]
+    _add_worldtube_exposure_summary(summary, overlay_points)
     _add_source_objective(summary)
     return summary, channel_rows, shell_throat_rows
 
 
 def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     specs: list[dict[str, Any]] = []
+    support_carves = getattr(args, "standing_support_packet_exclusions", [0.0])
+    support_carve_radii = getattr(args, "standing_support_packet_exclusion_radius_multipliers", [1.0])
+    support_carve_widths = getattr(args, "standing_support_packet_exclusion_width_multipliers", [1.0])
+    support_carve_schedules = getattr(args, "standing_support_packet_exclusion_schedules", ["live_only"])
     for abs_amplitude in args.amplitudes:
         for sign_name in args.signs:
             sign = 1.0 if sign_name == "pos" else -1.0
@@ -358,27 +435,35 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
                                     for clock_lapse_ratio in args.clock_lapse_ratios:
                                         for rail_stretch_ratio in args.rail_stretch_ratios:
                                             for throat_capacity_ratio in args.throat_capacity_ratios:
-                                                specs.append({
-                                                    "nominal_abs_amplitude": float(abs_amplitude),
-                                                    "abs_amplitude": float(abs_amplitude),
-                                                    "sign": sign_name,
-                                                    "amplitude": amplitude,
-                                                    "catch_lead": float(catch_lead),
-                                                    "temporal_width": float(temporal_width),
-                                                    "temporal_profile": str(temporal_profile),
-                                                    "temporal_shoulder": None if temporal_shoulder is None else float(temporal_shoulder),
-                                                    "radial_profile": str(radial_profile),
-                                                    "support_shell_radial_width": None if radial_width is None else float(radial_width),
-                                                    "clock_lapse_ratio": float(clock_lapse_ratio),
-                                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
-                                                    "rail_stretch_ratio": float(rail_stretch_ratio),
-                                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
-                                                    "throat_capacity_ratio": float(throat_capacity_ratio),
-                                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
-                                                    "amplitude_normalization": "none",
-                                                    "target_delta_beta_abs_max": None,
-                                                    "window_max_for_normalization": None,
-                                                })
+                                                for support_carve in support_carves:
+                                                    for support_carve_radius in support_carve_radii:
+                                                        for support_carve_width in support_carve_widths:
+                                                            for support_carve_schedule in support_carve_schedules:
+                                                                specs.append({
+                                                                    "nominal_abs_amplitude": float(abs_amplitude),
+                                                                    "abs_amplitude": float(abs_amplitude),
+                                                                    "sign": sign_name,
+                                                                    "amplitude": amplitude,
+                                                                    "catch_lead": float(catch_lead),
+                                                                    "temporal_width": float(temporal_width),
+                                                                    "temporal_profile": str(temporal_profile),
+                                                                    "temporal_shoulder": None if temporal_shoulder is None else float(temporal_shoulder),
+                                                                    "radial_profile": str(radial_profile),
+                                                                    "support_shell_radial_width": None if radial_width is None else float(radial_width),
+                                                                    "clock_lapse_ratio": float(clock_lapse_ratio),
+                                                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
+                                                                    "rail_stretch_ratio": float(rail_stretch_ratio),
+                                                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
+                                                                    "throat_capacity_ratio": float(throat_capacity_ratio),
+                                                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
+                                                                    "standing_support_packet_exclusion": float(support_carve),
+                                                                    "standing_support_packet_exclusion_radius_multiplier": float(support_carve_radius),
+                                                                    "standing_support_packet_exclusion_width_multiplier": float(support_carve_width),
+                                                                    "standing_support_packet_exclusion_schedule": str(support_carve_schedule),
+                                                                    "amplitude_normalization": "none",
+                                                                    "target_delta_beta_abs_max": None,
+                                                                    "window_max_for_normalization": None,
+                                                                })
     return specs
 
 
@@ -503,6 +588,10 @@ def _run_overlay_spec(
         support_shell_clock_lapse_log_gain=spec["clock_lapse_log_gain"],
         support_shell_rail_stretch_log_gain=spec["rail_stretch_log_gain"],
         support_shell_throat_capacity_log_gain=spec["throat_capacity_log_gain"],
+        standing_support_packet_exclusion=spec["standing_support_packet_exclusion"],
+        standing_support_packet_exclusion_radius_multiplier=spec["standing_support_packet_exclusion_radius_multiplier"],
+        standing_support_packet_exclusion_width_multiplier=spec["standing_support_packet_exclusion_width_multiplier"],
+        standing_support_packet_exclusion_schedule=spec["standing_support_packet_exclusion_schedule"],
     )
     overlay_points = compute_case(overlay_case, progress=False, **grid)
     return _compare_case(base_points, overlay_points, spec)
@@ -634,6 +723,34 @@ def build_parser() -> argparse.ArgumentParser:
         help="Optional sweep list for radial shoulder/sigma/half-width values.",
     )
     parser.add_argument("--packet-exclusion", type=float, default=1.0)
+    parser.add_argument(
+        "--standing-support-packet-exclusions",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Experimental standing-support packet carve-out strengths.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-radius-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="Radius multipliers for the standing-support packet carve-out window.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-width-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="Transition-width multipliers for the standing-support packet carve-out window.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-schedules",
+        choices=["live_only", "entry_catch_release", "always"],
+        nargs="+",
+        default=["live_only"],
+        help="Temporal schedules for the standing-support packet carve-out window.",
+    )
     parser.add_argument("--ns", type=int, default=None)
     parser.add_argument("--nl", type=int, default=73)
     parser.add_argument("--s-min", type=float, default=None)
@@ -739,7 +856,8 @@ def main() -> int:
                         f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
                         f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
                         f"cl={spec['clock_lapse_log_gain']:g} "
-                        f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
+                        f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
+                        f"wc={spec['standing_support_packet_exclusion']:g}",
                         flush=True,
                     )
                 try:
@@ -761,7 +879,8 @@ def main() -> int:
                     f"[{completed}/{total}] amp={spec['amplitude']:g} lead={spec['catch_lead']:g} "
                     f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
                     f"cl={spec['clock_lapse_log_gain']:g} "
-                    f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g}",
+                    f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
+                    f"wc={spec['standing_support_packet_exclusion']:g}",
                     flush=True,
                 )
             try:
@@ -789,6 +908,7 @@ def main() -> int:
     channel_path = args.outdir / "source_overlay_sweep_channel_deltas.csv"
     shell_throat_path = args.outdir / "source_overlay_sweep_shell_throat_overlap.csv"
     objective_path = args.outdir / "source_overlay_sweep_objective_ranking.csv"
+    worldtube_objective_path = args.outdir / "source_overlay_sweep_worldtube_ranking.csv"
     failure_path = args.outdir / "source_overlay_sweep_failures.csv"
     summary_df.to_csv(summary_path, index=False)
     channel_df.to_csv(channel_path, index=False)
@@ -799,6 +919,12 @@ def main() -> int:
         else summary_df
     )
     objective_df.to_csv(objective_path, index=False)
+    worldtube_objective_df = (
+        summary_df.sort_values([col for col in ["worldtube_exposure_score", *sort_cols] if col in summary_df.columns])
+        if not summary_df.empty
+        else summary_df
+    )
+    worldtube_objective_df.to_csv(worldtube_objective_path, index=False)
     failure_df.to_csv(failure_path, index=False)
 
     metadata = {
@@ -816,6 +942,10 @@ def main() -> int:
         "clock_lapse_ratios": args.clock_lapse_ratios,
         "rail_stretch_ratios": args.rail_stretch_ratios,
         "throat_capacity_ratios": args.throat_capacity_ratios,
+        "standing_support_packet_exclusions": args.standing_support_packet_exclusions,
+        "standing_support_packet_exclusion_radius_multipliers": args.standing_support_packet_exclusion_radius_multipliers,
+        "standing_support_packet_exclusion_width_multipliers": args.standing_support_packet_exclusion_width_multipliers,
+        "standing_support_packet_exclusion_schedules": args.standing_support_packet_exclusion_schedules,
         "smoothness_order": args.smoothness_order,
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,
         "support_shell_radial_multiplier": args.support_shell_radial_multiplier,
@@ -833,6 +963,7 @@ def main() -> int:
             "channel_deltas": str(channel_path),
             "shell_throat_overlap": str(shell_throat_path),
             "objective_ranking": str(objective_path),
+            "worldtube_ranking": str(worldtube_objective_path),
             "failures": str(failure_path),
         },
         "failures": len(failures),

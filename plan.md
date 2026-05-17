@@ -308,6 +308,35 @@ recover V10 packet-norm safety before using high-amplitude support-shell couplin
 use lower-amplitude or V-aware support-shell scaling as a diagnostic branch
 ```
 
+## Stage I redesign start, 2026-05-17
+
+The harness now includes an experimental standing-support packet carve-out and a worldtube exposure ranking for overlay sweeps. See:
+
+```text
+supporting_reports/STAGE1_PACKET_CARVE_HARNESS_AND_SWEEP.md
+```
+
+Key result:
+
+```text
+At V5, standing_support_packet_exclusion = 0.20 removes top hard-channel points from the live packet and reduces live radial-null fraction from about 0.222 to 0.072 and live radial-pressure fraction from about 0.261 to 0.123.
+```
+
+Important limit:
+
+```text
+The V5 carved candidate still fails the strict minimal-traversability rule because live hard-channel burden remains percent-level.
+At V10, nonzero carve strengths tested so far worsen packet-norm safety, even while improving hard-channel placement.
+```
+
+Next practical sweep:
+
+```text
+Combine modest packet carve-out with a causal-margin compensator.
+V5 first; V10 only for V5-safe candidates.
+Do not use the current carved candidate as a Stage II source-family target yet.
+```
+
 ## Stage I-A: V5 throat-capacity source-placement screen
 
 ### Purpose
