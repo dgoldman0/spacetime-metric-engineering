@@ -39,9 +39,9 @@ service:
     max_abs_change: 0.0
 
 inputs:
-  exact_fields: ../data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
-  exact_point_ledger: ../data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
-  substrate_fields: ../data/sample_v5/substrate_subtraction_fields_v5.npz
+  exact_fields: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: /mnt/data/adm_harness_v03_data/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: /mnt/data/adm_harness_v03_data/substrate_subtraction_fields_v5.npz
 
 substrate:
   mode: carrying_flow_off
@@ -59,7 +59,7 @@ thresholds:
   min_catch_rematch_localization_fraction: 0.50
 
 outputs:
-  root: ../runs
+  root: /mnt/data/adm_harness_service_runs
   format: csv
   figures: false
   report: true

@@ -5,9 +5,8 @@ service:
 
   carrying_flow:
     enabled: true
-    law: compact_momentum_localizer
-    scope: catch_rematch_edge_support_mix
-    allocation_mode: edge_support_mix
+    law: compact_momentum_localizer     # identity | windowed_adjustment | scale_existing | compact_momentum_localizer
+    scope: catch_rematch_edge           # global | support_shell | packet_edge | catch_rematch_edge | catch_rematch_support_shell
     signal: delta_j_l
     amplitude: 0.002
     gain: 1.0
@@ -45,9 +44,9 @@ service:
     max_abs_change: 0.0
 
 inputs:
-  exact_fields: ../data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
-  exact_point_ledger: ../data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
-  substrate_fields: ../data/sample_v5/substrate_subtraction_fields_v5.npz
+  exact_fields: /path/to/exact_builder_adm_v5/adm_exact_fields_V5p0.npz
+  exact_point_ledger: /path/to/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: /path/to/substrate_subtraction_fields_v5.npz
 
 substrate:
   mode: carrying_flow_off
@@ -65,8 +64,8 @@ thresholds:
   min_catch_rematch_localization_fraction: 0.50
 
 outputs:
-  root: ../runs
+  root: runs
   format: csv
-  figures: false
+  figures: true
   report: true
   overwrite: true
