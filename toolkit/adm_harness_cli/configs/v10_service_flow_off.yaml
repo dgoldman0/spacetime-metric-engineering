@@ -1,0 +1,27 @@
+run_name: v10_service_flow_off
+
+service:
+  velocity: 10.0
+
+inputs:
+  exact_fields: ../data/sample_v5/exact_builder_adm_v5/adm_exact_fields_V10p0.npz
+  exact_point_ledger: ../data/sample_v5/exact_builder_adm_v5/adm_exact_point_ledger_v5_v10.csv
+  substrate_fields: ../data/sample_v5/substrate_subtraction_fields_v10.npz
+
+substrate:
+  mode: carrying_flow_off
+
+control_law:
+  mode: none
+
+thresholds:
+  max_abs_delta_rho_packet: 0.000001
+  max_abs_delta_j_packet: 0.001
+  min_catch_rematch_localization_fraction: 0.50
+
+outputs:
+  root: ../runs
+  format: csv
+  figures: false
+  report: true
+  overwrite: true
