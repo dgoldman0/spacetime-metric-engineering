@@ -55,16 +55,16 @@
 
 \begin{center}
 {\LARGE \bfseries Active-Rail Spacetime Metric Engineering System}\\[0.35em]
-{\Large \bfseries Technical Disclosure and Prototype Plan}\\[0.9em]
+{\Large \bfseries Technical Disclosure and Validation Architecture}\\[0.9em]
 {\bfseries Primary Operating Embodiment: Service Factor $V=5$}\\[0.2em]
 {\bfseries Edge-Load Operating Embodiment: Service Factor $V=10$}\\[0.8em]
 \end{center}
 
-\noindent\textbf{Document purpose.} This document discloses an active-rail spacetime metric engineering architecture, a source-placement control structure, and the current state of an engineering prototype program. The disclosure is organized in a patent-style technical format and emphasizes system components, operating modes, metric components, diagnostic procedures, acceptance criteria, prototype status, and remaining development work.
+\noindent\textbf{Document purpose.} This document discloses an active-rail spacetime metric engineering architecture, a source-placement control structure, and a validation program for selecting load-bearing metric families. The disclosure is organized in a patent-style technical format and emphasizes system components, operating modes, metric components, diagnostic procedures, acceptance criteria, validated prototype layers, and development gates for stronger source-realization work.
 
 \section{Abstract}
 
-An active-rail spacetime metric engineering system is disclosed. The system includes a prepared standing support substrate, a protected live packet corridor, a support-contained carrying-flow field, a locked timing layer for catch/rematch, a radial support-edge softening layer, a clock-lapse cushion, a rail-stretch sector, a throat-capacity/angular jacket, and localized support-shell control components. The architecture separates baseline infrastructure support from service-induced transport demand. A dimensionless service factor $V$ specifies the carrying-flow operating load applied to the reduced metric. In a representative operating embodiment at $V=5$, the system preserves packet causal safety and localizes small service-induced ADM momentum increments primarily into catch/rematch and support-shell infrastructure. An edge-load operating embodiment at $V=10$ exercises the same architecture near its recognized edge rating. Current prototype results support a frozen small support-shell control component and show that larger load-bearing 4D source redistribution requires timed, coupled metric shaping across carrying-flow, clock-lapse, rail-stretch, and throat-capacity sectors.
+An active-rail spacetime metric engineering system is disclosed. The system includes a prepared standing support substrate, a protected live packet corridor, a support-contained carrying-flow field, a locked timing layer for catch/rematch, a radial support-edge softening layer, a clock-lapse cushion, a rail-stretch sector, a throat-capacity/angular jacket, and localized support-shell control components. The architecture separates baseline infrastructure support from service-induced transport demand. A dimensionless service factor $V$ specifies the carrying-flow operating load applied to the reduced metric. In a representative operating embodiment at $V=5$, the system preserves packet causal safety and localizes service-induced momentum increments primarily into catch/rematch and support-shell infrastructure. A selected support-shell-bearing metric family uses a smooth localized radial bearing shell, Gaussian catch/rematch timing, matched peak carrying-flow strength, and clock-lapse coupling. An edge-load operating embodiment at $V=10$ exercises the same architecture as a stress condition. Prototype results identify gradient-matched support-shell shaping as the central control principle for cleaner 4D demanded-source behavior.
 
 \section{Technical Field}
 
@@ -81,14 +81,14 @@ A practical spacetime metric engineering architecture benefits from explicit sou
 \item expresses the reduced metric in ADM variables for constraint-ledger diagnosis;
 \item subtracts the standing substrate from live service fields to isolate transport demand;
 \item tests 4D demanded-source responses before promoting any component as load-bearing;
-\item supports a staged transition from prescribed reduced geometry to coupled metric-family screening and a coarse 3+1 constraint prototype.
+\item supports a staged transition from prescribed reduced geometry to coupled metric-family validation and a coarse 3+1 constraint prototype.
 \end{enumerate}
 
 \section{Overview of the Active-Rail System}
 
 The active rail operates as a staged metric service. A prepared standing substrate supplies the baseline throat, support shell, angular jacket, rail stretch, and clock-lapse structure. A live packet corridor lies inside the support shell. A carrying-flow field expresses the commanded service load through the prepared support infrastructure. A locked timing layer coordinates support-side catch with packet rematch and returns the packet toward ordinary local geometry. Packet-edge and support-shell control components are applied during catch/rematch to address localized handoff demand.
 
-The invention-level structure is the componentized service architecture. The service factor $V$ is an operating-load parameter used to rate embodiments, select support/cushion/timing settings, and compare source-demand scaling. The current understanding is that small support-shell carrying-flow components are packet-safe and controllable. Larger 4D source redistribution requires coupled timing among carrying-flow, clock-lapse, rail-stretch, and possibly throat-capacity metric components.
+The invention-level structure is the componentized service architecture. The service factor $V$ is an operating-load parameter used to rate embodiments, select support/cushion/timing settings, and compare source-demand scaling. The selected V5 support-shell branch is packet-safe and controllable as a continuous metric family. Its cleanest tested load-bearing behavior occurs when the support-shell radial bearing layer is smooth and localized, the timing is matched to catch/rematch, and the carrying-flow overlay is coupled to a clock-lapse partner.
 
 \section{Definitions}
 
@@ -108,12 +108,12 @@ Clock-lapse field & The service-facing name for the lapse component $\alpha$. It
 Rail-stretch field & The service-facing name for the radial spatial metric component $\Grail=\gamma_{ll}$. It sets radial metric capacity and affects how carrying-flow gradients appear in the source ledger. \\
 Throat-capacity field & The service-facing name for the angular metric component $\Gthroat=\gamma_{\Omega\Omega}$. It includes throat and angular-jacket capacity. \\
 Locked timing & Timing rule in which support-side catch begins with a controlled lead relative to packet rematch while packet-frame safety remains constrained. \\
-Catch/rematch absorber & Localized packet-edge source or control component assigned to remaining null/momentum handoff demand. \\
+Catch/rematch absorber & Localized packet-edge source or control component assigned to residual null/momentum handoff demand. \\
 Radial support edge & Transition layer controlling radial pressure demand and support-shell coupling. \\
 Lapse cushion & Clock-lapse-sector compensator that preserves causal margin consumed by stronger support-edge shaping. \\
-Support-shell overlay & A localized metric-side support-shell component applied through a smooth timing and radial window $\Wsh(\sig,l)$. It may act on carrying-flow alone or in coupled form with clock-lapse and rail-stretch partners. \\
+Support-shell overlay & A localized metric-side support-shell component applied through a smooth timing and radial window $\Wsh(\sig,l)$. In the selected V5 branch, the active radial bearing layer is a raised-cosine annulus coupled to carrying-flow and clock-lapse sectors. \\
 4D demanded-source ledger & Finite-difference evaluation of $T_{\mu\nu}^{\mathrm{dem}}=G_{\mu\nu}[g]/(8\pi)$ for the prescribed metric. It diagnoses radial null, radial pressure, angular pressure, current, and packet-comoving density demands. \\
-Strong 4D source redistribution & A source-ledger result in which a metric component measurably reduces or reroutes expensive demanded-source channels while preserving packet safety and numerical robustness. \\
+Strong 4D source redistribution & A source-ledger result in which a metric component measurably reduces or reroutes expensive demanded-source channels while preserving packet safety, bounded point peaks, and numerical robustness. \\
 Standing substrate subtraction & Diagnostic subtraction of a prepared beta-off or ready-state substrate from live service fields to isolate service-induced ADM demand. \\
 \bottomrule
 \end{longtable}
@@ -162,7 +162,7 @@ A representative reduced metric is expressed as
 + \Gthroat(l,\sig)\dd\Omega^2,
 \label{eq:metric}
 \end{equation}
-where $l$ is the rail coordinate and $\sig$ is the service scheduling coordinate. The four metric-side service fields are:
+where $l$ is the rail coordinate and $\sig$ is the service scheduling coordinate. The shift sector is intentionally retained in the completed-square form. This presentation displays the active-rail geometry as a Morris--Thorne-like intrinsic throat/support geometry, represented by $\Grail$ and $\Gthroat$, with a shift-like carrying-flow sector $\beta$ applied along the rail coordinate. The four metric-side service fields are:
 \begin{align}
 \alpha(l,\sig) &\quad\text{clock-lapse field},\\
 \beta(l,\sig) &\quad\text{carrying-flow field},\\
@@ -181,7 +181,7 @@ The present prototype family can be described as a shaped baseline plus localize
 \Gthroat(l,\sig)&=\Gthroat_0(l,\sig)\exp\!\left(\kappa_Q \Wsh(l,\sig)\right).
 \label{eq:component_family}
 \end{align}
-The baseline fields $\alpha_0,\beta_0,\Grail_0,\Gthroat_0$ include the prepared throat, angular jacket, radial support-edge softening, lapse cushion, shaped catch/rematch timing, service release, and packet-frame comparison structure. The localized partners are support-shell metric overlays. The currently implemented continuous partners are carrying-flow ($a_\beta$), clock-lapse ($\kappa_\alpha$), and rail-stretch ($\kappa_G$). The throat-capacity partner $\kappa_Q$ is retained in the general form because the angular/throat channel is a natural remaining degree of freedom for source-family screening and angular-pressure control.
+The baseline fields $\alpha_0,\beta_0,\Grail_0,\Gthroat_0$ include the prepared throat, angular jacket, radial support-edge softening, lapse cushion, shaped catch/rematch timing, service release, and packet-frame comparison structure. The localized partners are support-shell metric overlays. The continuous partner family includes carrying-flow ($a_\beta$), clock-lapse ($\kappa_\alpha$), rail-stretch ($\kappa_G$), and throat-capacity ($\kappa_Q$). The selected V5 branch uses carrying-flow and clock-lapse as active partners, keeps rail-stretch neutral by aggregate burden, and keeps same-window throat-capacity neutral in the default branch.
 
 The support-shell window is an annular, timed, packet-excluding window:
 \begin{equation}
@@ -195,6 +195,33 @@ where $R_{\mathrm{sh}}$ selects support-edge infrastructure, $T_{\mathrm{sh}}$ p
 0.65\,\Rth\leq |l|\leq 1.20\,\Rth
 \end{equation}
 is the nominal support-shell band, $\lambda_c$ is the support-shell catch lead, and $\tau_c$ is the temporal width of the support-shell timing envelope.
+
+The selected V5 support-shell radial bearing function is a compact raised-cosine annulus centered in the nominal support-shell band:
+\begin{align}
+R_{\mathrm{sh}}(r)
+&=\frac{1}{2}\left[1+\cos\!\left(\pi\frac{|r-r_c|}{h_r}\right)\right],
+\qquad |r-r_c|\leq h_r,\\
+R_{\mathrm{sh}}(r)&=0,\qquad |r-r_c|>h_r,
+\end{align}
+where $r=|l|$, $r_c$ is the midpoint of the active support-shell band, and the preferred half-width is approximately $h_r=0.48125$ for $\Rth=1.75$ with the above multipliers. Gaussian and smooth-box annular windows remain comparator shapes, but the raised-cosine annulus gives the cleanest source-ledger behavior in the matched-strength V5 tests.
+
+The preferred timing envelope is Gaussian in the service coordinate and normalized against the active catch/rematch edge:
+\begin{equation}
+T_{\mathrm{sh}}(\sig;\lambda_c,\tau_c)
+=
+\frac{\exp[-(\sig-\sig_c)^2/(2\tau_c^2)]}
+{\max\left(\exp[-(\sig_\ast-\sig_c)^2/(2\tau_c^2)],\epsilon_T\right)},
+\qquad
+\sig_c=\sig_{\mathrm{catch}}-\lambda_c,
+\end{equation}
+where $\sig_\ast$ is the closest point in the active catch/rematch band to $\sig_c$. Minimum-jerk and raised-cosine temporal pulses remain useful comparators. The stable tested timing band is $\tau_c=0.30$--$0.35$ with $\lambda_c=1.45$--$1.55$ for the selected V5 family.
+
+For matched-strength shape comparison, the support-shell carrying-flow overlay is parameterized by the peak shell perturbation
+\begin{equation}
+\Delta\beta_{\mathrm{sh,max}}=
+\max_{l,\sig}\left|a_\beta\Wsh(l,\sig)\right|.
+\end{equation}
+This scalar makes radial and temporal shapes comparable at equal effective peak support-shell strength. The preferred V5 operating band is $\Delta\beta_{\mathrm{sh,max}}\approx0.20$--$0.25$, with $\Delta\beta_{\mathrm{sh,max}}\approx0.30$--$0.35$ retained as an edge-stress range for point-peak and shell-throat concentration checks.
 
 \subsection{Representative Settings}
 
@@ -215,12 +242,14 @@ Packet transition width & $\wpass=0.06$ \\
 Angular jacket width and amplitude & $w_\Omega=1.4$, $a_\Omega=0.20$ \\
 Lapse cushion strength & $\eta_N=2.00$ \\
 Catch/rematch profile & minimum-jerk timing with shaped catch and packet rematch \\
-Frozen reduced support-shell overlay & $a_\beta=+10^{-7}$, $\lambda_c=1.0$, $\tau_c=0.35$, smoothness order $1$, packet exclusion $1.0$ \\
+Reduced support-shell routing overlay & $a_\beta=+10^{-7}$, direct annular support-shell window, packet exclusion $1.0$ \\
 Support-shell radial band & $0.65\,\Rth\leq |l|\leq 1.20\,\Rth$ \\
-High-amplitude 4D timing candidate & positive $a_\beta$, $\lambda_c=1.25$, $\tau_c=0.35$ in the latest V5 timing checks \\
-Clock-lapse partner & $\kappa_\alpha/a_\beta$ near $0.25$--$0.5$ is the current useful exploratory range \\
-Rail-stretch partner & $\kappa_G/a_\beta=0$ remains best by aggregate burden in the latest checks; positive rail-stretch remains useful as a point-peak and packet-drift comparator \\
-Throat-capacity partner & retained as an unscreened metric partner for angular/throat-capacity refinement \\
+Selected radial bearing shape & raised-cosine annulus, preferred half-width approximately $0.48125$ \\
+Selected 4D support-shell strength & $\Delta\beta_{\mathrm{sh,max}}\approx0.20$--$0.25$ \\
+Selected 4D timing band & $\lambda_c=1.45$--$1.55$, $\tau_c=0.30$--$0.35$ \\
+Clock-lapse partner & $\kappa_\alpha/a_\beta\approx0.375$ for the selected V5 support-shell family \\
+Rail-stretch partner & $\kappa_G/a_\beta=0$ by default; positive rail-stretch remains a comparator for peak shaping \\
+Throat-capacity partner & $\kappa_Q/a_\beta=0$ by default in the selected branch; alternate timing and separate intrinsic windows remain comparator branches \\
 \bottomrule
 \end{tabularx}
 \captionof{table}{Representative active-rail parameters and current functional implementation decisions.}
@@ -311,7 +340,7 @@ Reset/decompression infrastructure & Post-service restoration of support state &
 \bottomrule
 \end{longtable}
 
-The reduced ADM diagnostics indicate that the selected small support-shell overlay places its incremental $j_l$ demand overwhelmingly in catch/rematch support infrastructure while keeping packet $\Delta\rho$ effectively quiet. The 4D demanded-source diagnostics sharpen that result: the same component is packet-safe and controllable as a continuous metric overlay, while larger single-channel carrying-flow amplitude adds radial-null and current burden. The current source-placement hypothesis is therefore a coupled metric-family hypothesis: support-shell carrying-flow is retained, but load-bearing source redistribution requires timed clock-lapse, rail-stretch, and possibly throat-capacity partners.
+The reduced ADM diagnostics indicate that the selected small support-shell overlay places its incremental $j_l$ demand overwhelmingly in catch/rematch support infrastructure while keeping packet $\Delta\rho$ effectively quiet. The 4D demanded-source diagnostics sharpen that result: the same component is packet-safe and controllable as a continuous metric overlay, while larger single-channel carrying-flow amplitude adds radial-null and current burden. The source-placement design has therefore moved to a coupled metric-family selection: support-shell carrying-flow is retained, clock-lapse coupling is the preferred partner, and radial bearing shape controls whether the demanded-source burden stays smooth and infrastructure-localized.
 
 \section{Catch-Edge Control Law}
 
@@ -351,17 +380,20 @@ Diagnostic layer & Current result \\
 \midrule
 $V=5$ exact ADM and substrate subtraction & Live packet norm samples remain safe. The packet contribution to subtracted $\Delta\rho$ is about $0.000295\%$ of live-packet $\rho$, while live-packet $\Delta j_l$ is about $11.75\%$ of live-packet $j_l$. \\
 $V=10$ edge-load comparison & Subtracted $\Delta\rho$ remains small. The live-packet $\Delta j_l$ fraction rises to about $19.25\%$, with about $97.94\%$ of live-packet $\Delta j_l$ localized in catch/rematch. \\
-Frozen reduced support-shell target & At $V=5$, the frozen $a_\beta=+10^{-7}$ target gives catch/support incremental $\Delta j_l$ fraction $0.9928425$, packet incremental $\Delta j_l$ fraction $3.19\times10^{-7}$, packet incremental $\Delta\rho=5.44\times10^{-16}$, and no packet norm violations. \\
+Reduced support-shell routing target & At $V=5$, the selected $a_\beta=+10^{-7}$ target gives catch/support incremental $\Delta j_l$ fraction $0.9928425$, packet incremental $\Delta j_l$ fraction $3.19\times10^{-7}$, packet incremental $\Delta\rho=5.44\times10^{-16}$, and no packet norm violations. \\
 Selected-target $V=10$ survival & The same small support-shell target remains packet-safe at the edge-load setting and preserves catch/support localization above $0.9927$. \\
 Single-channel continuous carrying-flow overlay & High-amplitude continuous carrying-flow overlays remain packet-safe at $V=5$, but increase radial-null and current burden. At $a_\beta=+0.5$ on the high-resolution check, max total burden ratio is about $1.090805$, radial-null ratio about $1.056153$, and radial-current ratio about $1.040020$. \\
-Timed coupled support-shell refinement & With $\lambda_c=1.25$, $\tau_c=0.35$, and $a_\beta=+0.5$, the aggregate high-resolution check improves when a clock-lapse partner is added: $\kappa_\alpha/a_\beta=0.5$, $\kappa_G/a_\beta=0$ gives max total burden ratio about $1.066421$ and packet-norm drift about $0.031977$. A combined clock-lapse/rail-stretch case lowers point-peak and packet-drift measures but carries a higher aggregate burden than clock-lapse alone. \\
+Timed coupled support-shell refinement & High-resolution timing checks select a later, narrower support-shell event. With positive carrying-flow overlay, $\lambda_c=1.45$--$1.55$, $\tau_c=0.30$, $\kappa_\alpha/a_\beta=0.375$--$0.5$, and $\kappa_G/a_\beta=0$, max total burden improves to about $1.053$--$1.054$ in the smooth-box support-shell family. \\
+Throat-capacity screen & Same-window throat-capacity coupling gives its best source-objective and aggregate behavior at $\kappa_Q/a_\beta=0$ in the current V5 support-shell branch. Negative ratios offer small localized tradeoffs with peak and radial-current penalties, while positive ratios raise radial-null burden. \\
+Matched-strength shape selection & At equal peak $\Delta\beta_{\mathrm{sh,max}}=0.25$, the raised-cosine annulus outperforms smooth-box and Gaussian annular profiles. The best matched-strength case gives source-objective score $0.803284$, max burden ratio $1.013261$, live packet-norm drift $3.09\times10^{-8}$, radial-null ratio $1.007942$, radial-current ratio $1.002684$, and angular-pressure ratio $1.013261$. \\
+Strength robustness ladder & The selected raised-cosine annulus remains packet-quiet over $\Delta\beta_{\mathrm{sh,max}}=0.15$--$0.35$. The preferred operating band is $0.20$--$0.25$; higher targets are useful edge-stress cases for point-peak and shell-throat concentration diagnostics. \\
 \bottomrule
 \end{tabularx}
 \captionof{table}{Current reduced ADM and 4D demanded-source evidence.}
 \label{tab:current_results}
 \end{center}
 
-The combined evidence defines the current design interpretation. The small support-shell overlay is a reliable reduced-harness support-routing component. The larger 4D source-relief objective needs coupled metric timing. Clock-lapse timing is presently the strongest partner for aggregate burden reduction, while rail-stretch remains a live comparator for peak shaping, packet-drift control, and angular-pressure side effects.
+The combined evidence defines the current design interpretation. The small support-shell overlay is a reliable reduced-harness support-routing component. The larger 4D source-relief objective needs coupled metric timing and radial gradient matching. Clock-lapse timing is the strongest default partner for aggregate burden reduction, the raised-cosine annular support shell is the preferred bearing shape, rail-stretch remains a comparator for peak shaping, and same-window throat-capacity is reserved for alternate intrinsic-window tests.
 
 \section{Shell-Throat Correspondence Diagnostic}
 
@@ -373,13 +405,13 @@ The active-rail support-shell results show an apparent structural intersection w
 \end{equation}
 therefore supplies a shell-like carrying-flow feature while assigning the intrinsic metric response to the $\Grail$ and $\Gthroat$ partners. The demanded-source ledger then detects burden where $\Wsh$ overlaps gradients in $\Grail$ and $\Gthroat$.
 
-This interpretation is supported by the shell-throat overlap probe. At $V=5$, $a_\beta=+0.5$, and $\tau_c=0.35$, a deliberately mistimed carrying-flow-only case with $\lambda_c=0.5$ raises the global radial-null burden ratio to about $1.181757$ and the shell-throat weighted radial-null ratio to about $3.054431$. With the refined timing $\lambda_c=1.25$, the corresponding carrying-flow-only ratios fall to about $1.035649$ and $2.023817$. Across the same probe family, about $86\%$--$89\%$ of the added radial-current burden lands in the shell-throat overlap band, and a large share of the added angular-pressure burden lands there as well. The failure signature is therefore localized: it concentrates where the active shell window intersects the support/throat metric-gradient layer.
+This interpretation is supported by the shell-throat overlap probe. At $V=5$, $a_\beta=+0.5$, and $\tau_c=0.35$, a deliberately mistimed carrying-flow-only case with $\lambda_c=0.5$ raises the global radial-null burden ratio to about $1.181757$ and the shell-throat weighted radial-null ratio to about $3.054431$. With refined timing, the corresponding carrying-flow-only ratios fall substantially. The raised-cosine annulus improves the same structural layer: at matched peak support-shell strength, it reduces the main burden channels and drives live packet-norm drift to the numerical quiet level. Across the support-shell probe families, added radial-current and angular-pressure burden concentrate in the shell-throat overlap band when timing, radial shape, or intrinsic partner timing is mismatched.
 
-The best present conclusion is that the Garattini--Zatrimaylov correspondence identifies a conditional failure-mode mechanism for the active rail. In the active-rail data, that mechanism lights up when timing or metric coupling lets the support-shell carrying-flow overlay behave like a separable shell crossing an already-shaped support/throat geometry. In that decoupled regime, the source ledger pays cost in the same structural layer highlighted by Garattini and Zatrimaylov: shell interpolation meeting intrinsic throat curvature. Refined support timing moves the design away from that regime. Clock-lapse coupling improves causal margin and aggregate burden, while shell-throat concentration remains a distinct timing/coupling diagnostic.
+The best present conclusion is that the Garattini--Zatrimaylov correspondence identifies a conditional failure-mode mechanism for the active rail. In the active-rail data, that mechanism lights up when timing or metric coupling lets the support-shell carrying-flow overlay behave like a separable shell crossing an already-shaped support/throat geometry. In that decoupled regime, the source ledger pays cost in the same structural layer highlighted by Garattini and Zatrimaylov: shell interpolation meeting intrinsic throat curvature. Refined support timing, clock-lapse coupling, and a smooth localized radial bearing shell move the design toward a single coordinated metric family. Shell-throat concentration remains a distinct timing and gradient-matching diagnostic.
 
-The next diagnostic should establish whether the overlap is a true algebraic intersection by isolating the mixed terms. The practical test is to run matched controls that flatten or smooth the support/throat gradients while keeping $\Wsh$, keep the throat/support geometry while broadening or shifting $\Wsh$, and compare carrying-flow-only, clock-lapse-only, rail-stretch-only, and throat-capacity-only variants. A proof-grade intersection would show that the measured $\Tkk$, $j_l$, and $p_\Omega$ deltas collapse when either the shell-gradient factor or the intrinsic throat-gradient factor is removed, and that a mixed-term proxy built from derivatives of $\Wsh$, $\beta$, $\Grail$, and $\Gthroat$ spatially correlates with the demanded-source delta maps.
+The algebraic-intersection diagnostic isolates the mixed terms. The practical test is to run matched controls that flatten or smooth the support/throat gradients while keeping $\Wsh$, keep the throat/support geometry while broadening or shifting $\Wsh$, and compare carrying-flow-only, clock-lapse-only, rail-stretch-only, and throat-capacity-only variants. A proof-grade intersection would show that the measured $\Tkk$, $j_l$, and $p_\Omega$ deltas collapse when either the shell-gradient factor or the intrinsic throat-gradient factor is removed, and that a mixed-term proxy built from derivatives of $\Wsh$, $\beta$, $\Grail$, and $\Gthroat$ spatially correlates with the demanded-source delta maps.
 
-\section{Prototype Status and Remaining Plan}
+\section{Prototype Status and Validation Path}
 
 \subsection{Completed Prototype Layers}
 
@@ -391,17 +423,21 @@ The prototype program has completed the following reusable layers:
 \item Reduced validation ladder for the selected support-shell target, including target gates, rich objective scoring, sign comparison, packet-safety overlay, balance bookkeeping, and ramp classification.
 \item V10 edge-load checks for the selected small support-shell target.
 \item Continuous metric-side source-ledger promotion of the support-shell carrying-flow overlay.
-\item First coupled timing sweeps adding clock-lapse and rail-stretch partners to the continuous support-shell metric expression.
+\item Coupled timing sweeps adding clock-lapse and rail-stretch partners to the continuous support-shell metric expression.
+\item Same-window throat-capacity screen, selecting $\kappa_Q/a_\beta=0$ as the default for the present branch.
+\item Support-shell shape selection, identifying the raised-cosine annulus as the preferred radial bearing shape at matched peak support-shell strength.
+\item Matched-strength robustness ladder for the selected raised-cosine annulus support-shell family.
 \item Arbitrary service-factor input generation for reduced ADM ladder hardening and interpolation checks.
 \end{enumerate}
 
-\subsection{Remaining Prototype Work}
+\subsection{Validation Work Ahead}
 
-The remaining prototype work is now narrower and more diagnostic:
+The development path is now narrower and more diagnostic:
 \begin{enumerate}
-\item Run high-resolution coupled timing sweeps around $\lambda_c=1.25$, $\tau_c=0.35$, positive $a_\beta$, and clock-lapse ratios near $0.25$--$0.5$, with convergence checks tied to the compact-grid screening results.
-\item Add and screen the throat-capacity partner $\kappa_Q$ so angular/throat support can participate in the 4D demanded-source redistribution test.
-\item Build a 4D source objective that scores radial-null burden, radial current, radial pressure, angular pressure, packet-comoving density, packet norm margin, and support-region localization together.
+\item Run a richer selected-basin source objective around the raised-cosine annulus family with $\Delta\beta_{\mathrm{sh,max}}=0.20$--$0.25$, $\lambda_c=1.45$--$1.55$, $\tau_c=0.30$--$0.35$, and $\kappa_\alpha/a_\beta\approx0.375$.
+\item Score radial-null burden, radial current, radial pressure, angular pressure, packet-comoving density, packet norm margin, shell-throat concentration, point peaks, and support-region localization together.
+\item Perform conservation-style incremental bookkeeping for the selected cases, including signed and absolute source-channel closure checks by region.
+\item Confirm the selected cases at higher grid resolution and verify that rankings, point peaks, and shell-throat concentration remain stable.
 \item Add proof-grade shell-throat intersection tests: flattened-throat controls, support-shell broadening controls, mixed-term proxy maps, and correlations between the predicted mixed shell/throat terms and the measured demanded-source deltas.
 \item Check off-axis, angular, and alternate-null exposures for the surviving coupled metric families.
 \item Screen source-family candidates against the component ledger and assign candidate families to standing support, angular jacket, clock-lapse, carrying-flow, support-shell timing, and catch/rematch absorber roles.
@@ -417,6 +453,7 @@ A support-shell metric family should be promoted from prototype to report-grade 
 \item incremental ADM momentum remains localized in catch/rematch support infrastructure;
 \item 4D demanded-source channels show measurable relief or controlled redistribution, especially in radial-null and current channels;
 \item point peaks and angular-pressure leakage remain bounded under grid refinement;
+\item shell-throat concentration remains stable under matched-strength timing and radial-shape perturbations;
 \item the component can be stated as a continuous metric expression with clear source-role assignments.
 \end{enumerate}
 
@@ -429,8 +466,10 @@ A support-shell metric family should be promoted from prototype to report-grade 
 Packet norm safety & All live packet norm samples remain negative & Required \\
 Substrate-separated density & Packet $\Delta\rho$ remains small after subtraction & Required \\
 Handoff localization & Service $\Delta j_l$ concentrates in catch/rematch and support-shell handoff & Required \\
-Reduced support target & Frozen support-shell target preserves catch/support fraction, rich packet quietness, and partition closure & Required \\
+Reduced support target & Selected support-shell target preserves catch/support fraction, rich packet quietness, and partition closure & Required \\
 Continuous metric expression & Support-shell component is represented directly in $\alpha,\beta,\Grail,\Gthroat$ as a continuous metric component & Required \\
+Matched shell strength & Shape comparisons are made at equal peak $\Delta\beta_{\mathrm{sh,max}}$ & Required for shape selection \\
+Radial bearing shape & Raised-cosine annular support shell remains preferred under matched-strength tests & Required for selected V5 branch \\
 4D demanded-source behavior & Radial-null, radial-current, pressure, and packet-comoving density channels remain bounded and improve or redistribute under coupled timing & Required for load-bearing promotion \\
 Residual localization & Residual maps show localized packet-edge and support-region structure & Required \\
 $V=5$ stability & Primary target remains stable under grid and seed variation & Required \\
@@ -449,7 +488,8 @@ Constraint compatibility & Coarse 3+1 prototype maintains stable constraint beha
 \item \textbf{Momentum delocalization.} $\Delta j_l$ spreading across the packet interior would trigger revision of the handoff model.
 \item \textbf{Single-channel additive burden.} Carrying-flow amplitude that adds radial-null or radial-current burden would trigger coupled clock-lapse, rail-stretch, or throat-capacity refinement.
 \item \textbf{Shell-throat overlap concentration.} Added radial-null, radial-current, or angular-pressure burden concentrated where $\Wsh$ overlaps $\Grail,\Gthroat$ gradients would trigger timing broadening or intrinsic-metric partner refinement.
-\item \textbf{Point-peak growth.} A source-ledger case with acceptable integrated burden but growing local peaks would trigger broader timing shoulders, radial broadening, or source-family smoothing.
+\item \textbf{Point-peak growth.} A source-ledger case with acceptable integrated burden but growing local peaks would trigger timing broadening, strength reduction, or source-family smoothing.
+\item \textbf{Radial bearing over-broadening.} A support-shell annulus that spreads into packet-sensitive structure would trigger return to the localized raised-cosine bearing band or a narrower comparator family.
 \item \textbf{Edge-load qualitative transition.} A $V=10$ source pattern with a category-level change would place the edge case outside the primary prototype rating.
 \item \textbf{Constraint instability.} Growing constraint residuals in the coarse 3+1 scaffold would trigger smoothing, reparameterization, or source-ledger redesign.
 \end{enumerate}
@@ -512,6 +552,10 @@ The following claim-oriented embodiments clarify the technical scope of the disc
 \Gthroat=\Gthroat_0 e^{\kappa_Q\Wsh}.
 \]
 
+\item The system of item 12, wherein $\Wsh$ includes a raised-cosine annular radial bearing function centered in the support-shell infrastructure band.
+
+\item The system of item 13, wherein support-shell shape comparisons are normalized by a matched peak carrying-flow perturbation $\Delta\beta_{\mathrm{sh,max}}$.
+
 \item A numerical prototype process comprising constructing an exact field builder for $\alpha$, $\beta$, $\Grail$, and $\Gthroat$; computing ADM constraint fields; performing standing substrate subtraction; computing a 4D demanded-source ledger; and screening source-family candidates against component-specific source roles.
 \end{enumerate}
 
@@ -521,18 +565,21 @@ Completed deliverables for the current primary $V=5$ operating embodiment includ
 \begin{enumerate}
 \item exact-builder ADM implementation package;
 \item substrate-subtracted $\rhoADM$ and $j_l$ maps;
-\item reduced support-shell ansatz screen and final frozen target report;
+\item reduced support-shell ansatz screen and selected support-shell target report;
 \item generalized validation ladder with target/ramp separation and service-factor input generation;
 \item V10 selected-target edge-load comparison;
 \item continuous support-shell 4D demanded-source ledger path;
-\item first coupled timing sweep for carrying-flow, clock-lapse, and rail-stretch support-shell partners.
+\item coupled timing sweep for carrying-flow, clock-lapse, and rail-stretch support-shell partners;
+\item throat-capacity same-window screen;
+\item support-shell shape-selection and matched-strength robustness report.
 \end{enumerate}
 
-Remaining deliverables are:
+Validation deliverables ahead are:
 \begin{enumerate}
-\item high-resolution coupled timing and convergence report;
-\item throat-capacity partner sweep and angular-pressure accounting;
-\item source-aware 4D objective specification;
+\item selected-basin richer 4D source-objective report;
+\item conservation-style incremental bookkeeping report;
+\item high-resolution selected-candidate confirmation;
+\item shell-throat mixed-term diagnostic report;
 \item source-family screening matrix tied to the component ledger;
 \item coarse 3+1 constraint prototype specification and residual report.
 \end{enumerate}
@@ -541,9 +588,9 @@ Remaining deliverables are:
 
 The active-rail system organizes spacetime metric engineering as a source-placement architecture. The primary $V=5$ operating embodiment separates standing substrate curvature from live service demand and localizes the selected small support-shell service increment into catch/rematch support infrastructure while preserving packet safety. The $V=10$ operating embodiment supplies an edge-condition comparison for the same architecture and confirms the survival of the selected small support-shell target.
 
-The refined metric understanding is componentized: carrying-flow $\beta$ expresses scheduled service load, clock-lapse $\alpha$ protects timing and causal margin, rail-stretch $\Grail$ controls radial metric capacity, and throat-capacity $\Gthroat$ carries angular/throat support. The continuous support-shell overlay is now written as a metric-side family. Current demanded-source results indicate that the single-channel carrying-flow overlay is a stable support-routing component, while report-grade load-bearing redistribution requires coupled timing among carrying-flow, clock-lapse, rail-stretch, and likely throat-capacity partners.
+The refined metric understanding is componentized: carrying-flow $\beta$ expresses scheduled service load, clock-lapse $\alpha$ protects timing and causal margin, rail-stretch $\Grail$ controls radial metric capacity, and throat-capacity $\Gthroat$ carries angular/throat support. The continuous support-shell overlay is written as a metric-side family. Current demanded-source results select a raised-cosine annular support-shell bearing layer, Gaussian timing, moderate matched peak shell strength, and clock-lapse coupling as the cleanest V5 support-shell branch.
 
-The remaining engineering path is therefore focused: finish high-resolution coupled 4D source-ledger checks, add throat-capacity screening, formalize the source-aware objective, assign source families to component roles, and then build the coarse 3+1 constraint prototype around the surviving coupled metric family.
+The engineering path is therefore focused: run richer source-objective and conservation-style validation on the selected V5 basin, confirm the selected candidates at higher resolution, isolate the shell-throat mixed terms, assign source families to component roles, and then build the coarse 3+1 constraint prototype around the surviving coupled metric family.
 
 \begin{thebibliography}{9}
 
