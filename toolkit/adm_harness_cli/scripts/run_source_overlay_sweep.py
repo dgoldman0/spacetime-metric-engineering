@@ -60,6 +60,7 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"wcw{_token(spec['standing_support_packet_exclusion_width_multiplier'])}",
         f"wcs{spec['standing_support_packet_exclusion_schedule']}",
         f"wsh{_token(spec['standing_support_packet_exclusion_shoulder'])}",
+        f"wshm{spec['standing_support_packet_exclusion_shoulder_mode']}",
         f"wshr{_token(spec['standing_support_packet_exclusion_shoulder_radius_multiplier'])}",
         f"wshw{_token(spec['standing_support_packet_exclusion_shoulder_width_multiplier'])}",
         f"wshs{spec['standing_support_packet_exclusion_shoulder_schedule']}",
@@ -92,6 +93,7 @@ def _sort_cols() -> list[str]:
         "standing_support_packet_exclusion_width_multiplier",
         "standing_support_packet_exclusion_schedule",
         "standing_support_packet_exclusion_shoulder",
+        "standing_support_packet_exclusion_shoulder_mode",
         "standing_support_packet_exclusion_shoulder_radius_multiplier",
         "standing_support_packet_exclusion_shoulder_width_multiplier",
         "standing_support_packet_exclusion_shoulder_schedule",
@@ -440,6 +442,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     support_carve_widths = getattr(args, "standing_support_packet_exclusion_width_multipliers", [1.0])
     support_carve_schedules = getattr(args, "standing_support_packet_exclusion_schedules", ["live_only"])
     support_carve_shoulders = getattr(args, "standing_support_packet_exclusion_shoulders", [0.0])
+    support_carve_shoulder_modes = getattr(args, "standing_support_packet_exclusion_shoulder_modes", ["filled"])
     support_carve_shoulder_radii = getattr(args, "standing_support_packet_exclusion_shoulder_radius_multipliers", [1.4])
     support_carve_shoulder_widths = getattr(args, "standing_support_packet_exclusion_shoulder_width_multipliers", [1.8])
     support_carve_shoulder_schedules = getattr(args, "standing_support_packet_exclusion_shoulder_schedules", ["live_only"])
@@ -464,6 +467,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         support_carve_widths,
         support_carve_schedules,
         support_carve_shoulders,
+        support_carve_shoulder_modes,
         support_carve_shoulder_radii,
         support_carve_shoulder_widths,
         support_carve_shoulder_schedules,
@@ -489,6 +493,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         support_carve_width,
         support_carve_schedule,
         support_carve_shoulder,
+        support_carve_shoulder_mode,
         support_carve_shoulder_radius,
         support_carve_shoulder_width,
         support_carve_shoulder_schedule,
@@ -521,6 +526,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
             "standing_support_packet_exclusion_width_multiplier": float(support_carve_width),
             "standing_support_packet_exclusion_schedule": str(support_carve_schedule),
             "standing_support_packet_exclusion_shoulder": float(support_carve_shoulder),
+            "standing_support_packet_exclusion_shoulder_mode": str(support_carve_shoulder_mode),
             "standing_support_packet_exclusion_shoulder_radius_multiplier": float(support_carve_shoulder_radius),
             "standing_support_packet_exclusion_shoulder_width_multiplier": float(support_carve_shoulder_width),
             "standing_support_packet_exclusion_shoulder_schedule": str(support_carve_shoulder_schedule),
@@ -661,6 +667,7 @@ def _run_overlay_spec(
         standing_support_packet_exclusion_width_multiplier=spec["standing_support_packet_exclusion_width_multiplier"],
         standing_support_packet_exclusion_schedule=spec["standing_support_packet_exclusion_schedule"],
         standing_support_packet_exclusion_shoulder=spec["standing_support_packet_exclusion_shoulder"],
+        standing_support_packet_exclusion_shoulder_mode=spec["standing_support_packet_exclusion_shoulder_mode"],
         standing_support_packet_exclusion_shoulder_radius_multiplier=spec["standing_support_packet_exclusion_shoulder_radius_multiplier"],
         standing_support_packet_exclusion_shoulder_width_multiplier=spec["standing_support_packet_exclusion_shoulder_width_multiplier"],
         standing_support_packet_exclusion_shoulder_schedule=spec["standing_support_packet_exclusion_shoulder_schedule"],
@@ -835,6 +842,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="Wider/softer shoulder carve strengths added to the standing-support packet carve.",
     )
     parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-modes",
+        choices=["filled", "annular"],
+        nargs="+",
+        default=["filled"],
+        help="Shape mode for the shoulder carve window.",
+    )
+    parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-radius-multipliers",
         type=float,
         nargs="+",
@@ -991,6 +1005,7 @@ def main() -> int:
                         f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
                         f"wc={spec['standing_support_packet_exclusion']:g} "
                         f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
+                        f"wshm={spec['standing_support_packet_exclusion_shoulder_mode']} "
                         f"wlap={spec['standing_support_packet_lapse_log_gain']:g} "
                         f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                         f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g}",
@@ -1018,6 +1033,7 @@ def main() -> int:
                     f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
                     f"wc={spec['standing_support_packet_exclusion']:g} "
                     f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
+                    f"wshm={spec['standing_support_packet_exclusion_shoulder_mode']} "
                     f"wlap={spec['standing_support_packet_lapse_log_gain']:g} "
                     f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                     f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g}",
@@ -1087,6 +1103,7 @@ def main() -> int:
         "standing_support_packet_exclusion_width_multipliers": args.standing_support_packet_exclusion_width_multipliers,
         "standing_support_packet_exclusion_schedules": args.standing_support_packet_exclusion_schedules,
         "standing_support_packet_exclusion_shoulders": args.standing_support_packet_exclusion_shoulders,
+        "standing_support_packet_exclusion_shoulder_modes": args.standing_support_packet_exclusion_shoulder_modes,
         "standing_support_packet_exclusion_shoulder_radius_multipliers": args.standing_support_packet_exclusion_shoulder_radius_multipliers,
         "standing_support_packet_exclusion_shoulder_width_multipliers": args.standing_support_packet_exclusion_shoulder_width_multipliers,
         "standing_support_packet_exclusion_shoulder_schedules": args.standing_support_packet_exclusion_shoulder_schedules,

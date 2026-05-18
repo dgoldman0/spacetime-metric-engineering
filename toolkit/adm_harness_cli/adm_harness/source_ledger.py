@@ -105,6 +105,7 @@ class SourceParams:
     standing_support_packet_exclusion_width_multiplier: float = 1.0
     standing_support_packet_exclusion_schedule: str = "live_only"
     standing_support_packet_exclusion_shoulder: float = 0.0
+    standing_support_packet_exclusion_shoulder_mode: str = "filled"
     standing_support_packet_exclusion_shoulder_radius_multiplier: float = 1.4
     standing_support_packet_exclusion_shoulder_width_multiplier: float = 1.8
     standing_support_packet_exclusion_shoulder_schedule: str = "live_only"
@@ -354,7 +355,7 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
     strength = float(params.standing_support_packet_exclusion_shoulder)
     if strength <= 0.0:
         return 0.0
-    return standing_support_packet_window(
+    outer = standing_support_packet_window(
         s,
         l,
         params,
@@ -362,6 +363,20 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
         width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
         schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
     )
+    mode = params.standing_support_packet_exclusion_shoulder_mode.strip().lower()
+    if mode == "filled":
+        return outer
+    if mode == "annular":
+        inner = standing_support_packet_window(
+            s,
+            l,
+            params,
+            radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
+            width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
+            schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+        )
+        return float(np.clip(outer - inner, 0.0, 1.0))
+    raise ValueError(f"Unknown standing support packet shoulder mode: {params.standing_support_packet_exclusion_shoulder_mode}")
 
 
 def standing_support_packet_lapse_window(s: float, l: float, params: SourceParams) -> float:
@@ -947,6 +962,7 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
     if params.standing_support_packet_exclusion_shoulder:
         case_name = (
             f"{case_name}_wshoulder{_token(params.standing_support_packet_exclusion_shoulder)}"
+            f"_wsm{params.standing_support_packet_exclusion_shoulder_mode}"
             f"_wsr{_token(params.standing_support_packet_exclusion_shoulder_radius_multiplier)}"
             f"_wsw{_token(params.standing_support_packet_exclusion_shoulder_width_multiplier)}"
             f"_wss{params.standing_support_packet_exclusion_shoulder_schedule}"

@@ -485,6 +485,64 @@ Add annular or offset shoulder shapes, or widen the shoulder temporal schedule, 
 Keep Stage II paused unless the project deliberately chooses a warning-grade metric target.
 ```
 
+## Stage I annular shoulder probe, 2026-05-18
+
+The harness now supports annular shoulder shaping:
+
+```text
+standing_support_packet_exclusion_shoulder_mode = filled | annular
+```
+
+See:
+
+```text
+supporting_reports/STAGE1_ANNULAR_SHOULDER_SHAPING_PROBE.md
+```
+
+Moderate annular branch:
+
+```text
+standing_support_packet_exclusion = 0.32
+standing_support_packet_exclusion_shoulder = 0.08
+standing_support_packet_exclusion_shoulder_mode = annular
+standing_support_packet_lapse_log_gain = 1.00
+```
+
+Focused result:
+
+```text
+V5 live Tkk/p_l:   0.0965 / 0.0754, packet safe
+V10 live Tkk/p_l:  0.0957 / 0.0754, packet safe
+```
+
+Deep annular diagnostic:
+
+```text
+standing_support_packet_exclusion = 0.60
+standing_support_packet_exclusion_width_multiplier = 1.4
+standing_support_packet_exclusion_shoulder = 0.12
+standing_support_packet_lapse_log_gain = 1.00
+```
+
+Focused result:
+
+```text
+V5 live Tkk/p_l:   0.0572 / 0.0237, packet safe
+V10 live Tkk/p_l:  0.0419 / 0.0235, but positive_packet_norm_live = 165
+```
+
+Interpretation:
+
+```text
+Annular shoulder shaping improves live fractions, especially radial pressure, but it does not produce a V5/V10-safe order-of-magnitude reduction. Deep carving reaches diagnostic low live fractions but breaks the V10 packet-norm gate and creates large point peaks.
+```
+
+Updated next direction:
+
+```text
+Shoulder shaping alone is probably insufficient. The next harness improvement should target radial-null exposure more directly, likely with a packet-local beta rematch / beta-gradient softening partner or a temporal carve-ramp schedule, plus a ranking objective that penalizes causal-margin loss and point peaks.
+```
+
 ## Stage I-A: V5 throat-capacity source-placement screen
 
 ### Purpose
