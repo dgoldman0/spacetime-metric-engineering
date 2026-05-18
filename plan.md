@@ -543,6 +543,79 @@ Updated next direction:
 Shoulder shaping alone is probably insufficient. The next harness improvement should target radial-null exposure more directly, likely with a packet-local beta rematch / beta-gradient softening partner or a temporal carve-ramp schedule, plus a ranking objective that penalizes causal-margin loss and point peaks.
 ```
 
+## Stage I packet beta rematch / temporal probe, 2026-05-18
+
+The harness now includes a packet-local beta rematch control:
+
+```text
+standing_support_packet_beta_rematch_gain
+standing_support_packet_beta_rematch_radius_multiplier
+standing_support_packet_beta_rematch_width_multiplier
+standing_support_packet_beta_rematch_schedule
+```
+
+See:
+
+```text
+supporting_reports/STAGE1_PACKET_BETA_REMATCH_TEMPORAL_PROBE.md
+```
+
+Beta rematch alone improves point peaks but does not improve V10 live radial-null exposure:
+
+```text
+moderate annular V10:       live Tkk/p_l = 0.095680 / 0.075388, peak = 4.100704
+beta gain 0.10 V10:         live Tkk/p_l = 0.098485 / 0.075389, peak = 3.534678
+beta gain 0.20 V10:         live Tkk/p_l = 0.106604 / 0.075389, peak = 3.648101
+```
+
+Temporal packet-lapse gating plus beta rematch found a better V5 diagnostic branch:
+
+```text
+V5 lapse entry_catch_release + beta gain 0.20:
+live Tkk/p_l = 0.073763 / 0.075393
+positive_packet_norm_live = 0
+max point peak ratio = 3.362681
+```
+
+But the same structure does not produce a better V10-safe radial-null branch:
+
+```text
+V10 low-Tkk temporal/beta cases remain packet-unsafe.
+V10-safe high-beta cases restore causal safety but raise live Tkk to >= 0.099771.
+```
+
+A V8 service-class check was also run:
+
+```text
+moderate annular V8:
+positive_packet_norm_live = 0
+live Tkk/p_l = 0.095756 / 0.075388
+max point peak ratio = 5.123597
+
+low-Tkk temporal/beta V8 cases remain packet-unsafe unless high beta rematch is used.
+high-beta V8 safety recovery raises live Tkk to about 0.105505.
+```
+
+Updated interpretation:
+
+```text
+Packet-local beta rematch is useful as a peak and causal-margin actuator.
+Temporal lapse gating exposes a real lower-Tkk branch at V5.
+The V8 and V10 gates convert that branch back into radial-null cost.
+The moderate annular branch remains the selected V5-V8 operational architecture.
+V10 should be treated as a warning-grade edge check rather than the immediate optimization target.
+```
+
+Next practical harness move:
+
+```text
+Do not keep pushing local beta amplitude alone.
+Add independent temporal ramp-width controls for packet lapse and beta rematch.
+Consider V-aware/service-factor-scaled timing and beta control laws.
+Test nonuniform beta rematch shapes that soften packet-edge gradients instead of rematching the whole packet tube uniformly.
+Leave higher-load clean-up to a future higher-load control-law pass unless the project explicitly re-prioritizes V10 optimization.
+```
+
 ## Stage I-A: V5 throat-capacity source-placement screen
 
 ### Purpose

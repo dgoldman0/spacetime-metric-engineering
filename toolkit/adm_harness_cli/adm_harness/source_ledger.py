@@ -113,6 +113,10 @@ class SourceParams:
     standing_support_packet_lapse_radius_multiplier: float = 1.0
     standing_support_packet_lapse_width_multiplier: float = 1.0
     standing_support_packet_lapse_schedule: str = "live_only"
+    standing_support_packet_beta_rematch_gain: float = 0.0
+    standing_support_packet_beta_rematch_radius_multiplier: float = 1.0
+    standing_support_packet_beta_rematch_width_multiplier: float = 1.0
+    standing_support_packet_beta_rematch_schedule: str = "live_only"
 
 
 @dataclass(frozen=True)
@@ -392,6 +396,19 @@ def standing_support_packet_lapse_window(s: float, l: float, params: SourceParam
     )
 
 
+def standing_support_packet_beta_rematch_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_beta_rematch_gain) == 0.0:
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_beta_rematch_radius_multiplier,
+        width_multiplier=params.standing_support_packet_beta_rematch_width_multiplier,
+        schedule_name=params.standing_support_packet_beta_rematch_schedule,
+    )
+
+
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
@@ -408,6 +425,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     carve_window = standing_support_packet_carve_window(float(s), float(l), params)
     carve_shoulder_window = standing_support_packet_carve_shoulder_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
+    packet_beta_rematch_window = standing_support_packet_beta_rematch_window(float(s), float(l), params)
     carve_contribution = float(np.clip(
         float(params.standing_support_packet_exclusion) * carve_window
         + float(params.standing_support_packet_exclusion_shoulder) * carve_shoulder_window,
@@ -426,7 +444,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     shell_window = support_shell_overlay_window(float(s), float(l), params)
     beta_base = -u_beta * e_release * (w_support ** params.p_beta) * s_packet / b_angular
     delta_beta_shell = float(params.support_shell_amplitude) * shell_window if params.support_shell_overlay_enabled else 0.0
-    beta = beta_base + delta_beta_shell
+    beta_pre_rematch = beta_base + delta_beta_shell
     alpha_base = n_cushion * t_lapse
     packet_lapse_factor = support_shell_metric_factor(params.standing_support_packet_lapse_log_gain, packet_lapse_window)
     clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
@@ -437,6 +455,12 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     gamma_ll = gamma_ll_base * rail_stretch_factor
     sqrt_gamma_ll = np.sqrt(gamma_ll)
     vcoord = u_packet / b_angular
+    delta_beta_packet = (
+        -float(params.standing_support_packet_beta_rematch_gain)
+        * packet_beta_rematch_window
+        * (vcoord + beta_pre_rematch)
+    )
+    beta = beta_pre_rematch + delta_beta_packet
     gtt = -alpha * alpha + gamma_ll * beta * beta
     packet_norm = -alpha * alpha + gamma_ll * (vcoord + beta) ** 2
 
@@ -460,6 +484,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_carve_factor": float(carve_factor),
         "standing_support_packet_lapse_window": float(packet_lapse_window),
         "standing_support_packet_lapse_factor": float(packet_lapse_factor),
+        "standing_support_packet_beta_rematch_window": float(packet_beta_rematch_window),
         "S": float(s_packet),
         "A": float(a_spatial),
         "T": float(t_lapse),
@@ -468,10 +493,12 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "beta": float(beta),
         "alpha": float(alpha),
         "beta_base": float(beta_base),
+        "beta_pre_packet_rematch": float(beta_pre_rematch),
         "alpha_base": float(alpha_base),
         "gamma_ll_base": float(gamma_ll_base),
         "support_shell_window": float(shell_window),
         "support_shell_delta_beta": float(delta_beta_shell),
+        "standing_support_packet_delta_beta": float(delta_beta_packet),
         "standing_support_packet_delta_alpha": float(alpha_base * packet_lapse_factor - alpha_base),
         "support_shell_clock_lapse_factor": float(clock_lapse_factor),
         "support_shell_delta_alpha": float(alpha - alpha_base),
@@ -624,7 +651,9 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_carve_factor",
             "standing_support_packet_lapse_window",
             "standing_support_packet_lapse_factor",
+            "standing_support_packet_beta_rematch_window",
             "standing_support_packet_delta_alpha",
+            "standing_support_packet_delta_beta",
             "S",
             "q",
             "E",
@@ -636,6 +665,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "alpha",
             "beta",
             "beta_base",
+            "beta_pre_packet_rematch",
             "alpha_base",
             "gamma_ll_base",
             "support_shell_window",
@@ -976,6 +1006,14 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wls{params.standing_support_packet_lapse_schedule}"
         )
         note = f"{note}; experimental packet-local lapse compensator"
+    if params.standing_support_packet_beta_rematch_gain:
+        case_name = (
+            f"{case_name}_wbeta{_token(params.standing_support_packet_beta_rematch_gain)}"
+            f"_wbr{_token(params.standing_support_packet_beta_rematch_radius_multiplier)}"
+            f"_wbw{_token(params.standing_support_packet_beta_rematch_width_multiplier)}"
+            f"_wbs{params.standing_support_packet_beta_rematch_schedule}"
+        )
+        note = f"{note}; experimental packet-local beta rematch"
     return SourceCase(case_name, params, note)
 
 
