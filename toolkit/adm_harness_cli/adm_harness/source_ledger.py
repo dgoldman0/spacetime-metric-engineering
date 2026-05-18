@@ -130,15 +130,18 @@ class SourceParams:
     standing_support_packet_exclusion_radius_multiplier: float = 1.0
     standing_support_packet_exclusion_width_multiplier: float = 1.0
     standing_support_packet_exclusion_schedule: str = "live_only"
+    standing_support_packet_exclusion_temporal_profile: str = "tanh"
     standing_support_packet_exclusion_shoulder: float = 0.0
     standing_support_packet_exclusion_shoulder_mode: str = "filled"
     standing_support_packet_exclusion_shoulder_radius_multiplier: float = 1.4
     standing_support_packet_exclusion_shoulder_width_multiplier: float = 1.8
     standing_support_packet_exclusion_shoulder_schedule: str = "live_only"
+    standing_support_packet_exclusion_shoulder_temporal_profile: str = "tanh"
     standing_support_packet_lapse_log_gain: float = 0.0
     standing_support_packet_lapse_radius_multiplier: float = 1.0
     standing_support_packet_lapse_width_multiplier: float = 1.0
     standing_support_packet_lapse_schedule: str = "live_only"
+    standing_support_packet_lapse_temporal_profile: str = "tanh"
     standing_support_packet_beta_rematch_gain: float = 0.0
     standing_support_packet_beta_rematch_shape: str = "core"
     standing_support_packet_beta_rematch_radius_multiplier: float = 1.0
@@ -147,6 +150,7 @@ class SourceParams:
     standing_support_packet_beta_rematch_outer_radius_multiplier: float = 1.10
     standing_support_packet_beta_rematch_edge_softness: float = 1.0
     standing_support_packet_beta_rematch_temporal_width_multiplier: float = 1.0
+    standing_support_packet_beta_rematch_temporal_profile: str = "tanh"
     standing_support_packet_beta_rematch_center_floor: float = 0.0
     standing_support_packet_beta_rematch_floor_mode: str = "max"
     standing_support_packet_beta_rematch_schedule: str = "live_only"
@@ -167,6 +171,15 @@ def smoothstep_minjerk(t: np.ndarray | float) -> np.ndarray:
 def smoothstep7(t: np.ndarray | float) -> np.ndarray:
     x = np.clip(np.asarray(t, dtype=float), 0.0, 1.0)
     return 35.0 * x**4 - 84.0 * x**5 + 70.0 * x**6 - 20.0 * x**7
+
+
+def smoothstep_profile(t: np.ndarray | float, profile: str) -> np.ndarray:
+    key = profile.strip().lower()
+    if key in {"minimum_jerk", "minjerk", "smoothstep5"}:
+        return smoothstep_minjerk(t)
+    if key == "smoothstep7":
+        return smoothstep7(t)
+    raise ValueError(f"Unknown smoothstep profile: {profile}")
 
 
 def minjerk_down_window(s: np.ndarray | float, x: float, w: float) -> np.ndarray:
@@ -253,6 +266,33 @@ def smooth_box(x: np.ndarray | float, lo: float, hi: float, edge_width: float) -
     left = 1.0 - falloff(values - lo, edge)
     right = falloff(values - hi, edge)
     return np.clip(left * right, 0.0, 1.0)
+
+
+def temporal_rise(s: np.ndarray | float, x: float, w: float, profile: str) -> np.ndarray:
+    values = np.asarray(s, dtype=float)
+    key = profile.strip().lower()
+    if key == "tanh":
+        return 1.0 - falloff(values - x, w)
+    t = (values - (x - 2.0 * w)) / max(4.0 * w, 1.0e-12)
+    return smoothstep_profile(t, key)
+
+
+def temporal_fall(s: np.ndarray | float, x: float, w: float, profile: str) -> np.ndarray:
+    values = np.asarray(s, dtype=float)
+    key = profile.strip().lower()
+    if key == "tanh":
+        return falloff(values - x, w)
+    t = (values - (x - 2.0 * w)) / max(4.0 * w, 1.0e-12)
+    return 1.0 - smoothstep_profile(t, key)
+
+
+def temporal_box(s: np.ndarray | float, lo: float, hi: float, edge_width: float, profile: str) -> np.ndarray:
+    values = np.asarray(s, dtype=float)
+    key = profile.strip().lower()
+    if key == "tanh":
+        return smooth_box(values, lo, hi, edge_width)
+    edge = max(float(edge_width), 1.0e-12)
+    return np.clip(temporal_rise(values, lo, edge, key) * temporal_fall(values, hi, edge, key), 0.0, 1.0)
 
 
 def raised_cosine_compact(distance: np.ndarray | float, radius: float) -> np.ndarray:
@@ -399,6 +439,7 @@ def standing_support_packet_window(
     width_multiplier: float,
     schedule_name: str,
     temporal_width_multiplier: float = 1.0,
+    temporal_profile: str = "tanh",
     release_lag_widths: float = 0.0,
 ) -> float:
     s_arr = np.asarray(s, dtype=float)
@@ -411,22 +452,22 @@ def standing_support_packet_window(
     live_end = live_packet_end(params)
     temporal_width = max(float(params.w_beta) * float(temporal_width_multiplier), 1.0e-12)
     if schedule_key == "live_only":
-        schedule = falloff(s_arr - live_end, temporal_width)
+        schedule = temporal_fall(s_arr, live_end, temporal_width, temporal_profile)
     elif schedule_key == "coordinated_release":
         catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
         lo = params.x_catch_packet - 0.75 * catch_width
-        onset = 1.0 - falloff(s_arr - lo, max(temporal_width / 2.0, 1.0e-12))
+        onset = temporal_rise(s_arr, lo, max(temporal_width / 2.0, 1.0e-12), temporal_profile)
         schedule = onset * release_profile_down(s_arr, params, lag_widths=release_lag_widths)
     elif schedule_key == "entry_catch_release":
         catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
         lo = params.x_catch_packet - 2.0 * catch_width
         hi = live_end
-        schedule = smooth_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12))
+        schedule = temporal_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12), temporal_profile)
     elif schedule_key == "catch_release":
         catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
         lo = params.x_catch_packet - 0.75 * catch_width
         hi = live_end
-        schedule = smooth_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12))
+        schedule = temporal_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12), temporal_profile)
     elif schedule_key == "always":
         schedule = np.asarray(1.0, dtype=float)
     else:
@@ -445,6 +486,7 @@ def standing_support_packet_carve_window(s: float, l: float, params: SourceParam
         radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
         width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
         schedule_name=params.standing_support_packet_exclusion_schedule,
+        temporal_profile=params.standing_support_packet_exclusion_temporal_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
 
@@ -460,6 +502,7 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
         radius_multiplier=params.standing_support_packet_exclusion_shoulder_radius_multiplier,
         width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
         schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+        temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
     mode = params.standing_support_packet_exclusion_shoulder_mode.strip().lower()
@@ -471,10 +514,11 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
             l,
             params,
             radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
-                width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
-                schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
-                release_lag_widths=params.release_carve_lag_widths,
-            )
+            width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
+            schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+            temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile,
+            release_lag_widths=params.release_carve_lag_widths,
+        )
         return float(np.clip(outer - inner, 0.0, 1.0))
     raise ValueError(f"Unknown standing support packet shoulder mode: {params.standing_support_packet_exclusion_shoulder_mode}")
 
@@ -489,6 +533,7 @@ def standing_support_packet_lapse_window(s: float, l: float, params: SourceParam
         radius_multiplier=params.standing_support_packet_lapse_radius_multiplier,
         width_multiplier=params.standing_support_packet_lapse_width_multiplier,
         schedule_name=params.standing_support_packet_lapse_schedule,
+        temporal_profile=params.standing_support_packet_lapse_temporal_profile,
         release_lag_widths=params.release_lapse_lag_widths,
     )
 
@@ -507,6 +552,7 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
             width_multiplier=params.standing_support_packet_beta_rematch_width_multiplier,
             schedule_name=params.standing_support_packet_beta_rematch_schedule,
             temporal_width_multiplier=temporal_width_multiplier,
+            temporal_profile=params.standing_support_packet_beta_rematch_temporal_profile,
         )
     core_floor = float(params.standing_support_packet_beta_rematch_center_floor) * standing_support_packet_window(
         s,
@@ -516,6 +562,7 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
         width_multiplier=params.standing_support_packet_beta_rematch_width_multiplier,
         schedule_name=params.standing_support_packet_beta_rematch_schedule,
         temporal_width_multiplier=temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_beta_rematch_temporal_profile,
     )
 
     outer_radius = params.standing_support_packet_beta_rematch_outer_radius_multiplier
@@ -532,6 +579,7 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
         width_multiplier=edge_width,
         schedule_name=params.standing_support_packet_beta_rematch_schedule,
         temporal_width_multiplier=temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_beta_rematch_temporal_profile,
     )
     if shape == "shoulder":
         return outer
@@ -544,6 +592,7 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
         width_multiplier=edge_width,
         schedule_name=params.standing_support_packet_beta_rematch_schedule,
         temporal_width_multiplier=temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_beta_rematch_temporal_profile,
     )
     annulus = float(np.clip(outer - inner, 0.0, 1.0))
     floor_mode = params.standing_support_packet_beta_rematch_floor_mode.strip().lower()
@@ -1197,6 +1246,8 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_ww{_token(params.standing_support_packet_exclusion_width_multiplier)}"
             f"_ws{params.standing_support_packet_exclusion_schedule}"
         )
+        if params.standing_support_packet_exclusion_temporal_profile != "tanh":
+            case_name = f"{case_name}_wtp{params.standing_support_packet_exclusion_temporal_profile}"
     if params.standing_support_packet_exclusion_shoulder:
         case_name = (
             f"{case_name}_wshoulder{_token(params.standing_support_packet_exclusion_shoulder)}"
@@ -1205,6 +1256,8 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wsw{_token(params.standing_support_packet_exclusion_shoulder_width_multiplier)}"
             f"_wss{params.standing_support_packet_exclusion_shoulder_schedule}"
         )
+        if params.standing_support_packet_exclusion_shoulder_temporal_profile != "tanh":
+            case_name = f"{case_name}_wstp{params.standing_support_packet_exclusion_shoulder_temporal_profile}"
         note = f"{note}; experimental standing-support packet carve-out"
     if params.standing_support_packet_lapse_log_gain:
         case_name = (
@@ -1213,6 +1266,8 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wlw{_token(params.standing_support_packet_lapse_width_multiplier)}"
             f"_wls{params.standing_support_packet_lapse_schedule}"
         )
+        if params.standing_support_packet_lapse_temporal_profile != "tanh":
+            case_name = f"{case_name}_wltp{params.standing_support_packet_lapse_temporal_profile}"
         note = f"{note}; experimental packet-local lapse compensator"
     if params.standing_support_packet_beta_rematch_gain:
         case_name = (
@@ -1228,6 +1283,8 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wbfm{params.standing_support_packet_beta_rematch_floor_mode}"
             f"_wbs{params.standing_support_packet_beta_rematch_schedule}"
         )
+        if params.standing_support_packet_beta_rematch_temporal_profile != "tanh":
+            case_name = f"{case_name}_wbtp{params.standing_support_packet_beta_rematch_temporal_profile}"
         note = f"{note}; experimental packet-local beta rematch"
     return SourceCase(case_name, params, note)
 

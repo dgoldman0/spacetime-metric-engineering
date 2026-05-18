@@ -1,5 +1,22 @@
 # Active-Rail Codex Handoff Plan
 
+## Current checkpoint, 2026-05-18
+
+The active V5 refreeze remains the smoother `blend` floor-union candidate with trailing-edge beta-rematch width `1.6`. The hard `max` floor-union setting should be kept as a diagnostic comparator only.
+
+The latest harness refinement added temporal-edge profile controls to the packet carve, packet carve shoulder, packet lapse, and packet beta-rematch schedule windows. Defaults remain `tanh`, so existing ledgers and historical run semantics are preserved unless a new temporal profile is explicitly selected.
+
+Recent V5 infrastructure-side smoothing screens showed:
+
+```text
+plain smoother temporal edges did not improve the current blend + width 1.6 candidate;
+coordinated carve release worsened live packet source fractions and should be rejected as a main path;
+coordinated lapse release reduced live radial-null burden and point peak, but increased live p_l and created a live lapse-window derivative spike;
+the coordinated-lapse result is diagnostic, not a refreeze candidate.
+```
+
+The next recommended work is not another broad release sweep. Build a focused channel-cause ledger for top bad points. For each selected bad point, record the projected source pieces and local metric-derivative magnitudes needed to classify whether the point is beta-gradient dominated, lapse-curvature dominated, radial-metric dominated, angular-capacity dominated, or cancellation dominated. Use that diagnostic to design a weaker local lapse/null-channel trim constrained against live `p_l`, while keeping the carve field live as part of the packet/support separation geometry.
+
 ## Why this handoff exists
 
 The active-rail project is at a transition point. The early work asked whether a throat-loaded transport metric could be made coherent at all. The recent work has narrowed that into a more useful engineering question: whether the packet can be treated as a protected service object while the hard geometric support is handled by surrounding infrastructure. The project has enough harness machinery to stop arguing about this only in prose. The next agent should turn the distinction into reproducible reports.

@@ -333,15 +333,18 @@ Common schedule choices:
 | `standing_support_packet_exclusion_radius_multiplier` | Radius multiplier for the core carve window relative to `Rpass`. |
 | `standing_support_packet_exclusion_width_multiplier` | Transition-width multiplier for the core carve window relative to `w_pass`. |
 | `standing_support_packet_exclusion_schedule` | Temporal schedule for the core carve window. |
+| `standing_support_packet_exclusion_temporal_profile` | Temporal edge profile for the core carve schedule. `tanh` preserves historical behavior; `minimum_jerk` / `smoothstep5` and `smoothstep7` provide derivative-limited schedule edges. |
 | `standing_support_packet_exclusion_shoulder` | Additional wider/softer shoulder carve strength. It is added to the core carve contribution and clipped before applying to the standing support bump. |
 | `standing_support_packet_exclusion_shoulder_mode` | Shoulder shape. `filled` uses the full outer shoulder window; `annular` uses outer minus inner so the shoulder softens the ring around the core. |
 | `standing_support_packet_exclusion_shoulder_radius_multiplier` | Radius multiplier for the shoulder carve window relative to `Rpass`. |
 | `standing_support_packet_exclusion_shoulder_width_multiplier` | Transition-width multiplier for the shoulder carve window relative to `w_pass`. |
 | `standing_support_packet_exclusion_shoulder_schedule` | Temporal schedule for the shoulder carve window. |
+| `standing_support_packet_exclusion_shoulder_temporal_profile` | Temporal edge profile for the shoulder carve schedule. |
 | `standing_support_packet_lapse_log_gain` | Packet-local lapse compensator log-gain applied to `alpha` on its own packet window. It can restore causal margin consumed by carving, but may add radial-null cost. |
 | `standing_support_packet_lapse_radius_multiplier` | Radius multiplier for the packet-local lapse window relative to `Rpass`. |
 | `standing_support_packet_lapse_width_multiplier` | Transition-width multiplier for the packet-local lapse window relative to `w_pass`. |
 | `standing_support_packet_lapse_schedule` | Temporal schedule for the packet-local lapse window. |
+| `standing_support_packet_lapse_temporal_profile` | Temporal edge profile for the packet-local lapse schedule. |
 | `standing_support_packet_beta_rematch_gain` | Packet-local beta rematch gain. Positive values add `delta_beta_packet = -gain * window * (vcoord + beta_pre_rematch)`, nudging the local shift toward cancelling packet coordinate velocity. |
 | `standing_support_packet_beta_rematch_shape` | Shape family for the beta rematch window. `core` is the old filled packet-local window; `shoulder`, `annular`, `edge_soften`, and `trailing_edge` target packet shoulders/edges more selectively. |
 | `standing_support_packet_beta_rematch_radius_multiplier` | Radius multiplier for the packet-local beta rematch window relative to `Rpass`. |
@@ -350,8 +353,9 @@ Common schedule choices:
 | `standing_support_packet_beta_rematch_outer_radius_multiplier` | Outer radius multiplier for annular, edge-soften, and trailing-edge beta rematch sleeves. Values near `1.10` target just outside the packet edge. |
 | `standing_support_packet_beta_rematch_edge_softness` | Extra radial/side softness multiplier for shaped beta rematch sleeve edges. |
 | `standing_support_packet_beta_rematch_temporal_width_multiplier` | Temporal smoothing multiplier for the beta rematch schedule. |
+| `standing_support_packet_beta_rematch_temporal_profile` | Temporal edge profile for the beta rematch schedule. Leave this at `tanh` when testing infrastructure-side release/carve/lapse smoothing without changing beta support timing. |
 | `standing_support_packet_beta_rematch_center_floor` | Weak filled-core floor mixed into shaped beta rematch windows. This can restore causal margin without making the center as active as the edge sleeve. |
-| `standing_support_packet_beta_rematch_floor_mode` | How shaped beta-rematch sleeves combine with `standing_support_packet_beta_rematch_center_floor`: `max` preserves the old hard union, `blend` uses a smooth union, and `add` clips the sum. |
+| `standing_support_packet_beta_rematch_floor_mode` | How shaped beta-rematch sleeves combine with `standing_support_packet_beta_rematch_center_floor`: `max` uses a hard union, `blend` uses a smooth union, and `add` clips the sum. |
 | `standing_support_packet_beta_rematch_schedule` | Temporal schedule for the packet-local beta rematch window. |
 
 ### Ledger outputs tied to these knobs

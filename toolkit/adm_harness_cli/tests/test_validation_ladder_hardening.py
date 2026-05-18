@@ -378,6 +378,57 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertEqual({spec["target_delta_beta_abs_max"] for spec in specs}, {0.15, 0.25})
         self.assertEqual(len({overlay_sweep._case_slug(spec) for spec in specs}), 2)
 
+    def test_packet_temporal_profiles_are_wired_into_windows_and_sweeps(self):
+        tanh_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            standing_support_packet_lapse_log_gain=1.0,
+            standing_support_packet_lapse_schedule="entry_catch_release",
+            standing_support_packet_lapse_temporal_profile="tanh",
+        )
+        smooth_case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            standing_support_packet_lapse_log_gain=1.0,
+            standing_support_packet_lapse_schedule="entry_catch_release",
+            standing_support_packet_lapse_temporal_profile="smoothstep7",
+        )
+
+        s = -0.55
+        l = s
+        tanh_window = source_ledger.standing_support_packet_lapse_window(s, l, tanh_case.params)
+        smooth_window = source_ledger.standing_support_packet_lapse_window(s, l, smooth_case.params)
+
+        self.assertGreaterEqual(smooth_window, 0.0)
+        self.assertLessEqual(smooth_window, 1.0)
+        self.assertNotAlmostEqual(tanh_window, smooth_window)
+
+        args = SimpleNamespace(
+            amplitudes=[0.5],
+            signs=["pos"],
+            catch_leads=[1.55],
+            temporal_widths=[0.30],
+            temporal_profiles=["gaussian"],
+            temporal_shoulders=[None],
+            radial_profiles=["smooth_box"],
+            support_shell_radial_widths=[None],
+            clock_lapse_ratios=[0.375],
+            rail_stretch_ratios=[0.0],
+            throat_capacity_ratios=[0.0],
+            standing_support_packet_lapse_log_gains=[1.0],
+            standing_support_packet_lapse_schedules=["entry_catch_release"],
+            standing_support_packet_lapse_temporal_profiles=["tanh", "smoothstep7"],
+        )
+
+        specs = overlay_sweep._build_specs(args)
+
+        self.assertEqual(len(specs), 2)
+        self.assertEqual(
+            {spec["standing_support_packet_lapse_temporal_profile"] for spec in specs},
+            {"tanh", "smoothstep7"},
+        )
+        self.assertEqual(len({overlay_sweep._case_slug(spec) for spec in specs}), 2)
+
     def test_support_shell_shape_defaults_are_compatible_and_profiles_change_window(self):
         default_case = source_ledger.branch_case(
             "tuned_w0569_eta200",

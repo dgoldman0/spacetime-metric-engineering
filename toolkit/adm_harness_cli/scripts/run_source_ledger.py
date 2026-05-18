@@ -71,15 +71,18 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_exclusion_radius_multiplier": args.standing_support_packet_exclusion_radius_multiplier,
         "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
         "standing_support_packet_exclusion_schedule": args.standing_support_packet_exclusion_schedule,
+        "standing_support_packet_exclusion_temporal_profile": args.standing_support_packet_exclusion_temporal_profile,
         "standing_support_packet_exclusion_shoulder": args.standing_support_packet_exclusion_shoulder,
         "standing_support_packet_exclusion_shoulder_mode": args.standing_support_packet_exclusion_shoulder_mode,
         "standing_support_packet_exclusion_shoulder_radius_multiplier": args.standing_support_packet_exclusion_shoulder_radius_multiplier,
         "standing_support_packet_exclusion_shoulder_width_multiplier": args.standing_support_packet_exclusion_shoulder_width_multiplier,
         "standing_support_packet_exclusion_shoulder_schedule": args.standing_support_packet_exclusion_shoulder_schedule,
+        "standing_support_packet_exclusion_shoulder_temporal_profile": args.standing_support_packet_exclusion_shoulder_temporal_profile,
         "standing_support_packet_lapse_log_gain": args.standing_support_packet_lapse_log_gain,
         "standing_support_packet_lapse_radius_multiplier": args.standing_support_packet_lapse_radius_multiplier,
         "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
         "standing_support_packet_lapse_schedule": args.standing_support_packet_lapse_schedule,
+        "standing_support_packet_lapse_temporal_profile": args.standing_support_packet_lapse_temporal_profile,
         "standing_support_packet_beta_rematch_gain": args.standing_support_packet_beta_rematch_gain,
         "standing_support_packet_beta_rematch_shape": args.standing_support_packet_beta_rematch_shape,
         "standing_support_packet_beta_rematch_radius_multiplier": args.standing_support_packet_beta_rematch_radius_multiplier,
@@ -88,6 +91,7 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_beta_rematch_outer_radius_multiplier": args.standing_support_packet_beta_rematch_outer_radius_multiplier,
         "standing_support_packet_beta_rematch_edge_softness": args.standing_support_packet_beta_rematch_edge_softness,
         "standing_support_packet_beta_rematch_temporal_width_multiplier": args.standing_support_packet_beta_rematch_temporal_width_multiplier,
+        "standing_support_packet_beta_rematch_temporal_profile": args.standing_support_packet_beta_rematch_temporal_profile,
         "standing_support_packet_beta_rematch_center_floor": args.standing_support_packet_beta_rematch_center_floor,
         "standing_support_packet_beta_rematch_floor_mode": args.standing_support_packet_beta_rematch_floor_mode,
         "standing_support_packet_beta_rematch_schedule": args.standing_support_packet_beta_rematch_schedule,
@@ -229,6 +233,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     parser.add_argument(
+        "--standing-support-packet-exclusion-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
         "--standing-support-packet-exclusion-shoulder",
         type=float,
         default=None,
@@ -247,6 +256,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
         "--standing-support-packet-lapse-log-gain",
         type=float,
         default=None,
@@ -257,6 +271,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--standing-support-packet-lapse-schedule",
         choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-lapse-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
         default=None,
     )
     parser.add_argument(
@@ -276,6 +295,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-beta-rematch-outer-radius-multiplier", type=float, default=None)
     parser.add_argument("--standing-support-packet-beta-rematch-edge-softness", type=float, default=None)
     parser.add_argument("--standing-support-packet-beta-rematch-temporal-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
     parser.add_argument("--standing-support-packet-beta-rematch-center-floor", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-beta-rematch-floor-mode",
