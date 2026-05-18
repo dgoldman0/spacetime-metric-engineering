@@ -41,17 +41,33 @@ def _token(value: float) -> str:
 
 @dataclass(frozen=True)
 class SourceParams:
+    """Metric and ledger knobs for the 4D demanded-source harness.
+
+    Keep this class aligned with the "SourceParams Reference" section in the
+    README. The fields are grouped by the service subsystem they control:
+    baseline packet/catch kinematics, standing support geometry, carried shift
+    release, angular throat capacity, live-packet accounting, support-shell
+    overlays, and packet-local redesign controls.
+    """
+
+    # Packet and service speed. V is the main service/load factor; Rpass
+    # defines the modeled packet tube used by both geometry and accounting.
     V: float = 5.0
     v_exit: float = 0.5
     p_beta: float = 4.0
     Rpass: float = 0.35
 
+    # Catch/rematch timing. The support-side beta catch may lead the packet
+    # rematch; widths set the temporal transition scales.
     x_catch_beta: float = -0.05
     w_catch_beta: float = 0.32
     x_catch_packet: float = 0.00
     w_catch_packet: float = 0.32
     catch_profile: str = "minjerk"
 
+    # Standing support plant. These fields define the support bump, radial rail
+    # stretch/lapse scale, throat radius, packet transition width, and numerical
+    # regularization used in packet-window formulas.
     C0: float = 100.0
     lam: float = 6.0
     B0: float = 8.0
@@ -63,21 +79,26 @@ class SourceParams:
     w_pass: float = 0.06
     eps: float = 1.0e-5
 
+    # Carrying-flow release and support decompression schedule.
     x_beta: float = 0.70
     w_beta: float = 0.18
     q_t0: float = -0.40
     q_Tr: float = 3.00
 
+    # Angular/throat-capacity jacket. These fields shape the gamma_omega
+    # channel independently from the radial support bump.
     aOmega: float = 0.20
     ROmega: float = 1.75
     wOmega: float = 1.40
     xOmega: float = 2.00
     wtOmega: float = 0.60
 
+    # Live-packet accounting horizon after shift release.
     live_packet_end_margin_widths: float = 2.0
 
-    # Frozen support-shell carrying-flow overlay. Disabled by default so the
-    # regenerated reference ledgers still reproduce the historical bundles.
+    # Support-shell overlay: an infrastructure-local carrying-flow actuator
+    # plus optional metric partners on alpha, gamma_ll, and gamma_omega.
+    # Disabled by default so regenerated reference ledgers match old bundles.
     support_shell_overlay_enabled: bool = False
     support_shell_amplitude: float = 1.0e-7
     support_shell_catch_lead: float = 1.0
@@ -96,10 +117,9 @@ class SourceParams:
     support_shell_rail_stretch_log_gain: float = 0.0
     support_shell_throat_capacity_log_gain: float = 0.0
 
-    # Experimental Stage I redesign knob. This locally reduces the standing
-    # support bump under the modeled packet tube before the shell overlay is
-    # applied, so sweeps can test whether hard live-packet channels are caused
-    # by packet/support substrate overlap.
+    # Packet-local redesign controls. These edit the standing support under or
+    # around the packet tube, then optionally compensate causal margin through
+    # alpha or beta channels using independent packet-window footprints.
     standing_support_packet_exclusion: float = 0.0
     standing_support_packet_exclusion_radius_multiplier: float = 1.0
     standing_support_packet_exclusion_width_multiplier: float = 1.0

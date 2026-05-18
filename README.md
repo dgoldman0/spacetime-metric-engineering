@@ -11,4 +11,8 @@ This archive contains:
 - manifest files for all included zip bundles,
 - all zip bundles found from this session under `included_bundles/`.
 
+For the software harness knob reference, including every `SourceParams`
+field and how the fields map into the metric channels, see
+`toolkit/adm_harness_cli/README.md` under "SourceParams reference."
+
 Status: reduced-model V=10 candidate refreeze plus source-proxy finish-line package. This is not a physical matter construction proof.

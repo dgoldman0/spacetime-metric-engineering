@@ -207,6 +207,149 @@ The nominal value passed through `--amplitudes` remains in the output as `nomina
 
 Overlay sweeps also write `source_overlay_sweep_shell_throat_overlap.csv`. This table measures each demanded-source channel inside the band where the support-shell window overlaps the support/throat gradient. It is intended to catch warp-shell/throat-mismatch behavior: radial-null, radial-current, angular-pressure, or point-peak growth concentrated in the active shell/throat overlap rather than distributed across the full grid.
 
+## SourceParams reference
+
+`adm_harness/source_ledger.py` builds a reduced 4D metric from a `SourceParams` dataclass, evaluates finite-difference Einstein-tensor projections, and records source-ledger channels. The fields below are the durable parameter reference for that harness. Experiment reports may name selected values, but this section describes the knobs as reusable system controls.
+
+The coordinates are:
+
+- `s`: service/evolution coordinate used for timing, catch/rematch, release, and reset.
+- `l`: radial rail/throat coordinate.
+- The packet tube is centered approximately on `l = s`; live-packet accounting uses `abs(l - s) <= Rpass` until the configured live end.
+
+The main metric channels are:
+
+- `alpha`: lapse / clock-rate channel. It is built from the standing support lapse, radial lapse cushion, support-shell clock-lapse partner, and packet-local lapse compensator.
+- `beta`: radial shift / carrying-flow channel. It is built from the baseline carried shift, optional support-shell carrying-flow overlay, and optional packet-local beta rematch.
+- `gamma_ll`: radial spatial metric channel. It is built from the standing support rail-stretch factor and optional support-shell rail-stretch partner.
+- `gamma_omega`: angular/throat-capacity channel. It is built from the baseline angular jacket and optional support-shell throat-capacity partner.
+
+### Baseline packet and service speed
+
+| Field | Meaning |
+|---|---|
+| `V` | Main service/load factor used to scale the carried packet/support shift during the live service. It is the V in V5, V8, V10 checks, not an ordinary passenger velocity claim. |
+| `v_exit` | Residual/exit service speed after catch/rematch has finished; `U_beta` and `U_packet` interpolate between `V` and `v_exit`. |
+| `p_beta` | Power applied to the standing support bump in the baseline beta term. Larger values localize baseline carrying flow more strongly to the prepared support region. |
+| `Rpass` | Packet-tube radius. It controls packet geometry windows, packet/live masks, and packet-local carve/lapse/beta-rematch windows before multipliers are applied. |
+
+### Catch/rematch timing
+
+| Field | Meaning |
+|---|---|
+| `x_catch_beta` | Center of the support-side beta catch. More negative values make support infrastructure start rematching earlier. |
+| `w_catch_beta` | Temporal width of the beta catch transition. Wider values smooth the support-side catch over more service time. |
+| `x_catch_packet` | Center of the packet rematch. The selected branch keeps this close behind the support-side catch. |
+| `w_catch_packet` | Temporal width of the packet rematch transition. |
+| `catch_profile` | Transition family for catch/rematch. Current options are `minjerk` and `tanh`; `minjerk` is the mature shaped-catch default. |
+
+### Standing support plant
+
+| Field | Meaning |
+|---|---|
+| `C0` | Standing radial rail-stretch scale. It enters `a_spatial = exp(q * W * log(C0))`, then contributes to `gamma_ll`. |
+| `lam` | Lapse-to-rail-stretch multiplier. It enters `t_lapse = exp(q * W * log(lam * C0))`, so it sets how strongly the standing support affects `alpha`. |
+| `B0` | Baseline throat/carrying-flow capacity factor. It enters `B = 1 + (B0 - 1) * W * q` and divides the packet coordinate velocity and baseline beta. |
+| `eta_N` | Strength of the radial lapse cushion near the support shoulder. It buys packet causal margin for radial-softened support branches. |
+| `Rth` | Main support/throat radius used by the standing support bump and region labels. |
+| `w_th` | Default transition width of the standing support bump at `Rth`. Wider values soften radial support edges but can consume packet safety margin. |
+| `w_th_inner` | Optional inner-side support transition width. When paired with `w_th_outer`, it replaces the symmetric `w_th` width inside `Rth`. |
+| `w_th_outer` | Optional outer-side support transition width. When paired with `w_th_inner`, it replaces the symmetric `w_th` width outside `Rth`. |
+| `w_pass` | Packet-window transition width for baseline packet bump `S` and packet-local windows before width multipliers. |
+| `eps` | Small regularization used in packet-window radius calculations to avoid exact zero-width/singular center behavior. |
+
+### Carrying-flow release and reset
+
+| Field | Meaning |
+|---|---|
+| `x_beta` | Center of the carrying-flow release/fade. It also anchors the end of the live-packet accounting window. |
+| `w_beta` | Width of the carrying-flow release/fade and the default smoothing scale for several live-window schedules. |
+| `q_t0` | Start time for support decompression/reset through the minimum-jerk `q` factor. |
+| `q_Tr` | Duration of support decompression/reset. Larger values make reset slower and smoother. |
+
+### Angular/throat-capacity jacket
+
+| Field | Meaning |
+|---|---|
+| `aOmega` | Amplitude of the baseline angular jacket applied to `gamma_omega`. |
+| `ROmega` | Radial placement radius for the angular jacket. |
+| `wOmega` | Radial width of the angular jacket. |
+| `xOmega` | Service-time center/anchor for the angular jacket fade factor. |
+| `wtOmega` | Temporal width for the angular jacket fade factor. |
+
+### Live-packet accounting
+
+| Field | Meaning |
+|---|---|
+| `live_packet_end_margin_widths` | Number of `w_beta` widths after `x_beta` to keep points in live-packet accounting. It affects live masks and `live_only` packet-local schedules. |
+
+### Support-shell overlay and metric partners
+
+These fields define an infrastructure-local support-shell actuator. The overlay is disabled by default so historical baseline ledgers regenerate unchanged.
+
+| Field | Meaning |
+|---|---|
+| `support_shell_overlay_enabled` | Enables the support-shell overlay and its coupled metric partners. |
+| `support_shell_amplitude` | Signed amplitude of the support-shell carrying-flow contribution added to `beta` through `support_shell_delta_beta`. |
+| `support_shell_catch_lead` | How far ahead of packet catch/rematch the support-shell temporal window is centered. |
+| `support_shell_temporal_width` | Width of the support-shell temporal window. |
+| `support_shell_temporal_profile` | Temporal profile family for the support-shell window: `gaussian`, `raised_cosine`, `minjerk_pulse`, or `smooth_box`. |
+| `support_shell_temporal_shoulder` | Optional temporal shoulder/edge width used by compact temporal profiles. `None` means use the profile default. |
+| `support_shell_radial_profile` | Radial profile family for the support-shell window: `smooth_box`, `gaussian_annulus`, or `raised_cosine_annulus`. |
+| `support_shell_smoothness_order` | Repeated smoothing order for the support-shell radial box profile. Higher values soften edges more strongly. |
+| `support_shell_inner_multiplier` | Inner radius of the annular support-shell band as a multiplier of `Rth`. |
+| `support_shell_radial_multiplier` | Outer radius of the annular support-shell band as a multiplier of `Rth`. |
+| `support_shell_radial_width` | Optional radial edge/width override for support-shell profiles. `None` uses the profile-specific default. |
+| `support_shell_packet_exclusion` | Strength of packet exclusion inside the support-shell window. `1.0` fully suppresses shell activity in the packet tube. |
+| `support_shell_time_anchor` | Optional direct temporal anchor for the support-shell window. `None` derives it from catch/rematch timing and `support_shell_catch_lead`. |
+| `support_shell_catch_edge_width` | Optional edge width for catch-anchored shell timing. `None` derives it from catch widths. |
+| `support_shell_clock_lapse_log_gain` | Log-gain applied to `alpha` on the support-shell window. Positive values increase lapse locally. |
+| `support_shell_rail_stretch_log_gain` | Log-gain applied to `gamma_ll` on the support-shell window. |
+| `support_shell_throat_capacity_log_gain` | Log-gain applied to `gamma_omega` on the support-shell window. |
+
+Sweep ratios such as `--clock-lapse-ratios`, `--rail-stretch-ratios`, and `--throat-capacity-ratios` are convenience inputs that convert to these log gains by multiplying the signed support-shell amplitude.
+
+### Packet-local standing-support redesign controls
+
+These knobs edit the standing support under or around the packet tube. They are not source-family models; they are metric-side controls for asking whether the packet can be separated from the support substrate in the demanded-source ledger.
+
+Common schedule choices:
+
+- `live_only`: active through the live packet interval and tapered off after release.
+- `entry_catch_release`: active in a bounded entry/catch/release interval.
+- `always`: active wherever the packet-shaped radial window is active, independent of service time.
+
+| Field | Meaning |
+|---|---|
+| `standing_support_packet_exclusion` | Core carve strength applied to the standing support bump under the packet tube. `0.0` disables the carve; `1.0` would remove the standing support contribution where the core packet window is one. |
+| `standing_support_packet_exclusion_radius_multiplier` | Radius multiplier for the core carve window relative to `Rpass`. |
+| `standing_support_packet_exclusion_width_multiplier` | Transition-width multiplier for the core carve window relative to `w_pass`. |
+| `standing_support_packet_exclusion_schedule` | Temporal schedule for the core carve window. |
+| `standing_support_packet_exclusion_shoulder` | Additional wider/softer shoulder carve strength. It is added to the core carve contribution and clipped before applying to the standing support bump. |
+| `standing_support_packet_exclusion_shoulder_mode` | Shoulder shape. `filled` uses the full outer shoulder window; `annular` uses outer minus inner so the shoulder softens the ring around the core. |
+| `standing_support_packet_exclusion_shoulder_radius_multiplier` | Radius multiplier for the shoulder carve window relative to `Rpass`. |
+| `standing_support_packet_exclusion_shoulder_width_multiplier` | Transition-width multiplier for the shoulder carve window relative to `w_pass`. |
+| `standing_support_packet_exclusion_shoulder_schedule` | Temporal schedule for the shoulder carve window. |
+| `standing_support_packet_lapse_log_gain` | Packet-local lapse compensator log-gain applied to `alpha` on its own packet window. It can restore causal margin consumed by carving, but may add radial-null cost. |
+| `standing_support_packet_lapse_radius_multiplier` | Radius multiplier for the packet-local lapse window relative to `Rpass`. |
+| `standing_support_packet_lapse_width_multiplier` | Transition-width multiplier for the packet-local lapse window relative to `w_pass`. |
+| `standing_support_packet_lapse_schedule` | Temporal schedule for the packet-local lapse window. |
+| `standing_support_packet_beta_rematch_gain` | Packet-local beta rematch gain. Positive values add `delta_beta_packet = -gain * window * (vcoord + beta_pre_rematch)`, nudging the local shift toward cancelling packet coordinate velocity. |
+| `standing_support_packet_beta_rematch_radius_multiplier` | Radius multiplier for the packet-local beta rematch window relative to `Rpass`. |
+| `standing_support_packet_beta_rematch_width_multiplier` | Transition-width multiplier for the packet-local beta rematch window relative to `w_pass`. |
+| `standing_support_packet_beta_rematch_schedule` | Temporal schedule for the packet-local beta rematch window. |
+
+### Ledger outputs tied to these knobs
+
+Useful point-ledger fields for interpreting parameter effects include:
+
+- `W`, `W_raw`, `standing_support_packet_carve_contribution`, and `standing_support_packet_carve_factor` for support-bump carving.
+- `alpha`, `alpha_base`, `standing_support_packet_lapse_factor`, `standing_support_packet_delta_alpha`, and `support_shell_delta_alpha` for lapse changes.
+- `beta`, `beta_base`, `beta_pre_packet_rematch`, `support_shell_delta_beta`, and `standing_support_packet_delta_beta` for carrying-flow and rematch changes.
+- `gamma_ll_base`, `gamma_ll`, and `support_shell_delta_gamma_ll` for rail-stretch changes.
+- `gamma_omega_base`, `gamma_omega`, and `support_shell_delta_gamma_omega` for throat-capacity changes.
+- `inside_packet_live`, `inside_packet_geom`, `packet_norm`, `stage`, and `region` for packet-worldtube accounting.
+
 ## Send results back
 
 After the smoke suite finishes, create a results ZIP:
