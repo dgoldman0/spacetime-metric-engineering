@@ -56,6 +56,12 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"cl{_token(spec['clock_lapse_ratio'])}",
         f"rs{_token(spec['rail_stretch_ratio'])}",
         f"tc{_token(spec['throat_capacity_ratio'])}",
+        f"rel{spec['release_choreography_mode']}",
+        f"rh{_token(spec['release_matched_hold_widths'])}",
+        f"rprof{spec['release_beta_profile']}",
+        f"rbw{_token(spec['release_beta_width_multiplier'])}",
+        f"rll{_token(spec['release_lapse_lag_widths'])}",
+        f"rcl{_token(spec['release_carve_lag_widths'])}",
         f"wc{_token(spec['standing_support_packet_exclusion'])}",
         f"wcr{_token(spec['standing_support_packet_exclusion_radius_multiplier'])}",
         f"wcw{_token(spec['standing_support_packet_exclusion_width_multiplier'])}",
@@ -107,6 +113,12 @@ def _sort_cols() -> list[str]:
         "clock_lapse_ratio",
         "rail_stretch_ratio",
         "throat_capacity_ratio",
+        "release_choreography_mode",
+        "release_matched_hold_widths",
+        "release_beta_profile",
+        "release_beta_width_multiplier",
+        "release_lapse_lag_widths",
+        "release_carve_lag_widths",
         "standing_support_packet_exclusion",
         "standing_support_packet_exclusion_radius_multiplier",
         "standing_support_packet_exclusion_width_multiplier",
@@ -472,6 +484,12 @@ def _compare_case(
 
 def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     specs: list[dict[str, Any]] = []
+    release_choreography_modes = getattr(args, "release_choreography_modes", ["legacy"])
+    release_matched_hold_widths = getattr(args, "release_matched_hold_widths", [0.0])
+    release_beta_profiles = getattr(args, "release_beta_profiles", ["tanh"])
+    release_beta_width_multipliers = getattr(args, "release_beta_width_multipliers", [1.0])
+    release_lapse_lag_widths = getattr(args, "release_lapse_lag_widths", [0.0])
+    release_carve_lag_widths = getattr(args, "release_carve_lag_widths", [0.0])
     support_carves = getattr(args, "standing_support_packet_exclusions", [0.0])
     support_carve_radii = getattr(args, "standing_support_packet_exclusion_radius_multipliers", [1.0])
     support_carve_widths = getattr(args, "standing_support_packet_exclusion_width_multipliers", [1.0])
@@ -507,6 +525,12 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         args.clock_lapse_ratios,
         args.rail_stretch_ratios,
         args.throat_capacity_ratios,
+        release_choreography_modes,
+        release_matched_hold_widths,
+        release_beta_profiles,
+        release_beta_width_multipliers,
+        release_lapse_lag_widths,
+        release_carve_lag_widths,
         support_carves,
         support_carve_radii,
         support_carve_widths,
@@ -543,6 +567,12 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         clock_lapse_ratio,
         rail_stretch_ratio,
         throat_capacity_ratio,
+        release_choreography_mode,
+        release_matched_hold_width,
+        release_beta_profile,
+        release_beta_width_multiplier,
+        release_lapse_lag_width,
+        release_carve_lag_width,
         support_carve,
         support_carve_radius,
         support_carve_width,
@@ -586,6 +616,12 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
             "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
             "throat_capacity_ratio": float(throat_capacity_ratio),
             "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
+            "release_choreography_mode": str(release_choreography_mode),
+            "release_matched_hold_widths": float(release_matched_hold_width),
+            "release_beta_profile": str(release_beta_profile),
+            "release_beta_width_multiplier": float(release_beta_width_multiplier),
+            "release_lapse_lag_widths": float(release_lapse_lag_width),
+            "release_carve_lag_widths": float(release_carve_lag_width),
             "standing_support_packet_exclusion": float(support_carve),
             "standing_support_packet_exclusion_radius_multiplier": float(support_carve_radius),
             "standing_support_packet_exclusion_width_multiplier": float(support_carve_width),
@@ -737,6 +773,12 @@ def _run_overlay_spec(
         support_shell_clock_lapse_log_gain=spec["clock_lapse_log_gain"],
         support_shell_rail_stretch_log_gain=spec["rail_stretch_log_gain"],
         support_shell_throat_capacity_log_gain=spec["throat_capacity_log_gain"],
+        release_choreography_mode=spec["release_choreography_mode"],
+        release_matched_hold_widths=spec["release_matched_hold_widths"],
+        release_beta_profile=spec["release_beta_profile"],
+        release_beta_width_multiplier=spec["release_beta_width_multiplier"],
+        release_lapse_lag_widths=spec["release_lapse_lag_widths"],
+        release_carve_lag_widths=spec["release_carve_lag_widths"],
         standing_support_packet_exclusion=spec["standing_support_packet_exclusion"],
         standing_support_packet_exclusion_radius_multiplier=spec["standing_support_packet_exclusion_radius_multiplier"],
         standing_support_packet_exclusion_width_multiplier=spec["standing_support_packet_exclusion_width_multiplier"],
@@ -879,6 +921,48 @@ def build_parser() -> argparse.ArgumentParser:
         default=[0.0],
         help="Log-gain ratios against the signed carrying-flow amplitude for the support-shell throat-capacity partner.",
     )
+    parser.add_argument(
+        "--release-choreography-modes",
+        choices=["legacy", "matched_hold"],
+        nargs="+",
+        default=["legacy"],
+        help="Release law modes. matched_hold delays beta fade and uses finite smooth release profiles.",
+    )
+    parser.add_argument(
+        "--release-matched-hold-widths",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Matched-hold duration before beta fade, in multiples of w_beta.",
+    )
+    parser.add_argument(
+        "--release-beta-profiles",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        nargs="+",
+        default=["tanh"],
+        help="Finite beta-fade profiles used by non-legacy release choreography.",
+    )
+    parser.add_argument(
+        "--release-beta-width-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="Beta fade duration multiplier. Non-legacy duration is 4*w_beta*multiplier.",
+    )
+    parser.add_argument(
+        "--release-lapse-lag-widths",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Additional coordinated-release lapse hold lag, in multiples of w_beta.",
+    )
+    parser.add_argument(
+        "--release-carve-lag-widths",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Additional coordinated-release carve/shoulder hold lag, in multiples of w_beta.",
+    )
     parser.add_argument("--smoothness-order", type=int, default=1)
     parser.add_argument("--support-shell-inner-multiplier", type=float, default=0.65)
     parser.add_argument("--support-shell-radial-multiplier", type=float, default=1.20)
@@ -914,7 +998,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-exclusion-schedules",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the standing-support packet carve-out window.",
@@ -949,7 +1033,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-schedules",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the shoulder carve window.",
@@ -977,7 +1061,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-lapse-schedules",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the packet-local lapse window.",
@@ -1047,7 +1131,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-beta-rematch-schedules",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the packet-local beta rematch window.",
@@ -1089,6 +1173,12 @@ def main() -> int:
         support_shell_clock_lapse_log_gain=0.0,
         support_shell_rail_stretch_log_gain=0.0,
         support_shell_throat_capacity_log_gain=0.0,
+        release_choreography_mode=args.release_choreography_modes[0],
+        release_matched_hold_widths=args.release_matched_hold_widths[0],
+        release_beta_profile=args.release_beta_profiles[0],
+        release_beta_width_multiplier=args.release_beta_width_multipliers[0],
+        release_lapse_lag_widths=args.release_lapse_lag_widths[0],
+        release_carve_lag_widths=args.release_carve_lag_widths[0],
     )
     grid = _resolve_grid(args, grid_case)
     base_case = branch_case(args.variant, args.service_factor)
@@ -1158,6 +1248,9 @@ def main() -> int:
                         f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
                         f"cl={spec['clock_lapse_log_gain']:g} "
                         f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
+                        f"rel={spec['release_choreography_mode']} "
+                        f"rh={spec['release_matched_hold_widths']:g} "
+                        f"rbw={spec['release_beta_width_multiplier']:g} "
                         f"wc={spec['standing_support_packet_exclusion']:g} "
                         f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
                         f"wshm={spec['standing_support_packet_exclusion_shoulder_mode']} "
@@ -1193,6 +1286,9 @@ def main() -> int:
                     f"tw={spec['temporal_width']:g} tp={spec['temporal_profile']} rp={spec['radial_profile']} "
                     f"cl={spec['clock_lapse_log_gain']:g} "
                     f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
+                    f"rel={spec['release_choreography_mode']} "
+                    f"rh={spec['release_matched_hold_widths']:g} "
+                    f"rbw={spec['release_beta_width_multiplier']:g} "
                     f"wc={spec['standing_support_packet_exclusion']:g} "
                     f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
                     f"wshm={spec['standing_support_packet_exclusion_shoulder_mode']} "
@@ -1267,6 +1363,12 @@ def main() -> int:
         "clock_lapse_ratios": args.clock_lapse_ratios,
         "rail_stretch_ratios": args.rail_stretch_ratios,
         "throat_capacity_ratios": args.throat_capacity_ratios,
+        "release_choreography_modes": args.release_choreography_modes,
+        "release_matched_hold_widths": args.release_matched_hold_widths,
+        "release_beta_profiles": args.release_beta_profiles,
+        "release_beta_width_multipliers": args.release_beta_width_multipliers,
+        "release_lapse_lag_widths": args.release_lapse_lag_widths,
+        "release_carve_lag_widths": args.release_carve_lag_widths,
         "standing_support_packet_exclusions": args.standing_support_packet_exclusions,
         "standing_support_packet_exclusion_radius_multipliers": args.standing_support_packet_exclusion_radius_multipliers,
         "standing_support_packet_exclusion_width_multipliers": args.standing_support_packet_exclusion_width_multipliers,

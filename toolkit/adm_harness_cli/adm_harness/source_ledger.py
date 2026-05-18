@@ -84,6 +84,12 @@ class SourceParams:
     w_beta: float = 0.18
     q_t0: float = -0.40
     q_Tr: float = 3.00
+    release_choreography_mode: str = "legacy"
+    release_matched_hold_widths: float = 0.0
+    release_beta_profile: str = "tanh"
+    release_beta_width_multiplier: float = 1.0
+    release_lapse_lag_widths: float = 0.0
+    release_carve_lag_widths: float = 0.0
 
     # Angular/throat-capacity jacket. These fields shape the gamma_omega
     # channel independently from the radial support bump.
@@ -157,6 +163,11 @@ def smoothstep_minjerk(t: np.ndarray | float) -> np.ndarray:
     return 10.0 * x**3 - 15.0 * x**4 + 6.0 * x**5
 
 
+def smoothstep7(t: np.ndarray | float) -> np.ndarray:
+    x = np.clip(np.asarray(t, dtype=float), 0.0, 1.0)
+    return 35.0 * x**4 - 84.0 * x**5 + 70.0 * x**6 - 20.0 * x**7
+
+
 def minjerk_down_window(s: np.ndarray | float, x: float, w: float) -> np.ndarray:
     t = (np.asarray(s, dtype=float) - (x - 2.0 * w)) / max(4.0 * w, 1.0e-12)
     return 1.0 - smoothstep_minjerk(t)
@@ -177,6 +188,48 @@ def catch_factor(s: np.ndarray | float, x: float, w: float, profile: str = "minj
 def minjerk_down(s: np.ndarray | float, t0: float, tr: float) -> np.ndarray:
     t = (np.asarray(s, dtype=float) - t0) / max(tr, 1.0e-12)
     return 1.0 - smoothstep_minjerk(t)
+
+
+def release_choreography_enabled(params: SourceParams) -> bool:
+    return params.release_choreography_mode.strip().lower() not in {"legacy", "off", "none"}
+
+
+def release_beta_interval(params: SourceParams, lag_widths: float = 0.0) -> tuple[float, float]:
+    start = params.x_beta + (float(params.release_matched_hold_widths) + float(lag_widths)) * params.w_beta
+    duration = max(4.0 * params.w_beta * float(params.release_beta_width_multiplier), 1.0e-12)
+    return start, start + duration
+
+
+def release_profile_down(s: np.ndarray | float, params: SourceParams, lag_widths: float = 0.0) -> np.ndarray:
+    values = np.asarray(s, dtype=float)
+    if not release_choreography_enabled(params):
+        return falloff(values - (params.x_beta + float(lag_widths) * params.w_beta), params.w_beta)
+
+    start, end = release_beta_interval(params, lag_widths=lag_widths)
+    duration = max(end - start, 1.0e-12)
+    profile = params.release_beta_profile.strip().lower()
+    if profile == "tanh":
+        return falloff(values - 0.5 * (start + end), duration / 4.0)
+
+    t = (values - start) / duration
+    if profile in {"minimum_jerk", "minjerk", "smoothstep5"}:
+        return 1.0 - smoothstep_minjerk(t)
+    if profile == "smoothstep7":
+        return 1.0 - smoothstep7(t)
+    raise ValueError(f"Unknown release beta profile: {params.release_beta_profile}")
+
+
+def release_beta_fade_end(params: SourceParams) -> float:
+    if not release_choreography_enabled(params):
+        return params.x_beta + 2.0 * params.w_beta
+    _start, end = release_beta_interval(params)
+    return end
+
+
+def live_packet_end(params: SourceParams) -> float:
+    if not release_choreography_enabled(params):
+        return params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    return release_beta_fade_end(params) + params.live_packet_end_margin_widths * params.w_beta
 
 
 def bump_sq(x2: np.ndarray | float, radius: float, width: float) -> np.ndarray:
@@ -316,7 +369,7 @@ def support_shell_overlay_window(s: float, l: float, params: SourceParams) -> fl
     )
 
     packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
-    live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    live_end = live_packet_end(params)
     live_schedule = falloff(s_arr - live_end, params.w_beta)
     packet_exclusion = np.clip(1.0 - params.support_shell_packet_exclusion * packet * live_schedule, 0.0, 1.0)
 
@@ -345,6 +398,7 @@ def standing_support_packet_window(
     width_multiplier: float,
     schedule_name: str,
     temporal_width_multiplier: float = 1.0,
+    release_lag_widths: float = 0.0,
 ) -> float:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
@@ -353,10 +407,15 @@ def standing_support_packet_window(
     packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width)
 
     schedule_key = schedule_name.strip().lower()
-    live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    live_end = live_packet_end(params)
     temporal_width = max(float(params.w_beta) * float(temporal_width_multiplier), 1.0e-12)
     if schedule_key == "live_only":
         schedule = falloff(s_arr - live_end, temporal_width)
+    elif schedule_key == "coordinated_release":
+        catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
+        lo = params.x_catch_packet - 0.75 * catch_width
+        onset = 1.0 - falloff(s_arr - lo, max(temporal_width / 2.0, 1.0e-12))
+        schedule = onset * release_profile_down(s_arr, params, lag_widths=release_lag_widths)
     elif schedule_key == "entry_catch_release":
         catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
         lo = params.x_catch_packet - 2.0 * catch_width
@@ -385,6 +444,7 @@ def standing_support_packet_carve_window(s: float, l: float, params: SourceParam
         radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
         width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
         schedule_name=params.standing_support_packet_exclusion_schedule,
+        release_lag_widths=params.release_carve_lag_widths,
     )
 
 
@@ -397,9 +457,10 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
         l,
         params,
         radius_multiplier=params.standing_support_packet_exclusion_shoulder_radius_multiplier,
-        width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
-        schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
-    )
+            width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
+            schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+            release_lag_widths=params.release_carve_lag_widths,
+        )
     mode = params.standing_support_packet_exclusion_shoulder_mode.strip().lower()
     if mode == "filled":
         return outer
@@ -409,9 +470,10 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
             l,
             params,
             radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
-            width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
-            schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
-        )
+                width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
+                schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+                release_lag_widths=params.release_carve_lag_widths,
+            )
         return float(np.clip(outer - inner, 0.0, 1.0))
     raise ValueError(f"Unknown standing support packet shoulder mode: {params.standing_support_packet_exclusion_shoulder_mode}")
 
@@ -426,6 +488,7 @@ def standing_support_packet_lapse_window(s: float, l: float, params: SourceParam
         radius_multiplier=params.standing_support_packet_lapse_radius_multiplier,
         width_multiplier=params.standing_support_packet_lapse_width_multiplier,
         schedule_name=params.standing_support_packet_lapse_schedule,
+        release_lag_widths=params.release_lapse_lag_widths,
     )
 
 
@@ -506,7 +569,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     u_beta = params.v_exit + (params.V - params.v_exit) * c_beta
     u_packet = params.v_exit + (params.V - params.v_exit) * c_packet
 
-    e_release = falloff(s_arr - params.x_beta, params.w_beta)
+    e_release = release_profile_down(s_arr, params)
     q = minjerk_down(s_arr, params.q_t0, params.q_Tr)
     w_support_raw = support_bump(l_arr, params)
     s_packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
@@ -775,15 +838,19 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
 def stage_name(s: float, params: SourceParams) -> str:
     width = max(params.w_catch_packet, params.w_catch_beta)
     center = params.x_catch_packet
+    release_start, release_end = release_beta_interval(params)
     if s < center - 2.0 * width:
         return "entry_precatch"
     if abs(s - center) <= 2.0 * width:
         return "catch_rematch"
-    if center + 2.0 * width < s < params.x_beta - 2.0 * params.w_beta:
+    if not release_choreography_enabled(params):
+        release_start = params.x_beta - 2.0 * params.w_beta
+        release_end = params.x_beta + 2.0 * params.w_beta
+    if center + 2.0 * width < s < release_start:
         return "held_carry"
-    if abs(s - params.x_beta) <= 2.0 * params.w_beta:
+    if release_start <= s <= release_end:
         return "release_shift_fade"
-    if params.x_beta + 2.0 * params.w_beta < s < params.x_beta + 4.0 * params.w_beta:
+    if release_end < s < release_end + 2.0 * params.w_beta:
         return "post_release_buffer"
     return "reset_decompression"
 
@@ -802,7 +869,7 @@ def region_name(s: float, l: float, params: SourceParams) -> str:
 
 
 def live_packet_mask(s: float, l: float, params: SourceParams) -> bool:
-    live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    live_end = live_packet_end(params)
     return bool(abs(l - s) <= params.Rpass and s <= live_end)
 
 
@@ -1051,6 +1118,16 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
     if filtered:
         params = replace(params, **filtered)
     case_name = f"V{params.V:g}_{name}"
+    if release_choreography_enabled(params):
+        case_name = (
+            f"{case_name}_rel{params.release_choreography_mode}"
+            f"_rhold{_token(params.release_matched_hold_widths)}"
+            f"_rprof{params.release_beta_profile}"
+            f"_rw{_token(params.release_beta_width_multiplier)}"
+            f"_rllag{_token(params.release_lapse_lag_widths)}"
+            f"_rclag{_token(params.release_carve_lag_widths)}"
+        )
+        note = f"{note}; coordinated release choreography"
     if params.support_shell_overlay_enabled:
         case_name = (
             f"{case_name}_shell_a{_token(params.support_shell_amplitude)}"

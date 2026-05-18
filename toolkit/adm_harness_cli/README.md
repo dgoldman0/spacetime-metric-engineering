@@ -266,6 +266,12 @@ The main metric channels are:
 | `w_beta` | Width of the carrying-flow release/fade and the default smoothing scale for several live-window schedules. |
 | `q_t0` | Start time for support decompression/reset through the minimum-jerk `q` factor. |
 | `q_Tr` | Duration of support decompression/reset. Larger values make reset slower and smoother. |
+| `release_choreography_mode` | Release law family. `legacy` keeps the historical tanh-like release; `matched_hold` delays release, then applies a finite smooth beta fade. |
+| `release_matched_hold_widths` | Hold duration before beta fade, in multiples of `w_beta`. This keeps the packet rematched while the trailing edge settles. |
+| `release_beta_profile` | Beta fade profile for non-legacy choreography: `tanh`, `minimum_jerk` / `smoothstep5`, or `smoothstep7`. Minimum-jerk and smoothstep7 have vanishing endpoint derivatives. |
+| `release_beta_width_multiplier` | Duration multiplier for the beta fade. In non-legacy modes the fade duration is `4 * w_beta * release_beta_width_multiplier`. |
+| `release_lapse_lag_widths` | Extra hold lag for packet-local lapse support when using `coordinated_release` schedules, in multiples of `w_beta`. |
+| `release_carve_lag_widths` | Extra hold lag for packet carve/shoulder relaxation when using `coordinated_release` schedules, in multiples of `w_beta`. |
 
 ### Angular/throat-capacity jacket
 
@@ -318,6 +324,7 @@ Common schedule choices:
 - `live_only`: active through the live packet interval and tapered off after release.
 - `entry_catch_release`: active in a bounded entry/catch/release interval.
 - `catch_release`: active mainly from catch/rematch through release, skipping most entry/precatch exposure.
+- `coordinated_release`: active through the explicit release choreography and then faded by the selected release profile. Carve/shoulder and lapse calls use their respective release lag widths.
 - `always`: active wherever the packet-shaped radial window is active, independent of service time.
 
 | Field | Meaning |

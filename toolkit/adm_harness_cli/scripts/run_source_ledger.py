@@ -61,6 +61,12 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "support_shell_clock_lapse_log_gain": args.support_shell_clock_lapse_log_gain,
         "support_shell_rail_stretch_log_gain": args.support_shell_rail_stretch_log_gain,
         "support_shell_throat_capacity_log_gain": args.support_shell_throat_capacity_log_gain,
+        "release_choreography_mode": args.release_choreography_mode,
+        "release_matched_hold_widths": args.release_matched_hold_widths,
+        "release_beta_profile": args.release_beta_profile,
+        "release_beta_width_multiplier": args.release_beta_width_multiplier,
+        "release_lapse_lag_widths": args.release_lapse_lag_widths,
+        "release_carve_lag_widths": args.release_carve_lag_widths,
         "standing_support_packet_exclusion": args.standing_support_packet_exclusion,
         "standing_support_packet_exclusion_radius_multiplier": args.standing_support_packet_exclusion_radius_multiplier,
         "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
@@ -192,6 +198,21 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--support-shell-clock-lapse-log-gain", type=float, default=None)
     parser.add_argument("--support-shell-rail-stretch-log-gain", type=float, default=None)
     parser.add_argument("--support-shell-throat-capacity-log-gain", type=float, default=None)
+    parser.add_argument(
+        "--release-choreography-mode",
+        choices=["legacy", "matched_hold"],
+        default=None,
+        help="Release law mode. matched_hold delays beta fade and uses finite smooth release profiles.",
+    )
+    parser.add_argument("--release-matched-hold-widths", type=float, default=None)
+    parser.add_argument(
+        "--release-beta-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument("--release-beta-width-multiplier", type=float, default=None)
+    parser.add_argument("--release-lapse-lag-widths", type=float, default=None)
+    parser.add_argument("--release-carve-lag-widths", type=float, default=None)
 
     parser.add_argument(
         "--standing-support-packet-exclusion",
@@ -203,7 +224,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -221,7 +242,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-shoulder-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -234,7 +255,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-lapse-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-lapse-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -257,7 +278,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-beta-rematch-center-floor", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-beta-rematch-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         default=None,
     )
 
