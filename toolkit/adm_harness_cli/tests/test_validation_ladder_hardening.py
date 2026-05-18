@@ -128,6 +128,38 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertGreater(len(comparison), 0)
         self.assertEqual(float(comparison["max_abs_error"].max()), 0.0)
 
+    def test_channel_cause_ledger_decomposes_top_bad_points(self):
+        case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        points = source_ledger.compute_case(case, ns=5, nl=5, progress=False)
+        cause = source_ledger.channel_cause_ledger(
+            points,
+            case.params,
+            h_s=2.5e-3,
+            h_l=2.5e-3,
+            limit_per_channel=1,
+            channels=["neg_Tkk_radial"],
+        )
+
+        self.assertEqual(len(cause), 1)
+        row = cause.iloc[0]
+        self.assertEqual(row["channel"], "neg_Tkk_radial")
+        self.assertIn(row["dominant_derivative_family"], {
+            "beta_gradient",
+            "lapse_curvature",
+            "radial_metric",
+            "angular_capacity",
+        })
+        self.assertAlmostEqual(
+            row["Tkk_plus_orthonormal"],
+            row["Tkk_plus_orthonormal_reconstructed"],
+            places=8,
+        )
+        self.assertAlmostEqual(
+            row["Tkk_minus_orthonormal"],
+            row["Tkk_minus_orthonormal_reconstructed"],
+            places=8,
+        )
+
     def test_source_ledger_overlay_grid_expands_for_lead_window(self):
         args = SimpleNamespace(
             s_min=None,

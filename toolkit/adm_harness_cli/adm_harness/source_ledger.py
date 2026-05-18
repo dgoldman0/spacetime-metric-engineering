@@ -982,6 +982,148 @@ def channel_badness(row: pd.Series | dict[str, Any], channel: str) -> float:
     raise KeyError(channel)
 
 
+def scalar_derivative_diagnostics(
+    s: float,
+    l: float,
+    params: SourceParams,
+    h_s: float,
+    h_l: float,
+) -> dict[str, float | str]:
+    def scalar_at(s_value: float, l_value: float, key: str) -> float:
+        return float(scalars(float(s_value), float(l_value), params)[key])
+
+    rows: dict[str, float | str] = {}
+    for key, label in [
+        ("alpha", "alpha"),
+        ("beta", "beta_l"),
+        ("gamma_ll", "gamma_ll"),
+        ("gamma_omega", "gamma_Omega"),
+    ]:
+        center = scalar_at(s, l, key)
+        s_plus = scalar_at(s + h_s, l, key)
+        s_minus = scalar_at(s - h_s, l, key)
+        l_plus = scalar_at(s, l + h_l, key)
+        l_minus = scalar_at(s, l - h_l, key)
+        d_s = (s_plus - s_minus) / (2.0 * h_s)
+        d_l = (l_plus - l_minus) / (2.0 * h_l)
+        d2_l = (l_plus - 2.0 * center + l_minus) / (h_l * h_l)
+        scale = max(abs(center), 1.0e-12)
+        rows[f"d_s_{label}"] = float(d_s)
+        rows[f"d_l_{label}"] = float(d_l)
+        rows[f"d2_l_{label}"] = float(d2_l)
+        rows[f"abs_d_s_{label}"] = float(abs(d_s))
+        rows[f"abs_d_l_{label}"] = float(abs(d_l))
+        rows[f"abs_d2_l_{label}"] = float(abs(d2_l))
+        rows[f"rel_abs_d_s_{label}"] = float(abs(d_s) / scale)
+        rows[f"rel_abs_d_l_{label}"] = float(abs(d_l) / scale)
+        rows[f"rel_abs_d2_l_{label}"] = float(abs(d2_l) / scale)
+
+    beta_score = (
+        float(rows["abs_d_s_beta_l"])
+        + float(rows["abs_d_l_beta_l"])
+        + math.sqrt(float(rows["abs_d2_l_beta_l"]))
+    )
+    lapse_score = (
+        float(rows["rel_abs_d_s_alpha"])
+        + float(rows["rel_abs_d_l_alpha"])
+        + math.sqrt(float(rows["rel_abs_d2_l_alpha"]))
+    )
+    radial_metric_score = (
+        float(rows["rel_abs_d_s_gamma_ll"])
+        + float(rows["rel_abs_d_l_gamma_ll"])
+        + math.sqrt(float(rows["rel_abs_d2_l_gamma_ll"]))
+    )
+    angular_capacity_score = (
+        float(rows["rel_abs_d_s_gamma_Omega"])
+        + float(rows["rel_abs_d_l_gamma_Omega"])
+        + math.sqrt(float(rows["rel_abs_d2_l_gamma_Omega"]))
+    )
+    scores = {
+        "beta_gradient": beta_score,
+        "lapse_curvature": lapse_score,
+        "radial_metric": radial_metric_score,
+        "angular_capacity": angular_capacity_score,
+    }
+    for key, value in scores.items():
+        rows[f"{key}_score"] = float(value)
+    rows["dominant_derivative_family"] = max(scores, key=scores.get)
+    return rows
+
+
+def channel_cause_ledger(
+    points: pd.DataFrame,
+    params: SourceParams,
+    *,
+    h_s: float,
+    h_l: float,
+    limit_per_channel: int = 20,
+    channels: Iterable[str] | None = None,
+) -> pd.DataFrame:
+    selected_channels = list(channels or CHANNELS.keys())
+    bad_points = top_bad_points(points, limit=limit_per_channel)
+    if bad_points.empty:
+        return bad_points
+    bad_points = bad_points[bad_points["channel"].isin(selected_channels)].copy()
+    point_cols = [
+        "case",
+        "s",
+        "l",
+        "stage",
+        "region",
+        "rho_euler",
+        "j_l_unit",
+        "p_l_unit",
+        "p_omega_unit",
+        "rho_packet",
+        "Tkk_plus",
+        "Tkk_minus",
+        "Tkk_min_radial",
+        "alpha",
+        "beta",
+        "gamma_ll",
+        "gamma_omega",
+        "packet_norm",
+    ]
+    available_cols = [col for col in point_cols if col in points.columns]
+    merged = bad_points.merge(points[available_cols], on=["case", "s", "l", "stage", "region"], how="left")
+    rows: list[dict[str, Any]] = []
+    for _, row in merged.iterrows():
+        rho_h = float(row["rho_euler"])
+        p_l = float(row["p_l_unit"])
+        j_l = float(row["j_l_unit"])
+        alpha = float(row["alpha"])
+        alpha_sq = alpha * alpha
+        rho_plus_p_l = rho_h + p_l
+        two_j_l = 2.0 * j_l
+        tkk_plus_orthonormal = float(row["Tkk_plus"]) / alpha_sq if alpha_sq else float("nan")
+        tkk_minus_orthonormal = float(row["Tkk_minus"]) / alpha_sq if alpha_sq else float("nan")
+        plus_reconstructed = rho_plus_p_l - two_j_l
+        minus_reconstructed = rho_plus_p_l + two_j_l
+        cancellation_scale = abs(rho_plus_p_l) + abs(two_j_l)
+        min_orthonormal = min(tkk_plus_orthonormal, tkk_minus_orthonormal)
+        cancellation_ratio = abs(min_orthonormal) / cancellation_scale if cancellation_scale > 0.0 else float("nan")
+        derivatives = scalar_derivative_diagnostics(float(row["s"]), float(row["l"]), params, h_s, h_l)
+        rows.append({
+            **row.to_dict(),
+            "rho_H": rho_h,
+            "p_l": p_l,
+            "j_l": j_l,
+            "rho_H_plus_p_l": rho_plus_p_l,
+            "two_j_l": two_j_l,
+            "Tkk_plus_orthonormal": tkk_plus_orthonormal,
+            "Tkk_minus_orthonormal": tkk_minus_orthonormal,
+            "Tkk_plus_orthonormal_reconstructed": plus_reconstructed,
+            "Tkk_minus_orthonormal_reconstructed": minus_reconstructed,
+            "Tkk_plus_reconstruction_error": tkk_plus_orthonormal - plus_reconstructed,
+            "Tkk_minus_reconstruction_error": tkk_minus_orthonormal - minus_reconstructed,
+            "null_cancellation_scale": cancellation_scale,
+            "null_cancellation_ratio": cancellation_ratio,
+            "cancellation_sensitive": bool(cancellation_scale > 0.0 and cancellation_ratio < 0.20),
+            **derivatives,
+        })
+    return pd.DataFrame(rows)
+
+
 def compute_case(
     case: SourceCase,
     ns: int,

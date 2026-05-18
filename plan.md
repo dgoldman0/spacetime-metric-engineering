@@ -15,7 +15,16 @@ coordinated lapse release reduced live radial-null burden and point peak, but in
 the coordinated-lapse result is diagnostic, not a refreeze candidate.
 ```
 
-The next recommended work is not another broad release sweep. Build a focused channel-cause ledger for top bad points. For each selected bad point, record the projected source pieces and local metric-derivative magnitudes needed to classify whether the point is beta-gradient dominated, lapse-curvature dominated, radial-metric dominated, angular-capacity dominated, or cancellation dominated. Use that diagnostic to design a weaker local lapse/null-channel trim constrained against live `p_l`, while keeping the carve field live as part of the packet/support separation geometry.
+The focused channel-cause ledger has now been built and run against the two current high-resolution V5 reference cases:
+
+```text
+toolkit/adm_harness_cli/runs/stage1_v5_blend_width16_highres_current_code/
+toolkit/adm_harness_cli/runs/stage1_v5_infra_coordinated_lapse_highres/
+```
+
+The result is sharper than expected: the top bad points are overwhelmingly radial-metric dominated, not beta-gradient dominated. The remaining radial-null hard points concentrate in non-live `catch_rematch / core_throat` and `catch_rematch / support_edge`; the live damage appears mainly as `packet_in_support` angular/current burden. Coordinated lapse remains diagnostic only: it trims one radial-null symptom but shifts live angular pressure into the post-release support interval.
+
+The next recommended work is therefore a refined radial support law, not another broad release sweep. Keep the V5 `blend + trailing-edge width 1.6` refreeze as the base, keep carve live through transport/catch, and improve the radial support geometry itself: smoother `gamma_ll` / rail-stretch joins, softer support-shell radial shoulders, and separated core-throat versus packet-edge smoothing. Use lapse later only as a small local null-channel cushion constrained against live `p_l`.
 
 ## Why this handoff exists
 
