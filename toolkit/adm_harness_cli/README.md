@@ -317,6 +317,7 @@ Common schedule choices:
 
 - `live_only`: active through the live packet interval and tapered off after release.
 - `entry_catch_release`: active in a bounded entry/catch/release interval.
+- `catch_release`: active mainly from catch/rematch through release, skipping most entry/precatch exposure.
 - `always`: active wherever the packet-shaped radial window is active, independent of service time.
 
 | Field | Meaning |
@@ -335,8 +336,14 @@ Common schedule choices:
 | `standing_support_packet_lapse_width_multiplier` | Transition-width multiplier for the packet-local lapse window relative to `w_pass`. |
 | `standing_support_packet_lapse_schedule` | Temporal schedule for the packet-local lapse window. |
 | `standing_support_packet_beta_rematch_gain` | Packet-local beta rematch gain. Positive values add `delta_beta_packet = -gain * window * (vcoord + beta_pre_rematch)`, nudging the local shift toward cancelling packet coordinate velocity. |
+| `standing_support_packet_beta_rematch_shape` | Shape family for the beta rematch window. `core` is the old filled packet-local window; `shoulder`, `annular`, `edge_soften`, and `trailing_edge` target packet shoulders/edges more selectively. |
 | `standing_support_packet_beta_rematch_radius_multiplier` | Radius multiplier for the packet-local beta rematch window relative to `Rpass`. |
 | `standing_support_packet_beta_rematch_width_multiplier` | Transition-width multiplier for the packet-local beta rematch window relative to `w_pass`. |
+| `standing_support_packet_beta_rematch_inner_radius_multiplier` | Inner radius multiplier for annular, edge-soften, and trailing-edge beta rematch sleeves. |
+| `standing_support_packet_beta_rematch_outer_radius_multiplier` | Outer radius multiplier for annular, edge-soften, and trailing-edge beta rematch sleeves. Values near `1.10` target just outside the packet edge. |
+| `standing_support_packet_beta_rematch_edge_softness` | Extra radial/side softness multiplier for shaped beta rematch sleeve edges. |
+| `standing_support_packet_beta_rematch_temporal_width_multiplier` | Temporal smoothing multiplier for the beta rematch schedule. |
+| `standing_support_packet_beta_rematch_center_floor` | Weak filled-core floor mixed into shaped beta rematch windows. This can restore causal margin without making the center as active as the edge sleeve. |
 | `standing_support_packet_beta_rematch_schedule` | Temporal schedule for the packet-local beta rematch window. |
 
 ### Ledger outputs tied to these knobs

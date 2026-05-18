@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -69,13 +70,27 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"wlw{_token(spec['standing_support_packet_lapse_width_multiplier'])}",
         f"wls{spec['standing_support_packet_lapse_schedule']}",
         f"wb{_token(spec['standing_support_packet_beta_rematch_gain'])}",
+        f"wbsh{spec['standing_support_packet_beta_rematch_shape']}",
         f"wbr{_token(spec['standing_support_packet_beta_rematch_radius_multiplier'])}",
         f"wbw{_token(spec['standing_support_packet_beta_rematch_width_multiplier'])}",
+        f"wbi{_token(spec['standing_support_packet_beta_rematch_inner_radius_multiplier'])}",
+        f"wbo{_token(spec['standing_support_packet_beta_rematch_outer_radius_multiplier'])}",
+        f"wbe{_token(spec['standing_support_packet_beta_rematch_edge_softness'])}",
+        f"wbt{_token(spec['standing_support_packet_beta_rematch_temporal_width_multiplier'])}",
+        f"wbf{_token(spec['standing_support_packet_beta_rematch_center_floor'])}",
         f"wbs{spec['standing_support_packet_beta_rematch_schedule']}",
     ]
     if spec.get("target_delta_beta_abs_max") is not None:
         parts.append(f"tdb{_token(spec['target_delta_beta_abs_max'])}")
-    return "_".join(parts)
+    slug = "_".join(parts)
+    if len(slug) > 180:
+        digest = hashlib.sha1(slug.encode("utf-8")).hexdigest()[:12]
+        suffix_parts = []
+        if spec.get("target_delta_beta_abs_max") is not None:
+            suffix_parts.append(f"tdb{_token(spec['target_delta_beta_abs_max'])}")
+        suffix = "_".join([*suffix_parts, f"h{digest}"])
+        slug = f"{slug[: 179 - len(suffix)]}_{suffix}"
+    return slug
 
 
 def _sort_cols() -> list[str]:
@@ -106,8 +121,14 @@ def _sort_cols() -> list[str]:
         "standing_support_packet_lapse_width_multiplier",
         "standing_support_packet_lapse_schedule",
         "standing_support_packet_beta_rematch_gain",
+        "standing_support_packet_beta_rematch_shape",
         "standing_support_packet_beta_rematch_radius_multiplier",
         "standing_support_packet_beta_rematch_width_multiplier",
+        "standing_support_packet_beta_rematch_inner_radius_multiplier",
+        "standing_support_packet_beta_rematch_outer_radius_multiplier",
+        "standing_support_packet_beta_rematch_edge_softness",
+        "standing_support_packet_beta_rematch_temporal_width_multiplier",
+        "standing_support_packet_beta_rematch_center_floor",
         "standing_support_packet_beta_rematch_schedule",
     ]
 
@@ -465,8 +486,14 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     packet_lapse_widths = getattr(args, "standing_support_packet_lapse_width_multipliers", [1.0])
     packet_lapse_schedules = getattr(args, "standing_support_packet_lapse_schedules", ["live_only"])
     packet_beta_rematch_gains = getattr(args, "standing_support_packet_beta_rematch_gains", [0.0])
+    packet_beta_rematch_shapes = getattr(args, "standing_support_packet_beta_rematch_shapes", ["core"])
     packet_beta_rematch_radii = getattr(args, "standing_support_packet_beta_rematch_radius_multipliers", [1.0])
     packet_beta_rematch_widths = getattr(args, "standing_support_packet_beta_rematch_width_multipliers", [1.0])
+    packet_beta_rematch_inner_radii = getattr(args, "standing_support_packet_beta_rematch_inner_radius_multipliers", [0.85])
+    packet_beta_rematch_outer_radii = getattr(args, "standing_support_packet_beta_rematch_outer_radius_multipliers", [1.10])
+    packet_beta_rematch_edge_softnesses = getattr(args, "standing_support_packet_beta_rematch_edge_softnesses", [1.0])
+    packet_beta_rematch_temporal_widths = getattr(args, "standing_support_packet_beta_rematch_temporal_width_multipliers", [1.0])
+    packet_beta_rematch_center_floors = getattr(args, "standing_support_packet_beta_rematch_center_floors", [0.0])
     packet_beta_rematch_schedules = getattr(args, "standing_support_packet_beta_rematch_schedules", ["live_only"])
     grid = product(
         args.amplitudes,
@@ -494,8 +521,14 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         packet_lapse_widths,
         packet_lapse_schedules,
         packet_beta_rematch_gains,
+        packet_beta_rematch_shapes,
         packet_beta_rematch_radii,
         packet_beta_rematch_widths,
+        packet_beta_rematch_inner_radii,
+        packet_beta_rematch_outer_radii,
+        packet_beta_rematch_edge_softnesses,
+        packet_beta_rematch_temporal_widths,
+        packet_beta_rematch_center_floors,
         packet_beta_rematch_schedules,
     )
     for (
@@ -524,8 +557,14 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         packet_lapse_width,
         packet_lapse_schedule,
         packet_beta_rematch_gain,
+        packet_beta_rematch_shape,
         packet_beta_rematch_radius,
         packet_beta_rematch_width,
+        packet_beta_rematch_inner_radius,
+        packet_beta_rematch_outer_radius,
+        packet_beta_rematch_edge_softness,
+        packet_beta_rematch_temporal_width,
+        packet_beta_rematch_center_floor,
         packet_beta_rematch_schedule,
     ) in grid:
         sign = 1.0 if sign_name == "pos" else -1.0
@@ -561,8 +600,14 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
             "standing_support_packet_lapse_width_multiplier": float(packet_lapse_width),
             "standing_support_packet_lapse_schedule": str(packet_lapse_schedule),
             "standing_support_packet_beta_rematch_gain": float(packet_beta_rematch_gain),
+            "standing_support_packet_beta_rematch_shape": str(packet_beta_rematch_shape),
             "standing_support_packet_beta_rematch_radius_multiplier": float(packet_beta_rematch_radius),
             "standing_support_packet_beta_rematch_width_multiplier": float(packet_beta_rematch_width),
+            "standing_support_packet_beta_rematch_inner_radius_multiplier": float(packet_beta_rematch_inner_radius),
+            "standing_support_packet_beta_rematch_outer_radius_multiplier": float(packet_beta_rematch_outer_radius),
+            "standing_support_packet_beta_rematch_edge_softness": float(packet_beta_rematch_edge_softness),
+            "standing_support_packet_beta_rematch_temporal_width_multiplier": float(packet_beta_rematch_temporal_width),
+            "standing_support_packet_beta_rematch_center_floor": float(packet_beta_rematch_center_floor),
             "standing_support_packet_beta_rematch_schedule": str(packet_beta_rematch_schedule),
             "amplitude_normalization": "none",
             "target_delta_beta_abs_max": None,
@@ -706,8 +751,14 @@ def _run_overlay_spec(
         standing_support_packet_lapse_width_multiplier=spec["standing_support_packet_lapse_width_multiplier"],
         standing_support_packet_lapse_schedule=spec["standing_support_packet_lapse_schedule"],
         standing_support_packet_beta_rematch_gain=spec["standing_support_packet_beta_rematch_gain"],
+        standing_support_packet_beta_rematch_shape=spec["standing_support_packet_beta_rematch_shape"],
         standing_support_packet_beta_rematch_radius_multiplier=spec["standing_support_packet_beta_rematch_radius_multiplier"],
         standing_support_packet_beta_rematch_width_multiplier=spec["standing_support_packet_beta_rematch_width_multiplier"],
+        standing_support_packet_beta_rematch_inner_radius_multiplier=spec["standing_support_packet_beta_rematch_inner_radius_multiplier"],
+        standing_support_packet_beta_rematch_outer_radius_multiplier=spec["standing_support_packet_beta_rematch_outer_radius_multiplier"],
+        standing_support_packet_beta_rematch_edge_softness=spec["standing_support_packet_beta_rematch_edge_softness"],
+        standing_support_packet_beta_rematch_temporal_width_multiplier=spec["standing_support_packet_beta_rematch_temporal_width_multiplier"],
+        standing_support_packet_beta_rematch_center_floor=spec["standing_support_packet_beta_rematch_center_floor"],
         standing_support_packet_beta_rematch_schedule=spec["standing_support_packet_beta_rematch_schedule"],
     )
     overlay_points = compute_case(overlay_case, progress=False, **grid)
@@ -863,7 +914,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-exclusion-schedules",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the standing-support packet carve-out window.",
@@ -898,7 +949,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-schedules",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the shoulder carve window.",
@@ -926,7 +977,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-lapse-schedules",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the packet-local lapse window.",
@@ -937,6 +988,13 @@ def build_parser() -> argparse.ArgumentParser:
         nargs="+",
         default=[0.0],
         help="Packet-local beta rematch gains. Positive values nudge beta toward cancelling packet coordinate velocity.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-shapes",
+        choices=["core", "shoulder", "annular", "edge_soften", "trailing_edge"],
+        nargs="+",
+        default=["core"],
+        help="Shape families for the packet-local beta rematch window.",
     )
     parser.add_argument(
         "--standing-support-packet-beta-rematch-radius-multipliers",
@@ -953,8 +1011,43 @@ def build_parser() -> argparse.ArgumentParser:
         help="Transition-width multipliers for the packet-local beta rematch window.",
     )
     parser.add_argument(
+        "--standing-support-packet-beta-rematch-inner-radius-multipliers",
+        type=float,
+        nargs="+",
+        default=[0.85],
+        help="Inner radius multipliers for annular/trailing beta rematch windows.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-outer-radius-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.10],
+        help="Outer radius multipliers for annular/trailing beta rematch windows.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-edge-softnesses",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="Extra softness multipliers for annular/trailing beta rematch edges.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-temporal-width-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.0],
+        help="Temporal smoothing multipliers for beta rematch schedules.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-center-floors",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Weak filled-core floor mixed into shaped beta rematch windows.",
+    )
+    parser.add_argument(
         "--standing-support-packet-beta-rematch-schedules",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         nargs="+",
         default=["live_only"],
         help="Temporal schedules for the packet-local beta rematch window.",
@@ -1072,8 +1165,12 @@ def main() -> int:
                         f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                         f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g} "
                         f"wbeta={spec['standing_support_packet_beta_rematch_gain']:g} "
+                        f"wbshape={spec['standing_support_packet_beta_rematch_shape']} "
                         f"wbr={spec['standing_support_packet_beta_rematch_radius_multiplier']:g} "
-                        f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g}",
+                        f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g} "
+                        f"wbi={spec['standing_support_packet_beta_rematch_inner_radius_multiplier']:g} "
+                        f"wbo={spec['standing_support_packet_beta_rematch_outer_radius_multiplier']:g} "
+                        f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g}",
                         flush=True,
                     )
                 try:
@@ -1103,8 +1200,12 @@ def main() -> int:
                     f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                     f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g} "
                     f"wbeta={spec['standing_support_packet_beta_rematch_gain']:g} "
+                    f"wbshape={spec['standing_support_packet_beta_rematch_shape']} "
                     f"wbr={spec['standing_support_packet_beta_rematch_radius_multiplier']:g} "
-                    f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g}",
+                    f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g} "
+                    f"wbi={spec['standing_support_packet_beta_rematch_inner_radius_multiplier']:g} "
+                    f"wbo={spec['standing_support_packet_beta_rematch_outer_radius_multiplier']:g} "
+                    f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g}",
                     flush=True,
                 )
             try:
@@ -1180,8 +1281,14 @@ def main() -> int:
         "standing_support_packet_lapse_width_multipliers": args.standing_support_packet_lapse_width_multipliers,
         "standing_support_packet_lapse_schedules": args.standing_support_packet_lapse_schedules,
         "standing_support_packet_beta_rematch_gains": args.standing_support_packet_beta_rematch_gains,
+        "standing_support_packet_beta_rematch_shapes": args.standing_support_packet_beta_rematch_shapes,
         "standing_support_packet_beta_rematch_radius_multipliers": args.standing_support_packet_beta_rematch_radius_multipliers,
         "standing_support_packet_beta_rematch_width_multipliers": args.standing_support_packet_beta_rematch_width_multipliers,
+        "standing_support_packet_beta_rematch_inner_radius_multipliers": args.standing_support_packet_beta_rematch_inner_radius_multipliers,
+        "standing_support_packet_beta_rematch_outer_radius_multipliers": args.standing_support_packet_beta_rematch_outer_radius_multipliers,
+        "standing_support_packet_beta_rematch_edge_softnesses": args.standing_support_packet_beta_rematch_edge_softnesses,
+        "standing_support_packet_beta_rematch_temporal_width_multipliers": args.standing_support_packet_beta_rematch_temporal_width_multipliers,
+        "standing_support_packet_beta_rematch_center_floors": args.standing_support_packet_beta_rematch_center_floors,
         "standing_support_packet_beta_rematch_schedules": args.standing_support_packet_beta_rematch_schedules,
         "smoothness_order": args.smoothness_order,
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,

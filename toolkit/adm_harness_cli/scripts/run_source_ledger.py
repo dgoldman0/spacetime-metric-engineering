@@ -75,8 +75,14 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
         "standing_support_packet_lapse_schedule": args.standing_support_packet_lapse_schedule,
         "standing_support_packet_beta_rematch_gain": args.standing_support_packet_beta_rematch_gain,
+        "standing_support_packet_beta_rematch_shape": args.standing_support_packet_beta_rematch_shape,
         "standing_support_packet_beta_rematch_radius_multiplier": args.standing_support_packet_beta_rematch_radius_multiplier,
         "standing_support_packet_beta_rematch_width_multiplier": args.standing_support_packet_beta_rematch_width_multiplier,
+        "standing_support_packet_beta_rematch_inner_radius_multiplier": args.standing_support_packet_beta_rematch_inner_radius_multiplier,
+        "standing_support_packet_beta_rematch_outer_radius_multiplier": args.standing_support_packet_beta_rematch_outer_radius_multiplier,
+        "standing_support_packet_beta_rematch_edge_softness": args.standing_support_packet_beta_rematch_edge_softness,
+        "standing_support_packet_beta_rematch_temporal_width_multiplier": args.standing_support_packet_beta_rematch_temporal_width_multiplier,
+        "standing_support_packet_beta_rematch_center_floor": args.standing_support_packet_beta_rematch_center_floor,
         "standing_support_packet_beta_rematch_schedule": args.standing_support_packet_beta_rematch_schedule,
     }
 
@@ -197,7 +203,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-schedule",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -215,7 +221,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-shoulder-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-schedule",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -228,7 +234,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-lapse-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-lapse-schedule",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -237,11 +243,21 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Experimental packet-local beta rematch gain. Positive values nudge beta toward cancelling packet coordinate velocity.",
     )
+    parser.add_argument(
+        "--standing-support-packet-beta-rematch-shape",
+        choices=["core", "shoulder", "annular", "edge_soften", "trailing_edge"],
+        default=None,
+    )
     parser.add_argument("--standing-support-packet-beta-rematch-radius-multiplier", type=float, default=None)
     parser.add_argument("--standing-support-packet-beta-rematch-width-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-beta-rematch-inner-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-beta-rematch-outer-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-beta-rematch-edge-softness", type=float, default=None)
+    parser.add_argument("--standing-support-packet-beta-rematch-temporal-width-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-beta-rematch-center-floor", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-beta-rematch-schedule",
-        choices=["live_only", "entry_catch_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "always"],
         default=None,
     )
 

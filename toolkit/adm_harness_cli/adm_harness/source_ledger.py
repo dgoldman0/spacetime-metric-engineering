@@ -134,8 +134,14 @@ class SourceParams:
     standing_support_packet_lapse_width_multiplier: float = 1.0
     standing_support_packet_lapse_schedule: str = "live_only"
     standing_support_packet_beta_rematch_gain: float = 0.0
+    standing_support_packet_beta_rematch_shape: str = "core"
     standing_support_packet_beta_rematch_radius_multiplier: float = 1.0
     standing_support_packet_beta_rematch_width_multiplier: float = 1.0
+    standing_support_packet_beta_rematch_inner_radius_multiplier: float = 0.85
+    standing_support_packet_beta_rematch_outer_radius_multiplier: float = 1.10
+    standing_support_packet_beta_rematch_edge_softness: float = 1.0
+    standing_support_packet_beta_rematch_temporal_width_multiplier: float = 1.0
+    standing_support_packet_beta_rematch_center_floor: float = 0.0
     standing_support_packet_beta_rematch_schedule: str = "live_only"
 
 
@@ -338,6 +344,7 @@ def standing_support_packet_window(
     radius_multiplier: float,
     width_multiplier: float,
     schedule_name: str,
+    temporal_width_multiplier: float = 1.0,
 ) -> float:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
@@ -347,13 +354,19 @@ def standing_support_packet_window(
 
     schedule_key = schedule_name.strip().lower()
     live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
+    temporal_width = max(float(params.w_beta) * float(temporal_width_multiplier), 1.0e-12)
     if schedule_key == "live_only":
-        schedule = falloff(s_arr - live_end, params.w_beta)
+        schedule = falloff(s_arr - live_end, temporal_width)
     elif schedule_key == "entry_catch_release":
-        catch_width = max(params.w_catch_packet, params.w_catch_beta)
+        catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
         lo = params.x_catch_packet - 2.0 * catch_width
         hi = live_end
-        schedule = smooth_box(s_arr, lo, hi, max(params.w_beta / 2.0, 1.0e-12))
+        schedule = smooth_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12))
+    elif schedule_key == "catch_release":
+        catch_width = max(params.w_catch_packet, params.w_catch_beta) * float(temporal_width_multiplier)
+        lo = params.x_catch_packet - 0.75 * catch_width
+        hi = live_end
+        schedule = smooth_box(s_arr, lo, hi, max(temporal_width / 2.0, 1.0e-12))
     elif schedule_key == "always":
         schedule = np.asarray(1.0, dtype=float)
     else:
@@ -419,14 +432,69 @@ def standing_support_packet_lapse_window(s: float, l: float, params: SourceParam
 def standing_support_packet_beta_rematch_window(s: float, l: float, params: SourceParams) -> float:
     if float(params.standing_support_packet_beta_rematch_gain) == 0.0:
         return 0.0
-    return standing_support_packet_window(
+    shape = params.standing_support_packet_beta_rematch_shape.strip().lower()
+    temporal_width_multiplier = params.standing_support_packet_beta_rematch_temporal_width_multiplier
+    if shape == "core":
+        return standing_support_packet_window(
+            s,
+            l,
+            params,
+            radius_multiplier=params.standing_support_packet_beta_rematch_radius_multiplier,
+            width_multiplier=params.standing_support_packet_beta_rematch_width_multiplier,
+            schedule_name=params.standing_support_packet_beta_rematch_schedule,
+            temporal_width_multiplier=temporal_width_multiplier,
+        )
+    core_floor = float(params.standing_support_packet_beta_rematch_center_floor) * standing_support_packet_window(
         s,
         l,
         params,
         radius_multiplier=params.standing_support_packet_beta_rematch_radius_multiplier,
         width_multiplier=params.standing_support_packet_beta_rematch_width_multiplier,
         schedule_name=params.standing_support_packet_beta_rematch_schedule,
+        temporal_width_multiplier=temporal_width_multiplier,
     )
+
+    outer_radius = params.standing_support_packet_beta_rematch_outer_radius_multiplier
+    inner_radius = params.standing_support_packet_beta_rematch_inner_radius_multiplier
+    edge_width = (
+        params.standing_support_packet_beta_rematch_width_multiplier
+        * params.standing_support_packet_beta_rematch_edge_softness
+    )
+    outer = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=outer_radius,
+        width_multiplier=edge_width,
+        schedule_name=params.standing_support_packet_beta_rematch_schedule,
+        temporal_width_multiplier=temporal_width_multiplier,
+    )
+    if shape == "shoulder":
+        return outer
+
+    inner = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=inner_radius,
+        width_multiplier=edge_width,
+        schedule_name=params.standing_support_packet_beta_rematch_schedule,
+        temporal_width_multiplier=temporal_width_multiplier,
+    )
+    annulus = float(np.clip(outer - inner, 0.0, 1.0))
+    if shape == "annular":
+        return float(np.clip(max(annulus, core_floor), 0.0, 1.0))
+    if shape == "edge_soften":
+        d = abs(float(l) - float(s))
+        center = max(float(params.Rpass) * float(outer_radius), 1.0e-12)
+        sigma = max(float(params.w_pass) * float(edge_width), 1.0e-12)
+        edge = math.exp(-((d - center) / sigma) ** 2)
+        return float(np.clip(max(annulus, edge * outer, core_floor), 0.0, 1.0))
+    if shape == "trailing_edge":
+        side_sigma = max(float(params.w_pass) * float(edge_width), 1.0e-12)
+        trailing_side = falloff(float(l) - float(s), side_sigma)
+        return float(np.clip(max(annulus * trailing_side, core_floor), 0.0, 1.0))
+    raise ValueError(f"Unknown standing support packet beta rematch shape: {params.standing_support_packet_beta_rematch_shape}")
 
 
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
@@ -1029,8 +1097,14 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
     if params.standing_support_packet_beta_rematch_gain:
         case_name = (
             f"{case_name}_wbeta{_token(params.standing_support_packet_beta_rematch_gain)}"
+            f"_wbshape{params.standing_support_packet_beta_rematch_shape}"
             f"_wbr{_token(params.standing_support_packet_beta_rematch_radius_multiplier)}"
             f"_wbw{_token(params.standing_support_packet_beta_rematch_width_multiplier)}"
+            f"_wbi{_token(params.standing_support_packet_beta_rematch_inner_radius_multiplier)}"
+            f"_wbo{_token(params.standing_support_packet_beta_rematch_outer_radius_multiplier)}"
+            f"_wbe{_token(params.standing_support_packet_beta_rematch_edge_softness)}"
+            f"_wbt{_token(params.standing_support_packet_beta_rematch_temporal_width_multiplier)}"
+            f"_wbf{_token(params.standing_support_packet_beta_rematch_center_floor)}"
             f"_wbs{params.standing_support_packet_beta_rematch_schedule}"
         )
         note = f"{note}; experimental packet-local beta rematch"
