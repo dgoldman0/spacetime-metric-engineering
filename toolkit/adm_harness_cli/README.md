@@ -351,6 +351,7 @@ Common schedule choices:
 | `standing_support_packet_beta_rematch_edge_softness` | Extra radial/side softness multiplier for shaped beta rematch sleeve edges. |
 | `standing_support_packet_beta_rematch_temporal_width_multiplier` | Temporal smoothing multiplier for the beta rematch schedule. |
 | `standing_support_packet_beta_rematch_center_floor` | Weak filled-core floor mixed into shaped beta rematch windows. This can restore causal margin without making the center as active as the edge sleeve. |
+| `standing_support_packet_beta_rematch_floor_mode` | How shaped beta-rematch sleeves combine with `standing_support_packet_beta_rematch_center_floor`: `max` preserves the old hard union, `blend` uses a smooth union, and `add` clips the sum. |
 | `standing_support_packet_beta_rematch_schedule` | Temporal schedule for the packet-local beta rematch window. |
 
 ### Ledger outputs tied to these knobs

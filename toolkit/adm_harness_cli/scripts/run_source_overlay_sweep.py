@@ -84,6 +84,7 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"wbe{_token(spec['standing_support_packet_beta_rematch_edge_softness'])}",
         f"wbt{_token(spec['standing_support_packet_beta_rematch_temporal_width_multiplier'])}",
         f"wbf{_token(spec['standing_support_packet_beta_rematch_center_floor'])}",
+        f"wbfm{spec['standing_support_packet_beta_rematch_floor_mode']}",
         f"wbs{spec['standing_support_packet_beta_rematch_schedule']}",
     ]
     if spec.get("target_delta_beta_abs_max") is not None:
@@ -141,6 +142,7 @@ def _sort_cols() -> list[str]:
         "standing_support_packet_beta_rematch_edge_softness",
         "standing_support_packet_beta_rematch_temporal_width_multiplier",
         "standing_support_packet_beta_rematch_center_floor",
+        "standing_support_packet_beta_rematch_floor_mode",
         "standing_support_packet_beta_rematch_schedule",
     ]
 
@@ -512,6 +514,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     packet_beta_rematch_edge_softnesses = getattr(args, "standing_support_packet_beta_rematch_edge_softnesses", [1.0])
     packet_beta_rematch_temporal_widths = getattr(args, "standing_support_packet_beta_rematch_temporal_width_multipliers", [1.0])
     packet_beta_rematch_center_floors = getattr(args, "standing_support_packet_beta_rematch_center_floors", [0.0])
+    packet_beta_rematch_floor_modes = getattr(args, "standing_support_packet_beta_rematch_floor_modes", ["max"])
     packet_beta_rematch_schedules = getattr(args, "standing_support_packet_beta_rematch_schedules", ["live_only"])
     grid = product(
         args.amplitudes,
@@ -553,6 +556,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         packet_beta_rematch_edge_softnesses,
         packet_beta_rematch_temporal_widths,
         packet_beta_rematch_center_floors,
+        packet_beta_rematch_floor_modes,
         packet_beta_rematch_schedules,
     )
     for (
@@ -595,6 +599,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
         packet_beta_rematch_edge_softness,
         packet_beta_rematch_temporal_width,
         packet_beta_rematch_center_floor,
+        packet_beta_rematch_floor_mode,
         packet_beta_rematch_schedule,
     ) in grid:
         sign = 1.0 if sign_name == "pos" else -1.0
@@ -644,6 +649,7 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
             "standing_support_packet_beta_rematch_edge_softness": float(packet_beta_rematch_edge_softness),
             "standing_support_packet_beta_rematch_temporal_width_multiplier": float(packet_beta_rematch_temporal_width),
             "standing_support_packet_beta_rematch_center_floor": float(packet_beta_rematch_center_floor),
+            "standing_support_packet_beta_rematch_floor_mode": str(packet_beta_rematch_floor_mode),
             "standing_support_packet_beta_rematch_schedule": str(packet_beta_rematch_schedule),
             "amplitude_normalization": "none",
             "target_delta_beta_abs_max": None,
@@ -801,6 +807,7 @@ def _run_overlay_spec(
         standing_support_packet_beta_rematch_edge_softness=spec["standing_support_packet_beta_rematch_edge_softness"],
         standing_support_packet_beta_rematch_temporal_width_multiplier=spec["standing_support_packet_beta_rematch_temporal_width_multiplier"],
         standing_support_packet_beta_rematch_center_floor=spec["standing_support_packet_beta_rematch_center_floor"],
+        standing_support_packet_beta_rematch_floor_mode=spec["standing_support_packet_beta_rematch_floor_mode"],
         standing_support_packet_beta_rematch_schedule=spec["standing_support_packet_beta_rematch_schedule"],
     )
     overlay_points = compute_case(overlay_case, progress=False, **grid)
@@ -1130,6 +1137,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="Weak filled-core floor mixed into shaped beta rematch windows.",
     )
     parser.add_argument(
+        "--standing-support-packet-beta-rematch-floor-modes",
+        choices=["max", "blend", "add"],
+        nargs="+",
+        default=["max"],
+        help="How shaped beta rematch sleeves combine with the weak filled-core floor.",
+    )
+    parser.add_argument(
         "--standing-support-packet-beta-rematch-schedules",
         choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
         nargs="+",
@@ -1263,7 +1277,8 @@ def main() -> int:
                         f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g} "
                         f"wbi={spec['standing_support_packet_beta_rematch_inner_radius_multiplier']:g} "
                         f"wbo={spec['standing_support_packet_beta_rematch_outer_radius_multiplier']:g} "
-                        f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g}",
+                        f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g} "
+                        f"wbfm={spec['standing_support_packet_beta_rematch_floor_mode']}",
                         flush=True,
                     )
                 try:
@@ -1301,7 +1316,8 @@ def main() -> int:
                     f"wbw={spec['standing_support_packet_beta_rematch_width_multiplier']:g} "
                     f"wbi={spec['standing_support_packet_beta_rematch_inner_radius_multiplier']:g} "
                     f"wbo={spec['standing_support_packet_beta_rematch_outer_radius_multiplier']:g} "
-                    f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g}",
+                    f"wbf={spec['standing_support_packet_beta_rematch_center_floor']:g} "
+                    f"wbfm={spec['standing_support_packet_beta_rematch_floor_mode']}",
                     flush=True,
                 )
             try:
@@ -1391,6 +1407,7 @@ def main() -> int:
         "standing_support_packet_beta_rematch_edge_softnesses": args.standing_support_packet_beta_rematch_edge_softnesses,
         "standing_support_packet_beta_rematch_temporal_width_multipliers": args.standing_support_packet_beta_rematch_temporal_width_multipliers,
         "standing_support_packet_beta_rematch_center_floors": args.standing_support_packet_beta_rematch_center_floors,
+        "standing_support_packet_beta_rematch_floor_modes": args.standing_support_packet_beta_rematch_floor_modes,
         "standing_support_packet_beta_rematch_schedules": args.standing_support_packet_beta_rematch_schedules,
         "smoothness_order": args.smoothness_order,
         "support_shell_inner_multiplier": args.support_shell_inner_multiplier,

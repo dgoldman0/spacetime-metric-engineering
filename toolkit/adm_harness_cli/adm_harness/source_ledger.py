@@ -148,6 +148,7 @@ class SourceParams:
     standing_support_packet_beta_rematch_edge_softness: float = 1.0
     standing_support_packet_beta_rematch_temporal_width_multiplier: float = 1.0
     standing_support_packet_beta_rematch_center_floor: float = 0.0
+    standing_support_packet_beta_rematch_floor_mode: str = "max"
     standing_support_packet_beta_rematch_schedule: str = "live_only"
 
 
@@ -457,10 +458,10 @@ def standing_support_packet_carve_shoulder_window(s: float, l: float, params: So
         l,
         params,
         radius_multiplier=params.standing_support_packet_exclusion_shoulder_radius_multiplier,
-            width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
-            schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
-            release_lag_widths=params.release_carve_lag_widths,
-        )
+        width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
+        schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
     mode = params.standing_support_packet_exclusion_shoulder_mode.strip().lower()
     if mode == "filled":
         return outer
@@ -545,19 +546,40 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
         temporal_width_multiplier=temporal_width_multiplier,
     )
     annulus = float(np.clip(outer - inner, 0.0, 1.0))
+    floor_mode = params.standing_support_packet_beta_rematch_floor_mode.strip().lower()
+
+    def with_floor(value: float) -> float:
+        if floor_mode == "max":
+            return float(np.clip(max(value, core_floor), 0.0, 1.0))
+        if floor_mode == "blend":
+            return float(np.clip(value + core_floor * (1.0 - value), 0.0, 1.0))
+        if floor_mode == "add":
+            return float(np.clip(value + core_floor, 0.0, 1.0))
+        raise ValueError(
+            f"Unknown standing support packet beta rematch floor mode: "
+            f"{params.standing_support_packet_beta_rematch_floor_mode}"
+        )
+
     if shape == "annular":
-        return float(np.clip(max(annulus, core_floor), 0.0, 1.0))
+        return with_floor(annulus)
     if shape == "edge_soften":
         d = abs(float(l) - float(s))
         center = max(float(params.Rpass) * float(outer_radius), 1.0e-12)
         sigma = max(float(params.w_pass) * float(edge_width), 1.0e-12)
         edge = math.exp(-((d - center) / sigma) ** 2)
-        return float(np.clip(max(annulus, edge * outer, core_floor), 0.0, 1.0))
+        return with_floor(max(annulus, edge * outer))
     if shape == "trailing_edge":
         side_sigma = max(float(params.w_pass) * float(edge_width), 1.0e-12)
         trailing_side = falloff(float(l) - float(s), side_sigma)
-        return float(np.clip(max(annulus * trailing_side, core_floor), 0.0, 1.0))
+        return with_floor(annulus * trailing_side)
     raise ValueError(f"Unknown standing support packet beta rematch shape: {params.standing_support_packet_beta_rematch_shape}")
+
+
+def _window_s_derivative_abs(fn: Any, s: float, l: float, params: SourceParams) -> float:
+    step = max(min(float(params.w_beta), float(params.w_pass)) * 1.0e-3, 1.0e-6)
+    plus = float(fn(s + step, l, params))
+    minus = float(fn(s - step, l, params))
+    return abs((plus - minus) / (2.0 * step))
 
 
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
@@ -577,6 +599,13 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     carve_shoulder_window = standing_support_packet_carve_shoulder_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
     packet_beta_rematch_window = standing_support_packet_beta_rematch_window(float(s), float(l), params)
+    release_slope_abs = float(abs(
+        (
+            release_profile_down(s_arr + max(float(params.w_beta) * 1.0e-3, 1.0e-6), params)
+            - release_profile_down(s_arr - max(float(params.w_beta) * 1.0e-3, 1.0e-6), params)
+        )
+        / (2.0 * max(float(params.w_beta) * 1.0e-3, 1.0e-6))
+    ))
     carve_contribution = float(np.clip(
         float(params.standing_support_packet_exclusion) * carve_window
         + float(params.standing_support_packet_exclusion_shoulder) * carve_shoulder_window,
@@ -636,6 +665,16 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_lapse_window": float(packet_lapse_window),
         "standing_support_packet_lapse_factor": float(packet_lapse_factor),
         "standing_support_packet_beta_rematch_window": float(packet_beta_rematch_window),
+        "release_profile_slope_abs": release_slope_abs,
+        "standing_support_packet_carve_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_carve_window, float(s), float(l), params
+        ),
+        "standing_support_packet_lapse_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_lapse_window, float(s), float(l), params
+        ),
+        "standing_support_packet_beta_rematch_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_beta_rematch_window, float(s), float(l), params
+        ),
         "S": float(s_packet),
         "A": float(a_spatial),
         "T": float(t_lapse),
@@ -803,6 +842,10 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_lapse_window",
             "standing_support_packet_lapse_factor",
             "standing_support_packet_beta_rematch_window",
+            "release_profile_slope_abs",
+            "standing_support_packet_carve_window_slope_abs",
+            "standing_support_packet_lapse_window_slope_abs",
+            "standing_support_packet_beta_rematch_window_slope_abs",
             "standing_support_packet_delta_alpha",
             "standing_support_packet_delta_beta",
             "S",
@@ -1182,6 +1225,7 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wbe{_token(params.standing_support_packet_beta_rematch_edge_softness)}"
             f"_wbt{_token(params.standing_support_packet_beta_rematch_temporal_width_multiplier)}"
             f"_wbf{_token(params.standing_support_packet_beta_rematch_center_floor)}"
+            f"_wbfm{params.standing_support_packet_beta_rematch_floor_mode}"
             f"_wbs{params.standing_support_packet_beta_rematch_schedule}"
         )
         note = f"{note}; experimental packet-local beta rematch"
