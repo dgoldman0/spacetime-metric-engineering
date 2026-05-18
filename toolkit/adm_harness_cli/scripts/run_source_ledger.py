@@ -65,6 +65,10 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_exclusion_radius_multiplier": args.standing_support_packet_exclusion_radius_multiplier,
         "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
         "standing_support_packet_exclusion_schedule": args.standing_support_packet_exclusion_schedule,
+        "standing_support_packet_exclusion_shoulder": args.standing_support_packet_exclusion_shoulder,
+        "standing_support_packet_exclusion_shoulder_radius_multiplier": args.standing_support_packet_exclusion_shoulder_radius_multiplier,
+        "standing_support_packet_exclusion_shoulder_width_multiplier": args.standing_support_packet_exclusion_shoulder_width_multiplier,
+        "standing_support_packet_exclusion_shoulder_schedule": args.standing_support_packet_exclusion_shoulder_schedule,
         "standing_support_packet_lapse_log_gain": args.standing_support_packet_lapse_log_gain,
         "standing_support_packet_lapse_radius_multiplier": args.standing_support_packet_lapse_radius_multiplier,
         "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
@@ -188,6 +192,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-schedule",
+        choices=["live_only", "entry_catch_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder",
+        type=float,
+        default=None,
+        help="Experimental wider/softer shoulder carve strength added to the standing-support packet carve.",
+    )
+    parser.add_argument("--standing-support-packet-exclusion-shoulder-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-exclusion-shoulder-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-schedule",
         choices=["live_only", "entry_catch_release", "always"],
         default=None,
     )

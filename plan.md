@@ -440,6 +440,51 @@ Focus on whether the remaining live radial-null/radial-pressure burden is caused
 Keep Stage II paused until the live fractions come down another order of magnitude or the project explicitly accepts a warning-grade Stage I target.
 ```
 
+## Stage I two-zone packet carve result, 2026-05-17
+
+The harness now supports a wider, softer shoulder carve on top of the packet-centered standing-support carve. See:
+
+```text
+supporting_reports/STAGE1_TWO_ZONE_PACKET_CARVE_SWEEP.md
+```
+
+Current balanced two-zone branch:
+
+```text
+standing_support_packet_exclusion = 0.17
+standing_support_packet_exclusion_shoulder = 0.05
+standing_support_packet_exclusion_shoulder_radius_multiplier = 1.3
+standing_support_packet_exclusion_shoulder_width_multiplier = 1.6
+standing_support_packet_lapse_log_gain = 0.70
+standing_support_packet_lapse_radius_multiplier = 1.4
+standing_support_packet_lapse_width_multiplier = 1.6
+schedule = live_only for carve, shoulder, and lapse
+```
+
+Focused comparison against the previous decoupled carve/lapse branch:
+
+```text
+V5 live Tkk fraction:     0.140 -> 0.121
+V5 live p_l fraction:     0.145 -> 0.114
+V10 live Tkk fraction:    0.160 -> 0.130
+V10 live p_l fraction:    0.145 -> 0.114
+packet norm safety:       preserved at V5 and V10
+top hard points in live:  remains 0
+```
+
+Interpretation:
+
+```text
+The two-zone carve confirms that the residual live hard-channel burden is partly a standing-support-floor problem. The shoulder lowers live packet exposure at both V5 and V10. It still fails strict minimal traversability because live fractions remain percent-level, and stronger shoulders raise V5 point peaks.
+```
+
+Next practical harness move:
+
+```text
+Add annular or offset shoulder shapes, or widen the shoulder temporal schedule, to reduce V5 point peaks while preserving the live-fraction gain.
+Keep Stage II paused unless the project deliberately chooses a warning-grade metric target.
+```
+
 ## Stage I-A: V5 throat-capacity source-placement screen
 
 ### Purpose

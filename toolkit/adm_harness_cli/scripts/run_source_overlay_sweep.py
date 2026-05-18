@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from itertools import product
 from pathlib import Path
 from typing import Any
 
@@ -58,6 +59,10 @@ def _case_slug(spec: dict[str, Any]) -> str:
         f"wcr{_token(spec['standing_support_packet_exclusion_radius_multiplier'])}",
         f"wcw{_token(spec['standing_support_packet_exclusion_width_multiplier'])}",
         f"wcs{spec['standing_support_packet_exclusion_schedule']}",
+        f"wsh{_token(spec['standing_support_packet_exclusion_shoulder'])}",
+        f"wshr{_token(spec['standing_support_packet_exclusion_shoulder_radius_multiplier'])}",
+        f"wshw{_token(spec['standing_support_packet_exclusion_shoulder_width_multiplier'])}",
+        f"wshs{spec['standing_support_packet_exclusion_shoulder_schedule']}",
         f"wlap{_token(spec['standing_support_packet_lapse_log_gain'])}",
         f"wlr{_token(spec['standing_support_packet_lapse_radius_multiplier'])}",
         f"wlw{_token(spec['standing_support_packet_lapse_width_multiplier'])}",
@@ -86,6 +91,10 @@ def _sort_cols() -> list[str]:
         "standing_support_packet_exclusion_radius_multiplier",
         "standing_support_packet_exclusion_width_multiplier",
         "standing_support_packet_exclusion_schedule",
+        "standing_support_packet_exclusion_shoulder",
+        "standing_support_packet_exclusion_shoulder_radius_multiplier",
+        "standing_support_packet_exclusion_shoulder_width_multiplier",
+        "standing_support_packet_exclusion_shoulder_schedule",
         "standing_support_packet_lapse_log_gain",
         "standing_support_packet_lapse_radius_multiplier",
         "standing_support_packet_lapse_width_multiplier",
@@ -430,60 +439,99 @@ def _build_specs(args: argparse.Namespace) -> list[dict[str, Any]]:
     support_carve_radii = getattr(args, "standing_support_packet_exclusion_radius_multipliers", [1.0])
     support_carve_widths = getattr(args, "standing_support_packet_exclusion_width_multipliers", [1.0])
     support_carve_schedules = getattr(args, "standing_support_packet_exclusion_schedules", ["live_only"])
+    support_carve_shoulders = getattr(args, "standing_support_packet_exclusion_shoulders", [0.0])
+    support_carve_shoulder_radii = getattr(args, "standing_support_packet_exclusion_shoulder_radius_multipliers", [1.4])
+    support_carve_shoulder_widths = getattr(args, "standing_support_packet_exclusion_shoulder_width_multipliers", [1.8])
+    support_carve_shoulder_schedules = getattr(args, "standing_support_packet_exclusion_shoulder_schedules", ["live_only"])
     packet_lapse_gains = getattr(args, "standing_support_packet_lapse_log_gains", [0.0])
     packet_lapse_radii = getattr(args, "standing_support_packet_lapse_radius_multipliers", [1.0])
     packet_lapse_widths = getattr(args, "standing_support_packet_lapse_width_multipliers", [1.0])
     packet_lapse_schedules = getattr(args, "standing_support_packet_lapse_schedules", ["live_only"])
-    for abs_amplitude in args.amplitudes:
-        for sign_name in args.signs:
-            sign = 1.0 if sign_name == "pos" else -1.0
-            amplitude = sign * float(abs_amplitude)
-            for catch_lead in args.catch_leads:
-                for temporal_width in args.temporal_widths:
-                    for temporal_profile in args.temporal_profiles:
-                        for temporal_shoulder in args.temporal_shoulders:
-                            for radial_profile in args.radial_profiles:
-                                for radial_width in args.support_shell_radial_widths:
-                                    for clock_lapse_ratio in args.clock_lapse_ratios:
-                                        for rail_stretch_ratio in args.rail_stretch_ratios:
-                                            for throat_capacity_ratio in args.throat_capacity_ratios:
-                                                for support_carve in support_carves:
-                                                    for support_carve_radius in support_carve_radii:
-                                                        for support_carve_width in support_carve_widths:
-                                                            for support_carve_schedule in support_carve_schedules:
-                                                                for packet_lapse_gain in packet_lapse_gains:
-                                                                    for packet_lapse_radius in packet_lapse_radii:
-                                                                        for packet_lapse_width in packet_lapse_widths:
-                                                                            for packet_lapse_schedule in packet_lapse_schedules:
-                                                                                specs.append({
-                                                                                    "nominal_abs_amplitude": float(abs_amplitude),
-                                                                                    "abs_amplitude": float(abs_amplitude),
-                                                                                    "sign": sign_name,
-                                                                                    "amplitude": amplitude,
-                                                                                    "catch_lead": float(catch_lead),
-                                                                                    "temporal_width": float(temporal_width),
-                                                                                    "temporal_profile": str(temporal_profile),
-                                                                                    "temporal_shoulder": None if temporal_shoulder is None else float(temporal_shoulder),
-                                                                                    "radial_profile": str(radial_profile),
-                                                                                    "support_shell_radial_width": None if radial_width is None else float(radial_width),
-                                                                                    "clock_lapse_ratio": float(clock_lapse_ratio),
-                                                                                    "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
-                                                                                    "rail_stretch_ratio": float(rail_stretch_ratio),
-                                                                                    "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
-                                                                                    "throat_capacity_ratio": float(throat_capacity_ratio),
-                                                                                    "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
-                                                                                    "standing_support_packet_exclusion": float(support_carve),
-                                                                                    "standing_support_packet_exclusion_radius_multiplier": float(support_carve_radius),
-                                                                                    "standing_support_packet_exclusion_width_multiplier": float(support_carve_width),
-                                                                                    "standing_support_packet_exclusion_schedule": str(support_carve_schedule),
-                                                                                    "standing_support_packet_lapse_log_gain": float(packet_lapse_gain),
-                                                                                    "standing_support_packet_lapse_radius_multiplier": float(packet_lapse_radius),
-                                                                                    "standing_support_packet_lapse_width_multiplier": float(packet_lapse_width),
-                                                                                    "standing_support_packet_lapse_schedule": str(packet_lapse_schedule),
-                                                                                    "amplitude_normalization": "none",
-                                                                                    "target_delta_beta_abs_max": None,
-                                                                                    "window_max_for_normalization": None,
-                                                                                })
+    grid = product(
+        args.amplitudes,
+        args.signs,
+        args.catch_leads,
+        args.temporal_widths,
+        args.temporal_profiles,
+        args.temporal_shoulders,
+        args.radial_profiles,
+        args.support_shell_radial_widths,
+        args.clock_lapse_ratios,
+        args.rail_stretch_ratios,
+        args.throat_capacity_ratios,
+        support_carves,
+        support_carve_radii,
+        support_carve_widths,
+        support_carve_schedules,
+        support_carve_shoulders,
+        support_carve_shoulder_radii,
+        support_carve_shoulder_widths,
+        support_carve_shoulder_schedules,
+        packet_lapse_gains,
+        packet_lapse_radii,
+        packet_lapse_widths,
+        packet_lapse_schedules,
+    )
+    for (
+        abs_amplitude,
+        sign_name,
+        catch_lead,
+        temporal_width,
+        temporal_profile,
+        temporal_shoulder,
+        radial_profile,
+        radial_width,
+        clock_lapse_ratio,
+        rail_stretch_ratio,
+        throat_capacity_ratio,
+        support_carve,
+        support_carve_radius,
+        support_carve_width,
+        support_carve_schedule,
+        support_carve_shoulder,
+        support_carve_shoulder_radius,
+        support_carve_shoulder_width,
+        support_carve_shoulder_schedule,
+        packet_lapse_gain,
+        packet_lapse_radius,
+        packet_lapse_width,
+        packet_lapse_schedule,
+    ) in grid:
+        sign = 1.0 if sign_name == "pos" else -1.0
+        amplitude = sign * float(abs_amplitude)
+        specs.append({
+            "nominal_abs_amplitude": float(abs_amplitude),
+            "abs_amplitude": float(abs_amplitude),
+            "sign": sign_name,
+            "amplitude": amplitude,
+            "catch_lead": float(catch_lead),
+            "temporal_width": float(temporal_width),
+            "temporal_profile": str(temporal_profile),
+            "temporal_shoulder": None if temporal_shoulder is None else float(temporal_shoulder),
+            "radial_profile": str(radial_profile),
+            "support_shell_radial_width": None if radial_width is None else float(radial_width),
+            "clock_lapse_ratio": float(clock_lapse_ratio),
+            "clock_lapse_log_gain": float(amplitude * float(clock_lapse_ratio)),
+            "rail_stretch_ratio": float(rail_stretch_ratio),
+            "rail_stretch_log_gain": float(amplitude * float(rail_stretch_ratio)),
+            "throat_capacity_ratio": float(throat_capacity_ratio),
+            "throat_capacity_log_gain": float(amplitude * float(throat_capacity_ratio)),
+            "standing_support_packet_exclusion": float(support_carve),
+            "standing_support_packet_exclusion_radius_multiplier": float(support_carve_radius),
+            "standing_support_packet_exclusion_width_multiplier": float(support_carve_width),
+            "standing_support_packet_exclusion_schedule": str(support_carve_schedule),
+            "standing_support_packet_exclusion_shoulder": float(support_carve_shoulder),
+            "standing_support_packet_exclusion_shoulder_radius_multiplier": float(support_carve_shoulder_radius),
+            "standing_support_packet_exclusion_shoulder_width_multiplier": float(support_carve_shoulder_width),
+            "standing_support_packet_exclusion_shoulder_schedule": str(support_carve_shoulder_schedule),
+            "standing_support_packet_lapse_log_gain": float(packet_lapse_gain),
+            "standing_support_packet_lapse_radius_multiplier": float(packet_lapse_radius),
+            "standing_support_packet_lapse_width_multiplier": float(packet_lapse_width),
+            "standing_support_packet_lapse_schedule": str(packet_lapse_schedule),
+            "amplitude_normalization": "none",
+            "target_delta_beta_abs_max": None,
+            "window_max_for_normalization": None,
+        })
     return specs
 
 
@@ -612,6 +660,10 @@ def _run_overlay_spec(
         standing_support_packet_exclusion_radius_multiplier=spec["standing_support_packet_exclusion_radius_multiplier"],
         standing_support_packet_exclusion_width_multiplier=spec["standing_support_packet_exclusion_width_multiplier"],
         standing_support_packet_exclusion_schedule=spec["standing_support_packet_exclusion_schedule"],
+        standing_support_packet_exclusion_shoulder=spec["standing_support_packet_exclusion_shoulder"],
+        standing_support_packet_exclusion_shoulder_radius_multiplier=spec["standing_support_packet_exclusion_shoulder_radius_multiplier"],
+        standing_support_packet_exclusion_shoulder_width_multiplier=spec["standing_support_packet_exclusion_shoulder_width_multiplier"],
+        standing_support_packet_exclusion_shoulder_schedule=spec["standing_support_packet_exclusion_shoulder_schedule"],
         standing_support_packet_lapse_log_gain=spec["standing_support_packet_lapse_log_gain"],
         standing_support_packet_lapse_radius_multiplier=spec["standing_support_packet_lapse_radius_multiplier"],
         standing_support_packet_lapse_width_multiplier=spec["standing_support_packet_lapse_width_multiplier"],
@@ -776,6 +828,34 @@ def build_parser() -> argparse.ArgumentParser:
         help="Temporal schedules for the standing-support packet carve-out window.",
     )
     parser.add_argument(
+        "--standing-support-packet-exclusion-shoulders",
+        type=float,
+        nargs="+",
+        default=[0.0],
+        help="Wider/softer shoulder carve strengths added to the standing-support packet carve.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-radius-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.4],
+        help="Radius multipliers for the shoulder carve window.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-width-multipliers",
+        type=float,
+        nargs="+",
+        default=[1.8],
+        help="Transition-width multipliers for the shoulder carve window.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-shoulder-schedules",
+        choices=["live_only", "entry_catch_release", "always"],
+        nargs="+",
+        default=["live_only"],
+        help="Temporal schedules for the shoulder carve window.",
+    )
+    parser.add_argument(
         "--standing-support-packet-lapse-log-gains",
         type=float,
         nargs="+",
@@ -910,6 +990,7 @@ def main() -> int:
                         f"cl={spec['clock_lapse_log_gain']:g} "
                         f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
                         f"wc={spec['standing_support_packet_exclusion']:g} "
+                        f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
                         f"wlap={spec['standing_support_packet_lapse_log_gain']:g} "
                         f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                         f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g}",
@@ -936,6 +1017,7 @@ def main() -> int:
                     f"cl={spec['clock_lapse_log_gain']:g} "
                     f"rs={spec['rail_stretch_log_gain']:g} tc={spec['throat_capacity_log_gain']:g} "
                     f"wc={spec['standing_support_packet_exclusion']:g} "
+                    f"wsh={spec['standing_support_packet_exclusion_shoulder']:g} "
                     f"wlap={spec['standing_support_packet_lapse_log_gain']:g} "
                     f"wlr={spec['standing_support_packet_lapse_radius_multiplier']:g} "
                     f"wlw={spec['standing_support_packet_lapse_width_multiplier']:g}",
@@ -1004,6 +1086,10 @@ def main() -> int:
         "standing_support_packet_exclusion_radius_multipliers": args.standing_support_packet_exclusion_radius_multipliers,
         "standing_support_packet_exclusion_width_multipliers": args.standing_support_packet_exclusion_width_multipliers,
         "standing_support_packet_exclusion_schedules": args.standing_support_packet_exclusion_schedules,
+        "standing_support_packet_exclusion_shoulders": args.standing_support_packet_exclusion_shoulders,
+        "standing_support_packet_exclusion_shoulder_radius_multipliers": args.standing_support_packet_exclusion_shoulder_radius_multipliers,
+        "standing_support_packet_exclusion_shoulder_width_multipliers": args.standing_support_packet_exclusion_shoulder_width_multipliers,
+        "standing_support_packet_exclusion_shoulder_schedules": args.standing_support_packet_exclusion_shoulder_schedules,
         "standing_support_packet_lapse_log_gains": args.standing_support_packet_lapse_log_gains,
         "standing_support_packet_lapse_radius_multipliers": args.standing_support_packet_lapse_radius_multipliers,
         "standing_support_packet_lapse_width_multipliers": args.standing_support_packet_lapse_width_multipliers,

@@ -104,6 +104,10 @@ class SourceParams:
     standing_support_packet_exclusion_radius_multiplier: float = 1.0
     standing_support_packet_exclusion_width_multiplier: float = 1.0
     standing_support_packet_exclusion_schedule: str = "live_only"
+    standing_support_packet_exclusion_shoulder: float = 0.0
+    standing_support_packet_exclusion_shoulder_radius_multiplier: float = 1.4
+    standing_support_packet_exclusion_shoulder_width_multiplier: float = 1.8
+    standing_support_packet_exclusion_shoulder_schedule: str = "live_only"
     standing_support_packet_lapse_log_gain: float = 0.0
     standing_support_packet_lapse_radius_multiplier: float = 1.0
     standing_support_packet_lapse_width_multiplier: float = 1.0
@@ -346,6 +350,20 @@ def standing_support_packet_carve_window(s: float, l: float, params: SourceParam
     )
 
 
+def standing_support_packet_carve_shoulder_window(s: float, l: float, params: SourceParams) -> float:
+    strength = float(params.standing_support_packet_exclusion_shoulder)
+    if strength <= 0.0:
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_exclusion_shoulder_radius_multiplier,
+        width_multiplier=params.standing_support_packet_exclusion_shoulder_width_multiplier,
+        schedule_name=params.standing_support_packet_exclusion_shoulder_schedule,
+    )
+
+
 def standing_support_packet_lapse_window(s: float, l: float, params: SourceParams) -> float:
     if float(params.standing_support_packet_lapse_log_gain) == 0.0:
         return 0.0
@@ -373,8 +391,15 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     w_support_raw = support_bump(l_arr, params)
     s_packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
     carve_window = standing_support_packet_carve_window(float(s), float(l), params)
+    carve_shoulder_window = standing_support_packet_carve_shoulder_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
-    carve_factor = float(np.clip(1.0 - float(params.standing_support_packet_exclusion) * carve_window, 0.0, 1.0))
+    carve_contribution = float(np.clip(
+        float(params.standing_support_packet_exclusion) * carve_window
+        + float(params.standing_support_packet_exclusion_shoulder) * carve_shoulder_window,
+        0.0,
+        1.0,
+    ))
+    carve_factor = float(np.clip(1.0 - carve_contribution, 0.0, 1.0))
     w_support = w_support_raw * carve_factor
 
     a_spatial = np.exp(q * w_support * math.log(params.C0))
@@ -415,6 +440,8 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "W": float(w_support),
         "W_raw": float(w_support_raw),
         "standing_support_packet_carve_window": float(carve_window),
+        "standing_support_packet_carve_shoulder_window": float(carve_shoulder_window),
+        "standing_support_packet_carve_contribution": float(carve_contribution),
         "standing_support_packet_carve_factor": float(carve_factor),
         "standing_support_packet_lapse_window": float(packet_lapse_window),
         "standing_support_packet_lapse_factor": float(packet_lapse_factor),
@@ -577,6 +604,8 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "W",
             "W_raw",
             "standing_support_packet_carve_window",
+            "standing_support_packet_carve_shoulder_window",
+            "standing_support_packet_carve_contribution",
             "standing_support_packet_carve_factor",
             "standing_support_packet_lapse_window",
             "standing_support_packet_lapse_factor",
@@ -914,6 +943,13 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wr{_token(params.standing_support_packet_exclusion_radius_multiplier)}"
             f"_ww{_token(params.standing_support_packet_exclusion_width_multiplier)}"
             f"_ws{params.standing_support_packet_exclusion_schedule}"
+        )
+    if params.standing_support_packet_exclusion_shoulder:
+        case_name = (
+            f"{case_name}_wshoulder{_token(params.standing_support_packet_exclusion_shoulder)}"
+            f"_wsr{_token(params.standing_support_packet_exclusion_shoulder_radius_multiplier)}"
+            f"_wsw{_token(params.standing_support_packet_exclusion_shoulder_width_multiplier)}"
+            f"_wss{params.standing_support_packet_exclusion_shoulder_schedule}"
         )
         note = f"{note}; experimental standing-support packet carve-out"
     if params.standing_support_packet_lapse_log_gain:
