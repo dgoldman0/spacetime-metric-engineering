@@ -337,6 +337,109 @@ V5 first; V10 only for V5-safe candidates.
 Do not use the current carved candidate as a Stage II source-family target yet.
 ```
 
+## Stage I carve-plus-lapse result, 2026-05-17
+
+The packet-local lapse compensator has been added in the working tree and screened. See:
+
+```text
+supporting_reports/STAGE1_CARVE_LAPSE_COMPENSATOR_SWEEP.md
+```
+
+Key result:
+
+```text
+The first V5/V10 packet-safe compensated branch is:
+standing_support_packet_exclusion = 0.12
+standing_support_packet_lapse_log_gain = 0.75
+schedule = live_only
+```
+
+It improves the V10 edge check relative to the uncarved selected candidate:
+
+```text
+positive_packet_norm_live: 3 -> 0
+top hard-channel point in live packet: yes -> no
+live p_l fraction: 0.261 -> 0.169
+live Tkk fraction: 0.307 -> 0.283
+```
+
+But it still fails the strict Stage I-B criterion because live radial-null exposure remains large. At V5 it also trades the uncarved top-point failure for a higher live radial-null fraction:
+
+```text
+uncarved V5 live Tkk fraction: 0.222
+carve+lapse V5 live Tkk fraction: 0.252
+```
+
+Interpretation:
+
+```text
+Packet-local lapse compensation can recover causal margin, but when it is co-located with the carve window it partially reintroduces radial-null burden.
+The next harness improvement should separate the packet-carve window from the packet-lapse compensation window.
+```
+
+## Stage I decoupled carve/lapse result, 2026-05-17
+
+The harness now separates the standing-support packet carve window from the packet-lapse compensation window. See:
+
+```text
+supporting_reports/STAGE1_DECOUPLED_CARVE_LAPSE_COMPENSATOR_SWEEP.md
+```
+
+New lapse-window controls:
+
+```text
+standing_support_packet_lapse_log_gain
+standing_support_packet_lapse_radius_multiplier
+standing_support_packet_lapse_width_multiplier
+standing_support_packet_lapse_schedule
+```
+
+Current best V5/V10-safe decoupled branch:
+
+```text
+standing_support_packet_exclusion = 0.16
+standing_support_packet_lapse_log_gain = 0.55
+standing_support_packet_lapse_radius_multiplier = 1.4
+standing_support_packet_lapse_width_multiplier = 1.6
+schedule = live_only for both carve and lapse
+```
+
+Focused comparison against the uncarved selected candidate:
+
+```text
+V5 positive_packet_norm_live:       0 -> 0
+V5 top hard channels in live:       1 -> 0
+V5 live Tkk fraction:               0.222 -> 0.140
+V5 live p_l fraction:               0.261 -> 0.145
+
+V10 positive_packet_norm_live:      3 -> 0
+V10 top hard channels in live:      8 -> 0
+V10 live Tkk fraction:              0.307 -> 0.160
+V10 live p_l fraction:              0.261 -> 0.145
+```
+
+This is a real architecture improvement but still not a strict minimal-traversability pass:
+
+```text
+packet norm is safe at V5 and V10
+top hard-channel bad points have moved out of the live packet
+live packet burden remains percent-level in radial-null/radial-pressure channels
+```
+
+Updated interpretation:
+
+```text
+The original gate fail was not a total kill. It identified a packet/standing-support substrate overlap. Decoupled carve/lapse compensation moves the worst hard-channel points infrastructure-side and restores V10 causal margin, but it has not made live-packet burden tiny enough for Stage I-B pass language.
+```
+
+Next practical harness move:
+
+```text
+Add offset or annular lapse/carve options, or a two-zone carve with a deeper center and softer shoulder.
+Focus on whether the remaining live radial-null/radial-pressure burden is caused by the standing support floor or by carve/lapse transition gradients.
+Keep Stage II paused until the live fractions come down another order of magnitude or the project explicitly accepts a warning-grade Stage I target.
+```
+
 ## Stage I-A: V5 throat-capacity source-placement screen
 
 ### Purpose

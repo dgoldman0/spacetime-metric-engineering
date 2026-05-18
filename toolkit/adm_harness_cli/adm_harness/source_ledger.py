@@ -104,6 +104,10 @@ class SourceParams:
     standing_support_packet_exclusion_radius_multiplier: float = 1.0
     standing_support_packet_exclusion_width_multiplier: float = 1.0
     standing_support_packet_exclusion_schedule: str = "live_only"
+    standing_support_packet_lapse_log_gain: float = 0.0
+    standing_support_packet_lapse_radius_multiplier: float = 1.0
+    standing_support_packet_lapse_width_multiplier: float = 1.0
+    standing_support_packet_lapse_schedule: str = "live_only"
 
 
 @dataclass(frozen=True)
@@ -297,18 +301,22 @@ def support_shell_metric_factor(log_gain: float, window: float) -> float:
     return float(math.exp(float(log_gain) * float(window)))
 
 
-def standing_support_packet_carve_window(s: float, l: float, params: SourceParams) -> float:
-    strength = float(params.standing_support_packet_exclusion)
-    if strength <= 0.0:
-        return 0.0
-
+def standing_support_packet_window(
+    s: float,
+    l: float,
+    params: SourceParams,
+    *,
+    radius_multiplier: float,
+    width_multiplier: float,
+    schedule_name: str,
+) -> float:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
-    radius = max(float(params.Rpass) * float(params.standing_support_packet_exclusion_radius_multiplier), 1.0e-12)
-    width = max(float(params.w_pass) * float(params.standing_support_packet_exclusion_width_multiplier), 1.0e-12)
+    radius = max(float(params.Rpass) * float(radius_multiplier), 1.0e-12)
+    width = max(float(params.w_pass) * float(width_multiplier), 1.0e-12)
     packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width)
 
-    schedule_key = params.standing_support_packet_exclusion_schedule.strip().lower()
+    schedule_key = schedule_name.strip().lower()
     live_end = params.x_beta + params.live_packet_end_margin_widths * params.w_beta
     if schedule_key == "live_only":
         schedule = falloff(s_arr - live_end, params.w_beta)
@@ -320,8 +328,35 @@ def standing_support_packet_carve_window(s: float, l: float, params: SourceParam
     elif schedule_key == "always":
         schedule = np.asarray(1.0, dtype=float)
     else:
-        raise ValueError(f"Unknown standing support packet exclusion schedule: {params.standing_support_packet_exclusion_schedule}")
+        raise ValueError(f"Unknown standing support packet schedule: {schedule_name}")
     return float(np.clip(packet * schedule, 0.0, 1.0))
+
+
+def standing_support_packet_carve_window(s: float, l: float, params: SourceParams) -> float:
+    strength = float(params.standing_support_packet_exclusion)
+    if strength <= 0.0:
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_exclusion_radius_multiplier,
+        width_multiplier=params.standing_support_packet_exclusion_width_multiplier,
+        schedule_name=params.standing_support_packet_exclusion_schedule,
+    )
+
+
+def standing_support_packet_lapse_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_lapse_log_gain) == 0.0:
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_lapse_radius_multiplier,
+        width_multiplier=params.standing_support_packet_lapse_width_multiplier,
+        schedule_name=params.standing_support_packet_lapse_schedule,
+    )
 
 
 def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
@@ -338,6 +373,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     w_support_raw = support_bump(l_arr, params)
     s_packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
     carve_window = standing_support_packet_carve_window(float(s), float(l), params)
+    packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
     carve_factor = float(np.clip(1.0 - float(params.standing_support_packet_exclusion) * carve_window, 0.0, 1.0))
     w_support = w_support_raw * carve_factor
 
@@ -352,8 +388,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     delta_beta_shell = float(params.support_shell_amplitude) * shell_window if params.support_shell_overlay_enabled else 0.0
     beta = beta_base + delta_beta_shell
     alpha_base = n_cushion * t_lapse
+    packet_lapse_factor = support_shell_metric_factor(params.standing_support_packet_lapse_log_gain, packet_lapse_window)
     clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
-    alpha = alpha_base * clock_lapse_factor
+    alpha = alpha_base * packet_lapse_factor * clock_lapse_factor
     sqrt_gamma_ll_base = b_angular * a_spatial
     gamma_ll_base = sqrt_gamma_ll_base * sqrt_gamma_ll_base
     rail_stretch_factor = support_shell_metric_factor(params.support_shell_rail_stretch_log_gain, shell_window)
@@ -379,6 +416,8 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "W_raw": float(w_support_raw),
         "standing_support_packet_carve_window": float(carve_window),
         "standing_support_packet_carve_factor": float(carve_factor),
+        "standing_support_packet_lapse_window": float(packet_lapse_window),
+        "standing_support_packet_lapse_factor": float(packet_lapse_factor),
         "S": float(s_packet),
         "A": float(a_spatial),
         "T": float(t_lapse),
@@ -391,6 +430,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "gamma_ll_base": float(gamma_ll_base),
         "support_shell_window": float(shell_window),
         "support_shell_delta_beta": float(delta_beta_shell),
+        "standing_support_packet_delta_alpha": float(alpha_base * packet_lapse_factor - alpha_base),
         "support_shell_clock_lapse_factor": float(clock_lapse_factor),
         "support_shell_delta_alpha": float(alpha - alpha_base),
         "support_shell_rail_stretch_factor": float(rail_stretch_factor),
@@ -538,6 +578,9 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "W_raw",
             "standing_support_packet_carve_window",
             "standing_support_packet_carve_factor",
+            "standing_support_packet_lapse_window",
+            "standing_support_packet_lapse_factor",
+            "standing_support_packet_delta_alpha",
             "S",
             "q",
             "E",
@@ -873,6 +916,14 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_ws{params.standing_support_packet_exclusion_schedule}"
         )
         note = f"{note}; experimental standing-support packet carve-out"
+    if params.standing_support_packet_lapse_log_gain:
+        case_name = (
+            f"{case_name}_wlap{_token(params.standing_support_packet_lapse_log_gain)}"
+            f"_wlr{_token(params.standing_support_packet_lapse_radius_multiplier)}"
+            f"_wlw{_token(params.standing_support_packet_lapse_width_multiplier)}"
+            f"_wls{params.standing_support_packet_lapse_schedule}"
+        )
+        note = f"{note}; experimental packet-local lapse compensator"
     return SourceCase(case_name, params, note)
 
 

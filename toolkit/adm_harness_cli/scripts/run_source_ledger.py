@@ -65,6 +65,10 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_exclusion_radius_multiplier": args.standing_support_packet_exclusion_radius_multiplier,
         "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
         "standing_support_packet_exclusion_schedule": args.standing_support_packet_exclusion_schedule,
+        "standing_support_packet_lapse_log_gain": args.standing_support_packet_lapse_log_gain,
+        "standing_support_packet_lapse_radius_multiplier": args.standing_support_packet_lapse_radius_multiplier,
+        "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
+        "standing_support_packet_lapse_schedule": args.standing_support_packet_lapse_schedule,
     }
 
 
@@ -184,6 +188,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-schedule",
+        choices=["live_only", "entry_catch_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-lapse-log-gain",
+        type=float,
+        default=None,
+        help="Experimental packet-local lapse log-gain applied on its own packet window.",
+    )
+    parser.add_argument("--standing-support-packet-lapse-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-lapse-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-lapse-schedule",
         choices=["live_only", "entry_catch_release", "always"],
         default=None,
     )
