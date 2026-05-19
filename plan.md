@@ -44,13 +44,25 @@ then choose source-family components by role instead of fitting one scalar to ev
 
 That decomposition map has now been run for `compact7_wide4_edge160` and `wide4_radius205`. It separates the promoted pair into three source jobs: infrastructure radial-null support, core radial-pressure balance, and live handoff angular/current handling. The radial-null rows are all non-live infrastructure rows and are dominated by `rho_p_l` cancellation residuals plus current-selected null branches. Radial pressure is a non-live core-throat pressure-balance job. Angular/current rows remain mostly live packet handoff jobs, with radius broadening charging angular pressure while shifting some current burden into reset/support-edge infrastructure. This supports the composite source-plant path: next test a component-source ledger with separate radial-null, pressure-balance, angular-capacity, and shift-current roles, rather than widening the pure scalar search.
 
-The main unresolved cost is live `p_l`: the best compact case raises it by about `12%` versus `split_ref`, while weakened-entry variants lower point peaks and angular/current burdens but make live `p_l` much worse. That means early entry containment is carrying radial pressure balance, while the broad compact catch/handoff sleeve is carrying angular/current and derivative-concentration relief. The next design adjustment should preserve that role separation rather than adding another free local sleeve.
+Current decision: accept the source-decomposition assessment. Stage II should now proceed as a composite source-assignment problem. The simple BV-like scalar result is a killed first audition for the whole support plant, not a reason to abandon the active-rail geometry. The next code/report artifact should be:
+
+```text
+Stage II component-source ledger
+  component A: infrastructure radial-null support for non-live core/support-edge rows;
+  component B: core radial-pressure balance for non-live throat rows;
+  component C: live handoff angular/current handling for packet_in_support rows;
+  optional component D: reset/support-edge current sink for radius-broadened comparator.
+```
+
+The first component ledger should remain toy/reduced. It should answer whether the demanded source can be partitioned cleanly into role-specific components without contaminating the packet corridor, before selecting detailed physical matter models for each role. Do not widen the pure scalar search until this component-source partition has been tested.
+
+Conditional Stage I follow-up: if the component-source ledger shows that the demanded roles do not partition cleanly, or if it identifies a small geometry-side correction that would make the partition cleaner, return to the compact handoff ansatz with that constraint in mind. The main unresolved Stage I cost is live `p_l`: the best compact case raises it by about `12%` versus `split_ref`, while weakened-entry variants lower point peaks and angular/current burdens but make live `p_l` much worse. That means early entry containment is carrying radial pressure balance, while the broad compact catch/handoff sleeve is carrying angular/current and derivative-concentration relief. Any fine-tuning should preserve that role separation rather than adding another free local sleeve.
 
 The split-carve/null-cushion branch has produced the clearest recent design signal. It is not a final consolidated law, but it is a robust V5 packet-safe improvement family: softer live-entry containment plus separate catch/rematch containment and a small annular null cushion reduces point peaks and the angular/current burdens while preserving packet safety. It does not yet beat the current architecture on integrated live `Tkk` and `p_l`.
 
 The follow-on coupled-profile screen showed that the packet-edge lever is real but incomplete. A coupled edge carve can strongly reduce `j_l`, `pOmega`, and point peaks, but pays a large live radial `Tkk` / `p_l` cost. The explicit pressure-preserving support rebate failed: restoring support in the same edge region made live `Tkk` / `p_l` worse and, at higher rebate, blew up the Tkk point peak. This argues that the missing principle is derivative/cancellation preservation, not local support-mass preservation.
 
-The next active work should consolidate the successful piecewise split family into a smaller, smoother ansatz:
+If Stage II sends the work back to geometry refinement, the next Stage I adjustment should consolidate the successful piecewise split family into a smaller, smoother ansatz:
 
 ```text
 soft early/live-entry containment,
