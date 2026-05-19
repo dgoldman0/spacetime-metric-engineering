@@ -370,6 +370,45 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertGreater(sc["standing_support_packet_raw_carve_contribution"], sc["standing_support_packet_carve_contribution"])
         self.assertLess(sc["standing_support_packet_coupled_null_cushion_factor"], 1.0)
 
+    def test_source_ledger_smooth_split_profile_generates_smoothed_windows(self):
+        case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            standing_support_packet_exclusion=0.0,
+            standing_support_packet_exclusion_catch=0.0,
+            standing_support_packet_exclusion_shoulder=0.0,
+            standing_support_packet_null_cushion_log_gain=0.0,
+            standing_support_packet_smooth_split_enabled=True,
+            standing_support_packet_smooth_split_entry_carve=0.75,
+            standing_support_packet_smooth_split_catch_carve=0.15,
+            standing_support_packet_smooth_split_edge_carve=0.08,
+            standing_support_packet_smooth_split_temporal_profile="minimum_jerk",
+            standing_support_packet_smooth_split_temporal_width_multiplier=1.2,
+            standing_support_packet_smooth_split_null_cushion_log_gain=-0.05,
+        )
+        points = source_ledger.compute_case(
+            case,
+            ns=7,
+            nl=11,
+            s_min=-0.55,
+            s_max=0.45,
+            l_min=-1.0,
+            l_max=1.0,
+            progress=False,
+        )
+        sc = source_ledger.scalars(-0.05, 0.40, case.params)
+
+        self.assertIn("standing_support_packet_smooth_split_containment_window", points.columns)
+        self.assertIn("standing_support_packet_smooth_split_edge_window", points.columns)
+        self.assertIn("standing_support_packet_smooth_split_null_cushion_window", points.columns)
+        self.assertGreater(float(points["standing_support_packet_smooth_split_entry_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_smooth_split_catch_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_smooth_split_edge_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_smooth_split_containment_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_smooth_split_null_cushion_window"].max()), 0.0)
+        self.assertGreater(sc["standing_support_packet_smooth_split_containment_window"], 0.0)
+        self.assertLess(sc["standing_support_packet_smooth_split_null_cushion_factor"], 1.0)
+
     def test_source_overlay_sweep_reports_shell_throat_overlap(self):
         grid = {
             "ns": 5,

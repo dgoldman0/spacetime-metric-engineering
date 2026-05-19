@@ -154,6 +154,24 @@ class SourceParams:
     standing_support_packet_null_cushion_width_multiplier: float = 2.0
     standing_support_packet_null_cushion_schedule: str = "catch_only"
     standing_support_packet_null_cushion_temporal_profile: str = "tanh"
+    standing_support_packet_smooth_split_enabled: bool = False
+    standing_support_packet_smooth_split_entry_carve: float = 0.0
+    standing_support_packet_smooth_split_catch_carve: float = 0.0
+    standing_support_packet_smooth_split_edge_carve: float = 0.0
+    standing_support_packet_smooth_split_entry_radius_multiplier: float = 1.0
+    standing_support_packet_smooth_split_entry_width_multiplier: float = 1.0
+    standing_support_packet_smooth_split_catch_radius_multiplier: float = 1.0
+    standing_support_packet_smooth_split_catch_width_multiplier: float = 1.0
+    standing_support_packet_smooth_split_edge_inner_radius_multiplier: float = 1.0
+    standing_support_packet_smooth_split_edge_outer_radius_multiplier: float = 1.7
+    standing_support_packet_smooth_split_edge_width_multiplier: float = 2.2
+    standing_support_packet_smooth_split_entry_schedule: str = "live_only"
+    standing_support_packet_smooth_split_catch_schedule: str = "catch_only"
+    standing_support_packet_smooth_split_edge_schedule: str = "catch_only"
+    standing_support_packet_smooth_split_temporal_profile: str = "minimum_jerk"
+    standing_support_packet_smooth_split_temporal_width_multiplier: float = 1.0
+    standing_support_packet_smooth_split_composition: str = "smooth_union"
+    standing_support_packet_smooth_split_null_cushion_log_gain: float = 0.0
     standing_support_packet_coupled_profile_enabled: bool = False
     standing_support_packet_coupled_entry_carve: float = 0.0
     standing_support_packet_coupled_catch_carve: float = 0.0
@@ -482,6 +500,15 @@ def smooth_union(*values: float) -> float:
     return float(np.clip(1.0 - complement, 0.0, 1.0))
 
 
+def compose_packet_windows(values: tuple[float, ...], mode: str) -> float:
+    key = mode.strip().lower()
+    if key in {"smooth_union", "union"}:
+        return smooth_union(*values)
+    if key in {"additive", "linear", "linear_clip"}:
+        return float(np.clip(sum(float(value) for value in values), 0.0, 1.0))
+    raise ValueError(f"Unknown packet window composition mode: {mode}")
+
+
 def standing_support_packet_window(
     s: float,
     l: float,
@@ -711,6 +738,105 @@ def standing_support_packet_coupled_rebate_window(s: float, l: float, params: So
     if float(params.standing_support_packet_coupled_rebate_fraction) <= 0.0:
         return 0.0
     return standing_support_packet_coupled_edge_window(s, l, params)
+
+
+def standing_support_packet_smooth_split_active(params: SourceParams) -> bool:
+    return bool(
+        params.standing_support_packet_smooth_split_enabled
+        and (
+            params.standing_support_packet_smooth_split_entry_carve
+            or params.standing_support_packet_smooth_split_catch_carve
+            or params.standing_support_packet_smooth_split_edge_carve
+            or params.standing_support_packet_smooth_split_null_cushion_log_gain
+        )
+    )
+
+
+def standing_support_packet_smooth_split_entry_window(s: float, l: float, params: SourceParams) -> float:
+    if not standing_support_packet_smooth_split_active(params):
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_entry_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_entry_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_entry_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+
+
+def standing_support_packet_smooth_split_catch_window(s: float, l: float, params: SourceParams) -> float:
+    if not standing_support_packet_smooth_split_active(params):
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_catch_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_catch_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_catch_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+
+
+def standing_support_packet_smooth_split_edge_window(s: float, l: float, params: SourceParams) -> float:
+    if not standing_support_packet_smooth_split_active(params):
+        return 0.0
+    outer = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_edge_outer_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_edge_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_edge_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    inner = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_edge_inner_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_edge_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_edge_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    return float(np.clip(outer - inner, 0.0, 1.0))
+
+
+def standing_support_packet_smooth_split_containment_window(s: float, l: float, params: SourceParams) -> float:
+    if not standing_support_packet_smooth_split_active(params):
+        return 0.0
+    entry = (
+        float(params.standing_support_packet_smooth_split_entry_carve)
+        * standing_support_packet_smooth_split_entry_window(s, l, params)
+    )
+    catch = (
+        float(params.standing_support_packet_smooth_split_catch_carve)
+        * standing_support_packet_smooth_split_catch_window(s, l, params)
+    )
+    edge = (
+        float(params.standing_support_packet_smooth_split_edge_carve)
+        * standing_support_packet_smooth_split_edge_window(s, l, params)
+    )
+    return compose_packet_windows(
+        (entry, catch, edge),
+        params.standing_support_packet_smooth_split_composition,
+    )
+
+
+def standing_support_packet_smooth_split_null_cushion_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_smooth_split_null_cushion_log_gain) == 0.0:
+        return 0.0
+    return standing_support_packet_smooth_split_edge_window(s, l, params)
 
 
 def standing_support_packet_carve_window(s: float, l: float, params: SourceParams) -> float:
@@ -1011,6 +1137,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     coupled_rebate_window = standing_support_packet_coupled_rebate_window(float(s), float(l), params)
     coupled_null_cushion_window = standing_support_packet_coupled_null_cushion_window(float(s), float(l), params)
     coupled_radial_window = standing_support_packet_coupled_radial_window(float(s), float(l), params)
+    smooth_split_entry_window = standing_support_packet_smooth_split_entry_window(float(s), float(l), params)
+    smooth_split_catch_window = standing_support_packet_smooth_split_catch_window(float(s), float(l), params)
+    smooth_split_edge_window = standing_support_packet_smooth_split_edge_window(float(s), float(l), params)
+    smooth_split_containment_window = standing_support_packet_smooth_split_containment_window(float(s), float(l), params)
+    smooth_split_null_cushion_window = standing_support_packet_smooth_split_null_cushion_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
     packet_null_cushion_window = standing_support_packet_null_cushion_window(float(s), float(l), params)
     packet_radial_window = standing_support_packet_radial_window(float(s), float(l), params)
@@ -1031,7 +1162,17 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         0.0,
         1.0,
     ))
-    raw_carve_contribution = smooth_union(legacy_carve_contribution, coupled_containment_window)
+    if standing_support_packet_smooth_split_active(params):
+        raw_carve_contribution = compose_packet_windows(
+            (legacy_carve_contribution, coupled_containment_window, smooth_split_containment_window),
+            params.standing_support_packet_smooth_split_composition,
+        )
+    else:
+        raw_carve_contribution = smooth_union(
+            legacy_carve_contribution,
+            coupled_containment_window,
+            smooth_split_containment_window,
+        )
     coupled_rebate_contribution = float(np.clip(
         min(
             raw_carve_contribution,
@@ -1064,8 +1205,19 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         params.standing_support_packet_coupled_null_cushion_log_gain,
         coupled_null_cushion_window,
     )
+    smooth_split_null_cushion_factor = support_shell_metric_factor(
+        params.standing_support_packet_smooth_split_null_cushion_log_gain,
+        smooth_split_null_cushion_window,
+    )
     clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
-    alpha = alpha_base * packet_lapse_factor * packet_null_cushion_factor * coupled_null_cushion_factor * clock_lapse_factor
+    alpha = (
+        alpha_base
+        * packet_lapse_factor
+        * packet_null_cushion_factor
+        * coupled_null_cushion_factor
+        * smooth_split_null_cushion_factor
+        * clock_lapse_factor
+    )
     sqrt_gamma_ll_base = b_angular * a_spatial
     gamma_ll_base = sqrt_gamma_ll_base * sqrt_gamma_ll_base
     rail_stretch_factor = support_shell_metric_factor(params.support_shell_rail_stretch_log_gain, shell_window)
@@ -1114,6 +1266,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_coupled_rebate_window": float(coupled_rebate_window),
         "standing_support_packet_coupled_radial_window": float(coupled_radial_window),
         "standing_support_packet_coupled_null_cushion_window": float(coupled_null_cushion_window),
+        "standing_support_packet_smooth_split_entry_window": float(smooth_split_entry_window),
+        "standing_support_packet_smooth_split_catch_window": float(smooth_split_catch_window),
+        "standing_support_packet_smooth_split_edge_window": float(smooth_split_edge_window),
+        "standing_support_packet_smooth_split_containment_window": float(smooth_split_containment_window),
+        "standing_support_packet_smooth_split_null_cushion_window": float(smooth_split_null_cushion_window),
         "standing_support_packet_raw_carve_contribution": float(raw_carve_contribution),
         "standing_support_packet_coupled_rebate_contribution": float(coupled_rebate_contribution),
         "standing_support_packet_carve_contribution": float(carve_contribution),
@@ -1123,6 +1280,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_null_cushion_window": float(packet_null_cushion_window),
         "standing_support_packet_null_cushion_factor": float(packet_null_cushion_factor),
         "standing_support_packet_coupled_null_cushion_factor": float(coupled_null_cushion_factor),
+        "standing_support_packet_smooth_split_null_cushion_factor": float(smooth_split_null_cushion_factor),
         "standing_support_packet_radial_window": float(packet_radial_window),
         "standing_support_packet_radial_shoulder_window": float(packet_radial_shoulder_window),
         "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
@@ -1146,6 +1304,15 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         ),
         "standing_support_packet_coupled_null_cushion_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_coupled_null_cushion_window, float(s), float(l), params
+        ),
+        "standing_support_packet_smooth_split_containment_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_containment_window, float(s), float(l), params
+        ),
+        "standing_support_packet_smooth_split_edge_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_edge_window, float(s), float(l), params
+        ),
+        "standing_support_packet_smooth_split_null_cushion_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_null_cushion_window, float(s), float(l), params
         ),
         "standing_support_packet_lapse_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_lapse_window, float(s), float(l), params
@@ -1183,6 +1350,14 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_coupled_null_cushion_delta_alpha": float(
             alpha_base * packet_lapse_factor * packet_null_cushion_factor * coupled_null_cushion_factor
             - alpha_base * packet_lapse_factor * packet_null_cushion_factor
+        ),
+        "standing_support_packet_smooth_split_null_cushion_delta_alpha": float(
+            alpha_base
+            * packet_lapse_factor
+            * packet_null_cushion_factor
+            * coupled_null_cushion_factor
+            * smooth_split_null_cushion_factor
+            - alpha_base * packet_lapse_factor * packet_null_cushion_factor * coupled_null_cushion_factor
         ),
         "standing_support_packet_delta_gamma_ll": float(gamma_ll_base * packet_radial_factor - gamma_ll_base),
         "standing_support_packet_coupled_delta_gamma_ll": float(
@@ -1344,6 +1519,11 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_coupled_rebate_window",
             "standing_support_packet_coupled_radial_window",
             "standing_support_packet_coupled_null_cushion_window",
+            "standing_support_packet_smooth_split_entry_window",
+            "standing_support_packet_smooth_split_catch_window",
+            "standing_support_packet_smooth_split_edge_window",
+            "standing_support_packet_smooth_split_containment_window",
+            "standing_support_packet_smooth_split_null_cushion_window",
             "standing_support_packet_raw_carve_contribution",
             "standing_support_packet_coupled_rebate_contribution",
             "standing_support_packet_carve_contribution",
@@ -1353,6 +1533,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_null_cushion_window",
             "standing_support_packet_null_cushion_factor",
             "standing_support_packet_coupled_null_cushion_factor",
+            "standing_support_packet_smooth_split_null_cushion_factor",
             "standing_support_packet_radial_window",
             "standing_support_packet_radial_shoulder_window",
             "standing_support_packet_radial_skirt_window",
@@ -1365,6 +1546,9 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_coupled_edge_window_slope_abs",
             "standing_support_packet_coupled_rebate_window_slope_abs",
             "standing_support_packet_coupled_null_cushion_window_slope_abs",
+            "standing_support_packet_smooth_split_containment_window_slope_abs",
+            "standing_support_packet_smooth_split_edge_window_slope_abs",
+            "standing_support_packet_smooth_split_null_cushion_window_slope_abs",
             "standing_support_packet_lapse_window_slope_abs",
             "standing_support_packet_null_cushion_window_slope_abs",
             "standing_support_packet_radial_window_slope_abs",
@@ -1373,6 +1557,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_delta_alpha",
             "standing_support_packet_null_cushion_delta_alpha",
             "standing_support_packet_coupled_null_cushion_delta_alpha",
+            "standing_support_packet_smooth_split_null_cushion_delta_alpha",
             "standing_support_packet_delta_gamma_ll",
             "standing_support_packet_coupled_delta_gamma_ll",
             "standing_support_packet_delta_beta",
