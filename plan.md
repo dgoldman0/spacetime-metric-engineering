@@ -2,6 +2,34 @@
 
 ## Current checkpoint, 2026-05-19
 
+Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
+
+The new active diagnostic priority is a smeared-null harness gate inspired by the SNEC source paper in `toolkit/adm_harness_cli/academic_sources/2503.19955v2.pdf`. This is a test-harness addition, not a design replacement. It should compute local/semilocal smeared `Tkk` or geometric null-contraction summaries over physically motivated packet-edge and catch/rematch windows, while keeping the existing point-peak, packet-norm, live-fraction, and channel-cause gates as guardrails. The purpose is to distinguish physically meaningful reduction of accumulated NEC burden from cosmetic redistribution of pointwise failures.
+
+The immediate next work should therefore be:
+
+```text
+1. Add a focused smeared-null diagnostic to the source-ledger/reporting harness.
+2. Run it on split_ref, smooth_edge004_tanh, compact7_wide3 candidates, and compact7_wide4_edge160.
+3. Compare smeared burden against point peaks and channel-cause derivative scores.
+4. Only then decide whether the next design move is pressure-aware entry containment or a deeper compact handoff redesign.
+```
+
+The current best diagnostic compact candidate is:
+
+```text
+compact_smoothstep7
+entry_carve = 0.75
+entry_width_multiplier = 4.8
+catch_carve = 0.15
+catch_width_multiplier = 3.4
+edge_carve = 0.16
+edge_width_multiplier = 7.2
+null_cushion_log_gain = -0.07
+```
+
+The main unresolved cost is live `p_l`: the best compact case raises it by about `12%` versus `split_ref`, while weakened-entry variants lower point peaks and angular/current burdens but make live `p_l` much worse. That means early entry containment is carrying radial pressure balance, while the broad compact catch/handoff sleeve is carrying angular/current and derivative-concentration relief. The next design adjustment should preserve that role separation rather than adding another free local sleeve.
+
 The split-carve/null-cushion branch has produced the clearest recent design signal. It is not a final consolidated law, but it is a robust V5 packet-safe improvement family: softer live-entry containment plus separate catch/rematch containment and a small annular null cushion reduces point peaks and the angular/current burdens while preserving packet safety. It does not yet beat the current architecture on integrated live `Tkk` and `p_l`.
 
 The follow-on coupled-profile screen showed that the packet-edge lever is real but incomplete. A coupled edge carve can strongly reduce `j_l`, `pOmega`, and point peaks, but pays a large live radial `Tkk` / `p_l` cost. The explicit pressure-preserving support rebate failed: restoring support in the same edge region made live `Tkk` / `p_l` worse and, at higher rebate, blew up the Tkk point peak. This argues that the missing principle is derivative/cancellation preservation, not local support-mass preservation.
