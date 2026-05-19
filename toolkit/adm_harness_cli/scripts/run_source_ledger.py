@@ -94,6 +94,13 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_radial_shoulder_width_multiplier": args.standing_support_packet_radial_shoulder_width_multiplier,
         "standing_support_packet_radial_shoulder_schedule": args.standing_support_packet_radial_shoulder_schedule,
         "standing_support_packet_radial_shoulder_temporal_profile": args.standing_support_packet_radial_shoulder_temporal_profile,
+        "standing_support_packet_radial_skirt_log_gain": args.standing_support_packet_radial_skirt_log_gain,
+        "standing_support_packet_radial_skirt_mode": args.standing_support_packet_radial_skirt_mode,
+        "standing_support_packet_radial_skirt_inner_radius_multiplier": args.standing_support_packet_radial_skirt_inner_radius_multiplier,
+        "standing_support_packet_radial_skirt_radius_multiplier": args.standing_support_packet_radial_skirt_radius_multiplier,
+        "standing_support_packet_radial_skirt_width_multiplier": args.standing_support_packet_radial_skirt_width_multiplier,
+        "standing_support_packet_radial_skirt_schedule": args.standing_support_packet_radial_skirt_schedule,
+        "standing_support_packet_radial_skirt_temporal_profile": args.standing_support_packet_radial_skirt_temporal_profile,
         "standing_support_packet_beta_rematch_gain": args.standing_support_packet_beta_rematch_gain,
         "standing_support_packet_beta_rematch_shape": args.standing_support_packet_beta_rematch_shape,
         "standing_support_packet_beta_rematch_radius_multiplier": args.standing_support_packet_beta_rematch_radius_multiplier,
@@ -327,6 +334,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-radial-shoulder-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-skirt-log-gain",
+        type=float,
+        default=None,
+        help="Experimental weaker second annular gamma_ll skirt outside the main radial support ring.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-skirt-mode",
+        choices=["filled", "annular"],
+        default=None,
+    )
+    parser.add_argument("--standing-support-packet-radial-skirt-inner-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-radial-skirt-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-radial-skirt-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-radial-skirt-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-skirt-temporal-profile",
         choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
         default=None,
     )

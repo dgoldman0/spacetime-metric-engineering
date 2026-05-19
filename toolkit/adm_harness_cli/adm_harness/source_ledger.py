@@ -153,6 +153,13 @@ class SourceParams:
     standing_support_packet_radial_shoulder_width_multiplier: float = 2.0
     standing_support_packet_radial_shoulder_schedule: str = "live_only"
     standing_support_packet_radial_shoulder_temporal_profile: str = "tanh"
+    standing_support_packet_radial_skirt_log_gain: float = 0.0
+    standing_support_packet_radial_skirt_mode: str = "annular"
+    standing_support_packet_radial_skirt_inner_radius_multiplier: float = 2.4
+    standing_support_packet_radial_skirt_radius_multiplier: float = 2.6
+    standing_support_packet_radial_skirt_width_multiplier: float = 3.6
+    standing_support_packet_radial_skirt_schedule: str = "live_only"
+    standing_support_packet_radial_skirt_temporal_profile: str = "tanh"
     standing_support_packet_beta_rematch_gain: float = 0.0
     standing_support_packet_beta_rematch_shape: str = "core"
     standing_support_packet_beta_rematch_radius_multiplier: float = 1.0
@@ -597,6 +604,35 @@ def standing_support_packet_radial_shoulder_window(s: float, l: float, params: S
     raise ValueError(f"Unknown standing support packet radial shoulder mode: {params.standing_support_packet_radial_shoulder_mode}")
 
 
+def standing_support_packet_radial_skirt_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_radial_skirt_log_gain) == 0.0:
+        return 0.0
+    outer = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_radial_skirt_radius_multiplier,
+        width_multiplier=params.standing_support_packet_radial_skirt_width_multiplier,
+        schedule_name=params.standing_support_packet_radial_skirt_schedule,
+        temporal_profile=params.standing_support_packet_radial_skirt_temporal_profile,
+    )
+    mode = params.standing_support_packet_radial_skirt_mode.strip().lower()
+    if mode == "filled":
+        return outer
+    if mode == "annular":
+        inner = standing_support_packet_window(
+            s,
+            l,
+            params,
+            radius_multiplier=params.standing_support_packet_radial_skirt_inner_radius_multiplier,
+            width_multiplier=params.standing_support_packet_radial_skirt_width_multiplier,
+            schedule_name=params.standing_support_packet_radial_skirt_schedule,
+            temporal_profile=params.standing_support_packet_radial_skirt_temporal_profile,
+        )
+        return float(np.clip(outer - inner, 0.0, 1.0))
+    raise ValueError(f"Unknown standing support packet radial skirt mode: {params.standing_support_packet_radial_skirt_mode}")
+
+
 def standing_support_packet_beta_rematch_window(s: float, l: float, params: SourceParams) -> float:
     if float(params.standing_support_packet_beta_rematch_gain) == 0.0:
         return 0.0
@@ -708,6 +744,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
     packet_radial_window = standing_support_packet_radial_window(float(s), float(l), params)
     packet_radial_shoulder_window = standing_support_packet_radial_shoulder_window(float(s), float(l), params)
+    packet_radial_skirt_window = standing_support_packet_radial_skirt_window(float(s), float(l), params)
     packet_beta_rematch_window = standing_support_packet_beta_rematch_window(float(s), float(l), params)
     release_slope_abs = float(abs(
         (
@@ -745,6 +782,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     packet_radial_factor = math.exp(
         float(params.standing_support_packet_radial_log_gain) * packet_radial_window
         + float(params.standing_support_packet_radial_shoulder_log_gain) * packet_radial_shoulder_window
+        + float(params.standing_support_packet_radial_skirt_log_gain) * packet_radial_skirt_window
     )
     gamma_ll = gamma_ll_base * rail_stretch_factor * packet_radial_factor
     sqrt_gamma_ll = np.sqrt(gamma_ll)
@@ -780,6 +818,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_lapse_factor": float(packet_lapse_factor),
         "standing_support_packet_radial_window": float(packet_radial_window),
         "standing_support_packet_radial_shoulder_window": float(packet_radial_shoulder_window),
+        "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
         "standing_support_packet_radial_factor": float(packet_radial_factor),
         "standing_support_packet_beta_rematch_window": float(packet_beta_rematch_window),
         "release_profile_slope_abs": release_slope_abs,
@@ -791,6 +830,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         ),
         "standing_support_packet_radial_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_radial_window, float(s), float(l), params
+        ),
+        "standing_support_packet_radial_skirt_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_radial_skirt_window, float(s), float(l), params
         ),
         "standing_support_packet_beta_rematch_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_beta_rematch_window, float(s), float(l), params
@@ -964,12 +1006,14 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_lapse_factor",
             "standing_support_packet_radial_window",
             "standing_support_packet_radial_shoulder_window",
+            "standing_support_packet_radial_skirt_window",
             "standing_support_packet_radial_factor",
             "standing_support_packet_beta_rematch_window",
             "release_profile_slope_abs",
             "standing_support_packet_carve_window_slope_abs",
             "standing_support_packet_lapse_window_slope_abs",
             "standing_support_packet_radial_window_slope_abs",
+            "standing_support_packet_radial_skirt_window_slope_abs",
             "standing_support_packet_beta_rematch_window_slope_abs",
             "standing_support_packet_delta_alpha",
             "standing_support_packet_delta_gamma_ll",
@@ -1488,7 +1532,11 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
         if params.standing_support_packet_lapse_temporal_profile != "tanh":
             case_name = f"{case_name}_wltp{params.standing_support_packet_lapse_temporal_profile}"
         note = f"{note}; experimental packet-local lapse compensator"
-    if params.standing_support_packet_radial_log_gain or params.standing_support_packet_radial_shoulder_log_gain:
+    if (
+        params.standing_support_packet_radial_log_gain
+        or params.standing_support_packet_radial_shoulder_log_gain
+        or params.standing_support_packet_radial_skirt_log_gain
+    ):
         case_name = (
             f"{case_name}_wrad{_token(params.standing_support_packet_radial_log_gain)}"
             f"_wrr{_token(params.standing_support_packet_radial_radius_multiplier)}"
@@ -1499,11 +1547,16 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_wrsr{_token(params.standing_support_packet_radial_shoulder_radius_multiplier)}"
             f"_wrsw{_token(params.standing_support_packet_radial_shoulder_width_multiplier)}"
             f"_wrss{params.standing_support_packet_radial_shoulder_schedule}"
+            f"_wrsk{_token(params.standing_support_packet_radial_skirt_log_gain)}"
+            f"_wrskr{_token(params.standing_support_packet_radial_skirt_radius_multiplier)}"
+            f"_wrskw{_token(params.standing_support_packet_radial_skirt_width_multiplier)}"
         )
         if params.standing_support_packet_radial_temporal_profile != "tanh":
             case_name = f"{case_name}_wrtp{params.standing_support_packet_radial_temporal_profile}"
         if params.standing_support_packet_radial_shoulder_temporal_profile != "tanh":
             case_name = f"{case_name}_wrstp{params.standing_support_packet_radial_shoulder_temporal_profile}"
+        if params.standing_support_packet_radial_skirt_temporal_profile != "tanh":
+            case_name = f"{case_name}_wrsktp{params.standing_support_packet_radial_skirt_temporal_profile}"
         note = f"{note}; experimental packet-local radial metric smoothing"
     if params.standing_support_packet_beta_rematch_gain:
         case_name = (

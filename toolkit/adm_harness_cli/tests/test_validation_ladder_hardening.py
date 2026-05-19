@@ -251,14 +251,23 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             standing_support_packet_radial_shoulder_mode="annular",
             standing_support_packet_radial_shoulder_radius_multiplier=1.8,
             standing_support_packet_radial_shoulder_width_multiplier=2.4,
+            standing_support_packet_radial_skirt_log_gain=0.01,
+            standing_support_packet_radial_skirt_mode="annular",
+            standing_support_packet_radial_skirt_inner_radius_multiplier=1.8,
+            standing_support_packet_radial_skirt_radius_multiplier=2.2,
+            standing_support_packet_radial_skirt_width_multiplier=2.8,
+            standing_support_packet_radial_skirt_schedule="entry_catch_release",
+            standing_support_packet_radial_skirt_temporal_profile="minimum_jerk",
         )
         points = source_ledger.compute_case(case, ns=5, nl=7, progress=False)
 
         self.assertIn("standing_support_packet_radial_window", points.columns)
         self.assertIn("standing_support_packet_radial_shoulder_window", points.columns)
+        self.assertIn("standing_support_packet_radial_skirt_window", points.columns)
         self.assertIn("standing_support_packet_radial_factor", points.columns)
         self.assertIn("standing_support_packet_delta_gamma_ll", points.columns)
         self.assertGreater(float(points["standing_support_packet_radial_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_radial_skirt_window"].max()), 0.0)
         self.assertGreater(float(points["standing_support_packet_radial_factor"].sub(1.0).abs().max()), 0.0)
         self.assertGreater(float(points["standing_support_packet_delta_gamma_ll"].abs().max()), 0.0)
 

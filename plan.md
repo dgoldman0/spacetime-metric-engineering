@@ -28,7 +28,17 @@ The refined radial support-law pass has now produced a useful V5 improvement sur
 
 The latest geometry refinement moved the ring outward from radius/width `2.2 / 2.8` to `2.4 / 2.4`. This preserves zero packet-norm failures, preserves Tkk and pOmega point-peak relief, lowers live Tkk further, lowers live pOmega slightly, and reduces the live `p_l` cost. A nearby `2.4 / 3.2` comparator improves live `p_l` and `j_l` slightly but worsens live Tkk and pOmega, suggesting a two-feature radial profile: keep the main outer catch ring narrow for null/angular localization, then add a weaker broader skirt only if it can smooth `p_l` / `j_l` without giving back Tkk/pOmega gains.
 
-The next recommended work is to test that two-feature radial profile, not to return to broad release/lapse sweeps. Use lapse later only as a small local null-channel trim after the radial geometry stabilizes.
+That two-feature radial profile has now been implemented and tested. The best skirt probe is a weak catch-only annular skirt:
+
+```text
+main ring:       gain +0.12, radius 2.4, width 2.4
+secondary skirt: gain +0.05, inner radius 2.4, outer radius 2.6, width 3.2
+core:            gain +0.05, entry_catch_release, radius 1.3, width 1.8
+```
+
+At `81 x 109`, the skirt keeps zero packet failures and preserves the main ring's Tkk/pOmega point-peak relief. Relative to the no-skirt `2.4 / 2.4` ring, it gives only trim-scale live improvements: live Tkk lower by about `2.8e-7`, live `p_l` lower by about `8.5e-6`, live pOmega lower by about `3.6e-5`, and live `j_l` higher by about `8.9e-7`.
+
+This is useful but small. Radial support geometry is now plausibly near its local optimum for this family: the current branch is a robust V5 packet-safe candidate with improved source placement, but sealing Stage I as a hard-bounded optimized architecture needs a deeper algebraic cause ledger rather than more broad radial/lapse sweeps. The next recommended work is term-level decomposition around the top bad points: separate lapse-curvature, shift/current, radial-metric curvature, angular-capacity, and cancellation-origin contributions before adding another design knob.
 
 ## Why this handoff exists
 

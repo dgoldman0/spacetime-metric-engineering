@@ -65,6 +65,12 @@ def _tuple_spec_to_dict(spec: tuple[Any, ...]) -> dict[str, Any]:
         "core_width_multiplier": core_w,
         "shoulder_radius_multiplier": shoulder_r,
         "shoulder_width_multiplier": shoulder_w,
+        "skirt_gain": 0.0,
+        "skirt_mode": "annular",
+        "skirt_inner_radius_multiplier": 2.4,
+        "skirt_radius_multiplier": 2.6,
+        "skirt_width_multiplier": 3.6,
+        "skirt_schedule": "live_only",
     }
 
 
@@ -88,8 +94,15 @@ def _load_specs(path: Path | None) -> list[dict[str, Any]]:
             "core_width_multiplier": item.get("core_width_multiplier", 1.0),
             "shoulder_radius_multiplier": item.get("shoulder_radius_multiplier", 1.5),
             "shoulder_width_multiplier": item.get("shoulder_width_multiplier", 2.0),
+            "skirt_gain": item.get("skirt_gain", 0.0),
+            "skirt_mode": item.get("skirt_mode", "annular"),
+            "skirt_inner_radius_multiplier": item.get("skirt_inner_radius_multiplier", 2.4),
+            "skirt_radius_multiplier": item.get("skirt_radius_multiplier", 2.6),
+            "skirt_width_multiplier": item.get("skirt_width_multiplier", 3.6),
+            "skirt_schedule": item.get("skirt_schedule", "live_only"),
             "core_temporal_profile": item.get("core_temporal_profile"),
             "shoulder_temporal_profile": item.get("shoulder_temporal_profile"),
+            "skirt_temporal_profile": item.get("skirt_temporal_profile"),
         }
         specs.append(spec)
     return specs
@@ -128,6 +141,9 @@ def _row_for_case(case: SourceCase, points: pd.DataFrame) -> dict[str, float | i
         "radial_factor_min": float(points["standing_support_packet_radial_factor"].min()),
         "radial_factor_max": float(points["standing_support_packet_radial_factor"].max()),
         "max_radial_window_slope": float(points["standing_support_packet_radial_window_slope_abs"].max()),
+        "max_radial_skirt_window_slope": float(
+            points["standing_support_packet_radial_skirt_window_slope_abs"].max()
+        ),
     }
 
 
@@ -185,8 +201,15 @@ def main() -> int:
             core_w = float(spec["core_width_multiplier"])
             shoulder_r = float(spec["shoulder_radius_multiplier"])
             shoulder_w = float(spec["shoulder_width_multiplier"])
+            skirt_gain = float(spec["skirt_gain"])
+            skirt_mode = str(spec["skirt_mode"])
+            skirt_inner_r = float(spec["skirt_inner_radius_multiplier"])
+            skirt_r = float(spec["skirt_radius_multiplier"])
+            skirt_w = float(spec["skirt_width_multiplier"])
+            skirt_schedule = str(spec["skirt_schedule"])
             core_profile = str(spec.get("core_temporal_profile") or _default_profile(core_schedule))
             shoulder_profile = str(spec.get("shoulder_temporal_profile") or _default_profile(shoulder_schedule))
+            skirt_profile = str(spec.get("skirt_temporal_profile") or _default_profile(skirt_schedule))
             case_params = replace(
                 params,
                 standing_support_packet_radial_log_gain=core_gain,
@@ -200,6 +223,13 @@ def main() -> int:
                 standing_support_packet_radial_shoulder_width_multiplier=shoulder_w,
                 standing_support_packet_radial_shoulder_schedule=shoulder_schedule,
                 standing_support_packet_radial_shoulder_temporal_profile=shoulder_profile,
+                standing_support_packet_radial_skirt_log_gain=skirt_gain,
+                standing_support_packet_radial_skirt_mode=skirt_mode,
+                standing_support_packet_radial_skirt_inner_radius_multiplier=skirt_inner_r,
+                standing_support_packet_radial_skirt_radius_multiplier=skirt_r,
+                standing_support_packet_radial_skirt_width_multiplier=skirt_w,
+                standing_support_packet_radial_skirt_schedule=skirt_schedule,
+                standing_support_packet_radial_skirt_temporal_profile=skirt_profile,
             )
             case = SourceCase(f"V5_radial_{label}", case_params, "radial support law screen")
             points = compute_case(
@@ -220,12 +250,19 @@ def main() -> int:
                 "shoulder_gain": shoulder_gain,
                 "core_schedule": core_schedule,
                 "shoulder_schedule": shoulder_schedule,
+                "skirt_gain": skirt_gain,
+                "skirt_mode": skirt_mode,
+                "skirt_schedule": skirt_schedule,
                 "core_radius_multiplier": core_r,
                 "core_width_multiplier": core_w,
                 "shoulder_radius_multiplier": shoulder_r,
                 "shoulder_width_multiplier": shoulder_w,
+                "skirt_inner_radius_multiplier": skirt_inner_r,
+                "skirt_radius_multiplier": skirt_r,
+                "skirt_width_multiplier": skirt_w,
                 "core_temporal_profile": core_profile,
                 "shoulder_temporal_profile": shoulder_profile,
+                "skirt_temporal_profile": skirt_profile,
                 **_row_for_case(case, points),
             }
             rows.append(row)
