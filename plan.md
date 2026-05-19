@@ -1,6 +1,23 @@
 # Active-Rail Codex Handoff Plan
 
-## Current checkpoint, 2026-05-18
+## Current checkpoint, 2026-05-19
+
+The split-carve/null-cushion branch has produced the clearest recent design signal. It is not a final consolidated law, but it is a robust V5 packet-safe improvement family: softer live-entry containment plus separate catch/rematch containment and a small annular null cushion reduces point peaks and the angular/current burdens while preserving packet safety. It does not yet beat the current architecture on integrated live `Tkk` and `p_l`.
+
+The follow-on coupled-profile screen showed that the packet-edge lever is real but incomplete. A coupled edge carve can strongly reduce `j_l`, `pOmega`, and point peaks, but pays a large live radial `Tkk` / `p_l` cost. The explicit pressure-preserving support rebate failed: restoring support in the same edge region made live `Tkk` / `p_l` worse and, at higher rebate, blew up the Tkk point peak. This argues that the missing principle is derivative/cancellation preservation, not local support-mass preservation.
+
+The next active work should consolidate the successful piecewise split family into a smaller, smoother ansatz:
+
+```text
+soft early/live-entry containment,
+separate catch/rematch containment,
+trailing-edge annular sleeve only where it relieves point peaks,
+small local null cushion as a trim,
+smooth joins with derivative control,
+no edge-local pressure rebate unless a channel-cause ledger proves it belongs elsewhere.
+```
+
+Initial smooth-ansatz screens should compare `current`, `split_ref`, the best coupled-edge diagnostic, and reference-like smooth split profiles. The first decision criterion is whether smoothing preserves the split-family gains without reproducing the pressure-rebate failure mode.
 
 The active V5 refreeze remains the smoother `blend` floor-union candidate with trailing-edge beta-rematch width `1.6`. The hard `max` floor-union setting should be kept as a diagnostic comparator only.
 

@@ -319,6 +319,57 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         )
         self.assertAlmostEqual(sc["support_shell_delta_alpha"], sc["standing_support_packet_null_cushion_delta_alpha"])
 
+    def test_source_ledger_coupled_profile_generates_containment_edge_and_cushion(self):
+        case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            standing_support_packet_exclusion=0.0,
+            standing_support_packet_exclusion_shoulder=0.0,
+            standing_support_packet_coupled_profile_enabled=True,
+            standing_support_packet_coupled_entry_carve=0.75,
+            standing_support_packet_coupled_catch_carve=0.15,
+            standing_support_packet_coupled_edge_carve=0.12,
+            standing_support_packet_coupled_width_multiplier=1.6,
+            standing_support_packet_coupled_temporal_profile="minimum_jerk",
+            standing_support_packet_coupled_edge_inner_radius_multiplier=1.0,
+            standing_support_packet_coupled_edge_outer_radius_multiplier=1.7,
+            standing_support_packet_coupled_edge_width_multiplier=2.2,
+            standing_support_packet_coupled_rebate_fraction=0.25,
+            standing_support_packet_coupled_radial_log_gain=0.05,
+            standing_support_packet_coupled_null_cushion_log_gain=-0.03,
+        )
+        points = source_ledger.compute_case(
+            case,
+            ns=7,
+            nl=11,
+            s_min=-0.55,
+            s_max=0.45,
+            l_min=-1.0,
+            l_max=1.0,
+            progress=False,
+        )
+        sc = source_ledger.scalars(-0.05, 0.40, case.params)
+
+        self.assertIn("standing_support_packet_coupled_containment_window", points.columns)
+        self.assertIn("standing_support_packet_coupled_edge_window", points.columns)
+        self.assertIn("standing_support_packet_coupled_rebate_window", points.columns)
+        self.assertIn("standing_support_packet_coupled_radial_window", points.columns)
+        self.assertIn("standing_support_packet_coupled_null_cushion_window", points.columns)
+        self.assertIn("standing_support_packet_raw_carve_contribution", points.columns)
+        self.assertIn("standing_support_packet_coupled_rebate_contribution", points.columns)
+        self.assertGreater(float(points["standing_support_packet_coupled_containment_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_edge_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_rebate_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_rebate_contribution"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_radial_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_null_cushion_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_delta_gamma_ll"].abs().max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_coupled_null_cushion_delta_alpha"].abs().max()), 0.0)
+        self.assertGreater(sc["standing_support_packet_coupled_containment_window"], 0.0)
+        self.assertGreater(sc["standing_support_packet_coupled_edge_window"], 0.0)
+        self.assertGreater(sc["standing_support_packet_raw_carve_contribution"], sc["standing_support_packet_carve_contribution"])
+        self.assertLess(sc["standing_support_packet_coupled_null_cushion_factor"], 1.0)
+
     def test_source_overlay_sweep_reports_shell_throat_overlap(self):
         grid = {
             "ns": 5,
