@@ -384,6 +384,7 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             standing_support_packet_smooth_split_edge_carve=0.08,
             standing_support_packet_smooth_split_temporal_profile="minimum_jerk",
             standing_support_packet_smooth_split_temporal_width_multiplier=1.2,
+            standing_support_packet_smooth_split_radial_profile="compact_smoothstep7",
             standing_support_packet_smooth_split_null_cushion_log_gain=-0.05,
             standing_support_packet_smooth_split_current_guard_fraction=0.35,
             standing_support_packet_smooth_split_angular_log_gain=0.10,

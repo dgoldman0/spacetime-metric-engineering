@@ -170,6 +170,7 @@ class SourceParams:
     standing_support_packet_smooth_split_edge_schedule: str = "catch_only"
     standing_support_packet_smooth_split_temporal_profile: str = "minimum_jerk"
     standing_support_packet_smooth_split_temporal_width_multiplier: float = 1.0
+    standing_support_packet_smooth_split_radial_profile: str = "tanh"
     standing_support_packet_smooth_split_composition: str = "smooth_union"
     standing_support_packet_smooth_split_null_cushion_log_gain: float = 0.0
     standing_support_packet_smooth_split_current_guard_fraction: float = 0.0
@@ -320,6 +321,26 @@ def live_packet_end(params: SourceParams) -> float:
 def bump_sq(x2: np.ndarray | float, radius: float, width: float) -> np.ndarray:
     z = (np.asarray(x2, dtype=float) - radius * radius) / max(2.0 * radius * width, 1.0e-12)
     return 0.5 * (1.0 - np.tanh(z))
+
+
+def compact_bump_sq(x2: np.ndarray | float, radius: float, width: float, profile: str) -> np.ndarray:
+    z = (np.asarray(x2, dtype=float) - radius * radius) / max(2.0 * radius * width, 1.0e-12)
+    t = 0.5 * (z + 1.0)
+    key = profile.strip().lower()
+    if key in {"compact_minjerk", "compact_smoothstep5"}:
+        transition = smoothstep_minjerk(t)
+    elif key in {"compact_smoothstep7", "compact_jerk_limited"}:
+        transition = smoothstep7(t)
+    else:
+        raise ValueError(f"Unknown compact packet radial profile: {profile}")
+    return np.where(z <= -1.0, 1.0, np.where(z >= 1.0, 0.0, 1.0 - transition))
+
+
+def packet_bump_sq(x2: np.ndarray | float, radius: float, width: float, profile: str = "tanh") -> np.ndarray:
+    key = profile.strip().lower()
+    if key == "tanh":
+        return bump_sq(x2, radius, width)
+    return compact_bump_sq(x2, radius, width, key)
 
 
 def support_bump(l: np.ndarray | float, params: SourceParams) -> np.ndarray:
@@ -527,13 +548,14 @@ def standing_support_packet_window(
     schedule_name: str,
     temporal_width_multiplier: float = 1.0,
     temporal_profile: str = "tanh",
+    radial_profile: str = "tanh",
     release_lag_widths: float = 0.0,
 ) -> float:
     s_arr = np.asarray(s, dtype=float)
     l_arr = np.asarray(l, dtype=float)
     radius = max(float(params.Rpass) * float(radius_multiplier), 1.0e-12)
     width = max(float(params.w_pass) * float(width_multiplier), 1.0e-12)
-    packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width)
+    packet = packet_bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width, radial_profile)
 
     schedule_key = schedule_name.strip().lower()
     live_end = live_packet_end(params)
@@ -773,6 +795,7 @@ def standing_support_packet_smooth_split_entry_window(s: float, l: float, params
         schedule_name=params.standing_support_packet_smooth_split_entry_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
 
@@ -789,6 +812,7 @@ def standing_support_packet_smooth_split_catch_window(s: float, l: float, params
         schedule_name=params.standing_support_packet_smooth_split_catch_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
 
@@ -805,6 +829,7 @@ def standing_support_packet_smooth_split_edge_window(s: float, l: float, params:
         schedule_name=params.standing_support_packet_smooth_split_edge_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
     inner = standing_support_packet_window(
@@ -816,6 +841,7 @@ def standing_support_packet_smooth_split_edge_window(s: float, l: float, params:
         schedule_name=params.standing_support_packet_smooth_split_edge_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
     return float(np.clip(outer - inner, 0.0, 1.0))
@@ -833,6 +859,7 @@ def standing_support_packet_smooth_split_current_guard_window(s: float, l: float
         schedule_name=params.standing_support_packet_smooth_split_current_guard_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_current_guard_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
     inner = standing_support_packet_window(
@@ -844,6 +871,7 @@ def standing_support_packet_smooth_split_current_guard_window(s: float, l: float
         schedule_name=params.standing_support_packet_smooth_split_current_guard_schedule,
         temporal_width_multiplier=params.standing_support_packet_smooth_split_current_guard_temporal_width_multiplier,
         temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        radial_profile=params.standing_support_packet_smooth_split_radial_profile,
         release_lag_widths=params.release_carve_lag_widths,
     )
     return float(np.clip(outer - inner, 0.0, 1.0))
