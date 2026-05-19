@@ -143,6 +143,10 @@ def _back_to_points(points: pd.DataFrame, values_2d: np.ndarray, s_grid: np.ndar
 def scalar_proxy_fields(points: pd.DataFrame, phi0: float, xi: float, profile: str) -> pd.DataFrame:
     profile_values = scalar_profile(points, profile)
     phi = float(phi0) * profile_values
+    return scalar_proxy_fields_from_phi(points, phi, xi)
+
+
+def scalar_proxy_fields_from_phi(points: pd.DataFrame, phi: np.ndarray, xi: float) -> pd.DataFrame:
     s_grid, l_grid, phi_2d = _grid_values(points, phi)
     edge_order = 2 if min(len(s_grid), len(l_grid)) >= 3 else 1
     d_s, d_l = np.gradient(phi_2d, s_grid, l_grid, edge_order=edge_order)

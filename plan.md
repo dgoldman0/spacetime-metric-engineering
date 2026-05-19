@@ -31,6 +31,17 @@ edge_width_multiplier = 7.2
 null_cushion_log_gain = -0.07
 ```
 
+Stage II has now started with a deliberately narrow kill screen rather than a wide scalar search. The tested simple Barceló-Visser-like scalar profiles and the first fixed-metric localized scalar solve both failed to pay the promoted pair's radial-null bill. For `compact7_wide4_edge160`, the localized solve ran `80` optimizer iterations in about `124 s`; it reduced live scalar contamination to about `1.1e-5`, but radial-null coverage stayed effectively zero (`7.8e-6`) and the top demanded radial-null rows still received no scalar negative-`Tkk` supply. The radius-broadened comparator did not rescue the simple scalar screen either. This is not a surprise under the composite support-plant interpretation: it kills the hypothesis that one simple scalar source supplies the whole plant, not the active-rail Stage I source-placement architecture.
+
+The next active Stage II artifact should be a source-decomposition map, not a wider scalar sweep:
+
+```text
+classify top demanded rows by channel, region, algebraic signature, live-packet status,
+and plausible source role;
+separate radial-null support, angular/current handling, and radial-pressure balance;
+then choose source-family components by role instead of fitting one scalar to everything.
+```
+
 The main unresolved cost is live `p_l`: the best compact case raises it by about `12%` versus `split_ref`, while weakened-entry variants lower point peaks and angular/current burdens but make live `p_l` much worse. That means early entry containment is carrying radial pressure balance, while the broad compact catch/handoff sleeve is carrying angular/current and derivative-concentration relief. The next design adjustment should preserve that role separation rather than adding another free local sleeve.
 
 The split-carve/null-cushion branch has produced the clearest recent design signal. It is not a final consolidated law, but it is a robust V5 packet-safe improvement family: softer live-entry containment plus separate catch/rematch containment and a small annular null cushion reduces point peaks and the angular/current burdens while preserving packet safety. It does not yet beat the current architecture on integrated live `Tkk` and `p_l`.
