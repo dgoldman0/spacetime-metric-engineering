@@ -302,3 +302,19 @@ radial-pressure balance: likely another infrastructure component.
 ```
 
 The next useful Stage II artifact is therefore a source-decomposition map, not a wider scalar sweep. It should classify the top demanded rows by channel, region, algebraic signature, live-packet status, and plausible source role before selecting the next matter model.
+
+That map has now been run and written separately:
+
+```text
+supporting_reports/STAGE2_SOURCE_DECOMPOSITION_PROMOTED_PAIR.md
+```
+
+The short result is that the promoted pair separates into three source jobs:
+
+```text
+infrastructure radial-null support;
+core radial-pressure balance;
+live packet handoff angular/current handling.
+```
+
+This supports a composite source-plant direction and argues against widening the pure scalar search before adding component source roles.
