@@ -2020,6 +2020,120 @@ def summarize(points: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Data
     return summary, compact, stage, safety, decision
 
 
+def _smeared_scope_mask(points: pd.DataFrame, scope: str) -> pd.Series:
+    if scope == "global":
+        return pd.Series(True, index=points.index)
+    if scope == "live_packet":
+        return points["inside_packet_live"].astype(bool)
+    if scope == "geometric_packet":
+        return points["inside_packet_geom"].astype(bool)
+    if scope == "catch_rematch":
+        return points["stage"].astype(str).eq("catch_rematch")
+    if scope == "catch_rematch_live_packet":
+        return points["stage"].astype(str).eq("catch_rematch") & points["inside_packet_live"].astype(bool)
+    if scope == "packet_in_support":
+        return points["region"].astype(str).eq("packet_in_support")
+    if scope == "catch_packet_in_support":
+        return points["stage"].astype(str).eq("catch_rematch") & points["region"].astype(str).eq("packet_in_support")
+    raise ValueError(f"unknown smeared-null scope: {scope}")
+
+
+def smeared_null_summary(
+    points: pd.DataFrame,
+    *,
+    smear_widths: Iterable[float] = (0.25, 0.50, 1.00),
+    scopes: Iterable[str] | None = None,
+    centers_per_scope: int = 20,
+    benchmark_b: float = 1.0 / (32.0 * math.pi),
+) -> pd.DataFrame:
+    """Return local smeared radial-null diagnostics for source-ledger points.
+
+    This is a semilocal harness diagnostic, not a full SNEC implementation.
+    It uses Gaussian windows on the sampled (s, l) ledger grid, centered on
+    the worst radial-null points inside each scope, to test whether a candidate
+    reduces local accumulation of negative radial-null contraction. The
+    benchmark floor reports the geometric SNEC scale -8*pi*B/tau^2 with
+    tau identified with the chosen grid-coordinate smear width.
+    """
+
+    selected_scopes = list(scopes or [
+        "global",
+        "live_packet",
+        "geometric_packet",
+        "catch_rematch",
+        "catch_rematch_live_packet",
+        "packet_in_support",
+        "catch_packet_in_support",
+    ])
+    if "error" in points.columns:
+        ok = points[points["error"].isna()].copy()
+    else:
+        ok = points.copy()
+    required = {"case", "s", "l", "Tkk_min_radial", "bad_neg_Tkk_radial"}
+    missing = sorted(required.difference(ok.columns))
+    if missing:
+        raise ValueError(f"smeared-null summary missing required columns: {missing}")
+
+    measure = ok["cell_area"].astype(float).to_numpy() if "cell_area" in ok.columns else np.ones(len(ok))
+    rows: list[dict[str, Any]] = []
+    for case_name, case_group in ok.groupby("case"):
+        case_index = case_group.index.to_numpy()
+        case_measure = measure[ok.index.get_indexer(case_index)]
+        s_values = case_group["s"].astype(float).to_numpy()
+        l_values = case_group["l"].astype(float).to_numpy()
+        tkk_values = case_group["Tkk_min_radial"].astype(float).to_numpy()
+        neg_values = np.maximum(-tkk_values, 0.0)
+        for scope in selected_scopes:
+            scope_mask = _smeared_scope_mask(case_group, scope).to_numpy()
+            scoped = case_group.loc[scope_mask].copy()
+            if scoped.empty:
+                continue
+            candidates = scoped.sort_values("bad_neg_Tkk_radial", ascending=False).head(centers_per_scope)
+            if candidates.empty:
+                continue
+            for width in smear_widths:
+                tau = float(width)
+                if tau <= 0.0:
+                    raise ValueError(f"smear widths must be positive, got {tau}")
+                best: dict[str, Any] | None = None
+                for _, center in candidates.iterrows():
+                    ds = (s_values - float(center["s"])) / tau
+                    dl = (l_values - float(center["l"])) / tau
+                    gaussian = np.exp(-0.5 * (ds * ds + dl * dl))
+                    weights = gaussian * scope_mask.astype(float) * case_measure
+                    norm = float(np.nansum(weights))
+                    if norm <= 0.0:
+                        continue
+                    smeared_tkk = float(np.nansum(weights * tkk_values) / norm)
+                    smeared_neg_part = float(np.nansum(weights * neg_values) / norm)
+                    point_badness = float(center["bad_neg_Tkk_radial"])
+                    record = {
+                        "case": case_name,
+                        "scope": scope,
+                        "smear_width": tau,
+                        "center_s": float(center["s"]),
+                        "center_l": float(center["l"]),
+                        "center_stage": center.get("stage", ""),
+                        "center_region": center.get("region", ""),
+                        "center_inside_packet_live": bool(center.get("inside_packet_live", False)),
+                        "center_bad_neg_Tkk_radial": point_badness,
+                        "smeared_Tkk_min_radial": smeared_tkk,
+                        "smeared_neg_Tkk_part": smeared_neg_part,
+                        "window_weight_norm": norm,
+                        "scope_points": int(scope_mask.sum()),
+                    }
+                    if best is None or smeared_tkk < float(best["smeared_Tkk_min_radial"]):
+                        best = record
+                if best is None:
+                    continue
+                floor = -8.0 * math.pi * float(benchmark_b) / (tau * tau)
+                best["benchmark_B"] = float(benchmark_b)
+                best["benchmark_geometric_floor"] = float(floor)
+                best["margin_to_benchmark_geometric_floor"] = float(best["smeared_Tkk_min_radial"] - floor)
+                rows.append(best)
+    return pd.DataFrame(rows)
+
+
 def top_bad_points(points: pd.DataFrame, limit: int = 20) -> pd.DataFrame:
     if "error" in points.columns:
         ok = points[points["error"].isna()].copy()

@@ -21,6 +21,7 @@ from adm_harness.source_ledger import (  # noqa: E402
     compute_case,
     read_reference_table,
     sha256_file,
+    smeared_null_summary,
     summarize,
     top_bad_points,
     write_manifest,
@@ -155,6 +156,7 @@ def _resolve_grid(args: argparse.Namespace, case) -> dict[str, Any]:
 
 def _write_tables(outdir: Path, points: pd.DataFrame, prefix: str = "source_ledger") -> dict[str, Path]:
     summary, compact, stage, safety, decision = summarize(points)
+    smeared_null = smeared_null_summary(points)
     files = {
         "point_ledger": outdir / f"{prefix}_point_ledger.csv",
         "summary_long": outdir / f"{prefix}_summary_long.csv",
@@ -163,6 +165,7 @@ def _write_tables(outdir: Path, points: pd.DataFrame, prefix: str = "source_ledg
         "safety": outdir / f"{prefix}_safety.csv",
         "decision_table": outdir / f"{prefix}_decision_table.csv",
         "top_bad_points": outdir / f"{prefix}_top_bad_points.csv",
+        "smeared_null": outdir / f"{prefix}_smeared_null.csv",
     }
     points.to_csv(files["point_ledger"], index=False)
     summary.to_csv(files["summary_long"], index=False)
@@ -171,6 +174,7 @@ def _write_tables(outdir: Path, points: pd.DataFrame, prefix: str = "source_ledg
     safety.to_csv(files["safety"], index=False)
     decision.to_csv(files["decision_table"], index=False)
     top_bad_points(points).to_csv(files["top_bad_points"], index=False)
+    smeared_null.to_csv(files["smeared_null"], index=False)
     return files
 
 

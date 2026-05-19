@@ -160,6 +160,25 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             places=8,
         )
 
+    def test_smeared_null_summary_reports_local_nec_windows(self):
+        case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        points = source_ledger.compute_case(case, ns=5, nl=5, progress=False)
+        smeared = source_ledger.smeared_null_summary(
+            points,
+            smear_widths=[0.5],
+            scopes=["global", "catch_rematch"],
+            centers_per_scope=2,
+        )
+
+        self.assertFalse(smeared.empty)
+        self.assertIn("smeared_Tkk_min_radial", smeared.columns)
+        self.assertIn("smeared_neg_Tkk_part", smeared.columns)
+        self.assertIn("benchmark_geometric_floor", smeared.columns)
+        self.assertIn("margin_to_benchmark_geometric_floor", smeared.columns)
+        self.assertTrue(set(smeared["scope"]).issubset({"global", "catch_rematch"}))
+        self.assertTrue((smeared["window_weight_norm"].astype(float) > 0.0).all())
+        self.assertTrue((smeared["smeared_neg_Tkk_part"].astype(float) >= 0.0).all())
+
     def test_source_ledger_overlay_grid_expands_for_lead_window(self):
         args = SimpleNamespace(
             s_min=None,
