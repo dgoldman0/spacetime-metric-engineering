@@ -6,15 +6,16 @@ Latest active update: the compact handoff branch has produced the strongest rece
 
 Newest checkpoint: the shell-throat overlap proxy has now been built and run on the selected compact handoff cases. It gives a split verdict. `compact7_wide4_edge160` sharply reduces mixed support/shift/radial-metric overlap on live `pOmega` and `j_l` rows, which supports carrying it into Stage II as the best current demanded-source target. But the top non-live radial-null rows have a stronger positive mixed shell/throat signature, especially in `beta_gamma_ll`, so this should not be frozen as a clean Stage I closure. If the goal is source-family viability testing, proceed to Stage II with this caveat. If the goal is final Stage I geometry closure, run one topology/support-dependence discriminator first and ask whether the top `Tkk` mixed score scales down with broader support geometry.
 
+Latest topology/support discriminator result: the residual is not a fixed-floor result. At `41 x 61`, increasing `Rth/ROmega` from `1.75` to `2.05` lowered top non-live radial-null mean badness from `0.1174` to `0.0790`, lowered the mean shell-throat mixed score from `179.2` to `158.8`, and lowered the `Tkk` point peak from `1.039` to `0.751`. The cost is higher live angular burden: live `pOmega` rose from `1.245` to `1.651`. Broadening support width `w_th` alone was the wrong lever and raised the mixed score by about `56%`; angular jacket width was mostly secondary. This means the current branch is not obviously forbidden by a fixed support/source floor, but the compact wide4 geometry should not be treated as a final Stage I freeze.
+
 The recent smeared-null harness gate inspired by the SNEC source paper in `toolkit/adm_harness_cli/academic_sources/2503.19955v2.pdf` is now in place as a comparative diagnostic, not a design replacement. It computes local/semilocal smeared `Tkk` or geometric null-contraction summaries over physically motivated packet-edge and catch/rematch windows, while keeping the existing point-peak, packet-norm, live-fraction, and channel-cause gates as guardrails. Its purpose is to distinguish physically meaningful reduction of accumulated NEC burden from cosmetic redistribution of pointwise failures.
 
-The immediate decision is to take the second fork before any freeze:
+The immediate decision after the topology/support discriminator is:
 
 ```text
-Run one small Stage I topology/support-dependence discriminator before freezing,
-focused on whether the top Tkk mixed shell/throat score scales down with broader
-support geometry. Then decide whether to freeze provisionally into Stage II or
-revise the support/topology side first.
+Move to Stage II with compact7_wide4_edge160 as the provisional compact target,
+but carry one radius-broadened comparator, likely Rth/ROmega = 2.05, so Stage II
+can test whether the source family prefers compactness or broader support.
 ```
 
 The current best diagnostic compact candidate is:

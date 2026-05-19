@@ -3,7 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -26,8 +28,43 @@ from adm_harness.source_screening import (  # noqa: E402
     load_source_screen_context,
     load_spec_list,
     select_specs,
+    source_channel_metrics,
 )
 from run_smooth_split_screen import BASE_SPECS, _case_for_spec  # noqa: E402
+
+
+def _params_for_spec(spec: dict[str, Any], base_params: Any) -> Any:
+    updates: dict[str, Any] = {}
+    if "support_radius" in spec:
+        updates["Rth"] = float(spec["support_radius"])
+        updates["ROmega"] = float(spec["support_radius"])
+    if "Rth" in spec:
+        updates["Rth"] = float(spec["Rth"])
+    if "ROmega" in spec:
+        updates["ROmega"] = float(spec["ROmega"])
+    if "support_width" in spec:
+        updates["w_th"] = float(spec["support_width"])
+    if "w_th" in spec:
+        updates["w_th"] = float(spec["w_th"])
+    if "angular_width" in spec:
+        updates["wOmega"] = float(spec["angular_width"])
+    if "wOmega" in spec:
+        updates["wOmega"] = float(spec["wOmega"])
+    if "angular_gain" in spec:
+        updates["aOmega"] = float(spec["angular_gain"])
+    if "aOmega" in spec:
+        updates["aOmega"] = float(spec["aOmega"])
+    return replace(base_params, **updates) if updates else base_params
+
+
+def _topology_values(spec: dict[str, Any], params: Any) -> dict[str, float]:
+    return {
+        "Rth": float(params.Rth),
+        "ROmega": float(params.ROmega),
+        "w_th": float(params.w_th),
+        "wOmega": float(params.wOmega),
+        "aOmega": float(params.aOmega),
+    }
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -74,11 +111,18 @@ def main() -> int:
     args.outdir.mkdir(parents=True, exist_ok=True)
     proxy_rows: list[pd.DataFrame] = []
     summary_rows: list[pd.DataFrame] = []
+    metric_rows: list[dict[str, Any]] = []
 
     for spec in specs:
         label = str(spec["label"])
-        case = _case_for_spec(label, spec, context.params)
+        base_params = _params_for_spec(spec, context.params)
+        case = _case_for_spec(label, spec, base_params)
         points = compute_case(case, progress=False, **context.grid)
+        metric_rows.append({
+            "label": label,
+            **_topology_values(spec, case.params),
+            **source_channel_metrics(case, points),
+        })
         proxy = shell_throat_overlap_proxy_ledger(
             points,
             case.params,
@@ -101,10 +145,12 @@ def main() -> int:
 
     proxy_out = args.outdir / "shell_throat_overlap_points.csv"
     summary_out = args.outdir / "shell_throat_overlap_summary.csv"
+    metrics_out = args.outdir / "shell_throat_case_metrics.csv"
     all_proxy = pd.concat(proxy_rows, ignore_index=True) if proxy_rows else pd.DataFrame()
     all_summary = pd.concat(summary_rows, ignore_index=True) if summary_rows else pd.DataFrame()
     all_proxy.to_csv(proxy_out, index=False)
     all_summary.to_csv(summary_out, index=False)
+    pd.DataFrame(metric_rows).to_csv(metrics_out, index=False)
 
     manifest = {
         "source_manifest": str(context.manifest_path),
@@ -116,8 +162,10 @@ def main() -> int:
         "channels": args.channels,
         "points": str(proxy_out),
         "summary": str(summary_out),
+        "case_metrics": str(metrics_out),
         "points_sha256": sha256_file(proxy_out),
         "summary_sha256": sha256_file(summary_out),
+        "case_metrics_sha256": sha256_file(metrics_out),
     }
     if args.spec_file:
         manifest["spec_file_sha256"] = sha256_file(args.spec_file)
