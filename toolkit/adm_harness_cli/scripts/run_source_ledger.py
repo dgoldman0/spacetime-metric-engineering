@@ -83,6 +83,17 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
         "standing_support_packet_lapse_schedule": args.standing_support_packet_lapse_schedule,
         "standing_support_packet_lapse_temporal_profile": args.standing_support_packet_lapse_temporal_profile,
+        "standing_support_packet_radial_log_gain": args.standing_support_packet_radial_log_gain,
+        "standing_support_packet_radial_radius_multiplier": args.standing_support_packet_radial_radius_multiplier,
+        "standing_support_packet_radial_width_multiplier": args.standing_support_packet_radial_width_multiplier,
+        "standing_support_packet_radial_schedule": args.standing_support_packet_radial_schedule,
+        "standing_support_packet_radial_temporal_profile": args.standing_support_packet_radial_temporal_profile,
+        "standing_support_packet_radial_shoulder_log_gain": args.standing_support_packet_radial_shoulder_log_gain,
+        "standing_support_packet_radial_shoulder_mode": args.standing_support_packet_radial_shoulder_mode,
+        "standing_support_packet_radial_shoulder_radius_multiplier": args.standing_support_packet_radial_shoulder_radius_multiplier,
+        "standing_support_packet_radial_shoulder_width_multiplier": args.standing_support_packet_radial_shoulder_width_multiplier,
+        "standing_support_packet_radial_shoulder_schedule": args.standing_support_packet_radial_shoulder_schedule,
+        "standing_support_packet_radial_shoulder_temporal_profile": args.standing_support_packet_radial_shoulder_temporal_profile,
         "standing_support_packet_beta_rematch_gain": args.standing_support_packet_beta_rematch_gain,
         "standing_support_packet_beta_rematch_shape": args.standing_support_packet_beta_rematch_shape,
         "standing_support_packet_beta_rematch_radius_multiplier": args.standing_support_packet_beta_rematch_radius_multiplier,
@@ -229,7 +240,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -252,7 +263,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-exclusion-shoulder-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-exclusion-shoulder-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
@@ -270,11 +281,52 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--standing-support-packet-lapse-width-multiplier", type=float, default=None)
     parser.add_argument(
         "--standing-support-packet-lapse-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
         default=None,
     )
     parser.add_argument(
         "--standing-support-packet-lapse-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-log-gain",
+        type=float,
+        default=None,
+        help="Experimental packet/support-local gamma_ll log-gain for radial metric smoothing.",
+    )
+    parser.add_argument("--standing-support-packet-radial-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-radial-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-radial-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-shoulder-log-gain",
+        type=float,
+        default=None,
+        help="Experimental annular/filled shoulder gamma_ll log-gain around the packet/support boundary.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-shoulder-mode",
+        choices=["filled", "annular"],
+        default=None,
+    )
+    parser.add_argument("--standing-support-packet-radial-shoulder-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-radial-shoulder-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-radial-shoulder-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-radial-shoulder-temporal-profile",
         choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
         default=None,
     )
@@ -308,7 +360,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-beta-rematch-schedule",
-        choices=["live_only", "entry_catch_release", "catch_release", "coordinated_release", "always"],
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
         default=None,
     )
 

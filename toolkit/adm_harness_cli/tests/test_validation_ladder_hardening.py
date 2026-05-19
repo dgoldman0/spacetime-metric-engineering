@@ -238,6 +238,30 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         )
         self.assertEqual(int(safety["positive_packet_norm_live"].iloc[0]), 0)
 
+    def test_source_ledger_packet_radial_smoothing_changes_gamma_ll(self):
+        case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            standing_support_packet_radial_log_gain=-0.05,
+            standing_support_packet_radial_radius_multiplier=1.2,
+            standing_support_packet_radial_width_multiplier=1.6,
+            standing_support_packet_radial_schedule="entry_catch_release",
+            standing_support_packet_radial_temporal_profile="minimum_jerk",
+            standing_support_packet_radial_shoulder_log_gain=0.02,
+            standing_support_packet_radial_shoulder_mode="annular",
+            standing_support_packet_radial_shoulder_radius_multiplier=1.8,
+            standing_support_packet_radial_shoulder_width_multiplier=2.4,
+        )
+        points = source_ledger.compute_case(case, ns=5, nl=7, progress=False)
+
+        self.assertIn("standing_support_packet_radial_window", points.columns)
+        self.assertIn("standing_support_packet_radial_shoulder_window", points.columns)
+        self.assertIn("standing_support_packet_radial_factor", points.columns)
+        self.assertIn("standing_support_packet_delta_gamma_ll", points.columns)
+        self.assertGreater(float(points["standing_support_packet_radial_window"].max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_radial_factor"].sub(1.0).abs().max()), 0.0)
+        self.assertGreater(float(points["standing_support_packet_delta_gamma_ll"].abs().max()), 0.0)
+
     def test_source_overlay_sweep_reports_shell_throat_overlap(self):
         grid = {
             "ns": 5,
