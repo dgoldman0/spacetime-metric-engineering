@@ -172,6 +172,14 @@ class SourceParams:
     standing_support_packet_smooth_split_temporal_width_multiplier: float = 1.0
     standing_support_packet_smooth_split_composition: str = "smooth_union"
     standing_support_packet_smooth_split_null_cushion_log_gain: float = 0.0
+    standing_support_packet_smooth_split_current_guard_fraction: float = 0.0
+    standing_support_packet_smooth_split_current_guard_inner_radius_multiplier: float = 1.0
+    standing_support_packet_smooth_split_current_guard_outer_radius_multiplier: float = 1.7
+    standing_support_packet_smooth_split_current_guard_width_multiplier: float = 2.2
+    standing_support_packet_smooth_split_current_guard_schedule: str = "catch_only"
+    standing_support_packet_smooth_split_current_guard_temporal_width_multiplier: float = 1.0
+    standing_support_packet_smooth_split_current_guard_mode: str = "attenuate"
+    standing_support_packet_smooth_split_angular_log_gain: float = 0.0
     standing_support_packet_coupled_profile_enabled: bool = False
     standing_support_packet_coupled_entry_carve: float = 0.0
     standing_support_packet_coupled_catch_carve: float = 0.0
@@ -748,6 +756,7 @@ def standing_support_packet_smooth_split_active(params: SourceParams) -> bool:
             or params.standing_support_packet_smooth_split_catch_carve
             or params.standing_support_packet_smooth_split_edge_carve
             or params.standing_support_packet_smooth_split_null_cushion_log_gain
+            or params.standing_support_packet_smooth_split_angular_log_gain
         )
     )
 
@@ -812,6 +821,53 @@ def standing_support_packet_smooth_split_edge_window(s: float, l: float, params:
     return float(np.clip(outer - inner, 0.0, 1.0))
 
 
+def standing_support_packet_smooth_split_current_guard_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_smooth_split_current_guard_fraction) <= 0.0:
+        return 0.0
+    outer = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_current_guard_outer_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_current_guard_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_current_guard_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_current_guard_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    inner = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_smooth_split_current_guard_inner_radius_multiplier,
+        width_multiplier=params.standing_support_packet_smooth_split_current_guard_width_multiplier,
+        schedule_name=params.standing_support_packet_smooth_split_current_guard_schedule,
+        temporal_width_multiplier=params.standing_support_packet_smooth_split_current_guard_temporal_width_multiplier,
+        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    return float(np.clip(outer - inner, 0.0, 1.0))
+
+
+def standing_support_packet_smooth_split_guarded_edge_window(s: float, l: float, params: SourceParams) -> float:
+    edge = standing_support_packet_smooth_split_edge_window(s, l, params)
+    guard_fraction = float(params.standing_support_packet_smooth_split_current_guard_fraction)
+    if guard_fraction <= 0.0:
+        return edge
+    guard = standing_support_packet_smooth_split_current_guard_window(s, l, params)
+    mode = params.standing_support_packet_smooth_split_current_guard_mode.strip().lower()
+    if mode == "attenuate":
+        value = edge * (1.0 - guard_fraction * guard)
+    elif mode in {"blend", "replace", "replacement"}:
+        value = (1.0 - guard_fraction) * edge + guard_fraction * guard
+    else:
+        raise ValueError(
+            "Unknown smooth split current guard mode: "
+            f"{params.standing_support_packet_smooth_split_current_guard_mode}"
+        )
+    return float(np.clip(value, 0.0, 1.0))
+
+
 def standing_support_packet_smooth_split_containment_window(s: float, l: float, params: SourceParams) -> float:
     if not standing_support_packet_smooth_split_active(params):
         return 0.0
@@ -825,7 +881,7 @@ def standing_support_packet_smooth_split_containment_window(s: float, l: float, 
     )
     edge = (
         float(params.standing_support_packet_smooth_split_edge_carve)
-        * standing_support_packet_smooth_split_edge_window(s, l, params)
+        * standing_support_packet_smooth_split_guarded_edge_window(s, l, params)
     )
     return compose_packet_windows(
         (entry, catch, edge),
@@ -836,7 +892,13 @@ def standing_support_packet_smooth_split_containment_window(s: float, l: float, 
 def standing_support_packet_smooth_split_null_cushion_window(s: float, l: float, params: SourceParams) -> float:
     if float(params.standing_support_packet_smooth_split_null_cushion_log_gain) == 0.0:
         return 0.0
-    return standing_support_packet_smooth_split_edge_window(s, l, params)
+    return standing_support_packet_smooth_split_guarded_edge_window(s, l, params)
+
+
+def standing_support_packet_smooth_split_angular_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_smooth_split_angular_log_gain) == 0.0:
+        return 0.0
+    return standing_support_packet_smooth_split_guarded_edge_window(s, l, params)
 
 
 def standing_support_packet_carve_window(s: float, l: float, params: SourceParams) -> float:
@@ -1140,8 +1202,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     smooth_split_entry_window = standing_support_packet_smooth_split_entry_window(float(s), float(l), params)
     smooth_split_catch_window = standing_support_packet_smooth_split_catch_window(float(s), float(l), params)
     smooth_split_edge_window = standing_support_packet_smooth_split_edge_window(float(s), float(l), params)
+    smooth_split_current_guard_window = standing_support_packet_smooth_split_current_guard_window(float(s), float(l), params)
+    smooth_split_guarded_edge_window = standing_support_packet_smooth_split_guarded_edge_window(float(s), float(l), params)
     smooth_split_containment_window = standing_support_packet_smooth_split_containment_window(float(s), float(l), params)
     smooth_split_null_cushion_window = standing_support_packet_smooth_split_null_cushion_window(float(s), float(l), params)
+    smooth_split_angular_window = standing_support_packet_smooth_split_angular_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
     packet_null_cushion_window = standing_support_packet_null_cushion_window(float(s), float(l), params)
     packet_radial_window = standing_support_packet_radial_window(float(s), float(l), params)
@@ -1247,7 +1312,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     c_omega = np.exp(params.aOmega * q_omega * w_omega)
     gamma_omega_base = (l_arr * l_arr + params.Rth * params.Rth) * c_omega * c_omega
     throat_capacity_factor = support_shell_metric_factor(params.support_shell_throat_capacity_log_gain, shell_window)
-    gamma_omega = gamma_omega_base * throat_capacity_factor
+    smooth_split_angular_factor = support_shell_metric_factor(
+        params.standing_support_packet_smooth_split_angular_log_gain,
+        smooth_split_angular_window,
+    )
+    gamma_omega = gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor
 
     return {
         "U_beta": float(u_beta),
@@ -1269,8 +1338,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_smooth_split_entry_window": float(smooth_split_entry_window),
         "standing_support_packet_smooth_split_catch_window": float(smooth_split_catch_window),
         "standing_support_packet_smooth_split_edge_window": float(smooth_split_edge_window),
+        "standing_support_packet_smooth_split_current_guard_window": float(smooth_split_current_guard_window),
+        "standing_support_packet_smooth_split_guarded_edge_window": float(smooth_split_guarded_edge_window),
         "standing_support_packet_smooth_split_containment_window": float(smooth_split_containment_window),
         "standing_support_packet_smooth_split_null_cushion_window": float(smooth_split_null_cushion_window),
+        "standing_support_packet_smooth_split_angular_window": float(smooth_split_angular_window),
         "standing_support_packet_raw_carve_contribution": float(raw_carve_contribution),
         "standing_support_packet_coupled_rebate_contribution": float(coupled_rebate_contribution),
         "standing_support_packet_carve_contribution": float(carve_contribution),
@@ -1281,6 +1353,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_null_cushion_factor": float(packet_null_cushion_factor),
         "standing_support_packet_coupled_null_cushion_factor": float(coupled_null_cushion_factor),
         "standing_support_packet_smooth_split_null_cushion_factor": float(smooth_split_null_cushion_factor),
+        "standing_support_packet_smooth_split_angular_factor": float(smooth_split_angular_factor),
         "standing_support_packet_radial_window": float(packet_radial_window),
         "standing_support_packet_radial_shoulder_window": float(packet_radial_shoulder_window),
         "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
@@ -1311,8 +1384,17 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_smooth_split_edge_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_smooth_split_edge_window, float(s), float(l), params
         ),
+        "standing_support_packet_smooth_split_current_guard_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_current_guard_window, float(s), float(l), params
+        ),
+        "standing_support_packet_smooth_split_guarded_edge_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_guarded_edge_window, float(s), float(l), params
+        ),
         "standing_support_packet_smooth_split_null_cushion_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_smooth_split_null_cushion_window, float(s), float(l), params
+        ),
+        "standing_support_packet_smooth_split_angular_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_smooth_split_angular_window, float(s), float(l), params
         ),
         "standing_support_packet_lapse_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_lapse_window, float(s), float(l), params
@@ -1358,6 +1440,10 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
             * coupled_null_cushion_factor
             * smooth_split_null_cushion_factor
             - alpha_base * packet_lapse_factor * packet_null_cushion_factor * coupled_null_cushion_factor
+        ),
+        "standing_support_packet_smooth_split_delta_gamma_omega": float(
+            gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor
+            - gamma_omega_base * throat_capacity_factor
         ),
         "standing_support_packet_delta_gamma_ll": float(gamma_ll_base * packet_radial_factor - gamma_ll_base),
         "standing_support_packet_coupled_delta_gamma_ll": float(
@@ -1522,8 +1608,11 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_smooth_split_entry_window",
             "standing_support_packet_smooth_split_catch_window",
             "standing_support_packet_smooth_split_edge_window",
+            "standing_support_packet_smooth_split_current_guard_window",
+            "standing_support_packet_smooth_split_guarded_edge_window",
             "standing_support_packet_smooth_split_containment_window",
             "standing_support_packet_smooth_split_null_cushion_window",
+            "standing_support_packet_smooth_split_angular_window",
             "standing_support_packet_raw_carve_contribution",
             "standing_support_packet_coupled_rebate_contribution",
             "standing_support_packet_carve_contribution",
@@ -1534,6 +1623,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_null_cushion_factor",
             "standing_support_packet_coupled_null_cushion_factor",
             "standing_support_packet_smooth_split_null_cushion_factor",
+            "standing_support_packet_smooth_split_angular_factor",
             "standing_support_packet_radial_window",
             "standing_support_packet_radial_shoulder_window",
             "standing_support_packet_radial_skirt_window",
@@ -1548,7 +1638,10 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_coupled_null_cushion_window_slope_abs",
             "standing_support_packet_smooth_split_containment_window_slope_abs",
             "standing_support_packet_smooth_split_edge_window_slope_abs",
+            "standing_support_packet_smooth_split_current_guard_window_slope_abs",
+            "standing_support_packet_smooth_split_guarded_edge_window_slope_abs",
             "standing_support_packet_smooth_split_null_cushion_window_slope_abs",
+            "standing_support_packet_smooth_split_angular_window_slope_abs",
             "standing_support_packet_lapse_window_slope_abs",
             "standing_support_packet_null_cushion_window_slope_abs",
             "standing_support_packet_radial_window_slope_abs",
@@ -1558,6 +1651,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_null_cushion_delta_alpha",
             "standing_support_packet_coupled_null_cushion_delta_alpha",
             "standing_support_packet_smooth_split_null_cushion_delta_alpha",
+            "standing_support_packet_smooth_split_delta_gamma_omega",
             "standing_support_packet_delta_gamma_ll",
             "standing_support_packet_coupled_delta_gamma_ll",
             "standing_support_packet_delta_beta",

@@ -111,6 +111,132 @@ BASE_SPECS: list[dict[str, Any]] = [
         "composition": "additive",
     },
     {
+        "label": "smooth_additive_edge004_null_m007_guard025",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "current_guard_fraction": 0.25,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_guard050",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "current_guard_fraction": 0.50,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_blend_wide025",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "current_guard_fraction": 0.25,
+        "current_guard_mode": "blend",
+        "current_guard_width_multiplier": 3.2,
+        "current_guard_temporal_width_multiplier": 1.4,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_blend_wide050",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "current_guard_fraction": 0.50,
+        "current_guard_mode": "blend",
+        "current_guard_width_multiplier": 3.2,
+        "current_guard_temporal_width_multiplier": 1.4,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_p010",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": 0.10,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_p005",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": 0.05,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_p0025",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": 0.025,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_m010",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": -0.10,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_m005",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": -0.05,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_m0025",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": -0.025,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_p020",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": 0.20,
+    },
+    {
+        "label": "smooth_additive_edge004_null_m007_ang_m020",
+        "mode": "smooth_split",
+        "entry_carve": 0.75,
+        "catch_carve": 0.15,
+        "edge_carve": 0.04,
+        "null_gain": -0.07,
+        "composition": "additive",
+        "angular_log_gain": -0.20,
+    },
+    {
         "label": "smooth_additive_edge002_null_m007",
         "mode": "smooth_split",
         "entry_carve": 0.75,
@@ -218,6 +344,31 @@ def _values(spec: dict[str, Any], params: SourceParams) -> dict[str, Any]:
         "temporal_width_multiplier": float(spec.get("temporal_width_multiplier", 1.0)),
         "composition": str(spec.get("composition", "smooth_union")),
         "null_gain": float(spec.get("null_gain", -0.05)),
+        "current_guard_fraction": float(spec.get("current_guard_fraction", 0.0)),
+        "current_guard_inner_radius_multiplier": float(
+            spec.get(
+                "current_guard_inner_radius_multiplier",
+                spec.get("edge_inner_radius_multiplier", 1.0),
+            )
+        ),
+        "current_guard_outer_radius_multiplier": float(
+            spec.get(
+                "current_guard_outer_radius_multiplier",
+                spec.get("edge_outer_radius_multiplier", 1.7),
+            )
+        ),
+        "current_guard_width_multiplier": float(
+            spec.get(
+                "current_guard_width_multiplier",
+                spec.get("edge_width_multiplier", 2.2),
+            )
+        ),
+        "current_guard_schedule": str(spec.get("current_guard_schedule", spec.get("edge_schedule", "catch_only"))),
+        "current_guard_temporal_width_multiplier": float(
+            spec.get("current_guard_temporal_width_multiplier", spec.get("temporal_width_multiplier", 1.0))
+        ),
+        "current_guard_mode": str(spec.get("current_guard_mode", "attenuate")),
+        "angular_log_gain": float(spec.get("angular_log_gain", 0.0)),
     }
 
 
@@ -291,6 +442,22 @@ def _case_for_spec(label: str, spec: dict[str, Any], params: SourceParams) -> So
             standing_support_packet_smooth_split_temporal_width_multiplier=values["temporal_width_multiplier"],
             standing_support_packet_smooth_split_composition=values["composition"],
             standing_support_packet_smooth_split_null_cushion_log_gain=values["null_gain"],
+            standing_support_packet_smooth_split_current_guard_fraction=values["current_guard_fraction"],
+            standing_support_packet_smooth_split_current_guard_inner_radius_multiplier=values[
+                "current_guard_inner_radius_multiplier"
+            ],
+            standing_support_packet_smooth_split_current_guard_outer_radius_multiplier=values[
+                "current_guard_outer_radius_multiplier"
+            ],
+            standing_support_packet_smooth_split_current_guard_width_multiplier=values[
+                "current_guard_width_multiplier"
+            ],
+            standing_support_packet_smooth_split_current_guard_schedule=values["current_guard_schedule"],
+            standing_support_packet_smooth_split_current_guard_temporal_width_multiplier=values[
+                "current_guard_temporal_width_multiplier"
+            ],
+            standing_support_packet_smooth_split_current_guard_mode=values["current_guard_mode"],
+            standing_support_packet_smooth_split_angular_log_gain=values["angular_log_gain"],
         )
     else:
         raise ValueError(f"Unknown smooth split screen mode: {mode}")
@@ -312,12 +479,30 @@ def _row_for_spec(label: str, spec: dict[str, Any], case: SourceCase, points: An
             points["standing_support_packet_smooth_split_containment_window_slope_abs"].max()
         ),
         "max_smooth_split_edge_slope": float(points["standing_support_packet_smooth_split_edge_window_slope_abs"].max()),
+        "max_smooth_split_current_guard_slope": float(
+            points["standing_support_packet_smooth_split_current_guard_window_slope_abs"].max()
+        ),
+        "max_smooth_split_guarded_edge_slope": float(
+            points["standing_support_packet_smooth_split_guarded_edge_window_slope_abs"].max()
+        ),
         "max_smooth_split_null_slope": float(
             points["standing_support_packet_smooth_split_null_cushion_window_slope_abs"].max()
         ),
         "smooth_split_containment_peak": float(points["standing_support_packet_smooth_split_containment_window"].max()),
         "smooth_split_edge_peak": float(points["standing_support_packet_smooth_split_edge_window"].max()),
+        "smooth_split_current_guard_peak": float(
+            points["standing_support_packet_smooth_split_current_guard_window"].max()
+        ),
+        "smooth_split_guarded_edge_peak": float(
+            points["standing_support_packet_smooth_split_guarded_edge_window"].max()
+        ),
         "smooth_split_null_peak": float(points["standing_support_packet_smooth_split_null_cushion_window"].max()),
+        "max_smooth_split_angular_slope": float(
+            points["standing_support_packet_smooth_split_angular_window_slope_abs"].max()
+        ),
+        "smooth_split_angular_peak": float(points["standing_support_packet_smooth_split_angular_window"].max()),
+        "smooth_split_angular_factor_min": float(points["standing_support_packet_smooth_split_angular_factor"].min()),
+        "smooth_split_angular_factor_max": float(points["standing_support_packet_smooth_split_angular_factor"].max()),
     }
 
 
