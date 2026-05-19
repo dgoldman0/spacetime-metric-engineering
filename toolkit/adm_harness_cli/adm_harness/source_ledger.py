@@ -1910,6 +1910,202 @@ def channel_cause_ledger(
     return pd.DataFrame(rows)
 
 
+def _corr_or_nan(frame: pd.DataFrame, left: str, right: str, method: str = "spearman") -> float:
+    if left not in frame.columns or right not in frame.columns or len(frame) < 2:
+        return float("nan")
+    data = frame[[left, right]].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
+    if len(data) < 2 or data[left].nunique() < 2 or data[right].nunique() < 2:
+        return float("nan")
+    return float(data[left].corr(data[right], method=method))
+
+
+def shell_throat_mixed_diagnostics(
+    s: float,
+    l: float,
+    params: SourceParams,
+    h_s: float,
+    h_l: float,
+) -> dict[str, float | str]:
+    """Return a shell/throat mixed-derivative proxy at one grid point.
+
+    ``Wsh`` is represented by the effective standing-support profile ``W``.
+    The proxy is intentionally comparative: it asks whether hard rows line up
+    with products of support-window, shift, radial-metric, and angular-capacity
+    derivatives, rather than claiming a symbolic stress-tensor decomposition.
+    """
+
+    def scalar_at(s_value: float, l_value: float, key: str) -> float:
+        return float(scalars(float(s_value), float(l_value), params)[key])
+
+    rows: dict[str, float | str] = {}
+    for key, label in [
+        ("W", "Wsh"),
+        ("W_raw", "Wsh_raw"),
+        ("support_shell_window", "support_shell_window"),
+        ("beta", "beta_l"),
+        ("gamma_ll", "gamma_ll"),
+        ("gamma_omega", "gamma_Omega"),
+    ]:
+        center = scalar_at(s, l, key)
+        s_plus = scalar_at(s + h_s, l, key)
+        s_minus = scalar_at(s - h_s, l, key)
+        l_plus = scalar_at(s, l + h_l, key)
+        l_minus = scalar_at(s, l - h_l, key)
+        d_s = (s_plus - s_minus) / (2.0 * h_s)
+        d_l = (l_plus - l_minus) / (2.0 * h_l)
+        d2_l = (l_plus - 2.0 * center + l_minus) / (h_l * h_l)
+        scale = max(abs(center), 1.0e-12)
+        rows[label] = float(center)
+        rows[f"d_s_{label}"] = float(d_s)
+        rows[f"d_l_{label}"] = float(d_l)
+        rows[f"d2_l_{label}"] = float(d2_l)
+        rows[f"abs_d_s_{label}"] = float(abs(d_s))
+        rows[f"abs_d_l_{label}"] = float(abs(d_l))
+        rows[f"abs_d2_l_{label}"] = float(abs(d2_l))
+        rows[f"rel_abs_d_s_{label}"] = float(abs(d_s) / scale)
+        rows[f"rel_abs_d_l_{label}"] = float(abs(d_l) / scale)
+        rows[f"rel_abs_d2_l_{label}"] = float(abs(d2_l) / scale)
+
+    wsh_shape_score = (
+        float(rows["abs_d_s_Wsh"])
+        + float(rows["abs_d_l_Wsh"])
+        + math.sqrt(float(rows["abs_d2_l_Wsh"]))
+    )
+    beta_shape_score = (
+        float(rows["abs_d_s_beta_l"])
+        + float(rows["abs_d_l_beta_l"])
+        + math.sqrt(float(rows["abs_d2_l_beta_l"]))
+    )
+    gamma_ll_shape_score = (
+        float(rows["rel_abs_d_s_gamma_ll"])
+        + float(rows["rel_abs_d_l_gamma_ll"])
+        + math.sqrt(float(rows["rel_abs_d2_l_gamma_ll"]))
+    )
+    gamma_omega_shape_score = (
+        float(rows["rel_abs_d_s_gamma_Omega"])
+        + float(rows["rel_abs_d_l_gamma_Omega"])
+        + math.sqrt(float(rows["rel_abs_d2_l_gamma_Omega"]))
+    )
+    shell_gamma_ll = wsh_shape_score * gamma_ll_shape_score
+    shell_gamma_omega = wsh_shape_score * gamma_omega_shape_score
+    shell_beta = wsh_shape_score * beta_shape_score
+    beta_gamma_ll = beta_shape_score * gamma_ll_shape_score
+    beta_gamma_omega = beta_shape_score * gamma_omega_shape_score
+    ll_omega = gamma_ll_shape_score * gamma_omega_shape_score
+    mixed_scores = {
+        "shell_gamma_ll": shell_gamma_ll,
+        "shell_gamma_omega": shell_gamma_omega,
+        "shell_beta": shell_beta,
+        "beta_gamma_ll": beta_gamma_ll,
+        "beta_gamma_omega": beta_gamma_omega,
+        "ll_omega": ll_omega,
+    }
+    rows.update({
+        "Wsh_shape_score": float(wsh_shape_score),
+        "beta_shape_score": float(beta_shape_score),
+        "gamma_ll_shape_score": float(gamma_ll_shape_score),
+        "gamma_Omega_shape_score": float(gamma_omega_shape_score),
+        "shell_gamma_ll_mixed_score": float(shell_gamma_ll),
+        "shell_gamma_Omega_mixed_score": float(shell_gamma_omega),
+        "shell_beta_mixed_score": float(shell_beta),
+        "beta_gamma_ll_mixed_score": float(beta_gamma_ll),
+        "beta_gamma_Omega_mixed_score": float(beta_gamma_omega),
+        "gamma_ll_gamma_Omega_mixed_score": float(ll_omega),
+        "shell_throat_mixed_score": float(sum(mixed_scores.values())),
+        "dominant_mixed_family": max(mixed_scores, key=mixed_scores.get),
+    })
+    return rows
+
+
+def shell_throat_overlap_proxy_ledger(
+    points: pd.DataFrame,
+    params: SourceParams,
+    *,
+    h_s: float,
+    h_l: float,
+    limit_per_channel: int = 20,
+    channels: Iterable[str] | None = None,
+) -> pd.DataFrame:
+    selected_channels = list(channels or ["neg_Tkk_radial", "abs_p_l", "abs_j_l", "abs_pOmega"])
+    bad_points = top_bad_points(points, limit=limit_per_channel)
+    if bad_points.empty:
+        return bad_points
+    bad_points = bad_points[bad_points["channel"].isin(selected_channels)].copy()
+    point_cols = [
+        "case",
+        "s",
+        "l",
+        "stage",
+        "region",
+        "rho_euler",
+        "j_l_unit",
+        "p_l_unit",
+        "p_omega_unit",
+        "Tkk_min_radial",
+        "packet_norm",
+        "W",
+        "W_raw",
+        "support_shell_window",
+        "beta",
+        "gamma_ll",
+        "gamma_omega",
+    ]
+    available_cols = [col for col in point_cols if col in points.columns]
+    merged = bad_points.merge(points[available_cols], on=["case", "s", "l", "stage", "region"], how="left")
+    rows: list[dict[str, Any]] = []
+    for _, row in merged.iterrows():
+        mixed = shell_throat_mixed_diagnostics(float(row["s"]), float(row["l"]), params, h_s, h_l)
+        rows.append({**row.to_dict(), **mixed})
+    return pd.DataFrame(rows)
+
+
+def shell_throat_overlap_summary(proxy: pd.DataFrame) -> pd.DataFrame:
+    if proxy.empty:
+        return pd.DataFrame()
+    rows: list[dict[str, Any]] = []
+    score_columns = [
+        "shell_throat_mixed_score",
+        "shell_gamma_ll_mixed_score",
+        "shell_gamma_Omega_mixed_score",
+        "shell_beta_mixed_score",
+        "beta_gamma_ll_mixed_score",
+        "beta_gamma_Omega_mixed_score",
+        "gamma_ll_gamma_Omega_mixed_score",
+    ]
+
+    def bool_column(group: pd.DataFrame, name: str) -> pd.Series:
+        for candidate in [name, f"{name}_x", f"{name}_y"]:
+            if candidate in group.columns:
+                return group[candidate].astype(bool)
+        return pd.Series(False, index=group.index)
+
+    for (case_name, channel), group in proxy.groupby(["case", "channel"], sort=False):
+        finite_badness = group["badness"].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
+        dominant = group["dominant_mixed_family"].astype(str).mode()
+        row: dict[str, Any] = {
+            "case": case_name,
+            "channel": channel,
+            "rows": int(len(group)),
+            "live_rows": int(bool_column(group, "inside_packet_live").sum()),
+            "geometric_packet_rows": int(bool_column(group, "inside_packet_geom").sum()),
+            "mean_badness": float(finite_badness.mean()) if len(finite_badness) else float("nan"),
+            "max_badness": float(finite_badness.max()) if len(finite_badness) else float("nan"),
+            "mean_Wsh": float(group["Wsh"].astype(float).mean()),
+            "mean_Wsh_shape_score": float(group["Wsh_shape_score"].astype(float).mean()),
+            "mean_beta_shape_score": float(group["beta_shape_score"].astype(float).mean()),
+            "mean_gamma_ll_shape_score": float(group["gamma_ll_shape_score"].astype(float).mean()),
+            "mean_gamma_Omega_shape_score": float(group["gamma_Omega_shape_score"].astype(float).mean()),
+            "dominant_mixed_family_mode": str(dominant.iloc[0]) if not dominant.empty else "",
+        }
+        for column in score_columns:
+            values = group[column].astype(float)
+            row[f"mean_{column}"] = float(values.mean())
+            row[f"max_{column}"] = float(values.max())
+            row[f"spearman_badness_{column}"] = _corr_or_nan(group, "badness", column, method="spearman")
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def compute_case(
     case: SourceCase,
     ns: int,

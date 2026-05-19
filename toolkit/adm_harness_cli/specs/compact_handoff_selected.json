@@ -1,0 +1,64 @@
+[
+  {
+    "label": "split_ref",
+    "mode": "split_piecewise",
+    "entry_carve": 0.75,
+    "catch_carve": 0.15,
+    "entry_width_multiplier": 1.4,
+    "null_gain": -0.05,
+    "temporal_profile": "tanh"
+  },
+  {
+    "label": "smooth_edge004_tanh",
+    "mode": "smooth_split",
+    "entry_carve": 0.75,
+    "catch_carve": 0.15,
+    "edge_carve": 0.04,
+    "entry_width_multiplier": 1.4,
+    "temporal_profile": "tanh",
+    "composition": "additive",
+    "null_gain": -0.07
+  },
+  {
+    "label": "compact7_wide3_edge100",
+    "mode": "smooth_split",
+    "entry_carve": 0.75,
+    "catch_carve": 0.15,
+    "edge_carve": 0.10,
+    "entry_width_multiplier": 4.2,
+    "catch_width_multiplier": 3.0,
+    "edge_width_multiplier": 6.6,
+    "temporal_profile": "tanh",
+    "radial_profile": "compact_smoothstep7",
+    "composition": "additive",
+    "null_gain": -0.07
+  },
+  {
+    "label": "compact7_wide3_edge120",
+    "mode": "smooth_split",
+    "entry_carve": 0.75,
+    "catch_carve": 0.15,
+    "edge_carve": 0.12,
+    "entry_width_multiplier": 4.2,
+    "catch_width_multiplier": 3.0,
+    "edge_width_multiplier": 6.6,
+    "temporal_profile": "tanh",
+    "radial_profile": "compact_smoothstep7",
+    "composition": "additive",
+    "null_gain": -0.07
+  },
+  {
+    "label": "compact7_wide4_edge160",
+    "mode": "smooth_split",
+    "entry_carve": 0.75,
+    "catch_carve": 0.15,
+    "edge_carve": 0.16,
+    "entry_width_multiplier": 4.8,
+    "catch_width_multiplier": 3.4,
+    "edge_width_multiplier": 7.2,
+    "temporal_profile": "tanh",
+    "radial_profile": "compact_smoothstep7",
+    "composition": "additive",
+    "null_gain": -0.07
+  }
+]

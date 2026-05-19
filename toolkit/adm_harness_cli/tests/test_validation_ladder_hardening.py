@@ -160,6 +160,29 @@ class ValidationLadderHardeningTests(unittest.TestCase):
             places=8,
         )
 
+    def test_shell_throat_overlap_proxy_reports_mixed_terms(self):
+        case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        points = source_ledger.compute_case(case, ns=5, nl=5, progress=False)
+        proxy = source_ledger.shell_throat_overlap_proxy_ledger(
+            points,
+            case.params,
+            h_s=2.5e-3,
+            h_l=2.5e-3,
+            limit_per_channel=2,
+            channels=["neg_Tkk_radial", "abs_pOmega"],
+        )
+        summary = source_ledger.shell_throat_overlap_summary(proxy)
+
+        self.assertFalse(proxy.empty)
+        self.assertFalse(summary.empty)
+        self.assertIn("Wsh_shape_score", proxy.columns)
+        self.assertIn("shell_gamma_ll_mixed_score", proxy.columns)
+        self.assertIn("beta_gamma_Omega_mixed_score", proxy.columns)
+        self.assertIn("shell_throat_mixed_score", proxy.columns)
+        self.assertTrue((proxy["shell_throat_mixed_score"].astype(float) >= 0.0).all())
+        self.assertIn("mean_shell_throat_mixed_score", summary.columns)
+        self.assertIn("spearman_badness_shell_throat_mixed_score", summary.columns)
+
     def test_smeared_null_summary_reports_local_nec_windows(self):
         case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
         points = source_ledger.compute_case(case, ns=5, nl=5, progress=False)

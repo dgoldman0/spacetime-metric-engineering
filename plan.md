@@ -4,15 +4,17 @@
 
 Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
 
-The new active diagnostic priority is a smeared-null harness gate inspired by the SNEC source paper in `toolkit/adm_harness_cli/academic_sources/2503.19955v2.pdf`. This is a test-harness addition, not a design replacement. It should compute local/semilocal smeared `Tkk` or geometric null-contraction summaries over physically motivated packet-edge and catch/rematch windows, while keeping the existing point-peak, packet-norm, live-fraction, and channel-cause gates as guardrails. The purpose is to distinguish physically meaningful reduction of accumulated NEC burden from cosmetic redistribution of pointwise failures.
+Newest checkpoint: the shell-throat overlap proxy has now been built and run on the selected compact handoff cases. It gives a split verdict. `compact7_wide4_edge160` sharply reduces mixed support/shift/radial-metric overlap on live `pOmega` and `j_l` rows, which supports carrying it into Stage II as the best current demanded-source target. But the top non-live radial-null rows have a stronger positive mixed shell/throat signature, especially in `beta_gamma_ll`, so this should not be frozen as a clean Stage I closure. If the goal is source-family viability testing, proceed to Stage II with this caveat. If the goal is final Stage I geometry closure, run one topology/support-dependence discriminator first and ask whether the top `Tkk` mixed score scales down with broader support geometry.
 
-The immediate next work should therefore be:
+The recent smeared-null harness gate inspired by the SNEC source paper in `toolkit/adm_harness_cli/academic_sources/2503.19955v2.pdf` is now in place as a comparative diagnostic, not a design replacement. It computes local/semilocal smeared `Tkk` or geometric null-contraction summaries over physically motivated packet-edge and catch/rematch windows, while keeping the existing point-peak, packet-norm, live-fraction, and channel-cause gates as guardrails. Its purpose is to distinguish physically meaningful reduction of accumulated NEC burden from cosmetic redistribution of pointwise failures.
+
+The immediate decision is to take the second fork before any freeze:
 
 ```text
-1. Add a focused smeared-null diagnostic to the source-ledger/reporting harness.
-2. Run it on split_ref, smooth_edge004_tanh, compact7_wide3 candidates, and compact7_wide4_edge160.
-3. Compare smeared burden against point peaks and channel-cause derivative scores.
-4. Only then decide whether the next design move is pressure-aware entry containment or a deeper compact handoff redesign.
+Run one small Stage I topology/support-dependence discriminator before freezing,
+focused on whether the top Tkk mixed shell/throat score scales down with broader
+support geometry. Then decide whether to freeze provisionally into Stage II or
+revise the support/topology side first.
 ```
 
 The current best diagnostic compact candidate is:
