@@ -131,6 +131,11 @@ class SourceParams:
     standing_support_packet_exclusion_width_multiplier: float = 1.0
     standing_support_packet_exclusion_schedule: str = "live_only"
     standing_support_packet_exclusion_temporal_profile: str = "tanh"
+    standing_support_packet_exclusion_catch: float = 0.0
+    standing_support_packet_exclusion_catch_radius_multiplier: float = 1.0
+    standing_support_packet_exclusion_catch_width_multiplier: float = 1.0
+    standing_support_packet_exclusion_catch_schedule: str = "catch_only"
+    standing_support_packet_exclusion_catch_temporal_profile: str = "tanh"
     standing_support_packet_exclusion_shoulder: float = 0.0
     standing_support_packet_exclusion_shoulder_mode: str = "filled"
     standing_support_packet_exclusion_shoulder_radius_multiplier: float = 1.4
@@ -142,6 +147,13 @@ class SourceParams:
     standing_support_packet_lapse_width_multiplier: float = 1.0
     standing_support_packet_lapse_schedule: str = "live_only"
     standing_support_packet_lapse_temporal_profile: str = "tanh"
+    standing_support_packet_null_cushion_log_gain: float = 0.0
+    standing_support_packet_null_cushion_mode: str = "filled"
+    standing_support_packet_null_cushion_inner_radius_multiplier: float = 1.0
+    standing_support_packet_null_cushion_radius_multiplier: float = 1.7
+    standing_support_packet_null_cushion_width_multiplier: float = 2.0
+    standing_support_packet_null_cushion_schedule: str = "catch_only"
+    standing_support_packet_null_cushion_temporal_profile: str = "tanh"
     standing_support_packet_radial_log_gain: float = 0.0
     standing_support_packet_radial_radius_multiplier: float = 1.0
     standing_support_packet_radial_width_multiplier: float = 1.0
@@ -514,6 +526,22 @@ def standing_support_packet_carve_window(s: float, l: float, params: SourceParam
     )
 
 
+def standing_support_packet_carve_catch_window(s: float, l: float, params: SourceParams) -> float:
+    strength = float(params.standing_support_packet_exclusion_catch)
+    if strength <= 0.0:
+        return 0.0
+    return standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_exclusion_catch_radius_multiplier,
+        width_multiplier=params.standing_support_packet_exclusion_catch_width_multiplier,
+        schedule_name=params.standing_support_packet_exclusion_catch_schedule,
+        temporal_profile=params.standing_support_packet_exclusion_catch_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+
+
 def standing_support_packet_carve_shoulder_window(s: float, l: float, params: SourceParams) -> float:
     strength = float(params.standing_support_packet_exclusion_shoulder)
     if strength <= 0.0:
@@ -559,6 +587,37 @@ def standing_support_packet_lapse_window(s: float, l: float, params: SourceParam
         temporal_profile=params.standing_support_packet_lapse_temporal_profile,
         release_lag_widths=params.release_lapse_lag_widths,
     )
+
+
+def standing_support_packet_null_cushion_window(s: float, l: float, params: SourceParams) -> float:
+    if float(params.standing_support_packet_null_cushion_log_gain) == 0.0:
+        return 0.0
+    outer = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.standing_support_packet_null_cushion_radius_multiplier,
+        width_multiplier=params.standing_support_packet_null_cushion_width_multiplier,
+        schedule_name=params.standing_support_packet_null_cushion_schedule,
+        temporal_profile=params.standing_support_packet_null_cushion_temporal_profile,
+        release_lag_widths=params.release_lapse_lag_widths,
+    )
+    mode = params.standing_support_packet_null_cushion_mode.strip().lower()
+    if mode == "filled":
+        return outer
+    if mode == "annular":
+        inner = standing_support_packet_window(
+            s,
+            l,
+            params,
+            radius_multiplier=params.standing_support_packet_null_cushion_inner_radius_multiplier,
+            width_multiplier=params.standing_support_packet_null_cushion_width_multiplier,
+            schedule_name=params.standing_support_packet_null_cushion_schedule,
+            temporal_profile=params.standing_support_packet_null_cushion_temporal_profile,
+            release_lag_widths=params.release_lapse_lag_widths,
+        )
+        return float(np.clip(outer - inner, 0.0, 1.0))
+    raise ValueError(f"Unknown standing support packet null cushion mode: {params.standing_support_packet_null_cushion_mode}")
 
 
 def standing_support_packet_radial_window(s: float, l: float, params: SourceParams) -> float:
@@ -740,8 +799,10 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     w_support_raw = support_bump(l_arr, params)
     s_packet = bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass)
     carve_window = standing_support_packet_carve_window(float(s), float(l), params)
+    carve_catch_window = standing_support_packet_carve_catch_window(float(s), float(l), params)
     carve_shoulder_window = standing_support_packet_carve_shoulder_window(float(s), float(l), params)
     packet_lapse_window = standing_support_packet_lapse_window(float(s), float(l), params)
+    packet_null_cushion_window = standing_support_packet_null_cushion_window(float(s), float(l), params)
     packet_radial_window = standing_support_packet_radial_window(float(s), float(l), params)
     packet_radial_shoulder_window = standing_support_packet_radial_shoulder_window(float(s), float(l), params)
     packet_radial_skirt_window = standing_support_packet_radial_skirt_window(float(s), float(l), params)
@@ -755,6 +816,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     ))
     carve_contribution = float(np.clip(
         float(params.standing_support_packet_exclusion) * carve_window
+        + float(params.standing_support_packet_exclusion_catch) * carve_catch_window
         + float(params.standing_support_packet_exclusion_shoulder) * carve_shoulder_window,
         0.0,
         1.0,
@@ -774,8 +836,12 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     beta_pre_rematch = beta_base + delta_beta_shell
     alpha_base = n_cushion * t_lapse
     packet_lapse_factor = support_shell_metric_factor(params.standing_support_packet_lapse_log_gain, packet_lapse_window)
+    packet_null_cushion_factor = support_shell_metric_factor(
+        params.standing_support_packet_null_cushion_log_gain,
+        packet_null_cushion_window,
+    )
     clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
-    alpha = alpha_base * packet_lapse_factor * clock_lapse_factor
+    alpha = alpha_base * packet_lapse_factor * packet_null_cushion_factor * clock_lapse_factor
     sqrt_gamma_ll_base = b_angular * a_spatial
     gamma_ll_base = sqrt_gamma_ll_base * sqrt_gamma_ll_base
     rail_stretch_factor = support_shell_metric_factor(params.support_shell_rail_stretch_log_gain, shell_window)
@@ -811,11 +877,14 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "W": float(w_support),
         "W_raw": float(w_support_raw),
         "standing_support_packet_carve_window": float(carve_window),
+        "standing_support_packet_carve_catch_window": float(carve_catch_window),
         "standing_support_packet_carve_shoulder_window": float(carve_shoulder_window),
         "standing_support_packet_carve_contribution": float(carve_contribution),
         "standing_support_packet_carve_factor": float(carve_factor),
         "standing_support_packet_lapse_window": float(packet_lapse_window),
         "standing_support_packet_lapse_factor": float(packet_lapse_factor),
+        "standing_support_packet_null_cushion_window": float(packet_null_cushion_window),
+        "standing_support_packet_null_cushion_factor": float(packet_null_cushion_factor),
         "standing_support_packet_radial_window": float(packet_radial_window),
         "standing_support_packet_radial_shoulder_window": float(packet_radial_shoulder_window),
         "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
@@ -825,8 +894,14 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_carve_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_carve_window, float(s), float(l), params
         ),
+        "standing_support_packet_carve_catch_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_carve_catch_window, float(s), float(l), params
+        ),
         "standing_support_packet_lapse_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_lapse_window, float(s), float(l), params
+        ),
+        "standing_support_packet_null_cushion_window_slope_abs": _window_s_derivative_abs(
+            standing_support_packet_null_cushion_window, float(s), float(l), params
         ),
         "standing_support_packet_radial_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_radial_window, float(s), float(l), params
@@ -852,6 +927,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "support_shell_delta_beta": float(delta_beta_shell),
         "standing_support_packet_delta_beta": float(delta_beta_packet),
         "standing_support_packet_delta_alpha": float(alpha_base * packet_lapse_factor - alpha_base),
+        "standing_support_packet_null_cushion_delta_alpha": float(
+            alpha_base * packet_lapse_factor * packet_null_cushion_factor - alpha_base * packet_lapse_factor
+        ),
         "standing_support_packet_delta_gamma_ll": float(gamma_ll_base * packet_radial_factor - gamma_ll_base),
         "support_shell_clock_lapse_factor": float(clock_lapse_factor),
         "support_shell_delta_alpha": float(alpha - alpha_base),
@@ -999,11 +1077,14 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "W",
             "W_raw",
             "standing_support_packet_carve_window",
+            "standing_support_packet_carve_catch_window",
             "standing_support_packet_carve_shoulder_window",
             "standing_support_packet_carve_contribution",
             "standing_support_packet_carve_factor",
             "standing_support_packet_lapse_window",
             "standing_support_packet_lapse_factor",
+            "standing_support_packet_null_cushion_window",
+            "standing_support_packet_null_cushion_factor",
             "standing_support_packet_radial_window",
             "standing_support_packet_radial_shoulder_window",
             "standing_support_packet_radial_skirt_window",
@@ -1011,11 +1092,14 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_beta_rematch_window",
             "release_profile_slope_abs",
             "standing_support_packet_carve_window_slope_abs",
+            "standing_support_packet_carve_catch_window_slope_abs",
             "standing_support_packet_lapse_window_slope_abs",
+            "standing_support_packet_null_cushion_window_slope_abs",
             "standing_support_packet_radial_window_slope_abs",
             "standing_support_packet_radial_skirt_window_slope_abs",
             "standing_support_packet_beta_rematch_window_slope_abs",
             "standing_support_packet_delta_alpha",
+            "standing_support_packet_null_cushion_delta_alpha",
             "standing_support_packet_delta_gamma_ll",
             "standing_support_packet_delta_beta",
             "S",
@@ -1511,6 +1595,15 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
         )
         if params.standing_support_packet_exclusion_temporal_profile != "tanh":
             case_name = f"{case_name}_wtp{params.standing_support_packet_exclusion_temporal_profile}"
+    if params.standing_support_packet_exclusion_catch:
+        case_name = (
+            f"{case_name}_wccarve{_token(params.standing_support_packet_exclusion_catch)}"
+            f"_wcr{_token(params.standing_support_packet_exclusion_catch_radius_multiplier)}"
+            f"_wcw{_token(params.standing_support_packet_exclusion_catch_width_multiplier)}"
+            f"_wcs{params.standing_support_packet_exclusion_catch_schedule}"
+        )
+        if params.standing_support_packet_exclusion_catch_temporal_profile != "tanh":
+            case_name = f"{case_name}_wctp{params.standing_support_packet_exclusion_catch_temporal_profile}"
     if params.standing_support_packet_exclusion_shoulder:
         case_name = (
             f"{case_name}_wshoulder{_token(params.standing_support_packet_exclusion_shoulder)}"
@@ -1532,6 +1625,17 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
         if params.standing_support_packet_lapse_temporal_profile != "tanh":
             case_name = f"{case_name}_wltp{params.standing_support_packet_lapse_temporal_profile}"
         note = f"{note}; experimental packet-local lapse compensator"
+    if params.standing_support_packet_null_cushion_log_gain:
+        case_name = (
+            f"{case_name}_wnull{_token(params.standing_support_packet_null_cushion_log_gain)}"
+            f"_wnm{params.standing_support_packet_null_cushion_mode}"
+            f"_wnr{_token(params.standing_support_packet_null_cushion_radius_multiplier)}"
+            f"_wnw{_token(params.standing_support_packet_null_cushion_width_multiplier)}"
+            f"_wns{params.standing_support_packet_null_cushion_schedule}"
+        )
+        if params.standing_support_packet_null_cushion_temporal_profile != "tanh":
+            case_name = f"{case_name}_wntp{params.standing_support_packet_null_cushion_temporal_profile}"
+        note = f"{note}; experimental packet-local null cushion"
     if (
         params.standing_support_packet_radial_log_gain
         or params.standing_support_packet_radial_shoulder_log_gain

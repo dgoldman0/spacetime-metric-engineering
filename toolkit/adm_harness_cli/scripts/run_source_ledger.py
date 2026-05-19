@@ -72,6 +72,11 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_exclusion_width_multiplier": args.standing_support_packet_exclusion_width_multiplier,
         "standing_support_packet_exclusion_schedule": args.standing_support_packet_exclusion_schedule,
         "standing_support_packet_exclusion_temporal_profile": args.standing_support_packet_exclusion_temporal_profile,
+        "standing_support_packet_exclusion_catch": args.standing_support_packet_exclusion_catch,
+        "standing_support_packet_exclusion_catch_radius_multiplier": args.standing_support_packet_exclusion_catch_radius_multiplier,
+        "standing_support_packet_exclusion_catch_width_multiplier": args.standing_support_packet_exclusion_catch_width_multiplier,
+        "standing_support_packet_exclusion_catch_schedule": args.standing_support_packet_exclusion_catch_schedule,
+        "standing_support_packet_exclusion_catch_temporal_profile": args.standing_support_packet_exclusion_catch_temporal_profile,
         "standing_support_packet_exclusion_shoulder": args.standing_support_packet_exclusion_shoulder,
         "standing_support_packet_exclusion_shoulder_mode": args.standing_support_packet_exclusion_shoulder_mode,
         "standing_support_packet_exclusion_shoulder_radius_multiplier": args.standing_support_packet_exclusion_shoulder_radius_multiplier,
@@ -83,6 +88,13 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_lapse_width_multiplier": args.standing_support_packet_lapse_width_multiplier,
         "standing_support_packet_lapse_schedule": args.standing_support_packet_lapse_schedule,
         "standing_support_packet_lapse_temporal_profile": args.standing_support_packet_lapse_temporal_profile,
+        "standing_support_packet_null_cushion_log_gain": args.standing_support_packet_null_cushion_log_gain,
+        "standing_support_packet_null_cushion_mode": args.standing_support_packet_null_cushion_mode,
+        "standing_support_packet_null_cushion_inner_radius_multiplier": args.standing_support_packet_null_cushion_inner_radius_multiplier,
+        "standing_support_packet_null_cushion_radius_multiplier": args.standing_support_packet_null_cushion_radius_multiplier,
+        "standing_support_packet_null_cushion_width_multiplier": args.standing_support_packet_null_cushion_width_multiplier,
+        "standing_support_packet_null_cushion_schedule": args.standing_support_packet_null_cushion_schedule,
+        "standing_support_packet_null_cushion_temporal_profile": args.standing_support_packet_null_cushion_temporal_profile,
         "standing_support_packet_radial_log_gain": args.standing_support_packet_radial_log_gain,
         "standing_support_packet_radial_radius_multiplier": args.standing_support_packet_radial_radius_multiplier,
         "standing_support_packet_radial_width_multiplier": args.standing_support_packet_radial_width_multiplier,
@@ -256,6 +268,24 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
     )
     parser.add_argument(
+        "--standing-support-packet-exclusion-catch",
+        type=float,
+        default=None,
+        help="Additional catch/rematch carve strength for split entry/catch containment.",
+    )
+    parser.add_argument("--standing-support-packet-exclusion-catch-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-exclusion-catch-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-exclusion-catch-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-exclusion-catch-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
         "--standing-support-packet-exclusion-shoulder",
         type=float,
         default=None,
@@ -293,6 +323,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--standing-support-packet-lapse-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-null-cushion-log-gain",
+        type=float,
+        default=None,
+        help="Small independent packet-local lapse factor for radial-null trim.",
+    )
+    parser.add_argument(
+        "--standing-support-packet-null-cushion-mode",
+        choices=["filled", "annular"],
+        default=None,
+    )
+    parser.add_argument("--standing-support-packet-null-cushion-inner-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-null-cushion-radius-multiplier", type=float, default=None)
+    parser.add_argument("--standing-support-packet-null-cushion-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--standing-support-packet-null-cushion-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--standing-support-packet-null-cushion-temporal-profile",
         choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
         default=None,
     )
