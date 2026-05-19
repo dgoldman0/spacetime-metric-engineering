@@ -44,17 +44,22 @@ then choose source-family components by role instead of fitting one scalar to ev
 
 That decomposition map has now been run for `compact7_wide4_edge160` and `wide4_radius205`. It separates the promoted pair into three source jobs: infrastructure radial-null support, core radial-pressure balance, and live handoff angular/current handling. The radial-null rows are all non-live infrastructure rows and are dominated by `rho_p_l` cancellation residuals plus current-selected null branches. Radial pressure is a non-live core-throat pressure-balance job. Angular/current rows remain mostly live packet handoff jobs, with radius broadening charging angular pressure while shifting some current burden into reset/support-edge infrastructure. This supports the composite source-plant path: next test a component-source ledger with separate radial-null, pressure-balance, angular-capacity, and shift-current roles, rather than widening the pure scalar search.
 
-Current decision: accept the source-decomposition assessment. Stage II should now proceed as a composite source-assignment problem. The simple BV-like scalar result is a killed first audition for the whole support plant, not a reason to abandon the active-rail geometry. The next code/report artifact should be:
+Current decision: accept the source-decomposition assessment. Stage II should now proceed as a composite source-assignment problem. The simple BV-like scalar result is a killed first audition for the whole support plant, not a reason to abandon the active-rail geometry. The component-source ledger has now been built as the first code/report artifact:
 
 ```text
 Stage II component-source ledger
   component A: infrastructure radial-null support for non-live core/support-edge rows;
   component B: core radial-pressure balance for non-live throat rows;
   component C: live handoff angular/current handling for packet_in_support rows;
-  optional component D: reset/support-edge current sink for radius-broadened comparator.
+  component D: reset/support-edge current sink;
+  component E: live handoff radial-null trim;
+  component F: live handoff radial-pressure trim;
+  component G: infrastructure angular-capacity support.
 ```
 
-The first component ledger should remain toy/reduced. It should answer whether the demanded source can be partitioned cleanly into role-specific components without contaminating the packet corridor, before selecting detailed physical matter models for each role. Do not widen the pure scalar search until this component-source partition has been tested.
+The full-role ledger is still toy/reduced, but it gives a coherent partition: radial-null and angular-pressure coverage are near-complete; radial pressure is separated into infrastructure balance plus a small live pressure trim; radial current remains the least-covered residual channel. Hard infrastructure components do not contaminate the live packet. Do not widen the pure scalar search.
+
+The next active Stage II artifact is a component algebra/signature ledger. It should summarize, for each role A-G, the demanded ADM signs and scales (`rho_euler`, `p_l`, `pOmega`, `j_l`), null-branch and cancellation structure, live/non-live status, overlap with other components, and SNEC-relevant null accumulation. Use that bridge artifact to decide whether to add a coherent current-sector component H, choose a first composite physical source ansatz, or run the hard affine SNEC calculation on the updated promoted model.
 
 Conditional Stage I follow-up: if the component-source ledger shows that the demanded roles do not partition cleanly, or if it identifies a small geometry-side correction that would make the partition cleaner, return to the compact handoff ansatz with that constraint in mind. The main unresolved Stage I cost is live `p_l`: the best compact case raises it by about `12%` versus `split_ref`, while weakened-entry variants lower point peaks and angular/current burdens but make live `p_l` much worse. That means early entry containment is carrying radial pressure balance, while the broad compact catch/handoff sleeve is carrying angular/current and derivative-concentration relief. Any fine-tuning should preserve that role separation rather than adding another free local sleeve.
 
