@@ -6,6 +6,7 @@ import json
 import sys
 from dataclasses import replace
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -50,6 +51,52 @@ BASE_SPECS = [
     ("core_p002_shoulder_p002", 0.02, 0.02, "entry_catch_release", "entry_catch_release", 1.1, 1.8, 1.7, 2.6),
     ("core_p005_shoulder_p002", 0.05, 0.02, "entry_catch_release", "entry_catch_release", 1.1, 1.8, 1.7, 2.6),
 ]
+
+
+def _tuple_spec_to_dict(spec: tuple[Any, ...]) -> dict[str, Any]:
+    label, core_gain, shoulder_gain, core_schedule, shoulder_schedule, core_r, core_w, shoulder_r, shoulder_w = spec
+    return {
+        "label": label,
+        "core_gain": core_gain,
+        "shoulder_gain": shoulder_gain,
+        "core_schedule": core_schedule,
+        "shoulder_schedule": shoulder_schedule,
+        "core_radius_multiplier": core_r,
+        "core_width_multiplier": core_w,
+        "shoulder_radius_multiplier": shoulder_r,
+        "shoulder_width_multiplier": shoulder_w,
+    }
+
+
+def _load_specs(path: Path | None) -> list[dict[str, Any]]:
+    if path is None:
+        return [_tuple_spec_to_dict(spec) for spec in BASE_SPECS]
+    raw = json.loads(path.read_text())
+    if not isinstance(raw, list):
+        raise ValueError("spec file must contain a JSON list of radial support specs")
+    specs: list[dict[str, Any]] = []
+    for idx, item in enumerate(raw):
+        if not isinstance(item, dict):
+            raise ValueError(f"spec {idx} must be a JSON object")
+        spec = {
+            "label": item["label"],
+            "core_gain": item.get("core_gain", 0.0),
+            "shoulder_gain": item.get("shoulder_gain", 0.0),
+            "core_schedule": item.get("core_schedule", "live_only"),
+            "shoulder_schedule": item.get("shoulder_schedule", "live_only"),
+            "core_radius_multiplier": item.get("core_radius_multiplier", 1.0),
+            "core_width_multiplier": item.get("core_width_multiplier", 1.0),
+            "shoulder_radius_multiplier": item.get("shoulder_radius_multiplier", 1.5),
+            "shoulder_width_multiplier": item.get("shoulder_width_multiplier", 2.0),
+            "core_temporal_profile": item.get("core_temporal_profile"),
+            "shoulder_temporal_profile": item.get("shoulder_temporal_profile"),
+        }
+        specs.append(spec)
+    return specs
+
+
+def _default_profile(schedule: str) -> str:
+    return "minimum_jerk" if schedule != "live_only" else "tanh"
 
 
 def _resolve_path(base: Path, value: str | Path) -> Path:
@@ -98,6 +145,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--h-l", type=float, default=2.5e-3)
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--only-labels", nargs="+", default=None)
+    parser.add_argument(
+        "--spec-file",
+        type=Path,
+        default=None,
+        help="Optional JSON list of radial support specs. Overrides the built-in spec list.",
+    )
     return parser
 
 
@@ -110,10 +163,10 @@ def main() -> int:
     args.outdir.mkdir(parents=True, exist_ok=True)
     summary_path = args.outdir / "radial_support_screen_summary.csv"
     top_path = args.outdir / "radial_support_screen_top_bad_points.csv"
-    specs = BASE_SPECS
+    specs = _load_specs(args.spec_file)
     if args.only_labels:
         labels = set(args.only_labels)
-        specs = [spec for spec in specs if spec[0] in labels]
+        specs = [spec for spec in specs if spec["label"] in labels]
     if args.limit is not None:
         specs = specs[: args.limit]
 
@@ -122,20 +175,31 @@ def main() -> int:
     fieldnames: list[str] | None = None
     with summary_path.open("w", newline="") as handle:
         writer: csv.DictWriter | None = None
-        for label, core_gain, shoulder_gain, core_schedule, shoulder_schedule, core_r, core_w, shoulder_r, shoulder_w in specs:
+        for spec in specs:
+            label = str(spec["label"])
+            core_gain = float(spec["core_gain"])
+            shoulder_gain = float(spec["shoulder_gain"])
+            core_schedule = str(spec["core_schedule"])
+            shoulder_schedule = str(spec["shoulder_schedule"])
+            core_r = float(spec["core_radius_multiplier"])
+            core_w = float(spec["core_width_multiplier"])
+            shoulder_r = float(spec["shoulder_radius_multiplier"])
+            shoulder_w = float(spec["shoulder_width_multiplier"])
+            core_profile = str(spec.get("core_temporal_profile") or _default_profile(core_schedule))
+            shoulder_profile = str(spec.get("shoulder_temporal_profile") or _default_profile(shoulder_schedule))
             case_params = replace(
                 params,
                 standing_support_packet_radial_log_gain=core_gain,
                 standing_support_packet_radial_radius_multiplier=core_r,
                 standing_support_packet_radial_width_multiplier=core_w,
                 standing_support_packet_radial_schedule=core_schedule,
-                standing_support_packet_radial_temporal_profile="minimum_jerk" if core_schedule != "live_only" else "tanh",
+                standing_support_packet_radial_temporal_profile=core_profile,
                 standing_support_packet_radial_shoulder_log_gain=shoulder_gain,
                 standing_support_packet_radial_shoulder_mode="annular",
                 standing_support_packet_radial_shoulder_radius_multiplier=shoulder_r,
                 standing_support_packet_radial_shoulder_width_multiplier=shoulder_w,
                 standing_support_packet_radial_shoulder_schedule=shoulder_schedule,
-                standing_support_packet_radial_shoulder_temporal_profile="minimum_jerk" if shoulder_schedule != "live_only" else "tanh",
+                standing_support_packet_radial_shoulder_temporal_profile=shoulder_profile,
             )
             case = SourceCase(f"V5_radial_{label}", case_params, "radial support law screen")
             points = compute_case(
@@ -156,6 +220,12 @@ def main() -> int:
                 "shoulder_gain": shoulder_gain,
                 "core_schedule": core_schedule,
                 "shoulder_schedule": shoulder_schedule,
+                "core_radius_multiplier": core_r,
+                "core_width_multiplier": core_w,
+                "shoulder_radius_multiplier": shoulder_r,
+                "shoulder_width_multiplier": shoulder_w,
+                "core_temporal_profile": core_profile,
+                "shoulder_temporal_profile": shoulder_profile,
                 **_row_for_case(case, points),
             }
             rows.append(row)
@@ -183,6 +253,7 @@ def main() -> int:
             "top_bad_points": str(top_path),
             "rows": len(rows),
             "summary_sha256": sha256_file(summary_path),
+            "spec_file": str(args.spec_file) if args.spec_file else None,
             "grid": {
                 "ns": args.ns,
                 "nl": args.nl,
