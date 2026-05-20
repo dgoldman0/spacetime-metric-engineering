@@ -67,6 +67,9 @@ supporting_reports/STAGE2_ENDPOINT_THEORY_MEMO.md
 
 endpoint thickness/coupling closeout:
 supporting_reports/STAGE2_ENDPOINT_THICKNESS_LADDER_CLOSEOUT.md
+
+endpoint reset/release ladder:
+supporting_reports/STAGE2_ENDPOINT_RESET_RELEASE_LADDER.md
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
@@ -102,6 +105,25 @@ endpoint/junction plant: radial support shoulder, reset/release current
 relaxation cap, and angular-capacity jacket, with a conservation or
 effective-coupling closure diagnostic that varies true reset/release
 choreography. Do not describe the current closure as a matter-model proof.
+
+Reset/release ladder update: the next source grammar now has a concrete lead
+axis. On a `61 x 83` smoke grid, widening the release beta fade was the first
+live-clean knob to materially reduce the stubborn reset/decompression cap.
+`release_beta_width_multiplier = 0.75` moved reset selected-null deficit from
+`0.582542` to `0.442605`, reset current from `0.318861` to `0.240184`, and J
+total from `0.986686` to `0.964417`, with zero positive live packet-norm
+samples. The cost is support-edge transfer: support-edge selected-null deficit
+rose from `0.404144` to `0.521812`. Hold width gives weaker directional relief;
+lapse lag, carve lag, and paired lag at `0.25` are no-ops at this grid.
+
+Updated next action: run a beta-release/support-edge co-design screen, not a
+generic endpoint ladder. Primary axis is release beta width (`0.50`, `0.75`,
+possibly `1.00`); companion axes should retune support-edge shoulder and angular
+jacket capacity so reset relief does not simply pile into support-edge. Win
+condition: keep reset selected-null near or below `0.45`, preserve the
+`20-30%` reset-current reduction, reduce the support-edge transfer, keep
+positive live packet-norm samples at `0`, and avoid increasing J total. Confirm
+on a denser grid before report-grade physical claims.
 
 Current source-family work order:
 

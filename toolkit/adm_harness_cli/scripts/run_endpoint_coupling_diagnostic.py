@@ -88,6 +88,12 @@ def _control_row(ledger_root: Path, label: str) -> dict[str, Any]:
         "temporal_width_multiplier": _finite(
             params.get("standing_support_packet_smooth_split_temporal_width_multiplier"), float("nan")
         ),
+        "release_choreography_mode": str(params.get("release_choreography_mode", "")),
+        "release_matched_hold_widths": _finite(params.get("release_matched_hold_widths"), float("nan")),
+        "release_beta_profile": str(params.get("release_beta_profile", "")),
+        "release_beta_width_multiplier": _finite(params.get("release_beta_width_multiplier"), float("nan")),
+        "release_lapse_lag_widths": _finite(params.get("release_lapse_lag_widths"), float("nan")),
+        "release_carve_lag_widths": _finite(params.get("release_carve_lag_widths"), float("nan")),
         "positive_packet_norm_live": int(_finite(safety.get("positive_packet_norm_live"), 0.0)),
         "max_packet_norm_live": _finite(safety.get("max_packet_norm_live"), float("nan")),
         "min_packet_norm_live": _finite(safety.get("min_packet_norm_live"), float("nan")),
@@ -197,6 +203,20 @@ def _contrast(summary: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
             change = f"current_guard_fraction {base['current_guard_fraction']:.3g}->{row['current_guard_fraction']:.3g}"
         elif "temporal" in label:
             change = f"temporal_width {base['temporal_width_multiplier']:.3g}->{row['temporal_width_multiplier']:.3g}"
+        elif "hold" in label:
+            change = f"release_hold {base['release_matched_hold_widths']:.3g}->{row['release_matched_hold_widths']:.3g}"
+        elif "beta" in label:
+            change = f"release_beta_width {base['release_beta_width_multiplier']:.3g}->{row['release_beta_width_multiplier']:.3g}"
+        elif "lapse_lag" in label:
+            change = f"release_lapse_lag {base['release_lapse_lag_widths']:.3g}->{row['release_lapse_lag_widths']:.3g}"
+        elif "carve_lag" in label:
+            change = f"release_carve_lag {base['release_carve_lag_widths']:.3g}->{row['release_carve_lag_widths']:.3g}"
+        elif "lag_pair" in label:
+            change = (
+                f"release_lapse/carve_lag "
+                f"{base['release_lapse_lag_widths']:.3g}/{base['release_carve_lag_widths']:.3g}->"
+                f"{row['release_lapse_lag_widths']:.3g}/{row['release_carve_lag_widths']:.3g}"
+            )
         else:
             change = "variant"
         out = {

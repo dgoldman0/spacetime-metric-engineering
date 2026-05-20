@@ -403,6 +403,24 @@ def _values(spec: dict[str, Any], params: SourceParams) -> dict[str, Any]:
         "live_packet_start": (
             None if spec.get("live_packet_start") is None else float(spec["live_packet_start"])
         ),
+        "release_choreography_mode": (
+            None if spec.get("release_choreography_mode") is None else str(spec["release_choreography_mode"])
+        ),
+        "release_matched_hold_widths": (
+            None if spec.get("release_matched_hold_widths") is None else float(spec["release_matched_hold_widths"])
+        ),
+        "release_beta_profile": (
+            None if spec.get("release_beta_profile") is None else str(spec["release_beta_profile"])
+        ),
+        "release_beta_width_multiplier": (
+            None if spec.get("release_beta_width_multiplier") is None else float(spec["release_beta_width_multiplier"])
+        ),
+        "release_lapse_lag_widths": (
+            None if spec.get("release_lapse_lag_widths") is None else float(spec["release_lapse_lag_widths"])
+        ),
+        "release_carve_lag_widths": (
+            None if spec.get("release_carve_lag_widths") is None else float(spec["release_carve_lag_widths"])
+        ),
     }
 
 
@@ -424,6 +442,16 @@ def _case_for_spec(label: str, spec: dict[str, Any], params: SourceParams) -> So
     updates: dict[str, Any] = {}
     if values["live_packet_start"] is not None:
         updates["live_packet_start"] = values["live_packet_start"]
+    for key in [
+        "release_choreography_mode",
+        "release_matched_hold_widths",
+        "release_beta_profile",
+        "release_beta_width_multiplier",
+        "release_lapse_lag_widths",
+        "release_carve_lag_widths",
+    ]:
+        if values[key] is not None:
+            updates[key] = values[key]
     if mode == "split_piecewise":
         updates.update(
             standing_support_packet_exclusion=values["entry_carve"],
