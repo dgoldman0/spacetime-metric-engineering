@@ -104,6 +104,7 @@ def _control_row(ledger_root: Path, label: str) -> dict[str, Any]:
         "release_carve_lag_widths": _finite(params.get("release_carve_lag_widths"), float("nan")),
         "receiver_enabled": bool(params.get("support_edge_receiver_enabled", False)),
         "receiver_memory_gain": _finite(params.get("support_edge_receiver_memory_gain"), float("nan")),
+        "receiver_lapse_log_gain": _finite(params.get("support_edge_receiver_lapse_log_gain"), float("nan")),
         "receiver_radial_log_gain": _finite(params.get("support_edge_receiver_radial_log_gain"), float("nan")),
         "receiver_beta_relaxation_gain": _finite(
             params.get("support_edge_receiver_beta_relaxation_gain"), float("nan")
@@ -209,6 +210,7 @@ def _contrast(summary: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
         elif "receiver" in label:
             change = (
                 "receiver "
+                f"lapse_log_gain {row['receiver_lapse_log_gain']:.3g}; "
                 f"radial_log_gain {row['receiver_radial_log_gain']:.3g}; "
                 f"beta_relax {row['receiver_beta_relaxation_gain']:.3g}; "
                 f"angular_log_gain {row['receiver_angular_log_gain']:.3g}"

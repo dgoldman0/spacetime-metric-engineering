@@ -70,6 +70,15 @@ supporting_reports/STAGE2_ENDPOINT_THICKNESS_LADDER_CLOSEOUT.md
 
 endpoint reset/release ladder:
 supporting_reports/STAGE2_ENDPOINT_RESET_RELEASE_LADDER.md
+
+endpoint beta/support co-design report:
+supporting_reports/STAGE2_ENDPOINT_BETA_SUPPORT_CODESIGN.md
+
+beta-coupled support-edge receiver diagnostic script:
+toolkit/adm_harness_cli/scripts/run_beta_support_receiver_basis.py
+
+latest receiver-basis diagnostic outputs:
+toolkit/adm_harness_cli/runs/endpoint_beta_support_codesign_smoke_61x83/receiver_basis_all_codesign_v4/
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
@@ -137,6 +146,123 @@ that can carry radial-pair trim, angular capacity, and current relaxation while
 preserving the live packet gate. Confirm any promoted receiver on a denser grid
 and then with an endpoint-local SNEC companion before report-grade physical
 claims.
+
+Receiver-basis diagnostic update: the first explicit receiver-basis
+postprocessing has now been implemented in
+`toolkit/adm_harness_cli/scripts/run_beta_support_receiver_basis.py` and run on
+the beta/support co-design outputs. The important result is that instantaneous
+release slope and the old smooth-split edge/radial windows are poor receiver
+bases. The transferred burden is better described by a persistent non-live
+post-release support-edge cap. For `beta075`, `post_release_outer_cap` overlaps
+selected transfer at `0.850097` with Pearson correlation `0.941628`, while
+`post_release_cap` overlaps current transfer at `0.874913` with Pearson
+correlation `0.954731`. These fits are stable across the fixed-`beta075`
+co-design companion variants: selected overlap remains about `0.849-0.850` and
+current overlap about `0.873-0.875`, with zero live receiver weight. This means
+the receiver is not the existing smooth-split edge window in disguise.
+
+Angular transfer is different. A bilateral post-release cap gives only about
+`0.489` angular overlap for `beta075`, while a positive-`l`
+`post_release_pos_outer_cap` improves angular overlap to `0.694859` with
+Pearson correlation `0.889233`. For `beta100`, transfer starts earlier during
+`release_shift_fade`, so the post-release cap remains useful but less complete:
+selected overlap is `0.618601`, current overlap is `0.703072`, and the
+positive-`l` angular flange falls to `0.278417`. Treat `beta100` as a stress
+case after a `beta075` receiver works, not as the first promotion target.
+
+Clean-session starting point for the next implementation: test a
+beta-memory support-edge receiver source grammar. The model should use an
+accumulated beta-release transfer or post-release memory variable rather than
+instantaneous release slope alone. It should have at least three basis pieces:
+
+```text
+R0 beta-transfer memory driver:
+  accumulates release-transfer through beta fade and persists into post-release
+  support-edge rows.
+
+R1 radial/current receiver cap:
+  non-live support_edge, post_release_buffer, outer-weighted and mostly
+  bilateral. Target selected-null and current transfer.
+
+R2 angular receiver flange:
+  non-live support_edge, post_release_buffer, positive-l outer flange for
+  beta075; add release-tail support only after beta075 works.
+```
+
+Initial smoke test should stay small and decisive:
+
+```text
+baseline: beta075 without receiver
+variant A: R1 radial/current cap only
+variant B: R2 angular positive-l flange only
+variant C: R1 + R2 combined
+optional stress: repeat best C at beta100
+```
+
+Win conditions for promoting the receiver branch:
+
+```text
+reset selected-null remains near or below beta075 value 0.442605
+support-edge selected-null drops below beta075 value 0.521812
+J total remains <= beta075 value 0.964417
+support-edge current and angular transfer both fall versus beta075
+positive live packet-norm samples remain 0
+receiver burden is not spike-concentrated relative to the basis diagnostic
+```
+
+If variant A helps selected/current but leaves angular high, keep the split
+receiver interpretation. If variant B reduces angular but worsens selected or
+current, tune the angular flange as a separate capacity jacket rather than
+folding it into the radial/current cap. If all receiver variants are invariant,
+the endpoint wall becomes more dangerous: it would say the support-edge load is
+not absorbable by a local beta-coupled endpoint cap in this grammar.
+
+Beta-memory receiver smoke update: the first metric-side receiver branch is
+implemented and documented in
+`supporting_reports/STAGE2_BETA_MEMORY_RECEIVER_SMOKE_MEMO.md`. The harness
+now has a disabled-by-default beta-memory support-edge receiver family and a
+`61 x 83` smoke spec at
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_smoke.json`.
+All five cases were live-clean. The branch moved J selected-null in the desired
+direction for R2 and R1+R2, but the cost was too high: support-edge current and
+angular burden increased sharply. The result supports the receiver direction
+but rejects direct beta-relaxation plus positive-l angular metric gain as the
+right stress-channel realization.
+
+Lapse/radial receiver update: the second stress-channel realization is
+documented in
+`supporting_reports/STAGE2_BETA_MEMORY_RECEIVER_LAPSE_RADIAL_MEMO.md`, with
+spec
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_lapse_radial_smoke.json`.
+Again all five `61 x 83` cases were live-clean. Lapse-only and radial-only
+receiver actuation did not improve J selected-null; paired lapse/radial was
+worse than baseline. A tiny positive-l angular companion improved J selected
+from `0.964417` to `0.954120`, but still lifted support-edge current from
+`0.105033` to `0.214547` and angular from `1.912497` to `2.566714`.
+
+Updated search interpretation: the project is being squeezed out of cheap
+local metric-channel knobs, not out of beta-memory receiver source modeling.
+The only tested local receiver channel that moves selected-null is angular
+capacity, and every tested positive-l angular realization has carried a
+current/angular penalty. The next search should keep the beta-memory,
+non-live support-edge localization but vary angular/current structure rather
+than increasing local lapse/radial gains.
+
+Next immediate search branch:
+
+```text
+Test symmetry-balanced angular receiver variants:
+  baseline beta075
+  tiny positive-l angular flange
+  tiny bilateral angular flange
+  tiny negative-l angular flange
+  paired positive/negative sign-balanced angular flange if supported
+
+Goal:
+  determine whether the current explosion is caused by one-sided angular
+  localization/asymmetry, or by any local angular-capacity actuation on this
+  receiver geometry.
+```
 
 Current source-family work order:
 
