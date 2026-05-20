@@ -42,6 +42,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Do not assign the live packet-in-support radial-pressure trim component F.",
     )
     parser.add_argument(
+        "--no-support-edge-radial-pressure-balance",
+        action="store_true",
+        help="Do not assign the non-live support-edge radial-pressure balance component I.",
+    )
+    parser.add_argument(
         "--no-infrastructure-angular-capacity",
         action="store_true",
         help="Do not assign the non-live support-plant angular-capacity component G.",
@@ -70,6 +75,7 @@ def main() -> int:
         include_reset_current_sink=not args.no_reset_current_sink,
         include_live_radial_null_trim=not args.no_live_radial_null_trim,
         include_live_radial_pressure_trim=not args.no_live_radial_pressure_trim,
+        include_support_edge_radial_pressure_balance=not args.no_support_edge_radial_pressure_balance,
         include_infrastructure_angular_capacity=not args.no_infrastructure_angular_capacity,
         min_volume_burden=float(args.min_volume_burden),
         top_unassigned=int(args.top_unassigned),

@@ -17,6 +17,7 @@ SECTOR_COMPONENTS = {
     "infrastructure_radial_support": [
         "A_infrastructure_radial_null_support",
         "B_core_radial_pressure_balance",
+        "I_support_edge_radial_pressure_balance",
     ],
     "infrastructure_angular_capacity": [
         "G_infrastructure_angular_capacity",

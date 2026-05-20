@@ -54,6 +54,9 @@ toolkit/adm_harness_cli/runs/stage2_external/stage2_source_decomposition_compact
 
 unified source-picture report:
 supporting_reports/STAGE2_FULL_GRID_SOURCE_DECOMPOSITION_ENTRY_GATE.md
+
+dense source-sector closure report:
+supporting_reports/STAGE2_ENTRY_SECTOR_CLOSURE_DENSE.md
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
@@ -68,7 +71,9 @@ Moderate checks: patch/cluster continuity on existing ledgers, connected-compone
 High-computation checks: rebuilding demanded-source ledgers, new Stage II candidate ledgers, hard affine SNEC sweeps, tau grids, component ledgers, and new parameter screens.
 ```
 
-Immediate next action: decide whether to accept the unified source-picture report as the representative Stage II source-decomposition artifact, then either commit the report/plan update or proceed to source-sector closure.
+Dense source-sector closure has now run on the entry-gated design. The `151 x 225` extended ledger has zero positive live packet-norm samples. A refined constrained sector basis promotes non-live support-edge radial pressure as component I and non-live distributed current relaxation as H. The refined closure assigns `98.659%` of radial-null burden, `98.716%` of radial-pressure burden, and `91.315%` of angular-pressure burden before physical source replacement; the remaining current burden is carried by H with zero live burden. The H-promoted constrained sector fit passes its primary constraints, and the dense sector-sum hard-affine SNEC scan over `203,838` windows at `tau = 2.0, 3.0, 4.0` has zero raw and zero scoreable benchmark-floor violations, with tightest margin about `0.01497` at `tau = 4.0`.
+
+Immediate next action: treat the entry-gated dense source-sector closure as the current representative Stage II closure artifact, then move to explicit source-family replacement for the effective sectors A/B/I, G, C/E/F, and D/H. Do not describe the closure as a matter-model proof.
 
 ## Current checkpoint, 2026-05-19
 

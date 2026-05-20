@@ -228,6 +228,7 @@ def _decision_hints(component_summary: pd.DataFrame, current_residual: pd.DataFr
         infrastructure = components.loc[components["component"].isin([
             "A_infrastructure_radial_null_support",
             "B_core_radial_pressure_balance",
+            "I_support_edge_radial_pressure_balance",
             "G_infrastructure_angular_capacity",
         ])]
         rows.append({

@@ -31,6 +31,7 @@ class ComponentConfig:
     include_reset_current_sink: bool = True
     include_live_radial_null_trim: bool = True
     include_live_radial_pressure_trim: bool = True
+    include_support_edge_radial_pressure_balance: bool = True
     include_infrastructure_angular_capacity: bool = True
     min_volume_burden: float = 0.0
     top_unassigned: int = 80
@@ -96,6 +97,7 @@ def _component_for(
     include_reset_current_sink: bool,
     include_live_radial_null_trim: bool,
     include_live_radial_pressure_trim: bool,
+    include_support_edge_radial_pressure_balance: bool,
     include_infrastructure_angular_capacity: bool,
 ) -> tuple[str, str]:
     live = _bool(row.get("inside_packet_live", False))
@@ -105,6 +107,13 @@ def _component_for(
         return "A_infrastructure_radial_null_support", "non_live_core_or_support_edge_radial_null"
     if channel == "abs_p_l" and not live and region == "core_throat":
         return "B_core_radial_pressure_balance", "non_live_core_throat_radial_pressure"
+    if (
+        include_support_edge_radial_pressure_balance
+        and channel == "abs_p_l"
+        and not live
+        and region == "support_edge"
+    ):
+        return "I_support_edge_radial_pressure_balance", "non_live_support_edge_radial_pressure"
     if channel in {"abs_j_l", "abs_pOmega"} and live and region == "packet_in_support":
         return "C_live_handoff_angular_current", "live_packet_in_support_angular_or_current"
     if (
@@ -148,6 +157,7 @@ def _component_description(component: str) -> str:
         "E_live_handoff_radial_null_trim": "Live packet-in-support radial-null trim for packet-side residual burden.",
         "F_live_handoff_radial_pressure_trim": "Live packet-in-support radial-pressure trim for packet-side residual burden.",
         "G_infrastructure_angular_capacity": "Infrastructure angular/throat-capacity support for non-live support-plant rows.",
+        "I_support_edge_radial_pressure_balance": "Support-edge radial-pressure balance for non-live infrastructure rows.",
         UNASSIGNED_COMPONENT: "Demand outside the first toy component-source role set.",
     }.get(component, "")
 
@@ -171,6 +181,7 @@ def assign_component_sources(
                 include_reset_current_sink=config.include_reset_current_sink,
                 include_live_radial_null_trim=config.include_live_radial_null_trim,
                 include_live_radial_pressure_trim=config.include_live_radial_pressure_trim,
+                include_support_edge_radial_pressure_balance=config.include_support_edge_radial_pressure_balance,
                 include_infrastructure_angular_capacity=config.include_infrastructure_angular_capacity,
             )
             inside_live = _bool(row.get("inside_packet_live", False))
@@ -312,6 +323,7 @@ def _summarize_overlap(detail: pd.DataFrame) -> pd.DataFrame:
                 [
                     "A_infrastructure_radial_null_support",
                     "B_core_radial_pressure_balance",
+                    "I_support_edge_radial_pressure_balance",
                     "D_reset_support_edge_current_sink",
                 ]
             )
@@ -408,6 +420,7 @@ def write_component_outputs(
             "include_reset_current_sink": bool(config.include_reset_current_sink),
             "include_live_radial_null_trim": bool(config.include_live_radial_null_trim),
             "include_live_radial_pressure_trim": bool(config.include_live_radial_pressure_trim),
+            "include_support_edge_radial_pressure_balance": bool(config.include_support_edge_radial_pressure_balance),
             "include_infrastructure_angular_capacity": bool(config.include_infrastructure_angular_capacity),
             "min_volume_burden": float(config.min_volume_burden),
             "top_unassigned": int(config.top_unassigned),

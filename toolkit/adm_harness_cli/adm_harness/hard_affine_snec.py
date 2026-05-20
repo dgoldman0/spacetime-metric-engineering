@@ -17,6 +17,7 @@ from .source_screening import resolve_manifest_path
 COMPONENT_TO_SECTOR = {
     "A_infrastructure_radial_null_support": "infrastructure_radial_support",
     "B_core_radial_pressure_balance": "infrastructure_radial_support",
+    "I_support_edge_radial_pressure_balance": "infrastructure_radial_support",
     "G_infrastructure_angular_capacity": "infrastructure_angular_capacity",
     "C_live_handoff_angular_current": "live_handoff_trim",
     "E_live_handoff_radial_null_trim": "live_handoff_trim",
