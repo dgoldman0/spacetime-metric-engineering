@@ -64,6 +64,9 @@ supporting_reports/STAGE2_ENDPOINT_JUNCTION_SOURCE_MILESTONE.md
 
 endpoint theory memo:
 supporting_reports/STAGE2_ENDPOINT_THEORY_MEMO.md
+
+endpoint thickness/coupling closeout:
+supporting_reports/STAGE2_ENDPOINT_THICKNESS_LADDER_CLOSEOUT.md
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
@@ -80,7 +83,25 @@ High-computation checks: rebuilding demanded-source ledgers, new Stage II candid
 
 Dense source-sector closure has now run on the entry-gated design. The `151 x 225` extended ledger has zero positive live packet-norm samples. A refined constrained sector basis promotes non-live support-edge radial pressure as component I and non-live distributed current relaxation as H. The refined closure assigns `98.659%` of radial-null burden, `98.716%` of radial-pressure burden, and `91.315%` of angular-pressure burden before physical source replacement; the remaining current burden is carried by H with zero live burden. The H-promoted constrained sector fit passes its primary constraints, and the dense sector-sum hard-affine SNEC scan over `203,838` windows at `tau = 2.0, 3.0, 4.0` has zero raw and zero scoreable benchmark-floor violations, with tightest margin about `0.01497` at `tau = 4.0`.
 
-Immediate next action: treat the entry-gated dense source-sector closure as the current representative Stage II closure artifact, then begin explicit source-family replacement for the effective sectors A/B/I, G, C/E/F, and D/H. Start with light/medium postprocessing: extract physical target signatures, localize remaining residuals, and map each sector to plausible source-family ansatz requirements before launching another heavy compute pass. Discuss intermediate source-family findings in chat as they appear; wait for report writing until the results are strong enough to support solid implications. Do not describe the closure as a matter-model proof.
+Endpoint thickness/coupling closeout: the `81 x 121` endpoint ladder did not
+relieve the coupled `J_endpoint_junction_layer`. Six live-clean variants
+(`edge_wide9`, `edge_wide11`, `catch_edge_wide`, `edge_soft_wide9`,
+`guard_blend_wide9`, plus baseline) kept J selected-null deficit essentially
+invariant at about `0.9904`, with fixed concentration (`50%` of burden in about
+`18.6%` of J rows and `80%` in about `38.5%`). The effective-coupling proxy
+classifies the live-clean variants as `endpoint_invariant_no_relief`. The only
+meaningful movement came from `temporal_wide14`, which increased J to
+`0.991488` and introduced one positive live packet-norm sample at
+`s=-0.76875, l=-0.42`. A coarse all-label intermediate SNEC smoke over
+`17,052` windows at tau `0.5, 1.0, 2.0` had zero benchmark-floor violations.
+
+Immediate next action: close the current intermediate endpoint source model as
+a diagnostic model and choose the next source grammar. The next model should
+not be another simple endpoint-width smear. It should target an explicit finite
+endpoint/junction plant: radial support shoulder, reset/release current
+relaxation cap, and angular-capacity jacket, with a conservation or
+effective-coupling closure diagnostic that varies true reset/release
+choreography. Do not describe the current closure as a matter-model proof.
 
 Current source-family work order:
 
