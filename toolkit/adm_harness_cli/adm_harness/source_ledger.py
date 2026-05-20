@@ -25,6 +25,7 @@ CHANNELS = {
 }
 
 STAGE_ORDER = [
+    "pre_entry_setup",
     "entry_precatch",
     "catch_rematch",
     "held_carry",
@@ -99,7 +100,9 @@ class SourceParams:
     xOmega: float = 2.00
     wtOmega: float = 0.60
 
-    # Live-packet accounting horizon after shift release.
+    # Live-packet accounting window. The optional start lets extended-domain
+    # service screens separate prepared entry infrastructure from live entry.
+    live_packet_start: float | None = None
     live_packet_end_margin_widths: float = 2.0
 
     # Support-shell overlay: an infrastructure-local carrying-flow actuator
@@ -1714,6 +1717,8 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
 
 
 def stage_name(s: float, params: SourceParams) -> str:
+    if params.live_packet_start is not None and s < float(params.live_packet_start):
+        return "pre_entry_setup"
     width = max(params.w_catch_packet, params.w_catch_beta)
     center = params.x_catch_packet
     release_start, release_end = release_beta_interval(params)
@@ -1748,6 +1753,8 @@ def region_name(s: float, l: float, params: SourceParams) -> str:
 
 def live_packet_mask(s: float, l: float, params: SourceParams) -> bool:
     live_end = live_packet_end(params)
+    if params.live_packet_start is not None and s < float(params.live_packet_start):
+        return False
     return bool(abs(l - s) <= params.Rpass and s <= live_end)
 
 
@@ -2458,6 +2465,9 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
             f"_rclag{_token(params.release_carve_lag_widths)}"
         )
         note = f"{note}; coordinated release choreography"
+    if params.live_packet_start is not None:
+        case_name = f"{case_name}_livestart{_token(float(params.live_packet_start))}"
+        note = f"{note}; explicit live packet entry start"
     if params.support_shell_overlay_enabled:
         case_name = (
             f"{case_name}_shell_a{_token(params.support_shell_amplitude)}"

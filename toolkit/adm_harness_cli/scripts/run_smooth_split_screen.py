@@ -400,6 +400,9 @@ def _values(spec: dict[str, Any], params: SourceParams) -> dict[str, Any]:
         ),
         "current_guard_mode": str(spec.get("current_guard_mode", "attenuate")),
         "angular_log_gain": float(spec.get("angular_log_gain", 0.0)),
+        "live_packet_start": (
+            None if spec.get("live_packet_start") is None else float(spec["live_packet_start"])
+        ),
     }
 
 
@@ -419,6 +422,8 @@ def _case_for_spec(label: str, spec: dict[str, Any], params: SourceParams) -> So
         return SourceCase(f"{service_factor_label(params)}_smooth_split_{label}", params, "smooth split screen")
 
     updates: dict[str, Any] = {}
+    if values["live_packet_start"] is not None:
+        updates["live_packet_start"] = values["live_packet_start"]
     if mode == "split_piecewise":
         updates.update(
             standing_support_packet_exclusion=values["entry_carve"],

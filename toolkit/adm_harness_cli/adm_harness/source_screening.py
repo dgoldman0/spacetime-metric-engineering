@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
@@ -188,8 +189,19 @@ def run_source_screen(
         for spec in specs:
             label = str(spec["label"])
             case = case_builder(label, spec, context.params)
+            started_at = time.perf_counter()
+            print(
+                json.dumps({
+                    "event": "screen_case_start",
+                    "label": label,
+                    "case": case.name,
+                    "grid": context.grid,
+                }),
+                flush=True,
+            )
             points = compute_case(case, progress=False, **context.grid)
             row = row_builder(label, spec, case, points)
+            row["elapsed_s"] = round(time.perf_counter() - started_at, 3)
             rows.append(row)
             if writer is None:
                 writer = csv.DictWriter(handle, fieldnames=list(row))
