@@ -1,5 +1,75 @@
 # Active-Rail Codex Handoff Plan
 
+## Current checkpoint, 2026-05-20
+
+The current representative design is the entry-gated compact wide4 V5 branch:
+
+```text
+label = wide4_start_m1p40
+live_packet_start = -1.40
+entry_carve = 0.75
+entry_width_multiplier = 4.8
+catch_carve = 0.15
+catch_width_multiplier = 3.4
+edge_carve = 0.16
+edge_width_multiplier = 7.2
+null_cushion_log_gain = -0.07
+grid = 101 x 151 on s [-1.50, 2.40], l [-4.20, 4.20]
+```
+
+Current decision state:
+
+```text
+Entry gate: accepted as part of the representative design.
+Live packet safety: clean on the 101 x 151 extended ledger.
+Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
+Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
+```
+
+Key current facts:
+
+```text
+max live packet norm: approximately -1.242423
+positive live packet-norm samples: 0
+tightest scoreable hard-affine SNEC margin: approximately 0.01494 at tau = 4.0
+
+full-grid live fractions:
+  neg_Tkk_radial  2.889%
+  abs_p_l         0.787%
+  abs_pOmega     14.706%
+  abs_j_l        11.976%
+```
+
+Current artifact pointers:
+
+```text
+source-decomposition map, top-40:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_source_decomposition_compact_entry_start_101x151/
+
+source-decomposition map, full-grid:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_source_decomposition_compact_entry_start_101x151_full_grid/
+
+easy/moderate checks:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_source_decomposition_compact_entry_start_101x151_full_grid/checks/
+
+unified source-picture report:
+supporting_reports/STAGE2_FULL_GRID_SOURCE_DECOMPOSITION_ENTRY_GATE.md
+```
+
+Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
+
+Cost discipline:
+
+```text
+Easy checks: existing-ledger postprocessing, full-grid aggregations, top-k vs full-grid comparisons, live fractions, role/stage/region summaries.
+
+Moderate checks: patch/cluster continuity on existing ledgers, connected-component summaries, compact-vs-entry-gated comparisons when matching artifacts already exist.
+
+High-computation checks: rebuilding demanded-source ledgers, new Stage II candidate ledgers, hard affine SNEC sweeps, tau grids, component ledgers, and new parameter screens.
+```
+
+Immediate next action: decide whether to accept the unified source-picture report as the representative Stage II source-decomposition artifact, then either commit the report/plan update or proceed to source-sector closure.
+
 ## Current checkpoint, 2026-05-19
 
 Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
