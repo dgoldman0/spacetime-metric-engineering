@@ -73,7 +73,75 @@ High-computation checks: rebuilding demanded-source ledgers, new Stage II candid
 
 Dense source-sector closure has now run on the entry-gated design. The `151 x 225` extended ledger has zero positive live packet-norm samples. A refined constrained sector basis promotes non-live support-edge radial pressure as component I and non-live distributed current relaxation as H. The refined closure assigns `98.659%` of radial-null burden, `98.716%` of radial-pressure burden, and `91.315%` of angular-pressure burden before physical source replacement; the remaining current burden is carried by H with zero live burden. The H-promoted constrained sector fit passes its primary constraints, and the dense sector-sum hard-affine SNEC scan over `203,838` windows at `tau = 2.0, 3.0, 4.0` has zero raw and zero scoreable benchmark-floor violations, with tightest margin about `0.01497` at `tau = 4.0`.
 
-Immediate next action: treat the entry-gated dense source-sector closure as the current representative Stage II closure artifact, then move to explicit source-family replacement for the effective sectors A/B/I, G, C/E/F, and D/H. Do not describe the closure as a matter-model proof.
+Immediate next action: treat the entry-gated dense source-sector closure as the current representative Stage II closure artifact, then begin explicit source-family replacement for the effective sectors A/B/I, G, C/E/F, and D/H. Start with light/medium postprocessing: extract physical target signatures, localize remaining residuals, and map each sector to plausible source-family ansatz requirements before launching another heavy compute pass. Discuss intermediate source-family findings in chat as they appear; wait for report writing until the results are strong enough to support solid implications. Do not describe the closure as a matter-model proof.
+
+Current source-family work order:
+
+```text
+1. Build target tables from the dense closure outputs:
+   sector signs, ADM ratios, live burden, spatial/stage localization,
+   SNEC-limiting windows, and residual localization.
+
+2. Evaluate source-family candidates against those targets:
+   A/B/I radial support and pressure balance,
+   G angular/throat capacity,
+   C/E/F live handoff trim,
+   D/H current relaxation.
+
+3. Prefer hybrid source-family models over a single scalar source unless the
+   target tables show one family can cover multiple sectors without packet
+   contamination or large residual/conservation warnings.
+
+4. Only after the source-family target table is stable, run heavier explicit
+   source fitting or conservation checks.
+```
+
+Source-family target extraction has started as light postprocessing, not a new
+heavy compute pass. The first target tables are here:
+
+```text
+toolkit/adm_harness_cli/runs/source_family_targets_entry_closure_151x225/
+toolkit/adm_harness_cli/runs/radial_shell_viability_entry_closure_151x225/
+supporting_reports/STAGE2_SOURCE_FAMILY_TARGET_IMPLICATIONS.md
+```
+
+The current model-target split is:
+
+```text
+anisotropic radial-tension shell, A/B/I: 538.872629 burden, 94.03%
+live handoff boundary trim, C/E/F:       16.511753 burden,  2.88%
+angular capacity jacket, G:              8.625375 burden,  1.50%
+non-current closure residual:            8.461464 burden,  1.48%
+D/H current control:                     0.647478 burden,  0.11%
+```
+
+Implication checkpoint: the explicit source-family problem is first and foremost
+the A/B/I non-live radial infrastructure family. H is structurally important for
+current relaxation and conservation accounting, but it is not a large support
+burden. A single scalar source remains a poor first model for the whole support
+plant; the next concrete model target should be a hybrid family with radial
+tension infrastructure, a separate angular jacket, a packet-bound live handoff
+trim, and a small vector/current-relaxation sector.
+
+The first A/B/I radial-shell viability diagnostic decomposes the radial
+infrastructure into a point-level string-like scaffold plus residual trims:
+
+```text
+integral string-like scaffold:     76.987679
+selected-null deficit:              1.030155
+deficit / scaffold:                 1.338%
+deficit / A/B/I channel burden:     0.191%
+live scaffold fraction:             0.000%
+live deficit fraction:              0.000%
+```
+
+This suggests the physical quantity gate may be sharper than the raw A/B/I role
+burden: the large support plant looks close to an NEC-saturating radial-tension
+scaffold, while the true null-deficit trim is small but concentrated in
+reset/support-edge and reset/core current-sensitive rows. The next question is
+therefore whether an explicit radial tension/string-lattice family plus a small
+current/over-tension trim can satisfy conservation without damaging the existing
+hard-affine SNEC margins.
 
 ## Current checkpoint, 2026-05-19
 
