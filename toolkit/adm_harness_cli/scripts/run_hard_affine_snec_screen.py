@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 import sys
+import time
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -87,14 +88,37 @@ def build_parser() -> argparse.ArgumentParser:
         help="Use the geometric demanded total or the scaled sector-sum total.",
     )
     parser.add_argument("--top-limit", type=int, default=120)
+    parser.add_argument(
+        "--progress",
+        dest="progress",
+        action="store_true",
+        default=True,
+        help="Print center-scan progress while building uncached SNEC windows.",
+    )
+    parser.add_argument(
+        "--no-progress",
+        dest="progress",
+        action="store_false",
+        help="Suppress center-scan progress for quiet batch runs.",
+    )
     return parser
 
 
 def main() -> int:
     args = build_parser().parse_args()
+    smear_widths = args.smear_width or (0.25, 0.50, 1.00)
+    started_at = time.perf_counter()
+    print(json.dumps({
+        "event": "snec_compute_start",
+        "component_dir": str(args.component_dir),
+        "outdir": str(args.outdir),
+        "smear_widths": [float(width) for width in smear_widths],
+        "center_stride": int(args.center_stride),
+        "total_mode": str(args.total_mode),
+    }), flush=True)
     outputs, metadata = build_hard_affine_snec_screen(
         args.component_dir,
-        smear_widths=args.smear_width or (0.25, 0.50, 1.00),
+        smear_widths=smear_widths,
         benchmark_b=float(args.benchmark_b),
         center_stride=int(args.center_stride),
         top_limit=int(args.top_limit),
@@ -102,11 +126,13 @@ def main() -> int:
         min_kernel_coverage=float(args.min_kernel_coverage),
         sector_scales=_sector_scales(args.sector_scale),
         total_mode=str(args.total_mode),
+        progress=bool(args.progress),
     )
     files = write_hard_affine_snec_outputs(args.outdir, args.component_dir, outputs, metadata)
     print(json.dumps({
         "ok": True,
         "outdir": str(args.outdir),
+        "elapsed_s": round(time.perf_counter() - started_at, 3),
         "rows": {key: int(len(value)) for key, value in outputs.items()},
         "files": {key: str(value) for key, value in files.items()},
     }, indent=2))

@@ -424,6 +424,7 @@ def _scan_label(
     center_stride: int,
     min_support_coverage: float,
     min_kernel_coverage: float,
+    progress: bool = False,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     max_width = max(smear_widths)
@@ -433,7 +434,8 @@ def _scan_label(
         for branch in BRANCH_SIGNS
     }
     selected_centers = centers.sort_values(["s", "l"]).iloc[:: max(int(center_stride), 1)]
-    for _, center in selected_centers.iterrows():
+    total_centers = int(len(selected_centers))
+    for center_index, (_, center) in enumerate(selected_centers.iterrows(), start=1):
         center_s = float(center["s"])
         center_l = float(center["l"])
         for branch in BRANCH_SIGNS:
@@ -498,6 +500,8 @@ def _scan_label(
                     record[f"smeared_sector_neg::{sector}::{branch}"] = sector_neg
                 record["dominant_negative_sector"] = _dominant_negative_sector(record, branch)
                 rows.append(record)
+        if progress and (center_index == total_centers or center_index % max(1, total_centers // 5) == 0):
+            print(f"{grid.label}: SNEC center {center_index}/{total_centers}", flush=True)
     return pd.DataFrame(rows)
 
 
@@ -579,6 +583,7 @@ def build_hard_affine_snec_screen(
     min_kernel_coverage: float = 0.80,
     sector_scales: dict[str, float] | None = None,
     total_mode: str = "geometric",
+    progress: bool = False,
 ) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
     detail, metadata = _load_component_detail(component_dir)
     point_ledgers = _load_point_ledgers(component_dir, metadata["manifest"])
@@ -604,6 +609,7 @@ def build_hard_affine_snec_screen(
                 center_stride=int(center_stride),
                 min_support_coverage=float(min_support_coverage),
                 min_kernel_coverage=float(min_kernel_coverage),
+                progress=bool(progress),
             )
             for label, grid in grids.items()
         ],
@@ -636,6 +642,7 @@ def build_hard_affine_snec_screen(
         "min_kernel_coverage": float(min_kernel_coverage),
         "sector_scales": {sector: float((sector_scales or {}).get(sector, 1.0)) for sector in SECTOR_ORDER},
         "total_mode": str(total_mode),
+        "progress": bool(progress),
     })
     return outputs, metadata
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from dataclasses import replace
 from pathlib import Path
 
@@ -80,6 +81,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--l-max", type=float, default=2.80)
     parser.add_argument("--h-s", type=float, default=None)
     parser.add_argument("--h-l", type=float, default=None)
+    parser.add_argument(
+        "--progress",
+        dest="progress",
+        action="store_true",
+        default=True,
+        help="Print row-level progress while computing uncached candidate ledgers.",
+    )
+    parser.add_argument(
+        "--no-progress",
+        dest="progress",
+        action="store_false",
+        help="Suppress row-level progress for quiet batch runs.",
+    )
     parser.add_argument("--force", action="store_true")
     return parser
 
@@ -118,13 +132,22 @@ def main() -> int:
         case = _case_for_spec(label, spec, params)
         case_dir = args.outdir / label
         point_path = case_dir / "source_ledger_point_ledger.csv"
+        started_at = time.perf_counter()
         if point_path.exists() and not args.force:
             points = pd.read_csv(point_path)
             cache_status = "reused"
         else:
             case_dir.mkdir(parents=True, exist_ok=True)
-            points = compute_case(case, progress=False, **context.grid)
+            print(json.dumps({
+                "event": "compute_start",
+                "label": label,
+                "case": case.name,
+                "grid": context.grid,
+                "outdir": str(case_dir),
+            }), flush=True)
+            points = compute_case(case, progress=args.progress, **context.grid)
             cache_status = "computed"
+        elapsed_s = time.perf_counter() - started_at
         files = _write_tables(case_dir, points)
         file_strings = {key: str(path) for key, path in files.items()}
         manifest = case_metadata(case, context.grid, file_strings)
@@ -142,6 +165,7 @@ def main() -> int:
             "case": case.name,
             "outdir": str(case_dir),
             "cache_status": cache_status,
+            "elapsed_s": round(elapsed_s, 3),
             "rows": int(len(points)),
             "positive_packet_norm_live": int((points.loc[points["inside_packet_live"].astype(bool), "packet_norm"] > 0).sum()),
         }

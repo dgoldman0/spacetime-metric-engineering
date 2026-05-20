@@ -2,10 +2,10 @@
 
 ## Purpose
 
-This pass stress-tests the first hard affine SNEC result against the most suspicious failure modes:
+This pass stress-tests the first hard affine SNEC result against the most suspicious failure modes and then adjudicates the broad-window boundary hits on an extended domain:
 
 ```text
-boundary-truncated broad affine windows;
+boundary-truncated broad affine windows and their extended-domain resolution;
 sector-sum versus geometric total accounting;
 sector ablations for G, H, D, and closure residual.
 ```
@@ -49,6 +49,15 @@ toolkit/adm_harness_cli/runs/stage2_external/stage2_hard_affine_snec_compact_81x
 
 closure-residual ablation:
 toolkit/adm_harness_cli/runs/stage2_external/stage2_hard_affine_snec_compact_81x109_ablate_closure_broad/
+
+extended source ledger:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_compact_kill_candidate_ledger_extended_s1p5_2p4_l4p2_101x151/compact7_wide4_edge160/
+
+extended component ledger:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_component_source_compact_extended_s1p5_2p4_l4p2_101x151_full_roles/
+
+extended-domain hard SNEC adjudication:
+toolkit/adm_harness_cli/runs/stage2_external/stage2_hard_affine_snec_compact_extended_s1p5_2p4_l4p2_101x151_tau2_tau3_tau4_boundary/
 ```
 
 ## Boundary-Aware Baseline
@@ -70,7 +79,36 @@ raw all-window scan: boundary-truncated windows can fail;
 scoreable-window scan: no failures after enforcing affine support coverage.
 ```
 
-This does not mean the raw failures are physically real. It means the current domain is not sufficient to score those broad boundary windows. They must be tested on an extended domain, not counted as either pass or fail.
+This did not mean the raw failures were physically real. It meant the current domain was not sufficient to score those broad boundary windows. The extended-domain pass below resolves that ambiguity.
+
+## Extended-Domain Adjudication
+
+The compact target was rerun on a larger grid:
+
+```text
+101 x 151
+s in [-1.50, 2.40]
+l in [-4.20, 4.20]
+```
+
+This was an adjudication domain, not a newly promoted safe candidate. It found two positive live packet-norm points at the newly exposed early-entry boundary:
+
+| s | l | stage | region | packet norm |
+| ---: | ---: | --- | --- | ---: |
+| -1.500 | -1.792 | entry_precatch | packet_outer | 1.6255 |
+| -1.422 | -1.736 | entry_precatch | packet_in_support | 1.2549 |
+
+Those two points matter for future geometry/domain work, but they do not explain a SNEC failure: the extended hard affine SNEC scan found no benchmark-floor violations at all.
+
+The extended SNEC run scanned `91,494` windows.
+
+| tau | scoreable windows | rejected windows | raw all-window violations | scoreable violations | worst scoreable `T_hat_kk` | floor | margin | dominant sector |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 2.0 | 4,117 / 4,127 | 11,132 / 11,122 | 0 / 0 | 0 / 0 | -0.00261 | -0.06250 | 0.05989 | closure residual |
+| 3.0 | 3,631 / 3,647 | 11,618 / 11,602 | 0 / 0 | 0 / 0 | -0.00107 | -0.02778 | 0.02671 | closure residual |
+| 4.0 | 3,293 / 3,343 | 11,956 / 11,906 | 0 / 0 | 0 / 0 | -0.00069 | -0.01563 | 0.01494 | closure residual / live trim |
+
+The old `tau = 4.0` raw failures disappeared when the affine traces were given enough surrounding domain. That turns the previous broad-window concern into a boundary-truncation artifact, not a real SNEC kill.
 
 ## Sector-Sum Baseline
 
@@ -106,28 +144,32 @@ removing G or closure residual worsens the tightest broad margin slightly, but d
 H/D matter more at short widths than broad widths, consistent with earlier sector readout.
 ```
 
-## What Broke
+## What Broke And What Held
 
-The thing that broke was not the scoreable SNEC benchmark. The thing that broke was the naive assumption that all broad-width windows are equally scorable on the current domain.
+The thing that broke was not the SNEC benchmark. The thing that broke was the naive assumption that all broad-width windows are equally scorable on the original `81 x 109` domain.
 
-At `tau = 4.0`, many windows are boundary truncated. Some of those raw all-window averages violate the benchmark floor. Because they lack enough affine support, they are not trustworthy pass/fail windows.
+At `tau = 4.0`, many original-domain windows were boundary truncated. Some of those raw all-window averages violated the benchmark floor. Because they lacked enough affine support, they were not trustworthy pass/fail windows.
 
-This turns the next question into a domain-coverage question:
+The extended-domain rerun answered the domain-coverage question:
 
 ```text
-Do the tau = 4 boundary failures persist when the source ledger domain is extended far enough to score them?
+the tau = 4 boundary failures do not persist when the source ledger domain is extended far enough to score them.
 ```
 
 ## Verdict
 
-The current compact model still holds under scoreable broad-width and sector-ablation tests.
+The current compact model still holds under scoreable broad-width, sector-ablation, and extended-domain hard affine SNEC tests.
 
-But the adversarial pass found a real next risk:
+The broad-window SNEC result is stronger after this pass, not weaker:
 
 ```text
-broad affine windows near the domain boundary are under-resolved/truncated;
-some raw truncated tau = 4 windows fail;
-the current domain cannot adjudicate those windows.
+original-domain tau = 4 raw failures were boundary truncation artifacts;
+extended-domain tau = 2, 3, and 4 scans have zero raw and zero scoreable benchmark violations;
+the limiting concern has shifted from SNEC failure to packet-safety/domain behavior at the newly exposed early-entry edge.
 ```
 
-That is not a kill, but it is no longer just a clean pass. The next deeper test should extend the ledger domain in `s` and probably `l`, rerun the compact target at moderate resolution, and rescore `tau = 3.0` and `4.0` boundary windows with adequate affine support.
+This still is not a physical-source proof. The right next deeper work is to use the remaining SNEC margin while replacing oracle-like sector accounting with a more constrained source ansatz, and separately decide whether the extended early-entry packet-norm failures require a geometry boundary refinement or simply mark the edge of the adjudication-only domain.
+
+## Harness Progress Note
+
+The long extended-domain runs also exposed a practical reporting gap. The candidate-ledger and hard-affine SNEC runners now emit start records, progress heartbeats, and elapsed seconds by default, with `--no-progress` available for quiet batch runs.
