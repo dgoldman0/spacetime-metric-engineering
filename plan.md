@@ -24,6 +24,7 @@ Entry gate: accepted as part of the representative design.
 Live packet safety: clean on the 101 x 151 extended ledger.
 Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
+Endpoint physical-source gate: open; junction layer is now the main admissibility risk.
 ```
 
 Key current facts:
@@ -57,6 +58,12 @@ supporting_reports/STAGE2_FULL_GRID_SOURCE_DECOMPOSITION_ENTRY_GATE.md
 
 dense source-sector closure report:
 supporting_reports/STAGE2_ENTRY_SECTOR_CLOSURE_DENSE.md
+
+endpoint-junction milestone:
+supporting_reports/STAGE2_ENDPOINT_JUNCTION_SOURCE_MILESTONE.md
+
+endpoint theory memo:
+supporting_reports/STAGE2_ENDPOINT_THEORY_MEMO.md
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
@@ -246,6 +253,46 @@ Implication: the model is algebraically clean and live-clean, but D/H as an
 isolated current sector is strongly SNEC-negative. The next check must therefore
 be a coupled sector-sum SNEC comparison for the intermediate model, not an
 isolated component verdict on D/H.
+
+Latest endpoint-junction update:
+
+```text
+supporting_reports/STAGE2_ENDPOINT_JUNCTION_SOURCE_MILESTONE.md
+supporting_reports/STAGE2_ENDPOINT_THEORY_MEMO.md
+toolkit/adm_harness_cli/runs/intermediate_source_model_entry_closure_151x225_junction/
+toolkit/adm_harness_cli/runs/intermediate_source_snec_entry_closure_151x225_junction_stride16_tau200_300_400/
+```
+
+The split `S0/S1/S2/G/DH` model was useful diagnostically, but the endpoint
+residual should now be treated as one coupled source-family target:
+
+```text
+S0: constant-flux radial string-cloud backbone
+J: endpoint/junction layer carrying radial trim, angular capacity, and current relaxation
+R: small core-body residual leakage
+```
+
+The coupled junction model still exactly reconstructs the demanded point stress
+to numerical roundoff, has zero live burden, and stays clean in the sampled
+`tau = 2.0, 3.0, 4.0` junction-sector SNEC screen. The important change is
+interpretive: the endpoint is now the primary physical-admissibility gate, not a
+minor residual. The algebra screen strengthens the Barcelo/Visser-style concern:
+`J` has selected-null deficit `1.010455`, pure `rho + p_l` NEC deficit
+`0.423023`, current `0.381351`, and angular burden `3.961789`. The
+support-edge endpoint is the most throat-like part, with `85.5%` of its
+selected-deficit-weighted volume negative on both radial branches. The simple
+geometry read is less damning: only `0.07%` of selected deficit sits at local
+areal-radius minima, while `98.6%` lies in flaring `d2R/dl2 > 0` rows. So the
+current status is "throat-like source demand, not yet literal transient
+traversable-wormhole throat."
+
+Next active decision: run endpoint-focused tests before further source-family
+promotion. The first pass should be an endpoint scale/thickness ladder plus a
+stress-concentration/resolution-growth read. If the endpoint load relaxes under
+finite-width distribution while remaining non-live and SNEC-clean, the
+architecture survives this concern. If it sharpens, grows with resolution, or
+requires an extreme effective coupling, then the endpoint is likely the hidden
+"somewhere" of the traversability cost.
 
 ## Current checkpoint, 2026-05-19
 
