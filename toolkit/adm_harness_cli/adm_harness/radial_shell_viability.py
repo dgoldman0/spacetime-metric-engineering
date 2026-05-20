@@ -46,13 +46,35 @@ def _load_detail(component_dir: Path) -> tuple[pd.DataFrame, dict[str, Any]]:
     detail_value = manifest.get("files", {}).get("detail", "component_source_assignment_detail.csv")
     detail_path = resolve_manifest_path(component_dir, detail_value)
     return pd.read_csv(detail_path), {
+        "component_dir": component_dir,
         "manifest_path": manifest_path,
         "manifest": manifest,
         "detail_path": detail_path,
     }
 
 
-def _radial_point_frame(detail: pd.DataFrame) -> pd.DataFrame:
+def _load_point_geometry(metadata: dict[str, Any]) -> pd.DataFrame:
+    frames: list[pd.DataFrame] = []
+    component_dir = Path(metadata["component_dir"])
+    for ledger in metadata.get("manifest", {}).get("ledgers", []):
+        point_value = ledger.get("point_ledger")
+        if not point_value:
+            continue
+        point_path = resolve_manifest_path(component_dir, point_value)
+        if not point_path.exists():
+            continue
+        header = pd.read_csv(point_path, nrows=0)
+        usecols = [col for col in ["gamma_omega", "gamma_ll"] if col in header.columns]
+        if not usecols:
+            continue
+        frame = pd.read_csv(point_path, usecols=usecols)
+        frame["point_index"] = np.arange(len(frame), dtype=int)
+        frame["label"] = str(ledger.get("label", ""))
+        frames.append(frame)
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+
+
+def _radial_point_frame(detail: pd.DataFrame, geometry: pd.DataFrame | None = None) -> pd.DataFrame:
     radial_rows = detail.loc[detail["component"].isin(RADIAL_COMPONENTS)].copy()
     if radial_rows.empty:
         return pd.DataFrame()
@@ -96,6 +118,8 @@ def _radial_point_frame(detail: pd.DataFrame) -> pd.DataFrame:
     out = points.merge(channel_burden, on="point_index", how="left")
     out = out.merge(components, on="point_index", how="left")
     out = out.merge(channels, on="point_index", how="left")
+    if geometry is not None and not geometry.empty:
+        out = out.merge(geometry, on=["label", "point_index"], how="left")
     out = _add_algebra_columns(out)
     rho = out["rho_euler"].astype(float)
     p_l = out["p_l_unit"].astype(float)
@@ -105,6 +129,7 @@ def _radial_point_frame(detail: pd.DataFrame) -> pd.DataFrame:
     radial_tension = np.maximum(-p_l, 0.0)
     scaffold = np.minimum(positive_rho, radial_tension)
     out["string_scaffold_density"] = scaffold
+    out["best_string_density"] = np.maximum(0.5 * (rho - p_l), 0.0)
     out["radial_over_tension_density"] = np.maximum(radial_tension - positive_rho, 0.0)
     out["radial_under_tension_density"] = np.maximum(positive_rho - radial_tension, 0.0)
     out["negative_energy_density"] = np.maximum(-rho, 0.0)
@@ -116,6 +141,7 @@ def _radial_point_frame(detail: pd.DataFrame) -> pd.DataFrame:
     out["abs_p_l_density"] = np.abs(p_l)
     for col in [
         "string_scaffold_density",
+        "best_string_density",
         "radial_over_tension_density",
         "radial_under_tension_density",
         "negative_energy_density",
@@ -126,6 +152,8 @@ def _radial_point_frame(detail: pd.DataFrame) -> pd.DataFrame:
         "abs_p_l_density",
     ]:
         out[f"{col}_volume"] = out[col].astype(float) * out["volume_weight"].astype(float)
+    if "gamma_omega" in out.columns:
+        out["areal_string_flux_proxy"] = out["best_string_density"].astype(float) * out["gamma_omega"].astype(float)
     return out
 
 
@@ -148,11 +176,87 @@ def _dominant_location(frame: pd.DataFrame, burden_col: str) -> tuple[str, str, 
     return str(stage), str(region), bool(live), _safe_ratio(float(grouped.iloc[0]), total)
 
 
+def _weighted_flux_stats(frame: pd.DataFrame) -> dict[str, float]:
+    if (
+        frame.empty
+        or "areal_string_flux_proxy" not in frame.columns
+        or "string_scaffold_density_volume" not in frame.columns
+    ):
+        return {
+            "areal_string_flux_mean": float("nan"),
+            "areal_string_flux_rel_mad": float("nan"),
+            "areal_string_flux_min": float("nan"),
+            "areal_string_flux_max": float("nan"),
+        }
+    flux = frame["areal_string_flux_proxy"].astype(float).to_numpy()
+    weights = frame["string_scaffold_density_volume"].astype(float).to_numpy()
+    mask = np.isfinite(flux) & np.isfinite(weights) & (weights > 0.0)
+    if int(mask.sum()) == 0:
+        return {
+            "areal_string_flux_mean": float("nan"),
+            "areal_string_flux_rel_mad": float("nan"),
+            "areal_string_flux_min": float("nan"),
+            "areal_string_flux_max": float("nan"),
+        }
+    flux = flux[mask]
+    weights = weights[mask]
+    mean = float(np.sum(flux * weights) / np.sum(weights))
+    mad = float(np.sum(np.abs(flux - mean) * weights) / np.sum(weights))
+    return {
+        "areal_string_flux_mean": mean,
+        "areal_string_flux_rel_mad": _safe_ratio(mad, abs(mean)),
+        "areal_string_flux_min": float(np.min(flux)),
+        "areal_string_flux_max": float(np.max(flux)),
+    }
+
+
+def _constant_flux_residuals(frame: pd.DataFrame, flux_mean: float) -> dict[str, float]:
+    if (
+        frame.empty
+        or not math.isfinite(flux_mean)
+        or "gamma_omega" not in frame.columns
+        or "volume_weight" not in frame.columns
+    ):
+        return {
+            "constant_flux_rho_residual_l1": float("nan"),
+            "constant_flux_p_l_residual_l1": float("nan"),
+            "constant_flux_pair_residual_l1": float("nan"),
+            "constant_flux_pair_residual_fraction": float("nan"),
+        }
+    gamma = frame["gamma_omega"].astype(float).to_numpy()
+    volume = frame["volume_weight"].astype(float).to_numpy()
+    rho = frame["rho_euler"].astype(float).to_numpy()
+    p_l = frame["p_l_unit"].astype(float).to_numpy()
+    mask = np.isfinite(gamma) & np.isfinite(volume) & (gamma > 0.0) & (volume > 0.0)
+    if int(mask.sum()) == 0:
+        return {
+            "constant_flux_rho_residual_l1": float("nan"),
+            "constant_flux_p_l_residual_l1": float("nan"),
+            "constant_flux_pair_residual_l1": float("nan"),
+            "constant_flux_pair_residual_fraction": float("nan"),
+        }
+    mu = flux_mean / gamma[mask]
+    rho = rho[mask]
+    p_l = p_l[mask]
+    volume = volume[mask]
+    rho_residual = float(np.sum(np.abs(rho - mu) * volume))
+    p_l_residual = float(np.sum(np.abs(p_l + mu) * volume))
+    pair_residual = rho_residual + p_l_residual
+    pair_norm = float(np.sum((np.abs(rho) + np.abs(p_l)) * volume))
+    return {
+        "constant_flux_rho_residual_l1": rho_residual,
+        "constant_flux_p_l_residual_l1": p_l_residual,
+        "constant_flux_pair_residual_l1": pair_residual,
+        "constant_flux_pair_residual_fraction": _safe_ratio(pair_residual, pair_norm),
+    }
+
+
 def _summary(points: pd.DataFrame, detail: pd.DataFrame) -> pd.DataFrame:
     if points.empty:
         return pd.DataFrame()
     channel_burden = _sum(points, "radial_channel_burden")
     scaffold = _sum(points, "string_scaffold_density_volume")
+    best_string = _sum(points, "best_string_density_volume")
     deficit = _sum(points, "selected_null_deficit_density_volume")
     over_tension = _sum(points, "radial_over_tension_density_volume")
     under_tension = _sum(points, "radial_under_tension_density_volume")
@@ -169,6 +273,8 @@ def _summary(points: pd.DataFrame, detail: pd.DataFrame) -> pd.DataFrame:
     )
     radial_detail = detail.loc[detail["component"].isin(RADIAL_COMPONENTS)]
     component_burdens = radial_detail.groupby("component")["demand_volume_burden"].sum().to_dict()
+    flux_stats = _weighted_flux_stats(points)
+    constant_flux_residuals = _constant_flux_residuals(points, flux_stats["areal_string_flux_mean"])
     return pd.DataFrame([{
         "radial_components": ",".join(RADIAL_COMPONENTS),
         "support_points": int(len(points)),
@@ -180,6 +286,7 @@ def _summary(points: pd.DataFrame, detail: pd.DataFrame) -> pd.DataFrame:
         "integral_abs_rho": abs_rho,
         "integral_abs_p_l": abs_pl,
         "integral_string_scaffold": scaffold,
+        "integral_best_string_density": best_string,
         "integral_selected_null_deficit": deficit,
         "integral_radial_over_tension": over_tension,
         "integral_radial_under_tension": under_tension,
@@ -204,10 +311,12 @@ def _summary(points: pd.DataFrame, detail: pd.DataFrame) -> pd.DataFrame:
         "dominant_deficit_region": def_region,
         "dominant_deficit_live": def_live,
         "dominant_deficit_fraction": def_fraction,
+        **flux_stats,
+        **constant_flux_residuals,
     }])
 
 
-def _by_location(points: pd.DataFrame) -> pd.DataFrame:
+def _by_location(points: pd.DataFrame, global_flux_mean: float = float("nan")) -> pd.DataFrame:
     if points.empty:
         return pd.DataFrame()
     grouped = points.groupby(["stage", "region", "inside_packet_live"], dropna=False)
@@ -222,6 +331,7 @@ def _by_location(points: pd.DataFrame) -> pd.DataFrame:
             "support_points": int(len(group)),
             "radial_channel_burden": _sum(group, "radial_channel_burden"),
             "integral_string_scaffold": scaffold,
+            "integral_best_string_density": _sum(group, "best_string_density_volume"),
             "integral_selected_null_deficit": deficit,
             "integral_radial_over_tension": _sum(group, "radial_over_tension_density_volume"),
             "integral_radial_under_tension": _sum(group, "radial_under_tension_density_volume"),
@@ -229,6 +339,8 @@ def _by_location(points: pd.DataFrame) -> pd.DataFrame:
             "integral_abs_current": _sum(group, "abs_current_density_volume"),
             "integral_abs_pomega": _sum(group, "abs_pomega_density_volume"),
             "selected_null_deficit_per_scaffold": _safe_ratio(deficit, scaffold),
+            **_weighted_flux_stats(group),
+            **_constant_flux_residuals(group, global_flux_mean),
             "s_min": float(group["s"].min()),
             "s_max": float(group["s"].max()),
             "l_min": float(group["l"].min()),
@@ -265,14 +377,16 @@ def _component_channels(detail: pd.DataFrame) -> pd.DataFrame:
 
 def build_radial_shell_viability(component_dir: Path) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
     detail, metadata = _load_detail(component_dir)
-    points = _radial_point_frame(detail)
+    geometry = _load_point_geometry(metadata)
+    points = _radial_point_frame(detail, geometry)
+    flux_mean = _weighted_flux_stats(points)["areal_string_flux_mean"]
     outputs = {
         "summary": _summary(points, detail),
-        "by_location": _by_location(points),
+        "by_location": _by_location(points, flux_mean),
         "point_targets": points,
         "component_channels": _component_channels(detail),
     }
-    metadata["component_dir"] = component_dir
+    metadata["geometry_rows"] = int(len(geometry))
     return outputs, metadata
 
 
@@ -300,6 +414,7 @@ def write_radial_shell_viability_outputs(
         "component_source_manifest": str(metadata["manifest_path"]),
         "component_detail": str(metadata["detail_path"]),
         "component_detail_sha256": sha256_file(metadata["detail_path"]),
+        "geometry_rows": int(metadata.get("geometry_rows", 0)),
         "radial_components": list(RADIAL_COMPONENTS),
         "files": {key: str(path) for key, path in paths.items()},
         "rows": {key: int(len(outputs.get(key, pd.DataFrame()))) for key in paths},

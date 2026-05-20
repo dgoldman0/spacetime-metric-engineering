@@ -143,6 +143,27 @@ therefore whether an explicit radial tension/string-lattice family plus a small
 current/over-tension trim can satisfy conservation without damaging the existing
 hard-affine SNEC margins.
 
+Follow-up areal-flux check:
+
+```text
+supporting_reports/STAGE2_RADIAL_STRING_CLOUD_AREAL_FLUX_CHECK.md
+```
+
+Joining the A/B/I scaffold back to `gamma_omega` shows the main non-live radial
+body is close to a conserved radial string-cloud profile:
+
+```text
+mu = Phi / gamma_omega
+areal string flux proxy mean:       0.039772
+weighted relative mean deviation:   0.0904%
+constant-flux pair residual:        0.4634% of integral |rho| + |p_l|
+```
+
+The next source-family target is therefore more specific: fit the primary A/B/I
+body as a constant-areal-flux radial string cloud, then isolate the
+reset/support-edge and reset/core cap residual for coupling to D/H current
+relaxation and G angular capacity.
+
 ## Current checkpoint, 2026-05-19
 
 Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
