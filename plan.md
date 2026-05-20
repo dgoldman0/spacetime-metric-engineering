@@ -210,6 +210,43 @@ C/E/F: live handoff trim, kept separate from S0/S1/S2
 
 Then run a light sector-sum SNEC comparison before any heavier matter solve.
 
+The first `S0/S1/S2/G/DH` intermediate replacement ledger has now been built:
+
+```text
+toolkit/adm_harness_cli/runs/intermediate_source_model_entry_closure_151x225/
+toolkit/adm_harness_cli/adm_harness/intermediate_source_model.py
+toolkit/adm_harness_cli/scripts/run_intermediate_source_model.py
+toolkit/adm_harness_cli/tests/test_intermediate_source_model.py
+```
+
+It exactly reconstructs the A/B/I point stress after string-cloud subtraction
+to numerical roundoff:
+
+```text
+point sector rows:                         47,896
+weighted total abs reconstruction error:    9.51e-13
+error / radial pair norm:                   6.15e-15
+live model pair burden:                     0.000000
+live model selected-null deficit:           0.000000
+```
+
+Sector readout:
+
+```text
+S0 constant-flux string cloud pair L1:       154.673088
+S1 support-edge radial trim selected-null:     0.315000
+S2 reset endpoint radial cap selected-null:    0.108023
+D/H current selected-null, support edge:       0.132527
+D/H current selected-null, reset cap:          0.630175
+G angular support, support edge:               1.499727
+G angular support, reset cap:                  2.462061
+```
+
+Implication: the model is algebraically clean and live-clean, but D/H as an
+isolated current sector is strongly SNEC-negative. The next check must therefore
+be a coupled sector-sum SNEC comparison for the intermediate model, not an
+isolated component verdict on D/H.
+
 ## Current checkpoint, 2026-05-19
 
 Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
