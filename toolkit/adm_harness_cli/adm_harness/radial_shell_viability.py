@@ -78,20 +78,21 @@ def _radial_point_frame(detail: pd.DataFrame, geometry: pd.DataFrame | None = No
     radial_rows = detail.loc[detail["component"].isin(RADIAL_COMPONENTS)].copy()
     if radial_rows.empty:
         return pd.DataFrame()
+    point_key = ["label", "point_index"]
     channel_burden = (
-        radial_rows.groupby("point_index")["demand_volume_burden"]
+        radial_rows.groupby(point_key)["demand_volume_burden"]
         .sum()
         .rename("radial_channel_burden")
         .reset_index()
     )
     components = (
-        radial_rows.groupby("point_index")["component"]
+        radial_rows.groupby(point_key)["component"]
         .agg(lambda values: ",".join(sorted(set(str(value) for value in values))))
         .rename("radial_components")
         .reset_index()
     )
     channels = (
-        radial_rows.groupby("point_index")["channel"]
+        radial_rows.groupby(point_key)["channel"]
         .agg(lambda values: ",".join(sorted(set(str(value) for value in values))))
         .rename("radial_channels")
         .reset_index()
@@ -114,10 +115,14 @@ def _radial_point_frame(detail: pd.DataFrame, geometry: pd.DataFrame | None = No
         "Tkk_min_radial",
     ]
     point_cols = [col for col in point_cols if col in radial_rows.columns]
-    points = radial_rows.sort_values(["point_index", "component"]).drop_duplicates("point_index")[point_cols].copy()
-    out = points.merge(channel_burden, on="point_index", how="left")
-    out = out.merge(components, on="point_index", how="left")
-    out = out.merge(channels, on="point_index", how="left")
+    points = (
+        radial_rows.sort_values(["label", "point_index", "component"])
+        .drop_duplicates(point_key)[point_cols]
+        .copy()
+    )
+    out = points.merge(channel_burden, on=point_key, how="left")
+    out = out.merge(components, on=point_key, how="left")
+    out = out.merge(channels, on=point_key, how="left")
     if geometry is not None and not geometry.empty:
         out = out.merge(geometry, on=["label", "point_index"], how="left")
     out = _add_algebra_columns(out)

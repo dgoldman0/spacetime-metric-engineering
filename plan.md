@@ -164,6 +164,52 @@ body as a constant-areal-flux radial string cloud, then isolate the
 reset/support-edge and reset/core cap residual for coupling to D/H current
 relaxation and G angular capacity.
 
+Endpoint crosswalk follow-up:
+
+```text
+supporting_reports/STAGE2_RADIAL_STRING_CLOUD_ENDPOINT_CROSSWALK.md
+toolkit/adm_harness_cli/runs/radial_string_cloud_replacement_entry_closure_151x225/
+toolkit/adm_harness_cli/runs/endpoint_shoulder_crosswalk_entry_closure_151x225/
+```
+
+Subtracting the constant-flux radial string cloud leaves zero live residual
+burden and splits the non-live residual into a clean core body, a support-edge
+shoulder, and a reset/decompression cap:
+
+```text
+core cloud body selected-null deficit:      0.019700  ( 1.912%)
+support-edge shoulder selected-null deficit:0.443187  (43.021%)
+reset cap selected-null deficit:            0.567268  (55.066%)
+
+support-edge shoulder current burden:       0.066263  (16.840%)
+reset cap current burden:                   0.315088  (80.076%)
+
+support-edge shoulder angular burden:       1.499727  (35.986%)
+reset cap angular burden:                   2.462061  (59.077%)
+```
+
+Implication checkpoint: the design still holds as a source-placement
+architecture, but the source-family target must refine beyond one radial shell.
+The core A/B/I scaffold is now the best candidate for a constant-areal-flux
+radial string-cloud body. The remaining risk is endpoint/anchor closure:
+support-edge shoulder trim tied to handoff/carrying-flow activity, plus a
+separate reset/decompression cap carrying most D/H current relaxation and much
+of the endpoint angular burden.
+
+Next active artifact: build an intermediate replacement model with explicit
+`S0/S1/S2` sectors:
+
+```text
+S0: constant-flux radial string-cloud core
+S1: non-live support-edge shoulder trim
+S2: non-live reset/decompression endpoint cap
+G: angular/throat-capacity endpoint support
+D/H: non-live current relaxation
+C/E/F: live handoff trim, kept separate from S0/S1/S2
+```
+
+Then run a light sector-sum SNEC comparison before any heavier matter solve.
+
 ## Current checkpoint, 2026-05-19
 
 Latest active update: the compact handoff branch has produced the strongest recent evidence of a real design component rather than another scalar fine-tune. The `compact_smoothstep7` wide handoff at V5, especially `compact7_wide4_edge160`, reduces live `Tkk`, live `j_l`, live `pOmega`, point `pOmega`, and the channel-cause derivative concentration on a stricter `61 x 83` grid. It is not a final refreeze because it still charges live `p_l`, but it is the first recent branch with high-resolution evidence that the underlying packet/support derivative concentration itself is lower.
