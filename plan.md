@@ -116,14 +116,27 @@ samples. The cost is support-edge transfer: support-edge selected-null deficit
 rose from `0.404144` to `0.521812`. Hold width gives weaker directional relief;
 lapse lag, carve lag, and paired lag at `0.25` are no-ops at this grid.
 
-Updated next action: run a beta-release/support-edge co-design screen, not a
-generic endpoint ladder. Primary axis is release beta width (`0.50`, `0.75`,
-possibly `1.00`); companion axes should retune support-edge shoulder and angular
-jacket capacity so reset relief does not simply pile into support-edge. Win
-condition: keep reset selected-null near or below `0.45`, preserve the
-`20-30%` reset-current reduction, reduce the support-edge transfer, keep
-positive live packet-norm samples at `0`, and avoid increasing J total. Confirm
-on a denser grid before report-grade physical claims.
+Beta/support co-design update: the targeted screen is complete and documented
+in `supporting_reports/STAGE2_ENDPOINT_BETA_SUPPORT_CODESIGN.md`. All ten
+`61 x 83` cases were live-clean. Beta width remains the real endpoint-relief
+axis: `release_beta_width_multiplier = 1.00` moved reset selected-null deficit
+to `0.371175`, reset current to `0.177826`, and J total to `0.944764`, still
+with zero positive live packet-norm samples. But the cost grew: support-edge
+selected-null deficit rose to `0.573589`. Transfer accounting says roughly
+`80-84%` of the reset relief reappears as support-edge burden, while only
+`16-20%` becomes net J relief.
+
+The co-design screen also rules out the simple receiver hypothesis for the
+current source grammar. At fixed beta width `0.75`, edge width `9/11`, edge
+softening, angular log gains `0.05/0.10`, edge+angular pairing, and guard blend
+all left the reset cap unchanged and moved J/support-edge only at the fourth or
+fifth decimal. Updated next action: do not run another smooth-split edge-width
+ladder as the main branch. Formulate an explicit support-edge receiver model
+coupled to beta-release transfer: a non-live endpoint shoulder/cap component
+that can carry radial-pair trim, angular capacity, and current relaxation while
+preserving the live packet gate. Confirm any promoted receiver on a denser grid
+and then with an endpoint-local SNEC companion before report-grade physical
+claims.
 
 Current source-family work order:
 

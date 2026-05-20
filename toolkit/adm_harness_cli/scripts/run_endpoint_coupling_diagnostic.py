@@ -85,6 +85,14 @@ def _control_row(ledger_root: Path, label: str) -> dict[str, Any]:
             params.get("standing_support_packet_smooth_split_current_guard_fraction"), float("nan")
         ),
         "current_guard_mode": str(params.get("standing_support_packet_smooth_split_current_guard_mode", "")),
+        "angular_log_gain": _finite(
+            params.get("standing_support_packet_smooth_split_angular_log_gain"), float("nan")
+        ),
+        "support_radius_Rth": _finite(params.get("Rth"), float("nan")),
+        "support_width_wth": _finite(params.get("w_th"), float("nan")),
+        "angular_radius_ROmega": _finite(params.get("ROmega"), float("nan")),
+        "angular_width_wOmega": _finite(params.get("wOmega"), float("nan")),
+        "angular_amplitude_aOmega": _finite(params.get("aOmega"), float("nan")),
         "temporal_width_multiplier": _finite(
             params.get("standing_support_packet_smooth_split_temporal_width_multiplier"), float("nan")
         ),
@@ -190,6 +198,11 @@ def _contrast(summary: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
         label = str(row["label"])
         if label == str(base["label"]):
             change = "baseline"
+        elif "edge_wide" in label and "ang" in label:
+            change = (
+                f"edge_width {base['edge_width_multiplier']:.3g}->{row['edge_width_multiplier']:.3g}; "
+                f"angular_log_gain {base['angular_log_gain']:.3g}->{row['angular_log_gain']:.3g}"
+            )
         elif "edge_wide" in label:
             change = f"edge_width {base['edge_width_multiplier']:.3g}->{row['edge_width_multiplier']:.3g}"
         elif "catch_edge" in label:
@@ -201,6 +214,8 @@ def _contrast(summary: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
             change = f"edge_carve {base['edge_carve']:.3g}->{row['edge_carve']:.3g}"
         elif "guard_blend" in label:
             change = f"current_guard_fraction {base['current_guard_fraction']:.3g}->{row['current_guard_fraction']:.3g}"
+        elif "ang" in label:
+            change = f"angular_log_gain {base['angular_log_gain']:.3g}->{row['angular_log_gain']:.3g}"
         elif "temporal" in label:
             change = f"temporal_width {base['temporal_width_multiplier']:.3g}->{row['temporal_width_multiplier']:.3g}"
         elif "hold" in label:
