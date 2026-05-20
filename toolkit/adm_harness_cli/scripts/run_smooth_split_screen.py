@@ -421,6 +421,22 @@ def _values(spec: dict[str, Any], params: SourceParams) -> dict[str, Any]:
         "release_carve_lag_widths": (
             None if spec.get("release_carve_lag_widths") is None else float(spec["release_carve_lag_widths"])
         ),
+        "receiver_enabled": bool(spec.get("receiver_enabled", False)),
+        "receiver_memory_reference_width": float(spec.get("receiver_memory_reference_width", 0.25)),
+        "receiver_memory_gain": float(spec.get("receiver_memory_gain", 1.0)),
+        "receiver_post_release_widths": float(spec.get("receiver_post_release_widths", 2.0)),
+        "receiver_inner_multiplier": float(spec.get("receiver_inner_multiplier", 0.65)),
+        "receiver_outer_multiplier": float(spec.get("receiver_outer_multiplier", 1.20)),
+        "receiver_radial_width": (
+            None if spec.get("receiver_radial_width") is None else float(spec["receiver_radial_width"])
+        ),
+        "receiver_outer_power": float(spec.get("receiver_outer_power", 1.0)),
+        "receiver_packet_exclusion": float(spec.get("receiver_packet_exclusion", 1.0)),
+        "receiver_lapse_log_gain": float(spec.get("receiver_lapse_log_gain", 0.0)),
+        "receiver_radial_log_gain": float(spec.get("receiver_radial_log_gain", 0.0)),
+        "receiver_beta_relaxation_gain": float(spec.get("receiver_beta_relaxation_gain", 0.0)),
+        "receiver_angular_log_gain": float(spec.get("receiver_angular_log_gain", 0.0)),
+        "receiver_angular_side": str(spec.get("receiver_angular_side", "positive")),
     }
 
 
@@ -524,6 +540,23 @@ def _case_for_spec(label: str, spec: dict[str, Any], params: SourceParams) -> So
             standing_support_packet_smooth_split_current_guard_mode=values["current_guard_mode"],
             standing_support_packet_smooth_split_angular_log_gain=values["angular_log_gain"],
         )
+        if values["receiver_enabled"]:
+            updates.update(
+                support_edge_receiver_enabled=True,
+                support_edge_receiver_memory_reference_width=values["receiver_memory_reference_width"],
+                support_edge_receiver_memory_gain=values["receiver_memory_gain"],
+                support_edge_receiver_post_release_widths=values["receiver_post_release_widths"],
+                support_edge_receiver_inner_multiplier=values["receiver_inner_multiplier"],
+                support_edge_receiver_outer_multiplier=values["receiver_outer_multiplier"],
+                support_edge_receiver_radial_width=values["receiver_radial_width"],
+                support_edge_receiver_outer_power=values["receiver_outer_power"],
+                support_edge_receiver_packet_exclusion=values["receiver_packet_exclusion"],
+                support_edge_receiver_lapse_log_gain=values["receiver_lapse_log_gain"],
+                support_edge_receiver_radial_log_gain=values["receiver_radial_log_gain"],
+                support_edge_receiver_beta_relaxation_gain=values["receiver_beta_relaxation_gain"],
+                support_edge_receiver_angular_log_gain=values["receiver_angular_log_gain"],
+                support_edge_receiver_angular_side=values["receiver_angular_side"],
+            )
     else:
         raise ValueError(f"Unknown smooth split screen mode: {mode}")
 
@@ -568,6 +601,19 @@ def _row_for_spec(label: str, spec: dict[str, Any], case: SourceCase, points: An
         "smooth_split_angular_peak": float(points["standing_support_packet_smooth_split_angular_window"].max()),
         "smooth_split_angular_factor_min": float(points["standing_support_packet_smooth_split_angular_factor"].min()),
         "smooth_split_angular_factor_max": float(points["standing_support_packet_smooth_split_angular_factor"].max()),
+        "receiver_memory_peak": float(points["support_edge_receiver_memory_driver"].max()),
+        "receiver_radial_cap_peak": float(points["support_edge_receiver_radial_cap_window"].max()),
+        "receiver_angular_flange_peak": float(points["support_edge_receiver_angular_flange_window"].max()),
+        "max_receiver_radial_cap_slope": float(points["support_edge_receiver_radial_cap_window_slope_abs"].max()),
+        "max_receiver_angular_flange_slope": float(
+            points["support_edge_receiver_angular_flange_window_slope_abs"].max()
+        ),
+        "receiver_lapse_factor_min": float(points["support_edge_receiver_lapse_factor"].min()),
+        "receiver_lapse_factor_max": float(points["support_edge_receiver_lapse_factor"].max()),
+        "receiver_radial_factor_min": float(points["support_edge_receiver_radial_factor"].min()),
+        "receiver_radial_factor_max": float(points["support_edge_receiver_radial_factor"].max()),
+        "receiver_angular_factor_min": float(points["support_edge_receiver_angular_factor"].min()),
+        "receiver_angular_factor_max": float(points["support_edge_receiver_angular_factor"].max()),
     }
 
 

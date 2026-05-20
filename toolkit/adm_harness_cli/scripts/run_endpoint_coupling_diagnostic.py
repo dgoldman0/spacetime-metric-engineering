@@ -102,6 +102,14 @@ def _control_row(ledger_root: Path, label: str) -> dict[str, Any]:
         "release_beta_width_multiplier": _finite(params.get("release_beta_width_multiplier"), float("nan")),
         "release_lapse_lag_widths": _finite(params.get("release_lapse_lag_widths"), float("nan")),
         "release_carve_lag_widths": _finite(params.get("release_carve_lag_widths"), float("nan")),
+        "receiver_enabled": bool(params.get("support_edge_receiver_enabled", False)),
+        "receiver_memory_gain": _finite(params.get("support_edge_receiver_memory_gain"), float("nan")),
+        "receiver_radial_log_gain": _finite(params.get("support_edge_receiver_radial_log_gain"), float("nan")),
+        "receiver_beta_relaxation_gain": _finite(
+            params.get("support_edge_receiver_beta_relaxation_gain"), float("nan")
+        ),
+        "receiver_angular_log_gain": _finite(params.get("support_edge_receiver_angular_log_gain"), float("nan")),
+        "receiver_angular_side": str(params.get("support_edge_receiver_angular_side", "")),
         "positive_packet_norm_live": int(_finite(safety.get("positive_packet_norm_live"), 0.0)),
         "max_packet_norm_live": _finite(safety.get("max_packet_norm_live"), float("nan")),
         "min_packet_norm_live": _finite(safety.get("min_packet_norm_live"), float("nan")),
@@ -198,6 +206,13 @@ def _contrast(summary: pd.DataFrame, labels: list[str]) -> pd.DataFrame:
         label = str(row["label"])
         if label == str(base["label"]):
             change = "baseline"
+        elif "receiver" in label:
+            change = (
+                "receiver "
+                f"radial_log_gain {row['receiver_radial_log_gain']:.3g}; "
+                f"beta_relax {row['receiver_beta_relaxation_gain']:.3g}; "
+                f"angular_log_gain {row['receiver_angular_log_gain']:.3g}"
+            )
         elif "edge_wide" in label and "ang" in label:
             change = (
                 f"edge_width {base['edge_width_multiplier']:.3g}->{row['edge_width_multiplier']:.3g}; "

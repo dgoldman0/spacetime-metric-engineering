@@ -126,6 +126,23 @@ class SourceParams:
     support_shell_rail_stretch_log_gain: float = 0.0
     support_shell_throat_capacity_log_gain: float = 0.0
 
+    # Beta-memory support-edge receiver: a non-live endpoint layer driven by
+    # accumulated beta release rather than instantaneous release slope alone.
+    support_edge_receiver_enabled: bool = False
+    support_edge_receiver_memory_reference_width: float = 0.25
+    support_edge_receiver_memory_gain: float = 1.0
+    support_edge_receiver_post_release_widths: float = 2.0
+    support_edge_receiver_inner_multiplier: float = 0.65
+    support_edge_receiver_outer_multiplier: float = 1.20
+    support_edge_receiver_radial_width: float | None = None
+    support_edge_receiver_outer_power: float = 1.0
+    support_edge_receiver_packet_exclusion: float = 1.0
+    support_edge_receiver_lapse_log_gain: float = 0.0
+    support_edge_receiver_radial_log_gain: float = 0.0
+    support_edge_receiver_beta_relaxation_gain: float = 0.0
+    support_edge_receiver_angular_log_gain: float = 0.0
+    support_edge_receiver_angular_side: str = "positive"
+
     # Packet-local redesign controls. These edit the standing support under or
     # around the packet tube, then optionally compensate causal margin through
     # alpha or beta channels using independent packet-window footprints.
@@ -523,6 +540,84 @@ def support_shell_delta_beta(s: float, l: float, params: SourceParams) -> float:
 
 def support_shell_metric_factor(log_gain: float, window: float) -> float:
     return float(math.exp(float(log_gain) * float(window)))
+
+
+def support_edge_receiver_active(params: SourceParams) -> bool:
+    return bool(params.support_edge_receiver_enabled)
+
+
+def support_edge_receiver_memory_driver(s: float, params: SourceParams) -> float:
+    if not support_edge_receiver_active(params):
+        return 0.0
+    width_excess = (
+        float(params.release_beta_width_multiplier)
+        - float(params.support_edge_receiver_memory_reference_width)
+    )
+    strength = max(width_excess, 0.0) * max(float(params.support_edge_receiver_memory_gain), 0.0)
+    if strength <= 0.0:
+        return 0.0
+
+    release_complete = 1.0 - float(release_profile_down(float(s), params))
+    _start, release_end = release_beta_interval(params)
+    post_width = max(float(params.support_edge_receiver_post_release_widths), 0.0) * float(params.w_beta)
+    fade_width = max(2.0 * float(params.w_beta), 1.0e-12)
+    t = (float(s) - (release_end + post_width)) / fade_width
+    persistence = 1.0 - float(smoothstep_minjerk(t))
+    return float(np.clip(strength * release_complete * persistence, 0.0, 1.0))
+
+
+def support_edge_receiver_radial_shape(s: float, l: float, params: SourceParams) -> float:
+    if not support_edge_receiver_active(params):
+        return 0.0
+    inner = float(params.Rth) * float(params.support_edge_receiver_inner_multiplier)
+    outer = float(params.Rth) * float(params.support_edge_receiver_outer_multiplier)
+    if inner >= outer:
+        raise ValueError("support-edge receiver inner multiplier must be smaller than outer multiplier")
+    default_width = max((outer - inner) / 8.0, 1.0e-12)
+    width = (
+        float(params.support_edge_receiver_radial_width)
+        if params.support_edge_receiver_radial_width is not None
+        else default_width
+    )
+    abs_l = abs(float(l))
+    support = support_shell_radial_window(abs_l, inner, outer, width, "smooth_box")
+    span = max(outer - inner, 1.0e-12)
+    outer_weight = np.clip((abs_l - inner) / span, 0.0, 1.0)
+    power = max(float(params.support_edge_receiver_outer_power), 0.0)
+    outer_weight = float(outer_weight**power) if power else 1.0
+
+    packet = float(bump_sq((float(l) - float(s)) ** 2 + params.eps * params.eps, params.Rpass, params.w_pass))
+    live_schedule = float(falloff(float(s) - live_packet_end(params), params.w_beta))
+    packet_exclusion = np.clip(
+        1.0 - float(params.support_edge_receiver_packet_exclusion) * packet * live_schedule,
+        0.0,
+        1.0,
+    )
+    non_live = 0.0 if live_packet_mask(float(s), float(l), params) else 1.0
+    return float(np.clip(support * outer_weight * packet_exclusion * non_live, 0.0, 1.0))
+
+
+def support_edge_receiver_radial_cap_window(s: float, l: float, params: SourceParams) -> float:
+    memory = support_edge_receiver_memory_driver(s, params)
+    if memory <= 0.0:
+        return 0.0
+    return float(np.clip(memory * support_edge_receiver_radial_shape(s, l, params), 0.0, 1.0))
+
+
+def support_edge_receiver_angular_flange_window(s: float, l: float, params: SourceParams) -> float:
+    radial = support_edge_receiver_radial_cap_window(s, l, params)
+    if radial <= 0.0:
+        return 0.0
+    side = params.support_edge_receiver_angular_side.strip().lower()
+    if side in {"bilateral", "both", "all"}:
+        side_weight = 1.0
+    elif side in {"positive", "pos", "+", "right"}:
+        side_weight = 1.0 if float(l) > 0.0 else 0.0
+    elif side in {"negative", "neg", "-", "left"}:
+        side_weight = 1.0 if float(l) < 0.0 else 0.0
+    else:
+        raise ValueError(f"Unknown support-edge receiver angular side: {params.support_edge_receiver_angular_side}")
+    return float(np.clip(radial * side_weight, 0.0, 1.0))
 
 
 def smooth_union(*values: float) -> float:
@@ -1244,6 +1339,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     packet_radial_shoulder_window = standing_support_packet_radial_shoulder_window(float(s), float(l), params)
     packet_radial_skirt_window = standing_support_packet_radial_skirt_window(float(s), float(l), params)
     packet_beta_rematch_window = standing_support_packet_beta_rematch_window(float(s), float(l), params)
+    receiver_memory_driver = support_edge_receiver_memory_driver(float(s), params)
+    receiver_radial_cap_window = support_edge_receiver_radial_cap_window(float(s), float(l), params)
+    receiver_angular_flange_window = support_edge_receiver_angular_flange_window(float(s), float(l), params)
     release_slope_abs = float(abs(
         (
             release_profile_down(s_arr + max(float(params.w_beta) * 1.0e-3, 1.0e-6), params)
@@ -1305,6 +1403,10 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         params.standing_support_packet_smooth_split_null_cushion_log_gain,
         smooth_split_null_cushion_window,
     )
+    receiver_lapse_factor = support_shell_metric_factor(
+        params.support_edge_receiver_lapse_log_gain,
+        receiver_radial_cap_window,
+    )
     clock_lapse_factor = support_shell_metric_factor(params.support_shell_clock_lapse_log_gain, shell_window)
     alpha = (
         alpha_base
@@ -1312,6 +1414,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         * packet_null_cushion_factor
         * coupled_null_cushion_factor
         * smooth_split_null_cushion_factor
+        * receiver_lapse_factor
         * clock_lapse_factor
     )
     sqrt_gamma_ll_base = b_angular * a_spatial
@@ -1325,16 +1428,26 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     coupled_radial_factor = math.exp(
         float(params.standing_support_packet_coupled_radial_log_gain) * coupled_radial_window
     )
-    packet_radial_factor = legacy_packet_radial_factor * coupled_radial_factor
+    receiver_radial_factor = support_shell_metric_factor(
+        params.support_edge_receiver_radial_log_gain,
+        receiver_radial_cap_window,
+    )
+    packet_radial_factor = legacy_packet_radial_factor * coupled_radial_factor * receiver_radial_factor
     gamma_ll = gamma_ll_base * rail_stretch_factor * packet_radial_factor
     sqrt_gamma_ll = np.sqrt(gamma_ll)
     vcoord = u_packet / b_angular
+    delta_beta_receiver = (
+        -float(params.support_edge_receiver_beta_relaxation_gain)
+        * receiver_radial_cap_window
+        * (vcoord + beta_pre_rematch)
+    )
+    beta_after_receiver = beta_pre_rematch + delta_beta_receiver
     delta_beta_packet = (
         -float(params.standing_support_packet_beta_rematch_gain)
         * packet_beta_rematch_window
-        * (vcoord + beta_pre_rematch)
+        * (vcoord + beta_after_receiver)
     )
-    beta = beta_pre_rematch + delta_beta_packet
+    beta = beta_after_receiver + delta_beta_packet
     gtt = -alpha * alpha + gamma_ll * beta * beta
     packet_norm = -alpha * alpha + gamma_ll * (vcoord + beta) ** 2
 
@@ -1347,7 +1460,11 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         params.standing_support_packet_smooth_split_angular_log_gain,
         smooth_split_angular_window,
     )
-    gamma_omega = gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor
+    receiver_angular_factor = support_shell_metric_factor(
+        params.support_edge_receiver_angular_log_gain,
+        receiver_angular_flange_window,
+    )
+    gamma_omega = gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor * receiver_angular_factor
 
     return {
         "U_beta": float(u_beta),
@@ -1374,6 +1491,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_smooth_split_containment_window": float(smooth_split_containment_window),
         "standing_support_packet_smooth_split_null_cushion_window": float(smooth_split_null_cushion_window),
         "standing_support_packet_smooth_split_angular_window": float(smooth_split_angular_window),
+        "support_edge_receiver_memory_driver": float(receiver_memory_driver),
+        "support_edge_receiver_radial_cap_window": float(receiver_radial_cap_window),
+        "support_edge_receiver_angular_flange_window": float(receiver_angular_flange_window),
         "standing_support_packet_raw_carve_contribution": float(raw_carve_contribution),
         "standing_support_packet_coupled_rebate_contribution": float(coupled_rebate_contribution),
         "standing_support_packet_carve_contribution": float(carve_contribution),
@@ -1385,6 +1505,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_coupled_null_cushion_factor": float(coupled_null_cushion_factor),
         "standing_support_packet_smooth_split_null_cushion_factor": float(smooth_split_null_cushion_factor),
         "standing_support_packet_smooth_split_angular_factor": float(smooth_split_angular_factor),
+        "support_edge_receiver_lapse_factor": float(receiver_lapse_factor),
+        "support_edge_receiver_radial_factor": float(receiver_radial_factor),
+        "support_edge_receiver_angular_factor": float(receiver_angular_factor),
         "standing_support_packet_radial_window": float(packet_radial_window),
         "standing_support_packet_radial_shoulder_window": float(packet_radial_shoulder_window),
         "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
@@ -1426,6 +1549,12 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         ),
         "standing_support_packet_smooth_split_angular_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_smooth_split_angular_window, float(s), float(l), params
+        ),
+        "support_edge_receiver_radial_cap_window_slope_abs": _window_s_derivative_abs(
+            support_edge_receiver_radial_cap_window, float(s), float(l), params
+        ),
+        "support_edge_receiver_angular_flange_window_slope_abs": _window_s_derivative_abs(
+            support_edge_receiver_angular_flange_window, float(s), float(l), params
         ),
         "standing_support_packet_lapse_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_lapse_window, float(s), float(l), params
@@ -1475,6 +1604,28 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_smooth_split_delta_gamma_omega": float(
             gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor
             - gamma_omega_base * throat_capacity_factor
+        ),
+        "support_edge_receiver_delta_alpha": float(
+            alpha_base
+            * packet_lapse_factor
+            * packet_null_cushion_factor
+            * coupled_null_cushion_factor
+            * smooth_split_null_cushion_factor
+            * receiver_lapse_factor
+            - alpha_base
+            * packet_lapse_factor
+            * packet_null_cushion_factor
+            * coupled_null_cushion_factor
+            * smooth_split_null_cushion_factor
+        ),
+        "support_edge_receiver_delta_beta": float(delta_beta_receiver),
+        "support_edge_receiver_delta_gamma_ll": float(
+            gamma_ll_base * legacy_packet_radial_factor * coupled_radial_factor * receiver_radial_factor
+            - gamma_ll_base * legacy_packet_radial_factor * coupled_radial_factor
+        ),
+        "support_edge_receiver_delta_gamma_omega": float(
+            gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor * receiver_angular_factor
+            - gamma_omega_base * throat_capacity_factor * smooth_split_angular_factor
         ),
         "standing_support_packet_delta_gamma_ll": float(gamma_ll_base * packet_radial_factor - gamma_ll_base),
         "standing_support_packet_coupled_delta_gamma_ll": float(
@@ -1644,6 +1795,9 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_smooth_split_containment_window",
             "standing_support_packet_smooth_split_null_cushion_window",
             "standing_support_packet_smooth_split_angular_window",
+            "support_edge_receiver_memory_driver",
+            "support_edge_receiver_radial_cap_window",
+            "support_edge_receiver_angular_flange_window",
             "standing_support_packet_raw_carve_contribution",
             "standing_support_packet_coupled_rebate_contribution",
             "standing_support_packet_carve_contribution",
@@ -1655,6 +1809,9 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_coupled_null_cushion_factor",
             "standing_support_packet_smooth_split_null_cushion_factor",
             "standing_support_packet_smooth_split_angular_factor",
+            "support_edge_receiver_lapse_factor",
+            "support_edge_receiver_radial_factor",
+            "support_edge_receiver_angular_factor",
             "standing_support_packet_radial_window",
             "standing_support_packet_radial_shoulder_window",
             "standing_support_packet_radial_skirt_window",
@@ -1673,6 +1830,8 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_smooth_split_guarded_edge_window_slope_abs",
             "standing_support_packet_smooth_split_null_cushion_window_slope_abs",
             "standing_support_packet_smooth_split_angular_window_slope_abs",
+            "support_edge_receiver_radial_cap_window_slope_abs",
+            "support_edge_receiver_angular_flange_window_slope_abs",
             "standing_support_packet_lapse_window_slope_abs",
             "standing_support_packet_null_cushion_window_slope_abs",
             "standing_support_packet_radial_window_slope_abs",
@@ -1683,6 +1842,10 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_coupled_null_cushion_delta_alpha",
             "standing_support_packet_smooth_split_null_cushion_delta_alpha",
             "standing_support_packet_smooth_split_delta_gamma_omega",
+            "support_edge_receiver_delta_alpha",
+            "support_edge_receiver_delta_beta",
+            "support_edge_receiver_delta_gamma_ll",
+            "support_edge_receiver_delta_gamma_omega",
             "standing_support_packet_delta_gamma_ll",
             "standing_support_packet_coupled_delta_gamma_ll",
             "standing_support_packet_delta_beta",

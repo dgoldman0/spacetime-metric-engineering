@@ -468,6 +468,67 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertLess(sc["standing_support_packet_smooth_split_null_cushion_factor"], 1.0)
         self.assertGreater(sc["standing_support_packet_smooth_split_angular_factor"], 1.0)
 
+    def test_beta_memory_support_edge_receiver_is_non_live_and_split(self):
+        case = source_ledger.branch_case(
+            "tuned_w0569_eta200",
+            service_factor=5.0,
+            live_packet_start=-1.40,
+            standing_support_packet_smooth_split_enabled=True,
+            standing_support_packet_smooth_split_entry_carve=0.75,
+            standing_support_packet_smooth_split_catch_carve=0.15,
+            standing_support_packet_smooth_split_edge_carve=0.16,
+            standing_support_packet_smooth_split_entry_width_multiplier=4.8,
+            standing_support_packet_smooth_split_catch_width_multiplier=3.4,
+            standing_support_packet_smooth_split_edge_width_multiplier=7.2,
+            standing_support_packet_smooth_split_radial_profile="compact_smoothstep7",
+            standing_support_packet_smooth_split_composition="additive",
+            standing_support_packet_smooth_split_null_cushion_log_gain=-0.07,
+            release_choreography_mode="matched_hold",
+            release_matched_hold_widths=0.25,
+            release_beta_profile="minimum_jerk",
+            release_beta_width_multiplier=0.75,
+            support_edge_receiver_enabled=True,
+            support_edge_receiver_memory_gain=2.0,
+            support_edge_receiver_radial_log_gain=-0.04,
+            support_edge_receiver_beta_relaxation_gain=0.06,
+            support_edge_receiver_angular_log_gain=0.06,
+            support_edge_receiver_angular_side="positive",
+        )
+
+        positive_edge = source_ledger.scalars(1.36, 1.90, case.params)
+        negative_edge = source_ledger.scalars(1.36, -1.90, case.params)
+        live_packet = source_ledger.scalars(1.30, 1.30, case.params)
+
+        self.assertGreater(positive_edge["support_edge_receiver_memory_driver"], 0.0)
+        self.assertGreater(positive_edge["support_edge_receiver_radial_cap_window"], 0.0)
+        self.assertGreater(positive_edge["support_edge_receiver_angular_flange_window"], 0.0)
+        self.assertGreater(positive_edge["support_edge_receiver_delta_beta"], -1.0)
+        self.assertNotEqual(positive_edge["support_edge_receiver_delta_gamma_ll"], 0.0)
+        self.assertNotEqual(positive_edge["support_edge_receiver_delta_gamma_omega"], 0.0)
+        self.assertGreater(negative_edge["support_edge_receiver_radial_cap_window"], 0.0)
+        self.assertEqual(negative_edge["support_edge_receiver_angular_flange_window"], 0.0)
+        self.assertEqual(live_packet["support_edge_receiver_radial_cap_window"], 0.0)
+
+        points = source_ledger.compute_case(
+            case,
+            ns=5,
+            nl=9,
+            s_min=1.20,
+            s_max=1.55,
+            l_min=-2.2,
+            l_max=2.2,
+            progress=False,
+        )
+        self.assertIn("support_edge_receiver_radial_cap_window", points.columns)
+        self.assertIn("support_edge_receiver_angular_flange_window", points.columns)
+        live_receiver = points.loc[
+            points["inside_packet_live"].astype(bool),
+            "support_edge_receiver_radial_cap_window",
+        ]
+        self.assertEqual(float(live_receiver.max()), 0.0)
+        self.assertGreater(float(points["support_edge_receiver_radial_cap_window"].max()), 0.0)
+        self.assertGreater(float(points["support_edge_receiver_angular_flange_window"].max()), 0.0)
+
     def test_source_overlay_sweep_reports_shell_throat_overlap(self):
         grid = {
             "ns": 5,

@@ -313,6 +313,30 @@ These fields define an infrastructure-local support-shell actuator. The overlay 
 | `support_shell_rail_stretch_log_gain` | Log-gain applied to `gamma_ll` on the support-shell window. |
 | `support_shell_throat_capacity_log_gain` | Log-gain applied to `gamma_omega` on the support-shell window. |
 
+### Beta-memory support-edge receiver
+
+These fields define the endpoint receiver branch used after the beta/support
+co-design screen. The receiver is disabled by default. When enabled, it builds a
+non-live support-edge window from accumulated beta release, not just the
+instantaneous release slope, and applies split R1/R2 metric partners.
+
+| Field | Meaning |
+|---|---|
+| `support_edge_receiver_enabled` | Enables the beta-memory support-edge receiver family. |
+| `support_edge_receiver_memory_reference_width` | Beta-width baseline treated as no-transfer reference. Width above this value drives receiver memory. |
+| `support_edge_receiver_memory_gain` | Gain applied to beta-width excess before clipping the memory driver. |
+| `support_edge_receiver_post_release_widths` | Number of `w_beta` widths to keep memory active after beta fade. |
+| `support_edge_receiver_inner_multiplier` | Inner support-edge receiver radius as a multiplier of `Rth`. |
+| `support_edge_receiver_outer_multiplier` | Outer support-edge receiver radius as a multiplier of `Rth`. |
+| `support_edge_receiver_radial_width` | Optional receiver radial edge width. `None` uses the band-derived default. |
+| `support_edge_receiver_outer_power` | Outer weighting power inside the receiver band. |
+| `support_edge_receiver_packet_exclusion` | Suppresses receiver activity in the live packet tube. |
+| `support_edge_receiver_lapse_log_gain` | Optional R1 lapse partner on the radial/current receiver cap. |
+| `support_edge_receiver_radial_log_gain` | R1 rail-stretch partner on the radial/current receiver cap. |
+| `support_edge_receiver_beta_relaxation_gain` | R1 local beta-relaxation partner for current transfer. |
+| `support_edge_receiver_angular_log_gain` | R2 angular-capacity partner on the receiver flange. |
+| `support_edge_receiver_angular_side` | Side selector for the R2 flange: `positive`, `negative`, or `bilateral`. |
+
 Sweep ratios such as `--clock-lapse-ratios`, `--rail-stretch-ratios`, and `--throat-capacity-ratios` are convenience inputs that convert to these log gains by multiplying the signed support-shell amplitude.
 
 ### Packet-local standing-support redesign controls
