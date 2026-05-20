@@ -252,7 +252,11 @@ def _build_label_grids(
     point_ledgers: dict[str, pd.DataFrame],
     sector_points: pd.DataFrame,
     coeffs: dict[tuple[str, str], dict[str, float | str]],
+    *,
+    sector_scales: dict[str, float] | None = None,
+    total_mode: str = "geometric",
 ) -> tuple[dict[str, LabelGrid], dict[str, pd.DataFrame]]:
+    scales = {sector: float((sector_scales or {}).get(sector, 1.0)) for sector in SECTOR_ORDER}
     grids: dict[str, LabelGrid] = {}
     center_tables: dict[str, pd.DataFrame] = {}
     for label, points in point_ledgers.items():
@@ -267,6 +271,17 @@ def _build_label_grids(
         sector_cols = [col for col in sectors.columns if col.startswith("sector::")]
         points = points.merge(sectors[["point_index", *sector_cols]], on="point_index", how="left")
         points[sector_cols] = points[sector_cols].fillna(0.0)
+        for sector in SECTOR_ORDER:
+            for branch in BRANCH_SIGNS:
+                col = f"sector::{sector}::{branch}"
+                if col in points.columns:
+                    points[col] = points[col].astype(float) * scales[sector]
+        if total_mode == "sector_sum":
+            for branch in BRANCH_SIGNS:
+                branch_cols = [f"sector::{sector}::{branch}" for sector in SECTOR_ORDER]
+                points[f"total::{branch}"] = points[branch_cols].sum(axis=1)
+        elif total_mode != "geometric":
+            raise ValueError(f"unknown hard affine SNEC total mode: {total_mode}")
         value_cols = ["alpha", "beta", "gamma_ll", "total::plus", "total::minus", *sector_cols]
         grids[label] = _pivot_arrays(points, value_cols)
         center_tables[label] = points
@@ -351,6 +366,35 @@ def _smeared_average(values: np.ndarray, lambdas: np.ndarray, width: float) -> t
     return average, neg_average, norm
 
 
+def _coverage_record(
+    lambdas: np.ndarray,
+    width: float,
+    norm: float,
+    *,
+    min_support_coverage: float,
+    min_kernel_coverage: float,
+) -> dict[str, Any]:
+    requested = 4.0 * float(width)
+    lambda_min = float(np.nanmin(lambdas))
+    lambda_max = float(np.nanmax(lambdas))
+    left = min(abs(lambda_min), requested)
+    right = min(abs(lambda_max), requested)
+    support_coverage = (left + right) / (2.0 * requested) if requested > 0.0 else 0.0
+    ideal_norm = math.sqrt(2.0 * math.pi) * float(width) * math.erf(4.0 / math.sqrt(2.0))
+    kernel_coverage = norm / ideal_norm if ideal_norm > 0.0 else 0.0
+    return {
+        "requested_lambda_extent": requested,
+        "left_support_coverage": left / requested if requested > 0.0 else 0.0,
+        "right_support_coverage": right / requested if requested > 0.0 else 0.0,
+        "support_coverage_fraction": support_coverage,
+        "kernel_weight_coverage_fraction": kernel_coverage,
+        "scoreable_window": bool(
+            support_coverage >= float(min_support_coverage)
+            and kernel_coverage >= float(min_kernel_coverage)
+        ),
+    }
+
+
 def _interpolate_trace(grid: LabelGrid, names: list[str], s_values: np.ndarray, l_values: np.ndarray) -> dict[str, np.ndarray]:
     out: dict[str, list[float]] = {name: [] for name in names}
     for s, l in zip(s_values, l_values):
@@ -378,6 +422,8 @@ def _scan_label(
     smear_widths: list[float],
     benchmark_b: float,
     center_stride: int,
+    min_support_coverage: float,
+    min_kernel_coverage: float,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
     max_width = max(smear_widths)
@@ -407,6 +453,13 @@ def _scan_label(
                 total_avg, neg_avg, norm = _smeared_average(total_values, lambdas, width)
                 if not math.isfinite(total_avg):
                     continue
+                coverage = _coverage_record(
+                    lambdas,
+                    width,
+                    norm,
+                    min_support_coverage=min_support_coverage,
+                    min_kernel_coverage=min_kernel_coverage,
+                )
                 floor = -8.0 * math.pi * float(benchmark_b) / (float(width) * float(width))
                 critical_b = max(-total_avg, 0.0) * float(width) * float(width) / (8.0 * math.pi)
                 record: dict[str, Any] = {
@@ -424,6 +477,7 @@ def _scan_label(
                     "trace_lambda_min": float(np.nanmin(lambdas)),
                     "trace_lambda_max": float(np.nanmax(lambdas)),
                     "window_weight_norm": norm,
+                    **coverage,
                     "smeared_total_Tkk_hat": total_avg,
                     "smeared_total_neg_part": neg_avg,
                     "benchmark_B": float(benchmark_b),
@@ -452,19 +506,27 @@ def _summary_table(windows: pd.DataFrame) -> pd.DataFrame:
         return pd.DataFrame()
     rows: list[dict[str, Any]] = []
     for keys, group in windows.groupby(["label", "branch", "smear_width_affine"], sort=False):
-        worst = group.sort_values("margin_to_benchmark_floor", ascending=True).iloc[0]
+        scoreable = group.loc[group["scoreable_window"].astype(bool)] if "scoreable_window" in group else group
+        summary_group = scoreable if not scoreable.empty else group
+        worst = summary_group.sort_values("margin_to_benchmark_floor", ascending=True).iloc[0]
         rows.append({
             "label": keys[0],
             "branch": keys[1],
             "smear_width_affine": keys[2],
             "windows_scanned": int(len(group)),
-            "benchmark_violations": int(group["violates_benchmark_floor"].astype(bool).sum()),
-            "passes_benchmark": bool(not group["violates_benchmark_floor"].astype(bool).any()),
+            "scoreable_windows": int(len(scoreable)),
+            "coverage_rejected_windows": int(len(group) - len(scoreable)),
+            "all_benchmark_violations": int(group["violates_benchmark_floor"].astype(bool).sum()),
+            "benchmark_violations": int(summary_group["violates_benchmark_floor"].astype(bool).sum()),
+            "passes_benchmark": bool(not summary_group["violates_benchmark_floor"].astype(bool).any()),
+            "summary_uses_scoreable_filter": bool(not scoreable.empty),
             "worst_margin_to_floor": float(worst["margin_to_benchmark_floor"]),
             "worst_smeared_total_Tkk_hat": float(worst["smeared_total_Tkk_hat"]),
             "benchmark_floor": float(worst["benchmark_floor"]),
             "critical_B_for_zero_margin": float(worst["critical_B_for_zero_margin"]),
             "benchmark_to_critical_B_ratio": float(worst["benchmark_to_critical_B_ratio"]),
+            "worst_support_coverage_fraction": float(worst.get("support_coverage_fraction", float("nan"))),
+            "worst_kernel_weight_coverage_fraction": float(worst.get("kernel_weight_coverage_fraction", float("nan"))),
             "worst_center_s": float(worst["center_s"]),
             "worst_center_l": float(worst["center_l"]),
             "worst_center_stage": worst["center_stage"],
@@ -480,11 +542,13 @@ def _sector_summary_table(windows: pd.DataFrame) -> pd.DataFrame:
         return pd.DataFrame()
     rows: list[dict[str, Any]] = []
     for (label, branch, width), group in windows.groupby(["label", "branch", "smear_width_affine"], sort=False):
+        scoreable = group.loc[group["scoreable_window"].astype(bool)] if "scoreable_window" in group else group
+        sector_group = scoreable if not scoreable.empty else group
         for sector in SECTOR_ORDER:
             col = f"smeared_sector::{sector}::{branch}"
             neg_col = f"smeared_sector_neg::{sector}::{branch}"
-            values = group[col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
-            neg_values = group[neg_col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
+            values = sector_group[col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
+            neg_values = sector_group[neg_col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
             if values.empty:
                 continue
             worst_idx = values.idxmin()
@@ -496,10 +560,10 @@ def _sector_summary_table(windows: pd.DataFrame) -> pd.DataFrame:
                 "min_smeared_sector_Tkk_hat": float(values.min()),
                 "mean_smeared_sector_Tkk_hat": float(values.mean()),
                 "max_smeared_sector_neg_part": float(neg_values.max()) if not neg_values.empty else float("nan"),
-                "worst_sector_center_s": float(group.loc[worst_idx, "center_s"]),
-                "worst_sector_center_l": float(group.loc[worst_idx, "center_l"]),
-                "worst_sector_center_stage": group.loc[worst_idx, "center_stage"],
-                "worst_sector_center_region": group.loc[worst_idx, "center_region"],
+                "worst_sector_center_s": float(sector_group.loc[worst_idx, "center_s"]),
+                "worst_sector_center_l": float(sector_group.loc[worst_idx, "center_l"]),
+                "worst_sector_center_stage": sector_group.loc[worst_idx, "center_stage"],
+                "worst_sector_center_region": sector_group.loc[worst_idx, "center_region"],
             })
     return pd.DataFrame(rows).sort_values(["label", "smear_width_affine", "branch", "sector"])
 
@@ -511,13 +575,23 @@ def build_hard_affine_snec_screen(
     benchmark_b: float = 1.0 / (32.0 * math.pi),
     center_stride: int = 1,
     top_limit: int = 120,
+    min_support_coverage: float = 0.80,
+    min_kernel_coverage: float = 0.80,
+    sector_scales: dict[str, float] | None = None,
+    total_mode: str = "geometric",
 ) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
     detail, metadata = _load_component_detail(component_dir)
     point_ledgers = _load_point_ledgers(component_dir, metadata["manifest"])
     ansatz_outputs, ansatz_metadata = build_composite_source_ansatz_screen(component_dir, promote_h=True)
     coeffs = _fit_coefficients(ansatz_outputs["sector_fits"])
     sector_points = _sector_assignment_points(detail)
-    grids, center_tables = _build_label_grids(point_ledgers, sector_points, coeffs)
+    grids, center_tables = _build_label_grids(
+        point_ledgers,
+        sector_points,
+        coeffs,
+        sector_scales=sector_scales,
+        total_mode=total_mode,
+    )
 
     widths = [float(width) for width in smear_widths]
     windows = pd.concat(
@@ -528,6 +602,8 @@ def build_hard_affine_snec_screen(
                 smear_widths=widths,
                 benchmark_b=float(benchmark_b),
                 center_stride=int(center_stride),
+                min_support_coverage=float(min_support_coverage),
+                min_kernel_coverage=float(min_kernel_coverage),
             )
             for label, grid in grids.items()
         ],
@@ -535,8 +611,11 @@ def build_hard_affine_snec_screen(
     )
     summary = _summary_table(windows)
     sector_summary = _sector_summary_table(windows)
+    top_source = windows.loc[windows["scoreable_window"].astype(bool)] if not windows.empty else windows
+    if top_source.empty:
+        top_source = windows
     top_windows = (
-        windows.sort_values(["label", "margin_to_benchmark_floor"], ascending=[True, True])
+        top_source.sort_values(["label", "margin_to_benchmark_floor"], ascending=[True, True])
         .groupby("label", sort=False)
         .head(int(top_limit))
         .reset_index(drop=True)
@@ -553,6 +632,10 @@ def build_hard_affine_snec_screen(
         "benchmark_b": float(benchmark_b),
         "center_stride": int(center_stride),
         "top_limit": int(top_limit),
+        "min_support_coverage": float(min_support_coverage),
+        "min_kernel_coverage": float(min_kernel_coverage),
+        "sector_scales": {sector: float((sector_scales or {}).get(sector, 1.0)) for sector in SECTOR_ORDER},
+        "total_mode": str(total_mode),
     })
     return outputs, metadata
 
@@ -587,6 +670,10 @@ def write_hard_affine_snec_outputs(
         "smear_widths_affine": list(metadata["smear_widths"]),
         "benchmark_B": float(metadata["benchmark_b"]),
         "center_stride": int(metadata["center_stride"]),
+        "min_support_coverage": float(metadata["min_support_coverage"]),
+        "min_kernel_coverage": float(metadata["min_kernel_coverage"]),
+        "sector_scales": metadata["sector_scales"],
+        "total_mode": metadata["total_mode"],
         "files": {key: str(path) for key, path in paths.items()},
         "rows": {key: int(len(outputs.get(key, pd.DataFrame()))) for key in paths},
         "sha256": {key: sha256_file(path) for key, path in paths.items()},
