@@ -85,7 +85,7 @@ class IntermediateSourceModelTests(unittest.TestCase):
         closure = _closure_summary(points, sectors).iloc[0]
 
         self.assertEqual(int(closure["points"]), 3)
-        self.assertEqual(int(closure["model_rows"]), 10)
+        self.assertEqual(int(closure["model_rows"]), 6)
         self.assertAlmostEqual(float(closure["weighted_total_abs_error"]), 0.0)
         self.assertAlmostEqual(float(closure["max_abs_rho_error"]), 0.0)
         self.assertAlmostEqual(float(closure["max_abs_p_l_error"]), 0.0)
@@ -107,12 +107,23 @@ class IntermediateSourceModelTests(unittest.TestCase):
         by_point = sectors.groupby("point_index")["sector"].agg(set).to_dict()
 
         self.assertIn("core_body_residual_leakage", by_point[0])
-        self.assertIn("S1_support_edge_shoulder_radial_trim", by_point[1])
-        self.assertIn("S2_reset_endpoint_radial_cap", by_point[2])
-        self.assertIn("DH_current_relaxation", by_point[1])
-        self.assertIn("DH_current_relaxation", by_point[2])
-        self.assertIn("G_angular_endpoint_capacity", by_point[1])
-        self.assertIn("G_angular_endpoint_capacity", by_point[2])
+        self.assertIn("J_endpoint_junction_layer", by_point[1])
+        self.assertIn("J_endpoint_junction_layer", by_point[2])
+
+    def test_endpoint_junction_couples_radial_current_and_angular_terms(self):
+        sectors = build_point_sector_stress(self._points())
+        junction = sectors.loc[
+            (sectors["point_index"] == 1)
+            & (sectors["sector"] == "J_endpoint_junction_layer")
+        ].iloc[0]
+
+        self.assertEqual(junction["assignment"], "support_edge_endpoint_junction")
+        self.assertAlmostEqual(float(junction["sector_rho"]), -0.02)
+        self.assertAlmostEqual(float(junction["sector_p_l"]), -0.01)
+        self.assertAlmostEqual(float(junction["sector_j_l"]), -0.05)
+        self.assertAlmostEqual(float(junction["sector_p_omega"]), 0.06)
+        self.assertAlmostEqual(float(junction["sector_Tkk_plus"]), 0.07)
+        self.assertAlmostEqual(float(junction["sector_Tkk_minus"]), -0.13)
 
     def test_live_gate_summary_passes_for_non_live_model(self):
         sectors = build_point_sector_stress(self._points())

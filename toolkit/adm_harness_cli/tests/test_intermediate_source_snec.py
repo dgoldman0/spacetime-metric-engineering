@@ -50,7 +50,7 @@ class IntermediateSourceSNECTests(unittest.TestCase):
             {
                 "label": "toy",
                 "point_index": 0,
-                "sector": "DH_current_relaxation",
+                "sector": "J_endpoint_junction_layer",
                 "sector_rho": 0.25,
                 "sector_p_l": -0.05,
                 "sector_j_l": -0.02,
@@ -58,7 +58,7 @@ class IntermediateSourceSNECTests(unittest.TestCase):
             {
                 "label": "toy",
                 "point_index": 1,
-                "sector": "S1_support_edge_shoulder_radial_trim",
+                "sector": "J_endpoint_junction_layer",
                 "sector_rho": 0.10,
                 "sector_p_l": -0.20,
                 "sector_j_l": 0.00,

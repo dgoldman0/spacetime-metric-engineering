@@ -19,10 +19,7 @@ BRANCH_SIGNS = {
 
 SECTOR_ORDER = [
     "S0_constant_flux_string_cloud",
-    "S1_support_edge_shoulder_radial_trim",
-    "S2_reset_endpoint_radial_cap",
-    "DH_current_relaxation",
-    "G_angular_endpoint_capacity",
+    "J_endpoint_junction_layer",
     "core_body_residual_leakage",
 ]
 
@@ -70,10 +67,10 @@ def _load_component_detail(component_dir: Path) -> tuple[pd.DataFrame, dict[str,
 def _sector_description(sector: str) -> str:
     return {
         "S0_constant_flux_string_cloud": "Constant areal-flux radial string cloud: rho=Phi/gamma_omega, p_l=-rho.",
-        "S1_support_edge_shoulder_radial_trim": "Non-live support-edge shoulder radial pair / selected-null trim.",
-        "S2_reset_endpoint_radial_cap": "Non-live reset/decompression endpoint radial cap.",
-        "DH_current_relaxation": "Non-live current relaxation assigned to D/H.",
-        "G_angular_endpoint_capacity": "Angular/throat-capacity endpoint support assigned to G.",
+        "J_endpoint_junction_layer": (
+            "Coupled non-live endpoint/junction layer carrying shoulder/reset radial trim, "
+            "current relaxation, and angular endpoint capacity together."
+        ),
         "core_body_residual_leakage": "Small residual left in the clean core body after S0 subtraction.",
     }.get(sector, "")
 
@@ -108,59 +105,23 @@ def _sector_rows_for_point(row: pd.Series) -> list[dict[str, Any]]:
     residual_j_l = _finite(row.get("residual_j_l"))
     residual_p_omega = _finite(row.get("residual_p_omega"))
     if zone == "support_edge_shoulder":
-        items.extend([
-            (
-                "S1_support_edge_shoulder_radial_trim",
-                "support_edge_radial_pair_trim",
-                residual_rho,
-                residual_p_l,
-                0.0,
-                0.0,
-            ),
-            (
-                "DH_current_relaxation",
-                "support_edge_current_trim",
-                0.0,
-                0.0,
-                residual_j_l,
-                0.0,
-            ),
-            (
-                "G_angular_endpoint_capacity",
-                "support_edge_angular_trim",
-                0.0,
-                0.0,
-                0.0,
-                residual_p_omega,
-            ),
-        ])
+        items.append((
+            "J_endpoint_junction_layer",
+            "support_edge_endpoint_junction",
+            residual_rho,
+            residual_p_l,
+            residual_j_l,
+            residual_p_omega,
+        ))
     elif zone == "reset_cap":
-        items.extend([
-            (
-                "S2_reset_endpoint_radial_cap",
-                "reset_endpoint_radial_pair_cap",
-                residual_rho,
-                residual_p_l,
-                0.0,
-                0.0,
-            ),
-            (
-                "DH_current_relaxation",
-                "reset_endpoint_current_cap",
-                0.0,
-                0.0,
-                residual_j_l,
-                0.0,
-            ),
-            (
-                "G_angular_endpoint_capacity",
-                "reset_endpoint_angular_cap",
-                0.0,
-                0.0,
-                0.0,
-                residual_p_omega,
-            ),
-        ])
+        items.append((
+            "J_endpoint_junction_layer",
+            "reset_decompression_endpoint_junction",
+            residual_rho,
+            residual_p_l,
+            residual_j_l,
+            residual_p_omega,
+        ))
     else:
         items.append((
             "core_body_residual_leakage",
@@ -403,10 +364,12 @@ def write_intermediate_source_model_outputs(
         outputs.get(key, pd.DataFrame()).to_csv(path, index=False)
     manifest_path = outdir / "intermediate_source_model_manifest.json"
     manifest = {
-        "model": "S0_string_cloud_plus_S1_shoulder_S2_reset_G_DH",
+        "model": "S0_string_cloud_plus_coupled_endpoint_junction",
         "caveat": (
             "Intermediate demanded-source replacement ledger. Sector rows exactly "
-            "reconstruct the A/B/I point stress after string-cloud subtraction, but "
+            "reconstruct the A/B/I point stress after string-cloud subtraction. The "
+            "endpoint/junction sector couples radial trim, angular capacity, and current "
+            "relaxation diagnostically, but "
             "they are not a conservation proof or physical matter solve."
         ),
         "sectors": SECTOR_ORDER,

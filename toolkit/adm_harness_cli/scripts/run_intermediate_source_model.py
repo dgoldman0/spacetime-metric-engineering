@@ -18,7 +18,7 @@ from adm_harness.intermediate_source_model import (  # noqa: E402
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Build the S0/S1/S2/G/DH intermediate source replacement ledger."
+        description="Build the S0 plus coupled endpoint-junction intermediate source replacement ledger."
     )
     parser.add_argument(
         "--component-dir",

@@ -69,12 +69,28 @@ def _sector_value_points(point_sector_stress: pd.DataFrame) -> pd.DataFrame:
     return grouped
 
 
+def _model_sector_order(manifest: dict[str, Any], sector_points: pd.DataFrame) -> list[str]:
+    ordered: list[str] = []
+    for sector in manifest.get("sectors", SECTOR_ORDER):
+        sector_name = str(sector)
+        if sector_name and sector_name != INTERMEDIATE_RESIDUAL_SECTOR and sector_name not in ordered:
+            ordered.append(sector_name)
+    if "sector" in sector_points.columns:
+        for sector in sector_points["sector"].dropna().astype(str).unique():
+            if sector and sector != INTERMEDIATE_RESIDUAL_SECTOR and sector not in ordered:
+                ordered.append(sector)
+    return ordered
+
+
 def _build_intermediate_label_grids(
     point_ledgers: dict[str, pd.DataFrame],
     sector_points: pd.DataFrame,
     *,
+    sectors: Iterable[str] | None = None,
     total_mode: str = "intermediate_sector_sum",
 ) -> tuple[dict[str, LabelGrid], dict[str, pd.DataFrame]]:
+    model_sectors = list(sectors or SECTOR_ORDER)
+    scan_sectors = [*model_sectors, INTERMEDIATE_RESIDUAL_SECTOR]
     grids: dict[str, LabelGrid] = {}
     center_tables: dict[str, pd.DataFrame] = {}
     for label, points in point_ledgers.items():
@@ -86,7 +102,7 @@ def _build_intermediate_label_grids(
                 points["rho_euler"] + points["p_l_unit"] + branch_sign * 2.0 * points["j_l_unit"]
             )
             points[f"intermediate_total::{branch}"] = 0.0
-            for sector in ALL_SECTORS:
+            for sector in scan_sectors:
                 points[f"sector::{sector}::{branch}"] = 0.0
 
         indexed_positions = {int(point): idx for idx, point in enumerate(points["point_index"].astype(int))}
@@ -96,7 +112,7 @@ def _build_intermediate_label_grids(
             if pos is None:
                 continue
             sector = str(row["sector"])
-            if sector not in ALL_SECTORS:
+            if sector not in model_sectors:
                 continue
             for branch in BRANCH_SIGNS:
                 value = _finite(row.get(f"sector_Tkk_{branch}"))
@@ -131,7 +147,7 @@ def _build_intermediate_label_grids(
             "intermediate_total::minus",
             *[
                 f"sector::{sector}::{branch}"
-                for sector in ALL_SECTORS
+                for sector in scan_sectors
                 for branch in BRANCH_SIGNS
             ],
         ]
@@ -140,10 +156,10 @@ def _build_intermediate_label_grids(
     return grids, center_tables
 
 
-def _dominant_negative_sector(record: dict[str, Any], branch: str) -> str:
+def _dominant_negative_sector(record: dict[str, Any], branch: str, sectors: Iterable[str]) -> str:
     sector_values = {
         sector: _finite(record.get(f"smeared_sector::{sector}::{branch}"), float("nan"))
-        for sector in ALL_SECTORS
+        for sector in sectors
     }
     finite = {key: value for key, value in sector_values.items() if math.isfinite(value)}
     if not finite:
@@ -161,9 +177,11 @@ def _scan_label(
     center_stride: int,
     min_support_coverage: float,
     min_kernel_coverage: float,
+    sectors: Iterable[str] | None = None,
     progress: bool = False,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
+    scan_sectors = list(sectors or ALL_SECTORS)
     max_width = max(smear_widths)
     step_s = max(grid.step_s / 2.0, 1.0e-6)
     trace_names_by_branch = {
@@ -171,7 +189,7 @@ def _scan_label(
             f"total::{branch}",
             f"geometric_total::{branch}",
             f"intermediate_total::{branch}",
-            *[f"sector::{sector}::{branch}" for sector in ALL_SECTORS],
+            *[f"sector::{sector}::{branch}" for sector in scan_sectors],
         ]
         for branch in BRANCH_SIGNS
     }
@@ -236,7 +254,7 @@ def _scan_label(
                     avg, neg, _norm = _smeared_average(trace_values[f"{name}::{branch}"], lambdas, width)
                     record[f"smeared_{name}_Tkk_hat"] = avg
                     record[f"smeared_{name}_neg_part"] = neg
-                for sector in ALL_SECTORS:
+                for sector in scan_sectors:
                     sector_avg, sector_neg, _norm = _smeared_average(
                         trace_values[f"sector::{sector}::{branch}"],
                         lambdas,
@@ -244,7 +262,7 @@ def _scan_label(
                     )
                     record[f"smeared_sector::{sector}::{branch}"] = sector_avg
                     record[f"smeared_sector_neg::{sector}::{branch}"] = sector_neg
-                record["dominant_negative_sector"] = _dominant_negative_sector(record, branch)
+                record["dominant_negative_sector"] = _dominant_negative_sector(record, branch, scan_sectors)
                 rows.append(record)
         if progress and (center_index == total_centers or center_index % max(1, total_centers // 5) == 0):
             print(f"{grid.label}: intermediate SNEC center {center_index}/{total_centers}", flush=True)
@@ -287,14 +305,15 @@ def _summary_table(windows: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows).sort_values(["label", "smear_width_affine", "branch"])
 
 
-def _sector_summary_table(windows: pd.DataFrame) -> pd.DataFrame:
+def _sector_summary_table(windows: pd.DataFrame, sectors: Iterable[str] | None = None) -> pd.DataFrame:
     if windows.empty:
         return pd.DataFrame()
+    scan_sectors = list(sectors or ALL_SECTORS)
     rows: list[dict[str, Any]] = []
     for (label, branch, width), group in windows.groupby(["label", "branch", "smear_width_affine"], sort=False):
         scoreable = group.loc[group["scoreable_window"].astype(bool)] if "scoreable_window" in group else group
         sector_group = scoreable if not scoreable.empty else group
-        for sector in ALL_SECTORS:
+        for sector in scan_sectors:
             col = f"smeared_sector::{sector}::{branch}"
             neg_col = f"smeared_sector_neg::{sector}::{branch}"
             values = sector_group[col].astype(float).replace([np.inf, -np.inf], np.nan).dropna()
@@ -337,9 +356,12 @@ def build_intermediate_source_snec_screen(
     intermediate_manifest, point_sector_path = _load_intermediate_manifest(intermediate_dir)
     point_sector_stress = pd.read_csv(point_sector_path)
     sector_points = _sector_value_points(point_sector_stress)
+    model_sectors = _model_sector_order(intermediate_manifest, sector_points)
+    scan_sectors = [*model_sectors, INTERMEDIATE_RESIDUAL_SECTOR]
     grids, center_tables = _build_intermediate_label_grids(
         point_ledgers,
         sector_points,
+        sectors=model_sectors,
         total_mode=total_mode,
     )
     widths = [float(width) for width in smear_widths]
@@ -353,6 +375,7 @@ def build_intermediate_source_snec_screen(
                 center_stride=int(center_stride),
                 min_support_coverage=float(min_support_coverage),
                 min_kernel_coverage=float(min_kernel_coverage),
+                sectors=scan_sectors,
                 progress=bool(progress),
             )
             for label, grid in grids.items()
@@ -360,7 +383,7 @@ def build_intermediate_source_snec_screen(
         ignore_index=True,
     )
     summary = _summary_table(windows)
-    sector_summary = _sector_summary_table(windows)
+    sector_summary = _sector_summary_table(windows, scan_sectors)
     top_source = windows.loc[windows["scoreable_window"].astype(bool)] if not windows.empty else windows
     if top_source.empty:
         top_source = windows
@@ -383,6 +406,8 @@ def build_intermediate_source_snec_screen(
         "intermediate_dir": intermediate_dir,
         "intermediate_manifest": intermediate_manifest,
         "point_sector_stress_path": point_sector_path,
+        "model_sectors": model_sectors,
+        "scan_sectors": scan_sectors,
         "smear_widths": widths,
         "benchmark_b": float(benchmark_b),
         "center_stride": int(center_stride),
@@ -412,14 +437,14 @@ def write_intermediate_source_snec_outputs(
     manifest_path = outdir / "intermediate_source_snec_manifest.json"
     manifest = {
         "caveat": (
-            "Light hard-affine SNEC-style screen for the intermediate S0/S1/S2/G/DH sector package. "
+            "Light hard-affine SNEC-style screen for the intermediate sector package. "
             "The intermediate sector-sum total tests the replacement package, not a complete physical matter model."
         ),
         "component_source_dir": str(metadata["component_dir"]),
         "intermediate_source_dir": str(metadata["intermediate_dir"]),
         "point_sector_stress": str(metadata["point_sector_stress_path"]),
         "point_sector_stress_sha256": sha256_file(Path(metadata["point_sector_stress_path"])),
-        "sectors": ALL_SECTORS,
+        "sectors": list(metadata["scan_sectors"]),
         "smear_widths_affine": list(metadata["smear_widths"]),
         "benchmark_B": float(metadata["benchmark_b"]),
         "center_stride": int(metadata["center_stride"]),
