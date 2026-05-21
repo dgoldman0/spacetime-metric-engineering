@@ -105,6 +105,11 @@ horizon reachability and causal-guard follow-up:
 supporting_reports/STAGE2_HORIZON_REACHABILITY_AND_CAUSAL_GUARD_REPORT.md
 toolkit/adm_harness_cli/scripts/run_entry_packet_reachability.py
 toolkit/adm_harness_cli/runs/endpoint_horizon_causal_reachability_61x83/
+
+horizon escape ladder pilot:
+supporting_reports/STAGE2_HORIZON_ESCAPE_LADDER_PILOT.md
+toolkit/adm_harness_cli/scripts/run_horizon_escape_ladder.py
+toolkit/adm_harness_cli/specs/endpoint_horizon_escape_ladder_pilot.json
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure.
@@ -459,6 +464,29 @@ the source family. It is a horizon-freedom ladder: explicit masks first,
 longer-domain radial null escape next, then domain/refinement checks, and only
 after those stabilize should the project add trapped-surface/null-expansion
 diagnostics.
+
+Horizon escape ladder pilot update: the first ladder run is documented in
+`supporting_reports/STAGE2_HORIZON_ESCAPE_LADDER_PILOT.md`. On the existing
+`s_max = 2.4` domain, packet/carrier traces mostly hit the upper sigma boundary,
+so the old domain was too short to decide global escape. On an extended
+`s_max = 6.0`, `l = +/-6.0` pilot, all four anchor cases stayed live-clean and
+the live plus branch escaped from packet/carrier/branch-band masks, while live
+minus traces ended near the lower boundary. On the long-tail `s_max = 9.0`
+two-anchor pilot, beta075 `p003_mid` and beta100 baseline stayed live-clean and
+both radial branches escaped from `packet_live`, `packet_geom`,
+`branch_band_live`, `main_carrier`, and `support_plant` seed masks.
+
+Current horizon read:
+
+```text
+Local GZ-like branch behavior remains present, but live-service radial trapping
+is not observed in the long-tail pilot.
+```
+
+This is favorable ladder evidence, not a final global proof. Remaining
+near-term work is to run the long-tail rung on beta100 `p003_mid` and
+`p003_mid_post1p5`, increase live branch-band seed coverage, and then run a
+local refinement rung before trapped-surface/null-expansion diagnostics.
 
 Current post-receiver source-family work order:
 
