@@ -525,6 +525,24 @@ and none re-entered the live packet. Current read: prescribed-metric
 branch-band probe evolution remains favorable, while wake-tail closure remains
 open and should be the next scheduled-ADM refinement.
 
+Scheduled ADM confidence-run update: the staged future-domain confidence run is
+documented in `supporting_reports/STAGE2_SCHEDULED_ADM_CONFIDENCE_RUN.md`. The
+beta075 `p003_mid` target was regenerated at `s_max=12.0` on a `155 x 121` grid
+and at `s_max=15.0` on a `189 x 121` grid, preserving comparable `s` spacing and
+the same `l=+/-6.0` radial domain. Both extended ledgers stayed live-clean with
+zero positive live packet-norm samples. The GZ branch diagnostic still fails on
+the extended ledgers, so the local branch-crossing channel remains present. The
+core radial escape rung is clean at both `s12` and `s15`: `1056/1056` traces
+escape with zero future-boundary unresolved traces. In the stricter scheduled
+ADM probe audit, branch-band radial, off-axis, and congruence probes remain
+clean. The reset-tail red tag improves monotonically from `0/41` lower-boundary
+escapes at `s9`, to `13/41` at `s12`, to `30/41` at `s15`; the remaining
+`11/41` unresolved `s15` traces are all far-exterior, non-live `packet_outer`
+tails with no live-packet re-entry. Current read: live-service radial trapping
+is strongly disfavored in the prescribed model, while report-grade wake-tail
+closure remains open unless an optional `s18` rung clears the last exterior tail
+probes.
+
 Current post-receiver source-family work order:
 
 ```text
