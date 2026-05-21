@@ -276,6 +276,17 @@ Goal:
   current/angular burden.
 ```
 
+Negative-l promotion checkpoint: the branch is now promoted from orientation
+smoke to a beta075 dose/localization ladder and documented in
+`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_PROMOTION.md`. The ladder spec
+is
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_ladder_smoke.json`.
+The planned cases are baseline, negative-l p00075/p0015/p00225/p003 using the
+default outer support-edge cap, and p0015 localization variants for inner cap,
+narrow outer cap, and shorter post-release memory. Promotion criteria remain:
+zero positive live packet-norm samples, coherent selected-null relief, and
+support-edge current/angular burden close to the beta075 baseline.
+
 Current source-family work order:
 
 ```text
