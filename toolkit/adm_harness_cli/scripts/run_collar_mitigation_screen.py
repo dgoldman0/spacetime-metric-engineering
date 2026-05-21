@@ -33,6 +33,28 @@ MITIGATION_VARIANTS = [
     "beta_areal_l_smooth",
 ]
 
+METRIC_LEDGER_COLUMNS = [
+    "candidate_id",
+    "collar_mitigation_variant",
+    "collar_mitigation_strength",
+    "collar_mitigation_weight",
+    "s",
+    "l",
+    "stage",
+    "region",
+    "inside_packet_live",
+    "inside_packet_geom",
+    "alpha",
+    "beta",
+    "gamma_ll",
+    "gamma_omega",
+    "U_packet",
+    "B",
+    "packet_coord_speed",
+    "gtt",
+    "packet_norm",
+]
+
 
 def _parse_csv_floats(raw: str) -> list[float]:
     values = [float(item.strip()) for item in raw.split(",") if item.strip()]
@@ -290,6 +312,28 @@ def _trace_candidate(
     return traces, evolution, bundle, pointwise
 
 
+def _write_candidate_metric_ledger(
+    outdir: Path,
+    candidate_points: pd.DataFrame,
+    weight: pd.Series,
+    *,
+    candidate_id: str,
+    variant: str,
+    strength: float,
+) -> Path:
+    ledger_dir = outdir / "candidate_metric_ledgers"
+    ledger_dir.mkdir(parents=True, exist_ok=True)
+    ledger = candidate_points.copy()
+    ledger["candidate_id"] = candidate_id
+    ledger["collar_mitigation_variant"] = variant
+    ledger["collar_mitigation_strength"] = float(strength)
+    ledger["collar_mitigation_weight"] = pd.to_numeric(weight, errors="coerce").fillna(0.0)
+    columns = [column for column in METRIC_LEDGER_COLUMNS if column in ledger.columns]
+    path = ledger_dir / f"{candidate_id}_metric_point_ledger.csv"
+    ledger[columns].to_csv(path, index=False)
+    return path
+
+
 def _candidate_row(
     candidate_id: str,
     variant: str,
@@ -363,8 +407,9 @@ def _markdown_report(args: argparse.Namespace, summary: pd.DataFrame, core_rows:
         "",
         "## Purpose",
         "",
-        "This prescribed-metric screen probes the finite minus-branch carrier-focus collar with narrow in-memory field edits.",
+        "This prescribed-metric screen probes the finite minus-branch carrier-focus collar with narrow field edits.",
         "It observes dense-bundle width preservation alongside packet timelikeness and radial escape before any full source-ledger rebuild.",
+        "When enabled, it writes compact candidate metric point ledgers so the geometry observations are reproducible from files.",
         "",
         "## Settings",
         "",
@@ -377,6 +422,7 @@ def _markdown_report(args: argparse.Namespace, summary: pd.DataFrame, core_rows:
         f"- half width: `{args.half_width_steps}` grid steps",
         f"- collar temporal width: `{args.collar_temporal_width_steps}` grid steps",
         f"- collar radial width: `{args.collar_radial_width_steps}` grid steps",
+        f"- candidate metric ledgers: `{bool(args.write_candidate_ledgers)}`",
         "",
         "## Collar Core",
         "",
@@ -410,7 +456,8 @@ def _markdown_report(args: argparse.Namespace, summary: pd.DataFrame, core_rows:
         "",
         "## Caveat",
         "",
-        "These are in-memory prescribed-field perturbations, not regenerated demanded-source ledgers or matter-model candidates.",
+        "These are prescribed-metric perturbations, not regenerated demanded-source ledgers or matter-model candidates.",
+        "The saved candidate ledgers are metric-observation artifacts only.",
     ])
     return "\n".join(lines) + "\n"
 
@@ -442,6 +489,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
     evolution_frames: list[pd.DataFrame] = []
     trace_frames: list[pd.DataFrame] = []
     baseline_row: dict[str, Any] | None = None
+    candidate_ledger_paths: dict[str, str] = {}
 
     for variant in variants:
         variant_strengths = [0.0] if variant == "baseline" else strengths
@@ -455,6 +503,17 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
                 strength=float(strength),
                 smooth_passes=int(args.smooth_passes),
             )
+            if args.write_candidate_ledgers:
+                candidate_ledger_paths[candidate_id] = str(
+                    _write_candidate_metric_ledger(
+                        args.outdir,
+                        candidate_points,
+                        weight,
+                        candidate_id=candidate_id,
+                        variant=variant,
+                        strength=float(strength),
+                    )
+                )
             traces, evolution, bundle, pointwise = _trace_candidate(
                 candidate_points,
                 centers,
@@ -536,7 +595,11 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
             "smooth_passes": int(args.smooth_passes),
         },
         "files": {key: str(path) for key, path in paths.items() if key != "metadata"},
-        "caveat": "Prescribed-metric in-memory collar perturbation screen; not a demanded-source ledger or matter model.",
+        "candidate_metric_ledgers": candidate_ledger_paths,
+        "caveat": (
+            "Prescribed-metric collar perturbation screen; candidate ledgers are metric-observation artifacts, "
+            "not demanded-source ledgers or matter models."
+        ),
     }
     paths["metadata"].write_text(json.dumps(metadata, indent=2), encoding="utf-8")
     return paths
@@ -565,6 +628,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--collar-radial-width-steps", type=float, default=4.0)
     parser.add_argument("--collar-core-limit", type=int, default=48)
     parser.add_argument("--smooth-passes", type=int, default=3)
+    parser.add_argument(
+        "--write-candidate-ledgers",
+        action="store_true",
+        help="Write compact metric point ledgers for each candidate geometry.",
+    )
     parser.add_argument("--progress", action="store_true")
     return parser
 

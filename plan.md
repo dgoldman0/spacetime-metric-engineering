@@ -32,8 +32,8 @@ GZ/horizon causal gate: local branch screen adverse; dense finite-bundle read is
 adverse caustic-like compression with later escape.
 Global horizon freedom: open; sustained trapping is not observed, but single-ray
 escape is no longer enough for promotion.
-Model status: redesign blocker, not theory-killer; target the finite minus-branch
-carrier-focus collar before any broader horizon or source-family expansion.
+Model status: redesign blocker, not theory-killer; beta-collar softening is now
+the active mitigation axis before any broader horizon or source-family expansion.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -50,6 +50,10 @@ dense congruence caustic audit: s9/s12/s15 all show adverse caustic-like
 compression with later escape; 136/136 dense rays escape at each rung, zero
 sustained-to-end both-shrinking rays, but all-rays-both-shrinking width collapses
 to about 0.008-0.010 in l-width and about 0.00066-0.00070 in areal width.
+artifacted beta-collar geometry screen at s15: wide 6x6/pass8 beta smoothing
+preserves 136/136 dense-ray escape and zero positive live packet-norm samples,
+while reducing caustic-like bundles from 8/8 to 4/8 and lifting minimum all-both
+l-width from 0.009603 to 0.127830.
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -139,6 +143,12 @@ toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py
 toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s9/
 toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s12/
 toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s15/
+
+finite collar mitigation screen:
+supporting_reports/STAGE2_COLLAR_MITIGATION_SCREEN.md
+toolkit/adm_harness_cli/scripts/run_collar_mitigation_screen.py
+toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15/
+toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15_pass8_wide6/
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure. The GZ-like branch-band behavior is now best read as a finite-bundle expression of the same local cone effect: globally the prescribed probes avoid sustained trapping, but locally the live branch-band contains an aggressive finite minus-branch carrier-focus collar. The immediate design problem is to soften or redistribute that collar while preserving branch handoff, packet timelikeness, and radial escape.
@@ -158,13 +168,14 @@ Completed enough for current handoff:
   beta100 p003_mid, and beta100 p003_mid_post1p5;
   causal-margin guard small screen and entry-to-live-packet reachability screen;
   horizon escape ladder, scheduled ADM confidence run, trace-integrated expansion
-  audit, and dense congruence caustic audit on the beta075 p003_mid ladder.
+  audit, dense congruence caustic audit on the beta075 p003_mid ladder, and
+  first prescribed-metric finite collar mitigation screens.
 
 Still open:
-  finite minus-branch carrier-focus collar mitigation/redesign screen, with
-  bundle-width preservation observed alongside packet timelikeness and radial escape;
+  tensor-consistent beta-collar softening/rematch knob, with bundle-width
+  preservation observed alongside packet timelikeness and radial escape;
   global horizon-freedom claim remains open after collar mitigation: sustained
-  trapping is not observed, but dense caustic-like compression blocks promotion;
+  trapping is not observed, but residual caustic-like compression still blocks promotion;
   constrained physical source-family replacement for S0/J/R;
   endpoint junction conservation/closure as an actual matter-model target;
   robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
@@ -595,19 +606,25 @@ current shape. Next work should not be `s18` or a broad source redesign; run a
 narrow mitigation/redesign screen that observes bundle width, packet
 timelikeness, and radial escape together.
 
-Collar mitigation screen update: the first prescribed-metric in-memory screen is
-documented in `supporting_reports/STAGE2_COLLAR_MITIGATION_SCREEN.md`, with the
-runner at `toolkit/adm_harness_cli/scripts/run_collar_mitigation_screen.py`.
+Collar mitigation screen update: the prescribed-metric finite collar screens
+are documented in `supporting_reports/STAGE2_COLLAR_MITIGATION_SCREEN.md`, with
+the runner at `toolkit/adm_harness_cli/scripts/run_collar_mitigation_screen.py`.
 The first useful signal is beta-channel relief. Local beta l-smoothing inside
 the collar improves the all-rays-both-shrinking l-width floor by about `1.7-2.0x`
 across `s9`, `s12`, and `s15`, while preserving `136/136` dense-ray radial
 escapes and zero positive live packet-norm samples. Packet-beta relaxation is
 also directionally useful but weaker. Pure gamma_omega/areal smoothing does not
 materially relieve the finite-width compressor, and gamma_ll smoothing makes it
-worse. The next concrete build should promote a real beta-collar
-softening/rematch knob into the geometry/source-ledger generator, then rerun
-dense bundle width, packet safety, radial escape, source accounting, and SNEC
-companions.
+worse. The artifacted s15 beta-collar geometry follow-up writes compact metric
+point ledgers for candidate geometries. Its wider 6x6/pass8 beta smoothing
+screen reduces caustic-like bundle count from `8/8` to `4/8`, lifts the minimum
+all-both l-width ratio from `0.009603` to `0.127830`, preserves `136/136` dense
+ray escape, and keeps positive live packet norm at `0`. This is still not a
+viability proof, because residual caustic-like compression remains and the
+screen is not a demanded-source or matter-model regeneration. The next concrete
+build should promote a tensor-consistent beta-collar softening/rematch knob into
+the geometry/source-ledger generator, then rerun dense bundle width, packet
+safety, radial escape, source accounting, and SNEC companions.
 
 Affine-reparameterized SNEC audit update: the hard-affine wording concern has
 now been tested directly for the dense beta075 negative-l receiver promotion
@@ -633,9 +650,9 @@ Current post-receiver source-family work order:
 1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
    not a physical matter model.
 
-2. Pause broad horizon/source-family expansion and run a narrow finite
-   minus-branch carrier-focus collar mitigation screen. Bundle-width
-   preservation is now a first-class observation alongside packet timelikeness
+2. Promote the finite minus-branch carrier-focus collar result into a
+   tensor-consistent beta-collar softening/rematch knob. Bundle-width
+   preservation remains a first-class observation alongside packet timelikeness
    and radial escape.
 
 3. Preserve the current S0/J/R source target:
@@ -644,8 +661,9 @@ Current post-receiver source-family work order:
      and angular capacity;
    R small core-body residual leakage.
 
-4. After collar mitigation, resume horizon-freedom/domain/refinement claims only
-   if dense-bundle compression improves without losing escape or packet safety.
+4. Resume horizon-freedom/domain/refinement claims only if the tensor-consistent
+   collar knob reduces dense-bundle compression without losing escape, packet
+   safety, source-accounting sanity, or SNEC companion cleanliness.
 
 5. Replace the effective J receiver with a constrained source-family or
    conservation-closed model before making report-grade physical-source claims.

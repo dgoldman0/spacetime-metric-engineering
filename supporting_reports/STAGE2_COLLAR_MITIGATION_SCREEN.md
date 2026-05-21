@@ -9,10 +9,12 @@ congruence caustic audit. The target is the finite minus-branch
 carrier-focus collar: the live branch-band handoff layer that produces adverse
 caustic-like compression with later escape.
 
-This is a prescribed-metric, in-memory perturbation screen. It is not a
-regenerated demanded-source ledger, a conservation closure, or a matter model.
-The goal is to identify which metric channel is worth promoting into a real
-geometry knob.
+This is a prescribed-metric perturbation screen. It is not a regenerated
+demanded-source ledger, a conservation closure, or a matter model. The first
+phase identified which metric channel is worth promoting; the follow-up
+artifacted geometry phase writes compact metric point ledgers for candidate
+beta-collar geometries so the finite-bundle observations are reproducible from
+files.
 
 ## Diagnostic
 
@@ -63,6 +65,13 @@ toolkit/adm_harness_cli/runs/collar_mitigation_beta075_p003_mid_s9_beta/
 toolkit/adm_harness_cli/runs/collar_mitigation_beta075_p003_mid_s12_beta/
 ```
 
+Artifacted beta-collar geometry screens:
+
+```text
+toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15/
+toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15_pass8_wide6/
+```
+
 ## Main Result
 
 The first mitigation signal points to the beta channel, not pure areal-radius
@@ -101,6 +110,24 @@ At `s15`, beta+areal is not materially better in l-width than beta-only, though
 it gives a small extra areal-width gain. Areal smoothing alone does not relieve
 the finite-bundle compressor. Gamma_ll smoothing makes the compressor worse.
 
+The artifacted geometry follow-up confirms the same direction and shows that a
+broader/passier beta-collar softening can reduce the number of bundles crossing
+the current caustic-like threshold:
+
+| screen | candidate | dense escapes | positive live packet norm | caustic-like bundles | min all-both l-width | l-width gain | min all-both areal-width | areal-width gain |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| local 4x4/pass3 | baseline | 136/136 | 0 | 8/8 | 0.009603 | - | 0.000696 | - |
+| local 4x4/pass3 | `beta_l_smooth_s1p0` | 136/136 | 0 | 8/8 | 0.036718 | 3.823x | 0.005133 | 7.379x |
+| wide 6x6/pass8 | `beta_l_smooth_s0p75` | 136/136 | 0 | 6/8 | 0.080422 | 8.374x | 0.017395 | 25.009x |
+| wide 6x6/pass8 | `beta_l_smooth_s1p0` | 136/136 | 0 | 4/8 | 0.127830 | 13.311x | 0.045665 | 65.651x |
+| wide 6x6/pass8 | `beta_areal_l_smooth_s1p0` | 136/136 | 0 | 4/8 | 0.127830 | 13.311x | 0.045833 | 65.892x |
+
+The saved candidate metric ledgers live under each run's
+`candidate_metric_ledgers/` directory. They are observation artifacts only:
+their metric columns are suitable for trace/dense-bundle follow-up, but their
+source tensor columns are intentionally absent rather than treated as a
+regenerated matter/source result.
+
 ## Interpretation
 
 This is the first encouraging redesign signal after the dense caustic-like
@@ -120,18 +147,18 @@ weak lever: gamma_omega smoothing alone
 observed constraints preserved: packet timelikeness and radial escape
 ```
 
-This does not yet pass the promotion criterion, because the best candidates
-still have caustic-like bundle counts under the current threshold, especially at
-`s15`. But it changes the redesign problem from undirected geometry surgery to
-a concrete next build: implement a real beta-collar softening/rematch knob in
-the source-ledger generator, then regenerate ledgers and rerun the dense
-congruence, packet safety, radial escape, source accounting, and SNEC companion
-checks.
+This does not yet certify viability, because the best artifacted candidates
+still leave `4/8` caustic-like bundles under the current threshold at `s15`.
+But the search is now pointed: the obstruction is not invariant under beta
+collar softening. The redesign problem is no longer undirected geometry
+surgery; it is to implement a tensor-consistent beta-collar softening/rematch
+knob in the generator, then regenerate ledgers and rerun dense congruence,
+packet safety, radial escape, source accounting, and SNEC companion checks.
 
 ## Decision
 
-Proceed to a true geometry-level beta-collar mitigation. The first promoted
-knob should be a branch-band/local beta smoothing or relaxation partner, shaped
-around the finite minus-branch carrier-focus collar, with bundle-width
-preservation as a first-class gate alongside packet timelikeness and radial
-escape.
+Proceed to a true tensor-consistent geometry/source beta-collar mitigation. The
+first promoted knob should be a branch-band/local beta smoothing or relaxation
+partner, shaped around the finite minus-branch carrier-focus collar, with
+bundle-width preservation as a first-class gate alongside packet timelikeness
+and radial escape.
