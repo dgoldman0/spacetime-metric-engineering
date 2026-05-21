@@ -240,28 +240,40 @@ worse than baseline. A tiny positive-l angular companion improved J selected
 from `0.964417` to `0.954120`, but still lifted support-edge current from
 `0.105033` to `0.214547` and angular from `1.912497` to `2.566714`.
 
+Angular-symmetry receiver update: the third stress-channel realization is
+documented in
+`supporting_reports/STAGE2_BETA_MEMORY_RECEIVER_ANGULAR_SYMMETRY_MEMO.md`,
+with spec
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_angular_symmetry_smoke.json`.
+All six `61 x 83` cases were live-clean. The result changes the squeeze
+narrative: symmetry itself is not the escape route, but angular orientation is
+material. Positive-l angular actuation improved J selected-null from
+`0.964417` to `0.957289` while raising support-edge current from `0.105033`
+to `0.215404`. Bilateral p0015 improved J further to `0.947820` but inherited
+the positive-l current/angular cost. The negative-l p0015 flange is the new
+lead: J selected-null moved to `0.954948`, support-edge current stayed nearly
+flat at `0.107180`, and support-edge angular stayed essentially flat at
+`1.912350`.
+
 Updated search interpretation: the project is being squeezed out of cheap
-local metric-channel knobs, not out of beta-memory receiver source modeling.
-The only tested local receiver channel that moves selected-null is angular
-capacity, and every tested positive-l angular realization has carried a
-current/angular penalty. The next search should keep the beta-memory,
-non-live support-edge localization but vary angular/current structure rather
-than increasing local lapse/radial gains.
+positive-l angular, lapse, and radial metric-channel knobs, not out of
+beta-memory receiver source modeling. The next search should promote the
+negative-l angular receiver branch and measure dose/localization before adding
+radial/current companions.
 
 Next immediate search branch:
 
 ```text
-Test symmetry-balanced angular receiver variants:
+Test negative-l angular receiver variants:
   baseline beta075
-  tiny positive-l angular flange
-  tiny bilateral angular flange
-  tiny negative-l angular flange
-  paired positive/negative sign-balanced angular flange if supported
+  negative-l p00075, p0015, p00225, p003 if live-clean
+  compare outer cap, inner cap, and narrowed post-release support-edge masks
+  only then pair the best negative-l case with mild radial/current cap
 
 Goal:
-  determine whether the current explosion is caused by one-sided angular
-  localization/asymmetry, or by any local angular-capacity actuation on this
-  receiver geometry.
+  determine whether the negative-l orientation has a genuine dose/localization
+  window that preserves selected-null relief without importing the positive-l
+  current/angular burden.
 ```
 
 Current source-family work order:
