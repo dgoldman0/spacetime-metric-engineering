@@ -595,6 +595,20 @@ current shape. Next work should not be `s18` or a broad source redesign; run a
 narrow mitigation/redesign screen that observes bundle width, packet
 timelikeness, and radial escape together.
 
+Collar mitigation screen update: the first prescribed-metric in-memory screen is
+documented in `supporting_reports/STAGE2_COLLAR_MITIGATION_SCREEN.md`, with the
+runner at `toolkit/adm_harness_cli/scripts/run_collar_mitigation_screen.py`.
+The first useful signal is beta-channel relief. Local beta l-smoothing inside
+the collar improves the all-rays-both-shrinking l-width floor by about `1.7-2.0x`
+across `s9`, `s12`, and `s15`, while preserving `136/136` dense-ray radial
+escapes and zero positive live packet-norm samples. Packet-beta relaxation is
+also directionally useful but weaker. Pure gamma_omega/areal smoothing does not
+materially relieve the finite-width compressor, and gamma_ll smoothing makes it
+worse. The next concrete build should promote a real beta-collar
+softening/rematch knob into the geometry/source-ledger generator, then rerun
+dense bundle width, packet safety, radial escape, source accounting, and SNEC
+companions.
+
 Affine-reparameterized SNEC audit update: the hard-affine wording concern has
 now been tested directly for the dense beta075 negative-l receiver promotion
 package and documented in
