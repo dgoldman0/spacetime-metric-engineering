@@ -491,19 +491,23 @@ near-term work is to run the long-tail rung on beta100 `p003_mid` and
 `p003_mid_post1p5`, increase live branch-band seed coverage, and then run a
 local refinement rung before trapped-surface/null-expansion diagnostics.
 
-Refined beta075 core update: the core physics-wall test is documented in
-`supporting_reports/STAGE2_HORIZON_ESCAPE_REFINED_BETA075_CORE.md`. This run
-uses only the promoted beta075 `p003_mid` mechanism on a `121 x 121`,
-`s=-1.5..9.0`, `l=+/-6.0` long-tail grid. It stays live-clean with zero positive
-live packet-norm samples. The refined local GZ screen still fails, and the live
-branch margin tightens to `0.002402` with 45 live-packet branch-crossing edges,
-so the test did not remove the local GZ-like channel. With 30 seeds per core
-mask on `packet_live`, `packet_geom`, `main_carrier`, `support_plant`, and
-`branch_band_live`, every one of 300 radial null traces escaped to the expected
-boundary with zero `s_upper_boundary` unresolved traces. Current read: beta075
-`p003_mid` does not show live-service radial trapping under the refined core
-test, despite the local branch signature. Beta100 should wait for a robustness
-section unless the beta075 convergence rung reverses.
+Refined beta075 core and convergence update: the core physics-wall test is
+documented in `supporting_reports/STAGE2_HORIZON_ESCAPE_REFINED_BETA075_CORE.md`,
+and the narrow seed-density rung is documented in
+`supporting_reports/STAGE2_BETA075_BRANCH_BAND_CONVERGENCE.md`. This keeps the
+promoted beta075 `p003_mid` mechanism fixed on the `121 x 121`,
+`s=-1.5..9.0`, `l=+/-6.0` long-tail grid. The refined local GZ screen still
+fails, and the live branch margin tightens to `0.002402` with 45 live-packet
+branch-crossing edges, so the test did not remove the local GZ-like channel.
+Across seed30, seed60, and seed120 core-mask rungs, `packet_live`,
+`main_carrier`, `support_plant`, and `branch_band_live` null traces continued
+to escape cleanly. The only unresolved growth was in non-live `packet_geom`
+minus-branch traces during `reset_decompression`: 6 unresolved at seed60 and 44
+at seed120, ending near the lower exterior at the future domain boundary. Current
+read: branch-band convergence passes for beta075 `p003_mid`, while
+release/wake tail closure remains an explicit red tag. The next tier should be
+a scheduled ADM evolution audit with prescribed metric fields, not full
+dynamical Einstein evolution.
 
 Current post-receiver source-family work order:
 
