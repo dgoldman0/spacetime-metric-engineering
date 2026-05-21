@@ -509,6 +509,22 @@ release/wake tail closure remains an explicit red tag. The next tier should be
 a scheduled ADM evolution audit with prescribed metric fields, not full
 dynamical Einstein evolution.
 
+Scheduled ADM probe evolution pilot update: the first prescribed-metric audit is
+documented in
+`supporting_reports/STAGE2_SCHEDULED_ADM_PROBE_EVOLUTION_PILOT.md`, with the
+runner at
+`toolkit/adm_harness_cli/scripts/run_scheduled_adm_probe_evolution.py`. It
+prescribes the beta075 `p003_mid` fields `alpha`, `beta`, `gamma_ll`, and
+`gamma_omega`, then evolves packet centerline, packet tube-edge, radial null,
+off-axis null, branch-band congruence, and explicit reset-tail red-tag probes.
+The branch-band radial, off-axis, and congruence probes all escaped, including
+minus-branch families with branch sign changes. The red-tag
+`reset_decompression` `packet_geom` minus-tail monitor selected 41 unique tail
+seeds; all 41 reached the future domain boundary rather than a radial boundary,
+and none re-entered the live packet. Current read: prescribed-metric
+branch-band probe evolution remains favorable, while wake-tail closure remains
+open and should be the next scheduled-ADM refinement.
+
 Current post-receiver source-family work order:
 
 ```text
