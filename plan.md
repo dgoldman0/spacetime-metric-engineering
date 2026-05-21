@@ -28,8 +28,12 @@ audit with residual monitoring.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
 Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
 Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
-GZ/horizon causal gate: local branch screen adverse; entry-to-packet reachability favorable so far.
-Global horizon freedom: open; next step is a staged ladder, not an immediate source-model replacement.
+GZ/horizon causal gate: local branch screen adverse; dense finite-bundle read is now
+adverse caustic-like compression with later escape.
+Global horizon freedom: open; sustained trapping is not observed, but single-ray
+escape is no longer enough for promotion.
+Model status: redesign blocker, not theory-killer; target the finite minus-branch
+carrier-focus collar before any broader horizon or source-family expansion.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -42,6 +46,10 @@ positive live packet-norm samples: 0
 tightest scoreable hard-affine SNEC margin: approximately 0.01494 at tau = 4.0
 dense beta075 affine-reparameterized SNEC: 175,851 windows, zero all-window
 and zero scoreable benchmark-floor violations at widths 0.5, 1.0, and 2.0
+dense congruence caustic audit: s9/s12/s15 all show adverse caustic-like
+compression with later escape; 136/136 dense rays escape at each rung, zero
+sustained-to-end both-shrinking rays, but all-rays-both-shrinking width collapses
+to about 0.008-0.010 in l-width and about 0.00066-0.00070 in areal width.
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -117,9 +125,23 @@ toolkit/adm_harness_cli/specs/endpoint_horizon_escape_ladder_pilot.json
 
 refined beta075 horizon core test:
 supporting_reports/STAGE2_HORIZON_ESCAPE_REFINED_BETA075_CORE.md
+
+trace-integrated expansion audit:
+supporting_reports/STAGE2_TRACE_EXPANSION_AUDIT.md
+toolkit/adm_harness_cli/scripts/run_trace_expansion_audit.py
+toolkit/adm_harness_cli/runs/trace_expansion_beta075_p003_mid_s9/
+toolkit/adm_harness_cli/runs/trace_expansion_beta075_p003_mid_s12/
+toolkit/adm_harness_cli/runs/trace_expansion_beta075_p003_mid_s15/
+
+dense congruence caustic audit:
+supporting_reports/STAGE2_DENSE_CONGRUENCE_CAUSTIC_AUDIT.md
+toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py
+toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s9/
+toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s12/
+toolkit/adm_harness_cli/runs/dense_congruence_caustic_beta075_p003_mid_s15/
 ```
 
-Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure.
+Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure. The GZ-like branch-band behavior is now best read as a finite-bundle expression of the same local cone effect: globally the prescribed probes avoid sustained trapping, but locally the live branch-band contains an aggressive finite minus-branch carrier-focus collar. The immediate design problem is to soften or redistribute that collar while preserving branch handoff, packet timelikeness, and radial escape.
 
 Research completion state:
 
@@ -134,11 +156,15 @@ Completed enough for current handoff:
   beta100 retiming/locality stress screen;
   first GZ-style causal obstruction screen on beta075 p003_mid, beta100 baseline,
   beta100 p003_mid, and beta100 p003_mid_post1p5;
-  causal-margin guard small screen and entry-to-live-packet reachability screen.
+  causal-margin guard small screen and entry-to-live-packet reachability screen;
+  horizon escape ladder, scheduled ADM confidence run, trace-integrated expansion
+  audit, and dense congruence caustic audit on the beta075 p003_mid ladder.
 
 Still open:
-  global horizon-freedom ladder: explicit masks, longer radial null escape,
-  domain/refinement checks, and only then trapped-surface/null-expansion diagnostics;
+  finite minus-branch carrier-focus collar mitigation/redesign screen, with
+  bundle-width preservation observed alongside packet timelikeness and radial escape;
+  global horizon-freedom claim remains open after collar mitigation: sustained
+  trapping is not observed, but dense caustic-like compression blocks promotion;
   constrained physical source-family replacement for S0/J/R;
   endpoint junction conservation/closure as an actual matter-model target;
   robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
@@ -547,6 +573,28 @@ is strongly disfavored in the prescribed model, while report-grade wake-tail
 closure remains open unless an optional `s18` rung clears the last exterior tail
 probes.
 
+Trace-expansion and dense-congruence update: the null-expansion proxy, the
+trace-integrated audit, and the dense bundle follow-up are now documented in
+`supporting_reports/STAGE2_NULL_EXPANSION_PROXY.md`,
+`supporting_reports/STAGE2_TRACE_EXPANSION_AUDIT.md`, and
+`supporting_reports/STAGE2_DENSE_CONGRUENCE_CAUSTIC_AUDIT.md`. The pointwise
+proxy found a real both-null-focusing patch in live branch-band rows. The
+scheduled trace audit was favorable at the single-ray level: branch-band radial,
+off-axis, and congruence probes enter the patch, recover, and escape with zero
+sustained-to-end branch-band traces across `s9`, `s12`, and `s15`. The dense
+congruence audit changes the severity: the same GZ-like branch-band channel has
+an adverse finite-bundle expression. The formal result is adverse caustic-like
+compression with later escape. At all three rungs, `136/136` dense rays escape
+and zero rays remain both-shrinking to the end, but dense bundles compress hard
+inside the live all-rays-both-shrinking interval. The current design should
+therefore be treated as locally GZ-like in cone structure while globally avoiding
+sustained trapping under the tested prescribed probes. The suspected mechanism
+is a finite minus-branch carrier-focus collar: a localized live handoff layer
+that may be doing real optical matching work, but is too aggressive in the
+current shape. Next work should not be `s18` or a broad source redesign; run a
+narrow mitigation/redesign screen that observes bundle width, packet
+timelikeness, and radial escape together.
+
 Affine-reparameterized SNEC audit update: the hard-affine wording concern has
 now been tested directly for the dense beta075 negative-l receiver promotion
 package and documented in
@@ -571,11 +619,10 @@ Current post-receiver source-family work order:
 1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
    not a physical matter model.
 
-2. Run the horizon-freedom ladder before another broad source-family redesign:
-   explicit packet/carrier/entry/exit/wake/post-release masks; longer-domain
-   radial null escape; entry/exit reachability variants; domain and refinement
-   scaling. Treat trapped-surface/null-expansion checks as the later rung once
-   the operational escape criteria are stable.
+2. Pause broad horizon/source-family expansion and run a narrow finite
+   minus-branch carrier-focus collar mitigation screen. Bundle-width
+   preservation is now a first-class observation alongside packet timelikeness
+   and radial escape.
 
 3. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
@@ -583,13 +630,16 @@ Current post-receiver source-family work order:
      and angular capacity;
    R small core-body residual leakage.
 
-4. Replace the effective J receiver with a constrained source-family or
+4. After collar mitigation, resume horizon-freedom/domain/refinement claims only
+   if dense-bundle compression improves without losing escape or packet safety.
+
+5. Replace the effective J receiver with a constrained source-family or
    conservation-closed model before making report-grade physical-source claims.
 
-5. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
+6. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
    default unless future workloads require beta100 operation.
 
-6. Prefer hybrid source-family models over a single scalar source unless a
+7. Prefer hybrid source-family models over a single scalar source unless a
    target table shows one family can cover multiple sectors without packet
    contamination or large residual/conservation warnings.
 ```
