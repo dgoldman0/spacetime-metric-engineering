@@ -26,6 +26,7 @@ Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
 Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
 Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
+GZ/horizon causal gate: failed at local branch-crossing screen; horizon-free claims blocked.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -94,9 +95,13 @@ toolkit/adm_harness_cli/scripts/run_beta_support_receiver_basis.py
 
 latest beta100 receiver-retiming transfer outputs:
 toolkit/adm_harness_cli/runs/endpoint_beta_memory_receiver_p003_mid_beta100_retiming_locality_small_61x83/receiver_basis_beta100_small/
+
+GZ obstruction screen:
+supporting_reports/STAGE2_GZ_OBSTRUCTION_SCREEN.md
+toolkit/adm_harness_cli/runs/gz_obstruction_screen_receiver_beta075_beta100/
 ```
 
-Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model.
+Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure.
 
 Research completion state:
 
@@ -108,9 +113,12 @@ Completed enough for current handoff:
   endpoint thickness/coupling negative result;
   beta-release/receiver basis diagnostics;
   negative-l beta-memory receiver ladder, locality, dense promotion, and full-stride SNEC;
-  beta100 retiming/locality stress screen.
+  beta100 retiming/locality stress screen;
+  first GZ-style causal obstruction screen on beta075 p003_mid, beta100 baseline,
+  beta100 p003_mid, and beta100 p003_mid_post1p5.
 
 Still open:
+  horizon-aware/GZ-free redesign or causal-retiming constraint;
   constrained physical source-family replacement for S0/J/R;
   endpoint junction conservation/closure as an actual matter-model target;
   robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
@@ -396,25 +404,48 @@ beta100 post1p5 retiming: live-safe and transfer-clean on the 61 x 83 stress gri
 Do not claim broad beta-timing robustness. Do record beta100 `post1p5` as the
 first documented stress-retiming anchor for future higher-workload designs.
 
+GZ obstruction screen update: the first local causal-structure screen is
+documented in `supporting_reports/STAGE2_GZ_OBSTRUCTION_SCREEN.md`, with
+output under
+`toolkit/adm_harness_cli/runs/gz_obstruction_screen_receiver_beta075_beta100/`.
+It compared beta075 `p003_mid`, beta100 baseline, beta100 unchanged
+`p003_mid`, and beta100 `p003_mid_post1p5`. All four fail the local
+GZ-obstruction gate because the minus radial null branch has zero-crossing
+edges touching the live packet, active interpolation band, and top
+shell/throat-overlap decile. The sampled points do not land exactly on branch
+zero at the `1e-4` threshold, but neighboring grid edges cross it. This is not
+a proof of a global event horizon or a GZ singularity, but it is a real
+causal-branch warning that live packet norm, selected-null accounting, and SNEC
+screens had not measured. The receiver remains promoted as an effective
+source-accounting mechanism; horizon-free or GZ-free claims are now explicitly
+blocked until a horizon-aware metric/source constraint clears this gate.
+
 Current post-receiver source-family work order:
 
 ```text
 1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
    not a physical matter model.
 
-2. Preserve the current S0/J/R source target:
+2. Add a horizon-aware causal constraint to the metric/source target before any
+   horizon-free design claim:
+   reduce or redistribute live/high-overlap carrying-flow shift, or otherwise
+   enforce a branch margin such as abs(beta) < alpha / sqrt(gamma_ll) in the
+   protected packet corridor unless a deliberate one-way causal region is being
+   modeled.
+
+3. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
    J coupled endpoint/junction layer carrying radial trim, current relaxation,
      and angular capacity;
    R small core-body residual leakage.
 
-3. Replace the effective J receiver with a constrained source-family or
+4. Replace the effective J receiver with a constrained source-family or
    conservation-closed model before making report-grade physical-source claims.
 
-4. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
+5. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
    default unless future workloads require beta100 operation.
 
-5. Prefer hybrid source-family models over a single scalar source unless a
+6. Prefer hybrid source-family models over a single scalar source unless a
    target table shows one family can cover multiple sectors without packet
    contamination or large residual/conservation warnings.
 ```
