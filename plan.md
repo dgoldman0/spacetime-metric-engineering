@@ -320,6 +320,17 @@ benchmark-floor violations. Current next action: run the full-stride SNEC
 confirmation on the dense beta075 package, then stress `p003_mid` at beta100
 only if that full-stride gate remains clean.
 
+Full-stride and beta100 update: the follow-up is documented in
+`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_FULL_STRIDE_AND_BETA100.md`.
+The dense beta075 package now passes full-stride intermediate SNEC in both
+sector-sum and residual-inclusive modes at tau `0.5`, `1.0`, and `2.0`; each
+mode scanned `175,851` windows with zero all-window and zero scoreable
+benchmark-floor violations. This strengthens the beta075 `p003_mid` promotion.
+The beta100 stress screen is live-clean but not transfer-clean: beta100
+`p003_mid` worsens J selected-null from `0.944764` to `0.964451`, with selected
+net J relief slightly negative and angular net relief `-0.006818`. Treat
+beta100 as a timing-sensitivity warning, not as an unchanged promotion pass.
+
 Current source-family work order:
 
 ```text
