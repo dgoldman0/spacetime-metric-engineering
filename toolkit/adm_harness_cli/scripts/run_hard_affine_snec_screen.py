@@ -87,6 +87,15 @@ def build_parser() -> argparse.ArgumentParser:
         default="geometric",
         help="Use the geometric demanded total or the scaled sector-sum total.",
     )
+    parser.add_argument(
+        "--parameterization",
+        choices=["affine", "lapse"],
+        default="affine",
+        help=(
+            "Use center-normalized affine reparameterization from radial-null non-affinity diagnostics, "
+            "or the legacy lapse-normalized parameter for comparison."
+        ),
+    )
     parser.add_argument("--top-limit", type=int, default=120)
     parser.add_argument(
         "--progress",
@@ -115,6 +124,7 @@ def main() -> int:
         "smear_widths": [float(width) for width in smear_widths],
         "center_stride": int(args.center_stride),
         "total_mode": str(args.total_mode),
+        "parameterization": str(args.parameterization),
     }), flush=True)
     outputs, metadata = build_hard_affine_snec_screen(
         args.component_dir,
@@ -126,6 +136,7 @@ def main() -> int:
         min_kernel_coverage=float(args.min_kernel_coverage),
         sector_scales=_sector_scales(args.sector_scale),
         total_mode=str(args.total_mode),
+        parameterization=str(args.parameterization),
         progress=bool(args.progress),
     )
     files = write_hard_affine_snec_outputs(args.outdir, args.component_dir, outputs, metadata)

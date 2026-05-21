@@ -22,7 +22,9 @@ Current decision state:
 ```text
 Entry gate: accepted as part of the representative design.
 Live packet safety: clean on the 101 x 151 extended ledger.
-Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
+Hard affine SNEC: older entry-gate screens are clean, and the dense beta075
+promotion package now passes an explicit affine-reparameterized radial-null
+audit with residual monitoring.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
 Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
 Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
@@ -38,6 +40,8 @@ Key current facts:
 max live packet norm: approximately -1.242423
 positive live packet-norm samples: 0
 tightest scoreable hard-affine SNEC margin: approximately 0.01494 at tau = 4.0
+dense beta075 affine-reparameterized SNEC: 175,851 windows, zero all-window
+and zero scoreable benchmark-floor violations at widths 0.5, 1.0, and 2.0
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -542,6 +546,24 @@ tails with no live-packet re-entry. Current read: live-service radial trapping
 is strongly disfavored in the prescribed model, while report-grade wake-tail
 closure remains open unless an optional `s18` rung clears the last exterior tail
 probes.
+
+Affine-reparameterized SNEC audit update: the hard-affine wording concern has
+now been tested directly for the dense beta075 negative-l receiver promotion
+package and documented in
+`supporting_reports/STAGE2_AFFINE_REPARAM_SNEC_AUDIT.md`. The SNEC harness now
+supports `--parameterization affine` and `--parameterization lapse`; the affine
+mode computes radial-null non-affinity for `K=(1, dl/ds)`, integrates a
+center-normalized affine window coordinate, and records the radial geodesic
+residual as a diagnostic. The full-stride affine audit scanned `175,851`
+windows across baseline, `p003_mid`, and `p003_outer` beta075 labels at widths
+`0.5`, `1.0`, and `2.0`. All `18/18` summary rows passed with zero all-window
+and zero scoreable benchmark-floor violations; the scoreable worst margin is
+`0.061352`, while the all-window worst margin is still positive at `0.035515`.
+The non-affinity diagnostics are nontrivial, so old lapse-parametrized screens
+should not be over-described. Current wording should be "clean
+affine-reparameterized radial-null SNEC screen with residual monitoring," not a
+proof of semiclassical admissibility, conservation closure, or a physical
+matter model.
 
 Current post-receiver source-family work order:
 

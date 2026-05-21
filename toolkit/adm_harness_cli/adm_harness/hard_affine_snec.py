@@ -56,6 +56,11 @@ class LabelGrid:
         diffs = np.diff(self.s_axis)
         return float(np.nanmin(np.abs(diffs))) if len(diffs) else 1.0
 
+    @property
+    def step_l(self) -> float:
+        diffs = np.diff(self.l_axis)
+        return float(np.nanmin(np.abs(diffs))) if len(diffs) else 1.0
+
     def in_bounds(self, s: float, l: float) -> bool:
         return (
             float(self.s_axis[0]) <= s <= float(self.s_axis[-1])
@@ -109,6 +114,155 @@ def _bilinear(x_axis: np.ndarray, y_axis: np.ndarray, values: np.ndarray, x: flo
         + (1.0 - tx) * ty * v01
         + tx * ty * v11
     )
+
+
+def _null_speed(grid: LabelGrid, s: float, l: float, branch: str) -> float:
+    branch_factor = 1.0 if branch == "plus" else -1.0
+    alpha = grid.interp("alpha", s, l)
+    beta = grid.interp("beta", s, l)
+    gamma_ll = grid.interp("gamma_ll", s, l)
+    if not all(math.isfinite(v) for v in [alpha, beta, gamma_ll]) or gamma_ll <= 0.0:
+        return float("nan")
+    return float(-beta + branch_factor * alpha / math.sqrt(gamma_ll))
+
+
+def _metric_components(grid: LabelGrid, s: float, l: float) -> np.ndarray:
+    alpha = grid.interp("alpha", s, l)
+    beta = grid.interp("beta", s, l)
+    gamma_ll = grid.interp("gamma_ll", s, l)
+    if not all(math.isfinite(v) for v in [alpha, beta, gamma_ll]):
+        return np.full((2, 2), float("nan"), dtype=float)
+    return np.array(
+        [
+            [-alpha * alpha + gamma_ll * beta * beta, gamma_ll * beta],
+            [gamma_ll * beta, gamma_ll],
+        ],
+        dtype=float,
+    )
+
+
+def _partial_metric(grid: LabelGrid, s: float, l: float, axis: int) -> np.ndarray:
+    if axis == 0:
+        h = max(grid.step_s * 0.5, 1.0e-6)
+        lo = s - h
+        hi = s + h
+        fixed = l
+        lower_bound = float(grid.s_axis[0])
+        upper_bound = float(grid.s_axis[-1])
+    elif axis == 1:
+        h = max(grid.step_l * 0.5, 1.0e-6)
+        lo = l - h
+        hi = l + h
+        fixed = s
+        lower_bound = float(grid.l_axis[0])
+        upper_bound = float(grid.l_axis[-1])
+    else:
+        raise ValueError(f"unknown metric derivative axis {axis!r}")
+
+    if lo >= lower_bound and hi <= upper_bound:
+        if axis == 0:
+            left = _metric_components(grid, lo, fixed)
+            right = _metric_components(grid, hi, fixed)
+        else:
+            left = _metric_components(grid, fixed, lo)
+            right = _metric_components(grid, fixed, hi)
+        return (right - left) / (2.0 * h)
+    if hi <= upper_bound:
+        if axis == 0:
+            base = _metric_components(grid, s, fixed)
+            right = _metric_components(grid, hi, fixed)
+        else:
+            base = _metric_components(grid, fixed, l)
+            right = _metric_components(grid, fixed, hi)
+        return (right - base) / h
+    if lo >= lower_bound:
+        if axis == 0:
+            left = _metric_components(grid, lo, fixed)
+            base = _metric_components(grid, s, fixed)
+        else:
+            left = _metric_components(grid, fixed, lo)
+            base = _metric_components(grid, fixed, l)
+        return (base - left) / h
+    return np.full((2, 2), float("nan"), dtype=float)
+
+
+def _speed_partial(grid: LabelGrid, s: float, l: float, branch: str, axis: int) -> float:
+    if axis == 0:
+        h = max(grid.step_s * 0.5, 1.0e-6)
+        lo = s - h
+        hi = s + h
+        lower_bound = float(grid.s_axis[0])
+        upper_bound = float(grid.s_axis[-1])
+        if lo >= lower_bound and hi <= upper_bound:
+            return (_null_speed(grid, hi, l, branch) - _null_speed(grid, lo, l, branch)) / (2.0 * h)
+        if hi <= upper_bound:
+            return (_null_speed(grid, hi, l, branch) - _null_speed(grid, s, l, branch)) / h
+        if lo >= lower_bound:
+            return (_null_speed(grid, s, l, branch) - _null_speed(grid, lo, l, branch)) / h
+    elif axis == 1:
+        h = max(grid.step_l * 0.5, 1.0e-6)
+        lo = l - h
+        hi = l + h
+        lower_bound = float(grid.l_axis[0])
+        upper_bound = float(grid.l_axis[-1])
+        if lo >= lower_bound and hi <= upper_bound:
+            return (_null_speed(grid, s, hi, branch) - _null_speed(grid, s, lo, branch)) / (2.0 * h)
+        if hi <= upper_bound:
+            return (_null_speed(grid, s, hi, branch) - _null_speed(grid, s, l, branch)) / h
+        if lo >= lower_bound:
+            return (_null_speed(grid, s, l, branch) - _null_speed(grid, s, lo, branch)) / h
+    else:
+        raise ValueError(f"unknown speed derivative axis {axis!r}")
+    return float("nan")
+
+
+def _non_affinity(grid: LabelGrid, s: float, l: float, branch: str) -> tuple[float, float]:
+    """Return kappa and the radial geodesic residual for K=(1, dl/ds).
+
+    The coordinate-time null tangent K is generally non-affine:
+    K^nu nabla_nu K^mu = kappa K^mu.  The residual reports the mismatch in the
+    radial component after using the time component to infer kappa.
+    """
+    metric = _metric_components(grid, s, l)
+    if not np.isfinite(metric).all():
+        return float("nan"), float("nan")
+    try:
+        inverse = np.linalg.inv(metric)
+    except np.linalg.LinAlgError:
+        return float("nan"), float("nan")
+    derivs = [_partial_metric(grid, s, l, 0), _partial_metric(grid, s, l, 1)]
+    if not all(np.isfinite(deriv).all() for deriv in derivs):
+        return float("nan"), float("nan")
+    gamma = np.zeros((2, 2, 2), dtype=float)
+    for mu in range(2):
+        for nu in range(2):
+            for rho in range(2):
+                total = 0.0
+                for lam in range(2):
+                    total += inverse[mu, lam] * (
+                        derivs[nu][rho, lam]
+                        + derivs[rho][nu, lam]
+                        - derivs[lam][nu, rho]
+                    )
+                gamma[mu, nu, rho] = 0.5 * total
+
+    speed = _null_speed(grid, s, l, branch)
+    speed_s = _speed_partial(grid, s, l, branch, 0)
+    speed_l = _speed_partial(grid, s, l, branch, 1)
+    if not all(math.isfinite(v) for v in [speed, speed_s, speed_l]):
+        return float("nan"), float("nan")
+    tangent = np.array([1.0, speed], dtype=float)
+    acceleration = np.zeros(2, dtype=float)
+    acceleration[1] = speed_s + speed * speed_l
+    for mu in range(2):
+        connection = 0.0
+        for nu in range(2):
+            for rho in range(2):
+                connection += gamma[mu, nu, rho] * tangent[nu] * tangent[rho]
+        acceleration[mu] += connection
+    kappa = float(acceleration[0])
+    radial_residual = float(acceleration[1] - kappa * speed)
+    return kappa, radial_residual
 
 
 def _load_component_detail(component_dir: Path) -> tuple[pd.DataFrame, dict[str, Any]]:
@@ -297,45 +451,78 @@ def _trace_branch(
     *,
     lambda_extent: float,
     step_s: float,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    branch_factor = 1.0 if branch == "plus" else -1.0
+    parameterization: str = "affine",
+    return_diagnostics: bool = False,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray] | tuple[np.ndarray, np.ndarray, np.ndarray, dict[str, np.ndarray]]:
+    if parameterization not in {"affine", "lapse"}:
+        raise ValueError(f"unknown SNEC trace parameterization {parameterization!r}")
+    alpha_center = grid.interp("alpha", center_s, center_l)
+    if not math.isfinite(alpha_center) or alpha_center <= 0.0:
+        alpha_center = 1.0
 
-    def step(direction: float) -> list[tuple[float, float, float]]:
-        samples: list[tuple[float, float, float]] = []
+    def step(direction: float) -> list[tuple[float, float, float, float, float, float]]:
+        samples: list[tuple[float, float, float, float, float, float]] = []
         s = float(center_s)
         l = float(center_l)
         lam = 0.0
+        kappa_integral = 0.0
         while abs(lam) < lambda_extent:
-            alpha = grid.interp("alpha", s, l)
-            beta = grid.interp("beta", s, l)
-            gamma_ll = grid.interp("gamma_ll", s, l)
-            if not all(math.isfinite(v) for v in [alpha, beta, gamma_ll]) or gamma_ll <= 0.0:
+            speed = _null_speed(grid, s, l, branch)
+            if not math.isfinite(speed):
                 break
             ds = direction * step_s
             next_s = s + ds
             if next_s < grid.s_axis[0] or next_s > grid.s_axis[-1]:
                 break
-            slope = -beta + branch_factor * alpha / math.sqrt(gamma_ll)
-            next_l = l + slope * ds
+            next_l = l + speed * ds
             mid_s = s + 0.5 * ds
-            mid_l = l + 0.5 * slope * ds
+            mid_l = l + 0.5 * speed * ds
             if not grid.in_bounds(next_s, next_l) or not grid.in_bounds(mid_s, mid_l):
                 break
-            alpha_mid = grid.interp("alpha", mid_s, mid_l)
-            if not math.isfinite(alpha_mid):
-                alpha_mid = alpha
-            lam += abs(alpha_mid * ds)
-            samples.append((direction * lam, next_s, next_l))
+            mid_speed = _null_speed(grid, mid_s, mid_l, branch)
+            if math.isfinite(mid_speed):
+                next_l = l + mid_speed * ds
+                if not grid.in_bounds(next_s, next_l):
+                    break
+            kappa_mid, residual_mid = _non_affinity(grid, mid_s, mid_l, branch)
+            if parameterization == "affine":
+                if not math.isfinite(kappa_mid):
+                    break
+                next_kappa_integral = kappa_integral + kappa_mid * ds
+                scale_mid = alpha_center * math.exp(0.5 * (kappa_integral + next_kappa_integral))
+                dlam = scale_mid * ds
+                kappa_integral = next_kappa_integral
+            else:
+                alpha_mid = grid.interp("alpha", mid_s, mid_l)
+                if not math.isfinite(alpha_mid):
+                    break
+                scale_mid = alpha_mid
+                dlam = scale_mid * ds
+                if not math.isfinite(kappa_mid):
+                    kappa_mid = float("nan")
+                if not math.isfinite(residual_mid):
+                    residual_mid = float("nan")
+            lam += dlam
+            samples.append((lam, next_s, next_l, kappa_mid, residual_mid, scale_mid))
             s = next_s
             l = next_l
         return samples
 
     backward = step(-1.0)
     forward = step(1.0)
-    all_samples = list(reversed(backward)) + [(0.0, float(center_s), float(center_l))] + forward
+    center_kappa, center_residual = _non_affinity(grid, center_s, center_l, branch)
+    center_sample = (0.0, float(center_s), float(center_l), center_kappa, center_residual, alpha_center)
+    all_samples = list(reversed(backward)) + [center_sample] + forward
     lambdas = np.array([item[0] for item in all_samples], dtype=float)
     s_values = np.array([item[1] for item in all_samples], dtype=float)
     l_values = np.array([item[2] for item in all_samples], dtype=float)
+    diagnostics = {
+        "non_affinity_kappa": np.array([item[3] for item in all_samples], dtype=float),
+        "radial_geodesic_residual": np.array([item[4] for item in all_samples], dtype=float),
+        "dlambda_dsigma": np.array([item[5] for item in all_samples], dtype=float),
+    }
+    if return_diagnostics:
+        return lambdas, s_values, l_values, diagnostics
     return lambdas, s_values, l_values
 
 
@@ -425,6 +612,7 @@ def _scan_label(
     center_stride: int,
     min_support_coverage: float,
     min_kernel_coverage: float,
+    parameterization: str,
     progress: bool = False,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
@@ -440,16 +628,24 @@ def _scan_label(
         center_s = float(center["s"])
         center_l = float(center["l"])
         for branch in BRANCH_SIGNS:
-            lambdas, s_values, l_values = _trace_branch(
+            lambdas, s_values, l_values, trace_diagnostics = _trace_branch(
                 grid,
                 center_s,
                 center_l,
                 branch,
                 lambda_extent=4.0 * max_width,
                 step_s=step_s,
+                parameterization=parameterization,
+                return_diagnostics=True,
             )
             if len(lambdas) < 3:
                 continue
+            kappa_values = trace_diagnostics["non_affinity_kappa"]
+            residual_values = trace_diagnostics["radial_geodesic_residual"]
+            scale_values = trace_diagnostics["dlambda_dsigma"]
+            finite_kappa = kappa_values[np.isfinite(kappa_values)]
+            finite_residual = residual_values[np.isfinite(residual_values)]
+            finite_scale = scale_values[np.isfinite(scale_values)]
             trace_values = _interpolate_trace(grid, trace_names_by_branch[branch], s_values, l_values)
             total_values = trace_values[f"total::{branch}"]
             for width in smear_widths:
@@ -469,6 +665,7 @@ def _scan_label(
                     "label": grid.label,
                     "case": grid.case,
                     "branch": branch,
+                    "trace_parameterization": parameterization,
                     "smear_width_affine": float(width),
                     "center_point_index": int(center["point_index"]),
                     "center_s": center_s,
@@ -479,6 +676,11 @@ def _scan_label(
                     "trace_samples": int(len(lambdas)),
                     "trace_lambda_min": float(np.nanmin(lambdas)),
                     "trace_lambda_max": float(np.nanmax(lambdas)),
+                    "max_abs_non_affinity_kappa": float(np.max(np.abs(finite_kappa))) if len(finite_kappa) else float("nan"),
+                    "mean_abs_non_affinity_kappa": float(np.mean(np.abs(finite_kappa))) if len(finite_kappa) else float("nan"),
+                    "max_abs_radial_geodesic_residual": float(np.max(np.abs(finite_residual))) if len(finite_residual) else float("nan"),
+                    "min_dlambda_dsigma": float(np.min(finite_scale)) if len(finite_scale) else float("nan"),
+                    "max_dlambda_dsigma": float(np.max(finite_scale)) if len(finite_scale) else float("nan"),
                     "window_weight_norm": norm,
                     **coverage,
                     "smeared_total_Tkk_hat": total_avg,
@@ -584,8 +786,11 @@ def build_hard_affine_snec_screen(
     min_kernel_coverage: float = 0.80,
     sector_scales: dict[str, float] | None = None,
     total_mode: str = "geometric",
+    parameterization: str = "affine",
     progress: bool = False,
 ) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
+    if parameterization not in {"affine", "lapse"}:
+        raise ValueError(f"unknown hard affine SNEC parameterization: {parameterization!r}")
     detail, metadata = _load_component_detail(component_dir)
     point_ledgers = _load_point_ledgers(component_dir, metadata["manifest"])
     ansatz_outputs, ansatz_metadata = build_composite_source_ansatz_screen(component_dir, promote_h=True)
@@ -610,6 +815,7 @@ def build_hard_affine_snec_screen(
                 center_stride=int(center_stride),
                 min_support_coverage=float(min_support_coverage),
                 min_kernel_coverage=float(min_kernel_coverage),
+                parameterization=str(parameterization),
                 progress=bool(progress),
             )
             for label, grid in grids.items()
@@ -643,6 +849,7 @@ def build_hard_affine_snec_screen(
         "min_kernel_coverage": float(min_kernel_coverage),
         "sector_scales": {sector: float((sector_scales or {}).get(sector, 1.0)) for sector in SECTOR_ORDER},
         "total_mode": str(total_mode),
+        "parameterization": str(parameterization),
         "progress": bool(progress),
     })
     return outputs, metadata
@@ -666,9 +873,12 @@ def write_hard_affine_snec_outputs(
     manifest_path = outdir / "hard_affine_snec_manifest.json"
     manifest = {
         "caveat": (
-            "Harder affine-normalized SNEC screen on sampled radial null branches. "
-            "This uses the demanded stress ledger and the H-promoted sector ansatz; it is "
-            "still not a quantum RSET calculation, conservation proof, or physical matter-model solve."
+            "Harder radial-null SNEC screen on sampled branches. With parameterization='affine' "
+            "the trace integrates the radial-null non-affinity and uses a center-normalized affine "
+            "parameter while reporting the remaining radial geodesic residual; with "
+            "parameterization='lapse' it is a lapse-parametrized comparison screen. This uses the "
+            "demanded stress ledger and the H-promoted sector ansatz; it is still not a quantum "
+            "RSET calculation, conservation proof, or physical matter-model solve."
         ),
         "component_source_dir": str(component_dir),
         "component_source_manifest": str(metadata["manifest_path"]),
@@ -682,6 +892,7 @@ def write_hard_affine_snec_outputs(
         "min_kernel_coverage": float(metadata["min_kernel_coverage"]),
         "sector_scales": metadata["sector_scales"],
         "total_mode": metadata["total_mode"],
+        "parameterization": metadata["parameterization"],
         "files": {key: str(path) for key, path in paths.items()},
         "rows": {key: int(len(outputs.get(key, pd.DataFrame()))) for key in paths},
         "sha256": {key: sha256_file(path) for key, path in paths.items()},
