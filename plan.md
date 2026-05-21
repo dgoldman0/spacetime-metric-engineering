@@ -297,6 +297,29 @@ narrow-outer gives the best p0015 endpoint J by lowering support-edge selected
 burden. Next branch should refine locality around p00225/p003 before beta100
 stress or denser-grid promotion.
 
+Negative-l locality and promotion-gate update: the p00225/p003 locality
+refinement is specified in
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_locality_smoke.json`;
+it chose `p003_mid` as the mechanism candidate and kept `p003_outer` as the
+raw-performance benchmark. The first promotion gate is documented in
+`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_PROMOTION_GATE.md`, with dense
+spec
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_promotion_dense.json`.
+At `81 x 121`, baseline, `p003_mid`, and `p003_outer` were all live-clean.
+`p003_mid` improved dense J selected-null from `0.970928` to `0.958663`,
+lowered support-edge current from `0.105652` to `0.103295`, and kept
+support-edge angular flat. `p003_outer` reached stronger raw J relief
+(`0.939090`) but had worse current/angular transfer accounting, so it remains
+the performance benchmark rather than the mechanism candidate.
+
+Promotion-gate SNEC companion: the dense component/intermediate package was
+screened with intermediate sector-sum and residual-inclusive affine SNEC
+companions at tau `0.5`, `1.0`, and `2.0` using center stride `2`. Each screen
+scanned `87,912` windows and found zero all-window and zero scoreable
+benchmark-floor violations. Current next action: run the full-stride SNEC
+confirmation on the dense beta075 package, then stress `p003_mid` at beta100
+only if that full-stride gate remains clean.
+
 Current source-family work order:
 
 ```text
