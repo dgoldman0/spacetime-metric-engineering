@@ -110,6 +110,9 @@ horizon escape ladder pilot:
 supporting_reports/STAGE2_HORIZON_ESCAPE_LADDER_PILOT.md
 toolkit/adm_harness_cli/scripts/run_horizon_escape_ladder.py
 toolkit/adm_harness_cli/specs/endpoint_horizon_escape_ladder_pilot.json
+
+refined beta075 horizon core test:
+supporting_reports/STAGE2_HORIZON_ESCAPE_REFINED_BETA075_CORE.md
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure.
@@ -487,6 +490,20 @@ This is favorable ladder evidence, not a final global proof. Remaining
 near-term work is to run the long-tail rung on beta100 `p003_mid` and
 `p003_mid_post1p5`, increase live branch-band seed coverage, and then run a
 local refinement rung before trapped-surface/null-expansion diagnostics.
+
+Refined beta075 core update: the core physics-wall test is documented in
+`supporting_reports/STAGE2_HORIZON_ESCAPE_REFINED_BETA075_CORE.md`. This run
+uses only the promoted beta075 `p003_mid` mechanism on a `121 x 121`,
+`s=-1.5..9.0`, `l=+/-6.0` long-tail grid. It stays live-clean with zero positive
+live packet-norm samples. The refined local GZ screen still fails, and the live
+branch margin tightens to `0.002402` with 45 live-packet branch-crossing edges,
+so the test did not remove the local GZ-like channel. With 30 seeds per core
+mask on `packet_live`, `packet_geom`, `main_carrier`, `support_plant`, and
+`branch_band_live`, every one of 300 radial null traces escaped to the expected
+boundary with zero `s_upper_boundary` unresolved traces. Current read: beta075
+`p003_mid` does not show live-service radial trapping under the refined core
+test, despite the local branch signature. Beta100 should wait for a robustness
+section unless the beta075 convergence rung reverses.
 
 Current post-receiver source-family work order:
 
