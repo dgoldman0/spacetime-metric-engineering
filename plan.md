@@ -276,16 +276,26 @@ Goal:
   current/angular burden.
 ```
 
-Negative-l promotion checkpoint: the branch is now promoted from orientation
-smoke to a beta075 dose/localization ladder and documented in
-`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_PROMOTION.md`. The ladder spec
-is
+Negative-l ladder closeout: the promoted beta075 dose/localization ladder is
+complete and documented in
+`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_LADDER_CLOSEOUT.md`, with spec
 `toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_ladder_smoke.json`.
-The planned cases are baseline, negative-l p00075/p0015/p00225/p003 using the
-default outer support-edge cap, and p0015 localization variants for inner cap,
-narrow outer cap, and shorter post-release memory. Promotion criteria remain:
-zero positive live packet-norm samples, coherent selected-null relief, and
-support-edge current/angular burden close to the beta075 baseline.
+All eight `61 x 83` ledgers were live-clean. The default outer negative-l dose
+ladder gives a coherent response: J selected-null improves from `0.964417`
+baseline to `0.959711`, `0.954948`, `0.950129`, and `0.946962` as angular
+gain rises through p00075, p0015, p00225, and p003. Support-edge current only
+drifts from `0.105033` to `0.109344`, and support-edge angular stays
+essentially flat near `1.9125`.
+
+Interpretation update: the negative-l branch is no longer a single-point
+orientation anomaly. It is the first tested live-clean local receiver channel
+with coherent selected-null relief and small current/angular cost. Short
+post-release memory weakens the effect, so the persistent beta-memory tail is
+part of the mechanism. Localization is not settled: p003 outer is the current
+performance anchor; p0015 inner has the cleanest transfer accounting; p0015
+narrow-outer gives the best p0015 endpoint J by lowering support-edge selected
+burden. Next branch should refine locality around p00225/p003 before beta100
+stress or denser-grid promotion.
 
 Current source-family work order:
 
