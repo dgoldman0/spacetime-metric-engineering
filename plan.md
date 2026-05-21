@@ -1,6 +1,6 @@
 # Active-Rail Codex Handoff Plan
 
-## Current checkpoint, 2026-05-20
+## Current checkpoint, 2026-05-21
 
 The current representative design is the entry-gated compact wide4 V5 branch:
 
@@ -24,7 +24,10 @@ Entry gate: accepted as part of the representative design.
 Live packet safety: clean on the 101 x 151 extended ledger.
 Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
-Endpoint physical-source gate: open; junction layer is now the main admissibility risk.
+Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
+Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
+Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
+Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
 
 Key current facts:
@@ -74,14 +77,48 @@ supporting_reports/STAGE2_ENDPOINT_RESET_RELEASE_LADDER.md
 endpoint beta/support co-design report:
 supporting_reports/STAGE2_ENDPOINT_BETA_SUPPORT_CODESIGN.md
 
+negative-l receiver ladder closeout:
+supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_LADDER_CLOSEOUT.md
+
+negative-l receiver dense promotion gate:
+supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_PROMOTION_GATE.md
+
+negative-l receiver full-stride SNEC and beta100 stress:
+supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_FULL_STRIDE_AND_BETA100.md
+
+negative-l receiver beta100 retiming/locality screen:
+supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_BETA100_RETIMING_LOCALITY.md
+
 beta-coupled support-edge receiver diagnostic script:
 toolkit/adm_harness_cli/scripts/run_beta_support_receiver_basis.py
 
-latest receiver-basis diagnostic outputs:
-toolkit/adm_harness_cli/runs/endpoint_beta_support_codesign_smoke_61x83/receiver_basis_all_codesign_v4/
+latest beta100 receiver-retiming transfer outputs:
+toolkit/adm_harness_cli/runs/endpoint_beta_memory_receiver_p003_mid_beta100_retiming_locality_small_61x83/receiver_basis_beta100_small/
 ```
 
-Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid and patch-continuity checks are strong enough to use this as the current representative source picture; they do not certify a matter model.
+Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model.
+
+Research completion state:
+
+```text
+Completed enough for current handoff:
+  source-decomposition map and component/source ledgers;
+  constant-flux radial string-cloud target extraction;
+  coupled S0/J/R intermediate source model;
+  endpoint thickness/coupling negative result;
+  beta-release/receiver basis diagnostics;
+  negative-l beta-memory receiver ladder, locality, dense promotion, and full-stride SNEC;
+  beta100 retiming/locality stress screen.
+
+Still open:
+  constrained physical source-family replacement for S0/J/R;
+  endpoint junction conservation/closure as an actual matter-model target;
+  robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
+  amplitude/effective-theory viability for any source-family realization.
+
+Do not update the TeX/disclosure claim to a physical-source construction yet.
+The current claim should remain effective-source/source-placement progress.
+```
 
 Cost discipline:
 
@@ -107,13 +144,13 @@ meaningful movement came from `temporal_wide14`, which increased J to
 `s=-0.76875, l=-0.42`. A coarse all-label intermediate SNEC smoke over
 `17,052` windows at tau `0.5, 1.0, 2.0` had zero benchmark-floor violations.
 
-Immediate next action: close the current intermediate endpoint source model as
-a diagnostic model and choose the next source grammar. The next model should
-not be another simple endpoint-width smear. It should target an explicit finite
-endpoint/junction plant: radial support shoulder, reset/release current
-relaxation cap, and angular-capacity jacket, with a conservation or
-effective-coupling closure diagnostic that varies true reset/release
-choreography. Do not describe the current closure as a matter-model proof.
+Endpoint thickness/coupling interpretation: the current intermediate endpoint
+source model should be treated as a diagnostic model, not a matter-model proof.
+The next source grammar should not be another simple endpoint-width smear. It
+should target an explicit finite endpoint/junction plant: radial support
+shoulder, reset/release current relaxation cap, and angular-capacity jacket,
+with a conservation or effective-coupling closure diagnostic that varies true
+reset/release choreography.
 
 Reset/release ladder update: the next source grammar now has a concrete lead
 axis. On a `61 x 83` smoke grid, widening the release beta fade was the first
@@ -170,10 +207,11 @@ selected overlap is `0.618601`, current overlap is `0.703072`, and the
 positive-`l` angular flange falls to `0.278417`. Treat `beta100` as a stress
 case after a `beta075` receiver works, not as the first promotion target.
 
-Clean-session starting point for the next implementation: test a
-beta-memory support-edge receiver source grammar. The model should use an
-accumulated beta-release transfer or post-release memory variable rather than
-instantaneous release slope alone. It should have at least three basis pieces:
+Historical clean-session starting point, now completed by the receiver smoke,
+orientation, ladder, locality, promotion, and beta100-retiming screens: test a
+beta-memory support-edge receiver source grammar using an accumulated
+beta-release transfer or post-release memory variable rather than instantaneous
+release slope alone. The planned basis pieces were:
 
 ```text
 R0 beta-transfer memory driver:
@@ -189,7 +227,7 @@ R2 angular receiver flange:
   beta075; add release-tail support only after beta075 works.
 ```
 
-Initial smoke test should stay small and decisive:
+The initial smoke test plan was:
 
 ```text
 baseline: beta075 without receiver
@@ -261,7 +299,7 @@ beta-memory receiver source modeling. The next search should promote the
 negative-l angular receiver branch and measure dose/localization before adding
 radial/current companions.
 
-Next immediate search branch:
+Historical search branch, now completed:
 
 ```text
 Test negative-l angular receiver variants:
@@ -291,11 +329,9 @@ Interpretation update: the negative-l branch is no longer a single-point
 orientation anomaly. It is the first tested live-clean local receiver channel
 with coherent selected-null relief and small current/angular cost. Short
 post-release memory weakens the effect, so the persistent beta-memory tail is
-part of the mechanism. Localization is not settled: p003 outer is the current
-performance anchor; p0015 inner has the cleanest transfer accounting; p0015
-narrow-outer gives the best p0015 endpoint J by lowering support-edge selected
-burden. Next branch should refine locality around p00225/p003 before beta100
-stress or denser-grid promotion.
+part of the mechanism. The later locality and promotion screens settled the
+mechanism candidate as `p003_mid`, while keeping `p003_outer` as the
+raw-performance benchmark.
 
 Negative-l locality and promotion-gate update: the p00225/p003 locality
 refinement is specified in
@@ -316,9 +352,8 @@ Promotion-gate SNEC companion: the dense component/intermediate package was
 screened with intermediate sector-sum and residual-inclusive affine SNEC
 companions at tau `0.5`, `1.0`, and `2.0` using center stride `2`. Each screen
 scanned `87,912` windows and found zero all-window and zero scoreable
-benchmark-floor violations. Current next action: run the full-stride SNEC
-confirmation on the dense beta075 package, then stress `p003_mid` at beta100
-only if that full-stride gate remains clean.
+benchmark-floor violations. The follow-up full-stride SNEC and beta100 stress
+screens are complete.
 
 Full-stride and beta100 update: the follow-up is documented in
 `supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_FULL_STRIDE_AND_BETA100.md`.
@@ -331,25 +366,57 @@ The beta100 stress screen is live-clean but not transfer-clean: beta100
 net J relief slightly negative and angular net relief `-0.006818`. Treat
 beta100 as a timing-sensitivity warning, not as an unchanged promotion pass.
 
-Current source-family work order:
+Beta100 retiming/locality update: the small follow-up is documented in
+`supporting_reports/STAGE2_NEGATIVE_L_RECEIVER_BETA100_RETIMING_LOCALITY.md`,
+with spec
+`toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_p003_mid_beta100_retiming_locality_small.json`.
+All five new beta100 variants were live-clean. The key result is that beta100
+is retimable but narrow: shortening receiver post-release persistence from
+`2.0` to `1.5` (`p003_mid_post1p5`) repairs selected, current, and angular
+transfer accounting at beta100. It gives positive net J relief in all three
+targets:
 
 ```text
-1. Build target tables from the dense closure outputs:
-   sector signs, ADM ratios, live burden, spatial/stage localization,
-   SNEC-limiting windows, and residual localization.
+selected: +0.007513
+current:  +0.000578
+angular:  +0.012824
+```
 
-2. Evaluate source-family candidates against those targets:
-   A/B/I radial support and pressure balance,
-   G angular/throat capacity,
-   C/E/F live handoff trim,
-   D/H current relaxation.
+The stronger raw-J probe, `p003_mid_gain1p0`, lowers beta100 J selected-null
+below the beta100 baseline (`0.934785` versus `0.944764`), but angular transfer
+remains slightly negative (`-0.000555`). The too-short `post1p0` and default
+outer variants fail transfer accounting badly. Current read:
 
-3. Prefer hybrid source-family models over a single scalar source unless the
-   target tables show one family can cover multiple sectors without packet
+```text
+beta075 p003_mid: promoted effective receiver mechanism.
+beta100 unchanged p003_mid: live-safe but transfer-failed.
+beta100 post1p5 retiming: live-safe and transfer-clean on the 61 x 83 stress grid.
+```
+
+Do not claim broad beta-timing robustness. Do record beta100 `post1p5` as the
+first documented stress-retiming anchor for future higher-workload designs.
+
+Current post-receiver source-family work order:
+
+```text
+1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
+   not a physical matter model.
+
+2. Preserve the current S0/J/R source target:
+   S0 constant-areal-flux radial string cloud;
+   J coupled endpoint/junction layer carrying radial trim, current relaxation,
+     and angular capacity;
+   R small core-body residual leakage.
+
+3. Replace the effective J receiver with a constrained source-family or
+   conservation-closed model before making report-grade physical-source claims.
+
+4. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
+   default unless future workloads require beta100 operation.
+
+5. Prefer hybrid source-family models over a single scalar source unless a
+   target table shows one family can cover multiple sectors without packet
    contamination or large residual/conservation warnings.
-
-4. Only after the source-family target table is stable, run heavier explicit
-   source fitting or conservation checks.
 ```
 
 Source-family target extraction has started as light postprocessing, not a new
@@ -452,8 +519,8 @@ support-edge shoulder trim tied to handoff/carrying-flow activity, plus a
 separate reset/decompression cap carrying most D/H current relaxation and much
 of the endpoint angular burden.
 
-Next active artifact: build an intermediate replacement model with explicit
-`S0/S1/S2` sectors:
+Historical source-family artifact, now completed: build an intermediate
+replacement model with explicit `S0/S1/S2` sectors:
 
 ```text
 S0: constant-flux radial string-cloud core
@@ -464,7 +531,8 @@ D/H: non-live current relaxation
 C/E/F: live handoff trim, kept separate from S0/S1/S2
 ```
 
-Then run a light sector-sum SNEC comparison before any heavier matter solve.
+The follow-up was to run a light sector-sum SNEC comparison before any heavier
+matter solve.
 
 The first `S0/S1/S2/G/DH` intermediate replacement ledger has now been built:
 
@@ -535,13 +603,13 @@ areal-radius minima, while `98.6%` lies in flaring `d2R/dl2 > 0` rows. So the
 current status is "throat-like source demand, not yet literal transient
 traversable-wormhole throat."
 
-Next active decision: run endpoint-focused tests before further source-family
-promotion. The first pass should be an endpoint scale/thickness ladder plus a
-stress-concentration/resolution-growth read. If the endpoint load relaxes under
-finite-width distribution while remaining non-live and SNEC-clean, the
-architecture survives this concern. If it sharpens, grows with resolution, or
-requires an extreme effective coupling, then the endpoint is likely the hidden
-"somewhere" of the traversability cost.
+Endpoint-focused tests have now run through thickness/coupling, release timing,
+receiver basis, negative-l receiver promotion, full-stride SNEC, beta100 stress,
+and beta100 retiming. The current active decision is no longer another
+endpoint-width or receiver-locality ladder. It is whether the effective
+S0/J/R package can be replaced by a constrained source-family or
+conservation-closed matter-model candidate without losing the live gate or
+SNEC margins.
 
 ## Current checkpoint, 2026-05-19
 
@@ -576,7 +644,8 @@ null_cushion_log_gain = -0.07
 
 Stage II has now started with a deliberately narrow kill screen rather than a wide scalar search. The tested simple Barceló-Visser-like scalar profiles and the first fixed-metric localized scalar solve both failed to pay the promoted pair's radial-null bill. For `compact7_wide4_edge160`, the localized solve ran `80` optimizer iterations in about `124 s`; it reduced live scalar contamination to about `1.1e-5`, but radial-null coverage stayed effectively zero (`7.8e-6`) and the top demanded radial-null rows still received no scalar negative-`Tkk` supply. The radius-broadened comparator did not rescue the simple scalar screen either. This is not a surprise under the composite support-plant interpretation: it kills the hypothesis that one simple scalar source supplies the whole plant, not the active-rail Stage I source-placement architecture.
 
-The next active Stage II artifact should be a source-decomposition map, not a wider scalar sweep:
+Historical Stage II artifact, now completed: build a source-decomposition map
+instead of widening the scalar sweep:
 
 ```text
 classify top demanded rows by channel, region, algebraic signature, live-packet status,
@@ -602,9 +671,25 @@ Stage II component-source ledger
 
 The full-role ledger is still toy/reduced, but it gives a coherent partition: radial-null and angular-pressure coverage are near-complete; radial pressure is separated into infrastructure balance plus a small live pressure trim; radial current remains the least-covered residual channel. Hard infrastructure components do not contaminate the live packet. Do not widen the pure scalar search.
 
-The next active Stage II artifact is a component algebra/signature ledger. It should summarize, for each role A-G, the demanded ADM signs and scales (`rho_euler`, `p_l`, `pOmega`, `j_l`), null-branch and cancellation structure, live/non-live status, overlap with other components, and SNEC-relevant null accumulation. Use that bridge artifact to decide whether to add a coherent current-sector component H, choose a first composite physical source ansatz, or run the hard affine SNEC calculation on the updated promoted model.
+Historical Stage II artifact, now completed: build a component
+algebra/signature ledger summarizing, for each role A-G, the demanded ADM
+signs and scales (`rho_euler`, `p_l`, `pOmega`, `j_l`), null-branch and
+cancellation structure, live/non-live status, overlap with other components,
+and SNEC-relevant null accumulation. That bridge artifact was used to decide
+whether to add a coherent current-sector component H, choose a first composite
+physical source ansatz, or run the hard affine SNEC calculation on the updated
+promoted model.
 
-That bridge now points to a first reduced composite source ansatz with H promoted. The baseline sector-level effective anisotropic fit passes the primary sign/ratio constraints for A/B radial-tension infrastructure support, G angular-capacity support, and C/E/F live handoff trim, but shows that residual non-live current is too large relative to D alone. The H-promoted fit treats that residual as a non-live distributed current-relaxation sector; both promoted candidates pass the required sector constraints with zero live H burden. The next active Stage II artifact should be the hard affine SNEC calculation on the compact promoted target, carrying the H-promoted source-sector assumptions explicitly.
+That bridge then pointed to a first reduced composite source ansatz with H
+promoted. The baseline sector-level effective anisotropic fit passes the
+primary sign/ratio constraints for A/B radial-tension infrastructure support,
+G angular-capacity support, and C/E/F live handoff trim, but shows that
+residual non-live current is too large relative to D alone. The H-promoted fit
+treats that residual as a non-live distributed current-relaxation sector; both
+promoted candidates pass the required sector constraints with zero live H
+burden. The follow-up hard affine SNEC calculation on the compact promoted
+target was then run with the H-promoted source-sector assumptions carried
+explicitly.
 
 The hard affine SNEC screen has now run on both promoted candidates with the H-promoted sector assumptions. It traced sampled radial null branches through the `61 x 83` ledgers, used affine-normalized smear widths `0.25`, `0.50`, and `1.00`, and scanned `60,393` total windows. No benchmark-floor violations were found at the harness convention `B = 1 / (32 pi)`. The compact target's worst broad-window average is about `-0.02133` against a `-0.25` floor, with the broad-window limiting sector in G angular capacity; its short-width limiting sector is H/D current relaxation. This moves Stage II from "ready for hard SNEC" to "passes the first hard affine SNEC benchmark screen"; the next step should be convergence/robustness and then explicit source-family replacement for the effective sectors.
 
