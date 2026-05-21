@@ -437,6 +437,37 @@ def _values(spec: dict[str, Any], params: SourceParams) -> dict[str, Any]:
         "receiver_beta_relaxation_gain": float(spec.get("receiver_beta_relaxation_gain", 0.0)),
         "receiver_angular_log_gain": float(spec.get("receiver_angular_log_gain", 0.0)),
         "receiver_angular_side": str(spec.get("receiver_angular_side", "positive")),
+        "causal_margin_guard_enabled": bool(spec.get("causal_margin_guard_enabled", False)),
+        "causal_margin_guard_margin": float(
+            spec.get("causal_margin_guard_margin", params.causal_margin_guard_margin)
+        ),
+        "causal_margin_guard_strength": float(
+            spec.get("causal_margin_guard_strength", params.causal_margin_guard_strength)
+        ),
+        "causal_margin_guard_window_mode": str(
+            spec.get("causal_margin_guard_window_mode", params.causal_margin_guard_window_mode)
+        ),
+        "causal_margin_guard_radius_multiplier": float(
+            spec.get("causal_margin_guard_radius_multiplier", params.causal_margin_guard_radius_multiplier)
+        ),
+        "causal_margin_guard_width_multiplier": float(
+            spec.get("causal_margin_guard_width_multiplier", params.causal_margin_guard_width_multiplier)
+        ),
+        "causal_margin_guard_schedule": str(
+            spec.get("causal_margin_guard_schedule", params.causal_margin_guard_schedule)
+        ),
+        "causal_margin_guard_temporal_width_multiplier": float(
+            spec.get(
+                "causal_margin_guard_temporal_width_multiplier",
+                params.causal_margin_guard_temporal_width_multiplier,
+            )
+        ),
+        "causal_margin_guard_temporal_profile": str(
+            spec.get("causal_margin_guard_temporal_profile", params.causal_margin_guard_temporal_profile)
+        ),
+        "causal_margin_guard_radial_profile": str(
+            spec.get("causal_margin_guard_radial_profile", params.causal_margin_guard_radial_profile)
+        ),
     }
 
 
@@ -559,6 +590,20 @@ def _case_for_spec(label: str, spec: dict[str, Any], params: SourceParams) -> So
             )
     else:
         raise ValueError(f"Unknown smooth split screen mode: {mode}")
+
+    if values["causal_margin_guard_enabled"]:
+        updates.update(
+            causal_margin_guard_enabled=True,
+            causal_margin_guard_margin=values["causal_margin_guard_margin"],
+            causal_margin_guard_strength=values["causal_margin_guard_strength"],
+            causal_margin_guard_window_mode=values["causal_margin_guard_window_mode"],
+            causal_margin_guard_radius_multiplier=values["causal_margin_guard_radius_multiplier"],
+            causal_margin_guard_width_multiplier=values["causal_margin_guard_width_multiplier"],
+            causal_margin_guard_schedule=values["causal_margin_guard_schedule"],
+            causal_margin_guard_temporal_width_multiplier=values["causal_margin_guard_temporal_width_multiplier"],
+            causal_margin_guard_temporal_profile=values["causal_margin_guard_temporal_profile"],
+            causal_margin_guard_radial_profile=values["causal_margin_guard_radial_profile"],
+        )
 
     return SourceCase(
         f"{service_factor_label(params)}_smooth_split_{label}",

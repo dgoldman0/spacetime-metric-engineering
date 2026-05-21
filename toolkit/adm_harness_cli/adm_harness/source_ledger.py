@@ -246,6 +246,16 @@ class SourceParams:
     standing_support_packet_beta_rematch_center_floor: float = 0.0
     standing_support_packet_beta_rematch_floor_mode: str = "max"
     standing_support_packet_beta_rematch_schedule: str = "live_only"
+    causal_margin_guard_enabled: bool = False
+    causal_margin_guard_margin: float = 0.05
+    causal_margin_guard_strength: float = 1.0
+    causal_margin_guard_window_mode: str = "packet"
+    causal_margin_guard_radius_multiplier: float = 1.0
+    causal_margin_guard_width_multiplier: float = 1.0
+    causal_margin_guard_schedule: str = "live_only"
+    causal_margin_guard_temporal_width_multiplier: float = 1.0
+    causal_margin_guard_temporal_profile: str = "tanh"
+    causal_margin_guard_radial_profile: str = "tanh"
 
 
 @dataclass(frozen=True)
@@ -636,25 +646,16 @@ def compose_packet_windows(values: tuple[float, ...], mode: str) -> float:
     raise ValueError(f"Unknown packet window composition mode: {mode}")
 
 
-def standing_support_packet_window(
+def standing_support_packet_temporal_schedule(
     s: float,
-    l: float,
     params: SourceParams,
     *,
-    radius_multiplier: float,
-    width_multiplier: float,
     schedule_name: str,
     temporal_width_multiplier: float = 1.0,
     temporal_profile: str = "tanh",
-    radial_profile: str = "tanh",
     release_lag_widths: float = 0.0,
 ) -> float:
     s_arr = np.asarray(s, dtype=float)
-    l_arr = np.asarray(l, dtype=float)
-    radius = max(float(params.Rpass) * float(radius_multiplier), 1.0e-12)
-    width = max(float(params.w_pass) * float(width_multiplier), 1.0e-12)
-    packet = packet_bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width, radial_profile)
-
     schedule_key = schedule_name.strip().lower()
     live_end = live_packet_end(params)
     temporal_width = max(float(params.w_beta) * float(temporal_width_multiplier), 1.0e-12)
@@ -684,6 +685,35 @@ def standing_support_packet_window(
         schedule = np.asarray(1.0, dtype=float)
     else:
         raise ValueError(f"Unknown standing support packet schedule: {schedule_name}")
+    return float(np.clip(schedule, 0.0, 1.0))
+
+
+def standing_support_packet_window(
+    s: float,
+    l: float,
+    params: SourceParams,
+    *,
+    radius_multiplier: float,
+    width_multiplier: float,
+    schedule_name: str,
+    temporal_width_multiplier: float = 1.0,
+    temporal_profile: str = "tanh",
+    radial_profile: str = "tanh",
+    release_lag_widths: float = 0.0,
+) -> float:
+    s_arr = np.asarray(s, dtype=float)
+    l_arr = np.asarray(l, dtype=float)
+    radius = max(float(params.Rpass) * float(radius_multiplier), 1.0e-12)
+    width = max(float(params.w_pass) * float(width_multiplier), 1.0e-12)
+    packet = packet_bump_sq((l_arr - s_arr) ** 2 + params.eps * params.eps, radius, width, radial_profile)
+    schedule = standing_support_packet_temporal_schedule(
+        s,
+        params,
+        schedule_name=schedule_name,
+        temporal_width_multiplier=temporal_width_multiplier,
+        temporal_profile=temporal_profile,
+        release_lag_widths=release_lag_widths,
+    )
     return float(np.clip(packet * schedule, 0.0, 1.0))
 
 
@@ -1295,6 +1325,52 @@ def standing_support_packet_beta_rematch_window(s: float, l: float, params: Sour
     raise ValueError(f"Unknown standing support packet beta rematch shape: {params.standing_support_packet_beta_rematch_shape}")
 
 
+def causal_margin_guard_window(s: float, l: float, params: SourceParams) -> float:
+    if not params.causal_margin_guard_enabled:
+        return 0.0
+
+    packet = standing_support_packet_window(
+        s,
+        l,
+        params,
+        radius_multiplier=params.causal_margin_guard_radius_multiplier,
+        width_multiplier=params.causal_margin_guard_width_multiplier,
+        schedule_name=params.causal_margin_guard_schedule,
+        temporal_width_multiplier=params.causal_margin_guard_temporal_width_multiplier,
+        temporal_profile=params.causal_margin_guard_temporal_profile,
+        radial_profile=params.causal_margin_guard_radial_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    mode = params.causal_margin_guard_window_mode.strip().lower()
+    if mode in {"packet", "packet_only"}:
+        return packet
+
+    edge = smooth_union(
+        standing_support_packet_smooth_split_edge_window(s, l, params),
+        standing_support_packet_smooth_split_guarded_edge_window(s, l, params),
+        standing_support_packet_smooth_split_current_guard_window(s, l, params),
+        support_edge_receiver_radial_cap_window(s, l, params),
+        support_edge_receiver_angular_flange_window(s, l, params),
+    )
+    if mode in {"edge", "packet_plus_edge"}:
+        return smooth_union(packet, edge)
+
+    guard_schedule = standing_support_packet_temporal_schedule(
+        s,
+        params,
+        schedule_name=params.causal_margin_guard_schedule,
+        temporal_width_multiplier=params.causal_margin_guard_temporal_width_multiplier,
+        temporal_profile=params.causal_margin_guard_temporal_profile,
+        release_lag_widths=params.release_carve_lag_widths,
+    )
+    support = float(np.clip(support_bump(float(l), params) * guard_schedule, 0.0, 1.0))
+    shell = support_shell_overlay_window(s, l, params)
+    if mode in {"support", "packet_plus_support"}:
+        return smooth_union(packet, edge, support, shell)
+
+    raise ValueError(f"Unknown causal margin guard window mode: {params.causal_margin_guard_window_mode}")
+
+
 def _window_s_derivative_abs(fn: Any, s: float, l: float, params: SourceParams) -> float:
     step = max(min(float(params.w_beta), float(params.w_pass)) * 1.0e-3, 1.0e-6)
     plus = float(fn(s + step, l, params))
@@ -1339,6 +1415,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
     packet_radial_shoulder_window = standing_support_packet_radial_shoulder_window(float(s), float(l), params)
     packet_radial_skirt_window = standing_support_packet_radial_skirt_window(float(s), float(l), params)
     packet_beta_rematch_window = standing_support_packet_beta_rematch_window(float(s), float(l), params)
+    causal_guard_window = causal_margin_guard_window(float(s), float(l), params)
     receiver_memory_driver = support_edge_receiver_memory_driver(float(s), params)
     receiver_radial_cap_window = support_edge_receiver_radial_cap_window(float(s), float(l), params)
     receiver_angular_flange_window = support_edge_receiver_angular_flange_window(float(s), float(l), params)
@@ -1447,7 +1524,28 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         * packet_beta_rematch_window
         * (vcoord + beta_after_receiver)
     )
-    beta = beta_after_receiver + delta_beta_packet
+    beta_pre_causal_guard = beta_after_receiver + delta_beta_packet
+    causal_guard_margin_fraction = float(np.clip(params.causal_margin_guard_margin, 0.0, 0.999999))
+    causal_guard_strength = float(np.clip(params.causal_margin_guard_strength, 0.0, 1.0))
+    local_light_speed = float(alpha / max(float(sqrt_gamma_ll), 1.0e-12))
+    causal_guard_limit = max(0.0, 1.0 - causal_guard_margin_fraction) * local_light_speed
+    if (
+        params.causal_margin_guard_enabled
+        and causal_guard_strength > 0.0
+        and causal_guard_window > 0.0
+        and abs(float(beta_pre_causal_guard)) > causal_guard_limit
+    ):
+        beta_clamped = math.copysign(causal_guard_limit, float(beta_pre_causal_guard))
+        delta_beta_causal_guard = (
+            causal_guard_strength
+            * float(causal_guard_window)
+            * (beta_clamped - float(beta_pre_causal_guard))
+        )
+    else:
+        delta_beta_causal_guard = 0.0
+    beta = beta_pre_causal_guard + delta_beta_causal_guard
+    causal_guard_margin_pre = local_light_speed - abs(float(beta_pre_causal_guard))
+    causal_guard_margin_post = local_light_speed - abs(float(beta))
     gtt = -alpha * alpha + gamma_ll * beta * beta
     packet_norm = -alpha * alpha + gamma_ll * (vcoord + beta) ** 2
 
@@ -1513,6 +1611,7 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_radial_skirt_window": float(packet_radial_skirt_window),
         "standing_support_packet_radial_factor": float(packet_radial_factor),
         "standing_support_packet_beta_rematch_window": float(packet_beta_rematch_window),
+        "causal_margin_guard_window": float(causal_guard_window),
         "release_profile_slope_abs": release_slope_abs,
         "standing_support_packet_carve_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_carve_window, float(s), float(l), params
@@ -1571,6 +1670,9 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
         "standing_support_packet_beta_rematch_window_slope_abs": _window_s_derivative_abs(
             standing_support_packet_beta_rematch_window, float(s), float(l), params
         ),
+        "causal_margin_guard_window_slope_abs": _window_s_derivative_abs(
+            causal_margin_guard_window, float(s), float(l), params
+        ),
         "S": float(s_packet),
         "A": float(a_spatial),
         "T": float(t_lapse),
@@ -1619,6 +1721,16 @@ def scalars(s: float, l: float, params: SourceParams) -> dict[str, float]:
             * smooth_split_null_cushion_factor
         ),
         "support_edge_receiver_delta_beta": float(delta_beta_receiver),
+        "causal_margin_guard_delta_beta": float(delta_beta_causal_guard),
+        "causal_margin_guard_beta_pre": float(beta_pre_causal_guard),
+        "causal_margin_guard_limit": float(causal_guard_limit),
+        "causal_margin_guard_margin_pre": float(causal_guard_margin_pre),
+        "causal_margin_guard_margin_post": float(causal_guard_margin_post),
+        "causal_margin_guard_active": float(
+            params.causal_margin_guard_enabled
+            and causal_guard_window > 0.0
+            and abs(float(delta_beta_causal_guard)) > 0.0
+        ),
         "support_edge_receiver_delta_gamma_ll": float(
             gamma_ll_base * legacy_packet_radial_factor * coupled_radial_factor * receiver_radial_factor
             - gamma_ll_base * legacy_packet_radial_factor * coupled_radial_factor
@@ -1817,6 +1929,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_radial_skirt_window",
             "standing_support_packet_radial_factor",
             "standing_support_packet_beta_rematch_window",
+            "causal_margin_guard_window",
             "release_profile_slope_abs",
             "standing_support_packet_carve_window_slope_abs",
             "standing_support_packet_carve_catch_window_slope_abs",
@@ -1837,6 +1950,7 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_radial_window_slope_abs",
             "standing_support_packet_radial_skirt_window_slope_abs",
             "standing_support_packet_beta_rematch_window_slope_abs",
+            "causal_margin_guard_window_slope_abs",
             "standing_support_packet_delta_alpha",
             "standing_support_packet_null_cushion_delta_alpha",
             "standing_support_packet_coupled_null_cushion_delta_alpha",
@@ -1844,6 +1958,12 @@ def projections(s: float, l: float, einstein: np.ndarray, params: SourceParams) 
             "standing_support_packet_smooth_split_delta_gamma_omega",
             "support_edge_receiver_delta_alpha",
             "support_edge_receiver_delta_beta",
+            "causal_margin_guard_delta_beta",
+            "causal_margin_guard_beta_pre",
+            "causal_margin_guard_limit",
+            "causal_margin_guard_margin_pre",
+            "causal_margin_guard_margin_post",
+            "causal_margin_guard_active",
             "support_edge_receiver_delta_gamma_ll",
             "support_edge_receiver_delta_gamma_omega",
             "standing_support_packet_delta_gamma_ll",
@@ -2743,6 +2863,21 @@ def branch_case(variant: str, service_factor: float = 5.0, **overrides: Any) -> 
         if params.standing_support_packet_beta_rematch_temporal_profile != "tanh":
             case_name = f"{case_name}_wbtp{params.standing_support_packet_beta_rematch_temporal_profile}"
         note = f"{note}; experimental packet-local beta rematch"
+    if params.causal_margin_guard_enabled:
+        case_name = (
+            f"{case_name}_cguard{_token(params.causal_margin_guard_margin)}"
+            f"_cgs{_token(params.causal_margin_guard_strength)}"
+            f"_cgw{params.causal_margin_guard_window_mode}"
+            f"_cgr{_token(params.causal_margin_guard_radius_multiplier)}"
+            f"_cgww{_token(params.causal_margin_guard_width_multiplier)}"
+            f"_cgsch{params.causal_margin_guard_schedule}"
+            f"_cgt{_token(params.causal_margin_guard_temporal_width_multiplier)}"
+        )
+        if params.causal_margin_guard_temporal_profile != "tanh":
+            case_name = f"{case_name}_cgtp{params.causal_margin_guard_temporal_profile}"
+        if params.causal_margin_guard_radial_profile != "tanh":
+            case_name = f"{case_name}_cgrp{params.causal_margin_guard_radial_profile}"
+        note = f"{note}; experimental causal-margin guard"
     return SourceCase(case_name, params, note)
 
 

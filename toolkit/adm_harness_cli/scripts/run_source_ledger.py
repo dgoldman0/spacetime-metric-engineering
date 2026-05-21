@@ -126,6 +126,16 @@ def _case_overrides(args: argparse.Namespace) -> dict[str, Any]:
         "standing_support_packet_beta_rematch_center_floor": args.standing_support_packet_beta_rematch_center_floor,
         "standing_support_packet_beta_rematch_floor_mode": args.standing_support_packet_beta_rematch_floor_mode,
         "standing_support_packet_beta_rematch_schedule": args.standing_support_packet_beta_rematch_schedule,
+        "causal_margin_guard_enabled": args.causal_margin_guard,
+        "causal_margin_guard_margin": args.causal_margin_guard_margin,
+        "causal_margin_guard_strength": args.causal_margin_guard_strength,
+        "causal_margin_guard_window_mode": args.causal_margin_guard_window_mode,
+        "causal_margin_guard_radius_multiplier": args.causal_margin_guard_radius_multiplier,
+        "causal_margin_guard_width_multiplier": args.causal_margin_guard_width_multiplier,
+        "causal_margin_guard_schedule": args.causal_margin_guard_schedule,
+        "causal_margin_guard_temporal_width_multiplier": args.causal_margin_guard_temporal_width_multiplier,
+        "causal_margin_guard_temporal_profile": args.causal_margin_guard_temporal_profile,
+        "causal_margin_guard_radial_profile": args.causal_margin_guard_radial_profile,
     }
 
 
@@ -450,6 +460,37 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--standing-support-packet-beta-rematch-schedule",
         choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument(
+        "--causal-margin-guard",
+        action="store_true",
+        default=None,
+        help="Enable the experimental beta clamp that preserves a local radial-null causal margin.",
+    )
+    parser.add_argument("--causal-margin-guard-margin", type=float, default=None)
+    parser.add_argument("--causal-margin-guard-strength", type=float, default=None)
+    parser.add_argument(
+        "--causal-margin-guard-window-mode",
+        choices=["packet", "packet_only", "edge", "packet_plus_edge", "support", "packet_plus_support"],
+        default=None,
+    )
+    parser.add_argument("--causal-margin-guard-radius-multiplier", type=float, default=None)
+    parser.add_argument("--causal-margin-guard-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--causal-margin-guard-schedule",
+        choices=["live_only", "entry_catch_release", "catch_release", "catch_only", "coordinated_release", "always"],
+        default=None,
+    )
+    parser.add_argument("--causal-margin-guard-temporal-width-multiplier", type=float, default=None)
+    parser.add_argument(
+        "--causal-margin-guard-temporal-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7"],
+        default=None,
+    )
+    parser.add_argument(
+        "--causal-margin-guard-radial-profile",
+        choices=["tanh", "minimum_jerk", "minjerk", "smoothstep5", "smoothstep7", "compact_smoothstep7"],
         default=None,
     )
 
