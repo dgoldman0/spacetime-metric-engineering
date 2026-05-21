@@ -26,7 +26,8 @@ Hard affine SNEC: clean on scoreable tau = 2.0, 3.0, and 4.0 windows.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
 Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
 Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
-GZ/horizon causal gate: failed at local branch-crossing screen; horizon-free claims blocked.
+GZ/horizon causal gate: local branch screen adverse; entry-to-packet reachability favorable so far.
+Global horizon freedom: open; next step is a staged ladder, not an immediate source-model replacement.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -99,6 +100,11 @@ toolkit/adm_harness_cli/runs/endpoint_beta_memory_receiver_p003_mid_beta100_reti
 GZ obstruction screen:
 supporting_reports/STAGE2_GZ_OBSTRUCTION_SCREEN.md
 toolkit/adm_harness_cli/runs/gz_obstruction_screen_receiver_beta075_beta100/
+
+horizon reachability and causal-guard follow-up:
+supporting_reports/STAGE2_HORIZON_REACHABILITY_AND_CAUSAL_GUARD_REPORT.md
+toolkit/adm_harness_cli/scripts/run_entry_packet_reachability.py
+toolkit/adm_harness_cli/runs/endpoint_horizon_causal_reachability_61x83/
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure.
@@ -115,10 +121,12 @@ Completed enough for current handoff:
   negative-l beta-memory receiver ladder, locality, dense promotion, and full-stride SNEC;
   beta100 retiming/locality stress screen;
   first GZ-style causal obstruction screen on beta075 p003_mid, beta100 baseline,
-  beta100 p003_mid, and beta100 p003_mid_post1p5.
+  beta100 p003_mid, and beta100 p003_mid_post1p5;
+  causal-margin guard small screen and entry-to-live-packet reachability screen.
 
 Still open:
-  horizon-aware/GZ-free redesign or causal-retiming constraint;
+  global horizon-freedom ladder: explicit masks, longer radial null escape,
+  domain/refinement checks, and only then trapped-surface/null-expansion diagnostics;
   constrained physical source-family replacement for S0/J/R;
   endpoint junction conservation/closure as an actual matter-model target;
   robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
@@ -417,8 +425,40 @@ zero at the `1e-4` threshold, but neighboring grid edges cross it. This is not
 a proof of a global event horizon or a GZ singularity, but it is a real
 causal-branch warning that live packet norm, selected-null accounting, and SNEC
 screens had not measured. The receiver remains promoted as an effective
-source-accounting mechanism; horizon-free or GZ-free claims are now explicitly
-blocked until a horizon-aware metric/source constraint clears this gate.
+source-accounting mechanism. Horizon-free claims remain blocked, but the right
+next question is whether the local one-way branch behavior becomes global
+trapping or live service-throat access, not whether every local branch pinch can
+be deleted.
+
+Horizon causal-guard and reachability follow-up: the small/medium causal-margin
+guard and entry-to-packet reachability work is documented in
+`supporting_reports/STAGE2_HORIZON_REACHABILITY_AND_CAUSAL_GUARD_REPORT.md`,
+with reusable reachability script
+`toolkit/adm_harness_cli/scripts/run_entry_packet_reachability.py` and outputs
+under
+`toolkit/adm_harness_cli/runs/endpoint_horizon_causal_reachability_61x83/`.
+The causal-margin guard preserved live packet safety and trimmed some branch
+crossing counts, but every guarded case still failed the local GZ obstruction
+decision. The guard is therefore an instrument, not a horizon fix.
+
+The sharper reachability result is favorable. Across original/dense, beta100
+stress, beta100 retimed, and guarded ledgers, the radial causal flood found zero
+service-stage and zero carry-stage entry-to-live-packet hits. The only nonzero
+reachability hits came from the upper `main_support_outer_edge` seed and only
+in `post_release_buffer`: beta075 produced 1-4 post-release hits depending on
+grid, while beta100 variants produced 13 post-release hits. Current claim
+language should be:
+
+```text
+Local GZ-like behavior is present; live service throat behavior is not observed.
+```
+
+This does not prove global horizon freedom, but it weakens the immediate GZ
+no-go interpretation. The next move is not "delete branch pinch" or replace
+the source family. It is a horizon-freedom ladder: explicit masks first,
+longer-domain radial null escape next, then domain/refinement checks, and only
+after those stabilize should the project add trapped-surface/null-expansion
+diagnostics.
 
 Current post-receiver source-family work order:
 
@@ -426,12 +466,11 @@ Current post-receiver source-family work order:
 1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
    not a physical matter model.
 
-2. Add a horizon-aware causal constraint to the metric/source target before any
-   horizon-free design claim:
-   reduce or redistribute live/high-overlap carrying-flow shift, or otherwise
-   enforce a branch margin such as abs(beta) < alpha / sqrt(gamma_ll) in the
-   protected packet corridor unless a deliberate one-way causal region is being
-   modeled.
+2. Run the horizon-freedom ladder before another broad source-family redesign:
+   explicit packet/carrier/entry/exit/wake/post-release masks; longer-domain
+   radial null escape; entry/exit reachability variants; domain and refinement
+   scaling. Treat trapped-surface/null-expansion checks as the later rung once
+   the operational escape criteria are stable.
 
 3. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
