@@ -1,5 +1,64 @@
 # Active-Rail Codex Handoff Plan
 
+## Current operating plan, 2026-05-22
+
+The project is back on the higher-rung feasibility track. The active test
+article is now:
+
+```text
+promoted mechanism: beta075 p003_mid negative-l receiver
+collar repair lead: rematch_w6_t1p5 beta-collar generator candidate
+optical bracket:     rematch_w8_t2p0
+stress boundary:     beta100 p003_mid_post1p5 retiming
+```
+
+Use `rematch_w6_t1p5` as the conservative repaired beta075 lead. It is the
+first tensor-consistent candidate that preserves packet timelikeness and radial
+escape while removing the dense caustic-like bundle classification. Keep
+`rematch_w8_t2p0` as a bracket because it gives a larger optical width floor,
+but do not promote it ahead of the conservative lead unless later accounting
+shows the shallower packet-norm margin and larger negative-packet-density watch
+item are harmless.
+
+The immediate work is a promotion audit for the repaired beta075 lead, not a
+new architecture sweep:
+
+```text
+1. Run companion affine-reparameterized SNEC and source-accounting audits for
+   rematch_w6_t1p5.
+2. Check endpoint/J-layer accounting, live burden movement, negative packet
+   density, and angular/current transfer against the s15 beta075 baseline.
+3. Confirm the dense congruence result remains favorable under the exact
+   regenerated candidate artifacts.
+4. Run only a small local collar robustness bracket after the lead audit is
+   interpreted.
+5. If the repaired beta075 lead survives, move to a physical-source feasibility
+   target: finite-width, non-live, conservation-closed replacement of the
+   effective S0/J/R grammar.
+```
+
+Discussion discipline while runs are computing:
+
+```text
+Interpret each result before launching the next expensive rung.
+If SNEC/source accounting worsens, decide whether the collar repair is only an
+optical fix or whether a nearby local bracket can repair the source movement.
+If endpoint/J-layer burden moves into a hidden shoulder or packet-density watch
+item, pause promotion and retarget the endpoint receiver/source-family model.
+If the repaired lead stays clean, do not drift into beta100 or V-headroom work;
+seal beta075 first, then use beta100 only as robustness context.
+```
+
+Current claim boundary:
+
+```text
+Allowed: repaired beta075 prescribed-metric/effective-source feasibility audit.
+Allowed: operational service-time rating remains favorable for the repaired
+         beta-collar candidates under the existing proxies.
+Not allowed: physical matter construction, global horizon theorem,
+             semiclassical/RSET proof, or broad beta/V robustness claim.
+```
+
 ## Current checkpoint, 2026-05-21
 
 The current representative design is the entry-gated compact wide4 V5 branch:
@@ -28,12 +87,15 @@ audit with residual monitoring.
 Source picture: support-plant dominated, with angular handoff as the main live-facing sector.
 Endpoint receiver: beta075 negative-l p003_mid promoted as the effective receiver mechanism.
 Beta100 receiver stress: live-safe and retimable, but not robust unchanged.
-GZ/horizon causal gate: local branch screen adverse; dense finite-bundle read is now
-adverse caustic-like compression with later escape.
-Global horizon freedom: open; sustained trapping is not observed, but single-ray
-escape is no longer enough for promotion.
-Model status: beta-collar mitigation lead found at generator level; still not a
-physical-source or horizon-freedom claim.
+GZ/horizon causal gate: local branch screen adverse; refined radial escape is
+favorable for beta075 p003_mid, but dense finite-bundle compression blocked the
+unrepaired baseline.
+Finite-bundle status: tensor-consistent rematch_w6_t1p5 repairs the dense
+caustic-like classification at s15 and is now the conservative audit lead.
+Global horizon freedom: open; live-service radial trapping is not observed in
+the tested beta075 ladders, but this is not a theorem.
+Model status: beta-collar mitigation lead found at generator level and promoted
+to audit target; still not a physical-source or horizon-freedom claim.
 Operational superluminality: first service-time advantage ledger is favorable
 under schedule-factor and packet-coordinate transport proxies; this remains a
 narrative/rating result rather than a feasibility gate.
@@ -208,8 +270,11 @@ Completed enough for current handoff:
   rematch_w8_t2p0.
 
 Still open:
-  affine SNEC/source-accounting companion checks and robustness bracket for the
-  promoted rematch_w6_t1p5 beta-collar mitigation lead;
+  affine SNEC/source-accounting companion checks for the repaired beta075
+  rematch_w6_t1p5 lead;
+  endpoint/J-layer and packet-density accounting for the repaired lead versus
+  the s15 beta075 baseline;
+  a small local collar robustness bracket after the lead audit is interpreted;
   explicit endpoint-convention wording for the service-time advantage ledger,
   including prepared-plant versus request-triggered setup accounting;
   global horizon-freedom claim remains open after collar mitigation: dense
