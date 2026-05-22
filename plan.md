@@ -137,6 +137,11 @@ Allowed next: narrow heavy-duty support-reservoir testing for the committed
               exchange-fit screens, coefficient/support-locality gates,
               transport-rapidity and h_reg guard checks, and no-live-leakage
               confirmation on baseline and dense ledgers.
+Allowed next: after the first smooth P/F support-reservoir fit watch, focus the
+              next support-sector ansatz on reset-decompression phase structure
+              and divergence-generated support stress. Do not broaden to
+              arbitrary multi-field matter unless phase-aware support dynamics
+              also fail.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
@@ -259,6 +264,14 @@ current next step:
   support-sector ansatz can supply the measured local tetrad exchange fields
   P and F with bounded smooth coefficients, support-localized masks,
   preserved h_reg/psi transport guards, and no live leakage.
+latest heavy-test read:
+  supporting_reports/STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md now
+  records the first smooth support-reservoir P/F exchange fit. Guards,
+  angular-exchange absence, and live-locality pass, but bounded smooth algebraic
+  P/F fields fail the fit gates on baseline and dense meshes. The miss is
+  reset-decompression dominated, especially reset/support-edge exchange. Next
+  test should try phase-aware support dynamics or a support-stress divergence
+  ansatz rather than another generic smooth P/F field.
 failure contract:
   If every compact family needs hidden live support, superluminal modes,
   unbounded coefficients, or broad nonlocal exchange, step back to effective

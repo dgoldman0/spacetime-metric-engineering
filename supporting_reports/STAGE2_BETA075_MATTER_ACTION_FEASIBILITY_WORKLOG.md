@@ -836,3 +836,206 @@ Next useful work:
   a support-sector ansatz can supply the measured P and F fields with bounded
   smooth coefficients and no live leakage.
 ```
+
+## Heavy Test 1: Smooth Support-Reservoir P/F Exchange Fit
+
+Status: first narrow heavy-duty support-sector test. This is a watch, not a
+pass.
+
+New harness:
+
+```text
+toolkit/adm_harness_cli/adm_harness/endpoint_support_reservoir_exchange.py
+toolkit/adm_harness_cli/scripts/run_endpoint_support_reservoir_exchange.py
+toolkit/adm_harness_cli/tests/test_endpoint_support_reservoir_exchange.py
+```
+
+Outputs:
+
+```text
+baseline:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+  endpoint_support_reservoir_exchange_freeze_rematch_w6_t1p5/
+
+dense:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+  endpoint_support_reservoir_exchange_freeze_rematch_w6_t1p5/
+```
+
+Question:
+
+```text
+Can the measured endpoint exchange current be supplied by a bounded localized
+smooth support-sector ansatz of the form
+
+  J_endpoint^nu = P u^nu + F s^nu
+
+with no angular exchange, no live leakage, and preserved h_reg/psi guards?
+```
+
+Harness design:
+
+```text
+1. Load covariant divergence points.
+2. Project J_endpoint^nu into the local u/s/theta/phi tetrad:
+     P = -u_nu J^nu
+     F =  s_nu J^nu
+3. Fit P and F separately with localized finite Gaussian support bases.
+4. Test two support-sector scopes:
+     assignment-local
+     stage-region-local
+5. Reconstruct J_fit^nu = P_fit u^nu + F_fit s^nu.
+6. Gate normalized |P|+|F| error, coordinate J error, coefficient size,
+   effective coefficient count, h_reg/psi guards, angular exchange, and live
+   leakage.
+```
+
+Decision metrics:
+
+```text
+Baseline decision:
+  status: support_reservoir_exchange_fit_watch
+  best scope: stage_region
+  best normalized |P|+|F| L1 error: 0.613761
+  best coordinate L2 error ratio:    0.651493
+  best max coefficient:              1.462486
+  best effective coefficient count:  511.058
+  high-psi source fraction:          0.000396
+
+Dense decision:
+  status: support_reservoir_exchange_fit_watch
+  best scope: stage_region
+  best normalized |P|+|F| L1 error: 0.792973
+  best coordinate L2 error ratio:    0.856123
+  best max coefficient:              7.141030
+  best effective coefficient count:  487.633
+  high-psi source fraction:          0.000765
+
+Gates:
+  normalized |P|+|F| L1 gate:       0.50
+  coordinate L2 error gate:         0.50
+  max coefficient gate:             1.0
+  effective coefficient count gate: 120
+  high-psi source fraction gate:    0.005
+```
+
+Fit-scope read:
+
+```text
+Baseline assignment-local:
+  normalized |P|+|F| L1 error: 0.784903
+  coordinate L2 error ratio:    0.820184
+  coefficient gate:             pass
+  guard/locality gates:         pass
+
+Baseline stage-region-local:
+  normalized |P|+|F| L1 error: 0.613761
+  coordinate L2 error ratio:    0.651493
+  coefficient gate:             fail
+  guard/locality gates:         pass
+
+Dense assignment-local:
+  normalized |P|+|F| L1 error: 0.886320
+  coordinate L2 error ratio:    0.938766
+  coefficient gate:             pass
+  guard/locality gates:         pass
+
+Dense stage-region-local:
+  normalized |P|+|F| L1 error: 0.792973
+  coordinate L2 error ratio:    0.856123
+  coefficient gate:             fail
+  guard/locality gates:         pass
+```
+
+Component read:
+
+```text
+Best baseline stage-region aggregate:
+  P normalized L1 error: 0.574686
+  F normalized L1 error: 0.648651
+  max component L1 error: 0.816653
+
+Best dense stage-region aggregate:
+  P normalized L1 error: 0.693770
+  F normalized L1 error: 0.885794
+  max component L1 error: 1.135938
+
+Interpretation:
+  F is the harder channel, especially on the dense mesh, but P is not clean
+  either. The problem is not angular contamination or live leakage; it is the
+  sharp/sign-changing local exchange structure itself.
+```
+
+Residual-burden localization:
+
+```text
+Baseline, stage-region fit residual burden:
+  reset_decompression / support_edge:
+    residual share: 0.637009
+    local normalized error: 0.752777
+  reset_decompression / core_throat:
+    residual share: 0.228741
+    local normalized error: 0.522225
+  support_edge endpoint assignment total:
+    residual share: 0.134250
+    local normalized error: 0.389045
+
+Dense, stage-region fit residual burden:
+  reset_decompression / support_edge:
+    residual share: 0.672849
+    local normalized error: 0.971976
+  reset_decompression / core_throat:
+    residual share: 0.210856
+    local normalized error: 0.609950
+  support_edge endpoint assignment total:
+    residual share: 0.116295
+    local normalized error: 0.521190
+
+Interpretation:
+  The heavy-test miss is dominated by reset-decompression exchange, especially
+  reset/support-edge rows. The nominal support-edge endpoint component is not
+  the main obstruction. This points toward missing reset-phase support dynamics
+  rather than a need for broad new matter directions.
+```
+
+Guards and locality:
+
+```text
+Both meshes:
+  h_reg / transport / Type-I guard: pass
+  high-psi source-fraction guard:   pass
+  target angular exchange volume:   0
+  fit angular exchange volume:      0
+  live rows:                        0
+  hidden support gate:              pass
+
+Interpretation:
+  The failure is specific. The support-reservoir fit does not fail by leaking
+  into live regions, introducing angular exchange, or damaging the transport
+  guard. It fails because a bounded smooth algebraic P/F support field cannot
+  reproduce the measured reset-dominated exchange current within gates.
+```
+
+Narrative implication:
+
+```text
+This is the first real negative result for the matter-action story, but it is
+not a collapse of the covariant endpoint tensor or entrained-director medium.
+The tensor identity, h_reg/psi guard, chi_Omega closure, and exchange
+localization survive. What fails is the simplest support-sector completion:
+"smooth localized reservoir fields P and F directly fitted on the support
+mask."
+
+The next direction should not be "add arbitrary matter fields." The miss is
+too structured for that. It sits in reset-decompression exchange and likely
+needs a phase-aware support law, derivative/stencil-like support stress, or an
+explicit actuator stroke variable whose divergence generates P/F, rather than
+an algebraic smooth field that tries to equal P/F pointwise.
+```
+
+Verification:
+
+```text
+PYTHONPATH=toolkit/adm_harness_cli python -m unittest discover -s toolkit/adm_harness_cli/tests
+62 tests passed.
+```
