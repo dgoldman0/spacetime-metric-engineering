@@ -38,6 +38,8 @@ new architecture sweep:
    finite smooth family fit. It keeps the family non-live and
    conservation-proxy friendly, but generic smooth modes over-carry
    support-edge selected/current/angular burden.
+6. Completed decision: clean up the source model before running a harder
+   source-model test.
 7. Next: replace the generic support-edge smooth fit with physically structured
    coupled stress-vector modes plus a targeted edge-tail counterterm.
 ```
@@ -87,12 +89,13 @@ Local bracket checkpoint:
 ```text
 report: supporting_reports/STAGE2_BETA075_COLLAR_LOCAL_BRACKET_CHECKPOINT.md
 completed points: rematch_w5p5_t1p5, rematch_w6_t1p5,
-  rematch_w6p5_t1p5, rematch_w6_t1p25.
-still running in background: rematch_w6_t1p75.
+  rematch_w6p5_t1p5, rematch_w6_t1p25, rematch_w6_t1p75.
 width-axis read: narrower width lowers the support-edge J and packet-density
   watch items but gives back live-channel relief; wider width improves the main
   live channels but increases those watch items.
 temporal t1.25 read: near-neutral, not a new branch.
+temporal t1.75 read: source ledger is live-clean with max live packet norm
+  -9.929354 and lead-like live source channels; not a new branch.
 decision: do not wait for the full local bracket before starting the next rung;
   keep rematch_w6_t1p5 as conservative lead and move to endpoint J
   source-family/conservation diagnostics.
@@ -123,6 +126,21 @@ read: J remains strictly non-live; reset cap is broad and low-residual;
 decision: do not treat generic smooth interpolation as a physical source
   family. The next fit needs coupled stress-vector modes and direct penalties
   against extra support-edge selected-null/current/angular burden.
+```
+
+Source-model next-step decision:
+
+```text
+report: supporting_reports/STAGE2_BETA075_SOURCE_MODEL_NEXT_STEP_DECISION.md
+decision: clean up the endpoint source model before running a harder test.
+reason: the generic smooth finite-family fit already showed finite/non-live
+  envelopes can make the conservation proxy benign, but it over-carries
+  support-edge selected/current/angular burden. A stricter test on that model
+  would mostly retest a known-understructured interpolation.
+next build: structured support-edge endpoint source model with coupled
+  stress-vector modes, targeted edge-tail counterterm, direct overburden
+  penalties, coefficient/effective-coupling proxy reporting, and hard zero-live
+  leakage.
 ```
 
 ## Current checkpoint, 2026-05-21
