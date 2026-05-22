@@ -72,11 +72,15 @@ new architecture sweep:
     internal response, preserves the regulator budget and transport margins,
     and does not add live support, current, angular, collar, packet, or closure
     components.
-16. Next: update the technical disclosure/final promotion material around this
-    constrained-medium result. Treat beta075 as having a first constructive
-    physical-source candidate at finite-difference closure level, with the
-    remaining boundary being documentation hardening and later covariant
-    matter-action work rather than another component search.
+16. Completed disclosure alignment around the constrained-medium result.
+    Treat beta075 as having a first constructive physical-source candidate at
+    finite-difference closure level.
+17. Next: build the covariant endpoint-medium identity audit. Lift the
+    regulated anisotropic heat/current medium out of ADM ledger components into
+    a spacetime tensor field on the service metric, project it back to the ADM
+    channels, compute direct covariant-divergence diagnostics, and check that
+    any exchange residual remains localized to the existing reset/support
+    actuator masks.
 ```
 
 Discussion discipline while runs are computing:
@@ -106,8 +110,10 @@ Allowed: promote the regulated anisotropic heat/current medium as the first
          constructive endpoint physical-source candidate at finite-difference
          field-closure level; it explains the non-live angular-pressure watch
          without adding a new design component.
-Allowed next: update the technical disclosure and final promotion material
-              around the constrained-medium result and its caveats.
+Allowed next: covariant endpoint-medium identity audit on the service metric.
+              This may test tensor reconstruction, ADM projection residuals,
+              direct covariant divergence, local eigen/type classification,
+              heat-current subluminality, and live/support localization.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -136,6 +142,33 @@ read: baseline and dense both pass constrained field closure. Worst angular
 decision: close the constructive-medium report and promote the same regulated
   medium as the beta075 endpoint physical-source candidate at this claim level.
 verification: 60 harness unit tests passed.
+```
+
+Covariant endpoint-medium identity audit target:
+
+```text
+goal: determine whether the frozen beta075 endpoint source plus current
+  regulator and internal angular response is the projection of one coherent
+  spacetime stress-energy tensor, not only a collection of fitted ADM channels.
+ansatz:
+  T_mu_nu = rho u_mu u_nu + p_l s_mu s_nu + pOmega Q_mu_nu
+            + u_mu q_nu + u_nu q_mu
+  with u.u = -1, s.s = 1, u.s = 0, Q = g + u u - s s, and q parallel to the
+  radial/support direction unless the audit proves another direction is needed.
+tests:
+  1. Reconstruct T_mu_nu from medium variables on the service metric.
+  2. Project T_mu_nu back onto the ADM tetrad and compare rho_H, j_l, p_l,
+     pOmega, and radial-null contractions against the existing ledgers.
+  3. Compute nabla_mu T^{mu nu} directly using the service-metric connection.
+  4. Localize any exchange/divergence residual against reset-cap and
+     support-edge endpoint masks; reject live-packet leakage or broad hidden
+     support.
+  5. Classify T^mu_nu eigenstructure and verify heat-current/boost margins
+     remain finite and subluminal on baseline and dense meshes.
+failure contract:
+  If the tensor needs extra spatial directions, divergent coefficients, live
+  support, superluminal heat flow, or uncontrolled conservation residuals, do
+  not promote beyond effective-source/finite-difference closure status.
 ```
 
 Latest audit result:
