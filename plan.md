@@ -61,10 +61,13 @@ new architecture sweep:
     regulator is non-live, stays at the source-class burden scale, closes the
     radial block on baseline and dense meshes, and does not introduce current,
     angular, collar, packet, or extra closure degrees of freedom.
-13. Next: run a necessary-condition / admissibility audit for the regulated
-    anisotropic heat/current medium before attempting constructive field-equation
-    validation. Keep the reset-cap body and support-edge closure fixed and allow
-    only the endpoint current regulator as the candidate unfrozen source degree.
+13. Completed necessary-condition / admissibility audit for the regulated
+    anisotropic heat/current medium. At a `1.10` regulator safety factor,
+    baseline and dense meshes show no hard obstruction before constructive
+    field-equation validation.
+14. Next: constructive field-equation validation, with the audit constraints
+    enforced: no live regulator support and no new angular-capacity,
+    conservation-closure, collar, or packet component.
 ```
 
 Discussion discipline while runs are computing:
@@ -87,9 +90,12 @@ Allowed: algebraic physical-source class screening for the frozen endpoint-J
          effective source.
 Allowed: endpoint current-regulator constitutive feasibility screen within the
          regulated anisotropic heat/current medium.
-Allowed next: necessary-condition / admissibility audit for the regulated
-              anisotropic heat/current medium before constructive field-equation
-              validation.
+Allowed: necessary-condition / admissibility audit for the regulated
+         anisotropic heat/current medium before constructive field-equation
+         validation.
+Allowed next: constructive field-equation validation constrained by the
+              admissibility audit; the model must explain the non-live angular
+              pressure watch without adding a new design component.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -383,6 +389,37 @@ deliverable:
   build a compact admissibility audit module and report before attempting the
   medium field-equation construction. This audit should be useful source
   language for the technical disclosure update.
+```
+
+Regulated-medium admissibility audit checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_REGULATED_MEDIUM_ADMISSIBILITY_AUDIT.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_medium_admissibility.py
+  toolkit/adm_harness_cli/scripts/run_endpoint_medium_admissibility_audit.py
+  toolkit/adm_harness_cli/tests/test_endpoint_medium_admissibility.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_medium_admissibility_audit_freeze_rematch_w6_t1p5
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_medium_admissibility_audit_freeze_rematch_w6_t1p5
+read: no hard necessary-condition obstruction at regulator safety factor 1.10.
+  Baseline/dense regulator-source ratios are 0.041495/0.042933, boundary-gradient
+  source ratios are 0.012888/0.007239, p99 heat-flux ratios are
+  0.974975/0.975555, live regulator rows are zero, post-regulator Type-IV rows
+  are zero, and no superluminal/undefined boost rows appear. Safety factor 1.00
+  sits on the luminal boundary as expected; 1.05 already clears it while staying
+  under budget.
+watch: non-live angular-inertia negative rows remain (baseline/dense J-total
+  1,958/7,531), with zero radial-inertia negative rows. This is the angular
+  pressure burden already visible in endpoint accounting, not a radial transport
+  obstruction or forced new component.
+decision: proceed to constructive field-equation validation only under the audit
+  constraints. The model must explain the angular pressure watch without adding a
+  new angular-capacity, conservation-closure, collar, packet, or live regulator
+  component.
+verification: 58 unit tests passed.
 ```
 
 ## Current checkpoint, 2026-05-21
