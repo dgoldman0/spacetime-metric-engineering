@@ -53,6 +53,10 @@ new architecture sweep:
     resolved by freezing a bounded no-tail reset-cap body, paired with the
     finite support-edge closure. Stop incremental endpoint-J tests unless a
     new failure mode appears.
+11. Completed source-class classification and first physical-source
+    feasibility screen. Scalar-only is ruled out, ordinary Type-I anisotropic
+    fluid alone is too narrow, and a regulated anisotropic heat/current medium
+    is the first viable physical construction target.
 ```
 
 Discussion discipline while runs are computing:
@@ -71,9 +75,13 @@ Current claim boundary:
 
 ```text
 Allowed: repaired beta075 prescribed-metric/effective-source feasibility audit.
+Allowed: algebraic physical-source class screening for the frozen endpoint-J
+         effective source.
+Allowed next: regulated anisotropic heat/current field-equation or
+              constitutive feasibility screen.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
-Not allowed: physical matter construction, global horizon theorem,
+Not allowed: final physical matter theorem, global horizon theorem,
              semiclassical/RSET proof, or broad beta/V robustness claim.
 ```
 
@@ -253,6 +261,30 @@ decision: freeze beta075 repaired endpoint-source model as viable and
   constrainable for the prescribed-metric/effective-source track. Do not keep
   incrementally retesting endpoint J; move to consolidation/freeze packaging
   or a distinct physical matter construction rung.
+```
+
+Endpoint source-class screen checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_ENDPOINT_SOURCE_CLASS_SCREEN.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_j_source_class_screen.py
+new CLI:
+  toolkit/adm_harness_cli/scripts/run_endpoint_j_source_class_screen.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_j_source_class_screen_freeze_rematch_w6_t1p5
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_j_source_class_screen_freeze_rematch_w6_t1p5
+read: the frozen endpoint-J stress is not single-scalar and not ordinary
+  Type-I anisotropic fluid everywhere. About 25-26% of source burden is
+  flux-dominant/Type-IV by the radial block. However, the minimal finite
+  `rho+p_l` current regulator needed to make the block Type-I is small and
+  dense-stable: regulator/source burden ratio 0.0377 on baseline and 0.0390
+  on dense, with zero live rows.
+decision: target a regulated anisotropic heat/current medium as the first
+  physical source class. Keep multi-field/effective-potential construction as
+  fallback only if the regulated medium fails a later field-equation solve.
 ```
 
 ## Current checkpoint, 2026-05-21
