@@ -40,8 +40,11 @@ new architecture sweep:
    support-edge selected/current/angular burden.
 6. Completed decision: clean up the source model before running a harder
    source-model test.
-7. Next: replace the generic support-edge smooth fit with physically structured
-   coupled stress-vector modes plus a targeted edge-tail counterterm.
+7. Completed first structured endpoint source model with coupled stress-vector
+   modes, edge-tail counterterm candidates, direct support overburden penalties,
+   and zero live leakage.
+8. Next: run dense-resolution / stricter structured-source scaling, focused on
+   support-edge conservation tail and coefficient stability.
 ```
 
 Discussion discipline while runs are computing:
@@ -141,6 +144,26 @@ next build: structured support-edge endpoint source model with coupled
   stress-vector modes, targeted edge-tail counterterm, direct overburden
   penalties, coefficient/effective-coupling proxy reporting, and hard zero-live
   leakage.
+```
+
+Structured endpoint source model checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_STRUCTURED_ENDPOINT_SOURCE_MODEL.md
+new code: toolkit/adm_harness_cli/adm_harness/endpoint_j_structured_source.py
+new CLI: toolkit/adm_harness_cli/scripts/run_endpoint_j_structured_source_model.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/endpoint_j_structured_source_*/
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15_local_bracket/endpoint_j_structured_source_*/
+read: structured coupled stress-vector modes improve the support-edge source
+  model versus generic smooth interpolation. Repaired lead support selected,
+  current, and pOmega ratios improve to 1.184/1.149/1.153, with max coefficient
+  0.445 instead of the generic smooth fit's angular coefficient near 9.47.
+  Zero live leakage is preserved.
+remaining watch: support-edge component L1 errors remain high and the fitted
+  family still has an edge-tail conservation residual watch. The next test is
+  dense-resolution / stricter structured-source scaling, not beta100.
+verification: 47 unit tests passed.
 ```
 
 ## Current checkpoint, 2026-05-21
