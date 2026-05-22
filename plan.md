@@ -24,15 +24,17 @@ The immediate work is a promotion audit for the repaired beta075 lead, not a
 new architecture sweep:
 
 ```text
-1. Run companion affine-reparameterized SNEC and source-accounting audits for
-   rematch_w6_t1p5.
-2. Check endpoint/J-layer accounting, live burden movement, negative packet
-   density, and angular/current transfer against the s15 beta075 baseline.
-3. Confirm the dense congruence result remains favorable under the exact
-   regenerated candidate artifacts.
-4. Run only a small local collar robustness bracket after the lead audit is
-   interpreted.
-5. If the repaired beta075 lead survives, move to a physical-source feasibility
+1. Completed: companion affine-reparameterized SNEC and source-accounting
+   audits for rematch_w6_t1p5.
+2. Completed: endpoint/J-layer accounting, live burden movement, negative
+   packet-density watch, and angular/current transfer against the s15 beta075
+   baseline.
+3. Completed: dense congruence remains favorable under the exact regenerated
+   candidate artifacts.
+4. Next: run only a small local collar robustness bracket after this lead audit
+   is interpreted.
+5. If the local bracket preserves the repaired lead, move to a physical-source
+   feasibility
    target: finite-width, non-live, conservation-closed replacement of the
    effective S0/J/R grammar.
 ```
@@ -57,6 +59,24 @@ Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: physical matter construction, global horizon theorem,
              semiclassical/RSET proof, or broad beta/V robustness claim.
+```
+
+Latest audit result:
+
+```text
+report: supporting_reports/STAGE2_BETA075_REPAIRED_LEAD_PROMOTION_AUDIT.md
+full-stride component-sector SNEC: 137,064 windows, zero all-window and zero
+  scoreable benchmark-floor violations.
+full-stride intermediate S0/J/R residual-inclusive SNEC: 137,064 windows, zero
+  all-window and zero scoreable benchmark-floor violations.
+tightest scoreable margin: about 0.05188 at affine width 2.0, plus branch,
+  reset_decompression / core_throat, non-live.
+source-accounting read: live current 0.718x baseline, live angular 0.900x,
+  live radial pressure 0.981x, live radial-null 0.852x.
+main caveat: support-edge J selected-null increases from 0.615485 to 0.642179,
+  with no live leakage and with support-edge angular burden dropping sharply.
+decision: promote rematch_w6_t1p5 as the conservative repaired beta075 lead;
+  keep rematch_w8_t2p0 as an optical-relief bracket.
 ```
 
 ## Current checkpoint, 2026-05-21
