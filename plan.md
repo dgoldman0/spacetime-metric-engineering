@@ -32,8 +32,8 @@ GZ/horizon causal gate: local branch screen adverse; dense finite-bundle read is
 adverse caustic-like compression with later escape.
 Global horizon freedom: open; sustained trapping is not observed, but single-ray
 escape is no longer enough for promotion.
-Model status: redesign blocker, not theory-killer; beta-collar softening is now
-the active mitigation axis before any broader horizon or source-family expansion.
+Model status: beta-collar mitigation lead found at generator level; still not a
+physical-source or horizon-freedom claim.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -54,6 +54,13 @@ artifacted beta-collar geometry screen at s15: wide 6x6/pass8 beta smoothing
 preserves 136/136 dense-ray escape and zero positive live packet-norm samples,
 while reducing caustic-like bundles from 8/8 to 4/8 and lifting minimum all-both
 l-width from 0.009603 to 0.127830.
+tensor-consistent beta-collar generator screen at s15: rematch_w6_t1p5 preserves
+136/136 dense-ray escape, 0 positive live packet-norm rows, 0 sustained-to-end
+both-shrinking rays, and reduces caustic-like bundles from 8/8 to 0/8; worst
+all-both l-width is 0.275792.
+rematch_w8_t2p0 also clears the dense gate and raises worst all-both l-width to
+0.394689, but has a shallower packet-norm margin and a larger small live
+negative-packet-density watch item.
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -149,6 +156,16 @@ supporting_reports/STAGE2_COLLAR_MITIGATION_SCREEN.md
 toolkit/adm_harness_cli/scripts/run_collar_mitigation_screen.py
 toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15/
 toolkit/adm_harness_cli/runs/beta_collar_geometry_beta075_p003_mid_s15_pass8_wide6/
+
+beta-collar generator screen:
+supporting_reports/STAGE2_BETA_COLLAR_GENERATOR_SCREEN.md
+toolkit/adm_harness_cli/scripts/run_beta_collar_generator_screen.py
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w8_t2p0/
+toolkit/adm_harness_cli/runs/trace_expansion_beta_collar_generator_rematch_w6_t1p5_s15/
+toolkit/adm_harness_cli/runs/trace_expansion_beta_collar_generator_rematch_w8_t2p0_s15/
+toolkit/adm_harness_cli/runs/dense_congruence_beta_collar_generator_rematch_w6_t1p5_s15/
+toolkit/adm_harness_cli/runs/dense_congruence_beta_collar_generator_rematch_w8_t2p0_s15/
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure. The GZ-like branch-band behavior is now best read as a finite-bundle expression of the same local cone effect: globally the prescribed probes avoid sustained trapping, but locally the live branch-band contains an aggressive finite minus-branch carrier-focus collar. The immediate design problem is to soften or redistribute that collar while preserving branch handoff, packet timelikeness, and radial escape.
@@ -172,10 +189,11 @@ Completed enough for current handoff:
   first prescribed-metric finite collar mitigation screens.
 
 Still open:
-  tensor-consistent beta-collar softening/rematch knob, with bundle-width
-  preservation observed alongside packet timelikeness and radial escape;
-  global horizon-freedom claim remains open after collar mitigation: sustained
-  trapping is not observed, but residual caustic-like compression still blocks promotion;
+  affine SNEC/source-accounting companion checks and robustness bracket for the
+  promoted rematch_w6_t1p5 beta-collar mitigation lead;
+  global horizon-freedom claim remains open after collar mitigation: dense
+  caustic-like compression is removed in the lead s15 candidate, but this is
+  still not a global theorem or matter-model result;
   constrained physical source-family replacement for S0/J/R;
   endpoint junction conservation/closure as an actual matter-model target;
   robustness of the receiver beyond the documented beta075 window and beta100 post1p5 retiming;
@@ -621,10 +639,28 @@ screen reduces caustic-like bundle count from `8/8` to `4/8`, lifts the minimum
 all-both l-width ratio from `0.009603` to `0.127830`, preserves `136/136` dense
 ray escape, and keeps positive live packet norm at `0`. This is still not a
 viability proof, because residual caustic-like compression remains and the
-screen is not a demanded-source or matter-model regeneration. The next concrete
-build should promote a tensor-consistent beta-collar softening/rematch knob into
-the geometry/source-ledger generator, then rerun dense bundle width, packet
-safety, radial escape, source accounting, and SNEC companions.
+screen is not a demanded-source or matter-model regeneration.
+
+Beta-collar generator screen update: the first tensor-consistent generator rung
+is documented in `supporting_reports/STAGE2_BETA_COLLAR_GENERATOR_SCREEN.md`,
+with the runner at
+`toolkit/adm_harness_cli/scripts/run_beta_collar_generator_screen.py`. The
+`rematch_w6_t1p5` and `rematch_w8_t2p0` candidates regenerate the full `s15`,
+`189 x 121` source ledger with wider trailing-edge beta-rematch collars. Both
+preserve packet timelikeness (`0` positive live packet-norm rows), keep the
+scheduled branch-band trace audit favorable, and flip the dense congruence
+decision to `favorable_dense_bundle_transient_focusing`. Both have `136/136`
+dense-ray escape, `136/136` recovery from both-shrinking, zero sustained-to-end
+both-shrinking rays, and `0/8` caustic-like bundles. The conservative
+`rematch_w6_t1p5` lead raises worst all-both l-width ratio from `0.009603` to
+`0.275792`; the wider `rematch_w8_t2p0` bracket raises it to `0.394689`.
+Primary live burden channels decrease versus the s15 baseline in both
+candidates. The tradeoff is that `rematch_w8_t2p0` has a shallower packet-norm
+margin and a larger small live negative-packet-density watch item. Treat
+`rematch_w6_t1p5` as the conservative beta-collar mitigation lead and
+`rematch_w8_t2p0` as an optical-relief robustness bracket. This is still a
+prescribed metric and demanded-source result rather than a conservation-closed
+matter model or global horizon theorem.
 
 Affine-reparameterized SNEC audit update: the hard-affine wording concern has
 now been tested directly for the dense beta075 negative-l receiver promotion
@@ -650,10 +686,10 @@ Current post-receiver source-family work order:
 1. Treat the beta075 negative-l receiver as an effective metric/source grammar,
    not a physical matter model.
 
-2. Promote the finite minus-branch carrier-focus collar result into a
-   tensor-consistent beta-collar softening/rematch knob. Bundle-width
-   preservation remains a first-class observation alongside packet timelikeness
-   and radial escape.
+2. Treat `rematch_w6_t1p5` as the conservative tensor-consistent beta-collar
+   mitigation lead, with `rematch_w8_t2p0` as the wider optical-relief bracket.
+   Bundle-width preservation remains a first-class observation alongside packet
+   timelikeness and radial escape.
 
 3. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
@@ -661,9 +697,8 @@ Current post-receiver source-family work order:
      and angular capacity;
    R small core-body residual leakage.
 
-4. Resume horizon-freedom/domain/refinement claims only if the tensor-consistent
-   collar knob reduces dense-bundle compression without losing escape, packet
-   safety, source-accounting sanity, or SNEC companion cleanliness.
+4. Run affine SNEC/source-accounting companions and a small robustness bracket
+   before strengthening horizon-freedom/domain/refinement wording.
 
 5. Replace the effective J receiver with a constrained source-family or
    conservation-closed model before making report-grade physical-source claims.
