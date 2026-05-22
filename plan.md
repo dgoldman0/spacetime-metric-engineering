@@ -79,6 +79,22 @@ decision: promote rematch_w6_t1p5 as the conservative repaired beta075 lead;
   keep rematch_w8_t2p0 as an optical-relief bracket.
 ```
 
+Local bracket checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_COLLAR_LOCAL_BRACKET_CHECKPOINT.md
+completed points: rematch_w5p5_t1p5, rematch_w6_t1p5,
+  rematch_w6p5_t1p5, rematch_w6_t1p25.
+still running in background: rematch_w6_t1p75.
+width-axis read: narrower width lowers the support-edge J and packet-density
+  watch items but gives back live-channel relief; wider width improves the main
+  live channels but increases those watch items.
+temporal t1.25 read: near-neutral, not a new branch.
+decision: do not wait for the full local bracket before starting the next rung;
+  keep rematch_w6_t1p5 as conservative lead and move to endpoint J
+  source-family/conservation diagnostics.
+```
+
 ## Current checkpoint, 2026-05-21
 
 The current representative design is the entry-gated compact wide4 V5 branch:
