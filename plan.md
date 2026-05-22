@@ -57,12 +57,14 @@ new architecture sweep:
     feasibility screen. Scalar-only is ruled out, ordinary Type-I anisotropic
     fluid alone is too narrow, and a regulated anisotropic heat/current medium
     is the first viable physical construction target.
-12. Next: resolve the design-implied endpoint current regulator as the small
-    non-live physical source component needed by the regulated anisotropic
-    heat/current medium. Hold the frozen reset-cap body and support-edge
-    closure fixed; test whether the regulator can be represented by finite
-    conserved constitutive/field-equation degrees of freedom without adding
-    any further design components.
+12. Completed first endpoint current-regulator constitutive screen. The
+    regulator is non-live, stays at the source-class burden scale, closes the
+    radial block on baseline and dense meshes, and does not introduce current,
+    angular, collar, packet, or extra closure degrees of freedom.
+13. Next: run a necessary-condition / admissibility audit for the regulated
+    anisotropic heat/current medium before attempting constructive field-equation
+    validation. Keep the reset-cap body and support-edge closure fixed and allow
+    only the endpoint current regulator as the candidate unfrozen source degree.
 ```
 
 Discussion discipline while runs are computing:
@@ -83,9 +85,11 @@ Current claim boundary:
 Allowed: repaired beta075 prescribed-metric/effective-source feasibility audit.
 Allowed: algebraic physical-source class screening for the frozen endpoint-J
          effective source.
-Allowed next: endpoint current-regulator field-equation or constitutive
-              feasibility screen within the regulated anisotropic heat/current
-              medium.
+Allowed: endpoint current-regulator constitutive feasibility screen within the
+         regulated anisotropic heat/current medium.
+Allowed next: necessary-condition / admissibility audit for the regulated
+              anisotropic heat/current medium before constructive field-equation
+              validation.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -324,6 +328,61 @@ first implementation:
   build a constitutive/field-equation feasibility screen for the regulated
   anisotropic heat/current medium, with the endpoint current regulator as the
   only unfrozen physical source degree of freedom.
+```
+
+Endpoint current-regulator checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_ENDPOINT_CURRENT_REGULATOR_SCREEN.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_current_regulator.py
+  toolkit/adm_harness_cli/scripts/run_endpoint_current_regulator_screen.py
+  toolkit/adm_harness_cli/tests/test_endpoint_current_regulator.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_current_regulator_screen_freeze_rematch_w6_t1p5
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_current_regulator_screen_freeze_rematch_w6_t1p5
+read: the minimal sign-preserving `rho+p_l` regulator passes the first
+  constitutive screen. Baseline/dense regulator-source ratios are
+  0.037723/0.039030, live regulator rows are zero, post-regulator Type-IV rows
+  are zero, and no current or angular layer is introduced. The regulated total
+  keeps the finite-spread endpoint conservation read. The standalone layer-only
+  diagnostic has a volume-normalized zero-row artifact, so the decision gate uses
+  burden-weighted layer spread plus regulated-total conservation.
+decision: do not jump directly to constructive field-equation validation. First
+  run a necessary-condition / admissibility audit for the regulated anisotropic
+  heat/current medium: conservation closure, flux-frame admissibility,
+  finite-propagation/transport sanity, boundary-layer cost, and whether any
+  hidden angular/current/conservation component is forced. Keep reset-cap and
+  support-edge components frozen; only the endpoint current regulator remains
+  unfrozen.
+verification: 55 unit tests passed.
+```
+
+Regulated-medium admissibility audit next step:
+
+```text
+purpose:
+  test the frozen endpoint source plus minimal current regulator against
+  necessary conditions that any respectable regulated anisotropic heat/current
+  medium would need to satisfy before building a constructive field-equation
+  model.
+must check:
+  regulated radial block is boost-frame admissible with finite subluminal frame
+    velocity;
+  effective flux-frame inertia/enthalpy proxies do not demand sign-pathological
+    transport;
+  heat/current transport ratios stay inside finite-propagation sanity bounds;
+  regulator support and boundary-layer gradients do not exceed the existing
+    0.06 budget or force singular support;
+  conservation residuals of the regulated total stay finite-spread;
+  no hidden angular-capacity, current, collar, packet, or extra conservation
+    component is required.
+deliverable:
+  build a compact admissibility audit module and report before attempting the
+  medium field-equation construction. This audit should be useful source
+  language for the technical disclosure update.
 ```
 
 ## Current checkpoint, 2026-05-21
