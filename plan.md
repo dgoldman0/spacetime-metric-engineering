@@ -88,6 +88,12 @@ new architecture sweep:
     preferred support direction, and localized exchange current. Keep an active
     uncommitted worklog at
     `supporting_reports/STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md`.
+19. Completed first refined phase-aware support-sector test. A support
+    stroke/stress-potential ansatz, evaluated with a full-grid tail audit,
+    passes on baseline and dense meshes. Treat this as evidence that the first
+    smooth algebraic P/F miss was an ansatz limitation, not a physics wall.
+    Keep the claim bounded because the dense reset/core residual and effective
+    mode count remain the next support-sector watches.
 ```
 
 Discussion discipline while runs are computing:
@@ -142,6 +148,10 @@ Allowed next: after the first smooth P/F support-reservoir fit watch, focus the
               and divergence-generated support stress. Do not broaden to
               arbitrary multi-field matter unless phase-aware support dynamics
               also fail.
+Allowed next: use the phase-aware support stroke/stress result as the current
+              support-sector lead. Next useful checks are compactness/stability
+              of the stress-potential modes, denser reset/core residual
+              localization, and a conservation-restoring support tensor story.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
