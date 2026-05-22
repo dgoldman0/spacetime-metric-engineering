@@ -34,8 +34,9 @@ Global horizon freedom: open; sustained trapping is not observed, but single-ray
 escape is no longer enough for promotion.
 Model status: beta-collar mitigation lead found at generator level; still not a
 physical-source or horizon-freedom claim.
-Operational superluminality: untested; next stage is a service-time advantage
-ledger comparing restored packet arrival to an exterior null reference signal.
+Operational superluminality: first service-time advantage ledger is favorable
+under schedule-factor and packet-coordinate transport proxies; this remains a
+narrative/rating result rather than a feasibility gate.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -63,11 +64,15 @@ all-both l-width is 0.275792.
 rematch_w8_t2p0 also clears the dense gate and raises worst all-both l-width to
 0.394689, but has a shallower packet-norm margin and a larger small live
 negative-packet-density watch item.
-service-time advantage ledger: not yet run. The next rating question is whether
-the prepared service trajectory reaches exterior endpoint B earlier than an
-ordinary exterior null signal launched from endpoint A at the same departure
-event. This is an operational/narrative rating, not a packet-safety,
-finite-bundle, source-family, or global-horizon feasibility gate.
+service-time advantage ledger: first s15 rung is favorable. The prepared
+service time is 3.045, the schedule-factor A-to-B distance proxy is 7.822491
+for an advantage ratio of 2.568962, and the centerline packet-coordinate proxy
+is 3.755436 for an advantage ratio of 1.233312. If setup is counted as
+request-triggered time, the corresponding ratios remain favorable at 2.487278
+and 1.194097. The strict l=s centerline control is neutral at 1.0. Baseline,
+rematch_w6_t1p5, and rematch_w8_t2p0 have identical service-time ratings,
+because the beta-collar repair changes local rematch optics without changing
+the U_packet schedule or centerline B profile in this ledger.
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -173,6 +178,11 @@ toolkit/adm_harness_cli/runs/trace_expansion_beta_collar_generator_rematch_w6_t1
 toolkit/adm_harness_cli/runs/trace_expansion_beta_collar_generator_rematch_w8_t2p0_s15/
 toolkit/adm_harness_cli/runs/dense_congruence_beta_collar_generator_rematch_w6_t1p5_s15/
 toolkit/adm_harness_cli/runs/dense_congruence_beta_collar_generator_rematch_w8_t2p0_s15/
+
+service-time advantage ledger:
+supporting_reports/STAGE2_SERVICE_TIME_ADVANTAGE_LEDGER.md
+toolkit/adm_harness_cli/scripts/run_service_time_advantage_ledger.py
+toolkit/adm_harness_cli/runs/service_time_advantage_beta_collar_s15/
 ```
 
 Handoff interpretation: the current design behaves as a protected live packet corridor coupled to a support plant in demanded-source/source-accounting channels. The principal source load is infrastructure radial-null support and core/support radial-pressure balance. The main live-facing source work is angular handoff capacity, with smaller live current and radial-null fractions. The full-grid, patch-continuity, receiver-promotion, and SNEC companion checks are strong enough to use this as the current representative effective source picture; they do not certify a matter model or a horizon-free causal structure. The GZ-like branch-band behavior is now best read as a finite-bundle expression of the same local cone effect: globally the prescribed probes avoid sustained trapping, but locally the live branch-band contains an aggressive finite minus-branch carrier-focus collar. The immediate design problem is to soften or redistribute that collar while preserving branch handoff, packet timelikeness, and radial escape.
@@ -193,13 +203,15 @@ Completed enough for current handoff:
   causal-margin guard small screen and entry-to-live-packet reachability screen;
   horizon escape ladder, scheduled ADM confidence run, trace-integrated expansion
   audit, dense congruence caustic audit on the beta075 p003_mid ladder, and
-  first prescribed-metric finite collar mitigation screens.
+  first prescribed-metric finite collar mitigation screens;
+  first service-time advantage ledger for baseline_s15, rematch_w6_t1p5, and
+  rematch_w8_t2p0.
 
 Still open:
   affine SNEC/source-accounting companion checks and robustness bracket for the
   promoted rematch_w6_t1p5 beta-collar mitigation lead;
-  service-time advantage ledger for the promoted beta-collar lead, comparing
-  reconstructed packet service time against an exterior null A-to-B reference;
+  explicit endpoint-convention wording for the service-time advantage ledger,
+  including prepared-plant versus request-triggered setup accounting;
   global horizon-freedom claim remains open after collar mitigation: dense
   caustic-like compression is removed in the lead s15 candidate, but this is
   still not a global theorem or matter-model result;
@@ -700,13 +712,12 @@ Current post-receiver source-family work order:
    Bundle-width preservation remains a first-class observation alongside packet
    timelikeness and radial escape.
 
-3. Run a service-time advantage ledger for the promoted beta-collar carrier
-   lead. Fix exterior endpoints A and B, define the departure event as the
-   packet fully committed at A, reconstruct service time through entry,
-   beta-collar/rematch, carried shift segment, catch/release, and restoration
-   into normal exterior space, then compare the restored arrival time with the
-   exterior null reference time `D_AB / c`. Prepared standing plant time may be
-   accounted separately; request-triggered setup belongs in service time.
+3. Treat the first service-time advantage ledger as a favorable operational
+   rating for the current prescribed schedule. It supports documentation
+   language that the beta-collar lead preserves service-time advantage under
+   the schedule-factor and packet-coordinate proxies, while the strict l=s
+   centerline control stays neutral. Keep this wording separate from
+   packet-safety, finite-bundle, source-family, and global-horizon claims.
 
 4. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
