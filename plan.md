@@ -46,8 +46,13 @@ new architecture sweep:
 8. Completed first explicit support-edge closure component. It clears the
    edge-tail conservation watch with a tiny finite correction stable across
    the available local bracket.
-9. Next: run dense-resolution / stricter structured-source scaling, focused on
-   support-edge closure coefficient, support width, and residual stability.
+9. Completed dense-resolution structured-source scaling. The support-edge
+   closure remains finite, tiny, non-live, and comparable under a `377x241`
+   source-ledger refinement.
+10. Next: separate the now-stable support-edge closure result from the broader
+    endpoint-J reset-cap source-realization watch; decide whether the reset-cap
+    coefficient growth needs a bounded family extension or just a stricter
+    diagnostic.
 ```
 
 Discussion discipline while runs are computing:
@@ -187,6 +192,35 @@ remaining watch: component L1 errors do not improve; this is a tiny closure
   term, not a better pointwise source interpolator. The decisive next test is
   dense scaling of closure coefficient/support width/residuals.
 verification: 48 unit tests passed.
+```
+
+Dense endpoint source stability checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_DENSE_ENDPOINT_SOURCE_STABILITY.md
+new code: toolkit/adm_harness_cli/adm_harness/source_ledger_parallel.py
+updated CLIs:
+  toolkit/adm_harness_cli/scripts/run_source_ledger.py
+  toolkit/adm_harness_cli/scripts/run_beta_collar_generator_screen.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+read: dense `377x241` source regeneration keeps the repaired lead live-clean
+  with zero positive live packet norms across 90,857 rows. The dense
+  component/string/intermediate grammar keeps endpoint J entirely non-live and
+  makes the support-edge assignment a finite 2,590-row population, not a
+  revealed singular line.
+support-edge source result: structured support-edge ratios remain stable
+  (selected/current/pOmega 1.183/1.129/1.058) and max structured coefficient
+  drops from 0.445 to 0.261 under refinement.
+closure result: dense scan selects the same tiny one-mode, six-center,
+  width-0.85 support-edge closure family. Max closure coefficient drops from
+  0.001114 to 0.000846, coefficient L1 stays comparable, sigma_s/sigma_l stay
+  at about 0.44/0.595, peak support-edge residual norm stays finite-spread
+  (2.732 to 2.664), and live leakage remains zero.
+remaining watch: reset-cap structured fit stays accurate and non-live but uses
+  larger dense coefficients before closure; this is the next endpoint-J
+  source-realization watch, distinct from the now-stable support-edge closure.
+verification: 50 unit tests passed.
 ```
 
 ## Current checkpoint, 2026-05-21
