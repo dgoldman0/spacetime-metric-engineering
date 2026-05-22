@@ -75,12 +75,12 @@ new architecture sweep:
 16. Completed disclosure alignment around the constrained-medium result.
     Treat beta075 as having a first constructive physical-source candidate at
     finite-difference closure level.
-17. Next: build the covariant endpoint-medium identity audit. Lift the
-    regulated anisotropic heat/current medium out of ADM ledger components into
-    a spacetime tensor field on the service metric, project it back to the ADM
-    channels, compute direct covariant-divergence diagnostics, and check that
-    any exchange residual remains localized to the existing reset/support
-    actuator masks.
+17. Completed first covariant endpoint-medium identity audit. The regulated
+    anisotropic heat/current medium lifts to a spacetime tensor field on the
+    service metric whose ADM projections reproduce the endpoint source channels
+    at machine precision on baseline and dense meshes. Direct covariant
+    divergence remains localized to the endpoint/support exchange masks with a
+    small finite-difference live-stencil halo below the audit gate.
 ```
 
 Discussion discipline while runs are computing:
@@ -110,10 +110,13 @@ Allowed: promote the regulated anisotropic heat/current medium as the first
          constructive endpoint physical-source candidate at finite-difference
          field-closure level; it explains the non-live angular-pressure watch
          without adding a new design component.
-Allowed next: covariant endpoint-medium identity audit on the service metric.
-              This may test tensor reconstruction, ADM projection residuals,
-              direct covariant divergence, local eigen/type classification,
-              heat-current subluminality, and live/support localization.
+Allowed: first covariant endpoint-medium identity audit on the service metric,
+         including tensor reconstruction, ADM projection residuals, direct
+         covariant divergence, local eigen/type classification, heat-current
+         subluminality, and live/support localization.
+Allowed next: document the covariant-audit caveat carefully and, if needed,
+              move from tensor identity diagnostics toward an explicit
+              matter-action or constitutive field-equation construction.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -169,6 +172,32 @@ failure contract:
   If the tensor needs extra spatial directions, divergent coefficients, live
   support, superluminal heat flow, or uncontrolled conservation residuals, do
   not promote beyond effective-source/finite-difference closure status.
+```
+
+Covariant endpoint-medium identity audit checkpoint:
+
+```text
+report:
+  supporting_reports/STAGE2_BETA075_COVARIANT_ENDPOINT_MEDIUM_AUDIT.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_medium_covariant_audit.py
+new CLI:
+  toolkit/adm_harness_cli/scripts/run_endpoint_medium_covariant_audit.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_medium_covariant_audit_freeze_rematch_w6_t1p5/
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_medium_covariant_audit_freeze_rematch_w6_t1p5/
+read: baseline and dense both pass the covariant identity audit. ADM projection
+  max error is 5.55e-17 / 6.59e-17; projection/source error ratio is
+  1.16e-16 / 1.13e-16. Max boost-to-flux-frame speed remains
+  0.978182 / 0.987443, and mixed tensor eigenvalues remain real. Full-grid
+  divergence localizes to allowed endpoint/support exchange at
+  0.995410 / 0.995927 of divergence burden, with live finite-difference
+  stencil halo 0.003553 / 0.003199 below the 0.005 gate.
+decision: promote the first covariant tensor identity rung. Keep the claim
+  bounded: this is a tensor reconstruction/projection/divergence diagnostic,
+  not a matter-action theorem.
 ```
 
 Latest audit result:
