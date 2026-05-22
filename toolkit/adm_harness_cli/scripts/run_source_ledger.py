@@ -26,6 +26,7 @@ from adm_harness.source_ledger import (  # noqa: E402
     top_bad_points,
     write_manifest,
 )
+from adm_harness.source_ledger_parallel import compute_case_sharded, resolve_s_shard_count  # noqa: E402
 
 
 DEFAULT_S_MIN = -0.35
@@ -188,6 +189,43 @@ def _write_tables(outdir: Path, points: pd.DataFrame, prefix: str = "source_ledg
     return files
 
 
+def _compute_points(case, grid: dict[str, Any], args: argparse.Namespace) -> tuple[pd.DataFrame, dict[str, Any]]:
+    jobs = int(args.jobs)
+    if jobs < 1:
+        raise ValueError(f"--jobs must be positive, got {jobs}")
+    if jobs <= 1:
+        points = compute_case(
+            case,
+            grid["ns"],
+            grid["nl"],
+            grid["s_min"],
+            grid["s_max"],
+            grid["l_min"],
+            grid["l_max"],
+            grid["h_s"],
+            grid["h_l"],
+            progress=not args.quiet,
+        )
+        return points, {"source_compute": "serial", "jobs": 1, "s_shards": 1}
+
+    s_shards = resolve_s_shard_count(int(grid["ns"]), jobs, args.s_shards)
+    points = compute_case_sharded(
+        case,
+        grid["ns"],
+        grid["nl"],
+        grid["s_min"],
+        grid["s_max"],
+        grid["l_min"],
+        grid["l_max"],
+        grid["h_s"],
+        grid["h_l"],
+        jobs=jobs,
+        s_shards=s_shards,
+        progress=not args.quiet,
+    )
+    return points, {"source_compute": "sharded", "jobs": jobs, "s_shards": s_shards}
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Regenerate report-grade active-rail 4D demanded-source ledgers.")
     parser.add_argument(
@@ -208,6 +246,18 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--h-l", type=float, default=2.5e-3)
     parser.add_argument("--force", action="store_true", help="Recompute even when a cached point ledger exists.")
     parser.add_argument("--quiet", action="store_true", help="Suppress row-progress output.")
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=1,
+        help="Parallel worker processes for source-ledger point evaluation. The default serial path is 1.",
+    )
+    parser.add_argument(
+        "--s-shards",
+        type=int,
+        default=None,
+        help="Contiguous s-row shards for --jobs runs. Defaults to 4 * jobs, capped at ns.",
+    )
 
     parser.add_argument("--w-th", type=float, default=None)
     parser.add_argument("--eta-N", type=float, default=None)
@@ -514,19 +564,9 @@ def main() -> int:
     if point_path.exists() and not args.force:
         points = pd.read_csv(point_path)
         cache_status = "reused"
+        execution = {"source_compute": "cache_reused", "jobs": int(args.jobs), "s_shards": args.s_shards}
     else:
-        points = compute_case(
-            case,
-            grid["ns"],
-            grid["nl"],
-            grid["s_min"],
-            grid["s_max"],
-            grid["l_min"],
-            grid["l_max"],
-            grid["h_s"],
-            grid["h_l"],
-            progress=not args.quiet,
-        )
+        points, execution = _compute_points(case, grid, args)
         cache_status = "computed"
 
     files = _write_tables(outdir, points)
@@ -552,6 +592,7 @@ def main() -> int:
     manifest = case_metadata(case, grid, file_strings)
     manifest.update({
         "cache_status": cache_status,
+        "execution": execution,
         "rows": int(len(points)),
         "point_ledger_sha256": sha256_file(files["point_ledger"]),
         "reference_comparison": reference_summary,
@@ -561,6 +602,7 @@ def main() -> int:
         "ok": True,
         "case": case.name,
         "cache_status": cache_status,
+        "execution": execution,
         "outdir": str(outdir),
         "rows": int(len(points)),
         "reference_comparison": reference_summary,

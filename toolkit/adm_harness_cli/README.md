@@ -121,6 +121,20 @@ The overlay defaults to the frozen reduced-harness target: amplitude `1e-7`, cat
 
 Overlay runs expand the default `s` range when needed to include the leading catch/support window while preserving roughly the standard `ds = 0.05` sampling. Pin `--s-min` and `--ns` explicitly when comparing against a fixed historical source-ledger grid.
 
+Dense source-ledger grids can split the independent `s` rows across local worker processes:
+
+```bash
+python scripts/run_source_ledger.py \
+  --variant tuned_w0569_eta200 \
+  --service-factor 5 \
+  --ns 377 \
+  --nl 241 \
+  --jobs 8 \
+  --outdir runs/source_ledgers/V5_tuned_w0569_eta200_dense
+```
+
+The parallel path preserves the same point-ledger schema and downstream summary files as the serial path. By default `--jobs N` uses `4*N` contiguous `s`-row shards, capped at `ns`; set `--s-shards` explicitly when you want coarser or finer progress checkpoints. The beta-collar manifest regenerator has the same `--jobs` and `--s-shards` controls, so dense endpoint-source rungs can use parallel source construction and then feed the resulting ledger directory into the existing component, string-cloud, intermediate, structured-source, and closure diagnostics unchanged.
+
 To ramp the continuous overlay and compare each case against a matched baseline source ledger:
 
 ```bash

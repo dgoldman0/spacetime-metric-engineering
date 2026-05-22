@@ -17,6 +17,7 @@ import run_source_ledger as source_runner
 import run_source_overlay_sweep as overlay_sweep
 import run_validation_ladder as ladder
 from adm_harness import source_ledger
+from adm_harness.source_ledger_parallel import build_s_shards, compute_case_sharded
 
 
 class ValidationLadderHardeningTests(unittest.TestCase):
@@ -119,6 +120,21 @@ class ValidationLadderHardeningTests(unittest.TestCase):
         self.assertFalse(summary.empty)
         self.assertFalse(stage.empty)
         self.assertFalse(source_ledger.top_bad_points(points, limit=2).empty)
+
+    def test_sharded_source_ledger_matches_serial_rows(self):
+        case = source_ledger.branch_case("tuned_w0569_eta200", service_factor=5.0)
+        serial = source_ledger.compute_case(case, ns=4, nl=3, progress=False)
+        sharded = compute_case_sharded(case, ns=4, nl=3, jobs=2, s_shards=2, progress=False)
+
+        pd.testing.assert_frame_equal(serial.reset_index(drop=True), sharded.reset_index(drop=True), check_dtype=False)
+
+    def test_s_shards_are_contiguous_and_bounded(self):
+        shards = build_s_shards(pd.Series([0.0, 1.0, 2.0, 3.0, 4.0]).to_numpy(), jobs=2, s_shards=9)
+
+        self.assertEqual(len(shards), 5)
+        self.assertEqual(shards[0].start_row, 1)
+        self.assertEqual(shards[-1].end_row, 5)
+        self.assertEqual([value for shard in shards for value in shard.s_values], [0.0, 1.0, 2.0, 3.0, 4.0])
 
     def test_source_ledger_reference_compare_identity(self):
         case = source_ledger.branch_case("conservative_w0565_eta200", service_factor=5.0)

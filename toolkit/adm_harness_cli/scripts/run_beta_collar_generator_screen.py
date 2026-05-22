@@ -26,6 +26,7 @@ from adm_harness.source_ledger import (  # noqa: E402
     top_bad_points,
     write_manifest,
 )
+from adm_harness.source_ledger_parallel import compute_case_sharded, resolve_s_shard_count  # noqa: E402
 
 
 PARAM_KEYS = {field.name for field in fields(SourceParams)}
@@ -149,6 +150,43 @@ def _summarize_candidate(label: str, params: SourceParams, ledger_dir: Path, poi
     }
 
 
+def _compute_points(case: SourceCase, grid: dict[str, Any], args: argparse.Namespace) -> tuple[pd.DataFrame, dict[str, Any]]:
+    jobs = int(args.jobs)
+    if jobs < 1:
+        raise ValueError(f"--jobs must be positive, got {jobs}")
+    if jobs <= 1:
+        points = compute_case(
+            case,
+            int(grid["ns"]),
+            int(grid["nl"]),
+            float(grid["s_min"]),
+            float(grid["s_max"]),
+            float(grid["l_min"]),
+            float(grid["l_max"]),
+            float(grid["h_s"]),
+            float(grid["h_l"]),
+            progress=not args.quiet,
+        )
+        return points, {"source_compute": "serial", "jobs": 1, "s_shards": 1}
+
+    s_shards = resolve_s_shard_count(int(grid["ns"]), jobs, args.s_shards)
+    points = compute_case_sharded(
+        case,
+        int(grid["ns"]),
+        int(grid["nl"]),
+        float(grid["s_min"]),
+        float(grid["s_max"]),
+        float(grid["l_min"]),
+        float(grid["l_max"]),
+        float(grid["h_s"]),
+        float(grid["h_l"]),
+        jobs=jobs,
+        s_shards=s_shards,
+        progress=not args.quiet,
+    )
+    return points, {"source_compute": "sharded", "jobs": jobs, "s_shards": s_shards}
+
+
 def run(args: argparse.Namespace) -> dict[str, Path]:
     base_params, base_grid, base_case, base_note = _load_manifest(args.source_manifest)
     grid = _grid_from_args(base_grid, args)
@@ -166,19 +204,9 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
         if point_path.exists() and not args.force:
             points = pd.read_csv(point_path)
             cache_status = "reused"
+            execution = {"source_compute": "cache_reused", "jobs": int(args.jobs), "s_shards": args.s_shards}
         else:
-            points = compute_case(
-                case,
-                int(grid["ns"]),
-                int(grid["nl"]),
-                float(grid["s_min"]),
-                float(grid["s_max"]),
-                float(grid["l_min"]),
-                float(grid["l_max"]),
-                float(grid["h_s"]),
-                float(grid["h_l"]),
-                progress=not args.quiet,
-            )
+            points, execution = _compute_points(case, grid, args)
             cache_status = "computed"
         files = _write_tables(ledger_dir, points)
         file_strings = {key: str(path) for key, path in files.items()}
@@ -188,6 +216,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
             "screen_label": args.label,
             "candidate_label": label,
             "cache_status": cache_status,
+            "execution": execution,
             "rows": int(len(points)),
             "point_ledger_sha256": sha256_file(files["point_ledger"]),
             "caveat": "Tensor-consistent source-ledger regeneration with beta-rematch/collar parameters changed.",
@@ -195,6 +224,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
         write_manifest(ledger_dir / "source_ledger_manifest.json", manifest)
         row = _summarize_candidate(label, params, ledger_dir, points)
         row["cache_status"] = cache_status
+        row.update(execution)
         rows.append(row)
         if args.progress:
             print(json.dumps({"event": "beta_collar_candidate_complete", **row}), flush=True)
@@ -211,6 +241,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
         "source_manifest": str(args.source_manifest),
         "grid": grid,
         "candidates": args.candidate,
+        "execution_request": {"jobs": int(args.jobs), "s_shards": args.s_shards},
         "rows": int(len(summary)),
         "files": {key: str(path) for key, path in paths.items() if key != "metadata"},
     }
@@ -237,6 +268,18 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--progress", action="store_true")
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=1,
+        help="Parallel worker processes for source-ledger point evaluation. The default serial path is 1.",
+    )
+    parser.add_argument(
+        "--s-shards",
+        type=int,
+        default=None,
+        help="Contiguous s-row shards for --jobs runs. Defaults to 4 * jobs, capped at ns.",
+    )
     parser.add_argument("--ns", type=int, default=None)
     parser.add_argument("--nl", type=int, default=None)
     parser.add_argument("--s-min", type=float, default=None)
