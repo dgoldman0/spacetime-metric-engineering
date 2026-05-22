@@ -132,6 +132,11 @@ Allowed next: keep the matter-action feasibility report open and develop the
               angular-response closure, localized J_support^0/J_support^1
               exchange matching, and total-conservation restoration only
               through an explicit support sector.
+Allowed next: narrow heavy-duty support-reservoir testing for the committed
+              entrained-director skeleton battery: build repeatable P/F
+              exchange-fit screens, coefficient/support-locality gates,
+              transport-rapidity and h_reg guard checks, and no-live-leakage
+              confirmation on baseline and dense ledgers.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
@@ -248,12 +253,12 @@ first tests:
   angular-response compatibility, exchange-current localization, and whether
   the family requires live support, divergent coefficients, or extra directions.
 current next step:
-  Do not close this as a milestone yet. Write the entrained director medium as
-  a formal constitutive/action skeleton with fields (u^mu, s^mu, transport
-  amplitude, h_reg, chi_Omega, support-sector variables), then turn the
-  skeleton into measured pass/fail tests against the baseline and dense
-  covariant ledgers. Keep the report active and uncommitted while findings
-  evolve.
+  The entrained director medium skeleton battery is now a committed checkpoint
+  in supporting_reports/STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md.
+  The next tier is narrow heavy-duty testing: fit or screen whether an explicit
+  support-sector ansatz can supply the measured local tetrad exchange fields
+  P and F with bounded smooth coefficients, support-localized masks,
+  preserved h_reg/psi transport guards, and no live leakage.
 failure contract:
   If every compact family needs hidden live support, superluminal modes,
   unbounded coefficients, or broad nonlocal exchange, step back to effective
