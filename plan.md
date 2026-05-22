@@ -43,8 +43,11 @@ new architecture sweep:
 7. Completed first structured endpoint source model with coupled stress-vector
    modes, edge-tail counterterm candidates, direct support overburden penalties,
    and zero live leakage.
-8. Next: run dense-resolution / stricter structured-source scaling, focused on
-   support-edge conservation tail and coefficient stability.
+8. Completed first explicit support-edge closure component. It clears the
+   edge-tail conservation watch with a tiny finite correction stable across
+   the available local bracket.
+9. Next: run dense-resolution / stricter structured-source scaling, focused on
+   support-edge closure coefficient, support width, and residual stability.
 ```
 
 Discussion discipline while runs are computing:
@@ -164,6 +167,26 @@ remaining watch: support-edge component L1 errors remain high and the fitted
   family still has an edge-tail conservation residual watch. The next test is
   dense-resolution / stricter structured-source scaling, not beta100.
 verification: 47 unit tests passed.
+```
+
+Support-edge closure component checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_SUPPORT_EDGE_CLOSURE_COMPONENT.md
+new code: toolkit/adm_harness_cli/adm_harness/endpoint_j_closure_component.py
+new CLI: toolkit/adm_harness_cli/scripts/run_endpoint_j_closure_component.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/endpoint_j_closure_component_*/
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15_local_bracket/endpoint_j_closure_component_*/
+read: the missing support-edge closure component is found at this rung. On
+  rematch_w6_t1p5 it reduces peak support-edge conservation norm from 5.245 to
+  2.732 and clears the edge-tail watch, with max coefficient 0.001114 and zero
+  live leakage. The same fixed closure shape clears the watch across the
+  available local bracket points.
+remaining watch: component L1 errors do not improve; this is a tiny closure
+  term, not a better pointwise source interpolator. The decisive next test is
+  dense scaling of closure coefficient/support width/residuals.
+verification: 48 unit tests passed.
 ```
 
 ## Current checkpoint, 2026-05-21
