@@ -31,12 +31,15 @@ new architecture sweep:
    baseline.
 3. Completed: dense congruence remains favorable under the exact regenerated
    candidate artifacts.
-4. Next: run only a small local collar robustness bracket after this lead audit
-   is interpreted.
-5. If the local bracket preserves the repaired lead, move to a physical-source
-   feasibility
-   target: finite-width, non-live, conservation-closed replacement of the
-   effective S0/J/R grammar.
+4. Completed checkpoint: first local collar robustness bracket around
+   rematch_w6_t1p5 is interpretable enough to move on; let the remaining
+   temporal point finish as supporting evidence.
+5. Completed first endpoint J source-family rung: conservation proxy plus
+   finite smooth family fit. It keeps the family non-live and
+   conservation-proxy friendly, but generic smooth modes over-carry
+   support-edge selected/current/angular burden.
+7. Next: replace the generic support-edge smooth fit with physically structured
+   coupled stress-vector modes plus a targeted edge-tail counterterm.
 ```
 
 Discussion discipline while runs are computing:
@@ -93,6 +96,33 @@ temporal t1.25 read: near-neutral, not a new branch.
 decision: do not wait for the full local bracket before starting the next rung;
   keep rematch_w6_t1p5 as conservative lead and move to endpoint J
   source-family/conservation diagnostics.
+```
+
+Endpoint J source-family rung checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_ENDPOINT_J_SOURCE_FAMILY_RUNG.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_j_conservation.py
+  toolkit/adm_harness_cli/adm_harness/endpoint_j_family_fit.py
+new CLIs:
+  toolkit/adm_harness_cli/scripts/run_endpoint_j_conservation_diagnostic.py
+  toolkit/adm_harness_cli/scripts/run_endpoint_j_family_fit.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/endpoint_j_conservation_*/
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/endpoint_j_family_fit_*/
+read: J remains strictly non-live; reset cap is broad and low-residual;
+  support edge keeps an edge-tail conservation residual watch but the repaired
+  lead improves support-edge residual-density and normalized residual proxies
+  versus baseline. A generic finite smooth RBF endpoint family can make the
+  conservation proxy benign with zero live leakage, but it overproduces
+  support-edge burden.
+  The tight repaired-lead fit improves support selected/current/angular ratios
+  to 1.207/1.188/1.402, but support pOmega still needs a large coefficient and
+  has normalized L1 above 1.
+decision: do not treat generic smooth interpolation as a physical source
+  family. The next fit needs coupled stress-vector modes and direct penalties
+  against extra support-edge selected-null/current/angular burden.
 ```
 
 ## Current checkpoint, 2026-05-21
