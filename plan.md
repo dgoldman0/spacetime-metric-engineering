@@ -65,12 +65,18 @@ new architecture sweep:
     anisotropic heat/current medium. At a `1.10` regulator safety factor,
     baseline and dense meshes show no hard obstruction before constructive
     field-equation validation.
-14. Open constructive-medium report started. First smooth internal angular
-    response probe passes on baseline and dense meshes, so do not add a new
-    component yet.
-15. Next: attach the internal angular response to explicit regulated-medium
-    variables and check candidate field-equation / closure residuals under the
-    same no-new-component constraints.
+14. Completed first constructive-medium probe. The smooth internal angular
+    response passes on baseline and dense meshes, so do not add a new component.
+15. Completed constrained constructive field-closure validation. The same
+    regulated anisotropic heat/current medium carries the angular watch as an
+    internal response, preserves the regulator budget and transport margins,
+    and does not add live support, current, angular, collar, packet, or closure
+    components.
+16. Next: update the technical disclosure/final promotion material around this
+    constrained-medium result. Treat beta075 as having a first constructive
+    physical-source candidate at finite-difference closure level, with the
+    remaining boundary being documentation hardening and later covariant
+    matter-action work rather than another component search.
 ```
 
 Discussion discipline while runs are computing:
@@ -96,16 +102,40 @@ Allowed: endpoint current-regulator constitutive feasibility screen within the
 Allowed: necessary-condition / admissibility audit for the regulated
          anisotropic heat/current medium before constructive field-equation
          validation.
-Allowed next: constructive field-equation validation constrained by the
-              admissibility audit; the model must explain the non-live angular
-              pressure watch without adding a new design component.
-Allowed: open constructive-medium report may remain open while the constrained
-         medium is tested; do not close it until the field-equation residual
-         check says whether a new component is actually forced.
+Allowed: promote the regulated anisotropic heat/current medium as the first
+         constructive endpoint physical-source candidate at finite-difference
+         field-closure level; it explains the non-live angular-pressure watch
+         without adding a new design component.
+Allowed next: update the technical disclosure and final promotion material
+              around the constrained-medium result and its caveats.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
              semiclassical/RSET proof, or broad beta/V robustness claim.
+```
+
+Constructive medium field-closure checkpoint:
+
+```text
+report:
+  supporting_reports/STAGE2_BETA075_CONSTRUCTIVE_MEDIUM_FIELD_CLOSURE_VALIDATION.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_medium_field_closure.py
+new CLI:
+  toolkit/adm_harness_cli/scripts/run_endpoint_medium_field_closure_validation.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_medium_field_closure_validation_freeze_rematch_w6_t1p5/
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_medium_field_closure_validation_freeze_rematch_w6_t1p5/
+read: baseline and dense both pass constrained field closure. Worst angular
+  normalized L1 is 0.002977 / 0.009524; worst angular-watch L1 is
+  0.003062 / 0.010758; max coefficient is 0.608980 / 0.376013. Regulator
+  source ratio remains 0.041495 / 0.042933, p99 heat flux remains
+  0.974975 / 0.975555, and live/regulator-live/superluminal rows remain zero.
+decision: close the constructive-medium report and promote the same regulated
+  medium as the beta075 endpoint physical-source candidate at this claim level.
+verification: 60 harness unit tests passed.
 ```
 
 Latest audit result:
