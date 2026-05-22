@@ -57,6 +57,12 @@ new architecture sweep:
     feasibility screen. Scalar-only is ruled out, ordinary Type-I anisotropic
     fluid alone is too narrow, and a regulated anisotropic heat/current medium
     is the first viable physical construction target.
+12. Next: resolve the design-implied endpoint current regulator as the small
+    non-live physical source component needed by the regulated anisotropic
+    heat/current medium. Hold the frozen reset-cap body and support-edge
+    closure fixed; test whether the regulator can be represented by finite
+    conserved constitutive/field-equation degrees of freedom without adding
+    any further design components.
 ```
 
 Discussion discipline while runs are computing:
@@ -77,8 +83,9 @@ Current claim boundary:
 Allowed: repaired beta075 prescribed-metric/effective-source feasibility audit.
 Allowed: algebraic physical-source class screening for the frozen endpoint-J
          effective source.
-Allowed next: regulated anisotropic heat/current field-equation or
-              constitutive feasibility screen.
+Allowed next: endpoint current-regulator field-equation or constitutive
+              feasibility screen within the regulated anisotropic heat/current
+              medium.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -285,6 +292,38 @@ read: the frozen endpoint-J stress is not single-scalar and not ordinary
 decision: target a regulated anisotropic heat/current medium as the first
   physical source class. Keep multi-field/effective-potential construction as
   fallback only if the regulated medium fails a later field-equation solve.
+design implication: the missing physical source degree of freedom is the
+  endpoint current regulator / non-live current-balancing layer. It is not a
+  new optical collar or packet component; it is an internal source-realization
+  component implied by the reset-cap/support-edge handoff. No other missing
+  source-design components are indicated at this checkpoint.
+```
+
+Endpoint current-regulator next step:
+
+```text
+target component:
+  endpoint current regulator / non-live current-balancing layer
+frozen companion components:
+  reset-cap bounded anisotropic body
+  finite support-edge closure
+purpose:
+  provide the small finite `rho+p_l` current regulator identified by the
+  source-class screen, making the flux-dominant radial block compatible with
+  the regulated anisotropic heat/current medium.
+gates:
+  zero live rows;
+  regulator/source burden remains near the classified 0.038-0.039 level and
+    below the 0.06 budget;
+  finite support widths and no singular support;
+  local conservation residuals remain finite-spread;
+  frozen reset-cap/support-edge effective-source ratios are not reopened;
+  no new angular-capacity or conservation-closure component is introduced
+    unless this regulator construction fails.
+first implementation:
+  build a constitutive/field-equation feasibility screen for the regulated
+  anisotropic heat/current medium, with the endpoint current regulator as the
+  only unfrozen physical source degree of freedom.
 ```
 
 ## Current checkpoint, 2026-05-21
