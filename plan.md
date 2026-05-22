@@ -34,6 +34,8 @@ Global horizon freedom: open; sustained trapping is not observed, but single-ray
 escape is no longer enough for promotion.
 Model status: beta-collar mitigation lead found at generator level; still not a
 physical-source or horizon-freedom claim.
+Operational superluminality: untested; next stage is a service-time advantage
+ledger comparing restored packet arrival to an exterior null reference signal.
 Endpoint physical-source gate: open; junction/source conservation is now the main admissibility risk.
 Physical-source claim: not ready; the effective receiver grammar is not a matter model.
 ```
@@ -61,6 +63,11 @@ all-both l-width is 0.275792.
 rematch_w8_t2p0 also clears the dense gate and raises worst all-both l-width to
 0.394689, but has a shallower packet-norm margin and a larger small live
 negative-packet-density watch item.
+service-time advantage ledger: not yet run. The next rating question is whether
+the prepared service trajectory reaches exterior endpoint B earlier than an
+ordinary exterior null signal launched from endpoint A at the same departure
+event. This is an operational/narrative rating, not a packet-safety,
+finite-bundle, source-family, or global-horizon feasibility gate.
 
 full-grid live fractions:
   neg_Tkk_radial  2.889%
@@ -191,6 +198,8 @@ Completed enough for current handoff:
 Still open:
   affine SNEC/source-accounting companion checks and robustness bracket for the
   promoted rematch_w6_t1p5 beta-collar mitigation lead;
+  service-time advantage ledger for the promoted beta-collar lead, comparing
+  reconstructed packet service time against an exterior null A-to-B reference;
   global horizon-freedom claim remains open after collar mitigation: dense
   caustic-like compression is removed in the lead s15 candidate, but this is
   still not a global theorem or matter-model result;
@@ -691,22 +700,30 @@ Current post-receiver source-family work order:
    Bundle-width preservation remains a first-class observation alongside packet
    timelikeness and radial escape.
 
-3. Preserve the current S0/J/R source target:
+3. Run a service-time advantage ledger for the promoted beta-collar carrier
+   lead. Fix exterior endpoints A and B, define the departure event as the
+   packet fully committed at A, reconstruct service time through entry,
+   beta-collar/rematch, carried shift segment, catch/release, and restoration
+   into normal exterior space, then compare the restored arrival time with the
+   exterior null reference time `D_AB / c`. Prepared standing plant time may be
+   accounted separately; request-triggered setup belongs in service time.
+
+4. Preserve the current S0/J/R source target:
    S0 constant-areal-flux radial string cloud;
    J coupled endpoint/junction layer carrying radial trim, current relaxation,
      and angular capacity;
    R small core-body residual leakage.
 
-4. Run affine SNEC/source-accounting companions and a small robustness bracket
+5. Run affine SNEC/source-accounting companions and a small robustness bracket
    before strengthening horizon-freedom/domain/refinement wording.
 
-5. Replace the effective J receiver with a constrained source-family or
+6. Replace the effective J receiver with a constrained source-family or
    conservation-closed model before making report-grade physical-source claims.
 
-6. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
+7. Use beta100 post1p5 only as a stress-retiming anchor, not as a new promoted
    default unless future workloads require beta100 operation.
 
-7. Prefer hybrid source-family models over a single scalar source unless a
+8. Prefer hybrid source-family models over a single scalar source unless a
    target table shows one family can cover multiple sectors without packet
    contamination or large residual/conservation warnings.
 ```
