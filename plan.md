@@ -49,10 +49,10 @@ new architecture sweep:
 9. Completed dense-resolution structured-source scaling. The support-edge
    closure remains finite, tiny, non-live, and comparable under a `377x241`
    source-ledger refinement.
-10. Next: separate the now-stable support-edge closure result from the broader
-    endpoint-J reset-cap source-realization watch; decide whether the reset-cap
-    coefficient growth needs a bounded family extension or just a stricter
-    diagnostic.
+10. Completed endpoint-J source freeze. The reset-cap coefficient growth is
+    resolved by freezing a bounded no-tail reset-cap body, paired with the
+    finite support-edge closure. Stop incremental endpoint-J tests unless a
+    new failure mode appears.
 ```
 
 Discussion discipline while runs are computing:
@@ -221,6 +221,38 @@ remaining watch: reset-cap structured fit stays accurate and non-live but uses
   larger dense coefficients before closure; this is the next endpoint-J
   source-realization watch, distinct from the now-stable support-edge closure.
 verification: 50 unit tests passed.
+```
+
+Endpoint source freeze checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_ENDPOINT_SOURCE_FREEZE_REPORT.md
+freeze design:
+  repaired lead = rematch_w6_t1p5
+  reset-cap body = structured endpoint-J source with mode_count 4, 8x6
+    centers, width_multiplier 0.45, ridge 1e-6, edge_tail_count 0
+  support-edge add-on = one-mode, six-center, width-0.85 finite closure
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_j_structured_source_freeze_reset_bounded_rematch_w6_t1p5
+    endpoint_j_freeze_source_model_rematch_w6_t1p5
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_j_structured_source_freeze_reset_bounded_rematch_w6_t1p5
+    endpoint_j_freeze_source_model_rematch_w6_t1p5
+read: the active endpoint-J source risk is resolved enough to freeze the
+  effective-source design. Reset-cap stays non-live with selected/current/
+  pOmega ratios 1.015/1.147/0.935 on baseline and 1.016/1.158/0.939 on dense.
+  Reset max coefficient is stable, 0.0919 to 0.0933, and reset conservation
+  residuals improve under dense refinement.
+support-edge freeze read: finite closure remains non-live, finite-width, and
+  low-coupling. The all-in freeze pairing is less ratio-tight than the earlier
+  support-specific best, but remains inside the low-coupling freeze budget and
+  the dedicated dense support-edge rung remains the controlling support-edge
+  evidence.
+decision: freeze beta075 repaired endpoint-source model as viable and
+  constrainable for the prescribed-metric/effective-source track. Do not keep
+  incrementally retesting endpoint J; move to consolidation/freeze packaging
+  or a distinct physical matter construction rung.
 ```
 
 ## Current checkpoint, 2026-05-21
