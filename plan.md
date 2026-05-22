@@ -126,6 +126,12 @@ Allowed next: matter-action / constitutive-source feasibility work as a
               vector/director, elastic/solid, multi-field, and open-system
               actuator-coupled source families against the measured covariant
               tensor and exchange current.
+Allowed next: keep the matter-action feasibility report open and develop the
+              formal entrained-director-medium skeleton into concrete tests:
+              regulator/transport-margin preservation, bounded internal
+              angular-response closure, localized J_support^0/J_support^1
+              exchange matching, and total-conservation restoration only
+              through an explicit support sector.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
@@ -241,6 +247,13 @@ first tests:
   degree-of-freedom count, tensor-form match, heat-current causal margin,
   angular-response compatibility, exchange-current localization, and whether
   the family requires live support, divergent coefficients, or extra directions.
+current next step:
+  Do not close this as a milestone yet. Write the entrained director medium as
+  a formal constitutive/action skeleton with fields (u^mu, s^mu, transport
+  amplitude, h_reg, chi_Omega, support-sector variables), then turn the
+  skeleton into measured pass/fail tests against the baseline and dense
+  covariant ledgers. Keep the report active and uncommitted while findings
+  evolve.
 failure contract:
   If every compact family needs hidden live support, superluminal modes,
   unbounded coefficients, or broad nonlocal exchange, step back to effective
