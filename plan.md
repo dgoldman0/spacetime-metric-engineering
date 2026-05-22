@@ -65,9 +65,12 @@ new architecture sweep:
     anisotropic heat/current medium. At a `1.10` regulator safety factor,
     baseline and dense meshes show no hard obstruction before constructive
     field-equation validation.
-14. Next: constructive field-equation validation, with the audit constraints
-    enforced: no live regulator support and no new angular-capacity,
-    conservation-closure, collar, or packet component.
+14. Open constructive-medium report started. First smooth internal angular
+    response probe passes on baseline and dense meshes, so do not add a new
+    component yet.
+15. Next: attach the internal angular response to explicit regulated-medium
+    variables and check candidate field-equation / closure residuals under the
+    same no-new-component constraints.
 ```
 
 Discussion discipline while runs are computing:
@@ -96,6 +99,9 @@ Allowed: necessary-condition / admissibility audit for the regulated
 Allowed next: constructive field-equation validation constrained by the
               admissibility audit; the model must explain the non-live angular
               pressure watch without adding a new design component.
+Allowed: open constructive-medium report may remain open while the constrained
+         medium is tested; do not close it until the field-equation residual
+         check says whether a new component is actually forced.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, global horizon theorem,
@@ -420,6 +426,32 @@ decision: proceed to constructive field-equation validation only under the audit
   new angular-capacity, conservation-closure, collar, packet, or live regulator
   component.
 verification: 58 unit tests passed.
+```
+
+Constructive regulated-medium open checkpoint:
+
+```text
+report: supporting_reports/STAGE2_BETA075_CONSTRUCTIVE_MEDIUM_OPEN_REPORT.md
+new code:
+  toolkit/adm_harness_cli/adm_harness/endpoint_medium_constructive_probe.py
+  toolkit/adm_harness_cli/scripts/run_endpoint_medium_constructive_probe.py
+  toolkit/adm_harness_cli/tests/test_endpoint_medium_constructive_probe.py
+outputs:
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+    endpoint_medium_constructive_probe_freeze_rematch_w6_t1p5
+  toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+    endpoint_medium_constructive_probe_freeze_rematch_w6_t1p5
+read: first finite smooth internal angular-response probe is plausible on both
+  meshes. Worst normalized angular L1 errors are 0.002977/0.009524
+  baseline/dense, angular-watch errors are 0.003062/0.010758, and live rows are
+  zero. The support-edge max coefficient is finite and improves from 0.608980
+  to 0.376013 under dense refinement.
+decision: the angular watch does not yet force a new component. Keep trying the
+  constrained regulated medium and next attach the response to explicit
+  field-equation / closure residuals. Do not add angular-capacity,
+  conservation-closure, collar, packet, or live regulator components unless that
+  stricter residual check fails.
+verification: 59 unit tests passed.
 ```
 
 ## Current checkpoint, 2026-05-21
