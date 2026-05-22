@@ -1232,3 +1232,198 @@ PYTHONPATH=toolkit/adm_harness_cli python -m unittest toolkit/adm_harness_cli/te
 PYTHONPATH=toolkit/adm_harness_cli python -m unittest discover -s toolkit/adm_harness_cli/tests
 63 tests passed.
 ```
+
+## Heavy Test 3: Support Stroke Compactness / Scope Boundary
+
+Status: compactness/stability follow-up, uncommitted pending review. This
+section exists to prevent over-reading Heavy Test 2 as a full-model theorem.
+
+Scope clarification:
+
+```text
+This rung tests one part of the model: the support-sector completion of the
+frozen beta075 endpoint medium.
+
+It is not a fresh end-to-end regeneration of:
+  optical/caustic checks
+  SNEC/source accounting
+  packet timelikeness and radial escape
+  collar robustness
+  beta/V robustness
+  final matter-action dynamics
+
+It does use the full baseline/dense covariant endpoint-medium audit outputs as
+its input surface. The upstream covariant identity audit remains the full-model
+dependency boundary for this support-sector test.
+```
+
+Upstream dependency check:
+
+```text
+Covariant endpoint-medium identity audit:
+  baseline / dense status: pass / pass
+  projection error/source ratio: 1.165e-16 / 1.130e-16
+  max boost-to-flux-frame speed: 0.978182 / 0.987443
+  mixed eigen real pass: true / true
+  outside-allowed divergence fraction: 0.004590 / 0.004073
+  live divergence fraction: 0.003553 / 0.003199
+
+Read:
+  The support compactness test is downstream of a coherent full endpoint tensor
+  on both meshes. It should be described as support-sector completion evidence,
+  not as a replacement for the full promotion audit.
+```
+
+Compact frontier sweep:
+
+```text
+Sweep family:
+  fit scope:  phase_region
+  fit domain: allowed
+  width:      0.30
+  ridge grid: 1e-4, 3e-5, 1e-5, 3e-6
+  basis grid:
+    12x8
+    16x10
+    20x12
+    24x14
+
+Baseline:
+  12x8 already passes at all tested ridges.
+  active L1 improves from about 0.424 at 12x8/ridge1e-4 to about 0.223 at
+  24x14/ridge1e-5.
+  The baseline pass is therefore not a large-basis artifact.
+
+Dense:
+  12x8 and 16x10 fail active/coordinate gates.
+  20x12 is near but still fails:
+    active L1: 0.524 / 0.522 / 0.518 / 0.512 across ridge grid
+  24x14 passes across the ridge grid:
+    active L1: 0.456 / 0.452 / 0.449 / 0.445
+```
+
+Targeted dense frontier:
+
+```text
+22x13 passes:
+  ridge 1e-4 / 3e-5 / 1e-5 active L1:
+    0.490481 / 0.486199 / 0.482331
+  max coefficient:
+    1.959644 / 2.298270 / 2.606760
+  effective count:
+    13827 / 13878 / 13906
+
+24x12 is marginal:
+  ridge 1e-4 fails with active L1 0.501532.
+  looser ridges pass active L1 but keep coordinate ratio near the edge.
+
+Interpretation:
+  Dense does not require the full 24x14 reference fit. A compact 22x13
+  stress-potential basis passes both baseline and dense. The pressure is mostly
+  in support/radial-edge resolution rather than arbitrary extra freedom in both
+  coordinates.
+```
+
+Compact 22x13 reference outputs:
+
+```text
+baseline:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+  endpoint_support_stroke_compact22x13_freeze_rematch_w6_t1p5/
+
+dense:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+  endpoint_support_stroke_compact22x13_freeze_rematch_w6_t1p5/
+```
+
+Compact 22x13 decision metrics:
+
+```text
+Baseline:
+  status: support_stroke_exchange_fit_pass
+  active normalized |P|+|F| L1 error:  0.254491
+  allowed normalized |P|+|F| L1 error: 0.201618
+  active coordinate L2 error ratio:    0.269280
+  allowed coordinate L2 error ratio:   0.209798
+  max coefficient:                     0.903217
+  effective coefficient count:         11504.493
+  outside-tail fraction:               9.092e-06
+  live-tail fraction:                  0
+
+Dense:
+  status: support_stroke_exchange_fit_pass
+  active normalized |P|+|F| L1 error:  0.490481
+  allowed normalized |P|+|F| L1 error: 0.399505
+  active coordinate L2 error ratio:    0.496749
+  allowed coordinate L2 error ratio:   0.395274
+  max coefficient:                     1.959644
+  effective coefficient count:         13827.067
+  outside-tail fraction:               1.808e-05
+  live-tail fraction:                  0
+```
+
+Laplacian/stress-potential check:
+
+```text
+Compact 22x13 without stress-potential Laplacian:
+  baseline: pass
+    active L1: 0.334855
+    active coordinate ratio: 0.366284
+  dense: fail
+    active L1: 0.568790
+    active coordinate ratio: 0.593211
+
+Compact 22x13 with stress-potential Laplacian:
+  baseline: pass
+    active L1: 0.254491
+    active coordinate ratio: 0.269280
+  dense: pass
+    active L1: 0.490481
+    active coordinate ratio: 0.496749
+
+Read:
+  Dense needs the second-derivative/stress-potential part. This supports the
+  interpretation that the missing support dynamics are divergence-generated
+  stress/stroke structure, not merely a larger smooth algebraic reservoir.
+```
+
+Residual watch under compact 22x13:
+
+```text
+Baseline active residual burden:
+  reset_decompression / support_edge:
+    residual share: 0.586587
+    local normalized error: 0.287426
+  reset_decompression / core_throat:
+    residual share: 0.318909
+    local normalized error: 0.301894
+
+Dense active residual burden:
+  reset_decompression / support_edge:
+    residual share: 0.556038
+    local normalized error: 0.496828
+  reset_decompression / core_throat:
+    residual share: 0.333953
+    local normalized error: 0.597527
+
+Read:
+  The compact ansatz passes but dense reset/core remains the tight watch. This
+  is exactly where the next total-support-conservation rung should look.
+```
+
+Current interpretation:
+
+```text
+The support-sector story is stronger after compactness testing:
+  1. baseline does not need a large basis;
+  2. dense passes with a smaller 22x13 basis, not only 24x14;
+  3. tails remain tiny and live exchange remains zero;
+  4. the Laplacian/stress-potential piece is necessary on dense.
+
+The full-model claim remains bounded:
+  The full repaired beta075 endpoint tensor has already passed the covariant
+  identity audit on baseline/dense. The current support stroke result is a
+  downstream completion test for the localized exchange current. The next rung
+  should connect the compact support stroke sector to an explicit total
+  conservation account, rather than broadening the matter family.
+```

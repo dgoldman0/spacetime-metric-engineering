@@ -94,6 +94,11 @@ new architecture sweep:
     smooth algebraic P/F miss was an ansatz limitation, not a physics wall.
     Keep the claim bounded because the dense reset/core residual and effective
     mode count remain the next support-sector watches.
+20. In progress pending review: compactness/scope-boundary follow-up. A
+    smaller `22x13` support stroke/stress-potential basis passes baseline and
+    dense with tiny outside/live tails; dense fails without the Laplacian
+    stress-potential term. Interpret this as support-sector evidence downstream
+    of the full covariant endpoint audit, not as a fresh full-model promotion.
 ```
 
 Discussion discipline while runs are computing:
@@ -152,6 +157,10 @@ Allowed next: use the phase-aware support stroke/stress result as the current
               support-sector lead. Next useful checks are compactness/stability
               of the stress-potential modes, denser reset/core residual
               localization, and a conservation-restoring support tensor story.
+Allowed next after review: connect the compact support stroke sector to an
+                           explicit total-conservation account on the full
+                           covariant audit surface; do not replace the full
+                           promotion audit with support-sector fits.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
