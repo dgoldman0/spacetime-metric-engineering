@@ -81,6 +81,13 @@ new architecture sweep:
     at machine precision on baseline and dense meshes. Direct covariant
     divergence remains localized to the endpoint/support exchange masks with a
     small finite-difference live-stencil halo below the audit gate.
+18. Next: start the matter-action / constitutive-source feasibility story.
+    Do not jump to a final Lagrangian. First classify the smallest plausible
+    source families that could produce the covariant endpoint tensor, its
+    radial heat/current block, internal angular response, regulator cushion,
+    preferred support direction, and localized exchange current. Keep an active
+    uncommitted worklog at
+    `supporting_reports/STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md`.
 ```
 
 Discussion discipline while runs are computing:
@@ -114,13 +121,16 @@ Allowed: first covariant endpoint-medium identity audit on the service metric,
          including tensor reconstruction, ADM projection residuals, direct
          covariant divergence, local eigen/type classification, heat-current
          subluminality, and live/support localization.
-Allowed next: document the covariant-audit caveat carefully and, if needed,
-              move from tensor identity diagnostics toward an explicit
-              matter-action or constitutive field-equation construction.
+Allowed next: matter-action / constitutive-source feasibility work as a
+              structured family-selection program. This may compare scalar,
+              vector/director, elastic/solid, multi-field, and open-system
+              actuator-coupled source families against the measured covariant
+              tensor and exchange current.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
-Not allowed: final physical matter theorem, global horizon theorem,
-             semiclassical/RSET proof, or broad beta/V robustness claim.
+Not allowed: final physical matter theorem, final matter action, global horizon
+             theorem, semiclassical/RSET proof, or broad beta/V robustness
+             claim.
 ```
 
 Constructive medium field-closure checkpoint:
@@ -198,6 +208,43 @@ read: baseline and dense both pass the covariant identity audit. ADM projection
 decision: promote the first covariant tensor identity rung. Keep the claim
   bounded: this is a tensor reconstruction/projection/divergence diagnostic,
   not a matter-action theorem.
+```
+
+Matter-action feasibility target:
+
+```text
+active worklog, intentionally uncommitted while findings evolve:
+  supporting_reports/STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md
+goal:
+  move from "coherent covariant endpoint tensor" to a disciplined source-family
+  story. Identify which minimal field content could generate the measured
+  endpoint T_mu_nu and localized exchange current without adding hidden live
+  support or superluminal transport.
+starting target tensor:
+  regulated anisotropic heat/current medium with u=n_ADM, radial/support
+  director s=e_l, q=j_l s, internal pOmega response, regulator enthalpy
+  cushion, and localized endpoint/support exchange current.
+candidate families to triage:
+  1. single scalar / scalar-only variants: already disfavored by earlier
+     source-class screens; record why they stay dead.
+  2. ordinary perfect or anisotropic fluid alone: too narrow unless it can
+     carry heat/current and angular response without hidden freedom.
+  3. constrained vector/director or aether-like medium: plausible source of
+     preferred radial/support direction and heat-current structure.
+  4. elastic/solid or anisotropic material medium: plausible angular/radial
+     stress split; must account for heat/current and exchange.
+  5. multi-field scalar-vector effective medium: fallback if minimal director
+     or elastic models cannot span the tensor.
+  6. open-system actuator-coupled action/effective action: plausible way to
+     balance nonzero nabla_mu T^{mu nu} with localized support exchange.
+first tests:
+  degree-of-freedom count, tensor-form match, heat-current causal margin,
+  angular-response compatibility, exchange-current localization, and whether
+  the family requires live support, divergent coefficients, or extra directions.
+failure contract:
+  If every compact family needs hidden live support, superluminal modes,
+  unbounded coefficients, or broad nonlocal exchange, step back to effective
+  tensor disclosure rather than forcing a decorative Lagrangian.
 ```
 
 Latest audit result:
