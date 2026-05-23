@@ -280,11 +280,20 @@ new architecture sweep:
     not same-level component retuning, is the missing PDE timing structure.
     Human narrative report:
     `supporting_reports/STAGE2_BETA075_SERVICE_ALIGNED_SCHEDULE.md`.
-39. Current next rung: formalize service-coordinate-aligned timing as the lead
-    admissible source-time envelope for the action-level fixed-background PDE
-    proof. The target is a bound for the whole aligned schedule class, not just
-    the finite pulse-width sweep, with structured machine artifacts only and
-    hand-written narrative reports after interpretation.
+39. Completed formal aligned-envelope certificate for the service-coordinate
+    scheduled timing class. Status is
+    `aligned_envelope_pass_convex_kernel_bound`: the one-step service-aligned
+    basis response bounds any common nonnegative temporal kernel over the
+    service-ordered source bins by linearity and positivity of the split-step
+    transport operator. Max convex-kernel budget bound is `0.742835`, again led
+    by `observed_action_inward_forward` at row `194`; live exclusion and
+    state/source non-amplification remain clean. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_ALIGNED_ENVELOPE_CERTIFICATE.md`.
+40. Current next rung: bounded service-timing jitter around the aligned
+    envelope. The aligned class now passes, so the next real-world proof
+    question is tolerance to small service-local timing offsets without
+    allowing a return to arbitrary all-domain impulse collapse. Keep the work
+    at action-level fixed-background PDE scope.
 ```
 
 Discussion discipline while runs are computing:
@@ -421,20 +430,23 @@ Completed: service-coordinate-aligned scheduled evolution certificate. It
            resolves the arbitrary impulse proof gap for the physically relevant
            scheduled active-rail timing class: even one-step aligned pulses stay
            within local rapidity budget across the tested directions.
-Allowed next: formal aligned-envelope proof for the sealed beta075
-              action-level fixed-background PDE model. Gate the integrated
-              observed-amplitude bounded-rapidity system on invariant local
-              budgets, transport non-concentration under service-aligned timing,
-              cone/transport margin preservation, live and packet-live
-              exclusion, and no hidden component. Carry dense reset/core,
-              source-law smoothness, thin characteristic margin, raw
-              heat-current fragility, compact bracket miss, and artificial
-              `5e-4` overdrive as light watches. Runs should write structured
-              artifacts only; narrative reports should be written by hand after
-              interpretation. Do not branch into source-law, support-edge,
-              V=3/V=4 interpolation, or artificial-stress tuning unless this
-              higher-rung full-system/action/PDE gate fails and points back to
-              a specific physical mechanism.
+Completed: formal aligned-envelope proof certificate for the sealed beta075
+           action-level fixed-background PDE model. The service-ordered
+           one-step basis bounds the full common nonnegative temporal-kernel
+           class and stays within local rapidity budget.
+Allowed next: bounded service-timing jitter around the aligned envelope. Gate
+              the integrated observed-amplitude bounded-rapidity system on
+              invariant local budgets, transport non-concentration under small
+              service-local timing offsets, cone/transport margin preservation,
+              live and packet-live exclusion, and no hidden component. Carry
+              dense reset/core, source-law smoothness, thin characteristic
+              margin, raw heat-current fragility, compact bracket miss, and
+              artificial `5e-4` overdrive as light watches. Runs should write
+              structured artifacts only; narrative reports should be written by
+              hand after interpretation. Do not branch into source-law,
+              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
+              unless this higher-rung full-system/action/PDE gate fails and
+              points back to a specific physical mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
