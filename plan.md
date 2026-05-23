@@ -477,6 +477,17 @@ new architecture sweep:
     requires a full current Stage II source-family closure/covariant/support
     ladder before any capstone run can be interpreted as physical-source
     evidence.
+57. Current next rung: build comparable service-rating ladders for V=2.5 and
+    V=10 before making any half/double nominal claim. Each service rating must
+    regenerate or verify the same quality chain used by sealed V5: dense source
+    ledger, component/source assignment, string-cloud/intermediate source
+    replacement as needed, endpoint-J source model/freeze, current regulator
+    and medium closure, covariant endpoint-medium audit, support-reservoir or
+    stroke exchange, total support closure, first-order 3+1 handoff, and then
+    the moderate angular/time 3+1 capstone. Do not substitute scaled V5 data
+    for either rating. V=2.5 is the half-nominal comparator; V=10 is the
+    double-nominal boundary finder and may fail cleanly if the full ladder
+    localizes the obstruction.
 ```
 
 Discussion discipline while runs are computing:
@@ -715,6 +726,11 @@ Allowed next: Stage II evidence synthesis and external-compute handoff for real
               Einstein-matter/source-family checks. A lower-service V2
               comparator remains optional. V10 remains excluded until a full
               current V10 source-family ladder exists.
+Current: build full same-quality service-rating ladders for V=2.5 and V=10.
+         Treat the result as a nominal/half-nominal/double-nominal evidence
+         package only after each new rating has real source-family, covariant,
+         support-closure, first-order, and moderate-capstone artifacts. Scaled
+         V5 stress projections are not admissible as physical-source evidence.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
