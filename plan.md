@@ -173,6 +173,19 @@ new architecture sweep:
     activated contrast. Next: promote the same reduced source-coupled rapidity
     equation from the row-4605 slice to a whole-package `1+1` sweep over active
     non-live support slices, stages, and brackets.
+30. Completed full-package reduced `1+1` support-source coupling sweep. Status
+    is `package_support_source_watch`: observed source-coupled evolution fails
+    narrowly, not globally. The original row-4605 reset-decompression/support-
+    edge bottleneck passes in the package run (`0.167` outward / `0.128`
+    inward budget fraction; large outward `0.837`). The actual observed
+    failures localize to `support_edge_endpoint_junction`: entry-precatch
+    support-edge at `s=-1.236702` is the hard source-overdrive slice
+    (`2.076` outward, `1.388` inward), and catch-rematch support-edge at
+    `s=0.606383` is a mild over-budget cleanup (`1.015` outward, `1.025`
+    inward). Read: the design components still look right at this rung; the
+    next task is phase-aware support-source shaping/normalization for those
+    support-edge source-realization slices, not a new collar/packet/current
+    component.
 ```
 
 Discussion discipline while runs are computing:
@@ -278,15 +291,17 @@ Completed: couple the support stroke/stress source to the `1+1` rapidity
            distributed `O(5e-4)` reference also remains sub-budget, so any
            future limiter-activation test needs a deliberately sharper
            overdrive rather than the old instant-impulse comparison.
-Allowed next: full-package reduced `1+1` support-source coupling analysis.
-              Sweep every active non-live support slice, inject the sealed
-              support-closure source as a time-distributed rapidity drive,
-              advect inward/outward along `l`, and require no hard cone
-              failures, no transport-margin loss, no live leakage, and no
-              observed-amplitude limiter activation. Treat any failures as
-              localization instructions for reset/core, support-edge release,
-              smoothing, or support-source retuning; do not promote this to
-              full spacetime evolution.
+Completed: full-package reduced `1+1` support-source coupling analysis. It
+           localizes observed-amplitude failures to support-edge endpoint-
+           junction entry-precatch and catch-rematch slices; row-4605 remains
+           clean under the package source-coupled run.
+Allowed next: targeted support-source design for the localized support-edge
+              endpoint-junction failures. Try phase-aware source-profile
+              shaping, amplitude normalization, or smoothing only against
+              `entry_precatch/support_edge` near `s=-1.236702` and
+              `catch_rematch/support_edge` near `s=0.606383`, then rerun the
+              same structured full-package sweep. Do not add a new geometric
+              component unless this targeted source-design rung fails.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting
