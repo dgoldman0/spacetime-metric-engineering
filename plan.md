@@ -136,6 +136,14 @@ new architecture sweep:
     transport variable, but not as a full PDE closure: a larger `+5e-4`
     rapidity kick still fails the cone-margin gate, so the next spatial model
     must protect margin under advection and support-sector source coupling.
+26. Completed per-row rapidity-budget diagnostic on the dense adversarial set.
+    The observed `O(1e-4)` bounded-rapidity source kick fits every local
+    `1e-6` cone budget; the tightest reset-decompression/support-edge row uses
+    about `29%` of its allowed `Delta psi` and keeps about `1.56` residual
+    rapidity budget. The larger `O(5e-4)` reference kick exceeds that same
+    row's budget, so the next issue is not immediate edge redesign. It is
+    support-source limiting, spatial smoothing, or a PDE proof that advection
+    cannot concentrate a larger effective kick into the tightest row.
 ```
 
 Discussion discipline while runs are computing:
@@ -230,6 +238,11 @@ Allowed next: spatial `1+1` reduced transport evolution in the service radial
               explicit support stroke/stress source coupling, and require the
               `O(1e-4)` stress case to preserve cone and transport margins
               under advection as well as local relaxation.
+Allowed next: add a support-source limiter/smoothing term or an explicit
+              advection non-concentration check to the `1+1` rapidity evolution.
+              Use row `4605` in reset-decompression/support-edge as the primary
+              budget bottleneck: the `O(1e-4)` source kick is admissible, while
+              the `O(5e-4)` reference kick is not.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
