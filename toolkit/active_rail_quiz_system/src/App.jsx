@@ -486,6 +486,8 @@ function SelectControl({ label, value, onChange, options }) {
 }
 
 function MultiFacet({ label, values, options, emptyLabel, onChange }) {
+  const summary = values.length ? `${values.length} selected` : emptyLabel;
+
   function toggle(optionValue) {
     const next = values.includes(optionValue)
       ? values.filter((value) => value !== optionValue)
@@ -494,25 +496,30 @@ function MultiFacet({ label, values, options, emptyLabel, onChange }) {
   }
 
   return (
-    <fieldset className="multi-facet">
-      <legend>{label}</legend>
-      <div className="facet-summary">{values.length ? `${values.length} selected` : emptyLabel}</div>
-      <div className="facet-options">
-        {options.map(([optionValue, optionLabel]) => (
-          <label className={`facet-chip ${values.includes(optionValue) ? "selected" : ""}`} key={optionValue}>
-            <input
-              type="checkbox"
-              checked={values.includes(optionValue)}
-              onChange={() => toggle(optionValue)}
-            />
-            <span>{optionLabel}</span>
-          </label>
-        ))}
-      </div>
-      {values.length > 0 && (
-        <button type="button" className="facet-clear" onClick={() => onChange([])}>Clear</button>
-      )}
-    </fieldset>
+    <details className="multi-facet">
+      <summary>
+        <span>{label}</span>
+        <strong>{summary}</strong>
+      </summary>
+      <fieldset>
+        <legend>{label}</legend>
+        <div className="facet-options">
+          {options.map(([optionValue, optionLabel]) => (
+            <label className={`facet-chip ${values.includes(optionValue) ? "selected" : ""}`} key={optionValue}>
+              <input
+                type="checkbox"
+                checked={values.includes(optionValue)}
+                onChange={() => toggle(optionValue)}
+              />
+              <span>{optionLabel}</span>
+            </label>
+          ))}
+        </div>
+        {values.length > 0 && (
+          <button type="button" className="facet-clear" onClick={() => onChange([])}>Clear</button>
+        )}
+      </fieldset>
+    </details>
   );
 }
 

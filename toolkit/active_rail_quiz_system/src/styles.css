@@ -166,7 +166,7 @@ h3 {
 }
 
 .workspace-rail,
-.side-stack {
+  .side-stack {
   position: sticky;
   top: 16px;
 }
@@ -323,14 +323,17 @@ h3 {
 
 .secondary-action,
 .text-action,
-.facet-clear,
-.mini-button {
+.facet-clear {
   background: #f8f4eb;
 }
 
 .side-stack {
   display: grid;
   gap: 14px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding-right: 2px;
+  scrollbar-width: thin;
 }
 
 .session-panel,
@@ -366,7 +369,7 @@ h3 {
 
 .session-controls {
   display: grid;
-  gap: 13px;
+  gap: 8px;
 }
 
 .session-controls label {
@@ -375,6 +378,7 @@ h3 {
 }
 
 .session-controls span,
+.multi-facet summary span,
 .multi-facet legend {
   color: var(--muted);
   font-size: 0.72rem;
@@ -384,27 +388,80 @@ h3 {
 }
 
 .multi-facet {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: rgba(248, 244, 235, 0.38);
+}
+
+.multi-facet[open] {
+  border-color: var(--line);
+  background: rgba(255, 253, 248, 0.72);
+}
+
+.multi-facet summary {
   display: grid;
-  gap: 7px;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 46px;
+  padding: 8px 10px;
+  cursor: pointer;
+  list-style: none;
 }
 
-.multi-facet legend {
-  padding: 0;
+.multi-facet summary::-webkit-details-marker {
+  display: none;
 }
 
-.facet-summary {
+.multi-facet summary::after {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.multi-facet[open] summary::after {
+  content: "-";
+}
+
+.multi-facet summary strong {
+  grid-column: 1;
   color: var(--ink);
   font-size: 0.86rem;
   font-weight: 850;
+  line-height: 1.2;
+}
+
+.multi-facet fieldset {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  max-height: min(280px, 42vh);
+  margin: 0;
+  padding: 0 10px 10px;
+  border: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.multi-facet legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
 
 .facet-options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  grid-template-columns: 1fr;
   gap: 6px;
 }
 
@@ -413,9 +470,9 @@ h3 {
   grid-template-columns: 16px minmax(0, 1fr);
   gap: 7px;
   align-items: start;
-  min-height: 38px;
+  min-height: 34px;
   max-width: 100%;
-  padding: 8px;
+  padding: 7px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbf8f1;
@@ -853,17 +910,34 @@ h3 {
 
 .sequence-item {
   display: grid;
-  grid-template-columns: 32px 1fr auto auto;
+  grid-template-columns: 32px 20px minmax(0, 1fr);
   gap: 8px;
   align-items: center;
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px;
   background: #fbf8f1;
+  cursor: grab;
+  user-select: none;
+}
+
+.sequence-item:active {
+  cursor: grabbing;
+}
+
+.sequence-item:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--green) 28%, transparent);
+  outline-offset: 2px;
+}
+
+.sequence-item.dragging {
+  border-color: var(--green);
+  background: var(--green-soft);
+  opacity: 0.72;
 }
 
 .timeline-tool .sequence-item {
-  grid-template-columns: 1fr;
+  grid-template-columns: 32px 20px minmax(0, 1fr);
   align-content: start;
   min-height: 150px;
   border-color: #b9d8c4;
@@ -881,9 +955,11 @@ h3 {
   font-weight: 900;
 }
 
-.mini-button {
-  min-height: 32px;
-  padding: 4px 9px;
+.sequence-grip {
+  color: var(--muted);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .dossier-grid {
@@ -1056,10 +1132,13 @@ h3 {
     grid-template-columns: 240px minmax(0, 1fr);
   }
 
-  .side-stack {
+.side-stack {
     grid-column: 1 / -1;
     position: static;
     grid-template-columns: minmax(0, 1fr) 320px;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .session-controls {
@@ -1166,10 +1245,6 @@ h3 {
   }
 
   .sequence-item {
-    grid-template-columns: 28px 1fr;
-  }
-
-  .sequence-item .mini-button {
-    grid-column: span 1;
+    grid-template-columns: 28px 18px minmax(0, 1fr);
   }
 }
