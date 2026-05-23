@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -10,6 +13,7 @@ from adm_harness.beta075_full_system_evolution import (
     _advect_groups,
     _decision,
     _domain_audit,
+    write_full_system_evolution_outputs,
 )
 
 
@@ -83,6 +87,23 @@ class Beta075FullSystemEvolutionTests(unittest.TestCase):
         self.assertEqual(decision["full_system_evolution_status"], "full_system_evolution_pass_with_watches")
         self.assertTrue(bool(decision["observed_unlimited_pass"]))
         self.assertTrue(bool(decision["large_unlimited_fails"]))
+
+    def test_output_writer_emits_structured_artifacts_only(self):
+        outputs = {
+            "domain_audit": pd.DataFrame([{"live_support_exclusion_pass": True}]),
+            "scenario_summary": pd.DataFrame([{"scenario": "observed", "hard_pass": True}]),
+            "source_profile_summary": pd.DataFrame([{"scenario": "observed", "rows": 1}]),
+            "sampled_worst_rows": pd.DataFrame([{"scenario": "observed", "max_budget_fraction": 0.1}]),
+            "decision": pd.DataFrame([{"full_system_evolution_status": "full_system_evolution_pass"}]),
+        }
+
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = write_full_system_evolution_outputs(Path(tmp), outputs, {"source_name": "test"})
+            manifest = json.loads(paths["manifest"].read_text())
+
+            self.assertNotIn("report", paths)
+            self.assertNotIn("report", manifest["files"])
+            self.assertFalse(any(path.suffix == ".md" for path in Path(tmp).iterdir()))
 
 
 if __name__ == "__main__":

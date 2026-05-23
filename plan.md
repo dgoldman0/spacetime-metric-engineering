@@ -255,11 +255,19 @@ new architecture sweep:
     stress also stays below budget in this run (`0.604677`), but remains a
     deliberate engineering-margin watch together with source-law smoothness and
     thin cone/transport margins.
-37. Current next rung: move upward to action-level fixed-background PDE proof
-    obligations or broader full-system validation for the sealed package. Do
-    not return to same-level source-law/support-edge/component tuning unless a
-    higher-rung full-system/action/PDE gate fails and localizes the failure to
-    that specific mechanism.
+37. Current next rung: action-level fixed-background PDE proof obligation for
+    the sealed beta075 package. Treat the completed full-domain evolution run
+    as evidence, not as the proof itself. The next harness/proof check should
+    test whether the observed-amplitude bounded-rapidity system has an
+    invariant margin region on the prescribed beta075 background: source input
+    stays inside local rapidity budgets, radial and service-time transport do
+    not concentrate state into cone/transport failure, live and packet-live
+    support stay excluded, and the cap-0.95 source law remains an input rather
+    than an optimization target. Machine runs for this rung should write
+    structured artifacts only (`csv`/`json`/manifest); do not add scripted
+    prose/Markdown report generation. Do not return to same-level
+    source-law/support-edge/component tuning unless this higher-rung gate fails
+    and localizes the failure to that specific mechanism.
 ```
 
 Discussion discipline while runs are computing:
@@ -387,14 +395,19 @@ Completed: full-system fixed-background PDE/evolution stress testing for the
            system, not any one component. Observed-amplitude full-domain
            evolution passes without limiter clipping, live-row evolution, or
            state amplification.
-Allowed next: action-level fixed-background PDE proof obligations or broader
-              full-system validation for the sealed beta075 package. Carry
-              dense reset/core, source-law smoothness, thin characteristic
-              margin, raw heat-current fragility, compact bracket miss, and
-              artificial `5e-4` overdrive as light watches. Do not branch into
-              source-law, support-edge, V=3/V=4 interpolation, or
-              artificial-stress tuning unless a higher-rung full-system/action/
-              PDE gate fails and points back to that specific mechanism.
+Allowed next: action-level fixed-background PDE proof obligation for the sealed
+              beta075 package. Gate the integrated observed-amplitude
+              bounded-rapidity system on invariant local budgets, transport
+              non-concentration, cone/transport margin preservation, live and
+              packet-live exclusion, and no hidden component. Carry dense
+              reset/core, source-law smoothness, thin characteristic margin,
+              raw heat-current fragility, compact bracket miss, and artificial
+              `5e-4` overdrive as light watches. Runs for this rung should
+              write structured artifacts only, with no scripted prose report
+              generation. Do not branch into source-law, support-edge,
+              V=3/V=4 interpolation, or artificial-stress tuning unless this
+              higher-rung full-system/action/PDE gate fails and points back to
+              that specific mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not

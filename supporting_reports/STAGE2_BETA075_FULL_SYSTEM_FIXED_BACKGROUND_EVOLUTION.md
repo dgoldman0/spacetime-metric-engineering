@@ -27,11 +27,11 @@ Scenario workers: `4`.
 | large_full_outward_forward_unlimited | pass | False | 0 | 0 | 0.604677 | 1.538e-05 | 1.701e-05 | 0.926360 | 0 |
 | large_full_outward_forward_budget_limited | pass | True | 0 | 0 | 0.604677 | 1.538e-05 | 1.701e-05 | 0.926360 | 0 |
 
-## Interpretation
+## Result Read
 
-The hard read is the observed-amplitude rows. They must pass without limiter clipping, live-row evolution, or state amplification. Large-amplitude rows are retained as engineering-margin watches, not as the observed-amplitude seal driver.
+This rung is complete. The observed-amplitude full-domain rows passed without limiter clipping, live-row evolution, packet-live evolution, over-budget rows, or state amplification. Those rows are the seal driver for this test.
 
-If this rung fails, the failure location is allowed to point back to a component. If it passes, the sealed beta075 package should move upward to action-level, fixed-background PDE proof, or broader full-system obligations rather than same-level tuning.
+The large-amplitude rows are retained only as engineering-margin watches. Because this rung passed, there is no remaining same-level component work required here; the next work should move upward to action-level fixed-background PDE proof obligations or broader full-system validation unless a later gate localizes a failure back to a specific component.
 
 ## Provenance
 

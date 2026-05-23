@@ -495,7 +495,7 @@ def build_full_system_evolution(
     symbol_spec: PrincipalSymbolSpec | None = None,
     spec: FullSystemEvolutionSpec | None = None,
     scenarios: list[FullSystemEvolutionScenario] | None = None,
-) -> tuple[dict[str, pd.DataFrame], dict[str, Any], str]:
+) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
     symbol_spec = symbol_spec or PrincipalSymbolSpec()
     spec = spec or FullSystemEvolutionSpec()
     scenarios = scenarios or default_scenarios(spec)
@@ -556,82 +556,15 @@ def build_full_system_evolution(
             "a coupled Einstein-matter evolution or final PDE theorem."
         ),
     }
-    return outputs, metadata, _report(outputs, metadata)
-
-
-def _fmt(value: Any) -> str:
-    number = _finite(value, float("nan"))
-    if not math.isfinite(number):
-        return "nan"
-    if abs(number) > 0 and (abs(number) < 1.0e-4 or abs(number) >= 1.0e5):
-        return f"{number:.3e}"
-    return f"{number:.6f}"
-
-
-def _report(outputs: dict[str, pd.DataFrame], metadata: dict[str, Any]) -> str:
-    decision = outputs["decision"].iloc[0]
-    domain = outputs["domain_audit"].iloc[0]
-    summary = outputs["scenario_summary"]
-    lines = [
-        "# Stage II Beta075 Full-System Fixed-Background Evolution Stress Test",
-        "",
-        "## Status",
-        "",
-        f"Overall status: `{decision['full_system_evolution_status']}`.",
-        "",
-        str(decision["decision_read"]).capitalize() + ".",
-        "",
-        "This is the first full-domain fixed-background evolution rung after the bounded seal gate. It uses the sealed beta075 support package as input, not as an optimization target, and evolves a bounded-rapidity perturbation over the active non-live support-source surface with radial and service-time upwind transport.",
-        "",
-        "## Domain",
-        "",
-        "| point rows | active source rows | live evolved rows | packet-live evolved rows | radial groups | service groups |",
-        "| ---: | ---: | ---: | ---: | ---: | ---: |",
-        f"| {int(domain['point_rows'])} | {int(domain['active_source_rows'])} | {int(domain['active_live_rows'])} | "
-        f"{int(domain['active_packet_live_rows'])} | {int(metadata['radial_group_count'])} | {int(metadata['service_group_count'])} |",
-        "",
-        f"Scenario workers: `{int(metadata['scenario_workers'])}`.",
-        "",
-        "## Scenario Summary",
-        "",
-        "| scenario | status | limiter | fail rows | over-budget rows | max budget fraction | min cone margin | min transport margin | max state/source | clipped rows |",
-        "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
-    ]
-    for _, row in summary.iterrows():
-        lines.append(
-            f"| {row['scenario']} | {row['status']} | {bool(row['budget_limiter'])} | "
-            f"{int(row['fail_rows_any_time'])} | {int(row['over_budget_rows_any_time'])} | "
-            f"{_fmt(row['max_budget_fraction'])} | {_fmt(row['min_relative_cone_margin_sample'])} | "
-            f"{_fmt(row['min_transport_margin'])} | {_fmt(row['max_state_sum_to_source_sum'])} | "
-            f"{int(row['limiter_clipped_rows'])} |"
-        )
-    lines.extend([
-        "",
-        "## Interpretation",
-        "",
-        "The hard read is the observed-amplitude rows. They must pass without limiter clipping, live-row evolution, or state amplification. Large-amplitude rows are retained as engineering-margin watches, not as the observed-amplitude seal driver.",
-        "",
-        "If this rung fails, the failure location is allowed to point back to a component. If it passes, the sealed beta075 package should move upward to action-level, fixed-background PDE proof, or broader full-system obligations rather than same-level tuning.",
-        "",
-        "## Provenance",
-        "",
-        f"- closure dir: `{metadata['closure_dir']}`",
-        f"- source-coupling dir: `{metadata['source_coupling_dir']}`",
-        f"- point closure: `{metadata['point_closure']}`",
-        f"- caveat: {metadata['caveat']}",
-    ])
-    return "\n".join(lines) + "\n"
+    return outputs, metadata
 
 
 def write_full_system_evolution_outputs(
     outdir: Path,
-    report_path: Path,
     outputs: dict[str, pd.DataFrame],
     metadata: dict[str, Any],
-    report: str,
 ) -> dict[str, Path]:
     outdir.mkdir(parents=True, exist_ok=True)
-    report_path.parent.mkdir(parents=True, exist_ok=True)
     paths = {
         "domain_audit": outdir / "beta075_full_system_evolution_domain_audit.csv",
         "scenario_summary": outdir / "beta075_full_system_evolution_scenario_summary.csv",
@@ -641,8 +574,6 @@ def write_full_system_evolution_outputs(
     }
     for key, path in paths.items():
         outputs[key].to_csv(path, index=False)
-    report_path.write_text(report)
-    paths["report"] = report_path
     manifest_path = outdir / "beta075_full_system_evolution_manifest.json"
     manifest = dict(metadata)
     manifest["files"] = {key: str(path) for key, path in paths.items()}

@@ -39,11 +39,6 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("toolkit/adm_harness_cli/runs/stage2_beta075_full_system_evolution"),
     )
-    parser.add_argument(
-        "--report",
-        type=Path,
-        default=Path("supporting_reports/STAGE2_BETA075_FULL_SYSTEM_FIXED_BACKGROUND_EVOLUTION.md"),
-    )
     parser.add_argument("--steps", type=int, default=48)
     parser.add_argument("--radial-cfl", type=float, default=0.40)
     parser.add_argument("--service-cfl", type=float, default=0.20)
@@ -86,17 +81,16 @@ def main() -> int:
         temporal_profile=str(args.temporal_profile),
         max_workers=None if int(args.max_workers) <= 0 else int(args.max_workers),
     )
-    outputs, metadata, report = build_full_system_evolution(
+    outputs, metadata = build_full_system_evolution(
         args.closure_dir,
         args.source_coupling_dir,
         symbol_spec=symbol_spec,
         spec=spec,
     )
-    files = write_full_system_evolution_outputs(args.outdir, args.report, outputs, metadata, report)
+    files = write_full_system_evolution_outputs(args.outdir, outputs, metadata)
     print(json.dumps({
         "ok": True,
         "outdir": str(args.outdir),
-        "report": str(args.report),
         "rows": {key: int(len(value)) for key, value in outputs.items()},
         "decision": outputs["decision"].iloc[0].to_dict(),
         "files": {key: str(value) for key, value in files.items()},
