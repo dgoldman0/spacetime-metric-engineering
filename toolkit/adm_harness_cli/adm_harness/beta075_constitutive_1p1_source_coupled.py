@@ -297,6 +297,8 @@ def _run_scenario(
         "min_relative_cone_margin_sample_row": min_margin_row,
         "min_transport_margin": float(np.min(1.0 - final_ratio)) if len(final_ratio) else float("nan"),
         "source_delta_psi_sum": source_total,
+        "min_source_delta_psi": float(np.min(source_profile)) if len(source_profile) else float("nan"),
+        "negative_source_rows": int(np.sum(source_profile < -1.0e-15)),
         "injected_delta_psi_sum": injected_total,
         "active_source_steps": active_source_steps,
         "max_step_source_fraction": max_step_source_fraction,

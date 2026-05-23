@@ -312,17 +312,27 @@ new architecture sweep:
     row `2489` in `release_shift_fade / support_edge`; the large limited guard
     passes at the configured `0.95` cap. Human narrative report:
     `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_SOURCE_COUPLED.md`.
-42. Current next rung: action-level fixed-background proof obligation for the
-    full `1+1` constitutive source-coupled model. Formalize the admissible
-    phase-local cap-0.95 source law, service-coordinate scheduled release,
-    bounded common timing jitter, positivity/non-amplification of the
-    radial/service split-step transport, observed-amplitude rapidity-budget
-    invariance, and live/packet-live exclusion. Keep row `194`, row `2489`,
-    service-edge clipping, dense reset/core tightness, source-law smoothness,
-    thin characteristic margin, raw heat-current fragility, compact bracket
-    miss, and artificial `5e-4` overdrive as watches. Do not return to
-    component-level repair unless the proof obligation fails in a specific
-    physical mechanism.
+42. Completed action-level fixed-background proof obligation for the full
+    `1+1` constitutive source-coupled observed class. Status is
+    `constitutive_1p1_observed_class_proof_obligation_pass`: all eight
+    obligations pass across `51` observed-amplitude cases covering the three
+    transport directions and common service-timing offsets from `-8` through
+    `+8`. The certificate verifies live/packet-live exclusion, bounded
+    phase-local source scaling, source nonnegativity, bounded common jitter,
+    positive split-step transport, transport L1 non-amplification, observed
+    local rapidity-budget invariance, and implied limiter inactivity. Max
+    observed budget fraction remains `0.742835`, led by row `194`, with max
+    state/source ratio `0.985750`. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_PROOF_OBLIGATION.md`.
+43. Current next rung: discretization and continuum robustness for the same
+    observed proof class. Keep the source law, service schedule, jitter class,
+    and claim boundary fixed while varying the numerical representation:
+    service-step refinement, tail-window sensitivity, and CFL sensitivity
+    inside the positive-transport regime. Gate stability of max budget
+    fraction, worst row, source-law scales, state/source ratio, live exclusion,
+    and limiter inactivity. The goal is to show the proof class is not a
+    single-grid artifact before moving to a broader conservation/action
+    presentation.
 ```
 
 Discussion discipline while runs are computing:
@@ -476,17 +486,23 @@ Completed: full `1+1` constitutive source-coupled fixed-background evolution.
            amplification, and bounded phase-local source-law gates. The large
            `5e-4` unlimited row remains an engineering-margin watch, not the
            observed seal driver.
-Allowed next: action-level fixed-background proof obligation for the full
-              `1+1` constitutive source-coupled PDE class. Formalize the
-              phase-local source law, service-coordinate source schedule,
-              bounded common jitter class, positivity/non-amplification of the
-              transport semigroup, observed-amplitude rapidity-budget
-              invariance, and live/packet-live exclusion. Runs should write
-              structured artifacts only; narrative reports should be written by
-              hand after interpretation. Do not branch into source-law,
-              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
-              unless this higher-rung proof obligation fails and points back to
-              a specific physical mechanism.
+Completed: action-level fixed-background proof obligation for the full `1+1`
+           constitutive source-coupled observed class. It formalizes the
+           phase-local source law, service-coordinate source schedule, bounded
+           common jitter class, positivity/non-amplification of the transport
+           semigroup, observed-amplitude rapidity-budget invariance, and
+           live/packet-live exclusion into a passing discrete proof scaffold.
+Allowed next: discretization and continuum robustness for the observed proof
+              class. Vary service-step resolution, tail window, and CFL values
+              within the positive-transport regime while holding the physical
+              claim fixed. Gate max budget fraction, worst row, source-law
+              scales, state/source ratio, live exclusion, and limiter
+              inactivity. Runs should write structured artifacts only;
+              narrative reports should be written by hand after interpretation.
+              Do not branch into source-law, support-edge, V=3/V=4
+              interpolation, or artificial-stress tuning unless this
+              higher-rung robustness test fails and points back to a specific
+              physical mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
