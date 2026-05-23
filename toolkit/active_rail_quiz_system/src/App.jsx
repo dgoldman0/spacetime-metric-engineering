@@ -4,6 +4,7 @@ import { claimLabels } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
 import { ReportPanel } from "./components/ReportPanel.jsx";
 import { RichText } from "./components/RichText.jsx";
+import { SourceList } from "./components/SourceList.jsx";
 import { BoundaryClassificationActivity } from "./renderers/BoundaryClassificationActivity.jsx";
 import { MatchingActivity } from "./renderers/MatchingActivity.jsx";
 import { SequenceActivity } from "./renderers/SequenceActivity.jsx";
@@ -454,7 +455,12 @@ function InlineExplanation({ question, result }) {
     <div className="inline-explanation">
       <p><strong>Score:</strong> {result.earned} / {result.possible}</p>
       <p><strong>Answer:</strong> <RichText content={question.explanation.answer} /></p>
+      <p><strong>Why:</strong> <RichText content={question.explanation.why} /></p>
       <p><strong>Boundary:</strong> <RichText content={question.explanation.boundary} /></p>
+      {question.explanation.openGate && (
+        <p><strong>Open gate:</strong> <RichText content={question.explanation.openGate} /></p>
+      )}
+      <SourceList references={question.explanation.references} sourceLinks={question.explanation.sourceLinks} />
     </div>
   );
 }

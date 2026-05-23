@@ -932,6 +932,56 @@ h3 {
   margin-bottom: 8px;
 }
 
+.source-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.source-list h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.source-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.source-card {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.source-card a,
+.source-card strong {
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.source-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.source-card span {
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.source-kind {
+  color: var(--tone);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .muted {
   color: var(--muted);
 }

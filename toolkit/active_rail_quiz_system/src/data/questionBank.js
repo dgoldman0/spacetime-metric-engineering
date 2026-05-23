@@ -1,3 +1,5 @@
+const repoDoc = (path) => `https://github.com/dgoldman0/spacetime-metric-engineering/blob/main/${path}`;
+
 export const questionBank = [
   {
     id: "foundation.adm_lapse.001",
@@ -19,7 +21,16 @@ export const questionBank = [
       answer: "The lapse controls the local advance of time between slices.",
       why: "In a 3+1 split, lapse and shift separate time advance from spatial coordinate drift.",
       boundary: "This is established ADM terminology, not active-rail-specific vocabulary.",
-      references: ["ADM formulation; standard GR texts."]
+      references: [
+        {
+          id: "adm_dynamics_gr",
+          kind: "paper",
+          label: "ADM, The Dynamics of General Relativity",
+          citation: "Arnowitt, Deser, and Misner, in Gravitation: An Introduction to Current Research.",
+          url: "https://arxiv.org/abs/gr-qc/0405109",
+          supports: "Canonical 3+1 decomposition terminology including lapse and shift."
+        }
+      ]
     }
   },
   {
@@ -42,7 +53,16 @@ export const questionBank = [
       answer: "The rail is the operating plant.",
       why: "The active-rail architecture separates the serviced packet from the infrastructure that carries and resets the service geometry.",
       boundary: "This is project model language, not established GR terminology.",
-      references: []
+      references: [],
+      sourceLinks: [
+        {
+          label: "Project work analysis",
+          kind: "project_doc",
+          path: "PROJECT_WORK_ANALYSIS.md",
+          url: repoDoc("PROJECT_WORK_ANALYSIS.md"),
+          supports: "Current project-level distinction between packet-facing success, plant burden, and physical-source realization."
+        }
+      ]
     }
   },
   {
@@ -63,7 +83,16 @@ export const questionBank = [
       answer: "True.",
       why: "The metric is a literature model for exploring relativistic geometry and energy-condition issues.",
       boundary: "Published speculative-relativity context should not be presented as solved engineering.",
-      references: ["Alcubierre 1994 and subsequent warp-metric literature."]
+      references: [
+        {
+          id: "alcubierre_warp_drive",
+          kind: "paper",
+          label: "The warp drive: hyper-fast travel within general relativity",
+          citation: "Miguel Alcubierre, Classical and Quantum Gravity 11, L73-L77 (1994).",
+          url: "https://arxiv.org/abs/gr-qc/0009013",
+          supports: "Published speculative warp metric context."
+        }
+      ]
     }
   },
   {
@@ -75,7 +104,7 @@ export const questionBank = [
     claimStatus: "established_constraint",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "Which statements are appropriate uses of energy-condition checks in this quiz system?",
+    prompt: "Which statements are appropriate uses of energy-condition checks in relativistic design analysis?",
     choices: [
       { id: "diagnose", content: "They diagnose constrained stress-energy channels in a proposed geometry." },
       { id: "boundary", content: "They help separate mathematical demand from physical source realization." },
@@ -87,7 +116,16 @@ export const questionBank = [
       answer: "Energy-condition checks diagnose source constraints and help maintain claim boundaries.",
       why: "They are part of established relativistic analysis, but they do not by themselves produce a realizable matter sector.",
       boundary: "This is established constraint material applied to design interpretation.",
-      references: ["Standard GR and quantum inequality discussions."]
+      references: [
+        {
+          id: "ford_roman_qi_wormholes",
+          kind: "paper",
+          label: "Quantum Field Theory Constrains Traversable Wormhole Geometries",
+          citation: "L. H. Ford and Thomas A. Roman, Physical Review D 53, 5496 (1996).",
+          url: "https://arxiv.org/abs/gr-qc/9510071",
+          supports: "Example of quantum-field constraints on exotic spacetime geometries."
+        }
+      ]
     }
   },
   {
@@ -118,7 +156,25 @@ export const questionBank = [
       answer: [{ type: "math", latex: "G_{\\mu\\nu}/(8\\pi)", label: "Einstein tensor over eight pi" }],
       why: ["In these units, Einstein's equation gives ", { type: "math", latex: "G_{\\mu\\nu}=8\\pi T_{\\mu\\nu}", label: "Einstein equation" }, "."],
       boundary: "The ledger records source demand for a prescribed geometry. It is not a completed physical matter model.",
-      references: ["Einstein equation in standard GR."]
+      references: [
+        {
+          id: "einstein_equation_standard_gr",
+          kind: "textbook",
+          label: "Einstein equation in standard GR",
+          citation: "Standard general relativity texts.",
+          supports: "Relation between curvature and stress-energy in units where G=c=1."
+        }
+      ],
+      sourceLinks: [
+        {
+          label: "Component source ledger promoted pair",
+          kind: "project_doc",
+          path: "supporting_reports/STAGE2_COMPONENT_SOURCE_LEDGER_PROMOTED_PAIR.md",
+          url: repoDoc("supporting_reports/STAGE2_COMPONENT_SOURCE_LEDGER_PROMOTED_PAIR.md"),
+          supports: "Project source-ledger terminology and demanded-source accounting."
+        }
+      ],
+      openGate: "A demanded-source ledger does not by itself construct a physical matter model."
     }
   },
   {
@@ -143,7 +199,23 @@ export const questionBank = [
       answer: "Support, carry, catch/rematch, fade, decompress, reset.",
       why: "The packet needs a supported carrying channel, a handoff before shift fade, then a controlled support unwind before reuse.",
       boundary: "This is active-rail service architecture, not established textbook terminology.",
-      references: []
+      references: [],
+      sourceLinks: [
+        {
+          label: "Service aligned schedule",
+          kind: "project_doc",
+          path: "supporting_reports/STAGE2_BETA075_SERVICE_ALIGNED_SCHEDULE.md",
+          url: repoDoc("supporting_reports/STAGE2_BETA075_SERVICE_ALIGNED_SCHEDULE.md"),
+          supports: "Project service-order and timing language."
+        },
+        {
+          label: "Endpoint reset release ladder",
+          kind: "project_doc",
+          path: "supporting_reports/STAGE2_ENDPOINT_RESET_RELEASE_LADDER.md",
+          url: repoDoc("supporting_reports/STAGE2_ENDPOINT_RESET_RELEASE_LADDER.md"),
+          supports: "Reset and release sequencing context."
+        }
+      ]
     }
   },
   {
@@ -164,9 +236,35 @@ export const questionBank = [
     ],
     explanation: {
       answer: "ADM is established theory, Alcubierre is literature context, packet/rail is active-rail model language, and reset accumulation is an open gate.",
-      why: "The quiz should train the category boundary as much as the content itself.",
+      why: "The statements mix textbook theory, published speculative geometry, project terminology, and unresolved project evidence.",
       boundary: "This item intentionally mixes statuses to test epistemic classification.",
-      references: ["ADM formulation; Alcubierre 1994; active-rail design documents."]
+      references: [
+        {
+          id: "adm_dynamics_gr",
+          kind: "paper",
+          label: "ADM, The Dynamics of General Relativity",
+          citation: "Arnowitt, Deser, and Misner, in Gravitation: An Introduction to Current Research.",
+          url: "https://arxiv.org/abs/gr-qc/0405109",
+          supports: "Established ADM lapse and shift terminology."
+        },
+        {
+          id: "alcubierre_warp_drive",
+          kind: "paper",
+          label: "The warp drive: hyper-fast travel within general relativity",
+          citation: "Miguel Alcubierre, Classical and Quantum Gravity 11, L73-L77 (1994).",
+          url: "https://arxiv.org/abs/gr-qc/0009013",
+          supports: "Published speculative warp metric status."
+        }
+      ],
+      sourceLinks: [
+        {
+          label: "Project work analysis",
+          kind: "project_doc",
+          path: "PROJECT_WORK_ANALYSIS.md",
+          url: repoDoc("PROJECT_WORK_ANALYSIS.md"),
+          supports: "Current project-state framing and unresolved evidence boundaries."
+        }
+      ]
     }
   },
   {
@@ -195,9 +293,27 @@ export const questionBank = [
     },
     explanation: {
       answer: "Alpha is lapse, beta-ell is radial shift, and gamma-Omega-Omega is the angular sector.",
-      why: "These symbols map to different operational roles in the split used by the quiz.",
+      why: "These symbols map to different operational roles in the local 3+1-style split used by the design model.",
       boundary: "The ADM lapse/shift terms are established; the active-rail interpretation of the angular sector is project model language.",
-      references: ["ADM formulation; active-rail design documents."]
+      references: [
+        {
+          id: "adm_dynamics_gr",
+          kind: "paper",
+          label: "ADM, The Dynamics of General Relativity",
+          citation: "Arnowitt, Deser, and Misner, in Gravitation: An Introduction to Current Research.",
+          url: "https://arxiv.org/abs/gr-qc/0405109",
+          supports: "Established lapse and shift roles."
+        }
+      ],
+      sourceLinks: [
+        {
+          label: "Project work analysis",
+          kind: "project_doc",
+          path: "PROJECT_WORK_ANALYSIS.md",
+          url: repoDoc("PROJECT_WORK_ANALYSIS.md"),
+          supports: "Project-level use of reduced metric and ADM translation language."
+        }
+      ]
     }
   },
   {
@@ -221,30 +337,63 @@ export const questionBank = [
       answer: "Arrival is not enough; missing plant channels matter.",
       why: "Active-rail qualification separates packet-facing success from plant burden and reuse evidence.",
       boundary: "This is active-rail design-review logic, not a general theorem of GR.",
-      references: []
+      references: [],
+      sourceLinks: [
+        {
+          label: "Project work analysis",
+          kind: "project_doc",
+          path: "PROJECT_WORK_ANALYSIS.md",
+          url: repoDoc("PROJECT_WORK_ANALYSIS.md"),
+          supports: "Current project distinction between packet safety, plant burden, and source realization."
+        },
+        {
+          label: "Source family validation",
+          kind: "project_doc",
+          path: "supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_VALIDATION.md",
+          url: repoDoc("supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_VALIDATION.md"),
+          supports: "Example of project-state source-family validation and remaining watch items."
+        }
+      ]
     }
   },
   {
-    id: "project_state.flagged.001",
+    id: "project_state.internal_ledger.001",
     type: "mc",
     track: "Design review and synthesis",
     module: "Project-state handling",
     difficulty: "core",
     claimStatus: "project_hypothesis",
     contentFlags: ["project_material", "project_state", "revision_sensitive"],
-    prompt: "A question based on a current internal run ledger should be treated how in the quiz system?",
+    prompt: "An internal active-rail run ledger reports a candidate pass with clean packet safety but a thin support-closure margin. What is the safest status for that claim?",
     choices: [
-      { id: "flagged", content: "Clearly flagged and excludable from stable/general quizzes." },
-      { id: "general", content: "Mixed into the general curriculum without any special label." },
-      { id: "established", content: "Marked as established theory because it came from a project artifact." },
-      { id: "hidden", content: "Hidden from scoring reports so the fiction feels cleaner." }
+      { id: "flagged", content: "Revision-sensitive project-state evidence that can guide review but should not be treated as established physics." },
+      { id: "general", content: "A general result that can be applied to any active-rail geometry without qualification." },
+      { id: "established", content: "An established theorem of general relativity because the ledger was computed from a metric." },
+      { id: "complete", content: "A completed physical-source construction because packet safety was clean." }
     ],
     answer: ["flagged"],
     explanation: {
-      answer: "It should be flagged and excludable.",
-      why: "Project-state content can be useful, but it is revision-sensitive and should not masquerade as stable curriculum.",
-      boundary: "This is a quiz-system governance rule, not physics content.",
-      references: []
+      answer: "It is revision-sensitive project-state evidence.",
+      why: "A clean packet-safety result can be meaningful while support closure, source realization, or repeated-operation margins remain under review.",
+      boundary: "This is project-state interpretation, not an established physical theorem.",
+      references: [],
+      sourceLinks: [
+        {
+          label: "Project work analysis",
+          kind: "project_doc",
+          path: "PROJECT_WORK_ANALYSIS.md",
+          url: repoDoc("PROJECT_WORK_ANALYSIS.md"),
+          supports: "Current project distinction between supported claims, watch items, and overclaims."
+        },
+        {
+          label: "Source family validation",
+          kind: "project_doc",
+          path: "supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_VALIDATION.md",
+          url: repoDoc("supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_VALIDATION.md"),
+          supports: "Example of a passing project-state validation with explicit watch conditions."
+        }
+      ],
+      openGate: "Passing a fixed-background or ledger-level screen does not prove matter-action closure, semiclassical consistency, or broad repeated-service viability."
     }
   }
 ];
