@@ -21,3 +21,10 @@ Current features:
 - explanations with answer, reason, boundary, and references.
 
 This is intentionally small. The next step is to refine the question data shape and replace the sample bank with real curriculum-backed banks.
+
+Design documents:
+
+- `DESIGN.md`
+- `ROADMAP.md`
+- `INTERFACE_ARCHITECTURE.md`
+- `ASSESSMENT_MODEL.md`

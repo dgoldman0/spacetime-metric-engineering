@@ -1,8 +1,11 @@
 # Active-Rail Quiz System Design
 
-This file is a design document, not an implementation roadmap. It defines what the full quiz system should become before we decide how to build it.
+This file is a design document, not an implementation roadmap. It defines what the full quiz system should become before we decide how to build it. Detailed implementation-facing notes live in companion documents:
 
-The current prototype proves that a static active-rail quiz can work: it has a question bank, filters, explanations, KaTeX rendering, and mixed question types. The next system should be a real educational instrument. It should teach established theory, published speculative-relativity context, and project-specific active-rail architecture while making the boundaries between those categories impossible to miss.
+- `INTERFACE_ARCHITECTURE.md` for screen structure, specialized activity surfaces, and math rendering.
+- `ASSESSMENT_MODEL.md` for scoring, mastery, grading dimensions, and reports.
+
+The original HTML prototype proves that a static active-rail quiz can work: it has a question bank, filters, explanations, KaTeX rendering, and mixed question types. The first infrastructure prototype in this folder proves local data separation and basic grading. The next system should be a real educational instrument. It should teach established theory, published speculative-relativity context, and project-specific active-rail architecture while making the boundaries between those categories impossible to miss.
 
 The guiding phrase:
 
@@ -204,6 +207,8 @@ Design rule: a reference entry should say which exact claim it supports. A sourc
 
 The old prototype has multiple choice, select-all, true/false, and typed fill-in-the-blank. The full system should keep those where useful, but add richer formats.
 
+Question types should not all be forced into the same generic card interface. A shared question shell is useful for metadata, claim-status display, explanations, and review controls, but the main work area should be specialized by activity type. Boundary classification, source-ledger interpretation, sequencing, symbol practice, case-file review, and ordinary multiple choice have different educational shapes.
+
 ### Multiple Choice
 
 Use for precise concepts, definitions, and contrastive misconceptions.
@@ -230,7 +235,8 @@ Requirements:
 
 - Users drag rendered text or equation tokens into blanks.
 - Users can also tap/click a token and then tap/click a blank.
-- Equations render visually, for example `gamma_OmegaOmega`, `T_mn k^m k^n`, or `G_mn/(8 pi)`.
+- Equations render through a real LaTeX rendering library, preferably KaTeX for the static-first implementation.
+- Visual examples should appear as rendered expressions, not pseudo-plain-text strings such as `gamma_OmegaOmega`, `T_mn k^m k^n`, or `G_mn/(8 pi)`.
 - Users never need to type LaTeX.
 - Tokens can have aliases internally, but the visible task is token placement.
 - On mobile, the interaction must work without precision dragging.
@@ -312,6 +318,21 @@ Examples:
 
 The correct answer may be "project hypothesis" or "open gate", not just true or false.
 
+## Math Rendering
+
+Mathematical notation is central to this system and should be treated as first-class content.
+
+Requirements:
+
+- Use a real LaTeX rendering library for displayed and inline math. KaTeX is the preferred default for a static-first app; MathJax is acceptable if later needs require it.
+- Store canonical math as LaTeX in the question data, for example `G_{\mu\nu}/(8\pi)`.
+- Render equations consistently in prompts, choices, drag-fill tokens, explanations, references, reports, and review material.
+- Keep plain-text aliases only for search, accessibility labels, validation, and internal matching.
+- Do not ask learners to type LaTeX unless an advanced authoring or expert mode explicitly calls for it.
+- Provide accessible text labels for rendered math tokens.
+
+The current infrastructure prototype uses simple text-like math tokens. That is acceptable only as a first-pass placeholder, not as the intended design.
+
 ## Question Data Model
 
 The question bank should move out of inline JavaScript into structured data.
@@ -329,6 +350,7 @@ Every question should include:
 - established-theory dependency tags,
 - optional content flags,
 - prompt,
+- prompt parts or render blocks,
 - answer representation,
 - distractors,
 - explanation,
@@ -413,6 +435,8 @@ Open Gate: It does not prove that a realizable matter sector exists.
 
 The current prototype looks like a useful dark demo. The full system should look more like a refined engineering console than a novelty quiz page.
 
+The first infrastructure prototype is intentionally too simple. It proves data loading, filters, a few interactions, and basic grading. It should not become the final interaction model by accretion. The full system needs richer activity surfaces and mode-specific layouts.
+
 Design direction:
 
 - cleaner layout,
@@ -453,6 +477,8 @@ Possible visual language:
 - Open gate: red/orange warning style.
 - Fictional frame: subtle neutral styling, never source-like.
 
+See `INTERFACE_ARCHITECTURE.md` for the intended multi-surface interface model.
+
 ## Main User Experience
 
 The first screen should be the learning tool, not a marketing page.
@@ -479,6 +505,18 @@ The system should support both casual and serious use:
 - design review simulation,
 - missed-question review,
 - print/export for offline study.
+
+The interface should support several classes of learning activity:
+
+- ordinary question answering,
+- claim-boundary classification,
+- symbolic/token practice,
+- service chronology and timeline work,
+- source-ledger/table interpretation,
+- design-review case files,
+- review and remediation.
+
+These can share navigation, metadata, filters, and scoring services, but they should not all share one cramped card layout.
 
 ## Learning Modes
 
@@ -527,6 +565,8 @@ Qualification reports should say things like:
 - "Good packet diagnostics, missed plant burden channels."
 
 That is more valuable than "82%".
+
+See `ASSESSMENT_MODEL.md` for the fuller assessment model. This design document intentionally keeps scoring principles short while the companion file defines dimensions, per-activity grading, reports, and qualification profiles.
 
 ## Authoring Standards
 
@@ -603,6 +643,8 @@ This folder can eventually grow into:
 toolkit/active_rail_quiz_system/
   DESIGN.md
   ROADMAP.md
+  INTERFACE_ARCHITECTURE.md
+  ASSESSMENT_MODEL.md
   AUTHORING_GUIDE.md
   STYLE_GUIDE.md
   schemas/

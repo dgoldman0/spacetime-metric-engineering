@@ -1,6 +1,6 @@
 # Active-Rail Quiz System Roadmap
 
-This roadmap keeps the system modest in machinery but strong in usefulness. The goal is not to build a giant learning platform. The goal is to build a good, flexible quiz system that can teach active-rail architecture honestly, separate established theory from project-specific ideas, and make content authoring manageable.
+This roadmap keeps the system modest in product scope but not artificially simple in interface design. The goal is not to build a giant learning platform. The goal is to build a good, flexible quiz system that can teach active-rail architecture honestly, separate established theory from project-specific ideas, and make content authoring manageable.
 
 The three main phases are:
 
@@ -12,7 +12,7 @@ The three main phases are:
 
 Build the system that can render, grade, review, and organize questions.
 
-This phase should produce a usable quiz application with a small sample bank. It does not need the final curriculum or a huge question set yet.
+This phase should produce a usable quiz application with a small sample bank. It does not need the final curriculum or a huge question set yet, but it does need the right architecture: real math rendering, specialized activity renderers, and an assessment model that can grow beyond one generic card layout.
 
 ### Core Features
 
@@ -23,12 +23,39 @@ This phase should produce a usable quiz application with a small sample bank. It
 - Support review of missed questions.
 - Show clear claim-status badges on every question.
 - Show explanations with answer, reason, boundary, and references when present.
-- Render math and symbolic tokens cleanly.
+- Render math and symbolic tokens with a LaTeX rendering library.
 - Work well on desktop, tablet, and mobile.
+
+### Infrastructure Subphases
+
+Phase 1 should be split into practical subphases.
+
+1. Prototype checkpoint.
+   - Static app.
+   - Separate sample bank.
+   - Basic filters.
+   - Basic grading.
+   - Basic question types.
+2. Rendering and data foundation.
+   - Add proper LaTeX rendering.
+   - Add a renderer registry.
+   - Normalize question data around render blocks, answers, explanations, claim status, and optional content flags.
+   - Add schema validation or a lightweight bank validation script.
+3. Specialized activity surfaces.
+   - Keep the standard quiz surface.
+   - Add boundary classification surface.
+   - Add symbol/equation lab surface.
+   - Improve chronology/sequencing into a timeline-style surface.
+   - Prepare room for ledger and case-file surfaces.
+4. Assessment and reports.
+   - Separate concept accuracy from claim-boundary accuracy.
+   - Track module, claim-status, and activity-type performance.
+   - Report missed questions and recommended review sets.
+   - Keep qualification rules configurable by mode.
 
 ### Question Types
 
-Implement only the types needed for a good first system:
+Implement the types needed for a good first system, but do not force them all into the same UI:
 
 - multiple choice,
 - select all,
@@ -37,7 +64,15 @@ Implement only the types needed for a good first system:
 - sequencing,
 - matching.
 
-Leave diagram labeling, case-file simulations, and ledger labs for later unless they become easy extensions.
+The first renderer set should include:
+
+- standard quiz renderer for multiple choice, select all, and true/false,
+- symbol/equation renderer for drag-fill,
+- chronology renderer for sequencing,
+- matching renderer for pairs and small classifications,
+- boundary-classification renderer for claim-status training.
+
+Leave diagram labeling, full case-file simulations, and ledger labs for later unless they become easy extensions.
 
 ### Drag-Fill Word Bank
 
@@ -51,7 +86,18 @@ Requirements:
 - Mobile interaction must feel natural.
 - Keyboard use must be possible.
 - Users should not need to type LaTeX.
-- Tokens should support rendered text and rendered math.
+- Tokens should support rendered text and rendered LaTeX math.
+
+### Math Rendering
+
+Add proper math rendering early, before content population.
+
+Requirements:
+
+- Use KaTeX or another real LaTeX rendering library.
+- Store canonical math in question data as LaTeX.
+- Render math in prompts, choices, tokens, blanks, explanations, references, and reports.
+- Keep plain-text aliases for accessibility and validation only.
 
 ### Grading
 
@@ -64,9 +110,12 @@ Track:
 - score by difficulty,
 - score by question type,
 - score by claim status,
+- score by activity surface,
 - missed-question list.
 
 Also track claim-boundary mistakes separately. For this project, confusing "established theory" with "active-rail model" is a meaningful learning failure, not just another wrong answer.
+
+Use `ASSESSMENT_MODEL.md` as the guide for richer scoring. The first implementation can be partial, but it should not block future grading dimensions.
 
 ### Data Model
 
@@ -81,6 +130,7 @@ Minimum fields:
 - `difficulty`,
 - `claim_status`,
 - `prompt`,
+- render blocks or prompt parts,
 - `choices` or `tokens`,
 - `answer`,
 - `explanation`,
@@ -100,17 +150,22 @@ Required surfaces:
 - module selector,
 - claim-status selector,
 - question count selector,
-- active quiz area,
+- active workspace,
 - score/report area,
 - missed-question review.
 
 The design should feel like a polished engineering console: readable, calm, fast, and clear. It should look much better than the prototype, but the first implementation should avoid ornamental complexity.
 
+The active workspace should change by activity type. A boundary-classification session, a symbol lab, a chronology timeline, and a design-review case should not all be cramped into the same generic card.
+
 ### Phase 1 Done When
 
 - A user can run a mixed quiz from structured data.
 - At least six question types work.
+- Proper LaTeX rendering works.
 - Drag-fill works without typing equations.
+- A renderer registry or equivalent separation exists.
+- At least one specialized surface exists beyond the standard quiz card.
 - Grading reports module and claim-status performance.
 - Explanations clearly separate answer, reason, and epistemic boundary.
 - The interface is pleasant enough that content authors will want to use it.
@@ -218,6 +273,7 @@ This phase should create:
 - reference anchors,
 - claim-status rules,
 - question-type recommendations per module,
+- activity-surface recommendations per module,
 - a small set of example questions per module.
 
 ### Phase 2 Done When
@@ -314,17 +370,30 @@ Not every question needs every review type. Established-theory and literature qu
 - Prefer readable design before visual spectacle.
 - Prefer content quality over content volume.
 
-## Likely First Milestone
+## Prototype Checkpoint
 
-The first milestone should be a small but complete vertical slice:
+The initial static prototype is now a checkpoint, not the target architecture. It proves:
+
+- static-file operation,
+- separated sample bank,
+- basic filters,
+- basic modes,
+- basic activity types,
+- basic scoring by module and claim status.
+
+## Likely Next Infrastructure Milestone
+
+The next milestone should turn the prototype into the right architecture:
 
 - polished quiz interface,
 - structured question loading,
-- multiple choice,
-- select all,
-- drag-fill,
-- sequencing,
+- multiple choice and select all through a standard quiz renderer,
+- drag-fill through a symbol/equation renderer,
+- sequencing through a chronology renderer,
 - claim-status badges,
+- proper LaTeX rendering,
+- renderer registry,
+- boundary-classification surface,
 - grading by module and claim status,
 - 20 to 30 sample questions,
 - clear explanations with boundary notes.
