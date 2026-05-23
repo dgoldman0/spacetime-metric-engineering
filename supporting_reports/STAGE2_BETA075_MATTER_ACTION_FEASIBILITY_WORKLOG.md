@@ -1624,3 +1624,51 @@ support-sector stability, hyperbolicity/causality, and cross-bracket
 robustness. If those later gates fail specifically at dense reset/core, then
 return to support-model refinement.
 ```
+
+## Support-Edge Source-Law Feasibility Audit
+
+```text
+2026-05-23 rung:
+  toolkit/adm_harness_cli/scripts/run_endpoint_support_source_law_feasibility.py
+
+inputs:
+  toolkit/adm_harness_cli/runs/stage2_beta075_support_source_coupling_package_support_edge_cap095/
+
+outputs:
+  toolkit/adm_harness_cli/runs/stage2_beta075_support_source_law_feasibility/
+  this worklog is the prose report for the rung
+
+status:
+  phase_local_source_law_candidate_with_watches
+
+hard gates:
+  observed unlimited pass:       true
+  observed limiter free:         true
+  bounded scale in [0, 1]:       true
+  phase-local scaled slices:     true
+  scaled outside expected scope: 0
+
+main numbers:
+  scaled slices:                          4
+  min source-profile scale:               0.092617
+  max adjacent scale jump:                0.907383
+  max observed unlimited budget fraction: 0.373081
+  min observed cone margin:               3.794e-05
+  min observed transport margin:          3.843e-05
+  max large-stress budget fraction:       1.444697
+
+read:
+  The normalized support-edge source law survives the first physical/source
+  feasibility audit as a reduced bounded source-law candidate, and it clears
+  this as a gate for moving on to full-system testing. It is not hidden live
+  support: every actually scaled slice is inside support-edge endpoint-junction
+  entry/catch, and the observed package dynamics remain limiter-free.
+
+  Keep only a light watch on source-law shape. Four slices carry the actual scale
+  correction, and one entry-precatch slice needs a severe scale of about
+  0.093 with a large adjacent jump back to 1.0. Do not keep testing this
+  component in isolation unless a later full-system/action/PDE gate fails
+  specifically on source-law smoothness, hidden support, or transport margin.
+  Do not spend the next block tuning the artificial 5e-4 stress reserve unless
+  a higher-rung theorem needs that reserve explicitly.
+```

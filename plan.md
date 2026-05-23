@@ -222,6 +222,16 @@ new architecture sweep:
     constitutive/source rule inside the current endpoint/support medium story,
     without hidden live support, superluminal transport, or a decorative new
     component?
+34. Completed first support-edge source-law feasibility audit as a gate, not a
+    new focus area. The cap-0.95 package is acceptable to carry into the next
+    full-system rung: observed outward/inward unlimited dynamics pass, no
+    observed limiter is active, all scales stay in `[0, 1]`, and all actually
+    scaled slices remain inside support-edge endpoint-junction entry/catch
+    phases. Keep a light watch on source-law smoothness only: four slices
+    actually scale below one, the worst entry-precatch scale is `0.092617`, and
+    the max adjacent scale jump is `0.907383`. Carry the artificial `5e-4`
+    overdrive as margin context (`1.444697` max budget fraction), not as a
+    same-level retuning target.
 ```
 
 Discussion discipline while runs are computing:
@@ -336,16 +346,19 @@ Completed: targeted V=5 support-source design for the localized support-edge
            normalization on entry/catch support-edge slices clears the observed
            full-package source-coupling sweep without adding a new geometric
            component.
-Allowed next: higher-rung physical/source feasibility for the normalized
-              support-edge source law. First ask whether the `0.95`
-              observed-reference source-profile cap can be expressed as a
-              bounded phase-local constitutive/source rule within the current
-              endpoint/support medium and support-stress story. Carry the
-              large release/pre-entry `5e-4` stress failures as engineering
-              margin watches, not as a reason for more same-level tuning,
-              unless the higher-rung test requires a high-amplitude reserve
-              theorem. Do not branch into V=3/V=4 interpolation unless a later
-              V=5 refinement needs transition mapping.
+Completed: first support-edge source-law feasibility audit. It establishes a
+           bounded, observed-clean, phase-local, limiter-free source-law
+           candidate, with a light smoothness watch on the four scaled
+           entry/catch slices. This clears the source-law question as a gate
+           for now. Do not keep testing this component in isolation unless a
+           later full-system/action/PDE gate fails specifically on source-law
+           smoothness, hidden support, or transport margin.
+Allowed next: proceed to the next full-system/high-rung beta075 test at the
+              prescribed-metric/effective-source plus reduced endpoint/support
+              level. Carry the support-edge source law as a named light watch,
+              not as the active optimization target. Do not branch into V=3/V=4
+              interpolation or artificial `5e-4` retuning unless a later
+              full-system result explicitly needs that transition or reserve.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting
