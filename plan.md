@@ -415,13 +415,26 @@ new architecture sweep:
     `0.544567 / 0.55`, and source-profile scale `0.092617`. Human narrative
     report:
     `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_ENERGY_CERTIFICATE.md`.
-52. Current next rung: first-order coupled consistency / constraint
+52. Completed energy-constant classification audit for the fixed-background
+    formal source family. Status is
+    `stable_limiting_theorem_constant_with_buffer_watch`: the recurring
+    lower-order work constant is stable across available dense surfaces,
+    remains below its hard theorem bound (`2.049051 / 2.5`), and has zero hard
+    classification failures. It is therefore best read as the limiting
+    constant in the current energy theorem with safety-margin debt, not as a
+    current source-family redesign or explicit protective-buffer requirement.
+    The watch remains real because utilization is about `81.96%` and absolute
+    headroom is `0.450949`. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_ENERGY_CONSTANT_AUDIT.md`.
+53. Current next rung: first-order coupled consistency / constraint
     propagation diagnostic for the total endpoint-plus-support source. Test
     whether the fixed-background source family can enter the Einstein
     constraint/Bianchi-accounting story at perturbative order without
     uncontrolled metric backreaction, constraint-growth mode, or non-conserved
     total stress. Keep this as a first-order diagnostic, not full coupled
-    Einstein-matter evolution.
+    Einstein-matter evolution. Carry the energy constant as a light watch on
+    constraint-growth and backreaction terms rather than a reason to return to
+    same-level energy/source-family tuning.
 ```
 
 Discussion discipline while runs are computing:
