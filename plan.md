@@ -105,6 +105,13 @@ new architecture sweep:
     localization, and angular-exclusion gates on baseline and dense. The compact
     `22x13` bracket fails the dense local active gate, so keep it as a
     compactness bracket rather than the promoted closure reference.
+22. Completed next-gate orientation: support-sector robustness proxy is a
+    watch-pass, not a kill. The `24x14` reference remains the promoted closure
+    sector, but dense local margin, dense reset/core residual concentration, and
+    support-edge release/held-carry heat-current margins are the adversarial
+    rows. Next: build a fixed-background local principal-symbol harness for the
+    reduced endpoint/support constitutive sector before attempting any
+    fixed-background evolution or coupled Einstein-matter system.
 ```
 
 Discussion discipline while runs are computing:
@@ -174,11 +181,19 @@ Allowed next: close the finite-difference endpoint/support closure milestone
               support-sector stability, hyperbolicity/causality, and
               cross-bracket robustness, carrying dense reset/core as the first
               watch item.
+Allowed next: reduced fixed-background hyperbolicity modeling. Start with a
+              local principal-symbol harness for the promoted `24x14`
+              endpoint/support sector on the prescribed beta075 service metric.
+              Gate real finite characteristic speeds, a complete eigenbasis,
+              propagation inside the service cone, positive h_reg/Type-I margin,
+              preserved heat-current margin, and zero live support exchange.
+              Aim the first adversarial rows at dense reset/core and
+              support-edge release/held-carry.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
-             theorem, semiclassical/RSET proof, or broad beta/V robustness
-             claim.
+             theorem, semiclassical/RSET proof, broad beta/V robustness, or
+             coupled Einstein-matter evolution claim.
 ```
 
 Constructive medium field-closure checkpoint:
