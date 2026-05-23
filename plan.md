@@ -269,16 +269,22 @@ new architecture sweep:
     control, not as a reason to reopen same-level component tuning. Human
     narrative report:
     `supporting_reports/STAGE2_BETA075_ACTION_PDE_PROOF_OBLIGATION.md`.
-38. Current next rung: prove or certify the admissible source-time envelope for
-    the action-level fixed-background PDE model. The target is to rule out the
-    arbitrary impulse collapse that exceeded the local rapidity budget while
-    preserving the already-clean observed scheduled evolution. Machine runs for
-    this rung must keep writing structured artifacts only
-    (`csv`/`json`/manifest); do not add scripted prose/Markdown report
-    generation. Do not return to source-law/support-edge/component tuning
-    unless the temporal-regularity proof fails in a way that localizes an actual
-    physical source-law defect rather than a deliberately overbroad timing
-    adversary.
+38. Completed first service-coordinate-aligned scheduled evolution certificate.
+    This answers the arbitrary-impulse proof gap in the physically relevant
+    active-rail timing class: all 24 width/direction cases pass, including the
+    sharp one-step aligned pulse. Worst max budget fraction is `0.742835` in
+    `observed_action_inward_forward` at row `194`
+    (`support_edge_endpoint_junction / entry_precatch / support_edge`,
+    `s=-1.2367021276595744, l=-2.1`); the broadest tested envelope reaches
+    about `0.176333` in the inward/forward case. Read: service-order alignment,
+    not same-level component retuning, is the missing PDE timing structure.
+    Human narrative report:
+    `supporting_reports/STAGE2_BETA075_SERVICE_ALIGNED_SCHEDULE.md`.
+39. Current next rung: formalize service-coordinate-aligned timing as the lead
+    admissible source-time envelope for the action-level fixed-background PDE
+    proof. The target is a bound for the whole aligned schedule class, not just
+    the finite pulse-width sweep, with structured machine artifacts only and
+    hand-written narrative reports after interpretation.
 ```
 
 Discussion discipline while runs are computing:
@@ -411,17 +417,21 @@ Completed: first action-level fixed-background PDE proof-obligation
            but does not prove temporal-profile-independent safety against
            arbitrary impulse collapse. The gap is source-time regularity of the
            action-level PDE model, not a same-level component failure.
-Allowed next: source-time regularity / admissible temporal-envelope proof for
-              the sealed beta075 action-level fixed-background PDE model. Gate
-              the integrated observed-amplitude bounded-rapidity system on
-              invariant local budgets, transport non-concentration under the
-              admissible envelope, cone/transport margin preservation, live and
-              packet-live exclusion, and no hidden component. Carry dense
-              reset/core, source-law smoothness, thin characteristic margin,
-              raw heat-current fragility, compact bracket miss, and artificial
-              `5e-4` overdrive as light watches. Runs for this rung should
-              write structured artifacts only, with no scripted prose report
-              generation. Do not branch into source-law, support-edge,
+Completed: service-coordinate-aligned scheduled evolution certificate. It
+           resolves the arbitrary impulse proof gap for the physically relevant
+           scheduled active-rail timing class: even one-step aligned pulses stay
+           within local rapidity budget across the tested directions.
+Allowed next: formal aligned-envelope proof for the sealed beta075
+              action-level fixed-background PDE model. Gate the integrated
+              observed-amplitude bounded-rapidity system on invariant local
+              budgets, transport non-concentration under service-aligned timing,
+              cone/transport margin preservation, live and packet-live
+              exclusion, and no hidden component. Carry dense reset/core,
+              source-law smoothness, thin characteristic margin, raw
+              heat-current fragility, compact bracket miss, and artificial
+              `5e-4` overdrive as light watches. Runs should write structured
+              artifacts only; narrative reports should be written by hand after
+              interpretation. Do not branch into source-law, support-edge,
               V=3/V=4 interpolation, or artificial-stress tuning unless this
               higher-rung full-system/action/PDE gate fails and points back to
               a specific physical mechanism.
