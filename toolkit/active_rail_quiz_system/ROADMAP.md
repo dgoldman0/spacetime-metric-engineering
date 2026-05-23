@@ -399,25 +399,51 @@ The initial static prototype is now a checkpoint, not the target architecture. I
 - basic activity types,
 - basic scoring by module and claim status.
 
+## Current Dynamic Checkpoint
+
+The current Vite/React conversion is also a checkpoint, not the finished interface. It made real infrastructure progress:
+
+- Vite/React app shell exists.
+- KaTeX is installed and renders math tokens.
+- Local question-bank modules replaced inline browser globals.
+- A renderer/grader registry exists.
+- Standard quiz, symbol-fill, chronology, matching, and claim-classification renderers exist.
+- Bank validation and production build commands work.
+
+But the current visible interface is still too close to the original card-stack quiz. That is a known gap, not an acceptable final direction.
+
+What is still missing:
+
+- a real activity launcher instead of one filter bar doing everything,
+- distinct workspaces for Mixed Quiz, Boundary Board, Symbol Lab, Chronology Timeline, Ledger Reader, and Design Review,
+- workspace-specific scoring panels,
+- richer visual hierarchy that makes mode changes feel structurally different,
+- multi-class testing flows where claim-boundary classification, source interpretation, chronology, and standard quiz items are not all forced into the same vertical card stack.
+
+Do not start large-scale content population until this interface gap is fixed. The next implementation pass should prioritize visible workspace architecture over adding more questions.
+
 ## Likely Next Infrastructure Milestone
 
 The next milestone should turn the prototype into the right architecture:
 
-- Vite/React app shell,
-- polished quiz interface,
-- structured question loading,
-- multiple choice and select all through a standard quiz renderer,
-- drag-fill through a symbol/equation renderer,
-- sequencing through a chronology renderer,
+- replace the card-stack-first layout with an activity launcher,
+- add a dedicated Mixed Quiz workspace,
+- add a dedicated Boundary Board workspace,
+- add a dedicated Symbol Lab workspace,
+- add a dedicated Chronology Timeline workspace,
+- add an initial Design Review workspace,
+- keep structured question loading,
+- keep multiple choice and select all through a standard quiz renderer,
+- keep drag-fill through a symbol/equation renderer,
+- keep sequencing through a chronology renderer,
 - claim-status badges,
-- proper LaTeX rendering,
-- renderer registry,
-- boundary-classification surface,
-- grading by module and claim status,
+- keep proper LaTeX rendering,
+- keep renderer registry,
+- make grading/report panels workspace-aware,
 - 20 to 30 sample questions,
 - clear explanations with boundary notes.
 
-This milestone should prove the system feels good before the project invests in large-scale content.
+This milestone should prove the system feels structurally different across activity classes before the project invests in large-scale content.
 
 ## Roadmap Summary
 

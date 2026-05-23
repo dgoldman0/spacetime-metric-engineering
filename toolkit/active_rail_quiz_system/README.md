@@ -1,34 +1,34 @@
-# Active-Rail Quiz System Prototype
+# Active-Rail Quiz System
 
-This is the first static infrastructure slice for the active-rail quiz system.
+This is the first dynamic frontend slice for the active-rail quiz system. It uses Vite, React, local question-bank modules, and KaTeX for math rendering.
 
-Open `index.html` directly in a browser:
+Run it locally:
 
-```text
-toolkit/active_rail_quiz_system/index.html
+```bash
+npm install
+npm run dev
 ```
 
-No build step or local server is required. The sample question bank lives in `question_banks/sample_bank.js` so the app can run from a local file while still keeping question data separate from the HTML.
+Useful commands:
+
+```bash
+npm run validate:bank
+npm run build
+```
 
 Current features:
 
 - study, quiz, and boundary modes,
 - filters for track, module, difficulty, question type, claim status, and optional flagged content,
-- multiple choice, select all, true/false, drag-fill, sequencing, and matching questions,
+- renderer registry for standard quiz, symbol-fill, chronology, matching, and boundary-classification activities,
+- multiple choice, select all, true/false, rendered symbol-fill, sequencing, matching, and claim-classification questions,
 - click/tap or drag word-bank placement for fill blanks,
+- KaTeX rendering for math tokens and explanations,
 - visible claim-status and optional-content badges,
-- grading by module and claim status,
+- grading by module, claim status, and activity type,
 - explanations with answer, reason, boundary, and references.
 
-This is intentionally small. The next step is to refine the question data shape and replace the sample bank with real curriculum-backed banks.
-
-Implementation direction:
-
-- The static prototype is a checkpoint.
-- The next build should be a lightweight Vite/React app.
-- Question banks should remain local files for now.
-- KaTeX should be used as a real math-rendering dependency.
-- No backend, database, or user accounts are planned for the first dynamic version.
+This is intentionally local-first. There is no backend, database, or user account system in this version.
 
 Design documents:
 
