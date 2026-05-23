@@ -53,7 +53,8 @@ button:hover {
 }
 
 button:focus-visible,
-select:focus-visible {
+select:focus-visible,
+.facet-chip:has(input:focus-visible) {
   outline: 3px solid rgba(15, 118, 110, 0.24);
   outline-offset: 2px;
 }
@@ -93,7 +94,7 @@ h3 {
 }
 
 .app-shell {
-  width: min(1440px, 100%);
+  width: min(1560px, 100%);
   margin: 0 auto;
   padding: 20px;
 }
@@ -156,6 +157,405 @@ h3 {
 
 .secondary-action {
   background: #f8faf9;
+}
+
+.workspace-launcher {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.workspace-card {
+  display: grid;
+  gap: 7px;
+  min-height: 128px;
+  padding: 14px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: 0 10px 26px rgba(23, 33, 30, 0.06);
+}
+
+.workspace-card span {
+  color: var(--teal);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.workspace-card strong {
+  font-size: 1rem;
+}
+
+.workspace-card small {
+  color: var(--muted);
+  font-size: 0.83rem;
+  line-height: 1.35;
+}
+
+.workspace-card.active {
+  border-color: var(--teal);
+  background: linear-gradient(180deg, var(--teal-soft), #fff);
+  box-shadow: inset 0 0 0 2px rgba(15, 118, 110, 0.16), var(--shadow);
+}
+
+.board-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 340px;
+  gap: 18px;
+  align-items: start;
+}
+
+.session-panel,
+.workspace-panel,
+.report-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.session-panel {
+  position: sticky;
+  top: 16px;
+  padding: 16px;
+}
+
+.session-panel h2 {
+  margin-bottom: 8px;
+}
+
+.session-panel > .muted {
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.session-controls {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.session-controls label {
+  display: grid;
+  gap: 5px;
+}
+
+.session-controls span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.multi-facet {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.multi-facet legend {
+  padding: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.facet-summary {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.facet-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.facet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: #fbfcfc;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.84rem;
+  font-weight: 750;
+}
+
+.facet-chip input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--teal);
+}
+
+.facet-chip span {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.facet-chip.selected {
+  border-color: #9dd7d0;
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+
+.facet-clear {
+  justify-self: start;
+  min-height: 30px;
+  padding: 4px 9px;
+  font-size: 0.82rem;
+  background: #f8faf9;
+}
+
+.workspace-panel {
+  min-height: 650px;
+  overflow: hidden;
+}
+
+.workspace-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfcfc;
+}
+
+.workspace-header h2 {
+  margin-bottom: 6px;
+  font-size: 1.35rem;
+}
+
+.workspace-header p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.question-count {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.empty-workspace {
+  margin: 18px;
+  padding: 30px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.mixed-sheet {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.board-tool,
+.lab-bench,
+.timeline-tool,
+.dossier-artifacts,
+.decision-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.tool-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: start;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-head p,
+.lab-bench p,
+.dossier-artifacts p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.boundary-board {
+  padding: 18px;
+}
+
+.boundary-board .boundary-surface {
+  padding: 16px;
+  border-left: 0;
+}
+
+.boundary-board .boundary-grid {
+  gap: 12px;
+}
+
+.boundary-board .boundary-row {
+  grid-template-columns: minmax(260px, 0.85fr) minmax(420px, 1.6fr);
+  background: #fff;
+}
+
+.boundary-board .boundary-options {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+}
+
+.symbol-lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  gap: 16px;
+  padding: 18px;
+}
+
+.lab-bench {
+  padding: 16px;
+}
+
+.lab-bench h3 {
+  font-size: 1.15rem;
+}
+
+.lab-exercise {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.symbol-lab-grid .symbol-surface,
+.symbol-lab-grid .matching-surface {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.timeline-deck {
+  padding: 18px;
+}
+
+.timeline-ruler {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.timeline-ruler span {
+  padding: 10px 8px;
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.timeline-ruler span + span {
+  border-left: 1px solid #b7caff;
+}
+
+.timeline-tool {
+  padding: 16px;
+}
+
+.timeline-tool .chronology-surface {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.timeline-tool .sequence-list {
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  align-items: stretch;
+}
+
+.timeline-tool .sequence-item {
+  grid-template-columns: 1fr;
+  align-content: start;
+  min-height: 150px;
+  border-color: #b7caff;
+  background: #f8fbff;
+}
+
+.timeline-tool .sequence-index {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+}
+
+.dossier-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+  gap: 16px;
+  padding: 18px;
+}
+
+.dossier-artifacts,
+.decision-panel {
+  padding: 16px;
+}
+
+.artifact-strip {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.artifact-strip div {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfc;
+}
+
+.artifact-strip span {
+  color: var(--red);
+  font-weight: 800;
+}
+
+.dossier-question {
+  display: grid;
+  gap: 14px;
+}
+
+.inline-explanation {
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfc;
+}
+
+.inline-explanation p {
+  margin-bottom: 6px;
 }
 
 .workspace {
@@ -536,6 +936,32 @@ h3 {
 }
 
 @media (max-width: 1180px) {
+  .workspace-launcher {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
+  .board-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .session-panel,
+  .report-panel {
+    position: static;
+  }
+
+  .session-controls {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
+
+  .symbol-lab-grid,
+  .dossier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-tool .sequence-list {
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+
   .control-panel {
     grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
@@ -552,6 +978,23 @@ h3 {
 @media (max-width: 760px) {
   .app-shell {
     padding: 12px;
+  }
+
+  .workspace-launcher,
+  .session-controls,
+  .timeline-tool .sequence-list,
+  .timeline-ruler {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-header,
+  .tool-head {
+    display: grid;
+  }
+
+  .boundary-board .boundary-row,
+  .boundary-board .boundary-options {
+    grid-template-columns: 1fr;
   }
 
   .app-header,
