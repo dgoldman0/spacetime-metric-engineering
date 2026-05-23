@@ -12,7 +12,7 @@ The three main phases are:
 
 Build the system that can render, grade, review, and organize questions.
 
-This phase should produce a usable quiz application with a small sample bank. It does not need the final curriculum or a huge question set yet, but it does need the right architecture: real math rendering, specialized activity renderers, and an assessment model that can grow beyond one generic card layout.
+This phase should produce a usable quiz application with a small sample bank. It does not need the final curriculum or a huge question set yet, but it does need the right architecture: a lightweight dynamic frontend, real math rendering, specialized activity renderers, and an assessment model that can grow beyond one generic card layout.
 
 ### Core Features
 
@@ -37,6 +37,7 @@ Phase 1 should be split into practical subphases.
    - Basic grading.
    - Basic question types.
 2. Rendering and data foundation.
+   - Convert the prototype into a small Vite/React app.
    - Add proper LaTeX rendering.
    - Add a renderer registry.
    - Normalize question data around render blocks, answers, explanations, claim status, and optional content flags.
@@ -98,6 +99,23 @@ Requirements:
 - Store canonical math in question data as LaTeX.
 - Render math in prompts, choices, tokens, blanks, explanations, references, and reports.
 - Keep plain-text aliases for accessibility and validation only.
+
+### Dynamic Frontend Target
+
+Move from static-file prototype to a small local-first frontend app now.
+
+Recommended scope:
+
+- Vite + React.
+- KaTeX dependency installed through the package manager.
+- Local question-bank modules imported by the app.
+- Componentized surfaces for standard quiz, symbol/equation work, chronology, matching, and boundary classification.
+- Local browser state for one session at a time.
+- No backend.
+- No database.
+- No user accounts.
+
+This is not a move to a large platform. It is a move to a healthier frontend structure before the UI becomes too rich for one static file.
 
 ### Grading
 
@@ -363,7 +381,7 @@ Not every question needs every review type. Established-theory and literature qu
 
 ## Keep It Simple Rules
 
-- Prefer structured JSON or YAML files before adding a database.
+- Prefer local imported question-bank files before adding a database.
 - Prefer local progress storage before user accounts.
 - Prefer clear reports before elaborate analytics.
 - Prefer a few excellent question types before many shallow ones.
@@ -385,6 +403,7 @@ The initial static prototype is now a checkpoint, not the target architecture. I
 
 The next milestone should turn the prototype into the right architecture:
 
+- Vite/React app shell,
 - polished quiz interface,
 - structured question loading,
 - multiple choice and select all through a standard quiz renderer,

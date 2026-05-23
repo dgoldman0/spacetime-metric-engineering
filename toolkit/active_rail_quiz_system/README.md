@@ -22,6 +22,14 @@ Current features:
 
 This is intentionally small. The next step is to refine the question data shape and replace the sample bank with real curriculum-backed banks.
 
+Implementation direction:
+
+- The static prototype is a checkpoint.
+- The next build should be a lightweight Vite/React app.
+- Question banks should remain local files for now.
+- KaTeX should be used as a real math-rendering dependency.
+- No backend, database, or user accounts are planned for the first dynamic version.
+
 Design documents:
 
 - `DESIGN.md`

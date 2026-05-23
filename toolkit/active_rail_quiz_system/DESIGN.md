@@ -5,7 +5,7 @@ This file is a design document, not an implementation roadmap. It defines what t
 - `INTERFACE_ARCHITECTURE.md` for screen structure, specialized activity surfaces, and math rendering.
 - `ASSESSMENT_MODEL.md` for scoring, mastery, grading dimensions, and reports.
 
-The original HTML prototype proves that a static active-rail quiz can work: it has a question bank, filters, explanations, KaTeX rendering, and mixed question types. The first infrastructure prototype in this folder proves local data separation and basic grading. The next system should be a real educational instrument. It should teach established theory, published speculative-relativity context, and project-specific active-rail architecture while making the boundaries between those categories impossible to miss.
+The original HTML prototype proves that a static active-rail quiz can work: it has a question bank, filters, explanations, KaTeX rendering, and mixed question types. The first infrastructure prototype in this folder proves local data separation and basic grading. The next system should now move to a lightweight dynamic frontend app so the interface can support specialized activity surfaces, richer state, proper math rendering, and grading profiles without turning into one oversized script file. It should teach established theory, published speculative-relativity context, and project-specific active-rail architecture while making the boundaries between those categories impossible to miss.
 
 The guiding phrase:
 
@@ -31,6 +31,7 @@ The fictional framing is allowed to be fun. The physics boundary is not allowed 
 - Do not let "engineering academy" styling hide unresolved physical gates.
 - Do not require users to type LaTeX, equation syntax, or long symbolic answers.
 - Do not make the first version a giant content dump with no epistemic structure.
+- Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
 
 ## Core Design Principle: Claim Separation
 
@@ -99,6 +100,24 @@ But every immersive element should be paired with disciplined language. The tone
 A good tone model:
 
 > You are in a future training simulator, but the simulator has a very strict footnote department.
+
+## Application Architecture
+
+The next implementation target should be a small client-side app, not a larger platform.
+
+Recommended shape:
+
+- Vite + React for the dynamic frontend.
+- Local question-bank modules for now.
+- KaTeX as an installed dependency for math rendering.
+- Componentized activity surfaces.
+- A renderer/grader registry by question or activity type.
+- Local browser state for session progress.
+- No backend, database, user accounts, or network-required data flow in the first dynamic version.
+
+This is a pivot from "open one HTML file" to "run a lightweight local frontend app." The tradeoff is worthwhile because the system needs richer interfaces than a static file should carry.
+
+The dynamic app should still remain local-first. It should be easy to run, easy to inspect, and easy to replace question banks without deploying infrastructure.
 
 ## Curriculum Architecture
 
@@ -235,7 +254,7 @@ Requirements:
 
 - Users drag rendered text or equation tokens into blanks.
 - Users can also tap/click a token and then tap/click a blank.
-- Equations render through a real LaTeX rendering library, preferably KaTeX for the static-first implementation.
+- Equations render through a real LaTeX rendering library, preferably KaTeX for the dynamic frontend.
 - Visual examples should appear as rendered expressions, not pseudo-plain-text strings such as `gamma_OmegaOmega`, `T_mn k^m k^n`, or `G_mn/(8 pi)`.
 - Users never need to type LaTeX.
 - Tokens can have aliases internally, but the visible task is token placement.
@@ -324,7 +343,7 @@ Mathematical notation is central to this system and should be treated as first-c
 
 Requirements:
 
-- Use a real LaTeX rendering library for displayed and inline math. KaTeX is the preferred default for a static-first app; MathJax is acceptable if later needs require it.
+- Use a real LaTeX rendering library for displayed and inline math. KaTeX is the preferred default for the dynamic frontend; MathJax is acceptable if later needs require it.
 - Store canonical math as LaTeX in the question data, for example `G_{\mu\nu}/(8\pi)`.
 - Render equations consistently in prompts, choices, drag-fill tokens, explanations, references, reports, and review material.
 - Keep plain-text aliases only for search, accessibility labels, validation, and internal matching.
@@ -624,6 +643,7 @@ Keep:
 
 Replace or redesign:
 
+- static-file architecture as the main implementation target,
 - inline JavaScript question bank,
 - typed fill-in-the-blank as the main symbolic-answer mode,
 - single undifferentiated question voice,
@@ -658,9 +678,12 @@ toolkit/active_rail_quiz_system/
     design_review_cases/
   prototypes/
   references/
+  package.json
+  vite.config.*
+  src/
 ```
 
-Only this design file exists for now. The roadmap should come after the design direction feels right.
+The static prototype can remain as a reference checkpoint or be retired once the dynamic app covers the same behavior.
 
 ## Open Design Questions
 
@@ -668,7 +691,7 @@ Only this design file exists for now. The roadmap should come after the design d
 - How strong should the future-program fiction be in the UI?
 - Should qualification mode require claim-boundary accuracy to pass, even when concept answers are correct?
 - Which references should be treated as mandatory anchors for the first content release?
-- Should the first implementation be static-file friendly, or should it start with a small app architecture?
+- Which framework conventions should the dynamic frontend standardize on as it grows?
 - Should project-internal run outputs and ledgers become quiz artifacts later?
 - How should the system mark active-rail ideas that are later revised or retired?
 

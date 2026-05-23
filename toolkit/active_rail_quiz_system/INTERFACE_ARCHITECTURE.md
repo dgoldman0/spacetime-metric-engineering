@@ -2,7 +2,7 @@
 
 This document describes the intended interface shape for the full quiz system. It exists because the first infrastructure prototype is useful but too simple: it puts every activity into the same basic card flow. That is fine for proving the plumbing, but it will not support the richer teaching and assessment model.
 
-The full system should use shared infrastructure with specialized learning surfaces.
+The full system should use shared infrastructure with specialized learning surfaces. The next implementation should be a lightweight dynamic frontend app, not a larger server-backed platform.
 
 ## Core Principle
 
@@ -222,9 +222,10 @@ This is where the future-engineering-program framing can be strongest, as long a
 
 Math should be rendered with a real LaTeX library.
 
-Preferred static-first approach:
+Preferred dynamic-frontend approach:
 
-- KaTeX CSS and JS included locally or by pinned dependency.
+- KaTeX installed as a package dependency.
+- A small math-rendering component used consistently across the app.
 - Store math as LaTeX strings in question data.
 - Render after each workspace update.
 - Keep text aliases for accessibility, search, and validation.
@@ -244,7 +245,7 @@ The UI should not expose raw LaTeX to learners unless they are in an authoring o
 
 ## Renderer Architecture
 
-The app should use a renderer registry:
+The app should use a renderer registry. In React terms, this can be a mapping from activity type to component plus grader:
 
 ```text
 question type -> activity renderer -> grading adapter -> explanation adapter
@@ -261,6 +262,26 @@ Examples:
 - `case_review` -> design-review case file.
 
 This keeps future question types from bloating one central render function.
+
+## Frontend Stack
+
+Recommended stack for the next build:
+
+- Vite for local development and static build output.
+- React for componentized activity surfaces.
+- KaTeX for math rendering.
+- Plain CSS modules or a small app stylesheet at first.
+- Local data modules for question banks.
+
+Avoid for now:
+
+- backend API,
+- database,
+- accounts,
+- server-side authoring workflow,
+- heavy state-management libraries.
+
+The app needs component boundaries and build tooling, not institutional software.
 
 ## Accessibility
 
@@ -286,4 +307,4 @@ The current static prototype should be treated as a vertical slice of infrastruc
 - basic renderers,
 - basic scoring.
 
-The next interface iteration should introduce the renderer registry and proper LaTeX rendering before adding much more content.
+The next interface iteration should convert that slice into the dynamic frontend architecture, then introduce the renderer registry and proper LaTeX rendering before adding much more content.
