@@ -426,15 +426,26 @@ new architecture sweep:
     The watch remains real because utilization is about `81.96%` and absolute
     headroom is `0.450949`. Human narrative report:
     `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_ENERGY_CONSTANT_AUDIT.md`.
-53. Current next rung: first-order coupled consistency / constraint
-    propagation diagnostic for the total endpoint-plus-support source. Test
-    whether the fixed-background source family can enter the Einstein
-    constraint/Bianchi-accounting story at perturbative order without
-    uncontrolled metric backreaction, constraint-growth mode, or non-conserved
-    total stress. Keep this as a first-order diagnostic, not full coupled
-    Einstein-matter evolution. Carry the energy constant as a light watch on
-    constraint-growth and backreaction terms rather than a reason to return to
-    same-level energy/source-family tuning.
+53. Completed first-order 3+1/backreaction entry diagnostic for the total
+    endpoint-plus-support source. Status is
+    `first_order_3p1_entry_watch_pass`: the total source has zero hard
+    Bianchi/constraint-driver handoff failures across sealed baseline V5,
+    sealed dense V5, and lower-service dense V2. The worst active driver ratio
+    is `0.452212 / 0.55`, the worst local P/F closure remains
+    `0.544567 / 0.55`, max live driver fraction is `0.003553 / 0.005`, max
+    outside driver fraction is `0.001037 / 0.006`, angular residual remains
+    zero, and adjacent dense V2 does not amplify the dense V5 driver in a
+    meaningful way. Watches are inherited margin constants: near-luminal but
+    subluminal boost (`0.987443`), local reset-sector closure, and the energy
+    theorem constant. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_FIRST_ORDER_3P1_COUPLING.md`.
+54. Current next rung: broader full 3+1/backreaction testing with off-axis
+    structure. Use the first-order handoff as permission to move upward: allow
+    metric response probes and off-axis perturbations while monitoring
+    constraint growth, source conservation, cone preservation, and whether the
+    reset-sector constants remain bounded under geometric feedback. Do not
+    return to same-level source-family tuning unless the 3+1/backreaction rung
+    produces a specific hard obstruction.
 ```
 
 Discussion discipline while runs are computing:
