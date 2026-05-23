@@ -72,7 +72,7 @@ Possible panels:
 
 - score summary,
 - claim-status legend,
-- reference drawer,
+- source and reference drawer,
 - hint panel,
 - current module objectives,
 - missed-question queue,
@@ -240,10 +240,34 @@ Rendering locations:
 - blanks,
 - matching options,
 - explanations,
-- reference snippets,
+- reference snippets and source links,
 - reports.
 
 The UI should not expose raw LaTeX to learners unless they are in an authoring or expert mode.
+
+## Explanation And Source UI
+
+Explanations are part of the teaching surface, not just grading feedback.
+
+After review, each item should be able to show:
+
+- direct answer,
+- technical reason,
+- claim-boundary note,
+- misconception note when useful,
+- public paper or textbook anchors for established and literature claims,
+- project-document or repository anchors for project-specific claims,
+- open-gate notes for unresolved claims.
+
+Reference links should be rendered as compact source cards or a drawer section with:
+
+- title or label,
+- source kind: paper, textbook, project doc, repo file, run artifact, or design note,
+- citation or path,
+- URL when available,
+- short note explaining what the source supports.
+
+The source drawer should never make an unsupported claim look stronger. A project document link supports "this is the current project model" or "this is the current project state"; it does not turn the claim into established physics.
 
 ## Renderer Architecture
 

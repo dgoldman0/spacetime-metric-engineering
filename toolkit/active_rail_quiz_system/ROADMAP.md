@@ -23,6 +23,7 @@ This phase should produce a usable quiz application with a small sample bank. It
 - Support review of missed questions.
 - Show clear claim-status badges on every question.
 - Show explanations with answer, reason, boundary, and references when present.
+- Show structured source links to papers, textbooks, project docs, repository files, or run artifacts when present.
 - Render math and symbolic tokens with a LaTeX rendering library.
 - Work well on desktop, tablet, and mobile.
 
@@ -40,7 +41,7 @@ Phase 1 should be split into practical subphases.
    - Convert the prototype into a small Vite/React app.
    - Add proper LaTeX rendering.
    - Add a renderer registry.
-   - Normalize question data around render blocks, answers, explanations, claim status, and optional content flags.
+   - Normalize question data around render blocks, answers, explanations, references, source links, claim status, and optional content flags.
    - Add schema validation or a lightweight bank validation script.
 3. Specialized activity surfaces.
    - Keep the standard quiz surface.
@@ -154,9 +155,20 @@ Minimum fields:
 - `explanation`,
 - `boundary_note`,
 - `references`,
+- `source_links`,
 - `tags`.
 
 Do not make the schema perfect before building. It should be strict enough to prevent messy content and simple enough to author by hand.
+
+The schema should also support richer explanation metadata:
+
+- `explanation.answer`,
+- `explanation.why`,
+- `explanation.boundary`,
+- `explanation.misconceptions`,
+- `explanation.openGate`,
+- `references[]` with citation/source-kind/support fields,
+- `sourceLinks[]` with label/kind/url/support fields.
 
 ### User Experience
 
@@ -197,6 +209,8 @@ Filter controls should not force narrow single-choice paths. Tracks, modules, di
 Design what the system teaches before filling it with lots of questions.
 
 This phase should produce the curriculum map, module list, claim taxonomy, and authoring rules. It should prevent the later content phase from becoming a pile of isolated trivia.
+
+It should also define the question quality rubric. The first serious curriculum pass should reject meta questions about the quiz system itself, shallow wording checks, unsupported theory claims, and advanced items whose difficulty comes from unclear prose rather than reasoning demand.
 
 ### Curriculum Tracks
 
@@ -296,6 +310,9 @@ This phase should create:
 - claim-status rules,
 - question-type recommendations per module,
 - activity-surface recommendations per module,
+- question quality rubric,
+- difficulty calibration rules,
+- source and reference requirements,
 - a small set of example questions per module.
 
 ### Phase 2 Done When
@@ -303,6 +320,8 @@ This phase should create:
 - The full curriculum structure exists.
 - Every module has learning objectives.
 - Claim-status rules are clear enough for content authors.
+- A quality rubric exists and can be used to accept, rewrite, or reject draft questions.
+- Difficulty levels are calibrated by reasoning demand.
 - Reference anchors are assigned to established and literature modules.
 - Active-rail modules distinguish definitions, hypotheses, and open gates.
 - There is enough structure to begin writing questions at scale.
@@ -347,14 +366,16 @@ Each question should have:
 
 - one clear learning purpose,
 - one claim status,
-- a concise explanation,
+- a teaching-quality explanation,
 - a boundary note when project-specific or speculative,
 - reference support when established or literature-based,
+- source links when project documents, repository files, papers, or run artifacts are relevant,
 - plausible distractors,
 - tags that make review and filtering useful.
 
 Avoid:
 
+- learner-facing questions about the quiz system, scoring policy, label policy, or curriculum governance,
 - trivia for its own sake,
 - questions that only test wording memorization,
 - overlong prompts,
@@ -378,6 +399,7 @@ Not every question needs every review type. Established-theory and literature qu
 
 - The first substantial question bank exists.
 - Questions cover all major tracks.
+- The sample bank contains no quiz-meta questions.
 - Claim-status classification is well represented.
 - Drag-fill and sequencing are used where typing would be annoying.
 - Explanations teach rather than merely reveal answers.
@@ -405,51 +427,43 @@ The initial static prototype is now a checkpoint, not the target architecture. I
 
 ## Current Dynamic Checkpoint
 
-The current Vite/React conversion is also a checkpoint, not the finished interface. It made real infrastructure progress:
+The current Vite/React app is now a usable infrastructure checkpoint, not just a conversion. It made real progress:
 
 - Vite/React app shell exists.
 - KaTeX is installed and renders math tokens.
 - Local question-bank modules replaced inline browser globals.
 - A renderer/grader registry exists.
 - Standard quiz, symbol-fill, chronology, matching, and claim-classification renderers exist.
+- Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board, Symbol Lab, Timeline, and Design Review.
+- Multi-select facets exist for tracks, modules, difficulty, and claim status.
+- Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
-
-But the current visible interface is still too close to the original card-stack quiz. That is a known gap, not an acceptable final direction.
 
 What is still missing:
 
-- a real activity launcher instead of one filter bar doing everything,
-- distinct workspaces for Mixed Quiz, Boundary Board, Symbol Lab, Chronology Timeline, Ledger Reader, and Design Review,
 - workspace-specific scoring panels,
-- multi-select facet controls for track, module, difficulty, activity, and claim status,
-- richer visual hierarchy that makes mode changes feel structurally different,
-- multi-class testing flows where claim-boundary classification, source interpretation, chronology, and standard quiz items are not all forced into the same vertical card stack.
+- a fuller Ledger Reader workspace,
+- source-rich explanation rendering,
+- stronger question validation for references, source links, difficulty fit, and meta-question bans,
+- larger vetted curriculum banks,
+- better mode separation between study, drill, qualification, and project-internal review.
 
-Do not start large-scale content population until this interface gap is fixed. The next implementation pass should prioritize visible workspace architecture over adding more questions.
+The visible workspace architecture is now good enough to begin curriculum design and small vetted content expansion. Large-scale population should still wait until the quality rubric, source-link schema, and validation gates are in place.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone should turn the prototype into the right architecture:
+The next milestone should make the app ready for serious curriculum authoring:
 
-- replace the card-stack-first layout with an activity launcher,
-- add a dedicated Mixed Quiz workspace,
-- add a dedicated Boundary Board workspace,
-- add a dedicated Symbol Lab workspace,
-- add a dedicated Chronology Timeline workspace,
-- add an initial Design Review workspace,
-- replace single-select content filters with multi-select facets,
-- keep structured question loading,
-- keep multiple choice and select all through a standard quiz renderer,
-- keep drag-fill through a symbol/equation renderer,
-- keep sequencing through a chronology renderer,
-- claim-status badges,
-- keep proper LaTeX rendering,
-- keep renderer registry,
+- remove sample/meta questions from the learner-facing bank,
+- add structured references and source links to question explanations,
+- render references/source links in reviewed explanations,
+- extend validation to reject quiz-meta prompts and require references for established/literature claims,
+- keep the workspace architecture and smoke tests healthy,
 - make grading/report panels workspace-aware,
-- 20 to 30 sample questions,
-- clear explanations with boundary notes.
+- begin replacing placeholder sample questions with vetted curriculum questions,
+- grow toward 20 to 30 high-quality seed questions before attempting larger population.
 
-This milestone should prove the system feels structurally different across activity classes before the project invests in large-scale content.
+This milestone should prove the system can enforce curriculum quality, not merely render more content.
 
 ## Roadmap Summary
 

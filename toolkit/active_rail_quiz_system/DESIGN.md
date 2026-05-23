@@ -32,6 +32,7 @@ The fictional framing is allowed to be fun. The physics boundary is not allowed 
 - Do not require users to type LaTeX, equation syntax, or long symbolic answers.
 - Do not make the first version a giant content dump with no epistemic structure.
 - Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
+- Do not write learner-facing questions about "the quiz", "this quiz system", or the mechanics of the curriculum itself. Meta content belongs in authoring docs, not in the question bank.
 
 ## Core Design Principle: Claim Separation
 
@@ -57,12 +58,15 @@ Questions about project materials, project state, current work products, interna
 
 These questions should be treated as optional content bands that can be included or excluded selectively.
 
+Project-state questions are not the same thing as quiz-meta questions. It is appropriate to ask whether a project claim is current, revision-sensitive, supported, unsupported, or still open. It is not appropriate to ask learners how the quiz system should label, score, or govern itself.
+
 Required rules:
 
 - Any item based on current project materials must be clearly marked.
 - Any item about project state must be clearly marked as time-sensitive or revision-sensitive.
 - Any item about open questions must be clearly marked as an open question, not as settled knowledge.
 - Any item about a project hypothesis must identify what would count as supporting evidence, missing evidence, or falsifying pressure.
+- No learner-facing item may ask about "the quiz", question-bank governance, scoring policy, or authoring policy.
 - Study and quiz modes must allow users to exclude project-state, project-materials, and open-question items.
 - Qualification modes should default to excluding revision-sensitive project-state items unless the qualification is explicitly a project-internal review.
 - Established-theory and literature-context modules should not depend on project-state questions.
@@ -375,6 +379,7 @@ Every question should include:
 - explanation,
 - claim-boundary explanation,
 - references,
+- source links,
 - misconception targets,
 - authoring status,
 - review status,
@@ -418,7 +423,15 @@ explanation:
   boundary: "This is source accounting for a prescribed geometry. It is not a completed matter model."
 references:
   - id: einstein_equation_standard_gr
+    kind: textbook
     supports: "Relation between Einstein tensor and stress-energy tensor."
+    citation: "Standard GR text reference."
+    url: null
+source_links:
+  - label: "Project source-ledger notes"
+    kind: project_doc
+    url: "relative/or/repo/path/when/available"
+    supports: "Project-specific demanded-source terminology."
 misconception_targets:
   - ledger_as_physical_source
   - packet_diagnostic_as_source_diagnostic
@@ -439,6 +452,7 @@ Recommended fields:
 - **Project-Specific Meaning:** if applicable.
 - **Open Gate:** if the question touches unresolved physics.
 - **References:** source anchors for established or literature claims.
+- **Source Links:** paper, textbook, project-document, or repository links that let a learner continue studying.
 
 For example:
 
@@ -449,6 +463,10 @@ Boundary: This is established GR applied as project source accounting.
 Project-Specific Meaning: The ledger identifies what the prescribed active-rail geometry demands.
 Open Gate: It does not prove that a realizable matter sector exists.
 ```
+
+References should be structured enough for UI rendering. A reference may point to a paper, DOI, arXiv page, textbook citation, project repository file, local design document, or run artifact. Established-theory and literature-context questions should prefer stable public anchors. Project-material questions may point to repository paths, local docs, or run records, but they must carry `project_material`, `project_state`, `open_question`, or `revision_sensitive` flags when appropriate.
+
+Explanations should teach the learner after grading. A good explanation does not merely say which option was correct; it names the relevant principle, explains the distractor trap, identifies the claim boundary, and points to sources worth reading next.
 
 ## Visual And Interaction Design
 
@@ -593,6 +611,7 @@ See `ASSESSMENT_MODEL.md` for the fuller assessment model. This design document 
 
 Question authors should follow these rules:
 
+- No learner-facing question may reference "the quiz", "this quiz system", "question labeling", or scoring policy. Such material belongs in documentation or authoring validation, not curriculum.
 - Every established-theory question needs at least one reference anchor.
 - Every project-specific question needs a boundary note.
 - Every project-material, project-state, open-question, or revision-sensitive question needs an explicit content flag.
@@ -603,6 +622,47 @@ Question authors should follow these rules:
 - Avoid "gotcha" wording.
 - Equations should be rendered or tokenized, not typed by the learner.
 - If a question combines established theory with active-rail vocabulary, the explanation must separate those parts.
+
+## Question Quality Rubric
+
+Each proposed question should be vetted before it enters the approved bank. Draft questions can exist locally, but the final bank should include only items that meet the rubric.
+
+### Required Passing Criteria
+
+A question is acceptable only if it passes all of these checks:
+
+- **Purpose:** it tests a real learning objective, not trivia or wording recall.
+- **Claim status:** its epistemic class is correct and visible.
+- **Difficulty fit:** the cognitive demand matches the assigned difficulty.
+- **Source support:** established and literature claims have reference anchors; project claims have project-source or boundary anchors.
+- **Explanation quality:** the explanation teaches why the answer is right and why tempting wrong answers fail.
+- **Boundary clarity:** project-specific, speculative, unresolved, or revision-sensitive content is explicitly marked.
+- **No meta leakage:** the item does not ask about the quiz system, authoring policy, scoring policy, or labeling policy.
+- **Interaction fit:** the question type matches the task; symbolic items use rendered tokens rather than typed LaTeX.
+- **Distractor quality:** wrong choices are plausible misconceptions, not jokes or throwaways.
+- **Reviewability:** references, tags, and misconception targets are specific enough for later audit.
+
+### Difficulty Calibration
+
+Difficulty should describe cognitive demand, not how obscure the wording is.
+
+| Difficulty | Expected Learner Task | Multiple-Choice Standard |
+| --- | --- | --- |
+| Core | Recognize a definition, identify a direct relation, classify an obvious claim boundary, or apply one step of known theory. | A learner who studied the module should answer quickly without juggling several concepts. Distractors test common confusions. |
+| Intermediate | Apply a concept in context, distinguish similar statuses, interpret a simple equation or chronology, or connect two ideas. | A learner should need to reason through at least one implication or reject a tempting overclaim. |
+| Advanced | Synthesize multiple constraints, evaluate evidence sufficiency, separate established theory from project use in a mixed prompt, or reason about open gates. | Even with choices supplied, the learner should need solid conceptual command and careful boundary discipline. |
+
+Advanced multiple choice is allowed, but it must be advanced because of reasoning load, not because the answer is hidden in obscure prose.
+
+### Vetting Outcome
+
+Each item should end in one of these states:
+
+- `approved`: ready for the learner-facing bank.
+- `needs_reference_review`: likely useful, but source anchors or citations are incomplete.
+- `needs_project_review`: project-specific claim needs architecture review.
+- `needs_rewrite`: learning objective is valid but prompt, distractors, or explanation are weak.
+- `reject`: meta, misleading, unsupported, too trivial, or outside curriculum scope.
 
 ## Content Review Workflow
 
