@@ -348,12 +348,27 @@ new architecture sweep:
     heat-current endpoint medium with an entrained radial director plus
     localized support-reservoir/open-system exchange. Human narrative report:
     `supporting_reports/STAGE2_BETA075_SOURCE_LAW_DEFINITION_PACKAGE.md`.
-45. Current next rung: formal source-family equation package for the lead
-    regulated director/support-reservoir story. Write the variables,
-    constraints, support exchange power/radial-force channels, inherited
-    hyperbolicity conditions, and phase-local bounded source response as an
-    explicit conservative open-system effective-action or constitutive
-    field-equation skeleton. Do not jump to a final closed matter theorem.
+45. Completed formal source-family equation package for the lead regulated
+    director/support-reservoir story. Status is
+    `formal_source_family_equations_candidate_with_hyperbolicity_and_exchange_watches`:
+    all required equation blocks are present and hard inherited gates close
+    with zero failed gates. The skeleton states the endpoint tensor, radial
+    director constraints, tanh-bounded rapidity regulator, angular closure,
+    explicit endpoint/support exchange, two-channel `P/F` support reservoir,
+    phase-local source response, service-scheduled release, positive transport,
+    reduced principal-symbol gate, and fixed-background open-system action
+    container. Watches remain on the dense relative cone margin
+    (`7.881e-05`), source-profile scale (`0.092617`), local total support
+    closure (`0.544567 / 0.55`), and the local `P/F` exchange channels led by
+    reset-decompression/core-throat `P = 0.609031`. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_EQUATION_PACKAGE.md`.
+46. Current next rung: source-family validation for the formal equations.
+    Derive or specify the support-reservoir operator in derivative form,
+    recompute the reduced principal symbol from the equation skeleton, preserve
+    bounded phase-local source response, and treat the reset-decompression
+    `P` channel plus dense support-edge hyperbolicity margin as watches. Do
+    not resume same-level component tuning unless this validation gate points
+    to a specific obstruction.
 ```
 
 Discussion discipline while runs are computing:
@@ -527,13 +542,20 @@ Completed: source-law definition package for the observed beta075 constitutive
            heat-current medium with entrained radial director and localized
            support-reservoir/open-system exchange; hyperbolicity and source
            sharpness remain watches.
-Allowed next: formal source-family equation package for the lead
-              regulated-director/support-reservoir model. Define variables,
-              constraints, exchange-current channels, regulator/rapidity
-              bounds, phase-local source response, and inherited
-              principal-symbol/hyperbolicity gates in equation form. Keep the
-              result as a conservative open-system constitutive skeleton, not a
-              final closed matter theorem.
+Completed: formal source-family equation package for the lead
+           regulated-director/support-reservoir model. The fixed-background
+           open-system equation skeleton closes the hard inherited gates and
+           keeps total conservation restoration explicit through localized
+           support exchange. The remaining watches are informative:
+           hyperbolicity is thin, phase-local source response is sharp, and
+           reset-decompression/core-throat power exchange needs a real
+           support-reservoir derivation rather than vague source language.
+Allowed next: source-family validation for the formal equations. Specify the
+              support-reservoir derivative operator, derive the principal
+              symbol from the equation skeleton, and carry the local `P`
+              channel and dense cone margin as watches. Keep the claim
+              fixed-background and open-system until those derivation checks
+              earn a stronger action-level statement.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
