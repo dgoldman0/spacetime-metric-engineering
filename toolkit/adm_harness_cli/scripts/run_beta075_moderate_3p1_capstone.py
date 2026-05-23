@@ -17,6 +17,7 @@ from adm_harness.beta075_moderate_3p1_capstone import (  # noqa: E402
     Moderate3P1Inputs,
     Moderate3P1Spec,
     run_moderate_3p1_v5_capstone,
+    service_label,
 )
 
 
@@ -43,6 +44,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--n-steps", type=int, default=64)
     parser.add_argument("--time-chunk-steps", type=int, default=4)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--service-rating", type=float, default=5.0)
+    parser.add_argument("--service-label", type=str, default=None)
+    parser.add_argument("--no-reference-surface-required", action="store_true")
     return parser
 
 
@@ -53,6 +57,9 @@ def main() -> int:
         energy_constant_dir=args.energy_constant_dir,
     )
     spec = Moderate3P1Spec(
+        expected_service_rating=float(args.service_rating),
+        service_label=args.service_label or service_label(float(args.service_rating)),
+        require_reference_surface=not bool(args.no_reference_surface_required),
         n_phi=args.n_phi,
         n_steps=args.n_steps,
         time_chunk_steps=args.time_chunk_steps,

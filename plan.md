@@ -485,9 +485,12 @@ new architecture sweep:
     and medium closure, covariant endpoint-medium audit, support-reservoir or
     stroke exchange, total support closure, first-order 3+1 handoff, and then
     the moderate angular/time 3+1 capstone. Do not substitute scaled V5 data
-    for either rating. V=2.5 is the half-nominal comparator; V=10 is the
-    double-nominal boundary finder and may fail cleanly if the full ladder
-    localizes the obstruction.
+    for either rating. V=2.5 is the half-nominal comparator and should be
+    handled as an ordinary seal attempt. V=10 is the double-nominal boundary
+    finder: if it fails, the run should keep collecting every computationally
+    reachable downstream gate so the result maps where the obstruction occurs,
+    how hard it fails, and whether later closure/covariant/support stages also
+    degrade or remain structurally coherent.
 ```
 
 Discussion discipline while runs are computing:
@@ -727,10 +730,12 @@ Allowed next: Stage II evidence synthesis and external-compute handoff for real
               comparator remains optional. V10 remains excluded until a full
               current V10 source-family ladder exists.
 Current: build full same-quality service-rating ladders for V=2.5 and V=10.
-         Treat the result as a nominal/half-nominal/double-nominal evidence
-         package only after each new rating has real source-family, covariant,
-         support-closure, first-order, and moderate-capstone artifacts. Scaled
-         V5 stress projections are not admissible as physical-source evidence.
+         Treat V=2.5 as a seal-style comparator. Treat V=10 as a diagnostic
+         boundary map if any gate fails: collect all reachable source-family,
+         covariant, support-closure, first-order, and moderate-capstone
+         diagnostics, but do not interpret a failed V10 ladder as physical-
+         source evidence. Scaled V5 stress projections are not admissible as
+         physical-source evidence.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not

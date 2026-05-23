@@ -14,6 +14,7 @@ from adm_harness.beta075_moderate_3p1_capstone import (
     _angular_weights,
     default_moderate_v5_surfaces,
     run_moderate_3p1_v5_capstone,
+    service_label,
 )
 from adm_harness.source_ledger import sha256_file, write_manifest
 
@@ -150,6 +151,10 @@ class Beta075Moderate3P1CapstoneTests(unittest.TestCase):
         self.assertAlmostEqual(float(weights.mean()), 1.0)
         self.assertGreater(float(weights.min()), 0.0)
 
+    def test_service_labels_are_path_safe(self):
+        self.assertEqual(service_label(2.5), "v2p5")
+        self.assertEqual(service_label(10.0), "v10")
+
     def test_small_run_writes_parquet_and_does_not_evolve_live_rows(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -192,6 +197,52 @@ class Beta075Moderate3P1CapstoneTests(unittest.TestCase):
             self.assertIn("no_live_row_evolution", set(gates["gate"]))
             self.assertGreater(int(manifest["rows"]["time_response"]), 0)
             self.assertTrue((root / "out" / "time_response").exists())
+
+    def test_single_service_surface_can_run_without_reference_baseline(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            dense = _write_fake_surface(root, "sealed_dense_v2p5", 2.5)
+            first_order = root / "first_order"
+            energy = root / "energy"
+            first_order.mkdir()
+            energy.mkdir()
+            pd.DataFrame([{
+                "hard_first_order_3p1_pass": True,
+                "first_order_3p1_status": "first_order_3p1_entry_watch_pass",
+            }]).to_csv(first_order / "beta075_first_order_3p1_decision.csv", index=False)
+            pd.DataFrame([{
+                "hard_constant_audit_pass": True,
+                "protective_buffer_watch": True,
+                "work_utilization": 0.82,
+            }]).to_csv(energy / "beta075_source_family_energy_constant_decision.csv", index=False)
+            inputs = Moderate3P1Inputs(
+                first_order,
+                energy,
+                surfaces=(dense,),
+                scenarios=(Moderate3P1ScenarioSpec("axis", 0.0, 0.0, 0.0, 0.0, 0.05, 1.0, "read"),),
+            )
+
+            paths = run_moderate_3p1_v5_capstone(
+                inputs,
+                root / "out",
+                spec=Moderate3P1Spec(
+                    expected_service_rating=2.5,
+                    service_label="v2p5",
+                    require_reference_surface=False,
+                    n_phi=4,
+                    n_steps=5,
+                    time_chunk_steps=2,
+                    workers=1,
+                ),
+            )
+            decision = pd.read_csv(paths["decision"]).iloc[0]
+            gates = pd.read_csv(paths["classification_gates"])
+
+            self.assertEqual(decision["capstone_status"], "stage2_moderate_3p1_v2p5_capstone_watch_pass")
+            self.assertEqual(
+                gates.loc[gates["gate"].eq("dense_reference_scope"), "status"].iloc[0],
+                "pass",
+            )
 
 
 if __name__ == "__main__":

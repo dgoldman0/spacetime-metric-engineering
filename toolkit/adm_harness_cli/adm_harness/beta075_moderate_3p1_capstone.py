@@ -18,6 +18,18 @@ from .source_ledger import sha256_file, write_manifest
 EPS = 1.0e-30
 
 
+def _token(value: float) -> str:
+    text = f"{float(value):.10g}"
+    return text.replace("-", "m").replace("+", "").replace(".", "p").replace("e", "e")
+
+
+def service_label(value: float) -> str:
+    number = float(value)
+    if number.is_integer():
+        return f"v{int(number)}"
+    return f"v{_token(number)}"
+
+
 @dataclass(frozen=True)
 class Moderate3P1SurfaceSpec:
     label: str
@@ -118,6 +130,9 @@ class Moderate3P1Inputs:
 
 @dataclass(frozen=True)
 class Moderate3P1Spec:
+    expected_service_rating: float = 5.0
+    service_label: str = "v5"
+    require_reference_surface: bool = True
     n_phi: int = 24
     n_steps: int = 64
     time_chunk_steps: int = 4
@@ -571,6 +586,7 @@ def _gates(
     first = first_order_decision.iloc[0]
     energy = energy_decision.iloc[0]
     services = sorted(float(v) for v in input_audit["service_rating"].unique())
+    expected_services = [float(spec.expected_service_rating)]
     all_manifest_ok = bool(
         input_audit["closure_point_sha_ok"].all()
         and input_audit["closure_decision_sha_ok"].all()
@@ -598,13 +614,14 @@ def _gates(
     max_local_pf = float(summary["inherited_local_pf_ratio"].astype(float).max())
     has_baseline = bool((input_audit["role"].astype(str) == "reference_baseline").any())
     has_dense = bool((input_audit["role"].astype(str) == "main_dense").any())
+    reference_scope_pass = has_dense and (has_baseline or not bool(spec.require_reference_surface))
     return pd.DataFrame([
         {
-            "gate": "sealed_v5_only_input_scope",
-            "status": "pass" if services == [5.0] else "fail",
+            "gate": "sealed_service_input_scope",
+            "status": "pass" if services == expected_services else "fail",
             "value": ",".join(f"{value:g}" for value in services),
-            "gate_value": "5",
-            "read": "moderate capstone starts from the sealed V5 target service ladder only",
+            "gate_value": ",".join(f"{value:g}" for value in expected_services),
+            "read": "moderate capstone starts from the requested sealed service-rating ladder only",
         },
         {
             "gate": "current_ladder_provenance_hashes",
@@ -614,11 +631,11 @@ def _gates(
             "read": "input files match their current closure/covariant manifests",
         },
         {
-            "gate": "full_v5_source_family_ladder",
+            "gate": "full_service_source_family_ladder",
             "status": "pass" if all_source_ladder_pass else "fail",
             "value": all_source_ladder_pass,
             "gate_value": True,
-            "read": "V5 inputs inherit support closure, covariant identity, boost, eigenvalue, and localization passes",
+            "read": "service-rating inputs inherit support closure, covariant identity, boost, eigenvalue, and localization passes",
         },
         {
             "gate": "first_order_3p1_handoff",
@@ -696,11 +713,11 @@ def _gates(
             "read": "reset-sector P/F closure remains the inherited local watch",
         },
         {
-            "gate": "baseline_dense_v5_reference_scope",
-            "status": "pass" if has_baseline and has_dense else "fail",
+            "gate": "dense_reference_scope",
+            "status": "pass" if reference_scope_pass else "fail",
             "value": f"baseline={has_baseline}; dense={has_dense}",
-            "gate_value": "baseline=true; dense=true",
-            "read": "sealed dense V5 is the main article and sealed baseline V5 is present only as a provenance/reference surface",
+            "gate_value": f"dense=true; reference_required={bool(spec.require_reference_surface)}",
+            "read": "sealed dense surface is the main article; a baseline reference is required only when configured",
         },
         {
             "gate": "energy_constant_watch_carried",
@@ -712,18 +729,18 @@ def _gates(
     ])
 
 
-def _decision(gates: pd.DataFrame, summary: pd.DataFrame) -> pd.DataFrame:
+def _decision(gates: pd.DataFrame, summary: pd.DataFrame, spec: Moderate3P1Spec) -> pd.DataFrame:
     fail_count = int((gates["status"].astype(str) == "fail").sum())
     watch_count = int((gates["status"].astype(str) == "watch").sum())
     hard_pass = fail_count == 0
     worst_driver = summary.loc[int(summary["peak_instantaneous_driver_to_endpoint_ratio"].astype(float).idxmax())]
     worst_cone = summary.loc[int(summary["min_cone_margin_proxy"].astype(float).idxmin())]
     status = (
-        "stage2_moderate_3p1_v5_capstone_watch_pass"
+        f"stage2_moderate_3p1_{spec.service_label}_capstone_watch_pass"
         if hard_pass and watch_count
-        else "stage2_moderate_3p1_v5_capstone_pass"
+        else f"stage2_moderate_3p1_{spec.service_label}_capstone_pass"
         if hard_pass
-        else "stage2_moderate_3p1_v5_capstone_fail"
+        else f"stage2_moderate_3p1_{spec.service_label}_capstone_fail"
     )
     return pd.DataFrame([{
         "capstone_status": status,
@@ -782,17 +799,18 @@ def run_moderate_3p1_v5_capstone(
     parquet_parts = [item[2] for item in results]
     stability = _stability(summary)
     gates = _gates(input_audit, summary, stability, first_order_decision, energy_decision, spec)
-    decision = _decision(gates, summary)
+    decision = _decision(gates, summary, spec)
+    prefix = f"beta075_moderate_3p1_{spec.service_label}"
 
     paths = {
-        "surface_catalog": outdir / "beta075_moderate_3p1_v5_surface_catalog.csv",
-        "scenario_catalog": outdir / "beta075_moderate_3p1_v5_scenario_catalog.csv",
-        "input_audit": outdir / "beta075_moderate_3p1_v5_input_audit.csv",
-        "scenario_summary": outdir / "beta075_moderate_3p1_v5_scenario_summary.csv",
-        "surface_stability": outdir / "beta075_moderate_3p1_v5_surface_stability.csv",
-        "classification_gates": outdir / "beta075_moderate_3p1_v5_classification_gates.csv",
-        "top_constraint_drivers": outdir / "beta075_moderate_3p1_v5_top_constraint_drivers.parquet",
-        "decision": outdir / "beta075_moderate_3p1_v5_decision.csv",
+        "surface_catalog": outdir / f"{prefix}_surface_catalog.csv",
+        "scenario_catalog": outdir / f"{prefix}_scenario_catalog.csv",
+        "input_audit": outdir / f"{prefix}_input_audit.csv",
+        "scenario_summary": outdir / f"{prefix}_scenario_summary.csv",
+        "surface_stability": outdir / f"{prefix}_surface_stability.csv",
+        "classification_gates": outdir / f"{prefix}_classification_gates.csv",
+        "top_constraint_drivers": outdir / f"{prefix}_top_constraint_drivers.parquet",
+        "decision": outdir / f"{prefix}_decision.csv",
     }
     surface_catalog.to_csv(paths["surface_catalog"], index=False)
     scenario_catalog.to_csv(paths["scenario_catalog"], index=False)
@@ -803,7 +821,7 @@ def run_moderate_3p1_v5_capstone(
     top_rows.to_parquet(paths["top_constraint_drivers"], index=False, compression="zstd")
     decision.to_csv(paths["decision"], index=False)
 
-    manifest_path = outdir / "beta075_moderate_3p1_v5_manifest.json"
+    manifest_path = outdir / f"{prefix}_manifest.json"
     manifest_files = {key: str(path) for key, path in paths.items()}
     manifest_files["time_response_parts"] = parquet_parts
     input_paths: dict[str, str] = {
@@ -815,12 +833,12 @@ def run_moderate_3p1_v5_capstone(
             if path.exists():
                 input_paths[f"{surface.label}:{key}"] = str(path)
     manifest = {
-        "source_name": "beta075_moderate_3p1_v5_capstone",
+        "source_name": f"beta075_moderate_3p1_{spec.service_label}_capstone",
         "spec": spec.__dict__,
         "claim_boundary": (
-            "Moderate local Stage II 3+1/backreaction capstone for the sealed V5 target service rating. "
-            "It evolves current sealed V5 source-family closure data through scheduled angular/time response; "
-            "it does not include V10 or any service rating without a full current ladder."
+            "Moderate local Stage II 3+1/backreaction capstone for one sealed service rating. "
+            "It evolves current source-family closure data through scheduled angular/time response; "
+            "it does not include any service rating without a full current ladder."
         ),
         "storage": "time-response and top-driver outputs are parquet; catalog, gate, summary, audit, and decision outputs are csv/json",
         "inputs": input_paths,
