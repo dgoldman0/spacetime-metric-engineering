@@ -211,6 +211,17 @@ new architecture sweep:
     outward. Large `5e-4` stress remains a watch (`1.445` max, now led by
     release/pre-entry stress rows), so the source law is an observed-amplitude
     reduced dynamics repair rather than a full high-amplitude proof.
+33. Decision checkpoint for the next session: do not spend the next block
+    fine-tuning the artificial `5e-4` stress margin unless a higher-rung
+    feasibility test specifically requires high-amplitude reserve. Carry that
+    result as a named robustness watch: observed V=5 source-coupled dynamics
+    are clean under the normalized support-edge source law, while the
+    deliberately amplified stress still overdrives support-edge phase-boundary
+    rows. Next start the higher-rung physical/source feasibility work: can the
+    normalized support-edge source law be expressed as a bounded phase-local
+    constitutive/source rule inside the current endpoint/support medium story,
+    without hidden live support, superluminal transport, or a decorative new
+    component?
 ```
 
 Discussion discipline while runs are computing:
@@ -325,13 +336,16 @@ Completed: targeted V=5 support-source design for the localized support-edge
            normalization on entry/catch support-edge slices clears the observed
            full-package source-coupling sweep without adding a new geometric
            component.
-Allowed next: refine or formalize the support-edge source-normalization rule
-              inside the reduced model. Check whether the `0.95`
-              observed-reference cap can be expressed as a smooth phase-local
-              source law with bounded transition behavior; carry the large
-              release/pre-entry stress rows as watches. Do not branch into
-              V=3/V=4 interpolation unless a later V=5 refinement needs
-              transition mapping.
+Allowed next: higher-rung physical/source feasibility for the normalized
+              support-edge source law. First ask whether the `0.95`
+              observed-reference source-profile cap can be expressed as a
+              bounded phase-local constitutive/source rule within the current
+              endpoint/support medium and support-stress story. Carry the
+              large release/pre-entry `5e-4` stress failures as engineering
+              margin watches, not as a reason for more same-level tuning,
+              unless the higher-rung test requires a high-amplitude reserve
+              theorem. Do not branch into V=3/V=4 interpolation unless a later
+              V=5 refinement needs transition mapping.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting
