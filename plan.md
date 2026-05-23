@@ -452,24 +452,31 @@ new architecture sweep:
     Heavy point-response artifacts are stored as Parquet through
     `runs/stage2_external`. Human narrative report:
     `supporting_reports/STAGE2_BETA075_3P1_BACKREACTION_CAPSTONE.md`.
-55. Current next rung: moderate local 3+1/backreaction capstone for the sealed
-    V5 target service rating only. Use the sealed dense V5 closure/covariant
-    artifacts as the main article and sealed baseline V5 as the
-    lower-resolution provenance/reference check. Add explicit angular lifting,
-    time-stepped evolution, and Parquet row-group output under the symlinked
-    `runs/stage2_external` tree. Do not run V10 in this capstone unless a full
-    current Stage II V10 source-family closure/covariant/support ladder is
-    built first; do not substitute an edge-load projection for a sealed V10
-    physical-source surface. Lower-service dense V2 may remain an optional
-    comparator later, but it is not part of the first moderate capstone.
-56. Stage II closeout remains pending this moderate sealed-V5 capstone. If the
-    sealed V5 run passes without live-row evolution, limiter clipping, state
-    amplification, or hidden provenance drift, then the local Stage II evidence
-    package can be synthesized for external-compute handoff. The honest
-    academic claim would be that the beta075 V5 package has passed
-    prescribed-metric, physical source-family, action-level fixed-background
-    PDE, first-order 3+1 coupling, and a moderate local off-axis/backreaction
-    capstone strongly enough to justify final external-compute analysis.
+55. Completed moderate local 3+1/backreaction capstone for the sealed V5 target
+    service rating. Status is `stage2_moderate_3p1_v5_capstone_watch_pass`.
+    The run used the sealed dense V5 closure/covariant artifacts as the main
+    article and sealed baseline V5 as the lower-resolution reference surface,
+    with explicit angular lifting (`24` azimuthal samples), scheduled time
+    evolution (`64` steps), four off-axis/backreaction scenarios, and
+    `218,400,768` Parquet time-response rows under the symlinked
+    `runs/stage2_external` tree. Hard gates pass: V5 provenance hashes match,
+    the full V5 source-family ladder is inherited-clean, no live rows evolve,
+    no limiter clipping is used, state amplification remains `1.0`, feedback
+    stays below gate (`1.058762 / 1.08`), scheduled mean driver stays below
+    budget (`0.476122 / 0.55`), and localization remains clean. Watches are
+    the instantaneous scheduled peak (`1.651718 / 1.75`), cone margin
+    (`0.010207`), inherited reset-sector P/F (`0.544567 / 0.55`), and the
+    energy theorem constant (`0.819620`). Human narrative report:
+    `supporting_reports/STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md`.
+56. Current closeout read: beta075 at sealed V5 has reached the locally
+    computable Stage II evidence boundary. The honest academic claim is that
+    the V5 package has passed prescribed-metric, physical source-family,
+    action-level fixed-background PDE, first-order 3+1 coupling, and a
+    moderate local off-axis/backreaction capstone strongly enough to justify
+    final external-compute analysis. The claim does not include V10; V10
+    requires a full current Stage II source-family closure/covariant/support
+    ladder before any capstone run can be interpreted as physical-source
+    evidence.
 ```
 
 Discussion discipline while runs are computing:
@@ -695,15 +702,19 @@ Completed: light local off-axis/backreaction proxy stress. The
            scenarios and complete surfaces, but it is now classified as a proxy
            rather than the final local capstone because it was computationally
            small and did not carry explicit angular/time evolution.
-Current: moderate local 3+1/backreaction capstone for sealed V5 only, using
-         the current full V5 ladder. This is full-system testing at the locally
-         computable Stage II boundary, not a same-level repair loop around one
-         component. V10 is excluded until a full current V10 source-family
-         ladder exists.
-Allowed next after a clean moderate-capstone read: Stage II evidence synthesis
-              and external-compute handoff for real off-axis 3+1 grids, richer
-              perturbation families, longer constraint-propagation monitors,
-              and final coupled Einstein-matter/source-family checks.
+Completed: moderate local 3+1/backreaction capstone for sealed V5. The
+           partition-backed Parquet run evolves the current full V5 ladder
+           through angular/time response and passes hard gates without live-row
+           evolution, limiter clipping, state amplification, hidden provenance
+           drift, feedback blow-up, or localization loss. The remaining watches
+           are peak scheduled concentration, inherited cone/reset-sector
+           margin, and the energy theorem constant.
+Allowed next: Stage II evidence synthesis and external-compute handoff for real
+              off-axis 3+1 grids, richer perturbation families, longer
+              constraint-propagation monitors, and final coupled
+              Einstein-matter/source-family checks. A lower-service V2
+              comparator remains optional. V10 remains excluded until a full
+              current V10 source-family ladder exists.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not

@@ -1,11 +1,20 @@
-# Stage II Beta075 3+1 Backreaction Capstone
+# Stage II Beta075 Light 3+1 Backreaction Proxy
 
 ## Status
 
 Status: `stage2_3p1_backreaction_capstone_watch_pass`.
 
-This is the local-compute Stage II capstone for beta075. The test lifts the
-hard-clean first-order 3+1 handoff into a small scenario catalog of off-axis
+Scope correction: this report is now classified as a light local
+off-axis/backreaction proxy, not the final local-compute Stage II capstone. The
+moderate sealed-V5 capstone is recorded separately in
+`supporting_reports/STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md`. This proxy
+remains useful because it was the first partition-backed Parquet off-axis and
+metric-feedback stress, but its computational size and lack of explicit
+angular/time evolution are too small for it to carry the capstone claim by
+itself.
+
+This light proxy lifts the hard-clean first-order 3+1 handoff into a small
+scenario catalog of off-axis
 and metric-feedback stresses. It keeps the run disciplined: three complete
 surfaces, five stress scenarios, summary-first outputs, and Parquet for the
 heavy point-response artifacts.
@@ -13,7 +22,7 @@ heavy point-response artifacts.
 The result is hard-clean. There are zero hard failures. The watches are the
 same inherited margin constants already known before this rung: thin boost /
 cone margin, reset-sector P/F closure, and the energy theorem utilization.
-The capstone does not create a new source-law, support-reservoir, live-support,
+The proxy does not create a new source-law, support-reservoir, live-support,
 or off-mask failure.
 
 This report is manually written from structured outputs. The harness writes
@@ -149,28 +158,26 @@ cone-margin proxy = 0.010296510
 
 That location is exactly the known reset-sector support-edge watch. The stress
 does not migrate into packet-live support, does not require angular exchange,
-and does not create an unrelated off-mask driver. That is the central
-physical read of the capstone.
+and does not create an unrelated off-mask driver. That is the central physical
+read of this light proxy.
 
 ## Interpretation
 
-The local 3+1/backreaction capstone passed. The result does not prove a final
-Einstein-matter theorem, but it does move the project beyond "interesting
-fixed-background math." The beta075 package now has hard-clean evidence across
-prescribed-metric source accounting, physical source-family definition,
-action-level fixed-background evolution, first-order 3+1 coupling, and local
-off-axis/backreaction stress.
+The light local 3+1/backreaction proxy passed. The result does not prove a
+final Einstein-matter theorem, and by itself it no longer carries the
+local-compute capstone claim. Its role is narrower: it showed that the first
+off-axis/metric-feedback stress layer did not point back to a component repair
+or create live/off-mask leakage before the project moved to an explicitly
+angular/time-evolved capstone.
 
-The remaining debt is no longer a same-level design question. It is the
-expected final-analysis debt: run a larger external-compute 3+1/backreaction
-campaign with real off-axis grids, richer perturbation families, and longer
-constraint-propagation monitors.
+The moderate sealed-V5 capstone now supplies the stronger local-compute read.
+Use that later report for the Stage II closeout interpretation.
 
 ## Claim Boundary
 
 Included:
 
-- local-compute 3+1/backreaction capstone;
+- light local 3+1/backreaction proxy stress;
 - off-axis and metric-feedback scenario stress;
 - Parquet point-response artifacts;
 - cross-surface baseline/dense/lower-service stability;
@@ -186,16 +193,13 @@ Excluded:
 
 ## Current Read
 
-Stage II is locally mature. If the project is presented to academic reviewers,
-the honest claim is now:
+This proxy supports the Stage II progression but is not the final local read.
+The stronger current claim is made only after the moderate sealed-V5 capstone:
 
 ```text
-The beta075 active-rail package has passed the strongest locally computable
-prescribed-metric, source-family, action-level PDE, first-order coupling, and
-3+1/backreaction stress evidence. The design appears real enough to warrant
-the final external-compute analysis.
+The light off-axis/backreaction proxy did not uncover a component-level
+obstruction and justified proceeding to the moderate sealed-V5 3+1 capstone.
 ```
 
-That is not the end of the physics. It is the end of what this laptop should
-be asked to prove without turning the evidence program into storage management
-and same-level retesting.
+The capstone-level conclusion is recorded in
+`supporting_reports/STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md`.
