@@ -17,37 +17,42 @@ const workspaceDefs = [
     id: "mixed",
     label: "Mixed Quiz",
     title: "Qualification Drill",
-    deck: "A compact exam bench for ordinary questions, explanations, and module scoring.",
-    types: null
+    deck: "Certification readiness across foundations, constraints, architecture, and review.",
+    types: null,
+    tone: "amber"
   },
   {
     id: "boundary",
     label: "Boundary Board",
     title: "Claim Boundary Board",
-    deck: "Sort statements by epistemic status so project vocabulary cannot masquerade as established theory.",
-    types: ["claim_classification"]
+    deck: "Epistemic status, claim boundaries, and curriculum governance.",
+    types: ["claim_classification"],
+    tone: "violet"
   },
   {
     id: "symbols",
     label: "Symbol Lab",
-    title: "Symbol And Equation Lab",
-    deck: "Use rendered math tokens and symbol-role matching without typing LaTeX.",
-    types: ["drag_fill", "matching"]
+    title: "Symbol and Equation Lab",
+    deck: "Notation, source ledgers, and symbol-role interpretation.",
+    types: ["drag_fill", "matching"],
+    tone: "blue"
   },
   {
     id: "chronology",
     label: "Timeline",
     title: "Service Chronology Timeline",
-    deck: "Work directly with support, carry, catch, fade, decompression, and reset order.",
-    types: ["sequence"]
+    deck: "Support, carry, catch, fade, decompression, and reset order.",
+    types: ["sequence"],
+    tone: "green"
   },
   {
     id: "review",
     label: "Design Review",
     title: "Plant Review Dossier",
-    deck: "Inspect a service case and decide what evidence is missing before qualification.",
+    deck: "Evidence packages, missing channels, qualification gates, and review burden.",
     types: ["multi", "mc"],
-    modules: ["Failure analysis", "Project-state handling"]
+    modules: ["Failure analysis", "Project-state handling"],
+    tone: "red"
   }
 ];
 
@@ -74,6 +79,14 @@ export function App() {
     difficulties: ["core", "intermediate", "advanced"],
     claimStatuses: unique(questionBank.map((q) => q.claimStatus))
   }), []);
+  const workspaceCounts = useMemo(() => {
+    return Object.fromEntries(
+      workspaceDefs.map((item) => [
+        item.id,
+        questionBank.filter((question) => matchesWorkspace(question, item)).length
+      ])
+    );
+  }, []);
 
   const reviewedResults = useMemo(() => {
     return current
@@ -104,6 +117,10 @@ export function App() {
     setReviewed(new Set());
   }
 
+  function clearFilters() {
+    setFilters(defaultFilters);
+  }
+
   function updateResponse(questionId, nextResponse) {
     setResponses((previous) => ({
       ...previous,
@@ -124,49 +141,36 @@ export function App() {
       <header className="app-header">
         <div>
           <p className="eyebrow">Active-Rail Service Engineering</p>
-          <h1>Engineering Board</h1>
+          <h1>Training Board</h1>
         </div>
-        <div className="header-status">{questionBank.length} local questions loaded</div>
+        <div className="header-status">
+          <span>{questionBank.length} local questions</span>
+          <span>{workspaceCounts[workspace] || 0} in lane</span>
+        </div>
       </header>
 
-      <section className="workspace-launcher" aria-label="Activity workspaces">
-        {workspaceDefs.map((item) => (
-          <button
-            type="button"
-            key={item.id}
-            className={`workspace-card ${workspace === item.id ? "active" : ""}`}
-            onClick={() => setWorkspace(item.id)}
-          >
-            <span>{item.label}</span>
-            <strong>{item.title}</strong>
-            <small>{item.deck}</small>
-          </button>
-        ))}
-      </section>
-
-      <main className="board-layout">
-        <aside className="session-panel" aria-label="Session controls">
-          <h2>Session</h2>
-          <p className="muted">Controls are intentionally secondary. Pick the workspace first; then narrow the content.</p>
-          <div className="session-controls">
-            <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
-              ["6", "6"],
-              ["10", "10"],
-              ["all", "All"]
-            ]} />
-            <MultiFacet label="Tracks" values={filters.tracks} options={options.tracks.map((value) => [value, value])} emptyLabel="All tracks" onChange={(value) => updateFilter("tracks", value)} />
-            <MultiFacet label="Modules" values={filters.modules} options={options.modules.map((value) => [value, value])} emptyLabel="All modules" onChange={(value) => updateFilter("modules", value)} />
-            <MultiFacet label="Difficulty" values={filters.difficulties} options={options.difficulties.map((value) => [value, titleCase(value)])} emptyLabel="All levels" onChange={(value) => updateFilter("difficulties", value)} />
-            <MultiFacet label="Claim Status" values={filters.claimStatuses} options={options.claimStatuses.map((value) => [value, claimLabels[value] || value])} emptyLabel="All statuses" onChange={(value) => updateFilter("claimStatuses", value)} />
-            <SelectControl label="Optional Content" value={filters.optionalContent} onChange={(value) => updateFilter("optionalContent", value)} options={[
-              ["stable", "Stable only"],
-              ["include", "Include flagged"],
-              ["flagged", "Flagged only"]
-            ]} />
+      <main className="training-layout">
+        <nav className="workspace-rail" aria-label="Activity workspaces">
+          <div className="rail-heading">
+            <span>Workspaces</span>
           </div>
-        </aside>
+          {workspaceDefs.map((item) => (
+            <button
+              type="button"
+              key={item.id}
+              className={`workspace-tab ${workspace === item.id ? "active" : ""}`}
+              data-tone={item.tone}
+              onClick={() => setWorkspace(item.id)}
+            >
+              <span className="workspace-tab-label">{item.label}</span>
+              <strong>{item.title}</strong>
+              <small>{item.deck}</small>
+              <span className="workspace-count">{workspaceCounts[item.id] || 0} ready</span>
+            </button>
+          ))}
+        </nav>
 
-        <section className={`workspace-panel ${workspace}-workspace`} aria-live="polite">
+        <section className={`workspace-panel ${workspace}-workspace`} data-tone={activeWorkspace.tone} aria-live="polite">
           <WorkspaceHeader
             workspace={activeWorkspace}
             count={current.length}
@@ -175,15 +179,43 @@ export function App() {
           />
           <WorkspaceBody
             workspace={workspace}
+            workspaceDef={activeWorkspace}
+            availableCount={workspaceCounts[workspace] || 0}
             questions={current}
             responses={responses}
             reviewed={reviewed}
             onResponse={updateResponse}
             onReview={reviewOne}
+            onClearFilters={clearFilters}
           />
         </section>
 
-        <ReportPanel results={reviewedResults} totalQuestions={current.length} />
+        <aside className="side-stack">
+          <section className="session-panel" aria-label="Session controls">
+            <div className="panel-title-row">
+              <h2>Scope</h2>
+              <button type="button" className="text-action" onClick={clearFilters}>Default</button>
+            </div>
+            <div className="session-controls">
+              <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
+                ["6", "6"],
+                ["10", "10"],
+                ["all", "All"]
+              ]} />
+              <MultiFacet label="Tracks" values={filters.tracks} options={options.tracks.map((value) => [value, value])} emptyLabel="All tracks" onChange={(value) => updateFilter("tracks", value)} />
+              <MultiFacet label="Modules" values={filters.modules} options={options.modules.map((value) => [value, value])} emptyLabel="All modules" onChange={(value) => updateFilter("modules", value)} />
+              <MultiFacet label="Difficulty" values={filters.difficulties} options={options.difficulties.map((value) => [value, titleCase(value)])} emptyLabel="All levels" onChange={(value) => updateFilter("difficulties", value)} />
+              <MultiFacet label="Claim Status" values={filters.claimStatuses} options={options.claimStatuses.map((value) => [value, claimLabels[value] || value])} emptyLabel="All statuses" onChange={(value) => updateFilter("claimStatuses", value)} />
+              <SelectControl label="Optional Content" value={filters.optionalContent} onChange={(value) => updateFilter("optionalContent", value)} options={[
+                ["stable", "Stable only"],
+                ["include", "Include flagged"],
+                ["flagged", "Flagged only"]
+              ]} />
+            </div>
+          </section>
+
+          <ReportPanel results={reviewedResults} totalQuestions={current.length} />
+        </aside>
       </main>
     </div>
   );
@@ -199,16 +231,16 @@ function WorkspaceHeader({ workspace, count, onReviewAll, onReset }) {
       </div>
       <div className="toolbar-actions">
         <span className="question-count">{count} item{count === 1 ? "" : "s"}</span>
-        <button type="button" onClick={onReviewAll}>Check Workspace</button>
+        <button type="button" onClick={onReviewAll} disabled={count === 0}>Check Workspace</button>
         <button type="button" className="secondary-action" onClick={onReset}>Reset</button>
       </div>
     </div>
   );
 }
 
-function WorkspaceBody({ workspace, questions, responses, reviewed, onResponse, onReview }) {
+function WorkspaceBody({ workspace, workspaceDef, availableCount, questions, responses, reviewed, onResponse, onReview, onClearFilters }) {
   if (!questions.length) {
-    return <div className="empty-workspace">No questions match this workspace and filter combination.</div>;
+    return <EmptyWorkspace workspace={workspaceDef} availableCount={availableCount} onClearFilters={onClearFilters} />;
   }
 
   if (workspace === "boundary") {
@@ -224,6 +256,24 @@ function WorkspaceBody({ workspace, questions, responses, reviewed, onResponse, 
     return <DesignReviewWorkspace questions={questions} responses={responses} reviewed={reviewed} onResponse={onResponse} onReview={onReview} />;
   }
   return <MixedWorkspace questions={questions} responses={responses} reviewed={reviewed} onResponse={onResponse} onReview={onReview} />;
+}
+
+function EmptyWorkspace({ workspace, availableCount, onClearFilters }) {
+  const seeded = availableCount > 0;
+  return (
+    <div className="empty-workspace">
+      <div>
+        <p className="eyebrow">{seeded ? "Filtered out" : "Curriculum gap"}</p>
+        <h3>{seeded ? "No matching items in this scope" : "This workspace is waiting for seed questions"}</h3>
+        <p>
+          {seeded
+            ? "This lane has questions in the local bank, but the current scope excludes them."
+            : `${workspace.title} is defined in the interface, but the bank does not contain matching activities yet.`}
+        </p>
+      </div>
+      <button type="button" onClick={onClearFilters}>Reset Scope</button>
+    </div>
+  );
 }
 
 function MixedWorkspace({ questions, responses, reviewed, onResponse, onReview }) {
@@ -281,7 +331,8 @@ function SymbolWorkspace({ questions, responses, reviewed, onResponse, onReview 
     <div className="symbol-lab-grid">
       <section className="lab-bench">
         <h3>Equation Bench</h3>
-        <p className="muted">Rendered tokens are moved into blanks. The learner sees math, not raw LaTeX.</p>
+        <p className="muted">Rendered tokens and demanded-source notation.</p>
+        {!symbolQuestions.length && <LaneEmpty label="No symbol-fill questions in this scope." />}
         {symbolQuestions.map((question) => {
           const result = reviewed.has(question.id) ? registry[question.type].grade(question, responses[question.id]) : null;
           return (
@@ -301,7 +352,8 @@ function SymbolWorkspace({ questions, responses, reviewed, onResponse, onReview 
       </section>
       <section className="lab-bench secondary-bench">
         <h3>Symbol Roles</h3>
-        <p className="muted">Pair rendered symbols with their operational meaning.</p>
+        <p className="muted">Symbol meanings and operational roles.</p>
+        {!matchQuestions.length && <LaneEmpty label="No matching questions in this scope." />}
         {matchQuestions.map((question) => {
           const result = reviewed.has(question.id) ? registry[question.type].grade(question, responses[question.id]) : null;
           return (
@@ -321,6 +373,10 @@ function SymbolWorkspace({ questions, responses, reviewed, onResponse, onReview 
       </section>
     </div>
   );
+}
+
+function LaneEmpty({ label }) {
+  return <div className="lane-empty">{label}</div>;
 }
 
 function ChronologyWorkspace({ questions, responses, reviewed, onResponse, onReview }) {
