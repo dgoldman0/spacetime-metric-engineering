@@ -242,16 +242,24 @@ new architecture sweep:
     plus reduced endpoint/support-sector level; do not return to same-level
     tuning unless a later action/PDE/full-evolution gate points back to a
     specific watch.
-36. Current next rung: run a full-system fixed-background PDE/evolution stress
-    test for the sealed beta075 package. This is not a source-law/support-edge
-    tuning block. Use the sealed `rematch_w6_t1p5` package, dense regenerated
-    ledgers, covariant endpoint medium, `24x14` support closure, cap-0.95
-    source-coupling law, bounded rapidity variable, and row-budget guard as
-    inputs to an integrated evolution/proof-obligation test over the active
-    support domain. Gate the whole package on cone/transport margins,
-    live-support exclusion, support/exchange localization, conservation
-    accounting, and no new hidden component. Only return to a component if this
-    full-system test fails and localizes the failure to that component.
+36. Completed full-system fixed-background PDE/evolution stress test for the
+    sealed beta075 package. This was an integrated whole-package rung, not a
+    source-law/support-edge tuning block: it used the sealed `rematch_w6_t1p5`
+    package, dense regenerated ledgers, covariant endpoint medium, `24x14`
+    support closure, cap-0.95 source-coupling law, bounded rapidity variable,
+    and row-budget guard as inputs. Status is
+    `full_system_evolution_pass_with_watches`: observed outward/inward/backward
+    unlimited full-domain scenarios pass with zero over-budget rows, the
+    observed budget limiter is inactive, no live or packet-live rows evolve,
+    and max observed budget fraction is `0.121201`. Large `5e-4` full-domain
+    stress also stays below budget in this run (`0.604677`), but remains a
+    deliberate engineering-margin watch together with source-law smoothness and
+    thin cone/transport margins.
+37. Current next rung: move upward to action-level fixed-background PDE proof
+    obligations or broader full-system validation for the sealed package. Do
+    not return to same-level source-law/support-edge/component tuning unless a
+    higher-rung full-system/action/PDE gate fails and localizes the failure to
+    that specific mechanism.
 ```
 
 Discussion discipline while runs are computing:
@@ -373,16 +381,20 @@ Completed: first support-edge source-law feasibility audit. It establishes a
            for now. Do not keep testing this component in isolation unless a
            later full-system/action/PDE gate fails specifically on source-law
            smoothness, hidden support, or transport margin.
-Allowed next: full-system fixed-background PDE/evolution stress testing for the
-              sealed beta075 package. The active object is the integrated
-              prescribed-metric/effective-source plus reduced endpoint/support
-              system, not any one component. Carry dense reset/core,
-              source-law smoothness, thin characteristic margin, raw
-              heat-current fragility, compact bracket miss, and artificial
-              `5e-4` overdrive as watches. Do not branch into source-law,
-              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
-              unless the full-system PDE/evolution rung fails and points back
-              to that specific mechanism.
+Completed: full-system fixed-background PDE/evolution stress testing for the
+           sealed beta075 package. The active object was the integrated
+           prescribed-metric/effective-source plus reduced endpoint/support
+           system, not any one component. Observed-amplitude full-domain
+           evolution passes without limiter clipping, live-row evolution, or
+           state amplification.
+Allowed next: action-level fixed-background PDE proof obligations or broader
+              full-system validation for the sealed beta075 package. Carry
+              dense reset/core, source-law smoothness, thin characteristic
+              margin, raw heat-current fragility, compact bracket miss, and
+              artificial `5e-4` overdrive as light watches. Do not branch into
+              source-law, support-edge, V=3/V=4 interpolation, or
+              artificial-stress tuning unless a higher-rung full-system/action/
+              PDE gate fails and points back to that specific mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
