@@ -128,6 +128,14 @@ new architecture sweep:
     read more fragile than the aggregate pass suggests: next reduced evolution
     must explicitly preserve transport margin / heat-current regulation before
     any broader action-level claim.
+25. Completed first local fixed-background reduced transport evolution pilot.
+    A raw `+1e-4` heat-ratio perturbation fails immediately on the dense
+    reset-decompression/support-edge watch row, while the same stress evolved
+    as bounded transport rapidity with relaxation preserves the hard cone and
+    transport gates. This promotes bounded rapidity as the lead reduced
+    transport variable, but not as a full PDE closure: a larger `+5e-4`
+    rapidity kick still fails the cone-margin gate, so the next spatial model
+    must protect margin under advection and support-sector source coupling.
 ```
 
 Discussion discipline while runs are computing:
@@ -216,6 +224,12 @@ Allowed next: reduced fixed-background evolution with explicit transport-margin
               primary stability constraint; if perturbations drive the local
               heat ratio through the transport boundary, that is a support-sector
               PDE failure even though the frozen algebraic symbol passes.
+Allowed next: spatial `1+1` reduced transport evolution in the service radial
+              coordinate using bounded rapidity as the heat-current variable.
+              Start from the dense reset/support-edge adversarial rows, include
+              explicit support stroke/stress source coupling, and require the
+              `O(1e-4)` stress case to preserve cone and transport margins
+              under advection as well as local relaxation.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
