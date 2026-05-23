@@ -176,6 +176,19 @@ Good report language:
 
 Avoid reducing the session to only a percent.
 
+## Explanation Depth
+
+Explanations are part of the assessment surface, not decorative text.
+
+Minimum expectations should scale by difficulty:
+
+- Core explanations may be brief, but must still say why the answer is right.
+- Intermediate explanations should name the main implication or misconception.
+- Advanced explanations should teach the reasoning path, boundary, and why tempting overclaims fail.
+
+Mechanical validation can enforce a floor for very thin `why` and `boundary`
+text. Human review still decides whether the explanation actually teaches.
+
 ## Qualification Profiles
 
 Different modes can use different pass criteria.

@@ -58,7 +58,7 @@ export const workspaceDefs = [
 ];
 
 export const defaultFilters = {
-  count: "6",
+  count: "10",
   tracks: [],
   modules: [],
   difficulties: [],
@@ -205,8 +205,12 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
             </div>
             <div className="session-controls">
               <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
-                ["6", "6"],
+                ["5", "5"],
                 ["10", "10"],
+                ["15", "15"],
+                ["20", "20"],
+                ["30", "30"],
+                ["50", "50"],
                 ["all", "All"]
               ]} />
               <MultiFacet label="Tracks" values={filters.tracks} options={options.tracks.map((value) => [value, value])} emptyLabel="All tracks" onChange={(value) => updateFilter("tracks", value)} />

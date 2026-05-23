@@ -20,6 +20,7 @@ Current features:
 
 - study, quiz, and boundary modes,
 - filters for track, module, difficulty, question type, claim status, question context, and optional flagged content,
+- count controls for small drills, medium reviews, large reviews, or all matching questions,
 - renderer registry for standard quiz, symbol-fill, chronology, matching, and boundary-classification activities,
 - multiple choice, select all, true/false, rendered symbol-fill, sequencing, matching, and claim-classification questions,
 - click/tap or drag word-bank placement for fill blanks,
@@ -27,6 +28,7 @@ Current features:
 - visible claim-status and optional-content badges,
 - grading by module, claim status, question context, and activity type,
 - explanations with answer, reason, boundary, and references.
+- validation for source hygiene, paper-theory anchors, project-framing leakage, and minimal explanation depth.
 
 This is intentionally local-first. There is no backend, database, or user account system in this version.
 

@@ -440,7 +440,8 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
-- The seed bank has started moving from sample questions toward manually reviewed paper-theory and project-application items.
+- The seed bank has 48 validated questions and has started moving from sample questions toward manually reviewed paper-theory and project-application items.
+- Count controls now support small drills, medium reviews, large reviews, and all matching questions.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
 
@@ -452,7 +453,6 @@ What is still missing:
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks,
 - richer answer/explanation writing, especially for intermediate and advanced questions,
-- more flexible session count controls than the current small fixed choices,
 - better mode separation between study, drill, qualification, and project-internal review.
 
 The visible workspace architecture is now good enough to begin curriculum design and small vetted content expansion. Large-scale population should still wait until the quality rubric, source-link schema, and validation gates are in place.
@@ -464,7 +464,6 @@ The next milestone should make the app ready for serious curriculum authoring:
 - add another vetted batch of questions across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, and design review,
 - refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
 - strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
-- expand count/session controls beyond only 6, 10, and all,
 - keep structured references and source links visible in reviewed explanations,
 - keep validation rejecting quiz-meta prompts, vague paper-theory stems, unsupported source links, and project-framed paper-theory items,
 - keep the workspace architecture and smoke tests healthy,

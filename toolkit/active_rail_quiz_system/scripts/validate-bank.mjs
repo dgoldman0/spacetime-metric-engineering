@@ -10,6 +10,9 @@ const flaggedSourceRequired = new Set(["project_material", "project_state", "ope
 const publicUrlPattern = /^https:\/\/(arxiv\.org|github\.com\/dgoldman0\/spacetime-metric-engineering)\//;
 const bannedSourceText = [/PROJECT_WORK_ANALYSIS/i, /Project work analysis/i];
 const bannedPaperTheoryText = [/\bactive-rail\b/i, /\bservice-design\b/i, /\bservice-governor\b/i];
+const publicationYearPattern = /\b(19|20)\d{2}\b/;
+const minWhyWords = { core: 10, intermediate: 14, advanced: 24 };
+const minBoundaryWords = { core: 8, intermediate: 10, advanced: 12 };
 const bannedMetaPatterns = [
   /\bquiz\b/i,
   /\bquestion bank\b/i,
@@ -45,6 +48,7 @@ for (const question of questionBank) {
 
   validateSources(question);
   validateContext(question);
+  validateExplanationDepth(question);
 
   if (["mc", "multi", "tf"].includes(question.type)) {
     const choices = new Set(question.choices.map((choice) => choice.id));
@@ -112,6 +116,27 @@ function validateContext(question) {
   bannedPaperTheoryText.forEach((pattern) => {
     assert(!pattern.test(searchable), `paper-theory item has project-specific framing on ${question.id}`);
   });
+
+  const promptText = richTextToPlain(question.prompt || question.promptParts || "");
+  assert(publicationYearPattern.test(promptText), `paper-theory prompt needs a publication year or equivalent citation anchor on ${question.id}`);
+}
+
+function validateExplanationDepth(question) {
+  const whyWords = wordCount(question.explanation.why);
+  const boundaryWords = wordCount(question.explanation.boundary);
+  assert(whyWords >= minWhyWords[question.difficulty], `explanation why is too thin for ${question.difficulty} item ${question.id}`);
+  assert(boundaryWords >= minBoundaryWords[question.difficulty], `explanation boundary is too thin for ${question.difficulty} item ${question.id}`);
+}
+
+function wordCount(value) {
+  return richTextToPlain(value).trim().split(/\s+/).filter(Boolean).length;
+}
+
+function richTextToPlain(value) {
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) return value.map(richTextToPlain).join(" ");
+  if (value && typeof value === "object") return Object.values(value).map(richTextToPlain).join(" ");
+  return "";
 }
 
 function assertNoMetaText(value, id, path = "question") {

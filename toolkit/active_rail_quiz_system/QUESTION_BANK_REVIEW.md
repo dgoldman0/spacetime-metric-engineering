@@ -9,7 +9,7 @@ treated as question-quality review.
 
 ## Current State
 
-- Accepted items: 34.
+- Accepted items: 48.
 - Paper-specific coverage is now useful for a seed bank, but not yet enough for
   a full curriculum. Most disclosure-bibliography papers have at least one
   manually reviewed item; deeper coverage should add more advanced items per
@@ -17,8 +17,13 @@ treated as question-quality review.
 - Paper-theory items have been rewritten to ask about the paper's own theory,
   results, assumptions, or implications rather than unmarked active-rail design
   lessons.
+- Paper-theory stems now include a publication year and author/title anchor so
+  learners know exactly which paper is being tested. Vague stems like "the
+  study" are not accepted.
 - The UI now separates claim status from question context: general theory,
   paper theory, project application, and project state.
+- Explanation-depth validation now scales by difficulty so intermediate and
+  advanced items cannot pass with ultra-thin `why` or boundary text.
 - Project-state and open-gate items remain flagged so they can be included or
   excluded selectively.
 
@@ -92,6 +97,10 @@ treated as question-quality review.
 | `foundation.nec.dragfill.001` | accept | Core NEC fill item; rendered math token is appropriate and avoids LaTeX typing. |
 | `foundation.hamiltonian_constraint.001` | accept | Intermediate ADM constraint item; tests source-diagnostic interpretation without overclaim. |
 | `foundation.extrinsic_curvature.001` | accept | Intermediate ADM geometry item; clear distinction from intrinsic curvature and matter choice. |
+| `foundation.observer_energy.001` | accept | Intermediate stress-energy projection item; distinguishes observer energy density from trace and null contractions. |
+| `foundation.energy_conditions.matching.001` | accept | Matching item for NEC, WEC, and trace distinctions; useful for preventing later source-channel confusion. |
+| `foundation.einstein_equation.dragfill.002` | accept | Core drag-fill equation item; rendered token avoids typed LaTeX and reinforces the curvature/source relation. |
+| `foundation.adm_momentum_constraint.001` | accept | Intermediate ADM momentum-constraint item; distinguishes momentum projection from topology, vacuum, and quantum-state distractors. |
 | `constraints.qi_interpretation.001` | accept | Intermediate Ford-Roman interpretation; rejects both simplistic bans and construction claims. |
 | `literature.barcelo_visser.scalar.001` | accept after project-framing cleanup | Advanced source-literature item; includes both scalar energy-condition violation and trans-Planckian caveat. |
 | `literature.natario.001` | accept | Literature-context item; zero expansion is correctly framed as kinematic, not source-free. |
@@ -104,10 +113,20 @@ treated as question-quality review.
 | `literature.shoshany_snodgrass.ctc.001` | accept after project-framing cleanup | Paper-specific modern chronology item; concrete two-warp closed-timelike-geodesic construction is the tested lesson. |
 | `literature.garattini_zatrimaylov.correspondence.001` | accept after project-framing cleanup | Paper-specific correspondence item; keeps intrinsic-curvature requirement and traversability caveat visible. |
 | `constraints.snec.semiglobal.001` | accept | Advanced smeared-NEC item; tests semilocal accumulation rather than pointwise-only thinking. |
+| `literature.alcubierre.stress_energy.002` | accept | Advanced Alcubierre item; separates metric ansatz from ordinary-matter construction and source burden. |
+| `constraints.ford_roman.sampling.002` | accept | Advanced Ford-Roman item; focuses on sampling-time/magnitude-duration reasoning rather than slogan recall. |
+| `literature.chl.control.002` | accept | Intermediate CHL item; rejects the passenger-control misconception using causal-access reasoning. |
+| `literature.shoshany_snodgrass.energy.002` | accept | Advanced chronology/energy item; keeps CTG construction and WEC violation together. |
+| `literature.garattini_zatrimaylov.intrinsic_curvature.002` | accept | Advanced correspondence item; tests the intrinsic-curvature ingredient explicitly. |
+| `constraints.visser_chronology.horizon.002` | accept | Intermediate chronology-protection item; focuses on quantum/backreaction concern near chronology horizons. |
 | `active_rail.packet_vs_plant.001` | accept | Core architecture item; public project sources support packet/plant separation. |
 | `active_rail.source_ledger_boundary.002` | accept | Intermediate source-ledger boundary; explicitly separates source demand from source sector. |
+| `active_rail.demand_realization.classification.003` | accept with flags | Mixed source-status classification item; project/open content is flagged and source links are public. |
 | `active_rail.service_evidence.sequence.002` | accept | Intermediate service-review sequence; reset audit is correctly not assumed away. |
+| `active_rail.service_readiness.sequence.003` | accept | Intermediate chronology item; adds readiness and reset-residue checkpoints without overclaiming reuse. |
+| `active_rail.paper_application.chl.001` | accept with flags | Advanced paper-to-design transfer item; clearly marked as project application, not paper theory. |
 | `active_rail.channel_roles.matching.001` | accept with flags | Project-state diagnostic taxonomy; public source links verified and flags are present. |
 | `claim_status.classification.002` | accept with flags | Strong mixed-status item; marked as project/open content because it includes current source-family scope. |
+| `project_state.v10_scope.002` | accept with flags | Advanced revision-sensitive status item; interprets V10 failure as current-package boundary, not universal impossibility. |
 | `project_state.v5_scope.001` | accept with flags | Advanced V5 scope item; public sources support fixed-background/watch/non-claim boundaries. |
 | `design_review.evidence_sufficiency.002` | accept with flags | Advanced evidence-sufficiency item; open physical-realization gates are explicit. |

@@ -545,7 +545,7 @@ Core surfaces:
 - reference drawer,
 - design-review simulator.
 
-Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, question contexts, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories.
+Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, question contexts, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories, but count should offer small, medium, and large review sizes plus all.
 
 The system should support both casual and serious use:
 
@@ -629,6 +629,7 @@ Question authors should follow these rules:
 - Every project-specific question needs a boundary note.
 - Every project-material, project-state, open-question, or revision-sensitive question needs an explicit content flag.
 - Every speculative-literature question must distinguish metric construction from physical realizability.
+- Every paper-theory question must identify the paper clearly in the stem, using a publication year plus author/title or an equivalent citation anchor. Vague stems like "the study" or "this result" are not acceptable.
 - Every open-gate question should reward users for saying "not yet shown" when appropriate.
 - Distractors should be plausible misunderstandings.
 - Avoid trivia unless it supports conceptual fluency.
@@ -650,7 +651,9 @@ A question is acceptable only if it passes all of these checks:
 - **Claim status:** its epistemic class is correct and visible.
 - **Difficulty fit:** the cognitive demand matches the assigned difficulty.
 - **Source support:** established and literature claims have reference anchors; project claims have project-source or boundary anchors.
+- **Paper anchor:** paper-theory stems identify the specific paper being tested; they do not rely on vague phrases such as "the study."
 - **Explanation quality:** the explanation teaches why the answer is right and why tempting wrong answers fail.
+- **Explanation depth:** explanation length and detail match difficulty; advanced items need enough reasoning detail to teach the boundary, not just reveal the answer.
 - **Boundary clarity:** project-specific, speculative, unresolved, or revision-sensitive content is explicitly marked.
 - **No meta leakage:** the item does not ask about the quiz system, authoring policy, scoring policy, or labeling policy.
 - **Interaction fit:** the question type matches the task; symbolic items use rendered tokens rather than typed LaTeX.
@@ -679,19 +682,21 @@ Score each draft question before it is accepted into the learner-facing bank.
 | Difficulty fit | Difficulty label is misleading. | Difficulty is close but prompt or distractors distort it. | Cognitive demand clearly matches core, intermediate, or advanced. |
 | Claim boundary | Status is missing, wrong, or overclaims evidence. | Status is present but explanation is thin. | Status and boundary are explicit and educational. |
 | Source support | Unsupported established/literature/project claim. | Sources exist but are generic or weakly tied. | Sources directly support the claim being tested. |
+| Paper anchor | Paper-theory item does not identify the paper or hides behind "the study." | Paper is named but incompletely anchored. | Stem gives author/title/year or an equivalent citation anchor. |
 | Explanation quality | Merely reveals the answer or repeats the prompt. | Gives a reason but little teaching value. | Teaches answer, reasoning, boundary, and common trap. |
+| Explanation depth | Too short for the assigned difficulty. | Adequate but thin, especially for intermediate or advanced items. | Depth matches difficulty: concise for core, implication-focused for intermediate, reasoning-rich for advanced. |
 | Distractor quality | Throwaway, absurd, or ambiguous options. | Some plausible distractors but uneven. | Distractors map to real misconceptions or overclaims. |
 | Interaction fit | Wrong activity type or asks for awkward typing. | Usable but not ideal for the skill. | Activity type supports the learning task naturally. |
 | Content scope | Meta-policy, scoring, or authoring content appears in the learner-facing item. | Content is relevant but too broad or underspecified. | Content belongs in the curriculum and stays inside the intended module. |
 
 Acceptance guide:
 
-- `16`: approve if references and data validation also pass.
-- `13-15`: revise or require reviewer approval.
-- `9-12`: rewrite before inclusion.
+- `19-20`: approve if references and data validation also pass.
+- `16-18`: revise or require reviewer approval.
+- `11-15`: rewrite before inclusion.
 - `0-8`: reject.
 
-Any score of `0` in claim boundary, source support, or no-meta/content scope blocks approval regardless of total score.
+Any score of `0` in claim boundary, source support, explanation depth, or no-meta/content scope blocks approval regardless of total score.
 
 ### Vetting Outcome
 

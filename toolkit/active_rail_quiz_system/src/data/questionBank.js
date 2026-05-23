@@ -242,7 +242,7 @@ export const questionBank = [
     difficulty: "core",
     claimStatus: "literature_model",
     contentFlags: [],
-    prompt: "True or false: The Alcubierre warp metric is a published speculative spacetime model, not a demonstrated engineering construction.",
+    prompt: "True or false: Alcubierre's 1994 paper \"The Warp Drive\" presents a speculative spacetime model, not a demonstrated engineering construction.",
     choices: [
       { id: "true", content: "True" },
       { id: "false", content: "False" }
@@ -275,7 +275,7 @@ export const questionBank = [
     explanation: {
       answer: "Energy-condition checks diagnose source constraints and help maintain claim boundaries.",
       why: "They are part of established relativistic analysis, but they do not by themselves produce a realizable matter sector.",
-      boundary: "This is established constraint material applied to design interpretation.",
+      boundary: "This is established constraint material applied to design interpretation, not a proof of buildability.",
       references: [references.fordRoman]
     }
   },
@@ -413,8 +413,8 @@ export const questionBank = [
     answer: ["arrival_not_enough", "need_channels"],
     explanation: {
       answer: "Arrival is not enough; missing plant channels matter.",
-      why: "Active-rail qualification separates packet-facing success from plant burden, reset evidence, and source realization.",
-      boundary: "This is active-rail design-review logic, not a general theorem of GR.",
+      why: "Active-rail qualification separates packet-facing success from plant burden, reset evidence, and source realization. A clean arrival can be a real success while still leaving the support edge, angular sector, and reset history unqualified.",
+      boundary: "This is active-rail design-review logic, not a general theorem of GR or a substitute for physical source closure.",
       references: [],
       sourceLinks: [sources.boundedSealReadiness, sources.sourceFamilyValidation]
     }
@@ -568,6 +568,114 @@ export const questionBank = [
     }
   },
   {
+    id: "foundation.observer_energy.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Stress-energy basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "For an observer with unit timelike four-velocity u^mu, which contraction gives the local energy density that observer measures?",
+    choices: [
+      { id: "tuu", content: [{ type: "math", latex: "T_{\\mu\\nu}u^\\mu u^\\nu", label: "T mu nu u mu u nu" }] },
+      { id: "trace", content: [{ type: "math", latex: "T^\\mu{}_{\\mu}", label: "trace of T" }] },
+      { id: "einstein", content: [{ type: "math", latex: "G_{\\mu\\nu}k^\\mu k^\\nu", label: "Einstein tensor contracted with null vector" }] },
+      { id: "metric_norm", content: [{ type: "math", latex: "g_{\\mu\\nu}u^\\mu u^\\nu", label: "metric norm of u" }] }
+    ],
+    answer: ["tuu"],
+    explanation: {
+      answer: [{ type: "math", latex: "T_{\\mu\\nu}u^\\mu u^\\nu", label: "observer energy density" }],
+      why: "Stress-energy becomes observer-measured energy density when projected twice onto the observer's timelike four-velocity. The trace, metric norm, and null contractions answer different geometric or source questions.",
+      boundary: "This is standard GR stress-energy machinery and is independent of any active-rail source-ledger convention.",
+      references: [references.carrollGrNotes]
+    }
+  },
+  {
+    id: "foundation.energy_conditions.matching.001",
+    type: "matching",
+    track: "Established foundations",
+    module: "Energy conditions",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    prompt: "Match each energy-condition phrase to the contraction or observer statement it most directly tests.",
+    prompts: [
+      { id: "nec", content: "Null energy condition" },
+      { id: "wec", content: "Weak energy condition" },
+      { id: "trace", content: "Stress-tensor trace" }
+    ],
+    options: [
+      { id: "null_contraction", label: "Nonnegative T_mn k^m k^n for every null k" },
+      { id: "timelike_density", label: "Nonnegative T_mn u^m u^n for every timelike observer u" },
+      { id: "contracted_trace", label: "T^m_m, not itself an energy condition" }
+    ],
+    answer: {
+      nec: "null_contraction",
+      wec: "timelike_density",
+      trace: "contracted_trace"
+    },
+    explanation: {
+      answer: "NEC tests null contractions, WEC tests timelike-observer energy density, and the trace is a separate contraction.",
+      why: "Energy conditions are not interchangeable slogans. Matching each phrase to the correct contraction keeps later source diagnostics from confusing null exposure, observer energy density, and trace behavior.",
+      boundary: "This is established stress-energy vocabulary; it does not by itself decide whether a proposed geometry is physically realizable.",
+      references: [references.carrollGrNotes, references.fordRoman]
+    }
+  },
+  {
+    id: "foundation.einstein_equation.dragfill.002",
+    type: "drag_fill",
+    track: "Established foundations",
+    module: "Einstein equation",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    promptParts: [
+      "In units ",
+      { type: "math", latex: "G=c=1", label: "G equals c equals one" },
+      ", Einstein's equation can be written as ",
+      { type: "blank", id: "equation" },
+      "."
+    ],
+    tokens: [
+      { id: "einstein_eq", content: [{ type: "math", latex: "G_{\\mu\\nu}=8\\pi T_{\\mu\\nu}", label: "G mu nu equals eight pi T mu nu" }] },
+      { id: "flat_metric", content: [{ type: "math", latex: "g_{\\mu\\nu}=\\eta_{\\mu\\nu}", label: "metric equals eta" }] },
+      { id: "null_norm", content: [{ type: "math", latex: "k^\\mu k_\\mu=0", label: "null norm equals zero" }] },
+      { id: "trace", content: [{ type: "math", latex: "T^\\mu{}_{\\mu}=0", label: "trace of T equals zero" }] }
+    ],
+    blanks: [
+      { id: "equation", accepts: ["einstein_eq"] }
+    ],
+    explanation: {
+      answer: [{ type: "math", latex: "G_{\\mu\\nu}=8\\pi T_{\\mu\\nu}", label: "Einstein equation" }],
+      why: "The equation relates spacetime curvature to stress-energy in the chosen units. The other tokens are useful statements in other contexts, but they are not Einstein's field equation.",
+      boundary: "This is established GR machinery; computing a demanded source from it is still not a physical matter model.",
+      references: [references.carrollGrNotes]
+    }
+  },
+  {
+    id: "foundation.adm_momentum_constraint.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "ADM constraints",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What does the ADM momentum constraint primarily relate?",
+    choices: [
+      { id: "momentum_projection", content: "Spatial variation of extrinsic curvature to the matter momentum density seen by the slice normal." },
+      { id: "unique_global", content: "A unique global spacetime topology to one local lapse value." },
+      { id: "vacuum_only", content: "Only vacuum curvature, with no matter projection involved." },
+      { id: "quantum_state", content: "The renormalized quantum state to the observer's detector response." }
+    ],
+    answer: ["momentum_projection"],
+    explanation: {
+      answer: "It relates extrinsic-curvature combinations to the momentum density projection of stress-energy.",
+      why: "In ADM language the constraints split source diagnostics into normal energy-density and spatial momentum channels. That distinction matters before any project-specific source ledger or channel naming is introduced.",
+      boundary: "This is established ADM structure and should not be mistaken for a physical source construction.",
+      references: [references.adm]
+    }
+  },
+  {
     id: "constraints.qi_interpretation.001",
     type: "mc",
     track: "Established foundations",
@@ -575,7 +683,7 @@ export const questionBank = [
     difficulty: "intermediate",
     claimStatus: "established_constraint",
     contentFlags: [],
-    prompt: "What is the safest interpretation of Ford-Roman quantum inequality constraints in warp or wormhole discussions?",
+    prompt: "In Ford and Roman's 1996 paper \"Quantum Field Theory Constrains Traversable Wormhole Geometries,\" what is the safest interpretation of the quantum inequality constraints?",
     choices: [
       { id: "bound_negative_energy", content: "They bound the magnitude, duration, and distribution of negative-energy effects in relevant quantum-field settings." },
       { id: "ban_all", content: "They prove that no negative energy density can ever occur in quantum field theory." },
@@ -586,7 +694,7 @@ export const questionBank = [
     explanation: {
       answer: "Quantum inequalities constrain negative energy; they do not erase the subject or solve engineering.",
       why: "The key lesson is quantitative restriction, not a simplistic ban or a construction method.",
-      boundary: "This is established constraint literature applied to speculative geometries.",
+      boundary: "This is established constraint literature applied to speculative geometries, not a source recipe.",
       references: [references.fordRoman]
     }
   },
@@ -599,7 +707,7 @@ export const questionBank = [
     claimStatus: "literature_model",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "Which statements accurately describe the Barcelo-Visser result on non-minimally coupled scalar fields?",
+    prompt: "Which statements accurately describe Barcelo and Visser's 2000 paper \"Scalar Fields, Energy Conditions, and Traversable Wormholes\"?",
     choices: [
       { id: "scalar_violation", content: "Non-minimally coupled scalar fields can violate standard energy conditions, including averaged null-energy conditions." },
       { id: "trans_planckian", content: "The traversable-wormhole branch carries a serious trans-Planckian field-value caveat." },
@@ -609,7 +717,7 @@ export const questionBank = [
     answer: ["scalar_violation", "trans_planckian"],
     explanation: {
       answer: "The paper shows a scalar-field route to energy-condition violation while keeping the trans-Planckian caveat visible.",
-      why: "The result is not simply 'scalar fields solve wormholes'; the field scale and physical interpretation remain central.",
+      why: "The result is not simply 'scalar fields solve wormholes'; the field scale and physical interpretation remain central. The valuable lesson is that source models can evade classical energy conditions while still raising severe feasibility and semiclassical-trust questions.",
       boundary: "This is published literature about a theoretical source class, not demonstrated macroscopic engineering.",
       references: [references.barceloVisser]
     }
@@ -622,7 +730,7 @@ export const questionBank = [
     difficulty: "intermediate",
     claimStatus: "literature_model",
     contentFlags: [],
-    prompt: "What does the phrase zero expansion mean in Natario-style warp-drive literature?",
+    prompt: "In Natario's 2002 paper \"Warp Drive With Zero Expansion,\" what does zero expansion mean?",
     choices: [
       { id: "congruence_property", content: "It describes a property of the chosen flow congruence, not the absence of curvature or source demands." },
       { id: "no_energy", content: "It means the spacetime needs no stress-energy." },
@@ -633,7 +741,7 @@ export const questionBank = [
     explanation: {
       answer: "Zero expansion is a kinematic property of the flow, not a source-free engineering result.",
       why: "A warp metric can have zero expansion while still carrying curvature and stress-energy issues.",
-      boundary: "This is published speculative metric context.",
+      boundary: "This is published speculative metric context, not a physical construction or source model.",
       references: [references.natario]
     }
   },
@@ -645,7 +753,7 @@ export const questionBank = [
     difficulty: "advanced",
     claimStatus: "established_constraint",
     contentFlags: [],
-    prompt: "What is the disciplined use of topological censorship in traversable-wormhole discussions?",
+    prompt: "What is the disciplined use of Friedman, Schleich, and Witt's 1993 topological censorship result in traversable-wormhole discussions?",
     choices: [
       { id: "conditional_constraint", content: "It is a conditional theorem showing that, under suitable assumptions, nontrivial topology is hidden from causal observers." },
       { id: "algebraic_ban", content: "It is an algebraic ban on writing any wormhole metric." },
@@ -655,8 +763,8 @@ export const questionBank = [
     answer: ["conditional_constraint"],
     explanation: {
       answer: "Topological censorship is a conditional constraint theorem.",
-      why: "Its force comes from its assumptions: energy, causality, asymptotic structure, and predictability conditions matter.",
-      boundary: "This is established constraint material. It should be used carefully, not as a slogan.",
+      why: "Its force comes from its assumptions: energy, causality, asymptotic structure, and predictability conditions matter. The theorem is powerful because it tells you which global structures are hidden under those assumptions, not because it forbids writing every wormhole metric.",
+      boundary: "This is established constraint material. It should be used carefully, not as a slogan or an assumption-free ban.",
       references: [references.topologicalCensorship]
     }
   },
@@ -668,7 +776,7 @@ export const questionBank = [
     difficulty: "core",
     claimStatus: "established_constraint",
     contentFlags: [],
-    prompt: "True or false: Chronology-protection arguments are best treated as serious causality constraints, not as completed engineering recipes.",
+    prompt: "True or false: Visser's 2002 review \"The Quantum Physics of Chronology Protection\" treats chronology-protection arguments as serious causality constraints, not completed engineering recipes.",
     choices: [
       { id: "true", content: "True" },
       { id: "false", content: "False" }
@@ -690,7 +798,7 @@ export const questionBank = [
     claimStatus: "literature_model",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "Which cautions are appropriate when interpreting an Alcubierre-style warp metric?",
+    prompt: "Which cautions are appropriate when interpreting Alcubierre's 1994 warp metric?",
     choices: [
       { id: "metric_not_engine", content: "A metric ansatz is not the same thing as a controlled physical engine." },
       { id: "source_demand", content: "The stress-energy demand and energy-condition behavior remain central." },
@@ -700,8 +808,8 @@ export const questionBank = [
     answer: ["metric_not_engine", "source_demand"],
     explanation: {
       answer: "The metric is a valuable speculative model, but source demand and control questions remain central.",
-      why: "Writing a spacetime geometry does not supply matter realization, stability, causal control, or operational protocols.",
-      boundary: "This is published-literature interpretation with unresolved physical gates.",
+      why: "Writing a spacetime geometry does not supply matter realization, stability, causal control, or operational protocols. The advanced skill is recognizing that a smooth ansatz can still leave negative energy, horizon, and steering questions unresolved.",
+      boundary: "This is published-literature interpretation with unresolved physical gates, not a physical-realization result.",
       references: [references.alcubierre],
       openGate: "Physical realizability, controllability, and source construction remain outside the metric ansatz itself."
     }
@@ -714,7 +822,7 @@ export const questionBank = [
     difficulty: "advanced",
     claimStatus: "literature_model",
     contentFlags: [],
-    prompt: "In Clark-Hiscock-Larson's null-geodesic analysis, what causal feature appears for effective superluminal Alcubierre motion?",
+    prompt: "In Clark, Hiscock, and Larson's 1999 paper \"Null Geodesics in the Alcubierre Warp Drive Spacetime,\" what causal feature appears for effective superluminal motion?",
     choices: [
       { id: "causal_access", content: "Horizon-like conical regions appear, limiting which signals can reach or be sent from the bubble." },
       { id: "complete_control", content: "A passenger at the bubble center can create, steer, and stop the bubble on demand." },
@@ -724,7 +832,7 @@ export const questionBank = [
     answer: ["causal_access"],
     explanation: {
       answer: "The paper identifies horizon-like conical access structures.",
-      why: "For effective superluminal motion, the null-geodesic structure includes regions that block signals from reaching the bubble and regions the bubble cannot signal into.",
+      why: "For effective superluminal motion, the null-geodesic structure includes regions that block signals from reaching the bubble and regions the bubble cannot signal into. That makes causal access a geometric issue, not just a matter of passenger intent.",
       boundary: "This is a result about the Alcubierre spacetime's causal optics, not a construction method.",
       references: [references.clarkHiscockLarson]
     }
@@ -737,7 +845,7 @@ export const questionBank = [
     difficulty: "intermediate",
     claimStatus: "literature_model",
     contentFlags: [],
-    prompt: "What does the Mueller-Weiskopf geodesic study emphasize about the Alcubierre spacetime?",
+    prompt: "What does Mueller and Weiskopf's 2012 paper \"Detailed Study of Null and Time-Like Geodesics in the Alcubierre Warp Spacetime\" emphasize?",
     choices: [
       { id: "playground", content: "It is a rich setting for null and timelike geodesic/lensing calculations, while remaining far from physical feasibility because of exotic matter." },
       { id: "build", content: "Treat it as a construction plan for a physically feasible warp engine." },
@@ -761,7 +869,7 @@ export const questionBank = [
     claimStatus: "literature_model",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "Which statements match Everett and Roman's analysis of Krasnikov tubes?",
+    prompt: "Which statements match Everett and Roman's 1997 paper \"A Superluminal Subway: The Krasnikov Tube\"?",
     choices: [
       { id: "two_tubes", content: "A single directed tube is not the same chronology problem as a two-tube network arranged into a time-machine system." },
       { id: "negative_energy", content: "The construction still carries severe negative-energy and thin-layer concerns." },
@@ -771,8 +879,8 @@ export const questionBank = [
     answer: ["two_tubes", "negative_energy"],
     explanation: {
       answer: "Network composition and negative-energy burden are both central.",
-      why: "Everett and Roman distinguish the single-tube case from a two-tube time-machine arrangement, while preserving severe source concerns.",
-      boundary: "This is superluminal-spacetime literature, not demonstrated engineering.",
+      why: "Everett and Roman distinguish the single-tube case from a two-tube time-machine arrangement, while preserving severe source concerns. The point is that chronology risk depends on how superluminal links are composed, not only on each link in isolation.",
+      boundary: "This is superluminal-spacetime literature, not demonstrated engineering or a practical ordinary-matter construction.",
       references: [references.everettRoman]
     }
   },
@@ -784,7 +892,7 @@ export const questionBank = [
     difficulty: "advanced",
     claimStatus: "literature_model",
     contentFlags: [],
-    prompt: "What does the Shoshany-Snodgrass two-warp construction demonstrate?",
+    prompt: "What does Shoshany and Snodgrass's 2024 paper \"Warp Drives and Closed Timelike Curves\" demonstrate?",
     choices: [
       { id: "composition", content: "It gives a concrete GR model where composed warp-drive geometries yield a closed timelike geodesic." },
       { id: "safe", content: "It proves all warp-drive networks are chronology-safe when each leg is smooth." },
@@ -794,8 +902,8 @@ export const questionBank = [
     answer: ["composition"],
     explanation: {
       answer: "It demonstrates that composed warp-drive geometries can create closed-timelike-curve structure.",
-      why: "The paper supplies a concrete two-warp-drive model rather than leaving the timing issue as only a slogan.",
-      boundary: "This is a published chronology result about warp-drive geometries, not a physical-realization claim.",
+      why: "The paper supplies a concrete two-warp-drive model rather than leaving the timing issue as only a slogan. The important reasoning step is composition: multiple superluminal geometries can change the global causal story.",
+      boundary: "This is a published chronology result about warp-drive geometries, not a physical-realization claim or an engineering recipe.",
       references: [references.shoshanySnodgrass]
     }
   },
@@ -808,7 +916,7 @@ export const questionBank = [
     claimStatus: "literature_model",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "Which statements are careful takeaways from the Garattini-Zatrimaylov wormhole--warp-drive correspondence?",
+    prompt: "Which statements are careful takeaways from Garattini and Zatrimaylov's 2024 paper \"On the Wormhole--Warp Drive Correspondence\"?",
     choices: [
       { id: "curvature", content: "The correspondence requires allowing nonzero intrinsic spatial curvature in the warp-drive metric." },
       { id: "traversability_caveat", content: "The paper reports a traversability caveat rather than a simple equivalence between comfortable wormholes and warp drives." },
@@ -818,8 +926,8 @@ export const questionBank = [
     answer: ["curvature", "traversability_caveat"],
     explanation: {
       answer: "The useful takeaways are intrinsic-curvature dependence and a nontrivial traversability caveat.",
-      why: "The result is a constrained correspondence, not a statement that ordinary traversable wormholes and warp drives are interchangeable.",
-      boundary: "This is published correspondence context and must not be promoted to engineering completion.",
+      why: "The result is a constrained correspondence, not a statement that ordinary traversable wormholes and warp drives are interchangeable. The need for intrinsic spatial curvature prevents the takeaway from collapsing into a simple flat-slice shift analogy.",
+      boundary: "This is published correspondence context and must not be promoted to engineering completion or physical source realization.",
       references: [references.garattiniZatrimaylov]
     }
   },
@@ -831,7 +939,7 @@ export const questionBank = [
     difficulty: "advanced",
     claimStatus: "established_constraint",
     contentFlags: [],
-    prompt: "What does the smeared-null-energy-condition literature add beyond a pointwise NEC check?",
+    prompt: "What does the 2025 paper \"How Much NEC Breaking Can the Universe Endure?\" add beyond a pointwise NEC check?",
     choices: [
       { id: "semilocal_bound", content: "It treats accumulated negative energy along smeared null probes as a semilocal constraint." },
       { id: "pointwise_only", content: "It says only the pointwise sign of one stress-tensor component matters." },
@@ -841,9 +949,147 @@ export const questionBank = [
     answer: ["semilocal_bound"],
     explanation: {
       answer: "The added lesson is semilocal accumulation: not just pointwise sign.",
-      why: "The smeared NEC is a quantum-motivated bound on accumulated NEC violation along null probes.",
-      boundary: "This is a constraint reference, not a construction recipe.",
+      why: "The smeared NEC is a quantum-motivated bound on accumulated NEC violation along null probes. It trains the learner to ask about finite-window exposure, not only whether one sampled stress-tensor contraction is negative.",
+      boundary: "This is a constraint reference, not a construction recipe or a replacement for a full source model.",
       references: [references.smearedNec]
+    }
+  },
+  {
+    id: "literature.alcubierre.stress_energy.002",
+    type: "multi",
+    track: "Published warp and wormhole context",
+    module: "Warp metrics",
+    difficulty: "advanced",
+    claimStatus: "literature_model",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements are careful readings of Alcubierre's 1994 paper \"The Warp Drive\"?",
+    choices: [
+      { id: "metric_ansatz", content: "The paper gives a spacetime metric that contracts space ahead of a region and expands it behind." },
+      { id: "negative_energy", content: "The stress-energy required by the metric includes exotic energy-condition behavior." },
+      { id: "ordinary_matter", content: "The paper derives an ordinary-matter engine that creates the geometry." },
+      { id: "no_causality", content: "The paper removes all causality and control concerns for superluminal travel." }
+    ],
+    answer: ["metric_ansatz", "negative_energy"],
+    explanation: {
+      answer: "The paper presents a metric ansatz and exposes exotic stress-energy behavior.",
+      why: "A careful reading separates the geometric construction from the missing source mechanism. The model is famous because it shows what GR's equations allow as a geometry, while also revealing a severe stress-energy burden.",
+      boundary: "This is published speculative-relativity literature, not demonstrated propulsion physics or an ordinary-matter construction.",
+      references: [references.alcubierre]
+    }
+  },
+  {
+    id: "constraints.ford_roman.sampling.002",
+    type: "mc",
+    track: "Established foundations",
+    module: "Quantum inequalities",
+    difficulty: "advanced",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    prompt: "In Ford and Roman's 1996 paper \"Quantum Field Theory Constrains Traversable Wormhole Geometries,\" why does sampling time matter?",
+    choices: [
+      { id: "duration_bound", content: "Quantum inequalities constrain how much negative energy can be seen over a sampling interval, tying magnitude to duration and scale." },
+      { id: "coordinate_choice", content: "Sampling time is only a coordinate convention and has no physical role." },
+      { id: "permanent_negative", content: "Long-lived macroscopic negative energy can be made arbitrarily large if it is smooth." },
+      { id: "construction", content: "The sampling bound supplies a recipe for building a traversable wormhole." }
+    ],
+    answer: ["duration_bound"],
+    explanation: {
+      answer: "Sampling time matters because the bound couples negative-energy magnitude to duration and scale.",
+      why: "The quantum inequality is not just a pointwise warning. It says sustained negative energy is quantitatively constrained, which is why macroscopic wormhole geometries become so difficult under the paper's assumptions.",
+      boundary: "This is an established constraint result in the cited setting, not an all-purpose construction or a proof that every negative-energy effect is impossible.",
+      references: [references.fordRoman]
+    }
+  },
+  {
+    id: "literature.chl.control.002",
+    type: "tf",
+    track: "Published warp and wormhole context",
+    module: "Warp geodesics",
+    difficulty: "intermediate",
+    claimStatus: "literature_model",
+    contentFlags: [],
+    prompt: "True or false: Clark, Hiscock, and Larson's 1999 paper \"Null Geodesics in the Alcubierre Warp Drive Spacetime\" supports the idea that a central observer can freely control a superluminal bubble after it forms.",
+    choices: [
+      { id: "true", content: "True" },
+      { id: "false", content: "False" }
+    ],
+    answer: ["false"],
+    explanation: {
+      answer: "False.",
+      why: "The paper's null-geodesic analysis identifies causal-access restrictions for the superluminal case. That is the opposite of a simple passenger-control story, because signals do not freely connect all relevant regions.",
+      boundary: "This is a causal-structure lesson about the Alcubierre spacetime, not a complete analysis of every possible warp-drive variant.",
+      references: [references.clarkHiscockLarson]
+    }
+  },
+  {
+    id: "literature.shoshany_snodgrass.energy.002",
+    type: "multi",
+    track: "Published warp and wormhole context",
+    module: "Chronology concerns",
+    difficulty: "advanced",
+    claimStatus: "literature_model",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which conclusions are supported by Shoshany and Snodgrass's 2024 paper \"Warp Drives and Closed Timelike Curves\"?",
+    choices: [
+      { id: "ctg", content: "Two warp-drive geometries can be arranged so that a closed timelike geodesic exists." },
+      { id: "wec_violation", content: "The construction remains tied to weak-energy-condition violation." },
+      { id: "ordinary_matter", content: "The construction shows ordinary positive-energy matter is enough to build the drives." },
+      { id: "single_leg_safe", content: "It proves every individual superluminal leg is globally chronology-safe in all networks." }
+    ],
+    answer: ["ctg", "wec_violation"],
+    explanation: {
+      answer: "The paper supports the closed-timelike-geodesic construction and keeps energy-condition violation in view.",
+      why: "The point is not only that closed causal curves can be discussed abstractly. The paper gives a concrete two-drive arrangement and does not turn that arrangement into ordinary positive-energy engineering.",
+      boundary: "This is a published chronology and energy-condition result about a theoretical construction, not a buildability claim.",
+      references: [references.shoshanySnodgrass]
+    }
+  },
+  {
+    id: "literature.garattini_zatrimaylov.intrinsic_curvature.002",
+    type: "mc",
+    track: "Published warp and wormhole context",
+    module: "Warp-wormhole correspondence",
+    difficulty: "advanced",
+    claimStatus: "literature_model",
+    contentFlags: [],
+    prompt: "In Garattini and Zatrimaylov's 2024 paper \"On the Wormhole--Warp Drive Correspondence,\" what extra ingredient is central to relating Morris-Thorne wormholes to warp-drive form?",
+    choices: [
+      { id: "intrinsic_curvature", content: "Nonzero intrinsic spatial curvature in the warp-drive metric." },
+      { id: "flat_space", content: "Strictly flat spatial slices everywhere." },
+      { id: "ordinary_fuel", content: "A specified ordinary-matter fuel model." },
+      { id: "no_shift", content: "Removing all shift-like structure from the metric." }
+    ],
+    answer: ["intrinsic_curvature"],
+    explanation: {
+      answer: "The key ingredient is nonzero intrinsic spatial curvature.",
+      why: "That requirement makes the correspondence more subtle than a simple rebranding of a flat-slice warp shift. It also helps explain why the paper's traversability caveat matters for interpretation.",
+      boundary: "This is a correspondence result inside published speculative geometry, not a source-realization theorem.",
+      references: [references.garattiniZatrimaylov]
+    }
+  },
+  {
+    id: "constraints.visser_chronology.horizon.002",
+    type: "mc",
+    track: "Published warp and wormhole context",
+    module: "Chronology concerns",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    prompt: "In Visser's 2002 review \"The Quantum Physics of Chronology Protection,\" why are chronology horizons physically worrisome?",
+    choices: [
+      { id: "backreaction", content: "They are places where quantum-field stress and backreaction concerns may become central." },
+      { id: "recipe", content: "They provide a stable recipe for constructing closed timelike curves." },
+      { id: "coordinate", content: "They show chronology violation is always only a coordinate artifact." },
+      { id: "irrelevant", content: "They remove the need for quantum-field analysis." }
+    ],
+    answer: ["backreaction"],
+    explanation: {
+      answer: "They are worrisome because quantum-field stress and backreaction can become central near chronology horizons.",
+      why: "Chronology protection is not merely a naming convention for time travel. The review surveys why quantum effects near the onset of closed causal curves can threaten the classical spacetime picture.",
+      boundary: "This is constraint and review literature, not a finished theorem that supplies engineering design rules.",
+      references: [references.chronologyProtection]
     }
   },
   {
@@ -889,10 +1135,36 @@ export const questionBank = [
     explanation: {
       answer: "Demand accounting is not source realization.",
       why: "A ledger can identify what stress-energy a prescribed metric would require without deriving matter dynamics that supply it.",
-      boundary: "This is one of the core active-rail claim boundaries.",
+      boundary: "This is one of the core active-rail claim boundaries, not established GR terminology.",
       references: [references.carrollGrNotes],
       sourceLinks: [sources.componentSourceLedger, sources.technicalDisclosure],
       openGate: "A physical matter action, semiclassical stress tensor, or coupled Einstein-matter evolution remains a separate requirement."
+    }
+  },
+  {
+    id: "active_rail.demand_realization.classification.003",
+    type: "claim_classification",
+    track: "Design review and synthesis",
+    module: "Claim classification",
+    difficulty: "intermediate",
+    claimStatus: "active_rail_model",
+    contentFlags: ["project_material", "open_question"],
+    prompt: "Classify each source-related claim by the safest status.",
+    statuses: ["established_theory", "literature_model", "active_rail_model", "project_hypothesis", "open_gate"],
+    statements: [
+      { id: "einstein", content: "Einstein's equation relates curvature to stress-energy.", answer: "established_theory" },
+      { id: "qi", content: "Ford-Roman quantum inequalities constrain sustained negative-energy distributions in their setting.", answer: "literature_model" },
+      { id: "ledger", content: "A demanded-source ledger records the stress-energy required by a prescribed active-rail metric.", answer: "active_rail_model" },
+      { id: "source_family", content: "The current source-family strategy is a candidate route for organizing active-rail source burden.", answer: "project_hypothesis" },
+      { id: "matter_action", content: "A complete matter action realizing repeated service has been derived.", answer: "open_gate" }
+    ],
+    explanation: {
+      answer: "The claims split into established theory, published constraint literature, project model language, project hypothesis, and open gate.",
+      why: "The classification matters because the same source conversation can contain textbook equations, paper constraints, internal ledger vocabulary, candidate strategies, and unresolved physical realization at once.",
+      boundary: "This item is project application with open-gate content, so it should remain excludable from stable general-theory sessions.",
+      references: [references.carrollGrNotes, references.fordRoman],
+      sourceLinks: [sources.componentSourceLedger, sources.sourceFamilyValidation],
+      openGate: "Matter-action and repeated-service source realization remain separate from demanded-source accounting."
     }
   },
   {
@@ -916,9 +1188,60 @@ export const questionBank = [
     explanation: {
       answer: "Preparation, carry, catch/rematch, fade, decompression, reset audit.",
       why: "The review order preserves packet support before handoff and treats reset as evidence before reuse, not as an assumption.",
-      boundary: "This is active-rail service architecture, not established textbook terminology.",
+      boundary: "This is active-rail service architecture, not established textbook terminology or external physics doctrine.",
       references: [],
       sourceLinks: [sources.serviceAlignedSchedule, sources.resetReleaseLadder]
+    }
+  },
+  {
+    id: "active_rail.service_readiness.sequence.003",
+    type: "sequence",
+    track: "Active-rail architecture",
+    module: "Service chronology",
+    difficulty: "intermediate",
+    claimStatus: "active_rail_model",
+    contentFlags: [],
+    prompt: "Order these service-readiness checkpoints for a conservative active-rail pass.",
+    items: [
+      { id: "ready", content: "Confirm rail and endpoint readiness before arming" },
+      { id: "support", content: "Establish standing support/corridor conditions" },
+      { id: "carry", content: "Carry the packet through the service interval" },
+      { id: "handoff", content: "Catch/rematch before release fade" },
+      { id: "unwind", content: "Decompress support and source load" },
+      { id: "residue", content: "Check reset residue before declaring reuse readiness" }
+    ],
+    answer: ["ready", "support", "carry", "handoff", "unwind", "residue"],
+    explanation: {
+      answer: "Readiness, support, carry, handoff, unwind, reset-residue check.",
+      why: "The ordering keeps support ahead of live service and treats reset as evidence after the pass, not as a label applied automatically because the packet arrived.",
+      boundary: "This is active-rail service architecture, not established GR chronology terminology.",
+      references: [],
+      sourceLinks: [sources.serviceAlignedSchedule, sources.resetReleaseLadder]
+    }
+  },
+  {
+    id: "active_rail.paper_application.chl.001",
+    type: "multi",
+    track: "Design review and synthesis",
+    module: "Paper-to-design transfer",
+    difficulty: "advanced",
+    claimStatus: "active_rail_model",
+    contentFlags: ["project_material", "open_question"],
+    scoring: "subtract_incorrect",
+    prompt: "When applying Clark-Hiscock-Larson-style null-geodesic concerns to an active-rail carrier audit, which review moves are appropriate?",
+    choices: [
+      { id: "reachability", content: "Check signal reachability and branch access rather than assuming a smooth metric is controllable." },
+      { id: "bundle", content: "Treat finite-bundle behavior as a diagnostic surface, not only one ideal ray." },
+      { id: "proof", content: "Claim the CHL paper proves the active-rail carrier is safe." },
+      { id: "ignore", content: "Ignore causal access because packet arrival was clean." }
+    ],
+    answer: ["reachability", "bundle"],
+    explanation: {
+      answer: "Reachability and finite-bundle behavior are appropriate review moves; claiming proof or ignoring access is not.",
+      why: "This is a project-application question: the paper supplies a warning about causal optics, while the active-rail audit must still produce its own evidence for branch access, packet behavior, and service safety.",
+      boundary: "This applies published literature to active-rail review. It is not a claim that the literature validates the project design.",
+      references: [references.clarkHiscockLarson],
+      sourceLinks: [sources.technicalDisclosure]
     }
   },
   {
@@ -950,8 +1273,8 @@ export const questionBank = [
     },
     explanation: {
       answer: "Each surface reviews a different layer: packet safety, plant exchange, effective source family, and local stress response.",
-      why: "Conflating these layers is how a narrow pass becomes an overclaim.",
-      boundary: "This is project-state architecture and review taxonomy.",
+      why: "Conflating these layers is how a narrow pass becomes an overclaim, because packet-facing safety, plant exchange, effective-source evidence, and local stress response answer different review questions.",
+      boundary: "This is project-state architecture and review taxonomy, so it remains revision-sensitive.",
       references: [],
       sourceLinks: [sources.technicalDisclosure, sources.sourceFamilyValidation, sources.moderate3p1Capstone]
     }
@@ -983,6 +1306,31 @@ export const questionBank = [
     }
   },
   {
+    id: "project_state.v10_scope.002",
+    type: "mc",
+    track: "Design review and synthesis",
+    module: "Project-state handling",
+    difficulty: "advanced",
+    claimStatus: "project_hypothesis",
+    contentFlags: ["project_material", "project_state", "revision_sensitive"],
+    prompt: "A current service-rating ladder reports that the V10 case fails live packet source safety. What is the safest interpretation?",
+    choices: [
+      { id: "boundary", content: "It marks a high-service boundary for the current package and motivates additional causal/source-margin work." },
+      { id: "impossible", content: "It proves every possible high-service active-rail design is impossible." },
+      { id: "solved", content: "It proves V10 is ready because failed diagnostics are only bookkeeping." },
+      { id: "general_theorem", content: "It is an established theorem of GR independent of the project configuration." }
+    ],
+    answer: ["boundary"],
+    explanation: {
+      answer: "It is a current-package high-service boundary, not a universal impossibility theorem.",
+      why: "The reported failure is meaningful project evidence about the present V10 ladder. The careful interpretation preserves that warning while avoiding an overclaim about all future high-service geometries or all possible source strategies.",
+      boundary: "This is revision-sensitive project-state content based on the current service-rating report, not established external theory.",
+      references: [],
+      sourceLinks: [sources.serviceRatingLadder, sources.projectReadme],
+      openGate: "Additional causal-margin engineering and source-family work would be needed before a high-service promotion claim."
+    }
+  },
+  {
     id: "project_state.v5_scope.001",
     type: "multi",
     track: "Design review and synthesis",
@@ -1001,8 +1349,8 @@ export const questionBank = [
     answer: ["fixed_background", "watches"],
     explanation: {
       answer: "The careful scope is fixed-background evidence with visible watches.",
-      why: "The current record distinguishes V5 prescribed-metric evidence from unproved matter-action, semiclassical, and broad-family claims.",
-      boundary: "This is revision-sensitive project-state content.",
+      why: "The current record distinguishes V5 prescribed-metric evidence from unproved matter-action, semiclassical, and broad-family claims. The right answer preserves the value of the evidence without letting it expand into unearned physical-realization language.",
+      boundary: "This is revision-sensitive project-state content and must be excluded from stable general-theory or paper-theory sessions unless intentionally selected.",
       references: [],
       sourceLinks: [sources.projectReadme, sources.boundedSealReadiness, sources.serviceRatingLadder],
       openGate: "Matter-action closure, semiclassical response, and broad repeated-service robustness remain separate gates."
@@ -1027,8 +1375,8 @@ export const questionBank = [
     answer: ["matter_action", "semiclassical"],
     explanation: {
       answer: "Matter action and semiclassical/RSET work remain missing for a full physical-realization claim.",
-      why: "Packet-facing and fixed-background evidence can be strong while still falling short of physical source realization.",
-      boundary: "This is design-review reasoning inside the active-rail project model.",
+      why: "Packet-facing and fixed-background evidence can be strong while still falling short of physical source realization. The advanced move is to credit the passed diagnostics while naming the missing source-sector and quantum-field evidence.",
+      boundary: "This is design-review reasoning inside the active-rail project model, not an established external certification rule.",
       references: [],
       sourceLinks: [sources.projectReadme, sources.boundedSealReadiness, sources.endpointSourceFamilyRung],
       openGate: "Physical-source realization remains open until the source sector is derived or otherwise physically justified."
