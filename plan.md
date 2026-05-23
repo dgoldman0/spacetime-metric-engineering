@@ -121,6 +121,13 @@ new architecture sweep:
     heat-current boundary watch rows. Next: use these rows as the adversarial
     target for a fixed-background reduced evolution or frozen-coefficient
     cross-mesh principal-symbol sensitivity test.
+24. Completed frozen-coefficient principal-symbol sensitivity on the dense watch
+    rows. The nominal reduced symbol still has zero hard failures, but the first
+    hard local failure appears under only `+1e-4` heat-current-ratio stress,
+    initially in reset-decompression/support-edge. This makes the hyperbolicity
+    read more fragile than the aggregate pass suggests: next reduced evolution
+    must explicitly preserve transport margin / heat-current regulation before
+    any broader action-level claim.
 ```
 
 Discussion discipline while runs are computing:
@@ -204,6 +211,11 @@ Allowed next: after the principal-symbol watch-pass, build only a reduced
               and support-edge release/held-carry rows; do not broaden to full
               spacetime evolution until the reduced support sector preserves
               cone margins and regulator/transport margins under perturbation.
+Allowed next: reduced fixed-background evolution with explicit transport-margin
+              preservation. Treat `O(1e-4)` heat-current fragility as the
+              primary stability constraint; if perturbations drive the local
+              heat ratio through the transport boundary, that is a support-sector
+              PDE failure even though the frozen algebraic symbol passes.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
