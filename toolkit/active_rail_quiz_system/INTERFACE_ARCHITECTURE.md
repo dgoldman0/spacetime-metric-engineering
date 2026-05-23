@@ -50,7 +50,7 @@ The command bar controls the active session:
 
 It should stay compact. It is a cockpit control strip, not a settings page.
 
-Content filters should behave like facets, not single-choice dropdowns. Track, module, difficulty, claim status, and activity type should support multiple selections. Empty selection means the facet is unrestricted. Use checkbox chips, compact tag groups, or checklist popovers rather than native single-select boxes for these controls. Count, workspace, and optional-content policy may remain single-choice because they control session shape rather than content inclusion.
+Content filters should behave like facets, not single-choice dropdowns. Track, module, difficulty, claim status, question context, and activity type should support multiple selections. Empty selection means the facet is unrestricted. Use checkbox chips, compact tag groups, or checklist popovers rather than native single-select boxes for these controls. Count, workspace, and optional-content policy may remain single-choice because they control session shape rather than content inclusion.
 
 ### Workspace
 
@@ -318,7 +318,7 @@ Requirements:
 - keyboard path for all interactions,
 - tap-first fallback for drag operations,
 - accessible labels for rendered math,
-- color plus text/icon for claim statuses,
+- color plus text/icon for claim statuses and question contexts,
 - responsive layouts that do not hide report content,
 - clear focus states,
 - no essential information conveyed by color alone.

@@ -17,7 +17,7 @@ This phase should produce a usable quiz application with a small sample bank. It
 ### Core Features
 
 - Load question data from structured files instead of inline JavaScript.
-- Support question filtering by module, difficulty, type, and claim status.
+- Support question filtering by module, difficulty, type, claim status, and question context.
 - Support study mode with immediate explanations.
 - Support quiz mode with delayed grading.
 - Support review of missed questions.
@@ -190,7 +190,7 @@ The design should feel like a polished engineering console: readable, calm, fast
 
 The active workspace should change by activity type. A boundary-classification session, a symbol lab, a chronology timeline, and a design-review case should not all be cramped into the same generic card.
 
-Filter controls should not force narrow single-choice paths. Tracks, modules, difficulties, activity types, and claim statuses should allow selecting multiple values. Empty selection should mean "all." Count and optional-content policy can stay single-choice.
+Filter controls should not force narrow single-choice paths. Tracks, modules, difficulties, activity types, claim statuses, and question contexts should allow selecting multiple values. Empty selection should mean "all." Count and optional-content policy can stay single-choice.
 
 ### Phase 1 Done When
 
@@ -366,6 +366,7 @@ Each question should have:
 
 - one clear learning purpose,
 - one claim status,
+- one question context: general theory, paper theory, project application, or project state,
 - a teaching-quality explanation,
 - a boundary note when project-specific or speculative,
 - reference support when established or literature-based,

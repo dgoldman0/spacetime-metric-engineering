@@ -1,4 +1,4 @@
-import { claimLabels } from "../data/taxonomy.js";
+import { claimLabels, contextLabels, getQuestionContext } from "../data/taxonomy.js";
 
 export function ReportPanel({ results, totalQuestions }) {
   if (!results.length) {
@@ -26,6 +26,7 @@ export function ReportPanel({ results, totalQuestions }) {
       <p className="muted">Reviewed {results.length} of {totalQuestions} questions.</p>
       <Breakdown title="By module" rows={breakdown(results, (q) => q.module)} />
       <Breakdown title="By claim status" rows={breakdown(results, (q) => claimLabels[q.claimStatus] || q.claimStatus)} />
+      <Breakdown title="By context" rows={breakdown(results, (q) => contextLabels[getQuestionContext(q)] || getQuestionContext(q))} />
       <Breakdown title="By activity" rows={breakdown(results, (q) => q.type)} />
       {missedModules.length ? (
         <p><strong>Review next:</strong> {missedModules.join(", ")}</p>

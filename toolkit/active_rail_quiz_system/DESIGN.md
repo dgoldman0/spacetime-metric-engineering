@@ -44,13 +44,26 @@ Suggested epistemic classes:
 | --- | --- | --- |
 | Established theory | Standard GR, differential geometry, stress-energy, ADM language, QFT-in-curved-spacetime basics, or broadly accepted mathematical machinery. | Show as "Established". Include references or canonical source notes. |
 | Established constraint | Known limits, no-go pressures, energy-condition issues, quantum inequality constraints, topological censorship, backreaction concerns. | Show as "Established constraint". Explain what it limits and what it does not by itself rule out. |
-| Published speculative model | Alcubierre-style warp metrics, traversable wormhole models, Natario-style metrics, or other published speculative-relativity constructs. | Show as "Literature model". Do not treat as demonstrated engineering. |
+| Published speculative model | Alcubierre-style warp metrics, traversable wormhole models, Natario-style metrics, or other published speculative-relativity constructs. | Show as "Published literature". Do not treat as demonstrated engineering. |
 | Project definition | Active-rail vocabulary, decomposition, service chronology, support/carry/catch/fade/decompress/reset roles, demanded-source ledgers. | Show as "Active-rail model". State that this is project terminology or design structure. |
 | Project hypothesis | A proposed active-rail design principle, burden-routing strategy, closure mechanism, or source-family conjecture. | Show as "Project hypothesis". Include what evidence would strengthen or falsify it. |
 | Open physical gate | A required unresolved demonstration: matter closure, semiclassical response, stability, reset residue, repeated operation, causality, realizability. | Show as "Open gate". Score users on recognizing that it is not solved. |
 | Fictional frame | Course names, certification titles, future institutional flavor. | Show in UI flavor only. Never use as evidence. |
 
 The system should repeatedly ask users to classify claims. This should be a first-class skill, not an occasional warning.
+
+Claim status is not the same thing as question context. The UI should expose both.
+
+Suggested question contexts:
+
+| Context | Meaning | Source Rule |
+| --- | --- | --- |
+| General theory | Textbook or broadly established theory questions that are not about a specific project design. | Use stable public source anchors where useful. |
+| Paper theory | Questions about a paper's own theory, assumptions, results, implications, or limitations. | Use only papers with verified full public access, preferably arXiv or another actual public source page. Do not frame these as active-rail design lessons. |
+| Project application | Questions that apply established theory or published literature to active-rail design reasoning. | Mark clearly as project application and attach project/source links when needed. |
+| Project state | Questions about current repository evidence, run status, hypotheses, or open gates. | Flag as project-state or revision-sensitive and keep excludable. |
+
+This distinction prevents a paper question from becoming an unmarked project question. For example, a general paper-theory item about Clark-Hiscock-Larson should ask what their null-geodesic analysis shows about Alcubierre causal access. A separate project-application item may ask how that result informs active-rail carrier audits, but it must be labeled as project application.
 
 ## Project-State Content Policy
 
@@ -464,7 +477,7 @@ Project-Specific Meaning: The ledger identifies what the prescribed active-rail 
 Open Gate: It does not prove that a realizable matter sector exists.
 ```
 
-References should be structured enough for UI rendering. A reference may point to a paper, DOI, arXiv page, textbook citation, project repository file, local design document, or run artifact. Established-theory and literature-context questions should prefer stable public anchors. Project-material questions may point to repository paths, local docs, or run records, but they must carry `project_material`, `project_state`, `open_question`, or `revision_sensitive` flags when appropriate.
+References should be structured enough for UI rendering. A reference may point to a paper, arXiv page, textbook citation, project repository file, public project document, or run artifact. Paper-theory questions must point to actual public source locations for fully accessible papers, not local repo copies or unverified DOI-only landing pages. Project-material questions may point to public repository documents or local run records during internal use, but they must carry `project_material`, `project_state`, `open_question`, or `revision_sensitive` flags when appropriate.
 
 Explanations should teach the learner after grading. A good explanation does not merely say which option was correct; it names the relevant principle, explains the distractor trap, identifies the claim boundary, and points to sources worth reading next.
 
@@ -532,7 +545,7 @@ Core surfaces:
 - reference drawer,
 - design-review simulator.
 
-Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories.
+Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, question contexts, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories.
 
 The system should support both casual and serious use:
 

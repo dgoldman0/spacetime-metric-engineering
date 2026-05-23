@@ -1,4 +1,4 @@
-import { claimLabels, typeLabels } from "../data/taxonomy.js";
+import { claimLabels, contextLabels, getQuestionContext, typeLabels } from "../data/taxonomy.js";
 import { RichText } from "./RichText.jsx";
 import { SourceList } from "./SourceList.jsx";
 import { registry } from "../renderers/registry.jsx";
@@ -8,6 +8,7 @@ export function ActivityCard({ question, index, response, reviewed, mode, onResp
   const Renderer = entry.Component;
   const result = reviewed ? entry.grade(question, response) : null;
   const resultClass = result ? (result.correct ? "correct" : result.earned > 0 ? "partial" : "incorrect") : "";
+  const context = getQuestionContext(question);
 
   return (
     <article className={`question-card ${reviewed ? "reviewed" : ""} ${resultClass}`}>
@@ -17,6 +18,7 @@ export function ActivityCard({ question, index, response, reviewed, mode, onResp
           <h3>{question.module}</h3>
         </div>
         <div className="badges">
+          <span className={`badge context-${context}`}>{contextLabels[context] || context}</span>
           <span className={`badge ${question.claimStatus}`}>{claimLabels[question.claimStatus] || question.claimStatus}</span>
           <span className="badge">{question.difficulty}</span>
           {(question.contentFlags || []).map((flag) => (

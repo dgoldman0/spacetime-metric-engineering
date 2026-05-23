@@ -146,6 +146,7 @@ Mastery can be tracked by:
 
 - module,
 - claim status,
+- question context,
 - learning objective,
 - symbol family,
 - project component,
@@ -160,6 +161,7 @@ Include:
 - total score,
 - module breakdown,
 - claim-status breakdown,
+- question-context breakdown,
 - weak learning objectives,
 - repeated misconceptions,
 - hinted versus unaided performance when available,
@@ -211,6 +213,7 @@ Questions should be able to declare:
 - learning objectives,
 - misconception tags,
 - claim-boundary target,
+- question context,
 - hint availability,
 - qualification profile compatibility.
 

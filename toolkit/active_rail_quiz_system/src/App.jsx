@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { questionBank } from "./data/questionBank.js";
-import { claimLabels } from "./data/taxonomy.js";
+import { claimLabels, contextLabels, getQuestionContext } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
 import { ReportPanel } from "./components/ReportPanel.jsx";
 import { RichText } from "./components/RichText.jsx";
@@ -63,6 +63,7 @@ export const defaultFilters = {
   modules: [],
   difficulties: [],
   claimStatuses: [],
+  contexts: [],
   optionalContent: "stable"
 };
 
@@ -78,7 +79,8 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
     tracks: unique(questionBank.map((q) => q.track)),
     modules: unique(questionBank.map((q) => q.module)),
     difficulties: ["core", "intermediate", "advanced"],
-    claimStatuses: unique(questionBank.map((q) => q.claimStatus))
+    claimStatuses: unique(questionBank.map((q) => q.claimStatus)),
+    contexts: unique(questionBank.map((q) => getQuestionContext(q)))
   }), []);
   const workspaceCounts = useMemo(() => {
     return Object.fromEntries(
@@ -211,6 +213,7 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
               <MultiFacet label="Modules" values={filters.modules} options={options.modules.map((value) => [value, value])} emptyLabel="All modules" onChange={(value) => updateFilter("modules", value)} />
               <MultiFacet label="Difficulty" values={filters.difficulties} options={options.difficulties.map((value) => [value, titleCase(value)])} emptyLabel="All levels" onChange={(value) => updateFilter("difficulties", value)} />
               <MultiFacet label="Claim Status" values={filters.claimStatuses} options={options.claimStatuses.map((value) => [value, claimLabels[value] || value])} emptyLabel="All statuses" onChange={(value) => updateFilter("claimStatuses", value)} />
+              <MultiFacet label="Context" values={filters.contexts} options={options.contexts.map((value) => [value, contextLabels[value] || value])} emptyLabel="All contexts" onChange={(value) => updateFilter("contexts", value)} />
               <SelectControl label="Optional Content" value={filters.optionalContent} onChange={(value) => updateFilter("optionalContent", value)} options={[
                 ["stable", "Stable only"],
                 ["include", "Include flagged"],
@@ -527,10 +530,11 @@ function matchesFilters(question, filters) {
   const hasOptional = flags.length > 0;
   if (filters.optionalContent === "stable" && hasOptional) return false;
   if (filters.optionalContent === "flagged" && !hasOptional) return false;
-  return facetIncludes(filters.tracks, question.track)
-    && facetIncludes(filters.modules, question.module)
-    && facetIncludes(filters.difficulties, question.difficulty)
-    && facetIncludes(filters.claimStatuses, question.claimStatus);
+  return facetIncludes(filters.tracks || [], question.track)
+    && facetIncludes(filters.modules || [], question.module)
+    && facetIncludes(filters.difficulties || [], question.difficulty)
+    && facetIncludes(filters.claimStatuses || [], question.claimStatus)
+    && facetIncludes(filters.contexts || [], getQuestionContext(question));
 }
 
 function initialResponses(questions) {

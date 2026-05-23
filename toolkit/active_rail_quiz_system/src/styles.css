@@ -567,6 +567,7 @@ h3 {
 }
 
 .badge.literature_model,
+.badge.context-paper_theory,
 .status-choice.literature_model {
   background: var(--blue-soft);
   border-color: #abc1e8;
@@ -574,10 +575,17 @@ h3 {
 }
 
 .badge.active_rail_model,
+.badge.context-project_application,
 .status-choice.active_rail_model {
   background: var(--teal-soft);
   border-color: #9bcfca;
   color: #225f5b;
+}
+
+.badge.context-general_theory {
+  background: var(--green-soft);
+  border-color: #a7d5b6;
+  color: #245e43;
 }
 
 .badge.project_hypothesis,
@@ -589,6 +597,7 @@ h3 {
 
 .badge.open_gate,
 .badge.project_state,
+.badge.context-project_state,
 .badge.project_material,
 .badge.open_question,
 .badge.revision_sensitive,
