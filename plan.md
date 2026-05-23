@@ -289,11 +289,31 @@ new architecture sweep:
     by `observed_action_inward_forward` at row `194`; live exclusion and
     state/source non-amplification remain clean. Human narrative report:
     `supporting_reports/STAGE2_BETA075_ALIGNED_ENVELOPE_CERTIFICATE.md`.
-40. Current next rung: bounded service-timing jitter around the aligned
-    envelope. The aligned class now passes, so the next real-world proof
-    question is tolerance to small service-local timing offsets without
-    allowing a return to arbitrary all-domain impulse collapse. Keep the work
-    at action-level fixed-background PDE scope.
+40. Completed bounded service-timing jitter around the aligned envelope.
+    Status is `timing_jitter_pass_all_tested_offsets`: all common service-time
+    offsets pass through jitter radius `8` across the tested directions, with
+    live exclusion, no limiter clipping, and no state/source amplification. The
+    worst budget fraction remains the aligned-envelope value `0.742835`, led by
+    row `194` in `observed_action_inward_forward`
+    (`support_edge_endpoint_junction / entry_precatch / support_edge`). The
+    only new watch is interpretive rather than failing: large offsets clipped
+    at the service-window edge can concentrate up to about `0.842260` of the
+    source into one boundary step, but still stay under budget. Human narrative
+    report:
+    `supporting_reports/STAGE2_BETA075_TIMING_JITTER_CERTIFICATE.md`.
+41. Current next rung: full `1+1` constitutive source-coupled evolution for the
+    sealed beta075 package. Treat this as full system testing on the
+    fixed-background service/radial model, not as another source-edge
+    fine-tuning block. The object is the integrated constitutive support-source
+    rule coupled to bounded rapidity transport over the active non-live
+    support-source domain. Gate observed-amplitude evolution on local rapidity
+    budgets, cone/transport margins, live and packet-live exclusion, limiter
+    inactivity, no state/source amplification, and no hidden new component.
+    Carry row `194`, service-edge clipping, dense reset/core tightness,
+    source-law smoothness, thin characteristic margin, raw heat-current
+    fragility, compact bracket miss, and artificial `5e-4` overdrive as light
+    watches unless this higher-rung test fails and points back to a specific
+    physical mechanism.
 ```
 
 Discussion discipline while runs are computing:
@@ -434,19 +454,28 @@ Completed: formal aligned-envelope proof certificate for the sealed beta075
            action-level fixed-background PDE model. The service-ordered
            one-step basis bounds the full common nonnegative temporal-kernel
            class and stays within local rapidity budget.
-Allowed next: bounded service-timing jitter around the aligned envelope. Gate
-              the integrated observed-amplitude bounded-rapidity system on
-              invariant local budgets, transport non-concentration under small
-              service-local timing offsets, cone/transport margin preservation,
-              live and packet-live exclusion, and no hidden component. Carry
-              dense reset/core, source-law smoothness, thin characteristic
-              margin, raw heat-current fragility, compact bracket miss, and
-              artificial `5e-4` overdrive as light watches. Runs should write
-              structured artifacts only; narrative reports should be written by
-              hand after interpretation. Do not branch into source-law,
-              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
-              unless this higher-rung full-system/action/PDE gate fails and
-              points back to a specific physical mechanism.
+Completed: bounded service-timing jitter around the aligned envelope. The
+           integrated observed-amplitude bounded-rapidity system stays inside
+           invariant local budgets under common service-local timing offsets
+           through radius `8`, with cone/transport margins preserved, live and
+           packet-live exclusion intact, no limiter clipping, and no hidden
+           component.
+Allowed next: full `1+1` constitutive source-coupled fixed-background
+              evolution. This is full system testing for the service/radial
+              constitutive source-coupled model, not a return to isolated
+              support-edge tuning. Gate the integrated observed-amplitude
+              system on local budgets, transport non-concentration,
+              cone/transport margin preservation, live and packet-live
+              exclusion, limiter inactivity, no state/source amplification,
+              and no hidden new component. Carry dense reset/core, row `194`,
+              service-edge clipping, source-law smoothness, thin
+              characteristic margin, raw heat-current fragility, compact
+              bracket miss, and artificial `5e-4` overdrive as light watches.
+              Runs should write structured artifacts only; narrative reports
+              should be written by hand after interpretation. Do not branch
+              into source-law, support-edge, V=3/V=4 interpolation, or
+              artificial-stress tuning unless this higher-rung full-system test
+              fails and points back to a specific physical mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
