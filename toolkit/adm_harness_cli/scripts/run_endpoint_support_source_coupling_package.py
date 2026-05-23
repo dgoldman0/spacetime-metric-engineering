@@ -43,6 +43,24 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--limiter-safety-fraction", type=float, default=0.95)
     parser.add_argument("--source-column", type=str, default="candidate_support_abs_PF_density")
     parser.add_argument("--source-smoothing-passes", type=int, default=0)
+    parser.add_argument(
+        "--source-profile-budget-cap-scope",
+        choices=["none", "support_edge_entry_catch", "support_edge_all", "all"],
+        default="none",
+        help="Optional pre-evolution source-profile normalization scope.",
+    )
+    parser.add_argument(
+        "--source-profile-budget-cap-fraction",
+        type=float,
+        default=0.0,
+        help="If positive, cap the observed-reference source profile to this local budget fraction before evolution.",
+    )
+    parser.add_argument(
+        "--source-profile-budget-cap-reference-delta",
+        type=float,
+        default=None,
+        help="Heat-ratio delta used to design the source-profile cap; defaults to --observed-heat-ratio-delta.",
+    )
     parser.add_argument("--temporal-profile", choices=["raised_cosine", "flat"], default="raised_cosine")
     parser.add_argument("--budget-bisection-steps", type=int, default=48)
     parser.add_argument("--top-row-count", type=int, default=160)
@@ -63,6 +81,13 @@ def main() -> int:
         limiter_safety_fraction=float(args.limiter_safety_fraction),
         source_column=str(args.source_column),
         source_smoothing_passes=int(args.source_smoothing_passes),
+        source_profile_budget_cap_scope=str(args.source_profile_budget_cap_scope),
+        source_profile_budget_cap_fraction=float(args.source_profile_budget_cap_fraction),
+        source_profile_budget_cap_reference_delta=(
+            None
+            if args.source_profile_budget_cap_reference_delta is None
+            else float(args.source_profile_budget_cap_reference_delta)
+        ),
         temporal_profile=str(args.temporal_profile),
         budget_bisection_steps=int(args.budget_bisection_steps),
         top_row_count=int(args.top_row_count),

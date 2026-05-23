@@ -198,6 +198,19 @@ new architecture sweep:
     Read: the package architecture is not intrinsically unstable under lower
     service rating; the active repair target remains V=5 support-edge source
     realization, not a V=3/V=4 interpolation sweep.
+32. Completed first V=5 support-edge source reshaping pass. Smoothing-only
+    checks were insufficient (`2.001` / `2.000` observed max budget fraction for
+    one/four smoothing passes), but a scoped pre-evolution source-profile
+    normalization on `support_edge_endpoint_junction` entry/catch support-edge
+    slices clears the observed package run. Status is
+    `package_support_source_observed_clean`: observed outward/inward max budget
+    fractions are `0.289` / `0.373`, with zero observed failing slices and no
+    observed limiter activity. The previous hard entry-precatch slice at
+    `s=-1.236702` falls from `2.076` to `0.192` outward; the previous
+    catch-rematch cleanup at `s=0.606383` falls from `1.015` to `0.196`
+    outward. Large `5e-4` stress remains a watch (`1.445` max, now led by
+    release/pre-entry stress rows), so the source law is an observed-amplitude
+    reduced dynamics repair rather than a full high-amplitude proof.
 ```
 
 Discussion discipline while runs are computing:
@@ -307,16 +320,18 @@ Completed: full-package reduced `1+1` support-source coupling analysis. It
            localizes observed-amplitude failures to support-edge endpoint-
            junction entry-precatch and catch-rematch slices; row-4605 remains
            clean under the package source-coupled run.
-Allowed next: targeted support-source design for the localized support-edge
-              endpoint-junction failures. Try phase-aware source-profile
-              shaping, amplitude normalization, or smoothing only against
-              `entry_precatch/support_edge` near `s=-1.236702` and
-              `catch_rematch/support_edge` near `s=0.606383`, then rerun the
-              same structured full-package sweep at V=5. The V=2 lower-service
-              rerun is clean, so do not branch into V=3/V=4 interpolation
-              unless a later V=5 repair needs transition mapping. Do not add a
-              new geometric component unless this targeted source-design rung
-              fails.
+Completed: targeted V=5 support-source design for the localized support-edge
+           endpoint-junction failures. Phase-local source-profile
+           normalization on entry/catch support-edge slices clears the observed
+           full-package source-coupling sweep without adding a new geometric
+           component.
+Allowed next: refine or formalize the support-edge source-normalization rule
+              inside the reduced model. Check whether the `0.95`
+              observed-reference cap can be expressed as a smooth phase-local
+              source law with bounded transition behavior; carry the large
+              release/pre-entry stress rows as watches. Do not branch into
+              V=3/V=4 interpolation unless a later V=5 refinement needs
+              transition mapping.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting

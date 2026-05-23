@@ -36,6 +36,9 @@ class PackageCouplingSpec:
     limiter_safety_fraction: float = 0.95
     source_column: str = "candidate_support_abs_PF_density"
     source_smoothing_passes: int = 0
+    source_profile_budget_cap_scope: str = "none"
+    source_profile_budget_cap_fraction: float = 0.0
+    source_profile_budget_cap_reference_delta: float | None = None
     temporal_profile: str = "raised_cosine"
     budget_bisection_steps: int = 48
     s_round_decimals: int = 12
@@ -144,6 +147,7 @@ def _slice_source_profile(
         _finite(bottleneck["baseline_heat_ratio"], 0.0),
         float(scenario.heat_ratio_delta) * float(scenario.source_scale),
     )
+    profile_scale, cap_meta = _source_profile_budget_scale(group, budget, normalized, bottleneck, spec)
     meta = {
         "normalizer_source_row_index": int(row_ids[normalizer_pos]) if len(row_ids) else -1,
         "normalizer_l": _finite(group.iloc[normalizer_pos].get("l"), float("nan")) if len(group) else float("nan"),
@@ -156,8 +160,75 @@ def _slice_source_profile(
         "target_bottleneck_delta_psi": target_delta,
         "source_density_sum": float(np.sum(density)),
         "max_normalized_source_density": float(np.max(normalized)) if len(normalized) else float("nan"),
+        **cap_meta,
     }
-    return normalized * float(target_delta), meta
+    return normalized * float(target_delta) * float(profile_scale), meta
+
+
+def _source_profile_budget_cap_applies(group: pd.DataFrame, spec: PackageCouplingSpec) -> bool:
+    scope = str(spec.source_profile_budget_cap_scope)
+    if scope == "none":
+        return False
+    if scope == "all":
+        return True
+    assignment = str(group["assignment"].iloc[0]) if len(group) and "assignment" in group else ""
+    region = str(group["region"].iloc[0]) if len(group) and "region" in group else ""
+    stage = str(group["stage"].iloc[0]) if len(group) and "stage" in group else ""
+    support_edge = assignment == "support_edge_endpoint_junction" and region == "support_edge"
+    if scope == "support_edge_all":
+        return support_edge
+    if scope == "support_edge_entry_catch":
+        return support_edge and stage in {"entry_precatch", "catch_rematch"}
+    raise ValueError(f"unknown source_profile_budget_cap_scope {scope!r}")
+
+
+def _source_profile_budget_scale(
+    group: pd.DataFrame,
+    budget: pd.DataFrame,
+    normalized: np.ndarray,
+    bottleneck: pd.Series,
+    spec: PackageCouplingSpec,
+) -> tuple[float, dict[str, Any]]:
+    cap_fraction = float(spec.source_profile_budget_cap_fraction)
+    reference_delta = (
+        float(spec.source_profile_budget_cap_reference_delta)
+        if spec.source_profile_budget_cap_reference_delta is not None
+        else float(spec.observed_heat_ratio_delta)
+    )
+    cap_applies = (
+        cap_fraction > 0.0
+        and reference_delta > 0.0
+        and _source_profile_budget_cap_applies(group, spec)
+        and len(normalized) > 0
+    )
+    base_meta = {
+        "source_profile_budget_cap_scope": str(spec.source_profile_budget_cap_scope),
+        "source_profile_budget_cap_applied": False,
+        "source_profile_budget_cap_fraction": cap_fraction,
+        "source_profile_budget_cap_reference_delta": reference_delta,
+        "source_profile_raw_reference_budget_fraction": float("nan"),
+        "source_profile_scale": 1.0,
+    }
+    if not cap_applies:
+        return 1.0, base_meta
+    reference_bottleneck_delta = _source_delta_psi_for_heat_delta(
+        _finite(bottleneck["baseline_heat_ratio"], 0.0),
+        reference_delta,
+    )
+    budget_values = budget["max_admissible_delta_psi"].astype(float).to_numpy()
+    reference_profile = normalized * float(reference_bottleneck_delta)
+    raw_fraction = _safe_budget_fraction(reference_profile, budget_values)
+    finite = raw_fraction[np.isfinite(raw_fraction)]
+    raw_max = float(np.max(finite)) if len(finite) else float("nan")
+    if not math.isfinite(raw_max) or raw_max <= 0.0:
+        return 1.0, {**base_meta, "source_profile_budget_cap_applied": True}
+    scale = min(1.0, cap_fraction / raw_max)
+    return scale, {
+        **base_meta,
+        "source_profile_budget_cap_applied": True,
+        "source_profile_raw_reference_budget_fraction": raw_max,
+        "source_profile_scale": scale,
+    }
 
 
 def _sample_min_symbol_margin(

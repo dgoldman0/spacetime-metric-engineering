@@ -6,9 +6,11 @@ import numpy as np
 import pandas as pd
 
 from adm_harness.endpoint_support_source_coupling_package import (
+    PackageCouplingSpec,
     _decision,
     _package_summary,
     _safe_budget_fraction,
+    _source_profile_budget_scale,
 )
 
 
@@ -103,6 +105,66 @@ class EndpointSupportSourceCouplingPackageTests(unittest.TestCase):
 
         self.assertEqual(decision["package_source_coupling_status"], "package_support_source_observed_clean")
         self.assertTrue(bool(decision["large_unlimited_fails"]))
+
+    def test_source_profile_budget_scale_caps_targeted_entry_catch_profile(self):
+        group = pd.DataFrame([
+            {
+                "assignment": "support_edge_endpoint_junction",
+                "stage": "entry_precatch",
+                "region": "support_edge",
+            },
+            {
+                "assignment": "support_edge_endpoint_junction",
+                "stage": "entry_precatch",
+                "region": "support_edge",
+            },
+        ])
+        budget = pd.DataFrame([
+            {"max_admissible_delta_psi": 1.0},
+            {"max_admissible_delta_psi": 1.0},
+        ])
+        normalized = np.array([1.0, 4.0])
+        bottleneck = pd.Series({"baseline_heat_ratio": 0.0})
+        spec = PackageCouplingSpec(
+            observed_heat_ratio_delta=0.5,
+            source_profile_budget_cap_scope="support_edge_entry_catch",
+            source_profile_budget_cap_fraction=0.5,
+        )
+
+        scale, meta = _source_profile_budget_scale(group, budget, normalized, bottleneck, spec)
+
+        self.assertTrue(meta["source_profile_budget_cap_applied"])
+        self.assertLess(scale, 1.0)
+        self.assertAlmostEqual(
+            meta["source_profile_raw_reference_budget_fraction"] * scale,
+            0.5,
+        )
+
+    def test_source_profile_budget_scale_ignores_untargeted_stage(self):
+        group = pd.DataFrame([
+            {
+                "assignment": "support_edge_endpoint_junction",
+                "stage": "release_shift_fade",
+                "region": "support_edge",
+            },
+        ])
+        budget = pd.DataFrame([{"max_admissible_delta_psi": 1.0}])
+        spec = PackageCouplingSpec(
+            observed_heat_ratio_delta=0.5,
+            source_profile_budget_cap_scope="support_edge_entry_catch",
+            source_profile_budget_cap_fraction=0.5,
+        )
+
+        scale, meta = _source_profile_budget_scale(
+            group,
+            budget,
+            np.array([10.0]),
+            pd.Series({"baseline_heat_ratio": 0.0}),
+            spec,
+        )
+
+        self.assertEqual(scale, 1.0)
+        self.assertFalse(meta["source_profile_budget_cap_applied"])
 
 
 if __name__ == "__main__":
