@@ -99,6 +99,12 @@ new architecture sweep:
     dense with tiny outside/live tails; dense fails without the Laplacian
     stress-potential term. Interpret this as support-sector evidence downstream
     of the full covariant endpoint audit, not as a fresh full-model promotion.
+21. Completed pending commit: total support-exchange closure guard. Treating
+    the support stroke fit as `J_support^nu = -J_fit^nu`, the `24x14`
+    reference support sector passes active, allowed, local active, outside/live
+    localization, and angular-exclusion gates on baseline and dense. The compact
+    `22x13` bracket fails the dense local active gate, so keep it as a
+    compactness bracket rather than the promoted closure reference.
 ```
 
 Discussion discipline while runs are computing:
@@ -161,6 +167,13 @@ Allowed next after review: connect the compact support stroke sector to an
                            explicit total-conservation account on the full
                            covariant audit surface; do not replace the full
                            promotion audit with support-sector fits.
+Allowed next: close the finite-difference endpoint/support closure milestone
+              at this claim level. Do not keep refining same-level closure
+              fits unless a later hard gate specifically points back to dense
+              reset/core. The next phase is harder modeling/testing:
+              support-sector stability, hyperbolicity/causality, and
+              cross-bracket robustness, carrying dense reset/core as the first
+              watch item.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon

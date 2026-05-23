@@ -1427,3 +1427,200 @@ The full-model claim remains bounded:
   should connect the compact support stroke sector to an explicit total
   conservation account, rather than broadening the matter family.
 ```
+
+## Heavy Test 4: Total Support-Exchange Closure
+
+Status: final closure-stage guard, uncommitted pending review. This is the
+integration check requested after the compactness read.
+
+New harness:
+
+```text
+toolkit/adm_harness_cli/adm_harness/endpoint_support_total_closure.py
+toolkit/adm_harness_cli/scripts/run_endpoint_support_total_closure.py
+toolkit/adm_harness_cli/tests/test_endpoint_support_total_closure.py
+```
+
+Question:
+
+```text
+If the support stroke fit is interpreted as the candidate support exchange
+current
+
+  J_support^nu = -J_fit^nu
+
+does the full covariant audit surface satisfy
+
+  J_endpoint^nu + J_support^nu ~= 0
+
+within active, allowed, local-active, outside/live localization, and angular
+exclusion gates?
+```
+
+Harness design:
+
+```text
+1. Load support-stroke point-fit output.
+2. Define candidate support current:
+     J_support^nu = -J_fit^nu
+3. Define total residual:
+     R_total^nu = covariant_divergence^nu + J_support^nu
+4. Score full_grid, active, allowed, outside_allowed, live, and each
+   active assignment/stage/region group.
+5. Gate:
+     active and allowed residual / endpoint L2
+     active and allowed residual / target |P|+|F|
+     max local-active residual ratios
+     outside/live residual fractions inherited from full endpoint divergence
+     outside/live support-current tails
+     angular support and angular residual volumes
+```
+
+Gates:
+
+```text
+active residual / endpoint L2 gate:  0.55
+allowed residual / endpoint L2 gate: 0.55
+local residual / endpoint L2 gate:   0.55
+active residual / |P|+|F| gate:      0.50
+allowed residual / |P|+|F| gate:     0.50
+local residual / |P|+|F| gate:       0.55
+outside residual fraction gate:      0.006
+live residual fraction gate:         0.005
+outside support-tail gate:           0.001
+live support-tail gate:              0.0001
+angular support/residual gate:       1e-14
+```
+
+Outputs, 24x14 reference:
+
+```text
+baseline:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/
+  endpoint_support_total_closure_24x14_freeze_rematch_w6_t1p5/
+
+dense:
+toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_dense377x241_sharded12/
+  endpoint_support_total_closure_24x14_freeze_rematch_w6_t1p5/
+```
+
+Decision metrics, 24x14 reference:
+
+```text
+Baseline:
+  status: support_total_exchange_closure_pass
+  active residual / endpoint L2:       0.244987
+  allowed residual / endpoint L2:      0.190870
+  max local residual / endpoint L2:    0.297044
+  active residual / |P|+|F|:           0.222933
+  allowed residual / |P|+|F|:          0.176625
+  max local residual / |P|+|F|:        0.302640
+  outside residual fraction:           0.001037
+  live residual fraction:              0.003553
+  outside support-tail fraction:       2.082e-06
+  live support-tail fraction:          0
+  support/residual angular volume:     0 / 0
+
+Dense:
+  status: support_total_exchange_closure_pass
+  active residual / endpoint L2:       0.451388
+  allowed residual / endpoint L2:      0.358617
+  max local residual / endpoint L2:    0.521951
+  active residual / |P|+|F|:           0.449018
+  allowed residual / |P|+|F|:          0.363641
+  max local residual / |P|+|F|:        0.544567
+  outside residual fraction:           0.000871
+  live residual fraction:              0.003199
+  outside support-tail fraction:       6.358e-06
+  live support-tail fraction:          0
+  support/residual angular volume:     0 / 0
+```
+
+Compact 22x13 comparison:
+
+```text
+Compact 22x13 baseline:
+  status: support_total_exchange_closure_pass
+
+Compact 22x13 dense:
+  status: support_total_exchange_closure_watch
+  aggregate active / allowed scopes pass
+  localization and angular gates pass
+  local active gate fails:
+    max local residual / endpoint L2: 0.581325
+    max local residual / |P|+|F|:     0.597527
+
+Read:
+  The compact 22x13 fit is a useful compactness bracket but not the closure
+  reference. Dense local reset/core needs the larger 24x14 support-stress
+  resolution to clear the local gate.
+```
+
+Local residual read, 24x14 reference:
+
+```text
+Baseline largest local residuals:
+  reset_decompression / core_throat:
+    residual / endpoint L2: 0.297044
+    residual / |P|+|F|:     0.302640
+  reset_decompression / support_edge:
+    residual / endpoint L2: 0.248618
+    residual / |P|+|F|:     0.257452
+
+Dense largest local residuals:
+  reset_decompression / core_throat:
+    residual / endpoint L2: 0.521951
+    residual / |P|+|F|:     0.544567
+  support_edge held_carry:
+    residual / endpoint L2: 0.335008
+    residual / |P|+|F|:     0.463656
+  reset_decompression / support_edge:
+    residual / endpoint L2: 0.443077
+    residual / |P|+|F|:     0.460917
+
+Read:
+  The final closure guard passes, but dense reset/core is tight. This should be
+  carried forward as the first watch item for stability and robustness gates.
+```
+
+Milestone interpretation:
+
+```text
+Finite-difference endpoint/support closure can be marked complete at this
+claim level:
+  tensor identity passed;
+  field closure passed;
+  angular response passed internally;
+  smooth memoryless P/F reservoir failed selectively;
+  phase-aware stroke/stress support fit passed;
+  compactness showed the need for stress-potential/Laplacian structure;
+  total endpoint + support exchange closure now passes on baseline and dense.
+
+Do not overclaim:
+  This is not a final matter action, not a hyperbolicity theorem, not a global
+  robustness result, and not a new full-model promotion. It closes the current
+  finite-difference closure stage for the repaired beta075 endpoint/support
+  source story.
+
+Next gate if accepted:
+  move to support-sector stability / hyperbolicity / causal-propagation checks
+  and cross-bracket robustness. Stop adding same-level closure fits unless a
+  new failure mode appears.
+```
+
+Feasibility implication:
+
+```text
+Further same-level closure fitting is not required as model refinement. The
+needed refinement already happened: the support sector moved from a memoryless
+smooth P/F reservoir to phase-aware stroke/stress-potential dynamics. The
+24x14 reference clears the total-closure guard with bounded support tails and
+no live/angular exchange.
+
+Keep dense reset/core as the first watch item because its local closure margin
+is tight. But treat additional closure-stage fitting as safety/margin cleanup,
+not as the main path. The next meaningful phase is harder modeling/testing:
+support-sector stability, hyperbolicity/causality, and cross-bracket
+robustness. If those later gates fail specifically at dense reset/core, then
+return to support-model refinement.
+```
