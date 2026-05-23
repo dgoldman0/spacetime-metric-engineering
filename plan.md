@@ -266,7 +266,9 @@ new architecture sweep:
     `s=1.0890957446808511, l=2.1`; normalized transport row-sum bounds are
     expansive on 82161 edge rows, with max bound `1.554856`. Read this as a
     proof gap requiring source-time regularity/admissible temporal-envelope
-    control, not as a reason to reopen same-level component tuning.
+    control, not as a reason to reopen same-level component tuning. Human
+    narrative report:
+    `supporting_reports/STAGE2_BETA075_ACTION_PDE_PROOF_OBLIGATION.md`.
 38. Current next rung: prove or certify the admissible source-time envelope for
     the action-level fixed-background PDE model. The target is to rule out the
     arbitrary impulse collapse that exceeded the local rapidity budget while
