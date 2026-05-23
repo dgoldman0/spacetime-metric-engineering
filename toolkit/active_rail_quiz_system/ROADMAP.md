@@ -165,8 +165,10 @@ The first screen should be the quiz/study tool itself.
 Required surfaces:
 
 - mode selector,
-- module selector,
-- claim-status selector,
+- module multi-select facet,
+- claim-status multi-select facet,
+- track multi-select facet,
+- difficulty multi-select facet,
 - question count selector,
 - active workspace,
 - score/report area,
@@ -175,6 +177,8 @@ Required surfaces:
 The design should feel like a polished engineering console: readable, calm, fast, and clear. It should look much better than the prototype, but the first implementation should avoid ornamental complexity.
 
 The active workspace should change by activity type. A boundary-classification session, a symbol lab, a chronology timeline, and a design-review case should not all be cramped into the same generic card.
+
+Filter controls should not force narrow single-choice paths. Tracks, modules, difficulties, activity types, and claim statuses should allow selecting multiple values. Empty selection should mean "all." Count and optional-content policy can stay single-choice.
 
 ### Phase 1 Done When
 
@@ -417,6 +421,7 @@ What is still missing:
 - a real activity launcher instead of one filter bar doing everything,
 - distinct workspaces for Mixed Quiz, Boundary Board, Symbol Lab, Chronology Timeline, Ledger Reader, and Design Review,
 - workspace-specific scoring panels,
+- multi-select facet controls for track, module, difficulty, activity, and claim status,
 - richer visual hierarchy that makes mode changes feel structurally different,
 - multi-class testing flows where claim-boundary classification, source interpretation, chronology, and standard quiz items are not all forced into the same vertical card stack.
 
@@ -432,6 +437,7 @@ The next milestone should turn the prototype into the right architecture:
 - add a dedicated Symbol Lab workspace,
 - add a dedicated Chronology Timeline workspace,
 - add an initial Design Review workspace,
+- replace single-select content filters with multi-select facets,
 - keep structured question loading,
 - keep multiple choice and select all through a standard quiz renderer,
 - keep drag-fill through a symbol/equation renderer,

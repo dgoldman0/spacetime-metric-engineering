@@ -50,6 +50,8 @@ The command bar controls the active session:
 
 It should stay compact. It is a cockpit control strip, not a settings page.
 
+Content filters should behave like facets, not single-choice dropdowns. Track, module, difficulty, claim status, and activity type should support multiple selections. Empty selection means the facet is unrestricted. Use checkbox chips, compact tag groups, or checklist popovers rather than native single-select boxes for these controls. Count, workspace, and optional-content policy may remain single-choice because they control session shape rather than content inclusion.
+
 ### Workspace
 
 The workspace changes by activity type. It is the main learning surface.

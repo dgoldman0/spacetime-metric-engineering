@@ -514,6 +514,8 @@ Core surfaces:
 - reference drawer,
 - design-review simulator.
 
+Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories.
+
 The system should support both casual and serious use:
 
 - quick drill,
