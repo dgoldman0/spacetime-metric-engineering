@@ -11,6 +11,7 @@ import pandas as pd
 from .component_algebra_ledger import _add_algebra_columns
 from .source_ledger import sha256_file, write_manifest
 from .source_screening import resolve_manifest_path
+from .table_io import read_table
 
 
 RADIAL_COMPONENTS = (
@@ -63,11 +64,11 @@ def _load_point_geometry(metadata: dict[str, Any]) -> pd.DataFrame:
         point_path = resolve_manifest_path(component_dir, point_value)
         if not point_path.exists():
             continue
-        header = pd.read_csv(point_path, nrows=0)
-        usecols = [col for col in ["gamma_omega", "gamma_ll"] if col in header.columns]
+        point_frame = read_table(point_path)
+        usecols = [col for col in ["gamma_omega", "gamma_ll"] if col in point_frame.columns]
         if not usecols:
             continue
-        frame = pd.read_csv(point_path, usecols=usecols)
+        frame = point_frame[usecols].copy()
         frame["point_index"] = np.arange(len(frame), dtype=int)
         frame["label"] = str(ledger.get("label", ""))
         frames.append(frame)
