@@ -491,6 +491,21 @@ new architecture sweep:
     reachable downstream gate so the result maps where the obstruction occurs,
     how hard it fails, and whether later closure/covariant/support stages also
     degrade or remain structurally coherent.
+58. Worth doing despite the closeout: add a finite-domain radial ANEC
+    diagnostic before treating the SNEC story as settled. This is not expected
+    to be harder than the existing full-stride SNEC or capstone work because it
+    can reuse the affine radial-null trace machinery: integrate total and
+    sector-resolved `Tkk d_lambda` along the longest available boundary-to-
+    boundary radial null traces instead of scanning many Gaussian windows.
+    Treat it as a diagnostic, not a theorem. Seed the first pass from worst
+    SNEC centers, endpoint/J support-edge rows, live handoff rows, and a
+    uniform stride grid. Report net integral, positive and negative parts,
+    affine/domain coverage, endpoint contribution, and sector attribution. A
+    clean finite-domain result supports "SNEC-clean and ANEC-plausible"; a
+    negative endpoint-dominated result becomes the next physical-admissibility
+    gate. A true averaged-NEC claim still requires complete null geodesics, a
+    physical stress tensor with conservation, off-axis null families, and
+    domain/convergence checks.
 ```
 
 Discussion discipline while runs are computing:
@@ -503,6 +518,10 @@ If endpoint/J-layer burden moves into a hidden shoulder or packet-density watch
 item, pause promotion and retarget the endpoint receiver/source-family model.
 If the repaired lead stays clean, do not drift into beta100 or V-headroom work;
 seal beta075 first, then use beta100 only as robustness context.
+If the finite-domain radial ANEC diagnostic is endpoint-negative, do not reopen
+same-level collar tuning by default; first decide whether the endpoint/J source
+family needs wider support, better conservation closure, or a stronger physical
+replacement model.
 ```
 
 Current claim boundary:
