@@ -452,25 +452,24 @@ new architecture sweep:
     Heavy point-response artifacts are stored as Parquet through
     `runs/stage2_external`. Human narrative report:
     `supporting_reports/STAGE2_BETA075_3P1_BACKREACTION_CAPSTONE.md`.
-55. Current next rung: moderate local 3+1/backreaction capstone over the
-    current complete source-family surfaces. Use the sealed dense V5 and
-    lower-service dense V2 closure/covariant artifacts as real provenance-gated
-    inputs; keep sealed baseline V5 only as a lower-resolution reference. Add
-    explicit angular lifting, time-stepped evolution, and Parquet row-group
-    output under the symlinked `runs/stage2_external` tree. Include V=10 as an
-    edge-load case only if the input audit confirms that no complete current
-    Stage II V10 source-family closure exists; in that case label it as a
-    calibrated V10 stress over the sealed dense V5 package rather than a sealed
-    V10 physical-source surface.
-56. Stage II closeout remains pending this moderate capstone. If V2 and V5
-    pass without live-row evolution, limiter clipping, or state amplification,
-    and V10 either passes as margin evidence or fails cleanly as an edge-load
-    boundary, then the local Stage II evidence package can be synthesized for
-    external-compute handoff. The honest academic claim would be that the
-    beta075 package has passed prescribed-metric, physical source-family,
-    action-level fixed-background PDE, first-order 3+1 coupling, and a
-    moderate local off-axis/backreaction capstone strongly enough to justify
-    final external-compute analysis.
+55. Current next rung: moderate local 3+1/backreaction capstone for the sealed
+    V5 target service rating only. Use the sealed dense V5 closure/covariant
+    artifacts as the main article and sealed baseline V5 as the
+    lower-resolution provenance/reference check. Add explicit angular lifting,
+    time-stepped evolution, and Parquet row-group output under the symlinked
+    `runs/stage2_external` tree. Do not run V10 in this capstone unless a full
+    current Stage II V10 source-family closure/covariant/support ladder is
+    built first; do not substitute an edge-load projection for a sealed V10
+    physical-source surface. Lower-service dense V2 may remain an optional
+    comparator later, but it is not part of the first moderate capstone.
+56. Stage II closeout remains pending this moderate sealed-V5 capstone. If the
+    sealed V5 run passes without live-row evolution, limiter clipping, state
+    amplification, or hidden provenance drift, then the local Stage II evidence
+    package can be synthesized for external-compute handoff. The honest
+    academic claim would be that the beta075 V5 package has passed
+    prescribed-metric, physical source-family, action-level fixed-background
+    PDE, first-order 3+1 coupling, and a moderate local off-axis/backreaction
+    capstone strongly enough to justify final external-compute analysis.
 ```
 
 Discussion discipline while runs are computing:
@@ -696,10 +695,11 @@ Completed: light local off-axis/backreaction proxy stress. The
            scenarios and complete surfaces, but it is now classified as a proxy
            rather than the final local capstone because it was computationally
            small and did not carry explicit angular/time evolution.
-Current: moderate local 3+1/backreaction capstone with provenance-gated V2/V5
-         inputs and a clearly labeled V10 edge-load stress. This is full-system
-         testing at the locally computable Stage II boundary, not a same-level
-         repair loop around one component.
+Current: moderate local 3+1/backreaction capstone for sealed V5 only, using
+         the current full V5 ladder. This is full-system testing at the locally
+         computable Stage II boundary, not a same-level repair loop around one
+         component. V10 is excluded until a full current V10 source-family
+         ladder exists.
 Allowed next after a clean moderate-capstone read: Stage II evidence synthesis
               and external-compute handoff for real off-axis 3+1 grids, richer
               perturbation families, longer constraint-propagation monitors,
