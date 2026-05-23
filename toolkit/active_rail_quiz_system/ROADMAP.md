@@ -310,7 +310,7 @@ This phase should create:
 - claim-status rules,
 - question-type recommendations per module,
 - activity-surface recommendations per module,
-- question quality rubric,
+- question quality rubric and authoring scorecard,
 - difficulty calibration rules,
 - source and reference requirements,
 - a small set of example questions per module.
@@ -320,7 +320,7 @@ This phase should create:
 - The full curriculum structure exists.
 - Every module has learning objectives.
 - Claim-status rules are clear enough for content authors.
-- A quality rubric exists and can be used to accept, rewrite, or reject draft questions.
+- A quality rubric exists and can be used to score, accept, rewrite, or reject draft questions.
 - Difficulty levels are calibrated by reasoning demand.
 - Reference anchors are assigned to established and literature modules.
 - Active-rail modules distinguish definitions, hypotheses, and open gates.

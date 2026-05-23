@@ -627,6 +627,8 @@ Question authors should follow these rules:
 
 Each proposed question should be vetted before it enters the approved bank. Draft questions can exist locally, but the final bank should include only items that meet the rubric.
 
+This rubric is an authoring scorecard, not just an automated validator. Automated checks can catch missing references, banned meta wording, or malformed data. They cannot judge whether a distractor is pedagogically useful, whether an advanced item really requires advanced reasoning, or whether an explanation teaches well. The author should score each question while writing and revising it.
+
 ### Required Passing Criteria
 
 A question is acceptable only if it passes all of these checks:
@@ -653,6 +655,30 @@ Difficulty should describe cognitive demand, not how obscure the wording is.
 | Advanced | Synthesize multiple constraints, evaluate evidence sufficiency, separate established theory from project use in a mixed prompt, or reason about open gates. | Even with choices supplied, the learner should need solid conceptual command and careful boundary discipline. |
 
 Advanced multiple choice is allowed, but it must be advanced because of reasoning load, not because the answer is hidden in obscure prose.
+
+### Authoring Scorecard
+
+Score each draft question before it is accepted into the learner-facing bank.
+
+| Dimension | 0 | 1 | 2 |
+| --- | --- | --- | --- |
+| Learning objective | No clear objective, trivia, or meta-policy content. | Objective exists but is vague or too small. | Tests a real module objective or misconception. |
+| Difficulty fit | Difficulty label is misleading. | Difficulty is close but prompt or distractors distort it. | Cognitive demand clearly matches core, intermediate, or advanced. |
+| Claim boundary | Status is missing, wrong, or overclaims evidence. | Status is present but explanation is thin. | Status and boundary are explicit and educational. |
+| Source support | Unsupported established/literature/project claim. | Sources exist but are generic or weakly tied. | Sources directly support the claim being tested. |
+| Explanation quality | Merely reveals the answer or repeats the prompt. | Gives a reason but little teaching value. | Teaches answer, reasoning, boundary, and common trap. |
+| Distractor quality | Throwaway, absurd, or ambiguous options. | Some plausible distractors but uneven. | Distractors map to real misconceptions or overclaims. |
+| Interaction fit | Wrong activity type or asks for awkward typing. | Usable but not ideal for the skill. | Activity type supports the learning task naturally. |
+| Content scope | Meta-policy, scoring, or authoring content appears in the learner-facing item. | Content is relevant but too broad or underspecified. | Content belongs in the curriculum and stays inside the intended module. |
+
+Acceptance guide:
+
+- `16`: approve if references and data validation also pass.
+- `13-15`: revise or require reviewer approval.
+- `9-12`: rewrite before inclusion.
+- `0-8`: reject.
+
+Any score of `0` in claim boundary, source support, or no-meta/content scope blocks approval regardless of total score.
 
 ### Vetting Outcome
 
