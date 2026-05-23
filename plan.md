@@ -439,7 +439,7 @@ new architecture sweep:
     subluminal boost (`0.987443`), local reset-sector closure, and the energy
     theorem constant. Human narrative report:
     `supporting_reports/STAGE2_BETA075_FIRST_ORDER_3P1_COUPLING.md`.
-54. Completed local-compute Stage II 3+1/backreaction capstone with off-axis
+54. Completed light local 3+1/backreaction proxy stress with off-axis
     structure. Status is `stage2_3p1_backreaction_capstone_watch_pass`: five
     off-axis/metric-feedback scenarios over sealed baseline V5, sealed dense
     V5, and lower-service dense V2 produce zero hard failures. The worst active
@@ -447,23 +447,30 @@ new architecture sweep:
     `0.492947 / 0.55`; the thinnest cone-margin proxy is the combined case on
     sealed dense V5 at `0.010297`; off-axis angular driver fraction is
     `0.045 / 0.12`; live/off-mask localization remains below gate, and dense V2
-    does not materially amplify dense V5. Heavy point-response artifacts are
-    stored as Parquet through `runs/stage2_external`. Human narrative report:
+    does not materially amplify dense V5. Read this run as a successful
+    algebraic/off-axis proxy, not the final local-compute Stage II capstone.
+    Heavy point-response artifacts are stored as Parquet through
+    `runs/stage2_external`. Human narrative report:
     `supporting_reports/STAGE2_BETA075_3P1_BACKREACTION_CAPSTONE.md`.
-55. Stage II local-compute closeout read: Stage II is locally mature rather
-    than merely suggestive. The honest academic claim is that the active-rail
+55. Current next rung: moderate local 3+1/backreaction capstone over the
+    current complete source-family surfaces. Use the sealed dense V5 and
+    lower-service dense V2 closure/covariant artifacts as real provenance-gated
+    inputs; keep sealed baseline V5 only as a lower-resolution reference. Add
+    explicit angular lifting, time-stepped evolution, and Parquet row-group
+    output under the symlinked `runs/stage2_external` tree. Include V=10 as an
+    edge-load case only if the input audit confirms that no complete current
+    Stage II V10 source-family closure exists; in that case label it as a
+    calibrated V10 stress over the sealed dense V5 package rather than a sealed
+    V10 physical-source surface.
+56. Stage II closeout remains pending this moderate capstone. If V2 and V5
+    pass without live-row evolution, limiter clipping, or state amplification,
+    and V10 either passes as margin evidence or fails cleanly as an edge-load
+    boundary, then the local Stage II evidence package can be synthesized for
+    external-compute handoff. The honest academic claim would be that the
     beta075 package has passed prescribed-metric, physical source-family,
-    action-level fixed-background PDE, first-order 3+1 coupling, and local
-    off-axis/backreaction stress evidence strongly enough to justify final
-    external-compute analysis. This is not a final Einstein-matter theorem, but
-    it is enough to tell the academic community that the design appears real
-    enough to warrant the final analysis instead of more laptop-scale tuning.
-56. Current next rung: Stage II evidence synthesis / external-compute handoff.
-    Package the locally computable evidence, preserve run artifacts under the
-    `runs` tree including symlinked external outputs, and specify the final
-    external-compute analysis: real off-axis 3+1 grids, richer perturbation
-    families, longer constraint-propagation monitors, and final coupled
-    Einstein-matter/source-family checks.
+    action-level fixed-background PDE, first-order 3+1 coupling, and a
+    moderate local off-axis/backreaction capstone strongly enough to justify
+    final external-compute analysis.
 ```
 
 Discussion discipline while runs are computing:
@@ -684,13 +691,19 @@ Completed: first-order coupled consistency / constraint propagation for the
            total endpoint-plus-support source. Perturbative Bianchi/constraint
            accounting is hard-clean across the available complete surfaces, so
            the project has earned a broader 3+1/backreaction entry run.
-Completed: local-compute Stage II capstone for full 3+1/backreaction testing
-           with off-axis structure. The partition-backed Parquet run passes
-           hard gates across all tested scenarios and surfaces; the remaining
-           watches are the inherited cone/boost, reset-sector closure, and
-           energy-constant margins. This closes the locally computable Stage II
-           evidence package and supports recommending external compute for
-           final analysis rather than further same-level tuning.
+Completed: light local off-axis/backreaction proxy stress. The
+           partition-backed Parquet run passes hard gates across all tested
+           scenarios and complete surfaces, but it is now classified as a proxy
+           rather than the final local capstone because it was computationally
+           small and did not carry explicit angular/time evolution.
+Current: moderate local 3+1/backreaction capstone with provenance-gated V2/V5
+         inputs and a clearly labeled V10 edge-load stress. This is full-system
+         testing at the locally computable Stage II boundary, not a same-level
+         repair loop around one component.
+Allowed next after a clean moderate-capstone read: Stage II evidence synthesis
+              and external-compute handoff for real off-axis 3+1 grids, richer
+              perturbation families, longer constraint-propagation monitors,
+              and final coupled Einstein-matter/source-family checks.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
