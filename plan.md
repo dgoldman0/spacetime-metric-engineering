@@ -331,8 +331,11 @@ new architecture sweep:
     inside the positive-transport regime. Gate stability of max budget
     fraction, worst row, source-law scales, state/source ratio, live exclusion,
     and limiter inactivity. The goal is to show the proof class is not a
-    single-grid artifact before moving to a broader conservation/action
-    presentation.
+    single-grid artifact. If this returns without significant surprises, move
+    directly to a source-law definition package: state the actual phase-local
+    constitutive source law, collect the reduced hyperbolicity/principal-symbol
+    audit into the source-law evidence, and compare the resulting law against
+    known source families rather than continuing numerical stress escalation.
 ```
 
 Discussion discipline while runs are computing:
@@ -503,6 +506,17 @@ Allowed next: discretization and continuum robustness for the observed proof
               interpolation, or artificial-stress tuning unless this
               higher-rung robustness test fails and points back to a specific
               physical mechanism.
+Allowed after a clean robustness pass: source-law definition package for the
+              observed beta075 constitutive class. This should shift the
+              academic narrative from "the effective PDE math works" to "a
+              recognizable physical source family can plausibly realize the
+              law." Define variables, phase-local source scaling, schedule
+              assumptions, exchange terms, regulator/rapidity bounds, and
+              hyperbolicity/principal-symbol evidence. Compare anisotropic
+              heat-current media, director/aether-like media, elastic/support
+              reservoirs, and open-system effective actions against the
+              measured tensor/exchange current. Keep artificial large-amplitude
+              rows as appendix-level margin context only.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
