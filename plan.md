@@ -735,7 +735,8 @@ Current: build full same-quality service-rating ladders for V=2.5 and V=10.
          covariant, support-closure, first-order, and moderate-capstone
          diagnostics, but do not interpret a failed V10 ladder as physical-
          source evidence. Scaled V5 stress projections are not admissible as
-         physical-source evidence.
+         physical-source evidence. New dense source-ledger runs should use
+         Parquet point ledgers with small CSV decision/summary sidecars.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not

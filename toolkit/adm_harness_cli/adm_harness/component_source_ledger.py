@@ -11,6 +11,7 @@ import pandas as pd
 
 from .source_ledger import CHANNELS, sha256_file, write_manifest
 from .source_screening import resolve_manifest_path
+from .table_io import read_table
 
 
 DEMAND_CHANNELS = ("neg_Tkk_radial", "abs_p_l", "abs_j_l", "abs_pOmega")
@@ -167,7 +168,7 @@ def assign_component_sources(
     *,
     config: ComponentConfig = ComponentConfig(),
 ) -> dict[str, pd.DataFrame]:
-    points = pd.read_csv(ledger.point_ledger_path)
+    points = read_table(ledger.point_ledger_path)
     rows: list[dict[str, Any]] = []
     for point_index, row in points.iterrows():
         for channel in DEMAND_CHANNELS:

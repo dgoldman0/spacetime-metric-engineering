@@ -10,6 +10,7 @@ import pandas as pd
 
 from .source_ledger import sha256_file, write_manifest
 from .source_screening import resolve_manifest_path
+from .table_io import read_table
 
 
 EPS = 1.0e-30
@@ -656,7 +657,7 @@ def build_endpoint_medium_covariant_audit(
 ) -> tuple[dict[str, pd.DataFrame], dict[str, Any]]:
     point_validation, manifest, point_validation_path = _load_field_closure_dir(field_closure_dir)
     ledger_path = point_ledger_path or _infer_point_ledger_from_field_manifest(field_closure_dir, manifest)
-    point_ledger = pd.read_csv(ledger_path)
+    point_ledger = read_table(ledger_path)
     outputs = build_endpoint_medium_covariant_audit_tables(
         point_validation,
         point_ledger,

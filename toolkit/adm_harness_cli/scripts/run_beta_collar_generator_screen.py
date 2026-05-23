@@ -27,6 +27,7 @@ from adm_harness.source_ledger import (  # noqa: E402
     write_manifest,
 )
 from adm_harness.source_ledger_parallel import compute_case_sharded, resolve_s_shard_count  # noqa: E402
+from adm_harness.table_io import read_table, write_table  # noqa: E402
 
 
 PARAM_KEYS = {field.name for field in fields(SourceParams)}
@@ -86,11 +87,12 @@ def _apply_candidate(base: SourceParams, overrides: dict[str, Any]) -> SourcePar
     return replace(base, **mapped)
 
 
-def _write_tables(outdir: Path, points: pd.DataFrame) -> dict[str, Path]:
+def _write_tables(outdir: Path, points: pd.DataFrame, *, point_format: str) -> dict[str, Path]:
     summary, compact, stage, safety, decision = summarize(points)
     smeared_null = smeared_null_summary(points)
+    point_suffix = "parquet" if point_format == "parquet" else "csv"
     files = {
-        "point_ledger": outdir / "source_ledger_point_ledger.csv",
+        "point_ledger": outdir / f"source_ledger_point_ledger.{point_suffix}",
         "summary_long": outdir / "source_ledger_summary_long.csv",
         "global_compact": outdir / "source_ledger_global_compact.csv",
         "stage_summary": outdir / "source_ledger_stage_summary.csv",
@@ -99,7 +101,7 @@ def _write_tables(outdir: Path, points: pd.DataFrame) -> dict[str, Path]:
         "top_bad_points": outdir / "source_ledger_top_bad_points.csv",
         "smeared_null": outdir / "source_ledger_smeared_null.csv",
     }
-    points.to_csv(files["point_ledger"], index=False)
+    write_table(points, files["point_ledger"])
     summary.to_csv(files["summary_long"], index=False)
     compact.to_csv(files["global_compact"], index=False)
     stage.to_csv(files["stage_summary"], index=False)
@@ -200,15 +202,16 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
         case = SourceCase(name=f"{base_case}_{label}", params=params, note=f"{base_note}; beta collar generator screen")
         ledger_dir = ledger_root / label
         ledger_dir.mkdir(parents=True, exist_ok=True)
-        point_path = ledger_dir / "source_ledger_point_ledger.csv"
+        point_suffix = "parquet" if args.point_format == "parquet" else "csv"
+        point_path = ledger_dir / f"source_ledger_point_ledger.{point_suffix}"
         if point_path.exists() and not args.force:
-            points = pd.read_csv(point_path)
+            points = read_table(point_path)
             cache_status = "reused"
             execution = {"source_compute": "cache_reused", "jobs": int(args.jobs), "s_shards": args.s_shards}
         else:
             points, execution = _compute_points(case, grid, args)
             cache_status = "computed"
-        files = _write_tables(ledger_dir, points)
+        files = _write_tables(ledger_dir, points, point_format=args.point_format)
         file_strings = {key: str(path) for key, path in files.items()}
         manifest = case_metadata(case, grid, file_strings)
         manifest.update({
@@ -268,6 +271,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--quiet", action="store_true")
     parser.add_argument("--progress", action="store_true")
+    parser.add_argument(
+        "--point-format",
+        choices=("csv", "parquet"),
+        default="csv",
+        help="Dense point-ledger storage format. Summary and decision sidecars remain CSV.",
+    )
     parser.add_argument(
         "--jobs",
         type=int,

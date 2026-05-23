@@ -32,7 +32,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--point-ledger",
         type=Path,
         default=None,
-        help="Optional source_ledger_point_ledger.csv override; inferred from manifests by default.",
+        help="Optional source_ledger_point_ledger CSV/Parquet override; inferred from manifests by default.",
     )
     parser.add_argument("--projection-error-gate", type=float, default=1.0e-9)
     parser.add_argument("--outside-exchange-gate", type=float, default=0.05)
