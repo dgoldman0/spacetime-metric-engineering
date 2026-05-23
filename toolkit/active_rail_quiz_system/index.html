@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Active-Rail Quiz System</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Active-Rail Service Engineering</p>
+        <h1>Quiz Console</h1>
+      </div>
+      <div class="header-status" id="bankStatus">Loading question bank...</div>
+    </header>
+
+    <section class="control-panel" aria-label="Quiz controls">
+      <label>
+        <span>Mode</span>
+        <select id="mode">
+          <option value="study" selected>Study</option>
+          <option value="quiz">Quiz</option>
+          <option value="boundary">Boundary</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Count</span>
+        <select id="count">
+          <option value="6" selected>6</option>
+          <option value="10">10</option>
+          <option value="all">All</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Track</span>
+        <select id="track"></select>
+      </label>
+
+      <label>
+        <span>Module</span>
+        <select id="module"></select>
+      </label>
+
+      <label>
+        <span>Difficulty</span>
+        <select id="difficulty">
+          <option value="all">All</option>
+          <option value="core">Core</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Question Type</span>
+        <select id="type"></select>
+      </label>
+
+      <label>
+        <span>Claim Status</span>
+        <select id="claimStatus"></select>
+      </label>
+
+      <label>
+        <span>Optional Content</span>
+        <select id="optionalContent">
+          <option value="stable" selected>Stable only</option>
+          <option value="include">Include flagged</option>
+          <option value="flagged">Flagged only</option>
+        </select>
+      </label>
+
+      <button type="button" class="primary-action" id="buildQuiz">Build Quiz</button>
+    </section>
+
+    <main class="workspace">
+      <section class="quiz-panel" aria-live="polite">
+        <div class="toolbar">
+          <div>
+            <h2 id="quizTitle">Study Set</h2>
+            <p id="quizMeta">Choose filters and build a quiz.</p>
+          </div>
+          <div class="toolbar-actions">
+            <button type="button" id="submitQuiz">Check Answers</button>
+            <button type="button" id="resetAnswers" class="secondary-action">Reset</button>
+          </div>
+        </div>
+        <div id="quiz"></div>
+      </section>
+
+      <aside class="report-panel" aria-label="Quiz report">
+        <h2>Report</h2>
+        <div id="report">
+          <p class="muted">Build a quiz to see scoring by module and claim status.</p>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <noscript>This quiz console requires JavaScript.</noscript>
+  <script src="question_banks/sample_bank.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
