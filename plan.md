@@ -255,19 +255,28 @@ new architecture sweep:
     stress also stays below budget in this run (`0.604677`), but remains a
     deliberate engineering-margin watch together with source-law smoothness and
     thin cone/transport margins.
-37. Current next rung: action-level fixed-background PDE proof obligation for
-    the sealed beta075 package. Treat the completed full-domain evolution run
-    as evidence, not as the proof itself. The next harness/proof check should
-    test whether the observed-amplitude bounded-rapidity system has an
-    invariant margin region on the prescribed beta075 background: source input
-    stays inside local rapidity budgets, radial and service-time transport do
-    not concentrate state into cone/transport failure, live and packet-live
-    support stay excluded, and the cap-0.95 source law remains an input rather
-    than an optimization target. Machine runs for this rung should write
-    structured artifacts only (`csv`/`json`/manifest); do not add scripted
-    prose/Markdown report generation. Do not return to same-level
-    source-law/support-edge/component tuning unless this higher-rung gate fails
-    and localizes the failure to that specific mechanism.
+37. Completed first action-level fixed-background PDE proof-obligation
+    certificate for the sealed beta075 package. The scheduled observed-amplitude
+    bounded-rapidity system still passes over the full active non-live support
+    domain: max scheduled budget fraction is `0.121201`, live and packet-live
+    evolved rows are zero, and state/source amplification remains absent. The
+    stronger temporal-profile-independent impulse upper bound does not close:
+    max impulse budget fraction is `1.158579`, led by
+    `support_edge_endpoint_junction / release_shift_fade / support_edge` at
+    `s=1.0890957446808511, l=2.1`; normalized transport row-sum bounds are
+    expansive on 82161 edge rows, with max bound `1.554856`. Read this as a
+    proof gap requiring source-time regularity/admissible temporal-envelope
+    control, not as a reason to reopen same-level component tuning.
+38. Current next rung: prove or certify the admissible source-time envelope for
+    the action-level fixed-background PDE model. The target is to rule out the
+    arbitrary impulse collapse that exceeded the local rapidity budget while
+    preserving the already-clean observed scheduled evolution. Machine runs for
+    this rung must keep writing structured artifacts only
+    (`csv`/`json`/manifest); do not add scripted prose/Markdown report
+    generation. Do not return to source-law/support-edge/component tuning
+    unless the temporal-regularity proof fails in a way that localizes an actual
+    physical source-law defect rather than a deliberately overbroad timing
+    adversary.
 ```
 
 Discussion discipline while runs are computing:
@@ -395,10 +404,16 @@ Completed: full-system fixed-background PDE/evolution stress testing for the
            system, not any one component. Observed-amplitude full-domain
            evolution passes without limiter clipping, live-row evolution, or
            state amplification.
-Allowed next: action-level fixed-background PDE proof obligation for the sealed
-              beta075 package. Gate the integrated observed-amplitude
-              bounded-rapidity system on invariant local budgets, transport
-              non-concentration, cone/transport margin preservation, live and
+Completed: first action-level fixed-background PDE proof-obligation
+           certificate. It preserves the observed scheduled full-domain pass
+           but does not prove temporal-profile-independent safety against
+           arbitrary impulse collapse. The gap is source-time regularity of the
+           action-level PDE model, not a same-level component failure.
+Allowed next: source-time regularity / admissible temporal-envelope proof for
+              the sealed beta075 action-level fixed-background PDE model. Gate
+              the integrated observed-amplitude bounded-rapidity system on
+              invariant local budgets, transport non-concentration under the
+              admissible envelope, cone/transport margin preservation, live and
               packet-live exclusion, and no hidden component. Carry dense
               reset/core, source-law smoothness, thin characteristic margin,
               raw heat-current fragility, compact bracket miss, and artificial
@@ -407,7 +422,7 @@ Allowed next: action-level fixed-background PDE proof obligation for the sealed
               generation. Do not branch into source-law, support-edge,
               V=3/V=4 interpolation, or artificial-stress tuning unless this
               higher-rung full-system/action/PDE gate fails and points back to
-              that specific mechanism.
+              a specific physical mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
