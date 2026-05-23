@@ -403,6 +403,25 @@ new architecture sweep:
     and keep the claim limited to fixed-background scheduled-source evolution
     over the available complete surfaces unless additional surfaces are
     generated.
+51. Completed fixed-background symmetric-hyperbolic / energy-estimate
+    certificate for the formal source family. Status is
+    `fixed_background_energy_estimate_watch_pass`: the block principal matrix
+    admits a positive identity symmetrizer, the symmetrized principal matrix is
+    symmetric to numerical precision, all active energy hard gates pass, and
+    zero point failures occur across sealed baseline V5, sealed dense V5, and
+    lower-service dense V2. Watch constants remain explicit: worst energy flux
+    margin `7.881e-05`, worst lower-order work constant `2.049051 / 2.5`,
+    support work `0.898931`, local exchange `0.609031 / 0.8`, support closure
+    `0.544567 / 0.55`, and source-profile scale `0.092617`. Human narrative
+    report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_ENERGY_CERTIFICATE.md`.
+52. Current next rung: first-order coupled consistency / constraint
+    propagation diagnostic for the total endpoint-plus-support source. Test
+    whether the fixed-background source family can enter the Einstein
+    constraint/Bianchi-accounting story at perturbative order without
+    uncontrolled metric backreaction, constraint-growth mode, or non-conserved
+    total stress. Keep this as a first-order diagnostic, not full coupled
+    Einstein-matter evolution.
 ```
 
 Discussion discipline while runs are computing:
@@ -613,6 +632,16 @@ Allowed next: symmetric-hyperbolic / energy-estimate packaging for the
               rapidity, positive transport, support-reservoir, scheduled-source,
               and watch-constant assumptions explicitly; do not broaden beyond
               the available complete surfaces without generating new inputs.
+Completed: fixed-background symmetric-hyperbolic / energy-estimate certificate
+           for the formal source family. The validated source-family PDE admits
+           a positive block symmetrizer and an in-cone energy-flux estimate on
+           the available surfaces. The source/support work constants are large
+           but bounded, so this is a watch-pass theorem-style statement rather
+           than a wide-margin theorem.
+Allowed next: first-order coupled consistency / constraint propagation for the
+              total endpoint-plus-support source. Check perturbative
+              Bianchi/constraint accounting and metric-backreaction growth
+              before attempting full coupled Einstein-matter evolution.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
