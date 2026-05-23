@@ -152,6 +152,15 @@ new architecture sweep:
     clipping only the bottleneck row. Treat this as evidence for
     non-concentration at the impulse/advection level, with the limiter retained
     as an over-budget guard rather than promoted as a physical source law.
+28. Completed bounded beta075 seal-readiness aggregation. Across support-sector
+    stability, reduced hyperbolicity/causality, heat-current sensitivity,
+    bounded rapidity transport, rapidity budget, advection non-concentration,
+    locality/live-exclusion, and compact-bracket evidence, there are no hard
+    blockers inside the current claim scope. Status is
+    `bounded_seal_ready_with_watches`: dense reset/core tightness, compact
+    dense bracket miss, raw heat-current fragility, residual concentration
+    growth, and thin dense characteristic margin remain future proof
+    obligations, not reasons to keep same-level beta075 fitting open.
 ```
 
 Discussion discipline while runs are computing:
@@ -257,6 +266,11 @@ Allowed next: couple the support stroke/stress source to the `1+1` rapidity
               if it activates, the source law is concentrating too much
               rapidity into the bottleneck and must be retuned before any
               stronger PDE claim.
+Allowed next after review: seal beta075 at the prescribed-metric/effective-source
+                           plus reduced endpoint/support-sector level. Do not
+                           run more same-level beta075 repair/closure fitting
+                           unless a later action/PDE gate points back to a
+                           specific dense reset/core failure.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
