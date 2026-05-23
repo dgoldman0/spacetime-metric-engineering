@@ -368,6 +368,7 @@ Each question should have:
 - one claim status,
 - one question context: general theory, paper theory, project application, or project state,
 - a teaching-quality explanation,
+- explanation depth matched to difficulty: core items can be concise, intermediate items should explain the main implication or misconception, and advanced items should teach the reasoning path, boundary, and why attractive wrong answers fail,
 - a boundary note when project-specific or speculative,
 - reference support when established or literature-based,
 - source links when project documents, repository files, papers, or run artifacts are relevant,
@@ -437,6 +438,9 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Standard quiz, symbol-fill, chronology, matching, and claim-classification renderers exist.
 - Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board, Symbol Lab, Timeline, and Design Review.
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
+- Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
+- Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
+- The seed bank has started moving from sample questions toward manually reviewed paper-theory and project-application items.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
 
@@ -447,6 +451,8 @@ What is still missing:
 - source-rich explanation rendering,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks,
+- richer answer/explanation writing, especially for intermediate and advanced questions,
+- more flexible session count controls than the current small fixed choices,
 - better mode separation between study, drill, qualification, and project-internal review.
 
 The visible workspace architecture is now good enough to begin curriculum design and small vetted content expansion. Large-scale population should still wait until the quality rubric, source-link schema, and validation gates are in place.
@@ -455,14 +461,16 @@ The visible workspace architecture is now good enough to begin curriculum design
 
 The next milestone should make the app ready for serious curriculum authoring:
 
-- remove sample/meta questions from the learner-facing bank,
-- add structured references and source links to question explanations,
-- render references/source links in reviewed explanations,
-- extend validation to reject quiz-meta prompts and require references for established/literature claims,
+- add another vetted batch of questions across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, and design review,
+- refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
+- strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
+- expand count/session controls beyond only 6, 10, and all,
+- keep structured references and source links visible in reviewed explanations,
+- keep validation rejecting quiz-meta prompts, vague paper-theory stems, unsupported source links, and project-framed paper-theory items,
 - keep the workspace architecture and smoke tests healthy,
 - make grading/report panels workspace-aware,
-- begin replacing placeholder sample questions with vetted curriculum questions,
-- grow toward 20 to 30 high-quality seed questions before attempting larger population.
+- continue replacing placeholder sample questions with vetted curriculum questions,
+- grow toward 50 to 75 high-quality seed questions before attempting larger population.
 
 This milestone should prove the system can enforce curriculum quality, not merely render more content.
 
