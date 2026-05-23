@@ -301,18 +301,27 @@ new architecture sweep:
     source into one boundary step, but still stay under budget. Human narrative
     report:
     `supporting_reports/STAGE2_BETA075_TIMING_JITTER_CERTIFICATE.md`.
-41. Current next rung: full `1+1` constitutive source-coupled evolution for the
-    sealed beta075 package. Treat this as full system testing on the
-    fixed-background service/radial model, not as another source-edge
-    fine-tuning block. The object is the integrated constitutive support-source
-    rule coupled to bounded rapidity transport over the active non-live
-    support-source domain. Gate observed-amplitude evolution on local rapidity
-    budgets, cone/transport margins, live and packet-live exclusion, limiter
-    inactivity, no state/source amplification, and no hidden new component.
-    Carry row `194`, service-edge clipping, dense reset/core tightness,
-    source-law smoothness, thin characteristic margin, raw heat-current
-    fragility, compact bracket miss, and artificial `5e-4` overdrive as light
-    watches unless this higher-rung test fails and points back to a specific
+41. Completed full `1+1` constitutive source-coupled evolution for the sealed
+    beta075 package. Status is
+    `constitutive_1p1_observed_clean_with_margin_watches`: observed
+    outward/forward, inward/forward, and outward/backward unlimited evolution
+    pass with zero over-budget rows, observed limiter guards remain inactive,
+    live exclusion is clean, the source law is bounded and phase-local, and
+    max observed budget fraction is `0.742835`. The large `5e-4`
+    outward/forward unlimited watch fails at `3.450203` over `118` rows, led by
+    row `2489` in `release_shift_fade / support_edge`; the large limited guard
+    passes at the configured `0.95` cap. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_SOURCE_COUPLED.md`.
+42. Current next rung: action-level fixed-background proof obligation for the
+    full `1+1` constitutive source-coupled model. Formalize the admissible
+    phase-local cap-0.95 source law, service-coordinate scheduled release,
+    bounded common timing jitter, positivity/non-amplification of the
+    radial/service split-step transport, observed-amplitude rapidity-budget
+    invariance, and live/packet-live exclusion. Keep row `194`, row `2489`,
+    service-edge clipping, dense reset/core tightness, source-law smoothness,
+    thin characteristic margin, raw heat-current fragility, compact bracket
+    miss, and artificial `5e-4` overdrive as watches. Do not return to
+    component-level repair unless the proof obligation fails in a specific
     physical mechanism.
 ```
 
@@ -460,22 +469,24 @@ Completed: bounded service-timing jitter around the aligned envelope. The
            through radius `8`, with cone/transport margins preserved, live and
            packet-live exclusion intact, no limiter clipping, and no hidden
            component.
-Allowed next: full `1+1` constitutive source-coupled fixed-background
-              evolution. This is full system testing for the service/radial
-              constitutive source-coupled model, not a return to isolated
-              support-edge tuning. Gate the integrated observed-amplitude
-              system on local budgets, transport non-concentration,
-              cone/transport margin preservation, live and packet-live
-              exclusion, limiter inactivity, no state/source amplification,
-              and no hidden new component. Carry dense reset/core, row `194`,
-              service-edge clipping, source-law smoothness, thin
-              characteristic margin, raw heat-current fragility, compact
-              bracket miss, and artificial `5e-4` overdrive as light watches.
-              Runs should write structured artifacts only; narrative reports
-              should be written by hand after interpretation. Do not branch
-              into source-law, support-edge, V=3/V=4 interpolation, or
-              artificial-stress tuning unless this higher-rung full-system test
-              fails and points back to a specific physical mechanism.
+Completed: full `1+1` constitutive source-coupled fixed-background evolution.
+           The integrated observed-amplitude system passes local budgets,
+           transport non-concentration, cone/transport margin preservation,
+           live and packet-live exclusion, limiter inactivity, no state/source
+           amplification, and bounded phase-local source-law gates. The large
+           `5e-4` unlimited row remains an engineering-margin watch, not the
+           observed seal driver.
+Allowed next: action-level fixed-background proof obligation for the full
+              `1+1` constitutive source-coupled PDE class. Formalize the
+              phase-local source law, service-coordinate source schedule,
+              bounded common jitter class, positivity/non-amplification of the
+              transport semigroup, observed-amplitude rapidity-budget
+              invariance, and live/packet-live exclusion. Runs should write
+              structured artifacts only; narrative reports should be written by
+              hand after interpretation. Do not branch into source-law,
+              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
+              unless this higher-rung proof obligation fails and points back to
+              a specific physical mechanism.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
