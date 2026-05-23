@@ -324,18 +324,23 @@ new architecture sweep:
     observed budget fraction remains `0.742835`, led by row `194`, with max
     state/source ratio `0.985750`. Human narrative report:
     `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_PROOF_OBLIGATION.md`.
-43. Current next rung: discretization and continuum robustness for the same
-    observed proof class. Keep the source law, service schedule, jitter class,
-    and claim boundary fixed while varying the numerical representation:
-    service-step refinement, tail-window sensitivity, and CFL sensitivity
-    inside the positive-transport regime. Gate stability of max budget
-    fraction, worst row, source-law scales, state/source ratio, live exclusion,
-    and limiter inactivity. The goal is to show the proof class is not a
-    single-grid artifact. If this returns without significant surprises, move
-    directly to a source-law definition package: state the actual phase-local
-    constitutive source law, collect the reduced hyperbolicity/principal-symbol
-    audit into the source-law evidence, and compare the resulting law against
-    known source families rather than continuing numerical stress escalation.
+43. Completed discretization and continuum-robustness certificate for the same
+    observed proof class. Status is
+    `discretization_robustness_pass_with_smooth_variation`: all six variants
+    pass the full observed proof-obligation table across service-step
+    refinement (`48`, `72`, `96`), tail extension, and CFL sensitivity inside
+    the positive-transport regime. Max budget fraction is `0.892161`, led by
+    the low-CFL variant at row `2489` in `release_shift_fade / support_edge`;
+    baseline remains `0.742835`, relative drift is about `20.1%`, and no drift
+    watch is raised. Source-law scales remain invariant (`4` scaled slices,
+    min scale `0.092617`) with no live support and no limiter need. Human
+    narrative report:
+    `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_DISCRETIZATION_ROBUSTNESS.md`.
+44. Current next rung: source-law definition package for the observed beta075
+    constitutive class. State the actual phase-local constitutive source law,
+    collect the reduced hyperbolicity/principal-symbol audit into the
+    source-law evidence, and compare the resulting law against known source
+    families rather than continuing numerical stress escalation.
 ```
 
 Discussion discipline while runs are computing:
@@ -495,28 +500,24 @@ Completed: action-level fixed-background proof obligation for the full `1+1`
            common jitter class, positivity/non-amplification of the transport
            semigroup, observed-amplitude rapidity-budget invariance, and
            live/packet-live exclusion into a passing discrete proof scaffold.
-Allowed next: discretization and continuum robustness for the observed proof
-              class. Vary service-step resolution, tail window, and CFL values
-              within the positive-transport regime while holding the physical
-              claim fixed. Gate max budget fraction, worst row, source-law
-              scales, state/source ratio, live exclusion, and limiter
-              inactivity. Runs should write structured artifacts only;
-              narrative reports should be written by hand after interpretation.
-              Do not branch into source-law, support-edge, V=3/V=4
-              interpolation, or artificial-stress tuning unless this
-              higher-rung robustness test fails and points back to a specific
-              physical mechanism.
-Allowed after a clean robustness pass: source-law definition package for the
-              observed beta075 constitutive class. This should shift the
-              academic narrative from "the effective PDE math works" to "a
-              recognizable physical source family can plausibly realize the
-              law." Define variables, phase-local source scaling, schedule
-              assumptions, exchange terms, regulator/rapidity bounds, and
-              hyperbolicity/principal-symbol evidence. Compare anisotropic
-              heat-current media, director/aether-like media, elastic/support
-              reservoirs, and open-system effective actions against the
-              measured tensor/exchange current. Keep artificial large-amplitude
-              rows as appendix-level margin context only.
+Completed: discretization and continuum robustness for the observed proof
+           class. Service-step resolution, tail window, and positive-transport
+           CFL variations preserve the proof obligations, source-law locality,
+           local budget margin, no state/source amplification, live exclusion,
+           and limiter inactivity. The low-CFL variant tightens the
+           release-shift-fade support-edge row as expected but remains below
+           budget and below the limiter cap.
+Allowed next: source-law definition package for the observed beta075
+              constitutive class. This should shift the academic narrative
+              from "the effective PDE math works" to "a recognizable physical
+              source family can plausibly realize the law." Define variables,
+              phase-local source scaling, schedule assumptions, exchange terms,
+              regulator/rapidity bounds, and hyperbolicity/principal-symbol
+              evidence. Compare anisotropic heat-current media,
+              director/aether-like media, elastic/support reservoirs, and
+              open-system effective actions against the measured tensor/exchange
+              current. Keep artificial large-amplitude rows as appendix-level
+              margin context only.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
