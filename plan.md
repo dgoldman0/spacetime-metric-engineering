@@ -161,6 +161,18 @@ new architecture sweep:
     dense bracket miss, raw heat-current fragility, residual concentration
     growth, and thin dense characteristic margin remain future proof
     obligations, not reasons to keep same-level beta075 fitting open.
+29. Completed reduced coupled support-source dynamics on the row-4605
+    bottleneck slice. The sealed `24x14` support closure now drives the
+    bounded-rapidity variable through a time-distributed source profile under
+    radial advection, instead of starting from a preloaded impulse. The observed
+    `O(1e-4)` support-source amplitude passes outward/inward evolution with no
+    limiter activity; max observed budget fraction is about `0.170`. The
+    distributed `O(5e-4)` reference also stays below budget at about `0.850`,
+    so the old instant-impulse failure contrast is gone. Read: coupled observed
+    behavior is clean, but the limiter guard is now a watch rather than an
+    activated contrast. Next: promote the same reduced source-coupled rapidity
+    equation from the row-4605 slice to a whole-package `1+1` sweep over active
+    non-live support slices, stages, and brackets.
 ```
 
 Discussion discipline while runs are computing:
@@ -260,12 +272,21 @@ Allowed next: add a support-source limiter/smoothing term or an explicit
               Use row `4605` in reset-decompression/support-edge as the primary
               budget bottleneck: the `O(1e-4)` source kick is admissible, while
               the `O(5e-4)` reference kick is not.
-Allowed next: couple the support stroke/stress source to the `1+1` rapidity
-              equation with the row-budget limiter present as a guard. The
-              limiter should remain inactive for the observed source amplitude;
-              if it activates, the source law is concentrating too much
-              rapidity into the bottleneck and must be retuned before any
-              stronger PDE claim.
+Completed: couple the support stroke/stress source to the `1+1` rapidity
+           equation with the row-budget limiter present as a guard. The
+           observed source amplitude keeps the limiter inactive; the
+           distributed `O(5e-4)` reference also remains sub-budget, so any
+           future limiter-activation test needs a deliberately sharper
+           overdrive rather than the old instant-impulse comparison.
+Allowed next: full-package reduced `1+1` support-source coupling analysis.
+              Sweep every active non-live support slice, inject the sealed
+              support-closure source as a time-distributed rapidity drive,
+              advect inward/outward along `l`, and require no hard cone
+              failures, no transport-margin loss, no live leakage, and no
+              observed-amplitude limiter activation. Treat any failures as
+              localization instructions for reset/core, support-edge release,
+              smoothing, or support-source retuning; do not promote this to
+              full spacetime evolution.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting
