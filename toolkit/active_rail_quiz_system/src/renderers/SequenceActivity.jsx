@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { RichText } from "../components/RichText.jsx";
+import { orderByIds } from "../lib/session.js";
 
 export function SequenceActivity({ question, response, onResponse }) {
   const [draggingId, setDraggingId] = useState(null);
-  const order = response?.order || question.items.map((item) => item.id);
+  const order = response?.order?.length ? response.order : question.items.map((item) => item.id);
+  const items = orderByIds(question.items, order);
 
   function move(index, direction) {
     const target = direction === "up" ? index - 1 : index + 1;
@@ -58,8 +60,8 @@ export function SequenceActivity({ question, response, onResponse }) {
     <div className="chronology-surface">
       <div className="prompt"><RichText content={question.prompt} /></div>
       <ol className="sequence-list">
-        {order.map((itemId, index) => {
-          const item = question.items.find((candidate) => candidate.id === itemId);
+        {items.map((item, index) => {
+          const itemId = item.id;
           return (
             <li
               className={`sequence-item ${draggingId === itemId ? "dragging" : ""}`}

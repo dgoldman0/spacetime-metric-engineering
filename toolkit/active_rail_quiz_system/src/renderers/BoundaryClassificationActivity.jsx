@@ -1,8 +1,10 @@
 import { claimLabels } from "../data/taxonomy.js";
 import { RichText } from "../components/RichText.jsx";
+import { orderByIds } from "../lib/session.js";
 
 export function BoundaryClassificationActivity({ question, response, reviewed, result, onResponse }) {
   const classifications = response?.classifications || {};
+  const statements = orderByIds(question.statements, response?.statementOrder);
 
   function choose(statementId, status) {
     onResponse({ ...response, classifications: { ...classifications, [statementId]: status } });
@@ -12,7 +14,7 @@ export function BoundaryClassificationActivity({ question, response, reviewed, r
     <div className="boundary-surface">
       <div className="prompt"><RichText content={question.prompt} /></div>
       <div className="boundary-grid">
-        {question.statements.map((statement) => {
+        {statements.map((statement) => {
           const selected = classifications[statement.id];
           const correct = reviewed && result.details?.[statement.id]?.correct;
           const incorrect = reviewed && selected && !correct;

@@ -1,7 +1,10 @@
 import { RichText } from "../components/RichText.jsx";
+import { orderByIds } from "../lib/session.js";
 
 export function MatchingActivity({ question, response, onResponse }) {
   const matches = response?.matches || {};
+  const prompts = orderByIds(question.prompts, response?.promptOrder);
+  const options = orderByIds(question.options, response?.optionOrder);
 
   function choose(promptId, optionId) {
     onResponse({ ...response, matches: { ...matches, [promptId]: optionId } });
@@ -11,12 +14,12 @@ export function MatchingActivity({ question, response, onResponse }) {
     <div className="matching-surface">
       <div className="prompt"><RichText content={question.prompt} /></div>
       <div className="matching-grid">
-        {question.prompts.map((prompt) => (
+        {prompts.map((prompt) => (
           <div className="matching-row" key={prompt.id}>
             <div className="matching-prompt"><RichText content={prompt.content} /></div>
             <select value={matches[prompt.id] || ""} onChange={(event) => choose(prompt.id, event.target.value)}>
               <option value="">Choose match</option>
-              {question.options.map((option) => (
+              {options.map((option) => (
                 <option value={option.id} key={option.id}>{option.label}</option>
               ))}
             </select>

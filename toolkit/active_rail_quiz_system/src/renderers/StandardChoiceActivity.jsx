@@ -1,8 +1,10 @@
 import { RichText } from "../components/RichText.jsx";
+import { orderByIds } from "../lib/session.js";
 
 export function StandardChoiceActivity({ question, response, onResponse }) {
   const inputType = question.type === "multi" ? "checkbox" : "radio";
   const selected = response?.choices || [];
+  const choices = orderByIds(question.choices, response?.choiceOrder);
 
   function toggle(choiceId) {
     if (question.type === "multi") {
@@ -19,7 +21,7 @@ export function StandardChoiceActivity({ question, response, onResponse }) {
     <>
       <div className="prompt"><RichText content={question.prompt} /></div>
       <div className="options">
-        {question.choices.map((choice) => (
+        {choices.map((choice) => (
           <label className="option" key={choice.id}>
             <input
               type={inputType}

@@ -442,6 +442,8 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
 - The seed bank has 48 validated questions and has started moving from sample questions toward manually reviewed paper-theory and project-application items.
 - Count controls now support small drills, medium reviews, large reviews, and all matching questions.
+- Per-attempt presentation order is randomized for standard choices, drag-fill tokens, matching prompts/options, classification statements, and sequence items.
+- Sequence activities now avoid starting in canonical answer order and use draggable rows with keyboard fallback.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
 

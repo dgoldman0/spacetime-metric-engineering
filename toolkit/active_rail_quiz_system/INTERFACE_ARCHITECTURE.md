@@ -289,6 +289,25 @@ Examples:
 
 This keeps future question types from bloating one central render function.
 
+## Presentation Order
+
+Question-bank order is authoring order, not learner order. A session should
+randomize display order at attempt creation and keep that order stable until the
+workspace is rebuilt or reset.
+
+Randomized presentation state should cover:
+
+- standard choices for multiple choice, select all, and true/false,
+- drag-fill token banks,
+- matching prompts and matching options,
+- claim-classification statements,
+- sequence items.
+
+Renderers should read these ordered ID lists from response/session state and
+fall back to bank order only when old or malformed state is missing an order.
+Graders should continue using stable IDs, so randomization never changes the
+answer key.
+
 ## Frontend Stack
 
 Recommended stack for the next build:

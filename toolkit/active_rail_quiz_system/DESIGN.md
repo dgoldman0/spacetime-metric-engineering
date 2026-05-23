@@ -398,6 +398,23 @@ Every question should include:
 - review status,
 - version.
 
+Question data should remain canonical. It should not depend on answer order or
+presentation order. Session state is responsible for randomizing display order
+per attempt, while grading continues to compare stable IDs against the canonical
+answer representation.
+
+Per-attempt presentation state should include:
+
+- choice order for multiple-choice, select-all, and true/false activities,
+- token order for drag-fill word banks,
+- prompt and option order for matching activities,
+- statement order for claim-classification activities,
+- item order for sequence activities.
+
+Sequence activities should avoid starting in the canonical answer order when
+there is more than one item. The point of a chronology surface is ordering
+practice, not recognizing a pre-solved list.
+
 Example shape:
 
 ```yaml

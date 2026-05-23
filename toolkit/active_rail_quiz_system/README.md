@@ -24,6 +24,7 @@ Current features:
 - renderer registry for standard quiz, symbol-fill, chronology, matching, and boundary-classification activities,
 - multiple choice, select all, true/false, rendered symbol-fill, sequencing, matching, and claim-classification questions,
 - click/tap or drag word-bank placement for fill blanks,
+- per-attempt randomization for answer choices, token banks, matching rows/options, classification statements, and sequence items,
 - KaTeX rendering for math tokens and explanations,
 - visible claim-status and optional-content badges,
 - grading by module, claim status, question context, and activity type,

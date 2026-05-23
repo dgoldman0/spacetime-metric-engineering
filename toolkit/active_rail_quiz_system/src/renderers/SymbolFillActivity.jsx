@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { RichText } from "../components/RichText.jsx";
+import { orderByIds } from "../lib/session.js";
 
 export function SymbolFillActivity({ question, response, onResponse }) {
   const [selectedToken, setSelectedToken] = useState(null);
   const blanks = response?.blanks || {};
+  const tokens = orderByIds(question.tokens, response?.tokenOrder);
 
   function placeToken(blankId, tokenId) {
     onResponse({ ...response, blanks: { ...blanks, [blankId]: tokenId } });
@@ -43,7 +45,7 @@ export function SymbolFillActivity({ question, response, onResponse }) {
       </div>
 
       <div className="token-bank" aria-label="Word bank">
-        {question.tokens.map((token) => (
+        {tokens.map((token) => (
           <button
             type="button"
             className={`token ${selectedToken === token.id ? "selected" : ""}`}
