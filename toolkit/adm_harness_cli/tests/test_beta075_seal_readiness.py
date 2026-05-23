@@ -4,7 +4,7 @@ import unittest
 
 import pandas as pd
 
-from adm_harness.beta075_seal_readiness import classify_bounded_seal_status
+from adm_harness.beta075_seal_readiness import classify_bounded_seal_status, classify_source_law_status
 
 
 class Beta075SealReadinessTests(unittest.TestCase):
@@ -33,6 +33,11 @@ class Beta075SealReadinessTests(unittest.TestCase):
         self.assertEqual(decision["beta075_seal_readiness_status"], "not_ready")
         self.assertFalse(bool(decision["bounded_seal_ready"]))
         self.assertEqual(int(decision["hard_blocker_count"]), 1)
+
+    def test_source_law_status_maps_candidate_watches_to_watch_gate(self):
+        self.assertEqual(classify_source_law_status("phase_local_source_law_candidate"), "pass")
+        self.assertEqual(classify_source_law_status("phase_local_source_law_candidate_with_watches"), "watch")
+        self.assertEqual(classify_source_law_status("source_law_feasibility_fail"), "fail")
 
 
 if __name__ == "__main__":

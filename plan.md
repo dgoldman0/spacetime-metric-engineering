@@ -232,6 +232,26 @@ new architecture sweep:
     the max adjacent scale jump is `0.907383`. Carry the artificial `5e-4`
     overdrive as margin context (`1.444697` max budget fraction), not as a
     same-level retuning target.
+35. Completed updated bounded seal-readiness gate with the latest cap-0.95
+    full-package source-coupling and source-law evidence included. Status
+    remains `bounded_seal_ready_with_watches`: 15 gates, 0 hard blockers, 9
+    required gates, 5 required watches. The new integrated source-coupling row
+    passes (`0.373081` observed max budget fraction against gate `1.0`), while
+    source-law phase-locality and artificial `5e-4` overdrive remain watch
+    rows. Read: beta075 stays sealed at the prescribed-metric/effective-source
+    plus reduced endpoint/support-sector level; do not return to same-level
+    tuning unless a later action/PDE/full-evolution gate points back to a
+    specific watch.
+36. Current next rung: run a full-system fixed-background PDE/evolution stress
+    test for the sealed beta075 package. This is not a source-law/support-edge
+    tuning block. Use the sealed `rematch_w6_t1p5` package, dense regenerated
+    ledgers, covariant endpoint medium, `24x14` support closure, cap-0.95
+    source-coupling law, bounded rapidity variable, and row-budget guard as
+    inputs to an integrated evolution/proof-obligation test over the active
+    support domain. Gate the whole package on cone/transport margins,
+    live-support exclusion, support/exchange localization, conservation
+    accounting, and no new hidden component. Only return to a component if this
+    full-system test fails and localizes the failure to that component.
 ```
 
 Discussion discipline while runs are computing:
@@ -353,17 +373,22 @@ Completed: first support-edge source-law feasibility audit. It establishes a
            for now. Do not keep testing this component in isolation unless a
            later full-system/action/PDE gate fails specifically on source-law
            smoothness, hidden support, or transport margin.
-Allowed next: proceed to the next full-system/high-rung beta075 test at the
+Allowed next: full-system fixed-background PDE/evolution stress testing for the
+              sealed beta075 package. The active object is the integrated
               prescribed-metric/effective-source plus reduced endpoint/support
-              level. Carry the support-edge source law as a named light watch,
-              not as the active optimization target. Do not branch into V=3/V=4
-              interpolation or artificial `5e-4` retuning unless a later
-              full-system result explicitly needs that transition or reserve.
-Allowed next after review: seal beta075 at the prescribed-metric/effective-source
-                           plus reduced endpoint/support-sector level. Do not
-                           run more same-level beta075 repair/closure fitting
-                           unless a later action/PDE gate points back to a
-                           specific dense reset/core failure.
+              system, not any one component. Carry dense reset/core,
+              source-law smoothness, thin characteristic margin, raw
+              heat-current fragility, compact bracket miss, and artificial
+              `5e-4` overdrive as watches. Do not branch into source-law,
+              support-edge, V=3/V=4 interpolation, or artificial-stress tuning
+              unless the full-system PDE/evolution rung fails and points back
+              to that specific mechanism.
+Completed after review: beta075 remains sealed at the prescribed-metric/
+                        effective-source plus reduced endpoint/support-sector
+                        level after the updated seal-readiness gate. Do not
+                        run more same-level beta075 repair/closure fitting
+                        unless a later action/PDE/full-evolution gate points
+                        back to a specific failure.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon

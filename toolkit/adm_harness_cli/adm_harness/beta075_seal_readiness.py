@@ -19,6 +19,10 @@ class Beta075SealReadinessInputs:
     transport_evolution_dir: Path = Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_transport_evolution")
     rapidity_budget_dir: Path = Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_rapidity_budget")
     rapidity_advection_dir: Path = Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_rapidity_advection")
+    source_coupling_dir: Path = Path(
+        "toolkit/adm_harness_cli/runs/stage2_beta075_support_source_coupling_package_support_edge_cap095"
+    )
+    source_law_dir: Path = Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_source_law_feasibility")
 
 
 def _finite(value: Any, default: float = 0.0) -> float:
@@ -80,6 +84,15 @@ def _decision_row(
     }
 
 
+def classify_source_law_status(status: Any) -> str:
+    text = str(status)
+    if text == "phase_local_source_law_candidate":
+        return "pass"
+    if text == "phase_local_source_law_candidate_with_watches":
+        return "watch"
+    return "fail"
+
+
 def classify_bounded_seal_status(gate_matrix: pd.DataFrame) -> pd.DataFrame:
     blockers = int(gate_matrix["blocks_bounded_seal"].astype(bool).sum())
     required = gate_matrix.loc[gate_matrix["hard_required"].astype(bool)]
@@ -119,6 +132,8 @@ def _build_gate_matrix(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     transport = _one(tables["transport_decision"])
     budget = _one(tables["rapidity_budget_decision"])
     advection = _one(tables["rapidity_advection_decision"])
+    source_coupling = _one(tables["source_coupling_decision"])
+    source_law = _one(tables["source_law_decision"])
 
     reference = _gate_row(robustness_gate, "reference_total_closure")
     compact = _gate_row(robustness_gate, "compact_cross_bracket")
@@ -192,6 +207,22 @@ def _build_gate_matrix(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
             str(advection["decision_read"]),
         ),
         _decision_row(
+            "full_package_source_coupling",
+            "pass" if _truth(source_coupling["observed_unlimited_pass"]) else "fail",
+            True,
+            _finite(source_coupling["max_observed_unlimited_budget_fraction"], float("nan")),
+            1.0,
+            str(source_coupling["decision_read"]),
+        ),
+        _decision_row(
+            "source_law_phase_locality",
+            classify_source_law_status(source_law["source_law_feasibility_status"]),
+            True,
+            _finite(source_law["max_adjacent_scale_jump"], float("nan")),
+            0.50,
+            str(source_law["decision_read"]),
+        ),
+        _decision_row(
             "dense_reset_core_watch",
             "watch",
             True,
@@ -239,6 +270,14 @@ def _build_gate_matrix(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
             1.0e-6,
             "dense promoted run has no hard principal-symbol failures but remains characteristic-margin thin",
         ),
+        _decision_row(
+            "large_source_coupling_overdrive",
+            "watch" if _truth(source_coupling["large_unlimited_fails"]) else "pass",
+            False,
+            _finite(source_coupling["max_large_unlimited_budget_fraction"], float("nan")),
+            1.0,
+            "deliberately amplified 5e-4 source stress remains an engineering-margin watch, not the observed-amplitude seal driver",
+        ),
     ]
     return pd.DataFrame(rows)
 
@@ -264,6 +303,10 @@ def build_beta075_seal_readiness(
         "rapidity_budget_rows": inputs.rapidity_budget_dir / "endpoint_support_rapidity_budget_rows.csv",
         "rapidity_advection_decision": inputs.rapidity_advection_dir / "endpoint_support_rapidity_advection_decision.csv",
         "rapidity_advection_scenarios": inputs.rapidity_advection_dir / "endpoint_support_rapidity_advection_scenarios.csv",
+        "source_coupling_decision": inputs.source_coupling_dir / "endpoint_support_source_coupling_decision.csv",
+        "source_coupling_package": inputs.source_coupling_dir / "endpoint_support_source_coupling_package_summary.csv",
+        "source_law_decision": inputs.source_law_dir / "endpoint_support_source_law_feasibility_decision.csv",
+        "source_law_phase_summary": inputs.source_law_dir / "endpoint_support_source_law_feasibility_phase_summary.csv",
     }
     tables = {key: _read_csv(path) for key, path in paths.items()}
     gate_matrix = _build_gate_matrix(tables)
@@ -280,7 +323,8 @@ def build_beta075_seal_readiness(
         "input_sha256": {key: sha256_file(path) for key, path in paths.items()},
         "claim_scope": (
             "Bounded beta075 sealing gate for the promoted rematch_w6_t1p5 lead at prescribed-metric/"
-            "effective-source and reduced endpoint/support-sector level. This is not a final matter action, "
+            "effective-source and reduced endpoint/support-sector level, now including the latest full-package "
+            "source-coupled rapidity sweep and phase-local source-law gate. This is not a final matter action, "
             "global causal theorem, semiclassical/RSET proof, broad beta/V robustness claim, or coupled GR evolution."
         ),
     }
@@ -309,7 +353,7 @@ def _report(outputs: dict[str, pd.DataFrame], metadata: dict[str, Any]) -> str:
         "",
         str(decision["decision_read"]).capitalize() + ".",
         "",
-        "This is a bounded general-testing gate for the promoted beta075 `rematch_w6_t1p5` lead. It aggregates the support-sector stability, reduced hyperbolicity/causality, heat-current sensitivity, bounded rapidity, row-budget, advection non-concentration, and compact-bracket evidence already generated for the current phase.",
+        "This is a bounded general-testing gate for the promoted beta075 `rematch_w6_t1p5` lead. It aggregates the support-sector stability, reduced hyperbolicity/causality, heat-current sensitivity, bounded rapidity, row-budget, advection non-concentration, full-package source-coupling, phase-local source-law, and compact-bracket evidence already generated for the current phase.",
         "",
         "## Seal Scope",
         "",
@@ -340,13 +384,13 @@ def _report(outputs: dict[str, pd.DataFrame], metadata: dict[str, Any]) -> str:
         "",
         "## Interpretation",
         "",
-        "There are no hard blockers inside this bounded seal scope. The promoted `24x14` endpoint/support sector clears total closure, locality, live-support exclusion, reduced principal-symbol, bounded rapidity transport, observed-kick budget, and advection non-concentration gates. The limiter remains inactive for the observed source amplitude and only catches the deliberately over-budget `O(5e-4)` reference kick.",
+        "There are no hard blockers inside this bounded seal scope. The promoted `24x14` endpoint/support sector clears total closure, locality, live-support exclusion, reduced principal-symbol, bounded rapidity transport, observed-kick budget, advection non-concentration, and the latest cap-0.95 full-package source-coupled evolution gates. The limiter remains inactive for the observed source amplitude and only catches the deliberately over-budget `O(5e-4)` reference kick.",
         "",
-        "The active watches are real but bounded: dense reset/core is close to the local closure gate, the compact `22x13` bracket fails dense local closure, raw heat-ratio perturbations are fragile unless expressed/evolved as bounded rapidity, and the dense characteristic margin is thin. Those are future proof obligations, not reasons to keep same-level beta075 fitting open.",
+        "The active watches are real but bounded: dense reset/core is close to the local closure gate, the compact `22x13` bracket fails dense local closure, raw heat-ratio perturbations are fragile unless expressed/evolved as bounded rapidity, the source-law cap is phase-local but not smooth, the artificial `5e-4` source overdrive still fails without limiting, and the dense characteristic margin is thin. Those are future proof obligations, not reasons to keep same-level beta075 fitting open.",
         "",
         "## Recommendation",
         "",
-        "Treat beta075 as ready to seal at the current prescribed-metric/effective-source plus reduced support-sector level after review. Stop adding same-level closure repairs unless a later action/PDE gate points back to a specific dense reset/core failure. The next work should move upward: source-coupled `1+1` rapidity evolution with the row-budget limiter as a guard, then action-level or fixed-background PDE proof work.",
+        "Treat beta075 as still sealed at the current prescribed-metric/effective-source plus reduced endpoint/support-sector level. Stop adding same-level closure repairs unless a later action/PDE/full-evolution gate points back to a specific dense reset/core, hidden-support, source-law smoothness, or transport-margin failure. The next work should move upward into action-level, fixed-background PDE, or broader full-system proof obligations.",
         "",
         "## Provenance",
         "",

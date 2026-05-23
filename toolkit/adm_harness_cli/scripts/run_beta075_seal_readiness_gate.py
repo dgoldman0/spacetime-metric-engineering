@@ -62,6 +62,16 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_rapidity_advection"),
     )
+    parser.add_argument(
+        "--source-coupling-dir",
+        type=Path,
+        default=Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_source_coupling_package_support_edge_cap095"),
+    )
+    parser.add_argument(
+        "--source-law-dir",
+        type=Path,
+        default=Path("toolkit/adm_harness_cli/runs/stage2_beta075_support_source_law_feasibility"),
+    )
     return parser
 
 
@@ -75,6 +85,8 @@ def main() -> int:
             transport_evolution_dir=args.transport_evolution_dir,
             rapidity_budget_dir=args.rapidity_budget_dir,
             rapidity_advection_dir=args.rapidity_advection_dir,
+            source_coupling_dir=args.source_coupling_dir,
+            source_law_dir=args.source_law_dir,
         )
     )
     files = write_beta075_seal_readiness_outputs(args.outdir, args.report, outputs, metadata, report)
