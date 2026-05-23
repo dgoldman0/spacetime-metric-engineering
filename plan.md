@@ -1,6 +1,6 @@
 # Active-Rail Codex Handoff Plan
 
-## Current operating plan, 2026-05-22
+## Current operating plan, 2026-05-23
 
 The project is back on the higher-rung feasibility track. The active test
 article is now:
@@ -186,6 +186,18 @@ new architecture sweep:
     next task is phase-aware support-source shaping/normalization for those
     support-edge source-realization slices, not a new collar/packet/current
     component.
+31. Completed V=2 lower-service source-coupling check. The same dense
+    `rematch_w6_t1p5` package was rebuilt from a V=2 source manifest through
+    component assignment, string-cloud replacement, intermediate source,
+    endpoint-J closure, medium field closure, covariant audit, support stroke,
+    total support closure, and package source-coupling. Status is
+    `package_support_source_observed_clean`: observed outward/inward max budget
+    fractions are `0.616` / `0.387`, with zero observed failing slices. The
+    deliberately large outward stress still finds support-edge entry/catch
+    slices, but only at `3.080` max budget fraction versus `10.378` at V=5.
+    Read: the package architecture is not intrinsically unstable under lower
+    service rating; the active repair target remains V=5 support-edge source
+    realization, not a V=3/V=4 interpolation sweep.
 ```
 
 Discussion discipline while runs are computing:
@@ -300,8 +312,11 @@ Allowed next: targeted support-source design for the localized support-edge
               shaping, amplitude normalization, or smoothing only against
               `entry_precatch/support_edge` near `s=-1.236702` and
               `catch_rematch/support_edge` near `s=0.606383`, then rerun the
-              same structured full-package sweep. Do not add a new geometric
-              component unless this targeted source-design rung fails.
+              same structured full-package sweep at V=5. The V=2 lower-service
+              rerun is clean, so do not branch into V=3/V=4 interpolation
+              unless a later V=5 repair needs transition mapping. Do not add a
+              new geometric component unless this targeted source-design rung
+              fails.
 Allowed next after review: seal beta075 at the prescribed-metric/effective-source
                            plus reduced endpoint/support-sector level. Do not
                            run more same-level beta075 repair/closure fitting
