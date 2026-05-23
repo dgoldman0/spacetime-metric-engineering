@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { questionBank } from "./data/questionBank.js";
 import { claimLabels } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
@@ -12,7 +12,7 @@ import { SymbolFillActivity } from "./renderers/SymbolFillActivity.jsx";
 import { registry } from "./renderers/registry.jsx";
 import { buildInitialResponse, shuffle, unique } from "./lib/session.js";
 
-const workspaceDefs = [
+export const workspaceDefs = [
   {
     id: "mixed",
     label: "Mixed Quiz",
@@ -56,7 +56,7 @@ const workspaceDefs = [
   }
 ];
 
-const defaultFilters = {
+export const defaultFilters = {
   count: "6",
   tracks: [],
   modules: [],
@@ -65,10 +65,10 @@ const defaultFilters = {
   optionalContent: "stable"
 };
 
-export function App() {
-  const [workspace, setWorkspace] = useState("mixed");
-  const [filters, setFilters] = useState(defaultFilters);
-  const [current, setCurrent] = useState(() => buildWorkspaceQuestions("mixed", defaultFilters));
+export function App({ initialWorkspace = "mixed", initialFilters = defaultFilters } = {}) {
+  const [workspace, setWorkspace] = useState(initialWorkspace);
+  const [filters, setFilters] = useState(initialFilters);
+  const [current, setCurrent] = useState(() => buildWorkspaceQuestions(initialWorkspace, initialFilters));
   const [responses, setResponses] = useState(() => initialResponses(current));
   const [reviewed, setReviewed] = useState(new Set());
 
@@ -97,10 +97,6 @@ export function App() {
       }));
   }, [current, responses, reviewed]);
 
-  useEffect(() => {
-    rebuild(workspace, filters);
-  }, [workspace, filters]);
-
   function rebuild(nextWorkspace = workspace, nextFilters = filters) {
     const next = buildWorkspaceQuestions(nextWorkspace, nextFilters);
     setCurrent(next);
@@ -108,8 +104,15 @@ export function App() {
     setReviewed(new Set());
   }
 
+  function changeWorkspace(nextWorkspace) {
+    setWorkspace(nextWorkspace);
+    rebuild(nextWorkspace, filters);
+  }
+
   function updateFilter(name, value) {
-    setFilters((previous) => ({ ...previous, [name]: value }));
+    const nextFilters = { ...filters, [name]: value };
+    setFilters(nextFilters);
+    rebuild(workspace, nextFilters);
   }
 
   function reset() {
@@ -119,6 +122,7 @@ export function App() {
 
   function clearFilters() {
     setFilters(defaultFilters);
+    rebuild(workspace, defaultFilters);
   }
 
   function updateResponse(questionId, nextResponse) {
@@ -160,7 +164,7 @@ export function App() {
               key={item.id}
               className={`workspace-tab ${workspace === item.id ? "active" : ""}`}
               data-tone={item.tone}
-              onClick={() => setWorkspace(item.id)}
+              onClick={() => changeWorkspace(item.id)}
             >
               <span className="workspace-tab-label">{item.label}</span>
               <strong>{item.title}</strong>
