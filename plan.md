@@ -336,11 +336,24 @@ new architecture sweep:
     min scale `0.092617`) with no live support and no limiter need. Human
     narrative report:
     `supporting_reports/STAGE2_BETA075_CONSTITUTIVE_1P1_DISCRETIZATION_ROBUSTNESS.md`.
-44. Current next rung: source-law definition package for the observed beta075
-    constitutive class. State the actual phase-local constitutive source law,
-    collect the reduced hyperbolicity/principal-symbol audit into the
-    source-law evidence, and compare the resulting law against known source
-    families rather than continuing numerical stress escalation.
+44. Completed source-law definition package for the observed beta075
+    constitutive class. Status is
+    `source_law_definition_candidate_with_hyperbolicity_watches`: the package
+    states the actual phase-local constitutive source law, collects source
+    class, covariant tensor, exchange localization, reduced
+    hyperbolicity/principal-symbol, observed proof-class, and discretization
+    robustness evidence, and compares the law against known source families.
+    Scalar-only is ruled out as primary, ordinary Type-I anisotropic heat flux
+    is too narrow alone, and the lead story is a regulated anisotropic
+    heat-current endpoint medium with an entrained radial director plus
+    localized support-reservoir/open-system exchange. Human narrative report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_LAW_DEFINITION_PACKAGE.md`.
+45. Current next rung: formal source-family equation package for the lead
+    regulated director/support-reservoir story. Write the variables,
+    constraints, support exchange power/radial-force channels, inherited
+    hyperbolicity conditions, and phase-local bounded source response as an
+    explicit conservative open-system effective-action or constitutive
+    field-equation skeleton. Do not jump to a final closed matter theorem.
 ```
 
 Discussion discipline while runs are computing:
@@ -507,17 +520,20 @@ Completed: discretization and continuum robustness for the observed proof
            and limiter inactivity. The low-CFL variant tightens the
            release-shift-fade support-edge row as expected but remains below
            budget and below the limiter cap.
-Allowed next: source-law definition package for the observed beta075
-              constitutive class. This should shift the academic narrative
-              from "the effective PDE math works" to "a recognizable physical
-              source family can plausibly realize the law." Define variables,
-              phase-local source scaling, schedule assumptions, exchange terms,
-              regulator/rapidity bounds, and hyperbolicity/principal-symbol
-              evidence. Compare anisotropic heat-current media,
-              director/aether-like media, elastic/support reservoirs, and
-              open-system effective actions against the measured tensor/exchange
-              current. Keep artificial large-amplitude rows as appendix-level
-              margin context only.
+Completed: source-law definition package for the observed beta075 constitutive
+           class. It shifts the academic narrative from "the effective PDE math
+           works" to "a recognizable physical source family can plausibly
+           realize the law." The lead family is a regulated anisotropic
+           heat-current medium with entrained radial director and localized
+           support-reservoir/open-system exchange; hyperbolicity and source
+           sharpness remain watches.
+Allowed next: formal source-family equation package for the lead
+              regulated-director/support-reservoir model. Define variables,
+              constraints, exchange-current channels, regulator/rapidity
+              bounds, phase-local source response, and inherited
+              principal-symbol/hyperbolicity gates in equation form. Keep the
+              result as a conservative open-system constitutive skeleton, not a
+              final closed matter theorem.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
