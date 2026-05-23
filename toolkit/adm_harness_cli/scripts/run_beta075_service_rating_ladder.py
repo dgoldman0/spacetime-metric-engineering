@@ -279,6 +279,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
             "--quiet",
             "--point-format",
             "parquet",
+            "--stream-shards",
             "--jobs",
             str(int(args.jobs)),
             "--ns",

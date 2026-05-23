@@ -26,7 +26,11 @@ from adm_harness.source_ledger import (  # noqa: E402
     top_bad_points,
     write_manifest,
 )
-from adm_harness.source_ledger_parallel import compute_case_sharded, resolve_s_shard_count  # noqa: E402
+from adm_harness.source_ledger_parallel import (  # noqa: E402
+    compute_case_sharded,
+    compute_case_sharded_parquet,
+    resolve_s_shard_count,
+)
 from adm_harness.table_io import read_table, write_table  # noqa: E402
 
 
@@ -171,6 +175,27 @@ def _compute_points(case: SourceCase, grid: dict[str, Any], args: argparse.Names
         )
         return points, {"source_compute": "serial", "jobs": 1, "s_shards": 1}
 
+    if args.point_format == "parquet" and args.stream_shards:
+        shard_dir = args.current_ledger_dir / "source_ledger_point_ledger_shards"
+        progress_log = args.current_ledger_dir / "source_ledger_shard_progress.jsonl"
+        return compute_case_sharded_parquet(
+            case,
+            int(grid["ns"]),
+            int(grid["nl"]),
+            float(grid["s_min"]),
+            float(grid["s_max"]),
+            float(grid["l_min"]),
+            float(grid["l_max"]),
+            float(grid["h_s"]),
+            float(grid["h_l"]),
+            jobs=jobs,
+            s_shards=args.s_shards,
+            shard_dir=shard_dir,
+            progress_log=progress_log,
+            force=bool(args.force),
+            progress=not args.quiet,
+        )
+
     s_shards = resolve_s_shard_count(int(grid["ns"]), jobs, args.s_shards)
     points = compute_case_sharded(
         case,
@@ -209,6 +234,7 @@ def run(args: argparse.Namespace) -> dict[str, Path]:
             cache_status = "reused"
             execution = {"source_compute": "cache_reused", "jobs": int(args.jobs), "s_shards": args.s_shards}
         else:
+            args.current_ledger_dir = ledger_dir
             points, execution = _compute_points(case, grid, args)
             cache_status = "computed"
         files = _write_tables(ledger_dir, points, point_format=args.point_format)
@@ -276,6 +302,11 @@ def build_parser() -> argparse.ArgumentParser:
         choices=("csv", "parquet"),
         default="csv",
         help="Dense point-ledger storage format. Summary and decision sidecars remain CSV.",
+    )
+    parser.add_argument(
+        "--stream-shards",
+        action="store_true",
+        help="For sharded Parquet runs, checkpoint each completed s-shard and write JSONL progress metadata.",
     )
     parser.add_argument(
         "--jobs",
