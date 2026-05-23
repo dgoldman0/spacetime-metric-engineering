@@ -387,6 +387,22 @@ new architecture sweep:
     reset-decompression support-reservoir derivation for the local `P` channel.
     Keep design/new-component changes as fallback only if these derivation
     checks produce hard failures.
+49. Completed cross-surface robustness for the formal source-family
+    validation. Status is
+    `cross_surface_source_family_robustness_watch_pass`: sealed baseline V5,
+    sealed dense V5, and lower-service dense V2 all keep hard formal-symbol
+    gates clean with zero failed gates. The adjacent V2 dense surface does not
+    worsen cone margin, local `P/F` exchange shape, or total support closure;
+    the worst margin (`7.881e-05`), worst local exchange (`0.609031`), and
+    worst local closure (`0.544567 / 0.55`) remain on sealed dense V5. Human
+    narrative report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_CROSS_SURFACE_ROBUSTNESS.md`.
+50. Current next rung: symmetric-hyperbolic / energy-estimate packaging for the
+    fixed-background formal source family. Use the cross-surface watch-pass as
+    the empirical support set, state theorem-style assumptions and constants,
+    and keep the claim limited to fixed-background scheduled-source evolution
+    over the available complete surfaces unless additional surfaces are
+    generated.
 ```
 
 Discussion discipline while runs are computing:
@@ -586,6 +602,17 @@ Allowed next: safety-margin debt decomposition. Isolate heat-current
               test symmetric-hyperbolic/regulator-buffer options, and refine
               the reset-decompression support-reservoir derivation before
               considering design changes.
+Completed: cross-surface robustness for the formal source-family validation.
+           The available complete surfaces, including lower-service dense V2,
+           preserve the formal source-family hard gates. The adjacent surface
+           does not worsen the dense cone margin, local P/F exchange shape, or
+           total support closure, so the watch debt appears stable across the
+           available surfaces rather than a hidden cross-surface failure.
+Allowed next: symmetric-hyperbolic / energy-estimate packaging for the
+              fixed-background formal source family. State the bounded
+              rapidity, positive transport, support-reservoir, scheduled-source,
+              and watch-constant assumptions explicitly; do not broaden beyond
+              the available complete surfaces without generating new inputs.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
