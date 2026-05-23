@@ -112,6 +112,15 @@ new architecture sweep:
     rows. Next: build a fixed-background local principal-symbol harness for the
     reduced endpoint/support constitutive sector before attempting any
     fixed-background evolution or coupled Einstein-matter system.
+23. Completed first reduced fixed-background principal-symbol harness. The
+    promoted `24x14` baseline/dense support sector has real finite in-cone
+    characteristic speeds and complete eigenbases in the reduced constitutive
+    block model, with zero live support exchange. Status is `watch`, not full
+    hyperbolicity closure: dense reset/support-edge reaches a tight relative
+    cone margin of about `7.9e-05`, and dense release/held-carry remain
+    heat-current boundary watch rows. Next: use these rows as the adversarial
+    target for a fixed-background reduced evolution or frozen-coefficient
+    cross-mesh principal-symbol sensitivity test.
 ```
 
 Discussion discipline while runs are computing:
@@ -189,6 +198,12 @@ Allowed next: reduced fixed-background hyperbolicity modeling. Start with a
               preserved heat-current margin, and zero live support exchange.
               Aim the first adversarial rows at dense reset/core and
               support-edge release/held-carry.
+Allowed next: after the principal-symbol watch-pass, build only a reduced
+              fixed-background evolution or frozen-coefficient sensitivity test.
+              The evolution target is the adversarial dense reset/support-edge
+              and support-edge release/held-carry rows; do not broaden to full
+              spacetime evolution until the reduced support sector preserves
+              cone margins and regulator/transport margins under perturbation.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
