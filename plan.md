@@ -144,6 +144,14 @@ new architecture sweep:
     row's budget, so the next issue is not immediate edge redesign. It is
     support-source limiting, spatial smoothing, or a PDE proof that advection
     cannot concentrate a larger effective kick into the tightest row.
+27. Completed first `1+1` rapidity advection non-concentration check on the
+    row-4605 bottleneck slice. Monotone outward/inward radial advection of the
+    observed `O(1e-4)` rapidity impulse stays inside every local budget, and
+    the budget limiter is inactive on that observed case. The `O(5e-4)`
+    reference impulse fails without the limiter and passes with the limiter
+    clipping only the bottleneck row. Treat this as evidence for
+    non-concentration at the impulse/advection level, with the limiter retained
+    as an over-budget guard rather than promoted as a physical source law.
 ```
 
 Discussion discipline while runs are computing:
@@ -243,6 +251,12 @@ Allowed next: add a support-source limiter/smoothing term or an explicit
               Use row `4605` in reset-decompression/support-edge as the primary
               budget bottleneck: the `O(1e-4)` source kick is admissible, while
               the `O(5e-4)` reference kick is not.
+Allowed next: couple the support stroke/stress source to the `1+1` rapidity
+              equation with the row-budget limiter present as a guard. The
+              limiter should remain inactive for the observed source amplitude;
+              if it activates, the source law is concentrating too much
+              rapidity into the bottleneck and must be retuned before any
+              stronger PDE claim.
 Allowed: operational service-time rating remains favorable for the repaired
          beta-collar candidates under the existing proxies.
 Not allowed: final physical matter theorem, final matter action, global horizon
