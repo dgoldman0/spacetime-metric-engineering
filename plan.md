@@ -369,6 +369,24 @@ new architecture sweep:
     `P` channel plus dense support-edge hyperbolicity margin as watches. Do
     not resume same-level component tuning unless this validation gate points
     to a specific obstruction.
+47. Completed source-family validation for the formal equations. Status is
+    `source_family_validation_watch_pass`: the support reservoir was specified
+    as a derivative storage/stress operator, the local principal symbol was
+    recomputed on baseline/dense fixed-background ledgers, and hard validation
+    passed with zero failed gates and `bigger_issue_flag = false`. The margin
+    debt is not resolved: dense minimum cone margin remains `7.881e-05`, dense
+    reset-decompression/core-throat `P` remains `0.609031`, dense
+    reset-decompression/support-edge `F` remains `0.475062`, and dense local
+    total closure remains close to gate at `0.544567 / 0.55`. Human narrative
+    report:
+    `supporting_reports/STAGE2_BETA075_SOURCE_FAMILY_VALIDATION.md`.
+48. Current next rung: safety-margin debt decomposition. Separate the
+    heat-current cone-margin debt from support-reservoir exchange-shape debt,
+    test whether a symmetric-hyperbolic energy form or regulator buffer can
+    improve the `7.881e-05` margin without changing the design, and refine the
+    reset-decompression support-reservoir derivation for the local `P` channel.
+    Keep design/new-component changes as fallback only if these derivation
+    checks produce hard failures.
 ```
 
 Discussion discipline while runs are computing:
@@ -556,6 +574,18 @@ Allowed next: source-family validation for the formal equations. Specify the
               channel and dense cone margin as watches. Keep the claim
               fixed-background and open-system until those derivation checks
               earn a stronger action-level statement.
+Completed: source-family validation for the formal equations. The derivative
+           support-reservoir operator preserves hard hyperbolicity and
+           total-closure gates, so this does not currently look like a hard
+           physics wall or a forced new-component demand. The validation also
+           does not resolve the safety-margin debt: dense cone margin,
+           reset-decompression `P/F` exchange shape, and dense local support
+           closure remain watch-level.
+Allowed next: safety-margin debt decomposition. Isolate heat-current
+              cone-margin debt from support-reservoir exchange-shape debt,
+              test symmetric-hyperbolic/regulator-buffer options, and refine
+              the reset-decompression support-reservoir derivation before
+              considering design changes.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
