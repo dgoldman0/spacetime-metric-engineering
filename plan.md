@@ -439,13 +439,25 @@ new architecture sweep:
     subluminal boost (`0.987443`), local reset-sector closure, and the energy
     theorem constant. Human narrative report:
     `supporting_reports/STAGE2_BETA075_FIRST_ORDER_3P1_COUPLING.md`.
-54. Current next rung: broader full 3+1/backreaction testing with off-axis
-    structure. Use the first-order handoff as permission to move upward: allow
-    metric response probes and off-axis perturbations while monitoring
-    constraint growth, source conservation, cone preservation, and whether the
-    reset-sector constants remain bounded under geometric feedback. Do not
-    return to same-level source-family tuning unless the 3+1/backreaction rung
-    produces a specific hard obstruction.
+54. Current next rung and likely local-compute Stage II capstone: broader full
+    3+1/backreaction testing with off-axis structure. Use the first-order
+    handoff as permission to move upward: allow metric response probes and
+    off-axis perturbations while monitoring constraint growth, source
+    conservation, cone preservation, and whether the reset-sector constants
+    remain bounded under geometric feedback. Run this as a staged,
+    partition-backed campaign because the current laptop has enough CPU/RAM
+    for disciplined tests but not enough main-partition space for open-ended
+    dense 3+1 sweeps. Do not return to same-level source-family tuning unless
+    the 3+1/backreaction rung produces a specific hard obstruction.
+55. Stage II local-compute closeout rule: if the broader 3+1/backreaction
+    capstone passes without a new hard obstruction, treat Stage II as locally
+    mature rather than merely suggestive. The honest academic claim would be
+    that the active-rail beta075 package has passed prescribed-metric,
+    source-family, action-level fixed-background, first-order coupling, and
+    local 3+1/backreaction stress evidence strongly enough to justify final
+    external-compute analysis. That is not a final Einstein-matter theorem, but
+    it is enough to tell the academic community that the design appears real
+    enough to warrant the final analysis instead of more laptop-scale tuning.
 ```
 
 Discussion discipline while runs are computing:
@@ -662,10 +674,18 @@ Completed: fixed-background symmetric-hyperbolic / energy-estimate certificate
            the available surfaces. The source/support work constants are large
            but bounded, so this is a watch-pass theorem-style statement rather
            than a wide-margin theorem.
-Allowed next: first-order coupled consistency / constraint propagation for the
-              total endpoint-plus-support source. Check perturbative
-              Bianchi/constraint accounting and metric-backreaction growth
-              before attempting full coupled Einstein-matter evolution.
+Completed: first-order coupled consistency / constraint propagation for the
+           total endpoint-plus-support source. Perturbative Bianchi/constraint
+           accounting is hard-clean across the available complete surfaces, so
+           the project has earned a broader 3+1/backreaction entry run.
+Allowed next: local-compute Stage II capstone for full 3+1/backreaction
+              testing with off-axis structure. Keep it disciplined and
+              partition-backed: a small number of high-value cases, summary-
+              first outputs, and explicit watches on constraint growth, source
+              conservation, cone preservation, boost margin, and reset-sector
+              closure. If it passes cleanly, use it to close the locally
+              computable Stage II evidence package and recommend external
+              compute for final analysis rather than further same-level tuning.
 Completed after review: beta075 remains sealed at the prescribed-metric/
                         effective-source plus reduced endpoint/support-sector
                         level after the updated seal-readiness gate. Do not
