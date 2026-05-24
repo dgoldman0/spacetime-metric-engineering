@@ -124,15 +124,28 @@ Actions taken:
   one checked contraction, one supported paper claim, or one supported observable.
 - Added a validator guard that prevents the multi-select bank from collapsing
   back to one answer shape.
+- Re-reviewed the select-all bank after finding a second pattern collapse: most
+  items had shifted from two-correct to three-correct. Several items were
+  rewritten by hand so the correct-answer count follows the material rather
+  than a template.
+- Recalibrated difficulty after the rewrite: the topological-censorship
+  recognition item is now intermediate, while advanced select-all items carry
+  more assumption tracking, scale matching, domain-of-dependence review, and
+  conflicting-evidence judgment.
+- Expanded short explanations where the answer panel needed more subject-matter
+  teaching, especially quantum-inequality, Natario, chronology-protection, and
+  geodesic-study items.
 
 Current select-all shape distribution:
 
-- 21 items: 5 choices, 3 correct.
-- 14 items: 6 choices, 3 correct.
-- 4 items: 5 choices, 2 correct.
+- 14 items: 5 choices, 3 correct.
+- 6 items: 7 choices, 4 correct.
+- 6 items: 6 choices, 4 correct.
+- 6 items: 6 choices, 3 correct.
+- 6 items: 5 choices, 2 correct.
+- 2 items: 6 choices, 2 correct.
 - 2 items: 5 choices, 1 correct.
 - 1 item: 4 choices, 1 correct.
-- 1 item: 6 choices, 4 correct.
 - 1 item: 4 choices, 2 correct.
 
 Remaining curriculum concern: future passes should continue varying answer shape
@@ -158,8 +171,8 @@ Manual changes in this pass:
 Current distribution after this pass:
 
 - Core: 30.
-- Intermediate: 65.
-- Advanced: 30.
+- Intermediate: 69.
+- Advanced: 29.
 
 ## Source Hygiene
 

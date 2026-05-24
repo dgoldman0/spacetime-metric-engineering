@@ -4,6 +4,7 @@ import { getQuestionContext } from "../src/data/taxonomy.js";
 const ids = new Set();
 const multiSelectShapes = new Set();
 const multiSelectChoiceCounts = new Set();
+const multiSelectCorrectCounts = new Map();
 const allowedTypes = new Set(["mc", "multi", "tf", "drag_fill", "sequence", "matching", "claim_classification"]);
 const allowedDifficulties = new Set(["core", "intermediate", "advanced"]);
 const allowedContexts = new Set(["general_theory", "paper_theory", "project_application", "project_state"]);
@@ -70,6 +71,7 @@ for (const question of questionBank) {
     if (question.type === "multi") {
       multiSelectShapes.add(`${question.answer.length}/${question.choices.length - question.answer.length}/${question.choices.length}`);
       multiSelectChoiceCounts.add(question.choices.length);
+      multiSelectCorrectCounts.set(question.answer.length, (multiSelectCorrectCounts.get(question.answer.length) || 0) + 1);
     }
   }
 
@@ -97,7 +99,14 @@ for (const question of questionBank) {
 }
 
 if (multiSelectShapes.size > 0) {
+  const multiSelectTotal = [...multiSelectCorrectCounts.values()].reduce((sum, count) => sum + count, 0);
+  const dominantCorrectCount = Math.max(...multiSelectCorrectCounts.values());
   assert(multiSelectShapes.size >= 3, "multi-select bank is too patterned; vary correct-answer counts and choice counts");
+  assert(multiSelectCorrectCounts.size >= 3, "multi-select bank needs varied correct-answer counts");
+  assert(
+    dominantCorrectCount / multiSelectTotal <= 0.6,
+    "multi-select bank has a dominant correct-answer count; review for answer-pattern leakage"
+  );
   assert([...multiSelectChoiceCounts].some((count) => count > 4), "multi-select bank needs some richer 5- or 6-choice items");
 }
 
