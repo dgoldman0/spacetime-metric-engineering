@@ -142,6 +142,54 @@ const references = {
     citation: "Sean M. Carroll, arXiv:gr-qc/9712019.",
     url: "https://arxiv.org/abs/gr-qc/9712019",
     supports: "Open-access general relativity reference for metric notation, curvature, Einstein's equation, geodesics, stress-energy tensors, and conservation identities; not the primary anchor for energy-condition taxonomy or global hyperbolicity."
+  },
+  openStaxQuantum: {
+    id: "openstax_university_physics_3",
+    kind: "textbook",
+    label: "University Physics Volume 3",
+    citation: "OpenStax, University Physics Volume 3.",
+    url: "https://openstax.org/details/books/university-physics-volume-3",
+    supports: "Open introductory reference for quantum states, observables, uncertainty, spectra, photons, matter waves, and modern-physics foundations."
+  },
+  tongQft: {
+    id: "tong_quantum_field_theory",
+    kind: "lecture_notes",
+    label: "Lectures on Quantum Field Theory",
+    citation: "David Tong, University of Cambridge lecture notes.",
+    url: "https://davidtong.org/teaching/quantum-field-theory/",
+    supports: "Open lecture notes for field quantization, vacuum modes, particle excitations, renormalization basics, and conceptual Casimir-effect framing."
+  },
+  miltonCasimir: {
+    id: "milton_casimir_zero_point",
+    kind: "paper",
+    label: "The Casimir Effect: Physical Manifestations of Zero Point Energy",
+    citation: "Kimball A. Milton, arXiv:hep-th/9901011.",
+    url: "https://arxiv.org/abs/hep-th/9901011",
+    supports: "Casimir-effect interpretation, zero-point-energy framing, boundary-conditioned vacuum effects, and limits of naive free-energy readings."
+  },
+  burgessEft: {
+    id: "burgess_intro_eft",
+    kind: "lecture_notes",
+    label: "Introduction to Effective Field Theory",
+    citation: "C. P. Burgess, arXiv:hep-th/0701053.",
+    url: "https://arxiv.org/abs/hep-th/0701053",
+    supports: "Scale separation, low-energy effective descriptions, matching, cutoff sensitivity, and validity-domain discipline."
+  },
+  polchinskiDBranes: {
+    id: "polchinski_tasi_dbranes",
+    kind: "lecture_notes",
+    label: "TASI Lectures on D-Branes",
+    citation: "Joseph Polchinski, arXiv:hep-th/9611050.",
+    url: "https://arxiv.org/abs/hep-th/9611050",
+    supports: "D-branes as open-string boundary-condition objects, worldvolume degrees of freedom, and source/coupling context in string theory."
+  },
+  douglasKachruFlux: {
+    id: "douglas_kachru_flux_compactification",
+    kind: "review",
+    label: "Flux Compactification",
+    citation: "Michael R. Douglas and Shamit Kachru, arXiv:hep-th/0610102.",
+    url: "https://arxiv.org/abs/hep-th/0610102",
+    supports: "Flux compactification, moduli, string vacua, and the consistency conditions around high-energy effective descriptions."
   }
 };
 
@@ -6017,6 +6065,1714 @@ export const questionBank = [
       references: [],
       sourceLinks: [sources.technicalDisclosure, sources.resetReleaseLadder, sources.componentSourceLedger],
       openGate: "Plant, source, endpoint, reset, and repeatability evidence remain open in the scenario."
+    }
+  },
+  {
+    id: "foundation.dimensional_analysis.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Dimensional analysis",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What is dimensional analysis mainly used for in physical modeling?",
+    choices: [
+      { id: "consistency", content: "Checking that equations compare like physical quantities and scale consistently." },
+      { id: "proof", content: "Proving that a proposed source mechanism is dynamically stable." },
+      { id: "coordinate", content: "Choosing the coordinate chart that makes the metric simplest." },
+      { id: "quantization", content: "Turning a classical field into a quantum operator." }
+    ],
+    answer: ["consistency"],
+    explanation: {
+      answer: "Dimensional analysis checks physical consistency and scaling.",
+      why: "An equation that adds or equates unlike dimensions cannot be a correct physical law. Dimensional analysis also exposes scale dependence before a detailed calculation is trusted.",
+      boundary: "This is general modeling discipline; it does not prove stability, source realization, or coordinate validity by itself.",
+      adaptive: {
+        choices: {
+          consistency: {
+            supported: "The direct use is checking dimensions and scale consistency across a model."
+          },
+          proof: {
+            unsupported: "Dimensional consistency is necessary but far short of a stability proof."
+          },
+          coordinate: {
+            unsupported: "Coordinate choices can simplify equations, but dimensional analysis is about physical units and scales."
+          },
+          quantization: {
+            unsupported: "Quantization is a separate step from checking dimensions."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.scale_regime.001",
+    type: "multi",
+    track: "Established foundations",
+    module: "Modeling discipline",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "A calculation is valid only after assuming a small parameter, a smooth background, and wavelengths much larger than a cutoff scale. Which review statements are careful?",
+    choices: [
+      { id: "state_regime", content: "The validity regime should be stated with the result." },
+      { id: "avoid_transfer", content: "The result should not be transferred to short wavelengths without a new argument." },
+      { id: "scale_error", content: "Changing the scale can change which terms or effects are negligible." },
+      { id: "exact_theory", content: "A controlled approximation can be treated as an exact theory when it is numerically accurate in one benchmark." },
+      { id: "smooth_enough", content: "A smooth background usually makes cutoff sensitivity a bookkeeping issue rather than a physical limitation." }
+    ],
+    answer: ["state_regime", "avoid_transfer", "scale_error"],
+    explanation: {
+      answer: "The result should carry its validity regime, scale limits, and approximation assumptions.",
+      why: "Approximation success is not portable without checking the assumptions that made terms small. Scale changes can move neglected physics into the leading-order behavior.",
+      boundary: "This is general modeling practice and applies before interpreting any specific metric, source, or quantum calculation.",
+      adaptive: {
+        choices: {
+          state_regime: {
+            supported: "A result should say which small parameters, smoothness assumptions, and scales it uses."
+          },
+          avoid_transfer: {
+            supported: "Short-wavelength behavior needs its own argument if the calculation assumed long wavelengths."
+          },
+          scale_error: {
+            supported: "Terms can change importance when the relevant scale changes."
+          },
+          exact_theory: {
+            unsupported: "A benchmark can support an approximation in one regime, but it does not make the approximation exact."
+          },
+          smooth_enough: {
+            unsupported: "Smoothness helps, but cutoff sensitivity can remain a physical validity limitation."
+          }
+        }
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.stability.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Stability and perturbations",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What does linear stability analysis usually test?",
+    choices: [
+      { id: "small_growth", content: "Whether small perturbations around a background grow, decay, or oscillate within the linearized model." },
+      { id: "global_realization", content: "Whether decaying modes make ordinary-matter sourcing plausible for the background." },
+      { id: "nonlinear_complete", content: "Whether large disturbances are likely controlled once all linear modes decay." },
+      { id: "coordinate_free", content: "Whether apparent growth has already been separated from gauge or coordinate behavior." }
+    ],
+    answer: ["small_growth"],
+    explanation: {
+      answer: "Linear stability tracks small perturbations around a background.",
+      why: "The method expands around a background and studies the leading perturbation behavior. It can reveal growing modes, but it does not settle nonlinear stability or source realization.",
+      boundary: "This is general perturbation theory, not a guarantee about full nonlinear dynamics or matter-sector feasibility.",
+      adaptive: {
+        choices: {
+          small_growth: {
+            supported: "Linear stability asks how small perturbations behave inside the linearized equations."
+          },
+          global_realization: {
+            unsupported: "Decaying modes are useful evidence, but source realization is a different question from perturbation growth."
+          },
+          nonlinear_complete: {
+            unsupported: "Linear decay supports local stability, but it does not automatically control large disturbances."
+          },
+          coordinate_free: {
+            unsupported: "Gauge or coordinate separation may be part of the analysis, but it is not the main definition of linear stability."
+          }
+        }
+      },
+      references: [references.burgessEft, references.carrollGrNotes]
+    }
+  },
+  {
+    id: "foundation.boundary_conditions.sequence.001",
+    type: "sequence",
+    track: "Established foundations",
+    module: "Boundary conditions",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Order a conservative boundary-condition review for a model calculation.",
+    items: [
+      { id: "domain", content: "State the domain being modeled" },
+      { id: "fields", content: "Name the fields and equations on that domain" },
+      { id: "boundary", content: "Specify boundary or asymptotic conditions" },
+      { id: "solve", content: "Solve or approximate inside the stated setup" },
+      { id: "interpret", content: "Interpret only within the domain and conditions used" }
+    ],
+    answer: ["domain", "fields", "boundary", "solve", "interpret"],
+    explanation: {
+      answer: "State domain, state fields/equations, specify boundaries, solve, then interpret within that setup.",
+      why: "Boundary conditions are part of the problem, not decoration after the calculation. The same differential equation can support different physical conclusions under different domains or boundaries.",
+      boundary: "This is general mathematical-physics practice and does not decide any particular source or spacetime claim.",
+      adaptive: {
+        sequence: [
+          {
+            id: "domain-before-fields",
+            before: "domain",
+            after: "fields",
+            content: "The domain tells what region the fields and equations live on."
+          },
+          {
+            id: "fields-before-boundary",
+            before: "fields",
+            after: "boundary",
+            content: "Boundary conditions are attached to named equations and fields."
+          },
+          {
+            id: "boundary-before-solve",
+            before: "boundary",
+            after: "solve",
+            content: "The boundary setup is part of the mathematical problem being solved."
+          },
+          {
+            id: "solve-before-interpret",
+            before: "solve",
+            after: "interpret",
+            content: "Interpretation should stay inside the domain and assumptions actually solved."
+          }
+        ]
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.qm_state_observable.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "In basic quantum mechanics, what is an observable?",
+    choices: [
+      { id: "operator", content: "A measurable quantity represented mathematically by an operator." },
+      { id: "trajectory", content: "A definite classical path followed by a particle between measurements." },
+      { id: "vacuum", content: "The lowest-energy state of a quantum field." },
+      { id: "source", content: "The stress-energy tensor required by a spacetime metric." }
+    ],
+    answer: ["operator"],
+    explanation: {
+      answer: "An observable is a measurable quantity represented by an operator.",
+      why: "Quantum theory separates state preparation from measurement. Observables such as energy, momentum, or position are represented by operators whose possible measurement results are tied to the operator spectrum.",
+      boundary: "This is basic quantum mechanics and should not be promoted into a claim about field-theory vacuum sources.",
+      adaptive: {
+        choices: {
+          operator: {
+            supported: "The operator representation is the direct quantum-mechanics meaning."
+          },
+          trajectory: {
+            unsupported: "A definite classical trajectory is not the general quantum observable concept."
+          },
+          vacuum: {
+            unsupported: "A vacuum state is a state, not the definition of an observable."
+          },
+          source: {
+            unsupported: "Stress-energy source demand is a relativistic field concept, not the basic definition of observable."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qm.expectation.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What does an expectation value represent in quantum mechanics?",
+    choices: [
+      { id: "average", content: "The predicted average measurement result over many similarly prepared systems." },
+      { id: "single", content: "The guaranteed result of the next individual measurement." },
+      { id: "classical", content: "A hidden classical value that the system carried all along." },
+      { id: "energy_source", content: "A directly extractable energy source." }
+    ],
+    answer: ["average"],
+    explanation: {
+      answer: "An expectation value is an ensemble average prediction.",
+      why: "A quantum state can assign probabilities to measurement outcomes. The expectation value summarizes the average over repeated preparations, not a guarantee for one event.",
+      boundary: "This is quantum-measurement vocabulary; it is not a source-realization or extractable-energy statement.",
+      adaptive: {
+        choices: {
+          average: {
+            supported: "Expectation values summarize repeated-measurement averages for a prepared state."
+          },
+          single: {
+            unsupported: "A single measurement can differ from the expectation value."
+          },
+          classical: {
+            unsupported: "The expectation value is not generally a hidden classical value."
+          },
+          energy_source: {
+            unsupported: "A measured or expected energy value is not automatically an extractable source."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qm.uncertainty.001",
+    type: "multi",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements about the uncertainty principle are careful?",
+    choices: [
+      { id: "noncommuting", content: "It reflects limits associated with noncommuting observables." },
+      { id: "preparation", content: "It constrains how sharply certain pairs of quantities can be prepared together." },
+      { id: "not_sloppy", content: "It is not merely a statement about bad instruments or sloppy measurement." },
+      { id: "energy_free", content: "It permits temporary energy imbalances that can be accumulated into a usable macroscopic source." },
+      { id: "all_pairs", content: "It applies in the same way to every pair of measurable quantities." }
+    ],
+    answer: ["noncommuting", "preparation", "not_sloppy"],
+    explanation: {
+      answer: "Uncertainty is tied to noncommuting observables and state preparation, not just instrument quality.",
+      why: "The principle is structural in quantum mechanics. It limits simultaneous sharpness for specific observable pairs, but it does not license arbitrary energy borrowing or apply identically to every pair of observables.",
+      boundary: "This is established quantum theory; it should not be used as a shortcut to macroscopic source claims.",
+      adaptive: {
+        choices: {
+          noncommuting: {
+            supported: "Noncommutation is the mathematical source of many uncertainty relations."
+          },
+          preparation: {
+            supported: "The relation constrains preparation sharpness for the relevant observable pair."
+          },
+          not_sloppy: {
+            supported: "The principle is not merely about imperfect devices."
+          },
+          energy_free: {
+            unsupported: "Uncertainty relations do not provide an accumulable macroscopic energy source."
+          },
+          all_pairs: {
+            unsupported: "The specific relation depends on the observables and their commutator."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qm.ground_state.dragfill.001",
+    type: "drag_fill",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    promptParts: [
+      "For a quantum harmonic oscillator, the ground-state energy is ",
+      { type: "blank", id: "energy" },
+      " rather than zero."
+    ],
+    tokens: [
+      { id: "half_hbar_omega", content: [{ type: "math", latex: "\\frac{1}{2}\\hbar\\omega", label: "one half hbar omega" }] },
+      { id: "hbar_omega", content: [{ type: "math", latex: "\\hbar\\omega", label: "hbar omega" }] },
+      { id: "zero", content: [{ type: "math", latex: "0", label: "zero" }] },
+      { id: "eight_pi", content: [{ type: "math", latex: "8\\pi G", label: "eight pi G" }] }
+    ],
+    blanks: [
+      { id: "energy", accepts: ["half_hbar_omega"] }
+    ],
+    explanation: {
+      answer: [{ type: "math", latex: "E_0=\\frac{1}{2}\\hbar\\omega", label: "ground energy equals one half hbar omega" }],
+      why: "The harmonic oscillator ground state has nonzero energy because the quantum state cannot have both exactly zero displacement spread and zero momentum spread.",
+      boundary: "This is elementary quantum mechanics. It motivates zero-point language but does not by itself create an extractable energy reservoir.",
+      adaptive: {
+        blanks: {
+          energy: {
+            correct: "The oscillator ground state has energy one half hbar omega.",
+            tokens: {
+              hbar_omega: "Hbar omega is the energy spacing between adjacent oscillator levels, not the ground-state value.",
+              zero: "The quantum oscillator ground state is not zero energy.",
+              eight_pi: "Eight pi G belongs to Einstein-equation normalization, not oscillator energy."
+            },
+            missing: "The blank asks for the oscillator ground-state energy."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qm.superposition.matching.001",
+    type: "matching",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Match each quantum term to the careful interpretation.",
+    prompts: [
+      { id: "superposition", content: "Superposition" },
+      { id: "eigenstate", content: "Eigenstate of an observable" },
+      { id: "measurement", content: "Measurement outcome" }
+    ],
+    options: [
+      { id: "linear_combo", label: "A state expressed as a linear combination of basis states" },
+      { id: "definite_value", label: "A state with a definite value for the chosen observable" },
+      { id: "sampled_result", label: "A result sampled according to the state's probabilities" }
+    ],
+    answer: {
+      superposition: "linear_combo",
+      eigenstate: "definite_value",
+      measurement: "sampled_result"
+    },
+    explanation: {
+      answer: "Superposition, eigenstate, and measurement outcome are different roles.",
+      why: "A state can be written as a combination in one basis, can be definite for a chosen observable, and can still produce individual sampled outcomes according to probabilities.",
+      boundary: "This is basic quantum-state language and does not settle field-theory vacuum, source, or gravity questions.",
+      adaptive: {
+        matches: {
+          superposition: {
+            correct: "Superposition means a linear combination of basis states.",
+            options: {
+              definite_value: "An eigenstate is definite for the chosen observable.",
+              sampled_result: "A measurement outcome is sampled; it is not the definition of superposition."
+            }
+          },
+          eigenstate: {
+            correct: "An eigenstate has a definite value for the chosen observable.",
+            options: {
+              linear_combo: "A superposition is a linear-combination description.",
+              sampled_result: "The sampled result is the measurement event, not the state role."
+            }
+          },
+          measurement: {
+            correct: "A measurement outcome is sampled according to the state's probabilities.",
+            options: {
+              linear_combo: "A linear combination describes state representation, not the event outcome itself.",
+              definite_value: "Definite value is the eigenstate relation for one observable."
+            }
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qft.field_quantization.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "QFT basics",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "In basic quantum field theory, what is the usual meaning of a particle excitation?",
+    choices: [
+      { id: "field_mode", content: "An excitation of an underlying quantum field mode." },
+      { id: "tiny_ball", content: "A small classical ball moving through an otherwise empty stage." },
+      { id: "metric", content: "A choice of spacetime metric." },
+      { id: "brane", content: "A compactified extra dimension." }
+    ],
+    answer: ["field_mode"],
+    explanation: {
+      answer: "A particle is treated as an excitation of a quantum field.",
+      why: "QFT shifts the basic object from individual classical particles to fields whose modes can be excited. This matters for vacuum language because the vacuum is a field state, not a literal empty container.",
+      boundary: "This is established QFT vocabulary and does not by itself provide a source mechanism for a spacetime geometry.",
+      adaptive: {
+        choices: {
+          field_mode: {
+            supported: "The field-mode excitation is the standard QFT interpretation."
+          },
+          tiny_ball: {
+            unsupported: "QFT particles are not fundamental little classical balls in empty space."
+          },
+          metric: {
+            unsupported: "A metric is geometric structure, not a particle excitation."
+          },
+          brane: {
+            unsupported: "A brane is a string-theory object, not the basic QFT meaning of particle excitation."
+          }
+        }
+      },
+      references: [references.tongQft]
+    }
+  },
+  {
+    id: "foundation.qft.vacuum_modes.001",
+    type: "multi",
+    track: "Established foundations",
+    module: "QFT basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements about the quantum-field vacuum are careful?",
+    choices: [
+      { id: "state", content: "It is a state of the field, not simply classical nothingness." },
+      { id: "mode_dependent", content: "Its description can depend on the field, boundary conditions, and background setup." },
+      { id: "renormalization", content: "Physical predictions often depend on differences or renormalized quantities rather than a naive infinite sum." },
+      { id: "battery", content: "A regulated zero-point sum gives a direct estimate of vacuum energy available to a device." },
+      { id: "unique_everywhere", content: "Once a mode basis is chosen, vacuum ambiguity is only a mathematical convention." }
+    ],
+    answer: ["state", "mode_dependent", "renormalization"],
+    explanation: {
+      answer: "The vacuum is a field state whose physical use depends on setup and renormalized observables.",
+      why: "Vacuum language in QFT is subtle because mode structure, boundary conditions, and background geometry can matter. Naive zero-point sums are not automatically physical energy reservoirs.",
+      boundary: "This is established QFT framing and should not be promoted into an extractable-energy or source-realization claim.",
+      adaptive: {
+        choices: {
+          state: {
+            supported: "The vacuum is a quantum state, not classical emptiness."
+          },
+          mode_dependent: {
+            supported: "Field content, boundaries, and background setup can affect vacuum descriptions."
+          },
+          renormalization: {
+            supported: "Observable quantities often involve differences or renormalized stress-energy."
+          },
+          battery: {
+            unsupported: "A regulated sum is not by itself an extractable device energy; observables, boundaries, and dynamics still matter."
+          },
+          unique_everywhere: {
+            unsupported: "Mode choices can encode real physical assumptions, especially in curved or time-dependent settings."
+          }
+        }
+      },
+      references: [references.tongQft]
+    }
+  },
+  {
+    id: "foundation.qft.renormalization_boundary.001",
+    type: "multi",
+    track: "Established foundations",
+    module: "QFT basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements describe a careful role for renormalization in field theory?",
+    choices: [
+      { id: "finite_prediction", content: "It helps define finite physical predictions from quantities that can be formally divergent." },
+      { id: "parameters", content: "It relates measured parameters to the scale and scheme used in the calculation." },
+      { id: "not_magic", content: "It is not a license to assign any desired stress-energy to a model." },
+      { id: "delete_physics", content: "It absorbs high-energy sensitivity into measured parameters so low-energy source claims need no further validity discussion." },
+      { id: "source_done", content: "Once a stress tensor is renormalized, a physical source model has been constructed." }
+    ],
+    answer: ["finite_prediction", "parameters", "not_magic"],
+    explanation: {
+      answer: "Renormalization supports finite predictions and scale-aware parameter interpretation, but it is not arbitrary source construction.",
+      why: "Renormalization is a disciplined framework for handling divergences and relating calculations to measured quantities. It does not erase validity limits or produce a matter sector on demand.",
+      boundary: "This is QFT calculation discipline and remains distinct from source realization in a gravitational model.",
+      adaptive: {
+        choices: {
+          finite_prediction: {
+            supported: "Renormalization is used to extract finite physical predictions from divergent formal expressions."
+          },
+          parameters: {
+            supported: "Measured parameters and calculation scale are part of the interpretation."
+          },
+          not_magic: {
+            supported: "Renormalization is constrained, not arbitrary stress-energy assignment."
+          },
+          delete_physics: {
+            unsupported: "Measured parameters help, but validity range and residual scale sensitivity still have to be tracked."
+          },
+          source_done: {
+            unsupported: "A renormalized stress tensor is not automatically a constructed physical source model."
+          }
+        }
+      },
+      references: [references.tongQft, references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.quantum_vacuum.zero_point.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Quantum vacuum",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What does zero-point energy mean in quantum theory?",
+    choices: [
+      { id: "ground", content: "A nonzero ground-state energy associated with quantized modes." },
+      { id: "free", content: "Energy that can be freely extracted because it is present in empty space." },
+      { id: "classical", content: "The classical rest energy of a particle." },
+      { id: "curvature", content: "The curvature required by Einstein's equation." }
+    ],
+    answer: ["ground"],
+    explanation: {
+      answer: "Zero-point energy is ground-state mode energy.",
+      why: "Quantized systems can have nonzero ground-state energy. That fact is not the same as a technology for extracting arbitrary energy from the vacuum.",
+      boundary: "This is quantum foundation vocabulary and must be kept separate from source-option claims.",
+      adaptive: {
+        choices: {
+          ground: {
+            supported: "Zero-point energy refers to nonzero ground-state energy in a quantized system."
+          },
+          free: {
+            unsupported: "Nonzero ground-state energy is not a freely extractable reservoir."
+          },
+          classical: {
+            unsupported: "Classical rest energy and quantum zero-point energy are different concepts."
+          },
+          curvature: {
+            unsupported: "Curvature-source relations belong to gravitational field equations, not the definition of zero-point energy."
+          }
+        }
+      },
+      references: [references.openStaxQuantum, references.tongQft]
+    }
+  },
+  {
+    id: "foundation.quantum_vacuum.not_free_energy.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "Quantum vacuum",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which cautions apply when someone says vacuum fluctuations are a usable source of macroscopic energy?",
+    choices: [
+      { id: "state_not_battery", content: "A vacuum state is not automatically a battery-like energy reservoir." },
+      { id: "observable_differences", content: "Physical effects often involve differences, boundary conditions, or renormalized quantities." },
+      { id: "thermo", content: "Extraction claims still need ordinary energy accounting and dynamics." },
+      { id: "more_modes", content: "Adding more field modes generally gives more extractable energy." },
+      { id: "negative_easy", content: "Vacuum fluctuations make negative energy easy to sustain macroscopically." }
+    ],
+    answer: ["state_not_battery", "observable_differences", "thermo"],
+    explanation: {
+      answer: "Vacuum fluctuation language needs state, observable, and energy-accounting discipline.",
+      why: "Vacuum effects can be real without becoming a macroscopic source technology. The physical claim has to identify the state, boundary setup, observable quantity, and extraction dynamics.",
+      boundary: "This is established quantum-field caution and does not deny real vacuum effects such as Casimir forces.",
+      adaptive: {
+        choices: {
+          state_not_battery: {
+            supported: "A quantum vacuum state is not automatically a usable reservoir."
+          },
+          observable_differences: {
+            supported: "Vacuum effects are usually interpreted through physical differences or renormalized observables."
+          },
+          thermo: {
+            supported: "Energy extraction still needs a dynamical mechanism and accounting."
+          },
+          more_modes: {
+            unsupported: "More formal modes do not directly mean more extractable energy."
+          },
+          negative_easy: {
+            unsupported: "Vacuum effects can include negative-energy features, but sustained macroscopic use remains constrained."
+          }
+        }
+      },
+      references: [references.tongQft, references.miltonCasimir]
+    }
+  },
+  {
+    id: "foundation.casimir.boundary_modes.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Casimir effect",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What is the Casimir effect most directly associated with?",
+    choices: [
+      { id: "boundary_modes", content: "Forces or energy differences caused by boundary-conditioned quantum field modes." },
+      { id: "free_energy", content: "Unrestricted extraction of zero-point energy from empty space." },
+      { id: "wormhole", content: "A proof that traversable wormholes have ordinary matter sources." },
+      { id: "adm", content: "The Hamiltonian constraint in the ADM split." }
+    ],
+    answer: ["boundary_modes"],
+    explanation: {
+      answer: "The Casimir effect comes from boundary-conditioned quantum field modes.",
+      why: "The classic setup compares vacuum mode structure under different boundary conditions, leading to measurable force or energy differences. It is not a general zero-point-energy extraction method.",
+      boundary: "This is established quantum-field physics and should be separated from speculative macroscopic source claims.",
+      adaptive: {
+        choices: {
+          boundary_modes: {
+            supported: "Boundary-conditioned modes are the direct Casimir-effect idea."
+          },
+          free_energy: {
+            unsupported: "The effect is not unrestricted zero-point-energy extraction."
+          },
+          wormhole: {
+            unsupported: "Casimir systems do not prove ordinary matter can support traversable wormholes."
+          },
+          adm: {
+            unsupported: "ADM constraints are GR initial-data equations, not Casimir physics."
+          }
+        }
+      },
+      references: [references.miltonCasimir, references.tongQft]
+    }
+  },
+  {
+    id: "foundation.casimir.interpretation.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "Casimir effect",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which interpretations of the Casimir effect are careful?",
+    choices: [
+      { id: "real_effect", content: "It is a real quantum-field effect with measurable force behavior." },
+      { id: "setup_specific", content: "Its sign and magnitude depend on geometry, materials, and boundary conditions." },
+      { id: "not_source_clearance", content: "It does not by itself clear macroscopic exotic-source requirements." },
+      { id: "vacuum_tank", content: "It shows boundary motion can mine zero-point energy once a device cycle is engineered." },
+      { id: "geometry_independent", content: "The effect is mostly geometry-independent once conductors are present." }
+    ],
+    answer: ["real_effect", "setup_specific", "not_source_clearance"],
+    explanation: {
+      answer: "Casimir forces are real and setup-dependent, but they do not automatically solve source requirements.",
+      why: "The effect depends on boundary conditions, geometry, and material response. Its existence teaches caution about vacuum fields, not a blanket path to macroscopic exotic matter.",
+      boundary: "This is established Casimir-effect interpretation and remains distinct from engineering-scale source realization.",
+      adaptive: {
+        choices: {
+          real_effect: {
+            supported: "Casimir forces are experimentally and theoretically real quantum-field effects."
+          },
+          setup_specific: {
+            supported: "Geometry, boundaries, and material response affect the result."
+          },
+          not_source_clearance: {
+            supported: "A real effect is not the same as clearing macroscopic exotic-source requirements."
+          },
+          vacuum_tank: {
+            unsupported: "Casimir forces are real, but a device cycle still needs energy accounting and does not simply mine a vacuum reservoir."
+          },
+          geometry_independent: {
+            unsupported: "The effect is strongly tied to setup and geometry."
+          }
+        }
+      },
+      references: [references.miltonCasimir]
+    }
+  },
+  {
+    id: "foundation.casimir.energy_conditions.003",
+    type: "mc",
+    track: "Established foundations",
+    module: "Casimir effect",
+    difficulty: "advanced",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    prompt: "A design note points to negative energy density between idealized Casimir plates and claims that macroscopic exotic stress is therefore available. What is the careful response?",
+    choices: [
+      { id: "bounded_setup", content: "Casimir negative energy is setup-specific and does not by itself supply a scalable, controllable stress-energy source." },
+      { id: "scale_up", content: "Smaller separations can raise the magnitude enough if material limits are engineered around the target stress." },
+      { id: "ignore_materials", content: "Ideal boundary calculations can define the source target first, with material and geometry corrections added afterward." },
+      { id: "all_negative", content: "The sign of local energy density is the main gravitational-source feature once the region is static." }
+    ],
+    answer: ["bounded_setup"],
+    explanation: {
+      answer: "Casimir negative energy is real but setup-specific and not a scalable source clearance.",
+      why: "The gravitational source question concerns the full stress tensor, geometry, material limits, and control of the effect. A local negative-energy feature in an idealized setup does not become arbitrary macroscopic exotic stress.",
+      boundary: "This is established quantum-field source caution, not a dismissal of the Casimir effect itself.",
+      adaptive: {
+        choices: {
+          bounded_setup: {
+            supported: "This keeps the real effect attached to setup, scale, materials, and stress-tensor context."
+          },
+          scale_up: {
+            unsupported: "Changing separation runs into material, geometry, and full-stress constraints; magnitude alone is not the source claim."
+          },
+          ignore_materials: {
+            unsupported: "Ideal boundaries are useful targets, but material and geometry limits are part of the physical source claim."
+          },
+          all_negative: {
+            unsupported: "Local sign is not enough; the full stress tensor, geometry, and scale matter gravitationally."
+          }
+        }
+      },
+      references: [references.miltonCasimir, references.energyConditionsPrimer]
+    }
+  },
+  {
+    id: "foundation.semiclassical.rset.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Semiclassical gravity",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "In semiclassical gravity, what role does the renormalized stress-energy expectation value usually play?",
+    choices: [
+      { id: "source_expectation", content: "It is used as the quantum-field source side for a classical spacetime equation." },
+      { id: "particle_path", content: "It gives the definite trajectory of one particle." },
+      { id: "gauge_choice", content: "It chooses the ADM lapse and shift." },
+      { id: "brane_count", content: "It counts compactified branes." }
+    ],
+    answer: ["source_expectation"],
+    explanation: {
+      answer: "The RSET is the quantum expectation value used as a semiclassical source.",
+      why: "Semiclassical gravity commonly couples a classical geometry to a renormalized expectation value of the quantum stress-energy tensor. This is different from a classical matter tensor chosen by hand.",
+      boundary: "This is semiclassical-gravity vocabulary and does not establish that a proposed geometry has a controlled quantum source.",
+      adaptive: {
+        choices: {
+          source_expectation: {
+            supported: "The renormalized expectation value supplies the source term in semiclassical treatments."
+          },
+          particle_path: {
+            unsupported: "A stress-energy expectation value is not a single-particle trajectory."
+          },
+          gauge_choice: {
+            unsupported: "Gauge choices such as lapse and shift are separate from the RSET."
+          },
+          brane_count: {
+            unsupported: "Brane counting is string-theory context, not the RSET role."
+          }
+        }
+      },
+      references: [references.tongQft, references.chronologyProtection]
+    }
+  },
+  {
+    id: "foundation.semiclassical.backreaction.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "Semiclassical gravity",
+    difficulty: "intermediate",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which cautions apply when a model uses quantum fields on a fixed background?",
+    choices: [
+      { id: "fixed_background", content: "The calculation may be informative while still neglecting geometry response." },
+      { id: "rset_needed", content: "Backreaction review asks how the field stress-energy expectation affects the geometry." },
+      { id: "state_choice", content: "The quantum state and boundary setup matter for the stress-energy being evaluated." },
+      { id: "geometry_finished", content: "If the computed stress is small on the chosen background, the fixed-background treatment is enough for source interpretation." },
+      { id: "classical_source", content: "A renormalized expectation value can be read as an effective classical source without specifying the field state further." }
+    ],
+    answer: ["fixed_background", "rset_needed", "state_choice"],
+    explanation: {
+      answer: "Fixed-background calculations are useful but leave backreaction, state choice, and source interpretation to review.",
+      why: "Solving fields on a prescribed geometry can reveal important effects, but self-consistency requires asking whether the field stress changes the geometry and whether the state is physically appropriate.",
+      boundary: "This is semiclassical-gravity discipline and should not be treated as automatic physical realization.",
+      adaptive: {
+        choices: {
+          fixed_background: {
+            supported: "A fixed-background result can be valuable while still omitting geometry response."
+          },
+          rset_needed: {
+            supported: "Backreaction is about how the stress-energy expectation affects the geometry."
+          },
+          state_choice: {
+            supported: "State and boundary setup can change the stress tensor being evaluated."
+          },
+          geometry_finished: {
+            unsupported: "Small stress can support an approximation, but source interpretation still needs the state, regime, and backreaction assumptions."
+          },
+          classical_source: {
+            unsupported: "A renormalized expectation is source-side data, but the state and quantum origin remain part of the interpretation."
+          }
+        }
+      },
+      references: [references.chronologyProtection, references.tongQft]
+    }
+  },
+  {
+    id: "foundation.eft.validity.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Effective field theory",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What is the central discipline of effective field theory?",
+    choices: [
+      { id: "scale", content: "Describe physics within a stated range of energies or length scales." },
+      { id: "everything", content: "Replace the need for a more complete high-energy theory." },
+      { id: "geometry", content: "Choose the spacetime metric with the smallest curvature." },
+      { id: "vacuum", content: "Extract zero-point energy from all field modes." }
+    ],
+    answer: ["scale"],
+    explanation: {
+      answer: "EFT is scale-bound theory building.",
+      why: "An effective field theory can make reliable predictions inside its domain without claiming to be the final theory at every energy or length scale.",
+      boundary: "This is general theory discipline and does not guarantee a UV completion or source realization.",
+      adaptive: {
+        choices: {
+          scale: {
+            supported: "EFT keeps validity domains and scale separation explicit."
+          },
+          everything: {
+            unsupported: "An EFT can be powerful without replacing the need for a high-energy completion."
+          },
+          geometry: {
+            unsupported: "Metric choice is a different modeling decision."
+          },
+          vacuum: {
+            unsupported: "EFT is not a vacuum-energy extraction rule."
+          }
+        }
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.eft.scale_matching.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "Effective field theory",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements are careful when applying an effective source model?",
+    choices: [
+      { id: "validity", content: "State the energy, length, and field-strength regime where the model is intended to hold." },
+      { id: "operators", content: "Track which neglected operators or corrections could become important." },
+      { id: "matching", content: "Identify how effective parameters are matched to measurements or a deeper model." },
+      { id: "uv_done", content: "A successful low-energy fit makes the high-energy completion irrelevant for claims inside the fitted regime." },
+      { id: "arbitrary_stress", content: "Enough allowed operators can fit the desired stress tensor while staying within EFT if the coefficients are measured." }
+    ],
+    answer: ["validity", "operators", "matching"],
+    explanation: {
+      answer: "Effective source claims should carry validity range, neglected corrections, and parameter matching.",
+      why: "EFT strength comes from controlled approximation, not unrestricted fitting. A model that works at one scale can fail when neglected operators or high-energy physics becomes relevant.",
+      boundary: "This is established EFT reasoning and does not by itself validate a proposed exotic source sector.",
+      adaptive: {
+        choices: {
+          validity: {
+            supported: "The regime of validity is part of the effective claim."
+          },
+          operators: {
+            supported: "Neglected corrections can become important outside the intended regime."
+          },
+          matching: {
+            supported: "Effective parameters need matching to data or to a deeper model."
+          },
+          uv_done: {
+            unsupported: "Low-energy success can be enough for some predictions, but source claims still need validity and completion limits stated."
+          },
+          arbitrary_stress: {
+            unsupported: "Measured coefficients help, but arbitrary stress fitting still faces consistency, stability, and validity constraints."
+          }
+        }
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.eft.sequence.003",
+    type: "sequence",
+    track: "Established foundations",
+    module: "Effective field theory",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Order a conservative EFT-style modeling claim.",
+    items: [
+      { id: "scales", content: "Identify the relevant low-energy or long-distance scales" },
+      { id: "degrees", content: "Choose the active degrees of freedom" },
+      { id: "operators", content: "Write allowed terms organized by importance" },
+      { id: "match", content: "Match coefficients to data or a deeper calculation" },
+      { id: "limits", content: "State the validity limits of the resulting model" }
+    ],
+    answer: ["scales", "degrees", "operators", "match", "limits"],
+    explanation: {
+      answer: "Scales, degrees of freedom, operator organization, matching, then validity limits.",
+      why: "EFT reasoning starts by deciding which physics is active at the scale of interest. Coefficients and limits then keep the approximation from being overpromoted.",
+      boundary: "This is general EFT practice, not evidence that any particular source option is physically realized.",
+      adaptive: {
+        sequence: [
+          {
+            id: "scales-before-degrees",
+            before: "scales",
+            after: "degrees",
+            content: "The relevant scale guides which degrees of freedom should be active."
+          },
+          {
+            id: "degrees-before-operators",
+            before: "degrees",
+            after: "operators",
+            content: "Operators are written for the chosen degrees of freedom and symmetries."
+          },
+          {
+            id: "operators-before-match",
+            before: "operators",
+            after: "match",
+            content: "Coefficients are matched after the possible terms are organized."
+          },
+          {
+            id: "match-before-limits",
+            before: "match",
+            after: "limits",
+            content: "The final claim should state the limits of the matched effective model."
+          }
+        ]
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.source.scalar_field.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Source model basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Why is naming a scalar field not enough to specify a physical source model?",
+    choices: [
+      { id: "dynamics", content: "The action, coupling, potential, state, stability, and regime still have to be specified." },
+      { id: "tensor", content: "A scalar field's stress-energy is fixed once its field profile is named." },
+      { id: "ordinary", content: "A minimally coupled scalar field is usually enough to keep source behavior ordinary." },
+      { id: "geometry_only", content: "A scalar ansatz can determine the geometry after the desired energy density is matched." }
+    ],
+    answer: ["dynamics"],
+    explanation: {
+      answer: "A field label is not a full model.",
+      why: "The stress-energy and physical behavior depend on the scalar action, couplings, potential, state, boundary conditions, and stability. The same field type can appear in different physical regimes.",
+      boundary: "This is general source-model literacy and does not approve or reject any specific scalar-source proposal.",
+      adaptive: {
+        choices: {
+          dynamics: {
+            supported: "A physical field model needs dynamics, couplings, state, and regime information."
+          },
+          tensor: {
+            unsupported: "The stress-energy depends on dynamics, couplings, potential, and state, not only the field profile label."
+          },
+          ordinary: {
+            unsupported: "Scalar-field behavior depends on coupling and regime; the field label alone is not an ordinary-matter guarantee."
+          },
+          geometry_only: {
+            unsupported: "Energy-density matching alone does not determine the full geometry or source dynamics."
+          }
+        }
+      },
+      references: [references.barceloVisser, references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.source.equation_of_state.001",
+    type: "matching",
+    track: "Established foundations",
+    module: "Source model basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Match each source-model term to the careful role it usually plays.",
+    prompts: [
+      { id: "equation_state", content: "Equation of state" },
+      { id: "anisotropic_stress", content: "Anisotropic stress" },
+      { id: "stability", content: "Stability analysis" }
+    ],
+    options: [
+      { id: "pressure_density", label: "Relates pressure-like quantities to density or other state variables" },
+      { id: "directional", label: "Allows stress behavior to differ by spatial direction" },
+      { id: "perturb_response", label: "Checks response to disturbances around a background" }
+    ],
+    answer: {
+      equation_state: "pressure_density",
+      anisotropic_stress: "directional",
+      stability: "perturb_response"
+    },
+    explanation: {
+      answer: "Equation of state, anisotropic stress, and stability test different source-model surfaces.",
+      why: "A source model is more than a density value. Pressure relations, directional stresses, and perturbation behavior all affect whether the model is physically meaningful.",
+      boundary: "This is general source-model vocabulary, not a claim that any candidate matter sector has been found.",
+      adaptive: {
+        matches: {
+          equation_state: {
+            correct: "An equation of state relates pressure-like quantities to density or other state variables.",
+            options: {
+              directional: "Directional stress behavior is anisotropy.",
+              perturb_response: "Perturbation response is stability analysis."
+            }
+          },
+          anisotropic_stress: {
+            correct: "Anisotropic stress means stress differs by direction.",
+            options: {
+              pressure_density: "Pressure-density relation is the equation-of-state role.",
+              perturb_response: "Perturbation response is stability analysis."
+            }
+          },
+          stability: {
+            correct: "Stability analysis checks disturbance response.",
+            options: {
+              pressure_density: "Pressure-density relation is not by itself a perturbation check.",
+              directional: "Directional stress is anisotropy, not the stability test itself."
+            }
+          }
+        }
+      },
+      references: [references.carrollGrNotes, references.energyConditionsPrimer]
+    }
+  },
+  {
+    id: "foundation.source.stability.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "Source model basics",
+    difficulty: "advanced",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "A proposed effective source matches the required stress tensor at one background configuration but has no perturbation study, no equation of state, and no coupling description. Which cautions are justified?",
+    choices: [
+      { id: "matching_not_model", content: "Algebraic matching to one background is not a complete physical source model." },
+      { id: "stability_missing", content: "Perturbative stability and response to disturbances remain open." },
+      { id: "dynamics_missing", content: "Dynamics and couplings are needed to know whether the source can sustain the configuration." },
+      { id: "eos_missing", content: "An equation-of-state or constitutive relation may be needed to interpret pressure and stress behavior." },
+      { id: "match_enough", content: "A stress-tensor match is enough if the geometry is the intended target." },
+      { id: "pressure_secondary", content: "Pressure details can be postponed if the energy density component is matched well." }
+    ],
+    answer: ["matching_not_model", "stability_missing", "dynamics_missing", "eos_missing"],
+    explanation: {
+      answer: "A single stress match is useful but incomplete without dynamics, stability, couplings, and constitutive behavior.",
+      why: "Physical source realization requires more than reproducing tensor components at one background point or configuration. The model must explain how the source behaves, responds, and remains consistent.",
+      boundary: "This is general source-realization discipline and does not depend on any project-specific ledger language.",
+      adaptive: {
+        choices: {
+          matching_not_model: {
+            supported: "A background match is an accounting success, not a full matter model."
+          },
+          stability_missing: {
+            supported: "Perturbation response remains an independent burden."
+          },
+          dynamics_missing: {
+            supported: "Couplings and equations of motion are needed for source behavior."
+          },
+          eos_missing: {
+            supported: "Constitutive or equation-of-state information helps interpret stresses."
+          },
+          match_enough: {
+            unsupported: "Target matching does not by itself show a source can physically sustain the target."
+          },
+          pressure_secondary: {
+            unsupported: "Pressure and stress details are part of the source and energy-condition story."
+          }
+        }
+      },
+      references: [references.energyConditionsPrimer, references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.string.brane_basic.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "String theory context",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "In string-theory language, what is a D-brane?",
+    choices: [
+      { id: "boundary", content: "An object on which open strings can end, carrying worldvolume degrees of freedom." },
+      { id: "warp_engine", content: "A macroscopic propulsion source for arbitrary spacetime metrics." },
+      { id: "observer", content: "A timelike observer used to measure local energy density." },
+      { id: "constraint", content: "The Hamiltonian constraint in a 3+1 split." }
+    ],
+    answer: ["boundary"],
+    explanation: {
+      answer: "A D-brane is an object where open strings can end.",
+      why: "D-branes carry worldvolume degrees of freedom and source/coupling roles inside string theory. That background does not make them practical macroscopic source devices.",
+      boundary: "This is string-theory literacy, not an endorsement of branes as deployable source options.",
+      adaptive: {
+        choices: {
+          boundary: {
+            supported: "Open-string boundary conditions are central to the D-brane concept."
+          },
+          warp_engine: {
+            unsupported: "D-branes are theoretical objects, not macroscopic propulsion sources by definition."
+          },
+          observer: {
+            unsupported: "A timelike observer is GR measurement vocabulary, not a D-brane."
+          },
+          constraint: {
+            unsupported: "ADM constraints are unrelated to the definition of D-brane."
+          }
+        }
+      },
+      references: [references.polchinskiDBranes]
+    }
+  },
+  {
+    id: "foundation.string.compactification.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "String theory context",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What is compactification meant to do in string-theory model building?",
+    choices: [
+      { id: "extra_dimensions", content: "Relate higher-dimensional theory to lower-dimensional effective physics by specifying small or hidden dimensions." },
+      { id: "energy_source", content: "Package flux or vacuum energy into a lower-dimensional source term." },
+      { id: "metric_free", content: "Summarize compact geometry by effective parameters so the detailed shape is secondary." },
+      { id: "stability_done", content: "Make moduli stabilization a later correction once the compact dimensions are small." }
+    ],
+    answer: ["extra_dimensions"],
+    explanation: {
+      answer: "Compactification connects higher-dimensional theory to lower-dimensional effective physics.",
+      why: "The shape, size, fluxes, and moduli of compact dimensions affect the low-energy effective theory. Stabilization and consistency are substantive problems, not automatic consequences.",
+      boundary: "This is high-energy theory background and should not be treated as a direct source option.",
+      adaptive: {
+        choices: {
+          extra_dimensions: {
+            supported: "Compactification specifies how extra dimensions feed into lower-dimensional effective physics."
+          },
+          energy_source: {
+            unsupported: "Flux or vacuum contributions require a consistent compactification and effective description; they are not simply usable local source terms."
+          },
+          metric_free: {
+            unsupported: "Effective parameters summarize geometry only after assumptions are made; detailed compact geometry still matters."
+          },
+          stability_done: {
+            unsupported: "Small compact dimensions do not make moduli stabilization a later cosmetic correction."
+          }
+        }
+      },
+      references: [references.douglasKachruFlux]
+    }
+  },
+  {
+    id: "foundation.string.effective_claims.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "String theory context",
+    difficulty: "advanced",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "A source proposal invokes branes, fluxes, and compactification but gives only a four-dimensional effective stress tensor. Which cautions are justified?",
+    choices: [
+      { id: "effective_scope", content: "The four-dimensional tensor should be treated as an effective description with stated validity limits." },
+      { id: "moduli", content: "Compactification data and moduli stabilization can affect whether the setup is consistent." },
+      { id: "couplings", content: "Couplings, scales, and backreaction need to be specified before the source claim is physical." },
+      { id: "not_magic", content: "String-theory vocabulary does not by itself supply a macroscopic controllable source." },
+      { id: "label_enough", content: "Naming branes and fluxes gives enough high-energy structure to trust the effective tensor." },
+      { id: "four_d_complete", content: "A four-dimensional stress tensor makes the higher-dimensional construction optional once it matches the desired geometry." }
+    ],
+    answer: ["effective_scope", "moduli", "couplings", "not_magic"],
+    explanation: {
+      answer: "High-energy vocabulary must remain tied to effective scope, compactification consistency, couplings, scales, and backreaction.",
+      why: "String-theory ingredients can be meaningful source context, but a physical claim needs the mechanism and validity domain. A four-dimensional effective tensor does not erase the higher-dimensional assumptions that produced it.",
+      boundary: "This is bounded string-theory and EFT literacy, not a claim that string theory supplies an active source sector.",
+      adaptive: {
+        choices: {
+          effective_scope: {
+            supported: "The effective tensor should carry its domain of validity."
+          },
+          moduli: {
+            supported: "Compactification and moduli behavior are part of the consistency story."
+          },
+          couplings: {
+            supported: "Couplings, scales, and backreaction determine whether the source claim is physical."
+          },
+          not_magic: {
+            supported: "Terminology alone does not make a controllable macroscopic source."
+          },
+          label_enough: {
+            unsupported: "Brane and flux labels need concrete dynamics, scales, and consistency conditions."
+          },
+          four_d_complete: {
+            unsupported: "The effective tensor depends on higher-dimensional assumptions rather than replacing them."
+          }
+        }
+      },
+      references: [references.polchinskiDBranes, references.douglasKachruFlux, references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.cross_domain.classification.001",
+    type: "claim_classification",
+    track: "Established foundations",
+    module: "Claim classification",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Classify each broad foundation statement by its safest status.",
+    statuses: ["established_theory", "established_constraint", "literature_model", "open_gate"],
+    statements: [
+      { id: "observable", content: "Quantum observables are represented by operators.", answer: "established_theory" },
+      { id: "casimir", content: "Casimir systems show setup-dependent vacuum forces, not unrestricted vacuum-energy extraction.", answer: "established_constraint" },
+      { id: "alcubierre", content: "The Alcubierre metric is a published speculative spacetime model.", answer: "literature_model" },
+      { id: "source", content: "A complete physical source sector for an arbitrary exotic metric has been demonstrated.", answer: "open_gate" }
+    ],
+    explanation: {
+      answer: "The statements separate general theory, constraint caution, published model status, and unresolved source realization.",
+      why: "Broad foundations mix stable theory, limiting principles, paper-specific models, and open physical gates. Classification prevents a real effect or model from being promoted into source realization.",
+      boundary: "This is general claim-boundary training across foundation domains, not project-state content.",
+      adaptive: {
+        classifications: {
+          observable: {
+            correct: "Quantum-observable operator language is established quantum theory.",
+            statuses: {
+              established_constraint: "This is not a limiting theorem or no-go pressure.",
+              literature_model: "It is broader than a single speculative model.",
+              open_gate: "The observable formalism itself is not unresolved."
+            }
+          },
+          casimir: {
+            correct: "The statement is a constraint-style caution about what Casimir physics does and does not support.",
+            statuses: {
+              established_theory: "The effect is established, but this sentence is about its interpretive limit.",
+              literature_model: "This is not a speculative spacetime model.",
+              open_gate: "The cautious statement is supported; the open gate would be a scalable source mechanism."
+            }
+          },
+          alcubierre: {
+            correct: "The Alcubierre metric is published speculative literature.",
+            statuses: {
+              established_theory: "The metric is a model within GR, not established transportation physics.",
+              established_constraint: "The sentence names model status rather than a constraint theorem.",
+              open_gate: "The metric exists as literature; source realization remains an open gate."
+            }
+          },
+          source: {
+            correct: "Universal physical source realization for arbitrary exotic metrics remains an open gate.",
+            statuses: {
+              established_theory: "Established field equations do not supply universal exotic-source realization.",
+              established_constraint: "This is a realization claim, not only a constraint.",
+              literature_model: "No named literature model demonstrates the universal claim."
+            }
+          }
+        }
+      },
+      references: [references.openStaxQuantum, references.miltonCasimir, references.alcubierre, references.energyConditionsPrimer]
+    }
+  },
+  {
+    id: "foundation.qm.mixed_state.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Quantum basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What is the main difference between a pure quantum state and a mixed state?",
+    choices: [
+      { id: "statistical", content: "A mixed state represents statistical uncertainty or ensemble structure beyond a single state vector." },
+      { id: "classical", content: "A mixed state can always be interpreted as ordinary ignorance over definite pure states in any basis." },
+      { id: "energy", content: "A mixed state should have less usable energy because coherence has been lost." },
+      { id: "source", content: "A mixed state is enough to specify the stress-energy once the field operator is known." }
+    ],
+    answer: ["statistical"],
+    explanation: {
+      answer: "A mixed state represents ensemble or statistical structure, not just one state vector.",
+      why: "Pure and mixed states can give different descriptions of preparation and information. The distinction matters when interpreting expectation values and quantum fields, because averages can reflect state structure as well as measurement statistics.",
+      boundary: "This is quantum-state vocabulary and does not by itself identify a gravitational source.",
+      adaptive: {
+        choices: {
+          statistical: {
+            supported: "A mixed state captures ensemble or statistical structure beyond one state vector."
+          },
+          classical: {
+            unsupported: "A mixed state is still quantum, and its decomposition into pure states is not basis-independent in that simple way."
+          },
+          energy: {
+            unsupported: "Loss of coherence does not define the energy ordering by itself."
+          },
+          source: {
+            unsupported: "The state contributes to stress-energy expectations, but the operator, renormalization, and setup still matter."
+          }
+        }
+      },
+      references: [references.openStaxQuantum]
+    }
+  },
+  {
+    id: "foundation.qft.curved_vacuum.002",
+    type: "multi",
+    track: "Established foundations",
+    module: "QFT basics",
+    difficulty: "advanced",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "In a curved or time-dependent spacetime, which cautions apply to the phrase vacuum state?",
+    choices: [
+      { id: "observer_setup", content: "The vacuum notion can depend on observers, modes, boundary conditions, or asymptotic structure." },
+      { id: "stress_state", content: "The chosen state affects the renormalized stress-energy expectation value." },
+      { id: "not_empty", content: "Vacuum should not be read as classical empty space with no physical consequences." },
+      { id: "unique", content: "A single preferred vacuum exists whenever the metric is smooth." },
+      { id: "no_backreaction", content: "The vacuum choice is only interpretive and cannot affect backreaction questions." }
+    ],
+    answer: ["observer_setup", "stress_state", "not_empty"],
+    explanation: {
+      answer: "Vacuum choice can be setup-dependent and physically relevant through the stress-energy expectation.",
+      why: "Curvature, time dependence, and boundary conditions can make the field-state choice nontrivial. The vacuum is a quantum state with possible observable and gravitational consequences, not a universal label for empty space.",
+      boundary: "This is QFT-in-curved-spacetime background and should not be used as a source-clearance shortcut.",
+      adaptive: {
+        choices: {
+          observer_setup: {
+            supported: "Mode and observer structure can matter in curved or time-dependent settings."
+          },
+          stress_state: {
+            supported: "The state affects the renormalized stress-energy expectation."
+          },
+          not_empty: {
+            supported: "Vacuum is not simply classical nothingness."
+          },
+          unique: {
+            unsupported: "Metric smoothness does not guarantee one preferred vacuum notion."
+          },
+          no_backreaction: {
+            unsupported: "The stress expectation from a state can enter backreaction analysis."
+          }
+        }
+      },
+      references: [references.tongQft, references.chronologyProtection]
+    }
+  },
+  {
+    id: "foundation.casimir.material_limits.004",
+    type: "multi",
+    track: "Established foundations",
+    module: "Casimir effect",
+    difficulty: "advanced",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "A calculation uses ideal perfectly conducting plates to estimate a Casimir stress, then applies it unchanged to a finite material device. Which cautions are justified?",
+    choices: [
+      { id: "material_response", content: "Real material response can change the effect relative to an ideal boundary calculation." },
+      { id: "geometry", content: "Finite geometry and edge effects can matter outside the idealized setup." },
+      { id: "scale", content: "Scaling the setup changes both the force scale and the engineering interpretation." },
+      { id: "ideal_exact", content: "The ideal-plate result can be used directly if the material is a good conductor over the relevant frequencies." },
+      { id: "stress_complete", content: "The attractive force determines the complete stress-energy tensor needed for a gravitational source claim." }
+    ],
+    answer: ["material_response", "geometry", "scale"],
+    explanation: {
+      answer: "Material response, finite geometry, and scaling all matter when moving away from ideal Casimir plates.",
+      why: "Ideal calculations are valuable reference cases, but physical devices introduce material, frequency, geometry, and scale limits. A force estimate is not the complete stress-energy information needed for a source claim.",
+      boundary: "This is Casimir-effect interpretation, not an argument against using ideal models as controlled starting points.",
+      adaptive: {
+        choices: {
+          material_response: {
+            supported: "Real materials can change the boundary-conditioned mode behavior."
+          },
+          geometry: {
+            supported: "Finite size and edge effects can alter the idealized result."
+          },
+          scale: {
+            supported: "Scale changes the magnitude and physical interpretation of the force."
+          },
+          ideal_exact: {
+            unsupported: "Good conductivity helps but does not make the ideal result directly exact."
+          },
+          stress_complete: {
+            unsupported: "A force estimate does not specify the full stress-energy tensor."
+          }
+        }
+      },
+      references: [references.miltonCasimir]
+    }
+  },
+  {
+    id: "foundation.eft.naturalness.004",
+    type: "mc",
+    track: "Established foundations",
+    module: "Effective field theory",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "What does naturalness usually warn about in effective field theory?",
+    choices: [
+      { id: "sensitivity", content: "Low-energy parameters may be sensitive to high-energy physics or require unexplained tuning." },
+      { id: "beauty", content: "Simpler-looking equations are more natural because fewer terms need to be tracked." },
+      { id: "source", content: "A technically natural effective source is likely to become physical after adding compatible fields." },
+      { id: "coordinate", content: "Small component values in a convenient frame indicate the model is natural." }
+    ],
+    answer: ["sensitivity"],
+    explanation: {
+      answer: "Naturalness warns about sensitivity and unexplained tuning.",
+      why: "An EFT can be predictive while still raising questions about why its parameters take the values they do. Naturalness is a diagnostic of scale sensitivity, not a proof of failure.",
+      boundary: "This is EFT interpretation and should not be used as a standalone verdict on source feasibility.",
+      adaptive: {
+        choices: {
+          sensitivity: {
+            supported: "Naturalness concerns sensitivity to high-energy physics and parameter tuning."
+          },
+          beauty: {
+            unsupported: "Visual simplicity is not the technical question; sensitivity to scale and tuning is."
+          },
+          source: {
+            unsupported: "Technical naturalness can help a model, but compatible fields still need dynamics, stability, and evidence."
+          },
+          coordinate: {
+            unsupported: "Coordinate component size is not the same as parameter sensitivity or tuning."
+          }
+        }
+      },
+      references: [references.burgessEft]
+    }
+  },
+  {
+    id: "foundation.source.energy_condition_eos.003",
+    type: "mc",
+    track: "Established foundations",
+    module: "Source model basics",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Why is an energy-condition check not the same thing as an equation of state?",
+    choices: [
+      { id: "different_roles", content: "An energy condition constrains stress-energy contractions, while an equation of state relates source variables dynamically or constitutively." },
+      { id: "same", content: "Both are just names for positivity of energy density." },
+      { id: "eos_weaker", content: "An equation of state mainly refines source behavior after the main energy-condition contractions are checked." },
+      { id: "ec_source", content: "An energy condition supplies the matter dynamics once the metric is chosen." }
+    ],
+    answer: ["different_roles"],
+    explanation: {
+      answer: "Energy conditions and equations of state play different roles.",
+      why: "Energy conditions test tensor contractions under specified assumptions. An equation of state or constitutive law says how source variables relate and evolve, which is needed for physical source modeling.",
+      boundary: "This is general source-model discipline and does not establish any particular matter sector.",
+      adaptive: {
+        choices: {
+          different_roles: {
+            supported: "The statement separates constraint checks from constitutive source modeling."
+          },
+          same: {
+            unsupported: "Energy conditions and equations of state are not merely the same positivity statement."
+          },
+          eos_weaker: {
+            unsupported: "Constitutive behavior is part of the source model, not just a later refinement after contraction checks."
+          },
+          ec_source: {
+            unsupported: "An energy condition does not supply matter dynamics."
+          }
+        }
+      },
+      references: [references.energyConditionsPrimer, references.carrollGrNotes]
+    }
+  },
+  {
+    id: "foundation.classical_field.em_stress.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Source model basics",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Why can electromagnetic fields act as sources in general relativity?",
+    choices: [
+      { id: "stress", content: "They carry energy, momentum, and stress that enter the stress-energy tensor." },
+      { id: "charge_only", content: "Only electric charge appears in Einstein's equation." },
+      { id: "coordinate", content: "They choose the coordinate system for the metric." },
+      { id: "vacuum", content: "They remove the need for boundary conditions." }
+    ],
+    answer: ["stress"],
+    explanation: {
+      answer: "Electromagnetic fields carry stress-energy.",
+      why: "Classical fields can carry energy density, momentum flux, and stresses. In GR those contributions appear through the stress-energy tensor rather than only through particle-like matter.",
+      boundary: "This is established field-source vocabulary and not a claim that electromagnetic fields can realize arbitrary exotic stress tensors.",
+      adaptive: {
+        choices: {
+          stress: {
+            supported: "Field energy, momentum, and stress are source-side quantities in GR."
+          },
+          charge_only: {
+            unsupported: "Einstein's equation couples to stress-energy, not only charge."
+          },
+          coordinate: {
+            unsupported: "Field sources do not choose coordinates by definition."
+          },
+          vacuum: {
+            unsupported: "Electromagnetic fields still require equations and boundary conditions."
+          }
+        }
+      },
+      references: [references.carrollGrNotes]
+    }
+  },
+  {
+    id: "foundation.numerical.convergence.001",
+    type: "multi",
+    track: "Established foundations",
+    module: "Modeling discipline",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    scoring: "subtract_incorrect",
+    prompt: "Which statements about numerical convergence evidence are careful?",
+    choices: [
+      { id: "resolution", content: "A result should be checked against resolution or discretization changes when possible." },
+      { id: "norms", content: "Residuals and error norms should be tied to the physical claim being made." },
+      { id: "not_single", content: "One visually clean run is useful evidence but not a convergence study." },
+      { id: "plot_enough", content: "A smooth plot is enough if it matches the expected qualitative behavior." },
+      { id: "source_done", content: "Numerical convergence of a diagnostic establishes the physical source model." }
+    ],
+    answer: ["resolution", "norms", "not_single"],
+    explanation: {
+      answer: "Convergence evidence needs resolution checks, relevant norms, and more than visual smoothness.",
+      why: "Numerical evidence is strongest when the measured error behavior supports the specific claim. Clean plots can be encouraging while still hiding discretization, residual, or channel failures.",
+      boundary: "This is general computational-modeling discipline and does not replace physics or source review.",
+      adaptive: {
+        choices: {
+          resolution: {
+            supported: "Resolution changes are a standard way to test numerical robustness."
+          },
+          norms: {
+            supported: "The chosen residuals and norms should correspond to the claim."
+          },
+          not_single: {
+            supported: "A single clean run is evidence, but not full convergence evidence."
+          },
+          plot_enough: {
+            unsupported: "Visual smoothness is not a substitute for convergence checks."
+          },
+          source_done: {
+            unsupported: "Converged diagnostics do not construct the physical source model."
+          }
+        }
+      },
+      references: [references.burgessEft, references.adm]
+    }
+  },
+  {
+    id: "foundation.string.moduli_stabilization.003",
+    type: "mc",
+    track: "Established foundations",
+    module: "String theory context",
+    difficulty: "intermediate",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Why does moduli stabilization matter in compactification discussions?",
+    choices: [
+      { id: "parameters", content: "Unstabilized moduli can change the effective low-energy parameters and geometry." },
+      { id: "optional", content: "Moduli can be summarized by fixed parameters once the compact dimensions are below accessible scales." },
+      { id: "energy_free", content: "A stabilized compactification can be treated as a controlled reservoir for lower-dimensional vacuum energy." },
+      { id: "adm", content: "Moduli stabilization is analogous to constraint preservation because both keep chosen background data fixed." }
+    ],
+    answer: ["parameters"],
+    explanation: {
+      answer: "Moduli stabilization matters because moduli affect the effective theory.",
+      why: "Compactification data can appear as fields or parameters in the lower-dimensional description. If those quantities are not stabilized, the effective geometry and couplings may not stay fixed.",
+      boundary: "This is string-compactification context and does not imply a practical source mechanism.",
+      adaptive: {
+        choices: {
+          parameters: {
+            supported: "Unstabilized moduli can change effective parameters and geometry."
+          },
+          optional: {
+            unsupported: "Fixed effective parameters require stabilization assumptions; small size alone does not make moduli irrelevant."
+          },
+          energy_free: {
+            unsupported: "Stabilization can affect vacuum energy, but it does not provide a controlled extractable reservoir by itself."
+          },
+          adm: {
+            unsupported: "Both involve consistency, but ADM constraint preservation and moduli stabilization are different mechanisms."
+          }
+        }
+      },
+      references: [references.douglasKachruFlux]
+    }
+  },
+  {
+    id: "foundation.thermo.energy_accounting.001",
+    type: "mc",
+    track: "Established foundations",
+    module: "Modeling discipline",
+    difficulty: "core",
+    claimStatus: "established_constraint",
+    contentFlags: [],
+    prompt: "Why does ordinary energy accounting still matter when a model uses quantum or vacuum effects?",
+    choices: [
+      { id: "accounting", content: "The model still needs a mechanism that respects conservation, work, heat, losses, and boundary changes." },
+      { id: "quantum_exempt", content: "Quantum effects are exempt from ordinary bookkeeping because measurement changes the state." },
+      { id: "vacuum_free", content: "Vacuum fluctuations provide energy without needing a cycle or external work." },
+      { id: "geometry_only", content: "A geometric description replaces thermodynamic accounting." }
+    ],
+    answer: ["accounting"],
+    explanation: {
+      answer: "Quantum and vacuum effects still require energy accounting.",
+      why: "Real quantum effects can exchange energy with apparatus, boundaries, fields, or reservoirs. A source claim must identify the cycle and accounting rather than rely on vocabulary alone.",
+      boundary: "This is general physical discipline and does not deny quantum effects or vacuum forces.",
+      adaptive: {
+        choices: {
+          accounting: {
+            supported: "Conservation, work, losses, and boundary changes remain part of the physical claim."
+          },
+          quantum_exempt: {
+            unsupported: "Measurement and state change do not exempt a model from energy accounting."
+          },
+          vacuum_free: {
+            unsupported: "Vacuum fluctuations do not provide cycle-free energy by definition."
+          },
+          geometry_only: {
+            unsupported: "Geometry does not replace energy accounting for a physical source claim."
+          }
+        }
+      },
+      references: [references.openStaxQuantum, references.miltonCasimir]
+    }
+  },
+  {
+    id: "foundation.foundation_domains.matching.001",
+    type: "matching",
+    track: "Established foundations",
+    module: "Claim classification",
+    difficulty: "core",
+    claimStatus: "established_theory",
+    contentFlags: [],
+    prompt: "Match each foundation domain to a question it is best suited to answer.",
+    prompts: [
+      { id: "qm", content: "Quantum mechanics" },
+      { id: "eft", content: "Effective field theory" },
+      { id: "gr", content: "General relativity" },
+      { id: "casimir", content: "Casimir physics" }
+    ],
+    options: [
+      { id: "measurement", label: "How observables and state preparation are represented" },
+      { id: "scale", label: "Where an approximate field model is valid" },
+      { id: "curvature", label: "How spacetime geometry relates to stress-energy" },
+      { id: "boundary_vacuum", label: "How boundaries modify vacuum-mode effects" }
+    ],
+    answer: {
+      qm: "measurement",
+      eft: "scale",
+      gr: "curvature",
+      casimir: "boundary_vacuum"
+    },
+    explanation: {
+      answer: "The domains answer different foundation questions: state/measurement, validity scale, curvature/source relation, and boundary-conditioned vacuum effects.",
+      why: "Keeping domains distinct prevents a real idea in one area from being overpromoted in another. A Casimir force, an EFT validity range, and Einstein's equation are all useful, but they answer different questions.",
+      boundary: "This is broad foundation organization and does not make any project-specific claim.",
+      adaptive: {
+        matches: {
+          qm: {
+            correct: "Quantum mechanics is the foundation for state preparation and observables.",
+            options: {
+              scale: "Validity scale is the EFT role.",
+              curvature: "Curvature and stress-energy belong to GR.",
+              boundary_vacuum: "Boundary-conditioned vacuum effects are Casimir physics."
+            }
+          },
+          eft: {
+            correct: "EFT tracks validity domains for approximate field models.",
+            options: {
+              measurement: "State preparation and observables are quantum-mechanics basics.",
+              curvature: "Curvature/source relation is GR.",
+              boundary_vacuum: "Boundary-conditioned vacuum effects are Casimir physics."
+            }
+          },
+          gr: {
+            correct: "GR relates spacetime geometry to stress-energy.",
+            options: {
+              measurement: "Measurement formalism is quantum-mechanics territory.",
+              scale: "Validity domains are EFT discipline.",
+              boundary_vacuum: "Boundary-conditioned vacuum effects are Casimir physics."
+            }
+          },
+          casimir: {
+            correct: "Casimir physics concerns boundary-conditioned vacuum-mode effects.",
+            options: {
+              measurement: "Quantum measurement is not the specific Casimir focus.",
+              scale: "EFT scale discipline is broader than Casimir physics.",
+              curvature: "GR curvature/source relation is a different foundation domain."
+            }
+          }
+        }
+      },
+      references: [references.openStaxQuantum, references.burgessEft, references.carrollGrNotes, references.miltonCasimir]
     }
   }
 ];

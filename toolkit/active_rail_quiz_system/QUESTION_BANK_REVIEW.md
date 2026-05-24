@@ -9,13 +9,14 @@ treated as question-quality review.
 
 ## Current State
 
-- Accepted items: 128.
-- The bank is now a stronger seed, but still not a full curriculum. The first
-  release target remains 150 to 250 approved items.
-- Established general theory is now treated as the durable core layer. The
-  2026-05-24 expansion added metric, causal-structure, geodesic, ADM,
-  stress-energy, energy-condition, conservation, and source-demand reasoning
-  items.
+- Accepted items: 167.
+- The bank is now inside the first-release size range, but still needs deeper
+  domain coverage before it should be treated as a complete curriculum.
+- Established general theory is now treated as the durable core layer. The bank
+  includes GR/differential-geometry foundations plus a broader foundation spine
+  for quantum mechanics, QFT/vacuum/Casimir physics, semiclassical gravity,
+  effective field theory, source-model literacy, and bounded string-theory
+  context.
 - Paper-specific coverage remains useful, but not yet exhaustive. Most
   disclosure-bibliography papers have at least one manually reviewed item; deeper
   coverage should continue adding advanced items per paper.
@@ -210,6 +211,40 @@ and advanced choice questions now require more boundary discrimination than the
 earlier draft. Future expansion should preserve this standard from first draft
 rather than relying on cleanup passes.
 
+## 2026-05-24 Broad Foundations Expansion
+
+This pass broadened the established-foundations track beyond GR-centered
+material. It added 39 manually reviewed items across modeling discipline,
+quantum mechanics, QFT basics, quantum vacuum interpretation, Casimir effect,
+semiclassical gravity, effective field theory, source-model basics, numerical
+evidence discipline, thermodynamic accounting, and bounded string-theory
+context.
+
+Review passes:
+
+- First pass checked domain balance so the additions were not merely more warp
+  literature or project-state questions.
+- Second pass checked intermediate and advanced distractors for plausible
+  misconceptions rather than obvious throwaways.
+- Third pass checked explanations for material teaching, source boundaries, and
+  no project-specific leakage in general-theory items.
+
+Current distribution:
+
+- Total: 167.
+- Core: 43.
+- Intermediate: 90.
+- Advanced: 34.
+- Established foundations: 92.
+- Published warp and wormhole context: 43.
+- Active-rail architecture: 13.
+- Design review and synthesis: 19.
+
+The bank now meets the first-release target for established-foundation count,
+but several domains still need deeper follow-up: quantum measurement/state
+formalism, QFT in curved spacetime, material Casimir systems, source-model
+stability, and high-energy effective descriptions.
+
 ## Source Hygiene
 
 - Learner-facing paper links now point to actual public source locations, not to
@@ -233,12 +268,18 @@ rather than relying on cleanup passes.
   Morris-Thorne correspondence content is currently sourced through the
   Garattini-Zatrimaylov arXiv paper.
 
-## Public Paper Sources In Use
+## Public Sources In Use
 
 - ADM: `https://arxiv.org/abs/gr-qc/0405109`
 - Alcubierre: `https://arxiv.org/abs/gr-qc/0009013`
 - Ford-Roman: `https://arxiv.org/abs/gr-qc/9510071`
 - Carroll GR notes: `https://arxiv.org/abs/gr-qc/9712019`
+- OpenStax University Physics Volume 3: `https://openstax.org/details/books/university-physics-volume-3`
+- Tong QFT notes: `https://davidtong.org/teaching/quantum-field-theory/`
+- Milton Casimir review: `https://arxiv.org/abs/hep-th/9901011`
+- Burgess EFT notes: `https://arxiv.org/abs/hep-th/0701053`
+- Polchinski D-brane notes: `https://arxiv.org/abs/hep-th/9611050`
+- Douglas-Kachru flux compactification review: `https://arxiv.org/abs/hep-th/0610102`
 - Curiel energy conditions primer: `https://arxiv.org/abs/1405.0403`
 - Barcelo-Visser: `https://arxiv.org/abs/gr-qc/0003025`
 - Natario: `https://arxiv.org/abs/gr-qc/0110086`
