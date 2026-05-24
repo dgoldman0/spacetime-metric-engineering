@@ -9,7 +9,7 @@ treated as question-quality review.
 
 ## Current State
 
-- Accepted items: 106.
+- Accepted items: 125.
 - The bank is now a stronger seed, but still not a full curriculum. The first
   release target remains 150 to 250 approved items.
 - Established general theory is now treated as the durable core layer. The
@@ -18,7 +18,7 @@ treated as question-quality review.
   items.
 - Paper-specific coverage remains useful, but not yet exhaustive. Most
   disclosure-bibliography papers have at least one manually reviewed item; deeper
-  coverage should add more advanced items per paper.
+  coverage should continue adding advanced items per paper.
 - Paper-theory items have been rewritten to ask about the paper's own theory,
   results, assumptions, or implications rather than unmarked active-rail design
   lessons.
@@ -51,6 +51,70 @@ The expansion pass was reviewed in three groups after mechanical validation:
   avoidance of treating current package behavior as established theory.
 
 Mechanical validation remains a floor, not an approval substitute.
+
+## 2026-05-24 Difficulty Calibration Audit
+
+The difficulty audit found that several questions were incorrectly labeled
+`advanced` because the topic was advanced, not because the question required
+advanced reasoning. That is not acceptable.
+
+Reviewer rule going forward:
+
+- The human reviewer, not the validator, is the primary reviewer for every
+  question.
+- `advanced` must require an identifiable advanced move: synthesis, assumption
+  tracking, evidence sufficiency, cross-status classification, or transfer from
+  literature into a bounded review scenario.
+- If the correct answer is a slogan and the wrong answers are obvious absolutes,
+  the item is `core` or `intermediate`, even if the paper or theory behind it is
+  hard.
+- A difficult source does not make a shallow question difficult.
+
+Actions taken in this audit:
+
+- Downgraded recognition-level items that were mislabeled as `advanced`.
+- Rewrote the ADM-constraints item into a residual-diagnosis scenario so its
+  `advanced` label is earned.
+- Rewrote selected design-review and quantum-inequality items so distractors are
+  plausible review mistakes rather than throwaway overclaims.
+- Left the bank intentionally advanced-light until more genuinely advanced
+  questions were written.
+
+Post-audit distribution:
+
+- Core: 30.
+- Intermediate: 65.
+- Advanced: 11.
+
+## 2026-05-24 Advanced Expansion Pass
+
+The follow-up pass added genuinely advanced items and manually reviewed them for
+the failure mode that prompted this audit: hard topic, easy question. The new
+items emphasize scenario review, assumption tracking, source-realization
+layering, gauge-vs-constraint separation, global-vs-local causal reasoning,
+paper-result transfer, and calibrated evidence sufficiency.
+
+Manual changes in this pass:
+
+- Added advanced established-foundation items on ADM gauge interpretation,
+  constraint residuals, stress-energy conservation, type-I energy-condition
+  quantifiers, global causal patches, and source-realization layering.
+- Added advanced paper-theory items for Alcubierre 1994, Natario 2002,
+  Mueller-Weiskopf 2012, Everett-Roman 1997, Barcelo-Visser 2000,
+  Ford-Roman 1996, Clark-Hiscock-Larson 1999, and topological censorship.
+- Added advanced project-application items only where the prompt is explicitly
+  flagged and bounded: conflicting evidence, claim-scope classification, and
+  repeated-use reset evidence.
+- Replaced several cartoon distractors with more realistic misconceptions:
+  local smoothness vs global theorem scope, central-ray evidence vs
+  finite-bundle access, repeated local rung vs physical-source closure, and
+  formal scalar solution branch vs physical-regime caveats.
+
+Current distribution after this pass:
+
+- Core: 30.
+- Intermediate: 65.
+- Advanced: 30.
 
 ## Source Hygiene
 

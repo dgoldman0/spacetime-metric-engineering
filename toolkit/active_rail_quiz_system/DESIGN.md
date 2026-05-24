@@ -688,7 +688,22 @@ Difficulty should describe cognitive demand, not how obscure the wording is.
 | Intermediate | Apply a concept in context, distinguish similar statuses, interpret a simple equation or chronology, or connect two ideas. | A learner should need to reason through at least one implication or reject a tempting overclaim. |
 | Advanced | Synthesize multiple constraints, evaluate evidence sufficiency, separate established theory from project use in a mixed prompt, or reason about open gates. | Even with choices supplied, the learner should need solid conceptual command and careful boundary discipline. |
 
-Advanced multiple choice is allowed, but it must be advanced because of reasoning load, not because the answer is hidden in obscure prose.
+Advanced multiple choice is allowed, but it must be advanced because of
+reasoning load, not because the source topic is difficult or because the answer
+is hidden in obscure prose. An item is not advanced if the correct option is a
+straight slogan and the wrong options are cartoon overclaims such as "ignore all
+constraints" or "this proves the source." Those items should be downgraded or
+rewritten with a real scenario, plausible distractors, and a reasoned tradeoff.
+
+For advanced approval, the human reviewer should be able to name the advanced
+move required. Examples:
+
+- distinguish two related constraints that can fail independently,
+- evaluate incomplete evidence without dismissing it or overpromoting it,
+- transfer a paper result into a design review while preserving claim scope,
+- identify which assumptions make a theorem applicable,
+- separate consistency, source demand, physical realization, and operational
+  qualification in one scenario.
 
 ### Authoring Scorecard
 
@@ -719,8 +734,9 @@ Any score of `0` in claim boundary, source support, explanation depth, or no-met
 ## Curriculum Bank Scale
 
 The learner-facing bank should be a rich curriculum bank, not a small demo set.
-The current 106-item bank is a stronger seed after the first expansion pass, but
-it is still below the intended curriculum scale. A serious first release should
+The current 125-item bank is a stronger seed after the first expansion and
+advanced-question passes, but it is still below the intended curriculum scale.
+A serious first release should
 target roughly 150 to 250 approved items, with enough spread that filters still
 leave useful sessions after excluding project-state or optional content.
 
