@@ -934,7 +934,11 @@ export const questionBank = [
     difficulty: "intermediate",
     claimStatus: "established_theory",
     contentFlags: [],
-    prompt: "For an observer with unit timelike four-velocity u^mu, which contraction gives the local energy density that observer measures?",
+    prompt: [
+      "For an observer with unit timelike four-velocity ",
+      { type: "math", latex: "u^\\mu", label: "u mu" },
+      ", which contraction gives the local energy density that observer measures?"
+    ],
     choices: [
       { id: "tuu", content: [{ type: "math", latex: "T_{\\mu\\nu}u^\\mu u^\\nu", label: "T mu nu u mu u nu" }] },
       { id: "trace", content: [{ type: "math", latex: "T^\\mu{}_{\\mu}", label: "trace of T" }] },
@@ -980,9 +984,9 @@ export const questionBank = [
       { id: "trace", content: "Stress-tensor trace" }
     ],
     options: [
-      { id: "null_contraction", label: "Nonnegative T_mn k^m k^n for every null k" },
-      { id: "timelike_density", label: "Nonnegative T_mn u^m u^n for every timelike observer u" },
-      { id: "contracted_trace", label: "T^m_m, not itself an energy condition" }
+      { id: "null_contraction", label: "Nonnegative stress-energy null contraction for every null vector" },
+      { id: "timelike_density", label: "Nonnegative observer energy density for every timelike observer" },
+      { id: "contracted_trace", label: "Stress-tensor trace, not itself an energy condition" }
     ],
     answer: {
       nec: "null_contraction",
@@ -2540,7 +2544,16 @@ export const questionBank = [
     scoring: "subtract_incorrect",
     prompt: "Which statements correctly describe observer energy density in GR?",
     choices: [
-      { id: "timelike_contraction", content: "For a timelike observer with four-velocity u, the measured energy density is represented by a contraction such as T_mn u^m u^n." },
+      {
+        id: "timelike_contraction",
+        content: [
+          "For a timelike observer with four-velocity ",
+          { type: "math", latex: "u^\\mu", label: "u mu" },
+          ", the measured energy density is represented by a contraction such as ",
+          { type: "math", latex: "T_{\\mu\\nu}u^\\mu u^\\nu", label: "T mu nu u mu u nu" },
+          "."
+        ]
+      },
       { id: "observer_dependent", content: "The measured density depends on the observer field as well as the stress-energy tensor." },
       { id: "normalized", content: "The observer four-velocity should be timelike and normalized before interpreting the contraction as measured density." },
       { id: "trace_only", content: "The trace is a useful observer-independent scalar, so it can substitute for measured density in many reviews." },
@@ -5946,7 +5959,11 @@ export const questionBank = [
     claimStatus: "established_constraint",
     contentFlags: [],
     scoring: "subtract_incorrect",
-    prompt: "A calculation checks T_mn k^m k^n >= 0 for one named null vector at one event. Which conclusion is supported by that calculation alone?",
+    prompt: [
+      "A calculation checks ",
+      { type: "math", latex: "T_{\\mu\\nu}k^\\mu k^\\nu \\ge 0", label: "T mu nu k mu k nu greater than or equal to zero" },
+      " for one named null vector at one event. Which conclusion is supported by that calculation alone?"
+    ],
     choices: [
       { id: "one_direction", content: "That sampled null contraction passed at that event." },
       { id: "global_nec", content: "The result can be used as evidence for the NEC if symmetry or continuity makes nearby null directions representative." },
