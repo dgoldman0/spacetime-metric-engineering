@@ -1,6 +1,5 @@
 import { claimLabels, contextLabels, getQuestionContext, typeLabels } from "../data/taxonomy.js";
-import { RichText } from "./RichText.jsx";
-import { SourceList } from "./SourceList.jsx";
+import { ExplanationPanel } from "./ExplanationPanel.jsx";
 import { registry } from "../renderers/registry.jsx";
 
 export function ActivityCard({ question, index, response, reviewed, mode, onResponse, onReview }) {
@@ -33,25 +32,7 @@ export function ActivityCard({ question, index, response, reviewed, mode, onResp
         <button type="button" className="study-check" onClick={onReview}>Check this</button>
       )}
 
-      {reviewed && (
-        <div className="explanation">
-          <p><strong>Score:</strong> {formatScore(result.earned)} / {formatScore(result.possible)}</p>
-          <p><strong>Answer:</strong> <RichText content={question.explanation.answer} /></p>
-          <p><strong>Why:</strong> <RichText content={question.explanation.why} /></p>
-          <p><strong>Boundary:</strong> <RichText content={question.explanation.boundary} /></p>
-          {question.explanation.misconceptions && (
-            <p><strong>Watch for:</strong> <RichText content={question.explanation.misconceptions} /></p>
-          )}
-          {question.explanation.openGate && (
-            <p><strong>Open gate:</strong> <RichText content={question.explanation.openGate} /></p>
-          )}
-          <SourceList references={question.explanation.references} sourceLinks={question.explanation.sourceLinks} />
-        </div>
-      )}
+      {reviewed && <ExplanationPanel question={question} response={response} result={result} />}
     </article>
   );
-}
-
-function formatScore(value) {
-  return Number.isInteger(value) ? String(value) : value.toFixed(1);
 }

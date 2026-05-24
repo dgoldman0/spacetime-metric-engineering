@@ -1017,6 +1017,50 @@ h3 {
   margin-bottom: 8px;
 }
 
+.adaptive-feedback {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 14px;
+}
+
+.adaptive-feedback h4 {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.adaptive-feedback-list {
+  display: grid;
+  gap: 8px;
+}
+
+.adaptive-feedback-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  background: #fffdf8;
+}
+
+.adaptive-feedback-item.selected-unsupported {
+  border-left-color: var(--red);
+}
+
+.adaptive-feedback-item.missed-supported,
+.adaptive-feedback-item.missing {
+  border-left-color: var(--amber);
+}
+
+.adaptive-feedback-label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
 .source-list {
   display: grid;
   gap: 8px;

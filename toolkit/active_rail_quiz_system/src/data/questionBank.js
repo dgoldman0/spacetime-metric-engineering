@@ -239,6 +239,22 @@ export const questionBank = [
       answer: "The lapse controls the local advance of time between slices.",
       why: "In a 3+1 split, lapse and shift separate normal time advance from spatial coordinate drift.",
       boundary: "This is established ADM terminology, not active-rail-specific vocabulary.",
+      adaptive: {
+        choices: {
+          local_time: {
+            supported: "Lapse multiplies the normal time advance between spatial slices, so this choice names the direct ADM role."
+          },
+          angular_area: {
+            unsupported: "Angular area belongs to the spatial metric sector, not to the lapse function."
+          },
+          source_model: {
+            unsupported: "A lapse choice can enter a metric ansatz, but it does not by itself specify a matter model."
+          },
+          packet_release: {
+            unsupported: "Release timing is active-rail service vocabulary. It is not the established ADM meaning of lapse."
+          }
+        }
+      },
       references: [references.adm]
     }
   },
@@ -284,6 +300,16 @@ export const questionBank = [
       answer: "True.",
       why: "The metric is a published model for exploring relativistic geometry and energy-condition issues.",
       boundary: "Published speculative-relativity context should not be presented as solved engineering.",
+      adaptive: {
+        choices: {
+          true: {
+            supported: "The 1994 paper introduces and analyzes a spacetime model; it does not demonstrate a realizable propulsion system."
+          },
+          false: {
+            unsupported: "Calling the paper an engineering construction overstates what the publication supplies. The source and control problems remain outside that result."
+          }
+        }
+      },
       references: [references.alcubierre]
     }
   },
@@ -310,6 +336,28 @@ export const questionBank = [
       answer: "Energy-condition checks diagnose stress-energy constraints and make assumptions explicit.",
       why: "They are part of established relativistic analysis, but they do not by themselves produce or certify a realizable matter sector. Their value is clearest when the relevant observer, null direction, averaging, or positivity assumption is kept visible.",
       boundary: "This is established constraint material applied to design interpretation, not a proof of buildability.",
+      adaptive: {
+        choices: {
+          diagnose: {
+            supported: "Energy conditions are useful diagnostics because they expose what stress-energy behavior a proposed geometry demands."
+          },
+          boundary: {
+            unsupported: "Certification is too strong. A mathematical source demand can satisfy or violate a condition without becoming a completed physical matter realization."
+          },
+          assumptions: {
+            supported: "The observer, null direction, averaging interval, and positivity assumptions are part of what the check actually means."
+          },
+          prove_build: {
+            unsupported: "Buildability requires source realization, control, stability, and operational evidence beyond an energy-condition check."
+          },
+          ignore: {
+            unsupported: "A named chronology does not remove stress-energy constraints; it gives another surface that must be reviewed."
+          },
+          single_condition: {
+            unsupported: "Passing one condition does not clear the full source problem. Different conditions test different contractions, observers, or averaging assumptions."
+          }
+        }
+      },
       references: [references.energyConditionsPrimer]
     }
   },
@@ -341,6 +389,19 @@ export const questionBank = [
       answer: [{ type: "math", latex: "G_{\\mu\\nu}/(8\\pi)", label: "Einstein tensor over eight pi" }],
       why: ["In these units, Einstein's equation gives ", { type: "math", latex: "G_{\\mu\\nu}=8\\pi T_{\\mu\\nu}", label: "Einstein equation" }, "."],
       boundary: "The ledger records source demand for a prescribed geometry. It is not a completed physical matter model.",
+      adaptive: {
+        blanks: {
+          source_term: {
+            correct: "The ledger is recording the demanded stress-energy, so the Einstein tensor divided by eight pi is the right source-side quantity in these units.",
+            tokens: {
+              shift_over_lapse: "The shift-over-lapse ratio can describe coordinate or service kinematics, but it is not the stress-energy demanded by Einstein's equation.",
+              packet_norm: "The packet norm is packet-facing data. It does not replace the tensor source demanded by the prescribed geometry.",
+              angular_metric: "The angular metric component is part of the geometry. The ledger step asks for the source-side tensor inferred from that geometry."
+            },
+            missing: "This blank asks for the stress-energy quantity demanded by the prescribed metric."
+          }
+        }
+      },
       references: [references.carrollGrNotes],
       sourceLinks: [sources.componentSourceLedger],
       openGate: "A demanded-source ledger does not by itself construct a physical matter model."
@@ -368,6 +429,28 @@ export const questionBank = [
       answer: "Support, carry, catch/rematch, fade, decompress, reset.",
       why: "The packet needs a supported carrying channel, a handoff before shift fade, then a controlled support unwind before reuse.",
       boundary: "This is active-rail service architecture, not established textbook terminology.",
+      adaptive: {
+        sequence: [
+          {
+            id: "support-before-carry",
+            before: "support",
+            after: "carry",
+            content: "Support comes before carry because the service channel must be prepared before the packet is transported."
+          },
+          {
+            id: "catch-before-fade",
+            before: "catch",
+            after: "fade",
+            content: "Catch/rematch comes before fade because endpoint support should be established before the carrying shift is removed."
+          },
+          {
+            id: "decompress-before-reset",
+            before: "decompress",
+            after: "reset",
+            content: "Decompression precedes reset because the support state has to unwind before reuse readiness can be assessed."
+          }
+        ]
+      },
       references: [],
       sourceLinks: [sources.serviceAlignedSchedule, sources.resetReleaseLadder]
     }
@@ -392,6 +475,42 @@ export const questionBank = [
       answer: "ADM is established theory, Alcubierre is literature context, packet/rail is active-rail model language, and reset accumulation is an open gate.",
       why: "The statements mix textbook theory, published speculative geometry, project terminology, and unresolved project evidence.",
       boundary: "These statements mix statuses and should be read as epistemic classification rather than as one uniform claim type.",
+      adaptive: {
+        classifications: {
+          adm: {
+            correct: "ADM lapse and shift are established 3+1 decomposition vocabulary.",
+            statuses: {
+              literature_model: "ADM terminology is not merely a speculative warp-model convention; it is standard GR formalism.",
+              active_rail_model: "Active-rail uses ADM vocabulary, but lapse and shift themselves are not project-specific inventions.",
+              open_gate: "There is no unresolved project gate in the statement that ADM separates lapse and shift roles."
+            }
+          },
+          alcubierre: {
+            correct: "The Alcubierre metric belongs in published speculative-literature context.",
+            statuses: {
+              established_theory: "The paper is published literature, but the warp metric is not an established physical construction.",
+              active_rail_model: "Active-rail may study or compare against the metric, but the metric predates the project.",
+              open_gate: "The statement names a literature model, not a missing project demonstration."
+            }
+          },
+          rail: {
+            correct: "Packet and rail are active-rail architecture terms.",
+            statuses: {
+              established_theory: "The packet/rail split is not textbook GR terminology.",
+              literature_model: "This is project architecture vocabulary rather than a published warp metric by itself.",
+              open_gate: "The statement defines model language; it does not assert a completed unresolved demonstration."
+            }
+          },
+          reset: {
+            correct: "The reset statement is an open gate because source-history accumulation has not been closed as a general result.",
+            statuses: {
+              established_theory: "Established GR does not supply reusable rail reset without a source-history audit.",
+              literature_model: "A speculative metric paper does not establish reusable active-rail reset behavior.",
+              active_rail_model: "Reset is part of the model, but the statement claims no accumulation, which requires evidence beyond vocabulary."
+            }
+          }
+        }
+      },
       references: [references.adm, references.alcubierre],
       sourceLinks: [sources.technicalDisclosure]
     }
@@ -424,6 +543,31 @@ export const questionBank = [
       answer: "Alpha is lapse, beta-ell is radial shift, and gamma-Omega-Omega is the angular sector.",
       why: "Alpha and beta are standard lapse/shift notation in ADM language; gamma components denote spatial metric sectors.",
       boundary: "The ADM lapse/shift terms are established. A particular service interpretation of the angular sector is project model language.",
+      adaptive: {
+        matches: {
+          alpha: {
+            correct: "Alpha is conventionally used for the lapse in ADM-style notation.",
+            options: {
+              radial_shift: "Radial shift is the beta role, not the alpha role.",
+              angular_sector: "Angular-sector information belongs to a spatial metric component, not the lapse."
+            }
+          },
+          beta: {
+            correct: "Beta with a radial index denotes the radial shift component here.",
+            options: {
+              lapse: "The lapse is alpha; beta labels shift.",
+              angular_sector: "The angular sector is represented by a gamma spatial metric component."
+            }
+          },
+          gamma: {
+            correct: "Gamma-Omega-Omega names an angular component of the spatial metric.",
+            options: {
+              lapse: "The lapse role is alpha, not a gamma spatial metric component.",
+              radial_shift: "Radial shift is beta-ell; gamma-Omega-Omega belongs to the spatial angular sector."
+            }
+          }
+        }
+      },
       references: [references.adm],
       sourceLinks: [sources.cliSourceParams]
     }

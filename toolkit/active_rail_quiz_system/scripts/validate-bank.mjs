@@ -64,6 +64,7 @@ for (const question of questionBank) {
   validateContext(question);
   validateExplanationDepth(question);
   validateExplanationIsMaterialFacing(question);
+  validateAdaptiveFeedback(question);
 
   if (["mc", "multi", "tf"].includes(question.type)) {
     const choices = new Set(question.choices.map((choice) => choice.id));
@@ -165,6 +166,59 @@ function validateExplanationIsMaterialFacing(question) {
   bannedExplanationMetaPatterns.forEach((pattern) => {
     assert(!pattern.test(text), `explanation contains authoring-room difficulty/rubric language on ${question.id}`);
   });
+}
+
+function validateAdaptiveFeedback(question) {
+  const adaptive = question.explanation.adaptive;
+  if (!adaptive) return;
+
+  if (adaptive.choices) {
+    const choices = new Set((question.choices || []).map((choice) => choice.id));
+    Object.keys(adaptive.choices).forEach((choiceId) => {
+      assert(choices.has(choiceId), `adaptive feedback references unknown choice ${choiceId} on ${question.id}`);
+    });
+  }
+
+  if (adaptive.blanks) {
+    const blanks = new Set((question.blanks || []).map((blank) => blank.id));
+    const tokens = new Set((question.tokens || []).map((token) => token.id));
+    Object.entries(adaptive.blanks).forEach(([blankId, feedback]) => {
+      assert(blanks.has(blankId), `adaptive feedback references unknown blank ${blankId} on ${question.id}`);
+      Object.keys(feedback.tokens || {}).forEach((tokenId) => {
+        assert(tokens.has(tokenId), `adaptive feedback references unknown token ${tokenId} on ${question.id}`);
+      });
+    });
+  }
+
+  if (adaptive.sequence) {
+    const items = new Set((question.items || []).map((item) => item.id));
+    adaptive.sequence.forEach((relation) => {
+      assert(items.has(relation.before), `adaptive feedback references unknown sequence item ${relation.before} on ${question.id}`);
+      assert(items.has(relation.after), `adaptive feedback references unknown sequence item ${relation.after} on ${question.id}`);
+    });
+  }
+
+  if (adaptive.matches) {
+    const prompts = new Set((question.prompts || []).map((prompt) => prompt.id));
+    const options = new Set((question.options || []).map((option) => option.id));
+    Object.entries(adaptive.matches).forEach(([promptId, feedback]) => {
+      assert(prompts.has(promptId), `adaptive feedback references unknown match prompt ${promptId} on ${question.id}`);
+      Object.keys(feedback.options || {}).forEach((optionId) => {
+        assert(options.has(optionId), `adaptive feedback references unknown match option ${optionId} on ${question.id}`);
+      });
+    });
+  }
+
+  if (adaptive.classifications) {
+    const statements = new Set((question.statements || []).map((statement) => statement.id));
+    const statuses = new Set(question.statuses || []);
+    Object.entries(adaptive.classifications).forEach(([statementId, feedback]) => {
+      assert(statements.has(statementId), `adaptive feedback references unknown classification statement ${statementId} on ${question.id}`);
+      Object.keys(feedback.statuses || {}).forEach((status) => {
+        assert(statuses.has(status), `adaptive feedback references unknown classification status ${status} on ${question.id}`);
+      });
+    });
+  }
 }
 
 function wordCount(value) {

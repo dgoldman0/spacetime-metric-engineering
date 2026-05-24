@@ -2,9 +2,9 @@ import { useMemo, useState } from "react";
 import { questionBank } from "./data/questionBank.js";
 import { claimLabels, contextLabels, getQuestionContext } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
+import { ExplanationPanel } from "./components/ExplanationPanel.jsx";
 import { ReportPanel } from "./components/ReportPanel.jsx";
 import { RichText } from "./components/RichText.jsx";
-import { SourceList } from "./components/SourceList.jsx";
 import { BoundaryClassificationActivity } from "./renderers/BoundaryClassificationActivity.jsx";
 import { MatchingActivity } from "./renderers/MatchingActivity.jsx";
 import { SequenceActivity } from "./renderers/SequenceActivity.jsx";
@@ -328,7 +328,7 @@ function BoundaryWorkspace({ questions, responses, reviewed, onResponse, onRevie
               result={result}
               onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
             />
-            {result && <InlineExplanation question={question} result={result} />}
+            {result && <ExplanationPanel question={question} response={responses[question.id]} result={result} inline />}
           </section>
         );
       })}
@@ -357,7 +357,7 @@ function SymbolWorkspace({ questions, responses, reviewed, onResponse, onReview 
                 onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
               />
               <button type="button" onClick={() => onReview(question.id)}>Check Symbol</button>
-              {result && <InlineExplanation question={question} result={result} />}
+              {result && <ExplanationPanel question={question} response={responses[question.id]} result={result} inline />}
             </div>
           );
         })}
@@ -378,7 +378,7 @@ function SymbolWorkspace({ questions, responses, reviewed, onResponse, onReview 
                 onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
               />
               <button type="button" onClick={() => onReview(question.id)}>Check Matches</button>
-              {result && <InlineExplanation question={question} result={result} />}
+              {result && <ExplanationPanel question={question} response={responses[question.id]} result={result} inline />}
             </div>
           );
         })}
@@ -414,7 +414,7 @@ function ChronologyWorkspace({ questions, responses, reviewed, onResponse, onRev
               onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
             />
             <button type="button" onClick={() => onReview(question.id)}>Check Timeline</button>
-            {result && <InlineExplanation question={question} result={result} />}
+            {result && <ExplanationPanel question={question} response={responses[question.id]} result={result} inline />}
           </section>
         );
       })}
@@ -448,26 +448,11 @@ function DesignReviewWorkspace({ questions, responses, reviewed, onResponse, onR
                 onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
               />
               <button type="button" onClick={() => onReview(question.id)}>Submit Review</button>
-              {result && <InlineExplanation question={question} result={result} />}
+              {result && <ExplanationPanel question={question} response={responses[question.id]} result={result} inline />}
             </div>
           );
         })}
       </section>
-    </div>
-  );
-}
-
-function InlineExplanation({ question, result }) {
-  return (
-    <div className="inline-explanation">
-      <p><strong>Score:</strong> {result.earned} / {result.possible}</p>
-      <p><strong>Answer:</strong> <RichText content={question.explanation.answer} /></p>
-      <p><strong>Why:</strong> <RichText content={question.explanation.why} /></p>
-      <p><strong>Boundary:</strong> <RichText content={question.explanation.boundary} /></p>
-      {question.explanation.openGate && (
-        <p><strong>Open gate:</strong> <RichText content={question.explanation.openGate} /></p>
-      )}
-      <SourceList references={question.explanation.references} sourceLinks={question.explanation.sourceLinks} />
     </div>
   );
 }
