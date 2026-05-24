@@ -503,6 +503,20 @@ Recommended fields:
 - **References:** source anchors for established or literature claims.
 - **Source Links:** paper, textbook, project-document, or repository links that let a learner continue studying.
 
+The shared explanation is the default and remains required. It is the stable
+mini-lesson for the question: what the correct answer means, why it follows,
+and what boundary it preserves. The system should also support optional
+adaptive feedback when the question data provides it. Adaptive feedback is
+choice-aware or action-aware text that responds to the learner's actual
+selection: why a chosen option is supported, why a chosen distractor overclaims,
+which correct option was missed, or which inversion in a sequence matters.
+
+Adaptive feedback must be optional at the schema and renderer level. Existing
+questions should continue to work with only `explanation.answer`,
+`explanation.why`, and `explanation.boundary`. Adding adaptive feedback should
+improve a question, not force every legacy item to be rewritten before the app
+can build.
+
 For example:
 
 ```text
@@ -516,6 +530,28 @@ Open Gate: It does not prove that a realizable matter sector exists.
 References should be structured enough for UI rendering. A reference may point to a paper, arXiv page, textbook citation, project repository file, public project document, or run artifact. Paper-theory questions must point to actual public source locations for fully accessible papers, not local repo copies or unverified DOI-only landing pages. Project-material questions may point to public repository documents or local run records during internal use, but they must carry `project_material`, `project_state`, `open_question`, or `revision_sensitive` flags when appropriate.
 
 Explanations should teach the learner after grading. A good explanation does not merely say which option was correct; it names the relevant principle, explains the distractor trap, identifies the claim boundary, and points to sources worth reading next.
+
+Adaptive feedback patterns by activity:
+
+- **Multiple choice and true/false:** each option may carry feedback explaining
+  the specific reason it is supported or unsupported.
+- **Select-all:** each choice may carry feedback so the review panel can
+  distinguish selected-correct, selected-unsupported, and missed-supported
+  choices. The feedback should teach the concept behind that choice rather than
+  merely saying "right" or "wrong."
+- **Drag-fill and symbol labs:** blanks and tokens may carry feedback for
+  accepted tokens and common distractors. This is especially useful when a
+  wrong token is mathematically related but plays the wrong role.
+- **Sequence activities:** critical order relations may carry feedback, such as
+  why catch/rematch must precede release fade or why source-demand accounting
+  precedes physical source claims.
+- **Matching and classification:** prompts or statements may carry feedback
+  explaining the specific match or classification boundary.
+
+Adaptive feedback should use positive, affirmative teaching language. It should
+say what is true about the material and where the selected answer exceeds,
+narrows, or misses that truth. It should not scold the learner, narrate the
+author's rubric reasoning, or use difficulty-label language as explanation.
 
 ## Visual And Interaction Design
 
@@ -692,6 +728,7 @@ A question is acceptable only if it passes all of these checks:
 - **Explanation quality:** the explanation teaches why the answer is right and why tempting wrong answers fail.
 - **Material-facing explanation:** explanations teach the subject matter, not why the author chose a difficulty label, question type, or rubric score.
 - **Explanation depth:** explanation length and detail match difficulty; advanced items need enough reasoning detail to teach the boundary, not just reveal the answer.
+- **Adaptive feedback quality:** when per-choice or per-action feedback is present, it must explain that specific answer relationship and remain consistent with the shared explanation.
 - **Boundary clarity:** project-specific, speculative, unresolved, or revision-sensitive content is explicitly marked.
 - **No meta leakage:** the item does not ask about the quiz system, authoring policy, scoring policy, or labeling policy.
 - **Interaction fit:** the question type matches the task; symbolic items use rendered tokens rather than typed LaTeX.
@@ -762,6 +799,7 @@ Score each draft question before it is accepted into the learner-facing bank.
 | Explanation quality | Merely reveals the answer or repeats the prompt. | Gives a reason but little teaching value. | Teaches answer, reasoning, boundary, and common trap. |
 | Material-facing explanation | Explains authoring choices such as difficulty or rubric status. | Mostly teaches material but includes authoring-room phrasing. | Teaches the material only; no difficulty-label or rubric justification appears. |
 | Explanation depth | Too short for the assigned difficulty. | Adequate but thin, especially for intermediate or advanced items. | Depth matches difficulty: concise for core, implication-focused for intermediate, reasoning-rich for advanced. |
+| Adaptive feedback | Missing where the item clearly needs diagnostic feedback, or contradicts the answer. | Present but generic, such as "this is incorrect" without teaching the misconception. | Tailored to the learner's selected, missed, misplaced, or matched answer and consistent with the shared explanation. |
 | Distractor quality | Throwaway, absurd, or ambiguous options. | Some plausible distractors but uneven. | Distractors map to real misconceptions or overclaims. |
 | Select-all shape | Repeats the same number of options and correct answers by habit. | Shape varies but sometimes looks padded. | Choice count and answer count match the learning task and vary across the bank. |
 | Interaction fit | Wrong activity type or asks for awkward typing. | Usable but not ideal for the skill. | Activity type supports the learning task naturally. |
@@ -774,7 +812,7 @@ Acceptance guide:
 - `11-15`: rewrite before inclusion.
 - `0-8`: reject.
 
-Any score of `0` in claim boundary, source support, explanation depth, or no-meta/content scope blocks approval regardless of total score.
+Any score of `0` in claim boundary, source support, explanation depth, adaptive feedback when required, or no-meta/content scope blocks approval regardless of total score.
 
 ## Curriculum Bank Scale
 

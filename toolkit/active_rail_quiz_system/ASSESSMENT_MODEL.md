@@ -189,6 +189,31 @@ Minimum expectations should scale by difficulty:
 Mechanical validation can enforce a floor for very thin `why` and `boundary`
 text. Human review still decides whether the explanation actually teaches.
 
+## Adaptive Feedback
+
+The required explanation remains the shared lesson for a question. It should be
+shown whenever the learner reviews the answer. The assessment model should also
+support optional adaptive feedback when the question data includes it.
+
+Adaptive feedback is tied to the learner's actual response:
+
+- for multiple choice and true/false, the selected option can explain why that
+  option is supported or unsupported;
+- for select-all, selected supported choices, selected unsupported choices, and
+  missed supported choices can each display their own teaching note;
+- for drag-fill, a blank can explain why the accepted token fits and why a
+  common distractor plays a different mathematical role;
+- for sequencing, critical inversions can explain why one checkpoint must come
+  before another;
+- for matching and classification, each prompt or statement can explain the
+  specific boundary that determines its correct placement.
+
+This feedback is optional in the data model. A question with only
+`explanation.answer`, `explanation.why`, and `explanation.boundary` remains
+valid. When adaptive feedback is present, it should be consistent with the
+shared explanation and more specific than "right" or "wrong." Its job is to
+teach the answer relationship the learner just exercised.
+
 ## Qualification Profiles
 
 Different modes can use different pass criteria.
@@ -225,6 +250,7 @@ Questions should be able to declare:
 - partial-credit rule,
 - learning objectives,
 - misconception tags,
+- adaptive feedback for choices, blanks, tokens, sequence relations, matches, or classifications,
 - claim-boundary target,
 - question context,
 - hint availability,

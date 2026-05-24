@@ -167,8 +167,13 @@ The schema should also support richer explanation metadata:
 - `explanation.boundary`,
 - `explanation.misconceptions`,
 - `explanation.openGate`,
+- optional adaptive feedback keyed to choices, blanks, tokens, sequence relations, matching prompts, or classification statements,
 - `references[]` with citation/source-kind/support fields,
 - `sourceLinks[]` with label/kind/url/support fields.
+
+Adaptive feedback is not a required migration field. The infrastructure should
+render it when present and fall back to the shared explanation when absent, so
+the bank can improve incrementally without blocking builds.
 
 ### User Experience
 
@@ -463,6 +468,7 @@ What is still missing:
 - workspace-specific scoring panels,
 - a fuller Ledger Reader workspace,
 - source-rich explanation rendering,
+- adaptive explanation rendering with shared-explanation fallback,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks,
 - richer answer/explanation writing, especially for intermediate and advanced questions,
@@ -479,6 +485,7 @@ The next milestone should make the app ready for serious curriculum authoring:
 - add numerous vetted batches across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, matching, and design review,
 - refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
 - strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
+- add optional adaptive feedback infrastructure and seed it with model examples for multiple choice, select-all, drag-fill, sequence, matching, and classification activities,
 - keep structured references and source links visible in reviewed explanations,
 - keep validation rejecting quiz-meta prompts, vague paper-theory stems, unsupported source links, and project-framed paper-theory items,
 - keep the workspace architecture and smoke tests healthy,
