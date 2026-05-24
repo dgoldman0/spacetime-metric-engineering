@@ -9,7 +9,7 @@ const server = await createServer({
 });
 
 try {
-  const { App, workspaceDefs } = await server.ssrLoadModule("/src/App.jsx");
+  const { App, defaultFilters, workspaceDefs } = await server.ssrLoadModule("/src/App.jsx");
   const { questionBank } = await server.ssrLoadModule("/src/data/questionBank.js");
   const { buildInitialResponse } = await server.ssrLoadModule("/src/lib/session.js");
   const failures = [];
@@ -26,6 +26,18 @@ try {
     } catch (error) {
       failures.push(`${workspace.id}: ${error.message}`);
     }
+  }
+
+  try {
+    const html = renderToString(React.createElement(App, {
+      initialWorkspace: "mixed",
+      initialFilters: { ...defaultFilters, mode: "timed", timedMinutes: "3", count: "5" }
+    }));
+    if (!html.includes("Timed quiz") || !html.includes("Submit Answer")) {
+      failures.push("timed mode: one-at-a-time controls did not render");
+    }
+  } catch (error) {
+    failures.push(`timed mode: ${error.message}`);
   }
 
   for (const question of questionBank) {

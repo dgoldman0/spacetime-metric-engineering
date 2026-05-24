@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { questionBank } from "./data/questionBank.js";
 import { claimLabels, contextLabels, getQuestionContext } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
@@ -58,7 +58,10 @@ export const workspaceDefs = [
 ];
 
 export const defaultFilters = {
+  mode: "study",
   count: "10",
+  timedMinutes: "10",
+  timedExplanations: true,
   tracks: [],
   modules: [],
   difficulties: [],
@@ -73,8 +76,18 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   const [current, setCurrent] = useState(() => buildWorkspaceQuestions(initialWorkspace, initialFilters));
   const [responses, setResponses] = useState(() => initialResponses(current));
   const [reviewed, setReviewed] = useState(new Set());
+  const [skipped, setSkipped] = useState(new Set());
+  const [timedIndex, setTimedIndex] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(() => minutesToSeconds(initialFilters.timedMinutes));
+  const [timedEnded, setTimedEnded] = useState(false);
 
   const activeWorkspace = workspaceDefs.find((item) => item.id === workspace) || workspaceDefs[0];
+  const timedMode = filters.mode === "timed";
+  const timedPausedForExplanation = timedMode
+    && filters.timedExplanations
+    && current[timedIndex]
+    && reviewed.has(current[timedIndex].id)
+    && !timedEnded;
   const options = useMemo(() => ({
     tracks: unique(questionBank.map((q) => q.track)),
     modules: unique(questionBank.map((q) => q.module)),
@@ -105,6 +118,10 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
     setCurrent(next);
     setResponses(initialResponses(next));
     setReviewed(new Set());
+    setSkipped(new Set());
+    setTimedIndex(0);
+    setTimeLeft(minutesToSeconds(nextFilters.timedMinutes));
+    setTimedEnded(false);
   }
 
   function changeWorkspace(nextWorkspace) {
@@ -121,6 +138,10 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   function reset() {
     setResponses(initialResponses(current));
     setReviewed(new Set());
+    setSkipped(new Set());
+    setTimedIndex(0);
+    setTimeLeft(minutesToSeconds(filters.timedMinutes));
+    setTimedEnded(false);
   }
 
   function clearFilters() {
@@ -142,6 +163,52 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   function reviewAll() {
     setReviewed(new Set(current.map((question) => question.id)));
   }
+
+  function submitTimedCurrent() {
+    const question = current[timedIndex];
+    if (!question || timedEnded) return;
+    setReviewed((previous) => new Set([...previous, question.id]));
+    setSkipped((previous) => {
+      const next = new Set(previous);
+      next.delete(question.id);
+      return next;
+    });
+  }
+
+  function advanceTimed() {
+    if (timedEnded) return;
+    if (timedIndex >= current.length - 1) {
+      setTimedEnded(true);
+      return;
+    }
+    setTimedIndex((previous) => previous + 1);
+  }
+
+  function skipTimedCurrent() {
+    const question = current[timedIndex];
+    if (!question || timedEnded) return;
+    setSkipped((previous) => new Set([...previous, question.id]));
+    advanceTimed();
+  }
+
+  function finishTimed() {
+    setTimedEnded(true);
+  }
+
+  useEffect(() => {
+    if (!timedMode || timedEnded || timedPausedForExplanation || timeLeft <= 0 || !current.length) return undefined;
+    const timer = window.setInterval(() => {
+      setTimeLeft((previous) => {
+        if (previous <= 1) {
+          window.clearInterval(timer);
+          setTimedEnded(true);
+          return 0;
+        }
+        return previous - 1;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [timedMode, timedEnded, timedPausedForExplanation, timeLeft, current.length]);
 
   return (
     <div className="app-shell">
@@ -181,7 +248,11 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
           <WorkspaceHeader
             workspace={activeWorkspace}
             count={current.length}
-            onReviewAll={reviewAll}
+            mode={filters.mode}
+            timeLeft={timeLeft}
+            timerPaused={timedPausedForExplanation}
+            timedEnded={timedEnded}
+            onReviewAll={timedMode ? finishTimed : reviewAll}
             onReset={reset}
           />
           <WorkspaceBody
@@ -191,8 +262,17 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
             questions={current}
             responses={responses}
             reviewed={reviewed}
+            mode={filters.mode}
+            timedIndex={timedIndex}
+            timeLeft={timeLeft}
+            timedEnded={timedEnded}
+            timedExplanations={filters.timedExplanations}
+            skipped={skipped}
             onResponse={updateResponse}
             onReview={reviewOne}
+            onSubmitTimed={submitTimedCurrent}
+            onAdvanceTimed={advanceTimed}
+            onSkipTimed={skipTimedCurrent}
             onClearFilters={clearFilters}
           />
         </section>
@@ -204,6 +284,27 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
               <button type="button" className="text-action" onClick={clearFilters}>Default</button>
             </div>
             <div className="session-controls">
+              <SelectControl label="Mode" value={filters.mode} onChange={(value) => updateFilter("mode", value)} options={[
+                ["study", "Study"],
+                ["timed", "Timed quiz"]
+              ]} />
+              {filters.mode === "timed" && (
+                <>
+                  <SelectControl label="Time Limit" value={filters.timedMinutes} onChange={(value) => updateFilter("timedMinutes", value)} options={[
+                    ["3", "3 minutes"],
+                    ["5", "5 minutes"],
+                    ["10", "10 minutes"],
+                    ["15", "15 minutes"],
+                    ["25", "25 minutes"],
+                    ["45", "45 minutes"]
+                  ]} />
+                  <ToggleControl
+                    label="Pause For Explanations"
+                    checked={filters.timedExplanations}
+                    onChange={(value) => updateFilter("timedExplanations", value)}
+                  />
+                </>
+              )}
               <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
                 ["5", "5"],
                 ["10", "10"],
@@ -226,14 +327,26 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
             </div>
           </section>
 
-          <ReportPanel results={reviewedResults} totalQuestions={current.length} />
+          <ReportPanel
+            results={reviewedResults}
+            totalQuestions={current.length}
+            sessionSummary={timedMode ? {
+              mode: "timed",
+              timeLeft,
+              elapsed: minutesToSeconds(filters.timedMinutes) - timeLeft,
+              answered: reviewed.size,
+              skipped: skipped.size,
+              unanswered: Math.max(0, current.length - reviewed.size - skipped.size),
+              ended: timedEnded
+            } : null}
+          />
         </aside>
       </main>
     </div>
   );
 }
 
-function WorkspaceHeader({ workspace, count, onReviewAll, onReset }) {
+function WorkspaceHeader({ workspace, count, mode, timeLeft, timerPaused, timedEnded, onReviewAll, onReset }) {
   return (
     <div className="workspace-header">
       <div>
@@ -242,17 +355,62 @@ function WorkspaceHeader({ workspace, count, onReviewAll, onReset }) {
         <p>{workspace.deck}</p>
       </div>
       <div className="toolbar-actions">
+        {mode === "timed" && (
+          <span className={`timer-pill ${timerPaused ? "paused" : ""} ${timedEnded ? "ended" : ""}`}>
+            {timedEnded ? "Ended" : timerPaused ? "Paused" : "Time"} {formatTime(timeLeft)}
+          </span>
+        )}
         <span className="question-count">{count} item{count === 1 ? "" : "s"}</span>
-        <button type="button" onClick={onReviewAll} disabled={count === 0}>Check Workspace</button>
+        <button type="button" onClick={onReviewAll} disabled={count === 0}>
+          {mode === "timed" ? "Finish" : "Check Workspace"}
+        </button>
         <button type="button" className="secondary-action" onClick={onReset}>Reset</button>
       </div>
     </div>
   );
 }
 
-function WorkspaceBody({ workspace, workspaceDef, availableCount, questions, responses, reviewed, onResponse, onReview, onClearFilters }) {
+function WorkspaceBody({
+  workspace,
+  workspaceDef,
+  availableCount,
+  questions,
+  responses,
+  reviewed,
+  mode,
+  timedIndex,
+  timeLeft,
+  timedEnded,
+  timedExplanations,
+  skipped,
+  onResponse,
+  onReview,
+  onSubmitTimed,
+  onAdvanceTimed,
+  onSkipTimed,
+  onClearFilters
+}) {
   if (!questions.length) {
     return <EmptyWorkspace workspace={workspaceDef} availableCount={availableCount} onClearFilters={onClearFilters} />;
+  }
+
+  if (mode === "timed") {
+    return (
+      <TimedWorkspace
+        questions={questions}
+        responses={responses}
+        reviewed={reviewed}
+        timedIndex={timedIndex}
+        timeLeft={timeLeft}
+        timedEnded={timedEnded}
+        timedExplanations={timedExplanations}
+        skipped={skipped}
+        onResponse={onResponse}
+        onSubmit={onSubmitTimed}
+        onAdvance={onAdvanceTimed}
+        onSkip={onSkipTimed}
+      />
+    );
   }
 
   if (workspace === "boundary") {
@@ -268,6 +426,74 @@ function WorkspaceBody({ workspace, workspaceDef, availableCount, questions, res
     return <DesignReviewWorkspace questions={questions} responses={responses} reviewed={reviewed} onResponse={onResponse} onReview={onReview} />;
   }
   return <MixedWorkspace questions={questions} responses={responses} reviewed={reviewed} onResponse={onResponse} onReview={onReview} />;
+}
+
+function TimedWorkspace({
+  questions,
+  responses,
+  reviewed,
+  timedIndex,
+  timeLeft,
+  timedEnded,
+  timedExplanations,
+  skipped,
+  onResponse,
+  onSubmit,
+  onAdvance,
+  onSkip
+}) {
+  const question = questions[timedIndex];
+  const reviewedCurrent = question ? reviewed.has(question.id) : false;
+  const timedOut = timeLeft <= 0;
+  const ended = timedEnded || timedOut || !question;
+
+  if (ended) {
+    return (
+      <div className="timed-finish">
+        <p className="eyebrow">Timed quiz complete</p>
+        <h3>{timedOut ? "Time expired" : "Session closed"}</h3>
+        <p>
+          Reviewed {reviewed.size} of {questions.length} item{questions.length === 1 ? "" : "s"}.
+          {skipped.size ? ` Skipped ${skipped.size}.` : ""}
+          The report shows score and review areas from submitted answers.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="timed-shell">
+      <div className="timed-status-row">
+        <span>Item {timedIndex + 1} of {questions.length}</span>
+        <span>{reviewedCurrent && timedExplanations ? "Timer paused for explanation" : "Timer running"}</span>
+      </div>
+      <ActivityCard
+        question={question}
+        index={timedIndex}
+        response={responses[question.id]}
+        reviewed={reviewedCurrent}
+        mode="timed"
+        showExplanation={timedExplanations}
+        onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
+        onReview={onSubmit}
+      />
+      <div className="timed-actions">
+        {!reviewedCurrent ? (
+          <>
+            <button type="button" onClick={onSubmit}>Submit Answer</button>
+            <button type="button" className="secondary-action" onClick={onSkip}>Skip</button>
+          </>
+        ) : (
+          <>
+            <button type="button" onClick={onAdvance}>
+              {timedIndex >= questions.length - 1 ? "Finish Quiz" : "Next Question"}
+            </button>
+            {timedExplanations && <span className="muted">Timer resumes after you advance.</span>}
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
 
 function EmptyWorkspace({ workspace, availableCount, onClearFilters }) {
@@ -508,10 +734,21 @@ function MultiFacet({ label, values, options, emptyLabel, onChange }) {
   );
 }
 
+function ToggleControl({ label, checked, onChange }) {
+  return (
+    <label className="toggle-control">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
+      <span>{label}</span>
+    </label>
+  );
+}
+
 function buildWorkspaceQuestions(workspaceId, filters) {
   const workspace = workspaceDefs.find((item) => item.id === workspaceId) || workspaceDefs[0];
   const pool = questionBank.filter((question) => matchesWorkspace(question, workspace) && matchesFilters(question, filters));
-  const count = filters.count === "all" || workspaceId !== "mixed" ? pool.length : Number(filters.count);
+  const count = filters.count === "all" || (workspaceId !== "mixed" && filters.mode !== "timed")
+    ? pool.length
+    : Number(filters.count);
   return shuffle(pool).slice(0, count);
 }
 
@@ -543,4 +780,14 @@ function facetIncludes(values, candidate) {
 
 function titleCase(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function minutesToSeconds(value) {
+  return Number(value || 0) * 60;
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return `${minutes}:${String(remainder).padStart(2, "0")}`;
 }

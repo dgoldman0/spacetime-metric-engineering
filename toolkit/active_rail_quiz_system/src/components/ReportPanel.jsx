@@ -1,10 +1,11 @@
 import { claimLabels, contextLabels, getQuestionContext } from "../data/taxonomy.js";
 
-export function ReportPanel({ results, totalQuestions }) {
+export function ReportPanel({ results, totalQuestions, sessionSummary }) {
   if (!results.length) {
     return (
       <aside className="report-panel" aria-label="Quiz report">
         <h2>Report</h2>
+        {sessionSummary && <SessionSummary summary={sessionSummary} />}
         <p className="muted">Answer questions to see scoring by module, claim status, and activity surface.</p>
       </aside>
     );
@@ -19,6 +20,7 @@ export function ReportPanel({ results, totalQuestions }) {
   return (
     <aside className="report-panel" aria-label="Quiz report">
       <h2>Report</h2>
+      {sessionSummary && <SessionSummary summary={sessionSummary} />}
       <div className="report-score">
         <div className="score-tile"><span className="score-number">{percent}%</span><span>points</span></div>
         <div className="score-tile"><span className="score-number">{exact}/{results.length}</span><span>exact</span></div>
@@ -34,6 +36,18 @@ export function ReportPanel({ results, totalQuestions }) {
         <p className="muted">No missed reviewed questions yet.</p>
       )}
     </aside>
+  );
+}
+
+function SessionSummary({ summary }) {
+  return (
+    <div className="session-summary">
+      <div><span>Elapsed</span><strong>{formatTime(summary.elapsed)}</strong></div>
+      <div><span>Remaining</span><strong>{formatTime(summary.timeLeft)}</strong></div>
+      <div><span>Answered</span><strong>{summary.answered}/{summary.answered + summary.skipped + summary.unanswered}</strong></div>
+      {summary.skipped > 0 && <p className="muted">Skipped {summary.skipped} item{summary.skipped === 1 ? "" : "s"}.</p>}
+      {summary.ended && <p className="muted">Timed session ended.</p>}
+    </div>
   );
 }
 
@@ -75,4 +89,10 @@ function sum(values) {
 
 function unique(values) {
   return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return `${minutes}:${String(remainder).padStart(2, "0")}`;
 }

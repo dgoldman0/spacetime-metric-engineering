@@ -2,7 +2,7 @@ import { claimLabels, contextLabels, getQuestionContext, typeLabels } from "../d
 import { ExplanationPanel } from "./ExplanationPanel.jsx";
 import { registry } from "../renderers/registry.jsx";
 
-export function ActivityCard({ question, index, response, reviewed, mode, onResponse, onReview }) {
+export function ActivityCard({ question, index, response, reviewed, mode, showExplanation = true, onResponse, onReview }) {
   const entry = registry[question.type];
   const Renderer = entry.Component;
   const result = reviewed ? entry.grade(question, response) : null;
@@ -32,7 +32,7 @@ export function ActivityCard({ question, index, response, reviewed, mode, onResp
         <button type="button" className="study-check" onClick={onReview}>Check this</button>
       )}
 
-      {reviewed && <ExplanationPanel question={question} response={response} result={result} />}
+      {reviewed && showExplanation && <ExplanationPanel question={question} response={response} result={result} />}
     </article>
   );
 }
