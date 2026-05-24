@@ -1,6 +1,6 @@
 # Question Bank Review
 
-Date: 2026-05-23
+Date: 2026-05-24
 
 This is a human acceptance log for the current seed bank. The script in
 `scripts/validate-bank.mjs` is only a mechanical gate for schema, banned meta
@@ -9,11 +9,16 @@ treated as question-quality review.
 
 ## Current State
 
-- Accepted items: 48.
-- Paper-specific coverage is now useful for a seed bank, but not yet enough for
-  a full curriculum. Most disclosure-bibliography papers have at least one
-  manually reviewed item; deeper coverage should add more advanced items per
-  paper.
+- Accepted items: 106.
+- The bank is now a stronger seed, but still not a full curriculum. The first
+  release target remains 150 to 250 approved items.
+- Established general theory is now treated as the durable core layer. The
+  2026-05-24 expansion added metric, causal-structure, geodesic, ADM,
+  stress-energy, energy-condition, conservation, and source-demand reasoning
+  items.
+- Paper-specific coverage remains useful, but not yet exhaustive. Most
+  disclosure-bibliography papers have at least one manually reviewed item; deeper
+  coverage should add more advanced items per paper.
 - Paper-theory items have been rewritten to ask about the paper's own theory,
   results, assumptions, or implications rather than unmarked active-rail design
   lessons.
@@ -26,6 +31,26 @@ treated as question-quality review.
   advanced items cannot pass with ultra-thin `why` or boundary text.
 - Project-state and open-gate items remain flagged so they can be included or
   excluded selectively.
+- Revision-sensitive project-state items were manually reviewed for provisional
+  wording such as "appears", "could", "current", or "candidate" so they do not
+  read like final project facts.
+
+## 2026-05-24 Manual Review Pass
+
+The expansion pass was reviewed in three groups after mechanical validation:
+
+- **Established foundations:** reviewed for pure general-theory scope, useful
+  learning objective, plausible distractors, and separation between source demand
+  and physical source realization. One mixed energy-condition item was rewritten
+  to remove project-ledger vocabulary from the foundation track.
+- **Paper theory:** reviewed for paper/year anchoring, public arXiv source cards,
+  no project-specific framing, and explanations that distinguish model analysis
+  from feasibility or source realization.
+- **Project application and project state:** reviewed for flags, explicit
+  boundary language, provisional wording where claims could change, and
+  avoidance of treating current package behavior as established theory.
+
+Mechanical validation remains a floor, not an approval substitute.
 
 ## Source Hygiene
 

@@ -645,6 +645,7 @@ Question authors should follow these rules:
 - Every established-theory question needs at least one reference anchor.
 - Every project-specific question needs a boundary note.
 - Every project-material, project-state, open-question, or revision-sensitive question needs an explicit content flag.
+- Project-specific content that could change as the architecture matures must use provisional language such as "could", "might", "appears", "seems", "current report suggests", or "current evidence indicates." Do not phrase revision-sensitive project state as final fact.
 - Every speculative-literature question must distinguish metric construction from physical realizability.
 - Every paper-theory question must identify the paper clearly in the stem, using a publication year plus author/title or an equivalent citation anchor. Vague stems like "the study" or "this result" are not acceptable.
 - Every open-gate question should reward users for saying "not yet shown" when appropriate.
@@ -714,6 +715,41 @@ Acceptance guide:
 - `0-8`: reject.
 
 Any score of `0` in claim boundary, source support, explanation depth, or no-meta/content scope blocks approval regardless of total score.
+
+## Curriculum Bank Scale
+
+The learner-facing bank should be a rich curriculum bank, not a small demo set.
+The current 106-item bank is a stronger seed after the first expansion pass, but
+it is still below the intended curriculum scale. A serious first release should
+target roughly 150 to 250 approved items, with enough spread that filters still
+leave useful sessions after excluding project-state or optional content.
+
+Established general theory should be the durable core of the curriculum. The
+paper-theory and active-rail layers should build on that foundation, not replace
+it. Project-state and revision-sensitive questions should be a small, clearly
+flagged layer because they can change as the project matures.
+
+The bank should grow in reviewed passes:
+
+- foundation pass: ADM, metric interpretation, stress-energy, energy
+  conditions, causal structure, geodesics, curvature, constraints, and basic GR
+  vocabulary;
+- paper-theory pass: accessible literature on Alcubierre, Natario,
+  Ford-Roman, Clark-Hiscock-Larson, Mueller-Weiskopf, Everett-Roman,
+  Shoshany-Snodgrass, Garattini-Zatrimaylov, Barcelo-Visser, topological
+  censorship, and chronology protection;
+- active-rail architecture pass: packet/plant distinction, service stages,
+  source ledger, support burden, endpoint handoff, reset, and failure modes;
+- design-review pass: evidence sufficiency, claim boundaries, missing channels,
+  and qualification decisions;
+- symbol/activity pass: rendered math tokens, matching, sequencing, and
+  classification surfaces so the experience is not dominated by ordinary
+  multiple choice.
+
+Each expansion pass should include a human rubric pass before acceptance. The
+automated validator is a floor: it catches malformed data, unsupported links,
+thin explanations, vague paper-theory stems, and meta leakage, but it does not
+replace source reading or author judgment.
 
 ### Vetting Outcome
 

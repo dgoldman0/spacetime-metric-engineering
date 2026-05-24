@@ -348,17 +348,23 @@ This order lets the system become useful early while still building toward a ser
 
 ### Initial Content Targets
 
-A good first release could have:
+A good first release should have:
 
 - 150 to 250 total questions,
 - at least 30 claim-classification questions,
-- at least 30 drag-fill or sequencing questions,
-- at least 20 established-foundation questions,
-- at least 20 active-rail architecture questions,
-- at least 10 literature-context questions,
-- at least 10 design-review questions.
+- at least 40 non-ordinary activities across drag-fill, sequencing, matching, and classification,
+- at least 70 established general-theory/foundation questions,
+- at least 40 paper-theory questions drawn only from fully accessible public papers,
+- at least 35 active-rail architecture questions,
+- at least 25 design-review questions,
+- no more than roughly 15 to 25 project-state or revision-sensitive questions in the first release, all flagged so they can be excluded.
 
 These numbers are targets, not sacred requirements.
+
+Population should happen in numerous vetted passes, not one bulk dump. Each
+pass should add a coherent slice, run the automated validator, then perform a
+human rubric pass for prompt clarity, difficulty fit, source support, answer
+quality, distractor quality, and explanation depth.
 
 ### Content Quality Rules
 
@@ -372,6 +378,7 @@ Each question should have:
 - a boundary note when project-specific or speculative,
 - reference support when established or literature-based,
 - source links when project documents, repository files, papers, or run artifacts are relevant,
+- provisional wording for project-specific claims that could change as the architecture matures,
 - plausible distractors,
 - tags that make review and filtering useful.
 
@@ -400,6 +407,8 @@ Not every question needs every review type. Established-theory and literature qu
 ### Phase 3 Done When
 
 - The first substantial question bank exists.
+- It is no longer just a seed bank: it is large enough that every major filter
+  combination still has useful material.
 - Questions cover all major tracks.
 - The sample bank contains no quiz-meta questions.
 - Claim-status classification is well represented.
@@ -440,7 +449,8 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
-- The seed bank has 48 validated questions and has started moving from sample questions toward manually reviewed paper-theory and project-application items.
+- The seed bank has 106 validated questions after the first major expansion pass and is still explicitly below the required first-release curriculum scale.
+- Established general theory has been promoted as the durable core layer; project-state and revision-sensitive content should remain a smaller flagged layer.
 - Count controls now support small drills, medium reviews, large reviews, and all matching questions.
 - Per-attempt presentation order is randomized for standard choices, drag-fill tokens, matching prompts/options, classification statements, and sequence items.
 - Sequence activities now avoid starting in canonical answer order and use draggable rows with keyboard fallback.
@@ -457,13 +467,15 @@ What is still missing:
 - richer answer/explanation writing, especially for intermediate and advanced questions,
 - better mode separation between study, drill, qualification, and project-internal review.
 
-The visible workspace architecture is now good enough to begin curriculum design and small vetted content expansion. Large-scale population should still wait until the quality rubric, source-link schema, and validation gates are in place.
+The visible workspace architecture and validation gates are now good enough to
+start large, careful curriculum population. The next work should add numerous
+reviewed batches rather than treating the current seed bank as complete.
 
 ## Likely Next Infrastructure Milestone
 
 The next milestone should make the app ready for serious curriculum authoring:
 
-- add another vetted batch of questions across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, and design review,
+- add numerous vetted batches across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, matching, and design review,
 - refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
 - strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
 - keep structured references and source links visible in reviewed explanations,
@@ -471,7 +483,7 @@ The next milestone should make the app ready for serious curriculum authoring:
 - keep the workspace architecture and smoke tests healthy,
 - make grading/report panels workspace-aware,
 - continue replacing placeholder sample questions with vetted curriculum questions,
-- grow toward 50 to 75 high-quality seed questions before attempting larger population.
+- grow toward the 150 to 250 question first-release bank while keeping each item rubric-reviewed.
 
 This milestone should prove the system can enforce curriculum quality, not merely render more content.
 
