@@ -1,89 +1,85 @@
 # Constraint Card 003: Support-Shell Metric Actuator Layer
 
-Status: component-level physical-design hypothesis.
+Status: component-level physical construction hypothesis.
 
 ## Controlling Sources
 
 - Internal: V5 support-shell final freeze, continuous support-shell 4D source
   sweep, coupled timing feasibility, shape robustness reports.
 - External analogs:
-  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
-  [`smolyaninov_metamaterial_alcubierre_1009.5663.pdf`](../sources/smolyaninov_metamaterial_alcubierre_1009.5663.pdf),
-  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf),
-  [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf).
+  [`caloz_deck_leger_spacetime_metamaterials_1905.00560.pdf`](../sources/caloz_deck_leger_spacetime_metamaterials_1905.00560.pdf),
+  [`cui_coding_digital_programmable_metamaterials_1407.8442.pdf`](../sources/cui_coding_digital_programmable_metamaterials_1407.8442.pdf),
+  [`estakhri_nonreciprocal_metasurface_space_time_phase_modulation_1905.10316.pdf`](../sources/estakhri_nonreciprocal_metasurface_space_time_phase_modulation_1905.10316.pdf),
+  [`zang_nonreciprocal_wavefront_time_modulated_gradient_metasurfaces_2019.pdf`](../sources/zang_nonreciprocal_wavefront_time_modulated_gradient_metasurfaces_2019.pdf),
+  [`pop_a_active_acoustic_metamaterials_realtime_1505.00453.pdf`](../sources/pop_a_active_acoustic_metamaterials_realtime_1505.00453.pdf),
+  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf).
 
 ## Role
 
 The support-shell actuator layer is the annular infrastructure band that routes
-service-induced demand away from the live packet. In metric terms it acts
-through carrying-flow `beta`, clock-lapse `alpha`, rail-stretch `gamma_ll`,
-and throat-capacity `gamma_OmegaOmega`.
+service demand away from the live packet. In metric terms it acts through
+carrying-flow `beta`, clock-lapse `alpha`, rail-stretch `gamma_ll`, and
+throat-capacity `gamma_OmegaOmega`.
 
-## Actual Physical Construction Hypothesis
+## Physical Construction Hypothesis
 
-The physical analog is a programmable annular field shell. It is closer to a
-phased metamaterial/circuit array than to a rocket motor. Each annular segment
-changes effective propagation, impedance, or boundary conditions in a scheduled
-window. The closest existing hardware families are:
+The actuator layer is a programmable annular metamaterial. Its local cells
+change effective index, impedance, boundary condition, elastic stiffness, or
+acoustic response under a scheduled service waveform. Space-time metamaterial
+literature supplies the central engineering idea: a moving material
+perturbation can create synthetic motion, frequency conversion, nonreciprocal
+response, and traveling phase fronts without moving a macroscopic wall.
 
-- transformation-optics metamaterial shells with spatially patterned effective
-  permittivity/permeability;
-- nonlinear optical fibers, where a moving pulse creates an effective horizon
-  for probe waves;
-- superconducting transmission lines with SQUID-tuned boundary conditions,
-  where the effective electrical length changes rapidly;
-- tunable microwave/metasurface rings where phase, delay, impedance, and
-  coupling can be programmed per segment.
+The near-term hardware analogs split by scale:
 
-For a lab analog, the support shell should be a ring or line of tunable cells:
+- Microwave/THz: PIN-diode, varactor, or FPGA-controlled digital metasurface
+  cells.
+- Optical: electro-optic, semiconductor, nonlinear, or pump-driven index cells.
+- Superconducting microwave: SQUID-tuned transmission lines and effective
+  boundary modulation.
+- Acoustic/mechanical: active acoustic cells, piezoelectric shunts, and
+  elastic waveguide modules.
 
-- "carrying-flow" channel: moving index/phase front or traveling-wave pump;
-- "clock-lapse" channel: local delay/impedance modulation that protects timing
-  margin;
-- "rail-stretch" channel: effective path-length or group-index modulation;
-- "throat-capacity" channel: transverse-mode/ring-capacity modulation.
+## Candidate Physical Stack
 
-For a speculative rail-scale design, these would become nested actuator bands:
-one band for longitudinal support-contained flow, one for timing/lapse cushion,
-one for radial capacity, and one for angular/throat capacity. They would be
-driven by a service scheduler, not by continuous full-power forcing.
-
-## Hardware Sketch
-
-- Annular cell array with independently tunable impedance/index/stress state.
-- Traveling service pulse generator to create the support-contained flow front.
-- Delay/lapse cushion layer, likely a separate actuator rather than a passive
-  material.
-- Radial-capacity layer for peak smoothing and gradient matching.
-- Diagnostics per segment: phase, energy, temperature, stored stress, timing.
+- Flow-front band: space-time-modulated cells generating the support-contained
+  carrying-flow analog for `beta`.
+- Lapse cushion band: delay, impedance, or phase-storage cells that protect
+  timing margin for `alpha`.
+- Stretch band: group-index, effective path-length, or elastic-stiffness
+  modulation for `gamma_ll`.
+- Throat-capacity band: angular/ring capacity cells for transverse support.
+- Power and clock bus: service-coordinate waveform distribution with local
+  phase locking and interlocks.
+- Segment telemetry: phase, temperature, stored energy, shunt state, leakage,
+  local current, and cone-margin proxy.
 
 ## Mathematical Constraints Carried Over
 
-- Reduced support-shell routing must put incremental `Delta j_l` into
+- Reduced support-shell routing puts incremental `Delta j_l` into
   catch/rematch support infrastructure with tiny packet exposure.
 - Raised-cosine annular bearing is the preferred matched-strength comparator.
 - Clock-lapse is the strongest default partner for aggregate burden reduction.
 - Rail-stretch is useful as a peak-shaping comparator.
-- Same-window throat-capacity is neutral by default and should remain a
-  comparator unless a later intrinsic-window design earns promotion.
-- High-amplitude or high-service cases consume packet margin, so actuator
-  strength is not unlimited.
+- Same-window throat-capacity remains a comparator until an intrinsic-window
+  actuator earns promotion.
+- High-amplitude or high-service cases consume packet margin and set actuator
+  range requirements.
 
 ## Design Implications
 
-Single-channel actuation is the trap. The reports say the shell must co-shape
-load, timing, radial capacity, and angular capacity. The hardware lesson from
-metamaterial and superconducting-circuit analogs is that changing effective
-geometry means managing dispersion, bandwidth, losses, and parameter range.
-Smolyaninov-style metamaterial warp analogs are useful here mostly because they
-show how quickly material-parameter limits become the real engineering wall.
+The actuator shell is a multi-physics programmable skin. The design burden is
+cell range, bandwidth, dispersion, loss, heat load, cross-coupling, and
+service-time synchronization. The current mathematical evidence favors coupled
+actuation: flow, lapse, stretch, and capacity are scheduled as a coordinated
+waveform with separated channel roles and shared timing.
 
 ## Open Questions
 
-1. What physical actuation mechanism can couple `beta`, `alpha`, and
-   `gamma_ll` without overproducing radial-null or current burden?
-2. Can annular actuator modules be made smooth enough to avoid point-peak
-   growth under refinement?
-3. Should throat-capacity be a separate physical layer rather than same-window
-   support-shell actuation?
-4. What service-aware scaling law should retune this layer away from `V=5`?
+1. Which cell technology can co-schedule `beta`, `alpha`, and `gamma_ll`
+   while keeping radial-null and current burden inside the margin ledger?
+2. What smoothing length keeps annular segment boundaries from producing point
+   peaks under grid refinement?
+3. Should throat-capacity use a physically separate angular ring band?
+4. What service-aware actuator scaling law moves from `V=5` toward other
+   service ratings?

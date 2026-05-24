@@ -1,6 +1,6 @@
 # Constraint Card 005: Endpoint Receiver and Reset Plant
 
-Status: component-level physical-design hypothesis.
+Status: component-level physical construction hypothesis.
 
 ## Controlling Sources
 
@@ -8,9 +8,11 @@ Status: component-level physical-design hypothesis.
   covariant endpoint-medium audit, support total-closure reports.
 - External analogs:
   [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf),
-  [`denicol_heat_flow_transient_relativistic_fluid_1207.6811.pdf`](../sources/denicol_heat_flow_transient_relativistic_fluid_1207.6811.pdf),
-  [`natario_rigid_elastic_solids_relativity_1912.08221.pdf`](../sources/natario_rigid_elastic_solids_relativity_1912.08221.pdf),
-  [`pfenning_ford_quantum_inequality_curved_spacetimes_gr-qc9805037.pdf`](../sources/pfenning_ford_quantum_inequality_curved_spacetimes_gr-qc9805037.pdf).
+  [`cook_solid_state_high_voltage_pulse_modulators_e00_tup6a07.pdf`](../sources/cook_solid_state_high_voltage_pulse_modulators_e00_tup6a07.pdf),
+  [`duran_thermal_instability_superconducting_fault_current_limiters_cond-mat0312190.pdf`](../sources/duran_thermal_instability_superconducting_fault_current_limiters_cond-mat0312190.pdf),
+  [`noe_high_temp_superconducting_fault_current_microlimiters_0901.2299.pdf`](../sources/noe_high_temp_superconducting_fault_current_microlimiters_0901.2299.pdf),
+  [`sha_printable_freeform_thermal_metamaterials_s41467-021-27543-7.pdf`](../sources/sha_printable_freeform_thermal_metamaterials_s41467-021-27543-7.pdf),
+  [`schittny_transient_heat_flux_shielding_1305.3197.pdf`](../sources/schittny_transient_heat_flux_shielding_1305.3197.pdf).
 
 ## Role
 
@@ -19,63 +21,68 @@ appears at support-edge and reset/decompression phases. It includes the
 beta-memory receiver, bounded reset-cap body, finite support-edge closure
 component, and reset-domain wake-tail handling.
 
-## Actual Physical Construction Hypothesis
+## Physical Construction Hypothesis
 
-This subsystem is station-end machinery. It is the rail's buffer, brake,
-receiver, and decompression plant. The physical hypothesis is that endpoint
-cost should be stored and released through finite state variables rather than
-sharp boundary counterterms.
+The endpoint plant is station machinery: buffer, pulse receiver, current
+limiter, thermal router, reset store, and decompression stage. It takes the
+service waveform arriving from the support shell and collar, stores the
+history-dependent part in finite variables, and releases the remaining energy,
+current, heat, and stress through controlled reset paths.
 
-Lab-scale analog options:
+The closest engineering anchors are:
 
-- superconducting circuit endpoint with tunable SQUID boundary, storing phase
-  and releasing it through controlled modulation;
-- optical resonator/cavity endpoint with controlled coupling and decay,
-  recording pulse history as beta-memory analog;
-- elastic/metamaterial termination whose strain/stress state carries the reset
-  cap and support-edge closure response;
-- active transmission-line termination that changes impedance through a
-  scheduled reset cycle.
+- solid-state high-voltage pulse modulators and pulse-forming networks for
+  scheduled high-power waveform delivery;
+- superconducting circuit boundaries for fast effective-length and phase
+  storage analogs;
+- superconducting fault-current limiters for current-regulator and quench/
+  protection behavior;
+- thermal metamaterials and transient heat-flux shields for routing reset heat
+  away from protected regions;
+- causal heat-flow models for relaxation variables with finite propagation
+  speed.
 
-Speculative rail-scale assembly:
+## Candidate Physical Stack
 
-- receiver ring that records beta-release transfer;
-- reset-cap buffer distributed over finite length, not an edge singularity;
-- support-edge absorber layer coupled to angular/current endpoint demand;
-- decompression chamber that keeps wake-tail traces outside live service;
-- energy/stress handoff port to the support reservoir.
-
-## Hardware Sketch
-
-- Beta-memory register: phase, flux, strain, or field-history variable.
-- Reset-cap buffer: finite distributed storage with no sharp edge-tail.
-- Support-edge receiver: localized but broad enough to avoid coefficient growth.
-- Decompression stage: releases stored stress after live service exits.
-- Wake-tail monitor: verifies reset-domain tails do not re-enter live service.
+- Beta-memory receiver: resonator, superconducting circuit, magnetic storage,
+  or strain/phase register that records release history.
+- Pulse-power interface: solid-state modulator, pulse-forming network, and
+  snubber path feeding support-shell and collar hardware.
+- Current limiter: superconducting or solid-state current-regulator stage with
+  thermal telemetry and recovery margin.
+- Reset-cap buffer: finite distributed storage volume for stress, current, or
+  thermal load.
+- Thermal routing manifold: anisotropic thermal metamaterial layer that moves
+  heat flux into dump channels while preserving live-bore isolation.
+- Decompression chamber: staged release path for wake-tail and reset-domain
+  traces after live service exits.
+- Reservoir port: explicit exchange path to card `006` for power `P`, radial
+  force `F`, and support stress.
 
 ## Mathematical Constraints Carried Over
 
 - Endpoint-J source rows remain non-live.
 - Reset-cap source stays broad, bounded, no-tail, and coefficient-stable.
 - Support-edge closure stays finite-width and low-coupling.
-- Dense ledgers should not grow live leakage or hidden singular support.
-- Wake-tail traces are reset-domain monitors, not live-service carrier
-  acceptance.
+- Dense ledgers keep live leakage and singular support under the gate limits.
+- Wake-tail traces remain reset-domain monitors.
 
 ## Design Implications
 
-The endpoint plant is where "turning the service off" becomes physical. It
-must catch the pulse without creating a singular layer. The DCE superconducting
-circuit is not an active-rail source model, but it is a useful reminder that
-fast effective-boundary changes can be implemented as controlled circuit
-modulation rather than literal moving walls. That style of thinking fits the
-reset-cap and beta-memory receiver better than an edge-tail source sheet.
+"Turning service off" is an engineered reset event. The endpoint plant needs
+the design habits of pulsed power and protection hardware: defined stored
+energy, shaped discharge, fault-current limit, thermal path, cooldown/recovery
+time, and measured readiness before the next arm. The current math points to a
+finite reset body with explicit reservoir exchange and distributed endpoint
+depth.
 
 ## Open Questions
 
-1. What physical memory variable stores beta-release transfer?
-2. Can reset/decompression support be implemented as finite storage rather than
-   edge-tail counterterms?
-3. How does the reset plant hand power/radial-force exchange to the support
-   reservoir?
-4. Can endpoint source completion remove the closure-residual ANEC deficit?
+1. Which physical memory variable stores beta-release transfer with measurable
+   recovery?
+2. What pulse-power architecture can supply the collar and support shell while
+   preserving endpoint closure headroom?
+3. Can superconducting or solid-state limiter behavior implement the endpoint
+   current-regulator role?
+4. How should the thermal-routing manifold couple to the regulated
+   heat/current reservoir in card `006`?

@@ -1,15 +1,21 @@
 # Component Design Track
 
-Status: first local component-design overview.
+Status: local component-design overview with physical construction hypotheses.
 
-This folder is for thinking about the active rail as a possible physical
-machine, not only as a unified metric/source model. The current controlling
-article is still the sealed beta075 `V=5` operating embodiment described in
-[`../README.md`](../README.md) and
+This folder treats the active rail as a nested physical service plant. The
+current controlling article is the sealed beta075 `V=5` operating embodiment
+described in [`../README.md`](../README.md) and
 [`../active_rail_technical_disclosure.tex`](../active_rail_technical_disclosure.tex).
-The cards below are physical-design hypotheses constrained by the current
-reports. They are not fabrication plans, final matter actions, coupled
-Einstein-matter solutions, or broad service-family claims.
+The cards translate the current mathematical component split into construction
+hypotheses, hardware analogs, source burdens, and measurement targets.
+
+The local source library is
+[`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective
+geometry literature together with engineering-facing sources on programmable
+metamaterials, space-time modulation, active acoustic cells, elastic and
+piezoelectric metamaterials, thermal metamaterials, superconducting current
+limiters, high-voltage pulse modulators, magnetic field routing, and
+distributed fiber diagnostics.
 
 ## Chronology
 
@@ -30,35 +36,33 @@ diagnostic that currently fails live packet source safety.
 
 | Subsystem | Physical-building intuition | Current maturity | Constraint card |
 | --- | --- | --- | --- |
-| Live packet corridor | Quiet passenger bore inside a larger active support plant | Protected corridor, not source plant | [`001_live_packet_corridor.md`](constraints/001_live_packet_corridor.md) |
-| Standing support substrate / radial backbone | Prepared railbed/throat scaffold carrying most non-live radial support | Strong role evidence, physical realization open | [`002_standing_support_substrate.md`](constraints/002_standing_support_substrate.md) |
-| Support-shell metric actuator layer | Annular actuator shell controlling carrying-flow, lapse, rail-stretch, and throat-capacity channels | Good routing evidence, physical actuator still abstract | [`003_support_shell_metric_actuator_layer.md`](constraints/003_support_shell_metric_actuator_layer.md) |
-| Handoff, rematch, and carrier collar | Entry/catch/release phase-matching collar around the live packet | Mature prescribed-metric control layer | [`004_handoff_rematch_release_collar.md`](constraints/004_handoff_rematch_release_collar.md) |
-| Endpoint receiver and reset plant | Station-end receiver, reset cap, support-edge closure, decompression plant | Effective-source freeze, matter mechanism open | [`005_endpoint_receiver_reset_plant.md`](constraints/005_endpoint_receiver_reset_plant.md) |
-| Regulated heat/current medium and support reservoir | Physical source plant for endpoint/support exchange and heat/current regulation | Strongest current physical-source target | [`006_regulated_heat_current_medium_support_reservoir.md`](constraints/006_regulated_heat_current_medium_support_reservoir.md) |
-| Carrier governance and diagnostics | Supervisory timing, carrier, reachability, and chronology safety system | Required safety/control layer | [`007_carrier_governance_and_diagnostics.md`](constraints/007_carrier_governance_and_diagnostics.md) |
+| Live packet corridor | Protected passenger/payload bore inside a field-routed active plant | Construction picture: shielded guide, magnetic/EM routing, boundary trims | [`001_live_packet_corridor.md`](constraints/001_live_packet_corridor.md) |
+| Standing support substrate / radial backbone | Preloaded architected railbed carrying radial and angular support | Construction picture: mechanical/elastic metamaterial backbone with active shunts | [`002_standing_support_substrate.md`](constraints/002_standing_support_substrate.md) |
+| Support-shell metric actuator layer | Annular programmable actuator shell for carrying-flow, lapse, rail-stretch, and throat capacity | Construction picture: space-time-modulated cells and tunable impedance/index/stress layers | [`003_support_shell_metric_actuator_layer.md`](constraints/003_support_shell_metric_actuator_layer.md) |
+| Handoff, rematch, and carrier collar | Entry/catch/hold/release impedance transformer around the packet edge | Construction picture: time-modulated couplers, resonators, and moving-front collars | [`004_handoff_rematch_release_collar.md`](constraints/004_handoff_rematch_release_collar.md) |
+| Endpoint receiver and reset plant | Station-end buffer, pulse receiver, current limiter, thermal router, and decompression plant | Construction picture: pulse-power hardware, superconducting/current-limit analogs, thermal metamaterial manifold | [`005_endpoint_receiver_reset_plant.md`](constraints/005_endpoint_receiver_reset_plant.md) |
+| Regulated heat/current medium and support reservoir | Endpoint/support source plant with bounded heat/current and explicit exchange | Construction picture: anisotropic thermal/current medium with reservoir, regulator, and limiter channels | [`006_regulated_heat_current_medium_support_reservoir.md`](constraints/006_regulated_heat_current_medium_support_reservoir.md) |
+| Carrier governance and diagnostics | Supervisory timing, carrier, reachability, and chronology safety system | Construction picture: embedded distributed sensing, probe injection, actuator telemetry, and rail-time controller | [`007_carrier_governance_and_diagnostics.md`](constraints/007_carrier_governance_and_diagnostics.md) |
 
 ## Working Guess
 
-If this were a machine, it would not be one exotic material wrapped around a
-passenger. It would be a nested rail service plant:
+The active rail reads as a layered infrastructure machine:
 
-1. A quiet live bore is kept out of the hard source budget.
-2. A prepared support substrate supplies the standing throat/radial/angular
-   support.
-3. A support-shell actuator layer carries the scheduled service load in
-   controlled annular windows.
-4. Entry, catch, rematch, collar, and release hardware phase-match the live
-   packet to the support plant.
-5. Endpoint receiver/reset hardware catches the support-edge source burden and
-   prevents it from leaking into live service.
-6. A regulated anisotropic heat/current medium plus support reservoir is the
-   current best guess for the physical source plant that pays the sharp
-   endpoint/support exchange bill.
-7. A chronology and carrier-governance layer decides when the rail may arm,
-   release, reset, and connect to other rails.
+1. A protected live bore carries the packet through a low-coupling guide.
+2. A prepared support substrate supplies standing throat, radial, and angular
+   capacity.
+3. A support-shell actuator layer applies scheduled annular modulation in
+   separate flow, lapse, stretch, and capacity channels.
+4. Entry, catch, rematch, collar, and release hardware phase-match the packet
+   to the active plant.
+5. Endpoint receiver/reset hardware catches support-edge source burden, stores
+   release history, routes heat/current, and decompresses after service.
+6. A regulated anisotropic heat/current medium plus support reservoir supplies
+   the lead physical source plant for endpoint/support exchange.
+7. A chronology and carrier-governance layer arms, measures, releases, resets,
+   and routes networked service.
 
-The near-term goal is not to declare a buildable device. It is to make the
-physical burden explicit enough that each subsystem can be tested against the
-same evidence chain: source channels, location, timing, margin, failure mode,
-and what would have to be true physically.
+The design task is to make the physical burden explicit enough for each
+subsystem to be tested against the same evidence chain: source channel,
+location, timing, margin, failure mode, construction analog, and required
+measurement.

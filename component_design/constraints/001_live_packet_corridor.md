@@ -1,93 +1,87 @@
 # Constraint Card 001: Live Packet Corridor
 
-Status: component-level physical-design hypothesis.
+Status: component-level physical construction hypothesis.
 
 ## Controlling Sources
 
 - Internal: current disclosure and service-rating ladder. `V=5` is the
-  operating point; `V=10` is a live-packet safety failure.
+  operating point; `V=10` marks the live-packet safety boundary that drives
+  corridor-margin design.
 - External analogs:
-  [`barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf`](../sources/barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf),
-  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
   [`greenleaf_electromagnetic_wormholes_metamaterials_140836.pdf`](../sources/greenleaf_electromagnetic_wormholes_metamaterials_140836.pdf),
-  [`pfenning_ford_quantum_inequality_curved_spacetimes_gr-qc9805037.pdf`](../sources/pfenning_ford_quantum_inequality_curved_spacetimes_gr-qc9805037.pdf).
+  [`prat_camps_long_distance_transfer_static_magnetic_fields_1304.6300.pdf`](../sources/prat_camps_long_distance_transfer_static_magnetic_fields_1304.6300.pdf),
+  [`prat_camps_magnetic_wormhole_srep12488.pdf`](../sources/prat_camps_magnetic_wormhole_srep12488.pdf),
+  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
+  [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf).
 
 ## Role
 
-The live packet corridor is the passenger-facing region. It is the part of the
-rail that must remain quiet while the support plant does hard work around it.
-The reports consistently treat this region as protected, not as the place where
-the main source burden should be paid.
+The live packet corridor is the passenger-facing guide volume. Its job is to
+carry the packet through a low-coupling bore while the surrounding plant routes
+field, stress, current, and heat burden through infrastructure layers.
 
-## Actual Physical Construction Hypothesis
+## Physical Construction Hypothesis
 
-The best near-term physical picture is not "put exotic matter in the passenger
-tube." It is a shielded inner guide inside a much more active annular plant.
-The closest real engineering analog is a protected test channel inside a
-transformation-optics or analogue-gravity apparatus: the medium around the bore
-is structured to route waves/fields as if a geometry were present, while the
-interior remains a quiet observation or payload channel.
+The corridor is a protected inner guide inside a field-routed annular service
+plant. The strongest physical image is a quiet vacuum/optical/microwave bore
+surrounded by metamaterial, magnetic, and structural layers that steer the hard
+response around the protected volume.
 
-For a lab-scale analog, build the live corridor as one of:
+Existing engineering analogs give concrete pieces for this picture:
 
-- a central microwave/optical waveguide bore inside a programmable metamaterial
-  shell;
-- a microstructured-fiber or integrated-photonic channel whose core is kept
-  below the nonlinear/horizon-forming intensity while the surrounding pulse or
-  index front does the active work;
-- a cryogenic microwave cavity/transmission-line section with SQUID or
-  tunable-boundary elements outside the protected mode volume.
+- Transformation-optics and electromagnetic-wormhole devices show how material
+  parameters can create an effective tunnel for electromagnetic fields.
+- Magnetic hoses and magnetic-wormhole experiments show superconductor/
+  ferromagnet routing of quasi-static magnetic flux between separated ports.
+- Fiber-optical horizon experiments show a protected probe mode interacting
+  with a moving index front generated outside the probe itself.
 
-For a speculative rail-scale design, the live corridor would be a mechanically
-and electromagnetically isolated bore with:
+At bench scale, this suggests a central waveguide or cavity whose payload mode
+is monitored while surrounding collars create index, impedance, or magnetic
+field routing. At infrastructure scale, the live corridor becomes a shielded
+rail bore with local trim rings near entry, catch, rematch, and release zones.
 
-- a passive inner liner chosen for low coupling to the support shell;
-- packet-edge trim coils/metasurfaces only near entry/catch/release regions;
-- distributed packet-norm/field-margin sensors;
-- hard interlocks that prevent arming if support-edge or cone margins are
-  outside the allowed window;
-- no radial backbone, endpoint receiver, or support reservoir inside the
-  passenger-facing volume.
+## Candidate Physical Stack
 
-This card therefore treats the live corridor as an exclusion zone with boundary
-actuation, not as a primary source medium.
-
-## Hardware Sketch
-
-- Inner bore: low-loss, low-dispersion guide or cavity volume.
-- Isolation liner: metamaterial/acoustic/EM shield tuned to suppress coupling
-  from support-shell actuator modes into the packet center.
-- Packet-edge trims: short collar segments, not full-bore active media.
-- Sensor ring: field probes, timing probes, packet-edge residual probes.
-- Abort path: dump actuator timing, hold support shell, then reset endpoint
-  plant before packet enters unsafe region.
+- Inner guide: vacuum tube, optical core, microwave cavity, or equivalent
+  low-loss payload channel.
+- Isolation liner: layered EM/acoustic/mechanical shield tuned to reduce
+  coupling from support-shell modes into the packet center.
+- Field-routing jacket: superconductor/ferromagnet or metamaterial routing
+  channels for support fields and trim fields.
+- Packet-edge trim rings: short active collars that act on the packet edge
+  during entry, catch, rematch, and release.
+- Embedded sensor fibers and probes: packet-norm analog, local field leakage,
+  timing jitter, wall strain, thermal flux, and collar phase.
+- Abort path: de-arm actuator timing, hold support-shell state, and route the
+  packet into endpoint/reset protection if measured margin falls below watch
+  constants.
 
 ## Mathematical Constraints Carried Over
 
 - Live packet norm remains safely negative at sealed `V=5`.
 - Packet `Delta rho` remains quiet after standing-substrate subtraction.
-- Live handoff trim may exist, but hard infrastructure roles must not
-  contaminate the live packet.
-- `V=10` currently fails live packet source safety, so high-service operation
-  requires additional causal-margin engineering.
-- Finite-domain radial ANEC is not clean for the demanded total, but the main
-  negativity is not assigned to a passenger-filling live source layer.
+- Live handoff trim is allowed as a small boundary/collar assignment.
+- `V=10` consumes live packet source margin and sets the high-service corridor
+  design target.
+- Finite-domain radial ANEC remains a source-completion target, while the live
+  corridor assignment stays focused on isolation and boundary coupling.
 
 ## Design Implications
 
-The corridor's construction job is mostly negative: keep things out. That means
-the physical success metric is not how strong the corridor is, but how small
-its coupling is to the support shell, endpoint exchange, and reset plant. This
-also makes `V=10` a corridor-design failure mode: the high-service repair is
-likely additional collar/cushion margin or service-aware actuator timing, not a
-new bulk source in the live bore.
+The corridor success metric is isolation ratio: how much support-shell,
+endpoint, thermal/current, and collar activity reaches the packet center. The
+construction variables are shielding depth, trim-ring bandwidth, bore
+dispersion, packet-edge leakage, and measured timing noise. The `V=10` failure
+mode points toward stronger collar smoothing, larger endpoint buffer, and
+service-aware actuator retiming before any increase in packet-center burden.
 
 ## Open Questions
 
-1. What physical isolation mechanism best maps to packet-norm margin?
-2. Can live handoff trim be realized as a boundary/collar effect rather than a
-   bulk passenger-region source?
-3. What sensor set would detect packet-norm margin loss quickly enough to abort
+1. What physical isolation observable best maps to packet-norm margin?
+2. Can magnetic-hose or transformation-optics routing provide a useful bench
+   analog for support-field exclusion around the live bore?
+3. What trim-ring bandwidth is needed to keep handoff corrections at the packet
+   edge?
+4. Which sensor package detects packet-center coupling quickly enough to abort
    or retime service?
-4. Can transformation-optics style shielding provide a useful lab analog for
-   support-shell exclusion, even though it is not gravitational engineering?

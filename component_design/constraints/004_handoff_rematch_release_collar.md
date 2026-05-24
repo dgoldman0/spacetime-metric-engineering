@@ -1,6 +1,6 @@
 # Constraint Card 004: Handoff, Rematch, Release, and Carrier Collar
 
-Status: component-level physical-design hypothesis.
+Status: component-level physical construction hypothesis.
 
 ## Controlling Sources
 
@@ -8,80 +8,72 @@ Status: component-level physical-design hypothesis.
   dense finite-bundle carrier, finite-domain radial ANEC reports.
 - External analogs:
   [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf),
-  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
-  [`barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf`](../sources/barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf),
-  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf).
+  [`estakhri_nonreciprocal_metasurface_space_time_phase_modulation_1905.10316.pdf`](../sources/estakhri_nonreciprocal_metasurface_space_time_phase_modulation_1905.10316.pdf),
+  [`zang_nonreciprocal_wavefront_time_modulated_gradient_metasurfaces_2019.pdf`](../sources/zang_nonreciprocal_wavefront_time_modulated_gradient_metasurfaces_2019.pdf),
+  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf),
+  [`pop_a_active_acoustic_metamaterials_realtime_1505.00453.pdf`](../sources/pop_a_active_acoustic_metamaterials_realtime_1505.00453.pdf).
 
 ## Role
 
 The handoff/collar system manages the transition between the live packet and
 the support plant. It catches, rematches, briefly holds, releases, and restores
-the packet while keeping derivative cost out of the packet center.
+the packet while assigning derivative cost to edge/collar hardware.
 
-## Actual Physical Construction Hypothesis
+## Physical Construction Hypothesis
 
-The collar is an impedance-matching and phase-matching device. A realistic
-analog would look like a tunable coupler section between a quiet guide and an
-active medium, not like a passive doorway. Existing analogs point to two
-families:
+The collar is an active impedance transformer. It sits between the protected
+guide and the support-shell plant, then changes coupling, phase, delay, and
+effective boundary condition through a smooth scheduled cycle.
 
-- optical horizon hardware, where a moving index front interacts with probe
-  waves and produces horizon-like frequency shifts;
-- superconducting-circuit boundary modulation, where effective length and
-  boundary conditions are changed rapidly without moving macroscopic hardware.
+The relevant engineered phenomena are already familiar in smaller systems:
 
-For a bench analog, the collar could be implemented as:
+- moving optical index fronts that catch and frequency-shift probe waves;
+- time-modulated gradient metasurfaces that add controlled phase and frequency
+  transitions;
+- tunable resonator or photonic-crystal couplers with shaped coupling pulses;
+- SQUID-tuned microwave boundaries that change effective length and release
+  stored phase;
+- active acoustic cells that modify local response through real-time
+  electronics.
 
-- a nonlinear optical fiber or integrated photonic waveguide with a shaped pump
-  pulse acting as the catch/rematch front;
-- a ring-resonator or photonic-crystal segment with time-dependent coupling;
-- a superconducting microwave line with a SQUID-tunable boundary/coupler,
-  using matched pulses to emulate catch, hold, and release phases.
+## Candidate Physical Stack
 
-For a speculative rail-scale design, the collar would be a station-throat
-assembly:
-
-- an entry pressure-containment ring;
-- a catch/rematch ring that couples the live packet to the support shell;
-- a trailing-edge beta-rematch sleeve concentrated near the packet edge;
-- a widened carrier collar to prevent branch-band bundle collapse;
-- a controlled release sequence that fades the active field through a
-  minimum-jerk or higher-smoothness profile.
-
-## Hardware Sketch
-
-- Entry ring: broad, smooth containment and pressure matching.
-- Catch ring: stronger but brief annular coupling to support-shell actuator.
-- Edge sleeve: asymmetric/trailing-edge trim field.
-- Release modulator: time-programmed fade, not abrupt shutdown.
-- Bundle monitor: measures compression/recovery of neighboring carrier rays or
-  their lab-analog wave packets.
+- Entry pre-match ring: broad impedance and pressure matching between station
+  throat and live bore.
+- Catch ring: stronger short-duration coupling into the support shell.
+- Hold/rematch sleeve: phase and group-delay control around the packet edge.
+- Trailing-edge trim band: asymmetric beta-rematch concentrated where the
+  current reports place the live handoff correction.
+- Release modulator: higher-smoothness fade of coupling and carrying-flow
+  phase.
+- Carrier collar monitor: probe traces that measure finite-bundle compression,
+  recovery, and branch ordering.
 
 ## Mathematical Constraints Carried Over
 
-- The packet center should stay quiet; strongest correction sits near the
+- The packet center stays quiet; strongest correction sits near the
   trailing/inner packet edge.
 - Compact handoff separates entry pressure containment from catch/edge
   derivative smoothing.
 - Widened trailing-edge rematch preserves finite-bundle carrier behavior.
-- Live handoff trim exists, but should remain small and explicitly assigned.
-- The finite-domain ANEC diagnostic shows a secondary plus-branch live-handoff
-  trim extreme after closure residual removal; this subsystem must not hide
-  that cost.
+- Live handoff trim remains small and explicitly assigned.
+- The finite-domain ANEC diagnostic identifies a secondary plus-branch
+  live-handoff trim extreme after closure residual removal, which makes collar
+  smoothing a source-completion target.
 
 ## Design Implications
 
-This component is the most "machine-like" part of the rail. It should be
-engineered around pulse shape, timing, impedance, and mode matching. The
-physical risk is derivative violence: abrupt transitions create exactly the
-sort of point peaks and live handoff residue the math has been trying to move
-out of the packet.
+This is the most machine-like subsystem: pulse shape, impedance, phase,
+reflection coefficient, mode purity, and derivative smoothness are its design
+variables. The collar should be characterized the way a high-performance
+coupler is characterized: scattering matrix, time-domain release profile,
+stored energy, leakage into protected modes, and recovery after reset.
 
 ## Open Questions
 
-1. Can packet-edge trim be implemented as a collar boundary condition rather
-   than a live bulk source?
-2. What physical timing mechanism provides matched hold and smooth beta fade?
-3. Can collar widening be service-aware, especially for high-service cases?
-4. Can handoff trim be averaged or source-completed to reduce finite-domain
-   ANEC residue?
+1. Which moving-front or time-modulated coupler best realizes packet-edge trim?
+2. What release smoothness is required to suppress handoff derivative peaks?
+3. Can collar widening be selected from measured bundle compression in real
+   time?
+4. How much collar-reservoir exchange must be routed to card `006` during
+   high-service cases?
