@@ -2,6 +2,16 @@
 
 Status: component-level physical-design hypothesis.
 
+## Controlling Sources
+
+- Internal: V5 support-shell final freeze, continuous support-shell 4D source
+  sweep, coupled timing feasibility, shape robustness reports.
+- External analogs:
+  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
+  [`smolyaninov_metamaterial_alcubierre_1009.5663.pdf`](../sources/smolyaninov_metamaterial_alcubierre_1009.5663.pdf),
+  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf),
+  [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf).
+
 ## Role
 
 The support-shell actuator layer is the annular infrastructure band that routes
@@ -9,23 +19,45 @@ service-induced demand away from the live packet. In metric terms it acts
 through carrying-flow `beta`, clock-lapse `alpha`, rail-stretch `gamma_ll`,
 and throat-capacity `gamma_OmegaOmega`.
 
-## Physical-Building Guess
+## Actual Physical Construction Hypothesis
 
-This subsystem looks like a distributed actuator shell wrapped around the live
-bore. It would not be a single engine. It would be an array of timed annular
-modules that can shape several coupled channels:
+The physical analog is a programmable annular field shell. It is closer to a
+phased metamaterial/circuit array than to a rocket motor. Each annular segment
+changes effective propagation, impedance, or boundary conditions in a scheduled
+window. The closest existing hardware families are:
 
-- carrying-flow modules for the support-contained shift/load field;
-- clock-lapse modules for causal-margin support;
-- rail-stretch modules for radial metric capacity and peak shaping;
-- throat-capacity modules for angular/throat support;
-- timing electronics that place the actuator pulse relative to entry, catch,
-  rematch, release, and reset.
+- transformation-optics metamaterial shells with spatially patterned effective
+  permittivity/permeability;
+- nonlinear optical fibers, where a moving pulse creates an effective horizon
+  for probe waves;
+- superconducting transmission lines with SQUID-tuned boundary conditions,
+  where the effective electrical length changes rapidly;
+- tunable microwave/metasurface rings where phase, delay, impedance, and
+  coupling can be programmed per segment.
 
-The reports suggest that same-window single-channel forcing is too blunt. The
-physical actuator should be designed as a coupled support-shell plant.
+For a lab analog, the support shell should be a ring or line of tunable cells:
 
-## Inherited Constraints
+- "carrying-flow" channel: moving index/phase front or traveling-wave pump;
+- "clock-lapse" channel: local delay/impedance modulation that protects timing
+  margin;
+- "rail-stretch" channel: effective path-length or group-index modulation;
+- "throat-capacity" channel: transverse-mode/ring-capacity modulation.
+
+For a speculative rail-scale design, these would become nested actuator bands:
+one band for longitudinal support-contained flow, one for timing/lapse cushion,
+one for radial capacity, and one for angular/throat capacity. They would be
+driven by a service scheduler, not by continuous full-power forcing.
+
+## Hardware Sketch
+
+- Annular cell array with independently tunable impedance/index/stress state.
+- Traveling service pulse generator to create the support-contained flow front.
+- Delay/lapse cushion layer, likely a separate actuator rather than a passive
+  material.
+- Radial-capacity layer for peak smoothing and gradient matching.
+- Diagnostics per segment: phase, energy, temperature, stored stress, timing.
+
+## Mathematical Constraints Carried Over
 
 - Reduced support-shell routing must put incremental `Delta j_l` into
   catch/rematch support infrastructure with tiny packet exposure.
@@ -37,13 +69,14 @@ physical actuator should be designed as a coupled support-shell plant.
 - High-amplitude or high-service cases consume packet margin, so actuator
   strength is not unlimited.
 
-## Interfaces
+## Design Implications
 
-- Built on top of the standing support substrate.
-- Timed by the handoff/rematch/release choreography.
-- Must not leak into the live packet corridor.
-- Feeds source ledgers that assign non-live burden to support and endpoint
-  roles.
+Single-channel actuation is the trap. The reports say the shell must co-shape
+load, timing, radial capacity, and angular capacity. The hardware lesson from
+metamaterial and superconducting-circuit analogs is that changing effective
+geometry means managing dispersion, bandwidth, losses, and parameter range.
+Smolyaninov-style metamaterial warp analogs are useful here mostly because they
+show how quickly material-parameter limits become the real engineering wall.
 
 ## Open Questions
 

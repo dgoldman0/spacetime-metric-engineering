@@ -2,6 +2,17 @@
 
 Status: component-level physical-design hypothesis.
 
+## Controlling Sources
+
+- Internal: causal-carrier reachability, dense finite-bundle carrier,
+  service-time advantage, aligned-envelope timing, and chronology-governance
+  sections of the disclosure.
+- External analogs:
+  [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf),
+  [`barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf`](../sources/barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf),
+  [`pfenning_ford_unphysical_warp_drive_gr-qc9702026.pdf`](../sources/pfenning_ford_unphysical_warp_drive_gr-qc9702026.pdf),
+  [`ford_roman_qft_constrains_wormholes_gr-qc9510071.pdf`](../sources/ford_roman_qft_constrains_wormholes_gr-qc9510071.pdf).
+
 ## Role
 
 Carrier governance is the supervisory layer that decides when the rail can arm,
@@ -9,22 +20,44 @@ carry, release, reset, and connect to other rails. It includes causal-carrier
 diagnostics, reachability gates, dense finite-bundle carrier audits,
 service-time ledgers, wake-tail monitoring, and rail-time chronology rules.
 
-## Physical-Building Guess
+## Actual Physical Construction Hypothesis
 
-This subsystem is the control room and sensor fabric of the rail. It is not the
-source plant itself. It would likely include:
+This subsystem is the control room and sensor fabric of the rail. The physical
+construction hypothesis is a real-time safety and timing layer wrapped around
+the source hardware, not an after-the-fact analysis script.
 
-- field/geometry monitors for branch margins and packet norm;
-- probe/diagnostic channels for reachability and radial escape;
-- bundle-quality monitors for carrier-collar compression;
-- timing controllers for service-coordinate source release;
-- reset/wake-tail monitors after live service;
-- a chronology governor for single-rail and networked operation.
+Lab-scale analog:
 
-In a build design, this layer would probably be as important as the source
-hardware, because the accepted V5 package is timing- and margin-sensitive.
+- probe pulses or wave packets injected through the guide to measure effective
+  branch margins and horizon/collar behavior;
+- interferometric timing diagnostics to reconstruct delay, group velocity, and
+  bundle spreading;
+- boundary sensors on tunable metamaterial or superconducting-circuit cells;
+- watchdog logic that refuses to run a pulse sequence unless measured margins
+  match the certified envelope.
 
-## Inherited Constraints
+Speculative rail-scale assembly:
+
+- distributed field probes along live bore, support shell, collar, endpoint,
+  and reset plant;
+- service-coordinate scheduler controlling source release and support-shell
+  actuation;
+- bundle-quality monitor that checks whether neighboring carrier traces remain
+  ordered and escaping;
+- wake-tail monitor that keeps reset/decompression traces out of live service;
+- rail-time chronology governor for single rail, return links, cross-links, and
+  networked service.
+
+## Hardware Sketch
+
+- Timing master clock and service-coordinate sequencer.
+- Margin sensors: packet norm analog, heat/current rapidity analog, closure
+  headroom, cone/branch margin, support-tail leakage.
+- Probe injector and receiver arrays for reachability and bundle tests.
+- Abort controller: de-arm, hold, release, reset, or refuse network routing.
+- Network chronology controller for multi-rail operation.
+
+## Mathematical Constraints Carried Over
 
 - Measured branch behavior is accepted only through reachability, escape,
   finite-bundle, and scheduled-probe gates.
@@ -35,12 +68,15 @@ hardware, because the accepted V5 package is timing- and margin-sensitive.
   reset intervals, and network routing.
 - Timing jitter is bounded around service-coordinate aligned envelopes.
 
-## Interfaces
+## Design Implications
 
-- Monitors live packet corridor safety.
-- Arms support-shell actuator and handoff/release timing.
-- Supervises endpoint/reset readiness.
-- Carries margin data back to the source-family and support-reservoir design.
+The rail is margin-sensitive enough that governance is a physical subsystem.
+The optical-horizon literature is useful here because it treats horizons as
+measured wave-propagation phenomena in a medium, not as a philosophical label.
+For the active rail, every run would need preflight carrier probes, source
+margin checks, and reset readiness checks. The negative-energy/warp-drive
+constraint literature also belongs here: it sets the policy that no service
+rating is promoted merely because the kinematic schedule looks favorable.
 
 ## Open Questions
 

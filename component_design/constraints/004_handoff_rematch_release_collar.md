@@ -2,28 +2,62 @@
 
 Status: component-level physical-design hypothesis.
 
+## Controlling Sources
+
+- Internal: release-choreography, compact handoff, beta-collar generator,
+  dense finite-bundle carrier, finite-domain radial ANEC reports.
+- External analogs:
+  [`philbin_fiber_optical_event_horizon_0711.4796.pdf`](../sources/philbin_fiber_optical_event_horizon_0711.4796.pdf),
+  [`leonhardt_philbin_transformation_optics_0805.4778.pdf`](../sources/leonhardt_philbin_transformation_optics_0805.4778.pdf),
+  [`barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf`](../sources/barcelo_liberati_visser_analogue_gravity_gr-qc0505065.pdf),
+  [`wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf`](../sources/wilson_dynamical_casimir_superconducting_circuit_1105.4714.pdf).
+
 ## Role
 
 The handoff/collar system manages the transition between the live packet and
 the support plant. It catches, rematches, briefly holds, releases, and restores
 the packet while keeping derivative cost out of the packet center.
 
-## Physical-Building Guess
+## Actual Physical Construction Hypothesis
 
-This subsystem looks like a phase-matching collar or station throat around the
-live bore. It would include:
+The collar is an impedance-matching and phase-matching device. A realistic
+analog would look like a tunable coupler section between a quiet guide and an
+active medium, not like a passive doorway. Existing analogs point to two
+families:
 
-- entry containment windows for live radial-pressure control;
-- catch/rematch bearing windows for angular/current and radial-null relief;
-- trailing-edge beta-rematch sleeve hardware near the packet edge;
-- finite beta-collar widening for branch-band bundle preservation;
-- smooth release timing with matched hold and derivative-limited beta fade;
-- local limiter/abort logic if handoff residuals exceed margin.
+- optical horizon hardware, where a moving index front interacts with probe
+  waves and produces horizon-like frequency shifts;
+- superconducting-circuit boundary modulation, where effective length and
+  boundary conditions are changed rapidly without moving macroscopic hardware.
 
-It is less like a passenger cabin and more like a precision docking and
-impedance-matching system for the metric service.
+For a bench analog, the collar could be implemented as:
 
-## Inherited Constraints
+- a nonlinear optical fiber or integrated photonic waveguide with a shaped pump
+  pulse acting as the catch/rematch front;
+- a ring-resonator or photonic-crystal segment with time-dependent coupling;
+- a superconducting microwave line with a SQUID-tunable boundary/coupler,
+  using matched pulses to emulate catch, hold, and release phases.
+
+For a speculative rail-scale design, the collar would be a station-throat
+assembly:
+
+- an entry pressure-containment ring;
+- a catch/rematch ring that couples the live packet to the support shell;
+- a trailing-edge beta-rematch sleeve concentrated near the packet edge;
+- a widened carrier collar to prevent branch-band bundle collapse;
+- a controlled release sequence that fades the active field through a
+  minimum-jerk or higher-smoothness profile.
+
+## Hardware Sketch
+
+- Entry ring: broad, smooth containment and pressure matching.
+- Catch ring: stronger but brief annular coupling to support-shell actuator.
+- Edge sleeve: asymmetric/trailing-edge trim field.
+- Release modulator: time-programmed fade, not abrupt shutdown.
+- Bundle monitor: measures compression/recovery of neighboring carrier rays or
+  their lab-analog wave packets.
+
+## Mathematical Constraints Carried Over
 
 - The packet center should stay quiet; strongest correction sits near the
   trailing/inner packet edge.
@@ -35,12 +69,13 @@ impedance-matching system for the metric service.
   trim extreme after closure residual removal; this subsystem must not hide
   that cost.
 
-## Interfaces
+## Design Implications
 
-- Receives scheduled service from the support-shell actuator layer.
-- Protects the live packet corridor during entry/catch/release.
-- Feeds endpoint receiver memory through beta-release transfer.
-- Is monitored by causal-carrier reachability and dense-bundle diagnostics.
+This component is the most "machine-like" part of the rail. It should be
+engineered around pulse shape, timing, impedance, and mode matching. The
+physical risk is derivative violence: abrupt transitions create exactly the
+sort of point peaks and live handoff residue the math has been trying to move
+out of the packet.
 
 ## Open Questions
 
