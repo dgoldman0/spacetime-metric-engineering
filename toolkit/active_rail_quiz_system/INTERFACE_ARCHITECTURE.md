@@ -40,6 +40,8 @@ This keeps the app coherent without flattening every kind of learning into multi
 The command bar controls the active session:
 
 - mode,
+- timed-mode duration when relevant,
+- explanation-review toggle when relevant,
 - curriculum track,
 - module,
 - question type or activity type,
@@ -52,6 +54,11 @@ It should stay compact. It is a cockpit control strip, not a settings page.
 
 Content filters should behave like facets, not single-choice dropdowns. Track, module, difficulty, claim status, question context, and activity type should support multiple selections. Empty selection means the facet is unrestricted. Use checkbox chips, compact tag groups, or checklist popovers rather than native single-select boxes for these controls. Count, workspace, and optional-content policy may remain single-choice because they control session shape rather than content inclusion. Count choices should cover small drills and larger review sets, not just one or two fixed sizes.
 
+Timed quiz mode adds pacing controls without changing the content filters. The
+command bar should expose a compact duration selector and an explanation-review
+toggle. The timer should be visible in the workspace header, with a clear paused
+state while explanations are open.
+
 ### Workspace
 
 The workspace changes by activity type. It is the main learning surface.
@@ -63,6 +70,12 @@ Examples:
 - a horizontal or vertical timeline for service chronology,
 - a table-plus-question layout for ledger interpretation,
 - a dossier layout for design-review cases.
+
+Timed quiz mode uses the same specialized renderers, but presents one activity
+at a time. The active question should have a clear submit/review/next flow, a
+visible item counter, and a timer state. If explanation review is enabled, the
+workspace should show the explanation after submission and pause the timer until
+the learner advances.
 
 ### Right Rail
 

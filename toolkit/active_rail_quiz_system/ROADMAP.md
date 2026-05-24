@@ -20,6 +20,8 @@ This phase should produce a usable quiz application with a small sample bank. It
 - Support question filtering by module, difficulty, type, claim status, and question context.
 - Support study mode with immediate explanations.
 - Support quiz mode with delayed grading.
+- Support timed quiz mode with one-question-at-a-time pacing, a selected time
+  limit, scorekeeping, and an optional explanation-review pause.
 - Support review of missed questions.
 - Show clear claim-status badges on every question.
 - Show explanations with answer, reason, boundary, and references when present.
@@ -182,6 +184,8 @@ The first screen should be the quiz/study tool itself.
 Required surfaces:
 
 - mode selector,
+- timed duration selector when timed mode is active,
+- explanation-review toggle for timed study-practice sessions,
 - module multi-select facet,
 - claim-status multi-select facet,
 - track multi-select facet,
@@ -195,6 +199,11 @@ The design should feel like a polished engineering console: readable, calm, fast
 
 The active workspace should change by activity type. A boundary-classification session, a symbol lab, a chronology timeline, and a design-review case should not all be cramped into the same generic card.
 
+Timed mode should keep those specialized surfaces but show only the active item.
+Its timer is a pacing constraint, not a separate scoring dimension in the first
+implementation. If explanation review is enabled, the countdown pauses while the
+learner reads feedback and resumes when the next item starts.
+
 Filter controls should not force narrow single-choice paths. Tracks, modules, difficulties, activity types, claim statuses, and question contexts should allow selecting multiple values. Empty selection should mean "all." Count and optional-content policy can stay single-choice.
 
 ### Phase 1 Done When
@@ -206,6 +215,8 @@ Filter controls should not force narrow single-choice paths. Tracks, modules, di
 - A renderer registry or equivalent separation exists.
 - At least one specialized surface exists beyond the standard quiz card.
 - Grading reports module and claim-status performance.
+- Timed quiz mode can run through a selected question set, stop on time expiry,
+  and optionally pause for explanations after submitted answers.
 - Explanations clearly separate answer, reason, and epistemic boundary.
 - The interface is pleasant enough that content authors will want to use it.
 
@@ -469,6 +480,8 @@ What is still missing:
 - a fuller Ledger Reader workspace,
 - source-rich explanation rendering,
 - adaptive explanation rendering with shared-explanation fallback,
+- timed quiz mode with one-question-at-a-time pacing and optional paused
+  explanation review,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks,
 - richer answer/explanation writing, especially for intermediate and advanced questions,
@@ -486,6 +499,8 @@ The next milestone should make the app ready for serious curriculum authoring:
 - refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
 - strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
 - add optional adaptive feedback infrastructure and seed it with model examples for multiple choice, select-all, drag-fill, sequence, matching, and classification activities,
+- add timed quiz mode as a focused assessment profile over the existing
+  question bank and renderer registry,
 - keep structured references and source links visible in reviewed explanations,
 - keep validation rejecting quiz-meta prompts, vague paper-theory stems, unsupported source links, and project-framed paper-theory items,
 - keep the workspace architecture and smoke tests healthy,

@@ -24,6 +24,32 @@ It should do four jobs at once:
 
 The fictional framing is allowed to be fun. The physics boundary is not allowed to be fuzzy.
 
+## Learning Modes
+
+The app should support multiple session profiles over the same question bank.
+
+Study mode is generous and explanation-forward. It can show feedback after each
+answer, support resets, and prioritize learning over pressure.
+
+Drill or qualification mode can delay grading until the workspace is checked and
+can use stricter score reporting.
+
+Timed quiz mode is a focused assessment session. It presents one question at a
+time, keeps a running score, and runs against a selected time limit. The learner
+answers, submits, and advances through the session until the question set or time
+budget is exhausted.
+
+Timed quiz mode should have an optional teaching setting:
+
+- if explanation review is disabled, the session advances quickly and the timer
+  continues to govern the attempt;
+- if explanation review is enabled, the app shows the answer explanation after
+  submission and pauses the timer while the learner reads it;
+- the timer resumes when the learner moves to the next question.
+
+This keeps timed mode honest as an assessment tool while still allowing it to
+serve as a study tool when the learner chooses explanation review.
+
 ## Non-Goals
 
 - Do not present active-rail concepts as established physics unless they are actually established.

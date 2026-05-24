@@ -31,6 +31,34 @@ Useful dimensions:
 
 Not every mode needs every dimension. The report should show the dimensions relevant to the session.
 
+## Timed Quiz Mode
+
+Timed quiz mode is an assessment profile, not a separate curriculum. It uses the
+same question data and grading adapters, but changes pacing and report emphasis.
+
+Core behavior:
+
+- one question is shown at a time;
+- the session has a selected time limit;
+- the app records answered, correct, incorrect, skipped, and timed-out states;
+- the report includes total score, elapsed time, unanswered count, and the same
+  module, claim-status, question-context, and activity-type breakdowns available
+  in ordinary quiz mode.
+
+Timed quiz mode should optionally support explanation review during the attempt.
+When enabled, submitting an answer moves the question into review state, displays
+the shared and adaptive explanation material, and pauses the countdown. The
+timer resumes only when the learner advances to the next question. This makes the
+mode useful for timed practice without charging learners for reading feedback.
+
+When explanation review is disabled, the app can advance immediately or show a
+brief correctness state while the timer continues. End-of-session review should
+still provide explanations and sources.
+
+Scoring should not award extra credit for speed in the first implementation.
+Time pressure is a pacing constraint; accuracy and claim-boundary performance
+remain the main assessment signals.
+
 ## Claim-Boundary Scoring
 
 Claim-boundary scoring is special for this project.
