@@ -224,18 +224,37 @@ Candidate modules:
 
 The content system should maintain a reference library. Each reference should be attached to specific claims, not just listed globally.
 
-Candidate reference anchors to verify and formalize during content authoring:
+Known public literature anchors in the current bank:
 
-- ADM formulation: Arnowitt, Deser, Misner.
-- Standard GR texts: Misner, Thorne, Wheeler; Wald.
-- Traversable wormholes: Morris and Thorne.
-- Lorentzian wormholes and exotic matter analysis: Visser.
-- Warp metric literature: Alcubierre; Natario.
-- Quantum inequality constraints: Ford and Roman; later Fewster-style treatments.
-- QFT in curved spacetime: Birrell and Davies; Wald.
-- Chronology protection: Hawking.
-- Topological censorship: Friedman, Schleich, Witt; related later work.
-- Numerical relativity and ADM/BSSN learning references where useful.
+| Source | Public Access | Supports | Should Not Be Used For |
+| --- | --- | --- | --- |
+| Arnowitt, Deser, and Misner, "The Dynamics of General Relativity" | `https://arxiv.org/abs/gr-qc/0405109` | ADM split, lapse, shift, spatial metric, extrinsic curvature, Hamiltonian and momentum constraints. | Energy-condition taxonomy, quantum inequalities, global hyperbolicity, or active-rail source realization. |
+| Carroll, "Lecture Notes on General Relativity" | `https://arxiv.org/abs/gr-qc/9712019` | Metric notation, curvature, Einstein's equation, geodesics, stress-energy tensor notation, Bianchi/conservation identities. | Primary support for energy-condition taxonomy, quantum inequalities, topological censorship, chronology protection, or global hyperbolicity. |
+| Curiel, "A Primer on Energy Conditions" | `https://arxiv.org/abs/1405.0403` | Definitions, interpretation, limits, and conceptual status of NEC/WEC/other standard energy conditions. | Quantum-inequality bounds, warp-specific source claims, or project source-family status. |
+| Ford and Roman, "Quantum Field Theory Constrains Traversable Wormhole Geometries" | `https://arxiv.org/abs/gr-qc/9510071` | Quantum-inequality constraints on negative energy in exotic spacetime settings. | Generic NEC/WEC definitions, ADM constraints, or evidence that a source model exists. |
+| Alcubierre, "The warp drive: hyper-fast travel within general relativity" | `https://arxiv.org/abs/gr-qc/0009013` | The published Alcubierre metric model and its stress-energy burden. | Engineering buildability, onboard controllability, quantum clearance, or active-rail validation. |
+| Natario, "Warp Drive With Zero Expansion" | `https://arxiv.org/abs/gr-qc/0110086` | Zero-expansion warp-drive construction and its geometric scope. | Claims that zero expansion removes source, energy-condition, or causality review. |
+| Clark, Hiscock, and Larson, "Null Geodesics in the Alcubierre Warp Drive Spacetime" | `https://arxiv.org/abs/gr-qc/9907019` | Null-geodesic reachability and horizon-like access cautions for Alcubierre spacetime. | Stress-energy source construction or physical feasibility proof. |
+| Mueller and Weiskopf, "Detailed study of null and time-like geodesics in the Alcubierre Warp spacetime" | `https://arxiv.org/abs/1107.5650` | Null and timelike geodesic behavior inside the Alcubierre model. | Source realization, controllability, or broad physical feasibility. |
+| Everett and Roman, "A Superluminal Subway: The Krasnikov Tube" | `https://arxiv.org/abs/gr-qc/9702049` | Krasnikov-tube network, chronology, and negative-energy lessons. | General proof that all shortcut networks are safe or impossible. |
+| Shoshany and Snodgrass, "Warp Drives and Closed Timelike Curves" | `https://arxiv.org/abs/2309.10072` | Two-warp-drive CTC construction context and associated weak-energy-condition violation context. | General active-rail qualification or all-purpose chronology doctrine. |
+| Garattini and Zatrimaylov, "On the Wormhole--Warp Drive Correspondence" | `https://arxiv.org/abs/2401.15136` | Warp/wormhole correspondence claims, intrinsic-curvature requirements, and traversability caveats. | Morris-Thorne full-paper replacement for every wormhole result or source realization proof. |
+| Barcelo and Visser, "Scalar Fields, Energy Conditions, and Traversable Wormholes" | `https://arxiv.org/abs/gr-qc/0003025` | Non-minimally coupled scalar-field energy-condition behavior and caveats. | Generic clearance of arbitrary scalar-field source proposals. |
+| Moghtaderi, Hull, Quintin, and Geshnizjani, "How Much NEC Breaking Can the Universe Endure?" | `https://arxiv.org/abs/2503.19955` | Smeared/semilocal NEC-breaking constraints in its stated quantum-motivated setting. | Replacement for classical pointwise energy-condition definitions. |
+| Friedman, Schleich, and Witt, "Topological Censorship" | `https://arxiv.org/abs/gr-qc/9305017` | Global topological-censorship assumptions and shortcut-topology constraints. | Local throat inspection or source construction. |
+| Visser, "The quantum physics of chronology protection" | `https://arxiv.org/abs/gr-qc/0204022` | Open-access chronology-protection review, closed causal curves, and quantum backreaction concerns. | Primary source for global hyperbolicity definitions or ADM constraints. |
+| Minguzzi and Sanchez, "The causal hierarchy of spacetimes" | `https://arxiv.org/abs/gr-qc/0609119` | Causal hierarchy, chronology conditions, causality distinctions, and global causal-structure vocabulary. | Energy conditions, source realization, or ADM dynamics. |
+| Miguel Sanchez, "Recent progress on the notion of global hyperbolicity" | `https://arxiv.org/abs/0712.1933` | Global hyperbolicity, Cauchy hypersurfaces, causal-curve criteria, and predictability framing. | Generic local light-cone notation, energy conditions, or source construction. |
+| Bernal and Sanchez, "On smooth Cauchy hypersurfaces and Geroch's splitting theorem" | `https://arxiv.org/abs/gr-qc/0306108` | Smooth spacelike Cauchy hypersurfaces and splitting structure in globally hyperbolic spacetimes. | ADM constraint equations or energy-condition taxonomy. |
+
+Known public project anchors in the current bank:
+
+| Source | Public Access | Supports | Should Not Be Used For |
+| --- | --- | --- | --- |
+| Active-rail technical disclosure | Public GitHub `active_rail_technical_disclosure.tex` | Current active-rail architecture, component roles, source placement, and claim scope. | Established external theory or proof of physical source realization. |
+| Repository status README | Public GitHub `README.md` | Current bounded project status and explicit non-claims. | Stable theory questions or paper-theory claims. |
+| ADM harness README | Public GitHub `toolkit/adm_harness_cli/README.md` | Software parameter names and harness controls. | General ADM theory beyond the software vocabulary. |
+| Supporting reports | Public GitHub `supporting_reports/*.md` | Current project evidence for service scheduling, source ledgers, reset ladder, source-family status, endpoint status, and V5/V10 diagnostic scope. | Stable general theory, complete matter-action closure, or deployment-independent claims. |
 
 Design rule: a reference entry should say which exact claim it supports. A source should never be used as a decorative bibliography item.
 

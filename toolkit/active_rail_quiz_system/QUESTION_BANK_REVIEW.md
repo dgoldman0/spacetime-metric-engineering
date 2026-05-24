@@ -165,13 +165,20 @@ Current distribution after this pass:
 
 - Learner-facing paper links now point to actual public source locations, not to
   local repo copies.
-- Current paper links are arXiv source pages with full paper access.
+- Current paper links are arXiv source pages with full paper access. The source
+  URLs used in the bank returned public pages during the current review run.
 - The old Hawking chronology DOI card was replaced with Visser's open arXiv
   chronology-protection review because a fully accessible source for the full
   PRD paper was not verified.
 - Generic no-URL textbook cards were replaced with Carroll's open arXiv general
-  relativity notes for metrics, Einstein-equation context, and energy-condition
-  notation.
+  relativity notes for metrics, Einstein-equation context, geodesics,
+  stress-energy tensor notation, and Bianchi/conservation identities. Carroll is
+  no longer treated as the primary anchor for energy-condition taxonomy or
+  global hyperbolicity.
+- Energy-condition definition and interpretation items now use Curiel's open
+  arXiv primer. Quantum-inequality items remain anchored to Ford and Roman.
+- Causal-hierarchy and global-hyperbolicity items now use Minguzzi-Sanchez,
+  Sanchez, and Bernal-Sanchez rather than a generic GR-notes citation.
 - The Morris-Thorne OSTI record is not used as a learner-facing source because
   it is a bibliographic/abstract record rather than verified full paper access.
   Morris-Thorne correspondence content is currently sourced through the
@@ -183,10 +190,14 @@ Current distribution after this pass:
 - Alcubierre: `https://arxiv.org/abs/gr-qc/0009013`
 - Ford-Roman: `https://arxiv.org/abs/gr-qc/9510071`
 - Carroll GR notes: `https://arxiv.org/abs/gr-qc/9712019`
+- Curiel energy conditions primer: `https://arxiv.org/abs/1405.0403`
 - Barcelo-Visser: `https://arxiv.org/abs/gr-qc/0003025`
 - Natario: `https://arxiv.org/abs/gr-qc/0110086`
 - Topological censorship: `https://arxiv.org/abs/gr-qc/9305017`
 - Visser chronology protection: `https://arxiv.org/abs/gr-qc/0204022`
+- Minguzzi-Sanchez causal hierarchy: `https://arxiv.org/abs/gr-qc/0609119`
+- Sanchez global hyperbolicity review: `https://arxiv.org/abs/0712.1933`
+- Bernal-Sanchez smooth Cauchy hypersurfaces: `https://arxiv.org/abs/gr-qc/0306108`
 - Clark-Hiscock-Larson: `https://arxiv.org/abs/gr-qc/9907019`
 - Mueller-Weiskopf: `https://arxiv.org/abs/1107.5650`
 - Everett-Roman: `https://arxiv.org/abs/gr-qc/9702049`

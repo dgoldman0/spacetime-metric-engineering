@@ -103,13 +103,45 @@ const references = {
     url: "https://arxiv.org/abs/gr-qc/0204022",
     supports: "Open-access review context for chronology protection, closed causal curves, and quantum-field backreaction concerns."
   },
+  energyConditionsPrimer: {
+    id: "curiel_energy_conditions_primer",
+    kind: "paper",
+    label: "A Primer on Energy Conditions",
+    citation: "Erik Curiel, arXiv:1405.0403 (2014).",
+    url: "https://arxiv.org/abs/1405.0403",
+    supports: "Definitions, interpretation, limits, and conceptual status of standard pointwise energy conditions."
+  },
+  causalHierarchy: {
+    id: "minguzzi_sanchez_causal_hierarchy",
+    kind: "paper",
+    label: "The causal hierarchy of spacetimes",
+    citation: "E. Minguzzi and M. Sanchez, arXiv:gr-qc/0609119 (2006).",
+    url: "https://arxiv.org/abs/gr-qc/0609119",
+    supports: "Causal hierarchy, chronology, causality conditions, and global causal-structure distinctions."
+  },
+  globalHyperbolicityReview: {
+    id: "sanchez_global_hyperbolicity_review",
+    kind: "paper",
+    label: "Recent progress on the notion of global hyperbolicity",
+    citation: "Miguel Sanchez, arXiv:0712.1933 (2007).",
+    url: "https://arxiv.org/abs/0712.1933",
+    supports: "Global hyperbolicity, Cauchy hypersurfaces, and causal-curve criteria."
+  },
+  cauchyHypersurfaces: {
+    id: "bernal_sanchez_smooth_cauchy",
+    kind: "paper",
+    label: "On smooth Cauchy hypersurfaces and Geroch's splitting theorem",
+    citation: "A. N. Bernal and M. Sanchez, arXiv:gr-qc/0306108 (2003).",
+    url: "https://arxiv.org/abs/gr-qc/0306108",
+    supports: "Existence of smooth spacelike Cauchy hypersurfaces and splitting structure in globally hyperbolic spacetimes."
+  },
   carrollGrNotes: {
     id: "carroll_gr_notes",
     kind: "paper",
     label: "Lecture Notes on General Relativity",
     citation: "Sean M. Carroll, arXiv:gr-qc/9712019.",
     url: "https://arxiv.org/abs/gr-qc/9712019",
-    supports: "Open-access general relativity reference for metrics, Einstein's equation, and energy-condition notation."
+    supports: "Open-access general relativity reference for metric notation, curvature, Einstein's equation, geodesics, stress-energy tensors, and conservation identities; not the primary anchor for energy-condition taxonomy or global hyperbolicity."
   }
 };
 
@@ -522,7 +554,7 @@ export const questionBank = [
       answer: [{ type: "math", latex: "T_{\\mu\\nu}k^\\mu k^\\nu \\ge 0", label: "null energy condition expression" }],
       why: "The NEC is a condition on stress-energy contracted twice with any null vector.",
       boundary: "This is an established constraint. Violating it is a diagnostic pressure, not by itself a full impossibility proof.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
@@ -622,7 +654,7 @@ export const questionBank = [
       answer: "NEC tests null contractions, WEC tests timelike-observer energy density, and the trace is a separate contraction.",
       why: "Energy conditions are not interchangeable slogans. Matching each phrase to the correct contraction keeps later source diagnostics from confusing null exposure, observer energy density, and trace behavior.",
       boundary: "This is established stress-energy vocabulary; it does not by itself decide whether a proposed geometry is physically realizable.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
@@ -1314,7 +1346,7 @@ export const questionBank = [
       answer: "The statuses split established theory, established constraints, published literature, project evidence, and open gates.",
       why: "A strong architecture review keeps these categories separate even when the same design conversation uses all of them.",
       boundary: "The project-state statements are revision-sensitive and should remain explicitly flagged.",
-      references: [references.carrollGrNotes, references.fordRoman, references.natario],
+      references: [references.energyConditionsPrimer, references.fordRoman, references.natario],
       sourceLinks: [sources.projectReadme, sources.sourceFamilyValidation],
       openGate: "Matter-action closure and repeated-service physical realization remain unresolved."
     }
@@ -1506,7 +1538,7 @@ export const questionBank = [
       answer: [{ type: "math", latex: "\\rho", label: "rho" }],
       why: "In the ADM split, the Hamiltonian constraint is the normal-normal projection of Einstein's equation and contains the matter energy density seen by the slice normal.",
       boundary: "This is established ADM constraint structure; a project ledger may use it, but the vocabulary is not invented by the project.",
-      references: [references.adm, references.carrollGrNotes]
+      references: [references.adm]
     }
   },
   {
@@ -1529,7 +1561,7 @@ export const questionBank = [
       answer: "NEC is an established constraint, Alcubierre exotic stress-energy is literature context, Einstein's equation is established theory, and universal exotic-source realization remains open.",
       why: "This classification prevents a common collapse: field equations, energy-condition constraints, speculative metric literature, and matter-realization claims are related but not the same kind of statement.",
       boundary: "This is general-theory claim-boundary training with no dependence on project state or architecture-specific vocabulary.",
-      references: [references.carrollGrNotes, references.alcubierre]
+      references: [references.energyConditionsPrimer, references.alcubierre]
     }
   },
   {
@@ -2447,7 +2479,7 @@ export const questionBank = [
       answer: "Energy conditions are assumption-sensitive diagnostic constraints, not complete physical-source certification.",
       why: "They are powerful because they encode useful positivity assumptions, but different conditions test different contractions and can fail or require reinterpretation in quantum or effective settings.",
       boundary: "This is established constraint reasoning; it must be applied with assumptions visible.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer, references.fordRoman]
     }
   },
   {
@@ -2470,7 +2502,7 @@ export const questionBank = [
       answer: "NEC is null-contraction based; WEC is timelike-observer based.",
       why: "The difference matters because null and timelike probes test different aspects of the stress tensor. Confusing them can make source diagnostics look cleaner than they are.",
       boundary: "This is established energy-condition vocabulary and not tied to one project architecture.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
@@ -2539,7 +2571,7 @@ export const questionBank = [
       answer: "Extrinsic curvature describes embedding and time-change information for the slice.",
       why: "The spatial metric gives intrinsic slice geometry; extrinsic curvature records how that slice sits in the full spacetime and enters the ADM constraints.",
       boundary: "This is established 3+1 geometry, not an operational readiness claim.",
-      references: [references.adm, references.carrollGrNotes]
+      references: [references.adm]
     }
   },
   {
@@ -2588,7 +2620,7 @@ export const questionBank = [
       answer: "Choose data, specify matter projections, check constraints, evolve, monitor.",
       why: "The order keeps initial data and constraint consistency ahead of evolution claims. Monitoring matters because numerical or analytic evolution can expose inconsistency or gauge confusion.",
       boundary: "This is established 3+1 reasoning, not a project-specific service schedule.",
-      references: [references.adm, references.carrollGrNotes]
+      references: [references.adm]
     }
   },
   {
@@ -2611,7 +2643,7 @@ export const questionBank = [
       answer: "Light cones encode local causal directions.",
       why: "They separate directions that can be reached by timelike or lightlike motion from spacelike-separated directions. Their tilt or distortion can reveal important causal behavior.",
       boundary: "This is established causal-structure vocabulary, not a physical-source claim.",
-      references: [references.carrollGrNotes]
+      references: [references.carrollGrNotes, references.causalHierarchy]
     }
   },
   {
@@ -2636,7 +2668,7 @@ export const questionBank = [
       answer: "Horizons require causal-access reasoning, coordinate care, and often global context.",
       why: "Some apparent singularities are coordinate artifacts, but horizons themselves can encode real causal boundaries. Their interpretation requires more than local component inspection or a single coordinate chart.",
       boundary: "This is established causal-structure reasoning and does not decide source realizability or matter viability.",
-      references: [references.carrollGrNotes]
+      references: [references.causalHierarchy, references.globalHyperbolicityReview]
     }
   },
   {
@@ -2659,7 +2691,7 @@ export const questionBank = [
       answer: "Global hyperbolicity is tied to well-posed causal evolution.",
       why: "It is a global causal condition that helps make initial-value reasoning meaningful. It is not a substitute for stress-energy, energy-condition analysis, or source modeling.",
       boundary: "This is established causal-structure theory, not an engineering-readiness, source-realization, or matter-viability claim.",
-      references: [references.carrollGrNotes]
+      references: [references.globalHyperbolicityReview, references.cauchyHypersurfaces]
     }
   },
   {
@@ -2680,7 +2712,7 @@ export const questionBank = [
       answer: "True.",
       why: "That is the basic causal-structure idea: a timelike worldline loops back to the same event, creating chronology problems.",
       boundary: "This is established causal terminology; particular mechanisms or examples require separate analysis.",
-      references: [references.carrollGrNotes, references.chronologyProtection]
+      references: [references.causalHierarchy, references.chronologyProtection]
     }
   },
   {
@@ -2813,7 +2845,7 @@ export const questionBank = [
       answer: "The statements separate field equations, constraints, model status, and unresolved source realization.",
       why: "General theory work often mixes equations, assumptions, and model proposals. Classification keeps a calculation from becoming an overclaim.",
       boundary: "This is general claim-boundary training with no dependence on project state.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.carrollGrNotes, references.energyConditionsPrimer, references.fordRoman]
     }
   },
   {
@@ -2863,7 +2895,7 @@ export const questionBank = [
       answer: "The momentum residual remains a real consistency problem, later preservation matters, and the probe trajectory does not clear it.",
       why: "This requires separating two different ADM constraints from a downstream observable. The Hamiltonian and momentum constraints test different projections of Einstein's equation, and a good-looking trajectory can coexist with inconsistent field data.",
       boundary: "This is established 3+1 constraint reasoning; it does not depend on any project-specific service vocabulary.",
-      references: [references.adm, references.carrollGrNotes]
+      references: [references.adm]
     }
   },
   {
@@ -2888,7 +2920,7 @@ export const questionBank = [
       answer: "The tested directions are insufficient for global NEC or WEC claims, and anisotropic stresses still need tensor review.",
       why: "Energy-condition review must track quantifiers. NEC and WEC are not one-direction or one-observer checks, and anisotropic stresses can matter in the full stress tensor.",
       boundary: "This is established constraint reasoning about stress-energy, not a physical source-realization claim.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
@@ -2913,7 +2945,7 @@ export const questionBank = [
       answer: "Local checks are not enough for global causal, routing, or domain-of-dependence claims.",
       why: "Assumptions have to be tracked across scales: local regularity, absence of CTCs in one patch, global hyperbolicity, horizon-like access, and signal reachability are distinct causal claims that can fail independently.",
       boundary: "This is established causal-structure reasoning and remains independent of any specific engineering architecture.",
-      references: [references.carrollGrNotes, references.chronologyProtection]
+      references: [references.causalHierarchy, references.globalHyperbolicityReview, references.chronologyProtection]
     }
   },
   {
@@ -3118,7 +3150,7 @@ export const questionBank = [
       answer: "Gauge appearance, constraint satisfaction, invariant checks, and physical interpretation must be reviewed separately.",
       why: "A coordinate improvement is not automatically a physical improvement. Lapse and shift affect how the foliation is described, while the Hamiltonian and momentum constraints still test whether the slice data remain compatible with Einstein's equation.",
       boundary: "This is established ADM and gauge reasoning, not an endorsement of any particular numerical gauge or engineering architecture.",
-      references: [references.adm, references.carrollGrNotes]
+      references: [references.adm]
     }
   },
   {
@@ -3143,7 +3175,7 @@ export const questionBank = [
       answer: "Conservation is necessary but not sufficient, and unusual pressure structure still needs physical review.",
       why: "Bianchi consistency can be satisfied while the inferred stress tensor still lacks a microphysical model, equations of motion, stability behavior, or acceptable energy-condition profile. Those are separate burdens.",
       boundary: "This is general GR claim discipline, independent of project-specific source ledgers or service-readiness language.",
-      references: [references.carrollGrNotes]
+      references: [references.carrollGrNotes, references.energyConditionsPrimer]
     }
   },
   {
@@ -3168,7 +3200,7 @@ export const questionBank = [
       answer: "Positive density alone is not enough; pressure combinations, principal directions, and observer quantifiers remain essential.",
       why: "For a type-I tensor, energy-condition review depends on the tensor's pressure structure as well as its density. A large negative principal pressure can violate density-plus-pressure inequalities even when one observer measures positive density.",
       boundary: "This is established pointwise energy-condition reasoning; it does not assert that pointwise conditions are the only relevant quantum or averaged constraints.",
-      references: [references.carrollGrNotes]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
@@ -3193,7 +3225,7 @@ export const questionBank = [
       answer: "The local patch is useful evidence, but global predictability and boundary behavior remain separate questions.",
       why: "Smooth local geometry matters, but it does not settle the causal domain, existence of Cauchy surfaces, boundary behavior, or whether data determine the full region used by the claim.",
       boundary: "This is established global-causality reasoning, not a project-state judgment about any specific simulated patch.",
-      references: [references.carrollGrNotes, references.chronologyProtection]
+      references: [references.globalHyperbolicityReview, references.cauchyHypersurfaces, references.causalHierarchy]
     }
   },
   {
@@ -3342,7 +3374,7 @@ export const questionBank = [
       answer: "Only the sampled null contraction has been checked.",
       why: "The NEC is a quantified condition over null directions and regions. One positive contraction can be useful evidence, but it does not establish the full condition, the WEC, or a physical source model.",
       boundary: "This is established energy-condition scope control, not a statement about any particular architecture.",
-      references: [references.carrollGrNotes, references.fordRoman]
+      references: [references.energyConditionsPrimer]
     }
   },
   {
