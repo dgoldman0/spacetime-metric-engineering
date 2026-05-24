@@ -243,6 +243,8 @@ Define the real theory users need before they can reason well about active-rail 
 
 Likely modules:
 
+- mathematical modeling, units, dimensional analysis, scaling, perturbations,
+  approximation regimes, boundary conditions, and stability;
 - spacetime and metric basics,
 - causal character and packet norm,
 - stress-energy tensor,
@@ -251,8 +253,21 @@ Likely modules:
 - ADM lapse and shift,
 - constraint and evolution language,
 - null contractions,
+- quantum mechanics basics: states, observables, spectra, uncertainty,
+  expectation values, and ground states,
+- quantum vacuum basics: zero-point energy, vacuum fluctuations, mode
+  structure, and the limits of vacuum-energy language,
+- Casimir effect: boundary-conditioned field modes, force/energy differences,
+  experimental status, and why it is not a macroscopic free-energy source,
 - semiclassical stress tensor,
 - backreaction and quantum inequalities.
+- effective field theory: scale separation, cutoff sensitivity, matching, and
+  validity domains,
+- source-model literacy: scalar fields, electromagnetic fields, fluids,
+  anisotropic stress, equations of state, and stability,
+- bounded string-theory context: strings, branes, compactification, moduli, and
+  effective descriptions as background literacy rather than source-option
+  endorsement.
 
 ### Published Warp And Wormhole Context
 
@@ -352,15 +367,18 @@ This phase should start small and grow deliberately. The first target should be 
 
 Populate in this order:
 
-1. Core active-rail vocabulary and chronology.
-2. Claim-status classification questions.
-3. Established foundations needed by the active-rail modules.
+1. Established foundations across the full theory spine, not just GR.
+2. Claim-status classification questions that separate general theory, paper
+   theory, project application, and project state.
+3. Core active-rail vocabulary and chronology.
 4. Source-ledger and plant-diagnostic questions.
 5. Published warp/wormhole context.
 6. Design-review scenarios.
 7. Advanced synthesis questions.
 
-This order lets the system become useful early while still building toward a serious curriculum.
+This order keeps the system useful while preventing the bank from becoming
+project-heavy before learners have the broader theory needed to judge source,
+vacuum, semiclassical, and high-energy claims.
 
 ### Initial Content Targets
 
@@ -369,7 +387,10 @@ A good first release should have:
 - 150 to 250 total questions,
 - at least 30 claim-classification questions,
 - at least 40 non-ordinary activities across drag-fill, sequencing, matching, and classification,
-- at least 70 established general-theory/foundation questions,
+- at least 90 established general-theory/foundation questions, distributed
+  across GR/differential geometry, quantum mechanics, QFT/semiclassical gravity,
+  Casimir/vacuum physics, effective field theory, source-model literacy, and
+  bounded string-theory context,
 - at least 40 paper-theory questions drawn only from fully accessible public papers,
 - at least 35 active-rail architecture questions,
 - at least 25 design-review questions,
@@ -484,6 +505,9 @@ What is still missing:
   explanation review,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks,
+- much broader established-foundation coverage outside GR, especially quantum
+  mechanics, quantum vacuum, Casimir effect, QFT, effective field theory,
+  source-model literacy, and bounded string-theory context,
 - richer answer/explanation writing, especially for intermediate and advanced questions,
 - better mode separation between study, drill, qualification, and project-internal review.
 
@@ -496,6 +520,8 @@ reviewed batches rather than treating the current seed bank as complete.
 The next milestone should make the app ready for serious curriculum authoring:
 
 - add numerous vetted batches across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, matching, and design review,
+- prioritize a broad general-theory expansion before adding many more
+  project-state or paper-specific items,
 - refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
 - strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
 - add optional adaptive feedback infrastructure and seed it with model examples for multiple choice, select-all, drag-fill, sequence, matching, and classification activities,

@@ -172,15 +172,30 @@ Purpose: give users the real theory needed to understand what active-rail claims
 
 Candidate modules:
 
+- Mathematical modeling: units, dimensions, scaling, approximation regimes, stability, perturbations, and boundary conditions.
 - Spacetime, metrics, signatures, and causal character.
 - Stress-energy tensor and observer projections.
 - Energy conditions: null, weak, dominant, strong.
 - ADM split: lapse, shift, spatial metric, extrinsic curvature.
 - Constraint equations and evolution language.
 - Null contractions and source-channel diagnostics.
+- Quantum mechanics basics: states, observables, uncertainty, spectra, ground states, and expectation values.
+- Quantum vacuum basics: zero-point energy, vacuum fluctuations, mode structure, and why vacuum language is not a free-energy claim.
+- Casimir-effect basics: boundary-conditioned vacuum modes, force/energy differences, experimental status, and limits of source interpretation.
 - Basics of QFT in curved spacetime.
 - Semiclassical stress tensor, RSET, and backreaction.
+- Effective field theory: scale separation, cutoff sensitivity, matching, and why low-energy effective success is not unrestricted UV completion.
+- Source-model literacy: scalar fields, electromagnetic fields, fluids, anisotropic stress, equations of state, and stability.
+- String-theory context needed for source literacy: strings, branes, compactification, moduli, and effective descriptions, framed as background theory rather than an active-rail source solution.
 - Causality protection, horizons, and chronology concerns.
+
+Established foundations should not be treated as "mostly GR." The first release
+needs a durable cross-domain spine: differential geometry and GR, quantum
+mechanics, QFT and semiclassical gravity, effective field theory, source-model
+basics, and carefully bounded string-theory context. These questions should be
+mostly general theory, not paper trivia. Papers and lecture notes are source
+anchors for concepts; they should not bias the bank into asking mainly "which
+paper said this?"
 
 ### Track B: Published Warp And Wormhole Context
 
@@ -256,6 +271,12 @@ Known public literature anchors in the current bank:
 | --- | --- | --- | --- |
 | Arnowitt, Deser, and Misner, "The Dynamics of General Relativity" | `https://arxiv.org/abs/gr-qc/0405109` | ADM split, lapse, shift, spatial metric, extrinsic curvature, Hamiltonian and momentum constraints. | Energy-condition taxonomy, quantum inequalities, global hyperbolicity, or active-rail source realization. |
 | Carroll, "Lecture Notes on General Relativity" | `https://arxiv.org/abs/gr-qc/9712019` | Metric notation, curvature, Einstein's equation, geodesics, stress-energy tensor notation, Bianchi/conservation identities. | Primary support for energy-condition taxonomy, quantum inequalities, topological censorship, chronology protection, or global hyperbolicity. |
+| OpenStax, "University Physics Volume 3" | `https://openstax.org/details/books/university-physics-volume-3` | Introductory quantum mechanics, spectra, expectation values, uncertainty, photons, matter waves, and modern-physics foundations. | Advanced QFT, curved-spacetime RSET, quantum inequalities, or string-theory source claims. |
+| Tong, "Lectures on Quantum Field Theory" | `https://www.damtp.cam.ac.uk/user/tong/qft.html` | Field quantization, vacuum modes, particles as excitations, renormalization basics, and introductory Casimir-effect framing. | Engineering source construction, GR constraints, or active-rail validation. |
+| Milton, "The Casimir Effect: Physical Manifestations of Zero Point Energy" | `https://arxiv.org/abs/hep-th/9901011` | Casimir-effect interpretation, zero-point-energy framing, boundary-conditioned vacuum effects, and limits of naive free-energy readings. | General proof that vacuum energy is an extractable source or that Casimir systems solve exotic-matter needs. |
+| Burgess, "Introduction to Effective Field Theory" | `https://arxiv.org/abs/hep-th/0701053` | Scale separation, low-energy effective descriptions, matching, cutoff dependence, and EFT discipline. | Specific active-rail source realization or proof that any effective source has a UV completion. |
+| Polchinski, "TASI Lectures on D-Branes" | `https://arxiv.org/abs/hep-th/9611050` | D-branes as open-string boundary-condition objects, worldvolume degrees of freedom, and source/coupling context in string theory. | Claims that branes provide a practical macroscopic source option. |
+| Douglas and Kachru, "Flux Compactification" | `https://arxiv.org/abs/hep-th/0610102` | Flux compactification, moduli, string vacua, and why high-energy source ideas are embedded in strong consistency conditions. | Introductory QM/QFT basics or active-rail feasibility. |
 | Curiel, "A Primer on Energy Conditions" | `https://arxiv.org/abs/1405.0403` | Definitions, interpretation, limits, and conceptual status of NEC/WEC/other standard energy conditions. | Quantum-inequality bounds, warp-specific source claims, or project source-family status. |
 | Ford and Roman, "Quantum Field Theory Constrains Traversable Wormhole Geometries" | `https://arxiv.org/abs/gr-qc/9510071` | Quantum-inequality constraints on negative energy in exotic spacetime settings. | Generic NEC/WEC definitions, ADM constraints, or evidence that a source model exists. |
 | Alcubierre, "The warp drive: hyper-fast travel within general relativity" | `https://arxiv.org/abs/gr-qc/0009013` | The published Alcubierre metric model and its stress-energy burden. | Engineering buildability, onboard controllability, quantum clearance, or active-rail validation. |
@@ -878,8 +899,10 @@ flagged layer because they can change as the project matures.
 The bank should grow in reviewed passes:
 
 - foundation pass: ADM, metric interpretation, stress-energy, energy
-  conditions, causal structure, geodesics, curvature, constraints, and basic GR
-  vocabulary;
+  conditions, causal structure, geodesics, curvature, constraints, basic GR
+  vocabulary, quantum mechanics, quantum vacuum, Casimir effect, QFT,
+  semiclassical gravity, effective field theory, source-model literacy, and
+  bounded string-theory context;
 - paper-theory pass: accessible literature on Alcubierre, Natario,
   Ford-Roman, Clark-Hiscock-Larson, Mueller-Weiskopf, Everett-Roman,
   Shoshany-Snodgrass, Garattini-Zatrimaylov, Barcelo-Visser, topological

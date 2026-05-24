@@ -172,6 +172,7 @@ Mastery should require repeated evidence. One correct answer should not make a t
 
 Mastery can be tracked by:
 
+- broad foundation domain,
 - module,
 - claim status,
 - question context,
@@ -179,6 +180,14 @@ Mastery can be tracked by:
 - symbol family,
 - project component,
 - theory dependency.
+
+Foundation-domain mastery should be visible because the curriculum depends on
+more than GR vocabulary. Useful durable domains include GR/differential
+geometry, quantum mechanics, QFT and semiclassical gravity, quantum vacuum and
+Casimir physics, effective field theory, source-model literacy, and bounded
+string-theory context. A learner can be strong on ADM language while still weak
+on vacuum-energy interpretation or EFT scale discipline; the report should make
+that visible when the question bank contains enough items to support it.
 
 ## Reports
 
