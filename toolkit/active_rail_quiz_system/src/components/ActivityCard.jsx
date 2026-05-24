@@ -2,10 +2,10 @@ import { claimLabels, contextLabels, getQuestionContext, typeLabels } from "../d
 import { ExplanationPanel } from "./ExplanationPanel.jsx";
 import { registry } from "../renderers/registry.jsx";
 
-export function ActivityCard({ question, index, response, reviewed, mode, showExplanation = true, onResponse, onReview }) {
+export function ActivityCard({ question, index, response, reviewed, lockedResult, mode, showExplanation = true, onResponse, onReview }) {
   const entry = registry[question.type];
   const Renderer = entry.Component;
-  const result = reviewed ? entry.grade(question, response) : null;
+  const result = reviewed ? lockedResult ?? entry.grade(question, response) : null;
   const resultClass = result ? (result.correct ? "correct" : result.earned > 0 ? "partial" : "incorrect") : "";
   const context = getQuestionContext(question);
 

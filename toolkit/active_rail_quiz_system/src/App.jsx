@@ -76,6 +76,7 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   const [current, setCurrent] = useState(() => buildWorkspaceQuestions(initialWorkspace, initialFilters));
   const [responses, setResponses] = useState(() => initialResponses(current));
   const [reviewed, setReviewed] = useState(new Set());
+  const [lockedResults, setLockedResults] = useState({});
   const [skipped, setSkipped] = useState(new Set());
   const [timedIndex, setTimedIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(() => minutesToSeconds(initialFilters.timedMinutes));
@@ -109,15 +110,16 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
       .filter((question) => reviewed.has(question.id))
       .map((question) => ({
         question,
-        result: registry[question.type].grade(question, responses[question.id])
+        result: lockedResults[question.id] || registry[question.type].grade(question, responses[question.id])
       }));
-  }, [current, responses, reviewed]);
+  }, [current, lockedResults, responses, reviewed]);
 
   function rebuild(nextWorkspace = workspace, nextFilters = filters) {
     const next = buildWorkspaceQuestions(nextWorkspace, nextFilters);
     setCurrent(next);
     setResponses(initialResponses(next));
     setReviewed(new Set());
+    setLockedResults({});
     setSkipped(new Set());
     setTimedIndex(0);
     setTimeLeft(minutesToSeconds(nextFilters.timedMinutes));
@@ -138,6 +140,7 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   function reset() {
     setResponses(initialResponses(current));
     setReviewed(new Set());
+    setLockedResults({});
     setSkipped(new Set());
     setTimedIndex(0);
     setTimeLeft(minutesToSeconds(filters.timedMinutes));
@@ -167,6 +170,13 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
   function submitTimedCurrent() {
     const question = current[timedIndex];
     if (!question || timedEnded) return;
+    setLockedResults((previous) => {
+      if (previous[question.id]) return previous;
+      return {
+        ...previous,
+        [question.id]: registry[question.type].grade(question, responses[question.id])
+      };
+    });
     setReviewed((previous) => new Set([...previous, question.id]));
     setSkipped((previous) => {
       const next = new Set(previous);
@@ -262,6 +272,7 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
             questions={current}
             responses={responses}
             reviewed={reviewed}
+            lockedResults={lockedResults}
             mode={filters.mode}
             timedIndex={timedIndex}
             timeLeft={timeLeft}
@@ -377,6 +388,7 @@ function WorkspaceBody({
   questions,
   responses,
   reviewed,
+  lockedResults,
   mode,
   timedIndex,
   timeLeft,
@@ -400,6 +412,7 @@ function WorkspaceBody({
         questions={questions}
         responses={responses}
         reviewed={reviewed}
+        lockedResults={lockedResults}
         timedIndex={timedIndex}
         timeLeft={timeLeft}
         timedEnded={timedEnded}
@@ -432,6 +445,7 @@ function TimedWorkspace({
   questions,
   responses,
   reviewed,
+  lockedResults,
   timedIndex,
   timeLeft,
   timedEnded,
@@ -472,6 +486,7 @@ function TimedWorkspace({
         index={timedIndex}
         response={responses[question.id]}
         reviewed={reviewedCurrent}
+        lockedResult={lockedResults[question.id]}
         mode="timed"
         showExplanation={timedExplanations}
         onResponse={(nextResponse) => onResponse(question.id, nextResponse)}
