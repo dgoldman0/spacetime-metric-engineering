@@ -9,7 +9,7 @@ treated as question-quality review.
 
 ## Current State
 
-- Accepted items: 125.
+- Accepted items: 128.
 - The bank is now a stronger seed, but still not a full curriculum. The first
   release target remains 150 to 250 approved items.
 - Established general theory is now treated as the durable core layer. The
@@ -93,6 +93,51 @@ the failure mode that prompted this audit: hard topic, easy question. The new
 items emphasize scenario review, assumption tracking, source-realization
 layering, gauge-vs-constraint separation, global-vs-local causal reasoning,
 paper-result transfer, and calibrated evidence sufficiency.
+
+Subsequent review found two bank-level quality failures that are now explicit
+rubric blockers:
+
+- Learner-facing explanations must explain the material, not the author's reason
+  for assigning a difficulty level. Phrases such as "this is advanced because"
+  or "the advanced move is" belong in review notes, not in the answer panel.
+- Select-all items must not all have the same answer shape. A serious bank needs
+  4 to 6 choices as appropriate, with 1, 2, 3, or more correct answers depending
+  on the concept.
+
+## 2026-05-24 Explanation And Select-All Audit
+
+This pass reviewed every learner-facing question prompt, answer, and explanation
+in the 128-item bank. The review focused on two concrete failures: explanations
+that described authoring choices instead of the material, and select-all
+questions that taught a predictable answer pattern.
+
+Actions taken:
+
+- Rewrote explanations that said or implied "this is advanced because..." so
+  they now explain the physics, evidence boundary, or paper result directly.
+- Removed learner-facing authoring-room phrases such as "this item" and
+  "learner" from explanations and boundaries.
+- Added a validator guard against difficulty/rubric language in explanations.
+- Varied select-all choice counts and answer counts where the material justified
+  it, including 5- and 6-choice evidence-review items.
+- Added three one-correct select-all items where the point is scope discipline:
+  one checked contraction, one supported paper claim, or one supported observable.
+- Added a validator guard that prevents the multi-select bank from collapsing
+  back to one answer shape.
+
+Current select-all shape distribution:
+
+- 21 items: 5 choices, 3 correct.
+- 14 items: 6 choices, 3 correct.
+- 4 items: 5 choices, 2 correct.
+- 2 items: 5 choices, 1 correct.
+- 1 item: 4 choices, 1 correct.
+- 1 item: 6 choices, 4 correct.
+- 1 item: 4 choices, 2 correct.
+
+Remaining curriculum concern: future passes should continue varying answer shape
+where the subject matter naturally supports it. Do not force answer-count variety
+at the cost of truth.
 
 Manual changes in this pass:
 

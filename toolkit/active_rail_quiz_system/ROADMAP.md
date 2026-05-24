@@ -449,7 +449,7 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
-- The seed bank has 125 validated questions after the first major expansion pass and advanced follow-up pass, and is still explicitly below the required first-release curriculum scale.
+- The seed bank has 128 validated questions after the first major expansion pass, advanced follow-up pass, and explanation/select-all audit, and is still explicitly below the required first-release curriculum scale.
 - Established general theory has been promoted as the durable core layer; project-state and revision-sensitive content should remain a smaller flagged layer.
 - Difficulty calibration has had manual correction and follow-up passes: the bank now has a stronger advanced slice, but it still needs more reviewed depth before it should be called a full curriculum.
 - Count controls now support small drills, medium reviews, large reviews, and all matching questions.

@@ -671,11 +671,13 @@ A question is acceptable only if it passes all of these checks:
 - **Source support:** established and literature claims have reference anchors; project claims have project-source or boundary anchors.
 - **Paper anchor:** paper-theory stems identify the specific paper being tested; they do not rely on vague phrases such as "the study."
 - **Explanation quality:** the explanation teaches why the answer is right and why tempting wrong answers fail.
+- **Material-facing explanation:** explanations teach the subject matter, not why the author chose a difficulty label, question type, or rubric score.
 - **Explanation depth:** explanation length and detail match difficulty; advanced items need enough reasoning detail to teach the boundary, not just reveal the answer.
 - **Boundary clarity:** project-specific, speculative, unresolved, or revision-sensitive content is explicitly marked.
 - **No meta leakage:** the item does not ask about the quiz system, authoring policy, scoring policy, or labeling policy.
 - **Interaction fit:** the question type matches the task; symbolic items use rendered tokens rather than typed LaTeX.
 - **Distractor quality:** wrong choices are plausible misconceptions, not jokes or throwaways.
+- **Select-all shape:** multi-select items do not follow a predictable fixed pattern. The number of choices and correct answers should vary with the concept being tested.
 - **Reviewability:** references, tags, and misconception targets are specific enough for later audit.
 
 ### Difficulty Calibration
@@ -705,6 +707,28 @@ move required. Examples:
 - separate consistency, source demand, physical realization, and operational
   qualification in one scenario.
 
+That named move belongs in author notes or review logs, not in the
+learner-facing explanation. A learner explanation should say something like
+"For a type-I stress tensor, the NEC depends on density-plus-pressure
+combinations" rather than "This is advanced because it uses a type-I tensor."
+
+### Select-All Calibration
+
+Select-all questions should not teach learners that there are always two right
+answers and two wrong answers. Use the shape that fits the content:
+
+- 4 choices with 1, 2, or 3 correct answers for compact checks;
+- 5 choices when the learner needs to separate a primary principle from several
+  nearby misconceptions;
+- 6 choices when the task asks for a richer evidence review, source audit, or
+  multi-constraint synthesis;
+- 4 or more correct answers only when the item is explicitly about collecting a
+  set of required conditions.
+
+The correct-answer count should never be padded merely to create variety, but a
+bank where every select-all item has the same answer shape fails review because
+it lets test-taking pattern recognition replace subject understanding.
+
 ### Authoring Scorecard
 
 Score each draft question before it is accepted into the learner-facing bank.
@@ -717,8 +741,10 @@ Score each draft question before it is accepted into the learner-facing bank.
 | Source support | Unsupported established/literature/project claim. | Sources exist but are generic or weakly tied. | Sources directly support the claim being tested. |
 | Paper anchor | Paper-theory item does not identify the paper or hides behind "the study." | Paper is named but incompletely anchored. | Stem gives author/title/year or an equivalent citation anchor. |
 | Explanation quality | Merely reveals the answer or repeats the prompt. | Gives a reason but little teaching value. | Teaches answer, reasoning, boundary, and common trap. |
+| Material-facing explanation | Explains authoring choices such as difficulty or rubric status. | Mostly teaches material but includes authoring-room phrasing. | Teaches the material only; no difficulty-label or rubric justification appears. |
 | Explanation depth | Too short for the assigned difficulty. | Adequate but thin, especially for intermediate or advanced items. | Depth matches difficulty: concise for core, implication-focused for intermediate, reasoning-rich for advanced. |
 | Distractor quality | Throwaway, absurd, or ambiguous options. | Some plausible distractors but uneven. | Distractors map to real misconceptions or overclaims. |
+| Select-all shape | Repeats the same number of options and correct answers by habit. | Shape varies but sometimes looks padded. | Choice count and answer count match the learning task and vary across the bank. |
 | Interaction fit | Wrong activity type or asks for awkward typing. | Usable but not ideal for the skill. | Activity type supports the learning task naturally. |
 | Content scope | Meta-policy, scoring, or authoring content appears in the learner-facing item. | Content is relevant but too broad or underspecified. | Content belongs in the curriculum and stays inside the intended module. |
 
@@ -734,7 +760,7 @@ Any score of `0` in claim boundary, source support, explanation depth, or no-met
 ## Curriculum Bank Scale
 
 The learner-facing bank should be a rich curriculum bank, not a small demo set.
-The current 125-item bank is a stronger seed after the first expansion and
+The current 128-item bank is a stronger seed after the first expansion and
 advanced-question passes, but it is still below the intended curriculum scale.
 A serious first release should
 target roughly 150 to 250 approved items, with enough spread that filters still

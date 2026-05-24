@@ -2,6 +2,8 @@ import { questionBank } from "../src/data/questionBank.js";
 import { getQuestionContext } from "../src/data/taxonomy.js";
 
 const ids = new Set();
+const multiSelectShapes = new Set();
+const multiSelectChoiceCounts = new Set();
 const allowedTypes = new Set(["mc", "multi", "tf", "drag_fill", "sequence", "matching", "claim_classification"]);
 const allowedDifficulties = new Set(["core", "intermediate", "advanced"]);
 const allowedContexts = new Set(["general_theory", "paper_theory", "project_application", "project_state"]);
@@ -19,6 +21,17 @@ const bannedMetaPatterns = [
   /\bscoring policy\b/i,
   /\blabeling policy\b/i,
   /\bauthoring policy\b/i
+];
+const bannedExplanationMetaPatterns = [
+  /\badvanced\b/i,
+  /\bintermediate\b/i,
+  /\bcore\b/i,
+  /\bthis item\b/i,
+  /\blearner\b/i,
+  /\bthis is advanced\b/i,
+  /\badvanced (move|point|task|transfer|reasoning|distinction)\b/i,
+  /\bdifficulty label\b/i,
+  /\brubric\b/i
 ];
 
 for (const question of questionBank) {
@@ -49,10 +62,15 @@ for (const question of questionBank) {
   validateSources(question);
   validateContext(question);
   validateExplanationDepth(question);
+  validateExplanationIsMaterialFacing(question);
 
   if (["mc", "multi", "tf"].includes(question.type)) {
     const choices = new Set(question.choices.map((choice) => choice.id));
     question.answer.forEach((answer) => assert(choices.has(answer), `bad answer ${answer} on ${question.id}`));
+    if (question.type === "multi") {
+      multiSelectShapes.add(`${question.answer.length}/${question.choices.length - question.answer.length}/${question.choices.length}`);
+      multiSelectChoiceCounts.add(question.choices.length);
+    }
   }
 
   if (question.type === "drag_fill") {
@@ -76,6 +94,11 @@ for (const question of questionBank) {
     const statuses = new Set(question.statuses);
     question.statements.forEach((statement) => assert(statuses.has(statement.answer), `bad status ${statement.answer} on ${question.id}`));
   }
+}
+
+if (multiSelectShapes.size > 0) {
+  assert(multiSelectShapes.size >= 3, "multi-select bank is too patterned; vary correct-answer counts and choice counts");
+  assert([...multiSelectChoiceCounts].some((count) => count > 4), "multi-select bank needs some richer 5- or 6-choice items");
 }
 
 console.log(`validated ${questionBank.length} questions`);
@@ -126,6 +149,13 @@ function validateExplanationDepth(question) {
   const boundaryWords = wordCount(question.explanation.boundary);
   assert(whyWords >= minWhyWords[question.difficulty], `explanation why is too thin for ${question.difficulty} item ${question.id}`);
   assert(boundaryWords >= minBoundaryWords[question.difficulty], `explanation boundary is too thin for ${question.difficulty} item ${question.id}`);
+}
+
+function validateExplanationIsMaterialFacing(question) {
+  const text = richTextToPlain(question.explanation);
+  bannedExplanationMetaPatterns.forEach((pattern) => {
+    assert(!pattern.test(text), `explanation contains authoring-room difficulty/rubric language on ${question.id}`);
+  });
 }
 
 function wordCount(value) {
