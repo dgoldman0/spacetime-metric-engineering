@@ -341,11 +341,11 @@ export const questionBank = [
     prompt: "Which statements are appropriate uses of energy-condition checks in relativistic design analysis?",
     choices: [
       { id: "diagnose", content: "They diagnose constrained stress-energy channels in a proposed geometry." },
-      { id: "boundary", content: "They certify that a mathematical source demand has a completed physical matter realization." },
+      { id: "boundary", content: "They can make a demanded stress tensor look compatible with a selected classical assumption, but only within that assumption's scope." },
       { id: "assumptions", content: "They make positivity, averaging, and observer assumptions explicit during review." },
-      { id: "prove_build", content: "They prove a service plant can be built if a packet trace arrives." },
-      { id: "ignore", content: "They can be ignored once a service chronology is named." },
-      { id: "single_condition", content: "Passing one named condition automatically clears every other source concern." }
+      { id: "prove_build", content: "They are enough to promote a demanded stress tensor to a viable source when no stability problem is visible." },
+      { id: "ignore", content: "They can be deferred until after the causal chronology is accepted, because chronology review is the stricter gate." },
+      { id: "single_condition", content: "Passing one pointwise condition usually makes the remaining energy-condition checks redundant." }
     ],
     answer: ["diagnose", "assumptions"],
     explanation: {
@@ -358,19 +358,19 @@ export const questionBank = [
             supported: "Energy conditions are useful diagnostics because they expose what stress-energy behavior a proposed geometry demands."
           },
           boundary: {
-            unsupported: "Certification is too strong. A mathematical source demand can satisfy or violate a condition without becoming a completed physical matter realization."
+            unsupported: "This is close to a useful diagnostic, but it overpromotes scope. Compatibility with one selected assumption is not completed physical realization."
           },
           assumptions: {
             supported: "The observer, null direction, averaging interval, and positivity assumptions are part of what the check actually means."
           },
           prove_build: {
-            unsupported: "Buildability requires source realization, control, stability, and operational evidence beyond an energy-condition check."
+            unsupported: "Even when stability concerns are not obvious, a viable source still needs dynamics, realization, and operational evidence beyond the inequality check."
           },
           ignore: {
-            unsupported: "A named chronology does not remove stress-energy constraints; it gives another surface that must be reviewed."
+            unsupported: "Chronology review and source-condition review answer different questions. Passing one gate does not justify deferring the other indefinitely."
           },
           single_condition: {
-            unsupported: "Passing one condition does not clear the full source problem. Different conditions test different contractions, observers, or averaging assumptions."
+            unsupported: "Different energy conditions test different observers, contractions, and averaging assumptions, so one pointwise pass does not make the others redundant."
           }
         }
       },
@@ -602,9 +602,9 @@ export const questionBank = [
       { id: "arrival_not_enough", content: "Final packet arrival is not enough to qualify the service." },
       { id: "need_channels", content: "The missing plant channels should be reviewed before acceptance." },
       { id: "partial_packet", content: "The clean arrival can still be recorded as partial packet-facing evidence." },
-      { id: "ignore_reset", content: "Reset residue can be ignored after one successful arrival." },
-      { id: "source_done", content: "A clean packet trace proves source closure." },
-      { id: "endpoint_inferred", content: "Endpoint rematch quality can be inferred from final position alone." }
+      { id: "ignore_reset", content: "Reset residue can be moved to a later review if the claim is limited to a single first-use pass." },
+      { id: "source_done", content: "The clean packet trace is strong indirect evidence that source closure is likely adequate." },
+      { id: "endpoint_inferred", content: "Endpoint rematch quality can be treated as provisionally acceptable if final position and timing are both within tolerance." }
     ],
     answer: ["arrival_not_enough", "need_channels", "partial_packet"],
     explanation: {
@@ -623,13 +623,13 @@ export const questionBank = [
             supported: "The clean arrival should still be credited as partial packet-facing evidence rather than discarded."
           },
           ignore_reset: {
-            unsupported: "Reset residue is a reuse-readiness issue. One successful arrival does not remove the reset-history burden."
+            unsupported: "A first-use claim can narrow the reset burden, but a service qualification that includes reuse or readiness still needs reset evidence."
           },
           source_done: {
-            unsupported: "A packet trace can be clean while source closure remains unresolved."
+            unsupported: "The packet trace is positive evidence, but source closure needs source-channel evidence rather than inference from packet behavior alone."
           },
           endpoint_inferred: {
-            unsupported: "Endpoint rematch quality needs its own evidence. Final position alone does not show how support was transferred or released."
+            unsupported: "Position and timing help, but endpoint rematch is a channel claim about transfer/release quality and needs its own evidence."
           }
         }
       },
@@ -811,9 +811,9 @@ export const questionBank = [
     prompt: "What makes the ADM Hamiltonian constraint useful for source diagnostics?",
     choices: [
       { id: "geometry_source_relation", content: "It ties intrinsic/extrinsic slice geometry to the energy density seen by the normal observer." },
-      { id: "unique_solution", content: "It uniquely determines the global spacetime from one scalar equation." },
-      { id: "no_matter", content: "It removes the need to discuss stress-energy." },
-      { id: "coordinate_only", content: "It is only a coordinate convention with no relation to matter content." }
+      { id: "unique_solution", content: "It can be treated as the main source check once the momentum constraint is separately small." },
+      { id: "no_matter", content: "It fixes the energy-density projection but leaves the detailed matter model for later." },
+      { id: "coordinate_only", content: "It mostly tracks the chosen slicing, so its matter interpretation is secondary to evolution diagnostics." }
     ],
     answer: ["geometry_source_relation"],
     explanation: {
@@ -826,13 +826,13 @@ export const questionBank = [
             supported: "The Hamiltonian constraint links intrinsic and extrinsic slice geometry to the normal-observer energy-density projection."
           },
           unique_solution: {
-            unsupported: "One scalar constraint does not uniquely determine the full global spacetime."
+            unsupported: "The Hamiltonian constraint is one essential source projection, but it does not absorb the momentum constraint or all later evolution checks."
           },
           no_matter: {
-            unsupported: "The constraint is valuable precisely because it connects geometry to matter projection."
+            unsupported: "The energy-density projection is not the same as a detailed matter model; the boundary between demand and realization remains."
           },
           coordinate_only: {
-            unsupported: "The Hamiltonian constraint is not merely a coordinate convention; it is part of the constraint system."
+            unsupported: "Slicing matters in ADM, but the Hamiltonian constraint still carries a real geometry-to-source projection."
           }
         }
       },
@@ -850,9 +850,9 @@ export const questionBank = [
     prompt: "What does extrinsic curvature measure in the ADM setting?",
     choices: [
       { id: "embedding_change", content: "How the spatial slice is embedded in spacetime, equivalently how its spatial metric changes along the normal direction." },
-      { id: "intrinsic_only", content: "Only the intrinsic two-dimensional curvature of an angular sphere." },
-      { id: "matter_choice", content: "Which microscopic matter action realizes a prescribed metric." },
-      { id: "global_topology", content: "Whether spacetime has nontrivial global topology." }
+      { id: "intrinsic_only", content: "The curvature of the spatial metric alone, before considering how the slice changes in time." },
+      { id: "matter_choice", content: "The part of the initial data that selects which matter action can realize the geometry." },
+      { id: "global_topology", content: "The global embedding class of the whole spacetime rather than the local embedding of one slice." }
     ],
     answer: ["embedding_change"],
     explanation: {
@@ -865,13 +865,13 @@ export const questionBank = [
             supported: "Extrinsic curvature records how the spatial metric changes as the slice is embedded and evolved through spacetime."
           },
           intrinsic_only: {
-            unsupported: "Intrinsic curvature lives inside the slice. Extrinsic curvature is about the slice's embedding and normal-direction change."
+            unsupported: "Intrinsic curvature lives inside the slice. Extrinsic curvature records how the slice sits in spacetime and changes along the normal direction."
           },
           matter_choice: {
-            unsupported: "Extrinsic curvature can enter source constraints, but it does not choose a microscopic matter action."
+            unsupported: "Extrinsic curvature enters the geometric initial data and constraints, but it does not select a microscopic matter action."
           },
           global_topology: {
-            unsupported: "Global topology is a separate spacetime question, not the local ADM role of extrinsic curvature."
+            unsupported: "The local embedding behavior of a slice is not the same as classifying the full spacetime topology."
           }
         }
       },
@@ -1028,9 +1028,9 @@ export const questionBank = [
     prompt: "What does the ADM momentum constraint primarily relate?",
     choices: [
       { id: "momentum_projection", content: "Spatial variation of extrinsic curvature to the matter momentum density seen by the slice normal." },
-      { id: "unique_global", content: "A unique global spacetime topology to one local lapse value." },
-      { id: "vacuum_only", content: "Only vacuum curvature, with no matter projection involved." },
-      { id: "quantum_state", content: "The renormalized quantum state to the observer's detector response." }
+      { id: "unique_global", content: "The spatial gauge choice to the shift-gradient part of the evolution." },
+      { id: "vacuum_only", content: "Extrinsic-curvature balance in vacuum-like regions, with matter momentum treated as a separate source check." },
+      { id: "quantum_state", content: "The semiclassical state choice to the renormalized momentum flux measured by an observer." }
     ],
     answer: ["momentum_projection"],
     explanation: {
@@ -1043,13 +1043,13 @@ export const questionBank = [
             supported: "The momentum constraint ties spatial derivatives of extrinsic-curvature combinations to matter momentum density."
           },
           unique_global: {
-            unsupported: "The momentum constraint is not a rule that selects one global topology from a local lapse."
+            unsupported: "Gauge and shift behavior are related to the 3+1 description, but the momentum constraint is not merely a gauge-choice relation."
           },
           vacuum_only: {
-            unsupported: "The constraint includes a matter momentum projection; it is not only a vacuum statement."
+            unsupported: "The vacuum limit is a useful special case, but the constraint's source-diagnostic role includes the matter momentum projection."
           },
           quantum_state: {
-            unsupported: "Detector response and renormalized quantum state are separate semiclassical questions, not the ADM momentum constraint."
+            unsupported: "Semiclassical momentum flux can be relevant elsewhere, but the ADM momentum constraint is the classical slice constraint relating geometry to momentum density."
           }
         }
       },
@@ -1067,9 +1067,9 @@ export const questionBank = [
     prompt: "In Ford and Roman's 1996 paper \"Quantum Field Theory Constrains Traversable Wormhole Geometries,\" what is the safest interpretation of the quantum inequality constraints?",
     choices: [
       { id: "bound_negative_energy", content: "They bound the magnitude, duration, and distribution of negative-energy effects in relevant quantum-field settings." },
-      { id: "ban_all", content: "They prove that no negative energy density can ever occur in quantum field theory." },
-      { id: "construct_drive", content: "They provide a recipe for building a warp bubble if the geometry is smooth." },
-      { id: "ignore_geometry", content: "They make geometric source ledgers irrelevant." }
+      { id: "ban_all", content: "They make sustained macroscopic negative energy so restricted that it can be treated as absent for design purposes." },
+      { id: "construct_drive", content: "They identify the sampling scales a geometry would need to respect, which is close to a constructive source recipe." },
+      { id: "ignore_geometry", content: "They let the source review focus on quantum bounds rather than the detailed geometric stress ledger." }
     ],
     answer: ["bound_negative_energy"],
     explanation: {
@@ -1082,13 +1082,13 @@ export const questionBank = [
             supported: "The constraint is quantitative: magnitude, duration, sampling, and distribution are tied together."
           },
           ban_all: {
-            unsupported: "Quantum inequalities do not say negative energy never occurs; they constrain how it can be sampled in the relevant settings."
+            unsupported: "The constraints are severe, but the paper's lesson is quantitative limitation rather than treating all negative energy as absent."
           },
           construct_drive: {
-            unsupported: "A bound on negative energy is not a recipe for constructing or controlling a warp geometry."
+            unsupported: "Sampling-scale restrictions help review a candidate, but a bound is not a constructive source model."
           },
           ignore_geometry: {
-            unsupported: "Geometric source ledgers remain relevant because the inequality constrains candidate sources rather than replacing source accounting."
+            unsupported: "Quantum bounds and geometric source accounting work together; the inequality does not replace the stress ledger."
           }
         }
       },
@@ -1111,7 +1111,7 @@ export const questionBank = [
       { id: "coupling_specific", content: "The source-sector lesson depends on the coupling and physical regime, not merely on naming a scalar field." },
       { id: "formal_not_final", content: "A formal solution branch still needs physical-regime and semiclassical-trust review." },
       { id: "minimal_generic", content: "It shows minimally coupled scalar fields generically support macroscopic traversable wormholes without additional assumptions." },
-      { id: "scaling_clearance", content: "It makes semiclassical trust and field-scale questions irrelevant once a formal solution branch exists." },
+      { id: "scaling_clearance", content: "Once a formal non-minimal scalar branch is found, semiclassical trust is mainly a regime-selection issue rather than a central caveat." },
       { id: "field_name", content: "The phrase scalar field is by itself enough to identify a usable macroscopic material source." }
     ],
     answer: ["scalar_violation", "trans_planckian", "coupling_specific", "formal_not_final"],
@@ -1137,7 +1137,7 @@ export const questionBank = [
             unsupported: "The result is not a generic minimally coupled scalar-field solution for macroscopic traversable wormholes."
           },
           scaling_clearance: {
-            unsupported: "Field scale and semiclassical trust are central caveats, not optional details."
+            unsupported: "Field scale and semiclassical trust stay central to the physical interpretation; they are not merely later regime-selection details."
           },
           field_name: {
             unsupported: "A field name does not identify a usable material source without coupling, regime, and physical interpretation."
@@ -1158,9 +1158,9 @@ export const questionBank = [
     prompt: "In Natario's 2002 paper \"Warp Drive With Zero Expansion,\" what does zero expansion mean?",
     choices: [
       { id: "congruence_property", content: "It describes a property of the chosen flow congruence, not the absence of curvature or source demands." },
-      { id: "no_energy", content: "It means the spacetime needs no stress-energy." },
-      { id: "flat_everywhere", content: "It means the metric is flat everywhere." },
-      { id: "complete_engineering", content: "It converts the warp model into an engineered propulsion system." }
+      { id: "no_energy", content: "It suggests the expansion part of the source burden is removed, so remaining stress components are secondary." },
+      { id: "flat_everywhere", content: "It means the chosen flow is locally volume-preserving, so curvature effects can be treated as coordinate effects." },
+      { id: "complete_engineering", content: "It supplies a cleaner warp kinematics that is close to an operational control prescription." }
     ],
     answer: ["congruence_property"],
     explanation: {
@@ -1173,13 +1173,13 @@ export const questionBank = [
             supported: "Zero expansion characterizes the flow congruence; it does not erase curvature or source demand."
           },
           no_energy: {
-            unsupported: "Zero expansion does not mean zero stress-energy requirement."
+            unsupported: "Zero expansion removes one kinematic feature; it does not remove the remaining stress-energy review."
           },
           flat_everywhere: {
-            unsupported: "A zero-expansion flow can still live in a curved spacetime."
+            unsupported: "Volume-preserving flow is not the same as flat spacetime or pure coordinate behavior."
           },
           complete_engineering: {
-            unsupported: "Changing the warp-flow kinematics is not the same as supplying a controllable engineered system."
+            unsupported: "Cleaner kinematics are still metric-model information, not an operational control system."
           }
         }
       },
@@ -1197,9 +1197,9 @@ export const questionBank = [
     prompt: "What is the disciplined use of Friedman, Schleich, and Witt's 1993 topological censorship result in traversable-wormhole discussions?",
     choices: [
       { id: "conditional_constraint", content: "It is a conditional theorem showing that, under suitable assumptions, nontrivial topology is hidden from causal observers." },
-      { id: "local_escape", content: "It can be evaded merely by drawing a locally smooth throat cross-section." },
-      { id: "source_substitute", content: "It replaces stress-energy and predictability analysis with a purely topological label." },
-      { id: "assumption_free", content: "It applies without checking energy, causality, asymptotic, or predictability assumptions." }
+      { id: "local_escape", content: "A smooth local throat cross-section can keep the discussion inside differential geometry unless a global causal route is specified." },
+      { id: "source_substitute", content: "It makes causal accessibility the decisive issue, with stress-energy details mostly entering only through theorem assumptions." },
+      { id: "assumption_free", content: "It can be used as a broad warning before all energy, asymptotic, and predictability assumptions are fully checked." }
     ],
     answer: ["conditional_constraint"],
     explanation: {
@@ -1212,13 +1212,13 @@ export const questionBank = [
             supported: "This keeps the theorem attached to its energy, causality, asymptotic, and predictability assumptions."
           },
           local_escape: {
-            unsupported: "A locally smooth throat drawing does not by itself evade a global theorem."
+            unsupported: "Local throat smoothness is relevant geometry, but theorem applicability turns on global causal routes and assumptions."
           },
           source_substitute: {
-            unsupported: "Topological censorship does not replace stress-energy or predictability analysis; those assumptions are part of its use."
+            unsupported: "Causal accessibility is central, but stress-energy and predictability assumptions are active parts of the theorem."
           },
           assumption_free: {
-            unsupported: "The theorem is not assumption-free, so the applicability conditions have to be checked."
+            unsupported: "The theorem can guide suspicion, but a disciplined application still checks its assumptions."
           }
         }
       },
@@ -1270,9 +1270,9 @@ export const questionBank = [
       { id: "metric_not_engine", content: "A metric ansatz is not the same thing as a controlled physical engine." },
       { id: "source_demand", content: "The stress-energy demand and energy-condition behavior remain central." },
       { id: "control_open", content: "Control and causal-access questions remain separate from writing the line element." },
-      { id: "automatic_control", content: "If the line element is smooth, a passenger can necessarily create, steer, and stop the bubble." },
-      { id: "established_transport", content: "It is established transportation physics because it is a solution ansatz in GR." },
-      { id: "source_later", content: "Stress-energy requirements can be postponed indefinitely once the passenger-region metric looks mild." }
+      { id: "automatic_control", content: "A smooth line element can make the passenger region look operationally simple, so control can be treated after source review." },
+      { id: "established_transport", content: "Because it is an exact GR ansatz, it gives stronger evidence than a qualitative propulsion sketch." },
+      { id: "source_later", content: "If the passenger-region metric is mild, source review can focus mainly on the wall after control questions are settled." }
     ],
     answer: ["metric_not_engine", "source_demand", "control_open"],
     explanation: {
@@ -1291,13 +1291,13 @@ export const questionBank = [
             supported: "Causal access and control remain separate questions after the metric is written down."
           },
           automatic_control: {
-            unsupported: "Smoothness of the line element does not imply passenger control over creation, steering, or stopping."
+            unsupported: "A smooth line element can make the model readable, but it does not supply causal control over creation, steering, or stopping."
           },
           established_transport: {
-            unsupported: "A speculative GR ansatz is not established transportation physics."
+            unsupported: "An exact ansatz is stronger than a sketch, but it is still not established transportation physics."
           },
           source_later: {
-            unsupported: "Stress-energy requirements are not optional bookkeeping; they are central to interpreting the model."
+            unsupported: "A mild passenger region does not postpone source review; the wall and full geometry carry central stress-energy burdens."
           }
         }
       },
@@ -1316,9 +1316,9 @@ export const questionBank = [
     prompt: "In Clark, Hiscock, and Larson's 1999 paper \"Null Geodesics in the Alcubierre Warp Drive Spacetime,\" what causal feature appears for effective superluminal motion?",
     choices: [
       { id: "causal_access", content: "Horizon-like conical regions appear, limiting which signals can reach or be sent from the bubble." },
-      { id: "complete_control", content: "A passenger at the bubble center can create, steer, and stop the bubble on demand." },
-      { id: "no_quantum", content: "Null-geodesic behavior removes quantum-vacuum concerns." },
-      { id: "flat_optics", content: "All photon paths remain indistinguishable from flat-space optics." }
+      { id: "complete_control", content: "The central worldline remains easy to parametrize, so control limits are mainly an engineering timing problem." },
+      { id: "no_quantum", content: "Because the analysis is classical null geodesics, it brackets quantum-vacuum questions and weakens their relevance to causal access." },
+      { id: "flat_optics", content: "The central region can look locally mild, so optical differences are mostly boundary effects rather than access limits." }
     ],
     answer: ["causal_access"],
     explanation: {
@@ -1331,13 +1331,13 @@ export const questionBank = [
             supported: "The null-geodesic analysis reveals horizon-like access restrictions for the superluminal case."
           },
           complete_control: {
-            unsupported: "The paper's causal-access result cuts against a simple central-passenger-control story."
+            unsupported: "A well-parametrized central worldline does not show that the passenger can causally reach or control every relevant region."
           },
           no_quantum: {
-            unsupported: "Null-geodesic analysis does not remove quantum-vacuum or stress-energy concerns."
+            unsupported: "Classical null-geodesic analysis brackets quantum questions; it does not weaken the causal-access result or remove source concerns."
           },
           flat_optics: {
-            unsupported: "The point of the study is that photon paths and access structure are not simply flat-space optics."
+            unsupported: "Local mildness near the center does not remove horizon-like access limits in the full superluminal geometry."
           }
         }
       },
@@ -1355,9 +1355,9 @@ export const questionBank = [
     prompt: "What does Mueller and Weiskopf's 2012 paper \"Detailed Study of Null and Time-Like Geodesics in the Alcubierre Warp Spacetime\" emphasize?",
     choices: [
       { id: "playground", content: "It is a rich setting for null and timelike geodesic/lensing calculations, while remaining far from physical feasibility because of exotic matter." },
-      { id: "build", content: "Treat it as a construction plan for a physically feasible warp engine." },
-      { id: "ignore_sources", content: "Use it to avoid source and energy-condition analysis." },
-      { id: "no_curvature", content: "Use it to show the Alcubierre spacetime is optically flat." }
+      { id: "build", content: "Use its observer-facing signatures as indirect evidence that the modeled geometry has a physically coherent generation path." },
+      { id: "ignore_sources", content: "Use geodesic regularity as evidence that source and energy-condition problems are independent of observable path analysis." },
+      { id: "no_curvature", content: "Read the smoothness of plotted paths as evidence that the optical behavior is close to flat-space propagation." }
     ],
     answer: ["playground"],
     explanation: {
@@ -1370,13 +1370,13 @@ export const questionBank = [
             supported: "This captures both sides: rich geodesic and lensing analysis inside the model, plus feasibility caveats."
           },
           build: {
-            unsupported: "A geodesic study is not a construction plan or source-realization proof."
+            unsupported: "Observer-facing signatures are valuable model diagnostics, but they do not show how the metric is generated."
           },
           ignore_sources: {
-            unsupported: "Path analysis does not remove the need for stress-energy and energy-condition analysis."
+            unsupported: "Path regularity and source viability are separate, but source and energy-condition burdens remain attached to the same proposed spacetime."
           },
           no_curvature: {
-            unsupported: "The study is about nontrivial geodesic behavior in the model, not optical flatness."
+            unsupported: "Smooth-looking paths can still encode nontrivial curvature and lensing behavior."
           }
         }
       },
@@ -1398,9 +1398,9 @@ export const questionBank = [
       { id: "negative_energy", content: "The construction still carries severe negative-energy and thin-layer concerns." },
       { id: "composition", content: "Network composition matters; one shortcut in isolation is not the whole causal analysis." },
       { id: "return_path", content: "A return route or paired arrangement can change the chronology analysis relative to one isolated leg." },
-      { id: "no_ctc", content: "Any number of superluminal tubes is chronology-safe once each tube is individually one-way." },
-      { id: "source_solution", content: "The paper supplies a practical ordinary-matter source for constructing the tube." },
-      { id: "energy_optional", content: "Chronology analysis makes negative-energy constraints optional." }
+      { id: "no_ctc", content: "The one-way character of each individual tube is the dominant fact, so paired-network chronology risk is secondary." },
+      { id: "source_solution", content: "The analysis identifies the stress profile sharply enough that source construction is mostly an implementation problem." },
+      { id: "energy_optional", content: "Once the chronology question is framed as a network problem, the negative-energy burden can be reviewed separately rather than jointly." }
     ],
     answer: ["two_tubes", "negative_energy", "composition", "return_path"],
     explanation: {
@@ -1422,13 +1422,13 @@ export const questionBank = [
             supported: "A return path or paired arrangement can supply the causal structure needed for time-machine behavior."
           },
           no_ctc: {
-            unsupported: "Individual one-way behavior does not guarantee chronology safety for composed networks."
+            unsupported: "Individual one-way behavior is not enough; paired or return-path arrangements can change the chronology question."
           },
           source_solution: {
-            unsupported: "The paper does not supply a practical ordinary-matter construction source."
+            unsupported: "Identifying the stress profile is not the same as supplying a practical ordinary-matter source."
           },
           energy_optional: {
-            unsupported: "Chronology analysis does not make the exotic-energy burden optional."
+            unsupported: "Chronology and negative-energy burden stay coupled in review because the shortcut geometry still needs a source."
           }
         }
       },
@@ -1446,9 +1446,9 @@ export const questionBank = [
     prompt: "What does Shoshany and Snodgrass's 2024 paper \"Warp Drives and Closed Timelike Curves\" demonstrate?",
     choices: [
       { id: "composition", content: "It gives a concrete GR model where composed warp-drive geometries yield a closed timelike geodesic." },
-      { id: "safe", content: "It proves all warp-drive networks are chronology-safe when each leg is smooth." },
-      { id: "matter", content: "It derives ordinary positive-energy matter that realizes the drives." },
-      { id: "coordinates", content: "It shows closed timelike curves are only a coordinate-label issue." }
+      { id: "safe", content: "It suggests single-leg smoothness is a weak but useful indicator of network chronology safety." },
+      { id: "matter", content: "It treats the causal construction as the main issue, leaving matter-realization details outside the central result." },
+      { id: "coordinates", content: "It frames the closed-curve issue as sensitive to global arrangement and frame choice rather than local stress structure." }
     ],
     answer: ["composition"],
     explanation: {
@@ -1461,13 +1461,13 @@ export const questionBank = [
             supported: "The result depends on composing warp-drive geometries into a causal structure with a closed timelike geodesic."
           },
           safe: {
-            unsupported: "The paper is a warning about composed chronology behavior, not a proof of network safety."
+            unsupported: "Smoothness of individual legs does not settle the composed network's global causal behavior."
           },
           matter: {
-            unsupported: "It does not derive an ordinary positive-energy matter model for building the drives."
+            unsupported: "Matter realization is not supplied by the causal construction; it remains a separate physical burden."
           },
           coordinates: {
-            unsupported: "Closed timelike curves are not dismissed as coordinate labels in this construction."
+            unsupported: "Global arrangement and frame choice matter, but the closed curve is not dismissed as a mere coordinate label."
           }
         }
       },
@@ -1487,9 +1487,9 @@ export const questionBank = [
     choices: [
       { id: "curvature", content: "The correspondence requires allowing nonzero intrinsic spatial curvature in the warp-drive metric." },
       { id: "traversability_caveat", content: "The paper reports a traversability caveat rather than a simple equivalence between comfortable wormholes and warp drives." },
-      { id: "flat_shift", content: "Any flat-spatial-slice shift profile is automatically a Morris-Thorne wormhole." },
-      { id: "realization", content: "The correspondence proves a physical matter source for a traversable warp-drive carrier." },
-      { id: "name_equivalence", content: "Changing the name from wormhole to warp drive is enough to preserve all traversability properties." }
+      { id: "flat_shift", content: "A flat-spatial-slice shift profile captures the relevant correspondence once the coordinate presentation is chosen carefully." },
+      { id: "realization", content: "The correspondence narrows the source problem enough that physical realization can be treated as the next engineering step." },
+      { id: "name_equivalence", content: "The correspondence transfers the main traversability intuition unless additional curvature caveats are introduced." }
     ],
     answer: ["curvature", "traversability_caveat"],
     explanation: {
@@ -1505,13 +1505,13 @@ export const questionBank = [
             supported: "The traversability caveat is part of the careful reading; the correspondence is not a simple comfort-preserving equivalence."
           },
           flat_shift: {
-            unsupported: "A flat-spatial-slice shift profile is not automatically a Morris-Thorne wormhole."
+            unsupported: "The correspondence depends on allowing nonzero intrinsic spatial curvature, so flat-slice shift intuition is incomplete."
           },
           realization: {
-            unsupported: "The correspondence does not prove a physical matter source."
+            unsupported: "A correspondence between geometrical forms does not by itself solve the source-realization problem."
           },
           name_equivalence: {
-            unsupported: "Changing labels does not preserve all traversability properties."
+            unsupported: "The traversability caveat prevents a simple transfer of intuition from one label to the other."
           }
         }
       },
@@ -1529,9 +1529,9 @@ export const questionBank = [
     prompt: "What does the 2025 paper \"How Much NEC Breaking Can the Universe Endure?\" add beyond a pointwise NEC check?",
     choices: [
       { id: "semilocal_bound", content: "It treats accumulated negative energy along smeared null probes as a semilocal constraint." },
-      { id: "pointwise_only", content: "It says only the pointwise sign of one stress-tensor component matters." },
-      { id: "construction", content: "It supplies a physical source construction for any prescribed negative-energy profile." },
-      { id: "irrelevant", content: "It says pointwise energy-condition checks are the only relevant tests." }
+      { id: "pointwise_only", content: "It keeps pointwise NEC sign as the primary criterion, with smearing mainly used to regularize the calculation." },
+      { id: "construction", content: "It identifies how much NEC breaking can be tolerated, which is close to specifying an allowable source profile." },
+      { id: "irrelevant", content: "It makes smeared bounds the stronger review layer, so pointwise checks mainly act as screening diagnostics." }
     ],
     answer: ["semilocal_bound"],
     explanation: {
@@ -1544,13 +1544,13 @@ export const questionBank = [
             supported: "The smeared NEC concerns accumulated exposure along null probes, so it goes beyond one pointwise sign check."
           },
           pointwise_only: {
-            unsupported: "The point is precisely that finite-window accumulation matters."
+            unsupported: "The smeared condition is not just a regularized pointwise sign test; finite-window accumulation is central."
           },
           construction: {
-            unsupported: "A bound on NEC breaking does not construct a physical negative-energy source."
+            unsupported: "Bounding tolerable NEC breaking is still a constraint result, not a source construction."
           },
           irrelevant: {
-            unsupported: "The result broadens review beyond pointwise checks rather than reducing review to them."
+            unsupported: "Smeared bounds add a review layer; pointwise checks remain useful but incomplete local evidence."
           }
         }
       },
@@ -1570,8 +1570,8 @@ export const questionBank = [
     choices: [
       { id: "metric_ansatz", content: "The paper gives a spacetime metric that contracts space ahead of a region and expands it behind." },
       { id: "negative_energy", content: "The stress-energy required by the metric includes exotic energy-condition behavior." },
-      { id: "ordinary_matter", content: "The paper derives an ordinary-matter engine that creates the geometry." },
-      { id: "no_causality", content: "The paper removes all causality and control concerns for superluminal travel." }
+      { id: "ordinary_matter", content: "The paper's stress-energy calculation is detailed enough to identify the source sector once an exotic medium is allowed." },
+      { id: "no_causality", content: "The metric construction makes the central worldline well behaved, so control and causality concerns are secondary to source concerns." }
     ],
     answer: ["metric_ansatz", "negative_energy"],
     explanation: {
@@ -1587,10 +1587,10 @@ export const questionBank = [
             supported: "The stress-energy implied by the metric includes exotic energy-condition behavior."
           },
           ordinary_matter: {
-            unsupported: "The paper does not derive an ordinary-matter engine for producing the metric."
+            unsupported: "The stress-energy demand is identified, but a physical source sector is not supplied."
           },
           no_causality: {
-            unsupported: "The metric does not remove causality, control, or source-realization concerns."
+            unsupported: "A mild central worldline does not settle causal-access and control behavior of the full superluminal geometry."
           }
         }
       },
@@ -1608,9 +1608,9 @@ export const questionBank = [
     prompt: "In Ford and Roman's 1996 paper \"Quantum Field Theory Constrains Traversable Wormhole Geometries,\" why does sampling time matter?",
     choices: [
       { id: "duration_bound", content: "Quantum inequalities constrain how much negative energy can be seen over a sampling interval, tying magnitude to duration and scale." },
-      { id: "coordinate_choice", content: "Sampling time is only a coordinate convention and has no physical role." },
-      { id: "permanent_negative", content: "Long-lived macroscopic negative energy can be made arbitrarily large if it is smooth." },
-      { id: "construction", content: "The sampling bound supplies a recipe for building a traversable wormhole." }
+      { id: "coordinate_choice", content: "Sampling time mainly reflects the chosen observer frame, so the invariant burden is carried by the local energy density." },
+      { id: "permanent_negative", content: "Long-lived negative energy can be acceptable when its density is low enough compared with the geometry's scale." },
+      { id: "construction", content: "The sampling bound gives target scales that could be used as the starting point for a source design." }
     ],
     answer: ["duration_bound"],
     explanation: {
@@ -1623,13 +1623,13 @@ export const questionBank = [
             supported: "The sampling interval is part of the bound, so magnitude, duration, and scale have to be read together."
           },
           coordinate_choice: {
-            unsupported: "Sampling time is part of the physical inequality setup, not merely a coordinate label."
+            unsupported: "Sampling time is part of the physical inequality setup; it is not reduced to a coordinate convention."
           },
           permanent_negative: {
-            unsupported: "The result strongly constrains sustained macroscopic negative energy under its assumptions."
+            unsupported: "The bound ties density, duration, and scale; low density alone does not automatically clear a long-lived macroscopic profile."
           },
           construction: {
-            unsupported: "The bound restricts candidate sources; it does not build a traversable wormhole."
+            unsupported: "Target scales from a bound guide review, but they do not provide a source construction."
           }
         }
       },
@@ -1681,8 +1681,8 @@ export const questionBank = [
       { id: "ctg", content: "Two warp-drive geometries can be arranged so that a closed timelike geodesic exists." },
       { id: "wec_violation", content: "The construction remains tied to weak-energy-condition violation." },
       { id: "composition", content: "The chronology conclusion depends on composing geometries, not merely on inspecting one isolated smooth region." },
-      { id: "ordinary_matter", content: "The construction shows ordinary positive-energy matter is enough to build the drives." },
-      { id: "single_leg_safe", content: "It proves every individual superluminal leg is globally chronology-safe in all networks." }
+      { id: "ordinary_matter", content: "Because the paper foregrounds causal composition, the matter burden can be treated as separate from the chronology conclusion." },
+      { id: "single_leg_safe", content: "A single isolated leg may look causally controlled, so network safety can be inferred from leg-by-leg checks." }
     ],
     answer: ["ctg", "wec_violation", "composition"],
     explanation: {
@@ -1701,10 +1701,10 @@ export const questionBank = [
             supported: "The chronology result comes from composing geometries, not from a single isolated smooth patch."
           },
           ordinary_matter: {
-            unsupported: "The paper does not supply ordinary positive-energy matter for building the drives."
+            unsupported: "The causal composition result does not separate away the energy-condition burden."
           },
           single_leg_safe: {
-            unsupported: "A statement about one leg does not settle every composed network's global chronology."
+            unsupported: "Leg-by-leg checks do not settle the global chronology of a composed network."
           }
         }
       },
@@ -1722,9 +1722,9 @@ export const questionBank = [
     prompt: "In Garattini and Zatrimaylov's 2024 paper \"On the Wormhole--Warp Drive Correspondence,\" what extra ingredient is central to relating Morris-Thorne wormholes to warp-drive form?",
     choices: [
       { id: "intrinsic_curvature", content: "Nonzero intrinsic spatial curvature in the warp-drive metric." },
-      { id: "flat_space", content: "Strictly flat spatial slices everywhere." },
-      { id: "ordinary_fuel", content: "A specified ordinary-matter fuel model." },
-      { id: "no_shift", content: "Removing all shift-like structure from the metric." }
+      { id: "flat_space", content: "A flat-slice warp form supplemented by a careful coordinate transformation." },
+      { id: "ordinary_fuel", content: "A source model that preserves the correspondence while keeping the wormhole throat static." },
+      { id: "no_shift", content: "Eliminating the shift term so the remaining spatial curvature carries the correspondence." }
     ],
     answer: ["intrinsic_curvature"],
     explanation: {
@@ -1737,13 +1737,13 @@ export const questionBank = [
             supported: "The correspondence depends on allowing nonzero intrinsic spatial curvature in the warp-drive metric."
           },
           flat_space: {
-            unsupported: "Strictly flat spatial slices miss the extra ingredient emphasized by the correspondence."
+            unsupported: "The paper's correspondence needs nonzero intrinsic spatial curvature; flat-slice form is not the extra ingredient."
           },
           ordinary_fuel: {
-            unsupported: "The paper's correspondence is geometric, not an ordinary-matter fuel model."
+            unsupported: "The extra ingredient is geometric, not a specified source model."
           },
           no_shift: {
-            unsupported: "Removing all shift-like structure is not the central ingredient in the correspondence."
+            unsupported: "The correspondence is not obtained by simply eliminating shift-like structure."
           }
         }
       },
@@ -1761,9 +1761,9 @@ export const questionBank = [
     prompt: "In Visser's 2002 review \"The Quantum Physics of Chronology Protection,\" why are chronology horizons physically worrisome?",
     choices: [
       { id: "backreaction", content: "They are places where quantum-field stress and backreaction concerns may become central." },
-      { id: "recipe", content: "They provide a stable recipe for constructing closed timelike curves." },
-      { id: "coordinate", content: "They show chronology violation is always only a coordinate artifact." },
-      { id: "irrelevant", content: "They remove the need for quantum-field analysis." }
+      { id: "recipe", content: "They identify where a classical time-machine construction would need stabilization." },
+      { id: "coordinate", content: "They show why distinguishing coordinates from causal structure is the main horizon issue." },
+      { id: "irrelevant", content: "Once the classical horizon is located, the main quantum-field question is how strongly it backreacts rather than whether chronology is already suspect." }
     ],
     answer: ["backreaction"],
     explanation: {
@@ -1776,13 +1776,13 @@ export const questionBank = [
             supported: "Chronology horizons are physically serious because quantum stress and backreaction may destabilize the classical picture."
           },
           recipe: {
-            unsupported: "The review treats chronology horizons as constraint surfaces, not stable construction recipes."
+            unsupported: "The concern is not just stabilization of a classical design; quantum stress and backreaction are part of the horizon problem."
           },
           coordinate: {
-            unsupported: "Chronology violation is not dismissed as always being a coordinate artifact."
+            unsupported: "Coordinate care matters, but the physical worry is quantum stress near chronology-horizon formation."
           },
           irrelevant: {
-            unsupported: "Quantum-field analysis is central to chronology-protection concerns."
+            unsupported: "The classical horizon identifies the concern; quantum-field stress and backreaction are not merely a later severity estimate."
           }
         }
       },
@@ -1840,9 +1840,9 @@ export const questionBank = [
     prompt: "A demanded-source ledger has been computed for a prescribed geometry. What is the next claim boundary?",
     choices: [
       { id: "demand_not_realization", content: "The ledger identifies source demand; it does not yet supply a physical source sector." },
-      { id: "realized", content: "The geometry is physically realized because the ledger has entries." },
-      { id: "irrelevant", content: "The ledger makes energy conditions irrelevant." },
-      { id: "global", content: "The ledger proves global causal safety." }
+      { id: "realized", content: "The ledger is strong evidence for realization if its channels match the intended source roles." },
+      { id: "irrelevant", content: "The ledger is the primary source-accounting object, so energy conditions can be treated as secondary diagnostics." },
+      { id: "global", content: "The ledger constrains the source side tightly enough that global causal review can be separated into a later stage." }
     ],
     answer: ["demand_not_realization"],
     explanation: {
@@ -1855,13 +1855,13 @@ export const questionBank = [
             supported: "The ledger identifies the demanded stress-energy; realization needs a source sector that can supply it."
           },
           realized: {
-            unsupported: "Entries in a ledger are not matter dynamics or a physical construction."
+            unsupported: "Matched source-demand channels are useful accounting, but they are not matter dynamics or physical construction."
           },
           irrelevant: {
-            unsupported: "Energy-condition checks remain relevant to interpreting the demanded stress-energy."
+            unsupported: "The ledger and energy conditions answer different source questions; neither replaces the other."
           },
           global: {
-            unsupported: "A source ledger is not a global causal-structure proof."
+            unsupported: "Tight source accounting does not remove the need for global causal-structure review."
           }
         }
       },
@@ -2062,9 +2062,9 @@ export const questionBank = [
       { id: "bundle", content: "Treat finite-bundle behavior as a diagnostic surface, not only one ideal ray." },
       { id: "scope", content: "Keep the paper result as a causal-access caution, not as validation of source closure." },
       { id: "controller_region", content: "Ask whether the claimed controller can affect the region whose behavior it is supposed to manage." },
-      { id: "central_ray_only", content: "Treat one clean central ray as sufficient evidence for all branch access and finite-bundle behavior." },
-      { id: "arrival_clears", content: "Treat clean packet arrival as enough to close causal reachability questions for the carrier wall." },
-      { id: "stress_source", content: "Use the null-geodesic paper as a substitute for stress-energy source analysis." }
+      { id: "central_ray_only", content: "Use a clean central ray as the primary branch-access proxy when side-ray spread is small in the sampled region." },
+      { id: "arrival_clears", content: "Treat clean packet arrival as reachability evidence for that run if no wall-facing anomaly is observed." },
+      { id: "stress_source", content: "Use the null-geodesic paper to localize where source analysis must support wall control." }
     ],
     answer: ["reachability", "bundle", "scope", "controller_region"],
     explanation: {
@@ -2086,13 +2086,13 @@ export const questionBank = [
             supported: "A controller claim must show the controller can affect the region it is supposed to manage."
           },
           central_ray_only: {
-            unsupported: "One clean central ray does not settle branch access or finite-bundle behavior."
+            unsupported: "A clean central ray is useful evidence, but it does not settle branch access or finite-bundle behavior."
           },
           arrival_clears: {
-            unsupported: "Packet arrival does not close causal reachability for carrier-wall control."
+            unsupported: "Packet arrival is run evidence; wall reachability and control still need their own causal-access review."
           },
           stress_source: {
-            unsupported: "Null-geodesic analysis cannot substitute for stress-energy source analysis."
+            unsupported: "Null-geodesic analysis can localize access concerns, but it does not supply the stress-energy source."
           }
         }
       },
@@ -2256,9 +2256,9 @@ export const questionBank = [
     prompt: "A current service-rating ladder appears to report that the V10 case fails live packet source safety. What is the safest interpretation?",
     choices: [
       { id: "boundary", content: "It appears to mark a high-service boundary for the current package and could motivate additional causal/source-margin work." },
-      { id: "impossible", content: "It proves every possible high-service active-rail design is impossible." },
-      { id: "solved", content: "It proves V10 is ready because failed diagnostics are only bookkeeping." },
-      { id: "general_theorem", content: "It is an established theorem of GR independent of the project configuration." }
+      { id: "impossible", content: "It is strong evidence against this high-service strategy unless a substantially different source margin is introduced." },
+      { id: "solved", content: "It can still support readiness if the failed diagnostic is outside the intended operating envelope." },
+      { id: "general_theorem", content: "It should be interpreted as a general design constraint once the same failure appears in multiple package reports." }
     ],
     answer: ["boundary"],
     explanation: {
@@ -2271,13 +2271,13 @@ export const questionBank = [
             supported: "This keeps the V10 result tied to the current package and treats it as a review boundary rather than a universal theorem."
           },
           impossible: {
-            unsupported: "A current-package failure does not prove every possible high-service active-rail design impossible."
+            unsupported: "The failure is important evidence about the current package, but it does not rule out substantially different strategies."
           },
           solved: {
-            unsupported: "A failed diagnostic cannot be promoted to readiness by calling it bookkeeping."
+            unsupported: "A failed live packet source-safety diagnostic cannot support readiness unless the claim is explicitly narrowed away from that envelope."
           },
           general_theorem: {
-            unsupported: "The service-rating ladder is project-state evidence, not a GR theorem independent of configuration."
+            unsupported: "Repeated project reports can strengthen a project pattern, but they do not become a configuration-independent GR theorem."
           }
         }
       },
@@ -2300,9 +2300,9 @@ export const questionBank = [
       { id: "fixed_background", content: "It could be evidence at prescribed-metric or fixed-background effective-source level." },
       { id: "watches", content: "Thin margins and watch conditions should remain visible in the claim." },
       { id: "revision_sensitive", content: "The claim should remain revision-sensitive because it depends on the current package and reports." },
-      { id: "matter_action", content: "It proves a complete matter action for the service medium." },
-      { id: "broad_family", content: "It proves broad service-family viability across V2.5, V5, and V10." },
-      { id: "hide_watches", content: "Watch conditions should be removed from the public claim once a package appears to pass." }
+      { id: "matter_action", content: "It supports matter-action closure if the source-family evidence already matches the required stress channels." },
+      { id: "broad_family", content: "It gives evidence for broad service-family viability if V5 is the representative midrange package." },
+      { id: "hide_watches", content: "Watch conditions can be moved into internal notes if the public claim is limited to packet-safe fixed-background behavior." }
     ],
     answer: ["fixed_background", "watches", "revision_sensitive"],
     explanation: {
@@ -2321,13 +2321,13 @@ export const questionBank = [
             supported: "The claim depends on current reports and should remain revision-sensitive."
           },
           matter_action: {
-            unsupported: "The package does not prove a complete matter action."
+            unsupported: "Matching source-family evidence is not the same as a complete matter action."
           },
           broad_family: {
-            unsupported: "Evidence for one package does not prove broad viability across V2.5, V5, and V10."
+            unsupported: "A midrange package can be suggestive, but it does not prove broad viability across the full family."
           },
           hide_watches: {
-            unsupported: "Watch conditions are part of the honest scope and should not be removed from the claim."
+            unsupported: "Visible watch conditions are part of the honest public scope, especially for thin-margin package claims."
           }
         }
       },
@@ -2351,8 +2351,8 @@ export const questionBank = [
       { id: "semiclassical", content: "A semiclassical/RSET analysis when quantum-field effects are relevant." },
       { id: "coupled_evolution", content: "Evidence that the source remains controlled in a coupled or backreaction-aware setting." },
       { id: "reset_history", content: "A reset or repeated-use history audit if the claim includes service reuse." },
-      { id: "repeat_rung", content: "Repeating the same fixed-background local stress rung until the same pass result appears again." },
-      { id: "local_to_global", content: "Treating the local stress rung as automatically covering endpoint, reset, and history dependence." }
+      { id: "repeat_rung", content: "Additional repetitions of the same fixed-background stress rung to show the local pass is robust." },
+      { id: "local_to_global", content: "A mapping from the passing local stress rung to endpoint, reset, and history channels." }
     ],
     answer: ["matter_action", "semiclassical", "coupled_evolution", "reset_history"],
     explanation: {
@@ -2377,7 +2377,7 @@ export const questionBank = [
             unsupported: "Repeating the same local fixed-background rung can improve confidence in that rung, but it does not fill different missing evidence classes."
           },
           local_to_global: {
-            unsupported: "A local stress rung does not automatically cover endpoint, reset, history, or global behavior."
+            unsupported: "A mapping from one rung to other channels would itself need evidence; it cannot be assumed from the local pass."
           }
         }
       },
@@ -2495,9 +2495,9 @@ export const questionBank = [
       { id: "timelike_contraction", content: "For a timelike observer with four-velocity u, the measured energy density is represented by a contraction such as T_mn u^m u^n." },
       { id: "observer_dependent", content: "The measured density depends on the observer field as well as the stress-energy tensor." },
       { id: "normalized", content: "The observer four-velocity should be timelike and normalized before interpreting the contraction as measured density." },
-      { id: "trace_only", content: "It is always just the trace T^m_m." },
-      { id: "geometry_alone", content: "It can be read from a metric name without computing stress-energy or an observer field." },
-      { id: "component_absolute", content: "One coordinate component of T is an observer-independent measured density in every frame." }
+      { id: "trace_only", content: "The trace is a useful observer-independent scalar, so it can substitute for measured density in many reviews." },
+      { id: "geometry_alone", content: "A named metric often identifies the natural observer field, so the density can be read before doing a full projection." },
+      { id: "component_absolute", content: "The time-time component in a convenient coordinate chart is a good proxy for measured density unless strong boosts are involved." }
     ],
     answer: ["timelike_contraction", "observer_dependent", "normalized"],
     explanation: {
@@ -2516,13 +2516,13 @@ export const questionBank = [
             supported: "Normalization matters because the contraction is interpreted as a measured density for a unit timelike observer."
           },
           trace_only: {
-            unsupported: "The trace is a different scalar contraction and is not generally the observer energy density."
+            unsupported: "The trace is useful, but it does not substitute for the observer-specific timelike contraction."
           },
           geometry_alone: {
-            unsupported: "A metric name alone does not provide the stress tensor and observer field needed for density."
+            unsupported: "A natural observer choice still has to be specified and used in a projection; the metric name is not enough."
           },
           component_absolute: {
-            unsupported: "A coordinate component is not automatically an observer-independent measured density."
+            unsupported: "A convenient time-time component can be useful in a chosen frame, but it is not automatically observer-independent measured density."
           }
         }
       },
@@ -2641,9 +2641,9 @@ export const questionBank = [
     prompt: "In Ford and Roman's 1996 paper \"Quantum Field Theory Constrains Traversable Wormhole Geometries,\" what is the key lesson for negative energy?",
     choices: [
       { id: "duration_magnitude", content: "Magnitude and duration of negative energy are constrained together, so sustained macroscopic violations are difficult." },
-      { id: "unlimited", content: "Negative energy may be accumulated arbitrarily if the metric is smooth." },
-      { id: "classical_only", content: "Quantum-field constraints are irrelevant to wormhole or warp discussions." },
-      { id: "source_constructed", content: "The paper constructs an engineering-ready source for arbitrary traversable geometries." }
+      { id: "unlimited", content: "A smooth metric can make the negative-energy region controllable enough that accumulated exposure is a secondary issue." },
+      { id: "classical_only", content: "The main burden remains classical stress-tensor sign; quantum-field sampling mostly refines that pointwise review." },
+      { id: "source_constructed", content: "The paper identifies the allowable duration scale closely enough to guide a candidate source layer." }
     ],
     answer: ["duration_magnitude"],
     explanation: {
@@ -2656,13 +2656,13 @@ export const questionBank = [
             supported: "The key relationship is between negative-energy magnitude and how long it is sampled."
           },
           unlimited: {
-            unsupported: "Smoothness of the metric does not allow arbitrary accumulated negative energy under the Ford-Roman constraints."
+            unsupported: "Smoothness does not make accumulated exposure secondary; sampling duration is part of the constraint."
           },
           classical_only: {
-            unsupported: "Quantum-field constraints are directly relevant to the exotic-energy discussion."
+            unsupported: "Classical stress-tensor signs matter, but Ford-Roman bounds add quantum-field sampling constraints."
           },
           source_constructed: {
-            unsupported: "The paper constrains sources; it does not construct an engineering-ready source."
+            unsupported: "The allowable duration scale is a constraint on candidates, not a source-layer construction."
           }
         }
       },
@@ -2684,9 +2684,9 @@ export const questionBank = [
       { id: "scale", content: "Macroscopic exotic geometries face stronger burden than a formal stress-tensor sign check alone suggests." },
       { id: "not_construction", content: "The inequality constrains candidate negative-energy sources but does not construct one." },
       { id: "worldline", content: "The sampling setup and worldline used for the bound have to match the physical claim being reviewed." },
-      { id: "pointwise_enough", content: "A sufficiently small pointwise peak is enough to clear the quantum-inequality concern without specifying sampling scale." },
-      { id: "classical_enough", content: "A classical stress tensor sign table is enough to replace quantum-field sampling analysis." },
-      { id: "sampling_optional", content: "Sampling windows matter only for laboratory detectors, not for macroscopic exotic geometries." }
+      { id: "pointwise_enough", content: "A sufficiently small pointwise peak may clear the concern if the sampling window is much wider than the pulse." },
+      { id: "classical_enough", content: "A classical stress-tensor sign table gives the relevant negative-energy support, while quantum sampling refines the margin." },
+      { id: "sampling_optional", content: "Sampling windows can be chosen after the geometry is fixed because macroscopic scale already sets the main burden." }
     ],
     answer: ["sampling", "scale", "not_construction", "worldline"],
     explanation: {
@@ -2708,13 +2708,13 @@ export const questionBank = [
             supported: "The physical claim has to match the worldline and sampling setup used by the bound."
           },
           pointwise_enough: {
-            unsupported: "A small pointwise peak is not enough without sampling-scale information."
+            unsupported: "The relationship between peak size and sampling window is the point; it cannot be assumed without specifying scale."
           },
           classical_enough: {
-            unsupported: "A classical sign table does not replace quantum-field sampling analysis."
+            unsupported: "The classical sign table identifies support, but the quantum inequality adds a duration and sampling burden."
           },
           sampling_optional: {
-            unsupported: "Sampling windows are central for macroscopic exotic geometries in this constraint setting."
+            unsupported: "Macroscopic scale makes sampling review more important, not optional after geometry selection."
           }
         }
       },
@@ -2732,9 +2732,9 @@ export const questionBank = [
     prompt: "In Alcubierre's 1994 paper \"The Warp Drive,\" what is the central contrast between the bubble interior and the global construction?",
     choices: [
       { id: "local_flat_global_exotic", content: "The passenger region can be locally mild while the global geometry requires exotic stress-energy in the wall." },
-      { id: "flat_everywhere", content: "The whole spacetime is globally identical to Minkowski spacetime." },
-      { id: "matter_action", content: "The paper derives a conventional matter action that realizes the bubble." },
-      { id: "no_metric", content: "The paper does not propose a metric model." }
+      { id: "flat_everywhere", content: "The interior's near-flat behavior can be extended to the full model except where the wall carries gradients." },
+      { id: "matter_action", content: "The stress-energy calculation is close to a source recipe once an exotic sector is allowed." },
+      { id: "no_metric", content: "The paper is better read as a qualitative possibility argument than as a specific metric target." }
     ],
     answer: ["local_flat_global_exotic"],
     explanation: {
@@ -2747,13 +2747,13 @@ export const questionBank = [
             supported: "This separates the mild passenger-region description from the global wall/source burden."
           },
           flat_everywhere: {
-            unsupported: "The construction is not globally Minkowski; the wall geometry carries the burden."
+            unsupported: "The mild interior does not extend to the full spacetime; the wall and global geometry carry the stress-energy burden."
           },
           matter_action: {
-            unsupported: "The paper does not derive a conventional matter action realizing the bubble."
+            unsupported: "The stress-energy demand is not a matter action or source recipe, even if an exotic sector is imagined."
           },
           no_metric: {
-            unsupported: "The paper is centered on a proposed metric model."
+            unsupported: "The paper's central contribution is a specific metric ansatz, not only a qualitative possibility argument."
           }
         }
       },
@@ -2802,9 +2802,9 @@ export const questionBank = [
     prompt: "In Natario's 2002 paper \"Warp Drive With Zero Expansion,\" what does the zero-expansion condition mainly show?",
     choices: [
       { id: "variant", content: "Warp-drive geometry can be reformulated so the expansion of the volume elements vanishes, while source concerns remain." },
-      { id: "realized", content: "Zero expansion proves the source is ordinary laboratory matter." },
-      { id: "flat", content: "Zero expansion makes the entire spacetime flat." },
-      { id: "chronology_safe", content: "Zero expansion proves global chronology protection." }
+      { id: "realized", content: "Zero expansion reduces the source burden enough that ordinary-matter realization becomes the natural next inference." },
+      { id: "flat", content: "Zero expansion makes the volume flow locally mild enough that curvature can be treated as a smaller correction." },
+      { id: "chronology_safe", content: "Zero expansion weakens the horizon and causal-access concerns enough to leave source analysis as the main issue." }
     ],
     answer: ["variant"],
     explanation: {
@@ -2817,13 +2817,13 @@ export const questionBank = [
             supported: "Zero expansion is an important geometric reformulation while source concerns remain."
           },
           realized: {
-            unsupported: "Zero expansion does not prove ordinary laboratory matter supplies the source."
+            unsupported: "Reduced or changed kinematic burden does not imply ordinary-matter realization."
           },
           flat: {
-            unsupported: "Vanishing expansion does not make the entire spacetime flat."
+            unsupported: "Local volume behavior is not the same as flat spacetime or negligible curvature."
           },
           chronology_safe: {
-            unsupported: "Zero expansion is not a global chronology-protection theorem."
+            unsupported: "Zero expansion does not by itself settle global causal access or horizon-like behavior."
           }
         }
       },
@@ -2844,9 +2844,9 @@ export const questionBank = [
       { id: "geometry_family", content: "There is more than one way to formulate warp-drive-like geometry." },
       { id: "source_still_matters", content: "Changing expansion properties does not by itself solve the source-realization problem." },
       { id: "specific_property", content: "Zero expansion is a specific kinematic property of the congruence, not a blanket feasibility result." },
-      { id: "ordinary_matter", content: "Zero expansion guarantees ordinary positive-energy matter everywhere." },
-      { id: "no_causality", content: "It makes causal-structure analysis unnecessary." },
-      { id: "all_warp_same", content: "Every zero-expansion warp model has the same source and control behavior." }
+      { id: "ordinary_matter", content: "Zero expansion lowers the apparent source burden enough that ordinary positive-energy sourcing becomes the natural next hypothesis." },
+      { id: "no_causality", content: "It shifts the main review toward source terms, with causal-structure analysis becoming a follow-up concern." },
+      { id: "all_warp_same", content: "Zero-expansion models can be grouped together for first-pass source and control review." }
     ],
     answer: ["geometry_family", "source_still_matters", "specific_property"],
     explanation: {
@@ -2865,13 +2865,13 @@ export const questionBank = [
             supported: "Zero expansion is a particular congruence property, not a full feasibility certificate."
           },
           ordinary_matter: {
-            unsupported: "Zero expansion does not guarantee ordinary positive-energy matter."
+            unsupported: "Zero expansion changes one geometric property; it does not establish ordinary positive-energy sourcing."
           },
           no_causality: {
-            unsupported: "Causal-structure analysis remains relevant."
+            unsupported: "Source review remains important, but causal access and control are not just follow-up details."
           },
           all_warp_same: {
-            unsupported: "Different warp geometries can have different source, control, and causal behavior."
+            unsupported: "Zero expansion is a shared feature, not a guarantee of shared source and control behavior."
           }
         }
       },
@@ -2889,9 +2889,9 @@ export const questionBank = [
     prompt: "In Clark, Hiscock, and Larson's 1999 paper \"Null Geodesics in the Alcubierre Warp Drive Spacetime,\" what issue is highlighted for superluminal bubbles?",
     choices: [
       { id: "horizon", content: "Null rays reveal horizon-like access structures that affect signaling and control assumptions." },
-      { id: "no_light", content: "Light rays cannot be discussed in the Alcubierre geometry." },
-      { id: "ordinary_control", content: "A passenger at the center can always control the front wall by ordinary signals." },
-      { id: "source_done", content: "Null geodesics construct the stress-energy source." }
+      { id: "no_light", content: "The relevant light rays are mainly a visualization tool rather than a control limitation." },
+      { id: "ordinary_control", content: "A central passenger may control the front wall if the metric is already smooth and superluminal only relative to external observers." },
+      { id: "source_done", content: "Null geodesics locate where source support is needed, which is close to identifying the source burden." }
     ],
     answer: ["horizon"],
     explanation: {
@@ -2904,13 +2904,13 @@ export const questionBank = [
             supported: "Null rays reveal horizon-like access structures relevant to signaling and control assumptions."
           },
           no_light: {
-            unsupported: "The paper directly studies lightlike paths, so light rays can certainly be discussed."
+            unsupported: "The lightlike paths are not merely visual; their reachability behavior is the control caution."
           },
           ordinary_control: {
-            unsupported: "The result challenges the idea that the central passenger can always signal-control the front wall."
+            unsupported: "Smoothness and observer relativity do not settle whether signals from the center reach the front wall."
           },
           source_done: {
-            unsupported: "Null geodesics diagnose causal access; they do not construct stress-energy sources."
+            unsupported: "Null geodesics can localize access issues, but they do not identify a physical stress-energy source."
           }
         }
       },
@@ -2999,11 +2999,11 @@ export const questionBank = [
     prompt: "What should a careful reader take from Mueller and Weiskopf's 2012 geodesic study of the Alcubierre spacetime?",
     choices: [
       { id: "visual_diagnostic", content: "Geodesic behavior can reveal optical and observer-facing consequences of the geometry." },
-      { id: "not_realization", content: "Trajectory analysis by itself establishes matter-sector realization." },
+      { id: "not_realization", content: "Trajectory analysis gives enough internal consistency evidence to treat source realization as a separate later step." },
       { id: "causal_access", content: "Null and timelike path behavior can inform causal-access questions inside the modeled spacetime." },
-      { id: "ordinary_source", content: "A detailed geodesic study proves ordinary matter can create the spacetime." },
-      { id: "no_causal_limits", content: "If geodesics can be plotted, causal restrictions no longer matter." },
-      { id: "image_proof", content: "A visually smooth rendering is enough to prove physical feasibility." }
+      { id: "ordinary_source", content: "A detailed geodesic study constrains the source problem enough that ordinary-source questions can be separated from path analysis." },
+      { id: "no_causal_limits", content: "If null and timelike paths can be charted cleanly, remaining causal restrictions are mostly boundary-condition details." },
+      { id: "image_proof", content: "A visually smooth rendering is strong evidence that the modeled observable behavior is physically plausible." }
     ],
     answer: ["visual_diagnostic", "causal_access"],
     explanation: {
@@ -3016,19 +3016,19 @@ export const questionBank = [
             supported: "Geodesic behavior is useful for optical and observer-facing consequences inside the model."
           },
           not_realization: {
-            unsupported: "This choice states the opposite of the safe boundary: trajectory analysis does not establish matter realization."
+            unsupported: "Internal path consistency is useful, but source realization cannot simply be deferred as a later bookkeeping step."
           },
           causal_access: {
             supported: "Null and timelike paths can inform causal-access questions in the modeled spacetime."
           },
           ordinary_source: {
-            unsupported: "A detailed geodesic study does not prove ordinary matter can create the spacetime."
+            unsupported: "Geodesic detail constrains observables and access, not the ordinary-matter source problem."
           },
           no_causal_limits: {
-            unsupported: "Plotting geodesics is a way to study causal restrictions, not erase them."
+            unsupported: "Cleanly charted geodesics are evidence for analysis, but boundary and reachability questions remain substantive."
           },
           image_proof: {
-            unsupported: "Smooth visualization is not physical-feasibility proof."
+            unsupported: "Visual smoothness can aid interpretation, but it is not physical feasibility evidence by itself."
           }
         }
       },
@@ -3046,9 +3046,9 @@ export const questionBank = [
     prompt: "In Everett and Roman's 1997 paper \"A Superluminal Subway: The Krasnikov Tube,\" what is one reason the construction is relevant to chronology discussions?",
     choices: [
       { id: "two_tube", content: "Arrangements of superluminal tubes can raise closed-timelike-curve concerns." },
-      { id: "no_negative", content: "It eliminates negative-energy concerns from superluminal travel." },
-      { id: "ordinary_train", content: "It is an engineering design for an ordinary railway." },
-      { id: "adm_constraint", content: "It replaces the ADM constraints with Newtonian mechanics." }
+      { id: "no_negative", content: "It makes chronology composition the main issue, with negative energy handled as a separate source burden." },
+      { id: "ordinary_train", content: "It uses an engineering-style transport analogy strongly enough that operational routing is part of the interpretation." },
+      { id: "adm_constraint", content: "It treats the shortcut geometry directly, so the usual 3+1 constraint split is not the main chronology lesson." }
     ],
     answer: ["two_tube"],
     explanation: {
@@ -3061,13 +3061,13 @@ export const questionBank = [
             supported: "Composed superluminal tube arrangements can raise closed-timelike-curve concerns."
           },
           no_negative: {
-            unsupported: "The paper does not eliminate negative-energy concerns."
+            unsupported: "Chronology composition is central, but it does not separate away negative-energy concerns."
           },
           ordinary_train: {
-            unsupported: "The title is metaphorical; the paper is not an ordinary railway design."
+            unsupported: "The transport analogy helps intuition, but the paper is a spacetime model rather than an operational railway design."
           },
           adm_constraint: {
-            unsupported: "The Krasnikov-tube analysis does not replace ADM constraints with Newtonian mechanics."
+            unsupported: "The chronology lesson can be read without foregrounding ADM, but it does not replace relativistic constraints with Newtonian mechanics."
           }
         }
       },
@@ -3116,9 +3116,9 @@ export const questionBank = [
     prompt: "In Shoshany and Snodgrass's 2024 paper \"Warp Drives and Closed Timelike Curves,\" what is the central chronology lesson?",
     choices: [
       { id: "ctg", content: "Combinations of warp-drive regions can permit closed timelike geodesics in the model under the analyzed conditions." },
-      { id: "safe", content: "Any single warp metric automatically forbids all closed causal curves in every arrangement." },
-      { id: "ordinary_matter", content: "Closed timelike curves appear only after the weak energy condition is restored everywhere." },
-      { id: "irrelevant", content: "Chronology is unrelated to superluminal metric constructions." }
+      { id: "safe", content: "A single warp metric can look causally controlled, so closed curves become a concern only after extra global identifications." },
+      { id: "ordinary_matter", content: "The chronology construction can be analyzed separately from the weak-energy-condition violation." },
+      { id: "irrelevant", content: "Chronology is a secondary issue compared with source feasibility in superluminal metric constructions." }
     ],
     answer: ["ctg"],
     explanation: {
@@ -3131,13 +3131,13 @@ export const questionBank = [
             supported: "The central result is a composed warp-drive arrangement admitting a closed timelike geodesic."
           },
           safe: {
-            unsupported: "The paper does not prove all warp arrangements chronology-safe."
+            unsupported: "A single local metric picture does not settle the global causal behavior of composed arrangements."
           },
           ordinary_matter: {
-            unsupported: "The result remains tied to weak-energy-condition violation rather than restoration everywhere."
+            unsupported: "The chronology construction and weak-energy-condition violation remain linked in the paper's setting."
           },
           irrelevant: {
-            unsupported: "Chronology is directly relevant to superluminal metric constructions."
+            unsupported: "Source feasibility matters, but chronology is not secondary in superluminal constructions."
           }
         }
       },
@@ -3157,9 +3157,9 @@ export const questionBank = [
     choices: [
       { id: "correspondence", content: "The paper explores a formal correspondence between wormhole and warp-drive geometries." },
       { id: "caveats", content: "A correspondence does not automatically supply traversability, ordinary matter, or engineering control." },
-      { id: "solved", content: "The correspondence proves warp drives can be built from ordinary matter." },
-      { id: "no_geometry", content: "The correspondence makes intrinsic curvature irrelevant." },
-      { id: "comfort_transfer", content: "Comfort or traversability properties transfer automatically once two metrics are put in correspondence." }
+      { id: "solved", content: "The correspondence narrows the realization problem enough that ordinary-matter questions become the next engineering layer." },
+      { id: "no_geometry", content: "The correspondence lets one translate between forms, so intrinsic curvature can be treated as presentation-dependent." },
+      { id: "comfort_transfer", content: "Traversability intuition can transfer when the correspondence preserves the relevant throat or bubble geometry." }
     ],
     answer: ["correspondence", "caveats"],
     explanation: {
@@ -3175,13 +3175,13 @@ export const questionBank = [
             supported: "The correspondence does not automatically supply traversability, ordinary matter, or control."
           },
           solved: {
-            unsupported: "The correspondence is not a proof that ordinary matter can build warp drives."
+            unsupported: "A narrowed realization question is still not an ordinary-matter construction."
           },
           no_geometry: {
-            unsupported: "Intrinsic curvature remains important to the correspondence."
+            unsupported: "Intrinsic curvature is part of the geometry being related, not a presentation detail to discard."
           },
           comfort_transfer: {
-            unsupported: "Traversability or comfort properties do not transfer automatically from formal correspondence."
+            unsupported: "A formal correspondence needs caveats before traversability or comfort intuition transfers."
           }
         }
       },
@@ -3199,9 +3199,9 @@ export const questionBank = [
     prompt: "In Barcelo and Visser's 2000 paper \"Scalar Fields, Energy Conditions, and Traversable Wormholes,\" what is the main source-sector lesson?",
     choices: [
       { id: "nonminimal", content: "Non-minimally coupled scalar fields can alter energy-condition behavior, but with important physical caveats." },
-      { id: "universal", content: "Any scalar field automatically gives a safe traversable wormhole." },
-      { id: "no_energy", content: "Energy conditions are irrelevant once a scalar field is named." },
-      { id: "engineering_specific", content: "The paper analyzes a particular endpoint reset architecture." }
+      { id: "universal", content: "Scalar fields form a broad enough source class that safety depends mainly on choosing a suitable coupling." },
+      { id: "no_energy", content: "The scalar-field mechanism shifts attention from energy conditions to field stability and scale." },
+      { id: "engineering_specific", content: "The paper is close to a source-design analysis because it studies a concrete field mechanism." }
     ],
     answer: ["nonminimal"],
     explanation: {
@@ -3214,13 +3214,13 @@ export const questionBank = [
             supported: "The paper's source-sector lesson is about non-minimal coupling and its caveats."
           },
           universal: {
-            unsupported: "A scalar field is not automatically a safe traversable-wormhole source."
+            unsupported: "A suitable coupling is not enough by itself; regime, scale, and caveats remain."
           },
           no_energy: {
-            unsupported: "Energy conditions remain central to the paper's analysis."
+            unsupported: "Field stability and scale matter, but energy-condition behavior remains central to the paper."
           },
           engineering_specific: {
-            unsupported: "The paper is not about an endpoint reset architecture."
+            unsupported: "A concrete field mechanism is still theoretical source literature, not architecture-specific source closure."
           }
         }
       },
@@ -3238,9 +3238,9 @@ export const questionBank = [
     prompt: "In Friedman, Schleich, and Witt's 1993 paper \"Topological Censorship,\" what is the broad lesson for visible nontrivial topology?",
     choices: [
       { id: "screened", content: "Under suitable assumptions, causal curves from infinity cannot probe nontrivial topology in the naive traversable way." },
-      { id: "guaranteed", content: "All wormhole-like topology is automatically traversable by external observers." },
-      { id: "no_assumptions", content: "The result needs no causal or energy assumptions." },
-      { id: "warp_source", content: "It supplies stress-energy for warp-drive walls." }
+      { id: "guaranteed", content: "A visible smooth throat can be treated as probe-access evidence if the relevant causal curves are drawn explicitly." },
+      { id: "no_assumptions", content: "The result is best read as a topology constraint first, with causal and energy assumptions entering later." },
+      { id: "warp_source", content: "It constrains shortcut topology closely enough to inform the source burden for warp-like walls." }
     ],
     answer: ["screened"],
     explanation: {
@@ -3253,13 +3253,13 @@ export const questionBank = [
             supported: "Under the theorem's assumptions, causal curves from infinity cannot probe topology in the naive traversable way."
           },
           guaranteed: {
-            unsupported: "The theorem constrains visible traversal; it does not guarantee it."
+            unsupported: "Drawn local access curves help visualization, but the theorem is about global causal behavior under assumptions."
           },
           no_assumptions: {
-            unsupported: "Causal, energy, and asymptotic assumptions are essential to applying the theorem."
+            unsupported: "The causal, energy, and asymptotic assumptions are part of the result, not later decoration."
           },
           warp_source: {
-            unsupported: "Topological censorship does not supply warp-wall stress-energy."
+            unsupported: "Topological constraints can inform review, but they do not supply source stress-energy."
           }
         }
       },
@@ -3280,8 +3280,8 @@ export const questionBank = [
       { id: "backreaction", content: "Quantum-field backreaction near chronology horizons is a central concern." },
       { id: "open", content: "Chronology protection is a serious constraint topic, not a solved engineering recipe." },
       { id: "global_causal", content: "Closed-causal-curve questions require global causal analysis, not only local smoothness checks." },
-      { id: "ignore", content: "Closed causal curves can be ignored if a metric is smooth." },
-      { id: "complete", content: "The review provides a complete safe construction for time-machine operation." }
+      { id: "ignore", content: "Closed causal curves can be treated as a later global check if the local metric is smooth and source-supported." },
+      { id: "complete", content: "The review identifies enough mechanisms to prioritize designs that avoid chronology-horizon formation." }
     ],
     answer: ["backreaction", "open", "global_causal"],
     explanation: {
@@ -3300,10 +3300,10 @@ export const questionBank = [
             supported: "Closed-causal-curve questions require global causal analysis beyond local smoothness."
           },
           ignore: {
-            unsupported: "Metric smoothness does not make closed causal curves ignorable."
+            unsupported: "Local smoothness and source support do not move closed causal curves into a later-only check."
           },
           complete: {
-            unsupported: "The review does not provide a complete safe time-machine construction."
+            unsupported: "The mechanisms guide caution around chronology horizons; they do not define a safe construction program."
           }
         }
       },
@@ -3321,9 +3321,9 @@ export const questionBank = [
     prompt: "In Moghtaderi, Hull, Quintin, and Geshnizjani's 2025 smeared-NEC paper, what is the main constraint style?",
     choices: [
       { id: "semilocal", content: "It constrains accumulated NEC violation over a smeared region rather than only a pointwise sign." },
-      { id: "unrestricted", content: "It allows arbitrary accumulated NEC breaking if each point is small." },
-      { id: "matter_action", content: "It constructs a matter action for every warp or wormhole geometry." },
-      { id: "project_reset", content: "It validates a specific engineering reset schedule." }
+      { id: "unrestricted", content: "It allows larger accumulated effects when each local contribution is small and broadly smeared." },
+      { id: "matter_action", content: "It identifies tolerable NEC-breaking profiles closely enough to guide candidate matter actions." },
+      { id: "project_reset", content: "It is relevant to reset-style audits whenever repeated sampling of negative energy is the concern." }
     ],
     answer: ["semilocal"],
     explanation: {
@@ -3336,13 +3336,13 @@ export const questionBank = [
             supported: "The constraint style is smeared or semilocal rather than purely pointwise."
           },
           unrestricted: {
-            unsupported: "Small pointwise values do not automatically permit arbitrary accumulated NEC breaking."
+            unsupported: "Broad smearing does not by itself permit unlimited accumulated NEC breaking."
           },
           matter_action: {
-            unsupported: "The paper constrains NEC breaking; it does not construct matter actions for every exotic geometry."
+            unsupported: "Tolerable profile constraints can guide review, but they do not construct matter actions."
           },
           project_reset: {
-            unsupported: "The smeared-NEC paper does not validate any particular engineering reset schedule."
+            unsupported: "Repeated sampling is conceptually relevant, but this paper does not validate a specific engineering reset schedule."
           }
         }
       },
@@ -3578,9 +3578,9 @@ export const questionBank = [
     choices: [
       { id: "before_fade", content: "Catch or rematch should be established before release/fade removes active support." },
       { id: "separate_surface", content: "Endpoint evidence is distinct from merely seeing the packet arrive." },
-      { id: "criteria", content: "Endpoint labels are enough even when no rematch or handoff criteria are named." },
-      { id: "irrelevant", content: "Endpoint behavior is irrelevant once the initial support condition is named." },
-      { id: "textbook", content: "Endpoint handoff is an established ADM theorem." }
+      { id: "criteria", content: "Endpoint labels can stand in for detailed criteria if the pass is only a high-level service chronology review." },
+      { id: "irrelevant", content: "Endpoint behavior can be treated as downstream once the initial support and carry conditions are evidenced." },
+      { id: "textbook", content: "Endpoint handoff can be treated as an application of standard evolution constraints rather than a separate project concept." }
     ],
     answer: ["before_fade", "separate_surface"],
     explanation: {
@@ -3596,13 +3596,13 @@ export const questionBank = [
             supported: "Packet arrival and endpoint handoff are related but distinct evidence surfaces."
           },
           criteria: {
-            unsupported: "Labels alone are not enough; handoff criteria have to be named and checked."
+            unsupported: "A high-level chronology label still needs rematch or handoff criteria when endpoint burden is being claimed."
           },
           irrelevant: {
-            unsupported: "Endpoint behavior remains relevant even if initial support looked prepared."
+            unsupported: "Initial support and carry evidence do not make endpoint behavior merely downstream."
           },
           textbook: {
-            unsupported: "Endpoint handoff is active-rail architecture vocabulary, not an ADM theorem."
+            unsupported: "Standard evolution constraints matter, but endpoint handoff is an active-rail service concept with its own evidence surface."
           }
         }
       },
@@ -3625,9 +3625,9 @@ export const questionBank = [
       { id: "missing", content: "The omitted plant channels still block a full service qualification." },
       { id: "narrow_claim", content: "The conclusion should be narrowed to the channels actually tested." },
       { id: "separate_channels", content: "Support edge, angular pressure, endpoint rematch, and reset history need separate evidence rather than one pooled pass label." },
-      { id: "family_enough", content: "A plausible source-family fit is enough to promote the omitted plant channels as passed." },
-      { id: "packet_enough", content: "Clean packet transport is the controlling diagnostic because all plant channels are downstream of it." },
-      { id: "reset_inferred", content: "Reset history can be inferred from source-family plausibility without a reset audit." }
+      { id: "family_enough", content: "A plausible source-family fit can provisionally cover omitted plant channels if they are part of the same source mechanism." },
+      { id: "packet_enough", content: "Clean packet transport should dominate if omitted plant channels do not visibly perturb the packet path." },
+      { id: "reset_inferred", content: "Reset history can be inferred when source-family behavior appears stable across the reported pass." }
     ],
     answer: ["partial", "missing", "narrow_claim", "separate_channels"],
     explanation: {
@@ -3649,13 +3649,13 @@ export const questionBank = [
             supported: "Support edge, angular pressure, endpoint rematch, and reset history cannot be collapsed into one pass label."
           },
           family_enough: {
-            unsupported: "A plausible source-family fit does not pass omitted plant channels."
+            unsupported: "A shared source mechanism is a hypothesis; omitted plant channels still need direct evidence."
           },
           packet_enough: {
-            unsupported: "Packet transport is not the controlling diagnostic for all plant evidence."
+            unsupported: "A clean packet path can miss plant burdens that do not immediately perturb the packet observable."
           },
           reset_inferred: {
-            unsupported: "Reset history needs an audit; it cannot be inferred from source-family plausibility."
+            unsupported: "Apparent source stability in one pass does not substitute for a reset-history audit."
           }
         }
       },
@@ -3675,9 +3675,9 @@ export const questionBank = [
     prompt: "A packet arrives within tolerance, but no source ledger or reset audit is provided. What is the strongest justified conclusion?",
     choices: [
       { id: "packet_only", content: "Packet-facing behavior passed one check, while source and reset claims remain unsupported." },
-      { id: "all_done", content: "The full active-rail plant is qualified." },
-      { id: "source_done", content: "The demanded stress-energy has been physically realized." },
-      { id: "chronology_safe", content: "Global chronology safety has been established." }
+      { id: "all_done", content: "The plant can be provisionally accepted if the missing source and reset checks are outside the immediate packet-tolerance claim." },
+      { id: "source_done", content: "The packet result is indirect evidence that the demanded stress-energy was functionally supplied for this pass." },
+      { id: "chronology_safe", content: "Clean endpoint arrival gives practical evidence against causal problems in the tested service interval." }
     ],
     answer: ["packet_only"],
     explanation: {
@@ -3690,13 +3690,13 @@ export const questionBank = [
             supported: "This credits the packet observable while keeping source and reset claims unsupported."
           },
           all_done: {
-            unsupported: "A packet arrival does not qualify the full plant."
+            unsupported: "A narrow packet-tolerance claim can pass, but missing source and reset checks still block plant qualification."
           },
           source_done: {
-            unsupported: "Physical stress-energy realization is not shown by packet arrival alone."
+            unsupported: "Packet behavior is indirect evidence at best; physical stress-energy realization needs source evidence."
           },
           chronology_safe: {
-            unsupported: "Global chronology safety is a separate causal-structure claim."
+            unsupported: "Clean endpoint arrival is practical evidence for this run, but global chronology safety is a separate causal-structure claim."
           }
         }
       },
@@ -3715,9 +3715,9 @@ export const questionBank = [
     prompt: "A current V5 sealed package is described as appearing to pass bounded fixed-background checks with watch conditions. What is the most careful interpretation?",
     choices: [
       { id: "bounded", content: "It appears to be bounded project evidence for the current fixed-background package, with watches still part of the claim." },
-      { id: "universal", content: "It proves broad physical realization for all active-rail families." },
-      { id: "no_watches", content: "Passing checks erase watch conditions from the review record." },
-      { id: "external_theorem", content: "It is now an established theorem independent of the project model." }
+      { id: "universal", content: "It is evidence for broader family realization if the V5 package is the representative midrange case." },
+      { id: "no_watches", content: "Passing checks can move watch conditions into supporting notes when the headline claim is narrow." },
+      { id: "external_theorem", content: "It can be treated like a stable architecture rule if repeated package reports keep the same boundary." }
     ],
     answer: ["bounded"],
     explanation: {
@@ -3730,13 +3730,13 @@ export const questionBank = [
             supported: "This wording credits the current fixed-background evidence and keeps the watch conditions attached."
           },
           universal: {
-            unsupported: "A bounded package result does not prove broad physical realization for all families."
+            unsupported: "Representativeness has to be argued; a bounded V5 result alone does not establish broad realization."
           },
           no_watches: {
-            unsupported: "Watch conditions remain part of the evidence record after a pass."
+            unsupported: "A narrow headline still needs visible watch conditions when they affect the evidence scope."
           },
           external_theorem: {
-            unsupported: "This is project-state evidence, not an external theorem."
+            unsupported: "Repeated project patterns can guide architecture, but they do not become external theorem status."
           }
         }
       },
@@ -4003,8 +4003,8 @@ export const questionBank = [
       { id: "test_body", content: "They are test-path diagnostics of a geometry." },
       { id: "not_source", content: "They do not by themselves construct the stress-energy source of the geometry." },
       { id: "null_reach", content: "Null geodesics can help diagnose signal reachability and horizon-like behavior." },
-      { id: "always_safe", content: "If geodesics can be drawn, global causal safety is guaranteed." },
-      { id: "coordinate_lines", content: "Every coordinate line is automatically a geodesic." }
+      { id: "always_safe", content: "If the relevant null and timelike geodesics are regular in the modeled region, global causal safety is strongly suggested." },
+      { id: "coordinate_lines", content: "Coordinate lines adapted to the apparent motion are usually the right first proxy for geodesic behavior." }
     ],
     answer: ["test_body", "not_source", "null_reach"],
     explanation: {
@@ -4023,10 +4023,10 @@ export const questionBank = [
             supported: "Null geodesics are especially useful for signal reachability and horizon-like behavior."
           },
           always_safe: {
-            unsupported: "Drawable geodesics do not guarantee global causal safety."
+            unsupported: "Regular modeled geodesics are useful evidence, but global causal safety requires broader causal analysis."
           },
           coordinate_lines: {
-            unsupported: "Coordinate lines are not automatically geodesics."
+            unsupported: "Adapted coordinates can guide intuition, but coordinate lines are not automatically geodesics."
           }
         }
       },
@@ -4152,9 +4152,9 @@ export const questionBank = [
     prompt: "Why does the contracted Bianchi identity matter for Einstein's equation?",
     choices: [
       { id: "conservation", content: "It is tied to covariant conservation of the stress-energy tensor when Einstein's equation holds." },
-      { id: "source_anything", content: "It proves any arbitrary stress tensor can be supplied by ordinary matter." },
-      { id: "coordinates", content: "It removes the need to choose coordinates for calculations." },
-      { id: "energy_positive", content: "It guarantees positive energy density for all observers." }
+      { id: "source_anything", content: "It makes a conserved demanded tensor a strong candidate for ordinary-matter realization." },
+      { id: "coordinates", content: "It makes the conservation law coordinate-independent enough that coordinate choices are mainly computational." },
+      { id: "energy_positive", content: "It supports positive-energy interpretation when the conserved tensor has a positive density component." }
     ],
     answer: ["conservation"],
     explanation: {
@@ -4167,13 +4167,13 @@ export const questionBank = [
             supported: "The contracted Bianchi identity is tied to covariant conservation of the stress-energy side of Einstein's equation."
           },
           source_anything: {
-            unsupported: "Conservation consistency does not prove arbitrary tensors come from ordinary matter."
+            unsupported: "Conservation consistency is necessary, but ordinary-matter realization needs dynamics and source modeling."
           },
           coordinates: {
-            unsupported: "The identity does not remove the practical need to choose coordinates or frames for calculations."
+            unsupported: "Coordinate-independent meaning does not remove the practical role of coordinates or frames."
           },
           energy_positive: {
-            unsupported: "Covariant conservation does not guarantee positive energy density for all observers."
+            unsupported: "Conservation and one positive component do not establish observer-quantified positive energy."
           }
         }
       },
@@ -4191,9 +4191,9 @@ export const questionBank = [
     prompt: "In a stress-energy tensor, why can pressure or stress components matter as much as energy density?",
     choices: [
       { id: "tensor", content: "Einstein's equation couples the geometry to the full tensor, not only to one scalar density." },
-      { id: "ignore", content: "Pressure components are coordinate decoration with no gravitational role." },
-      { id: "always_zero", content: "Pressure components vanish in every relativistic source." },
-      { id: "packet_only", content: "Only the final trajectory of a test packet determines the source." }
+      { id: "ignore", content: "Pressure components are often frame-dependent enough that density should carry the main source interpretation." },
+      { id: "always_zero", content: "Pressure components can be neglected in dust-like or weak-stress limits, so they are usually secondary." },
+      { id: "packet_only", content: "A well-chosen test-packet trajectory can reveal the effective source burden more directly than individual tensor components." }
     ],
     answer: ["tensor"],
     explanation: {
@@ -4206,13 +4206,13 @@ export const questionBank = [
             supported: "Einstein's equation couples to the tensor structure, so stresses and pressures can matter alongside density."
           },
           ignore: {
-            unsupported: "Pressure components are not coordinate decoration; they are tensor components with gravitational significance."
+            unsupported: "Frame dependence has to be handled carefully, but stresses are still tensor components with gravitational significance."
           },
           always_zero: {
-            unsupported: "Relativistic sources can have nonzero pressure and stress components."
+            unsupported: "Dust-like limits are special cases; pressure and stress cannot be treated as usually secondary."
           },
           packet_only: {
-            unsupported: "A test packet trajectory does not determine the full stress-energy source."
+            unsupported: "A packet trajectory is a useful probe, but it does not replace the tensor source analysis."
           }
         }
       },
@@ -4233,9 +4233,9 @@ export const questionBank = [
       { id: "diagnostic", content: "They diagnose whether a stress-energy tensor satisfies selected positivity-style constraints." },
       { id: "not_complete", content: "Passing one condition is not a complete proof of physical source realizability." },
       { id: "assumption_sensitive", content: "Their interpretation depends on the relevant classical, quantum, pointwise, averaged, or observer assumptions." },
-      { id: "all_matter", content: "They classify all quantum and classical matter behavior without exceptions or assumptions." },
-      { id: "metric_name", content: "They can be decided from a metric's nickname without evaluating stress-energy." },
-      { id: "one_condition_all", content: "Passing the NEC automatically proves the WEC, DEC, and all averaged conditions in every setting." }
+      { id: "all_matter", content: "They give a broad first-pass classification, with quantum exceptions handled as later refinements." },
+      { id: "metric_name", content: "A metric family often signals the likely energy-condition burden before detailed stress-energy evaluation." },
+      { id: "one_condition_all", content: "Passing the NEC is strong evidence for related pointwise conditions when the tensor has a simple type-I form." }
     ],
     answer: ["diagnostic", "not_complete", "assumption_sensitive"],
     explanation: {
@@ -4254,13 +4254,13 @@ export const questionBank = [
             supported: "Pointwise, averaged, classical, quantum, and observer assumptions change interpretation."
           },
           all_matter: {
-            unsupported: "Energy conditions do not classify all matter behavior without assumptions or exceptions."
+            unsupported: "They are useful first-pass constraints, but quantum and effective settings are not just later refinements."
           },
           metric_name: {
-            unsupported: "A metric nickname is not a substitute for evaluating stress-energy."
+            unsupported: "A metric family can warn you what to expect, but the stress-energy still has to be evaluated."
           },
           one_condition_all: {
-            unsupported: "Passing the NEC does not automatically establish every other condition in every setting."
+            unsupported: "Simple type-I structure can relate conditions, but NEC passage is not a blanket clearance for WEC, DEC, or averaged conditions."
           }
         }
       },
@@ -4278,9 +4278,9 @@ export const questionBank = [
     prompt: "What is a careful way to distinguish the NEC from the WEC?",
     choices: [
       { id: "vectors", content: "NEC tests null-vector contractions, while WEC tests timelike-observer energy density." },
-      { id: "same", content: "They are the same condition with different names." },
-      { id: "trace", content: "Both are only statements about the trace of the stress tensor." },
-      { id: "metric_only", content: "Both can be checked without referring to stress-energy." }
+      { id: "same", content: "They usually agree for simple diagonal examples once the relevant density and pressure sums are checked." },
+      { id: "trace", content: "Both can be inferred from a compact scalar summary of the stress tensor in highly symmetric cases." },
+      { id: "metric_only", content: "Both can be screened from the geometry once the Einstein tensor is known, before naming observer vectors." }
     ],
     answer: ["vectors"],
     explanation: {
@@ -4293,13 +4293,13 @@ export const questionBank = [
             supported: "The NEC quantifies over null vectors, while the WEC quantifies over timelike observers."
           },
           same: {
-            unsupported: "They are related but not the same condition."
+            unsupported: "The conditions can be related in simple cases, but their vector quantifiers are different."
           },
           trace: {
-            unsupported: "Neither condition is only a statement about the tensor trace."
+            unsupported: "Symmetry can simplify checks, but the conditions are contractions with null or timelike vectors, not only scalar summaries."
           },
           metric_only: {
-            unsupported: "Both conditions require stress-energy contractions, not only the metric name."
+            unsupported: "Geometry can imply a demanded stress tensor through Einstein's equation, but the condition itself still requires the appropriate contractions."
           }
         }
       },
@@ -4395,9 +4395,9 @@ export const questionBank = [
     prompt: "What does extrinsic curvature describe in a 3+1 split?",
     choices: [
       { id: "embedding_change", content: "How a spatial slice is embedded in spacetime, related to the time evolution of spatial geometry." },
-      { id: "intrinsic_only", content: "Only distances measured entirely inside the slice, with no embedding information." },
-      { id: "matter_unique", content: "The unique matter action that realizes the geometry." },
-      { id: "causal_complete", content: "A proof of global causal completeness." }
+      { id: "intrinsic_only", content: "The part of the slice geometry most directly visible to observers who measure distances within that slice." },
+      { id: "matter_unique", content: "The geometric data needed to constrain matter projections once the spatial metric is fixed." },
+      { id: "causal_complete", content: "A local foliation diagnostic that can support later causal analysis when evolved consistently." }
     ],
     answer: ["embedding_change"],
     explanation: {
@@ -4410,13 +4410,13 @@ export const questionBank = [
             supported: "Extrinsic curvature records embedding and normal-time-change information for the spatial slice."
           },
           intrinsic_only: {
-            unsupported: "Intrinsic geometry is the spatial metric's role; extrinsic curvature contains embedding information."
+            unsupported: "Distance measurements inside the slice are intrinsic-metric information; extrinsic curvature adds embedding and time-change information."
           },
           matter_unique: {
-            unsupported: "Extrinsic curvature does not pick a unique matter action."
+            unsupported: "Extrinsic curvature enters constraint relations, but it does not identify a unique matter action."
           },
           causal_complete: {
-            unsupported: "Extrinsic curvature is not a proof of global causal completeness."
+            unsupported: "Consistent foliation data can inform causal review, but global causal completeness is a separate claim."
           }
         }
       },
@@ -4437,8 +4437,8 @@ export const questionBank = [
       { id: "momentum_matters", content: "A small Hamiltonian residual alone is not enough; the momentum-constraint residual is still a consistency problem." },
       { id: "diagnostic_not_source", content: "Constraint residuals diagnose compatibility with Einstein's equation but do not construct a matter action." },
       { id: "monitor_evolution", content: "Constraint behavior during evolution matters, not only the initial slice residual." },
-      { id: "hamiltonian_enough", content: "The Hamiltonian residual is the only constraint diagnostic that matters in a high-shift region." },
-      { id: "observable_enough", content: "A clean packet or probe trajectory would make the momentum residual irrelevant." }
+      { id: "hamiltonian_enough", content: "The small Hamiltonian residual should carry more weight because high-shift regions often amplify momentum-residual noise." },
+      { id: "observable_enough", content: "A clean packet or probe trajectory can justify treating the momentum residual as a numerical artifact if it does not affect observables." }
     ],
     answer: ["momentum_matters", "diagnostic_not_source", "monitor_evolution"],
     explanation: {
@@ -4457,10 +4457,10 @@ export const questionBank = [
             supported: "Constraint behavior during evolution can reveal failures not visible on one initial scalar residual."
           },
           hamiltonian_enough: {
-            unsupported: "The Hamiltonian residual alone does not clear momentum constraints."
+            unsupported: "A small Hamiltonian residual is valuable, but high-shift context does not demote a large momentum residual without constraint evidence."
           },
           observable_enough: {
-            unsupported: "A clean probe trajectory cannot make a separate constraint residual irrelevant."
+            unsupported: "A clean observable can coexist with a real constraint failure, so it cannot classify the momentum residual as numerical artifact by itself."
           }
         }
       },
@@ -4572,8 +4572,8 @@ export const questionBank = [
       { id: "global", content: "Some horizons are global causal structures, not features a local observer can always identify from one small patch." },
       { id: "signals", content: "Horizon-like behavior is about signal reachability and causal access." },
       { id: "coordinate_caution", content: "Coordinate artifacts and genuine causal boundaries have to be distinguished carefully." },
-      { id: "coordinate_only", content: "All horizons are merely bad coordinate choices." },
-      { id: "source_done", content: "Finding a horizon constructs the matter source." }
+      { id: "coordinate_only", content: "A horizon seen in one coordinate chart should first be treated as a coordinate effect until invariant or global checks say otherwise." },
+      { id: "source_done", content: "Horizon identification helps classify the geometry enough that source review can be separated afterward." }
     ],
     answer: ["global", "signals", "coordinate_caution"],
     explanation: {
@@ -4592,10 +4592,10 @@ export const questionBank = [
             supported: "Coordinate artifacts have to be separated from genuine causal boundaries."
           },
           coordinate_only: {
-            unsupported: "Not all horizons are merely bad coordinate choices."
+            unsupported: "Coordinate caution is right, but genuine horizons are not dismissed before invariant and global causal checks."
           },
           source_done: {
-            unsupported: "Finding a horizon does not construct a matter source."
+            unsupported: "Horizon classification and matter-source construction remain separate review surfaces."
           }
         }
       },
@@ -4613,9 +4613,9 @@ export const questionBank = [
     prompt: "Why is global hyperbolicity important in GR?",
     choices: [
       { id: "well_posed", content: "It supports well-posed causal evolution from suitable initial data and rules out certain causal pathologies." },
-      { id: "ordinary_matter", content: "It guarantees ordinary positive-energy matter for any metric." },
-      { id: "local_only", content: "It is only a statement about one tangent space at one event." },
-      { id: "no_constraints", content: "It removes the need for constraint equations." }
+      { id: "ordinary_matter", content: "It supports a well-posed evolution, which strongly constrains admissible matter behavior." },
+      { id: "local_only", content: "It can be checked locally by looking at causal cones on a representative slice." },
+      { id: "no_constraints", content: "It makes the evolution problem well posed, so constraints are mainly initial-data bookkeeping." }
     ],
     answer: ["well_posed"],
     explanation: {
@@ -4628,13 +4628,13 @@ export const questionBank = [
             supported: "Global hyperbolicity supports well-posed causal evolution from suitable initial data."
           },
           ordinary_matter: {
-            unsupported: "Global hyperbolicity does not guarantee ordinary positive-energy matter."
+            unsupported: "Global hyperbolicity supports predictability; it does not guarantee an ordinary positive-energy source."
           },
           local_only: {
-            unsupported: "It is a global causal condition, not just one tangent-space statement."
+            unsupported: "Local cone checks can inform the review, but global hyperbolicity is a global causal condition."
           },
           no_constraints: {
-            unsupported: "It does not remove the need for constraint equations."
+            unsupported: "Well-posed evolution still depends on compatible initial data and constraint control."
           }
         }
       },
@@ -4824,9 +4824,9 @@ export const questionBank = [
     choices: [
       { id: "simplifies", content: "Symmetry can reduce equations and make diagnostics tractable." },
       { id: "misses_modes", content: "A reduced model may hide nonsymmetric perturbations or channels." },
-      { id: "proves_full", content: "A symmetric calculation automatically proves every nonsymmetric case." },
-      { id: "no_sources", content: "Symmetry removes the need to check stress-energy." },
-      { id: "averaging_magic", content: "A symmetry-reduced average guarantees every local unsymmetrized component is controlled." }
+      { id: "proves_full", content: "A symmetric calculation can be treated as representative if it controls the dominant channels." },
+      { id: "no_sources", content: "Symmetry can make stress-energy checks simpler enough that the reduced source components carry the burden." },
+      { id: "averaging_magic", content: "A controlled reduced average can stand in for local components when the symmetry is physically motivated." }
     ],
     answer: ["simplifies", "misses_modes"],
     explanation: {
@@ -4842,13 +4842,13 @@ export const questionBank = [
             supported: "A reduced model can hide nonsymmetric perturbations or channels."
           },
           proves_full: {
-            unsupported: "A symmetric calculation does not automatically prove every nonsymmetric case."
+            unsupported: "A symmetric calculation can be representative inside its assumptions, but it does not prove nonsymmetric cases by itself."
           },
           no_sources: {
-            unsupported: "Symmetry reduction does not remove stress-energy checks."
+            unsupported: "Reduced source components still have to be checked; symmetry simplifies rather than removes the burden."
           },
           averaging_magic: {
-            unsupported: "An average in a reduced model does not guarantee every local unsymmetrized component is controlled."
+            unsupported: "A reduced average needs assumptions connecting it to local unsymmetrized behavior."
           }
         }
       },
@@ -4927,9 +4927,9 @@ export const questionBank = [
     choices: [
       { id: "necessary", content: "Covariant conservation is a necessary consistency condition for the source side of Einstein's equation." },
       { id: "not_sufficient", content: "Conservation alone is not sufficient to identify a viable microphysical matter model." },
-      { id: "dynamics_needed", content: "Matter dynamics, stability, and coupling assumptions are automatically fixed once conservation holds." },
-      { id: "sufficient", content: "Any conserved stress tensor is automatically produced by ordinary matter." },
-      { id: "irrelevant", content: "The Bianchi identity makes source interpretation irrelevant." }
+      { id: "dynamics_needed", content: "For a conserved tensor, dynamics and coupling details are mostly choices of matter representation rather than separate consistency gates." },
+      { id: "sufficient", content: "A conserved stress tensor is close to a source model when it has reasonable density and pressure components." },
+      { id: "irrelevant", content: "The Bianchi identity moves the main review from conservation to interpretation of the chosen geometry." }
     ],
     answer: ["necessary", "not_sufficient"],
     explanation: {
@@ -4945,13 +4945,13 @@ export const questionBank = [
             supported: "A conserved tensor can still lack a viable microphysical matter model."
           },
           dynamics_needed: {
-            unsupported: "Conservation does not automatically fix matter dynamics, stability, or coupling assumptions."
+            unsupported: "Conservation is a consistency gate; dynamics, stability, and coupling assumptions remain separate source-realization questions."
           },
           sufficient: {
-            unsupported: "A conserved stress tensor is not automatically produced by ordinary matter."
+            unsupported: "Reasonable-looking components can help interpretation, but conservation plus component plausibility is not a microphysical matter model."
           },
           irrelevant: {
-            unsupported: "The Bianchi identity makes source interpretation constrained, not irrelevant."
+            unsupported: "The Bianchi identity constrains source interpretation; it does not move the main burden away from source realization."
           }
         }
       },
@@ -4972,8 +4972,8 @@ export const questionBank = [
       { id: "momentum_failure", content: "The growing momentum residual remains a constraint-consistency problem even if the Hamiltonian residual is small." },
       { id: "probe_not_enough", content: "A stable-looking probe trajectory is not enough to clear the constraint failure." },
       { id: "initial_not_all", content: "An initially small residual does not settle constraint preservation during later evolution." },
-      { id: "hamiltonian_dominates", content: "The Hamiltonian residual dominates all ADM consistency checks, so the momentum residual can be ignored." },
-      { id: "probe_clears", content: "The probe trajectory clears the constraints because it is an observable output of the evolution." }
+      { id: "hamiltonian_dominates", content: "The small Hamiltonian residual should carry greater weight if the momentum residual is localized near a strong shift-gradient region." },
+      { id: "probe_clears", content: "The stable-looking probe trajectory is evidence that the residual may be confined to an unobserved channel." }
     ],
     answer: ["momentum_failure", "probe_not_enough", "initial_not_all"],
     explanation: {
@@ -4992,10 +4992,10 @@ export const questionBank = [
             supported: "An initially small residual does not settle later constraint preservation."
           },
           hamiltonian_dominates: {
-            unsupported: "The Hamiltonian constraint does not dominate all ADM consistency checks."
+            unsupported: "A localized high-shift residual may suggest where to look, but it does not downgrade a growing momentum residual without further constraint evidence."
           },
           probe_clears: {
-            unsupported: "Observable probe behavior is not a substitute for constraint satisfaction."
+            unsupported: "A stable trajectory is useful downstream evidence, but it cannot by itself reclassify inconsistent field data as nonphysical."
           }
         }
       },
@@ -5017,8 +5017,8 @@ export const questionBank = [
       { id: "not_wec", content: "Positive density for one observer does not establish the WEC for every timelike observer." },
       { id: "anisotropic_review", content: "Large anisotropic stresses require checking the relevant tensor contractions, not only scalar density." },
       { id: "region_scope", content: "The region over which the condition is claimed has to be specified, not inferred from one event." },
-      { id: "full_clear", content: "The tested null direction and one observer are enough to clear all classical energy conditions." },
-      { id: "stress_irrelevant", content: "Anisotropic stresses are irrelevant because only energy density gravitates." }
+      { id: "full_clear", content: "The tested null direction and one observer give a representative sample unless a symmetry argument says otherwise." },
+      { id: "stress_irrelevant", content: "The anisotropic stresses matter mainly for material interpretation, while energy density carries the energy-condition check." }
     ],
     answer: ["not_global_nec", "not_wec", "anisotropic_review", "region_scope"],
     explanation: {
@@ -5040,10 +5040,10 @@ export const questionBank = [
             supported: "The spatial or spacetime region of the claim has to be stated rather than inferred from one event."
           },
           full_clear: {
-            unsupported: "One null direction and one observer do not clear all classical energy conditions."
+            unsupported: "A sample becomes representative only with supporting symmetry or domain arguments; none are supplied here."
           },
           stress_irrelevant: {
-            unsupported: "Anisotropic stresses are stress-energy components and can matter gravitationally."
+            unsupported: "Anisotropic stresses enter the relevant tensor contractions, not only material interpretation."
           }
         }
       },
@@ -5065,8 +5065,8 @@ export const questionBank = [
       { id: "routing", content: "Signal reachability and global hyperbolicity or horizon-like boundaries still need separate analysis." },
       { id: "domain_limits", content: "The simulated patch's domain of dependence and boundary assumptions matter for the claimed use." },
       { id: "extension_assumptions", content: "Assumptions about how the local patch is extended outside the simulated region affect the global claim." },
-      { id: "smooth_enough", content: "Local smoothness is enough to prove global chronology safety." },
-      { id: "ctc_patch_enough", content: "A small-patch CTC search is enough to settle all causal-access questions." }
+      { id: "smooth_enough", content: "Local smoothness and the absence of patch-level CTCs are strong evidence unless the extension introduces explicit identifications." },
+      { id: "ctc_patch_enough", content: "A small-patch CTC search is the relevant test when the proposed signal routing stays near that patch." }
     ],
     answer: ["local_not_global", "routing", "domain_limits", "extension_assumptions"],
     explanation: {
@@ -5088,10 +5088,10 @@ export const questionBank = [
             supported: "How the patch is extended outside the simulation can change the global claim."
           },
           smooth_enough: {
-            unsupported: "Local smoothness is not proof of global chronology safety."
+            unsupported: "The patch evidence is useful, but extension assumptions can introduce global causal structure not visible in the local check."
           },
           ctc_patch_enough: {
-            unsupported: "A small-patch CTC search does not settle all causal-access questions."
+            unsupported: "Even nearby routing depends on boundary and domain-of-dependence assumptions, so the patch search is not the whole causal-access test."
           }
         }
       },
@@ -5163,9 +5163,9 @@ export const questionBank = [
     choices: [
       { id: "global_theorem", content: "Topological censorship is a global causal theorem, so a local smooth throat picture is not enough to decide applicability." },
       { id: "assumptions", content: "The energy, asymptotic, and predictability assumptions must be checked before using or evading the theorem." },
-      { id: "local_smooth", content: "A smooth local throat automatically evades topological censorship." },
-      { id: "no_energy", content: "The theorem has no relationship to energy or causal assumptions." },
-      { id: "topology_label", content: "Calling the object a shortcut is enough to decide the theorem's applicability." }
+      { id: "local_smooth", content: "A smooth local throat is strong evidence against singular obstruction, so the theorem's global assumptions become secondary." },
+      { id: "no_energy", content: "The theorem is mainly a topology statement, so energy and asymptotic assumptions serve as background hypotheses rather than review gates." },
+      { id: "topology_label", content: "If the proposed geometry is described as a traversable shortcut, that classification largely determines which censorship result applies." }
     ],
     answer: ["global_theorem", "assumptions"],
     explanation: {
@@ -5181,13 +5181,13 @@ export const questionBank = [
             supported: "Energy, asymptotic, causality, and predictability assumptions are part of applying or evading the theorem."
           },
           local_smooth: {
-            unsupported: "Local smoothness does not automatically evade a global theorem."
+            unsupported: "Local smoothness helps rule out one kind of obstruction, but it does not decide a global theorem."
           },
           no_energy: {
-            unsupported: "Energy and causal assumptions are central to the theorem's use."
+            unsupported: "Energy, asymptotic, causal, and predictability assumptions are review gates for applying the theorem."
           },
           topology_label: {
-            unsupported: "A shortcut label does not determine theorem applicability."
+            unsupported: "The label points to a concern, but theorem applicability depends on the geometry and assumptions."
           }
         }
       },
@@ -5209,8 +5209,8 @@ export const questionBank = [
       { id: "macroscopic_scale", content: "Treat macroscopic scale and repeated exposure as part of the burden." },
       { id: "not_source_model", content: "Keep the constraint separate from a positive construction of the required source." },
       { id: "compare_scale", content: "Compare the claimed layer thickness and duration with the scales entering the quantum-inequality bound." },
-      { id: "brief_peak_enough", content: "A brief pointwise peak is enough to clear quantum-inequality concerns at every scale." },
-      { id: "metric_name_enough", content: "If the geometry is smooth, the negative-energy layer no longer needs quantum-field review." }
+      { id: "brief_peak_enough", content: "A brief pointwise peak can be adequate if each local observer samples only a narrow pulse." },
+      { id: "metric_name_enough", content: "If the geometry is smooth and the layer is localized, the remaining burden is mostly classical stress accounting." }
     ],
     answer: ["sampling_worldline", "macroscopic_scale", "not_source_model", "compare_scale"],
     explanation: {
@@ -5232,10 +5232,10 @@ export const questionBank = [
             supported: "Layer thickness and duration have to be compared with the scales in the bound."
           },
           brief_peak_enough: {
-            unsupported: "A brief pointwise peak does not clear quantum-inequality concerns at every scale."
+            unsupported: "Local pulse width is not enough by itself; repeated exposure and macroscopic scale still enter the review."
           },
           metric_name_enough: {
-            unsupported: "Smooth geometry does not remove quantum-field review of negative energy."
+            unsupported: "Smooth localized geometry still needs quantum-field review when the claim depends on negative energy."
           }
         }
       },
@@ -5256,8 +5256,8 @@ export const questionBank = [
       { id: "signal_reach", content: "The proposal must show signal reachability to the wall region it claims to control." },
       { id: "horizon_like", content: "Horizon-like null structures can make onboard control assumptions nontrivial." },
       { id: "source_separate", content: "Null-geodesic reachability does not itself supply the stress-energy source." },
-      { id: "smooth_control", content: "Smooth metric components are enough to guarantee onboard controllability." },
-      { id: "geodesics_source", content: "A null-geodesic plot supplies the missing stress-energy source." }
+      { id: "smooth_control", content: "Smooth metric components plus local wall regularity are enough unless a horizon is explicitly present." },
+      { id: "geodesics_source", content: "A null-geodesic plot can constrain the missing source problem by identifying where control influence must be applied." }
     ],
     answer: ["signal_reach", "horizon_like", "source_separate"],
     explanation: {
@@ -5276,10 +5276,10 @@ export const questionBank = [
             supported: "Reachability analysis does not supply the stress-energy source."
           },
           smooth_control: {
-            unsupported: "Smooth metric components do not guarantee onboard controllability."
+            unsupported: "Smooth local components do not settle whether signals from the onboard controller can reach the wall region."
           },
           geodesics_source: {
-            unsupported: "A null-geodesic plot does not supply missing stress-energy."
+            unsupported: "A null-geodesic plot can localize access issues, but it does not supply the stress-energy source."
           }
         }
       },
@@ -5301,9 +5301,9 @@ export const questionBank = [
       { id: "block_full", content: "Block full service qualification until endpoint residual and reset-history evidence are resolved." },
       { id: "narrow_scope", content: "Narrow the claim to the channels actually supported by the evidence." },
       { id: "diagnose_conflict", content: "Treat the endpoint residual as conflicting channel evidence rather than averaging it away." },
-      { id: "packet_dominates", content: "Clean packet transport dominates the endpoint and reset evidence because it is the user-facing observable." },
-      { id: "source_dominates", content: "A moderate source-family fit automatically clears endpoint and reset channels." },
-      { id: "reset_optional", content: "Reset history is optional once one service pass has clean packet transport." }
+      { id: "packet_dominates", content: "Clean packet transport should carry the final decision if the endpoint residual does not affect the packet observable." },
+      { id: "source_dominates", content: "A moderate source-family fit can make endpoint and reset issues secondary if those channels are downstream effects." },
+      { id: "reset_optional", content: "Reset history can be deferred when the immediate claim is one clean service pass rather than repeated operation." }
     ],
     answer: ["credit_packet", "block_full", "narrow_scope", "diagnose_conflict"],
     explanation: {
@@ -5325,13 +5325,13 @@ export const questionBank = [
             supported: "The endpoint residual is conflicting channel evidence and should not be averaged away."
           },
           packet_dominates: {
-            unsupported: "Packet transport does not dominate endpoint and reset evidence."
+            unsupported: "A final packet observable is important, but endpoint residual and reset history are separate service channels rather than downstream noise."
           },
           source_dominates: {
-            unsupported: "A moderate source-family fit does not clear endpoint or reset channels."
+            unsupported: "Source-family fit is positive evidence, but endpoint and reset behavior still need channel-specific support."
           },
           reset_optional: {
-            unsupported: "Reset history is required for reuse or service-readiness claims."
+            unsupported: "A one-pass claim can be narrower, but this prompt asks about service qualification where reset history remains a live gate."
           }
         }
       },
@@ -5499,8 +5499,8 @@ export const questionBank = [
       { id: "gauge_not_clear", content: "Cleaner coordinate trajectories do not by themselves clear a larger constraint residual." },
       { id: "separate_roles", content: "Gauge choices should be separated from constraint satisfaction and physical invariant claims." },
       { id: "invariants", content: "Physical interpretation should use invariant or constraint-aware checks, not coordinate appearance alone." },
-      { id: "trajectory_wins", content: "The coordinate trajectory comparison is enough to choose the physically better evolution." },
-      { id: "lapse_shift_source", content: "Changing lapse and shift automatically supplies a new physical stress-energy source." }
+      { id: "trajectory_wins", content: "Cleaner coordinate trajectories are strong evidence for the physically better evolution when the compared setups describe the same geometry." },
+      { id: "lapse_shift_source", content: "Changing lapse and shift changes the foliation enough that the implied stress-energy interpretation should be recomputed from scratch." }
     ],
     answer: ["gauge_not_clear", "separate_roles", "invariants"],
     explanation: {
@@ -5519,10 +5519,10 @@ export const questionBank = [
             supported: "Physical interpretation should not rest on coordinate appearance alone."
           },
           trajectory_wins: {
-            unsupported: "A coordinate trajectory comparison is not enough to choose the physically better evolution."
+            unsupported: "Cleaner coordinate trajectories are useful diagnostics, but they do not override constraint or invariant checks."
           },
           lapse_shift_source: {
-            unsupported: "Changing lapse and shift changes description/gauge; it does not automatically supply stress-energy."
+            unsupported: "Changing lapse and shift changes the foliation description; it does not by itself supply a new physical source."
           }
         }
       },
@@ -5543,8 +5543,8 @@ export const questionBank = [
       { id: "necessary", content: "Covariant conservation is a necessary consistency check for the demanded tensor." },
       { id: "not_realized", content: "Conservation does not by itself supply a viable matter model or stability analysis." },
       { id: "pressures_need_model", content: "Unusual principal pressures should be examined for dynamics, energy conditions, and physical interpretation." },
-      { id: "lagrangian_unneeded", content: "A conserved tensor automatically proves that ordinary matter can realize the geometry." },
-      { id: "pressures_irrelevant", content: "Principal pressures can be ignored once the energy density is computed." }
+      { id: "lagrangian_unneeded", content: "A conserved tensor with coherent pressure structure can be treated as a strong proxy for ordinary-matter realizability." },
+      { id: "pressures_irrelevant", content: "Principal pressures are mainly material-model details once conservation and energy density are under control." }
     ],
     answer: ["necessary", "not_realized", "pressures_need_model"],
     explanation: {
@@ -5563,10 +5563,10 @@ export const questionBank = [
             supported: "Unusual principal pressures need dynamics, energy-condition, and interpretation review."
           },
           lagrangian_unneeded: {
-            unsupported: "A conserved tensor does not automatically prove ordinary-matter realization."
+            unsupported: "A coherent conserved tensor is useful, but ordinary-matter realization still needs matter dynamics and stability support."
           },
           pressures_irrelevant: {
-            unsupported: "Principal pressures can affect energy conditions and source interpretation."
+            unsupported: "Principal pressures affect energy conditions, dynamics, and source interpretation."
           }
         }
       },
@@ -5587,8 +5587,8 @@ export const questionBank = [
       { id: "nec_combo", content: "The sums of density plus each principal pressure still matter for null-energy-condition checks." },
       { id: "wec_observers", content: "The weak energy condition concerns all timelike observers, not just the comoving density." },
       { id: "principal_directions", content: "Each principal direction can matter; one benign component does not clear every contraction." },
-      { id: "density_enough", content: "Positive comoving density alone clears all standard pointwise energy conditions." },
-      { id: "pressure_no_gravity", content: "Principal pressures do not enter stress-energy and therefore cannot affect energy-condition review." }
+      { id: "density_enough", content: "Positive comoving density is the dominant check when the pressure anisotropy is confined to one principal direction." },
+      { id: "pressure_no_gravity", content: "Principal pressures mainly affect material interpretation; the energy-condition decision is carried by observer-measured density." }
     ],
     answer: ["nec_combo", "wec_observers", "principal_directions"],
     explanation: {
@@ -5607,10 +5607,10 @@ export const questionBank = [
             supported: "Each principal direction can expose a different contraction."
           },
           density_enough: {
-            unsupported: "Positive comoving density alone does not clear all pointwise energy conditions."
+            unsupported: "Even one strongly negative principal pressure can affect density-plus-pressure inequalities."
           },
           pressure_no_gravity: {
-            unsupported: "Principal pressures are stress-energy components and affect energy-condition review."
+            unsupported: "Principal pressures are stress-energy components; they affect both material interpretation and energy-condition contractions."
           }
         }
       },
@@ -5632,8 +5632,8 @@ export const questionBank = [
       { id: "cauchy_needed", content: "A Cauchy-surface or global-hyperbolicity claim needs separate support." },
       { id: "boundary_data", content: "Boundary behavior can affect whether the local patch supports the proposed global claim." },
       { id: "domain_of_dependence", content: "The domain of dependence for the data used in the claim has to be identified or bounded." },
-      { id: "patch_solves", content: "A smooth local patch automatically supplies a globally hyperbolic spacetime." },
-      { id: "horizons_irrelevant", content: "Horizon-like boundaries are irrelevant to predictability and signal routing." }
+      { id: "patch_solves", content: "A smooth local patch can support a global-hyperbolicity claim when the intended extension is regular and numerically stable." },
+      { id: "horizons_irrelevant", content: "Horizon-like boundaries affect signal routing, but predictability can often be reviewed after the local patch is validated." }
     ],
     answer: ["local_insufficient", "cauchy_needed", "boundary_data", "domain_of_dependence"],
     explanation: {
@@ -5655,10 +5655,10 @@ export const questionBank = [
             supported: "The domain of dependence has to be identified or bounded for predictability claims."
           },
           patch_solves: {
-            unsupported: "A smooth local patch does not automatically supply a globally hyperbolic spacetime."
+            unsupported: "A regular local patch helps, but global hyperbolicity still requires support for the full extension."
           },
           horizons_irrelevant: {
-            unsupported: "Horizon-like boundaries matter for predictability and signal routing."
+            unsupported: "Horizon-like boundaries are part of predictability and signal-routing review, not a later cosmetic detail."
           }
         }
       },
@@ -5679,8 +5679,8 @@ export const questionBank = [
       { id: "metric_not_source", content: "A smooth prescribed metric does not by itself supply the required stress-energy source." },
       { id: "energy_burden", content: "Energy-condition and source-realization burdens remain after the metric ansatz is written." },
       { id: "control_open", content: "Controllability and causal access are separate from the existence of the metric ansatz." },
-      { id: "smooth_sufficient", content: "Smoothness of the bubble profile is sufficient for physical realizability." },
-      { id: "paper_demonstrates", content: "The 1994 metric demonstrates a buildable propulsion system rather than a speculative spacetime model." }
+      { id: "smooth_sufficient", content: "Smoothness of the bubble profile is the main regularity condition, so source and control questions become secondary follow-up checks." },
+      { id: "paper_demonstrates", content: "The 1994 metric demonstrates a consistent GR target, so buildability mainly depends on later engineering maturity." }
     ],
     answer: ["metric_not_source", "energy_burden", "control_open"],
     explanation: {
@@ -5699,10 +5699,10 @@ export const questionBank = [
             supported: "Existence of a formal spacetime is separate from whether signals, actuators, or boundary access could control it."
           },
           smooth_sufficient: {
-            unsupported: "Smoothness helps the model be mathematically well behaved, but it is not a criterion for physical realizability by itself."
+            unsupported: "Smoothness helps the model be mathematically well behaved, but it does not demote source and control questions to secondary checks."
           },
           paper_demonstrates: {
-            unsupported: "The 1994 paper presents a speculative spacetime model, not a demonstrated propulsion system."
+            unsupported: "A consistent GR target remains distinct from buildability; the paper does not establish the engineering path."
           }
         }
       },
@@ -5723,8 +5723,8 @@ export const questionBank = [
       { id: "expansion_not_all", content: "Zero expansion changes one geometric feature but does not automatically clear stress-energy or energy-condition issues." },
       { id: "check_shift", content: "The construction still requires careful review of the shift-driven geometry and inferred source demand." },
       { id: "causal_review", content: "Causal use and control assumptions still need review outside the zero-expansion statement." },
-      { id: "zero_source", content: "Zero expansion means the Einstein tensor vanishes everywhere." },
-      { id: "no_review_needed", content: "Once expansion is zero, causal and source analysis becomes unnecessary." }
+      { id: "zero_source", content: "Zero expansion removes the volume-change contribution, so any remaining Einstein-tensor terms are the secondary part of the model." },
+      { id: "no_review_needed", content: "Once expansion is zero, source analysis can focus on the shift profile while causal review is largely unchanged." }
     ],
     answer: ["expansion_not_all", "check_shift", "causal_review"],
     explanation: {
@@ -5743,10 +5743,10 @@ export const questionBank = [
             supported: "Causal use, access, and control assumptions are not erased by a zero-expansion condition."
           },
           zero_source: {
-            unsupported: "Zero expansion is not the same statement as a vanishing Einstein tensor."
+            unsupported: "Zero expansion constrains one geometric feature; it does not make the remaining Einstein-tensor terms secondary or absent."
           },
           no_review_needed: {
-            unsupported: "A geometric property can reduce or change one concern while leaving source and causal review active."
+            unsupported: "The shift profile and causal behavior both remain active review surfaces, not a narrowed afterthought."
           }
         }
       },
@@ -5767,8 +5767,8 @@ export const questionBank = [
       { id: "geodesic_value", content: "Geodesic behavior is valuable for understanding observables and causal access in the model." },
       { id: "not_source", content: "Plausible-looking geodesics do not supply the stress-energy source or prove physical feasibility." },
       { id: "fixed_model", content: "The conclusion is about paths inside the modeled spacetime, not about how to generate that spacetime." },
-      { id: "visual_proves", content: "A convincing optical visualization proves the bubble can be generated and controlled." },
-      { id: "no_causal_questions", content: "Once geodesics are plotted, horizon and reachability questions disappear." }
+      { id: "visual_proves", content: "A convincing optical visualization is strong indirect evidence that the modeled spacetime has coherent physical behavior." },
+      { id: "no_causal_questions", content: "Once geodesics are plotted, horizon and reachability questions can be read from the paths without separate causal analysis." }
     ],
     answer: ["geodesic_value", "not_source", "fixed_model"],
     explanation: {
@@ -5787,10 +5787,10 @@ export const questionBank = [
             supported: "The result is about behavior in a specified geometry, so generation and control remain different questions."
           },
           visual_proves: {
-            unsupported: "A visualization can clarify model behavior without proving the spacetime can be produced."
+            unsupported: "A visualization can clarify model behavior, but coherent modeled behavior does not prove generation or control."
           },
           no_causal_questions: {
-            unsupported: "Geodesic analysis often exposes reachability and horizon-like issues rather than eliminating them."
+            unsupported: "Geodesic plots inform causal analysis, but they do not replace separate horizon and reachability interpretation."
           }
         }
       },
@@ -5811,8 +5811,8 @@ export const questionBank = [
       { id: "network_matters", content: "Network composition and return paths matter for chronology and causality analysis." },
       { id: "energy_burden", content: "Negative-energy and quantum-inequality burdens remain relevant to the proposed shortcut structure." },
       { id: "one_way_limited", content: "A one-way description of one route does not settle the causal behavior of a larger network." },
-      { id: "one_way_safe", content: "A one-way route automatically prevents all closed-timelike-curve concerns in larger networks." },
-      { id: "chronology_no_energy", content: "Chronology concerns make stress-energy constraints irrelevant." }
+      { id: "one_way_safe", content: "A one-way route is enough to control chronology risk unless a second route is explicitly added." },
+      { id: "chronology_no_energy", content: "Chronology review can be separated from stress-energy review because it concerns network arrangement rather than source construction." }
     ],
     answer: ["network_matters", "energy_burden", "one_way_limited"],
     explanation: {
@@ -5831,10 +5831,10 @@ export const questionBank = [
             supported: "A one-way description of a single route is a local constraint, not a proof about every larger network."
           },
           one_way_safe: {
-            unsupported: "Network composition can reintroduce causal-loop concerns even when one segment is described as one way."
+            unsupported: "The risk lives in network composition; a one-way segment does not settle what paired or return routes can do."
           },
           chronology_no_energy: {
-            unsupported: "Chronology and stress-energy are separate review surfaces; one does not make the other irrelevant."
+            unsupported: "Chronology and stress-energy are distinct, but both remain necessary review surfaces for the shortcut structure."
           }
         }
       },
@@ -5856,8 +5856,8 @@ export const questionBank = [
       { id: "caveats_matter", content: "Trans-Planckian, stability, and model-dependence caveats remain relevant to physical interpretation." },
       { id: "not_generic", content: "A scalar-field label alone does not identify a realizable source for an arbitrary geometry." },
       { id: "coupling_equations", content: "The field equations and coupling assumptions matter, not only the sign of one stress-tensor component." },
-      { id: "generic_clearance", content: "Any mention of a scalar field clears all wormhole or warp stress-energy concerns." },
-      { id: "no_boundary", content: "Because the source is a field, no boundary between mathematical solution and physical realization remains." }
+      { id: "generic_clearance", content: "A non-minimally coupled scalar result gives enough mechanism detail to treat scalar-source proposals as a favored class by default." },
+      { id: "no_boundary", content: "Because the proposal names a field theory rather than an algebraic tensor, mathematical solution and physical realization are much closer together." }
     ],
     answer: ["mechanism_specific", "caveats_matter", "not_generic", "coupling_equations"],
     explanation: {
@@ -5879,10 +5879,10 @@ export const questionBank = [
             supported: "The relevant claim lives in the coupled field equations, not in one isolated sign or component."
           },
           generic_clearance: {
-            unsupported: "Scalar fields are a class of models, not a universal clearance for exotic-source concerns."
+            unsupported: "Non-minimal scalar mechanisms are specific; they do not make every scalar-source proposal favored by default."
           },
           no_boundary: {
-            unsupported: "A mathematical field solution still has to be distinguished from a physically realized source."
+            unsupported: "A field-theory model narrows the gap, but physical regime, stability, and scale still separate solution from realization."
           }
         }
       },
@@ -5901,9 +5901,9 @@ export const questionBank = [
     prompt: "A calculation checks T_mn k^m k^n >= 0 for one named null vector at one event. Which conclusion is supported by that calculation alone?",
     choices: [
       { id: "one_direction", content: "That sampled null contraction passed at that event." },
-      { id: "global_nec", content: "The null energy condition has been established for all null vectors throughout the spacetime." },
-      { id: "wec", content: "The weak energy condition has been established for every timelike observer." },
-      { id: "source_model", content: "A viable matter model producing the stress tensor has been supplied." }
+      { id: "global_nec", content: "The result can be used as evidence for the NEC if symmetry or continuity makes nearby null directions representative." },
+      { id: "wec", content: "The result supports weak-energy-condition safety when the sampled null vector is aligned with the dominant energy-flow direction." },
+      { id: "source_model", content: "The result supports source viability if the sampled contraction is the channel expected to be most negative." }
     ],
     answer: ["one_direction"],
     explanation: {
@@ -5916,13 +5916,13 @@ export const questionBank = [
             supported: "The calculation supports exactly the tested contraction at the tested event."
           },
           global_nec: {
-            unsupported: "The full NEC requires the relevant null contractions across the claimed domain, not one sampled direction."
+            unsupported: "Symmetry or continuity would have to be shown; a single sampled direction alone does not establish the full NEC."
           },
           wec: {
-            unsupported: "The WEC quantifies over timelike observers and is not established by a single null contraction."
+            unsupported: "The WEC has different timelike-observer quantifiers, so alignment with one null direction is not enough."
           },
           source_model: {
-            unsupported: "A contraction check evaluates a tensor property; it does not provide matter dynamics or a source mechanism."
+            unsupported: "A worst-channel contraction can be useful evidence, but it still does not provide matter dynamics or a source mechanism."
           }
         }
       },
@@ -5941,10 +5941,10 @@ export const questionBank = [
     prompt: "From Alcubierre's 1994 paper \"The Warp Drive\" alone, which claim is safest?",
     choices: [
       { id: "metric_model", content: "It gives a speculative warp metric whose interpretation includes severe stress-energy concerns." },
-      { id: "ordinary_engine", content: "It derives an ordinary-matter engine that can create the bubble." },
-      { id: "central_control", content: "It proves an observer at the center can control all wall regions during superluminal operation." },
-      { id: "quantum_clear", content: "It resolves quantum-inequality and semiclassical backreaction concerns." },
-      { id: "chronology_clear", content: "It proves all global chronology issues are absent for warp-drive networks." }
+      { id: "ordinary_engine", content: "It identifies the stress-energy target closely enough that ordinary-matter engineering becomes a later source-design question." },
+      { id: "central_control", content: "It leaves the central observer in a locally mild region, which supports a limited onboard-control reading." },
+      { id: "quantum_clear", content: "It is a classical GR model, so quantum-inequality and semiclassical questions are outside its claim rather than problems for the metric." },
+      { id: "chronology_clear", content: "It analyzes a single warp metric, so broader chronology-network issues are outside the result rather than active cautions." }
     ],
     answer: ["metric_model"],
     explanation: {
@@ -5957,16 +5957,16 @@ export const questionBank = [
             supported: "The paper's durable contribution is the explicit metric model and the recognition that its implied stress-energy is severe."
           },
           ordinary_engine: {
-            unsupported: "The paper does not derive an ordinary-matter engine that generates the bubble."
+            unsupported: "Identifying a stress-energy target is not the same as showing ordinary matter can generate it."
           },
           central_control: {
-            unsupported: "A metric model does not prove the center observer can causally control all wall regions during superluminal operation."
+            unsupported: "A locally mild central region does not prove causal control over the wall during superluminal operation."
           },
           quantum_clear: {
-            unsupported: "Quantum-inequality and semiclassical backreaction issues are not resolved by the original metric ansatz."
+            unsupported: "Being outside the paper's classical claim does not make quantum and semiclassical concerns disappear."
           },
           chronology_clear: {
-            unsupported: "Global chronology questions for networks or broader constructions are outside what the paper establishes."
+            unsupported: "Network chronology issues are outside the paper's result, so they remain cautions rather than cleared claims."
           }
         }
       },
@@ -5985,10 +5985,10 @@ export const questionBank = [
     prompt: "A report provides only one clean final packet observable and no plant-channel, source, endpoint, or reset evidence. Which conclusion is justified?",
     choices: [
       { id: "packet_only", content: "Only the reported packet-facing observable is supported." },
-      { id: "plant_full", content: "The full plant has passed support, endpoint, and reset qualification." },
-      { id: "source_closed", content: "The physical source sector has been realized." },
-      { id: "repeat_ready", content: "Repeated-use readiness has been established." },
-      { id: "general_theory", content: "The result is an established theorem independent of the project architecture." }
+      { id: "plant_full", content: "The plant can be provisionally accepted if the missing channels are downstream of the packet observable." },
+      { id: "source_closed", content: "The clean observable is indirect evidence that the source sector is at least functionally realized for this pass." },
+      { id: "repeat_ready", content: "Repeated-use readiness can be inferred if the final observable shows no visible residue." },
+      { id: "general_theory", content: "The scope rule follows from general evidence discipline rather than project-specific architecture." }
     ],
     answer: ["packet_only"],
     explanation: {
@@ -6001,16 +6001,16 @@ export const questionBank = [
             supported: "The scenario gives evidence for the packet-facing observable and should be credited at that scope."
           },
           plant_full: {
-            unsupported: "Support, endpoint, and reset qualification require their own channel evidence."
+            unsupported: "Missing plant channels cannot be accepted merely as downstream of the packet observable."
           },
           source_closed: {
-            unsupported: "A clean packet observable does not identify or realize the physical source sector."
+            unsupported: "A clean observable is useful but does not identify or realize the source sector."
           },
           repeat_ready: {
-            unsupported: "Repeated-use readiness needs reset and reuse evidence, not only one final observable."
+            unsupported: "No visible final residue is not the same as reset and reuse evidence."
           },
           general_theory: {
-            unsupported: "The scenario is an application-specific evidence statement, not an external theorem."
+            unsupported: "General evidence discipline helps, but the specific claim is about active-rail channel scope."
           }
         }
       },

@@ -174,6 +174,42 @@ Current distribution after this pass:
 - Intermediate: 69.
 - Advanced: 29.
 
+## 2026-05-24 Intermediate And Advanced Distractor Audit
+
+This pass reviewed the intermediate and advanced standard-choice items for a
+specific failure mode: questions that could be answered by eliminating answers
+that no informed learner would take seriously. Mechanical scans were used only
+to surface candidate items with words such as "all", "only", "automatically",
+"irrelevant", and "secondary"; acceptance remained a manual judgment.
+
+Rubric updates:
+
+- Added difficulty-scaled discrimination as a required quality criterion.
+- Required intermediate and advanced distractors to preserve a plausible surface
+  feature, assumption, scope error, or common overextension.
+- Clarified that obviously false absolutes belong only in basic-recognition
+  checks or when the option represents a real-world overclaim that the
+  explanation teaches against.
+
+Manual review actions:
+
+- Rewrote weak distractors across ADM constraints, causal structure,
+  topological censorship, quantum inequalities, stress-energy, geodesic studies,
+  chronology protection, active-rail source ledgers, endpoint handoff, and
+  paper-to-design transfer.
+- Replaced cartoon claims such as "the source is solved", "all paths are flat",
+  or "constraints are irrelevant" with nearby but wrong claims: local-to-global
+  promotion, metric-to-source promotion, clean-observable promotion,
+  gauge-to-physics promotion, and source-demand-to-realization promotion.
+- Rechecked the shared explanations and adaptive feedback wherever answer
+  choices changed, so the answer panel teaches the material distinction rather
+  than merely naming the right choice.
+
+Current interpretation: the bank is still a seed curriculum, but intermediate
+and advanced choice questions now require more boundary discrimination than the
+earlier draft. Future expansion should preserve this standard from first draft
+rather than relying on cleanup passes.
+
 ## Source Hygiene
 
 - Learner-facing paper links now point to actual public source locations, not to

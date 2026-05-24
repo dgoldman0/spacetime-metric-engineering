@@ -759,6 +759,17 @@ A question is acceptable only if it passes all of these checks:
 - **No meta leakage:** the item does not ask about the quiz system, authoring policy, scoring policy, or labeling policy.
 - **Interaction fit:** the question type matches the task; symbolic items use rendered tokens rather than typed LaTeX.
 - **Distractor quality:** wrong choices are plausible misconceptions, not jokes or throwaways.
+- **Intermediate/advanced choice quality:** at intermediate and advanced levels,
+  wrong choices must be credible misconceptions, nearby-but-wrong inferences,
+  incomplete applications, or plausible overextensions. Obviously false
+  absolutes are allowed only when the learning objective is basic recognition or
+  when the option represents a common real-world overclaim that the explanation
+  directly teaches against.
+- **Difficulty-scaled discrimination:** intermediate and advanced questions must
+  require discrimination among nearby ideas, not just elimination of choices no
+  informed learner would take seriously. A wrong option may be false, but it
+  should usually preserve a true surface feature, a common inference path, or an
+  assumption that fails only after the learner applies the relevant distinction.
 - **Select-all shape:** multi-select items do not follow a predictable fixed pattern. The number of choices and correct answers should vary with the concept being tested.
 - **Reviewability:** references, tags, and misconception targets are specific enough for later audit.
 
@@ -769,8 +780,8 @@ Difficulty should describe cognitive demand, not how obscure the wording is.
 | Difficulty | Expected Learner Task | Multiple-Choice Standard |
 | --- | --- | --- |
 | Core | Recognize a definition, identify a direct relation, classify an obvious claim boundary, or apply one step of known theory. | A learner who studied the module should answer quickly without juggling several concepts. Distractors test common confusions. |
-| Intermediate | Apply a concept in context, distinguish similar statuses, interpret a simple equation or chronology, or connect two ideas. | A learner should need to reason through at least one implication or reject a tempting overclaim. |
-| Advanced | Synthesize multiple constraints, evaluate evidence sufficiency, separate established theory from project use in a mixed prompt, or reason about open gates. | Even with choices supplied, the learner should need solid conceptual command and careful boundary discipline. |
+| Intermediate | Apply a concept in context, distinguish similar statuses, interpret a simple equation or chronology, or connect two ideas. | A learner should need to reason through at least one implication or reject a tempting overclaim. Wrong options should sound plausible until the relevant distinction is applied. |
+| Advanced | Synthesize multiple constraints, evaluate evidence sufficiency, separate established theory from project use in a mixed prompt, or reason about open gates. | Even with choices supplied, the learner should need solid conceptual command and careful boundary discipline. Distractors should be expert-like partial truths, missing-assumption claims, scope errors, or plausible but unsupported synthesis moves. |
 
 Advanced multiple choice is allowed, but it must be advanced because of
 reasoning load, not because the source topic is difficult or because the answer
@@ -778,6 +789,15 @@ is hidden in obscure prose. An item is not advanced if the correct option is a
 straight slogan and the wrong options are cartoon overclaims such as "ignore all
 constraints" or "this proves the source." Those items should be downgraded or
 rewritten with a real scenario, plausible distractors, and a reasoned tradeoff.
+
+The same standard applies to intermediate items. If an intermediate prompt can
+be answered by eliminating choices that no serious learner would consider, it
+should be rewritten. Good intermediate distractors often preserve one true
+surface feature while moving the wrong boundary: a local result treated as
+global, a kinematic statement treated as a source statement, a consistency
+condition treated as realization, or a paper result treated as deployment
+evidence. At this level, the learner should often have to ask "what exactly
+does this result support?" rather than merely spot an absurdity.
 
 For advanced approval, the human reviewer should be able to name the advanced
 move required. Examples:
@@ -826,7 +846,8 @@ Score each draft question before it is accepted into the learner-facing bank.
 | Material-facing explanation | Explains authoring choices such as difficulty or rubric status. | Mostly teaches material but includes authoring-room phrasing. | Teaches the material only; no difficulty-label or rubric justification appears. |
 | Explanation depth | Too short for the assigned difficulty. | Adequate but thin, especially for intermediate or advanced items. | Depth matches difficulty: concise for core, implication-focused for intermediate, reasoning-rich for advanced. |
 | Adaptive feedback | Missing where the item clearly needs diagnostic feedback, or contradicts the answer. | Present but generic, such as "this is incorrect" without teaching the misconception. | Tailored to the learner's selected, missed, misplaced, or matched answer and consistent with the shared explanation. |
-| Distractor quality | Throwaway, absurd, or ambiguous options. | Some plausible distractors but uneven. | Distractors map to real misconceptions or overclaims. |
+| Distractor quality | Throwaway, absurd, ambiguous, or obviously false options at intermediate/advanced level. | Some plausible distractors but uneven, or one option gives the answer away. | Distractors map to real misconceptions, partial truths, missing assumptions, scope errors, or plausible overclaims. |
+| Difficulty-scaled discrimination | Intermediate/advanced item can be answered by dismissing unserious choices. | One plausible wrong choice exists, but the rest are giveaways. | Several options require applying the concept's boundary, assumptions, quantifiers, or evidence scope. |
 | Select-all shape | Repeats the same number of options and correct answers by habit. | Shape varies but sometimes looks padded. | Choice count and answer count match the learning task and vary across the bank. |
 | Interaction fit | Wrong activity type or asks for awkward typing. | Usable but not ideal for the skill. | Activity type supports the learning task naturally. |
 | Content scope | Meta-policy, scoring, or authoring content appears in the learner-facing item. | Content is relevant but too broad or underspecified. | Content belongs in the curriculum and stays inside the intended module. |
