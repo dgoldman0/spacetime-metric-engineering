@@ -1,39 +1,62 @@
-# Active-Rail Quiz Interface Architecture
+# Active-Rail Training Interface Architecture
 
-This document describes the intended interface shape for the full quiz system. It exists because the first infrastructure prototype is useful but too simple: it puts every activity into the same basic card flow. That is fine for proving the plumbing, but it will not support the richer teaching and assessment model.
+This document describes the intended interface shape for the full training
+suite. It exists because the first infrastructure prototype is useful but too
+simple: it puts every activity into the same learning-board shell. That is fine
+for proving quiz plumbing, but it does not support an operator simulator that
+should feel like a rail engineer's terminal.
 
-The full system should use shared infrastructure with specialized learning surfaces. The next implementation should be a lightweight dynamic frontend app, not a larger server-backed platform.
+The full system has two top-level surfaces:
+
+- **Qualification Board:** the quiz/study/assessment app.
+- **Rail Service Terminal:** the active-rail line operations trainer.
+
+Both can live in the same local React app for now. They should not share the
+same visual shell.
 
 ## Core Principle
 
-Use a shared shell, not a single shared question UI.
+Use shared infrastructure, not one shared interface.
 
-Shared shell:
+Shared infrastructure:
 
-- navigation,
-- filters,
-- mode selection,
-- claim-status and optional-content controls,
-- session state,
-- scoring service,
-- explanations,
-- reference drawer,
-- review queue.
+- local app runtime,
+- top-level product switcher,
+- common typography baseline,
+- reusable low-level buttons where appropriate,
+- validation/build tooling,
+- source/reference infrastructure where useful.
 
-Specialized surfaces:
+Qualification Board owns:
 
 - ordinary quiz cards,
 - boundary classification workspace,
 - symbol and equation token lab,
-- active-rail service trainer,
 - matching matrix,
 - source-ledger/table reader,
 - design-review case file,
+- filters,
+- scoring,
+- explanations,
+- reference drawer,
 - mastery and remediation view.
 
-This keeps the app coherent without flattening every kind of learning into multiple choice with badges.
+Rail Service Terminal owns:
 
-## Screen Regions
+- operations status bar,
+- service manifest loader,
+- line schematic,
+- telemetry panels,
+- command stack,
+- procedure checklist,
+- interlock display,
+- alarm/event feed,
+- run debrief.
+
+This keeps the app coherent without flattening the service simulator into a quiz
+workspace with badges.
+
+## Qualification Board Screen Regions
 
 ### Command Bar
 
@@ -67,7 +90,6 @@ Examples:
 
 - a concise card stack for basic quiz items,
 - a grid for claim classification,
-- an operator console for running a single active-rail line,
 - a table-plus-question layout for ledger interpretation,
 - a dossier layout for design-review cases.
 
@@ -104,6 +126,30 @@ It should show:
 - repeated misconceptions,
 - missed questions,
 - recommended study sets.
+
+## Rail Service Terminal Screen Regions
+
+The Rail Service Terminal should not show the qualification filters, score
+report, question count, or study-mode controls. It should use a terminal shell.
+
+Required regions:
+
+- **Status Bar:** `LINE`, `MANIFEST`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
+  and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
+- **Line Board:** the dominant area. Shows service phases, packet position,
+  support envelope, endpoint readiness, and phase progress.
+- **Telemetry:** dense meters for support margin, source debt, endpoint
+  confidence, timing drift, reset residue, stability posture, and load.
+- **Command Stack:** current operator commands, with visible interlocks on
+  disabled actions.
+- **Procedure Panel:** checklist of gates and phase procedures.
+- **Alarm/Event Feed:** timestamped stream with subsystem, severity, and terse
+  event text.
+- **Debrief Drawer:** appears after secure or abort.
+
+The terminal should minimize explanatory prose while the line is active. The
+operator learns through state, alarms, command availability, and the service
+trace.
 
 ## Activity Surfaces
 
@@ -168,35 +214,39 @@ Requirements:
 
 The old service chronology quiz surface is not enough for active-rail operator
 training. Sequencing questions can remain inside the qualification drill, but
-the dedicated workspace should become the Rail Run Trainer.
+the dedicated operator product should become the Rail Service Terminal.
 
-### Rail Run Trainer
+### Rail Service Terminal
 
 Use for:
 
-- single-line active-rail service operation,
+- single-line active-rail service operation in a terminal shell,
 - readiness gates,
 - support/carry/catch/fade/decompress/reset command flow,
 - hold, abort, and recovery decisions,
 - qualitative failure-mode training,
 - post-run operator debriefs.
 
-Better UI shape:
+Required UI shape:
 
-- line schematic with current packet/rail phase,
-- command console with context-sensitive operator actions,
-- readiness and health meters using operational language,
-- event log that updates while the line runs,
-- advisory panel with current cautions and recommended actions,
-- run report after completion or abort.
+- full-width operations terminal, not a card inside the quiz workspace;
+- dark or high-contrast console styling that clearly differs from the
+  Qualification Board;
+- compact top status bar with line id, state, manifest, clock, authority, and
+  alarm count;
+- dominant line schematic with live phase and packet state;
+- telemetry stack with status bands and subsystem labels;
+- command stack with currently available commands and locked commands;
+- procedure checklist with gate state;
+- terminal event feed;
+- run debrief after completion or abort.
 
 Interaction rules:
 
 - The learner should not type raw source coefficients, timing constants, or
   synthetic score parameters.
-- Service profiles should be chosen as operational requests, such as inspection
-  crawl, standard packet, heavy packet, tight-window handoff, or post-reset
-  reuse.
+- Service manifests should be loaded as operator work orders, not selected from
+  friendly marketing cards.
 - The trainer may use hidden numeric state to drive meters and outcomes, but the
   displayed controls should be procedural: precharge support, close ledger,
   synchronize endpoint, carry packet, catch/rematch, fade, decompress, reset,
@@ -204,8 +254,12 @@ Interaction rules:
 - The trainer should not use question-bank scoring. Its outcomes are line
   states, event logs, cautions, abort reports, readiness summaries, and recovery
   notes.
-- The interface must clearly label the trainer as an architecture-logic service
-  trainer, not a physics simulation of a validated plant.
+- The interface must clearly label the trainer as architecture-logic simulation,
+  but the label should look like a terminal status marker rather than a teaching
+  paragraph.
+- The terminal should keep disabled controls visible with interlock reasons.
+- The terminal should make time matter: waiting too long in the wrong phase can
+  increase drift, source debt, residue, or alarm severity.
 
 ### Matching Matrix
 

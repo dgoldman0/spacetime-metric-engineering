@@ -1,45 +1,67 @@
-# Active-Rail Quiz System Design
+# Active-Rail Training System Design
 
-This file is a design document, not an implementation roadmap. It defines what the full quiz system should become before we decide how to build it. Detailed implementation-facing notes live in companion documents:
+This file is a design document, not an implementation roadmap. It defines the
+overall active-rail training suite before implementation work. Detailed
+implementation-facing notes live in companion documents:
 
 - `INTERFACE_ARCHITECTURE.md` for screen structure, specialized activity surfaces, and math rendering.
 - `ASSESSMENT_MODEL.md` for scoring, mastery, grading dimensions, and reports.
+- `SERVICE_TRAINER_DESIGN.md` for the separate active-rail service terminal,
+  simulator loop, operator controls, and line-state model.
 
-The original HTML prototype proves that a static active-rail quiz can work: it has a question bank, filters, explanations, KaTeX rendering, and mixed question types. The first infrastructure prototype in this folder proves local data separation and basic grading. The next system should now move to a lightweight dynamic frontend app so the interface can support specialized activity surfaces, richer state, proper math rendering, and grading profiles without turning into one oversized script file. It should teach established theory, published speculative-relativity context, and project-specific active-rail architecture while making the boundaries between those categories impossible to miss.
+The original HTML prototype proves that a static active-rail quiz can work: it
+has a question bank, filters, explanations, KaTeX rendering, and mixed question
+types. That quiz product remains valuable, but it is only one surface in the
+training suite. The second first-class surface is an active-rail service
+terminal: a simulator that lets a learner operate a single rail line as if they
+were the engineer assigned to service.
 
 The guiding phrase:
 
-> A future engineering program that knows exactly which parts are textbook, which parts are literature context, which parts are active-rail design language, and which parts are still open gates.
+> A future engineering program where a learner can qualify on the theory, then
+> sit down at a line terminal and practice operating the active-rail service.
 
-The system now has two related but distinct product layers:
+The system has two first-class products:
 
-- the qualification drill, which is an assessment and study surface backed by
-  the question bank;
-- operational learning services, which are scenario and trainer surfaces with
-  their own domain data, state machines, procedures, and reports.
+| Product | What It Is | What It Is Not |
+| --- | --- | --- |
+| Qualification Board | A quiz/study application backed by the question bank, scoring, explanations, references, and timed qualification. | Not an operational simulator. |
+| Rail Service Terminal | A standalone active-rail line trainer with manifests, procedures, interlocks, telemetry, event logs, alarms, and recovery states. | Not a quiz workspace and not a physics solver. |
 
-The question bank is not the product's universal content model. It is the right
-model for quizzes, timed qualification, explanations, and assessment reporting.
-An active-rail service trainer should instead feel like operating a line: the
-learner works through readiness, command, hold, abort, recovery, and reset
-decisions while the line state evolves.
+The question bank is not the suite's universal content model. It is the right
+model for the Qualification Board. The Rail Service Terminal uses service
+manifests, line state, simulator procedures, interlocks, alarms, and debriefs.
+It should feel like someone dropped the learner into a working active-rail line
+station, not like a quiz page with a simulation panel.
 
 ## Product Intent
 
-The quiz should feel like an engineering qualification from a future active-rail service academy, but it must remain honest by construction.
+The training suite should feel like a future active-rail service academy with
+two complementary experiences.
 
-It should do four jobs at once:
+The Qualification Board should:
 
 1. Teach the established theory needed to reason about the design.
 2. Teach the active-rail architecture as currently understood.
 3. Train users to separate established understanding from project-specific ideas.
 4. Help the project team study, audit, and sharpen the design itself.
 
+The Rail Service Terminal should:
+
+1. Train operational reasoning around the current active-rail service model.
+2. Let the learner operate a line through support, carry, catch, fade,
+   decompression, and reset.
+3. Make failures feel procedural and consequential: support gaps, source debt,
+   endpoint mismatch, timing drift, reset residue, and stability lockout.
+4. Keep the physics boundary explicit without turning the active terminal into a
+   lecture.
+
 The fictional framing is allowed to be fun. The physics boundary is not allowed to be fuzzy.
 
-## Learning Modes
+## Qualification Board Modes
 
-The app should support multiple session profiles over the same question bank.
+The Qualification Board should support multiple session profiles over the same
+question bank.
 
 Study mode is generous and explanation-forward. It can show feedback after each
 answer, support resets, and prioritize learning over pressure.
@@ -63,10 +85,10 @@ Timed quiz mode should have an optional teaching setting:
 This keeps timed mode honest as an assessment tool while still allowing it to
 serve as a study tool when the learner chooses explanation review.
 
-## Operational Learning Services
+## Rail Service Terminal
 
-Some learning surfaces should not be quizzes at all. The active-rail service
-trainer is the first such surface.
+The Rail Service Terminal is not a learning mode over the question bank. It is a
+separate service simulation surface inside the training suite.
 
 The service trainer is a qualitative architecture-logic simulator for a single
 active-rail line. It does not compute a spacetime solution, solve field
@@ -82,11 +104,12 @@ reasoning inside the current active-rail architecture:
 - respond to support gaps, source debt, endpoint drift, reset residue,
   conservation or stability cautions, and abort states.
 
-The operator interface should expose service requests, line states, readiness
-gates, command buttons, meters, event logs, and recovery reports. It should not
-ask the learner to type raw coefficients or enter a static parameter set for
-grading. Hidden state variables are allowed inside the trainer, but the learner
-interacts through operational choices: arm, hold, precharge, synchronize, carry,
+The operator interface should expose a terminal: line id, manifest, current
+state, command authority, interlocks, procedure checklist, telemetry, alarms,
+event stream, and debrief. It should not ask the learner to type raw
+coefficients or enter a static parameter set for grading. Hidden state variables
+are allowed inside the trainer, but the learner interacts through operational
+choices: accept manifest, precheck, arm, hold, precharge, synchronize, carry,
 catch, fade, decompress, reset, abort, and recover.
 
 This surface should feel like a real training console in a future engineering
@@ -94,7 +117,7 @@ program. Its truth boundary remains explicit: it simulates the architecture's
 procedural logic and predicted failure taxonomy, not validated spacetime
 physics.
 
-The trainer should use its own domain data:
+The trainer uses its own domain data:
 
 - service profiles,
 - rail phases,
@@ -414,7 +437,7 @@ This mode is especially important for symbolic expressions and active-rail vocab
 
 Use inside the qualification drill for ordering concepts, service-stage
 vocabulary, and review procedures. The dedicated active-rail operation surface
-is the Rail Run Trainer, not a sequence-question lane.
+is the Rail Service Terminal, not a sequence-question lane.
 
 Examples:
 
@@ -666,28 +689,37 @@ author's rubric reasoning, or use difficulty-label language as explanation.
 
 ## Visual And Interaction Design
 
-The current prototype looks like a useful dark demo. The full system should look more like a refined engineering console than a novelty quiz page.
+The suite needs two visual systems.
 
-The first infrastructure prototype is intentionally too simple. It proves data loading, filters, a few interactions, and basic grading. It should not become the final interaction model by accretion. The full system needs richer activity surfaces and mode-specific layouts.
+The Qualification Board should look like a refined engineering learning board:
+clear navigation, readable questions, strong source visibility, and calm
+assessment reports.
+
+The Rail Service Terminal should look like an operations terminal. It should not
+inherit the learning-board card language, filter rail, report panel, or
+explanation-page composition. The terminal should be dense, status-first, and
+procedural: line strip, telemetry, command stack, interlocks, alarms, and event
+feed.
+
+The current service trainer checkpoint proves that the reducer concept can
+exist, but its presentation is too close to the quiz workspace. The replacement
+must be terminal-first rather than card-first.
 
 Design direction:
 
-- cleaner layout,
-- better typography,
-- less gradient-heavy styling,
-- more readable contrast,
-- clearer module navigation,
-- compact but polished cards,
-- visible claim-status badges,
-- schematic visuals where they teach something,
-- responsive layout that works on tablet and mobile.
+- Qualification Board: cleaner layout, readable typography, compact polished
+  cards, visible claim-status badges, references, and responsive filters.
+- Rail Service Terminal: dark or high-contrast operations styling, status
+  lamps, phase strips, compact panels, terminal logs, alarm colors, and command
+  authority states.
+- Both: color used for meaning rather than decoration.
 
 Suggested aesthetic:
 
-- institutional future lab,
+- institutional future lab for the Qualification Board,
+- rail-operations console for the Service Terminal,
 - quiet technical confidence,
-- instrument-panel clarity,
-- color used for meaning rather than decoration.
+- instrument-panel clarity.
 
 Avoid:
 
@@ -697,6 +729,8 @@ Avoid:
 - long paragraphs inside cramped cards,
 - badges that look fun but do not communicate status,
 - hiding important epistemic caveats in small text.
+- showing service operation inside quiz cards,
+- using "items ready" or score-report language inside the Service Terminal.
 
 Claim class should be visible through a combination of label, color, and icon or shape. Color alone is not enough.
 
@@ -714,9 +748,11 @@ See `INTERFACE_ARCHITECTURE.md` for the intended multi-surface interface model.
 
 ## Main User Experience
 
-The first screen should be the learning tool, not a marketing page.
+The first screen should be the training tool, not a marketing page. The user
+should be able to choose between the Qualification Board and the Rail Service
+Terminal as different first-class surfaces.
 
-Core surfaces:
+Qualification Board surfaces:
 
 - module browser,
 - active quiz pane,
@@ -725,10 +761,22 @@ Core surfaces:
 - learning mode selector,
 - progress and mastery view,
 - review queue,
-- reference drawer,
-- design-review simulator.
+- reference drawer.
+
+Rail Service Terminal surfaces:
+
+- operations status bar,
+- line schematic,
+- telemetry stack,
+- command stack,
+- procedure checklist,
+- alarm and event log,
+- secure/abort debrief.
 
 Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, question contexts, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories, but count should offer small, medium, and large review sizes plus all.
+
+These narrowing controls belong to the Qualification Board. The Rail Service
+Terminal should use manifests, commands, interlocks, and telemetry instead.
 
 The system should support both casual and serious use:
 
@@ -738,6 +786,7 @@ The system should support both casual and serious use:
 - claim-boundary practice,
 - source-ledger lab,
 - design review simulation,
+- active-rail line operation,
 - missed-question review,
 - print/export for offline study.
 
@@ -749,9 +798,12 @@ The interface should support several classes of learning activity:
 - service chronology and timeline work,
 - source-ledger/table interpretation,
 - design-review case files,
+- active line operation,
 - review and remediation.
 
-These can share navigation, metadata, filters, and scoring services, but they should not all share one cramped card layout.
+Question-based activities can share navigation, metadata, filters, and scoring
+services. The Service Terminal should not share the quiz filter/report shell or
+the card layout.
 
 ## Learning Modes
 
@@ -779,7 +831,26 @@ Focused on separating established theory, literature context, project model, pro
 
 Questions revolve around tables, plots, projections, burden channels, standing support, and active-service excess.
 
+### Rail Service Terminal
+
+Operator simulation. Users run a single active-rail line through a manifest,
+procedure gates, telemetry changes, alarms, holds, aborts, recovery, and reset.
+It uses service state and simulator rules, not quiz grading.
+
 ## Scoring Model
+
+Scoring belongs to the Qualification Board. The Rail Service Terminal should
+produce operational outcomes instead:
+
+- secured,
+- completed with cautions,
+- held,
+- aborted,
+- recovery required,
+- reuse blocked.
+
+Its debrief can recommend study areas, but the active run should not feel like a
+graded question attempt.
 
 The score should not be a single percent only.
 
@@ -1086,9 +1157,21 @@ The static prototype can remain as a reference checkpoint or be retired once the
 - Which framework conventions should the dynamic frontend standardize on as it grows?
 - Should project-internal run outputs and ledgers become quiz artifacts later?
 - How should the system mark active-rail ideas that are later revised or retired?
+- How far should the Service Terminal push operational realism before it needs
+  authored missions, instructor notes, or a stronger disclaimer?
+- Which telemetry names should become canonical active-rail service vocabulary?
+- Should the Service Terminal eventually become a separate route or package from
+  the Qualification Board?
 
 ## Design Summary
 
-The full quiz system should be fun because it feels like training inside a real future engineering program. It should be useful because it teaches active-rail architecture as a system, not as loose vocabulary. It should be honest because every item exposes whether it is established theory, published speculative context, project-specific design language, a hypothesis, or an open physical gate.
+The training suite should be fun because it feels like training inside a real
+future engineering program. It should be useful because it has both assessment
+and operation: the Qualification Board teaches and tests knowledge, while the
+Rail Service Terminal lets the learner practice acting like a line engineer. It
+should be honest because every learning item exposes claim status, and every
+service run is marked as architecture-logic simulation rather than validated
+plant physics.
 
-The most important design requirement is not more questions. It is better epistemic architecture.
+The most important design requirement is not more screens. It is making each
+surface behave like the thing it claims to be.

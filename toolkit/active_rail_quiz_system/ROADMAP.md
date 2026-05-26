@@ -1,17 +1,28 @@
-# Active-Rail Quiz System Roadmap
+# Active-Rail Training System Roadmap
 
-This roadmap keeps the system modest in product scope but not artificially simple in interface design. The goal is not to build a giant learning platform. The goal is to build a good, flexible quiz system that can teach active-rail architecture honestly, separate established theory from project-specific ideas, and make content authoring manageable.
+This roadmap keeps the system modest in implementation scope but honest about
+product shape. The goal is no longer just a good quiz system. The goal is an
+active-rail training suite with two first-class products:
 
-The three main phases are:
+- **Qualification Board:** the quiz/study/timed assessment product.
+- **Rail Service Terminal:** the active-rail operator simulator.
+
+The Qualification Board teaches and tests theory, references, claim boundaries,
+and active-rail vocabulary. The Rail Service Terminal lets the learner act as a
+line engineer inside a qualitative architecture-logic simulation.
+
+The first three phases still describe the qualification/curriculum path:
 
 1. Quiz infrastructure.
 2. Curriculum design.
 3. Content population.
 
-A fourth product track now sits alongside those phases: operational learning
-services. These are not additional quiz types. They are specialized trainers
-that use their own state models and domain data when the experience needs to
-feel like engineering practice rather than assessment.
+Phase 4 defines the service trainer product:
+
+4. Rail Service Terminal.
+
+Design comes first for Phase 4. The trainer must have its own domain model,
+interface architecture, and simulator loop before code changes.
 
 ## Phase 1: Quiz Infrastructure
 
@@ -55,8 +66,6 @@ Phase 1 should be split into practical subphases.
    - Add boundary classification surface.
    - Add symbol/equation lab surface.
    - Keep sequencing questions inside the qualification drill.
-   - Replace the weak chronology workspace with a Rail Run Trainer that does
-     not depend on the question bank.
    - Prepare room for ledger and case-file surfaces.
 4. Assessment and reports.
    - Separate concept accuracy from claim-boundary accuracy.
@@ -86,28 +95,6 @@ The first renderer set should include:
 Leave diagram labeling and full ledger labs for later unless they become easy
 extensions. The active-rail service trainer should be treated as a separate
 operational surface, not as another question type.
-
-### Operational Trainer Track
-
-The Rail Run Trainer is the next infrastructure milestone for specialized
-learning services.
-
-Initial scope:
-
-- one simulated active-rail line,
-- local client-side state only,
-- no backend and no real physics solver,
-- service profiles chosen as operational requests,
-- hidden qualitative state variables for support margin, source ledger closure,
-  endpoint synchronization, timing drift, reset residue, and stability posture,
-- context-sensitive operator commands,
-- active event log,
-- visible line schematic,
-- caution, abort, completion, and recovery states,
-- explicit truth boundary that this is an architecture-logic trainer.
-
-The trainer should feel like operating a line. It should not feel like entering
-a static parameter set and being graded.
 
 ### Drag-Fill Word Bank
 
@@ -144,7 +131,7 @@ Recommended scope:
 - KaTeX dependency installed through the package manager.
 - Local question-bank modules imported by the app.
 - Componentized surfaces for standard quiz, symbol/equation work, sequencing,
-  matching, boundary classification, and the Rail Run Trainer.
+  matching, and boundary classification.
 - Local browser state for one session at a time.
 - No backend.
 - No database.
@@ -229,9 +216,11 @@ Required surfaces:
 
 The design should feel like a polished engineering console: readable, calm, fast, and clear. It should look much better than the prototype, but the first implementation should avoid ornamental complexity.
 
-The active workspace should change by activity type or service type. A
-boundary-classification session, a symbol lab, a service trainer, and a
-design-review case should not all be cramped into the same generic card.
+The Qualification Board workspace should change by activity type. A
+boundary-classification session, a symbol lab, and a design-review case should
+not all be cramped into the same generic card. The Rail Service Terminal is a
+separate top-level product surface with its own shell, not another
+question-card workspace.
 
 Timed mode should keep those specialized surfaces but show only the active item.
 Its timer is a pacing constraint, not a separate scoring dimension in the first
@@ -248,8 +237,6 @@ Filter controls should not force narrow single-choice paths. Tracks, modules, di
 - Drag-fill works without typing equations.
 - A renderer registry or equivalent separation exists.
 - At least one specialized surface exists beyond the standard quiz card.
-- The Rail Run Trainer can run a single-line service pass with evolving state,
-  operator commands, event logs, and failure/recovery outcomes.
 - Grading reports module and claim-status performance.
 - Timed quiz mode can run through a selected question set, stop on time expiry,
   and optionally pause for explanations after submitted answers.
@@ -489,6 +476,92 @@ Not every question needs every review type. Established-theory and literature qu
 - Explanations teach rather than merely reveal answers.
 - The first release can function as both a study tool and an active-rail architecture review aid.
 
+## Phase 4: Rail Service Terminal
+
+Build the active-rail operator simulator as its own first-class product surface.
+This phase is not an extension of the question-bank renderer. It should follow
+`SERVICE_TRAINER_DESIGN.md`.
+
+### Design Requirements
+
+The design checkpoint must exist before implementation changes.
+
+Required design artifacts:
+
+- terminal information architecture,
+- service manifest model,
+- line state model,
+- procedure and command model,
+- interlock and gate model,
+- telemetry definitions,
+- failure taxonomy,
+- event/debrief model,
+- visual direction for the operations terminal.
+
+### Implementation Subphases
+
+1. Remove quiz-shell dependency.
+   - Selecting the service terminal should remove quiz filters, report panels,
+     question counts, study/timed controls, and card-stack styling.
+   - The terminal should have a separate shell and visual language.
+2. Extract simulator data and logic.
+   - Move manifests, line procedures, failure rules, and reducer functions into
+     dedicated service-trainer modules.
+   - Keep the React component responsible for rendering and dispatching
+     commands, not for holding all simulator rules inline.
+3. Build the terminal interface.
+   - Top status bar.
+   - Line schematic.
+   - Telemetry stack.
+   - Command stack with interlock reasons.
+   - Procedure checklist.
+   - Alarm/event feed.
+   - Run debrief.
+4. Make the run feel alive.
+   - Advance clock during active states.
+   - Evolve telemetry over time.
+   - Emit alarms once per condition.
+   - Let operator timing matter.
+   - Support hold, resume, abort, reset, and secure.
+5. Add meaningful first failure modes.
+   - Support gap.
+   - Source overdraw.
+   - Endpoint mismatch.
+   - Timing violation.
+   - Fade-before-catch refusal or alarm.
+   - Reset contamination.
+   - Stability lockout.
+
+### First Acceptance Target
+
+The first acceptable terminal should let the learner:
+
+- load a manifest,
+- run precheck,
+- arm the line,
+- move through service phases,
+- monitor telemetry,
+- see commands lock and unlock,
+- respond to warnings,
+- trigger and recover from at least four failures,
+- secure or abort the line,
+- read a terse operational debrief.
+
+It should not look like a quiz page. It should look like an active-rail service
+station.
+
+### Phase 4 Done When
+
+- Rail Service Terminal has a separate shell and style from the Qualification
+  Board.
+- Service trainer data and simulation logic live outside the React rendering
+  component.
+- The trainer uses manifests, procedures, interlocks, telemetry, events, and
+  failure rules instead of question-bank data.
+- The terminal supports an evolving single-line run.
+- The event log and debrief explain outcomes in operator language.
+- Validation, smoke tests, and production build pass.
+
 ## Keep It Simple Rules
 
 - Prefer local imported question-bank files before adding a database.
@@ -520,7 +593,7 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Standard quiz, symbol-fill, sequence, matching, and claim-classification
   renderers exist.
 - Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board,
-  Symbol Lab, Rail Run Trainer, and Design Review.
+  Symbol Lab, a first service-trainer checkpoint, and Design Review.
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
@@ -534,12 +607,15 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Sequence activities now avoid starting in canonical answer order and use draggable rows with keyboard fallback.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
+- The first service-trainer checkpoint proves a basic line-state loop, but it
+  still uses too much Qualification Board presentation. Phase 4 replaces it with
+  a terminal-first implementation.
 
 What is still missing:
 
 - workspace-specific scoring panels,
-- replacement of weak question-subset workspaces with true learning services,
-- an operational Rail Run Trainer that feels like running an active-rail line,
+- replacement of the current service-trainer checkpoint with a real Rail
+  Service Terminal,
 - a fuller Ledger Reader workspace,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks with deeper coverage inside each broad
@@ -547,23 +623,26 @@ What is still missing:
 - richer answer/explanation writing, especially for intermediate and advanced questions,
 - better mode separation between study, drill, qualification, and project-internal review.
 
-The visible workspace architecture and validation gates are now good enough to
-start large, careful curriculum population. The next work should add numerous
-reviewed batches rather than treating the current seed bank as complete.
+The Qualification Board architecture and validation gates are good enough for
+continued curriculum work. The service trainer now needs the Phase 4 replacement
+path before more simulator code is added.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone should prove the app can support a non-quiz learning service:
+The next milestone is the Phase 4 Rail Service Terminal replacement:
 
-- replace the service chronology timeline workspace with a Rail Run Trainer,
-- remove ordinary quiz filters and score reporting from that workspace,
-- add a single-line operator console with line schematic, stage state, command
-  board, health meters, event log, and recovery report,
-- support service profiles such as inspection crawl, standard packet,
-  tight-window handoff, heavy packet, and post-reset reuse,
-- simulate qualitative architecture failure modes without presenting the result
-  as validated plant physics,
-- keep the quiz bank and qualification drill stable while the trainer evolves,
+- commit the design checkpoint first,
+- remove quiz-shell presentation from the trainer,
+- split trainer data and reducer logic into service-specific modules,
+- build a full operations terminal with status bar, line board, telemetry,
+  command stack, procedure checklist, interlocks, alarms, event feed, and
+  debrief,
+- support service manifests such as inspection crawl, standard packet,
+  tight-window handoff, heavy packet, post-reset reuse, and fault-injection
+  drill,
+- simulate qualitative architecture failure modes through operator action and
+  evolving line state,
+- keep the Qualification Board stable while the terminal is rebuilt,
 - keep validation, smoke tests, and production builds healthy.
 
 This milestone should prove the system can teach active-rail operation through
@@ -571,6 +650,11 @@ interactive practice, not merely render more content.
 
 ## Roadmap Summary
 
-Phase 1 builds the quiz machine. Phase 2 designs the course. Phase 3 fills it with high-quality questions.
+Phase 1 builds the quiz machine. Phase 2 designs the course. Phase 3 fills it
+with high-quality questions. Phase 4 builds the Rail Service Terminal as a
+separate operator simulator.
 
-The system should stay friendly and flexible. Its special strength should be that it teaches active-rail ideas while constantly training the user to ask: is this established theory, literature context, project model, hypothesis, or open gate?
+The system should stay friendly and flexible, but each surface must behave like
+what it claims to be. The Qualification Board teaches claim boundaries and
+theory. The Rail Service Terminal trains active-rail operation through service
+state, commands, interlocks, alarms, and consequences.
