@@ -155,17 +155,22 @@ Required primary regions:
 - **Status Bar:** `LINE`, `WORK ORDER`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
 - **Live Line Simulation:** the dominant region. It shows the rail corridor,
-  packet, support envelope, source/ledger channel, endpoint/catch window, reset
-  path, timing shear, constraint posture, residue, and localized subsystem
-  warnings. This region must not reduce to a progress bar, static decoration,
-  card cluster, or duplicated telemetry dashboard.
+  live packet corridor, standing substrate, support-shell envelope,
+  metric-actuator bands, source-response channel, endpoint receiver/catch
+  window, reset path, packet service trace, timing shear, carrier/constraint
+  posture, packet leakage, residue, and localized subsystem warnings. This
+  region must not reduce to a progress bar, static decoration, card cluster, or
+  duplicated telemetry dashboard.
 - **Instrumentation:** compact readouts and trend strips for support margin,
-  source debt, endpoint confidence, timing drift, reset residue, stability, and
-  load. Direction and recent change should be visible where possible.
-- **Operator Controls:** persistent line controls for support drive,
-  support trim, source/ledger closure, endpoint sync, catch aperture, carry
-  drive, fade, decompression, reset purge, hold, abort, and secure. They control
-  the line; they are not quiz answers and not a next-action list.
+  packet isolation/leakage, source burden, endpoint confidence, timing drift,
+  reset residue, stability, load, reservoir headroom, and causal/carrier risk.
+  Direction and recent change should be visible where possible.
+- **Operator Controls:** persistent line controls for support precharge/drive,
+  clock-lapse cushion, rail-stretch trim, throat-capacity trim,
+  source-response or medium coupling, reservoir draw, endpoint sync, catch
+  aperture, carrier drive, matched hold, fade, decompression, reset purge,
+  rail-time governor, hold, abort, and secure. They control the line; they are
+  not quiz answers and not a next-action list.
 
 Required secondary regions:
 
@@ -187,12 +192,13 @@ service trace.
 
 Viewport rule: graphics own the line; instrumentation owns the numbers. The
 live simulation should be implemented as layered SVG/CSS graphics first: drawn
-corridors, animated packet body, support-field geometry, source-flow channel,
-endpoint aperture, reset residue, timing shear, and state-derived localized
-warnings. Do not place large text boxes, duplicate metric cards, repeated
-percentage readouts, static squiggles, or decorative warning triangles inside
-the live line. Small geometric labels and warning tags are acceptable only when
-they identify a real feature or degraded subsystem.
+corridors, animated packet body, packet service trace, support-shell geometry,
+source-response channel, endpoint receiver aperture, reset residue, timing
+shear, carrier/constraint overlays, and state-derived localized warnings. Do
+not place large text boxes, duplicate metric cards, repeated percentage
+readouts, static squiggles, or decorative warning triangles inside the live
+line. Small geometric labels and warning tags are acceptable only when they
+identify a real feature or degraded subsystem.
 
 Implementation stack for the rich terminal view:
 
@@ -206,11 +212,13 @@ they do not become separate simulation engines.
 
 The viewport should use a spacetime-engineering visual grammar, not a generic
 machine diagram. It should show qualitative geometry: service corridor, packet
-worldline/wake, support envelope, demanded-source channel, endpoint optics,
-timing shear, reset residue, and constraint/backreaction posture. Higher-order
-overlays such as causal-access risk, horizon-risk, and chronology guard are
-allowed only as labeled heuristic risk readouts. They must not claim to detect
-actual horizons, compute null geodesics, solve backreaction, or identify CTCs.
+service trace, support envelope, source-response burden, endpoint optics,
+timing shear, reset residue, packet leakage, and constraint/backreaction
+posture. A source ledger is a diagnostic/audit artifact, not an operator
+actuator. Higher-order overlays such as causal-access risk, horizon-risk, and
+chronology guard are allowed only as labeled heuristic risk readouts. They must
+not claim to detect actual horizons, compute null geodesics, solve
+backreaction, or identify CTCs.
 
 ### Operator Station Interaction Model
 
@@ -218,8 +226,9 @@ The operator station should make the line feel alive.
 
 Standby:
 
-- line simulation shows origin, endpoint, staged packet, support state, endpoint
-  readiness, reset state, and work-order id;
+- line simulation shows integrated origin/endpoint stations, staged packet,
+  support-shell readiness, endpoint receiver readiness, reset-plant state, and
+  work-order id;
 - work-order acceptance appears as a compact intake/arm control, not as the
   first item in a command list or as a selected card in a left-rail queue;
 - instrumentation is visible but quiet;
@@ -229,15 +238,16 @@ Readiness:
 
 - constraints and guards appear as subsystem state on or near the line, not only
   in an inspection list;
-- support/source/endpoint/reset systems change visibly as they are brought
-  online;
+- standing substrate, support-shell channels, source-response/medium,
+  endpoint/reset systems, and carrier governance change visibly as they are
+  brought online;
 - constrained controls explain the missing subsystem margin.
 
 Active service:
 
 - packet moves through the line while the clock advances;
-- support envelope, source channel, endpoint state, and reset path visibly
-  change;
+- support envelope, metric-actuator bands, source-response channel, endpoint
+  receiver, packet service trace, carrier probes, and reset path visibly change;
 - telemetry trend bands update;
 - warnings attach to the affected subsystem;
 - authority changes how the persistent controls behave; the terminal should not
@@ -282,14 +292,15 @@ The terminal must show state changes through more than numeric meters.
 Required visual feedback patterns:
 
 - support margin changes alter envelope continuity, thickness, glow, or fracture;
-- source debt changes alter the source/ledger side channel;
+- packet isolation changes alter packet-core glow, leakage haze, or loss guard;
+- source burden changes alter the source-response/medium side channel;
 - endpoint confidence changes alter catch-window aperture or lock state;
 - endpoint optics show ray-bundle convergence, defocus, or aperture miss;
 - timing drift appears as packet/endpoint phase offset, ray shear, or grid shear;
 - reset residue appears on the reset/decompression path;
 - stability warnings change the global line posture or lockout layer;
 - backreaction/constraint concerns tighten guard bands, distort the support
-  envelope, or saturate the source channel;
+  envelope, or saturate the source-response channel;
 - horizon-risk and chronology-risk overlays appear only in scenario states that
   train those concerns, and they use cautious risk language;
 - warnings localize to subsystems and remain traceable in the event log.
@@ -306,10 +317,14 @@ Recommended controls:
 
 - support drive: lever, slider, or rotary control that changes support envelope
   strength and source burden;
-- source/ledger closure: guarded toggle or dial that reduces source debt but
-  may constrain carry or release;
+- clock-lapse, rail-stretch, and throat-capacity trims: compact controls that
+  expose the support-shell metric-actuator channels without raw equation entry;
+- source-response or medium coupling: guarded control that reduces source
+  burden or reservoir stress, while ledger material remains an inspection view;
 - endpoint sync and catch aperture: dial/slider pair that changes endpoint
   aperture and timing alignment;
+- carrier drive and matched hold: controls that move or freeze the packet
+  through the supported corridor without implying an entry-to-packet signal;
 - release/fade: guarded switch that is only useful when catch/rematch is in
   range;
 - decompression and reset purge: controls that trade residue, stability, and

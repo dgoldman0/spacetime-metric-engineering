@@ -1,19 +1,22 @@
 # Rail Service Terminal Design
 
-This document is the source of truth for the Rail Service Terminal. The terminal
-is a first-class product in the active-rail training suite, not a quiz mode and
-not a themed question workspace.
+This document is the source of truth for the Rail Service Terminal. The
+terminal is a first-class product in the active-rail training suite, not a quiz
+mode and not a themed question workspace.
 
 Target experience:
 
 > The learner sits down as the assigned line engineer at a future active-rail
-> service terminal. A single line is already alive. The operator observes the
-> line, works the controls, responds to changing subsystem state, and secures,
-> holds, recovers, or aborts the run.
+> service terminal. A single line is alive. The operator observes the geometry,
+> moves persistent controls, watches subsystem state evolve, responds to
+> limits, and secures, holds, recovers, or aborts the run.
 
-The terminal remains honest about physics. It is an architecture-logic and
-operations simulator. It does not solve the Einstein equation, validate a matter
-model, certify an active-rail plant, or claim physical realizability.
+The terminal remains honest about physics. It is a qualitative
+architecture-logic and operations simulator. It does not solve the Einstein
+equation, validate a matter action, certify a physical plant, compute true null
+geodesics, detect actual horizons, or identify CTCs. It can, however, represent
+the current active-rail component architecture much more honestly than a quiz
+panel or progress strip.
 
 ## Product Boundary
 
@@ -22,16 +25,92 @@ The training suite has two sibling products:
 | Product | Primary Job | Data Model | Interface |
 | --- | --- | --- | --- |
 | Qualification Board | Teach and assess theory, references, claim boundaries, and active-rail vocabulary. | Question bank, grading, explanations, references. | Learning board. |
-| Rail Service Terminal | Simulate operation of one active-rail line. | Line state, work orders, controls, subsystem models, visual state, alarms, traces, debriefs. | Operations terminal. |
+| Rail Service Terminal | Simulate operation of one active-rail line. | Line state, work orders, component controls, subsystem models, visual state, alarms, traces, debriefs. | Operations terminal. |
 
 The question bank can recommend study after a terminal run. It cannot drive the
 terminal's main loop. The terminal loop is:
 
-1. observe the live line;
-2. manipulate operational controls;
+1. observe the live line and active component state;
+2. manipulate persistent operational controls;
 3. watch subsystem state evolve;
 4. respond to limits, warnings, and failures;
 5. secure, hold, recover, or abort.
+
+## Technical Truth Boundary
+
+The terminal should aim for a high-fidelity service representation and a
+low-fidelity physics representation.
+
+Reasonable target:
+
+- 75-85% faithful to the current active-rail architecture as an operator
+  terminal: components, staging, diagnostics, failure modes, and qualitative
+  feedback.
+- 0% faithful as a numerical spacetime solver: no actual coupled
+  Einstein-matter evolution, no validated semiclassical response, no real
+  geodesic integration, no physical CTC/horizon detection.
+
+The UI must expose this boundary. Labels should say `architecture logic`,
+`carrier audit risk`, `packet isolation proxy`, `causal-access risk`, or
+`chronology guard`, not `physics solved`, `horizon detected`, or `CTC detected`.
+
+## Architecture Grounding
+
+The terminal is grounded in the current disclosure and component-design track.
+Its visible systems should map to the active-rail component stack rather than to
+generic health bars.
+
+| Active-Rail Component | Terminal Role | Visual Expression | Operator Controls |
+| --- | --- | --- | --- |
+| Live packet corridor | Protected passenger/payload bore inside the service plant. | Quiet inner corridor, packet body, packet isolation/leakage margin, packet loss warnings. | Hold, abort, isolation guard, packet monitor override in later diagnostic mode. |
+| Standing support substrate / radial backbone | Prepared railbed carrying baseline throat, radial, angular, and lapse support. | Baseline support field behind the active envelope; readiness bands at origin/endpoint. | Substrate readiness and support precharge controls. |
+| Support-shell metric actuator layer | Annular programmable shell for carrying-flow, clock-lapse cushion, rail-stretch, and throat-capacity scheduling. | Active support envelope, flow-front, lapse/rail/throat bands, deformation under load. | Support drive, clock-lapse cushion, rail-stretch trim, throat-capacity trim. |
+| Handoff, rematch, and carrier collar | Entry/catch/hold/release impedance-transformer around packet edge. | Entry gate, beta-collar/rematch sleeve, catch ring, packet-edge trim, matched-hold state. | Entry gate, carrier drive, rematch/collar trim, matched hold, release fade. |
+| Endpoint receiver and reset plant | Station-end receiver, beta-memory store, reset cap, support-edge closure, decompression plant. | Endpoint receiver body, catch aperture, reset/decompression path, residue haze, wake-tail monitor. | Endpoint sync, catch aperture, decompression, reset purge, secure. |
+| Regulated heat/current medium and support reservoir | Endpoint/support source plant with bounded heat/current exchange and reservoir behavior. | Medium flow, reservoir charge, limiter state, heat/current routing, support exchange closure. | Medium coupling, reservoir draw, limiter guard, source-response trim. |
+| Carrier governance and diagnostics | Supervisory timing, carrier, reachability, chronology, and rail-time safety system. | Rail-time ruler, branch-band probe fan, causal-access overlay, chronology guard, alarms. | Arm, rail-time governor, supervisor/autopilot, hold/resume, abort/recovery. |
+
+The terminal should also surface the four metric-service variables as component
+channels where useful:
+
+- carrying-flow field `beta`: service load and carry action;
+- clock-lapse field `alpha`: causal/timing cushion;
+- rail-stretch field `gamma_ll`: radial metric capacity;
+- throat-capacity field `gamma_OmegaOmega`: angular/throat support.
+
+These are not raw equation-entry controls. They are operator-facing actuator
+families with readable names and diagnostic details available in drawers.
+
+## Ledger Semantics
+
+The active-rail disclosure uses ledgers, but ledgers are diagnostics and
+accounting artifacts. They are not physical knobs.
+
+Terminal rule:
+
+- A demanded-source ledger is an audit/readout of source demand for a
+  prescribed architecture.
+- A constraint ledger is a diagnostic surface for consistency and margin.
+- A service-time ledger is an operational comparison record.
+- A carrier ledger is an audit of reachability, branch behavior, probes, and
+  wake-tail restoration.
+
+Do not put `Ledger Closure` in the primary operator controls. Use physical or
+operational controls such as:
+
+- `Source Response Trim`;
+- `Medium Coupling`;
+- `Support Exchange`;
+- `Reservoir Draw`;
+- `Endpoint Current Limit`;
+- `Closure Audit` as an inspection/readout, not a live actuator.
+
+Ledger material belongs in:
+
+- diagnostics drawers;
+- debrief/audit trails;
+- source-demand overlays;
+- reference links from the Qualification Board.
 
 ## Primary Operating Surface
 
@@ -41,65 +120,18 @@ defined by live service state, direct controls, and graphic subsystem feedback.
 The primary operating surface excludes these patterns:
 
 - a work-order list that drives the whole experience;
-- "drill" or puzzle-prompt language as the main framing;
+- `drill`, puzzle, or quiz-prompt language as the main framing;
 - a visible command stack or next-action button sequence;
 - phase chips used as the operator's main interaction;
 - big origin/endpoint text boxes that occupy space without doing visual work;
 - static decorative curves that do not reflect state;
-- generic triangles or stickers presented as "visualization";
+- generic triangles or stickers presented as visualization;
 - duplicate percentage cards inside the line graphic;
 - tall layouts where the operator must scroll to find core controls;
 - any wording that makes the active run feel like a graded question attempt.
 
-Scenario setup, guided practice, and instructor challenges are allowed as
-secondary modes. They must not be the default operating surface.
-
-## Active-Rail Architecture Mapping
-
-The terminal should be grounded in the active-rail architecture as currently
-understood. It abstracts that architecture, but it should not collapse it into
-generic "health bars."
-
-Use these mappings:
-
-| Architecture Idea | Terminal Abstraction | Visual/Control Expression |
-| --- | --- | --- |
-| Prescribed service geometry | Service corridor and active interval | Rail corridor shape, active service envelope, packet path. |
-| Packet-centered service | Packet body and carry state | Moving packet marker, handoff/hold/recovery posture. |
-| Support plant | Support envelope and containment | Envelope thickness, continuity, glow, fracture, support drive. |
-| Demanded-source ledger | Source channel and source debt | Source-flow band, saturation, ledger closure control, residual markers. |
-| ADM/constraint posture | Constraint guard layer | Constraint bands, interlocks, stability posture, guard map. |
-| Endpoint catch/rematch | Catch aperture and endpoint phase | Aperture shape, lock rings, endpoint sync/catch controls. |
-| Fade/release | Carrier withdrawal | Release fade control, visible fade front, caught-before-release guard. |
-| Decompression/reset | Reset path and residue | Residue haze, purge/decompression controls, reuse readiness. |
-| Stability/backreaction concern | Global posture and caution layer | Envelope vibration/shear, warning tone, lockout posture. |
-| Component-source handoff | Closure/readiness channels | Inspector overlays and debrief traces, not raw equations. |
-
-The visual language should repeatedly teach the distinction between:
-
-- geometry requested by the service;
-- source demand recorded by the ledger;
-- physical source realization, which remains an open gate;
-- operating qualification inside this simulator.
-
-## Operator Role
-
-The user is a line operator, not a quiz taker. The operator should be able to
-understand the current situation from the terminal without reading a paragraph
-of instructions.
-
-The operator acts through:
-
-- support drive and support-shaping controls;
-- source/ledger closure controls;
-- endpoint sync and catch aperture controls;
-- carry authority and hold authority;
-- release/fade, decompression, and reset controls;
-- secure, recovery, and abort controls.
-
-The operator should not type raw hidden variables, coefficients, equations, or
-state numbers. Expert override can be a later diagnostic mode, but it must be
-separate from ordinary line operation.
+Scenario setup, guided practice, incident replay, and instructor challenges are
+allowed as secondary modes. They must not be the default operating surface.
 
 ## First-Viewport Layout
 
@@ -127,25 +159,34 @@ They should not be large empty panels whose main function is to show text.
 ## Live Graphic Readout
 
 The line graphic is the primary simulation surface. It should feel like an
-aesthetically finished instrument that shows geometry and service evolution.
+aesthetically finished instrument that shows service geometry and component
+evolution. The graphic should make the operator feel the corridor, support
+field, endpoint receiver, and reset plant before reading a number.
 
 Required live layers:
 
-- **service corridor:** bounded route, active interval, geometry frame;
-- **support envelope:** field around the corridor whose thickness, continuity,
+- **service corridor:** protected route and active interval;
+- **live packet:** packet body, packet isolation, packet leakage/loss warning,
+  hold/carry/catch/release posture;
+- **standing substrate:** quiet prepared railbed/readiness background;
+- **support envelope:** active support-shell field whose thickness, continuity,
   brightness, and distortion change with support state;
-- **packet:** moving body with hold, carry, catch, fade, recovery, and secure
-  visual states;
-- **source channel:** side channel showing source load, debt, closure, residual,
-  and overdraw through shape and saturation;
-- **endpoint aperture:** receiving/catch region with phase alignment, aperture
-  width, and rematch lock;
+- **metric actuator channels:** beta/carrying-flow, clock-lapse cushion,
+  rail-stretch, and throat-capacity bands where the scenario calls for them;
+- **source-response channel:** side channel showing demanded-source burden,
+  saturation, support exchange, reservoir draw, and overdraw;
+- **endpoint receiver:** catch/rematch aperture, endpoint phase, beta-memory
+  receiver, current-limit/medium state;
+- **carrier/collar layer:** entry gate, rematch sleeve, catch ring, matched
+  hold, release fade;
 - **timing shear:** state-derived phase offset or shear bands, not static
   ornament;
-- **reset residue:** haze/debris/decay along the reset path that visibly clears
-  or contaminates reuse;
-- **constraint posture:** guard or boundary layer that tightens when constraints
-  or stability limits narrow authority;
+- **reset residue:** haze/debris/decay along the reset/decompression path that
+  visibly clears or contaminates reuse;
+- **constraint/backreaction posture:** guard or boundary layer that tightens
+  when constraints, load, or stability limits narrow authority;
+- **carrier/chronology overlays:** branch-band probe fan, causal-access risk,
+  rail-time guard, and chronology guard when relevant;
 - **alarm localization:** warnings attached to the subsystem that is actually
   degraded.
 
@@ -155,110 +196,61 @@ The graphic must avoid:
 - arbitrary triangles or shapes that are not tied to a subsystem state;
 - overlaying dashboard cards inside the line;
 - repeating the same percentage values already shown in instrumentation;
-- labels that cover the geometry they claim to explain.
+- labels that cover the geometry they claim to explain;
+- any line that implies a command signal from the entry station to the packet.
 
 Text inside the graphic should be sparse: station names, subsystem labels,
-phase/status tags, and short localized warning tags. The learner should feel the
-support field, source burden, catch aperture, timing drift, and residue state
-from the graphic before reading a number.
+phase/status tags, and short localized warning tags.
 
-Implementation preference:
+## Packet Trace And Causal Honesty
 
-- Use SVG for corridor geometry, packet motion, envelopes, apertures, masks,
-  gradients, traces, and localized warnings.
-- Use D3 shape/scale utilities for generated Bezier paths, ray bundles,
-  worldline traces, field-line families, and state-to-geometry scales. D3 should
-  generate geometry only; it should not own the React rendering lifecycle.
-- Use Framer Motion for high-quality state transitions, control response,
-  panel/drawer movement, and major visual-state interpolation where CSS
-  transitions are too stiff.
-- Use PixiJS for dense field/residue/particle layers that SVG handles poorly:
-  residue haze, field noise, shimmer, source-flow particulate burden, and
-  recovery contamination. Pixi layers should stay subordinate to the SVG
-  geometry and should be driven by the same simulator state.
-- Keep all visual layers state-derived from the simulator model.
+The active rail is not a traversable wormhole, and the visual model must not
+imply that an entrance signal reaches out and drags the packet forward.
+
+Use these rules:
+
+- A line behind the packet is a **packet service trace**, **carry history**, or
+  **wake-tail trace**, not a singular control signal.
+- If a `worldline` label appears, it must mean a schematic service-coordinate
+  history of the packet, not a computed geodesic and not an information channel.
+- Optics/ray-bundle visuals are diagnostic probes or carrier-audit heuristics.
+  They are not actual null geodesics unless a future solver exists and the UI
+  says so.
+- Entry, catch, rematch, release, and reset behavior should be represented as
+  local component interactions at the relevant stations/collars.
+- Packet loss and leakage should be explicit visual risks: isolation fade,
+  packet-center coupling, bore leakage, packet norm margin, or abort threshold
+  indicators.
 
 ## Spacetime Visual Simulation Grammar
 
 The viewport should feel like a spacetime-engineering instrument, not a
-mechanical conveyor diagram. It should show the service as a qualitative
-geometry: an active corridor, a packet worldline, source-demand burden,
-endpoint optics, and causal/constraint posture.
+mechanical conveyor diagram. It shows a qualitative geometry: an active
+corridor, a packet service trace, source-response burden, endpoint optics,
+support-shell posture, and carrier/constraint risk.
 
-The visual grammar is heuristic and diagnostic. It represents the architecture
-logic and known concern classes; it does not numerically solve curvature,
-geodesics, semiclassical backreaction, horizons, or chronology formation.
-
-Required layer semantics:
+The visual grammar is heuristic and diagnostic. It represents architecture logic
+and known concern classes; it does not numerically solve curvature, geodesics,
+semiclassical backreaction, horizons, or chronology formation.
 
 | Layer | What It Shows | State Drivers | Animation Shape | Boundary |
 | --- | --- | --- | --- | --- |
-| Metric/service corridor | The prescribed service route and active interval. | work order, support drive, support margin, stability posture | Corridor opens from a thin standby spine into a supported tube; compression, narrowing, or asymmetry shows degraded posture. | Schematic service geometry, not a solved metric. |
-| Packet worldline | Packet position, carry, hold, catch, release, recovery. | packet position, carrier drive, hold/recovery state, timing drift | Packet moves with a trailing worldline/wake; hold freezes the wake; recovery kinks or quarantines the trace. | Shows service chronology, not a geodesic integration. |
-| Support envelope | Standing support and active-service containment. | support drive, support margin, load index, stability posture | Envelope thickens, thins, breathes, fractures, or develops ripples under stress. | Represents support adequacy, not a material field solution. |
-| Demanded-source ledger | Source burden and closure state. | source debt, ledger closure, support drive, carrier drive, decompression | A side channel fills, saturates, drains, or leaves residual knots; overdraw darkens and slows the flow. | Shows demanded-source accounting, not physical source realization. |
-| Endpoint optics | Catch/rematch readiness and null-ray-like access. | endpoint confidence, catch aperture, timing drift, packet position | Ray bundles converge through the aperture when aligned; defocus, shear, or miss when endpoint timing degrades. | Ray bundles are optics heuristics, not computed null geodesics. |
-| Timing shear | Packet/endpoint phase mismatch. | timing drift, endpoint sync, carrier drive, service window | Gridlines and ray bundles shear relative to the packet wake; high drift produces visible phase offset near catch. | Shows timing-risk posture, not a coordinate-invariant causal proof. |
-| Backreaction/constraint posture | Stability, load coupling, and constraint stress. | stability posture, load index, source debt, support margin | Global envelope breathing, low-frequency distortion, or constraint bands tighten around the corridor. | Warning layer for review burden, not a backreaction calculation. |
-| Horizon/causal-access risk | Horizon-like access concern in risky service regimes. | work-order class, packet speed/regime flag, endpoint confidence, timing drift | A one-way-looking veil or compressed reachability fan appears near catch/release when causal-access assumptions are stressed. | Literature-informed risk indicator, not an event-horizon finder. |
-| Chronology/CTC guard | Chronology hazard or closed-curve concern in scenario mode. | scenario flag, timing drift, release/fade state, causal-risk level | A chronology guard band appears only when a scenario trains this hazard; loops or returning traces are shown as warnings, never as computed CTCs. | Guardrail for causal reasoning, not CTC detection. |
-| Reset residue | Decompression and reuse readiness. | reset residue, decompression, reset purge, release fade | Residue haze trails the corridor and clears with purge; contamination clings to support and endpoint regions. | Operational residue proxy, not a validated physical contaminant. |
+| Service corridor | Protected route and active interval. | work order, support shell, packet isolation, service state | Corridor opens from a thin standby spine into a supported bore; leakage or loss narrows/desaturates the packet-safe region. | Schematic service geometry, not a solved metric. |
+| Packet service trace | Packet position, carry history, hold, catch, release, recovery. | packet position, carry drive, hold/recovery, timing drift | Packet moves with a short trace; hold freezes it; recovery kinks or quarantines it. | Service-coordinate trace, not a command signal or geodesic solve. |
+| Standing substrate | Prepared baseline support. | work order, readiness, support precharge | Quiet background railbed or station-to-station frame brightens as readiness improves. | Prepared plant proxy. |
+| Support envelope | Active support-shell adequacy. | support drive, support margin, load index, stability | Envelope thickens, thins, breathes, fractures, or ripples under stress. | Support adequacy proxy, not a material solution. |
+| Metric actuator channels | Beta, lapse, rail-stretch, throat-capacity role separation. | actuator controls, service state, constraints | Separated bands or flow fronts shift, cushion, stretch, or ring the corridor. | Operator abstraction of ADM channels. |
+| Source-response channel | Source demand, support exchange, reservoir draw, overdraw. | source debt, medium coupling, reservoir, load | Side flow saturates, drains, leaves residual knots, or overheats. | Demanded-source/source-family proxy, not proof of matter closure. |
+| Endpoint receiver | Catch/rematch, endpoint phase, aperture, beta-memory receiver. | endpoint sync, catch aperture, packet position, timing drift | Receiver rings align, widen, narrow, or miss; catch ring locks around packet edge. | Endpoint operation proxy. |
+| Optics/carrier probes | Access and branch-band audit posture. | endpoint confidence, timing drift, carrier governance, scenario flags | Ray/probe bundles converge, shear, defocus, or compress near risk boundaries. | Probe heuristic, not null-geodesic integration. |
+| Timing shear | Packet/endpoint phase mismatch. | timing drift, endpoint sync, carrier drive | Gridlines, probe bundles, or receiver rings shear relative to the packet trace. | Timing-risk proxy. |
+| Backreaction/constraint posture | Stability, load coupling, and constraint stress. | stability, load index, source burden, support margin | Guard bands tighten, global envelope breathes unevenly, source channel drags. | Review-burden warning, not backreaction calculation. |
+| Horizon/causal-access risk | Horizon-like access concern in risky service regimes. | service factor, high-risk scenario, timing drift, endpoint confidence | One-way-looking veil or compressed reachability fan appears near catch/release. | Risk overlay, not horizon detection. |
+| Chronology guard | Rail-time or closed-curve scheduling concern. | rail-time policy, network scenario, release/fade state | Guard band or loop-warning overlay appears only in relevant scenario mode. | Chronology training guard, not CTC detection. |
+| Reset residue | Decompression and reuse readiness. | reset residue, decompression, reset purge, release fade | Haze trails the corridor and clears with purge; contamination clings to endpoint/support. | Operational residue proxy. |
 
 These layers should be animated from the same simulator state. If the state does
 not change, the geometry should settle rather than perform decorative motion.
-When a control moves, the relevant layer should respond quickly enough that the
-operator feels the line answering the control.
-
-### Optics And Causal Readouts
-
-Optics should be the first higher-order visual system. The terminal can draw
-null-ray-like bundles that show whether the packet, support envelope, and
-endpoint aperture are visually aligned. These bundles should:
-
-- converge when endpoint confidence and catch aperture are healthy;
-- spread or miss the aperture when timing drift or endpoint confidence degrades;
-- compress toward a one-way boundary in horizon-risk scenarios;
-- leave a short trace so the operator can see whether optics are improving or
-  worsening.
-
-The labels should use cautious language: `optics alignment`, `causal-access
-risk`, `horizon-risk overlay`, or `chronology guard`. Avoid labels such as
-`horizon detected` or `CTC detected`.
-
-### Backreaction And Constraint Readouts
-
-Backreaction and constraint concerns should appear as global posture changes,
-not as extra text panels. Examples:
-
-- stability loss causes the support envelope to breathe unevenly;
-- source overdraw causes the source channel to saturate and drag against packet
-  carry;
-- load spikes cause constraint bands to tighten across the corridor;
-- recovery state desaturates the active service envelope and isolates the packet
-  trace.
-
-The terminal should teach that these are review burdens and operating hazards.
-It must not imply that the simulator has solved the semiclassical response,
-renormalized stress tensor, or nonlinear coupled stability problem.
-
-### Geometry Generation Rules
-
-The first implementation can generate the geometry directly in SVG:
-
-- support envelope as a rounded tube with state-driven width, stroke, glow,
-  ripple amplitude, and fracture gaps;
-- packet wake as a path behind the packet, with hold/recovery kinks;
-- source channel as a separate filled path with saturation and residual knots;
-- optics as Bezier ray bundles from packet/corridor to endpoint aperture;
-- timing shear as deformed gridlines or shifted ray-control points;
-- horizon/causal-risk overlay as a translucent veil or compressed reachability
-  fan near the endpoint;
-- chronology guard as a rare scenario overlay, not a default decoration;
-- reset residue as particles or haze along the decompression path.
-
-Each visual element must map to a named state value or scenario flag. Static
-curves are acceptable only as quiet background grid/corridor guides; active
-curves must move, deform, appear, or fade because simulator state changed.
 
 ## Instrumentation
 
@@ -266,43 +258,51 @@ Instrumentation supports the graphic. It does not replace it.
 
 Required instruments:
 
+- packet isolation / leakage margin;
 - support margin;
-- source debt/source load;
+- source-response burden / source debt;
 - endpoint confidence;
 - timing drift;
 - reset residue;
 - stability posture;
 - load index;
+- reservoir charge or medium headroom;
+- causal/carrier risk;
 - alarm count/severity;
 - operating authority.
 
 At least some instruments should show trend, band, and direction: rising,
-falling, steady, recovering, caution, or lockout. Numeric percentages are useful
-only when paired with recent motion or threshold context.
+falling, steady, recovering, caution, lockout.
 
 ## Control Model
 
 The terminal interaction model is live operation. Controls are persistent
-instruments, not answers.
+instruments, not answers and not a next-action list.
 
 Primary controls:
 
-- support drive;
-- support trim or containment shaping;
-- ledger closure/source channel;
+- support precharge / support drive;
+- clock-lapse cushion;
+- rail-stretch trim;
+- throat-capacity trim;
+- source-response trim or medium coupling;
+- support reservoir draw / exchange;
 - endpoint sync;
-- catch aperture;
-- carry drive;
+- catch/rematch aperture;
+- carrier drive;
+- matched hold;
 - release fade;
 - decompression;
 - reset purge;
+- rail-time governor / arm;
 - hold/resume;
 - abort/recovery;
 - secure line.
 
-Controls may be sliders, guarded switches, levers, dials, toggles, or compact
-button controls depending on the action. The key rule is that the operator is
-manipulating a live line, not selecting the next command from a list.
+Controls may be sliders, guarded switches, levers, rotary controls, toggles, or
+compact button controls depending on the action. The key rule is that the
+operator is manipulating a live line, not selecting the next command from a
+list.
 
 Constraints should appear as:
 
@@ -310,14 +310,34 @@ Constraints should appear as:
 - clipped control ranges;
 - warning lamps on the relevant control;
 - control resistance or delayed response;
-- visible changes in the affected subsystem.
+- visible changes in the affected subsystem;
+- inspection drawers that explain why a guard is active.
 
-A detail drawer may explain why a guard is active. The main UI should not become
-a grid of disabled buttons.
+The main UI should not become a grid of disabled buttons.
+
+## Service Operation
+
+A complete nominal service should be discoverable from the terminal itself.
+
+Nominal service stages:
+
+1. assignment received and work order accepted;
+2. standing substrate/support shell brought into readiness;
+3. metric actuator channels shaped for the service rating;
+4. source-response/medium/reservoir posture brought inside operating headroom;
+5. endpoint receiver synchronized and catch/rematch aperture prepared;
+6. rail-time governor arms the line;
+7. entry gate admits live service;
+8. carrier drive carries the packet through the supported corridor;
+9. catch/rematch collar secures packet edge at the endpoint;
+10. matched hold and release fade withdraw the carrier;
+11. decompression and reset plant clear support-edge and wake-tail residue;
+12. secure or block reuse based on residue, leakage, and debrief state.
+
+The operator should be able to run this manually. Autopilot should demonstrate
+the same operations without hiding controls.
 
 ## Autopilot, Supervisor, And Randomness
-
-The terminal should support a supervised learning mode without becoming a quiz.
 
 Autopilot is a visible control-law demonstration:
 
@@ -330,14 +350,15 @@ Autopilot is a visible control-law demonstration:
 Supervisor mode is advisory:
 
 - it highlights the next operational concern;
-- it points to a subsystem, control, or guard;
-- it should not present a puzzle prompt or single "correct answer" button.
+- it points to a subsystem, control, guard, or visual layer;
+- it should not present a puzzle prompt or a single correct-answer button.
 
 Randomness should be bounded and replayable:
 
 - each work order has a seed;
 - perturbations include source-load fluctuation, endpoint timing drift, support
-  disturbance, reset residue, hidden degradation, and stability caution;
+  disturbance, reset residue, packet leakage, reservoir sag, and stability
+  caution;
 - the same seed should replay the same sequence for review;
 - random faults should manifest visually before or during alarm state.
 
@@ -349,7 +370,7 @@ Good examples:
 
 - `Endpoint confidence degraded at load. Monitor catch margin.`
 - `Reuse path carries residual from prior reset.`
-- `Heavy packet: source load expected above nominal.`
+- `Heavy packet: source response expected above nominal.`
 
 Avoid:
 
@@ -364,9 +385,7 @@ the main terminal should open as a live assigned line, not as a drill list.
 
 ## Data Model
 
-Use a separate service-terminal model.
-
-Suggested modules:
+Use a separate service-terminal model. Suggested modules:
 
 - `workOrders.js`: assignment metadata, seeds, starting states, known cautions.
 - `lineControls.js`: control definitions, authority rules, guard behavior.
@@ -383,37 +402,60 @@ Suggested state shape:
   seed,
   lineId,
   clock,
+  serviceFactor,
   runState,
   packetState,
   authorityState,
+  components: {
+    livePacketCorridor,
+    standingSubstrate,
+    supportShell,
+    metricActuators,
+    handoffCollar,
+    endpointReceiver,
+    resetPlant,
+    heatCurrentMedium,
+    supportReservoir,
+    carrierGovernance
+  },
   controls: {
     supportDrive,
-    supportTrim,
-    ledgerClosure,
+    clockLapseCushion,
+    railStretchTrim,
+    throatCapacityTrim,
+    sourceResponseTrim,
+    mediumCoupling,
+    reservoirDraw,
     endpointSync,
     catchAperture,
-    carryDrive,
+    carrierDrive,
+    matchedHold,
     releaseFade,
     decompression,
     resetPurge,
+    railTimeGovernor,
     hold,
     abort,
     secure
   },
   metrics: {
+    packetIsolation,
+    packetLeakage,
     supportMargin,
-    sourceDebt,
+    sourceBurden,
     endpointConfidence,
     timingDrift,
     resetResidue,
     stabilityPosture,
-    loadIndex
+    loadIndex,
+    reservoirCharge,
+    causalRisk
   },
   trends,
-  constraints,
   guards,
   alarms,
   visualState,
+  diagnosticLedgers,
   events,
   debrief
 }
@@ -430,14 +472,15 @@ Loop responsibilities:
 
 1. Advance the clock while the line is powered or active.
 2. Apply seeded perturbations and scenario faults.
-3. Evolve subsystem metrics from work order, controls, run state, and faults.
+3. Evolve component metrics from work order, controls, run state, and faults.
 4. Derive visual geometry from state, not static decoration.
 5. Move packet position and posture according to carry, hold, catch, release,
    and reset conditions.
-6. Emit warnings and alarms once per condition.
-7. Apply guards and constraints to controls.
-8. Enter hold, recovery, abort, secure, or reuse-blocked states.
-9. Produce a replayable trace and debrief.
+6. Track packet isolation, leakage, and loss warnings.
+7. Emit warnings and alarms once per condition.
+8. Apply guards and constraints to controls.
+9. Enter hold, recovery, abort, secure, or reuse-blocked states.
+10. Produce a replayable trace and debrief.
 
 Operator timing should matter. Late catch should change endpoint posture.
 Overdriven support should increase source burden. Premature fade should produce
@@ -453,48 +496,9 @@ Terminal outcomes are operational, not quiz scores:
 - recovered;
 - aborted;
 - reuse blocked;
-- lockout.
+- packet-loss lockout;
+- carrier/chronology lockout.
 
 Debriefs should summarize the operational trace, limiting subsystems, alarms,
-operator interventions, and recommended study links. They should not grade the
-run like a multiple-choice attempt.
-
-## Acceptance Criteria
-
-The terminal redesign is acceptable when:
-
-- the first viewport contains the live line, instrumentation, and core controls;
-- ordinary operation does not require scrolling;
-- work-order browsing is secondary rather than the main driver;
-- no command stack, next-action button list, or phase-chip stepper drives the
-  run;
-- the central viewport is an active graphic readout, not a progress bar;
-- support, source, endpoint, timing, reset, stability, packet, and authority
-  are visible in the graphic or instrumentation;
-- visual elements change because simulator state changes;
-- there are no decorative triangles, static squiggles, or duplicate telemetry
-  cards inside the line view;
-- at least four failure modes produce visible subsystem changes before or during
-  alarm state;
-- autopilot/supervisor mode manipulates or points to real controls rather than
-  posing quiz prompts;
-- hold, recovery, abort, secure, and reuse-blocked states have distinct visual
-  postures;
-- service trace and debrief use operator language;
-- the truth boundary is visible as `SIM / ARCHITECTURE LOGIC / NOT PHYSICS SOLVER`;
-- no score, question count, quiz filter, or quiz-report language appears in the
-  active terminal.
-
-## Later Expansion
-
-Future versions can add:
-
-- multiple lines;
-- scheduled service windows;
-- richer seeded scenario libraries;
-- incident replay;
-- canvas field/particle layers;
-- imported ledger/telemetry artifacts;
-- instructor overlay mode;
-- post-run Qualification Board recommendations;
-- separate deployment route or package for the terminal.
+operator interventions, diagnostic ledgers produced, and recommended study
+links. They should not grade the run like a multiple-choice attempt.

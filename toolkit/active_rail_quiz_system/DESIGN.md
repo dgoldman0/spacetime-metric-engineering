@@ -115,36 +115,52 @@ source of truth is `SERVICE_TRAINER_DESIGN.md`.
 
 The terminal is a qualitative architecture-logic simulator for one active-rail
 line. It trains the operator to reason through the current service architecture:
-support envelope, demanded-source ledger, packet carry, endpoint catch/rematch,
-release fade, decompression/reset, constraint posture, and stability limits. It
-does not compute a spacetime solution, close a matter model, validate a plant,
-or claim physical realizability.
+live packet corridor, standing support substrate, support-shell metric actuator
+layer, carrying-flow/clock-lapse/rail-stretch/throat-capacity channels,
+handoff/collar behavior, endpoint receiver/reset plant, heat-current medium,
+support reservoir, carrier governance, packet leakage, reset residue,
+constraint posture, and stability limits. It does not compute a spacetime
+solution, close a matter model, validate a plant, or claim physical
+realizability.
+
+The active-rail design uses ledgers, but ledgers are diagnostic and accounting
+surfaces rather than physical actuators. Demanded-source ledgers, constraint
+ledgers, service-time ledgers, and carrier ledgers belong in audit, inspection,
+and debrief views. The operator controls should use physical/service language:
+support drive, clock-lapse cushion, rail-stretch trim, throat-capacity trim,
+source-response trim, medium coupling, reservoir draw, endpoint sync,
+catch/rematch aperture, carrier drive, release fade, decompression, reset purge,
+rail-time governor, hold, abort, and secure.
 
 The interface should feel like a future line engineer's operating terminal:
 
 - compact suite and line status;
 - a dominant live graphic readout of the rail line;
 - adjacent instrumentation with trends and bands;
-- persistent controls for support, source/ledger, endpoint/catch, carry, fade,
-  decompression, reset, hold, abort, and secure;
+- persistent controls for support-shell, metric-actuator channels,
+  source-response/medium/reservoir, endpoint/catch, carrier, fade,
+  decompression, reset, rail-time governance, hold, abort, and secure;
 - localized warnings, constraints, trace, and debrief.
 
 The line graphic is the primary object. It should show geometry and service
-evolution: corridor, support envelope, packet motion, source-flow channel,
-endpoint aperture, timing shear, reset residue, constraint posture, and failure
-localization. These layers must be derived from simulator state. Static
-squiggles, decorative triangles, generic warning stickers, duplicate telemetry
-cards, and text-box clutter inside the viewport are not acceptable substitutes
-for visualization.
+evolution: protected live packet corridor, integrated origin/endpoint stations,
+support envelope, packet motion, packet service trace, packet leakage/isolation
+margin, metric-actuator bands, source-response channel, endpoint receiver and
+catch/rematch aperture, timing shear, carrier probe optics, reset residue,
+constraint posture, and failure localization. These layers must be derived from
+simulator state. Static squiggles, decorative triangles, generic warning
+stickers, duplicate telemetry cards, and text-box clutter inside the viewport
+are not acceptable substitutes for visualization.
 
 The viewport should also carry the spacetime-engineering character of the
-architecture. Packet motion should read as a service worldline, endpoint
-readiness should include optics/ray-bundle behavior, timing drift should shear
-the visual geometry, and backreaction or constraint concerns should deform the
-global posture of the line. Horizon-risk and chronology-risk overlays are
-allowed as cautious training readouts only; they must be labeled as heuristic
-risk/guard layers rather than computed horizons, null geodesics, backreaction,
-or CTC detection.
+architecture. Packet motion should read as a service-coordinate trace or
+wake-tail history, not as a command signal from the entry station to the packet
+and not as a computed geodesic. Endpoint readiness should include cautious
+optics/ray-bundle behavior, timing drift should shear the visual geometry, and
+backreaction or constraint concerns should deform the global posture of the
+line. Horizon-risk and chronology-risk overlays are allowed as cautious
+training readouts only; they must be labeled as heuristic risk/guard layers
+rather than computed horizons, null geodesics, backreaction, or CTC detection.
 
 Work orders are operational assignments, not quiz prompts. A scenario library or
 fault-injection setup can exist as a secondary drawer, but the active terminal
@@ -747,8 +763,10 @@ assessment reports.
 The Rail Service Terminal should look like an operations terminal. It should not
 inherit the learning-board card language, filter rail, report panel, or
 explanation-page composition. The terminal should be simulation-first: live
-line, packet, support envelope, source/ledger channel, endpoint/catch window,
-reset path, instrumentation, authority, localized warnings, and event trace.
+line, protected packet corridor, support-shell envelope, metric-actuator
+channels, source-response/medium channel, endpoint receiver/catch window, reset
+plant path, carrier/chronology overlays, instrumentation, authority, localized
+warnings, and event trace.
 
 The Rail Service Terminal stays terminal-first rather than card-first. Its UI
 uses work orders, subsystem state, operating authority, live controls, telemetry,
@@ -760,8 +778,8 @@ Design direction:
   cards, visible claim-status badges, references, and responsive filters.
 - Rail Service Terminal: dark or high-contrast operations styling, status
   lamps, beautiful state-derived schematic layers, telemetry trends outside the
-  line graphic, localized subsystem warnings, operating posture, terminal logs,
-  and control authority states.
+  line graphic, packet leakage/loss warnings, localized subsystem warnings,
+  operating posture, terminal logs, and control authority states.
 - Both: color used for meaning rather than decoration.
 
 Suggested aesthetic:
@@ -785,6 +803,8 @@ Avoid:
   duplicated numerical readouts inside the viewport,
 - making the service terminal a phase-stepper or command-stack exercise,
 - writing work orders as puzzle prompts,
+- presenting ledgers as physical knobs instead of diagnostics/audit surfaces,
+- drawing packet traces as if an entrance signal drags the packet,
 - using "items ready" or score-report language inside the Service Terminal.
 
 Claim class should be visible through a combination of label, color, and icon or shape. Color alone is not enough.
@@ -824,8 +844,9 @@ Rail Service Terminal surfaces:
 - live line simulation,
 - subsystem instrumentation,
 - persistent operator controls,
-- work-order drawer,
+- compact assignment/work-order drawer,
 - constraint and subsystem inspection,
+- diagnostic ledger/audit drawer,
 - alarm and event trace,
 - secure/abort debrief.
 
@@ -894,7 +915,11 @@ Operator simulation. Users operate a single active-rail line through a work
 order, visible subsystem changes, authority transitions, alarms, holds, aborts,
 recovery, and reset. It uses service state and simulator rules, not quiz
 grading. The central object is the live line simulation, not a panel of prompts
-or a progress strip.
+or a progress strip. The model should be component faithful before it is
+visually elaborate: live packet corridor, standing substrate, support shell,
+metric actuator channels, handoff/collar, endpoint/reset plant,
+heat-current/reservoir source plant, carrier governance, and diagnostic ledgers
+must remain distinct.
 
 ## Scoring Model
 
@@ -1079,11 +1104,12 @@ Any score of `0` in claim boundary, source support, explanation depth, adaptive 
 ## Curriculum Bank Scale
 
 The learner-facing bank should be a rich curriculum bank, not a small demo set.
-The current 128-item bank is a stronger seed after the first expansion and
-advanced-question passes, but it is still below the intended curriculum scale.
-A serious first release should
-target roughly 150 to 250 approved items, with enough spread that filters still
-leave useful sessions after excluding project-state or optional content.
+The current 200-item bank is a substantial first curriculum bank after broad
+foundation, paper-theory, active-rail, explanation, distractor, and advanced
+reasoning passes. It remains open to further depth and balance work. A serious
+first release should stay roughly in the 150 to 250 approved-item range, with
+enough spread that filters still leave useful sessions after excluding
+project-state or optional content.
 
 Established general theory should be the durable core of the curriculum. The
 paper-theory and active-rail layers should build on that foundation, not replace

@@ -29,6 +29,10 @@ Phase 5 now captures the suite-level product shell and the Service Terminal
 visual-simulation rewrite needed to make the terminal feel like line operation,
 not a themed quiz panel.
 
+Phase 6 captures the component-faithful terminal correction: map controls,
+metrics, visuals, and diagnostic ledgers back to the active-rail disclosure and
+component-design stack before further simulation polish.
+
 ## Phase 1: Quiz Infrastructure
 
 Build the system that can render, grade, review, and organize questions.
@@ -518,12 +522,18 @@ Required design artifacts:
      changes, not for holding all simulator rules inline.
 3. Build the terminal simulation surface.
    - Top status bar.
-   - Live line simulation with rail corridor, packet, support envelope,
-     source/ledger channel, endpoint/catch window, reset path, and localized
+   - Live line simulation with protected packet corridor, standing substrate,
+     support-shell envelope, metric-actuator channels, packet service trace,
+     source-response/medium channel, endpoint receiver/catch window, reset
+     plant path, carrier/chronology overlays, packet leakage, and localized
      subsystem warnings.
-   - Instrumentation with bands and recent-change cues.
-   - Persistent operator controls for support, source, endpoint, release,
-     decompression, reset, hold, abort, and secure.
+   - Instrumentation with bands, recent-change cues, packet isolation/leakage,
+     source burden, endpoint confidence, timing drift, reset residue, stability,
+     load, reservoir headroom, and causal/carrier risk.
+   - Persistent operator controls for support drive, clock-lapse cushion,
+     rail-stretch trim, throat-capacity trim, source-response/medium/reservoir,
+     endpoint/catch, carrier, release, decompression, reset, rail-time
+     governance, hold, abort, and secure.
    - Secondary constraint, advisory, trace, and debrief inspection.
 4. Make the run feel alive.
    - Advance clock during active states.
@@ -546,7 +556,8 @@ Required design artifacts:
 The first acceptable terminal should let the learner:
 
 - accept a work order,
-- bring support/source/endpoint/reset controls into operating margins,
+- bring support-shell, metric-actuator, source-response/medium, endpoint, and
+  reset controls into operating margins,
 - arm or hold the line from a persistent authority control,
 - manage carry, catch, fade, decompression, and reset through control surfaces,
 - monitor visible subsystem state,
@@ -594,23 +605,31 @@ model.
   surfaces, not the main driver of the run.
 - The first viewport shows suite/status, line graphic, instrumentation, and core
   controls without requiring scrolling for ordinary operation.
-- The line graphic shows packet, support envelope, source/ledger channel,
+- The line graphic shows packet, support envelope, source-response channel,
   endpoint/catch aperture, timing shear, reset residue, constraint posture, and
-  localized subsystem warnings.
+  localized subsystem warnings. The updated design expands this into the actual
+  component map: live packet corridor, standing substrate, support-shell
+  actuator channels, handoff/collar, endpoint/reset plant, heat/current medium,
+  support reservoir, carrier governance, packet leakage, and diagnostic ledgers.
 - The line graphic uses the spacetime visual grammar from
-  `SERVICE_TRAINER_DESIGN.md`: packet worldline/wake, endpoint optics,
+  `SERVICE_TRAINER_DESIGN.md`: packet service trace/wake, endpoint optics,
   causal-access risk, backreaction/constraint posture, horizon-risk guard,
-  chronology guard, and reset residue all have explicit state drivers and truth
-  boundaries.
+  chronology guard, packet leakage/loss, and reset residue all have explicit
+  state drivers and truth boundaries.
+- Source ledgers, constraint ledgers, service-time ledgers, and carrier ledgers
+  are diagnostic/audit views. They are not physical controls. Primary controls
+  should not imply that an operator closes a ledger directly.
 - All graphic elements inside the line are state-derived. Static squiggles,
   decorative warning triangles, generic stickers, and duplicate telemetry cards
   are explicitly out of scope.
 - Numeric telemetry stays in the instrumentation cluster. The line viewport
   encodes state through geometry, motion, opacity, thickness, aperture shape,
   source saturation, residue haze, shear, and localized deformation.
-- Operator input uses persistent control surfaces: support drive/trim,
-  source-ledger closure, endpoint sync, catch aperture, carry drive, fade,
-  decompression, reset purge, hold/resume, abort/recovery, and secure.
+- Operator input uses persistent control surfaces: support drive, clock-lapse
+  cushion, rail-stretch trim, throat-capacity trim, source-response trim,
+  medium coupling, reservoir draw, endpoint sync, catch aperture, carrier
+  drive, matched hold, fade, decompression, reset purge, rail-time governor,
+  hold/resume, abort/recovery, and secure.
 - Constraints and guards attach to controls and affected subsystems through
   range clipping, resistance, warning lamps, or visual subsystem changes.
 - Autopilot and supervisor modes are allowed as visible training aids. They
@@ -631,8 +650,13 @@ model.
    - Keep packet and endpoint markers inside the viewport.
    - Replace static curves and triangles with derived support, source, timing,
      endpoint, reset, and constraint layers.
-   - Add endpoint optics/ray-bundle behavior and packet worldline/wake before
-     adding any purely decorative effects.
+   - Add endpoint optics/ray-bundle behavior and packet service trace/wake
+     before adding any purely decorative effects.
+   - Add packet isolation/leakage/loss indicators so live-packet safety is a
+     first-class readout.
+   - Add distinct visual roles for standing substrate, support-shell actuator,
+     source-response/medium, endpoint receiver/reset plant, heat/current
+     reservoir, and carrier governance.
    - Add backreaction/constraint posture and causal-risk overlays as cautious
      risk readouts, not as solved physics.
    - Use D3 shape/scale for generated curves and state-to-geometry mapping.
@@ -648,6 +672,8 @@ model.
    - Controls visibly change the line and subsystem state.
    - Guards, clipped ranges, and warnings explain constraints without turning
      the UI into a disabled button grid.
+   - Rename accounting-flavored controls to physical/service controls. Ledger
+     information moves to diagnostics and debrief.
 4. Add supervised operation.
    - Add a visible autopilot/supervisor mode that moves or highlights the same
      controls available to the operator.
@@ -676,8 +702,78 @@ model.
 - The terminal no longer uses a command stack, phase-chip progression, or
   work-order list as the core interaction model.
 - The terminal viewport feels like a graphic readout of active-rail service
-  evolution: packet motion, support field, source flow, catch aperture, timing
-  shear, reset residue, constraints, and failure localization change with state.
+  evolution: packet motion, support field, source-response flow, catch
+  aperture, timing shear, reset residue, constraints, and failure localization
+  change with state.
+
+## Phase 6: Component-Faithful Terminal Pass
+
+Phase 5 created the separate terminal shell and began the rich graphic readout.
+Phase 6 corrects the remaining architecture mismatch: the terminal must become
+a component-faithful active-rail service simulator rather than a visually rich
+control demo.
+
+### Design Corrections
+
+- Re-ground every simulator control, metric, and visual layer in the disclosure
+  and component-design map.
+- Separate physical components from diagnostic ledgers.
+- Replace `packet worldline` wording with `packet service trace`,
+  `carry history`, or `wake-tail trace` unless explicitly discussing a
+  schematic service-coordinate history.
+- Add packet safety as a core loop: isolation margin, packet leakage,
+  packet-loss lockout, and V=10-style high-service boundary warning.
+- Make the support-shell actuator layer explicit through carrying-flow,
+  clock-lapse cushion, rail-stretch, and throat-capacity controls/readouts.
+- Add endpoint/reset plant behavior beyond a catch aperture: beta-memory
+  receiver, current-limit/medium posture, decompression path, reset cap, and
+  wake-tail residue.
+- Add carrier governance: branch-band probe fan, rail-time governor, scheduled
+  probe/carrier audit risk, causal-access risk, and chronology guard overlays.
+- Keep horizon/backreaction/chronology visuals as cautious diagnostic proxies.
+  The terminal must not imply numerical horizon finding, CTC detection, or
+  semiclassical backreaction solving.
+
+### Implementation Subphases
+
+1. Component model rewrite.
+   - Introduce component state for live packet corridor, standing substrate,
+     support shell, metric actuators, handoff collar, endpoint receiver, reset
+     plant, heat/current medium, support reservoir, and carrier governance.
+   - Preserve existing work-order/seeding logic where useful.
+2. Control rewrite.
+   - Replace `ledger closure` and generic accounting knobs with
+     source-response, medium-coupling, reservoir, support-exchange, and
+     diagnostic-audit concepts.
+   - Keep controls persistent and direct; remove command-stack leftovers.
+3. Visual rewrite.
+   - Retire misleading labels and static shapes.
+   - Add packet isolation/leakage, actuator bands, endpoint receiver, reset
+     plant, medium/reservoir, carrier probes, and rail-time/chronology guard.
+   - Make every visible active curve or particle field state-derived.
+4. Operation rewrite.
+   - Make a complete service discoverable: assignment, support/actuator
+     readiness, source/medium headroom, endpoint sync, arm, carry, catch,
+     matched hold, fade, decompression, reset, secure.
+   - Add autopilot as a visible demonstrator that manipulates the same controls
+     and can hand back to manual operation.
+5. Review and tuning.
+   - Manually run nominal, heavy, endpoint-degraded, reset-residue,
+     high-service boundary, hold, abort, recovery, and secure paths.
+   - Verify that first-viewport operation does not require scrolling.
+   - Verify that the visual readout teaches component behavior before numbers.
+
+### Phase 6 Done When
+
+- A learner can see what the active-rail components are and how they are
+  behaving without relying on a list of buttons.
+- Packet safety, packet leakage/loss, endpoint catch/rematch, support-shell
+  actuation, source-response burden, reset residue, carrier governance, and
+  chronology risk all have visible state.
+- Ledgers appear as audits and debrief outputs, not physical knobs.
+- The terminal reads as a future operations instrument for a single active-rail
+  line, while keeping the `architecture logic / not physics solver` boundary
+  visible.
 
 ## Keep It Simple Rules
 
@@ -731,14 +827,13 @@ an early Rail Service Terminal shell:
   line state, telemetry, legacy authority-button controls, interlock reasons,
   inspection panels, event feed, debrief panel, and separate service-terminal
   data/simulator modules.
-- The first Phase 5 pass adds a shared suite shell and moves the terminal away
-  from the Qualification Board shell, but it is not yet an acceptable service
-  simulation. The current implementation still reads too much like a
-  command-stack trainer with a stylized progress rail. The latest design pass
-  makes the required correction explicit: the next code pass must demote
-  work-order selection, remove the command-stack interaction, fit ordinary
-  operation into the first viewport, and replace static/ornamental visuals with
-  state-derived active-rail subsystem graphics.
+- The first Phase 5 passes add a shared suite shell, a separate terminal shell,
+  persistent line controls, state-derived SVG/D3/Framer/Pixi visual layers, and
+  a supervised autopilot. The terminal is visibly better than the old quiz-like
+  trainer, but it is not yet component-faithful enough. It still carries
+  misleading accounting/control language, insufficient packet-safety modeling,
+  and visual layers that do not yet represent the full active-rail component
+  stack. Phase 6 captures the required correction before the next code pass.
 
 What is still missing:
 
@@ -747,8 +842,13 @@ What is still missing:
   subsystem visualization through real graphic layers, trend cues, localized
   subsystem warnings, and work-order language that reads like operations rather
   than puzzle prompts,
-- Service Terminal interaction rewrite: replace next-action buttons and phase
-  chips with persistent operator controls and constraint feedback,
+- Service Terminal component-faithful rewrite: live packet corridor, standing
+  substrate, support-shell metric actuator channels, handoff/collar,
+  endpoint/reset plant, regulated heat/current medium, support reservoir,
+  carrier governance, packet leakage/loss, and diagnostic ledgers,
+- Service Terminal interaction rewrite: replace remaining next-action,
+  command-stack, and accounting-knob patterns with persistent operator controls
+  and constraint feedback,
 - deeper Rail Service Terminal work orders, replay, incident review, and more
   richly tuned failure/recovery behavior,
 - a fuller Ledger Reader workspace,
@@ -765,25 +865,28 @@ service-terminal rewrite before it should be treated as a complete simulator.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone is Phase 5 service-terminal redesign:
+The next milestone is Phase 6 component-faithful service-terminal redesign:
 
 - collapse work-order browsing into secondary setup instead of the main left
   rail;
-- remove the command stack and phase-chip progression from the primary
-  interaction model;
+- remove the command stack, phase-chip progression, and accounting-knob
+  leftovers from the primary interaction model;
 - fit the live line, telemetry, supervisor/autopilot affordance, and core
   controls in the first viewport;
 - replace static squiggles, decorative warning triangles, and duplicate
-  telemetry cards with state-derived graphic layers for support, source/ledger,
-  endpoint/catch, timing shear, reset residue, constraint posture, and failure
-  localization;
-- add persistent line controls that directly affect subsystem state;
+  telemetry cards with state-derived graphic layers for packet safety/leakage,
+  support-shell actuation, source-response/medium/reservoir, endpoint/catch,
+  timing shear, reset residue, carrier/chronology governance, constraint
+  posture, and failure localization;
+- add persistent line controls that directly affect named active-rail
+  components;
 - add bounded seeded perturbations and visible autopilot/supervisor behavior;
 - make hold, abort, recovery, secure, and reuse-blocked states visually
   distinct;
 - keep secondary inspection panels subordinate to the live simulation;
 - expand terminal-specific data without using quiz questions as the simulator
   content model;
+- move ledgers to diagnostics and debriefs rather than physical controls;
 - keep validation, smoke tests, and production builds healthy.
 
 This milestone should prove the system can teach active-rail operation through
@@ -794,7 +897,9 @@ interactive practice, not merely render more content.
 Phase 1 builds the quiz machine. Phase 2 designs the course. Phase 3 fills it
 with high-quality questions. Phase 4 builds the Rail Service Terminal as a
 separate operator simulator. Phase 5 makes the suite feel unified and makes the
-terminal feel like an operator station.
+terminal feel like an operator station. Phase 6 makes the terminal
+component-faithful to the active-rail architecture while preserving the
+architecture-logic truth boundary.
 
 The system should stay friendly and flexible, but each surface must behave like
 what it claims to be. The Qualification Board teaches claim boundaries and
