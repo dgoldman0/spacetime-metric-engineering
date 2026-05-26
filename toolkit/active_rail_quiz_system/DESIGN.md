@@ -179,6 +179,15 @@ The central viewport should always do operational work:
   forced operator intervention;
 - after secure, show the completed path and open the debrief.
 
+The central viewport is a graphic simulation surface, not a second telemetry
+panel. It should express state through the visual language of the line itself:
+rail geometry, packet motion, support-field shape, source-flow saturation,
+endpoint aperture, drift/shear bands, reset residue, alarm pins, and recovery
+posture. Numeric cards and repeated percentage readouts belong in adjacent
+instrumentation, not over the line graphic. Use SVG-style schematic layers first
+for the rich readout; add canvas later only if field/noise/particle effects
+need it.
+
 The command model should be contextual. The terminal should surface the next
 operator action, a small set of relevant alternatives, and an inspection drawer
 for locked or unavailable actions. Disabled controls should still be discoverable
@@ -195,6 +204,9 @@ with interlock reasons, but they should not dominate the running surface.
 - Do not make the Rail Service Terminal's main interaction a large button grid. The
   line viewport, telemetry, alarms, and contextual controls should carry the
   experience.
+- Do not clutter the Service Terminal viewport with duplicate telemetry cards,
+  stacked text boxes, or percentage blocks. The viewport should feel like a
+  polished graphic readout of the line geometry and service evolution.
 - Do not make the first version a giant content dump with no epistemic structure.
 - Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
 - Do not write learner-facing questions about "the quiz", "this quiz system", or the mechanics of the curriculum itself. Meta content belongs in authoring docs, not in the question bank.
@@ -764,8 +776,9 @@ Design direction:
 - Qualification Board: cleaner layout, readable typography, compact polished
   cards, visible claim-status badges, references, and responsive filters.
 - Rail Service Terminal: dark or high-contrast operations styling, status
-  lamps, live schematic layers, telemetry trends, alarm pins, phase posture,
-  terminal logs, and command authority states.
+  lamps, beautiful live schematic layers, telemetry trends outside the line
+  graphic, alarm pins, phase posture, terminal logs, and command authority
+  states.
 - Both: color used for meaning rather than decoration.
 
 Suggested aesthetic:
@@ -785,6 +798,8 @@ Avoid:
 - hiding important epistemic caveats in small text.
 - showing service operation inside quiz cards,
 - reducing the service viewport to a themed progress bar,
+- replacing rich service graphics with blocks of text or duplicated numerical
+  readouts inside the viewport,
 - writing work orders as puzzle prompts,
 - using "items ready" or score-report language inside the Service Terminal.
 

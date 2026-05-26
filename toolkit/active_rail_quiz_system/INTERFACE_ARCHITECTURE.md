@@ -157,7 +157,7 @@ Required primary regions:
 - **Live Line Simulation:** the dominant region. It shows the rail corridor,
   packet, support envelope, source/ledger channel, endpoint/catch window, reset
   path, alarm pins, and active phase. This region must not reduce to a progress
-  bar.
+  bar, a card cluster, or a duplicated telemetry dashboard.
 - **Instrumentation:** compact readouts and trend strips for support margin,
   source debt, endpoint confidence, timing drift, reset residue, stability, and
   load. Direction and recent change should be visible where possible.
@@ -179,6 +179,14 @@ scrolling. Secondary regions can be drawers, tabs, or bounded console rows.
 The terminal should minimize explanatory prose while the line is active. The
 operator learns through visible subsystem state, alarms, authority changes, and
 service trace.
+
+Viewport rule: graphics own the line; instrumentation owns the numbers. The
+live simulation should be implemented as layered SVG/CSS graphics first:
+drawn corridors, animated packet body, support-field geometry, source-flow
+channel, endpoint aperture, reset residue, timing shear, and alarm pins. Do not
+place large text boxes, duplicate metric cards, or repeated percentage readouts
+inside the live line. Small geometric labels and alarm tags are acceptable when
+they identify a feature.
 
 ### Operator Station Interaction Model
 

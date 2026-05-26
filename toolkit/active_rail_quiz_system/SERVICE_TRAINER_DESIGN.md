@@ -106,6 +106,18 @@ It should not model:
 The central viewport is the simulation. It should look like an active line, not
 a decorative progress bar.
 
+The viewport should read as an aesthetically finished graphic instrument. It
+should let the learner feel the corridor geometry and service evolution:
+envelope shape, packet motion, source loading, catch aperture, drift shear,
+residue haze, warning pins, and recovery posture. It must not become another
+numeric dashboard.
+
+Numbers belong in the instrumentation cluster. The central viewport should use
+graphic layers first and text only where it labels a geometric feature. Avoid
+placing duplicate telemetry cards, percentage blocks, explanatory text boxes,
+or large UI panels on top of the line. A short phase tag or alarm pin is fine;
+six boxed readouts inside the rail view are not.
+
 Required visible objects:
 
 - **Rail corridor:** a bounded spatial route from origin to endpoint, with
@@ -125,6 +137,16 @@ Required visible objects:
 - **Telemetry traces:** small live trends or sparkline bands for key subsystem
   values, so the operator can see state changing rather than only reading
   percentage bars.
+
+Implementation preference:
+
+- Use SVG for the first rich schematic: rails, envelopes, apertures, packet
+  motion, pins, masks, gradients, and state-driven geometry.
+- Use CSS animation for simple motion and state transitions.
+- Add canvas later if particles, field noise, heat maps, or denser transient
+  effects need a raster layer.
+- Do not approximate the graphic readout by adding more HTML cards inside the
+  viewport.
 
 The viewport must show useful state even before work-order acceptance:
 
@@ -162,6 +184,11 @@ Visible instrumentation should include:
 Percentages are acceptable as supporting data, but they are not enough. At least
 some instruments should show direction or recent history: rising, falling,
 steady, recovering, or crossing a caution band.
+
+Instrumentation should stay outside or adjacent to the central viewport. If a
+metric is already shown in the telemetry cluster, it should not be repeated as a
+large numeric card inside the line graphic. The viewport may encode that metric
+through shape, color, opacity, motion, thickness, deformation, or pin location.
 
 ## Work Orders
 
@@ -340,10 +367,14 @@ The terminal should use an industrial operations style:
 - dark or high-contrast working background;
 - compact, legible typography;
 - status lamps and caution bands;
-- live schematic layers;
+- live schematic layers with polished graphic geometry;
 - trend strips and subsystem markers;
 - alarm colors with text labels;
 - minimal explanatory prose during operation.
+
+The line view should feel more like a beautiful technical readout than a web
+dashboard. It should prefer drawn paths, fields, masks, glows, traces, apertures,
+and moving bodies over stacked boxes. Text labels are subordinate to geometry.
 
 The first glance should communicate:
 
@@ -378,6 +409,10 @@ The terminal design is acceptable when:
 - work orders do not read like quiz prompts;
 - the central viewport is a true live schematic with multiple visible
   subsystems, not only a packet progress bar;
+- the central viewport does not duplicate side telemetry as embedded numeric
+  cards or text-box clusters;
+- support/source/endpoint/reset/timing/stability are expressed graphically
+  through geometry, fields, overlays, traces, pins, or motion;
 - support, source, endpoint, reset, stability, packet, and authority states all
   have visible representations;
 - at least four failure modes produce visible subsystem changes before or during

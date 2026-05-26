@@ -584,6 +584,11 @@ checkpoint's panel/dashboard feel with a real service simulation terminal.
   or themed progress bar.
 - The simulation shows packet, support envelope, source/ledger channel,
   endpoint/catch window, reset path, and alarm pins.
+- The central line simulation is a polished graphical readout. It should use
+  SVG/CSS schematic layers first, not HTML cards pasted over the rail.
+- Numeric telemetry stays in the instrumentation cluster. The line viewport
+  encodes state through geometry, motion, opacity, thickness, traces, aperture
+  shape, residue haze, and alarm pins.
 - Work orders use terse operations language, not puzzle prompts.
 - Commands are contextual authority controls attached to line state and
   subsystem interlocks.
@@ -601,6 +606,10 @@ checkpoint's panel/dashboard feel with a real service simulation terminal.
    - Replace panel-first layout with a live simulation board.
    - Show origin, rail corridor, endpoint, packet, support envelope,
      source/ledger channel, reset path, phase posture, and alarm overlays.
+   - Remove embedded percentage cards and text-box clusters from the line
+     viewport.
+   - Build the first rich line graphic as SVG/CSS layers before considering
+     canvas effects.
    - Make standby an instrumented line state rather than a static waiting card.
    - Move work-order, gate board, advisory floor, and service trace into
      secondary inspection surfaces.
@@ -629,7 +638,7 @@ checkpoint's panel/dashboard feel with a real service simulation terminal.
 - Switching between Qualification Board and Rail Service Terminal feels like
   moving between sibling products.
 - The Service Terminal's center area is an actual simulation, not a progress
-  strip or static schematic.
+  strip, static schematic, or duplicate telemetry-card cluster.
 - The first viewport shows the status bar, live line, telemetry, and current
   authority without forcing the operator to scroll past blank or stretched
   panels.
@@ -639,6 +648,9 @@ checkpoint's panel/dashboard feel with a real service simulation terminal.
   authority lane without reading documentation.
 - The terminal no longer feels like a quiz, admin button grid, or scenario
   prompt panel.
+- The terminal viewport feels like a graphic readout of geometry and service
+  evolution: packet motion, support field, source flow, catch aperture, reset
+  residue, timing shear, and alarm pins are visible without adding clutter.
 
 ## Keep It Simple Rules
 
@@ -700,8 +712,8 @@ What is still missing:
 
 - workspace-specific scoring panels,
 - Service Terminal visual simulation rewrite: support/source/endpoint/reset
-  subsystem visualization, trend cues, alarm pins, and work-order language that
-  reads like operations rather than puzzle prompts,
+  subsystem visualization through real graphic layers, trend cues, alarm pins,
+  and work-order language that reads like operations rather than puzzle prompts,
 - deeper Rail Service Terminal work orders, replay, incident review, and more
   richly tuned failure/recovery behavior,
 - a fuller Ledger Reader workspace,
