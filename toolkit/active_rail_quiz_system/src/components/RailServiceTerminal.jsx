@@ -5,25 +5,26 @@ import { motion } from "framer-motion";
 import { workOrders } from "../serviceTrainer/serviceProfiles.js";
 import {
   applyAutopilotStep,
-  applyLineAction,
+  applyServiceCommand,
   controlDefs,
   createInitialLine,
   formatClock,
-  getActionState,
   getControlState,
   getDebrief,
   getLineCondition,
   getLineConstraints,
   getLineVisualState,
   getOperatingPhase,
+  getServiceCommandState,
   getTelemetryStatus,
   getTerminalAdvisories,
+  serviceCommandDefs,
   telemetryDefs,
   tickLine,
   updateLineControl
 } from "../serviceTrainer/lineSimulator.js";
 
-const actionIds = ["accept", "arm", "hold", "releaseHold", "abort", "secure", "reset"];
+const overrideLabels = ["locked", "operator trim", "engineering override"];
 
 const packetLabels = {
   staged: "staged",
@@ -40,6 +41,7 @@ export function RailServiceTerminal() {
   const [profileId, setProfileId] = useState("standard");
   const [line, setLine] = useState(() => createInitialLine("standard"));
   const [autopilot, setAutopilot] = useState(false);
+  const [overrideLevel, setOverrideLevel] = useState(0);
   const visualState = useMemo(() => getLineVisualState(line), [line]);
   const condition = visualState.condition || getLineCondition(line);
   const constraints = useMemo(() => getLineConstraints(line), [line]);
@@ -65,16 +67,18 @@ export function RailServiceTerminal() {
   function loadProfile(nextProfileId) {
     if (!["standby", "recovery", "secured"].includes(line.runState)) return;
     setAutopilot(false);
+    setOverrideLevel(0);
     setProfileId(nextProfileId);
     setLine(createInitialLine(nextProfileId));
   }
 
   function moveControl(controlId, value) {
+    if (controlAccessLevel(controlId) > overrideLevel) return;
     setLine((current) => updateLineControl(current, controlId, value));
   }
 
-  function runAction(actionId) {
-    setLine((current) => applyLineAction(current, actionId));
+  function runServiceCommand(commandId) {
+    setLine((current) => applyServiceCommand(current, commandId));
   }
 
   function toggleAutopilot() {
@@ -176,38 +180,61 @@ export function RailServiceTerminal() {
         </aside>
 
         <section className="terminal-panel control-console" aria-label="Operator controls">
-          <PanelHead kicker="Operator Station" title="Line Controls" />
-          <div className="control-surface">
-            {controlDefs.map((control) => (
-              <ControlSlider
-                key={control.id}
-                control={control}
-                value={line.controls[control.id]}
-                state={getControlState(line, control.id)}
-                onChange={(value) => moveControl(control.id, value)}
-              />
-            ))}
-          </div>
-          <div className="authority-strip" aria-label="Authority controls">
-            {actionIds.map((actionId) => {
-              const action = getActionState(line, actionId);
-              if (actionId === "releaseHold" && line.runState !== "held") return null;
-              if (actionId === "hold" && line.runState === "held") return null;
+          <PanelHead kicker="Operator Station" title="Service Controls" />
+          <div className="service-command-grid" aria-label="Service commands">
+            {serviceCommandDefs.map((command) => {
+              const state = getServiceCommandState(line, command.id);
               return (
-                <button
-                  type="button"
-                  key={actionId}
-                  className={`authority-button ${actionId}`}
-                  disabled={!action.enabled}
-                  onClick={() => runAction(actionId)}
-                  title={action.detail}
-                >
-                  <span>{authorityGroup(actionId)}</span>
-                  <strong>{action.label}</strong>
-                </button>
+                <ServiceCommandButton
+                  key={command.id}
+                  command={command}
+                  state={state}
+                  onRun={() => runServiceCommand(command.id)}
+                />
               );
             })}
           </div>
+          <details className="override-console">
+            <summary>
+              <span>Engineering access</span>
+              <strong>{overrideLabels[overrideLevel]}</strong>
+            </summary>
+            <div className="override-access" role="group" aria-label="Manual override access">
+              {[0, 1, 2].map((level) => (
+                <button
+                  type="button"
+                  key={level}
+                  className={overrideLevel === level ? "selected" : ""}
+                  onClick={() => setOverrideLevel(level)}
+                >
+                  {overrideLabels[level]}
+                </button>
+              ))}
+            </div>
+            {overrideLevel === 0 ? (
+              <div className="override-locked">
+                Manual actuator trims are locked. Use service controls unless the training run explicitly calls for operator or engineering override.
+              </div>
+            ) : (
+              <div className="control-surface override-controls">
+                {controlDefs.map((control) => {
+                  const accessLevel = controlAccessLevel(control.id);
+                  const locked = accessLevel > overrideLevel;
+                  return (
+                    <ControlSlider
+                      key={control.id}
+                      control={control}
+                      value={line.controls[control.id]}
+                      state={getControlState(line, control.id)}
+                      locked={locked}
+                      accessLevel={accessLevel}
+                      onChange={(value) => moveControl(control.id, value)}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </details>
         </section>
 
         <section className="terminal-secondary-console" aria-label="Inspection consoles">
@@ -359,8 +386,8 @@ function VisualKey() {
     <div className="visual-key" aria-label="Line graphic key">
       <span><i className="key-corridor" /> service corridor</span>
       <span><i className="key-support" /> support shell</span>
-      <span><i className="key-source" /> source response</span>
-      <span><i className="key-optics" /> endpoint receiver</span>
+      <span><i className="key-source" /> plant load</span>
+      <span><i className="key-optics" /> receiver optics</span>
       <span><i className="key-leakage" /> packet leakage</span>
       <span><i className="key-carrier" /> carrier probes</span>
       <span><i className="key-residue" /> reset residue</span>
@@ -372,17 +399,17 @@ function RailGraphic({ line, visualState, phase }) {
   const xScale = scaleLinear().domain([0, 100]).range([104, 1096]);
   const yCenter = 238;
   const packetX = xScale(visualState.packetPosition);
-  const sourceWidth = Math.max(28, 650 * visualState.sourceSaturation);
+  const sourceWidth = Math.max(28, 650 * Math.max(visualState.sourceSaturation, visualState.plantSupplyPulse));
   const sourceResiduals = buildSourceResiduals(visualState);
   const apertureRx = 22 + visualState.endpointAperture * 86;
   const apertureHeight = 38 + visualState.endpointAperture * 146;
   const railTrailEnd = Math.max(132, Math.min(1088, packetX));
   const carrierGlow = Math.max(0.12, line.controls.carrierDrive / 100);
   const supportOpacity = 0.28 + visualState.supportStrength * 0.62;
-  const supportStroke = 4 + visualState.supportStrength * 7 + visualState.backreactionPosture * 4;
+  const supportStroke = 4 + visualState.supportStrength * 7 + visualState.backreactionPosture * 4 + visualState.supportSag * 5;
   const leakageRadius = 40 + visualState.packetLeakage * 58;
   const isolationStroke = 2.5 + visualState.packetIsolation * 5;
-  const clockPhase = line.clock / 11;
+  const clockPhase = line.clock / 11 + (visualState.perturbation?.mediumNoise || 0);
   const corridorPath = buildServiceCorridor(visualState, clockPhase);
   const supportEnvelope = buildSupportEnvelope(visualState, clockPhase);
   const supportRibs = buildSupportRibs(visualState, clockPhase);
@@ -471,7 +498,7 @@ function RailGraphic({ line, visualState, phase }) {
         <g className="station-marker endpoint-marker">
           <line x1="1112" y1="94" x2="1112" y2="382" />
           <circle cx="1096" cy={yCenter} r="11" />
-          <text x="1130" y="212">ENDPOINT</text>
+          <text x="1130" y="212">RECEIVER</text>
           <text x="1130" y="236">{endpointLabel(line).toUpperCase()}</text>
         </g>
       </g>
@@ -490,8 +517,8 @@ function RailGraphic({ line, visualState, phase }) {
         ))}
       </g>
 
-      <g className="source-response-layer" aria-label="Source-response and regulated medium channel">
-        <text x="242" y="58">SOURCE RESPONSE / REGULATED MEDIUM</text>
+      <g className="source-response-layer" aria-label="Support-plant and regulated medium channel">
+        <text x="242" y="58">SUPPORT PLANT / REGULATED MEDIUM</text>
         <rect className="source-shell" x="242" y="76" width="650" height="34" rx="17" />
         <motion.rect
           className="source-flow"
@@ -579,7 +606,7 @@ function RailGraphic({ line, visualState, phase }) {
         ))}
       </g>
 
-      <g className="optics-layer" aria-label="Endpoint receiver optics">
+      <g className="optics-layer" aria-label="Receiver station optics">
         {optics.map((ray) => (
           <motion.path
             className={ray.focused ? "optics-ray focused" : "optics-ray"}
@@ -624,7 +651,7 @@ function RailGraphic({ line, visualState, phase }) {
       </g>
 
       <g className="endpoint-layer">
-        <text x="896" y="154">ENDPOINT RECEIVER / RESET PLANT</text>
+        <text x="896" y="154">RECEIVER STATION / RESET PLANT</text>
         <motion.ellipse
           className="endpoint-field"
           cx="1032"
@@ -710,9 +737,9 @@ function buildServiceCorridor(visualState, clockPhase) {
     left: 154,
     right: 1046,
     centerY: 238,
-    halfBase: 38 + visualState.supportStrength * 16,
-    flare: 12 + visualState.supportStrength * 8,
-    ripple: visualState.timingShear * 5 + visualState.backreactionPosture * 8,
+    halfBase: 38 + visualState.supportStrength * 16 - visualState.supportSag * 8,
+    flare: 12 + visualState.supportStrength * 8 + visualState.carrierStability * 6,
+    ripple: visualState.timingShear * 5 + visualState.backreactionPosture * 8 + visualState.perturbation.mediumNoise * 6,
     phase: clockPhase * 0.32
   });
 }
@@ -722,9 +749,9 @@ function buildSupportEnvelope(visualState, clockPhase) {
     left: 126,
     right: 1076,
     centerY: 238,
-    halfBase: 72 + visualState.supportStrength * 42 - visualState.backreactionPosture * 10,
-    flare: 24 + visualState.supportStrength * 18,
-    ripple: visualState.supportRipple * 22 + visualState.backreactionPosture * 15,
+    halfBase: 72 + visualState.supportStrength * 42 - visualState.backreactionPosture * 10 - visualState.supportSag * 18,
+    flare: 24 + visualState.supportStrength * 18 + visualState.plantSupplyPulse * 10,
+    ripple: visualState.supportRipple * 22 + visualState.backreactionPosture * 15 + visualState.supportSag * 18,
     phase: clockPhase * 0.48
   });
 }
@@ -880,11 +907,12 @@ function buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHe
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveBasis);
-  const spread = 12 + (1 - visualState.opticsFocus) * 78 + visualState.timingShear * 30;
+  const spread = 12 + (1 - visualState.receiverAcquisition) * 86 + visualState.timingShear * 30;
   const endpointX = 1070;
   return Array.from({ length: 9 }, (_, index) => {
     const lane = index - 4;
-    const startX = Math.max(150, packetX + 28);
+    const reach = 240 + visualState.receiverAcquisition * 420 + visualState.packetPosition * 2.2;
+    const startX = Math.max(150, endpointX - reach);
     const startY = yCenter + lane * (7 + visualState.timingShear * 8);
     const targetWindow = apertureHeight * 0.44;
     const miss = (1 - visualState.endpointAperture) * lane * 16 + visualState.timingShear * lane * 7;
@@ -900,8 +928,8 @@ function buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHe
     return {
       id: `optics-${index}`,
       d: generator(points),
-      focused: visualState.opticsFocus > 0.55,
-      opacity: 0.12 + visualState.opticsFocus * 0.24 + (index === 4 ? 0.22 : 0)
+      focused: visualState.receiverAcquisition > 0.58,
+      opacity: 0.1 + visualState.receiverAcquisition * 0.28 + (index === 4 ? 0.22 : 0)
     };
   });
 }
@@ -1019,12 +1047,29 @@ function buildSourceResiduals(visualState) {
   }));
 }
 
-function ControlSlider({ control, value, state, onChange }) {
+function ServiceCommandButton({ command, state, onRun }) {
   return (
-    <label className={`control-slider ${state.level} ${state.constrained ? "constrained" : ""}`}>
+    <button
+      type="button"
+      className={`service-command ${command.group}`}
+      disabled={!state.enabled}
+      onClick={onRun}
+      title={state.detail || command.detail}
+    >
+      <span>{command.group}</span>
+      <strong>{state.label || command.label}</strong>
+      <em>{state.detail || command.detail}</em>
+    </button>
+  );
+}
+
+function ControlSlider({ control, value, state, locked, accessLevel, onChange }) {
+  return (
+    <label className={`control-slider ${state.level} ${state.constrained ? "constrained" : ""} ${locked ? "locked" : ""}`}>
       <span>
         <small>{control.shortLabel}</small>
         <strong>{control.label}</strong>
+        <b>{accessLevel === 1 ? "trim" : "engineering"}</b>
       </span>
       <input
         type="range"
@@ -1032,7 +1077,7 @@ function ControlSlider({ control, value, state, onChange }) {
         max="100"
         step="1"
         value={value}
-        disabled={state.disabled}
+        disabled={state.disabled || locked}
         onChange={(event) => onChange(event.target.value)}
         aria-label={control.label}
       />
@@ -1040,7 +1085,7 @@ function ControlSlider({ control, value, state, onChange }) {
         <span>{control.minLabel}</span>
         <span>{control.maxLabel}</span>
       </i>
-      <em>{state.constrained ? state.note : control.detail}</em>
+      <em>{locked ? "Requires higher override access." : state.constrained ? state.note : control.detail}</em>
     </label>
   );
 }
@@ -1115,7 +1160,7 @@ function endpointLabel(line) {
   if (line.packetPosition > 96) return "Secured";
   if (line.packetPosition > 76) return "Catch active";
   if (line.metrics.endpointConfidence > 64) return "Synced";
-  return "Tuning";
+  return "Acquiring";
 }
 
 function stateLabel(runState) {
@@ -1131,26 +1176,27 @@ function stateLabel(runState) {
   return labels[runState] || runState;
 }
 
-function authorityGroup(actionId) {
-  const groups = {
-    accept: "intake",
-    arm: "authority",
-    hold: "control",
-    releaseHold: "control",
-    abort: "recovery",
-    secure: "closeout",
-    reset: "system"
-  };
-  return groups[actionId] || "control";
+function controlAccessLevel(controlId) {
+  const operatorTrim = new Set([
+    "supportDrive",
+    "endpointSync",
+    "catchAperture",
+    "matchedHold",
+    "carrierDrive",
+    "releaseFade",
+    "decompression",
+    "resetPurge"
+  ]);
+  return operatorTrim.has(controlId) ? 1 : 2;
 }
 
 function pinGeometry(pinId) {
   const map = {
     supportMargin: { y: 142, label: "SUP" },
-    sourceDebt: { y: 92, label: "SRC" },
+    sourceDebt: { y: 92, label: "PLT" },
     packetIsolation: { y: 198, label: "PKT" },
     packetLeakage: { y: 236, label: "LEAK" },
-    endpointConfidence: { y: 156, label: "CTH" },
+    endpointConfidence: { y: 156, label: "RCV" },
     timingDrift: { y: 284, label: "DRF" },
     resetResidue: { y: 366, label: "RST" },
     reservoirCharge: { y: 110, label: "RSV" },

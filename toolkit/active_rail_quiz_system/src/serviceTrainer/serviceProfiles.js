@@ -7,13 +7,22 @@ export const workOrders = [
     classLabel: "training",
     priority: "low",
     operationNotice: "Low-load inspection pass. Wide catch window authorized.",
-    cautions: ["wide catch window", "low source burden", "forgiving reset"],
+    cautions: ["wide catch window", "low plant load", "forgiving reset"],
     serviceWindow: "wide",
     loadClass: "light",
     reuseStatus: "clean",
+    seed: 14014,
     causalProfile: {
       horizonRisk: 0.08,
       chronologyRisk: 0
+    },
+    perturbation: {
+      supportSag: 2,
+      plantLoad: 2,
+      receiverDrift: 2,
+      leakage: 1,
+      timing: 2,
+      reservoir: 1
     },
     pace: 16,
     stress: {
@@ -48,9 +57,18 @@ export const workOrders = [
     serviceWindow: "standard",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    seed: 32221,
     causalProfile: {
       horizonRisk: 0.16,
       chronologyRisk: 0
+    },
+    perturbation: {
+      supportSag: 4,
+      plantLoad: 4,
+      receiverDrift: 4,
+      leakage: 3,
+      timing: 4,
+      reservoir: 3
     },
     pace: 14,
     stress: {
@@ -80,14 +98,23 @@ export const workOrders = [
     callSign: "Tight-Window Handoff",
     classLabel: "timing",
     priority: "elevated",
-    operationNotice: "Endpoint timing window is narrow. Catch discipline required.",
-    cautions: ["narrow catch window", "drift-sensitive", "endpoint sync matters"],
+    operationNotice: "Receiver timing window is narrow. Catch discipline required.",
+    cautions: ["narrow catch window", "drift-sensitive", "receiver sync matters"],
     serviceWindow: "tight",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    seed: 83083,
     causalProfile: {
       horizonRisk: 0.34,
       chronologyRisk: 0.08
+    },
+    perturbation: {
+      supportSag: 4,
+      plantLoad: 5,
+      receiverDrift: 9,
+      leakage: 4,
+      timing: 10,
+      reservoir: 3
     },
     pace: 13,
     stress: {
@@ -117,14 +144,23 @@ export const workOrders = [
     callSign: "Heavy Packet",
     classLabel: "load",
     priority: "elevated",
-    operationNotice: "Heavy packet staged. Source-response burden expected above nominal.",
-    cautions: ["high support draw", "source burden grows quickly", "stability posture is stressed"],
+    operationNotice: "Heavy packet staged. Support-plant load expected above nominal.",
+    cautions: ["high support draw", "plant load grows quickly", "stability posture is stressed"],
     serviceWindow: "standard",
     loadClass: "heavy",
     reuseStatus: "clean",
+    seed: 74407,
     causalProfile: {
       horizonRisk: 0.22,
       chronologyRisk: 0
+    },
+    perturbation: {
+      supportSag: 8,
+      plantLoad: 10,
+      receiverDrift: 4,
+      leakage: 7,
+      timing: 5,
+      reservoir: 9
     },
     pace: 12,
     stress: {
@@ -159,9 +195,18 @@ export const workOrders = [
     serviceWindow: "standard",
     loadClass: "ordinary",
     reuseStatus: "residual",
+    seed: 81119,
     causalProfile: {
       horizonRisk: 0.18,
       chronologyRisk: 0
+    },
+    perturbation: {
+      supportSag: 5,
+      plantLoad: 4,
+      receiverDrift: 5,
+      leakage: 5,
+      timing: 5,
+      reservoir: 5
     },
     pace: 13,
     stress: {
@@ -188,17 +233,26 @@ export const workOrders = [
     id: "fault",
     workOrderId: "AR-FLT-503",
     lineId: "LINE-04",
-    callSign: "Endpoint Degradation Run",
+    callSign: "Receiver Degradation Run",
     classLabel: "fault",
     priority: "training",
-    operationNotice: "Endpoint confidence degraded at load. Monitor catch margin.",
-    cautions: ["endpoint confidence low", "timing drift elevated", "abort authority armed"],
+    operationNotice: "Receiver lock degraded at load. Monitor catch margin.",
+    cautions: ["receiver lock low", "timing drift elevated", "abort authority armed"],
     serviceWindow: "tight",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    seed: 53503,
     causalProfile: {
       horizonRisk: 0.4,
       chronologyRisk: 0.12
+    },
+    perturbation: {
+      supportSag: 6,
+      plantLoad: 7,
+      receiverDrift: 16,
+      leakage: 7,
+      timing: 14,
+      reservoir: 5
     },
     pace: 12,
     stress: {

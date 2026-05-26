@@ -13,12 +13,12 @@ export const telemetryDefs = [
   },
   {
     id: "sourceDebt",
-    label: "Source Burden",
+    label: "Plant Load",
     direction: "high",
     caution: 58,
     red: 84,
     unit: "%",
-    detail: "Demanded-source response burden carried by the service plant."
+    detail: "Operating burden carried by the support plant and regulated medium."
   },
   {
     id: "packetIsolation",
@@ -40,12 +40,12 @@ export const telemetryDefs = [
   },
   {
     id: "endpointConfidence",
-    label: "Endpoint Confidence",
+    label: "Receiver Lock",
     direction: "low",
     caution: 54,
     red: 26,
     unit: "%",
-    detail: "Catch/rematch readiness at the receiving endpoint."
+    detail: "Catch/rematch readiness at the receiving station."
   },
   {
     id: "timingDrift",
@@ -138,16 +138,16 @@ export const controlDefs = [
     role: "Metric",
     minLabel: "tight",
     maxLabel: "open",
-    detail: "Tunes transverse capacity around the service corridor and endpoint receiver."
+    detail: "Tunes transverse capacity around the service corridor and receiver station."
   },
   {
     id: "sourceResponseTrim",
-    label: "Source Response",
-    shortLabel: "SRC",
-    role: "Source",
+    label: "Plant Supply Trim",
+    shortLabel: "PLT",
+    role: "Plant",
     minLabel: "passive",
     maxLabel: "regulated",
-    detail: "Regulates source-family response demand. The source ledger remains diagnostic, not a control."
+    detail: "Regulates support-plant load sharing through the medium."
   },
   {
     id: "mediumCoupling",
@@ -156,7 +156,7 @@ export const controlDefs = [
     role: "Medium",
     minLabel: "cold",
     maxLabel: "coupled",
-    detail: "Couples regulated heat/current medium to carry source and endpoint exchange."
+    detail: "Couples regulated heat/current medium to carry plant and receiver exchange."
   },
   {
     id: "reservoirDraw",
@@ -169,12 +169,12 @@ export const controlDefs = [
   },
   {
     id: "endpointSync",
-    label: "Endpoint Sync",
-    shortLabel: "SYN",
-    role: "Endpoint",
+    label: "Receiver Sync",
+    shortLabel: "RCV",
+    role: "Receiver",
     minLabel: "loose",
     maxLabel: "locked",
-    detail: "Improves endpoint confidence and suppresses timing drift."
+    detail: "Improves receiver lock and suppresses timing drift."
   },
   {
     id: "catchAperture",
@@ -183,7 +183,7 @@ export const controlDefs = [
     role: "Handoff",
     minLabel: "narrow",
     maxLabel: "wide",
-    detail: "Opens the receiving aperture. It matters most once the packet enters the catch region."
+    detail: "Opens the receiving aperture. It matters most once the packet enters the receiver region."
   },
   {
     id: "matchedHold",
@@ -259,6 +259,87 @@ const defaultControls = {
   railTimeGovernor: 34
 };
 
+export const serviceCommandDefs = [
+  {
+    id: "acceptOrder",
+    group: "intake",
+    label: "Accept Work Order",
+    detail: "Release the staged assignment into operator control."
+  },
+  {
+    id: "prechargeSupport",
+    group: "readiness",
+    label: "Precharge Support",
+    detail: "Bring the standing support shell and regulated medium up to service posture."
+  },
+  {
+    id: "prepareReceiver",
+    group: "readiness",
+    label: "Prepare Receiver",
+    detail: "Synchronize the receiving station, catch aperture, and rematch hold."
+  },
+  {
+    id: "armLine",
+    group: "authority",
+    label: "Arm Line",
+    detail: "Enter armed service after readiness guards close."
+  },
+  {
+    id: "authorizeCarrier",
+    group: "service",
+    label: "Authorize Carrier",
+    detail: "Start packet carriage through the supported corridor."
+  },
+  {
+    id: "openCatch",
+    group: "service",
+    label: "Open Catch",
+    detail: "Widen receiver aperture and tighten rematch as the packet approaches the receiver."
+  },
+  {
+    id: "fadeCarrier",
+    group: "release",
+    label: "Fade Carrier",
+    detail: "Withdraw the active carrier after receiver capture has margin."
+  },
+  {
+    id: "decompressLine",
+    group: "release",
+    label: "Decompress Line",
+    detail: "Unload support plant and medium channels after carrier fade begins."
+  },
+  {
+    id: "purgeReset",
+    group: "reset",
+    label: "Purge Reset",
+    detail: "Clear reset residue before secure closeout."
+  },
+  {
+    id: "secureLine",
+    group: "closeout",
+    label: "Secure Line",
+    detail: "Close the line and archive the service trace."
+  },
+  {
+    id: "holdResume",
+    group: "control",
+    label: "Hold / Resume",
+    detail: "Freeze or resume active line evolution."
+  },
+  {
+    id: "abortRun",
+    group: "recovery",
+    label: "Abort",
+    detail: "Move the line into recovery authority."
+  },
+  {
+    id: "resetTerminal",
+    group: "system",
+    label: "Reset Terminal",
+    detail: "Reload the current work order."
+  }
+];
+
 const phaseBands = [
   { id: "standby", label: "Standby", range: [0, 4] },
   { id: "support", label: "Support", range: [4, 18] },
@@ -280,6 +361,7 @@ export function createInitialLine(profileId = "standard") {
     packetPosition: 0,
     packetVelocity: 0,
     authorityState: "work order",
+    seed: workOrder.seed || hashString(workOrder.workOrderId),
     controls: { ...defaultControls },
     metrics: { ...workOrder.metrics },
     metricTrends: seedMetricTrends(workOrder.metrics),
@@ -301,6 +383,96 @@ export function updateLineControl(line, controlId, rawValue) {
     controls,
     events: maybeAddControlEvent(line, controlId, value)
   };
+}
+
+export function applyServiceCommand(line, commandId) {
+  if (commandId === "resetTerminal") return createInitialLine(line.profileId);
+  if (commandId === "acceptOrder") return applyLineAction(line, "accept");
+  if (commandId === "armLine") return applyLineAction(line, "arm");
+  if (commandId === "holdResume") {
+    return applyLineAction(line, line.runState === "held" ? "releaseHold" : "hold");
+  }
+  if (commandId === "abortRun") return applyLineAction(line, "abort");
+  if (commandId === "secureLine") return applyLineAction(line, "secure");
+  if (terminalClosed(line) || line.runState === "standby") return line;
+
+  const write = (patch, subsystem, message) => {
+    const controls = guardControls(line, { ...line.controls, ...patch });
+    return {
+      ...line,
+      controls,
+      events: addEvent(line.events, makeEvent(line.clock, "operator", subsystem, message))
+    };
+  };
+
+  if (commandId === "prechargeSupport") {
+    return write({
+      supportDrive: Math.max(line.controls.supportDrive, 72),
+      lapseCushion: Math.max(line.controls.lapseCushion, 66),
+      railStretchTrim: Math.max(line.controls.railStretchTrim, 64),
+      throatCapacityTrim: Math.max(line.controls.throatCapacityTrim, 58),
+      sourceResponseTrim: Math.max(line.controls.sourceResponseTrim, 58),
+      mediumCoupling: Math.max(line.controls.mediumCoupling, 58),
+      reservoirDraw: Math.max(line.controls.reservoirDraw, 44),
+      railTimeGovernor: Math.max(line.controls.railTimeGovernor, 58)
+    }, "support", "Support shell and regulated medium precharged.");
+  }
+
+  if (commandId === "prepareReceiver") {
+    return write({
+      endpointSync: Math.max(line.controls.endpointSync, 76),
+      catchAperture: Math.max(line.controls.catchAperture, line.packetPosition > 58 ? 76 : 54),
+      matchedHold: Math.max(line.controls.matchedHold, 64),
+      railTimeGovernor: Math.max(line.controls.railTimeGovernor, 72)
+    }, "receiver", "Receiver station synchronized and catch posture prepared.");
+  }
+
+  if (commandId === "authorizeCarrier") {
+    if (!["armed", "service"].includes(line.runState)) {
+      return addOperatorNotice(line, "carrier", "Carrier authority is held until the line is armed.");
+    }
+    return write({
+      carrierDrive: line.packetPosition > 72 ? 42 : 64,
+      railTimeGovernor: Math.max(line.controls.railTimeGovernor, 70),
+      matchedHold: Math.max(line.controls.matchedHold, 58)
+    }, "carrier", "Carrier flow authorized.");
+  }
+
+  if (commandId === "openCatch") {
+    return write({
+      endpointSync: Math.max(line.controls.endpointSync, 86),
+      catchAperture: Math.max(line.controls.catchAperture, 86),
+      matchedHold: Math.max(line.controls.matchedHold, 82),
+      carrierDrive: Math.min(Math.max(line.controls.carrierDrive, 34), 48)
+    }, "receiver", "Receiver catch aperture opened for handoff.");
+  }
+
+  if (commandId === "fadeCarrier") {
+    return write({
+      releaseFade: Math.max(line.controls.releaseFade, 66),
+      carrierDrive: Math.min(line.controls.carrierDrive, 28),
+      matchedHold: Math.max(line.controls.matchedHold, 78)
+    }, "release", "Carrier fade authorized after receiver capture check.");
+  }
+
+  if (commandId === "decompressLine") {
+    return write({
+      decompression: Math.max(line.controls.decompression, 70),
+      sourceResponseTrim: Math.max(line.controls.sourceResponseTrim, 70),
+      mediumCoupling: Math.max(line.controls.mediumCoupling, 66),
+      reservoirDraw: Math.min(line.controls.reservoirDraw, 42)
+    }, "release", "Line decompression started.");
+  }
+
+  if (commandId === "purgeReset") {
+    return write({
+      resetPurge: Math.max(line.controls.resetPurge, 82),
+      decompression: Math.max(line.controls.decompression, 66),
+      carrierDrive: Math.min(line.controls.carrierDrive, 18)
+    }, "reset", "Reset purge started.");
+  }
+
+  return line;
 }
 
 export function applyLineAction(line, actionId) {
@@ -392,7 +564,7 @@ export function applyAutopilotStep(line) {
   const controls = guardControls(line, Object.fromEntries(
     Object.entries(line.controls).map(([controlId, current]) => [
       controlId,
-      approach(current, targets[controlId] ?? current, 9)
+      approach(current, targets[controlId] ?? current, 11)
     ])
   ));
   let next = {
@@ -400,16 +572,31 @@ export function applyAutopilotStep(line) {
     controls
   };
   const constraints = getLineConstraints(next);
+
+  if (next.runState === "held") {
+    const hardStop = constraints.some((item) => item.level === "red" && ["support", "packet", "receiver", "carrier"].includes(item.subsystem));
+    const serviceCanResume = constraints.every((item) => item.level !== "red" || ["reservoir", "load", "release"].includes(item.subsystem));
+    if (!hardStop && serviceCanResume) {
+      return applyLineAction(next, "releaseHold");
+    }
+    if (next.clock > 220 && hardStop) {
+      return applyLineAction(next, "abort");
+    }
+    return next;
+  }
+
   if (next.runState === "readying" && !constraints.some((item) => item.blocksArm)) {
     return applyLineAction(next, "arm");
   }
+  const redServiceBlock = constraints.some((item) => item.level === "red"
+    && ["support", "packet", "receiver", "timing", "carrier", "stability"].includes(item.subsystem));
   if (["armed", "service"].includes(next.runState)
-    && getLineCondition(next) === "red"
+    && redServiceBlock
     && next.packetPosition > 18
     && next.packetPosition < 90) {
     return applyLineAction(next, "hold");
   }
-  if (next.packetPosition > 96 && !constraints.some((item) => item.blocksSecure)) {
+  if (next.packetPosition > 96 && !secureBlocked(next, constraints)) {
     return applyLineAction(next, "secure");
   }
   if (next.clock > 0 && next.clock % 14 === 0) {
@@ -496,10 +683,10 @@ export function getLineConstraints(line) {
   if (metrics.sourceDebt > 56) {
     constraints.push({
       id: "sourceDebt",
-      subsystem: "source",
+      subsystem: "plant",
       level: metrics.sourceDebt > 78 ? "red" : "caution",
-      title: "Source-response burden above headroom",
-      detail: "Increase source response, medium coupling, or reservoir support while reducing carrying-flow demand.",
+      title: "Support plant load above headroom",
+      detail: "Increase plant sharing, medium coupling, or reservoir support while reducing carrying-flow demand.",
       blocksArm: metrics.sourceDebt > 66,
       blocksSecure: metrics.sourceDebt > 68
     });
@@ -529,10 +716,10 @@ export function getLineConstraints(line) {
   if (metrics.endpointConfidence < 58) {
     constraints.push({
       id: "endpointConfidence",
-      subsystem: "endpoint",
+      subsystem: "receiver",
       level: metrics.endpointConfidence < 38 ? "red" : "caution",
-      title: "Endpoint catch confidence below service margin",
-      detail: "Increase endpoint sync and open the catch aperture before release.",
+      title: "Receiver lock below service margin",
+      detail: "Increase receiver sync and open the catch aperture before release.",
       blocksArm: metrics.endpointConfidence < 46
     });
   }
@@ -542,7 +729,7 @@ export function getLineConstraints(line) {
       subsystem: "timing",
       level: metrics.timingDrift > 78 ? "red" : "caution",
       title: "Timing drift approaching catch tolerance",
-      detail: "Endpoint sync should pull the handoff window back toward the packet.",
+      detail: "Receiver sync should pull the handoff window back toward the packet.",
       blocksSecure: metrics.timingDrift > 72
     });
   }
@@ -563,7 +750,7 @@ export function getLineConstraints(line) {
       subsystem: "reservoir",
       level: metrics.reservoirCharge < 22 ? "red" : "caution",
       title: "Reservoir headroom low",
-      detail: "Reduce reservoir draw, unload the medium, and avoid source-response overdraw.",
+      detail: "Reduce reservoir draw, unload the medium, and avoid plant overdraw.",
       blocksArm: metrics.reservoirCharge < 30,
       blocksSecure: metrics.reservoirCharge < 28
     });
@@ -606,7 +793,7 @@ export function getLineConstraints(line) {
       subsystem: "release",
       level: "caution",
       title: "Release fade guarded",
-      detail: "Carrier fade is resisted until packet position, endpoint confidence, and aperture agree."
+      detail: "Carrier fade is resisted until packet position, receiver lock, and aperture agree."
     });
   }
   if (controls.decompression > 35 && controls.releaseFade < 45) {
@@ -642,6 +829,7 @@ export function getTerminalAdvisories(line) {
 
 export function getLineVisualState(line) {
   const workOrder = getWorkOrder(line.profileId);
+  const perturbation = getLinePerturbation(line, workOrder);
   const constraints = getLineConstraints(line);
   const statusByMetric = Object.fromEntries(
     telemetryDefs.map((def) => [def.id, getTelemetryStatus(def, line.metrics[def.id])])
@@ -673,6 +861,11 @@ export function getLineVisualState(line) {
   const sourceSaturation = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex * 0.36 + (100 - line.metrics.reservoirCharge) * 0.38) / 155);
   const mediumStress = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex + (100 - line.metrics.reservoirCharge)) / 235);
   const residueDensity = clamp01((line.metrics.resetResidue + line.controls.decompression * 0.28 - line.controls.resetPurge * 0.18) / 105);
+  const receiverAcquisition = clamp01((line.metrics.endpointConfidence + line.controls.endpointSync * 0.32 + line.controls.catchAperture * 0.28 - line.metrics.timingDrift * 0.42) / 142);
+  const supportSag = clamp01((100 - line.metrics.supportMargin + perturbation.supportSag * 3.2 + line.metrics.loadIndex * 0.24) / 145);
+  const carrierStability = clamp01((line.controls.railTimeGovernor * 0.42 + line.controls.matchedHold * 0.34 + line.metrics.stabilityPosture * 0.42 - line.metrics.carrierRisk * 0.34) / 100);
+  const plantSupplyPulse = clamp01((line.metrics.sourceDebt + perturbation.plantLoad * 3 + line.controls.supportDrive * 0.22) / 120);
+  const leakageRate = clamp01((line.metrics.packetLeakage + perturbation.leakage * 5) / 100);
   const betaFlow = clamp01(line.controls.carrierDrive / 100);
   const lapseCushion = clamp01(line.controls.lapseCushion / 100);
   const railStretch = clamp01(line.controls.railStretchTrim / 100);
@@ -687,7 +880,7 @@ export function getLineVisualState(line) {
     condition,
     phase,
     packetPosition,
-    packetLabel: line.failure ? "REC" : line.runState === "secured" ? "SEC" : "PKT",
+    packetLabel: line.runState === "secured" ? "SEC" : "PKT",
     packetPulse: line.runState === "service" && line.packetVelocity > 0,
     packetIsolation,
     packetLeakage,
@@ -709,6 +902,12 @@ export function getLineVisualState(line) {
     sourceSaturation,
     mediumStress,
     residueDensity,
+    receiverAcquisition,
+    supportSag,
+    carrierStability,
+    plantSupplyPulse,
+    leakageRate,
+    perturbation,
     betaFlow,
     lapseCushion,
     railStretch,
@@ -747,7 +946,12 @@ export function getLineVisualState(line) {
       "--support-ripple": String(supportRipple),
       "--source-saturation": String(sourceSaturation),
       "--medium-stress": String(mediumStress),
-      "--residue-density": String(residueDensity)
+      "--residue-density": String(residueDensity),
+      "--receiver-acquisition": String(receiverAcquisition),
+      "--support-sag": String(supportSag),
+      "--carrier-stability": String(carrierStability),
+      "--plant-supply-pulse": String(plantSupplyPulse),
+      "--leakage-rate": String(leakageRate)
     }
   };
 }
@@ -788,7 +992,7 @@ export function getActionState(line, actionId) {
     return {
       enabled: !blocked,
       label: line.runState === "armed" || line.runState === "service" ? "Line Armed" : "Arm Line",
-      detail: blocked ? "Close support, packet isolation, source-response, endpoint, reservoir, and carrier margins." : "Line is inside readiness margins."
+      detail: blocked ? "Close support, packet isolation, plant, receiver, reservoir, and carrier margins." : "Line is inside readiness margins."
     };
   }
   if (actionId === "hold") {
@@ -817,7 +1021,7 @@ export function getActionState(line, actionId) {
     return {
       enabled: !blocked && ["service", "held"].includes(line.runState),
       label: "Secure",
-      detail: blocked ? "Closeout requires endpoint handoff, decompression, purge, and stable margins." : "Close the run and archive the trace."
+      detail: blocked ? "Closeout requires receiver handoff, decompression, purge, and stable margins." : "Close the run and archive the trace."
     };
   }
   if (actionId === "reset") {
@@ -828,6 +1032,38 @@ export function getActionState(line, actionId) {
     };
   }
   return { enabled: false, label: actionId, detail: "" };
+}
+
+export function getServiceCommandState(line, commandId) {
+  const def = serviceCommandDefs.find((item) => item.id === commandId);
+  const fallback = { enabled: false, label: def?.label || commandId, detail: def?.detail || "" };
+  if (!def) return fallback;
+  if (commandId === "resetTerminal") return { ...def, enabled: true };
+  if (commandId === "acceptOrder") return { ...def, ...getActionState(line, "accept") };
+  if (commandId === "armLine") return { ...def, ...getActionState(line, "arm") };
+  if (commandId === "holdResume") {
+    const action = line.runState === "held" ? getActionState(line, "releaseHold") : getActionState(line, "hold");
+    return { ...def, ...action, label: line.runState === "held" ? "Resume Service" : "Hold Line" };
+  }
+  if (commandId === "abortRun") return { ...def, ...getActionState(line, "abort") };
+  if (commandId === "secureLine") return { ...def, ...getActionState(line, "secure") };
+  if (terminalClosed(line) || line.runState === "standby") return fallback;
+  if (commandId === "authorizeCarrier") {
+    return { ...def, enabled: ["armed", "service"].includes(line.runState) };
+  }
+  if (commandId === "openCatch") {
+    return { ...def, enabled: ["armed", "service", "held"].includes(line.runState) && line.packetPosition > 44 };
+  }
+  if (commandId === "fadeCarrier") {
+    return { ...def, enabled: ["service", "held"].includes(line.runState) && line.packetPosition > 66 };
+  }
+  if (commandId === "decompressLine") {
+    return { ...def, enabled: ["service", "held"].includes(line.runState) && (line.packetPosition > 80 || line.controls.releaseFade > 28) };
+  }
+  if (commandId === "purgeReset") {
+    return { ...def, enabled: ["service", "held"].includes(line.runState) && (line.packetPosition > 84 || line.metrics.resetResidue > 48) };
+  }
+  return { ...def, enabled: ["readying", "armed", "service", "held"].includes(line.runState) };
 }
 
 export function getDebrief(line) {
@@ -870,25 +1106,30 @@ function getAutopilotTargets(line) {
   const { metrics, packetPosition, runState } = line;
   const readying = runState === "readying";
   const service = runState === "armed" || runState === "service";
+  const held = runState === "held";
   const catchApproach = packetPosition > 62;
   const releaseApproach = packetPosition > 80;
   const resetApproach = packetPosition > 90;
+  const recoveryPressure = getLineCondition(line) === "red" || held;
+  const receiverDemand = metrics.endpointConfidence < 72 || metrics.timingDrift > 34 || catchApproach;
+  const plantDemand = metrics.sourceDebt > 44 || metrics.reservoirCharge < 60 || metrics.loadIndex > 60;
+  const reservoirLow = metrics.reservoirCharge < 48;
   return {
-    supportDrive: metrics.supportMargin < 68 ? 68 : metrics.loadIndex > 68 ? 42 : 52,
-    lapseCushion: metrics.packetIsolation < 70 || metrics.timingDrift > 42 ? 74 : 52,
-    railStretchTrim: metrics.supportMargin < 66 || metrics.packetIsolation < 68 ? 70 : 48,
-    throatCapacityTrim: catchApproach || metrics.endpointConfidence < 60 ? 74 : 50,
-    sourceResponseTrim: metrics.sourceDebt > 46 ? 78 : service ? 60 : 42,
-    mediumCoupling: metrics.sourceDebt > 50 || metrics.reservoirCharge < 54 ? 72 : 46,
-    reservoirDraw: metrics.supportMargin < 62 ? 64 : metrics.reservoirCharge < 44 ? 24 : 42,
-    endpointSync: metrics.endpointConfidence < 68 || metrics.timingDrift > 34 ? 78 : 56,
-    catchAperture: catchApproach || metrics.endpointConfidence < 58 ? 82 : 48,
-    matchedHold: catchApproach || metrics.carrierRisk > 42 ? 72 : service ? 52 : 32,
-    carrierDrive: readying ? 0 : resetApproach ? 12 : releaseApproach ? 24 : catchApproach ? 42 : service ? 62 : 0,
-    releaseFade: releaseApproach && metrics.endpointConfidence > 54 ? 66 : 0,
-    decompression: resetApproach ? 70 : releaseApproach ? 42 : 0,
-    resetPurge: resetApproach || metrics.resetResidue > 44 ? 78 : 28,
-    railTimeGovernor: metrics.carrierRisk > 42 || metrics.timingDrift > 42 ? 82 : 54
+    supportDrive: reservoirLow ? 38 : metrics.supportMargin < 70 ? 78 : metrics.loadIndex > 74 ? 46 : 60,
+    lapseCushion: metrics.packetIsolation < 74 || metrics.timingDrift > 42 || recoveryPressure ? 82 : 58,
+    railStretchTrim: metrics.supportMargin < 70 || metrics.packetIsolation < 72 || recoveryPressure ? 78 : 54,
+    throatCapacityTrim: catchApproach || metrics.endpointConfidence < 64 ? 80 : 56,
+    sourceResponseTrim: reservoirLow ? 76 : plantDemand ? 84 : service ? 66 : 50,
+    mediumCoupling: reservoirLow ? 34 : plantDemand || metrics.reservoirCharge < 54 ? 80 : 54,
+    reservoirDraw: reservoirLow ? 4 : metrics.supportMargin < 62 ? 64 : 48,
+    endpointSync: receiverDemand ? 88 : 62,
+    catchAperture: catchApproach || metrics.endpointConfidence < 60 ? 88 : 54,
+    matchedHold: catchApproach || metrics.carrierRisk > 42 || recoveryPressure ? 84 : service ? 62 : 38,
+    carrierDrive: readying || held ? 0 : reservoirLow ? 34 : resetApproach ? 8 : releaseApproach ? 22 : catchApproach ? 38 : service ? 66 : 0,
+    releaseFade: releaseApproach && metrics.endpointConfidence > 50 ? 72 : resetApproach ? 80 : 0,
+    decompression: resetApproach ? 78 : releaseApproach ? 52 : recoveryPressure ? 38 : 0,
+    resetPurge: resetApproach || metrics.resetResidue > 44 ? 86 : 32,
+    railTimeGovernor: metrics.carrierRisk > 38 || metrics.timingDrift > 38 || catchApproach ? 88 : 60
   };
 }
 
@@ -897,13 +1138,47 @@ function approach(current, target, step) {
   return clamp(current + Math.sign(target - current) * step);
 }
 
+function getLinePerturbation(line, workOrder = getWorkOrder(line.profileId)) {
+  const seed = line.seed || workOrder.seed || hashString(workOrder.workOrderId);
+  const amp = workOrder.perturbation || {};
+  const accepted = line.runState !== "standby";
+  const liveFactor = accepted ? (line.runState === "held" ? 0.35 : 1) : 0.18;
+  const serviceFactor = ["armed", "service"].includes(line.runState) ? 1 : 0.42;
+  const releaseFactor = line.packetPosition > 72 ? 1.2 : 0.65;
+  const packetFactor = clamp01(line.packetPosition / 100);
+  const positive = (channel, rate = 0.035) => (seededWave(seed, line.clock, channel, rate) + 1) / 2;
+  const signed = (channel, rate = 0.035) => seededWave(seed, line.clock, channel, rate);
+  return {
+    supportSag: liveFactor * (amp.supportSag || 4) * positive(1, 0.028) * (0.65 + packetFactor * 0.5),
+    plantLoad: liveFactor * serviceFactor * (amp.plantLoad || 4) * positive(2, 0.024),
+    receiverDrift: liveFactor * releaseFactor * (amp.receiverDrift || 4) * positive(3, 0.031) * (0.35 + packetFactor),
+    leakage: liveFactor * serviceFactor * (amp.leakage || 3) * positive(4, 0.041) * (0.45 + packetFactor),
+    timing: liveFactor * serviceFactor * (amp.timing || 4) * (0.55 + positive(5, 0.026)) * (0.45 + packetFactor),
+    reservoir: liveFactor * (amp.reservoir || 3) * positive(6, 0.021),
+    opticsJitter: signed(7, 0.05),
+    fieldBreath: positive(8, 0.018),
+    mediumNoise: positive(9, 0.046)
+  };
+}
+
+function seededWave(seed, clock, channel, rate) {
+  const phase = (seed % 997) * 0.013 + channel * 1.71;
+  const slow = Math.sin(clock * rate + phase);
+  const fast = Math.sin(clock * rate * 2.37 + phase * 0.58);
+  return slow * 0.68 + fast * 0.32;
+}
+
 function evolveMetrics(line, controls, workOrder) {
   const next = { ...line.metrics };
   const { load, timing, residue, stability } = workOrder.stress;
+  const perturbation = getLinePerturbation(line, workOrder);
   const accepted = line.runState !== "standby";
   const armed = line.runState === "armed" || line.runState === "service";
+  const held = line.runState === "held";
+  const activePlant = accepted && !held;
   const catchZone = line.packetPosition > 66;
   const releaseOpen = releaseWindowOpen({ ...line, controls });
+  const reservoirProtection = line.metrics.reservoirCharge < 44 ? 0.38 : line.metrics.reservoirCharge < 56 ? 0.68 : 1;
   const supportActuator = (controls.supportDrive + controls.lapseCushion * 0.42 + controls.railStretchTrim * 0.32 + controls.throatCapacityTrim * 0.22) / 1.96;
   const sourceRelief = controls.sourceResponseTrim * 0.58 + controls.mediumCoupling * 0.34 + controls.reservoirDraw * 0.28;
   const governance = controls.railTimeGovernor * 0.58 + controls.matchedHold * 0.36 + controls.endpointSync * 0.24;
@@ -912,34 +1187,39 @@ function evolveMetrics(line, controls, workOrder) {
   next.supportMargin -= armed ? (controls.carrierDrive * load) / 56 : 0;
   next.supportMargin -= controls.releaseFade / 92;
   next.supportMargin += controls.decompression / 130;
+  next.supportMargin -= perturbation.supportSag / 28;
 
-  next.sourceDebt += accepted ? (controls.supportDrive * load) / 150 : -0.2;
+  next.sourceDebt += activePlant ? (controls.supportDrive * load) / 150 : -0.35;
   next.sourceDebt += armed ? (controls.carrierDrive * load) / 42 : 0;
   next.sourceDebt -= sourceRelief / 32;
   next.sourceDebt -= controls.decompression / 92;
   next.sourceDebt -= controls.resetPurge / 130;
+  next.sourceDebt += perturbation.plantLoad / 24;
 
   next.endpointConfidence += (controls.endpointSync - 38) / 13;
   next.endpointConfidence += controls.catchAperture / 90;
   next.endpointConfidence += controls.matchedHold / 160;
   next.endpointConfidence -= armed ? (controls.carrierDrive * timing) / 110 : 0;
   next.endpointConfidence -= catchZone && controls.catchAperture < 42 ? 2.8 * timing : 0;
+  next.endpointConfidence -= perturbation.receiverDrift / 22;
 
   next.timingDrift += armed ? (controls.carrierDrive * timing) / 62 : -0.4;
   next.timingDrift -= controls.endpointSync / 34;
   next.timingDrift -= controls.catchAperture / 120;
   next.timingDrift -= controls.railTimeGovernor / 52;
+  next.timingDrift += perturbation.timing / 22;
 
   next.resetResidue += releaseOpen ? (controls.releaseFade * residue) / 82 : 0;
   next.resetResidue += controls.decompression > 45 ? (controls.decompression * residue) / 210 : 0;
   next.resetResidue -= controls.resetPurge / (workOrder.id === "reuse" ? 20 : 16);
 
   next.reservoirCharge += line.runState === "standby" ? 0.2 : 0;
-  next.reservoirCharge -= accepted ? (controls.reservoirDraw * load) / 90 : -0.25;
-  next.reservoirCharge -= (controls.supportDrive * load) / 210;
-  next.reservoirCharge -= (controls.mediumCoupling * load) / 260;
+  next.reservoirCharge -= activePlant ? ((controls.reservoirDraw * load) / 90) * reservoirProtection : -0.55;
+  next.reservoirCharge -= activePlant ? ((controls.supportDrive * load) / 210) * reservoirProtection : 0;
+  next.reservoirCharge -= activePlant ? ((controls.mediumCoupling * load) / 260) * reservoirProtection : 0;
   next.reservoirCharge += controls.decompression / 92;
   next.reservoirCharge += controls.resetPurge / 180;
+  next.reservoirCharge -= (perturbation.reservoir / 28) * reservoirProtection;
 
   next.carrierRisk += armed ? (controls.carrierDrive * timing) / 80 : -0.55;
   next.carrierRisk += catchZone ? (100 - next.endpointConfidence) / 44 : 0;
@@ -960,6 +1240,7 @@ function evolveMetrics(line, controls, workOrder) {
   next.packetLeakage -= controls.matchedHold / 150;
   next.packetLeakage -= controls.lapseCushion / 180;
   next.packetLeakage -= controls.resetPurge / 145;
+  next.packetLeakage += perturbation.leakage / 38;
 
   next.stabilityPosture += (controls.lapseCushion + controls.railStretchTrim + controls.throatCapacityTrim) / 250;
   next.stabilityPosture += controls.sourceResponseTrim / 130;
@@ -1206,4 +1487,10 @@ function addEvent(events, event) {
 
 function clamp(value, min = 0, max = 100) {
   return Math.max(min, Math.min(max, Math.round(value * 10) / 10));
+}
+
+function hashString(value) {
+  return String(value).split("").reduce((hash, char) => {
+    return (hash * 31 + char.charCodeAt(0)) % 1000003;
+  }, 17);
 }

@@ -8,10 +8,10 @@ export const failureModes = [
   },
   {
     id: "source_overdraw",
-    title: "Source response overdraw",
-    subsystem: "source response",
-    summary: "Demanded-source burden outran the qualitative source-response and medium headroom.",
-    recovery: "Hold or abort, reduce support and carrying-flow demand, increase regulated medium support, and keep the source ledger as a diagnostic artifact."
+    title: "Support plant overdraw",
+    subsystem: "support plant",
+    summary: "Plant supply load outran the regulated medium and support-reservoir headroom.",
+    recovery: "Hold or abort, reduce support and carrying-flow demand, increase regulated medium support, and keep the source accounting display as diagnostic context."
   },
   {
     id: "packet_leakage",
@@ -22,24 +22,24 @@ export const failureModes = [
   },
   {
     id: "endpoint_mismatch",
-    title: "Endpoint mismatch",
-    subsystem: "endpoint",
-    summary: "Endpoint confidence collapsed inside the catch window.",
-    recovery: "Abort into endpoint recovery, synchronize the endpoint, and do not authorize fade until catch is restored."
+    title: "Receiver mismatch",
+    subsystem: "receiver",
+    summary: "Receiver lock collapsed inside the catch window.",
+    recovery: "Abort into receiver recovery, resynchronize the receiving station, and do not authorize fade until catch is restored."
   },
   {
     id: "timing_violation",
     title: "Timing window violation",
     subsystem: "timing",
     summary: "Service-window drift exceeded catch/rematch tolerance.",
-    recovery: "Hold the line, rerun endpoint synchronization, and restart the pass with wider timing margin."
+    recovery: "Hold the line, rerun receiver synchronization, and restart the pass with wider timing margin."
   },
   {
     id: "decompression_shock",
     title: "Decompression shock",
     subsystem: "release",
-    summary: "Release unloading began while source burden or stability posture was outside the service gate.",
-    recovery: "Abort release, stabilize the line, and restore source-response and medium headroom before another decompression attempt."
+    summary: "Release unloading began while plant load or stability posture was outside the service gate.",
+    recovery: "Abort release, stabilize the line, and restore plant and medium headroom before another decompression attempt."
   },
   {
     id: "reservoir_sag",
@@ -53,7 +53,7 @@ export const failureModes = [
     title: "Carrier governance lockout",
     subsystem: "carrier",
     summary: "Carrier timing and reachability risk exceeded the rail-time guard.",
-    recovery: "Hold or abort, increase rail-time governance and endpoint synchronization, then restart from a lower carrying-flow authority."
+    recovery: "Hold or abort, increase rail-time governance and receiver synchronization, then restart from a lower carrying-flow authority."
   },
   {
     id: "reset_contamination",
