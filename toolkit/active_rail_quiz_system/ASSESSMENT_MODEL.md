@@ -31,6 +31,24 @@ Useful dimensions:
 
 Not every mode needs every dimension. The report should show the dimensions relevant to the session.
 
+## Rail Service Terminal Outcomes
+
+The Rail Service Terminal is not scored as a quiz. It should produce operational
+outcomes, event traces, and debriefs rather than answer correctness.
+
+Useful outcome dimensions:
+
+- service completed, held, aborted, or secured with cautions;
+- manifest class and line state at closeout;
+- triggered alarms and recovery actions;
+- interlock attempts and limiting gates;
+- support, source, endpoint, timing, residue, stability, and load bands;
+- whether the operator used hold, recovery, or abort before a red failure.
+
+These outcomes can recommend Qualification Board review after the run, but they
+should not be folded into the question-score report. The terminal trains
+operator reasoning through consequence and trace inspection.
+
 ## Timed Quiz Mode
 
 Timed quiz mode is an assessment profile, not a separate curriculum. It uses the

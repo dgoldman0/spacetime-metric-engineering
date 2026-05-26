@@ -14,6 +14,23 @@ The full system has two top-level surfaces:
 Both can live in the same local React app for now. They should not share the
 same visual shell.
 
+## Suite Shell
+
+The app should have one shared shell above product-specific interfaces. This is
+not a landing page; it is a training-suite frame.
+
+Required shape:
+
+- product switcher for Qualification Board and Rail Service Terminal;
+- current product identity and concise status;
+- shared truth-boundary language where relevant;
+- stable navigation position so switching products does not feel like entering a
+  separate app;
+- product-specific interior layout below the shared shell.
+
+The shell should make the system feel unified without making the simulator look
+like a quiz or making the quiz look like a plant console.
+
 ## Core Principle
 
 Use shared infrastructure, not one shared interface.
@@ -45,9 +62,9 @@ Rail Service Terminal owns:
 
 - operations status bar,
 - service manifest loader,
-- line schematic,
+- live line viewport,
 - telemetry panels,
-- command stack,
+- contextual command tray,
 - procedure checklist,
 - interlock display,
 - alarm/event feed,
@@ -136,12 +153,15 @@ Required regions:
 
 - **Status Bar:** `LINE`, `MANIFEST`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
-- **Line Board:** the dominant area. Shows service phases, packet position,
-  support envelope, endpoint readiness, and phase progress.
+- **Live Line Viewport:** the dominant area. Shows origin, active rail,
+  endpoint, packet position, support envelope, phase progress, hold/abort
+  freezes, and alarm overlays. This region should never be a mostly empty
+  reserved panel.
 - **Telemetry:** dense meters for support margin, source debt, endpoint
   confidence, timing drift, reset residue, stability posture, and load.
-- **Command Stack:** current operator commands, with visible interlocks on
-  disabled actions.
+- **Contextual Command Tray:** the next operator action and a few relevant
+  alternatives. Interlocked actions belong in an inspection section or compact
+  disabled list, not as the dominant interaction.
 - **Procedure Panel:** checklist of gates and phase procedures.
 - **Alarm/Event Feed:** timestamped stream with subsystem, severity, and terse
   event text.
@@ -150,6 +170,43 @@ Required regions:
 The terminal should minimize explanatory prose while the line is active. The
 operator learns through state, alarms, command availability, and the service
 trace.
+
+### Operator Station Interaction Model
+
+The operator station should make the line feel alive.
+
+Standby:
+
+- line diagram shows origin, endpoint, staged packet, and manifest;
+- one primary action is available: accept manifest;
+- telemetry is visible but quiet;
+- event feed confirms assignment.
+
+Readiness:
+
+- gates appear on the line or adjacent systems, not only in a checklist;
+- the next action lane presents precheck, ledger, endpoint, support, or reset
+  work according to the current limiting condition;
+- locked arm authority explains the missing gate.
+
+Active service:
+
+- packet moves through the line while the clock advances;
+- support envelope and endpoint state visibly change;
+- telemetry trend bands update;
+- warnings attach to the affected subsystem;
+- the command tray narrows to hold, abort, and the next phase authority when
+  available.
+
+Hold and abort:
+
+- line motion freezes;
+- the viewport highlights the cause;
+- recovery actions become contextual;
+- the event feed and debrief explain the operational consequence.
+
+This interaction model should replace any UI where the user mostly scans a
+large list of buttons and guesses which one to press next.
 
 ## Activity Surfaces
 
@@ -234,9 +291,11 @@ Required UI shape:
   Qualification Board;
 - compact top status bar with line id, state, manifest, clock, authority, and
   alarm count;
-- dominant line schematic with live phase and packet state;
+- dominant live line viewport with packet motion, support envelope, endpoint
+  state, alarm overlays, and no unused empty center area;
 - telemetry stack with status bands and subsystem labels;
-- command stack with currently available commands and locked commands;
+- contextual command tray with currently relevant commands and a compact way to
+  inspect locked commands;
 - procedure checklist with gate state;
 - terminal event feed;
 - run debrief after completion or abort.
@@ -258,6 +317,7 @@ Interaction rules:
   but the label should look like a terminal status marker rather than a teaching
   paragraph.
 - The terminal should keep disabled controls visible with interlock reasons.
+  They should remain discoverable without becoming the main surface.
 - The terminal should make time matter: waiting too long in the wrong phase can
   increase drift, source debt, residue, or alarm severity.
 

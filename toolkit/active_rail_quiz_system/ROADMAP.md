@@ -24,6 +24,10 @@ Phase 4 defines the service trainer product:
 Design comes first for Phase 4. The trainer must have its own domain model,
 interface architecture, and simulator loop before code changes.
 
+Phase 5 now captures the suite-level product shell and service-terminal UX
+hardening needed to make the products feel unified without collapsing their
+interaction models.
+
 ## Phase 1: Quiz Infrastructure
 
 Build the system that can render, grade, review, and organize questions.
@@ -562,6 +566,56 @@ station.
 - The event log and debrief explain outcomes in operator language.
 - Validation, smoke tests, and production build pass.
 
+## Phase 5: Suite Shell And Operator Station UX
+
+Build the shared product-selection interface and replace the first terminal
+checkpoint's button-dashboard feel with an operator station.
+
+### Design Requirements
+
+- One shared suite shell for product switching and identity.
+- Qualification Board remains a learning-board product.
+- Rail Service Terminal remains an operations product.
+- The simulator centers the live line viewport, not a button grid.
+- The viewport uses standby, readiness, active service, hold, abort, reset, and
+  secure states.
+- Commands become contextual: primary next action, relevant alternatives, and a
+  compact locked-action/interlock inspection surface.
+- Telemetry, alarms, and event trace explain why the line is changing.
+
+### Implementation Subphases
+
+1. Add the shared suite shell.
+   - Product switcher for Qualification Board and Rail Service Terminal.
+   - Common identity/status frame.
+   - Product-specific interiors.
+2. Rebuild the service terminal layout around the live line.
+   - Replace empty center space with origin, rail corridor, endpoint, packet,
+     support envelope, phase progress, and alarm overlays.
+   - Make standby informative instead of visually dead.
+3. Replace the command wall.
+   - Promote one primary next action.
+   - Show a few contextual alternatives.
+   - Move locked commands into an interlock/diagnostics drawer.
+4. Make the simulator legible while running.
+   - Animate packet position.
+   - Show support envelope and endpoint/catch state changes.
+   - Pin alarms to affected subsystems.
+   - Keep hold, abort, recovery, and secure states visually distinct.
+5. Tune the first service loop manually.
+   - Run each manifest through ordinary, cautious, and risky operator paths.
+   - Confirm failures and debriefs are understandable from the UI.
+
+### Phase 5 Done When
+
+- The first screen has a coherent shared training-suite frame.
+- Switching between Qualification Board and Rail Service Terminal feels like
+  moving between sibling products.
+- The Service Terminal's center area is always useful.
+- A learner can tell how the simulator works from the line viewport and current
+  authority lane without reading documentation.
+- The terminal no longer feels like a quiz or admin button grid.
+
 ## Keep It Simple Rules
 
 - Prefer local imported question-bank files before adding a database.
@@ -613,6 +667,9 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
   table, line schematic, telemetry, command stack, interlock reasons, procedure
   gate board, event feed, debrief panel, and separate service-trainer data and
   simulator modules.
+- The current Rail Service Terminal checkpoint is structurally separate from the
+  quiz app, but the interaction is still too command-board-heavy. The next pass
+  should implement the Phase 5 shared suite shell and operator-station UX.
 
 What is still missing:
 
@@ -633,10 +690,12 @@ folded back into the quiz app.
 
 ## Likely Next Infrastructure Milestone
 
-The next Phase 4 milestone is terminal hardening:
+The next milestone is Phase 5:
 
+- add the shared suite shell,
+- replace the empty center region with a live line viewport,
+- replace the command wall with contextual authority controls,
 - tune each manifest through manual operator runs,
-- add mission objectives and post-run incident review,
 - make failure/recovery paths more legible,
 - add replay or event-trace inspection,
 - expand terminal-specific data without using quiz questions as the simulator
@@ -650,7 +709,8 @@ interactive practice, not merely render more content.
 
 Phase 1 builds the quiz machine. Phase 2 designs the course. Phase 3 fills it
 with high-quality questions. Phase 4 builds the Rail Service Terminal as a
-separate operator simulator.
+separate operator simulator. Phase 5 makes the suite feel unified and makes the
+terminal feel like an operator station.
 
 The system should stay friendly and flexible, but each surface must behave like
 what it claims to be. The Qualification Board teaches claim boundaries and

@@ -34,6 +34,28 @@ manifests, line state, simulator procedures, interlocks, alarms, and debriefs.
 It should feel like someone dropped the learner into a working active-rail line
 station, not like a quiz page with a simulation panel.
 
+## Shared Suite Interface
+
+The suite needs one shared product frame before either product-specific
+experience loads. The shared frame should communicate that the Qualification
+Board and Rail Service Terminal are sibling training products, not unrelated
+pages.
+
+The shared interface should provide:
+
+- a compact product switcher for Qualification Board and Rail Service Terminal;
+- persistent product identity, status, and truth-boundary markers;
+- clear entry into the current product without a marketing landing page;
+- a common visual grammar for the suite, while allowing each product to keep its
+  own interaction language;
+- room for later products such as ledger labs or incident review without
+  crowding them into the quiz navigation.
+
+The shared frame should not force both products into the same layout. The
+Qualification Board can keep a learning-board shell with filters and reports.
+The Rail Service Terminal should keep an operator-station shell with line
+viewport, telemetry, alarms, and contextual authority controls.
+
 ## Product Intent
 
 The training suite should feel like a future active-rail service academy with
@@ -133,6 +155,29 @@ The question bank may be linked from the trainer for optional review prompts or
 post-run study recommendations, but the trainer itself is not backed by quiz
 questions.
 
+The terminal must be designed as an operator station, not as a command board.
+The primary visual object is the line itself: packet position, support envelope,
+origin and endpoint state, active service phase, and alarm overlays. Commands
+exist to manipulate and recover that line, but a wall of enabled and disabled
+buttons is not the main interface.
+
+The central viewport should always do operational work:
+
+- in standby, show the staged line, endpoints, manifest assignment, and next
+  intake action;
+- during readiness, show gates being brought online and which subsystem is
+  limiting authority;
+- during active service, animate packet movement, support envelope condition,
+  phase progress, and drift or residue warnings;
+- during hold or abort, freeze the line state and highlight the subsystem that
+  forced operator intervention;
+- after secure, show the completed path and open the debrief.
+
+The command model should be contextual. The terminal should surface the next
+operator action, a small set of relevant alternatives, and an inspection drawer
+for locked or unavailable actions. Disabled controls should still be discoverable
+with interlock reasons, but they should not dominate the running surface.
+
 ## Non-Goals
 
 - Do not present active-rail concepts as established physics unless they are actually established.
@@ -141,6 +186,9 @@ questions.
 - Do not require users to type LaTeX, equation syntax, or long symbolic answers.
 - Do not make the service trainer feel like a static parameter form or graded
   quiz. It should be an evolving operator simulation.
+- Do not make the service trainer's main interaction a large button grid. The
+  line viewport, telemetry, alarms, and contextual controls should carry the
+  experience.
 - Do not make the first version a giant content dump with no epistemic structure.
 - Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
 - Do not write learner-facing questions about "the quiz", "this quiz system", or the mechanics of the curriculum itself. Meta content belongs in authoring docs, not in the question bank.

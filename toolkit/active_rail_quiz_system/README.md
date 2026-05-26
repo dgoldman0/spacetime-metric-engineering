@@ -1,6 +1,8 @@
-# Active-Rail Quiz System
+# Active-Rail Training System
 
-This is the first dynamic frontend slice for the active-rail quiz system. It uses Vite, React, local question-bank modules, and KaTeX for math rendering.
+This is the local frontend for the active-rail training system. It uses Vite,
+React, local question-bank modules, KaTeX for math rendering, and a separate
+service-terminal simulator model.
 
 Run it locally:
 
@@ -18,6 +20,8 @@ npm run build
 
 Current features:
 
+- shared training suite with Qualification Board and Rail Service Terminal
+  surfaces,
 - study, quiz, and boundary modes,
 - filters for track, module, difficulty, question type, claim status, question context, and optional flagged content,
 - count controls for small drills, medium reviews, large reviews, or all matching questions,
@@ -30,6 +34,8 @@ Current features:
 - grading by module, claim status, question context, and activity type,
 - explanations with answer, reason, boundary, and references.
 - validation for source hygiene, paper-theory anchors, project-framing leakage, and minimal explanation depth.
+- Rail Service Terminal simulator with service manifests, telemetry,
+  contextual authority, interlocks, event trace, alarms, and debriefs.
 
 This is intentionally local-first. There is no backend, database, or user account system in this version.
 
@@ -39,3 +45,4 @@ Design documents:
 - `ROADMAP.md`
 - `INTERFACE_ARCHITECTURE.md`
 - `ASSESSMENT_MODEL.md`
+- `SERVICE_TRAINER_DESIGN.md`

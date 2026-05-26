@@ -27,6 +27,11 @@ The service trainer may link to quiz material after a run, but it must not rely
 on quiz questions for its main interaction. Its primary loop is command, state
 evolution, alarm, hold, recovery, and reset.
 
+The current design target is an operator station, not a command dashboard. The
+screen should make the learner look at the line first and the controls second.
+The controls should feel like authority over a running service, not like a list
+of quiz answers.
+
 ## User Role
 
 The user is not answering questions. The user is acting as a line engineer.
@@ -85,12 +90,14 @@ Required first-screen regions:
 
 - **Top Status Bar:** line id, manifest id, simulation clock, current state,
   authority, alarm count.
-- **Line Schematic:** dominant central strip showing rail phases, packet
-  position, support envelope, endpoint status, and phase progress.
+- **Live Line Viewport:** dominant central station view showing origin,
+  endpoint, packet position, support envelope, service phase, alarm overlays,
+  hold/abort freezes, and phase progress.
 - **Telemetry Stack:** compact gauges or bars for support, ledger, endpoint,
   drift, residue, stability, and load.
-- **Command Stack:** only currently relevant operator commands, with disabled
-  controls shown as interlocked rather than hidden.
+- **Contextual Command Tray:** the next action and a small set of relevant
+  operator alternatives. Locked actions remain inspectable, but they do not fill
+  the main interaction surface.
 - **Procedure Checklist:** current operating procedure with satisfied, pending,
   bypassed, and failed gates.
 - **Alarm/Event Log:** dense terminal-like feed with timestamps, severity, and
@@ -107,6 +114,49 @@ Avoid:
 - ordinary score panels,
 - language like "items ready" in the service terminal,
 - static "set parameters and check" interaction.
+- large button catalogs as the primary simulator experience,
+- empty reserved space in the center of the simulator.
+
+## Live Line Viewport
+
+The live line viewport is the simulator's main object. It should replace the
+large static center panel with an operational view.
+
+Required elements:
+
+- origin station, active rail corridor, and endpoint station;
+- packet marker with visible position and phase state;
+- support envelope band that brightens, thins, or fractures as margin changes;
+- endpoint/catch marker that changes with endpoint confidence and timing drift;
+- residue/reset marker after fade and decompression;
+- alarm overlays pinned to the affected subsystem;
+- phase progress rail or service-window track;
+- hold/abort freeze state.
+
+The viewport should show meaningful information before the run starts. Standby
+is not an empty screen: it is a staged line awaiting manifest acceptance.
+
+The viewport should change during active service. The packet should move, bands
+should change, alarm markers should appear, and the clock should visibly advance
+while the active phase is running.
+
+## Command Philosophy
+
+Commands should support the line, not replace it.
+
+Primary command behavior:
+
+- one high-confidence next action is emphasized;
+- two to four relevant alternatives may appear nearby;
+- hold, abort, and reset are persistent operational controls where appropriate;
+- locked commands can be inspected in a compact interlock drawer or collapsed
+  section;
+- command labels should be procedural and terse.
+
+The terminal should not show every possible command as a large tile at all
+times. That shape makes the experience feel like a button quiz. The operator
+should instead see what action is currently authorized, what condition limits
+the next action, and what intervention is available.
 
 ## Operator Controls
 
@@ -141,6 +191,10 @@ Controls can be disabled by interlocks. Disabled controls should say why:
 - residue above reuse threshold,
 - line held,
 - recovery required.
+
+Interlock reasons are diagnostic information. They should be visible when the
+operator inspects a locked action or limiting gate, but they should not crowd
+out the live line view.
 
 The interface should never ask the user to type hidden numeric state directly.
 Preset service manifests are acceptable. Procedure choices are acceptable.
@@ -242,6 +296,11 @@ without endpoint sync, drift should increase. If fade is authorized before catch
 confirmation, the trainer should refuse or alarm depending on authority mode.
 If reset is skipped after residue buildup, reuse should begin degraded.
 
+The loop must be legible. The UI should show which subsystem is changing and why
+the operator cares. A static standby screen is acceptable only before manifest
+acceptance; after active service begins, the learner should see motion,
+telemetry movement, event feed updates, and phase progress.
+
 ## Visual Direction
 
 The service terminal needs its own visual language.
@@ -266,6 +325,9 @@ The first glance should communicate:
 - what command is next,
 - what subsystem is warning.
 
+The first glance should not communicate "settings panel." The simulator is an
+operating view with a line in the center, not a form.
+
 ## Truth Boundary In UI
 
 The terminal should include a boundary marker, but it should be operationally
@@ -283,8 +345,12 @@ documentation and post-run debrief, not in the active command surface.
 The first replacement is successful when:
 
 - selecting Rail Service Terminal removes the quiz filter/report shell;
+- the shared suite shell still makes it feel like part of the same training
+  system;
 - the terminal fills the working area as an operations console;
 - the user can load a manifest and run a single line through service phases;
+- the live line viewport uses the central space and changes as the run evolves;
+- primary controls are contextual rather than a full button wall;
 - line state evolves over time;
 - commands unlock and lock based on gates and state;
 - telemetry changes during the run;
