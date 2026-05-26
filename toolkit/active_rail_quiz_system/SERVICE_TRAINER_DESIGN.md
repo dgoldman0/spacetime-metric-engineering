@@ -166,9 +166,16 @@ Implementation preference:
 
 - Use SVG for corridor geometry, packet motion, envelopes, apertures, masks,
   gradients, traces, and localized warnings.
-- Use CSS transitions/animations for continuous motion and state changes.
-- Add canvas later only for dense particles, field noise, heatmaps, or other
-  raster effects that SVG cannot handle cleanly.
+- Use D3 shape/scale utilities for generated Bezier paths, ray bundles,
+  worldline traces, field-line families, and state-to-geometry scales. D3 should
+  generate geometry only; it should not own the React rendering lifecycle.
+- Use Framer Motion for high-quality state transitions, control response,
+  panel/drawer movement, and major visual-state interpolation where CSS
+  transitions are too stiff.
+- Use PixiJS for dense field/residue/particle layers that SVG handles poorly:
+  residue haze, field noise, shimmer, source-flow particulate burden, and
+  recovery contamination. Pixi layers should stay subordinate to the SVG
+  geometry and should be driven by the same simulator state.
 - Keep all visual layers state-derived from the simulator model.
 
 ## Spacetime Visual Simulation Grammar

@@ -635,6 +635,10 @@ model.
      adding any purely decorative effects.
    - Add backreaction/constraint posture and causal-risk overlays as cautious
      risk readouts, not as solved physics.
+   - Use D3 shape/scale for generated curves and state-to-geometry mapping.
+   - Use Framer Motion for fluid state transitions and control response.
+   - Use PixiJS for dense residue, field-noise, shimmer, and particulate layers
+     while keeping the SVG geometry as the primary readout.
    - Remove embedded numeric cards and duplicate text blocks from the line
      graphic.
    - Make standby, support, carry, catch, fade, reset, hold, abort, recovery,

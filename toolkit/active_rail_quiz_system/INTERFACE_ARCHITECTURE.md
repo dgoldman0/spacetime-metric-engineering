@@ -194,6 +194,16 @@ percentage readouts, static squiggles, or decorative warning triangles inside
 the live line. Small geometric labels and warning tags are acceptable only when
 they identify a real feature or degraded subsystem.
 
+Implementation stack for the rich terminal view:
+
+- D3 shape/scale utilities generate path geometry and state-to-visual scales.
+- Framer Motion handles polished UI and SVG state transitions.
+- PixiJS handles dense particles, haze, shimmer, and field-noise layers that
+  would be awkward or heavy in SVG.
+
+React remains the app and state owner. These libraries support the visual layer;
+they do not become separate simulation engines.
+
 The viewport should use a spacetime-engineering visual grammar, not a generic
 machine diagram. It should show qualitative geometry: service corridor, packet
 worldline/wake, support envelope, demanded-source channel, endpoint optics,
