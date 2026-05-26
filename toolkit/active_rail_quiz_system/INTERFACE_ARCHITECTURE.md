@@ -156,19 +156,20 @@ Required primary regions:
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
 - **Live Line Simulation:** the dominant region. It shows the rail corridor,
   packet, support envelope, source/ledger channel, endpoint/catch window, reset
-  path, alarm pins, and active phase. This region must not reduce to a progress
-  bar, a card cluster, or a duplicated telemetry dashboard.
+  path, timing shear, constraint posture, residue, and localized subsystem
+  warnings. This region must not reduce to a progress bar, static decoration,
+  card cluster, or duplicated telemetry dashboard.
 - **Instrumentation:** compact readouts and trend strips for support margin,
   source debt, endpoint confidence, timing drift, reset residue, stability, and
   load. Direction and recent change should be visible where possible.
 - **Operator Controls:** persistent line controls for support drive,
-  source/ledger closure, endpoint sync, catch aperture, fade, decompression,
-  reset purge, hold, abort, and secure. They control the line; they are not quiz
-  answers.
+  support trim, source/ledger closure, endpoint sync, catch aperture, carry
+  drive, fade, decompression, reset purge, hold, abort, and secure. They control
+  the line; they are not quiz answers and not a next-action list.
 
 Required secondary regions:
 
-- work-order drawer;
+- compact work-order drawer or assignment setup;
 - constraint/interlock inspection;
 - advisory/watch floor;
 - event trace;
@@ -185,12 +186,13 @@ operator learns through visible subsystem state, alarms, authority changes, and
 service trace.
 
 Viewport rule: graphics own the line; instrumentation owns the numbers. The
-live simulation should be implemented as layered SVG/CSS graphics first:
-drawn corridors, animated packet body, support-field geometry, source-flow
-channel, endpoint aperture, reset residue, timing shear, and alarm pins. Do not
-place large text boxes, duplicate metric cards, or repeated percentage readouts
-inside the live line. Small geometric labels and alarm tags are acceptable when
-they identify a feature.
+live simulation should be implemented as layered SVG/CSS graphics first: drawn
+corridors, animated packet body, support-field geometry, source-flow channel,
+endpoint aperture, reset residue, timing shear, and state-derived localized
+warnings. Do not place large text boxes, duplicate metric cards, repeated
+percentage readouts, static squiggles, or decorative warning triangles inside
+the live line. Small geometric labels and warning tags are acceptable only when
+they identify a real feature or degraded subsystem.
 
 ### Operator Station Interaction Model
 
@@ -200,8 +202,8 @@ Standby:
 
 - line simulation shows origin, endpoint, staged packet, support state, endpoint
   readiness, reset state, and work-order id;
-- work-order acceptance appears as an intake/arm control, not as the first item
-  in a command list;
+- work-order acceptance appears as a compact intake/arm control, not as the
+  first item in a command list or as a selected card in a left-rail queue;
 - instrumentation is visible but quiet;
 - trace confirms assignment.
 
@@ -234,12 +236,22 @@ This interaction model should replace any UI where the user mostly scans a
 large list of buttons, clicks the next enabled action, or walks through phase
 chips.
 
+Autopilot and supervisor modes are allowed, but they are not a command stack in
+disguise. Autopilot visibly moves the same controls the operator can move.
+Supervisor mode points to the subsystem, control, or guard that matters next.
+Neither should present a quiz prompt.
+
 ### Terminal Fit And Visual Bounds
 
 The live line simulation should be compact enough to sit with instrumentation
 and authority in the primary working view. It should not reserve a large blank
 lower area for future features. If additional traces are added, they should
 enter as overlays, sparklines, drawers, or lower inspection consoles.
+
+The first viewport must include the core control deck. Work-order browsing,
+scenario setup, trace history, detailed guard maps, and debrief content can
+scroll or live in drawers. Ordinary service operation cannot depend on content
+below the fold.
 
 Packet, support, endpoint, and warning markers should be visibly bounded by the
 line frame. Staged and secured states may map to operator-edge positions, but
@@ -257,7 +269,7 @@ Required visual feedback patterns:
 - timing drift appears as packet/endpoint phase offset or shear;
 - reset residue appears on the reset/decompression path;
 - stability warnings change the global line posture or lockout layer;
-- alarms pin to subsystems and remain traceable in the event log.
+- warnings localize to subsystems and remain traceable in the event log.
 
 This is the difference between a simulation terminal and a themed quiz panel.
 

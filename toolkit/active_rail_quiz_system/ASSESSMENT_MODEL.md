@@ -40,14 +40,18 @@ Useful outcome dimensions:
 
 - service completed, held, aborted, or secured with cautions;
 - work-order class and line state at closeout;
+- replay seed and whether the run was manual, supervised, or autopilot-assisted;
 - triggered alarms and recovery actions;
 - constrained controls, guard activations, and limiting subsystems;
 - support, source, endpoint, timing, residue, stability, and load bands;
+- visible subsystem failures: support gap, source overdraw, endpoint mismatch,
+  timing shear, reset residue, stability posture, or constraint lockout;
 - whether the operator used hold, recovery, or abort before a red failure.
 
 These outcomes can recommend Qualification Board review after the run, but they
 should not be folded into the question-score report. The terminal trains
-operator reasoning through consequence and trace inspection.
+operator reasoning through visible subsystem evolution, consequence, replay, and
+trace inspection.
 
 ## Timed Quiz Mode
 

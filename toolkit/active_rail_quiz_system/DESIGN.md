@@ -110,90 +110,53 @@ serve as a study tool when the learner chooses explanation review.
 ## Rail Service Terminal
 
 The Rail Service Terminal is not a learning mode over the question bank. It is a
-separate service simulation surface inside the training suite.
+separate active-rail line simulator inside the training suite. The detailed
+source of truth is `SERVICE_TRAINER_DESIGN.md`.
 
-The Rail Service Terminal is a qualitative architecture-logic simulator for a
-single active-rail line. It does not compute a spacetime solution, solve field
-equations, or claim physical plant realizability. It trains operational
-reasoning inside the current active-rail architecture:
+The terminal is a qualitative architecture-logic simulator for one active-rail
+line. It trains the operator to reason through the current service architecture:
+support envelope, demanded-source ledger, packet carry, endpoint catch/rematch,
+release fade, decompression/reset, constraint posture, and stability limits. It
+does not compute a spacetime solution, close a matter model, validate a plant,
+or claim physical realizability.
 
-- bring a line from standby to armed service,
-- precharge support and close the source ledger,
-- synchronize endpoint catch conditions,
-- carry a packet through the active interval,
-- catch and rematch before fade,
-- decompress and reset the rail,
-- respond to support gaps, source debt, endpoint drift, reset residue,
-  conservation or stability cautions, and abort states.
+The interface should feel like a future line engineer's operating terminal:
 
-The operator interface should expose a working terminal: live line simulation,
-line id, work order, current state, operating authority, active constraints,
-subsystem instrumentation, alarms, event stream, and debrief. It should not ask
-the learner to type raw coefficients, enter a static parameter set for grading,
-or click through a list of procedural commands. Hidden state variables are
-allowed inside the terminal model, but the learner interacts through direct
-operational controls: support drive, source/ledger closure, endpoint sync,
-catch aperture, release/fade, decompression, reset purge, hold, abort, and
-secure.
+- compact suite and line status;
+- a dominant live graphic readout of the rail line;
+- adjacent instrumentation with trends and bands;
+- persistent controls for support, source/ledger, endpoint/catch, carry, fade,
+  decompression, reset, hold, abort, and secure;
+- localized warnings, constraints, trace, and debrief.
 
-This surface should feel like a real training console in a future engineering
-program. Its truth boundary remains explicit: it simulates the architecture's
-procedural logic and predicted failure taxonomy, not validated spacetime
-physics.
+The line graphic is the primary object. It should show geometry and service
+evolution: corridor, support envelope, packet motion, source-flow channel,
+endpoint aperture, timing shear, reset residue, constraint posture, and failure
+localization. These layers must be derived from simulator state. Static
+squiggles, decorative triangles, generic warning stickers, duplicate telemetry
+cards, and text-box clutter inside the viewport are not acceptable substitutes
+for visualization.
+
+Work orders are operational assignments, not quiz prompts. A scenario library or
+fault-injection setup can exist as a secondary drawer, but the active terminal
+should not be driven by a left-hand list, a command stack, a phase-chip stepper,
+or a wall of enabled/disabled buttons. Ordinary operation should fit in the
+first viewport; scrolling is for trace history, scenario browsing, inspection,
+and debrief.
 
 The terminal uses its own domain data:
 
-- service work orders,
-- rail operating states,
-- control surfaces,
-- line state variables,
-- subsystem visual state,
-- telemetry trends,
-- control limits and guards,
-- qualitative thresholds,
-- event templates,
-- failure modes,
-- recovery actions,
-- run reports.
+- service work orders and replayable seeds,
+- line operating states,
+- control surfaces and authority rules,
+- subsystem metrics and trends,
+- state-derived visual geometry,
+- constraints, guards, alarms, events, and debriefs.
 
-The question bank may be linked from the terminal for optional review prompts or
-post-run study recommendations, but the terminal itself is not backed by quiz
-questions.
-
-The terminal must be designed as an operator station, not as a command board or
-trainer panel. The primary visual object is the line itself: packet position,
-support envelope, source/ledger channel, endpoint/catch window, reset path,
-operating posture, and alarm overlays. Controls manipulate that line. A wall of
-enabled and disabled buttons, a phase-chip strip, or a "next action" command
-stack is not the interface.
-
-The central viewport should always do operational work:
-
-- in standby, show the staged line, endpoints, work-order assignment, and next
-  intake state;
-- during readiness, show controls and subsystem state changing as support,
-  source, endpoint, and reset channels are brought into usable margins;
-- during active service, animate packet movement, support envelope condition,
-  source load, endpoint/catch state, reset residue, phase progress, and drift
-  warnings;
-- during hold or abort, freeze the line state and highlight the subsystem that
-  forced operator intervention;
-- after secure, show the completed path and open the debrief.
-
-The central viewport is a graphic simulation surface, not a second telemetry
-panel. It should express state through the visual language of the line itself:
-rail geometry, packet motion, support-field shape, source-flow saturation,
-endpoint aperture, drift/shear bands, reset residue, alarm pins, and recovery
-posture. Numeric cards and repeated percentage readouts belong in adjacent
-instrumentation, not over the line graphic. Use SVG-style schematic layers first
-for the rich readout; add canvas later only if field/noise/particle effects
-need it.
-
-The control model should be persistent and operational. The terminal should show
-the controls that exist on the line and let authority, constraints, and state
-change how those controls respond. Interlock reasons should be inspectable from
-the constrained subsystem or guarded control, but the main surface should not be
-a sequence of enabled/disabled command buttons.
+Autopilot and supervisor modes may be added as training aids. They must
+manipulate or point to the same controls the operator uses, leave a trace, and
+remain visibly bounded by the architecture-logic truth marker. They are not
+magic solve buttons and not quiz prompts.
 
 ## Non-Goals
 
@@ -212,6 +175,12 @@ a sequence of enabled/disabled command buttons.
 - Do not clutter the Service Terminal viewport with duplicate telemetry cards,
   stacked text boxes, or percentage blocks. The viewport should feel like a
   polished graphic readout of the line geometry and service evolution.
+- Do not treat static curves, decorative warning triangles, or generic badges
+  as rich simulation. Visual elements inside the line must be state-derived and
+  tied to active-rail subsystems.
+- Do not let work-order selection, fault-injection drills, or scenario prompts
+  become the main operating model. Those belong in setup, instructor, or debrief
+  surfaces.
 - Do not make the first version a giant content dump with no epistemic structure.
 - Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
 - Do not write learner-facing questions about "the quiz", "this quiz system", or the mechanics of the curriculum itself. Meta content belongs in authoring docs, not in the question bank.
@@ -768,9 +737,9 @@ assessment reports.
 
 The Rail Service Terminal should look like an operations terminal. It should not
 inherit the learning-board card language, filter rail, report panel, or
-explanation-page composition. The terminal should be simulation-first:
-live line, packet, support envelope, source/ledger channel, endpoint/catch
-window, reset path, instrumentation, authority, alarms, and event trace.
+explanation-page composition. The terminal should be simulation-first: live
+line, packet, support envelope, source/ledger channel, endpoint/catch window,
+reset path, instrumentation, authority, localized warnings, and event trace.
 
 The Rail Service Terminal stays terminal-first rather than card-first. Its UI
 uses work orders, subsystem state, operating authority, live controls, telemetry,
@@ -781,9 +750,9 @@ Design direction:
 - Qualification Board: cleaner layout, readable typography, compact polished
   cards, visible claim-status badges, references, and responsive filters.
 - Rail Service Terminal: dark or high-contrast operations styling, status
-  lamps, beautiful live schematic layers, telemetry trends outside the line
-  graphic, alarm pins, operating posture, terminal logs, and control authority
-  states.
+  lamps, beautiful state-derived schematic layers, telemetry trends outside the
+  line graphic, localized subsystem warnings, operating posture, terminal logs,
+  and control authority states.
 - Both: color used for meaning rather than decoration.
 
 Suggested aesthetic:
@@ -803,8 +772,8 @@ Avoid:
 - hiding important epistemic caveats in small text.
 - showing service operation inside quiz cards,
 - reducing the service viewport to a themed progress bar,
-- replacing rich service graphics with blocks of text or duplicated numerical
-  readouts inside the viewport,
+- replacing rich service graphics with blocks of text, static ornaments, or
+  duplicated numerical readouts inside the viewport,
 - making the service terminal a phase-stepper or command-stack exercise,
 - writing work orders as puzzle prompts,
 - using "items ready" or score-report language inside the Service Terminal.

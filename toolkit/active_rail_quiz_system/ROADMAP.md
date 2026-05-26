@@ -519,7 +519,8 @@ Required design artifacts:
 3. Build the terminal simulation surface.
    - Top status bar.
    - Live line simulation with rail corridor, packet, support envelope,
-     source/ledger channel, endpoint/catch window, reset path, and alarm pins.
+     source/ledger channel, endpoint/catch window, reset path, and localized
+     subsystem warnings.
    - Instrumentation with bands and recent-change cues.
    - Persistent operator controls for support, source, endpoint, release,
      decompression, reset, hold, abort, and secure.
@@ -571,92 +572,99 @@ station. Its central line view should not be only a progress bar.
 - The event log and debrief explain outcomes in operator language.
 - Validation, smoke tests, and production build pass.
 
-## Phase 5: Suite Shell And Service Simulation UX
+## Phase 5: Service Terminal Redesign
 
-Build the shared product-selection interface and replace the first terminal
-checkpoint's panel/dashboard feel with a real service simulation terminal.
+The shared suite shell exists and the Service Terminal has a separate prototype
+shell, but the terminal still needs a real redesign pass. This phase replaces
+the prototype's command-panel feel with a first-viewport operator station and a
+state-derived graphic line readout.
+
+Design gate: update `SERVICE_TRAINER_DESIGN.md`, `DESIGN.md`, and
+`INTERFACE_ARCHITECTURE.md` before code changes. Do not implement another
+terminal iteration by adding panels or renaming labels around the old command
+model.
 
 ### Design Requirements
 
-- One shared suite shell for product switching and identity.
 - Qualification Board remains a learning-board product.
 - Rail Service Terminal remains an operations product.
-- The simulator centers a live line simulation, not a button grid, prompt panel,
-  or themed progress bar.
-- The simulation shows packet, support envelope, source/ledger channel,
-  endpoint/catch window, reset path, and alarm pins.
-- The central line simulation is a polished graphical readout. It should use
-  SVG/CSS schematic layers first, not HTML cards pasted over the rail.
+- The simulator centers a live line graphic, not a button grid, prompt panel,
+  work-order list, phase stepper, or themed progress bar.
+- Work-order browsing and fault-injection setup are secondary drawers or setup
+  surfaces, not the main driver of the run.
+- The first viewport shows suite/status, line graphic, instrumentation, and core
+  controls without requiring scrolling for ordinary operation.
+- The line graphic shows packet, support envelope, source/ledger channel,
+  endpoint/catch aperture, timing shear, reset residue, constraint posture, and
+  localized subsystem warnings.
+- All graphic elements inside the line are state-derived. Static squiggles,
+  decorative warning triangles, generic stickers, and duplicate telemetry cards
+  are explicitly out of scope.
 - Numeric telemetry stays in the instrumentation cluster. The line viewport
-  encodes state through geometry, motion, opacity, thickness, traces, aperture
-  shape, residue haze, and alarm pins.
-- Work orders use terse operations language, not puzzle prompts.
-- Operator input uses persistent control surfaces, not a command stack or
-  phase-step button sequence.
-- Constraints and guards attach to the controls and subsystems they limit.
-- Telemetry includes visual feedback and trend cues, not only percentage bars.
-- Alarms and event trace explain why the line is changing after the viewport
-  has shown where it is changing.
+  encodes state through geometry, motion, opacity, thickness, aperture shape,
+  source saturation, residue haze, shear, and localized deformation.
+- Operator input uses persistent control surfaces: support drive/trim,
+  source-ledger closure, endpoint sync, catch aperture, carry drive, fade,
+  decompression, reset purge, hold/resume, abort/recovery, and secure.
+- Constraints and guards attach to controls and affected subsystems through
+  range clipping, resistance, warning lamps, or visual subsystem changes.
+- Autopilot and supervisor modes are allowed as visible training aids. They
+  manipulate or point to real controls and leave traces; they are not solve
+  buttons or quiz prompts.
+- Randomness is seeded, bounded, replayable, and visible through subsystem
+  changes before or during alarm state.
 
 ### Implementation Subphases
 
-1. Add the shared suite shell.
-   - Product switcher for Qualification Board and Rail Service Terminal.
-   - Common identity/status frame.
-   - Product-specific interiors.
-2. Rebuild the service terminal layout around the live line.
-   - Replace panel-first layout with a live simulation board.
-   - Show origin, rail corridor, endpoint, packet, support envelope,
-     source/ledger channel, reset path, phase posture, and alarm overlays.
-   - Remove embedded percentage cards and text-box clusters from the line
-     viewport.
-   - Build the first rich line graphic as SVG/CSS layers before considering
-     canvas effects.
-   - Make standby an instrumented line state rather than a static waiting card.
-   - Move work-order, constraint board, advisory floor, and service trace into
-     secondary inspection surfaces.
-3. Replace the command model.
-   - Remove the next-action button stack from the primary interface.
-   - Add persistent controls for support, source/ledger, endpoint/catch,
-     release/fade, decompression, reset purge, hold, abort, and secure.
-   - Represent constraints as guards, clipped control ranges, warning lamps, or
-     resistance rather than as disabled answer-like buttons.
-4. Make the simulator legible while running.
-   - Animate packet position.
-   - Keep packet, endpoint, support, and alarm markers visibly inside the line
-     viewport.
-   - Show support envelope, source channel, endpoint/catch, reset residue, and
-     stability changes.
-   - Pin alarms to affected subsystems.
-   - Keep hold, abort, recovery, and secure states visually distinct.
-5. Remove quiz-like work-order language.
-   - Replace puzzle prompts with terminal work-order notices.
-   - Reserve guided training text for optional overlays or debriefs.
-6. Tune the first service loop manually.
-   - Run each work order through ordinary, cautious, and risky operator paths.
-   - Confirm failures and debriefs are understandable from the UI.
+1. Clean the primary layout.
+   - Collapse work orders into compact assignment/setup controls.
+   - Remove the left-rail list as the main driver of service.
+   - Remove the command stack and phase-chip stepper from the primary
+     interaction model.
+   - Fit line graphic, telemetry, and core controls in the first viewport.
+2. Rebuild the line graphic as state-derived SVG/CSS.
+   - Keep packet and endpoint markers inside the viewport.
+   - Replace static curves and triangles with derived support, source, timing,
+     endpoint, reset, and constraint layers.
+   - Remove embedded numeric cards and duplicate text blocks from the line
+     graphic.
+   - Make standby, support, carry, catch, fade, reset, hold, abort, recovery,
+     and secure visually distinct.
+3. Rework operator controls.
+   - Controls become persistent line instruments, not next-action buttons.
+   - Controls visibly change the line and subsystem state.
+   - Guards, clipped ranges, and warnings explain constraints without turning
+     the UI into a disabled button grid.
+4. Add supervised operation.
+   - Add a visible autopilot/supervisor mode that moves or highlights the same
+     controls available to the operator.
+   - Add bounded seeded perturbations to source load, endpoint drift, support,
+     reset residue, and stability.
+   - Make faults visible before or during alarm state.
+5. Tune and review.
+   - Manually run ordinary, cautious, risky, hold, abort, and recovery paths.
+   - Confirm the visual state explains the run without relying on paragraphs.
+   - Confirm debrief and trace remain useful secondary surfaces.
 
 ### Phase 5 Done When
 
 - The first screen has a coherent shared training-suite frame.
 - Switching between Qualification Board and Rail Service Terminal feels like
   moving between sibling products.
-- The Service Terminal's center area is an actual simulation, not a progress
-  strip, static schematic, or duplicate telemetry-card cluster.
-- The first viewport shows the status bar, live line, telemetry, and current
-  controls without forcing the operator to scroll past blank or stretched
-  panels.
-- Secondary inspection surfaces are bounded, drawer-based, or below the primary
-  operating view.
-- A learner can tell how the simulator works from the line viewport, telemetry,
-  and persistent controls without reading documentation.
-- The terminal no longer feels like a quiz, admin button grid, or scenario
-  prompt panel.
-- The terminal no longer uses a command-stack or phase-chip progression as the
-  core interaction model.
-- The terminal viewport feels like a graphic readout of geometry and service
-  evolution: packet motion, support field, source flow, catch aperture, reset
-  residue, timing shear, and alarm pins are visible without adding clutter.
+- The Service Terminal's center area is an actual graphic simulation, not a
+  progress strip, static schematic, duplicate telemetry cluster, or quiz prompt
+  panel.
+- The first viewport shows status, live line, telemetry, and core controls
+  without forcing the operator to scroll for ordinary service.
+- Secondary inspection surfaces are bounded, drawer-based, tabbed, or below the
+  primary operating view.
+- A learner can tell what to operate from the line viewport, instrumentation,
+  controls, and supervisor hints without reading documentation.
+- The terminal no longer uses a command stack, phase-chip progression, or
+  work-order list as the core interaction model.
+- The terminal viewport feels like a graphic readout of active-rail service
+  evolution: packet motion, support field, source flow, catch aperture, timing
+  shear, reset residue, constraints, and failure localization change with state.
 
 ## Keep It Simple Rules
 
@@ -713,14 +721,19 @@ an early Rail Service Terminal shell:
 - The first Phase 5 pass adds a shared suite shell and moves the terminal away
   from the Qualification Board shell, but it is not yet an acceptable service
   simulation. The current implementation still reads too much like a
-  command-stack trainer with a stylized progress rail.
+  command-stack trainer with a stylized progress rail. The latest design pass
+  makes the required correction explicit: the next code pass must demote
+  work-order selection, remove the command-stack interaction, fit ordinary
+  operation into the first viewport, and replace static/ornamental visuals with
+  state-derived active-rail subsystem graphics.
 
 What is still missing:
 
 - workspace-specific scoring panels,
 - Service Terminal visual simulation rewrite: support/source/endpoint/reset
-  subsystem visualization through real graphic layers, trend cues, alarm pins,
-  and work-order language that reads like operations rather than puzzle prompts,
+  subsystem visualization through real graphic layers, trend cues, localized
+  subsystem warnings, and work-order language that reads like operations rather
+  than puzzle prompts,
 - Service Terminal interaction rewrite: replace next-action buttons and phase
   chips with persistent operator controls and constraint feedback,
 - deeper Rail Service Terminal work orders, replay, incident review, and more
@@ -739,17 +752,23 @@ service-terminal rewrite before it should be treated as a complete simulator.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone is Phase 5 visual-simulation rewrite:
+The next milestone is Phase 5 service-terminal redesign:
 
-- replace puzzle-like work-order language with operational notices,
-- replace the current progress-rail feel with a live line simulation;
-- add visual subsystem layers for support, source/ledger, endpoint/catch,
-  reset residue, stability, alarm pins, and trend cues;
-- replace the command-stack interaction with persistent controls and visible
-  control constraints;
-- make hold, abort, recovery, and secure states visibly distinct;
+- collapse work-order browsing into secondary setup instead of the main left
+  rail;
+- remove the command stack and phase-chip progression from the primary
+  interaction model;
+- fit the live line, telemetry, supervisor/autopilot affordance, and core
+  controls in the first viewport;
+- replace static squiggles, decorative warning triangles, and duplicate
+  telemetry cards with state-derived graphic layers for support, source/ledger,
+  endpoint/catch, timing shear, reset residue, constraint posture, and failure
+  localization;
+- add persistent line controls that directly affect subsystem state;
+- add bounded seeded perturbations and visible autopilot/supervisor behavior;
+- make hold, abort, recovery, secure, and reuse-blocked states visually
+  distinct;
 - keep secondary inspection panels subordinate to the live simulation;
-- add replay or event-trace inspection after the running surface works;
 - expand terminal-specific data without using quiz questions as the simulator
   content model;
 - keep validation, smoke tests, and production builds healthy.
