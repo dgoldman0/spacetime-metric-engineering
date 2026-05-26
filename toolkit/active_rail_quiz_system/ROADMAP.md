@@ -8,6 +8,11 @@ The three main phases are:
 2. Curriculum design.
 3. Content population.
 
+A fourth product track now sits alongside those phases: operational learning
+services. These are not additional quiz types. They are specialized trainers
+that use their own state models and domain data when the experience needs to
+feel like engineering practice rather than assessment.
+
 ## Phase 1: Quiz Infrastructure
 
 Build the system that can render, grade, review, and organize questions.
@@ -49,7 +54,9 @@ Phase 1 should be split into practical subphases.
    - Keep the standard quiz surface.
    - Add boundary classification surface.
    - Add symbol/equation lab surface.
-   - Improve chronology/sequencing into a timeline-style surface.
+   - Keep sequencing questions inside the qualification drill.
+   - Replace the weak chronology workspace with a Rail Run Trainer that does
+     not depend on the question bank.
    - Prepare room for ledger and case-file surfaces.
 4. Assessment and reports.
    - Separate concept accuracy from claim-boundary accuracy.
@@ -72,11 +79,35 @@ The first renderer set should include:
 
 - standard quiz renderer for multiple choice, select all, and true/false,
 - symbol/equation renderer for drag-fill,
-- chronology renderer for sequencing,
+- ordering renderer for sequencing,
 - matching renderer for pairs and small classifications,
 - boundary-classification renderer for claim-status training.
 
-Leave diagram labeling, full case-file simulations, and ledger labs for later unless they become easy extensions.
+Leave diagram labeling and full ledger labs for later unless they become easy
+extensions. The active-rail service trainer should be treated as a separate
+operational surface, not as another question type.
+
+### Operational Trainer Track
+
+The Rail Run Trainer is the next infrastructure milestone for specialized
+learning services.
+
+Initial scope:
+
+- one simulated active-rail line,
+- local client-side state only,
+- no backend and no real physics solver,
+- service profiles chosen as operational requests,
+- hidden qualitative state variables for support margin, source ledger closure,
+  endpoint synchronization, timing drift, reset residue, and stability posture,
+- context-sensitive operator commands,
+- active event log,
+- visible line schematic,
+- caution, abort, completion, and recovery states,
+- explicit truth boundary that this is an architecture-logic trainer.
+
+The trainer should feel like operating a line. It should not feel like entering
+a static parameter set and being graded.
 
 ### Drag-Fill Word Bank
 
@@ -112,7 +143,8 @@ Recommended scope:
 - Vite + React.
 - KaTeX dependency installed through the package manager.
 - Local question-bank modules imported by the app.
-- Componentized surfaces for standard quiz, symbol/equation work, chronology, matching, and boundary classification.
+- Componentized surfaces for standard quiz, symbol/equation work, sequencing,
+  matching, boundary classification, and the Rail Run Trainer.
 - Local browser state for one session at a time.
 - No backend.
 - No database.
@@ -197,7 +229,9 @@ Required surfaces:
 
 The design should feel like a polished engineering console: readable, calm, fast, and clear. It should look much better than the prototype, but the first implementation should avoid ornamental complexity.
 
-The active workspace should change by activity type. A boundary-classification session, a symbol lab, a chronology timeline, and a design-review case should not all be cramped into the same generic card.
+The active workspace should change by activity type or service type. A
+boundary-classification session, a symbol lab, a service trainer, and a
+design-review case should not all be cramped into the same generic card.
 
 Timed mode should keep those specialized surfaces but show only the active item.
 Its timer is a pacing constraint, not a separate scoring dimension in the first
@@ -214,6 +248,8 @@ Filter controls should not force narrow single-choice paths. Tracks, modules, di
 - Drag-fill works without typing equations.
 - A renderer registry or equivalent separation exists.
 - At least one specialized surface exists beyond the standard quiz card.
+- The Rail Run Trainer can run a single-line service pass with evolving state,
+  operator commands, event logs, and failure/recovery outcomes.
 - Grading reports module and claim-status performance.
 - Timed quiz mode can run through a selected question set, stop on time expiry,
   and optionally pause for explanations after submitted answers.
@@ -481,12 +517,16 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - KaTeX is installed and renders math tokens.
 - Local question-bank modules replaced inline browser globals.
 - A renderer/grader registry exists.
-- Standard quiz, symbol-fill, chronology, matching, and claim-classification renderers exist.
-- Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board, Symbol Lab, Timeline, and Design Review.
+- Standard quiz, symbol-fill, sequence, matching, and claim-classification
+  renderers exist.
+- Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board,
+  Symbol Lab, Rail Run Trainer, and Design Review.
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
-- The seed bank has 167 validated questions after the first major expansion pass, advanced follow-up pass, explanation/select-all audit, distractor-quality audit, and broad-foundations expansion.
+- The bank has reached 200 validated questions after major expansion passes
+  across broad foundations, advanced reasoning, explanation quality,
+  distractor quality, and cross-domain theory.
 - Established general theory has been promoted as the durable core layer; it now includes a broader foundation spine across GR, quantum basics, QFT/vacuum/Casimir physics, semiclassical gravity, effective field theory, source-model literacy, and bounded string-theory context. Project-state and revision-sensitive content should remain a smaller flagged layer.
 - Difficulty calibration has had manual correction and follow-up passes: the bank now has a stronger advanced slice, but it still needs more reviewed depth before it should be called a full curriculum.
 - Count controls now support small drills, medium reviews, large reviews, and all matching questions.
@@ -498,6 +538,8 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 What is still missing:
 
 - workspace-specific scoring panels,
+- replacement of weak question-subset workspaces with true learning services,
+- an operational Rail Run Trainer that feels like running an active-rail line,
 - a fuller Ledger Reader workspace,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks with deeper coverage inside each broad
@@ -511,24 +553,21 @@ reviewed batches rather than treating the current seed bank as complete.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone should make the app ready for serious curriculum authoring:
+The next milestone should prove the app can support a non-quiz learning service:
 
-- add numerous vetted batches across paper theory, general theory, project application, project state, symbol-fill, classification, sequencing, matching, and design review,
-- prioritize a broad general-theory expansion before adding many more
-  project-state or paper-specific items,
-- refine existing questions whose prompts are vague, too meta, too easy for their difficulty, or too thinly explained,
-- strengthen explanation-depth requirements in the human rubric and mechanical validation where practical,
-- add optional adaptive feedback infrastructure and seed it with model examples for multiple choice, select-all, drag-fill, sequence, matching, and classification activities,
-- add timed quiz mode as a focused assessment profile over the existing
-  question bank and renderer registry,
-- keep structured references and source links visible in reviewed explanations,
-- keep validation rejecting quiz-meta prompts, vague paper-theory stems, unsupported source links, and project-framed paper-theory items,
-- keep the workspace architecture and smoke tests healthy,
-- make grading/report panels workspace-aware,
-- continue replacing placeholder sample questions with vetted curriculum questions,
-- grow toward the 150 to 250 question first-release bank while keeping each item rubric-reviewed.
+- replace the service chronology timeline workspace with a Rail Run Trainer,
+- remove ordinary quiz filters and score reporting from that workspace,
+- add a single-line operator console with line schematic, stage state, command
+  board, health meters, event log, and recovery report,
+- support service profiles such as inspection crawl, standard packet,
+  tight-window handoff, heavy packet, and post-reset reuse,
+- simulate qualitative architecture failure modes without presenting the result
+  as validated plant physics,
+- keep the quiz bank and qualification drill stable while the trainer evolves,
+- keep validation, smoke tests, and production builds healthy.
 
-This milestone should prove the system can enforce curriculum quality, not merely render more content.
+This milestone should prove the system can teach active-rail operation through
+interactive practice, not merely render more content.
 
 ## Roadmap Summary
 

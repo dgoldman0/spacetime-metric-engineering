@@ -25,7 +25,7 @@ Specialized surfaces:
 - ordinary quiz cards,
 - boundary classification workspace,
 - symbol and equation token lab,
-- service chronology timeline,
+- active-rail service trainer,
 - matching matrix,
 - source-ledger/table reader,
 - design-review case file,
@@ -67,7 +67,7 @@ Examples:
 
 - a concise card stack for basic quiz items,
 - a grid for claim classification,
-- a horizontal or vertical timeline for service chronology,
+- an operator console for running a single active-rail line,
 - a table-plus-question layout for ledger interpretation,
 - a dossier layout for design-review cases.
 
@@ -166,19 +166,46 @@ Requirements:
 
 ### Service Chronology Surface
 
+The old service chronology quiz surface is not enough for active-rail operator
+training. Sequencing questions can remain inside the qualification drill, but
+the dedicated workspace should become the Rail Run Trainer.
+
+### Rail Run Trainer
+
 Use for:
 
-- support/carry/catch/fade/decompress/reset ordering,
-- handoff timing,
-- evidence-check ordering,
-- release-before-catch failure diagnosis.
+- single-line active-rail service operation,
+- readiness gates,
+- support/carry/catch/fade/decompress/reset command flow,
+- hold, abort, and recovery decisions,
+- qualitative failure-mode training,
+- post-run operator debriefs.
 
 Better UI shape:
 
-- reorderable timeline,
-- stage cards,
-- optional timing markers,
-- stage-specific explanations.
+- line schematic with current packet/rail phase,
+- command console with context-sensitive operator actions,
+- readiness and health meters using operational language,
+- event log that updates while the line runs,
+- advisory panel with current cautions and recommended actions,
+- run report after completion or abort.
+
+Interaction rules:
+
+- The learner should not type raw source coefficients, timing constants, or
+  synthetic score parameters.
+- Service profiles should be chosen as operational requests, such as inspection
+  crawl, standard packet, heavy packet, tight-window handoff, or post-reset
+  reuse.
+- The trainer may use hidden numeric state to drive meters and outcomes, but the
+  displayed controls should be procedural: precharge support, close ledger,
+  synchronize endpoint, carry packet, catch/rematch, fade, decompress, reset,
+  hold, abort, and secure.
+- The trainer should not use question-bank scoring. Its outcomes are line
+  states, event logs, cautions, abort reports, readiness summaries, and recovery
+  notes.
+- The interface must clearly label the trainer as an architecture-logic service
+  trainer, not a physics simulation of a validated plant.
 
 ### Matching Matrix
 
@@ -295,8 +322,9 @@ Examples:
 - `mc` -> standard quiz renderer,
 - `multi` -> standard quiz renderer,
 - `drag_fill` -> symbol lab renderer,
-- `sequence` -> chronology renderer,
+- `sequence` -> ordering renderer inside qualification/study sessions,
 - `claim_classification` -> boundary classification renderer,
+- `rail_run` -> stateful service trainer, not a question-bank renderer,
 - `ledger_interpretation` -> source-ledger reader,
 - `case_review` -> design-review case file.
 

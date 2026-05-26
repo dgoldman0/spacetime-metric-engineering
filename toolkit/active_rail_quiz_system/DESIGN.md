@@ -11,6 +11,19 @@ The guiding phrase:
 
 > A future engineering program that knows exactly which parts are textbook, which parts are literature context, which parts are active-rail design language, and which parts are still open gates.
 
+The system now has two related but distinct product layers:
+
+- the qualification drill, which is an assessment and study surface backed by
+  the question bank;
+- operational learning services, which are scenario and trainer surfaces with
+  their own domain data, state machines, procedures, and reports.
+
+The question bank is not the product's universal content model. It is the right
+model for quizzes, timed qualification, explanations, and assessment reporting.
+An active-rail service trainer should instead feel like operating a line: the
+learner works through readiness, command, hold, abort, recovery, and reset
+decisions while the line state evolves.
+
 ## Product Intent
 
 The quiz should feel like an engineering qualification from a future active-rail service academy, but it must remain honest by construction.
@@ -50,12 +63,61 @@ Timed quiz mode should have an optional teaching setting:
 This keeps timed mode honest as an assessment tool while still allowing it to
 serve as a study tool when the learner chooses explanation review.
 
+## Operational Learning Services
+
+Some learning surfaces should not be quizzes at all. The active-rail service
+trainer is the first such surface.
+
+The service trainer is a qualitative architecture-logic simulator for a single
+active-rail line. It does not compute a spacetime solution, solve field
+equations, or claim physical plant realizability. It trains operational
+reasoning inside the current active-rail architecture:
+
+- bring a line from standby to armed service,
+- precharge support and close the source ledger,
+- synchronize endpoint catch conditions,
+- carry a packet through the active interval,
+- catch and rematch before fade,
+- decompress and reset the rail,
+- respond to support gaps, source debt, endpoint drift, reset residue,
+  conservation or stability cautions, and abort states.
+
+The operator interface should expose service requests, line states, readiness
+gates, command buttons, meters, event logs, and recovery reports. It should not
+ask the learner to type raw coefficients or enter a static parameter set for
+grading. Hidden state variables are allowed inside the trainer, but the learner
+interacts through operational choices: arm, hold, precharge, synchronize, carry,
+catch, fade, decompress, reset, abort, and recover.
+
+This surface should feel like a real training console in a future engineering
+program. Its truth boundary remains explicit: it simulates the architecture's
+procedural logic and predicted failure taxonomy, not validated spacetime
+physics.
+
+The trainer should use its own domain data:
+
+- service profiles,
+- rail phases,
+- readiness actions,
+- line state variables,
+- qualitative thresholds,
+- event templates,
+- failure modes,
+- recovery actions,
+- run reports.
+
+The question bank may be linked from the trainer for optional review prompts or
+post-run study recommendations, but the trainer itself is not backed by quiz
+questions.
+
 ## Non-Goals
 
 - Do not present active-rail concepts as established physics unless they are actually established.
 - Do not imply that a demanded-source ledger is a completed matter model.
 - Do not let "engineering academy" styling hide unresolved physical gates.
 - Do not require users to type LaTeX, equation syntax, or long symbolic answers.
+- Do not make the service trainer feel like a static parameter form or graded
+  quiz. It should be an evolving operator simulation.
 - Do not make the first version a giant content dump with no epistemic structure.
 - Do not add a backend, database, accounts, or server-side authoring system until the frontend learning model proves itself.
 - Do not write learner-facing questions about "the quiz", "this quiz system", or the mechanics of the curriculum itself. Meta content belongs in authoring docs, not in the question bank.
@@ -350,7 +412,9 @@ This mode is especially important for symbolic expressions and active-rail vocab
 
 ### Sequencing
 
-Use for service chronology.
+Use inside the qualification drill for ordering concepts, service-stage
+vocabulary, and review procedures. The dedicated active-rail operation surface
+is the Rail Run Trainer, not a sequence-question lane.
 
 Examples:
 
@@ -478,8 +542,8 @@ Per-attempt presentation state should include:
 - item order for sequence activities.
 
 Sequence activities should avoid starting in the canonical answer order when
-there is more than one item. The point of a chronology surface is ordering
-practice, not recognizing a pre-solved list.
+there is more than one item. The point is ordering practice, not recognizing a
+pre-solved list.
 
 Example shape:
 
