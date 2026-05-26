@@ -453,6 +453,7 @@ export function getTerminalAdvisories(line) {
 }
 
 export function getLineVisualState(line) {
+  const workOrder = getWorkOrder(line.profileId);
   const constraints = getLineConstraints(line);
   const statusByMetric = Object.fromEntries(
     telemetryDefs.map((def) => [def.id, getTelemetryStatus(def, line.metrics[def.id])])
@@ -465,6 +466,19 @@ export function getLineVisualState(line) {
   const timingShear = normalizeHigh(line.metrics.timingDrift);
   const resetResidue = normalizeHigh(line.metrics.resetResidue);
   const stabilityField = normalizeLow(line.metrics.stabilityPosture);
+  const opticsFocus = clamp01((line.metrics.endpointConfidence + line.controls.catchAperture - line.metrics.timingDrift * 0.55) / 145);
+  const backreactionPosture = clamp01((100 - line.metrics.stabilityPosture + line.metrics.sourceDebt * 0.58 + line.metrics.loadIndex * 0.62) / 170);
+  const causalRisk = clamp01((
+    line.metrics.timingDrift
+    + (100 - line.metrics.endpointConfidence) * 0.8
+    + Math.max(0, line.packetPosition - 66) * 0.8
+    + (workOrder.serviceWindow === "tight" ? 18 : 0)
+  ) / 190);
+  const horizonRisk = clamp01(causalRisk * (workOrder.causalProfile?.horizonRisk || 0.18));
+  const chronologyRisk = clamp01(causalRisk * (workOrder.causalProfile?.chronologyRisk || 0));
+  const supportRipple = clamp01((100 - line.metrics.supportMargin + line.metrics.loadIndex * 0.45 + backreactionPosture * 40) / 160);
+  const sourceSaturation = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex * 0.42) / 130);
+  const residueDensity = clamp01((line.metrics.resetResidue + line.controls.decompression * 0.28 - line.controls.resetPurge * 0.18) / 105);
   const phase = getOperatingPhase(line);
   return {
     condition,
@@ -478,6 +492,14 @@ export function getLineVisualState(line) {
     timingShear,
     resetResidue,
     stabilityField,
+    opticsFocus,
+    backreactionPosture,
+    causalRisk,
+    horizonRisk,
+    chronologyRisk,
+    supportRipple,
+    sourceSaturation,
+    residueDensity,
     statusByMetric,
     constraints,
     pins: constraints.map((item) => ({
@@ -493,7 +515,15 @@ export function getLineVisualState(line) {
       "--endpoint-aperture": String(endpointAperture),
       "--timing-shear": String(timingShear),
       "--reset-residue": String(resetResidue),
-      "--stability-field": String(stabilityField)
+      "--stability-field": String(stabilityField),
+      "--optics-focus": String(opticsFocus),
+      "--backreaction-posture": String(backreactionPosture),
+      "--causal-risk": String(causalRisk),
+      "--horizon-risk": String(horizonRisk),
+      "--chronology-risk": String(chronologyRisk),
+      "--support-ripple": String(supportRipple),
+      "--source-saturation": String(sourceSaturation),
+      "--residue-density": String(residueDensity)
     }
   };
 }
@@ -847,6 +877,10 @@ function normalizeHigh(value) {
 
 function normalizeLow(value) {
   return clamp(value) / 100;
+}
+
+function clamp01(value) {
+  return Math.max(0, Math.min(1, Math.round(value * 1000) / 1000));
 }
 
 function makeEvent(clock, level, subsystem, message) {

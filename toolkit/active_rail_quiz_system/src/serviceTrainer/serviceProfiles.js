@@ -11,6 +11,10 @@ export const workOrders = [
     serviceWindow: "wide",
     loadClass: "light",
     reuseStatus: "clean",
+    causalProfile: {
+      horizonRisk: 0.08,
+      chronologyRisk: 0
+    },
     pace: 16,
     stress: {
       load: 0.66,
@@ -40,6 +44,10 @@ export const workOrders = [
     serviceWindow: "standard",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    causalProfile: {
+      horizonRisk: 0.16,
+      chronologyRisk: 0
+    },
     pace: 14,
     stress: {
       load: 1,
@@ -69,6 +77,10 @@ export const workOrders = [
     serviceWindow: "tight",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    causalProfile: {
+      horizonRisk: 0.34,
+      chronologyRisk: 0.08
+    },
     pace: 13,
     stress: {
       load: 0.96,
@@ -98,6 +110,10 @@ export const workOrders = [
     serviceWindow: "standard",
     loadClass: "heavy",
     reuseStatus: "clean",
+    causalProfile: {
+      horizonRisk: 0.22,
+      chronologyRisk: 0
+    },
     pace: 12,
     stress: {
       load: 1.48,
@@ -127,6 +143,10 @@ export const workOrders = [
     serviceWindow: "standard",
     loadClass: "ordinary",
     reuseStatus: "residual",
+    causalProfile: {
+      horizonRisk: 0.18,
+      chronologyRisk: 0
+    },
     pace: 13,
     stress: {
       load: 1.02,
@@ -148,14 +168,18 @@ export const workOrders = [
     id: "fault",
     workOrderId: "AR-FLT-503",
     lineId: "LINE-04",
-    callSign: "Fault-Injection Drill",
+    callSign: "Endpoint Degradation Run",
     classLabel: "fault",
-    priority: "drill",
+    priority: "training",
     operationNotice: "Endpoint confidence degraded at load. Monitor catch margin.",
     cautions: ["endpoint confidence low", "timing drift elevated", "abort authority armed"],
     serviceWindow: "tight",
     loadClass: "ordinary",
     reuseStatus: "clean",
+    causalProfile: {
+      horizonRisk: 0.4,
+      chronologyRisk: 0.12
+    },
     pace: 12,
     stress: {
       load: 1.1,
