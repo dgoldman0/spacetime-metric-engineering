@@ -522,18 +522,23 @@ Required design artifacts:
      changes, not for holding all simulator rules inline.
 3. Build the terminal simulation surface.
    - Top status bar.
-   - Live line simulation with protected packet corridor, standing substrate,
-     support-shell envelope, metric-actuator channels, packet service trace,
-     source-response/medium channel, endpoint receiver/catch window, reset
-     plant path, carrier/chronology overlays, packet leakage, and localized
-     subsystem warnings.
+   - Live line simulation with protected packet corridor, support plant, packet
+     bay/gate, carrier field, receiver station/catch window, reset plant path,
+     carrier/chronology overlays, packet leakage, and localized subsystem
+     warnings.
+   - Engineering diagnostics for metric-actuator channels, source-demand
+     ledgers, matter/source-family notes, and raw variables without making
+     those diagnostics the default operator vocabulary.
    - Instrumentation with bands, recent-change cues, packet isolation/leakage,
-     source burden, endpoint confidence, timing drift, reset residue, stability,
-     load, reservoir headroom, and causal/carrier risk.
-   - Persistent operator controls for support drive, clock-lapse cushion,
-     rail-stretch trim, throat-capacity trim, source-response/medium/reservoir,
-     endpoint/catch, carrier, release, decompression, reset, rail-time
-     governance, hold, abort, and secure.
+     support-plant load, receiver lock/acquisition, catch margin, timing drift,
+     reset residue, stability, load, reservoir headroom, and causal/carrier
+     risk.
+   - Service-level operator controls for work-order acceptance, support
+     precharge, packet bay seal, receiver preparation, line authority, carrier,
+     catch/rematch, release fade, decompression, reset, hold, abort, recovery,
+     and secure.
+   - Access-controlled manual override drawers for bounded trim, engineering
+     override, and diagnostic/research access.
    - Secondary constraint, advisory, trace, and debrief inspection.
 4. Make the run feel alive.
    - Advance clock during active states.
@@ -556,8 +561,8 @@ Required design artifacts:
 The first acceptable terminal should let the learner:
 
 - accept a work order,
-- bring support-shell, metric-actuator, source-response/medium, endpoint, and
-  reset controls into operating margins,
+- bring support plant, packet bay/gate, carrier field, receiver station, reset
+  plant, and safety interlocks into operating margins,
 - arm or hold the line from a persistent authority control,
 - manage carry, catch, fade, decompression, and reset through control surfaces,
 - monitor visible subsystem state,
@@ -605,14 +610,14 @@ model.
   surfaces, not the main driver of the run.
 - The first viewport shows suite/status, line graphic, instrumentation, and core
   controls without requiring scrolling for ordinary operation.
-- The line graphic shows packet, support envelope, source-response channel,
-  endpoint/catch aperture, timing shear, reset residue, constraint posture, and
+- The line graphic shows packet, support envelope, plant supply channel,
+  receiver/catch aperture, timing shear, reset residue, constraint posture, and
   localized subsystem warnings. The updated design expands this into the actual
-  component map: live packet corridor, standing substrate, support-shell
-  actuator channels, handoff/collar, endpoint/reset plant, heat/current medium,
-  support reservoir, carrier governance, packet leakage, and diagnostic ledgers.
+  operator-facing component map: support plant, packet bay/gate, live packet
+  corridor, carrier field, receiver station, reset plant, safety interlocks,
+  carrier governance, packet leakage, and diagnostic ledgers.
 - The line graphic uses the spacetime visual grammar from
-  `SERVICE_TRAINER_DESIGN.md`: packet service trace/wake, endpoint optics,
+  `SERVICE_TRAINER_DESIGN.md`: packet service trace/wake, receiver optics,
   causal-access risk, backreaction/constraint posture, horizon-risk guard,
   chronology guard, packet leakage/loss, and reset residue all have explicit
   state drivers and truth boundaries.
@@ -622,21 +627,28 @@ model.
 - All graphic elements inside the line are state-derived. Static squiggles,
   decorative warning triangles, generic stickers, and duplicate telemetry cards
   are explicitly out of scope.
+- The fix for inaccurate visuals is richer state-derived visualization, not
+  deleting important layers. The visual pass should replace weak layers with
+  better component geometry, animation, and simulator state.
 - Numeric telemetry stays in the instrumentation cluster. The line viewport
   encodes state through geometry, motion, opacity, thickness, aperture shape,
-  source saturation, residue haze, shear, and localized deformation.
-- Operator input uses persistent control surfaces: support drive, clock-lapse
-  cushion, rail-stretch trim, throat-capacity trim, source-response trim,
-  medium coupling, reservoir draw, endpoint sync, catch aperture, carrier
-  drive, matched hold, fade, decompression, reset purge, rail-time governor,
-  hold/resume, abort/recovery, and secure.
+  plant saturation, residue haze, shear, and localized deformation.
+- Operator input uses service-level controls by default: accept work order,
+  precharge support, seal/admit packet, prepare receiver, arm line, authorize
+  carrier, hold/resume, authorize catch/rematch, confirm catch, fade carrier,
+  decompress, purge/reset, abort/recover, and secure.
+- Manual knobs are special access. Level 1 trim, Level 2 engineering override,
+  and Level 3 diagnostic/research access are drawers or gated modes, not the
+  normal operating surface.
 - Constraints and guards attach to controls and affected subsystems through
   range clipping, resistance, warning lamps, or visual subsystem changes.
-- Autopilot and supervisor modes are allowed as visible training aids. They
-  manipulate or point to real controls and leave traces; they are not solve
-  buttons or quiz prompts.
-- Randomness is seeded, bounded, replayable, and visible through subsystem
-  changes before or during alarm state.
+- Autopilot and supervisor modes are visible training aids. Autopilot is an
+  adaptive controller that uses the same authority model as the operator,
+  completes nominal runs, adapts to bounded perturbations, requests override
+  access only when required, and leaves traces; it is not a solve button or
+  quiz prompt.
+- Randomness is seeded, bounded, replayable, layered over set scenarios, and
+  visible through subsystem changes before or during alarm state.
 
 ### Implementation Subphases
 
@@ -647,16 +659,20 @@ model.
      interaction model.
    - Fit line graphic, telemetry, and core controls in the first viewport.
 2. Rebuild the line graphic as state-derived SVG/CSS.
-   - Keep packet and endpoint markers inside the viewport.
-   - Replace static curves and triangles with derived support, source, timing,
-     endpoint, reset, and constraint layers.
-   - Add endpoint optics/ray-bundle behavior and packet service trace/wake
+   - Keep packet and receiver markers inside the viewport.
+   - Replace static curves and triangles with derived support, plant supply,
+     timing, receiver, reset, and constraint layers.
+   - Add receiver optics/ray-bundle behavior and packet service trace/wake
      before adding any purely decorative effects.
    - Add packet isolation/leakage/loss indicators so live-packet safety is a
      first-class readout.
-   - Add distinct visual roles for standing substrate, support-shell actuator,
-     source-response/medium, endpoint receiver/reset plant, heat/current
-     reservoir, and carrier governance.
+   - Add distinct visual roles for support plant, packet bay/gate, live packet
+     corridor, carrier field, receiver station, reset plant, regulated
+     medium/reservoir, and carrier governance.
+   - Expand simulator visual state as needed for receiver acquisition geometry,
+     carrier-field stability, support-shell sag, packet leakage rate, reset
+     residue density, carrier probe shear, support-plant load, reservoir
+     headroom, and seeded field microvariation.
    - Add backreaction/constraint posture and causal-risk overlays as cautious
      risk readouts, not as solved physics.
    - Use D3 shape/scale for generated curves and state-to-geometry mapping.
@@ -670,15 +686,18 @@ model.
 3. Rework operator controls.
    - Controls become persistent line instruments, not next-action buttons.
    - Controls visibly change the line and subsystem state.
+   - Default controls are service-level operations.
+   - Manual trims move behind access-controlled override drawers.
    - Guards, clipped ranges, and warnings explain constraints without turning
      the UI into a disabled button grid.
    - Rename accounting-flavored controls to physical/service controls. Ledger
      information moves to diagnostics and debrief.
 4. Add supervised operation.
-   - Add a visible autopilot/supervisor mode that moves or highlights the same
-     controls available to the operator.
-   - Add bounded seeded perturbations to source load, endpoint drift, support,
-     reset residue, and stability.
+   - Add a visible autopilot/supervisor mode that operates within the same line
+     authority available to the operator.
+   - Add bounded seeded perturbations to support sag, plant supply load,
+     receiver drift, packet leakage, reservoir sag, reset residue, timing
+     drift, and stability.
    - Make faults visible before or during alarm state.
 5. Tune and review.
    - Manually run ordinary, cautious, risky, hold, abort, and recovery paths.
@@ -702,7 +721,7 @@ model.
 - The terminal no longer uses a command stack, phase-chip progression, or
   work-order list as the core interaction model.
 - The terminal viewport feels like a graphic readout of active-rail service
-  evolution: packet motion, support field, source-response flow, catch
+  evolution: packet motion, support field, plant supply flow, catch
   aperture, timing shear, reset residue, constraints, and failure localization
   change with state.
 
@@ -717,7 +736,13 @@ control demo.
 
 - Re-ground every simulator control, metric, and visual layer in the disclosure
   and component-design map.
-- Separate physical components from diagnostic ledgers.
+- Separate operator-facing physical/service components from diagnostic ledgers
+  and analysis terms.
+- Use service vocabulary by default: support plant, packet bay/gate, carrier
+  field, receiver station, reset plant, safety interlocks, line authority, and
+  autopilot/supervisor.
+- Keep source-demand, source-family, endpoint-confidence, metric-variable, and
+  ledger language in diagnostics, audits, override drawers, or debriefs.
 - Replace `packet worldline` wording with `packet service trace`,
   `carry history`, or `wake-tail trace` unless explicitly discussing a
   schematic service-coordinate history.
@@ -733,6 +758,15 @@ control demo.
 - Keep horizon/backreaction/chronology visuals as cautious diagnostic proxies.
   The terminal must not imply numerical horizon finding, CTC detection, or
   semiclassical backreaction solving.
+- Make manual knobs special access. The default operator surface uses service
+  actions; Level 1 trim, Level 2 engineering override, and Level 3 diagnostic
+  access are gated and logged.
+- Build a seeded random simulation engine on top of set scenarios. Scenarios
+  define baseline operating family and failure class; random perturbations vary
+  subsystem margins, timing, warning thresholds, and recovery tolerance.
+- Make autopilot an adaptive controller that can complete nominal runs, respond
+  to perturbations, request limited override access, hold, recover, abort, or
+  secure based on state.
 
 ### Implementation Subphases
 
@@ -742,10 +776,11 @@ control demo.
      plant, heat/current medium, support reservoir, and carrier governance.
    - Preserve existing work-order/seeding logic where useful.
 2. Control rewrite.
-   - Replace `ledger closure` and generic accounting knobs with
-     source-response, medium-coupling, reservoir, support-exchange, and
-     diagnostic-audit concepts.
-   - Keep controls persistent and direct; remove command-stack leftovers.
+   - Replace command-stack and accounting-knob leftovers with service-level
+     controls: support plant, packet bay, carrier field, receiver station,
+     reset plant, line authority, hold, abort, recovery, and secure.
+   - Move manual trims into access-controlled override drawers with guard
+     limits and trace logging.
 3. Visual rewrite.
    - Retire misleading labels and static shapes.
    - Add packet isolation/leakage, actuator bands, endpoint receiver, reset
@@ -753,10 +788,12 @@ control demo.
    - Make every visible active curve or particle field state-derived.
 4. Operation rewrite.
    - Make a complete service discoverable: assignment, support/actuator
-     readiness, source/medium headroom, endpoint sync, arm, carry, catch,
-     matched hold, fade, decompression, reset, secure.
-   - Add autopilot as a visible demonstrator that manipulates the same controls
-     and can hand back to manual operation.
+     readiness, plant headroom, receiver lock, arm, carry, catch, matched hold,
+     fade, decompression, reset, secure.
+   - Add autopilot as an adaptive controller that operates the service-level
+     controls, handles seeded perturbations, can request override access, and
+     can hand back to manual operation.
+   - Add seeded random perturbation envelopes on top of set scenarios.
 5. Review and tuning.
    - Manually run nominal, heavy, endpoint-degraded, reset-residue,
      high-service boundary, hold, abort, recovery, and secure paths.
@@ -767,10 +804,16 @@ control demo.
 
 - A learner can see what the active-rail components are and how they are
   behaving without relying on a list of buttons.
-- Packet safety, packet leakage/loss, endpoint catch/rematch, support-shell
-  actuation, source-response burden, reset residue, carrier governance, and
+- The line visualization feels robust, rich, and component-grounded rather than
+  toy-like. Important geometry is improved and driven by simulator state, not
+  removed because an earlier version was unclear.
+- Packet safety, packet leakage/loss, receiver catch/rematch, support-plant
+  actuation, plant supply load, reset residue, carrier governance, and
   chronology risk all have visible state.
 - Ledgers appear as audits and debrief outputs, not physical knobs.
+- Manual knobs are gated override tools, not the ordinary operating mode.
+- Autopilot can complete a nominal run and adapt to seeded perturbations within
+  its authority envelope.
 - The terminal reads as a future operations instrument for a single active-rail
   line, while keeping the `architecture logic / not physics solver` boundary
   visible.
@@ -830,25 +873,27 @@ an early Rail Service Terminal shell:
 - The first Phase 5 passes add a shared suite shell, a separate terminal shell,
   persistent line controls, state-derived SVG/D3/Framer/Pixi visual layers, and
   a supervised autopilot. The terminal is visibly better than the old quiz-like
-  trainer, but it is not yet component-faithful enough. It still carries
-  misleading accounting/control language, insufficient packet-safety modeling,
-  and visual layers that do not yet represent the full active-rail component
-  stack. Phase 6 captures the required correction before the next code pass.
+  trainer, but the next pass must make it read as an operator station rather
+  than an analysis console. The design now requires service vocabulary by
+  default, access-controlled manual overrides, a seeded random perturbation
+  engine layered over set scenarios, and an adaptive autopilot that can complete
+  nominal runs while responding to changing conditions.
 
 What is still missing:
 
 - workspace-specific scoring panels,
-- Service Terminal visual simulation rewrite: support/source/endpoint/reset
-  subsystem visualization through real graphic layers, trend cues, localized
+- Service Terminal visual simulation rewrite: support plant, packet bay/gate,
+  carrier field, receiver station, reset plant, packet isolation/leakage,
+  carrier/chronology governance, and plant supply visualization through rich
+  state-derived geometry, animation, particles/haze, trend cues, localized
   subsystem warnings, and work-order language that reads like operations rather
   than puzzle prompts,
-- Service Terminal component-faithful rewrite: live packet corridor, standing
-  substrate, support-shell metric actuator channels, handoff/collar,
-  endpoint/reset plant, regulated heat/current medium, support reservoir,
-  carrier governance, packet leakage/loss, and diagnostic ledgers,
+- Service Terminal component-faithful rewrite: support plant, packet bay/gate,
+  live packet corridor, carrier field, receiver station, reset plant, safety
+  interlocks, carrier governance, packet leakage/loss, and diagnostic ledgers,
 - Service Terminal interaction rewrite: replace remaining next-action,
-  command-stack, and accounting-knob patterns with persistent operator controls
-  and constraint feedback,
+  command-stack, default manual-knob, and accounting-control patterns with
+  service-level controls, access-controlled overrides, and constraint feedback,
 - deeper Rail Service Terminal work orders, replay, incident review, and more
   richly tuned failure/recovery behavior,
 - a fuller Ledger Reader workspace,
@@ -875,12 +920,15 @@ The next milestone is Phase 6 component-faithful service-terminal redesign:
   controls in the first viewport;
 - replace static squiggles, decorative warning triangles, and duplicate
   telemetry cards with state-derived graphic layers for packet safety/leakage,
-  support-shell actuation, source-response/medium/reservoir, endpoint/catch,
-  timing shear, reset residue, carrier/chronology governance, constraint
-  posture, and failure localization;
-- add persistent line controls that directly affect named active-rail
+  support-plant actuation, plant supply/reservoir, receiver/catch, timing shear,
+  reset residue, carrier/chronology governance, constraint posture, and failure
+  localization;
+- add service-level line controls that directly affect named active-rail
   components;
-- add bounded seeded perturbations and visible autopilot/supervisor behavior;
+- move manual knobs into access-controlled override drawers;
+- add seeded random perturbations layered over set scenarios;
+- add adaptive autopilot/supervisor behavior that can complete nominal service
+  and respond to changing conditions;
 - make hold, abort, recovery, secure, and reuse-blocked states visually
   distinct;
 - keep secondary inspection panels subordinate to the live simulation;

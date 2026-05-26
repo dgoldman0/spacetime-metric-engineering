@@ -155,22 +155,24 @@ Required primary regions:
 - **Status Bar:** `LINE`, `WORK ORDER`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
 - **Live Line Simulation:** the dominant region. It shows the rail corridor,
-  live packet corridor, standing substrate, support-shell envelope,
-  metric-actuator bands, source-response channel, endpoint receiver/catch
-  window, reset path, packet service trace, timing shear, carrier/constraint
-  posture, packet leakage, residue, and localized subsystem warnings. This
-  region must not reduce to a progress bar, static decoration, card cluster, or
-  duplicated telemetry dashboard.
+  live packet corridor, support plant, packet bay/gate, carrier field, receiver
+  station/catch window, reset plant, packet service trace, timing shear,
+  carrier/constraint posture, packet leakage, residue, and localized subsystem
+  warnings. Technical layers such as metric-actuator bands and source-demand
+  ledgers are available as diagnostics rather than primary operating labels.
+  This region must not reduce to a progress bar, static decoration, card
+  cluster, or duplicated telemetry dashboard.
 - **Instrumentation:** compact readouts and trend strips for support margin,
-  packet isolation/leakage, source burden, endpoint confidence, timing drift,
-  reset residue, stability, load, reservoir headroom, and causal/carrier risk.
-  Direction and recent change should be visible where possible.
-- **Operator Controls:** persistent line controls for support precharge/drive,
-  clock-lapse cushion, rail-stretch trim, throat-capacity trim,
-  source-response or medium coupling, reservoir draw, endpoint sync, catch
-  aperture, carrier drive, matched hold, fade, decompression, reset purge,
-  rail-time governor, hold, abort, and secure. They control the line; they are
-  not quiz answers and not a next-action list.
+  packet isolation/leakage, support-plant load, reservoir headroom, receiver
+  lock/acquisition, catch margin, timing drift, reset residue, stability, load,
+  and causal/carrier risk. Direction and recent change should be visible where
+  possible.
+- **Operator Controls:** service-level controls for accepting work orders,
+  precharging support, loading/sealing the packet bay, preparing receiver
+  station, arming line authority, authorizing carrier, holding/resuming,
+  authorizing catch/rematch, confirming catch, fading carrier, decompressing,
+  purging/resetting, aborting/recovering, and securing. They control the line;
+  they are not quiz answers and not a next-action list.
 
 Required secondary regions:
 
@@ -193,12 +195,19 @@ service trace.
 Viewport rule: graphics own the line; instrumentation owns the numbers. The
 live simulation should be implemented as layered SVG/CSS graphics first: drawn
 corridors, animated packet body, packet service trace, support-shell geometry,
-source-response channel, endpoint receiver aperture, reset residue, timing
-shear, carrier/constraint overlays, and state-derived localized warnings. Do
+plant supply channel, receiver aperture, reset residue, timing shear,
+carrier/constraint overlays, and state-derived localized warnings. Do
 not place large text boxes, duplicate metric cards, repeated percentage
 readouts, static squiggles, or decorative warning triangles inside the live
 line. Small geometric labels and warning tags are acceptable only when they
 identify a real feature or degraded subsystem.
+
+The visual goal is richer and more accurate, not smaller. If a layer is
+confusing, the next pass should improve its geometry, state driver, animation,
+and label instead of deleting the layer. The viewport should be capable of
+showing the active service architecture with enough depth that the user can see
+support charging, carrier formation, receiver acquisition, packet isolation,
+leakage, reset residue, and guard posture evolve.
 
 Implementation stack for the rich terminal view:
 
@@ -212,13 +221,23 @@ they do not become separate simulation engines.
 
 The viewport should use a spacetime-engineering visual grammar, not a generic
 machine diagram. It should show qualitative geometry: service corridor, packet
-service trace, support envelope, source-response burden, endpoint optics,
-timing shear, reset residue, packet leakage, and constraint/backreaction
-posture. A source ledger is a diagnostic/audit artifact, not an operator
-actuator. Higher-order overlays such as causal-access risk, horizon-risk, and
-chronology guard are allowed only as labeled heuristic risk readouts. They must
-not claim to detect actual horizons, compute null geodesics, solve
-backreaction, or identify CTCs.
+service trace, support envelope, plant supply load, receiver optics, timing
+shear, reset residue, packet leakage, and constraint/backreaction posture. A
+source ledger is a diagnostic/audit artifact, not an operator actuator.
+Higher-order overlays such as causal-access risk, horizon-risk, and chronology
+guard are allowed only as labeled heuristic risk readouts. They must not claim
+to detect actual horizons, compute null geodesics, solve backreaction, or
+identify CTCs.
+
+The visualizer may use multiple coordinated technologies:
+
+- D3 for path generation, scales, and state-to-geometry mapping.
+- Framer Motion for smooth control, aperture, packet, and envelope transitions.
+- PixiJS for dense field particles, leakage haze, reset residue, shimmer,
+  carrier noise, and seeded microvariation.
+
+These libraries should be driven by simulator state. They should not create
+independent decorative effects that disagree with the line model.
 
 ### Operator Station Interaction Model
 
@@ -226,8 +245,8 @@ The operator station should make the line feel alive.
 
 Standby:
 
-- line simulation shows integrated origin/endpoint stations, staged packet,
-  support-shell readiness, endpoint receiver readiness, reset-plant state, and
+- line simulation shows integrated origin/receiver stations, staged packet,
+  support-shell readiness, receiver readiness, reset-plant state, and
   work-order id;
 - work-order acceptance appears as a compact intake/arm control, not as the
   first item in a command list or as a selected card in a left-rail queue;
@@ -238,16 +257,16 @@ Readiness:
 
 - constraints and guards appear as subsystem state on or near the line, not only
   in an inspection list;
-- standing substrate, support-shell channels, source-response/medium,
-  endpoint/reset systems, and carrier governance change visibly as they are
-  brought online;
+- support plant, packet bay, carrier field, receiver station, reset plant,
+  safety interlocks, and carrier governance change visibly as they are brought
+  online;
 - constrained controls explain the missing subsystem margin.
 
 Active service:
 
 - packet moves through the line while the clock advances;
-- support envelope, metric-actuator bands, source-response channel, endpoint
-  receiver, packet service trace, carrier probes, and reset path visibly change;
+- support envelope, carrier field, plant supply channel, receiver station,
+  packet service trace, carrier probes, and reset path visibly change;
 - telemetry trend bands update;
 - warnings attach to the affected subsystem;
 - authority changes how the persistent controls behave; the terminal should not
@@ -281,7 +300,7 @@ scenario setup, trace history, detailed guard maps, and debrief content can
 scroll or live in drawers. Ordinary service operation cannot depend on content
 below the fold.
 
-Packet, support, endpoint, and warning markers should be visibly bounded by the
+Packet, support, receiver, and warning markers should be visibly bounded by the
 line frame. Staged and secured states may map to operator-edge positions, but
 markers should not clip outside the simulation frame.
 
@@ -293,47 +312,74 @@ Required visual feedback patterns:
 
 - support margin changes alter envelope continuity, thickness, glow, or fracture;
 - packet isolation changes alter packet-core glow, leakage haze, or loss guard;
-- source burden changes alter the source-response/medium side channel;
-- endpoint confidence changes alter catch-window aperture or lock state;
-- endpoint optics show ray-bundle convergence, defocus, or aperture miss;
-- timing drift appears as packet/endpoint phase offset, ray shear, or grid shear;
+- support-plant load and reservoir headroom change the plant supply channel;
+- receiver lock/acquisition changes alter catch-window aperture or lock state;
+- receiver optics show ray-bundle convergence, defocus, or aperture miss;
+- timing drift appears as packet/receiver phase offset, ray shear, or grid shear;
 - reset residue appears on the reset/decompression path;
 - stability warnings change the global line posture or lockout layer;
 - backreaction/constraint concerns tighten guard bands, distort the support
-  envelope, or saturate the source-response channel;
+  envelope, or saturate the plant supply channel;
 - horizon-risk and chronology-risk overlays appear only in scenario states that
   train those concerns, and they use cautious risk language;
 - warnings localize to subsystems and remain traceable in the event log.
+
+The simulation engine must provide enough visual state for these patterns. If a
+desired readout needs receiver acquisition width, carrier field stability,
+packet leakage rate, support-shell sag, reset residue density, or probe-bundle
+shear, those should become explicit simulator-derived fields rather than
+hard-coded artwork.
 
 This is the difference between a simulation terminal and a themed quiz panel.
 
 ### Control Surface Requirements
 
 The Service Terminal should feel like an operating station, not a workflow form.
-Visible controls should be stable instruments that the operator manipulates
-throughout the run.
+Visible controls should be stable service instruments that the operator uses
+throughout the run. Manual knobs and raw actuator trims are special access, not
+the default surface.
 
-Recommended controls:
+Default operator controls:
 
-- support drive: lever, slider, or rotary control that changes support envelope
-  strength and source burden;
-- clock-lapse, rail-stretch, and throat-capacity trims: compact controls that
-  expose the support-shell metric-actuator channels without raw equation entry;
-- source-response or medium coupling: guarded control that reduces source
-  burden or reservoir stress, while ledger material remains an inspection view;
-- endpoint sync and catch aperture: dial/slider pair that changes endpoint
-  aperture and timing alignment;
-- carrier drive and matched hold: controls that move or freeze the packet
-  through the supported corridor without implying an entry-to-packet signal;
-- release/fade: guarded switch that is only useful when catch/rematch is in
-  range;
-- decompression and reset purge: controls that trade residue, stability, and
-  reuse readiness;
-- hold, abort, secure: explicit authority controls with strong visual hierarchy.
+- work-order acceptance and packet bay seal;
+- support plant precharge/authorize;
+- receiver station prepare/acquire/catch;
+- line authority arm;
+- carrier authorize/hold/resume/fade;
+- decompression and reset purge;
+- abort/recovery/secure authority.
+
+Authorized trim controls live in an override drawer and should be exposed only
+when the supervisor or operator requests special access:
+
+- Level 1 trim: support precharge target, receiver acquisition width, carrier
+  ramp rate, purge intensity.
+- Level 2 engineering override: clock-lapse cushion, rail-stretch trim,
+  throat-capacity trim, regulated-medium/reservoir limits.
+- Level 3 diagnostic access: source-demand ledgers, constraint ledgers,
+  carrier audit, matter/source-family notes, and raw simulator variables.
+
+The terminal should identify the lowest useful override level, explain the
+subsystem margin that motivates it, keep the guard limits visible, and log the
+override. Hold and abort must remain available.
 
 Disabled-looking controls are not enough. Constraints should be visible as
 guards, clipped ranges, warning lamps, or control resistance, with inspection
 available for details.
+
+### Autopilot And Random Perturbations
+
+Autopilot is an adaptive controller, not a guided answer path. In normal
+operation it should complete a nominal run, observe subsystem changes, adjust
+service-level controls, and hold, recover, abort, or request limited override
+access when the line leaves its authority envelope.
+
+Randomness is seeded and layered over set scenarios. A work order defines the
+baseline operating family and possible failure classes; the random engine
+perturbs timing, subsystem margins, warning thresholds, disturbance onset, and
+recovery tolerance within that envelope. Replaying the same seed should replay
+the same run. Random faults should appear first as visual state changes or
+localized warnings, not as unexplained failures.
 
 ## Activity Surfaces
 

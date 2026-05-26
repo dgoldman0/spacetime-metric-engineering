@@ -73,8 +73,9 @@ The Rail Service Terminal should:
 1. Train operational reasoning around the current active-rail service model.
 2. Let the learner operate a line through support, carry, catch, fade,
    decompression, and reset.
-3. Make failures feel procedural and consequential: support gaps, source debt,
-   endpoint mismatch, timing drift, reset residue, and stability lockout.
+3. Make failures feel procedural and consequential: support-plant sag, packet
+   isolation loss, receiver mismatch, timing drift, reset residue, and stability
+   lockout.
 4. Keep the physics boundary explicit without turning the active terminal into a
    lecture.
 
@@ -115,42 +116,54 @@ source of truth is `SERVICE_TRAINER_DESIGN.md`.
 
 The terminal is a qualitative architecture-logic simulator for one active-rail
 line. It trains the operator to reason through the current service architecture:
-live packet corridor, standing support substrate, support-shell metric actuator
-layer, carrying-flow/clock-lapse/rail-stretch/throat-capacity channels,
-handoff/collar behavior, endpoint receiver/reset plant, heat-current medium,
-support reservoir, carrier governance, packet leakage, reset residue,
-constraint posture, and stability limits. It does not compute a spacetime
-solution, close a matter model, validate a plant, or claim physical
+support plant, packet bay/gate, live packet corridor, carrier field, receiver
+station, reset plant, safety interlocks, carrier governance, packet leakage,
+reset residue, constraint posture, and stability limits. Diagnostic views can
+expose the standing support substrate, support-shell metric actuator layer,
+carrying-flow/clock-lapse/rail-stretch/throat-capacity channels, heat-current
+medium, support reservoir, and source-demand ledgers. It does not compute a
+spacetime solution, close a matter model, validate a plant, or claim physical
 realizability.
 
 The active-rail design uses ledgers, but ledgers are diagnostic and accounting
 surfaces rather than physical actuators. Demanded-source ledgers, constraint
 ledgers, service-time ledgers, and carrier ledgers belong in audit, inspection,
-and debrief views. The operator controls should use physical/service language:
-support drive, clock-lapse cushion, rail-stretch trim, throat-capacity trim,
-source-response trim, medium coupling, reservoir draw, endpoint sync,
-catch/rematch aperture, carrier drive, release fade, decompression, reset purge,
-rail-time governor, hold, abort, and secure.
+and debrief views. The operator controls should use service language:
+accept work order, precharge support plant, load/seal packet bay, prepare
+receiver station, arm line authority, authorize carrier, hold/resume, authorize
+catch/rematch, confirm catch, fade carrier, decompress, purge/reset, abort,
+recover, and secure. Manual actuator-family trims are available only through
+access-controlled override drawers.
 
 The interface should feel like a future line engineer's operating terminal:
 
 - compact suite and line status;
 - a dominant live graphic readout of the rail line;
 - adjacent instrumentation with trends and bands;
-- persistent controls for support-shell, metric-actuator channels,
-  source-response/medium/reservoir, endpoint/catch, carrier, fade,
-  decompression, reset, rail-time governance, hold, abort, and secure;
+- service-level controls for support plant, packet bay, carrier field, receiver
+  station, reset plant, line authority, hold, abort, recovery, and secure;
+- access-controlled override drawers for bounded trim, engineering override,
+  and diagnostic/research access;
+- adaptive autopilot and supervisor controls that can be paused or handed back;
 - localized warnings, constraints, trace, and debrief.
 
 The line graphic is the primary object. It should show geometry and service
-evolution: protected live packet corridor, integrated origin/endpoint stations,
+evolution: protected live packet corridor, integrated origin and receiver
+stations,
 support envelope, packet motion, packet service trace, packet leakage/isolation
-margin, metric-actuator bands, source-response channel, endpoint receiver and
+margin, support plant behavior, carrier field, receiver station and
 catch/rematch aperture, timing shear, carrier probe optics, reset residue,
 constraint posture, and failure localization. These layers must be derived from
 simulator state. Static squiggles, decorative triangles, generic warning
 stickers, duplicate telemetry cards, and text-box clutter inside the viewport
 are not acceptable substitutes for visualization.
+
+The graphics should become more robust as the simulator matures. The design
+should add state to support the visuals rather than flatten the visuals to fit
+an underpowered state model. Useful additions include receiver acquisition
+geometry, carrier-field stability, support-shell sag, packet leakage rate,
+reset residue density, carrier probe shear, support-plant load, reservoir
+headroom, and seeded microvariation for field noise and transient behavior.
 
 The viewport should also carry the spacetime-engineering character of the
 architecture. Packet motion should read as a service-coordinate trace or
@@ -168,6 +181,14 @@ should not be driven by a left-hand list, a command stack, a phase-chip stepper,
 or a wall of enabled/disabled buttons. Ordinary operation should fit in the
 first viewport; scrolling is for trace history, scenario browsing, inspection,
 and debrief.
+
+Randomness is layered over set scenarios. The scenario defines the service
+family, expected caution class, and replay seed; the random engine perturbs
+subsystem margins, timing, noise, warning thresholds, disturbance onset, and
+recovery tolerance inside that envelope. Autopilot should be able to complete a
+nominal service, adapt to bounded perturbations, request the lowest useful
+override level when necessary, and choose hold, recovery, abort, reuse block, or
+secure when the line state requires it.
 
 The terminal uses its own domain data:
 
@@ -763,10 +784,11 @@ assessment reports.
 The Rail Service Terminal should look like an operations terminal. It should not
 inherit the learning-board card language, filter rail, report panel, or
 explanation-page composition. The terminal should be simulation-first: live
-line, protected packet corridor, support-shell envelope, metric-actuator
-channels, source-response/medium channel, endpoint receiver/catch window, reset
-plant path, carrier/chronology overlays, instrumentation, authority, localized
-warnings, and event trace.
+line, protected packet corridor, support plant, packet bay/gate, carrier field,
+receiver station/catch window, reset plant path, carrier/chronology overlays,
+instrumentation, authority, localized warnings, and event trace. Metric-actuator
+channels, source-demand ledgers, matter/source-family notes, and other analysis
+surfaces are diagnostics or override views, not the main operating vocabulary.
 
 The Rail Service Terminal stays terminal-first rather than card-first. Its UI
 uses work orders, subsystem state, operating authority, live controls, telemetry,
@@ -779,7 +801,9 @@ Design direction:
 - Rail Service Terminal: dark or high-contrast operations styling, status
   lamps, beautiful state-derived schematic layers, telemetry trends outside the
   line graphic, packet leakage/loss warnings, localized subsystem warnings,
-  operating posture, terminal logs, and control authority states.
+  operating posture, autopilot/supervisor state, terminal logs, and control
+  authority states. The visual simulation should become richer and more
+  faithful over time, not reduced to a minimal diagram.
 - Both: color used for meaning rather than decoration.
 
 Suggested aesthetic:
@@ -801,9 +825,13 @@ Avoid:
 - reducing the service viewport to a themed progress bar,
 - replacing rich service graphics with blocks of text, static ornaments, or
   duplicated numerical readouts inside the viewport,
+- deleting important visual layers instead of rebuilding them as accurate,
+  state-driven geometry and animation,
 - making the service terminal a phase-stepper or command-stack exercise,
 - writing work orders as puzzle prompts,
 - presenting ledgers as physical knobs instead of diagnostics/audit surfaces,
+- exposing manual knobs as the default operation surface rather than controlled
+  special access,
 - drawing packet traces as if an entrance signal drags the packet,
 - using "items ready" or score-report language inside the Service Terminal.
 
@@ -843,10 +871,12 @@ Rail Service Terminal surfaces:
 - operations status bar,
 - live line simulation,
 - subsystem instrumentation,
-- persistent operator controls,
+- service-level operator controls,
+- access-controlled manual override drawer,
 - compact assignment/work-order drawer,
 - constraint and subsystem inspection,
 - diagnostic ledger/audit drawer,
+- autopilot/supervisor controls,
 - alarm and event trace,
 - secure/abort debrief.
 
@@ -916,10 +946,29 @@ order, visible subsystem changes, authority transitions, alarms, holds, aborts,
 recovery, and reset. It uses service state and simulator rules, not quiz
 grading. The central object is the live line simulation, not a panel of prompts
 or a progress strip. The model should be component faithful before it is
-visually elaborate: live packet corridor, standing substrate, support shell,
-metric actuator channels, handoff/collar, endpoint/reset plant,
-heat-current/reservoir source plant, carrier governance, and diagnostic ledgers
-must remain distinct.
+visually elaborate: support plant, packet bay/gate, live packet corridor,
+carrier field, receiver station, reset plant, safety interlocks, carrier
+governance, and diagnostic ledgers must remain distinct.
+
+Default operation is supervised service control. The ordinary user authorizes
+work-order acceptance, support precharge, packet sealing, receiver preparation,
+line arming, carrier/catch/fade/reset actions, hold, abort, recovery, and
+secure. Manual knobs are access-controlled overrides:
+
+- Level 0: normal supervised operation and service authority.
+- Level 1: bounded trim such as support precharge target, receiver acquisition
+  width, carrier ramp rate, or purge intensity.
+- Level 2: engineering override of actuator-family controls such as
+  clock-lapse cushion, rail-stretch trim, throat-capacity trim, and
+  regulated-medium/reservoir limits.
+- Level 3: diagnostic/research access to raw variables, ledgers, and technical
+  overlays.
+
+Autopilot is an adaptive controller, not a solve button. It should complete
+nominal runs, observe perturbations, operate within the same authority model,
+request limited override access when needed, and choose hold, recovery, abort,
+or secure when the line state requires it. Randomness is seeded and layered over
+set scenarios so runs are varied, bounded, and replayable.
 
 ## Scoring Model
 
