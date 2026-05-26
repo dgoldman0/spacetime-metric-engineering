@@ -2316,6 +2316,16 @@ h3 {
   background: rgba(214, 170, 61, 0.16);
 }
 
+.visual-key .key-leakage {
+  background: radial-gradient(circle, rgba(213, 106, 85, 0.7), rgba(213, 106, 85, 0.08));
+  box-shadow: 0 0 10px rgba(213, 106, 85, 0.28);
+}
+
+.visual-key .key-carrier {
+  border: 1px solid rgba(226, 207, 119, 0.72);
+  background: repeating-linear-gradient(90deg, rgba(226, 207, 119, 0.34) 0 4px, transparent 4px 8px);
+}
+
 .live-line-view.caution {
   background:
     radial-gradient(circle at calc(var(--packet-position) + 8%) 52%, rgba(215, 170, 61, 0.3), transparent 16%),
@@ -2407,6 +2417,8 @@ h3 {
 }
 
 .source-flow-layer text,
+.source-response-layer text,
+.metric-actuator-layer text,
 .endpoint-layer text,
 .phase-band-label text,
 .svg-alarm-pin text,
@@ -2416,6 +2428,7 @@ h3 {
 .support-label,
 .corridor-label,
 .worldline-label,
+.service-trace-label,
 .aperture-label {
   fill: #c8bfaa;
   font-size: 14px;
@@ -2461,6 +2474,33 @@ h3 {
   stroke: rgba(255, 244, 190, 0.28);
   stroke-width: 1;
   filter: drop-shadow(0 0 8px rgba(214, 170, 61, 0.44));
+}
+
+.metric-actuator-layer text {
+  fill: rgba(205, 221, 189, 0.44);
+  font-size: 8px;
+}
+
+.metric-band {
+  fill: none;
+  stroke: url("#metric-band-gradient");
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 7px rgba(147, 189, 130, 0.18));
+}
+
+.metric-band.beta {
+  stroke: rgba(215, 198, 95, 0.48);
+  stroke-width: 3;
+}
+
+.metric-band.lapse {
+  stroke: rgba(157, 216, 205, 0.42);
+}
+
+.metric-band.rail-stretch,
+.metric-band.throat-capacity {
+  stroke: rgba(165, 210, 141, 0.38);
 }
 
 .causal-risk-layer text,
@@ -2537,6 +2577,20 @@ h3 {
   stroke-width: 2.8;
 }
 
+.carrier-probe {
+  fill: none;
+  stroke: rgba(226, 207, 119, 0.34);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 10 9;
+  filter: drop-shadow(0 0 7px rgba(226, 207, 119, 0.12));
+}
+
+.carrier-probe.focused {
+  stroke: rgba(231, 224, 162, 0.62);
+  stroke-dasharray: none;
+}
+
 .timing-layer path {
   stroke: #dca84b;
   stroke-width: 3;
@@ -2572,7 +2626,8 @@ h3 {
   transition: x2 0.55s ease, opacity 0.35s ease;
 }
 
-.packet-worldline {
+.packet-worldline,
+.packet-service-trace {
   fill: none;
   stroke: rgba(242, 209, 114, 0.68);
   stroke-width: 3;
@@ -2581,7 +2636,8 @@ h3 {
   filter: drop-shadow(0 0 8px rgba(214, 170, 61, 0.3));
 }
 
-.worldline-label {
+.worldline-label,
+.service-trace-label {
   fill: rgba(242, 209, 114, 0.72);
   font-size: 11px;
 }
@@ -2609,6 +2665,15 @@ h3 {
 .aperture-label {
   fill: rgba(190, 244, 255, 0.75);
   font-size: 11px;
+}
+
+.reset-plant-coil {
+  fill: none;
+  stroke: rgba(214, 170, 61, 0.48);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 7 9;
+  filter: drop-shadow(0 0 8px rgba(214, 170, 61, 0.25));
 }
 
 .phase-band-label rect {
@@ -2660,6 +2725,17 @@ h3 {
 
 .packet-wake {
   opacity: 0.78;
+}
+
+.packet-leakage-halo {
+  mix-blend-mode: screen;
+  filter: blur(0.8px);
+}
+
+.packet-isolation-ring {
+  fill: none;
+  stroke: rgba(183, 229, 168, 0.7);
+  filter: drop-shadow(0 0 10px rgba(147, 189, 130, 0.4));
 }
 
 .packet-tether {

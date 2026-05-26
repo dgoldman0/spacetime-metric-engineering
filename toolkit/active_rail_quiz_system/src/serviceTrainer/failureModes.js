@@ -4,14 +4,21 @@ export const failureModes = [
     title: "Support gap lockout",
     subsystem: "support",
     summary: "Support margin fell below the active service floor.",
-    recovery: "Abort the pass, precharge support, close the ledger, and restart from a conservative work order."
+    recovery: "Abort the pass, precharge support, reduce carrying-flow demand, and restart from a conservative work order."
   },
   {
     id: "source_overdraw",
-    title: "Source debt overdraw",
-    subsystem: "source ledger",
-    summary: "Demanded-source burden outran the closed source ledger.",
-    recovery: "Hold or abort, close the ledger, and do not treat the demanded source as a physical source solution."
+    title: "Source response overdraw",
+    subsystem: "source response",
+    summary: "Demanded-source burden outran the qualitative source-response and medium headroom.",
+    recovery: "Hold or abort, reduce support and carrying-flow demand, increase regulated medium support, and keep the source ledger as a diagnostic artifact."
+  },
+  {
+    id: "packet_leakage",
+    title: "Packet isolation breach",
+    subsystem: "packet corridor",
+    summary: "Packet leakage exceeded the training floor for protected live-packet carriage.",
+    recovery: "Hold or abort, restore the support shell and handoff collar, then review packet-safe margins before another carry attempt."
   },
   {
     id: "endpoint_mismatch",
@@ -31,8 +38,22 @@ export const failureModes = [
     id: "decompression_shock",
     title: "Decompression shock",
     subsystem: "release",
-    summary: "Release unloading began while source debt or stability posture was outside the service gate.",
-    recovery: "Abort release, stabilize the line, and close the ledger before another decompression attempt."
+    summary: "Release unloading began while source burden or stability posture was outside the service gate.",
+    recovery: "Abort release, stabilize the line, and restore source-response and medium headroom before another decompression attempt."
+  },
+  {
+    id: "reservoir_sag",
+    title: "Reservoir headroom collapse",
+    subsystem: "reservoir",
+    summary: "Support-reservoir headroom fell below the active-service floor.",
+    recovery: "Hold the line, unload the medium, reduce support draw, and do not resume until reservoir headroom recovers."
+  },
+  {
+    id: "carrier_guard_lockout",
+    title: "Carrier governance lockout",
+    subsystem: "carrier",
+    summary: "Carrier timing and reachability risk exceeded the rail-time guard.",
+    recovery: "Hold or abort, increase rail-time governance and endpoint synchronization, then restart from a lower carrying-flow authority."
   },
   {
     id: "reset_contamination",
@@ -71,11 +92,20 @@ export function evaluateFailure(line) {
   if (metrics.sourceDebt > 92) {
     return getFailureMode("source_overdraw");
   }
+  if (metrics.packetLeakage > 72 || metrics.packetIsolation < 18) {
+    return getFailureMode("packet_leakage");
+  }
   if (packetPosition > 70 && metrics.endpointConfidence < 22) {
     return getFailureMode("endpoint_mismatch");
   }
   if (packetPosition > 50 && metrics.timingDrift > 90) {
     return getFailureMode("timing_violation");
+  }
+  if (metrics.reservoirCharge < 12) {
+    return getFailureMode("reservoir_sag");
+  }
+  if (packetPosition > 44 && metrics.carrierRisk > 92) {
+    return getFailureMode("carrier_guard_lockout");
   }
   if (controls.decompression > 72 && (metrics.sourceDebt > 82 || metrics.stabilityPosture < 30)) {
     return getFailureMode("decompression_shock");

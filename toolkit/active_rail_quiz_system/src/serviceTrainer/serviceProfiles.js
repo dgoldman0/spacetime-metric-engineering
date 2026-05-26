@@ -25,9 +25,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 82,
       sourceDebt: 18,
+      packetIsolation: 88,
+      packetLeakage: 8,
       endpointConfidence: 82,
       timingDrift: 14,
       resetResidue: 16,
+      reservoirCharge: 86,
+      carrierRisk: 12,
       stabilityPosture: 82,
       loadIndex: 22
     }
@@ -58,9 +62,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 72,
       sourceDebt: 28,
+      packetIsolation: 78,
+      packetLeakage: 14,
       endpointConfidence: 70,
       timingDrift: 24,
       resetResidue: 24,
+      reservoirCharge: 76,
+      carrierRisk: 22,
       stabilityPosture: 72,
       loadIndex: 38
     }
@@ -91,9 +99,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 68,
       sourceDebt: 32,
+      packetIsolation: 64,
+      packetLeakage: 22,
       endpointConfidence: 54,
       timingDrift: 42,
       resetResidue: 26,
+      reservoirCharge: 70,
+      carrierRisk: 38,
       stabilityPosture: 68,
       loadIndex: 42
     }
@@ -105,8 +117,8 @@ export const workOrders = [
     callSign: "Heavy Packet",
     classLabel: "load",
     priority: "elevated",
-    operationNotice: "Heavy packet staged. Source load expected above nominal.",
-    cautions: ["high support draw", "source debt grows quickly", "stability posture is stressed"],
+    operationNotice: "Heavy packet staged. Source-response burden expected above nominal.",
+    cautions: ["high support draw", "source burden grows quickly", "stability posture is stressed"],
     serviceWindow: "standard",
     loadClass: "heavy",
     reuseStatus: "clean",
@@ -124,9 +136,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 60,
       sourceDebt: 42,
+      packetIsolation: 62,
+      packetLeakage: 24,
       endpointConfidence: 68,
       timingDrift: 28,
       resetResidue: 30,
+      reservoirCharge: 58,
+      carrierRisk: 28,
       stabilityPosture: 60,
       loadIndex: 62
     }
@@ -157,9 +173,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 66,
       sourceDebt: 34,
+      packetIsolation: 66,
+      packetLeakage: 20,
       endpointConfidence: 64,
       timingDrift: 30,
       resetResidue: 62,
+      reservoirCharge: 54,
+      carrierRisk: 26,
       stabilityPosture: 62,
       loadIndex: 46
     }
@@ -190,9 +210,13 @@ export const workOrders = [
     metrics: {
       supportMargin: 64,
       sourceDebt: 38,
+      packetIsolation: 58,
+      packetLeakage: 30,
       endpointConfidence: 46,
       timingDrift: 46,
       resetResidue: 34,
+      reservoirCharge: 64,
+      carrierRisk: 48,
       stabilityPosture: 58,
       loadIndex: 50
     }

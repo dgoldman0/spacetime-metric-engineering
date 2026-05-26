@@ -13,12 +13,30 @@ export const telemetryDefs = [
   },
   {
     id: "sourceDebt",
-    label: "Source Debt",
+    label: "Source Burden",
     direction: "high",
     caution: 58,
     red: 84,
     unit: "%",
-    detail: "Unresolved demanded-source burden accumulated by the run."
+    detail: "Demanded-source response burden carried by the service plant."
+  },
+  {
+    id: "packetIsolation",
+    label: "Packet Isolation",
+    direction: "low",
+    caution: 62,
+    red: 36,
+    unit: "%",
+    detail: "Protected-packet margin inside the live service corridor."
+  },
+  {
+    id: "packetLeakage",
+    label: "Packet Leakage",
+    direction: "high",
+    caution: 30,
+    red: 58,
+    unit: "%",
+    detail: "Qualitative loss/leakage proxy for packet-safe carriage."
   },
   {
     id: "endpointConfidence",
@@ -46,6 +64,24 @@ export const telemetryDefs = [
     red: 84,
     unit: "%",
     detail: "Residual line load that can contaminate reuse readiness."
+  },
+  {
+    id: "reservoirCharge",
+    label: "Reservoir Headroom",
+    direction: "low",
+    caution: 44,
+    red: 22,
+    unit: "%",
+    detail: "Support-reservoir and regulated medium headroom."
+  },
+  {
+    id: "carrierRisk",
+    label: "Carrier Risk",
+    direction: "high",
+    caution: 52,
+    red: 78,
+    unit: "%",
+    detail: "Carrier-governance risk from timing, reachability, and catch posture."
   },
   {
     id: "stabilityPosture",
@@ -78,13 +114,58 @@ export const controlDefs = [
     detail: "Raises the corridor support envelope; too much drive increases source and load burden."
   },
   {
-    id: "ledgerClosure",
-    label: "Ledger Closure",
+    id: "lapseCushion",
+    label: "Clock-Lapse Cushion",
+    shortLabel: "ALP",
+    role: "Metric",
+    minLabel: "raw",
+    maxLabel: "cushion",
+    detail: "Stabilizes the qualitative lapse channel used by the service metric actuator."
+  },
+  {
+    id: "railStretchTrim",
+    label: "Rail-Stretch Trim",
+    shortLabel: "GLL",
+    role: "Metric",
+    minLabel: "flat",
+    maxLabel: "trim",
+    detail: "Shapes the longitudinal rail-stretch channel without claiming a solved metric."
+  },
+  {
+    id: "throatCapacityTrim",
+    label: "Throat-Capacity Trim",
+    shortLabel: "GOM",
+    role: "Metric",
+    minLabel: "tight",
+    maxLabel: "open",
+    detail: "Tunes transverse capacity around the service corridor and endpoint receiver."
+  },
+  {
+    id: "sourceResponseTrim",
+    label: "Source Response",
     shortLabel: "SRC",
     role: "Source",
-    minLabel: "open",
-    maxLabel: "closed",
-    detail: "Closes demanded-source accounting and reduces debt during service."
+    minLabel: "passive",
+    maxLabel: "regulated",
+    detail: "Regulates source-family response demand. The source ledger remains diagnostic, not a control."
+  },
+  {
+    id: "mediumCoupling",
+    label: "Heat/Current Medium",
+    shortLabel: "MED",
+    role: "Medium",
+    minLabel: "cold",
+    maxLabel: "coupled",
+    detail: "Couples regulated heat/current medium to carry source and endpoint exchange."
+  },
+  {
+    id: "reservoirDraw",
+    label: "Support Reservoir",
+    shortLabel: "RSV",
+    role: "Reservoir",
+    minLabel: "idle",
+    maxLabel: "draw",
+    detail: "Draws support-reservoir headroom into the active service shell."
   },
   {
     id: "endpointSync",
@@ -105,13 +186,22 @@ export const controlDefs = [
     detail: "Opens the receiving aperture. It matters most once the packet enters the catch region."
   },
   {
+    id: "matchedHold",
+    label: "Matched Hold",
+    shortLabel: "HLD",
+    role: "Handoff",
+    minLabel: "free",
+    maxLabel: "matched",
+    detail: "Maintains handoff/rematch collar discipline before release fade."
+  },
+  {
     id: "carrierDrive",
-    label: "Carrier Drive",
-    shortLabel: "CAR",
+    label: "Carrying-Flow Drive",
+    shortLabel: "BET",
     role: "Motion",
     minLabel: "hold",
     maxLabel: "carry",
-    detail: "Moves the packet through the supported corridor when the line is armed."
+    detail: "Moves the packet by the carrying-flow channel after authority is armed."
   },
   {
     id: "releaseFade",
@@ -139,18 +229,34 @@ export const controlDefs = [
     minLabel: "dirty",
     maxLabel: "clear",
     detail: "Clears residue and prepares the line for secure closeout."
+  },
+  {
+    id: "railTimeGovernor",
+    label: "Rail-Time Governor",
+    shortLabel: "RTG",
+    role: "Carrier",
+    minLabel: "loose",
+    maxLabel: "govern",
+    detail: "Keeps carrier timing, scheduled probes, and chronology guard inside operating authority."
   }
 ];
 
 const defaultControls = {
   supportDrive: 28,
-  ledgerClosure: 18,
+  lapseCushion: 34,
+  railStretchTrim: 38,
+  throatCapacityTrim: 36,
+  sourceResponseTrim: 24,
+  mediumCoupling: 32,
+  reservoirDraw: 24,
   endpointSync: 25,
   catchAperture: 28,
+  matchedHold: 18,
   carrierDrive: 0,
   releaseFade: 0,
   decompression: 0,
-  resetPurge: 0
+  resetPurge: 0,
+  railTimeGovernor: 34
 };
 
 const phaseBands = [
@@ -392,10 +498,32 @@ export function getLineConstraints(line) {
       id: "sourceDebt",
       subsystem: "source",
       level: metrics.sourceDebt > 78 ? "red" : "caution",
-      title: "Source ledger carrying excess debt",
-      detail: "Increase ledger closure or reduce carrier drive before source burden outruns the line.",
+      title: "Source-response burden above headroom",
+      detail: "Increase source response, medium coupling, or reservoir support while reducing carrying-flow demand.",
       blocksArm: metrics.sourceDebt > 66,
       blocksSecure: metrics.sourceDebt > 68
+    });
+  }
+  if (metrics.packetIsolation < 62) {
+    constraints.push({
+      id: "packetIsolation",
+      subsystem: "packet",
+      level: metrics.packetIsolation < 36 ? "red" : "caution",
+      title: "Packet isolation below service margin",
+      detail: "Restore support-shell, lapse, rail-stretch, and matched-hold posture before relying on packet-safe carriage.",
+      blocksArm: metrics.packetIsolation < 50,
+      blocksSecure: metrics.packetIsolation < 48
+    });
+  }
+  if (metrics.packetLeakage > 30) {
+    constraints.push({
+      id: "packetLeakage",
+      subsystem: "packet",
+      level: metrics.packetLeakage > 58 ? "red" : "caution",
+      title: "Packet leakage warning",
+      detail: "Reduce carrying flow, strengthen isolation, and hold if leakage continues to climb.",
+      blocksArm: metrics.packetLeakage > 48,
+      blocksSecure: metrics.packetLeakage > 42
     });
   }
   if (metrics.endpointConfidence < 58) {
@@ -429,13 +557,35 @@ export function getLineConstraints(line) {
       blocksSecure: true
     });
   }
+  if (metrics.reservoirCharge < 44) {
+    constraints.push({
+      id: "reservoirCharge",
+      subsystem: "reservoir",
+      level: metrics.reservoirCharge < 22 ? "red" : "caution",
+      title: "Reservoir headroom low",
+      detail: "Reduce reservoir draw, unload the medium, and avoid source-response overdraw.",
+      blocksArm: metrics.reservoirCharge < 30,
+      blocksSecure: metrics.reservoirCharge < 28
+    });
+  }
+  if (metrics.carrierRisk > 52) {
+    constraints.push({
+      id: "carrierRisk",
+      subsystem: "carrier",
+      level: metrics.carrierRisk > 78 ? "red" : "caution",
+      title: "Carrier governance risk elevated",
+      detail: "Increase rail-time governance and matched hold, or reduce carrying-flow drive before catch/rematch.",
+      blocksArm: metrics.carrierRisk > 70,
+      blocksSecure: metrics.carrierRisk > 68
+    });
+  }
   if (metrics.stabilityPosture < 52) {
     constraints.push({
       id: "stabilityPosture",
       subsystem: "stability",
       level: metrics.stabilityPosture < 32 ? "red" : "caution",
       title: "Stability posture below operating margin",
-      detail: "Reduce load, improve closure, or hold the line before backreaction warning escalates.",
+      detail: "Reduce load, improve metric-actuator posture, or hold the line before backreaction warning escalates.",
       blocksArm: metrics.stabilityPosture < 44,
       blocksSecure: metrics.stabilityPosture < 46
     });
@@ -499,11 +649,15 @@ export function getLineVisualState(line) {
   const condition = getLineCondition(line);
   const packetPosition = clamp(line.packetPosition);
   const sourceLoad = normalizeHigh(line.metrics.sourceDebt);
+  const packetIsolation = normalizeLow(line.metrics.packetIsolation);
+  const packetLeakage = normalizeHigh(line.metrics.packetLeakage);
   const supportStrength = normalizeLow(line.metrics.supportMargin);
   const endpointAperture = line.controls.catchAperture / 100;
   const endpointLock = normalizeLow(line.metrics.endpointConfidence);
   const timingShear = normalizeHigh(line.metrics.timingDrift);
   const resetResidue = normalizeHigh(line.metrics.resetResidue);
+  const reservoirCharge = normalizeLow(line.metrics.reservoirCharge);
+  const carrierRisk = normalizeHigh(line.metrics.carrierRisk);
   const stabilityField = normalizeLow(line.metrics.stabilityPosture);
   const opticsFocus = clamp01((line.metrics.endpointConfidence + line.controls.catchAperture - line.metrics.timingDrift * 0.55) / 145);
   const backreactionPosture = clamp01((100 - line.metrics.stabilityPosture + line.metrics.sourceDebt * 0.58 + line.metrics.loadIndex * 0.62) / 170);
@@ -516,8 +670,18 @@ export function getLineVisualState(line) {
   const horizonRisk = clamp01(causalRisk * (workOrder.causalProfile?.horizonRisk || 0.18));
   const chronologyRisk = clamp01(causalRisk * (workOrder.causalProfile?.chronologyRisk || 0));
   const supportRipple = clamp01((100 - line.metrics.supportMargin + line.metrics.loadIndex * 0.45 + backreactionPosture * 40) / 160);
-  const sourceSaturation = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex * 0.42) / 130);
+  const sourceSaturation = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex * 0.36 + (100 - line.metrics.reservoirCharge) * 0.38) / 155);
+  const mediumStress = clamp01((line.metrics.sourceDebt + line.metrics.loadIndex + (100 - line.metrics.reservoirCharge)) / 235);
   const residueDensity = clamp01((line.metrics.resetResidue + line.controls.decompression * 0.28 - line.controls.resetPurge * 0.18) / 105);
+  const betaFlow = clamp01(line.controls.carrierDrive / 100);
+  const lapseCushion = clamp01(line.controls.lapseCushion / 100);
+  const railStretch = clamp01(line.controls.railStretchTrim / 100);
+  const throatCapacity = clamp01(line.controls.throatCapacityTrim / 100);
+  const sourceResponse = clamp01(line.controls.sourceResponseTrim / 100);
+  const mediumCoupling = clamp01(line.controls.mediumCoupling / 100);
+  const reservoirDraw = clamp01(line.controls.reservoirDraw / 100);
+  const matchedHold = clamp01(line.controls.matchedHold / 100);
+  const railTimeGovernance = clamp01(line.controls.railTimeGovernor / 100);
   const phase = getOperatingPhase(line);
   return {
     condition,
@@ -525,11 +689,15 @@ export function getLineVisualState(line) {
     packetPosition,
     packetLabel: line.failure ? "REC" : line.runState === "secured" ? "SEC" : "PKT",
     packetPulse: line.runState === "service" && line.packetVelocity > 0,
+    packetIsolation,
+    packetLeakage,
     supportStrength,
     sourceLoad,
     endpointAperture,
     timingShear,
     resetResidue,
+    reservoirCharge,
+    carrierRisk,
     stabilityField,
     endpointLock,
     opticsFocus,
@@ -539,7 +707,17 @@ export function getLineVisualState(line) {
     chronologyRisk,
     supportRipple,
     sourceSaturation,
+    mediumStress,
     residueDensity,
+    betaFlow,
+    lapseCushion,
+    railStretch,
+    throatCapacity,
+    sourceResponse,
+    mediumCoupling,
+    reservoirDraw,
+    matchedHold,
+    railTimeGovernance,
     statusByMetric,
     constraints,
     pins: constraints.map((item) => ({
@@ -550,11 +728,15 @@ export function getLineVisualState(line) {
     })),
     styleVars: {
       "--packet-position": `${packetPosition}%`,
+      "--packet-isolation": String(packetIsolation),
+      "--packet-leakage": String(packetLeakage),
       "--support-strength": String(supportStrength),
       "--source-load": String(sourceLoad),
       "--endpoint-aperture": String(endpointAperture),
       "--timing-shear": String(timingShear),
       "--reset-residue": String(resetResidue),
+      "--reservoir-charge": String(reservoirCharge),
+      "--carrier-risk": String(carrierRisk),
       "--stability-field": String(stabilityField),
       "--endpoint-lock": String(endpointLock),
       "--optics-focus": String(opticsFocus),
@@ -564,6 +746,7 @@ export function getLineVisualState(line) {
       "--chronology-risk": String(chronologyRisk),
       "--support-ripple": String(supportRipple),
       "--source-saturation": String(sourceSaturation),
+      "--medium-stress": String(mediumStress),
       "--residue-density": String(residueDensity)
     }
   };
@@ -605,7 +788,7 @@ export function getActionState(line, actionId) {
     return {
       enabled: !blocked,
       label: line.runState === "armed" || line.runState === "service" ? "Line Armed" : "Arm Line",
-      detail: blocked ? "Close support, source, endpoint, reset, and stability margins." : "Line is inside readiness margins."
+      detail: blocked ? "Close support, packet isolation, source-response, endpoint, reservoir, and carrier margins." : "Line is inside readiness margins."
     };
   }
   if (actionId === "hold") {
@@ -692,13 +875,20 @@ function getAutopilotTargets(line) {
   const resetApproach = packetPosition > 90;
   return {
     supportDrive: metrics.supportMargin < 68 ? 68 : metrics.loadIndex > 68 ? 42 : 52,
-    ledgerClosure: metrics.sourceDebt > 46 ? 76 : service ? 58 : 46,
+    lapseCushion: metrics.packetIsolation < 70 || metrics.timingDrift > 42 ? 74 : 52,
+    railStretchTrim: metrics.supportMargin < 66 || metrics.packetIsolation < 68 ? 70 : 48,
+    throatCapacityTrim: catchApproach || metrics.endpointConfidence < 60 ? 74 : 50,
+    sourceResponseTrim: metrics.sourceDebt > 46 ? 78 : service ? 60 : 42,
+    mediumCoupling: metrics.sourceDebt > 50 || metrics.reservoirCharge < 54 ? 72 : 46,
+    reservoirDraw: metrics.supportMargin < 62 ? 64 : metrics.reservoirCharge < 44 ? 24 : 42,
     endpointSync: metrics.endpointConfidence < 68 || metrics.timingDrift > 34 ? 78 : 56,
     catchAperture: catchApproach || metrics.endpointConfidence < 58 ? 82 : 48,
+    matchedHold: catchApproach || metrics.carrierRisk > 42 ? 72 : service ? 52 : 32,
     carrierDrive: readying ? 0 : resetApproach ? 12 : releaseApproach ? 24 : catchApproach ? 42 : service ? 62 : 0,
     releaseFade: releaseApproach && metrics.endpointConfidence > 54 ? 66 : 0,
     decompression: resetApproach ? 70 : releaseApproach ? 42 : 0,
-    resetPurge: resetApproach || metrics.resetResidue > 44 ? 78 : 28
+    resetPurge: resetApproach || metrics.resetResidue > 44 ? 78 : 28,
+    railTimeGovernor: metrics.carrierRisk > 42 || metrics.timingDrift > 42 ? 82 : 54
   };
 }
 
@@ -714,36 +904,70 @@ function evolveMetrics(line, controls, workOrder) {
   const armed = line.runState === "armed" || line.runState === "service";
   const catchZone = line.packetPosition > 66;
   const releaseOpen = releaseWindowOpen({ ...line, controls });
+  const supportActuator = (controls.supportDrive + controls.lapseCushion * 0.42 + controls.railStretchTrim * 0.32 + controls.throatCapacityTrim * 0.22) / 1.96;
+  const sourceRelief = controls.sourceResponseTrim * 0.58 + controls.mediumCoupling * 0.34 + controls.reservoirDraw * 0.28;
+  const governance = controls.railTimeGovernor * 0.58 + controls.matchedHold * 0.36 + controls.endpointSync * 0.24;
 
-  next.supportMargin += (controls.supportDrive - 44) / 13;
+  next.supportMargin += (supportActuator - 46) / 13;
   next.supportMargin -= armed ? (controls.carrierDrive * load) / 56 : 0;
   next.supportMargin -= controls.releaseFade / 92;
   next.supportMargin += controls.decompression / 130;
 
-  next.sourceDebt += accepted ? (controls.supportDrive * load) / 130 : -0.2;
+  next.sourceDebt += accepted ? (controls.supportDrive * load) / 150 : -0.2;
   next.sourceDebt += armed ? (controls.carrierDrive * load) / 42 : 0;
-  next.sourceDebt -= controls.ledgerClosure / 24;
+  next.sourceDebt -= sourceRelief / 32;
   next.sourceDebt -= controls.decompression / 92;
   next.sourceDebt -= controls.resetPurge / 130;
 
   next.endpointConfidence += (controls.endpointSync - 38) / 13;
   next.endpointConfidence += controls.catchAperture / 90;
+  next.endpointConfidence += controls.matchedHold / 160;
   next.endpointConfidence -= armed ? (controls.carrierDrive * timing) / 110 : 0;
   next.endpointConfidence -= catchZone && controls.catchAperture < 42 ? 2.8 * timing : 0;
 
   next.timingDrift += armed ? (controls.carrierDrive * timing) / 62 : -0.4;
   next.timingDrift -= controls.endpointSync / 34;
   next.timingDrift -= controls.catchAperture / 120;
+  next.timingDrift -= controls.railTimeGovernor / 52;
 
   next.resetResidue += releaseOpen ? (controls.releaseFade * residue) / 82 : 0;
   next.resetResidue += controls.decompression > 45 ? (controls.decompression * residue) / 210 : 0;
   next.resetResidue -= controls.resetPurge / (workOrder.id === "reuse" ? 20 : 16);
 
-  next.stabilityPosture += controls.ledgerClosure / 90;
+  next.reservoirCharge += line.runState === "standby" ? 0.2 : 0;
+  next.reservoirCharge -= accepted ? (controls.reservoirDraw * load) / 90 : -0.25;
+  next.reservoirCharge -= (controls.supportDrive * load) / 210;
+  next.reservoirCharge -= (controls.mediumCoupling * load) / 260;
+  next.reservoirCharge += controls.decompression / 92;
+  next.reservoirCharge += controls.resetPurge / 180;
+
+  next.carrierRisk += armed ? (controls.carrierDrive * timing) / 80 : -0.55;
+  next.carrierRisk += catchZone ? (100 - next.endpointConfidence) / 44 : 0;
+  next.carrierRisk += next.packetLeakage > 34 ? next.packetLeakage / 84 : 0;
+  next.carrierRisk -= governance / 34;
+  next.carrierRisk += workOrder.causalProfile?.chronologyRisk ? workOrder.causalProfile.chronologyRisk * 3 : 0;
+
+  next.packetIsolation += (supportActuator - 42) / 18;
+  next.packetIsolation += controls.matchedHold / 95;
+  next.packetIsolation -= armed ? (controls.carrierDrive * load) / 96 : 0;
+  next.packetIsolation -= next.sourceDebt > 62 ? (next.sourceDebt - 62) / 18 : 0;
+  next.packetIsolation -= next.timingDrift / 190;
+  next.packetIsolation -= catchZone && controls.catchAperture < 48 ? 1.8 * timing : 0;
+
+  next.packetLeakage += armed ? (100 - next.packetIsolation) / 82 : -0.55;
+  next.packetLeakage += next.timingDrift / 180;
+  next.packetLeakage += next.sourceDebt / 240;
+  next.packetLeakage -= controls.matchedHold / 150;
+  next.packetLeakage -= controls.lapseCushion / 180;
+  next.packetLeakage -= controls.resetPurge / 145;
+
+  next.stabilityPosture += (controls.lapseCushion + controls.railStretchTrim + controls.throatCapacityTrim) / 250;
+  next.stabilityPosture += controls.sourceResponseTrim / 130;
   next.stabilityPosture += controls.endpointSync / 160;
   next.stabilityPosture -= armed ? (controls.carrierDrive * stability) / 120 : 0;
   next.stabilityPosture -= controls.releaseFade / 150;
   next.stabilityPosture -= next.sourceDebt > 70 ? 1.2 * stability : 0;
+  next.stabilityPosture -= next.packetLeakage > 42 ? (next.packetLeakage - 42) / 28 : 0;
   next.stabilityPosture += line.runState === "held" ? 1.4 : 0;
 
   next.loadIndex += armed ? (controls.carrierDrive * load) / 42 : -0.45;
@@ -760,9 +984,11 @@ function evolvePacket(line, controls, metrics, workOrder) {
   }
   const supportFactor = Math.max(0.1, metrics.supportMargin / 100);
   const confidenceFactor = line.packetPosition > 66 ? Math.max(0.2, metrics.endpointConfidence / 100) : 1;
+  const isolationFactor = Math.max(0.18, metrics.packetIsolation / 100);
+  const governanceFactor = Math.max(0.28, 1 - metrics.carrierRisk / 180);
   const drive = controls.carrierDrive / 100;
   const drag = line.packetPosition > 82 && controls.releaseFade < 28 ? 0.32 : 1;
-  const velocity = drive * workOrder.pace * 0.085 * supportFactor * confidenceFactor * drag;
+  const velocity = drive * workOrder.pace * 0.085 * supportFactor * confidenceFactor * isolationFactor * governanceFactor * drag;
   const position = clamp(line.packetPosition + velocity, 0, 100);
   return { position, velocity };
 }
@@ -803,12 +1029,15 @@ function releaseWindowOpen(line) {
   return line.packetPosition >= 74
     && line.metrics.endpointConfidence >= 52
     && line.controls.catchAperture >= 48
+    && line.controls.matchedHold >= 34
     && line.metrics.timingDrift <= 74;
 }
 
 function secureBlocked(line, constraints = getLineConstraints(line)) {
   return constraints.some((item) => item.blocksSecure)
     || line.packetPosition < 92
+    || line.metrics.packetLeakage > 42
+    || line.metrics.carrierRisk > 68
     || line.controls.releaseFade < 54
     || line.controls.decompression < 42
     || line.controls.resetPurge < 46
@@ -822,6 +1051,7 @@ function guardControls(line, controls) {
     guarded.releaseFade = 0;
     guarded.decompression = 0;
     guarded.resetPurge = Math.min(guarded.resetPurge, 28);
+    guarded.matchedHold = Math.min(guarded.matchedHold, 34);
   }
   if (!["armed", "service"].includes(line.runState)) {
     guarded.carrierDrive = Math.min(guarded.carrierDrive, 12);
@@ -887,12 +1117,16 @@ function addOperatorNotice(line, noticeId, message) {
 
 function constraintMatchesControl(constraintId, controlId) {
   const map = {
-    supportMargin: ["supportDrive", "carrierDrive"],
-    sourceDebt: ["ledgerClosure", "carrierDrive", "decompression"],
-    endpointConfidence: ["endpointSync", "catchAperture"],
-    timingDrift: ["endpointSync", "catchAperture", "carrierDrive"],
+    supportMargin: ["supportDrive", "lapseCushion", "railStretchTrim", "throatCapacityTrim", "carrierDrive"],
+    sourceDebt: ["sourceResponseTrim", "mediumCoupling", "reservoirDraw", "carrierDrive", "decompression"],
+    packetIsolation: ["supportDrive", "lapseCushion", "railStretchTrim", "throatCapacityTrim", "matchedHold", "carrierDrive"],
+    packetLeakage: ["supportDrive", "lapseCushion", "matchedHold", "carrierDrive"],
+    endpointConfidence: ["endpointSync", "catchAperture", "matchedHold"],
+    timingDrift: ["endpointSync", "catchAperture", "carrierDrive", "railTimeGovernor"],
     resetResidue: ["decompression", "resetPurge"],
-    stabilityPosture: ["supportDrive", "ledgerClosure", "carrierDrive"],
+    reservoirCharge: ["reservoirDraw", "mediumCoupling", "sourceResponseTrim", "decompression"],
+    carrierRisk: ["railTimeGovernor", "matchedHold", "endpointSync", "carrierDrive"],
+    stabilityPosture: ["supportDrive", "lapseCushion", "railStretchTrim", "throatCapacityTrim", "sourceResponseTrim", "carrierDrive"],
     loadIndex: ["carrierDrive", "decompression", "resetPurge"],
     releaseGuard: ["releaseFade"],
     decompressionGuard: ["decompression"]
@@ -904,9 +1138,13 @@ function visualPinPosition(metricId, packetPosition) {
   const positions = {
     supportMargin: Math.max(16, packetPosition - 8),
     sourceDebt: Math.max(22, packetPosition - 14),
+    packetIsolation: packetPosition,
+    packetLeakage: Math.max(18, packetPosition - 4),
     endpointConfidence: 84,
     timingDrift: Math.min(78, packetPosition + 11),
     resetResidue: 78,
+    reservoirCharge: 30,
+    carrierRisk: Math.min(88, packetPosition + 9),
     stabilityPosture: 52,
     loadIndex: packetPosition,
     releaseGuard: 82,

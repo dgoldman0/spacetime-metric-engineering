@@ -322,17 +322,20 @@ function FieldParticleLayer({ visualState, line }) {
         const source = state.sourceSaturation || 0;
         const support = state.supportStrength || 0;
         const causal = state.causalRisk || 0;
+        const leakage = state.packetLeakage || 0;
+        const reservoirStress = 1 - (state.reservoirCharge || 0.75);
         field.clear();
         particles.forEach((particle) => {
-          const drift = particle.speed * (0.35 + source + residue + causal);
+          const drift = particle.speed * (0.35 + source + residue + causal + leakage * 0.8);
           particle.x = (particle.x + drift) % 1;
           const railBand = particle.band === 0;
-          const yBase = railBand ? 0.46 : particle.band === 1 ? 0.3 : 0.64;
+          const yBase = railBand ? 0.46 : particle.band === 1 ? 0.3 + reservoirStress * 0.08 : 0.64;
           const x = particle.x * width;
-          const y = (yBase + Math.sin((particle.x + particle.id) * 6.283) * (0.015 + causal * 0.03)) * height;
-          const alpha = 0.025 + residue * 0.1 + source * 0.08 + support * 0.025;
-          const color = residue > 0.48 && particle.band === 2 ? 0xd6a23d : particle.band === 1 ? 0xd0bb68 : 0x9bc58b;
-          field.circle(x, y, particle.radius + residue * 1.4 + source * 0.6).fill({ color, alpha });
+          const wobble = 0.015 + causal * 0.03 + leakage * 0.05;
+          const y = (yBase + Math.sin((particle.x + particle.id) * 6.283) * wobble) * height;
+          const alpha = 0.025 + residue * 0.1 + source * 0.08 + support * 0.025 + leakage * 0.08;
+          const color = leakage > 0.38 && railBand ? 0xd86f57 : residue > 0.48 && particle.band === 2 ? 0xd6a23d : particle.band === 1 ? 0xd0bb68 : 0x9bc58b;
+          field.circle(x, y, particle.radius + residue * 1.4 + source * 0.6 + leakage * 1.2).fill({ color, alpha });
         });
       });
     }
@@ -355,9 +358,11 @@ function VisualKey() {
   return (
     <div className="visual-key" aria-label="Line graphic key">
       <span><i className="key-corridor" /> service corridor</span>
-      <span><i className="key-support" /> support envelope</span>
-      <span><i className="key-source" /> source ledger</span>
-      <span><i className="key-optics" /> endpoint optics</span>
+      <span><i className="key-support" /> support shell</span>
+      <span><i className="key-source" /> source response</span>
+      <span><i className="key-optics" /> endpoint receiver</span>
+      <span><i className="key-leakage" /> packet leakage</span>
+      <span><i className="key-carrier" /> carrier probes</span>
       <span><i className="key-residue" /> reset residue</span>
     </div>
   );
@@ -367,7 +372,7 @@ function RailGraphic({ line, visualState, phase }) {
   const xScale = scaleLinear().domain([0, 100]).range([104, 1096]);
   const yCenter = 238;
   const packetX = xScale(visualState.packetPosition);
-  const sourceWidth = Math.max(28, 650 * visualState.sourceLoad);
+  const sourceWidth = Math.max(28, 650 * visualState.sourceSaturation);
   const sourceResiduals = buildSourceResiduals(visualState);
   const apertureRx = 22 + visualState.endpointAperture * 86;
   const apertureHeight = 38 + visualState.endpointAperture * 146;
@@ -375,12 +380,16 @@ function RailGraphic({ line, visualState, phase }) {
   const carrierGlow = Math.max(0.12, line.controls.carrierDrive / 100);
   const supportOpacity = 0.28 + visualState.supportStrength * 0.62;
   const supportStroke = 4 + visualState.supportStrength * 7 + visualState.backreactionPosture * 4;
+  const leakageRadius = 40 + visualState.packetLeakage * 58;
+  const isolationStroke = 2.5 + visualState.packetIsolation * 5;
   const clockPhase = line.clock / 11;
   const corridorPath = buildServiceCorridor(visualState, clockPhase);
   const supportEnvelope = buildSupportEnvelope(visualState, clockPhase);
   const supportRibs = buildSupportRibs(visualState, clockPhase);
-  const worldline = buildWorldline(visualState, packetX, yCenter, clockPhase);
+  const metricBands = buildMetricActuatorBands(visualState, clockPhase);
+  const packetTrace = buildPacketTrace(visualState, packetX, yCenter, clockPhase);
   const optics = buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHeight, clockPhase);
+  const carrierProbes = buildCarrierProbes(visualState, packetX, yCenter, clockPhase);
   const shearLines = buildShearLines(visualState, clockPhase);
   const causalFan = buildCausalFan(visualState, apertureRx);
   const chronologyLoop = buildChronologyLoop(visualState);
@@ -425,6 +434,16 @@ function RailGraphic({ line, visualState, phase }) {
           <stop offset="0.52" stopColor="#9fcb89" />
           <stop offset="1" stopColor="#d9c15f" />
         </linearGradient>
+        <linearGradient id="metric-band-gradient" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#b7e1a5" stopOpacity="0.12" />
+          <stop offset="0.5" stopColor="#9ed6ce" stopOpacity="0.24" />
+          <stop offset="1" stopColor="#e2c15f" stopOpacity="0.12" />
+        </linearGradient>
+        <radialGradient id="leakage-glow" cx="50%" cy="50%" r="60%">
+          <stop offset="0" stopColor="#f0d06d" stopOpacity="0.06" />
+          <stop offset="0.56" stopColor="#da7058" stopOpacity="0.18" />
+          <stop offset="1" stopColor="#da7058" stopOpacity="0" />
+        </radialGradient>
         <radialGradient id="packet-glow" cx="50%" cy="50%" r="58%">
           <stop offset="0" stopColor="#f1cc66" stopOpacity="0.92" />
           <stop offset="0.68" stopColor="#f1cc66" stopOpacity="0.28" />
@@ -471,8 +490,8 @@ function RailGraphic({ line, visualState, phase }) {
         ))}
       </g>
 
-      <g className="source-flow-layer" aria-label="Demanded-source ledger channel">
-        <text x="242" y="58">DEMANDED-SOURCE LEDGER</text>
+      <g className="source-response-layer" aria-label="Source-response and regulated medium channel">
+        <text x="242" y="58">SOURCE RESPONSE / REGULATED MEDIUM</text>
         <rect className="source-shell" x="242" y="76" width="650" height="34" rx="17" />
         <motion.rect
           className="source-flow"
@@ -505,6 +524,22 @@ function RailGraphic({ line, visualState, phase }) {
         <text x="740" y="386">CHRONOLOGY GUARD</text>
       </g>
 
+      <g className="metric-actuator-layer" aria-label="Metric actuator channels">
+        {metricBands.map((band) => (
+          <motion.path
+            key={band.id}
+            className={`metric-band ${band.id}`}
+            d={band.d}
+            animate={{ opacity: band.opacity }}
+            transition={{ duration: 0.45 }}
+          />
+        ))}
+        <text x="210" y="184">BETA CARRYING FLOW</text>
+        <text x="214" y="214">ALPHA LAPSE CUSHION</text>
+        <text x="214" y="266">GAMMA RAIL STRETCH</text>
+        <text x="214" y="298">GAMMA THROAT CAPACITY</text>
+      </g>
+
       <g className="support-layer" opacity={supportOpacity} filter="url(#field-glow)">
         <motion.path
           className="service-corridor-svg"
@@ -528,11 +563,23 @@ function RailGraphic({ line, visualState, phase }) {
             transition={{ duration: 0.45 }}
           />
         ))}
-        <text className="corridor-label" x="176" y="158">SERVICE CORRIDOR</text>
-        <text className="support-label" x="176" y="340">SUPPORT ENVELOPE</text>
+        <text className="corridor-label" x="176" y="158">LIVE PACKET CORRIDOR</text>
+        <text className="support-label" x="176" y="340">STANDING SUPPORT SHELL</text>
       </g>
 
-      <g className="optics-layer" aria-label="Endpoint optics">
+      <g className="carrier-probe-layer" aria-label="Carrier governance probes">
+        {carrierProbes.map((probe) => (
+          <motion.path
+            className={probe.focused ? "carrier-probe focused" : "carrier-probe"}
+            d={probe.d}
+            key={probe.id}
+            animate={{ opacity: probe.opacity }}
+            transition={{ duration: 0.45 }}
+          />
+        ))}
+      </g>
+
+      <g className="optics-layer" aria-label="Endpoint receiver optics">
         {optics.map((ray) => (
           <motion.path
             className={ray.focused ? "optics-ray focused" : "optics-ray"}
@@ -566,18 +613,18 @@ function RailGraphic({ line, visualState, phase }) {
           transition={{ type: "spring", stiffness: 90, damping: 19 }}
         />
         <motion.path
-          className="packet-worldline"
-          d={worldline}
+          className="packet-service-trace"
+          d={packetTrace}
           animate={{ opacity: line.runState === "standby" ? 0.08 : 0.72 }}
           transition={{ duration: 0.35 }}
         />
         {visualState.packetPosition > 8 && (
-          <text className="worldline-label" x={Math.max(172, packetX - 222)} y={yCenter - 38}>PACKET WORLDLINE</text>
+          <text className="service-trace-label" x={Math.max(172, packetX - 188)} y={yCenter - 38}>PACKET SERVICE TRACE</text>
         )}
       </g>
 
       <g className="endpoint-layer">
-        <text x="920" y="154">ENDPOINT OPTICS</text>
+        <text x="896" y="154">ENDPOINT RECEIVER / RESET PLANT</text>
         <motion.ellipse
           className="endpoint-field"
           cx="1032"
@@ -605,6 +652,12 @@ function RailGraphic({ line, visualState, phase }) {
           transition={{ type: "spring", stiffness: 90, damping: 18 }}
         />
         <text className="aperture-label" x="1084" y={yCenter - apertureHeight / 2 - 8}>CATCH APERTURE</text>
+        <motion.path
+          className="reset-plant-coil"
+          d={buildResetPlantCoil(visualState, clockPhase)}
+          animate={{ opacity: 0.16 + visualState.residueDensity * 0.6 }}
+          transition={{ duration: 0.45 }}
+        />
       </g>
 
       <g className="phase-band-label">
@@ -636,8 +689,15 @@ function RailGraphic({ line, visualState, phase }) {
         animate={{ x: packetX, y: yCenter }}
         transition={{ type: "spring", stiffness: 88, damping: 18 }}
       >
+        <motion.circle
+          className="packet-leakage-halo"
+          r={leakageRadius}
+          fill="url(#leakage-glow)"
+          animate={{ opacity: visualState.packetLeakage * 0.95 }}
+        />
         <circle className="packet-wake" r={44 + line.controls.carrierDrive * 0.18} fill="url(#packet-glow)" />
         <line className="packet-tether" x1="-42" y1="0" x2="-7" y2="0" />
+        <circle className="packet-isolation-ring" r="43" strokeWidth={isolationStroke} />
         <circle className="packet-body" r="35" />
         <text y="6" textAnchor="middle">{visualState.packetLabel}</text>
       </motion.g>
@@ -720,22 +780,99 @@ function buildSupportRibs(visualState, clockPhase) {
   });
 }
 
-function buildWorldline(visualState, packetX, yCenter, clockPhase) {
+function buildMetricActuatorBands(visualState, clockPhase) {
+  const generator = d3Line()
+    .x((point) => point.x)
+    .y((point) => point.y)
+    .curve(curveBasis);
+  const specs = [
+    {
+      id: "beta",
+      y: 184,
+      amplitude: 14 + visualState.betaFlow * 24,
+      opacity: 0.1 + visualState.betaFlow * 0.36 + visualState.carrierRisk * 0.12
+    },
+    {
+      id: "lapse",
+      y: 212,
+      amplitude: 8 + (1 - visualState.lapseCushion) * 24 + visualState.timingShear * 20,
+      opacity: 0.1 + visualState.lapseCushion * 0.24 + visualState.timingShear * 0.16
+    },
+    {
+      id: "rail-stretch",
+      y: 266,
+      amplitude: 8 + visualState.railStretch * 18 + visualState.supportRipple * 16,
+      opacity: 0.08 + visualState.railStretch * 0.24 + visualState.supportRipple * 0.18
+    },
+    {
+      id: "throat-capacity",
+      y: 298,
+      amplitude: 8 + visualState.throatCapacity * 28,
+      opacity: 0.08 + visualState.throatCapacity * 0.28 + visualState.endpointAperture * 0.12
+    }
+  ];
+  return specs.map((spec, bandIndex) => {
+    const points = Array.from({ length: 18 }, (_unused, index) => {
+      const t = index / 17;
+      const packetPull = Math.max(0, 1 - Math.abs(visualState.packetPosition / 100 - t) * 3.2);
+      return {
+        x: 160 + t * 850,
+        y: spec.y
+          + Math.sin(t * Math.PI * 2 + clockPhase * (0.16 + bandIndex * 0.03)) * spec.amplitude * 0.32
+          + packetPull * visualState.packetLeakage * 24
+          - packetPull * visualState.packetIsolation * 7
+      };
+    });
+    return {
+      id: spec.id,
+      d: generator(points),
+      opacity: spec.opacity
+    };
+  });
+}
+
+function buildPacketTrace(visualState, packetX, yCenter, clockPhase) {
   const generator = d3Line()
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveCatmullRom.alpha(0.6));
-  const startX = Math.max(128, packetX - 360);
+  const traceLength = 165 + visualState.betaFlow * 190 + visualState.timingShear * 70;
+  const startX = Math.max(128, packetX - traceLength);
   const points = Array.from({ length: 12 }, (_unused, index) => {
     const t = index / 11;
     return {
       x: startX + (packetX - startX) * t,
       y: yCenter
-        + Math.sin(t * Math.PI * 2.4 + clockPhase * 0.35) * visualState.timingShear * 26
-        + (1 - t) * visualState.backreactionPosture * 14
+        + Math.sin(t * Math.PI * 2.2 + clockPhase * 0.2) * visualState.timingShear * 16
+        + Math.sin(t * Math.PI * 4.4) * visualState.packetLeakage * 12
+        + (1 - t) * visualState.backreactionPosture * 10
     };
   });
   return generator(points);
+}
+
+function buildCarrierProbes(visualState, packetX, yCenter, clockPhase) {
+  const generator = d3Line()
+    .x((point) => point.x)
+    .y((point) => point.y)
+    .curve(curveBasis);
+  const startX = Math.max(150, packetX + 18);
+  const endpointX = 1070;
+  return Array.from({ length: 6 }, (_unused, index) => {
+    const lane = index - 2.5;
+    const shear = visualState.carrierRisk * 56 + visualState.timingShear * 34;
+    const points = [
+      { x: startX, y: yCenter + lane * 9 },
+      { x: 710 + lane * 5 + shear * 0.35, y: yCenter + lane * (18 + shear * 0.08) },
+      { x: endpointX - 24, y: yCenter + lane * (10 + visualState.endpointAperture * 6) + visualState.timingShear * lane * 8 }
+    ];
+    return {
+      id: `carrier-probe-${index}`,
+      d: generator(points),
+      focused: visualState.railTimeGovernance > 0.55 && visualState.carrierRisk < 0.45,
+      opacity: 0.1 + visualState.railTimeGovernance * 0.26 + visualState.carrierRisk * 0.16
+    };
+  });
 }
 
 function buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHeight, clockPhase) {
@@ -767,6 +904,22 @@ function buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHe
       opacity: 0.12 + visualState.opticsFocus * 0.24 + (index === 4 ? 0.22 : 0)
     };
   });
+}
+
+function buildResetPlantCoil(visualState, clockPhase) {
+  const generator = d3Line()
+    .x((point) => point.x)
+    .y((point) => point.y)
+    .curve(curveBasis);
+  const amplitude = 14 + visualState.residueDensity * 42;
+  const points = Array.from({ length: 22 }, (_unused, index) => {
+    const t = index / 21;
+    return {
+      x: 1010 + t * 82,
+      y: 318 + Math.sin(t * Math.PI * 7 + clockPhase * 0.24) * amplitude
+    };
+  });
+  return generator(points);
 }
 
 function buildShearLines(visualState, clockPhase) {
@@ -995,9 +1148,13 @@ function pinGeometry(pinId) {
   const map = {
     supportMargin: { y: 142, label: "SUP" },
     sourceDebt: { y: 92, label: "SRC" },
+    packetIsolation: { y: 198, label: "PKT" },
+    packetLeakage: { y: 236, label: "LEAK" },
     endpointConfidence: { y: 156, label: "CTH" },
     timingDrift: { y: 284, label: "DRF" },
     resetResidue: { y: 366, label: "RST" },
+    reservoirCharge: { y: 110, label: "RSV" },
+    carrierRisk: { y: 300, label: "CAR" },
     stabilityPosture: { y: 214, label: "STB" },
     loadIndex: { y: 244, label: "LD" },
     releaseGuard: { y: 170, label: "FDE" },
