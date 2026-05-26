@@ -9,7 +9,7 @@ should feel like a rail engineer's terminal.
 The full system has two top-level surfaces:
 
 - **Qualification Board:** the quiz/study/assessment app.
-- **Rail Service Terminal:** the active-rail line operations trainer.
+- **Rail Service Terminal:** the active-rail line operations simulator.
 
 Both can live in the same local React app for now. They should not share the
 same visual shell.
@@ -61,14 +61,14 @@ Qualification Board owns:
 Rail Service Terminal owns:
 
 - operations status bar,
-- service manifest loader,
-- live line viewport,
-- telemetry panels,
-- contextual command tray,
-- procedure checklist,
+- operational work-order intake,
+- live line simulation viewport,
+- subsystem instrumentation,
+- contextual authority controls,
+- subsystem and interlock inspection,
 - interlock display,
-- alarm/event feed,
-- run debrief.
+- alarm/event trace,
+- run debrief and replay.
 
 This keeps the app coherent without flattening the service simulator into a quiz
 workspace with badges.
@@ -147,29 +147,38 @@ It should show:
 ## Rail Service Terminal Screen Regions
 
 The Rail Service Terminal should not show the qualification filters, score
-report, question count, or study-mode controls. It should use a terminal shell.
+report, question count, or study-mode controls. It should use a simulation
+terminal shell.
 
-Required regions:
+Required primary regions:
 
 - **Status Bar:** `LINE`, `MANIFEST`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
-- **Live Line Viewport:** the dominant area. Shows origin, active rail,
-  endpoint, packet position, support envelope, phase progress, hold/abort
-  freezes, and alarm overlays. This region should never be a mostly empty
-  reserved panel.
-- **Telemetry:** dense meters for support margin, source debt, endpoint
-  confidence, timing drift, reset residue, stability posture, and load.
-- **Contextual Command Tray:** the next operator action and a few relevant
-  alternatives. Interlocked actions belong in an inspection section or compact
-  disabled list, not as the dominant interaction.
-- **Procedure Panel:** checklist of gates and phase procedures.
-- **Alarm/Event Feed:** timestamped stream with subsystem, severity, and terse
-  event text.
-- **Debrief Drawer:** appears after secure or abort.
+- **Live Line Simulation:** the dominant region. It shows the rail corridor,
+  packet, support envelope, source/ledger channel, endpoint/catch window, reset
+  path, alarm pins, and active phase. This region must not reduce to a progress
+  bar.
+- **Instrumentation:** compact readouts and trend strips for support margin,
+  source debt, endpoint confidence, timing drift, reset residue, stability, and
+  load. Direction and recent change should be visible where possible.
+- **Authority Controls:** current authority and relevant interventions. They
+  control the line; they are not the main object.
+
+Required secondary regions:
+
+- work-order drawer;
+- gate/interlock inspection;
+- advisory/watch floor;
+- event trace;
+- debrief/replay.
+
+Priority order matters. On an ordinary desktop viewport, the operator should see
+status, the live line simulation, instrumentation, and current authority before
+scrolling. Secondary regions can be drawers, tabs, or bounded console rows.
 
 The terminal should minimize explanatory prose while the line is active. The
-operator learns through state, alarms, command availability, and the service
-trace.
+operator learns through visible subsystem state, alarms, authority changes, and
+service trace.
 
 ### Operator Station Interaction Model
 
@@ -177,25 +186,27 @@ The operator station should make the line feel alive.
 
 Standby:
 
-- line diagram shows origin, endpoint, staged packet, and manifest;
-- one primary action is available: accept manifest;
-- telemetry is visible but quiet;
-- event feed confirms assignment.
+- line simulation shows origin, endpoint, staged packet, support state, endpoint
+  readiness, reset state, and work-order id;
+- one primary action is available: accept work order;
+- instrumentation is visible but quiet;
+- trace confirms assignment.
 
 Readiness:
 
-- gates appear on the line or adjacent systems, not only in a checklist;
-- the next action lane presents precheck, ledger, endpoint, support, or reset
-  work according to the current limiting condition;
-- locked arm authority explains the missing gate.
+- gates appear as subsystem state on or near the line, not only in a checklist;
+- support/source/endpoint/reset systems change visibly as they are brought
+  online;
+- locked arm authority explains the missing subsystem gate.
 
 Active service:
 
 - packet moves through the line while the clock advances;
-- support envelope and endpoint state visibly change;
+- support envelope, source channel, endpoint state, and reset path visibly
+  change;
 - telemetry trend bands update;
 - warnings attach to the affected subsystem;
-- the command tray narrows to hold, abort, and the next phase authority when
+- authority narrows to hold, abort, and the next phase transition when
   available.
 
 Hold and abort:
@@ -207,6 +218,33 @@ Hold and abort:
 
 This interaction model should replace any UI where the user mostly scans a
 large list of buttons and guesses which one to press next.
+
+### Terminal Fit And Visual Bounds
+
+The live line simulation should be compact enough to sit with instrumentation
+and authority in the primary working view. It should not reserve a large blank
+lower area for future features. If additional traces are added, they should
+enter as overlays, sparklines, drawers, or lower inspection consoles.
+
+Packet, support, endpoint, and warning markers should be visibly bounded by the
+line frame. Staged and secured states may map to operator-edge positions, but
+markers should not clip outside the simulation frame.
+
+### Visual Feedback Requirements
+
+The terminal must show state changes through more than numeric meters.
+
+Required visual feedback patterns:
+
+- support margin changes alter envelope continuity, thickness, glow, or fracture;
+- source debt changes alter the source/ledger side channel;
+- endpoint confidence changes alter catch-window aperture or lock state;
+- timing drift appears as packet/endpoint phase offset or shear;
+- reset residue appears on the reset/decompression path;
+- stability warnings change the global line posture or lockout layer;
+- alarms pin to subsystems and remain traceable in the event log.
+
+This is the difference between a simulation terminal and a themed quiz panel.
 
 ## Activity Surfaces
 
@@ -273,53 +311,12 @@ The old service chronology quiz surface is not enough for active-rail operator
 training. Sequencing questions can remain inside the qualification drill, but
 the dedicated operator product should become the Rail Service Terminal.
 
-### Rail Service Terminal
+### Rail Service Terminal Boundary
 
-Use for:
-
-- single-line active-rail service operation in a terminal shell,
-- readiness gates,
-- support/carry/catch/fade/decompress/reset command flow,
-- hold, abort, and recovery decisions,
-- qualitative failure-mode training,
-- post-run operator debriefs.
-
-Required UI shape:
-
-- full-width operations terminal, not a card inside the quiz workspace;
-- dark or high-contrast console styling that clearly differs from the
-  Qualification Board;
-- compact top status bar with line id, state, manifest, clock, authority, and
-  alarm count;
-- dominant live line viewport with packet motion, support envelope, endpoint
-  state, alarm overlays, and no unused empty center area;
-- telemetry stack with status bands and subsystem labels;
-- contextual command tray with currently relevant commands and a compact way to
-  inspect locked commands;
-- procedure checklist with gate state;
-- terminal event feed;
-- run debrief after completion or abort.
-
-Interaction rules:
-
-- The learner should not type raw source coefficients, timing constants, or
-  synthetic score parameters.
-- Service manifests should be loaded as operator work orders, not selected from
-  friendly marketing cards.
-- The trainer may use hidden numeric state to drive meters and outcomes, but the
-  displayed controls should be procedural: precharge support, close ledger,
-  synchronize endpoint, carry packet, catch/rematch, fade, decompress, reset,
-  hold, abort, and secure.
-- The trainer should not use question-bank scoring. Its outcomes are line
-  states, event logs, cautions, abort reports, readiness summaries, and recovery
-  notes.
-- The interface must clearly label the trainer as architecture-logic simulation,
-  but the label should look like a terminal status marker rather than a teaching
-  paragraph.
-- The terminal should keep disabled controls visible with interlock reasons.
-  They should remain discoverable without becoming the main surface.
-- The terminal should make time matter: waiting too long in the wrong phase can
-  increase drift, source debt, residue, or alarm severity.
+The Rail Service Terminal is not an activity surface in the question renderer
+registry. It is a sibling product surface. Question-based workspaces can link to
+terminal debriefs or study recommendations, but the terminal uses service state,
+subsystem visualization, and simulator rules rather than question-bank grading.
 
 ### Matching Matrix
 
@@ -438,7 +435,7 @@ Examples:
 - `drag_fill` -> symbol lab renderer,
 - `sequence` -> ordering renderer inside qualification/study sessions,
 - `claim_classification` -> boundary classification renderer,
-- `rail_run` -> stateful service trainer, not a question-bank renderer,
+- `rail_run` -> stateful service terminal route, not a question-bank renderer,
 - `ledger_interpretation` -> source-ledger reader,
 - `case_review` -> design-review case file.
 

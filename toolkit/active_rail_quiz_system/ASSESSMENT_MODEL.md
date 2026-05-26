@@ -39,7 +39,7 @@ outcomes, event traces, and debriefs rather than answer correctness.
 Useful outcome dimensions:
 
 - service completed, held, aborted, or secured with cautions;
-- manifest class and line state at closeout;
+- work-order class and line state at closeout;
 - triggered alarms and recovery actions;
 - interlock attempts and limiting gates;
 - support, source, endpoint, timing, residue, stability, and load bands;

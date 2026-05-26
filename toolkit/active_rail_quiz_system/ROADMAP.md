@@ -17,16 +17,17 @@ The first three phases still describe the qualification/curriculum path:
 2. Curriculum design.
 3. Content population.
 
-Phase 4 defines the service trainer product:
+Phase 4 defines the Rail Service Terminal simulation product:
 
 4. Rail Service Terminal.
 
-Design comes first for Phase 4. The trainer must have its own domain model,
-interface architecture, and simulator loop before code changes.
+Design comes first for Phase 4. The terminal must have its own domain model,
+visual simulation model, interface architecture, and simulator loop before code
+changes.
 
-Phase 5 now captures the suite-level product shell and service-terminal UX
-hardening needed to make the products feel unified without collapsing their
-interaction models.
+Phase 5 now captures the suite-level product shell and the Service Terminal
+visual-simulation rewrite needed to make the terminal feel like line operation,
+not a themed quiz panel.
 
 ## Phase 1: Quiz Infrastructure
 
@@ -97,7 +98,7 @@ The first renderer set should include:
 - boundary-classification renderer for claim-status training.
 
 Leave diagram labeling and full ledger labs for later unless they become easy
-extensions. The active-rail service trainer should be treated as a separate
+extensions. The Rail Service Terminal should be treated as a separate
 operational surface, not as another question type.
 
 ### Drag-Fill Word Bank
@@ -493,8 +494,10 @@ The design checkpoint must exist before implementation changes.
 Required design artifacts:
 
 - terminal information architecture,
-- service manifest model,
+- operational work-order model,
 - line state model,
+- visual simulation model,
+- subsystem visual-state model,
 - procedure and command model,
 - interlock and gate model,
 - telemetry definitions,
@@ -509,21 +512,21 @@ Required design artifacts:
      question counts, study/timed controls, and card-stack styling.
    - The terminal should have a separate shell and visual language.
 2. Extract simulator data and logic.
-   - Move manifests, line procedures, failure rules, and reducer functions into
+   - Move work orders, line procedures, failure rules, and reducer functions into
      dedicated service-trainer modules.
    - Keep the React component responsible for rendering and dispatching
      commands, not for holding all simulator rules inline.
-3. Build the terminal interface.
+3. Build the terminal simulation surface.
    - Top status bar.
-   - Line schematic.
-   - Telemetry stack.
-   - Command stack with interlock reasons.
-   - Procedure checklist.
-   - Alarm/event feed.
-   - Run debrief.
+   - Live line simulation with rail corridor, packet, support envelope,
+     source/ledger channel, endpoint/catch window, reset path, and alarm pins.
+   - Instrumentation with bands and recent-change cues.
+   - Contextual authority controls with interlock reasons.
+   - Secondary gate, advisory, trace, and debrief inspection.
 4. Make the run feel alive.
    - Advance clock during active states.
    - Evolve telemetry over time.
+   - Evolve visual subsystem state over time.
    - Emit alarms once per condition.
    - Let operator timing matter.
    - Support hold, resume, abort, reset, and secure.
@@ -540,11 +543,11 @@ Required design artifacts:
 
 The first acceptable terminal should let the learner:
 
-- load a manifest,
+- accept a work order,
 - run precheck,
 - arm the line,
 - move through service phases,
-- monitor telemetry,
+- monitor visible subsystem state,
 - see commands lock and unlock,
 - respond to warnings,
 - trigger and recover from at least four failures,
@@ -552,7 +555,7 @@ The first acceptable terminal should let the learner:
 - read a terse operational debrief.
 
 It should not look like a quiz page. It should look like an active-rail service
-station.
+station. Its central line view should not be only a progress bar.
 
 ### Phase 4 Done When
 
@@ -560,28 +563,33 @@ station.
   Board.
 - Service trainer data and simulation logic live outside the React rendering
   component.
-- The trainer uses manifests, procedures, interlocks, telemetry, events, and
+- The terminal uses work orders, procedures, interlocks, telemetry, events, and
   failure rules instead of question-bank data.
-- The terminal supports an evolving single-line run.
+- The terminal supports an evolving single-line run with visible subsystem
+  state.
 - The event log and debrief explain outcomes in operator language.
 - Validation, smoke tests, and production build pass.
 
-## Phase 5: Suite Shell And Operator Station UX
+## Phase 5: Suite Shell And Service Simulation UX
 
 Build the shared product-selection interface and replace the first terminal
-checkpoint's button-dashboard feel with an operator station.
+checkpoint's panel/dashboard feel with a real service simulation terminal.
 
 ### Design Requirements
 
 - One shared suite shell for product switching and identity.
 - Qualification Board remains a learning-board product.
 - Rail Service Terminal remains an operations product.
-- The simulator centers the live line viewport, not a button grid.
-- The viewport uses standby, readiness, active service, hold, abort, reset, and
-  secure states.
-- Commands become contextual: primary next action, relevant alternatives, and a
-  compact locked-action/interlock inspection surface.
-- Telemetry, alarms, and event trace explain why the line is changing.
+- The simulator centers a live line simulation, not a button grid, prompt panel,
+  or themed progress bar.
+- The simulation shows packet, support envelope, source/ledger channel,
+  endpoint/catch window, reset path, and alarm pins.
+- Work orders use terse operations language, not puzzle prompts.
+- Commands are contextual authority controls attached to line state and
+  subsystem interlocks.
+- Telemetry includes visual feedback and trend cues, not only percentage bars.
+- Alarms and event trace explain why the line is changing after the viewport
+  has shown where it is changing.
 
 ### Implementation Subphases
 
@@ -590,20 +598,29 @@ checkpoint's button-dashboard feel with an operator station.
    - Common identity/status frame.
    - Product-specific interiors.
 2. Rebuild the service terminal layout around the live line.
-   - Replace empty center space with origin, rail corridor, endpoint, packet,
-     support envelope, phase progress, and alarm overlays.
-   - Make standby informative instead of visually dead.
+   - Replace panel-first layout with a live simulation board.
+   - Show origin, rail corridor, endpoint, packet, support envelope,
+     source/ledger channel, reset path, phase posture, and alarm overlays.
+   - Make standby an instrumented line state rather than a static waiting card.
+   - Move work-order, gate board, advisory floor, and service trace into
+     secondary inspection surfaces.
 3. Replace the command wall.
    - Promote one primary next action.
    - Show a few contextual alternatives.
    - Move locked commands into an interlock/diagnostics drawer.
 4. Make the simulator legible while running.
    - Animate packet position.
-   - Show support envelope and endpoint/catch state changes.
+   - Keep packet, endpoint, support, and alarm markers visibly inside the line
+     viewport.
+   - Show support envelope, source channel, endpoint/catch, reset residue, and
+     stability changes.
    - Pin alarms to affected subsystems.
    - Keep hold, abort, recovery, and secure states visually distinct.
-5. Tune the first service loop manually.
-   - Run each manifest through ordinary, cautious, and risky operator paths.
+5. Remove quiz-like work-order language.
+   - Replace puzzle prompts with terminal work-order notices.
+   - Reserve guided training text for optional overlays or debriefs.
+6. Tune the first service loop manually.
+   - Run each work order through ordinary, cautious, and risky operator paths.
    - Confirm failures and debriefs are understandable from the UI.
 
 ### Phase 5 Done When
@@ -611,10 +628,17 @@ checkpoint's button-dashboard feel with an operator station.
 - The first screen has a coherent shared training-suite frame.
 - Switching between Qualification Board and Rail Service Terminal feels like
   moving between sibling products.
-- The Service Terminal's center area is always useful.
+- The Service Terminal's center area is an actual simulation, not a progress
+  strip or static schematic.
+- The first viewport shows the status bar, live line, telemetry, and current
+  authority without forcing the operator to scroll past blank or stretched
+  panels.
+- Secondary inspection surfaces are bounded, drawer-based, or below the primary
+  operating view.
 - A learner can tell how the simulator works from the line viewport and current
   authority lane without reading documentation.
-- The terminal no longer feels like a quiz or admin button grid.
+- The terminal no longer feels like a quiz, admin button grid, or scenario
+  prompt panel.
 
 ## Keep It Simple Rules
 
@@ -663,20 +687,23 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Sequence activities now avoid starting in canonical answer order and use draggable rows with keyboard fallback.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
-- The initial Rail Service Terminal has a terminal shell, compact manifest
-  table, line schematic, telemetry, command stack, interlock reasons, procedure
-  gate board, event feed, debrief panel, and separate service-trainer data and
-  simulator modules.
-- The first Phase 5 pass adds a shared suite shell, a live line viewport in the
-  terminal center, packet/support/endpoint visual state, contextual operator
-  authority controls, and a compact interlock drawer instead of a full command
-  wall.
+- The initial Rail Service Terminal has a separate shell, work-order selection,
+  line state, telemetry, authority controls, interlock reasons, gate board,
+  event feed, debrief panel, and separate service-terminal data/simulator
+  modules.
+- The first Phase 5 pass adds a shared suite shell and moves the terminal away
+  from the Qualification Board shell, but it is not yet an acceptable service
+  simulation. The current implementation still reads too much like a trainer
+  panel with a stylized progress rail.
 
 What is still missing:
 
 - workspace-specific scoring panels,
-- deeper Rail Service Terminal missions, replay, incident review, and more
-  richly tuned failure/recovery scenarios,
+- Service Terminal visual simulation rewrite: support/source/endpoint/reset
+  subsystem visualization, trend cues, alarm pins, and work-order language that
+  reads like operations rather than puzzle prompts,
+- deeper Rail Service Terminal work orders, replay, incident review, and more
+  richly tuned failure/recovery behavior,
 - a fuller Ledger Reader workspace,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks with deeper coverage inside each broad
@@ -685,21 +712,23 @@ What is still missing:
 - better mode separation between study, drill, qualification, and project-internal review.
 
 The Qualification Board architecture and validation gates are good enough for
-continued curriculum work. The Rail Service Terminal has its first independent
-operator-simulator shape and should now be hardened as a simulator rather than
-folded back into the quiz app.
+continued curriculum work. The Rail Service Terminal has an independent shell
+and simulation model, but its visual/interaction design still needs a true
+service-terminal rewrite before it should be treated as a complete simulator.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone is Phase 5 hardening:
+The next milestone is Phase 5 visual-simulation rewrite:
 
-- tune each manifest through manual operator runs,
-- make the line viewport richer with subsystem-specific overlays and clearer
-  hold/abort/recovery states,
-- make failure/recovery paths more legible,
-- add replay or event-trace inspection,
+- replace puzzle-like work-order language with operational notices,
+- replace the current progress-rail feel with a live line simulation;
+- add visual subsystem layers for support, source/ledger, endpoint/catch,
+  reset residue, stability, alarm pins, and trend cues;
+- make hold, abort, recovery, and secure states visibly distinct;
+- keep secondary inspection panels subordinate to the live simulation;
+- add replay or event-trace inspection after the running surface works;
 - expand terminal-specific data without using quiz questions as the simulator
-  content model,
+  content model;
 - keep validation, smoke tests, and production builds healthy.
 
 This milestone should prove the system can teach active-rail operation through
