@@ -12,7 +12,7 @@ Target experience:
 > run or enters recovery.
 
 The terminal remains honest about physics. It simulates current active-rail
-architecture logic, operator procedure, subsystem state, and predicted failure
+architecture logic, operator controls, subsystem state, and predicted failure
 modes. It does not solve field equations, validate a physical plant, or claim
 that active-rail service is physically realizable.
 
@@ -23,16 +23,16 @@ The training suite has two sibling products:
 | Product | Primary Job | Data Model | Interface |
 | --- | --- | --- | --- |
 | Qualification Board | Teach and assess theory, references, claim boundaries, and active-rail vocabulary. | Question bank, grading, explanations, references. | Learning board. |
-| Rail Service Terminal | Simulate operation of a single active-rail service line. | Work orders, line state, subsystem models, interlocks, alarms, event traces. | Operations terminal. |
+| Rail Service Terminal | Simulate operation of a single active-rail service line. | Work orders, line state, live controls, subsystem models, constraints, alarms, event traces. | Operations terminal. |
 
 The question bank can recommend study after a run. It cannot be the terminal's
 main content model. The terminal's main loop is:
 
 1. observe line state,
-2. issue or hold authority,
+2. adjust live controls,
 3. watch subsystems evolve,
-4. respond to warnings and interlocks,
-5. secure or recover the line.
+4. respond to warnings, constraints, and degraded margins,
+5. secure, hold, abort, or recover the line.
 
 ## Design Correction
 
@@ -46,6 +46,8 @@ Avoid these shapes:
 - a line graphic that is only a fancy progress bar;
 - work-order descriptions written as learning objectives;
 - procedure lists that dominate the visual hierarchy;
+- phase chips that act like quiz progress steps;
+- command stacks where the user repeatedly clicks the next enabled action;
 - button catalogs, score language, "items ready", or quiz/report terminology.
 
 Panel-based trainer aids are allowed only as secondary surfaces: tutorial
@@ -60,15 +62,16 @@ The operator should:
 
 - read the active work order;
 - inspect line readiness from visible instruments;
-- bring support, source, endpoint, and reset subsystems into service;
-- authorize or hold procedure transitions;
+- manipulate support, source, endpoint, release, decompression, and reset
+  controls;
 - monitor packet motion, support envelope, source load, endpoint state,
   timing drift, residue, and stability;
+- use hold, abort, recovery, and secure authority when the line state demands
+  it;
 - respond to warnings before they become lockouts;
-- abort when recovery authority is the correct operational choice;
 - read the final trace after secure or abort.
 
-The terminal can teach, but it teaches through instruments, alarms, interlocks,
+The terminal can teach, but it teaches through instruments, alarms, constraints,
 trace entries, and debriefs. During a run, explanatory paragraphs should give
 way to operational labels and subsystem state.
 
@@ -89,7 +92,8 @@ It should model:
 - endpoint subsystem: catch window, rematch confidence, timing drift;
 - reset subsystem: decompression order, residue, reuse readiness;
 - stability subsystem: posture, backreaction warning, lockout;
-- authority subsystem: operator clearance, interlocks, holds, abort authority;
+- authority subsystem: operating clearance, live-control limits, holds, abort
+  authority, secure authority;
 - event stream: timestamped operational events, warnings, alarms, and recovery
   notes.
 
@@ -224,20 +228,34 @@ Avoid:
 
 ## Operator Interaction
 
-Commands should be controls over the line, not answers to a prompt.
+The terminal interaction model is live operation, not command selection.
 
-The command system should:
+The operator should manipulate a small set of persistent controls whose meaning
+stays visible throughout the run:
 
-- show current authority clearly;
-- make the next available authority visible;
-- expose hold, abort, and reset where operationally appropriate;
-- attach locked actions to the interlock or subsystem that blocks them;
-- let the learner inspect why a command is unavailable;
-- avoid showing every possible command as a large grid.
+- support envelope drive or stabilizer control;
+- source/ledger closure or source-load control;
+- endpoint sync and catch-aperture control;
+- carry/release authority tied to line readiness;
+- fade and decompression control;
+- reset purge and residue-clearance control;
+- hold, abort, and secure controls.
 
-Commands may appear in an authority rail, subsystem controls, or a compact
-command console. They should be visually subordinate to the live line and
-instrumentation.
+These controls are not quiz answers and they are not a step-by-step command
+stack. They should look and behave like line controls: sliders, guarded
+switches, levers, rotary/segmented controls, status lamps, hold toggles, and
+emergency authority controls. The operator should adjust the line, then watch
+the simulator respond.
+
+Interlocks are system constraints, not disabled answer choices. A constraint
+should attach to the subsystem or control it limits: for example, the endpoint
+catch aperture may refuse to open, the release control may stay guarded, or the
+reset path may remain contaminated. The learner can inspect why a constraint is
+active, but the main surface should not be a grid of locked buttons.
+
+The visible model should avoid "next authorized action" as the primary pattern.
+The terminal may indicate current authority, but authority should narrow or
+expand available controls rather than present a single button to click next.
 
 The terminal should not ask the operator to type raw hidden-state values. Manual
 override may be added later, but it must leave an event trace and explicit risk
@@ -253,12 +271,12 @@ Primary operating view:
 2. line status strip;
 3. central live line simulation;
 4. right or lower instrumentation cluster;
-5. current authority controls.
+5. persistent operator-control deck.
 
 Secondary inspection surfaces:
 
 - work-order drawer;
-- gate/interlock inspection;
+- constraint/interlock inspection;
 - event trace;
 - advisory/watch floor;
 - debrief/replay.
@@ -274,9 +292,9 @@ Use a separate service-terminal model.
 Suggested modules:
 
 - `workOrders.js`: operational work orders and initial conditions.
-- `lineProcedures.js`: phases, authority rules, gates, and interlocks.
+- `lineControls.js`: live controls, authority rules, guards, and constraints.
 - `failureModes.js`: failure rules, alarm text, recovery guidance.
-- `lineSimulator.js`: reducer/state-machine functions.
+- `lineSimulator.js`: continuous line-state update functions.
 - later `visualState.js`: derived viewport geometry, alarm pins, trends, and
   subsystem overlays.
 
@@ -309,8 +327,20 @@ Suggested state shape:
     stabilityPosture,
     loadIndex
   },
-  gates,
-  activeInterlocks,
+  controls: {
+    supportDrive,
+    ledgerClosure,
+    endpointSync,
+    catchAperture,
+    releaseFade,
+    decompression,
+    resetPurge,
+    hold,
+    abort,
+    secure
+  },
+  constraints,
+  guards,
   alarms,
   eventPins,
   visualOverlays,
@@ -319,8 +349,8 @@ Suggested state shape:
 }
 ```
 
-The React component should render state and dispatch commands. Simulation rules
-belong in the service-terminal model.
+The React component should render state and dispatch control changes.
+Simulation rules belong in the service-terminal model.
 
 ## Simulation Loop
 
@@ -329,12 +359,14 @@ The first loop can be deterministic with bounded drift, but it must feel alive.
 Loop responsibilities:
 
 1. Advance clock while the line is powered or active.
-2. Evolve subsystem metrics according to phase, work order, and faults.
+2. Evolve subsystem metrics according to work order, control inputs, operating
+   state, and faults.
 3. Update trend history and visual overlays.
-4. Move packet state through operator-authorized phases.
+4. Move packet state according to support, source, endpoint, and release
+   conditions rather than a fixed button sequence.
 5. Emit warnings and alarms once per condition.
-6. Lock unsafe authority until gates clear.
-7. Enter hold, abort, or recovery state when rules require it.
+6. Apply guards and constraints to risky controls.
+7. Enter hold, abort, recovery, or secure state when rules require it.
 8. Produce a debrief and replayable trace after secure or abort.
 
 Operator timing should matter. Waiting too long in carry can increase drift.
@@ -390,7 +422,8 @@ The first glance should not communicate:
 - a quiz page;
 - a settings panel;
 - a deck of training cards;
-- a button-selection exercise.
+- a button-selection exercise;
+- a phase-progress strip.
 
 ## Truth Boundary In UI
 
@@ -417,10 +450,14 @@ The terminal design is acceptable when:
   have visible representations;
 - at least four failure modes produce visible subsystem changes before or during
   alarm state;
-- current authority is contextual but not the main visual object;
-- secondary gates/events/debriefs do not dominate the first screen;
+- persistent operator controls drive the simulator instead of a visible command
+  stack or next-action button sequence;
+- secondary constraint/event/debrief inspection does not dominate the first
+  screen;
 - a learner can infer the state of the line from the viewport and instruments;
 - completion, hold, abort, and recovery have distinct visual postures;
+- controls, constraints, and visual feedback fit in the primary viewport without
+  forcing the operator to scroll to operate the line;
 - no score, question, or quiz-language appears in the active terminal.
 
 ## Later Expansion

@@ -41,7 +41,7 @@ Useful outcome dimensions:
 - service completed, held, aborted, or secured with cautions;
 - work-order class and line state at closeout;
 - triggered alarms and recovery actions;
-- interlock attempts and limiting gates;
+- constrained controls, guard activations, and limiting subsystems;
 - support, source, endpoint, timing, residue, stability, and load bands;
 - whether the operator used hold, recovery, or abort before a red failure.
 

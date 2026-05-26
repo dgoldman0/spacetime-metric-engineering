@@ -64,9 +64,9 @@ Rail Service Terminal owns:
 - operational work-order intake,
 - live line simulation viewport,
 - subsystem instrumentation,
-- contextual authority controls,
-- subsystem and interlock inspection,
-- interlock display,
+- persistent operator controls,
+- subsystem and constraint inspection,
+- interlock/guard display,
 - alarm/event trace,
 - run debrief and replay.
 
@@ -152,7 +152,7 @@ terminal shell.
 
 Required primary regions:
 
-- **Status Bar:** `LINE`, `MANIFEST`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
+- **Status Bar:** `LINE`, `WORK ORDER`, `STATE`, `CLOCK`, `AUTHORITY`, `ALARMS`,
   and a compact truth-boundary marker such as `SIM / ARCHITECTURE LOGIC`.
 - **Live Line Simulation:** the dominant region. It shows the rail corridor,
   packet, support envelope, source/ledger channel, endpoint/catch window, reset
@@ -161,20 +161,24 @@ Required primary regions:
 - **Instrumentation:** compact readouts and trend strips for support margin,
   source debt, endpoint confidence, timing drift, reset residue, stability, and
   load. Direction and recent change should be visible where possible.
-- **Authority Controls:** current authority and relevant interventions. They
-  control the line; they are not the main object.
+- **Operator Controls:** persistent line controls for support drive,
+  source/ledger closure, endpoint sync, catch aperture, fade, decompression,
+  reset purge, hold, abort, and secure. They control the line; they are not quiz
+  answers.
 
 Required secondary regions:
 
 - work-order drawer;
-- gate/interlock inspection;
+- constraint/interlock inspection;
 - advisory/watch floor;
 - event trace;
 - debrief/replay.
 
 Priority order matters. On an ordinary desktop viewport, the operator should see
-status, the live line simulation, instrumentation, and current authority before
-scrolling. Secondary regions can be drawers, tabs, or bounded console rows.
+status, the live line simulation, instrumentation, and the main operator-control
+deck before scrolling. Operating the line should not require scrolling to a
+lower action area. Secondary regions can be drawers, tabs, or bounded console
+rows.
 
 The terminal should minimize explanatory prose while the line is active. The
 operator learns through visible subsystem state, alarms, authority changes, and
@@ -196,7 +200,8 @@ Standby:
 
 - line simulation shows origin, endpoint, staged packet, support state, endpoint
   readiness, reset state, and work-order id;
-- one primary action is available: accept work order;
+- work-order acceptance appears as an intake/arm control, not as the first item
+  in a command list;
 - instrumentation is visible but quiet;
 - trace confirms assignment.
 
@@ -205,7 +210,7 @@ Readiness:
 - gates appear as subsystem state on or near the line, not only in a checklist;
 - support/source/endpoint/reset systems change visibly as they are brought
   online;
-- locked arm authority explains the missing subsystem gate.
+- constrained controls explain the missing subsystem margin.
 
 Active service:
 
@@ -214,18 +219,19 @@ Active service:
   change;
 - telemetry trend bands update;
 - warnings attach to the affected subsystem;
-- authority narrows to hold, abort, and the next phase transition when
-  available.
+- authority changes how the persistent controls behave; the terminal should not
+  become a sequence of "next phase" buttons.
 
 Hold and abort:
 
 - line motion freezes;
 - the viewport highlights the cause;
-- recovery actions become contextual;
+- recovery controls become guarded and explicit;
 - the event feed and debrief explain the operational consequence.
 
 This interaction model should replace any UI where the user mostly scans a
-large list of buttons and guesses which one to press next.
+large list of buttons, clicks the next enabled action, or walks through phase
+chips.
 
 ### Terminal Fit And Visual Bounds
 
@@ -253,6 +259,30 @@ Required visual feedback patterns:
 - alarms pin to subsystems and remain traceable in the event log.
 
 This is the difference between a simulation terminal and a themed quiz panel.
+
+### Control Surface Requirements
+
+The Service Terminal should feel like an operating station, not a workflow form.
+Visible controls should be stable instruments that the operator manipulates
+throughout the run.
+
+Recommended controls:
+
+- support drive: lever, slider, or rotary control that changes support envelope
+  strength and source burden;
+- source/ledger closure: guarded toggle or dial that reduces source debt but
+  may constrain carry or release;
+- endpoint sync and catch aperture: dial/slider pair that changes endpoint
+  aperture and timing alignment;
+- release/fade: guarded switch that is only useful when catch/rematch is in
+  range;
+- decompression and reset purge: controls that trade residue, stability, and
+  reuse readiness;
+- hold, abort, secure: explicit authority controls with strong visual hierarchy.
+
+Disabled-looking controls are not enough. Constraints should be visible as
+guards, clipped ranges, warning lamps, or control resistance, with inspection
+available for details.
 
 ## Activity Surfaces
 

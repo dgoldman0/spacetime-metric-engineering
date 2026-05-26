@@ -34,10 +34,10 @@ Current features:
 - grading by module, claim status, question context, and activity type,
 - explanations with answer, reason, boundary, and references.
 - validation for source hygiene, paper-theory anchors, project-framing leakage, and minimal explanation depth.
-- Rail Service Terminal shell with work orders, telemetry, contextual authority,
-  interlocks, event trace, alarms, and debriefs. The next design target is a
-  richer live line simulation with visible support/source/endpoint/reset
-  subsystem feedback, not just panel instrumentation.
+- Rail Service Terminal shell with work orders, telemetry, constraints, event
+  trace, alarms, and debriefs. The current redesign target is a true operator
+  simulator with persistent controls and visible support/source/endpoint/reset
+  subsystem feedback, not a command-stack workflow or panel instrumentation.
 
 This is intentionally local-first. There is no backend, database, or user account system in this version.
 

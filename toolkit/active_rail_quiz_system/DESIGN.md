@@ -26,11 +26,11 @@ The system has two first-class products:
 | Product | What It Is | What It Is Not |
 | --- | --- | --- |
 | Qualification Board | A quiz/study application backed by the question bank, scoring, explanations, references, and timed qualification. | Not an operational simulator. |
-| Rail Service Terminal | A standalone active-rail line simulation terminal with work orders, subsystem state, interlocks, telemetry, alarms, and recovery states. | Not a quiz workspace, not a trainer card deck, and not a physics solver. |
+| Rail Service Terminal | A standalone active-rail line simulation terminal with work orders, live controls, subsystem state, constraints, telemetry, alarms, and recovery states. | Not a quiz workspace, not a trainer card deck, and not a physics solver. |
 
 The question bank is not the suite's universal content model. It is the right
 model for the Qualification Board. The Rail Service Terminal uses work orders,
-line state, subsystem simulation, interlocks, alarms, event traces, and
+line state, live controls, subsystem simulation, constraints, alarms, event traces, and
 debriefs. It should feel like someone dropped the learner into a working
 active-rail line station, not like a quiz page with a simulation panel.
 
@@ -54,8 +54,7 @@ The shared interface should provide:
 The shared frame should not force both products into the same layout. The
 Qualification Board can keep a learning-board shell with filters and reports.
 The Rail Service Terminal should keep an operator-station shell with a live line
-simulation, subsystem instrumentation, alarms, and contextual authority
-controls.
+simulation, subsystem instrumentation, alarms, and direct operator controls.
 
 ## Product Intent
 
@@ -128,13 +127,14 @@ reasoning inside the current active-rail architecture:
   conservation or stability cautions, and abort states.
 
 The operator interface should expose a working terminal: live line simulation,
-line id, work order, current state, authority, interlocks, subsystem
-instrumentation, alarms, event stream, and debrief. It should not ask the
-learner to type raw coefficients or enter a static parameter set for grading.
-Hidden state variables are allowed inside the terminal model, but the learner
-interacts through operational controls: accept work order, precheck, arm, hold,
-precharge, synchronize, carry, catch, fade, decompress, reset, abort, and
-recover.
+line id, work order, current state, operating authority, active constraints,
+subsystem instrumentation, alarms, event stream, and debrief. It should not ask
+the learner to type raw coefficients, enter a static parameter set for grading,
+or click through a list of procedural commands. Hidden state variables are
+allowed inside the terminal model, but the learner interacts through direct
+operational controls: support drive, source/ledger closure, endpoint sync,
+catch aperture, release/fade, decompression, reset purge, hold, abort, and
+secure.
 
 This surface should feel like a real training console in a future engineering
 program. Its truth boundary remains explicit: it simulates the architecture's
@@ -144,11 +144,12 @@ physics.
 The terminal uses its own domain data:
 
 - service work orders,
-- rail phases,
-- readiness actions,
+- rail operating states,
+- control surfaces,
 - line state variables,
 - subsystem visual state,
 - telemetry trends,
+- control limits and guards,
 - qualitative thresholds,
 - event templates,
 - failure modes,
@@ -162,16 +163,16 @@ questions.
 The terminal must be designed as an operator station, not as a command board or
 trainer panel. The primary visual object is the line itself: packet position,
 support envelope, source/ledger channel, endpoint/catch window, reset path,
-active service phase, and alarm overlays. Commands exist to manipulate and
-recover that line, but a wall of enabled and disabled buttons is not the main
-interface.
+operating posture, and alarm overlays. Controls manipulate that line. A wall of
+enabled and disabled buttons, a phase-chip strip, or a "next action" command
+stack is not the interface.
 
 The central viewport should always do operational work:
 
 - in standby, show the staged line, endpoints, work-order assignment, and next
-  intake action;
-- during readiness, show gates being brought online and which subsystem is
-  limiting authority;
+  intake state;
+- during readiness, show controls and subsystem state changing as support,
+  source, endpoint, and reset channels are brought into usable margins;
 - during active service, animate packet movement, support envelope condition,
   source load, endpoint/catch state, reset residue, phase progress, and drift
   warnings;
@@ -188,10 +189,11 @@ instrumentation, not over the line graphic. Use SVG-style schematic layers first
 for the rich readout; add canvas later only if field/noise/particle effects
 need it.
 
-The command model should be contextual. The terminal should surface the next
-operator action, a small set of relevant alternatives, and an inspection drawer
-for locked or unavailable actions. Disabled controls should still be discoverable
-with interlock reasons, but they should not dominate the running surface.
+The control model should be persistent and operational. The terminal should show
+the controls that exist on the line and let authority, constraints, and state
+change how those controls respond. Interlock reasons should be inspectable from
+the constrained subsystem or guarded control, but the main surface should not be
+a sequence of enabled/disabled command buttons.
 
 ## Non-Goals
 
@@ -202,8 +204,11 @@ with interlock reasons, but they should not dominate the running surface.
 - Do not make the Rail Service Terminal feel like a static parameter form or graded
   quiz. It should be an evolving operator simulation.
 - Do not make the Rail Service Terminal's main interaction a large button grid. The
-  line viewport, telemetry, alarms, and contextual controls should carry the
+  line viewport, telemetry, alarms, and direct controls should carry the
   experience.
+- Do not turn active service into a "next authorized action" workflow. The
+  terminal should run from live controls and system response, not a command
+  stack.
 - Do not clutter the Service Terminal viewport with duplicate telemetry cards,
   stacked text boxes, or percentage blocks. The viewport should feel like a
   polished graphic readout of the line geometry and service evolution.
@@ -768,8 +773,8 @@ live line, packet, support envelope, source/ledger channel, endpoint/catch
 window, reset path, instrumentation, authority, alarms, and event trace.
 
 The Rail Service Terminal stays terminal-first rather than card-first. Its UI
-uses work orders, subsystem state, command authority, telemetry, interlocks,
-alarms, traces, and debriefs as the primary vocabulary.
+uses work orders, subsystem state, operating authority, live controls, telemetry,
+constraints, alarms, traces, and debriefs as the primary vocabulary.
 
 Design direction:
 
@@ -777,7 +782,7 @@ Design direction:
   cards, visible claim-status badges, references, and responsive filters.
 - Rail Service Terminal: dark or high-contrast operations styling, status
   lamps, beautiful live schematic layers, telemetry trends outside the line
-  graphic, alarm pins, phase posture, terminal logs, and command authority
+  graphic, alarm pins, operating posture, terminal logs, and control authority
   states.
 - Both: color used for meaning rather than decoration.
 
@@ -800,6 +805,7 @@ Avoid:
 - reducing the service viewport to a themed progress bar,
 - replacing rich service graphics with blocks of text or duplicated numerical
   readouts inside the viewport,
+- making the service terminal a phase-stepper or command-stack exercise,
 - writing work orders as puzzle prompts,
 - using "items ready" or score-report language inside the Service Terminal.
 
@@ -839,16 +845,17 @@ Rail Service Terminal surfaces:
 - operations status bar,
 - live line simulation,
 - subsystem instrumentation,
-- authority controls,
+- persistent operator controls,
 - work-order drawer,
-- interlock and subsystem inspection,
+- constraint and subsystem inspection,
 - alarm and event trace,
 - secure/abort debrief.
 
 Session narrowing should use faceted multi-select controls for categories that naturally overlap. Users should be able to select one or more tracks, modules, difficulty levels, claim statuses, question contexts, and activity types where those controls are present. An empty facet selection should mean "all" for that facet. Count and optional-content policy can remain single-choice controls because they represent session behavior rather than content categories, but count should offer small, medium, and large review sizes plus all.
 
 These narrowing controls belong to the Qualification Board. The Rail Service
-Terminal should use work orders, commands, interlocks, and telemetry instead.
+Terminal should use work orders, live controls, constraints, and telemetry
+instead.
 
 The system should support both casual and serious use:
 
