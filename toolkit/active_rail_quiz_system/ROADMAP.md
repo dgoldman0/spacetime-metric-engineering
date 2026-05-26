@@ -667,9 +667,10 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
   table, line schematic, telemetry, command stack, interlock reasons, procedure
   gate board, event feed, debrief panel, and separate service-trainer data and
   simulator modules.
-- The current Rail Service Terminal checkpoint is structurally separate from the
-  quiz app, but the interaction is still too command-board-heavy. The next pass
-  should implement the Phase 5 shared suite shell and operator-station UX.
+- The first Phase 5 pass adds a shared suite shell, a live line viewport in the
+  terminal center, packet/support/endpoint visual state, contextual operator
+  authority controls, and a compact interlock drawer instead of a full command
+  wall.
 
 What is still missing:
 
@@ -690,12 +691,11 @@ folded back into the quiz app.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone is Phase 5:
+The next milestone is Phase 5 hardening:
 
-- add the shared suite shell,
-- replace the empty center region with a live line viewport,
-- replace the command wall with contextual authority controls,
 - tune each manifest through manual operator runs,
+- make the line viewport richer with subsystem-specific overlays and clearer
+  hold/abort/recovery states,
 - make failure/recovery paths more legible,
 - add replay or event-trace inspection,
 - expand terminal-specific data without using quiz questions as the simulator

@@ -634,11 +634,15 @@ function makeEvent(clock, level, subsystem, message) {
 }
 
 function addEvent(events, event) {
-  return [event, ...events].slice(0, 60);
+  const keyedEvent = {
+    ...event,
+    id: `event-${event.clock}-${events.length}-${event.level}-${event.subsystem}`
+  };
+  return [keyedEvent, ...events].slice(0, 60);
 }
 
 function addEvents(events, nextEvents) {
-  return [...nextEvents].reverse().concat(events).slice(0, 60);
+  return nextEvents.reduce((current, event) => addEvent(current, event), events);
 }
 
 function clampMetrics(metrics) {

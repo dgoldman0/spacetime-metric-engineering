@@ -222,26 +222,24 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
 
   if (serviceMode) {
     return (
-      <RailServiceTerminal
-        workspaces={workspaceDefs}
+      <SuiteShell
+        activeWorkspace={activeWorkspace}
+        workspace={workspace}
+        workspaceCounts={workspaceCounts}
         onWorkspaceChange={changeWorkspace}
-      />
+      >
+        <RailServiceTerminal />
+      </SuiteShell>
     );
   }
 
   return (
-    <div className="app-shell">
-      <header className="app-header">
-        <div>
-          <p className="eyebrow">Active-Rail Service Engineering</p>
-          <h1>Training Board</h1>
-        </div>
-        <div className="header-status">
-          <span>{questionBank.length} local questions</span>
-          <span>{workspaceCounts[workspace] || 0} in lane</span>
-        </div>
-      </header>
-
+    <SuiteShell
+      activeWorkspace={activeWorkspace}
+      workspace={workspace}
+      workspaceCounts={workspaceCounts}
+      onWorkspaceChange={changeWorkspace}
+    >
       <main className="training-layout">
         <nav className="workspace-rail" aria-label="Activity workspaces">
           <div className="rail-heading">
@@ -362,6 +360,45 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
           />
         </aside>
       </main>
+    </SuiteShell>
+  );
+}
+
+function SuiteShell({ activeWorkspace, workspace, workspaceCounts, onWorkspaceChange, children }) {
+  const serviceMode = Boolean(activeWorkspace.serviceMode);
+  return (
+    <div className={`suite-shell ${serviceMode ? "suite-terminal" : "suite-board"}`}>
+      <header className="suite-header">
+        <div className="suite-brand">
+          <span>ARS</span>
+          <div>
+            <p>Active-Rail Training Suite</p>
+            <strong>{serviceMode ? "Rail Service Terminal" : "Qualification Board"}</strong>
+          </div>
+        </div>
+        <nav className="suite-switcher" aria-label="Training modes">
+          {workspaceDefs.map((item) => (
+            <button
+              type="button"
+              key={item.id}
+              className={workspace === item.id ? "active" : ""}
+              data-product={item.serviceMode ? "terminal" : "board"}
+              onClick={() => onWorkspaceChange(item.id)}
+            >
+              <span>{item.serviceMode ? "Simulator" : "Board"}</span>
+              <strong>{item.serviceMode ? "Service Terminal" : item.title}</strong>
+            </button>
+          ))}
+        </nav>
+        <div className="suite-status">
+          <span>{questionBank.length} questions</span>
+          <span>{activeWorkspace.serviceMode ? "architecture logic" : `${workspaceCounts[workspace] || 0} in lane`}</span>
+          <span>not physics solver</span>
+        </div>
+      </header>
+      <div className={serviceMode ? "suite-terminal-body" : "app-shell"}>
+        {children}
+      </div>
     </div>
   );
 }

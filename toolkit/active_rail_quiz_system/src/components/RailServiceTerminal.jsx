@@ -37,7 +37,7 @@ const packetLabels = {
   recovery: "recovery"
 };
 
-export function RailServiceTerminal({ workspaces = [], onWorkspaceChange }) {
+export function RailServiceTerminal() {
   const [profileId, setProfileId] = useState("standard");
   const [line, setLine] = useState(() => createInitialLine("standard"));
   const condition = getLineCondition(line);
@@ -46,6 +46,7 @@ export function RailServiceTerminal({ workspaces = [], onWorkspaceChange }) {
   const debrief = getDebrief(line);
   const activeProfile = serviceProfiles.find((profile) => profile.id === profileId) || serviceProfiles[1];
   const alarmCount = line.events.filter((event) => event.level === "alarm" || event.level === "abort").length;
+  const commandModel = buildCommandModel(commands, line);
 
   useEffect(() => {
     const active = ["supporting", "carrying", "catch_window", "fading", "decompressing", "resetting"].includes(line.phase);
@@ -71,26 +72,6 @@ export function RailServiceTerminal({ workspaces = [], onWorkspaceChange }) {
 
   return (
     <div className="service-terminal-shell">
-      <header className="terminal-topbar">
-        <div className="terminal-brand">
-          <span>ARS</span>
-          <strong>Rail Service Terminal</strong>
-          <small>SIM TRAINER / ARCHITECTURE LOGIC / NOT PHYSICS SOLVER</small>
-        </div>
-        <nav className="terminal-nav" aria-label="Training surfaces">
-          {workspaces.map((workspace) => (
-            <button
-              type="button"
-              key={workspace.id}
-              className={workspace.serviceMode ? "active" : ""}
-              onClick={() => onWorkspaceChange?.(workspace.id)}
-            >
-              {workspace.serviceMode ? "Service Terminal" : workspace.title}
-            </button>
-          ))}
-        </nav>
-      </header>
-
       <main className="terminal-grid">
         <section className={`terminal-status ${condition}`} aria-label="Line status">
           <StatusTile label="Line" value={line.lineId} />
@@ -130,24 +111,61 @@ export function RailServiceTerminal({ workspaces = [], onWorkspaceChange }) {
 
         <section className="terminal-panel line-console" aria-label="Line schematic">
           <PanelHead kicker="Line" title="Single Rail Service" aside={line.awaitingCommand ? "AWAITING AUTHORITY" : stateLabel(line).toUpperCase()} />
-          <div className="line-schematic">
-            <div className="line-bus" aria-hidden="true">
-              <span style={{ width: `${packetPosition(line)}%` }} />
+          <div
+            className={`live-line-view ${condition} ${line.phase}`}
+            style={{
+              "--packet-position": `${packetPosition(line)}%`,
+              "--support-alpha": String(0.3 + line.metrics.supportMargin / 160),
+              "--support-glow": `${12 + line.metrics.supportMargin * 0.25}px`,
+              "--drift-alpha": String(Math.min(0.7, line.metrics.timingDrift / 115)),
+              "--residue-alpha": String(Math.min(0.72, line.metrics.resetResidue / 120))
+            }}
+          >
+            <div className="station-node origin">
+              <span>Origin</span>
+              <strong>{line.gates.supportEstablished ? "Support online" : line.gates.lineArmed ? "Armed" : "Staged"}</strong>
+              <small>support {Math.round(line.metrics.supportMargin)}%</small>
             </div>
-            <div className="phase-strip">
-              {phaseDefs.map((phase) => (
-                <div className={`phase-cell ${phaseClass(line, phase.id)}`} key={phase.id}>
-                  <span>{phase.shortLabel}</span>
-                  <strong>{phase.label}</strong>
-                  <small>{phase.detail}</small>
-                  {phase.id === effectivePhase(line) && activePhaseProgress(line) > 0 && (
-                    <div className="phase-meter" aria-hidden="true">
-                      <i style={{ width: `${activePhaseProgress(line)}%` }} />
-                    </div>
-                  )}
+
+            <div className="rail-viewport">
+              <div className="support-envelope" aria-hidden="true" />
+              <div className="drift-band" aria-hidden="true" />
+              <div className="rail-core" aria-hidden="true">
+                <i />
+              </div>
+              <div className="packet-marker" aria-label={`Packet ${packetLabels[line.packetState] || line.packetState}`}>
+                <span>{packetLabel(line)}</span>
+              </div>
+              <div className="phase-readout">
+                <span>{activePhaseCode(line)}</span>
+                <strong>{getPhaseLabel(line)}</strong>
+                <small>{phaseInstruction(line)}</small>
+              </div>
+              {advisories.filter((item) => item.level !== "nominal").slice(0, 3).map((advisory, index) => (
+                <div
+                  className={`line-alarm ${advisory.level}`}
+                  style={{ left: `${24 + index * 24}%` }}
+                  key={advisory.id}
+                >
+                  {advisory.title}
                 </div>
               ))}
             </div>
+
+            <div className="station-node endpoint">
+              <span>Endpoint</span>
+              <strong>{line.gates.catchConfirmed ? "Rematched" : line.gates.endpointSynced ? "Synced" : "Waiting"}</strong>
+              <small>confidence {Math.round(line.metrics.endpointConfidence)}%</small>
+            </div>
+          </div>
+
+          <div className="phase-timeline" aria-label="Service phase timeline">
+            {phaseDefs.map((phase) => (
+              <div className={`phase-chip ${phaseClass(line, phase.id)}`} key={phase.id}>
+                <span>{phase.shortLabel}</span>
+                <strong>{phase.label}</strong>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -160,27 +178,54 @@ export function RailServiceTerminal({ workspaces = [], onWorkspaceChange }) {
           </div>
         </section>
 
-        <section className="terminal-panel command-stack" aria-label="Command stack">
-          <PanelHead kicker="Command" title="Operator Authority" />
-          {Object.entries(groupCommands(commands)).map(([group, items]) => (
-            <div className="command-group" key={group}>
-              <h3>{commandGroupLabels[group] || group}</h3>
-              <div className="terminal-command-grid">
-                {items.map((command) => (
-                  <button
-                    type="button"
-                    key={command.id}
-                    className={`${command.primary ? "primary" : ""} ${command.danger ? "danger" : ""}`}
-                    onClick={() => runCommand(command.id)}
-                    disabled={!command.enabled}
-                  >
-                    <strong>{command.label}</strong>
-                    <span>{command.enabled ? "available" : command.reason}</span>
-                  </button>
-                ))}
-              </div>
+        <section className="terminal-panel action-console" aria-label="Operator authority">
+          <PanelHead kicker="Authority" title="Current Control" />
+          <div className="primary-action-card">
+            <span>{commandModel.primary ? "Next authorized action" : "No primary authority"}</span>
+            <strong>{commandModel.primary?.label || "Hold for diagnostics"}</strong>
+            <p>{primaryActionDetail(line, commandModel.primary)}</p>
+            <button
+              type="button"
+              onClick={() => commandModel.primary && runCommand(commandModel.primary.id)}
+              disabled={!commandModel.primary}
+            >
+              {commandModel.primary?.label || "No Action"}
+            </button>
+          </div>
+
+          <div className="context-actions">
+            {commandModel.contextual.map((command) => (
+              <button
+                type="button"
+                key={command.id}
+                className={command.danger ? "danger" : ""}
+                onClick={() => runCommand(command.id)}
+              >
+                <strong>{command.label}</strong>
+                <span>{commandGroupLabels[command.group] || command.group}</span>
+              </button>
+            ))}
+          </div>
+
+          <details className="interlock-drawer">
+            <summary>
+              <span>Interlocks</span>
+              <strong>{commandModel.locked.length} locked</strong>
+            </summary>
+            <div>
+              {commandModel.locked.map((command) => (
+                <button
+                  type="button"
+                  key={command.id}
+                  onClick={() => runCommand(command.id)}
+                  disabled
+                >
+                  <strong>{command.label}</strong>
+                  <span>{command.reason}</span>
+                </button>
+              ))}
             </div>
-          ))}
+          </details>
         </section>
 
         <section className="terminal-panel procedure-console" aria-label="Procedure checklist">
@@ -279,12 +324,80 @@ function TelemetryMeter({ def, value }) {
   );
 }
 
-function groupCommands(commands) {
-  return commands.reduce((groups, command) => {
-    if (!groups[command.group]) groups[command.group] = [];
-    groups[command.group].push(command);
-    return groups;
-  }, {});
+function buildCommandModel(commands, line) {
+  const persistentIds = line.phase === "held"
+    ? ["RESUME", "ABORT", "RESET_TRAINER"]
+    : ["HOLD", "ABORT", "RESET_TRAINER"];
+  const primary = commands.find((command) => command.primary && command.enabled)
+    || commands.find((command) => command.enabled && command.id !== "RESET_TRAINER")
+    || null;
+  const contextual = commands
+    .filter((command) => command.enabled)
+    .filter((command) => command.id !== primary?.id)
+    .filter((command) => persistentIds.includes(command.id) || command.group === "readiness")
+    .slice(0, 5);
+  const locked = commands
+    .filter((command) => !command.enabled)
+    .filter((command) => command.id !== "RESET_TRAINER");
+  return { primary, contextual, locked };
+}
+
+function primaryActionDetail(line, command) {
+  if (!command) {
+    if (line.failure) return "Recovery authority is active. Inspect the debrief and reset when ready.";
+    return "The line has no authorized command in this state.";
+  }
+  const details = {
+    ACCEPT_MANIFEST: "Open the run order and move the line into readiness.",
+    RUN_PRECHECK: "Check support, stability, and reset gates before arming.",
+    PRECHARGE_SUPPORT: "Raise support margin before active service draws on it.",
+    CLOSE_LEDGER: "Reduce source debt before the demanded-source burden rises.",
+    SYNC_ENDPOINT: "Improve catch confidence and reduce timing drift.",
+    STABILITY_SWEEP: "Strengthen stability posture before continuing.",
+    FLUSH_RESET_PATH: "Clear residue so reset and reuse gates can close.",
+    ARM_LINE: "Issue line authority once readiness gates are set.",
+    START_SUPPORT: "Bring the corridor support envelope online.",
+    BEGIN_CARRY: "Move the accepted packet through the active service interval.",
+    CATCH_REMATCH: "Confirm endpoint catch before release fade.",
+    AUTHORIZE_FADE: "Withdraw the carrier after catch/rematch is secured.",
+    DECOMPRESS: "Unload support and source channels in controlled order.",
+    RESET_LINE: "Clear the rail after decompression.",
+    SECURE: "Close the run and open the debrief.",
+    HOLD: "Freeze active evolution while you recover margins.",
+    RESUME: "Release the held line back into active evolution.",
+    ABORT: "Stop the run and enter recovery authority.",
+    RESET_TRAINER: "Return the terminal to a fresh manifest state."
+  };
+  return details[command.id] || "Authorized by current line state.";
+}
+
+function getPhaseLabel(line) {
+  const phase = phaseDefs.find((item) => item.id === effectivePhase(line));
+  return phase?.label || stateLabel(line);
+}
+
+function activePhaseCode(line) {
+  const phase = phaseDefs.find((item) => item.id === effectivePhase(line));
+  return phase?.shortLabel || "SYS";
+}
+
+function phaseInstruction(line) {
+  if (line.failure) return "Recovery authority active.";
+  if (line.phase === "held") return "Line motion held for intervention.";
+  if (line.awaitingCommand) return "Phase complete; issue next authority.";
+  if (line.phase === "standby") return "Manifest staged for operator acceptance.";
+  if (line.phase === "precheck") return "Bring readiness gates online.";
+  if (line.phase === "armed") return "Support authority available.";
+  if (line.phase === "secured") return "Run closed; debrief available.";
+  return "Active service evolution in progress.";
+}
+
+function packetLabel(line) {
+  if (line.failure) return "REC";
+  if (line.phase === "secured") return "SEC";
+  if (line.phase === "standby") return "PKT";
+  if (line.phase === "held") return "HLD";
+  return "PKT";
 }
 
 function stateLabel(line) {
