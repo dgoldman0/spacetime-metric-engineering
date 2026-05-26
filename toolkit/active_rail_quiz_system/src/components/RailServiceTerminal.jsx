@@ -4,6 +4,7 @@ import { area as d3Area, curveBasis, curveCatmullRom, line as d3Line } from "d3-
 import { motion } from "framer-motion";
 import { workOrders } from "../serviceTrainer/serviceProfiles.js";
 import {
+  applyAutopilotStep,
   applyLineAction,
   controlDefs,
   createInitialLine,
@@ -38,6 +39,7 @@ const packetLabels = {
 export function RailServiceTerminal() {
   const [profileId, setProfileId] = useState("standard");
   const [line, setLine] = useState(() => createInitialLine("standard"));
+  const [autopilot, setAutopilot] = useState(false);
   const visualState = useMemo(() => getLineVisualState(line), [line]);
   const condition = visualState.condition || getLineCondition(line);
   const constraints = useMemo(() => getLineConstraints(line), [line]);
@@ -49,15 +51,20 @@ export function RailServiceTerminal() {
   const primaryAdvisory = advisories[0];
 
   useEffect(() => {
-    if (line.runState === "standby" || line.runState === "recovery" || line.runState === "secured") return undefined;
+    if (!autopilot && (line.runState === "standby" || line.runState === "recovery" || line.runState === "secured")) return undefined;
     const interval = window.setInterval(() => {
-      setLine((current) => tickLine(current));
+      setLine((current) => {
+        const piloted = autopilot ? applyAutopilotStep(current) : current;
+        if (piloted.runState === "standby" || piloted.runState === "recovery" || piloted.runState === "secured") return piloted;
+        return tickLine(piloted);
+      });
     }, line.runState === "service" ? 620 : 820);
     return () => window.clearInterval(interval);
-  }, [line.runState]);
+  }, [line.runState, autopilot]);
 
   function loadProfile(nextProfileId) {
     if (!["standby", "recovery", "secured"].includes(line.runState)) return;
+    setAutopilot(false);
     setProfileId(nextProfileId);
     setLine(createInitialLine(nextProfileId));
   }
@@ -68,6 +75,10 @@ export function RailServiceTerminal() {
 
   function runAction(actionId) {
     setLine((current) => applyLineAction(current, actionId));
+  }
+
+  function toggleAutopilot() {
+    setAutopilot((enabled) => !enabled);
   }
 
   return (
@@ -126,23 +137,12 @@ export function RailServiceTerminal() {
             className={`live-line-view ${condition} ${line.runState}`}
             style={visualState.styleVars}
           >
-            <div className="station-node origin">
-              <span>Origin</span>
-              <strong>{originLabel(line)}</strong>
-              <small>support field</small>
-            </div>
-
             <div className="rail-viewport">
               <FieldParticleLayer visualState={visualState} line={line} />
               <RailGraphic line={line} visualState={visualState} phase={phase} />
             </div>
-
-            <div className="station-node endpoint">
-              <span>Endpoint</span>
-              <strong>{endpointLabel(line)}</strong>
-              <small>catch aperture</small>
-            </div>
           </div>
+          <VisualKey />
         </motion.section>
 
         <aside className="terminal-ops-stack" aria-label="Telemetry">
@@ -164,6 +164,13 @@ export function RailServiceTerminal() {
             <div>
               <strong>{primaryAdvisory?.title || "Line nominal"}</strong>
               <span>{primaryAdvisory?.detail || "No active subsystem requires intervention."}</span>
+              <button
+                type="button"
+                className={`autopilot-toggle ${autopilot ? "active" : ""}`}
+                onClick={toggleAutopilot}
+              >
+                {autopilot ? "Autopilot running" : "Run supervised autopilot"}
+              </button>
             </div>
           </section>
         </aside>
@@ -344,22 +351,37 @@ function FieldParticleLayer({ visualState, line }) {
   return <div className="pixi-field-layer" ref={hostRef} aria-hidden="true" />;
 }
 
+function VisualKey() {
+  return (
+    <div className="visual-key" aria-label="Line graphic key">
+      <span><i className="key-corridor" /> service corridor</span>
+      <span><i className="key-support" /> support envelope</span>
+      <span><i className="key-source" /> source ledger</span>
+      <span><i className="key-optics" /> endpoint optics</span>
+      <span><i className="key-residue" /> reset residue</span>
+    </div>
+  );
+}
+
 function RailGraphic({ line, visualState, phase }) {
-  const xScale = scaleLinear().domain([0, 100]).range([118, 1088]);
+  const xScale = scaleLinear().domain([0, 100]).range([104, 1096]);
   const yCenter = 238;
   const packetX = xScale(visualState.packetPosition);
   const sourceWidth = Math.max(28, 650 * visualState.sourceLoad);
   const sourceResiduals = buildSourceResiduals(visualState);
-  const apertureRx = 28 + visualState.endpointAperture * 102;
+  const apertureRx = 22 + visualState.endpointAperture * 86;
+  const apertureHeight = 38 + visualState.endpointAperture * 146;
   const railTrailEnd = Math.max(132, Math.min(1088, packetX));
   const carrierGlow = Math.max(0.12, line.controls.carrierDrive / 100);
   const supportOpacity = 0.28 + visualState.supportStrength * 0.62;
-  const supportStroke = 5 + visualState.supportStrength * 8 + visualState.backreactionPosture * 4;
-  const supportEnvelope = buildSupportEnvelope(visualState);
-  const supportRibs = buildSupportRibs(visualState);
-  const worldline = buildWorldline(visualState, packetX, yCenter);
-  const optics = buildOpticsBundle(visualState, packetX, yCenter, apertureRx);
-  const shearLines = buildShearLines(visualState);
+  const supportStroke = 4 + visualState.supportStrength * 7 + visualState.backreactionPosture * 4;
+  const clockPhase = line.clock / 11;
+  const corridorPath = buildServiceCorridor(visualState, clockPhase);
+  const supportEnvelope = buildSupportEnvelope(visualState, clockPhase);
+  const supportRibs = buildSupportRibs(visualState, clockPhase);
+  const worldline = buildWorldline(visualState, packetX, yCenter, clockPhase);
+  const optics = buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHeight, clockPhase);
+  const shearLines = buildShearLines(visualState, clockPhase);
   const causalFan = buildCausalFan(visualState, apertureRx);
   const chronologyLoop = buildChronologyLoop(visualState);
   const residuePath = buildResiduePath(visualState);
@@ -382,10 +404,16 @@ function RailGraphic({ line, visualState, phase }) {
           <path d="M40 0H0V30" fill="none" stroke="rgba(218,228,199,0.055)" strokeWidth="1" />
         </pattern>
         <linearGradient id="support-gradient" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stopColor="#e6c963" stopOpacity="0.22" />
-          <stop offset="0.22" stopColor="#9ed18f" stopOpacity="0.46" />
-          <stop offset="0.74" stopColor="#8bc488" stopOpacity="0.3" />
-          <stop offset="1" stopColor="#d8b24c" stopOpacity="0.22" />
+          <stop offset="0" stopColor="#e6c963" stopOpacity="0.12" />
+          <stop offset="0.18" stopColor="#9ed18f" stopOpacity="0.24" />
+          <stop offset="0.74" stopColor="#7fbf93" stopOpacity="0.16" />
+          <stop offset="1" stopColor="#d8b24c" stopOpacity="0.12" />
+        </linearGradient>
+        <linearGradient id="corridor-gradient" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#c9db9a" stopOpacity="0.1" />
+          <stop offset="0.35" stopColor="#6fb5a6" stopOpacity="0.16" />
+          <stop offset="0.75" stopColor="#86c090" stopOpacity="0.12" />
+          <stop offset="1" stopColor="#dbc45f" stopOpacity="0.1" />
         </linearGradient>
         <linearGradient id="source-gradient" x1="0" x2="1" y1="0" y2="0">
           <stop offset="0" stopColor="#e3d27c" stopOpacity="0.94" />
@@ -413,6 +441,21 @@ function RailGraphic({ line, visualState, phase }) {
 
       <rect className="rail-svg-backdrop" x="0" y="0" width="1200" height="470" />
       <rect className="rail-svg-grid" x="0" y="0" width="1200" height="470" fill="url(#terminal-grid-pattern)" />
+
+      <g className="station-marker-layer">
+        <g className="station-marker origin-marker">
+          <line x1="88" y1="94" x2="88" y2="382" />
+          <circle cx="104" cy={yCenter} r="11" />
+          <text x="34" y="212">ORIGIN</text>
+          <text x="34" y="236">{originLabel(line).toUpperCase()}</text>
+        </g>
+        <g className="station-marker endpoint-marker">
+          <line x1="1112" y1="94" x2="1112" y2="382" />
+          <circle cx="1096" cy={yCenter} r="11" />
+          <text x="1130" y="212">ENDPOINT</text>
+          <text x="1130" y="236">{endpointLabel(line).toUpperCase()}</text>
+        </g>
+      </g>
 
       <g className="service-zones" aria-hidden="true">
         {constraintBands.map((band) => (
@@ -464,6 +507,12 @@ function RailGraphic({ line, visualState, phase }) {
 
       <g className="support-layer" opacity={supportOpacity} filter="url(#field-glow)">
         <motion.path
+          className="service-corridor-svg"
+          d={corridorPath}
+          animate={{ opacity: 0.42 + visualState.supportStrength * 0.26 }}
+          transition={{ duration: 0.45 }}
+        />
+        <motion.path
           className="support-envelope-svg"
           d={supportEnvelope}
           strokeWidth={supportStroke}
@@ -479,6 +528,8 @@ function RailGraphic({ line, visualState, phase }) {
             transition={{ duration: 0.45 }}
           />
         ))}
+        <text className="corridor-label" x="176" y="158">SERVICE CORRIDOR</text>
+        <text className="support-label" x="176" y="340">SUPPORT ENVELOPE</text>
       </g>
 
       <g className="optics-layer" aria-label="Endpoint optics">
@@ -517,13 +568,16 @@ function RailGraphic({ line, visualState, phase }) {
         <motion.path
           className="packet-worldline"
           d={worldline}
-          animate={{ opacity: line.runState === "standby" ? 0.12 : 0.64 }}
+          animate={{ opacity: line.runState === "standby" ? 0.08 : 0.72 }}
           transition={{ duration: 0.35 }}
         />
+        {visualState.packetPosition > 8 && (
+          <text className="worldline-label" x={Math.max(172, packetX - 222)} y={yCenter - 38}>PACKET WORLDLINE</text>
+        )}
       </g>
 
       <g className="endpoint-layer">
-        <text x="920" y="154">CATCH / OPTICS APERTURE</text>
+        <text x="920" y="154">ENDPOINT OPTICS</text>
         <motion.ellipse
           className="endpoint-field"
           cx="1032"
@@ -539,7 +593,18 @@ function RailGraphic({ line, visualState, phase }) {
           ry="66"
           animate={{ rx: Math.max(14, apertureRx * (0.32 + visualState.opticsFocus * 0.2)) }}
         />
-        <line className="endpoint-focus" x1="996" y1={yCenter} x2="1080" y2={yCenter} />
+        <motion.line
+          className="endpoint-focus"
+          x1="1070"
+          x2="1070"
+          animate={{
+            y1: yCenter - apertureHeight / 2,
+            y2: yCenter + apertureHeight / 2,
+            opacity: 0.48 + visualState.endpointAperture * 0.42
+          }}
+          transition={{ type: "spring", stiffness: 90, damping: 18 }}
+        />
+        <text className="aperture-label" x="1084" y={yCenter - apertureHeight / 2 - 8}>CATCH APERTURE</text>
       </g>
 
       <g className="phase-band-label">
@@ -580,111 +645,142 @@ function RailGraphic({ line, visualState, phase }) {
   );
 }
 
-function buildSupportEnvelope(visualState) {
-  const x = scaleLinear().domain([0, 1]).range([146, 1058]);
-  const points = Array.from({ length: 18 }, (_, index) => {
-    const t = index / 17;
-    const edgeTaper = Math.sin(Math.PI * t);
-    const ripple = Math.sin(t * Math.PI * 4 + visualState.timingShear * 2) * visualState.supportRipple * 18;
-    const backreactionSag = Math.cos(t * Math.PI * 2) * visualState.backreactionPosture * 12;
-    const halfHeight = 62 + visualState.supportStrength * 72 - visualState.backreactionPosture * 16 + edgeTaper * 22;
-    return {
-      x: x(t),
-      y: 238 + ripple + backreactionSag,
-      halfHeight
-    };
+function buildServiceCorridor(visualState, clockPhase) {
+  return buildClosedTube({
+    left: 154,
+    right: 1046,
+    centerY: 238,
+    halfBase: 38 + visualState.supportStrength * 16,
+    flare: 12 + visualState.supportStrength * 8,
+    ripple: visualState.timingShear * 5 + visualState.backreactionPosture * 8,
+    phase: clockPhase * 0.32
   });
-  return d3Area()
-    .x((point) => point.x)
-    .y0((point) => point.y - point.halfHeight)
-    .y1((point) => point.y + point.halfHeight)
-    .curve(curveCatmullRom.alpha(0.62))(points);
 }
 
-function buildSupportRibs(visualState) {
+function buildSupportEnvelope(visualState, clockPhase) {
+  return buildClosedTube({
+    left: 126,
+    right: 1076,
+    centerY: 238,
+    halfBase: 72 + visualState.supportStrength * 42 - visualState.backreactionPosture * 10,
+    flare: 24 + visualState.supportStrength * 18,
+    ripple: visualState.supportRipple * 22 + visualState.backreactionPosture * 15,
+    phase: clockPhase * 0.48
+  });
+}
+
+function buildClosedTube({ left, right, centerY, halfBase, flare, ripple, phase }) {
+  const generator = d3Line()
+    .x((point) => point.x)
+    .y((point) => point.y)
+    .curve(curveCatmullRom.alpha(0.7));
+  const top = Array.from({ length: 18 }, (_, index) => {
+    const t = index / 17;
+    const taper = 0.62 + Math.sin(Math.PI * t) * 0.38;
+    const curve = Math.sin(t * Math.PI * 2 + phase) * ripple;
+    return {
+      x: left + (right - left) * t,
+      y: centerY - (halfBase + flare * taper) + curve
+    };
+  });
+  const bottom = Array.from({ length: 18 }, (_, index) => {
+    const t = 1 - index / 17;
+    const taper = 0.62 + Math.sin(Math.PI * t) * 0.38;
+    const curve = Math.cos(t * Math.PI * 2 + phase * 0.8) * ripple;
+    return {
+      x: left + (right - left) * t,
+      y: centerY + (halfBase + flare * taper) + curve
+    };
+  });
+  return `${generator([...top, ...bottom])}Z`;
+}
+
+function buildSupportRibs(visualState, clockPhase) {
   const generator = d3Line()
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveBasis);
-  return Array.from({ length: 9 }, (_, index) => {
-    const offset = -66 + index * 16.5;
+  return Array.from({ length: 7 }, (_, index) => {
+    const offset = -56 + index * 18.6;
     const points = Array.from({ length: 12 }, (_unused, pointIndex) => {
       const t = pointIndex / 11;
       return {
-        x: 166 + t * 868,
+        x: 168 + t * 864,
         y: 238
           + offset
-          + Math.sin(t * Math.PI * 2 + index * 0.7) * visualState.supportRipple * 18
+          + Math.sin(t * Math.PI * 2 + index * 0.5 + clockPhase * 0.22) * visualState.supportRipple * 8
           + Math.cos(t * Math.PI * 3) * visualState.backreactionPosture * 13
       };
     });
     return {
       id: `rib-${index}`,
       d: generator(points),
-      opacity: 0.12 + visualState.supportStrength * 0.22 + visualState.backreactionPosture * 0.16
+      opacity: 0.08 + visualState.supportStrength * 0.18 + visualState.backreactionPosture * 0.14
     };
   });
 }
 
-function buildWorldline(visualState, packetX, yCenter) {
+function buildWorldline(visualState, packetX, yCenter, clockPhase) {
   const generator = d3Line()
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveCatmullRom.alpha(0.6));
-  const startX = Math.max(128, packetX - 310);
+  const startX = Math.max(128, packetX - 360);
   const points = Array.from({ length: 12 }, (_unused, index) => {
     const t = index / 11;
     return {
       x: startX + (packetX - startX) * t,
       y: yCenter
-        + Math.sin(t * Math.PI * 2.4) * visualState.timingShear * 20
+        + Math.sin(t * Math.PI * 2.4 + clockPhase * 0.35) * visualState.timingShear * 26
         + (1 - t) * visualState.backreactionPosture * 14
     };
   });
   return generator(points);
 }
 
-function buildOpticsBundle(visualState, packetX, yCenter, apertureRx) {
+function buildOpticsBundle(visualState, packetX, yCenter, apertureRx, apertureHeight, clockPhase) {
   const generator = d3Line()
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveBasis);
-  const spread = 8 + (1 - visualState.opticsFocus) * 68 + visualState.timingShear * 26;
-  const endpointX = 1032;
-  return Array.from({ length: 7 }, (_, index) => {
-    const lane = index - 3;
+  const spread = 12 + (1 - visualState.opticsFocus) * 78 + visualState.timingShear * 30;
+  const endpointX = 1070;
+  return Array.from({ length: 9 }, (_, index) => {
+    const lane = index - 4;
     const startX = Math.max(150, packetX + 28);
-    const startY = yCenter + lane * (8 + visualState.timingShear * 11);
-    const endY = yCenter + lane * spread * 0.32 + visualState.timingShear * lane * 5;
+    const startY = yCenter + lane * (7 + visualState.timingShear * 8);
+    const targetWindow = apertureHeight * 0.44;
+    const miss = (1 - visualState.endpointAperture) * lane * 16 + visualState.timingShear * lane * 7;
+    const endY = yCenter + lane * Math.min(18, targetWindow / 5) + miss;
     const midY = yCenter
       + lane * spread
-      + Math.sin(index + visualState.causalRisk * 2) * visualState.backreactionPosture * 20;
+      + Math.sin(index + visualState.causalRisk * 2 + clockPhase * 0.25) * visualState.backreactionPosture * 22;
     const points = [
       { x: startX, y: startY },
-      { x: 610 + visualState.timingShear * 46, y: midY },
-      { x: endpointX - apertureRx * 0.35, y: endY }
+      { x: 760 + visualState.timingShear * 64, y: midY },
+      { x: endpointX - apertureRx * 0.18, y: endY }
     ];
     return {
       id: `optics-${index}`,
       d: generator(points),
       focused: visualState.opticsFocus > 0.55,
-      opacity: 0.16 + visualState.endpointAperture * 0.2 + (index === 3 ? 0.18 : 0)
+      opacity: 0.12 + visualState.opticsFocus * 0.24 + (index === 4 ? 0.22 : 0)
     };
   });
 }
 
-function buildShearLines(visualState) {
+function buildShearLines(visualState, clockPhase) {
   const generator = d3Line()
     .x((point) => point.x)
     .y((point) => point.y)
     .curve(curveBasis);
-  return Array.from({ length: 9 }, (_, index) => {
-    const x = 250 + index * 91 + visualState.timingShear * 36;
-    const lean = visualState.timingShear * 74 + visualState.causalRisk * 24;
+  return Array.from({ length: 8 }, (_, index) => {
+    const x = 250 + index * 96 + visualState.timingShear * 42;
+    const lean = visualState.timingShear * 86 + visualState.causalRisk * 28;
     const points = [
-      { x: x + lean * 0.3, y: 68 },
+      { x: x + lean * 0.28 + Math.sin(clockPhase + index) * visualState.timingShear * 8, y: 74 },
       { x, y: 238 },
-      { x: x - lean, y: 406 }
+      { x: x - lean, y: 402 }
     ];
     return {
       id: `shear-${index}`,

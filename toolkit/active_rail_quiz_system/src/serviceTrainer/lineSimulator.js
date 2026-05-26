@@ -277,6 +277,44 @@ export function applyLineAction(line, actionId) {
   return line;
 }
 
+export function applyAutopilotStep(line) {
+  if (terminalClosed(line)) return line;
+  if (line.runState === "standby") return applyLineAction(line, "accept");
+  if (line.runState === "recovery") return line;
+
+  const targets = getAutopilotTargets(line);
+  const controls = guardControls(line, Object.fromEntries(
+    Object.entries(line.controls).map(([controlId, current]) => [
+      controlId,
+      approach(current, targets[controlId] ?? current, 9)
+    ])
+  ));
+  let next = {
+    ...line,
+    controls
+  };
+  const constraints = getLineConstraints(next);
+  if (next.runState === "readying" && !constraints.some((item) => item.blocksArm)) {
+    return applyLineAction(next, "arm");
+  }
+  if (["armed", "service"].includes(next.runState)
+    && getLineCondition(next) === "red"
+    && next.packetPosition > 18
+    && next.packetPosition < 90) {
+    return applyLineAction(next, "hold");
+  }
+  if (next.packetPosition > 96 && !constraints.some((item) => item.blocksSecure)) {
+    return applyLineAction(next, "secure");
+  }
+  if (next.clock > 0 && next.clock % 14 === 0) {
+    next = {
+      ...next,
+      events: addEvent(next.events, makeEvent(next.clock, "operator", "autopilot", "Supervisor autopilot trimmed line controls."))
+    };
+  }
+  return next;
+}
+
 export function tickLine(line) {
   if (terminalClosed(line)) return line;
   const workOrder = getWorkOrder(line.profileId);
@@ -462,7 +500,8 @@ export function getLineVisualState(line) {
   const packetPosition = clamp(line.packetPosition);
   const sourceLoad = normalizeHigh(line.metrics.sourceDebt);
   const supportStrength = normalizeLow(line.metrics.supportMargin);
-  const endpointAperture = Math.max(normalizeLow(line.metrics.endpointConfidence), line.controls.catchAperture / 100);
+  const endpointAperture = line.controls.catchAperture / 100;
+  const endpointLock = normalizeLow(line.metrics.endpointConfidence);
   const timingShear = normalizeHigh(line.metrics.timingDrift);
   const resetResidue = normalizeHigh(line.metrics.resetResidue);
   const stabilityField = normalizeLow(line.metrics.stabilityPosture);
@@ -492,6 +531,7 @@ export function getLineVisualState(line) {
     timingShear,
     resetResidue,
     stabilityField,
+    endpointLock,
     opticsFocus,
     backreactionPosture,
     causalRisk,
@@ -516,6 +556,7 @@ export function getLineVisualState(line) {
       "--timing-shear": String(timingShear),
       "--reset-residue": String(resetResidue),
       "--stability-field": String(stabilityField),
+      "--endpoint-lock": String(endpointLock),
       "--optics-focus": String(opticsFocus),
       "--backreaction-posture": String(backreactionPosture),
       "--causal-risk": String(causalRisk),
@@ -640,6 +681,30 @@ export function formatClock(value) {
   const minutes = Math.floor(value / 60);
   const seconds = value % 60;
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+function getAutopilotTargets(line) {
+  const { metrics, packetPosition, runState } = line;
+  const readying = runState === "readying";
+  const service = runState === "armed" || runState === "service";
+  const catchApproach = packetPosition > 62;
+  const releaseApproach = packetPosition > 80;
+  const resetApproach = packetPosition > 90;
+  return {
+    supportDrive: metrics.supportMargin < 68 ? 68 : metrics.loadIndex > 68 ? 42 : 52,
+    ledgerClosure: metrics.sourceDebt > 46 ? 76 : service ? 58 : 46,
+    endpointSync: metrics.endpointConfidence < 68 || metrics.timingDrift > 34 ? 78 : 56,
+    catchAperture: catchApproach || metrics.endpointConfidence < 58 ? 82 : 48,
+    carrierDrive: readying ? 0 : resetApproach ? 12 : releaseApproach ? 24 : catchApproach ? 42 : service ? 62 : 0,
+    releaseFade: releaseApproach && metrics.endpointConfidence > 54 ? 66 : 0,
+    decompression: resetApproach ? 70 : releaseApproach ? 42 : 0,
+    resetPurge: resetApproach || metrics.resetResidue > 44 ? 78 : 28
+  };
+}
+
+function approach(current, target, step) {
+  if (Math.abs(target - current) <= step) return clamp(target);
+  return clamp(current + Math.sign(target - current) * step);
 }
 
 function evolveMetrics(line, controls, workOrder) {
