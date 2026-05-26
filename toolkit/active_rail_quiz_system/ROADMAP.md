@@ -597,6 +597,11 @@ model.
 - The line graphic shows packet, support envelope, source/ledger channel,
   endpoint/catch aperture, timing shear, reset residue, constraint posture, and
   localized subsystem warnings.
+- The line graphic uses the spacetime visual grammar from
+  `SERVICE_TRAINER_DESIGN.md`: packet worldline/wake, endpoint optics,
+  causal-access risk, backreaction/constraint posture, horizon-risk guard,
+  chronology guard, and reset residue all have explicit state drivers and truth
+  boundaries.
 - All graphic elements inside the line are state-derived. Static squiggles,
   decorative warning triangles, generic stickers, and duplicate telemetry cards
   are explicitly out of scope.
@@ -626,6 +631,10 @@ model.
    - Keep packet and endpoint markers inside the viewport.
    - Replace static curves and triangles with derived support, source, timing,
      endpoint, reset, and constraint layers.
+   - Add endpoint optics/ray-bundle behavior and packet worldline/wake before
+     adding any purely decorative effects.
+   - Add backreaction/constraint posture and causal-risk overlays as cautious
+     risk readouts, not as solved physics.
    - Remove embedded numeric cards and duplicate text blocks from the line
      graphic.
    - Make standby, support, carry, catch, fade, reset, hold, abort, recovery,

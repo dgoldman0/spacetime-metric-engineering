@@ -194,6 +194,14 @@ percentage readouts, static squiggles, or decorative warning triangles inside
 the live line. Small geometric labels and warning tags are acceptable only when
 they identify a real feature or degraded subsystem.
 
+The viewport should use a spacetime-engineering visual grammar, not a generic
+machine diagram. It should show qualitative geometry: service corridor, packet
+worldline/wake, support envelope, demanded-source channel, endpoint optics,
+timing shear, reset residue, and constraint/backreaction posture. Higher-order
+overlays such as causal-access risk, horizon-risk, and chronology guard are
+allowed only as labeled heuristic risk readouts. They must not claim to detect
+actual horizons, compute null geodesics, solve backreaction, or identify CTCs.
+
 ### Operator Station Interaction Model
 
 The operator station should make the line feel alive.
@@ -266,9 +274,14 @@ Required visual feedback patterns:
 - support margin changes alter envelope continuity, thickness, glow, or fracture;
 - source debt changes alter the source/ledger side channel;
 - endpoint confidence changes alter catch-window aperture or lock state;
-- timing drift appears as packet/endpoint phase offset or shear;
+- endpoint optics show ray-bundle convergence, defocus, or aperture miss;
+- timing drift appears as packet/endpoint phase offset, ray shear, or grid shear;
 - reset residue appears on the reset/decompression path;
 - stability warnings change the global line posture or lockout layer;
+- backreaction/constraint concerns tighten guard bands, distort the support
+  envelope, or saturate the source channel;
+- horizon-risk and chronology-risk overlays appear only in scenario states that
+  train those concerns, and they use cautious risk language;
 - warnings localize to subsystems and remain traceable in the event log.
 
 This is the difference between a simulation terminal and a themed quiz panel.

@@ -137,6 +137,15 @@ squiggles, decorative triangles, generic warning stickers, duplicate telemetry
 cards, and text-box clutter inside the viewport are not acceptable substitutes
 for visualization.
 
+The viewport should also carry the spacetime-engineering character of the
+architecture. Packet motion should read as a service worldline, endpoint
+readiness should include optics/ray-bundle behavior, timing drift should shear
+the visual geometry, and backreaction or constraint concerns should deform the
+global posture of the line. Horizon-risk and chronology-risk overlays are
+allowed as cautious training readouts only; they must be labeled as heuristic
+risk/guard layers rather than computed horizons, null geodesics, backreaction,
+or CTC detection.
+
 Work orders are operational assignments, not quiz prompts. A scenario library or
 fault-injection setup can exist as a secondary drawer, but the active terminal
 should not be driven by a left-hand list, a command stack, a phase-chip stepper,

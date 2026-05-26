@@ -171,6 +171,88 @@ Implementation preference:
   raster effects that SVG cannot handle cleanly.
 - Keep all visual layers state-derived from the simulator model.
 
+## Spacetime Visual Simulation Grammar
+
+The viewport should feel like a spacetime-engineering instrument, not a
+mechanical conveyor diagram. It should show the service as a qualitative
+geometry: an active corridor, a packet worldline, source-demand burden,
+endpoint optics, and causal/constraint posture.
+
+The visual grammar is heuristic and diagnostic. It represents the architecture
+logic and known concern classes; it does not numerically solve curvature,
+geodesics, semiclassical backreaction, horizons, or chronology formation.
+
+Required layer semantics:
+
+| Layer | What It Shows | State Drivers | Animation Shape | Boundary |
+| --- | --- | --- | --- | --- |
+| Metric/service corridor | The prescribed service route and active interval. | work order, support drive, support margin, stability posture | Corridor opens from a thin standby spine into a supported tube; compression, narrowing, or asymmetry shows degraded posture. | Schematic service geometry, not a solved metric. |
+| Packet worldline | Packet position, carry, hold, catch, release, recovery. | packet position, carrier drive, hold/recovery state, timing drift | Packet moves with a trailing worldline/wake; hold freezes the wake; recovery kinks or quarantines the trace. | Shows service chronology, not a geodesic integration. |
+| Support envelope | Standing support and active-service containment. | support drive, support margin, load index, stability posture | Envelope thickens, thins, breathes, fractures, or develops ripples under stress. | Represents support adequacy, not a material field solution. |
+| Demanded-source ledger | Source burden and closure state. | source debt, ledger closure, support drive, carrier drive, decompression | A side channel fills, saturates, drains, or leaves residual knots; overdraw darkens and slows the flow. | Shows demanded-source accounting, not physical source realization. |
+| Endpoint optics | Catch/rematch readiness and null-ray-like access. | endpoint confidence, catch aperture, timing drift, packet position | Ray bundles converge through the aperture when aligned; defocus, shear, or miss when endpoint timing degrades. | Ray bundles are optics heuristics, not computed null geodesics. |
+| Timing shear | Packet/endpoint phase mismatch. | timing drift, endpoint sync, carrier drive, service window | Gridlines and ray bundles shear relative to the packet wake; high drift produces visible phase offset near catch. | Shows timing-risk posture, not a coordinate-invariant causal proof. |
+| Backreaction/constraint posture | Stability, load coupling, and constraint stress. | stability posture, load index, source debt, support margin | Global envelope breathing, low-frequency distortion, or constraint bands tighten around the corridor. | Warning layer for review burden, not a backreaction calculation. |
+| Horizon/causal-access risk | Horizon-like access concern in risky service regimes. | work-order class, packet speed/regime flag, endpoint confidence, timing drift | A one-way-looking veil or compressed reachability fan appears near catch/release when causal-access assumptions are stressed. | Literature-informed risk indicator, not an event-horizon finder. |
+| Chronology/CTC guard | Chronology hazard or closed-curve concern in scenario mode. | scenario flag, timing drift, release/fade state, causal-risk level | A chronology guard band appears only when a scenario trains this hazard; loops or returning traces are shown as warnings, never as computed CTCs. | Guardrail for causal reasoning, not CTC detection. |
+| Reset residue | Decompression and reuse readiness. | reset residue, decompression, reset purge, release fade | Residue haze trails the corridor and clears with purge; contamination clings to support and endpoint regions. | Operational residue proxy, not a validated physical contaminant. |
+
+These layers should be animated from the same simulator state. If the state does
+not change, the geometry should settle rather than perform decorative motion.
+When a control moves, the relevant layer should respond quickly enough that the
+operator feels the line answering the control.
+
+### Optics And Causal Readouts
+
+Optics should be the first higher-order visual system. The terminal can draw
+null-ray-like bundles that show whether the packet, support envelope, and
+endpoint aperture are visually aligned. These bundles should:
+
+- converge when endpoint confidence and catch aperture are healthy;
+- spread or miss the aperture when timing drift or endpoint confidence degrades;
+- compress toward a one-way boundary in horizon-risk scenarios;
+- leave a short trace so the operator can see whether optics are improving or
+  worsening.
+
+The labels should use cautious language: `optics alignment`, `causal-access
+risk`, `horizon-risk overlay`, or `chronology guard`. Avoid labels such as
+`horizon detected` or `CTC detected`.
+
+### Backreaction And Constraint Readouts
+
+Backreaction and constraint concerns should appear as global posture changes,
+not as extra text panels. Examples:
+
+- stability loss causes the support envelope to breathe unevenly;
+- source overdraw causes the source channel to saturate and drag against packet
+  carry;
+- load spikes cause constraint bands to tighten across the corridor;
+- recovery state desaturates the active service envelope and isolates the packet
+  trace.
+
+The terminal should teach that these are review burdens and operating hazards.
+It must not imply that the simulator has solved the semiclassical response,
+renormalized stress tensor, or nonlinear coupled stability problem.
+
+### Geometry Generation Rules
+
+The first implementation can generate the geometry directly in SVG:
+
+- support envelope as a rounded tube with state-driven width, stroke, glow,
+  ripple amplitude, and fracture gaps;
+- packet wake as a path behind the packet, with hold/recovery kinks;
+- source channel as a separate filled path with saturation and residual knots;
+- optics as Bezier ray bundles from packet/corridor to endpoint aperture;
+- timing shear as deformed gridlines or shifted ray-control points;
+- horizon/causal-risk overlay as a translucent veil or compressed reachability
+  fan near the endpoint;
+- chronology guard as a rare scenario overlay, not a default decoration;
+- reset residue as particles or haze along the decompression path.
+
+Each visual element must map to a named state value or scenario flag. Static
+curves are acceptable only as quiet background grid/corridor guides; active
+curves must move, deform, appear, or fade because simulator state changed.
+
 ## Instrumentation
 
 Instrumentation supports the graphic. It does not replace it.
