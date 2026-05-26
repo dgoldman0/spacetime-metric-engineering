@@ -196,7 +196,8 @@ through shape, color, opacity, motion, thickness, deformation, or pin location.
 
 ## Work Orders
 
-Service manifests should be treated as operational work orders, not quiz prompts.
+Service assignments should be treated as operational work orders, not quiz
+prompts.
 
 A work order may include:
 

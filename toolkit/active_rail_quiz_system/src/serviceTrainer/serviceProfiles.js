@@ -1,13 +1,16 @@
-export const serviceProfiles = [
+export const workOrders = [
   {
     id: "inspection",
-    manifestId: "AR-INS-014",
+    workOrderId: "AR-INS-014",
     lineId: "LINE-01",
     callSign: "Inspection Crawl",
     classLabel: "training",
     priority: "low",
-    objective: "Verify the line with a low-load packet and wide catch tolerance.",
-    constraints: ["wide catch window", "low source burden", "forgiving reset"],
+    operationNotice: "Low-load inspection pass. Wide catch window authorized.",
+    cautions: ["wide catch window", "low source burden", "forgiving reset"],
+    serviceWindow: "wide",
+    loadClass: "light",
+    reuseStatus: "clean",
     pace: 16,
     stress: {
       load: 0.66,
@@ -27,13 +30,16 @@ export const serviceProfiles = [
   },
   {
     id: "standard",
-    manifestId: "AR-STD-221",
+    workOrderId: "AR-STD-221",
     lineId: "LINE-01",
     callSign: "Standard Packet",
     classLabel: "nominal",
     priority: "ordinary",
-    objective: "Run a normal packet with ordinary readiness burden.",
-    constraints: ["standard support draw", "standard catch window", "ordinary reset"],
+    operationNotice: "Nominal packet queued with ordinary readiness burden.",
+    cautions: ["standard support draw", "standard catch window", "ordinary reset"],
+    serviceWindow: "standard",
+    loadClass: "ordinary",
+    reuseStatus: "clean",
     pace: 14,
     stress: {
       load: 1,
@@ -53,13 +59,16 @@ export const serviceProfiles = [
   },
   {
     id: "tight",
-    manifestId: "AR-TWH-083",
+    workOrderId: "AR-TWH-083",
     lineId: "LINE-01",
     callSign: "Tight-Window Handoff",
     classLabel: "timing",
     priority: "elevated",
-    objective: "Keep endpoint timing disciplined through carry and catch.",
-    constraints: ["narrow catch window", "drift-sensitive", "endpoint sync matters"],
+    operationNotice: "Endpoint timing window is narrow. Catch discipline required.",
+    cautions: ["narrow catch window", "drift-sensitive", "endpoint sync matters"],
+    serviceWindow: "tight",
+    loadClass: "ordinary",
+    reuseStatus: "clean",
     pace: 13,
     stress: {
       load: 0.96,
@@ -79,13 +88,16 @@ export const serviceProfiles = [
   },
   {
     id: "heavy",
-    manifestId: "AR-HVY-407",
+    workOrderId: "AR-HVY-407",
     lineId: "LINE-02",
     callSign: "Heavy Packet",
     classLabel: "load",
     priority: "elevated",
-    objective: "Carry a high-burden packet without exhausting support or source margin.",
-    constraints: ["high support draw", "source debt grows quickly", "stability posture is stressed"],
+    operationNotice: "Heavy packet staged. Source load expected above nominal.",
+    cautions: ["high support draw", "source debt grows quickly", "stability posture is stressed"],
+    serviceWindow: "standard",
+    loadClass: "heavy",
+    reuseStatus: "clean",
     pace: 12,
     stress: {
       load: 1.48,
@@ -105,13 +117,16 @@ export const serviceProfiles = [
   },
   {
     id: "reuse",
-    manifestId: "AR-RSU-119",
+    workOrderId: "AR-RSU-119",
     lineId: "LINE-03",
     callSign: "Post-Reset Reuse",
     classLabel: "reuse",
     priority: "caution",
-    objective: "Prove reset clearance before accepting a new packet on a used line.",
-    constraints: ["residue starts elevated", "reset gate is strict", "reuse readiness can be blocked"],
+    operationNotice: "Reuse path carries residual from prior reset.",
+    cautions: ["residue starts elevated", "reset gate is strict", "reuse readiness can be blocked"],
+    serviceWindow: "standard",
+    loadClass: "ordinary",
+    reuseStatus: "residual",
     pace: 13,
     stress: {
       load: 1.02,
@@ -131,13 +146,16 @@ export const serviceProfiles = [
   },
   {
     id: "fault",
-    manifestId: "AR-FLT-503",
+    workOrderId: "AR-FLT-503",
     lineId: "LINE-04",
     callSign: "Fault-Injection Drill",
     classLabel: "fault",
     priority: "drill",
-    objective: "Find the degraded subsystem and keep the run inside recovery authority.",
-    constraints: ["hidden endpoint degradation", "faster drift", "abort discipline expected"],
+    operationNotice: "Endpoint confidence degraded at load. Monitor catch margin.",
+    cautions: ["endpoint confidence low", "timing drift elevated", "abort authority armed"],
+    serviceWindow: "tight",
+    loadClass: "ordinary",
+    reuseStatus: "clean",
     pace: 12,
     stress: {
       load: 1.1,
@@ -157,6 +175,12 @@ export const serviceProfiles = [
   }
 ];
 
+export const serviceProfiles = workOrders;
+
+export function getWorkOrder(workOrderId) {
+  return workOrders.find((order) => order.id === workOrderId) || workOrders[1];
+}
+
 export function getServiceProfile(profileId) {
-  return serviceProfiles.find((profile) => profile.id === profileId) || serviceProfiles[1];
+  return getWorkOrder(profileId);
 }

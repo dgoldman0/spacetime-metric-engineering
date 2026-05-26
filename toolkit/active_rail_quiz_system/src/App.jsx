@@ -41,7 +41,7 @@ export const workspaceDefs = [
     id: "trainer",
     label: "Service Terminal",
     title: "Rail Service Terminal",
-    deck: "Operate a single active-rail line from manifest intake through secure closeout.",
+    deck: "Operate a single active-rail line from work-order intake through secure closeout.",
     serviceMode: true,
     tone: "green"
   },

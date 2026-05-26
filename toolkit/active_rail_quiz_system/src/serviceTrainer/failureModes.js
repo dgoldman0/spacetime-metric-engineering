@@ -4,7 +4,7 @@ export const failureModes = [
     title: "Support gap lockout",
     subsystem: "support",
     summary: "Support margin fell below the active service floor.",
-    recovery: "Abort the pass, precharge support, close the ledger, and restart from a conservative manifest."
+    recovery: "Abort the pass, precharge support, close the ledger, and restart from a conservative work order."
   },
   {
     id: "source_overdraw",
@@ -31,7 +31,7 @@ export const failureModes = [
     id: "decompression_shock",
     title: "Decompression shock",
     subsystem: "release",
-    summary: "Release unloading began while source debt or stability posture was outside the trainer gate.",
+    summary: "Release unloading began while source debt or stability posture was outside the service gate.",
     recovery: "Abort release, stabilize the line, and close the ledger before another decompression attempt."
   },
   {
@@ -45,8 +45,15 @@ export const failureModes = [
     id: "stability_lockout",
     title: "Stability review lockout",
     subsystem: "stability",
-    summary: "Stability posture fell below the active trainer floor.",
+    summary: "Stability posture fell below the active service floor.",
     recovery: "Stop service and complete coupled-channel review before issuing new service authority."
+  },
+  {
+    id: "operator_abort",
+    title: "Operator abort",
+    subsystem: "operator",
+    summary: "The operator stopped service before secure closeout.",
+    recovery: "Stabilize the line, review the trace, and reset before another work order."
   }
 ];
 
@@ -55,26 +62,25 @@ export function getFailureMode(id) {
 }
 
 export function evaluateFailure(line) {
-  const { metrics, phase } = line;
-  const activePhases = ["supporting", "carrying", "catch_window", "fading", "decompressing", "resetting"];
-  if (!activePhases.includes(phase) || line.awaitingCommand) return null;
+  const { metrics, packetPosition, runState, controls } = line;
+  if (!["armed", "service"].includes(runState)) return null;
 
-  if (["supporting", "carrying", "fading"].includes(phase) && metrics.supportMargin < 22) {
+  if (metrics.supportMargin < 18) {
     return getFailureMode("support_gap");
   }
-  if (["supporting", "carrying", "catch_window", "fading"].includes(phase) && metrics.sourceDebt > 88) {
+  if (metrics.sourceDebt > 92) {
     return getFailureMode("source_overdraw");
   }
-  if (phase === "catch_window" && metrics.endpointConfidence < 24) {
+  if (packetPosition > 70 && metrics.endpointConfidence < 22) {
     return getFailureMode("endpoint_mismatch");
   }
-  if (["carrying", "catch_window"].includes(phase) && metrics.timingDrift > 84) {
+  if (packetPosition > 50 && metrics.timingDrift > 90) {
     return getFailureMode("timing_violation");
   }
-  if (phase === "decompressing" && (metrics.sourceDebt > 82 || metrics.stabilityPosture < 30)) {
+  if (controls.decompression > 72 && (metrics.sourceDebt > 82 || metrics.stabilityPosture < 30)) {
     return getFailureMode("decompression_shock");
   }
-  if (phase === "resetting" && metrics.resetResidue > 88) {
+  if (packetPosition > 88 && metrics.resetResidue > 92) {
     return getFailureMode("reset_contamination");
   }
   if (metrics.stabilityPosture < 20) {

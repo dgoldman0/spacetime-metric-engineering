@@ -207,7 +207,8 @@ Standby:
 
 Readiness:
 
-- gates appear as subsystem state on or near the line, not only in a checklist;
+- constraints and guards appear as subsystem state on or near the line, not only
+  in an inspection list;
 - support/source/endpoint/reset systems change visibly as they are brought
   online;
 - constrained controls explain the missing subsystem margin.
