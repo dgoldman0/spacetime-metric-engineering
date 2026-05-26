@@ -3,7 +3,7 @@ import { questionBank } from "./data/questionBank.js";
 import { claimLabels, contextLabels, getQuestionContext } from "./data/taxonomy.js";
 import { ActivityCard } from "./components/ActivityCard.jsx";
 import { ExplanationPanel } from "./components/ExplanationPanel.jsx";
-import { RailRunTrainer } from "./components/RailRunTrainer.jsx";
+import { RailServiceTerminal } from "./components/RailServiceTerminal.jsx";
 import { ReportPanel } from "./components/ReportPanel.jsx";
 import { BoundaryClassificationActivity } from "./renderers/BoundaryClassificationActivity.jsx";
 import { MatchingActivity } from "./renderers/MatchingActivity.jsx";
@@ -39,9 +39,9 @@ export const workspaceDefs = [
   },
   {
     id: "trainer",
-    label: "Service Trainer",
-    title: "Rail Run Trainer",
-    deck: "Operate a single active-rail line through support, carry, catch, fade, decompression, and reset.",
+    label: "Service Terminal",
+    title: "Rail Service Terminal",
+    deck: "Operate a single active-rail line from manifest intake through secure closeout.",
     serviceMode: true,
     tone: "green"
   },
@@ -220,6 +220,15 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
     return () => window.clearInterval(timer);
   }, [timedMode, timedEnded, timedPausedForExplanation, timeLeft, current.length]);
 
+  if (serviceMode) {
+    return (
+      <RailServiceTerminal
+        workspaces={workspaceDefs}
+        onWorkspaceChange={changeWorkspace}
+      />
+    );
+  }
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -229,11 +238,11 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
         </div>
         <div className="header-status">
           <span>{questionBank.length} local questions</span>
-          <span>{serviceMode ? "service trainer online" : `${workspaceCounts[workspace] || 0} in lane`}</span>
+          <span>{workspaceCounts[workspace] || 0} in lane</span>
         </div>
       </header>
 
-      <main className={`training-layout ${serviceMode ? "service-layout" : ""}`}>
+      <main className="training-layout">
         <nav className="workspace-rail" aria-label="Activity workspaces">
           <div className="rail-heading">
             <span>Workspaces</span>
@@ -289,74 +298,68 @@ export function App({ initialWorkspace = "mixed", initialFilters = defaultFilter
         </section>
 
         <aside className="side-stack">
-          {serviceMode ? (
-            <ServiceTrainerGuide />
-          ) : (
-            <>
-              <section className="session-panel" aria-label="Session controls">
-                <div className="panel-title-row">
-                  <h2>Scope</h2>
-                  <button type="button" className="text-action" onClick={clearFilters}>Default</button>
-                </div>
-                <div className="session-controls">
-                  <SelectControl label="Mode" value={filters.mode} onChange={(value) => updateFilter("mode", value)} options={[
-                    ["study", "Study"],
-                    ["timed", "Timed quiz"]
+          <section className="session-panel" aria-label="Session controls">
+            <div className="panel-title-row">
+              <h2>Scope</h2>
+              <button type="button" className="text-action" onClick={clearFilters}>Default</button>
+            </div>
+            <div className="session-controls">
+              <SelectControl label="Mode" value={filters.mode} onChange={(value) => updateFilter("mode", value)} options={[
+                ["study", "Study"],
+                ["timed", "Timed quiz"]
+              ]} />
+              {filters.mode === "timed" && (
+                <>
+                  <SelectControl label="Time Limit" value={filters.timedMinutes} onChange={(value) => updateFilter("timedMinutes", value)} options={[
+                    ["3", "3 minutes"],
+                    ["5", "5 minutes"],
+                    ["10", "10 minutes"],
+                    ["15", "15 minutes"],
+                    ["25", "25 minutes"],
+                    ["45", "45 minutes"]
                   ]} />
-                  {filters.mode === "timed" && (
-                    <>
-                      <SelectControl label="Time Limit" value={filters.timedMinutes} onChange={(value) => updateFilter("timedMinutes", value)} options={[
-                        ["3", "3 minutes"],
-                        ["5", "5 minutes"],
-                        ["10", "10 minutes"],
-                        ["15", "15 minutes"],
-                        ["25", "25 minutes"],
-                        ["45", "45 minutes"]
-                      ]} />
-                      <ToggleControl
-                        label="Pause For Explanations"
-                        checked={filters.timedExplanations}
-                        onChange={(value) => updateFilter("timedExplanations", value)}
-                      />
-                    </>
-                  )}
-                  <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
-                    ["5", "5"],
-                    ["10", "10"],
-                    ["15", "15"],
-                    ["20", "20"],
-                    ["30", "30"],
-                    ["50", "50"],
-                    ["all", "All"]
-                  ]} />
-                  <MultiFacet label="Tracks" values={filters.tracks} options={options.tracks.map((value) => [value, value])} emptyLabel="All tracks" onChange={(value) => updateFilter("tracks", value)} />
-                  <MultiFacet label="Modules" values={filters.modules} options={options.modules.map((value) => [value, value])} emptyLabel="All modules" onChange={(value) => updateFilter("modules", value)} />
-                  <MultiFacet label="Difficulty" values={filters.difficulties} options={options.difficulties.map((value) => [value, titleCase(value)])} emptyLabel="All levels" onChange={(value) => updateFilter("difficulties", value)} />
-                  <MultiFacet label="Claim Status" values={filters.claimStatuses} options={options.claimStatuses.map((value) => [value, claimLabels[value] || value])} emptyLabel="All statuses" onChange={(value) => updateFilter("claimStatuses", value)} />
-                  <MultiFacet label="Context" values={filters.contexts} options={options.contexts.map((value) => [value, contextLabels[value] || value])} emptyLabel="All contexts" onChange={(value) => updateFilter("contexts", value)} />
-                  <SelectControl label="Optional Content" value={filters.optionalContent} onChange={(value) => updateFilter("optionalContent", value)} options={[
-                    ["stable", "Stable only"],
-                    ["include", "Include flagged"],
-                    ["flagged", "Flagged only"]
-                  ]} />
-                </div>
-              </section>
+                  <ToggleControl
+                    label="Pause For Explanations"
+                    checked={filters.timedExplanations}
+                    onChange={(value) => updateFilter("timedExplanations", value)}
+                  />
+                </>
+              )}
+              <SelectControl label="Count" value={filters.count} onChange={(value) => updateFilter("count", value)} options={[
+                ["5", "5"],
+                ["10", "10"],
+                ["15", "15"],
+                ["20", "20"],
+                ["30", "30"],
+                ["50", "50"],
+                ["all", "All"]
+              ]} />
+              <MultiFacet label="Tracks" values={filters.tracks} options={options.tracks.map((value) => [value, value])} emptyLabel="All tracks" onChange={(value) => updateFilter("tracks", value)} />
+              <MultiFacet label="Modules" values={filters.modules} options={options.modules.map((value) => [value, value])} emptyLabel="All modules" onChange={(value) => updateFilter("modules", value)} />
+              <MultiFacet label="Difficulty" values={filters.difficulties} options={options.difficulties.map((value) => [value, titleCase(value)])} emptyLabel="All levels" onChange={(value) => updateFilter("difficulties", value)} />
+              <MultiFacet label="Claim Status" values={filters.claimStatuses} options={options.claimStatuses.map((value) => [value, claimLabels[value] || value])} emptyLabel="All statuses" onChange={(value) => updateFilter("claimStatuses", value)} />
+              <MultiFacet label="Context" values={filters.contexts} options={options.contexts.map((value) => [value, contextLabels[value] || value])} emptyLabel="All contexts" onChange={(value) => updateFilter("contexts", value)} />
+              <SelectControl label="Optional Content" value={filters.optionalContent} onChange={(value) => updateFilter("optionalContent", value)} options={[
+                ["stable", "Stable only"],
+                ["include", "Include flagged"],
+                ["flagged", "Flagged only"]
+              ]} />
+            </div>
+          </section>
 
-              <ReportPanel
-                results={reviewedResults}
-                totalQuestions={current.length}
-                sessionSummary={timedMode ? {
-                  mode: "timed",
-                  timeLeft,
-                  elapsed: minutesToSeconds(filters.timedMinutes) - timeLeft,
-                  answered: reviewed.size,
-                  skipped: skipped.size,
-                  unanswered: Math.max(0, current.length - reviewed.size - skipped.size),
-                  ended: timedEnded
-                } : null}
-              />
-            </>
-          )}
+          <ReportPanel
+            results={reviewedResults}
+            totalQuestions={current.length}
+            sessionSummary={timedMode ? {
+              mode: "timed",
+              timeLeft,
+              elapsed: minutesToSeconds(filters.timedMinutes) - timeLeft,
+              answered: reviewed.size,
+              skipped: skipped.size,
+              unanswered: Math.max(0, current.length - reviewed.size - skipped.size),
+              ended: timedEnded
+            } : null}
+          />
         </aside>
       </main>
     </div>
@@ -372,25 +375,16 @@ function WorkspaceHeader({ workspace, count, mode, timeLeft, timerPaused, timedE
         <p>{workspace.deck}</p>
       </div>
       <div className="toolbar-actions">
-        {workspace.serviceMode ? (
-          <>
-            <span className="question-count">single rail</span>
-            <span className="question-count">architecture logic</span>
-          </>
-        ) : mode === "timed" && (
+        {mode === "timed" && (
           <span className={`timer-pill ${timerPaused ? "paused" : ""} ${timedEnded ? "ended" : ""}`}>
             {timedEnded ? "Ended" : timerPaused ? "Paused" : "Time"} {formatTime(timeLeft)}
           </span>
         )}
-        {!workspace.serviceMode && (
-          <>
-            <span className="question-count">{count} item{count === 1 ? "" : "s"}</span>
-            <button type="button" onClick={onReviewAll} disabled={count === 0}>
-              {mode === "timed" ? "Finish" : "Check Workspace"}
-            </button>
-            <button type="button" className="secondary-action" onClick={onReset}>Reset</button>
-          </>
-        )}
+        <span className="question-count">{count} item{count === 1 ? "" : "s"}</span>
+        <button type="button" onClick={onReviewAll} disabled={count === 0}>
+          {mode === "timed" ? "Finish" : "Check Workspace"}
+        </button>
+        <button type="button" className="secondary-action" onClick={onReset}>Reset</button>
       </div>
     </div>
   );
@@ -418,7 +412,7 @@ function WorkspaceBody({
   onClearFilters
 }) {
   if (workspace === "trainer") {
-    return <RailRunTrainer />;
+    return null;
   }
 
   if (!questions.length) {
@@ -680,44 +674,6 @@ function DesignReviewWorkspace({ questions, responses, reviewed, onResponse, onR
         })}
       </section>
     </div>
-  );
-}
-
-function ServiceTrainerGuide() {
-  return (
-    <>
-      <section className="trainer-guide-panel" aria-label="Trainer boundary">
-        <p className="eyebrow">Simulator Boundary</p>
-        <h2>Service Trainer</h2>
-        <p>
-          This workspace trains active-rail operation logic. It evolves line
-          state and failure modes, but it is not a spacetime solver or a
-          validated plant simulation.
-        </p>
-      </section>
-      <section className="trainer-guide-panel" aria-label="Operator responsibilities">
-        <p className="eyebrow">Operator Burden</p>
-        <h2>Watch The Line</h2>
-        <ul>
-          <li>Hold before support, ledger, or endpoint margins collapse.</li>
-          <li>Catch/rematch before release fade.</li>
-          <li>Flush residue before reuse readiness.</li>
-          <li>Abort rather than overclaim a red gate.</li>
-        </ul>
-      </section>
-      <section className="trainer-guide-panel" aria-label="Failure channels">
-        <p className="eyebrow">Failure Channels</p>
-        <h2>Trainer Events</h2>
-        <div className="failure-chip-list">
-          <span>support gap</span>
-          <span>source overdraw</span>
-          <span>endpoint mismatch</span>
-          <span>timing drift</span>
-          <span>reset residue</span>
-          <span>stability lockout</span>
-        </div>
-      </section>
-    </>
   );
 }
 

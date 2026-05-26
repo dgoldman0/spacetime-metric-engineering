@@ -592,8 +592,10 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - A renderer/grader registry exists.
 - Standard quiz, symbol-fill, sequence, matching, and claim-classification
   renderers exist.
-- Workspace rail and distinct workspaces exist for Mixed Quiz, Boundary Board,
-  Symbol Lab, a first service-trainer checkpoint, and Design Review.
+- Workspace rail and distinct Qualification Board workspaces exist for Mixed
+  Quiz, Boundary Board, Symbol Lab, and Design Review.
+- The Rail Service Terminal now opens as a separate top-level operator shell
+  instead of a quiz workspace.
 - Multi-select facets exist for tracks, modules, difficulty, and claim status.
 - Question context exists as a separate facet from claim status, with general theory, paper theory, project application, and project state lanes.
 - Paper-theory prompts now require publication-year/citation anchoring rather than vague "the study" wording.
@@ -607,15 +609,16 @@ The current Vite/React app is now a usable infrastructure checkpoint, not just a
 - Sequence activities now avoid starting in canonical answer order and use draggable rows with keyboard fallback.
 - Workspace smoke test renders all current workspaces.
 - Bank validation and production build commands work.
-- The first service-trainer checkpoint proves a basic line-state loop, but it
-  still uses too much Qualification Board presentation. Phase 4 replaces it with
-  a terminal-first implementation.
+- The initial Rail Service Terminal has a terminal shell, compact manifest
+  table, line schematic, telemetry, command stack, interlock reasons, procedure
+  gate board, event feed, debrief panel, and separate service-trainer data and
+  simulator modules.
 
 What is still missing:
 
 - workspace-specific scoring panels,
-- replacement of the current service-trainer checkpoint with a real Rail
-  Service Terminal,
+- deeper Rail Service Terminal missions, replay, incident review, and more
+  richly tuned failure/recovery scenarios,
 - a fuller Ledger Reader workspace,
 - stronger question validation for references, source links, difficulty fit, and meta-question bans,
 - larger vetted curriculum banks with deeper coverage inside each broad
@@ -624,25 +627,20 @@ What is still missing:
 - better mode separation between study, drill, qualification, and project-internal review.
 
 The Qualification Board architecture and validation gates are good enough for
-continued curriculum work. The service trainer now needs the Phase 4 replacement
-path before more simulator code is added.
+continued curriculum work. The Rail Service Terminal has its first independent
+operator-simulator shape and should now be hardened as a simulator rather than
+folded back into the quiz app.
 
 ## Likely Next Infrastructure Milestone
 
-The next milestone is the Phase 4 Rail Service Terminal replacement:
+The next Phase 4 milestone is terminal hardening:
 
-- commit the design checkpoint first,
-- remove quiz-shell presentation from the trainer,
-- split trainer data and reducer logic into service-specific modules,
-- build a full operations terminal with status bar, line board, telemetry,
-  command stack, procedure checklist, interlocks, alarms, event feed, and
-  debrief,
-- support service manifests such as inspection crawl, standard packet,
-  tight-window handoff, heavy packet, post-reset reuse, and fault-injection
-  drill,
-- simulate qualitative architecture failure modes through operator action and
-  evolving line state,
-- keep the Qualification Board stable while the terminal is rebuilt,
+- tune each manifest through manual operator runs,
+- add mission objectives and post-run incident review,
+- make failure/recovery paths more legible,
+- add replay or event-trace inspection,
+- expand terminal-specific data without using quiz questions as the simulator
+  content model,
 - keep validation, smoke tests, and production builds healthy.
 
 This milestone should prove the system can teach active-rail operation through

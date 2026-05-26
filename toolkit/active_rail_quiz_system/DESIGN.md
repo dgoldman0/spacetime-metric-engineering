@@ -701,9 +701,9 @@ explanation-page composition. The terminal should be dense, status-first, and
 procedural: line strip, telemetry, command stack, interlocks, alarms, and event
 feed.
 
-The current service trainer checkpoint proves that the reducer concept can
-exist, but its presentation is too close to the quiz workspace. The replacement
-must be terminal-first rather than card-first.
+The Rail Service Terminal stays terminal-first rather than card-first. Its UI
+uses service manifests, command authority, telemetry, interlocks, alarms, and
+debriefs as the primary vocabulary.
 
 Design direction:
 
