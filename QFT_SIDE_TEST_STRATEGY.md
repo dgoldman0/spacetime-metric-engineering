@@ -1,49 +1,61 @@
-The testing setup would treat the QET circuit as a **programmable quantum service rail** rather than a one-shot Alice/Bob demonstration. A chain or small lattice of coupled qubits/oscillators is prepared in a correlated low-energy state. One region acts as the **support/source side**, one region acts as the **packet/target side**, and intermediate degrees of freedom act as the rail. The protocol injects energy and information at the source side, applies feed-forward control through the rail schedule, extracts energy or produces a local deficit at the target side, and then measures the full ledger: local site energies, coupling energies, entropy/noise, reset cost, correlation consumption, and packet disturbance.
+The testing setup would treat a quantum circuit or simulator as a **programmable QET service system**. A chain or small lattice of coupled qubits, resonators, or oscillator modes is prepared in a correlated low-energy state. One subsystem is designated as the **protected packet**. Nearby sites act as **handoff couplers**, surrounding sites act as **support/buffer degrees of freedom**, and a terminal site or explicit battery register records extracted work.
+
+The packet and extraction site are separate roles. The packet is the quiet subsystem whose health is protected and scored. The extraction site is a controlled handoff, coupler, endpoint, or battery-facing region where the negative-energy/extraction event is allowed to occur. The full run is treated as a cycle: prepare the correlated state, activate the source-side operation, send the classical feed-forward record, apply a timed handoff/extraction operation, smoothly decouple the packet-facing region, and reset the support system for another run.
 
 The two test axes then ask different questions.
 
 ---
 
-## Axis 1 — Service choreography
+## Axis 1 — Service control and packet health
 
 **Question:**
-Can packet health be protected while energy burden and repayment are displaced into prepared support/rail degrees of freedom?
+Can the timing, placement, and shape of the QET service cycle protect a packet-like subsystem while energy injection, extraction, repayment, and reset occur mostly in surrounding support degrees of freedom?
 
 **Vary:**
-Timing, coupling profile, feed-forward schedule, extraction strength, support capacity, reset cadence, staged versus abrupt extraction, packet isolation.
+Start with a calibrated baseline protocol: same prepared state, same protected packet subsystem, same source operation, same feed-forward channel, same extraction/battery register, and same reset procedure. Establish the baseline as the reference service cycle, then build controlled families around it.
+
+Vary the **source operation** by changing pulse strength, duration, measurement basis, and smoothing profile. Vary the **feed-forward schedule** by changing delay, timing jitter, and whether the target operation is applied as one pulse or a staged sequence. Vary the **handoff geometry** by moving the extraction operation among a packet-edge coupler, a nearby support site, a terminal endpoint, and an explicit battery-facing register. Vary the **packet coupling** by changing the packet-to-support coupling strength, packet-edge coupling width, and number of intermediate coupler sites. Vary the **release profile** by comparing sudden decoupling, smooth fade, minimum-jerk fade, and multi-step release. Vary the **reset process** by comparing local reset, distributed reset, delayed reset, and reset through an auxiliary reservoir.
+
+After single-parameter sweeps, run combined service families: direct packet-adjacent extraction, support-mediated extraction, endpoint-mediated extraction, smooth staged service, aggressive high-load service, and repeated-cycle service. These families should map how packet health depends on choreography, support capacity, extraction placement, and reset timing.
 
 **Measure:**
-Packet disturbance, extractable work, deficit depth and duration, rail heating, support burden, repayment localization, reset cost, repeatability.
+Measure packet health as its own output channel. Record packet-state fidelity, excitation leakage, entropy growth, coherence loss, disturbance of selected packet observables, packet-support entanglement growth, and cycle-to-cycle degradation. Score these during the live packet window and again after reset to capture both immediate disturbance and accumulated damage.
 
-This axis treats the circuit as a control laboratory. The goal is to determine whether smoother or more structured service schedules meaningfully shape where burden accumulates and whether the packet region can remain comparatively protected while the support side absorbs most of the repayment overhead.
+Measure the energy ledger by functional role. Record source-side injected energy, extracted work into the battery, local negative-energy depth and duration near the handoff/endpoint, energy stored in support sites, energy stored in coupling terms, energy left as support heating, reset/repreparation cost, and residual drift after each cycle. Build tradeoff curves showing extractable work versus packet disturbance, deficit duration versus reset cost, support heating versus packet leakage, and cycle count versus accumulated degradation.
+
+The strongest service-control pattern would show that staged, support-mediated protocols preserve packet health while maintaining a measurable extraction event and a closed repayment ledger. The useful output is a map of which service schedules keep the packet quiet, where the repayment burden goes, and which control choices make the cycle repeatable.
 
 ---
 
-## Axis 2 — Operational robustness of QFT negative energy
+## Axis 2 — Robustness of negative energy under local accounting
 
 **Question:**
-Does QFT-side “negative energy” remain operationally meaningful under changes in local accounting, or does it shift substantially depending on how the system is partitioned?
+Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned, or does the claim “negative energy appears here” depend strongly on how the system is divided?
 
 **Vary:**
-Hamiltonian decomposition, interaction-energy assignment, boundary conventions, site grouping, local observable choice.
+Hold the physical circuit run fixed and analyze it under multiple local-energy ledgers. Assign interaction energy symmetrically between neighboring sites, assign it to the packet side, assign it to the support side, assign it to the handoff/coupler region, and assign it to the endpoint/battery interface. Compare fine-grained site-level accounting with grouped-region accounting: packet, packet edge, handoff, support, endpoint, battery, and reset reservoir.
+
+Vary the baseline used for “negative.” Compare energy relative to the uncoupled ground state, the prepared correlated state, the ready-to-run state, the pre-extraction state, and the post-reset state. Vary the local observable used as the energy-density diagnostic when more than one reasonable definition exists. Compare ledgers that treat coupling energy as shared, mediator-owned, boundary-owned, or region-owned. Compare instantaneous maps with time-windowed maps, since a transient deficit and its repayment may be clearer across a finite service interval.
 
 **Measure:**
-Deficit location, extractable work, repayment pattern, causal timing, entropy cost, correlation consumption, invariance across decompositions.
+Measure operational invariants first. Record source-injected energy, extracted work into the battery, total energy conservation, reset/repreparation cost, causal order of operations, feed-forward dependence, correlation consumption, and total cycle balance. These quantities define the stable operational core of the protocol.
 
-This axis asks whether the negative-energy event behaves like a robust operational structure or whether it is heavily convention-sensitive. If the same deficit/extraction behavior survives reasonable changes in local accounting, then the effect has stronger physical character. If the effect moves, weakens, or disappears under different partitions, then the local negative-energy interpretation becomes more fragile.
+Then measure local negative-energy maps under each ledger. Track where the deficit appears, how deep it is, how long it lasts, which phase of the protocol it belongs to, where repayment appears, and how the map changes under coarse-graining. Compare the visual/local deficit map against the hard operational ledger. A strong robustness pattern would show stable extracted work, stable repayment cost, stable causal timing, and stable correlation consumption across accounting schemes, with only moderate changes in the displayed local placement of the deficit.
+
+The useful output is an invariance profile. It should show which parts of QFT negative energy behave like a controlled operational resource and which parts are tied to local bookkeeping choices. That profile gives a sharper account of what the circuit actually demonstrates: extractable work, local deficit formation, repayment structure, correlation use, and repeatability.
 
 ---
 
-| If results look like this                                                                                | It suggests                                                                                    |
-| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Smooth or staged schedules improve packet health                                                         | Rail choreography meaningfully shapes burden distribution                                      |
-| Negative-energy deficit localizes at the target while repayment localizes in support/rail/reset channels | Energy borrowing and repayment can be spatially and temporally organized                       |
-| Repeated cycles remain possible with bounded reset overhead                                              | The protocol behaves like a repeatable service process rather than a one-shot extraction trick |
-| Extractable work and repayment cost remain stable across reasonable decompositions                       | QFT negative energy has robust operational content                                             |
-| Deficit timing and causal ordering remain stable across partitions                                       | The negative-energy event tracks physical protocol structure rather than arbitrary bookkeeping |
-| Deficit location or extraction behavior shifts strongly under accounting changes                         | Local negativity is highly partition-sensitive                                                 |
-| Positive repayment leaks substantially into the packet region                                            | Packet protection and repayment isolation are in tension                                       |
-| Reset/repreparation dominates every cycle                                                                | Negative energy exists operationally, but is weak as a repeatable resource                     |
-| Rail scheduling changes little beyond ordinary QET behavior                                              | The active-rail analogy adds limited additional structure                                      |
+| If results look like this                                                                                   | It suggests                                                            |
+| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Smooth staged protocols reduce packet disturbance                                                           | Timing choreography matters physically                                 |
+| Packet-edge or endpoint extraction preserves the packet better than direct packet-centered extraction       | Protected-packet and extraction roles can be separated                 |
+| A local deficit appears near the handoff/endpoint while repayment appears in support/reset channels         | Energy borrowing and repayment can be spatially organized              |
+| Repeated cycles work with bounded reset overhead                                                            | The protocol behaves like a repeatable service process                 |
+| Higher-load protocols fail through packet leakage or support heating                                        | The system has meaningful service-load limits                          |
+| Extracted work, reset cost, causal order, and correlation consumption stay stable across accounting schemes | QFT negative energy has a robust operational core                      |
+| The local deficit map shifts while the operational ledger remains stable                                    | Local energy-density visualization is partly convention-sensitive      |
+| The deficit location, timing, and repayment profile remain stable under several ledgers                     | Local negative energy has strong operational localization              |
+| Reset cost dominates repeated cycles                                                                        | Negative energy is operationally real and costly as a service resource |
 
-The clean claim would remain modest: this setup would not decide whether GR and QFT mean the same thing by “negative energy.” It would test whether quantum negative energy can be **scheduled, localized, protected, repaid, and repeated**, and whether those features survive changes in local accounting. That is already meaningful on the QFT side.
+The experimental target is a controlled map of whether quantum negative energy can be **scheduled, localized, protected, repaid, and repeated**, and whether those features survive changes in local energy accounting.
