@@ -5,9 +5,13 @@ The testing setup uses a dual-track superconducting circuit-QED chip. One track 
 The field rail is a line of seven coupled microwave resonators, labeled (F_0) through (F_6), connected by SQUID-tunable nearest-neighbor couplers. The resonator chain is the field-like subsystem. Its Hamiltonian can be calibrated as onsite mode energies plus tunable coupling terms, giving a direct local-energy ledger from resonator occupations and inter-mode correlations. Transmon ancillas are attached at the source station and receiver station. The source ancilla performs the local measurement/injection operation. The receiver ancilla applies the feed-forward-conditioned operation. A high-Q battery resonator or work qubit is coupled to the receiver station so extracted work is recorded as a measurable energy increase.
 
 The packet corridor is a parallel line of five storage-resonator stations, labeled (P_0) through (P_4). A clean first implementation uses a dual-rail logical packet at each station, with two storage modes per packet site. The logical packet state is encoded as
+
+```math
 [
 |\psi\rangle=c_0|10\rangle+c_1|01\rangle,
 ]
+```
+
 so the information packet can be moved while keeping a fixed excitation budget. The packet is carried from (P_0) to (P_4) by shaped tunable-coupler state transfer between packet stations. Sequential iSWAP-style transfer gives the first implementation. Adiabatic passage or counterdiabatic transfer gives smoother packet motion in later sweeps.
 
 The field rail and packet corridor meet through a controlled handoff collar near the middle and receiver side of the chip. The handoff collar contains tunable couplers between selected packet stations and selected field-rail modes. These couplers are normally parked at high isolation and activated according to a scheduled pulse envelope. The packet-facing couplers define where the packet is allowed to feel the service environment. The receiver and battery station define where energy extraction is scored. The support modes around the receiver and handoff collar define where repayment, residual excitation, and reset cost are scored.
