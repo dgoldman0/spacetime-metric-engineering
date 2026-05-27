@@ -108,17 +108,16 @@ The apparatus should record calibration data for readout crosstalk, residual pac
 
 ## Outcome Patterns
 
-| If results look like this                                                                                                  | It suggests                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Smooth staged protocols reduce packet disturbance while preserving battery work                                            | Timing choreography has physical control value                                      |
-| Packet-edge or endpoint-mediated extraction preserves packet fidelity better than packet-centered extraction               | Protected-packet and extraction roles can be separated                              |
-| A local field-energy deficit appears near the receiver or handoff collar while repayment appears in support/reset channels | Energy borrowing and repayment can be spatially organized                           |
-| Repeated cycles work with bounded reset overhead and bounded packet degradation                                            | The protocol behaves like a repeatable service process                              |
-| Higher-load protocols fail through packet leakage, support heating, or reset overhead                                      | The system has meaningful service-load limits                                       |
-| Battery work, source injection, causal order, and correlation consumption stay stable across accounting schemes            | QFT negative energy has a robust operational core                                   |
-| The local deficit map shifts while the operational ledger remains stable                                                   | Local energy-density visualization has convention-sensitive features                |
-| The deficit region remains tied to the same receiver/collar phase across several ledgers                                   | Local negative energy has strong operational localization                           |
-| Reset cost dominates repeated cycles                                                                                       | Negative energy is operationally real and costly as a service resource              |
-| Support/collar ledgers absorb most repayment while packet fidelity remains high                                            | The service architecture successfully separates packet health from repayment burden |
+| If results look like this                                                                                   | It suggests                                                              |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Smooth staged protocols reduce packet disturbance                                                           | Timing choreography matters physically                                   |
+| Packet-edge or endpoint extraction preserves the packet better than direct packet extraction                | The protected subsystem should be kept distinct from the extraction site |
+| A local deficit appears near the handoff/endpoint while repayment appears in support/reset channels         | Energy borrowing and repayment can be spatially organized                |
+| Repeated cycles work with bounded reset overhead                                                            | The protocol behaves like a repeatable service process                   |
+| Higher-load protocols fail through packet leakage or support overheating                                    | The system has meaningful service-load limits                            |
+| Extracted work, reset cost, causal order, and correlation consumption stay stable across accounting schemes | QFT negative energy has a robust operational core                        |
+| The local deficit map shifts, but the operational ledger remains stable                                     | Local energy-density visualization is partly convention-sensitive        |
+| The deficit disappears or moves arbitrarily under reasonable partitions                                     | Local negative energy is fragile as a localized object                   |
+| Reset cost dominates repeated cycles                                                                        | Negative energy is operationally real but weak as a repeatable resource  |
 
 The experimental target is a controlled map of whether quantum negative energy can be scheduled, localized, protected, repaid, and repeated, and whether those features survive changes in local energy accounting. The first axis tests whether service choreography protects a carried quantum packet. The second axis tests whether the negative-energy event is a robust operational structure under local-energy repartitioning.
