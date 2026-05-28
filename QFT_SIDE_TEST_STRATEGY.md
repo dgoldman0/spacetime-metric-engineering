@@ -164,33 +164,6 @@ The apparatus should record calibration data for readout crosstalk, residual pac
 
 ---
 
-## Observation and Interpretation Table
-
-| Observation                                                                                                                   | Interpretation                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Smooth staged handoff reduces packet infidelity while preserving battery work                                                 | Service timing has real control value for packet health                                                  |
-| Packet fidelity improves when extraction is placed at the receiver or collar rather than directly on the packet memory        | Packet protection benefits from separating the packet role from the extraction role                      |
-| A local field-energy deficit appears near the receiver or collar, while compensating energy appears in support/reset channels | Energy borrowing and repayment can be spatially organized within the QET rail                            |
-| Battery work, source injection, timing order, and correlation consumption remain stable across energy partitions              | The QET event has a robust operational core                                                              |
-| The local deficit region remains tied to the same receiver/collar phase across several ledgers                                | Local negative energy has strong operational localization in this setup                                  |
-| Repeated cycles retain bounded reset overhead and bounded packet degradation                                                  | The protocol behaves as a repeatable service process                                                     |
-| Higher-load schedules fail through packet leakage, support heating, or reset overhead                                         | The device has meaningful service-load boundaries                                                        |
-| Smooth handoff reduces packet disturbance while also reducing extracted work                                                  | Packet protection and extraction strength trade against each other in that regime                        |
-| The local deficit map shifts while battery work and reset cost remain stable                                                  | The operational event is stable while local energy-density presentation is ledger-sensitive              |
-| The deficit depth changes strongly under different coupling-energy assignments                                                | Interaction-energy attribution is a major part of the local negative-energy story                        |
-| Battery work appears without stable local deficit localization                                                                | Energy extraction is operationally real while the local-deficit map is weakly localized                  |
-| Local deficit appears without useful battery work                                                                             | The reconstructed deficit is a local energy feature with limited extractable-work value in that schedule |
-| Packet damage remains high across handoff shapes                                                                              | Packet protection is limited by hardware crosstalk, residual coupling, or receiver-pulse disturbance     |
-| Reset cost grows rapidly across repeated cycles                                                                               | Negative-energy service is operationally costly in repeated use                                          |
-| Randomized feed-forward gives the same battery response as valid feed-forward                                                 | The observed battery change is dominated by receiver drive rather than QET correlation use               |
-| Collar-off runs still disturb the packet                                                                                      | Crosstalk or stray coupling dominates the packet-health channel                                          |
-| Rail-only QET works cleanly while full-service packet runs fail                                                               | Packet protection is the limiting engineering problem                                                    |
-| Anchored-packet runs work while carried-packet runs fail                                                                      | Packet transport adds an independent error channel requiring separate refinement                         |
-| All reasonable energy partitions erase the local deficit while preserving total energy balance                                | The tested protocol lacks a stable local negative-energy feature under this hardware realization         |
-| No accounting scheme gives battery work above controls                                                                        | The QET extraction protocol is below the device’s operational threshold                                  |
-
----
-
 ## Theory-testing outcome table
 
 | Axis                                        | Result pattern                                                                                                                                                                             | Answer to the central question                                     | Interpretation                                                                                                                                      |
