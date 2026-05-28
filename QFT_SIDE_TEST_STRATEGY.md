@@ -20,7 +20,7 @@ A source transmon ancilla couples to the source side of the rail, near $F_0$ or 
 
 A receiver transmon ancilla couples to the receiver side of the rail, near $F_5$ or $F_6$. It applies the feed-forward-conditioned operation. A battery mode, implemented as a high-Q resonator or work qubit, couples to the receiver station. Battery energy is the clean operational readout for extracted work.
 
-The protected packet system is a high-Q storage-resonator memory placed near the receiver/handoff region. In the anchored-packet mode, the packet state is loaded into this memory, held through the service window, and reconstructed after the service. In the carried-packet extension, the packet memory becomes one station in a short packet corridor $P_0$ through $P_4$, and the packet is moved by shaped tunable-coupler state-transfer pulses. This packet choice follows the superconducting bosonic-memory literature, where microwave cavity modes provide long-lived storage and controllable bosonic encodings [Ma et al. 2021; Milul et al. 2023]. The carried-packet extension is closest to superconducting multiresonator microwave-memory work and therefore stays downstream of the anchored baseline [Bao et al. 2021].
+The protected packet system is a high-Q storage-resonator memory placed near the receiver/handoff region. In the anchored-packet mode, the packet state is loaded into this memory, held through the service window, and reconstructed after the service. In the carried-packet extension, the packet memory becomes one station in a short packet corridor $P_0$ through $P_4$, and the packet is moved by shaped tunable-coupler state-transfer pulses. This keeps the carried-packet extension downstream of the anchored packet and energy-ledger calibration.
 
 The clean first packet encoding is a dual-rail logical qubit, using two storage modes:
 $$
@@ -66,9 +66,9 @@ Diagnostic reconstruction is performed through repeated-shot batches. The same s
 
 This produces a time-resolved service ledger from repeated identical runs. It avoids continuous live monitoring of the packet and rail during the service window, while still reconstructing packet health, extracted work, local deficit formation, repayment, and reset.
 
-The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked. This ordering matches the experimental QET literature, where the operational signal is the feed-forward-conditioned energy extraction and its associated energy accounting [Rodriguez-Briones et al. 2023; Ikeda 2023].
+The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked. This ordering matches QET work where conditional energy extraction is tied to measurement, classical communication, local receiver operation, and the associated energy accounting [Hotta 2008; Rodriguez-Briones et al. 2023].
 
-Coupling energy is treated as a measured part of the ledger rather than as a display choice. The stroboscopic reconstruction therefore includes the neighboring-mode correlations and coupler-state observables needed to estimate interaction terms. Occupation-only maps remain useful diagnostic views, while the calibrated Hamiltonian ledger carries the energy accounting.
+Coupling energy is treated as a measured part of the ledger. The stroboscopic reconstruction therefore includes the neighboring-mode correlations and coupler-state observables needed to estimate interaction terms. Occupation-only maps remain useful diagnostic views, while the calibrated Hamiltonian ledger carries the energy accounting.
 
 The packet ledger records fidelity, coherence, leakage, entropy proxies, packet-field entanglement, and repeated-cycle survival. The QET ledger records source injection, receiver extraction, battery energy, local field-energy deficit, correlation consumption, and compensating positive energy. The reset ledger records the cost of returning the rail, receiver, support modes, and battery interface to the next ready state.
 
@@ -115,13 +115,13 @@ The main output is a service-parameter map. It shows which schedules keep the pa
 Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned among field modes, couplers, handoff collar, receiver, battery, packet memory, support modes, and reset reservoir?
 
 **Vary:**
-Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map. The QFT negative-energy literature supports local sub-vacuum energy as a meaningful expectation-value feature while also treating magnitude, duration, and compensation as constrained quantities [Ford 2010].
+Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map. QFT supplies the target concept: local energy density in quantized field theory can be negative under the usual postulates, while quantum energy inequalities and quantum-interest results bound averaged magnitude, duration, and compensating positive energy [Epstein et al. 1965; Ford and Roman 1997; Fewster 2005; Ford and Roman 1999; Kontou and Sanders 2020].
 
 Assign each coupling term symmetrically between neighboring modes. Then assign the same coupling term to the upstream field mode, downstream field mode, handoff collar, receiver interface, support ledger, or packet-facing boundary. Compare fine-grained site-level accounting with grouped-region accounting.
 
 Vary region definitions. Use a minimal receiver region containing one receiver-side field mode and the battery interface. Use a receiver-plus-collar region containing the receiver field mode, battery interface, and nearest packet-facing coupler. Use a broader support region containing neighboring field modes and tunable couplers. Use a packet-excluding field ledger and a packet-inclusive collar ledger.
 
-Vary the reference baseline used for “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state before source measurement, the state before receiver operation, and the post-reset state.
+Vary the reference baseline used for “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state before source measurement, the state before receiver operation, and the post-reset state. In continuum QFT, the stress-energy tensor is a local, renormalized observable with controlled renormalization freedom; the circuit ledger states the baseline and partition family used for each energy map [Hollands and Wald 2015].
 
 Vary the diagnostic observable. Compare ledgers built from onsite occupations alone, onsite occupations plus shared coupling terms, normal-mode reconstructed energy, local quadrature-energy density, and coarse-grained finite-window energy over neighboring modes. The onsite-only ledger is retained as a simple monitor, while the coupling-inclusive and normal-mode ledgers carry the main local-energy reconstruction.
 
@@ -209,14 +209,16 @@ Nambu and Hotta, "Quantum energy teleportation with a linear harmonic chain," Ph
 
 Rodriguez-Briones, Katiyar, Martin-Martinez, and Laflamme, "Experimental Activation of Strong Local Passive States with Quantum Information," Phys. Rev. Lett. 130, 110801 (2023), DOI: 10.1103/PhysRevLett.130.110801.
 
-Ikeda, "Demonstration of Quantum Energy Teleportation on Superconducting Quantum Hardware," Phys. Rev. Applied 20, 024051 (2023), DOI: 10.1103/PhysRevApplied.20.024051.
-
 Blais, Grimsmo, Girvin, and Wallraff, "Circuit Quantum Electrodynamics," Rev. Mod. Phys. 93, 025005 (2021), DOI: 10.1103/RevModPhys.93.025005.
 
-Ma, Puri, Schoelkopf, Devoret, Girvin, and Jiang, "Quantum control of bosonic modes with superconducting circuits," Science Bulletin 66, 1789-1805 (2021), DOI: 10.1016/j.scib.2021.05.024.
+Epstein, Glaser, and Jaffe, "Nonpositivity of the energy density in quantized field theories," Nuovo Cimento 36, 1016-1022 (1965), DOI: 10.1007/BF02749799.
 
-Milul et al., "Superconducting Cavity Qubit with Tens of Milliseconds Single-Photon Coherence Time," PRX Quantum 4, 030336 (2023), DOI: 10.1103/PRXQuantum.4.030336.
+Ford and Roman, "Restrictions on negative energy density in flat spacetime," Phys. Rev. D 55, 2082-2089 (1997), DOI: 10.1103/PhysRevD.55.2082.
 
-Bao et al., "On-Demand Storage and Retrieval of Microwave Photons Using a Superconducting Multiresonator Quantum Memory," Phys. Rev. Lett. 127, 010503 (2021), DOI: 10.1103/PhysRevLett.127.010503.
+Fewster, "Energy inequalities in quantum field theory," arXiv:math-ph/0501073 (2005).
 
-Ford, "Negative Energy Densities in Quantum Field Theory," Int. J. Mod. Phys. A 25, 2355-2363 (2010), DOI: 10.1142/S0217751X10049633.
+Ford and Roman, "The quantum interest conjecture," Phys. Rev. D 60, 104018 (1999), DOI: 10.1103/PhysRevD.60.104018.
+
+Kontou and Sanders, "Energy conditions in general relativity and quantum field theory," Class. Quantum Grav. 37, 193001 (2020), DOI: 10.1088/1361-6382/ab8fcf.
+
+Hollands and Wald, "Quantum fields in curved spacetime," Phys. Rep. 574, 1-35 (2015), DOI: 10.1016/j.physrep.2015.02.001.
