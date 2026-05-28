@@ -1,123 +1,224 @@
+I used your uploaded draft as the base and kept the two original axes. I also aligned the hardware roles with the active-rail disclosure’s separation of prepared support, live packet, handoff, source placement, and reset roles, plus its service-cycle structure.   
+
 # QET Service-Rail Experimental Test Plan
 
-The testing setup uses a dual-track superconducting circuit-QED chip. One track is a programmable QET field rail. The other track is a protected packet corridor. The field rail supplies the correlated quantum medium, source-side measurement, feed-forward receiver operation, local energy deficit, extracted work, repayment channels, and reset burden. The packet corridor carries a quantum state past the service region and records how well the packet survives while the QET service operates nearby.
+## Experimental Spine
 
-The field rail is a line of seven coupled microwave resonators, labeled (F_0) through (F_6), connected by SQUID-tunable nearest-neighbor couplers. The resonator chain is the field-like subsystem. Its Hamiltonian can be calibrated as onsite mode energies plus tunable coupling terms, giving a direct local-energy ledger from resonator occupations and inter-mode correlations. Transmon ancillas are attached at the source station and receiver station. The source ancilla performs the local measurement/injection operation. The receiver ancilla applies the feed-forward-conditioned operation. A high-Q battery resonator or work qubit is coupled to the receiver station so extracted work is recorded as a measurable energy increase.
+The experiment uses a superconducting circuit-QED device to test two operational questions. The first question is how service parameters influence the health of a protected quantum packet. The second question is whether QFT-side negative energy behaves like a robust operational structure, or whether its apparent location and meaning depend strongly on the local energy partition used to describe the system.
 
-The packet corridor is a parallel line of five storage-resonator stations, labeled (P_0) through (P_4). A clean first implementation uses a dual-rail logical packet at each station, with two storage modes per packet site. The logical packet state is encoded as
+The apparatus is a programmable QET service system. A coupled microwave-resonator rail supplies the correlated quantum medium used for QET. A separate protected packet memory carries the quantum state whose health is scored. A handoff collar controls how strongly the packet memory is exposed to the service rail. A receiver station performs the feed-forward-conditioned QET operation. A battery mode records extracted work. Nearby support and reset modes record repayment, residual excitation, and reset cost.
 
-```math
+The packet system has two operating modes. The primary mode is an anchored packet test: the packet is prepared in a high-Q storage resonator near the handoff collar, held through a service window, and then tomographically scored. This mode cleanly tests how service parameters affect packet health. The extension mode is a carried packet test: the packet is moved through a short corridor of storage resonators while the service rail operates near the handoff region. This mode adds a closer transport analogue after the anchored-packet energy ledger is calibrated.
+
+This structure keeps the original experimental center intact. The service rail supplies QET extraction, local deficit formation, repayment, and reset. The packet memory supplies a protected subsystem whose health can be measured under different service schedules. The same physical runs can then be reanalyzed under different local energy partitions to test robustness of the negative-energy interpretation.
+
+---
+
+## Apparatus Design
+
+The field rail is a line of coupled microwave resonators, labeled (F_0) through (F_6). Neighboring resonators are connected by SQUID-tunable couplers so the effective rail Hamiltonian can be calibrated as onsite resonator energies plus controlled coupling terms. The rail is the field-like subsystem. It is prepared in a correlated low-energy state and supplies the QET resource.
+
+A source transmon ancilla couples to the source side of the rail, near (F_0) or (F_1). This ancilla performs the source-side measurement. Its measurement backaction is part of the service: it injects energy, consumes correlations, and produces the classical feed-forward record used by the receiver.
+
+A receiver transmon ancilla couples to the receiver side of the rail, near (F_5) or (F_6). It applies the feed-forward-conditioned operation. A battery mode, implemented as a high-Q resonator or work qubit, couples to the receiver station. Battery energy is the clean operational readout for extracted work.
+
+The protected packet system is a high-Q storage-resonator memory placed near the receiver/handoff region. In the anchored-packet mode, the packet state is loaded into this memory, held through the service window, and reconstructed after the service. In the carried-packet extension, the packet memory becomes one station in a short packet corridor (P_0) through (P_4), and the packet is moved by shaped tunable-coupler state-transfer pulses.
+
+The clean first packet encoding is a dual-rail logical qubit, using two storage modes:
 [
-|\psi\rangle=c_0|10\rangle+c_1|01\rangle,
+|\psi\rangle=c_0|10\rangle+c_1|01\rangle.
 ]
-```
+This keeps the packet within a fixed excitation sector and makes leakage, dephasing, and amplitude loss easier to diagnose. Other packet states can be added later: coherent-state packets, cat-code packets, or small bosonic code states.
 
-so the information packet can be moved while keeping a fixed excitation budget. The packet is carried from (P_0) to (P_4) by shaped tunable-coupler state transfer between packet stations. Sequential iSWAP-style transfer gives the first implementation. Adiabatic passage or counterdiabatic transfer gives smoother packet motion in later sweeps.
+The handoff collar is the controlled interface between packet and rail. It consists of one or more tunable couplers between the protected packet memory and selected receiver-side rail modes. These couplers are normally parked at high isolation. During service, they are activated through shaped envelopes: narrow collar pulses, broader support-collar pulses, smooth fades, minimum-jerk fades, and staged multi-coupler handoffs.
 
-The field rail and packet corridor meet through a controlled handoff collar near the middle and receiver side of the chip. The handoff collar contains tunable couplers between selected packet stations and selected field-rail modes. These couplers are normally parked at high isolation and activated according to a scheduled pulse envelope. The packet-facing couplers define where the packet is allowed to feel the service environment. The receiver and battery station define where energy extraction is scored. The support modes around the receiver and handoff collar define where repayment, residual excitation, and reset cost are scored.
+Support and reset modes are placed around the receiver and handoff collar. These modes collect residual excitation, repayment burden, and reset cost. They also let the experiment distinguish packet damage from support heating and reset overhead.
 
-A single service cycle proceeds in six phases. First, the field rail is cooled and prepared in a correlated low-energy state by adiabatic ramping or variational ground-state preparation. Second, the packet state is loaded into (P_0) and carried along the packet corridor through shaped state-transfer pulses. Third, the source ancilla performs the local QET measurement on the source side of the field rail and sends the classical record to the receiver controller. Fourth, while the packet passes the handoff collar, the receiver station applies the conditioned QET operation and couples the extracted work into the battery register. Fifth, the packet-facing couplers are smoothly faded and the packet transfer completes at (P_4). Sixth, the battery, field rail, handoff collar, and support/reset modes are measured or reset according to the selected run type.
+The device therefore has five functional regions: source station, field rail, handoff collar, protected packet memory, and receiver/battery/reset station. Each region has a corresponding energy ledger.
 
-Measurement is divided into service measurement and diagnostic reconstruction. The source-side measurement is part of the physical service. Its backaction is the energy injection event that creates the feed-forward record. Diagnostic information is collected through repeated-shot reconstruction. The same service cycle is run many times. Some batches reconstruct the final packet state. Some batches reconstruct the battery energy. Some batches freeze the couplers at selected service times and reconstruct field-rail occupations and correlations. Some batches measure reset cost and residual heating. This produces a time-resolved ledger without continuous live surveillance of the packet and field rail.
+---
 
-The apparatus therefore carries three ledgers. The packet ledger records packet fidelity, coherence, leakage, entropy growth, and repeated-cycle survival. The QET ledger records source injection, receiver extraction, battery energy, local field-energy deficit, correlation consumption, and repayment. The reset ledger records the cost of restoring the field rail, receiver station, support modes, and battery interface to the next ready state.
+## Service Cycle
 
-The two test axes then ask different questions.
+A single anchored-packet service cycle proceeds as follows.
+
+First, the field rail is cooled and prepared in a correlated low-energy state. Preparation can use adiabatic ramping, variational ground-state preparation, or calibrated pulse preparation. The prepared rail state is verified in separate calibration batches.
+
+Second, the packet state is loaded into the protected packet memory. The handoff couplers are parked at high isolation while the packet is prepared.
+
+Third, the source ancilla performs the local QET measurement on the source side of the rail. The source outcome is recorded and routed to the receiver controller. The energy injected by this measurement is recorded as part of the service ledger.
+
+Fourth, the handoff collar opens according to the selected service schedule. The receiver station applies the feed-forward-conditioned operation. The receiver operation extracts work into the battery mode and creates the local field-energy deficit associated with the QET event.
+
+Fifth, the handoff collar closes through the selected release profile. The packet remains in the protected memory during the service window. The receiver, rail, battery, support, and reset modes are then measured or reset according to the selected run type.
+
+Sixth, the packet memory is tomographically reconstructed. The output packet state is compared against the input state and against matched no-service baselines.
+
+The carried-packet extension uses the same sequence, with one additional layer: the packet is transferred from (P_0) to (P_4) through shaped coupler pulses, and the service window is timed so the packet passes the handoff collar during the receiver operation. This extension is run after the anchored-packet protocol has established the baseline energy ledger and packet-health response.
+
+---
+
+## Measurement Strategy
+
+Measurement is divided into service measurement and diagnostic reconstruction.
+
+The source-side measurement is a service operation. It creates the classical record used for feed-forward and supplies the controlled energy injection. Its backaction is part of the physics being tested.
+
+Diagnostic reconstruction is performed through repeated-shot batches. The same service cycle is run many times. One batch reconstructs the final packet state. Another batch measures battery energy. Other batches freeze the circuit at selected service times, park the couplers, and reconstruct field-rail occupations, coupling correlations, and local energy maps. Additional batches measure reset cost and residual heating.
+
+This produces a time-resolved service ledger from repeated identical runs. It avoids continuous live monitoring of the packet and rail during the service window, while still reconstructing packet health, extracted work, local deficit formation, repayment, and reset.
+
+The packet ledger records fidelity, coherence, leakage, entropy proxies, packet-field entanglement, and repeated-cycle survival. The QET ledger records source injection, receiver extraction, battery energy, local field-energy deficit, correlation consumption, and compensating positive energy. The reset ledger records the cost of returning the rail, receiver, support modes, and battery interface to the next ready state.
 
 ---
 
 ## Axis 1 — Service Control and Packet Health
 
 **Question:**
-Can the timing, placement, and shape of the QET service cycle protect a carried packet while energy injection, extraction, repayment, and reset occur mostly in the surrounding field rail, support collar, receiver, and reset degrees of freedom?
+How do service parameters influence the health of a protected packet while QET extraction, deficit formation, repayment, and reset occur in the surrounding rail, handoff collar, receiver, support, and battery degrees of freedom?
 
 **Vary:**
-Start with a calibrated baseline service cycle. The baseline uses the same prepared field-rail state, the same packet input state, the same packet transfer schedule, the same source measurement, the same receiver operation, the same battery coupling, and the same reset procedure. This gives a reference run for packet survival, extracted work, local field-energy deficit, support heating, and reset cost.
+Start with a calibrated anchored-packet baseline. The baseline uses the same prepared field-rail state, the same packet input state, the same source measurement, the same receiver operation, the same handoff-collar pulse, the same battery coupling, and the same reset procedure. This baseline gives reference values for packet survival, extracted work, local field-energy deficit, support heating, and reset cost.
 
-Vary the source operation by changing measurement basis, measurement strength, pulse duration, and source-ancilla coupling envelope. This tests how the initial energy injection and correlation consumption influence later extraction and packet disturbance. The source-side measurement remains a deliberate service operation, and its injected energy is recorded as part of the QET ledger.
+Vary the source operation by changing measurement basis, measurement strength, pulse duration, and source-ancilla coupling envelope. This maps how energy injection and correlation consumption affect later extraction and packet disturbance.
 
-Vary the feed-forward schedule by changing the delay between source measurement and receiver operation, adding controlled timing jitter, and comparing one-pulse receiver operations with staged receiver operations. This tests the timing sensitivity of extraction, local deficit formation, and packet exposure while the packet passes the handoff collar.
+Vary the feed-forward schedule by changing receiver delay, timing jitter, and receiver-pulse structure. Compare one-pulse receiver operations with staged receiver operations. This maps the timing sensitivity of extraction, local deficit formation, and packet exposure.
 
-Vary the packet transport schedule by changing the packet velocity, dwell time near the handoff collar, transfer pulse smoothness, and packet-coupler isolation. Compare abrupt packet transfer, sequential iSWAP transfer, smooth adiabatic transfer, and counterdiabatic transfer. The packet’s carried state is scored at (P_4) against a transport-only baseline.
+Vary the handoff collar by changing its coupling strength, active width, pulse shape, participating couplers, and duration. Compare a narrow single-coupler collar, a two-coupler packet-edge collar, a broad support collar, and a receiver-side collar. This maps how much service burden reaches the packet versus the support region.
 
-Vary the handoff collar by changing which packet station is weakly coupled to the field rail, how many couplers participate, how wide the active collar is, and how sharply the couplers turn on and off. Compare a narrow single-coupler collar, a two-coupler packet-edge collar, a broad multi-coupler support collar, and a receiver-side collar. This tests whether a wider or smoother handoff region moves service disturbance out of the protected packet.
+Vary extraction placement by coupling the receiver operation to a rail mode near the packet, a rail mode just beyond the packet, a terminal receiver mode, or the battery-facing interface. This maps how extraction location affects packet health, local deficit formation, and repayment placement.
 
-Vary the extraction placement by coupling the receiver operation to a field-rail mode near the packet, a field-rail mode just beyond the packet, a terminal receiver mode, or the battery-facing interface. This distinguishes packet-adjacent extraction from endpoint-mediated extraction and measures how extraction location changes packet health and repayment placement.
+Vary the release profile by comparing sharp decoupling, smooth fade, minimum-jerk fade, and multi-step release of the packet-facing couplers. This maps whether packet disturbance is dominated by receiver action, collar exposure, or release transients.
 
-Vary the release profile by comparing sudden decoupling, smooth fade, minimum-jerk fade, and multi-step release of the packet-facing couplers. The release sweep tests whether packet disturbance comes from the extraction event itself, from residual coupling after extraction, or from sharp decoupling transients.
+Vary reset by comparing local receiver reset, distributed support reset, delayed reset, and reservoir-mediated reset. Repeated-cycle runs should use the same packet input ensemble and the same rail-preparation target, then measure packet-health drift and energy-ledger drift across many cycles.
 
-Vary the reset process by comparing local receiver reset, distributed support reset, delayed reset, and reservoir-mediated reset. Repeated-cycle runs should use the same packet input ensemble and the same field-rail preparation target, then measure how packet health and energy accounting drift across many service cycles.
-
-After single-parameter sweeps, run combined service families: direct collar service, broad support-collar service, endpoint-mediated service, smooth staged service, aggressive high-load service, and repeated-cycle service. These families map which combinations preserve packet health while maintaining a measurable QET extraction event.
+After anchored-packet sweeps, run selected carried-packet sweeps. Use transport-only calibration first, then add source-only, receiver-only, and full-service runs. In the carried-packet mode, vary packet speed, dwell time near the handoff collar, packet-transfer pulse smoothness, and collar timing relative to packet arrival.
 
 **Measure:**
-Measure packet health as its own output channel. For each packet input state, reconstruct the final packet state at (P_4). Use a standard input ensemble, such as the six cardinal qubit states on the Bloch sphere, plus selected coherent or code-state packets if the storage resonators support them. Record state fidelity, process fidelity, leakage out of the logical packet subspace, phase noise, amplitude damping, unwanted packet-field entanglement, and cycle-to-cycle degradation.
+Measure packet health as its own output channel. For each packet input state, reconstruct the final packet state. Use a standard process-tomography ensemble, such as the six cardinal qubit states on the Bloch sphere. Record state fidelity, process fidelity, leakage out of the logical packet subspace, dephasing, amplitude damping, packet-field entanglement, and cycle-to-cycle degradation.
 
-Measure packet disturbance during the service window through stroboscopic batches. Freeze the packet transfer at selected times, turn off packet-facing couplers, and reconstruct the packet state and nearby support modes. These snapshots give packet exposure maps across entry, handoff, receiver operation, release, and post-release transfer. The same snapshots should be repeated for transport-only runs, source-only runs, receiver-only runs, and full service runs.
+Measure packet disturbance during the service window using stroboscopic batches. Freeze the service at selected times, park the couplers, and reconstruct the packet memory and nearby support modes. These snapshots produce packet-exposure maps across source measurement, handoff opening, receiver operation, release, and reset.
 
-Measure the QET energy ledger by calibrated Hamiltonian terms. Record source-side injected energy, receiver-side energy change, battery energy increase, local field-energy deficit near the receiver/handoff region, energy stored in support modes, energy stored in field-rail couplings, energy left as residual heating, and reset/repreparation cost. The local energy ledger should include onsite resonator occupations and coupling-term correlations, so the experiment can separate field-mode energy from interaction energy.
+Measure the QET energy ledger by calibrated Hamiltonian terms. Record source-side injected energy, receiver-side energy change, battery energy increase, local field-energy deficit near the receiver/handoff region, energy stored in support modes, energy stored in coupling terms, residual heating, and reset/repreparation cost.
 
-Measure tradeoff curves that matter for service control. Plot extracted work versus packet infidelity, deficit duration versus packet dephasing, source injection versus receiver extraction, support heating versus packet leakage, release smoothness versus residual excitation, and reset cost versus cycle count. The key service result is a burden-separation map: how much energy cost and disturbance lands in the packet, the handoff collar, the field rail, the receiver, the battery, and the reset reservoir.
+Measure tradeoff curves that answer the service-control question. Plot extracted work versus packet infidelity, deficit depth versus packet dephasing, deficit duration versus packet leakage, source injection versus receiver extraction, support heating versus packet damage, release smoothness versus residual excitation, and reset cost versus cycle count.
 
-A strong service-control pattern would show that smoother staged protocols preserve packet fidelity while retaining measurable extracted work and a closed repayment ledger. It would also show that packet-edge and endpoint-mediated operations reduce packet disturbance compared with operations that place extraction directly on the carried packet. The resulting map identifies which schedules keep the packet quiet, which schedules overload the support collar, and which schedules support repeated operation.
+The main output is a service-parameter map. It shows which schedules keep the packet quiet, which schedules move repayment into support/reset channels, which schedules overload the handoff collar, and which schedules support repeated operation.
 
 ---
 
 ## Axis 2 — Robustness of Negative Energy Under Local Accounting
 
 **Question:**
-Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned among field modes, couplers, handoff collar, receiver, battery, packet corridor, support modes, and reset reservoir?
+Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned among field modes, couplers, handoff collar, receiver, battery, packet memory, support modes, and reset reservoir?
 
 **Vary:**
-Hold the physical service run fixed and vary the local-energy accounting scheme. Analyze the same reconstructed circuit state under several accepted Hamiltonian partitions. Assign each coupling term symmetrically between neighboring modes, assign it to the upstream field mode, assign it to the downstream field mode, assign it to the handoff collar, assign it to the receiver interface, and assign it to the support ledger. Compare fine-grained site-level accounting with grouped-region accounting.
+Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under several Hamiltonian partitions.
 
-Vary the region definitions. Use a minimal receiver region containing a single receiver field mode and battery interface. Use a receiver-plus-collar region containing the receiver field mode, the battery interface, and the nearest packet-facing coupler. Use a broader support region containing neighboring field modes and tunable couplers. Use a packet-excluding field ledger and a packet-inclusive collar ledger. These region choices test how the location and duration of the local deficit respond to reasonable boundary choices.
+Assign each coupling term symmetrically between neighboring modes. Then assign the same coupling term to the upstream field mode, downstream field mode, handoff collar, receiver interface, support ledger, or packet-facing boundary. Compare fine-grained site-level accounting with grouped-region accounting.
 
-Vary the reference baseline used for the word “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state immediately before source measurement, the state immediately before receiver operation, and the post-reset state. This produces a baseline-sensitivity profile for local energy deficits and repayment.
+Vary region definitions. Use a minimal receiver region containing one receiver-side field mode and the battery interface. Use a receiver-plus-collar region containing the receiver field mode, battery interface, and nearest packet-facing coupler. Use a broader support region containing neighboring field modes and tunable couplers. Use a packet-excluding field ledger and a packet-inclusive collar ledger.
 
-Vary the diagnostic observable. For the resonator field rail, compare ledgers built from onsite occupations alone, onsite occupations plus shared coupling terms, normal-mode reconstructed energy, local quadrature-energy density, and coarse-grained finite-window energy over several neighboring modes. For packet health, keep the packet fidelity ledger separate from the field-energy ledger, then examine how much packet-field coupling contaminates local energy assignments during handoff.
+Vary the reference baseline used for “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state before source measurement, the state before receiver operation, and the post-reset state.
 
-Vary the time window. Compare instantaneous snapshots with finite-window averages over source operation, packet entry, handoff, receiver extraction, release, and reset. A transient local deficit may be sharper in an instantaneous map, while repayment and support burden may be clearer in finite-window accounting.
+Vary the diagnostic observable. Compare ledgers built from onsite occupations alone, onsite occupations plus shared coupling terms, normal-mode reconstructed energy, local quadrature-energy density, and coarse-grained finite-window energy over neighboring modes.
+
+Vary the time window. Compare instantaneous snapshots with finite-window averages over source operation, handoff opening, receiver extraction, release, and reset. This separates sharp local deficits from the broader repayment cycle.
 
 **Measure:**
-Measure operational invariants first. These include source-injected energy, battery energy increase, total device energy balance, reset/repreparation cost, feed-forward dependence, causal order of operations, and correlation consumption between source and receiver regions. These quantities define the core service event because they are tied to actual operations and measured energy changes.
+Measure operational invariants first. These include source-injected energy, battery energy increase, total device energy balance, reset/repreparation cost, feed-forward dependence, timing order, and correlation consumption between source and receiver regions. These are tied to physical operations and measured energy changes.
 
-Measure local negative-energy maps under every accounting scheme. Track where the deficit appears, how deep it is, how long it lasts, which service phase it belongs to, which modes carry the compensating positive energy, and which reset operation restores the rail. Compare the maps under different coupling assignments, region groupings, baselines, and time windows.
+Then measure local negative-energy maps under every accounting scheme. Track where the deficit appears, how deep it is, how long it lasts, which service phase it belongs to, which modes carry compensating positive energy, and which reset operation restores the rail.
 
-Measure stability of the extraction claim separately from stability of the local deficit map. Extracted work is scored by the battery. The local deficit is scored by field-rail energy reconstruction. Repayment is scored by support, coupling, residual heating, and reset cost. This separation makes it possible to find a robust extraction-and-repayment cycle even when the visual placement of local energy shifts under different partitions.
+Measure stability of the extraction claim separately from stability of the local deficit map. Extracted work is scored by the battery. The local deficit is scored by field-rail energy reconstruction. Repayment is scored by support excitation, coupling energy, residual heating, and reset cost.
 
-Measure an invariance profile. The profile should report which features remain stable across reasonable ledgers: battery work, source injection, correlation consumption, timing order, reset cost, deficit phase, deficit region, and repayment region. The profile should also report which features are sensitive to accounting choices: exact deficit depth, exact deficit boundary, interaction-energy attribution, and visual localization.
+Measure an invariance profile. The profile reports which features remain stable across ledgers: battery work, source injection, correlation consumption, timing order, reset cost, deficit phase, deficit region, and repayment region. It also reports which features are ledger-sensitive: exact deficit depth, exact deficit boundary, interaction-energy attribution, and visual localization.
 
-A strong robustness pattern would show stable extracted work, stable source injection, stable reset cost, stable causal timing, and stable correlation consumption across local-energy partitions. The local deficit map may shift moderately as coupling energy is reassigned, while the service event remains anchored by operational observables. A stronger localization pattern would show the deficit region itself remaining tied to the same receiver/collar phase across several ledgers.
-
-The useful output is an invariance map of QFT-side negative energy. It identifies which aspects behave like a controlled operational resource and which aspects belong to the presentation of local energy density. That map is valuable even before any gravitational interpretation is attempted, because it gives a sharper experimental account of energy extraction, local deficit formation, repayment, correlation use, and repeatability.
+The main output is a robustness map. It shows which aspects of QFT-side negative energy behave as stable operational features of the protocol and which aspects depend on local energy presentation.
 
 ---
 
 ## Measurement and Control Runs
 
-Each reported data point should come from matched batches of repeated shots. One batch performs the full service cycle and measures packet output. Another batch performs the full service cycle and measures battery energy. Other batches freeze the circuit at selected service times and reconstruct field-rail mode occupations, coupler correlations, and local energy maps. The service movie is assembled from these repeated identical runs.
+Each data point should come from matched repeated-shot batches.
 
-The source measurement receives special treatment. It is a service operation, so its backaction is part of the physics being tested. Its energy injection, measurement basis, measurement strength, and outcome-conditioned feed-forward record are logged as service variables. Diagnostic readout is performed after the selected run phase, after couplers are parked in measurement configuration.
+Packet-only runs prepare the packet, hold or transport it through the same timing window, and reconstruct the output packet state. These runs establish packet baseline error.
 
-Matched controls should be run alongside the full service cycle. Packet transport alone gives the packet-motion baseline. Field-rail QET without packet loading gives the energy-extraction baseline. Packet transport with source measurement and disabled receiver operation gives the source-backaction baseline. Packet transport with randomized feed-forward gives the feed-forward-dependence baseline. Receiver drive without valid source record gives the receiver-control baseline. Full service with packet-facing couplers parked off gives the crosstalk baseline. Repeated-cycle service gives the reset and drift baseline.
+Rail-only QET runs prepare the field rail, perform source measurement and receiver feed-forward, and measure battery energy and rail energy maps. These runs establish QET extraction and repayment without packet exposure.
 
-The apparatus should record calibration data for readout crosstalk, residual packet-field coupling, battery leakage, coupler hysteresis, source-measurement infidelity, receiver-pulse error, and reset error. These calibration ledgers let packet disturbance, field-energy deficit, extracted work, and reset burden be separated in the final analysis.
+Source-only packet runs prepare the packet and rail, perform the source measurement, and disable the receiver operation. These runs isolate source-measurement crosstalk and source backaction.
+
+Receiver-only packet runs apply receiver pulses without a valid source record. These runs isolate receiver-drive disturbance and battery-interface crosstalk.
+
+Randomized-feed-forward runs preserve the same pulse schedule while scrambling the source-to-receiver correlation. These runs test whether extraction depends on the QET feed-forward record.
+
+Collar-off full-service runs run the rail QET protocol while packet-facing couplers stay parked. These runs measure field-to-packet crosstalk outside scheduled exposure.
+
+Full-service anchored-packet runs expose the packet through the selected handoff collar while QET extraction occurs. These runs answer the primary packet-health question.
+
+Full-service carried-packet runs move the packet through (P_0) to (P_4) while the QET service window opens near the handoff collar. These runs test the transport extension after anchored-packet calibration.
+
+Repeated-cycle runs execute multiple service cycles with the same preparation target. These runs measure reset burden, accumulated heating, packet degradation, and drift in the energy ledger.
+
+The apparatus should record calibration data for readout crosstalk, residual packet-field coupling, battery leakage, coupler hysteresis, source-measurement infidelity, receiver-pulse error, packet-transfer error, and reset error. These calibration ledgers support clean separation between packet disturbance, field-energy deficit, extracted work, repayment, and reset burden.
 
 ---
 
-## Outcome Patterns
+## Observation and Interpretation Table
 
-| If results look like this                                                                                   | It suggests                                                              |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Smooth staged protocols reduce packet disturbance                                                           | Timing choreography matters physically                                   |
-| Packet-edge or endpoint extraction preserves the packet better than direct packet extraction                | The protected subsystem should be kept distinct from the extraction site |
-| A local deficit appears near the handoff/endpoint while repayment appears in support/reset channels         | Energy borrowing and repayment can be spatially organized                |
-| Repeated cycles work with bounded reset overhead                                                            | The protocol behaves like a repeatable service process                   |
-| Higher-load protocols fail through packet leakage or support overheating                                    | The system has meaningful service-load limits                            |
-| Extracted work, reset cost, causal order, and correlation consumption stay stable across accounting schemes | QFT negative energy has a robust operational core                        |
-| The local deficit map shifts, but the operational ledger remains stable                                     | Local energy-density visualization is partly convention-sensitive        |
-| The deficit disappears or moves arbitrarily under reasonable partitions                                     | Local negative energy is fragile as a localized object                   |
-| Reset cost dominates repeated cycles                                                                        | Negative energy is operationally real but weak as a repeatable resource  |
+| Observation                                                                                                                   | Interpretation                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Smooth staged handoff reduces packet infidelity while preserving battery work                                                 | Service timing has real control value for packet health                                                  |
+| Packet fidelity improves when extraction is placed at the receiver or collar rather than directly on the packet memory        | Packet protection benefits from separating the packet role from the extraction role                      |
+| A local field-energy deficit appears near the receiver or collar, while compensating energy appears in support/reset channels | Energy borrowing and repayment can be spatially organized within the QET rail                            |
+| Battery work, source injection, timing order, and correlation consumption remain stable across energy partitions              | The QET event has a robust operational core                                                              |
+| The local deficit region remains tied to the same receiver/collar phase across several ledgers                                | Local negative energy has strong operational localization in this setup                                  |
+| Repeated cycles retain bounded reset overhead and bounded packet degradation                                                  | The protocol behaves as a repeatable service process                                                     |
+| Higher-load schedules fail through packet leakage, support heating, or reset overhead                                         | The device has meaningful service-load boundaries                                                        |
+| Smooth handoff reduces packet disturbance while also reducing extracted work                                                  | Packet protection and extraction strength trade against each other in that regime                        |
+| The local deficit map shifts while battery work and reset cost remain stable                                                  | The operational event is stable while local energy-density presentation is ledger-sensitive              |
+| The deficit depth changes strongly under different coupling-energy assignments                                                | Interaction-energy attribution is a major part of the local negative-energy story                        |
+| Battery work appears without stable local deficit localization                                                                | Energy extraction is operationally real while the local-deficit map is weakly localized                  |
+| Local deficit appears without useful battery work                                                                             | The reconstructed deficit is a local energy feature with limited extractable-work value in that schedule |
+| Packet damage remains high across handoff shapes                                                                              | Packet protection is limited by hardware crosstalk, residual coupling, or receiver-pulse disturbance     |
+| Reset cost grows rapidly across repeated cycles                                                                               | Negative-energy service is operationally costly in repeated use                                          |
+| Randomized feed-forward gives the same battery response as valid feed-forward                                                 | The observed battery change is dominated by receiver drive rather than QET correlation use               |
+| Collar-off runs still disturb the packet                                                                                      | Crosstalk or stray coupling dominates the packet-health channel                                          |
+| Rail-only QET works cleanly while full-service packet runs fail                                                               | Packet protection is the limiting engineering problem                                                    |
+| Anchored-packet runs work while carried-packet runs fail                                                                      | Packet transport adds an independent error channel requiring separate refinement                         |
+| All reasonable energy partitions erase the local deficit while preserving total energy balance                                | The tested protocol lacks a stable local negative-energy feature under this hardware realization         |
+| No accounting scheme gives battery work above controls                                                                        | The QET extraction protocol is below the device’s operational threshold                                  |
 
-The experimental target is a controlled map of whether quantum negative energy can be scheduled, localized, protected, repaid, and repeated, and whether those features survive changes in local energy accounting. The first axis tests whether service choreography protects a carried quantum packet. The second axis tests whether the negative-energy event is a robust operational structure under local-energy repartitioning.
+---
+
+## Theory-testing outcome table
+
+| Axis                                        | Result pattern                                                                                                                                                                             | Answer to the central question                                     | Interpretation                                                                                                                                      |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Axis 1: service parameters vs packet health | At fixed or comparable extracted work, smoother handoff, staged receiver operation, wider support collar, or gentler release produces higher packet fidelity and lower leakage/decoherence | **Yes, service parameters control packet health**                  | Packet health depends on choreography, placement, timing, and support routing, not only on whether QET occurred                                     |
+| Axis 1                                      | Packet health changes predictably with handoff width, release smoothness, receiver placement, reset timing, or service load                                                                | **Yes, service parameters define an operating envelope**           | The experiment yields a service map: safe schedules, damaging schedules, high-load boundaries, and repeatable-cycle regions                         |
+| Axis 1                                      | At matched integrated coupling exposure and matched extracted work, packet health is nearly unchanged across timing, placement, handoff, release, and reset schedules                      | **No strong choreography effect**                                  | Packet health is governed mainly by total exposure/interaction strength; service shaping adds little protective structure                           |
+| Axis 1                                      | Packet protection improves only by reducing extraction, deficit depth, or battery work proportionally                                                                                      | **Mostly no, with tradeoff**                                       | The apparatus shows a protection/extraction Pareto curve rather than an independent packet-protection mechanism                                     |
+| Axis 1                                      | Packet health worsens specifically when repayment/reset is concentrated near the packet, and improves when repayment/reset is distributed into support modes                               | **Yes, repayment placement matters**                               | Packet health is affected by where the compensating energy burden is routed                                                                         |
+| Axis 1                                      | Packet health is insensitive to reset placement once the live handoff ends                                                                                                                 | **Reset placement has weak packet-health relevance**               | Reset burden matters energetically but has little effect on the protected packet in that regime                                                     |
+| Axis 2: robustness of QFT negative energy   | Battery work, source injection, feed-forward dependence, reset cost, correlation consumption, and the local deficit phase remain stable across reasonable local-energy partitions          | **Yes, QFT negative energy has a robust operational core**         | The event survives repartitioning as an extraction/deficit/repayment structure                                                                      |
+| Axis 2                                      | The local deficit remains attached to the same receiver/collar region across partitions, baselines, and finite time windows                                                                | **Yes, local negative energy is robustly localized in this setup** | The negative-energy event behaves like a stable local operational feature                                                                           |
+| Axis 2                                      | Battery work and repayment remain stable, while the exact deficit boundary/depth shifts with coupling-energy assignment                                                                    | **Mixed result**                                                   | QET extraction is robust; the local negative-energy map has convention-sensitive details                                                            |
+| Axis 2                                      | Battery work is feed-forward dependent, but the negative-energy region moves or disappears under reasonable partitions                                                                     | **Operational extraction yes; stable local negativity weak**       | QFT-side energy extraction is real, while “negative energy here” behaves like a partition-sensitive description in this setup                       |
+| Axis 2                                      | Total energy accounting closes, but no local deficit remains stable across partitions, baselines, or time windows                                                                          | **No robust local negative-energy structure**                      | The experiment supports total energy accounting and repayment, while local negativity behaves like ledger-dependent bookkeeping in this realization |
+| Axis 2                                      | A local deficit appears in one preferred ledger but disappears under equally reasonable ledgers                                                                                            | **No strong robustness**                                           | The negative-energy claim depends on a chosen local accounting convention                                                                           |
+| Axis 2                                      | Deficit timing, location, extracted work, and repayment pattern all remain stable across partitions                                                                                        | **Strong positive result**                                         | QFT negative energy behaves like a controlled operational resource in this hardware analogue                                                        |
+| Axis 2                                      | Different partitions produce incompatible stories about where extraction, deficit, and repayment occur, while hard battery/source/reset observables remain stable                          | **Strong negative result for local negativity**                    | The physical energy cycle is real; the local negative-energy story lacks invariant structure                                                        |
+
+## Apparatus-validity gates
+
+| Validity gate                                                                     | Meaning                                                                |
+| --------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Rail-only QET produces feed-forward-dependent battery work                        | The QET service is operating                                           |
+| Randomized feed-forward removes or strongly reduces battery work                  | The battery signal is correlation-mediated                             |
+| Packet-only runs preserve packet fidelity above threshold                         | The packet memory/corridor is usable                                   |
+| Collar-off full-service runs show low packet disturbance                          | Stray crosstalk is controlled                                          |
+| Source-only and receiver-only controls stay below full-service disturbance levels | Packet damage is tied to the scheduled service, not raw control pulses |
+| Energy reconstruction closes within calibration tolerance                         | The energy ledger is trustworthy                                       |
+| Repeated-shot snapshots agree with endpoint observables                           | The reconstructed energy movie is reliable                             |
+
