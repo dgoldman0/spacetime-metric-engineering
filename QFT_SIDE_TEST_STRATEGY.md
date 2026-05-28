@@ -2,7 +2,7 @@
 
 ## Experimental Spine
 
-The experiment uses a superconducting circuit-QED device to test two operational questions. The first question is how service parameters influence the health of a protected quantum packet. The second question is whether QFT-side negative energy behaves like a robust operational structure, or whether its apparent location and meaning depend strongly on the local energy partition used to describe the system.
+The experiment uses a superconducting circuit-QED device to test two operational questions. The first question is how service parameters influence the health of a protected quantum packet. The second question is whether QFT-side negative energy behaves like a robust operational structure, or whether its apparent location and meaning depend strongly on the local energy partition used to describe the system. The QET part follows the local-measurement, classical-feed-forward, receiver-extraction structure introduced by Hotta and later analyzed in coupled oscillator chains [Hotta 2008; Nambu and Hotta 2010].
 
 The apparatus is a programmable QET service system. A coupled microwave-resonator rail supplies the correlated quantum medium used for QET. A separate protected packet memory carries the quantum state whose health is scored. A handoff collar controls how strongly the packet memory is exposed to the service rail. A receiver station performs the feed-forward-conditioned QET operation. A battery mode records extracted work. Nearby support and reset modes record repayment, residual excitation, and reset cost.
 
@@ -14,13 +14,13 @@ This structure keeps the original experimental center intact. The service rail s
 
 ## Apparatus Design
 
-The field rail is a line of coupled microwave resonators, labeled $F_0$ through $F_6$. Neighboring resonators are connected by SQUID-tunable couplers so the effective rail Hamiltonian can be calibrated as onsite resonator energies plus controlled coupling terms. The rail is the field-like subsystem. It is prepared in a correlated low-energy state and supplies the QET resource.
+The field rail is a line of coupled microwave resonators, labeled $F_0$ through $F_6$. Neighboring resonators are connected by SQUID-tunable couplers so the effective rail Hamiltonian can be calibrated as onsite resonator energies plus controlled coupling terms. The rail is the field-like subsystem. It is prepared in a correlated low-energy state and supplies the QET resource. Circuit-QED hardware provides the native platform for calibrated microwave modes, artificial-atom ancillas, tunable interactions, and repeated state reconstruction [Blais et al. 2021].
 
 A source transmon ancilla couples to the source side of the rail, near $F_0$ or $F_1$. This ancilla performs the source-side measurement. Its measurement backaction is part of the service: it injects energy, consumes correlations, and produces the classical feed-forward record used by the receiver.
 
 A receiver transmon ancilla couples to the receiver side of the rail, near $F_5$ or $F_6$. It applies the feed-forward-conditioned operation. A battery mode, implemented as a high-Q resonator or work qubit, couples to the receiver station. Battery energy is the clean operational readout for extracted work.
 
-The protected packet system is a high-Q storage-resonator memory placed near the receiver/handoff region. In the anchored-packet mode, the packet state is loaded into this memory, held through the service window, and reconstructed after the service. In the carried-packet extension, the packet memory becomes one station in a short packet corridor $P_0$ through $P_4$, and the packet is moved by shaped tunable-coupler state-transfer pulses.
+The protected packet system is a high-Q storage-resonator memory placed near the receiver/handoff region. In the anchored-packet mode, the packet state is loaded into this memory, held through the service window, and reconstructed after the service. In the carried-packet extension, the packet memory becomes one station in a short packet corridor $P_0$ through $P_4$, and the packet is moved by shaped tunable-coupler state-transfer pulses. This packet choice follows the superconducting bosonic-memory literature, where microwave cavity modes provide long-lived storage and controllable bosonic encodings [Ma et al. 2021; Milul et al. 2023]. The carried-packet extension is closest to superconducting multiresonator microwave-memory work and therefore stays downstream of the anchored baseline [Bao et al. 2021].
 
 The clean first packet encoding is a dual-rail logical qubit, using two storage modes:
 $$
@@ -66,7 +66,7 @@ Diagnostic reconstruction is performed through repeated-shot batches. The same s
 
 This produces a time-resolved service ledger from repeated identical runs. It avoids continuous live monitoring of the packet and rail during the service window, while still reconstructing packet health, extracted work, local deficit formation, repayment, and reset.
 
-The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked.
+The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked. This ordering matches the experimental QET literature, where the operational signal is the feed-forward-conditioned energy extraction and its associated energy accounting [Rodriguez-Briones et al. 2023; Ikeda 2023].
 
 Coupling energy is treated as a measured part of the ledger rather than as a display choice. The stroboscopic reconstruction therefore includes the neighboring-mode correlations and coupler-state observables needed to estimate interaction terms. Occupation-only maps remain useful diagnostic views, while the calibrated Hamiltonian ledger carries the energy accounting.
 
@@ -115,7 +115,7 @@ The main output is a service-parameter map. It shows which schedules keep the pa
 Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned among field modes, couplers, handoff collar, receiver, battery, packet memory, support modes, and reset reservoir?
 
 **Vary:**
-Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map.
+Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map. The QFT negative-energy literature supports local sub-vacuum energy as a meaningful expectation-value feature while also treating magnitude, duration, and compensation as constrained quantities [Ford 2010].
 
 Assign each coupling term symmetrically between neighboring modes. Then assign the same coupling term to the upstream field mode, downstream field mode, handoff collar, receiver interface, support ledger, or packet-facing boundary. Compare fine-grained site-level accounting with grouped-region accounting.
 
@@ -200,3 +200,23 @@ The apparatus should record calibration data for readout crosstalk, residual pac
 | Source-only and receiver-only controls stay below full-service disturbance levels | Packet damage is tied to the scheduled service, not raw control pulses |
 | Hamiltonian energy reconstruction closes within calibration tolerance             | The energy ledger is trustworthy                                       |
 | Repeated-shot snapshots agree with endpoint observables                           | The reconstructed energy movie is reliable                             |
+
+## Selected Literature
+
+Hotta, "Quantum measurement information as a key to energy extraction from local vacuums," Phys. Rev. D 78, 045006 (2008), DOI: 10.1103/PhysRevD.78.045006.
+
+Nambu and Hotta, "Quantum energy teleportation with a linear harmonic chain," Phys. Rev. A 82, 042329 (2010), DOI: 10.1103/PhysRevA.82.042329.
+
+Rodriguez-Briones, Katiyar, Martin-Martinez, and Laflamme, "Experimental Activation of Strong Local Passive States with Quantum Information," Phys. Rev. Lett. 130, 110801 (2023), DOI: 10.1103/PhysRevLett.130.110801.
+
+Ikeda, "Demonstration of Quantum Energy Teleportation on Superconducting Quantum Hardware," Phys. Rev. Applied 20, 024051 (2023), DOI: 10.1103/PhysRevApplied.20.024051.
+
+Blais, Grimsmo, Girvin, and Wallraff, "Circuit Quantum Electrodynamics," Rev. Mod. Phys. 93, 025005 (2021), DOI: 10.1103/RevModPhys.93.025005.
+
+Ma, Puri, Schoelkopf, Devoret, Girvin, and Jiang, "Quantum control of bosonic modes with superconducting circuits," Science Bulletin 66, 1789-1805 (2021), DOI: 10.1016/j.scib.2021.05.024.
+
+Milul et al., "Superconducting Cavity Qubit with Tens of Milliseconds Single-Photon Coherence Time," PRX Quantum 4, 030336 (2023), DOI: 10.1103/PRXQuantum.4.030336.
+
+Bao et al., "On-Demand Storage and Retrieval of Microwave Photons Using a Superconducting Multiresonator Quantum Memory," Phys. Rev. Lett. 127, 010503 (2021), DOI: 10.1103/PhysRevLett.127.010503.
+
+Ford, "Negative Energy Densities in Quantum Field Theory," Int. J. Mod. Phys. A 25, 2355-2363 (2010), DOI: 10.1142/S0217751X10049633.
