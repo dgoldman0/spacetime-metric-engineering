@@ -1,0 +1,57 @@
+{
+  "loop_method": "brownian_bridge",
+  "proxy_status": "reproduction_proxy_not_exact_white_method",
+  "n_loops": 128,
+  "n_points_per_loop": 200,
+  "scale_grid": [
+    0.5,
+    0.8947368421052632,
+    1.2894736842105263,
+    1.6842105263157894,
+    2.0789473684210527,
+    2.473684210526316,
+    2.8684210526315788,
+    3.263157894736842,
+    3.6578947368421053,
+    4.052631578947368,
+    4.447368421052632,
+    4.842105263157895,
+    5.2368421052631575,
+    5.631578947368421,
+    6.026315789473684,
+    6.421052631578948,
+    6.815789473684211,
+    7.2105263157894735,
+    7.605263157894737,
+    8.0
+  ],
+  "random_seed": 1,
+  "geometry_config_hash": "4cd8aeb41bd7f0eb",
+  "normalization": "normalized_morphology_proxy",
+  "elapsed_s": 4.89104832499288,
+  "grid_points": 625,
+  "loop_scale_tests": 1600000,
+  "loop_scale_tests_per_s": 327128.23380299134,
+  "validation": {
+    "proxy_negative_somewhere": true,
+    "proxy_mean_negative": true,
+    "midplane_symmetry_relative_error": 0.10210498458346674,
+    "symmetry_smoke_pass": true,
+    "boundary_thickness_um": 0.4,
+    "method_note": "Brownian-bridge proxy loops with thickened smoke-test boundary surfaces."
+  },
+  "gap_scaling": [
+    {
+      "gap_um": 2.0,
+      "mean_negative_magnitude": 1.0879664028595186
+    },
+    {
+      "gap_um": 4.0,
+      "mean_negative_magnitude": 0.10780340257243176
+    },
+    {
+      "gap_um": 8.0,
+      "mean_negative_magnitude": 0.009734564064897486
+    }
+  ]
+}

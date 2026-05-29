@@ -28,3 +28,14 @@ reports/fig_roles_sphere_cylinder.png
 The worldline, stress-tensor, linearized metric, EM, and role-sweep modules are
 intentionally not implemented in this first phase. They raise explicit
 `NotImplementedError` placeholders rather than producing silent proxy results.
+
+Stage 2 now has a deliberately limited scalar smoke path:
+
+```bash
+bash white_casimir_intersection/experiments/white_casimir_source_function_audit/scripts/run_stage2_smoke.sh
+```
+
+This uses Brownian-bridge closed loops and labels the result as a reproduction
+proxy, not as the exact White et al. v-loop method. It writes plate validation,
+gap-scaling, sphere-cylinder proxy, and throughput-estimate artifacts. The exact
+v-loop/C++ path remains the next requirement before reproduction-grade claims.

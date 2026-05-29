@@ -92,6 +92,12 @@ class CentralReadoutPath:
 class SamplingIntersectionMixin:
     sample_step_um = 0.02
 
+    def body_ids_for_points(self, points: object) -> np.ndarray:
+        arr = np.asarray(points, dtype=float)
+        flat = arr.reshape(-1, 3)
+        ids = np.array([self.body_id(point) or 0 for point in flat], dtype=np.int16)
+        return ids.reshape(arr.shape[:-1])
+
     def intersects_segment(self, p0: object, p1: object) -> set[int]:
         a = _point(p0)
         b = _point(p1)
@@ -136,6 +142,19 @@ class ParallelPlates(SamplingIntersectionMixin):
         if abs(y - half_gap) <= half_t:
             return 2
         return None
+
+    def body_ids_for_points(self, points: object) -> np.ndarray:
+        arr = np.asarray(points, dtype=float)
+        x = arr[..., 0]
+        y = arr[..., 1]
+        z = arr[..., 2]
+        ids = np.zeros(x.shape, dtype=np.int16)
+        in_footprint = (np.abs(x) <= 0.5 * self.width_um) & (np.abs(z) <= 0.5 * self.height_um)
+        half_gap = 0.5 * self.gap_um
+        half_t = 0.5 * self.effective_thickness_um
+        ids[in_footprint & (np.abs(y + half_gap) <= half_t)] = 1
+        ids[in_footprint & (np.abs(y - half_gap) <= half_t)] = 2
+        return ids
 
     def contains_body(self, point: object) -> bool:
         return self.body_id(point) is not None
@@ -195,6 +214,22 @@ class PillarMidplaneCavity(SamplingIntersectionMixin):
         if radial <= self.pillar_radius_um and abs(z) <= 0.5 * self.plate_height_um:
             return 3
         return None
+
+    def body_ids_for_points(self, points: object) -> np.ndarray:
+        arr = np.asarray(points, dtype=float)
+        x = arr[..., 0]
+        y = arr[..., 1]
+        z = arr[..., 2]
+        ids = np.zeros(x.shape, dtype=np.int16)
+        in_footprint = (np.abs(x) <= 0.5 * self.plate_width_um) & (np.abs(z) <= 0.5 * self.plate_height_um)
+        half_gap = 0.5 * self.gap_um
+        half_t = 0.5 * self.effective_thickness_um
+        ids[in_footprint & (np.abs(y + half_gap) <= half_t)] = 1
+        ids[in_footprint & (np.abs(y - half_gap) <= half_t)] = 2
+        radial = np.hypot(x, y)
+        pillar = (radial <= self.pillar_radius_um) & (np.abs(z) <= 0.5 * self.plate_height_um)
+        ids[pillar] = 3
+        return ids
 
     def contains_body(self, point: object) -> bool:
         return self.body_id(point) is not None
@@ -259,6 +294,25 @@ class SphereInCylinder(SamplingIntersectionMixin):
         if abs(x) <= half_len and abs(radial - self.cylinder_radius_um) <= half_wall:
             return 2
         return None
+
+    def body_ids_for_points(self, points: object) -> np.ndarray:
+        arr = np.asarray(points, dtype=float)
+        x = arr[..., 0]
+        y = arr[..., 1]
+        z = arr[..., 2]
+        center = np.asarray(self.sphere_offset_um, dtype=float)
+        sphere_radial = np.sqrt(
+            (x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2
+        )
+        transverse = np.hypot(y, z)
+        ids = np.zeros(x.shape, dtype=np.int16)
+        ids[sphere_radial <= self.sphere_radius_um] = 1
+        wall = (
+            (np.abs(x) <= 0.5 * self.cylinder_length_um)
+            & (np.abs(transverse - self.cylinder_radius_um) <= 0.5 * self.wall_thickness_um)
+        )
+        ids[wall] = 2
+        return ids
 
     def contains_body(self, point: object) -> bool:
         return self.body_id(point) is not None
