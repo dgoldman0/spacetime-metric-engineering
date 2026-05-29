@@ -66,7 +66,7 @@ Diagnostic reconstruction is performed through repeated-shot batches. The same s
 
 This produces a time-resolved service ledger from repeated identical runs. It avoids continuous live monitoring of the packet and rail during the service window, while still reconstructing packet health, extracted work, local deficit formation, repayment, and reset.
 
-The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked. This ordering matches QET work where conditional energy extraction is tied to measurement, classical communication, local receiver operation, and the associated energy accounting [Hotta 2008; Rodriguez-Briones et al. 2023].
+The service ledger is ordered by how directly each quantity is tied to an operation. Battery energy, source-side injected energy, total device balance, feed-forward dependence, reset/repreparation cost, and packet process fidelity are the primary observables. The calibrated Hamiltonian energy ledger then resolves onsite mode energy, controlled coupling energy, ancilla energy, battery-interface energy, drive work, and reset-channel cost. Local negative-energy maps are derived from that calibrated ledger and scored after total energy closure has been checked. This ordering matches QET and local-passivity work where conditional energy extraction is tied to measurement, classical communication, local receiver operation, and the associated energy accounting [Hotta 2008; Alhambra et al. 2019; Rodriguez-Briones et al. 2023].
 
 Coupling energy is treated as a measured part of the ledger. The stroboscopic reconstruction therefore includes the neighboring-mode correlations and coupler-state observables needed to estimate interaction terms. Occupation-only maps remain useful diagnostic views, while the calibrated Hamiltonian ledger carries the energy accounting.
 
@@ -115,13 +115,13 @@ The main output is a service-parameter map. It shows which schedules keep the pa
 Does the QFT-side negative-energy event remain operationally meaningful when the local energy ledger is repartitioned among field modes, couplers, handoff collar, receiver, battery, packet memory, support modes, and reset reservoir?
 
 **Vary:**
-Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map. QFT supplies the target concept: local energy density in quantized field theory can be negative under the usual postulates, while quantum energy inequalities and quantum-interest results bound averaged magnitude, duration, and compensating positive energy [Epstein et al. 1965; Ford and Roman 1997; Fewster 2005; Ford and Roman 1999; Kontou and Sanders 2020].
+Hold the physical service run fixed and vary the energy accounting. Analyze the same reconstructed circuit state under a declared family of Hamiltonian partitions. This separates the stable service event from the presentation-dependent details of a local energy map. QFT supplies the target concept: local energy density in quantized field theory can be negative, while physically reasonable theories obey quantum energy inequalities or averaged bounds on smeared negative energy [Kontou and Sanders 2020; Bostelmann et al. 2024; Mandrysch 2024].
 
 Assign each coupling term symmetrically between neighboring modes. Then assign the same coupling term to the upstream field mode, downstream field mode, handoff collar, receiver interface, support ledger, or packet-facing boundary. Compare fine-grained site-level accounting with grouped-region accounting.
 
 Vary region definitions. Use a minimal receiver region containing one receiver-side field mode and the battery interface. Use a receiver-plus-collar region containing the receiver field mode, battery interface, and nearest packet-facing coupler. Use a broader support region containing neighboring field modes and tunable couplers. Use a packet-excluding field ledger and a packet-inclusive collar ledger.
 
-Vary the reference baseline used for “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state before source measurement, the state before receiver operation, and the post-reset state. In continuum QFT, the stress-energy tensor is a local, renormalized observable with controlled renormalization freedom; the circuit ledger states the baseline and partition family used for each energy map [Hollands and Wald 2015].
+Vary the reference baseline used for “negative.” Compare energy relative to the uncoupled device ground state, the coupled field-rail ground state, the prepared correlated state, the ready-to-run state before source measurement, the state before receiver operation, and the post-reset state. In continuum QFT, the stress-energy tensor is a local, renormalized observable with controlled renormalization freedom [Hollands and Wald 2015]. In quantum lattice systems, charge densities and conserved currents carry local-density ambiguities, so the circuit ledger states the baseline and partition family used for each energy map [Kapustin and Sopenko 2022].
 
 Vary the diagnostic observable. Compare ledgers built from onsite occupations alone, onsite occupations plus shared coupling terms, normal-mode reconstructed energy, local quadrature-energy density, and coarse-grained finite-window energy over neighboring modes. The onsite-only ledger is retained as a simple monitor, while the coupling-inclusive and normal-mode ledgers carry the main local-energy reconstruction.
 
@@ -207,18 +207,18 @@ Hotta, "Quantum measurement information as a key to energy extraction from local
 
 Nambu and Hotta, "Quantum energy teleportation with a linear harmonic chain," Phys. Rev. A 82, 042329 (2010), DOI: 10.1103/PhysRevA.82.042329.
 
+Alhambra, Styliaris, Rodriguez-Briones, Sikora, and Martin-Martinez, "Fundamental limitations to local energy extraction in quantum systems," Phys. Rev. Lett. 123, 190601 (2019), DOI: 10.1103/PhysRevLett.123.190601.
+
 Rodriguez-Briones, Katiyar, Martin-Martinez, and Laflamme, "Experimental Activation of Strong Local Passive States with Quantum Information," Phys. Rev. Lett. 130, 110801 (2023), DOI: 10.1103/PhysRevLett.130.110801.
 
 Blais, Grimsmo, Girvin, and Wallraff, "Circuit Quantum Electrodynamics," Rev. Mod. Phys. 93, 025005 (2021), DOI: 10.1103/RevModPhys.93.025005.
 
-Epstein, Glaser, and Jaffe, "Nonpositivity of the energy density in quantized field theories," Nuovo Cimento 36, 1016-1022 (1965), DOI: 10.1007/BF02749799.
-
-Ford and Roman, "Restrictions on negative energy density in flat spacetime," Phys. Rev. D 55, 2082-2089 (1997), DOI: 10.1103/PhysRevD.55.2082.
-
-Fewster, "Energy inequalities in quantum field theory," arXiv:math-ph/0501073 (2005).
-
-Ford and Roman, "The quantum interest conjecture," Phys. Rev. D 60, 104018 (1999), DOI: 10.1103/PhysRevD.60.104018.
-
 Kontou and Sanders, "Energy conditions in general relativity and quantum field theory," Class. Quantum Grav. 37, 193001 (2020), DOI: 10.1088/1361-6382/ab8fcf.
 
 Hollands and Wald, "Quantum fields in curved spacetime," Phys. Rep. 574, 1-35 (2015), DOI: 10.1016/j.physrep.2015.02.001.
+
+Kapustin and Sopenko, "Local Noether theorem for quantum lattice systems and topological invariants of gapped states," J. Math. Phys. 63, 091903 (2022), DOI: 10.1063/5.0085964.
+
+Bostelmann, Cadamuro, and Mandrysch, "Quantum energy inequalities in integrable models with several particle species and bound states," Ann. Henri Poincare (2024), DOI: 10.1007/s00023-023-01409-8.
+
+Mandrysch, "Numerical results on quantum energy inequalities in integrable models at the two-particle level," Phys. Rev. D 109, 085022 (2024), DOI: 10.1103/PhysRevD.109.085022.
