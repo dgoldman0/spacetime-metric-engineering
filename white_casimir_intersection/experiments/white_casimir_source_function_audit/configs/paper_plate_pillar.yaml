@@ -1,0 +1,17 @@
+geometry: pillar_midplane_cavity
+plate_gap_um: 4.0
+plate_width_um: 40.0
+plate_height_um: 40.0
+pillar_diameter_um: 1.0
+pillar_axis: z
+coordinate_convention:
+  separation_axis: y
+  pillar_axis: z
+  section_axes: [x, y]
+readout_path:
+  mode: pillar_voltage_sample
+  radius_um: 0.05
+  participates_as_casimir_boundary: false
+notes:
+  - "Aligned to the paper's 4 um cavity gap, 40 um by 40 um plate footprint, and 1 um pillar scale."
+  - "The readout role labels the proposed sampling channel; it is not a Casimir boundary in the first reproduction."

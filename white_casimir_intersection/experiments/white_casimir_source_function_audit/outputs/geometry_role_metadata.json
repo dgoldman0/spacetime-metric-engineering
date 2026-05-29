@@ -1,0 +1,37 @@
+{
+  "phase": "stage0_stage1_geometry_roles",
+  "base_dir": "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/white_casimir_intersection/experiments/white_casimir_source_function_audit",
+  "claim_manifest": "outputs/claim_manifest.json",
+  "role_figures": [
+    "reports/fig_roles_plate_pillar.png",
+    "reports/fig_roles_sphere_cylinder.png"
+  ],
+  "geometry_conventions": {
+    "plate_pillar": "plates separated along y; pillar axis z; plotted in x-y section at z=0",
+    "sphere_cylinder": "cylinder/readout axis x; plotted in x-y section at z=0"
+  },
+  "readout_path_policy": {
+    "first_phase": "role label only; not a Casimir boundary",
+    "mode": "open_bore",
+    "radius_um": 0.05,
+    "participates_as_casimir_boundary": false
+  },
+  "role_pixel_counts": {
+    "plate_pillar": {
+      "far_field_control": 11880,
+      "source_shell_candidate": 760,
+      "transit_readout_channel": 24,
+      "ordinary_em_competitor_region": 1048,
+      "boundary_infrastructure": 440,
+      "stress_shaping_body": 608
+    },
+    "sphere_cylinder": {
+      "far_field_control": 11880,
+      "source_shell_candidate": 24032,
+      "transit_readout_channel": 440,
+      "ordinary_em_competitor_region": 880,
+      "boundary_infrastructure": 440,
+      "stress_shaping_body": 608
+    }
+  }
+}

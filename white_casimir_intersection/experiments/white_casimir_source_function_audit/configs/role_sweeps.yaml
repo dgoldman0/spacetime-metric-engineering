@@ -1,0 +1,21 @@
+sweep_families:
+  boundary_geometry_held_readout:
+    sphere_diameter_um: [0.5, 0.75, 1.0, 1.25, 1.5]
+    cylinder_diameter_um: [3.0, 4.0, 5.0]
+    cylinder_length_um: [4.0, 8.0, 16.0]
+    readout_path: fixed
+  readout_path_held_shell:
+    bore_radius_um: [0.0, 0.05, 0.1, 0.25, 0.5]
+    central_conductor_radius_um: [0.0, 0.025, 0.05, 0.1]
+  symmetry_breaking_controls:
+    offset_radial_um: [0.0, 0.1, 0.25, 0.5, 1.0]
+    offset_axial_um: [0.0, 0.25, 0.5, 1.0]
+  dummy_controls:
+    - sphere_only
+    - cylinder_only
+    - large_gap_sphere_cylinder
+    - cylinder_only_matched_readout
+    - matched_length_no_external_tube
+  array_scaling:
+    array_count: [1, 10, 100, 1000, 10000]
+    connection_mode: [parallel, series, independent_time_average]

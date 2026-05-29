@@ -1,0 +1,17 @@
+geometry: sphere_in_cylinder
+sphere_diameter_um: 1.0
+cylinder_diameter_um: 4.0
+cylinder_length_um: 8.0
+cylinder_length_source: "audit default; the paper specifies the 1 um sphere and 4 um cylinder diameter but not a unique cylinder length"
+axis: x
+readout_path:
+  mode: open_bore
+  radius_um: 0.05
+  conductor_radius_um: 0.0
+  participates_as_casimir_boundary: false
+control_path:
+  mode: matched_length_no_external_tube
+  length_um: 8.0
+notes:
+  - "Aligned to the paper's centered 1 um sphere in a 4 um diameter cylinder toy model."
+  - "The central current/photon/electron path is a separate readout/ordinary-EM channel, not automatic evidence of a spacetime channel."

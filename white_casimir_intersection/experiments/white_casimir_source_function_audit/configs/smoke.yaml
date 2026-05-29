@@ -1,0 +1,11 @@
+grid:
+  nx: 25
+  ny: 25
+loops:
+  n_loops: 128
+  n_points_per_loop: 200
+seeds: [1, 2]
+sweeps: minimal
+phase:
+  implemented: [claim_manifest, geometry_roles]
+  deferred: [worldline_scalar, stress_tensor_proxy, linearized_metric, em_proxy, role_sweeps]
