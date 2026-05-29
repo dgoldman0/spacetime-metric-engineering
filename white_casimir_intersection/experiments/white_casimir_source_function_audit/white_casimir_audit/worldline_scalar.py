@@ -30,6 +30,12 @@ def _geometry_config_hash(geometry: object) -> str:
     return hashlib.sha256(blob).hexdigest()[:16]
 
 
+def proxy_status_for_loop_method(loop_method: str) -> str:
+    if loop_method == "v_loop":
+        return "paper_style_v_loop_morphology_proxy_not_si_normalized"
+    return "reproduction_proxy_not_exact_white_method"
+
+
 def _hit_counts_for_scaled_points(geometry: object, points: np.ndarray) -> np.ndarray:
     ids = geometry.body_ids_for_points(points)
     n_loops = ids.shape[0]
@@ -85,7 +91,7 @@ def estimate_density_proxy(
     touch_field = touch_counts.reshape(_grid_shape(grid))
     metadata = {
         "loop_method": loop_method,
-        "proxy_status": "reproduction_proxy_not_exact_white_method",
+        "proxy_status": proxy_status_for_loop_method(loop_method),
         "n_loops": int(loop_arr.shape[0]),
         "n_points_per_loop": int(loop_arr.shape[1]),
         "scale_grid": [float(v) for v in scales],

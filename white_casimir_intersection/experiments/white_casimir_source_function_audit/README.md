@@ -33,9 +33,13 @@ Stage 2 now has a deliberately limited scalar smoke path:
 
 ```bash
 bash white_casimir_intersection/experiments/white_casimir_source_function_audit/scripts/run_stage2_smoke.sh
+bash white_casimir_intersection/experiments/white_casimir_source_function_audit/scripts/run_stage2_vloop_smoke.sh
 ```
 
-This uses Brownian-bridge closed loops and labels the result as a reproduction
-proxy, not as the exact White et al. v-loop method. It writes plate validation,
-gap-scaling, sphere-cylinder proxy, and throughput-estimate artifacts. The exact
-v-loop/C++ path remains the next requirement before reproduction-grade claims.
+The first script uses Brownian-bridge closed loops and labels the result as a
+reproduction proxy. The second script uses the paper-style v-loop construction
+quoted by White et al. Both scripts write plate validation, gap-scaling,
+sphere-cylinder proxy, and throughput-estimate artifacts. The v-loop smoke is
+closer to reproduction-grade loop generation, while exact energy normalization
+and a high-performance C++ path remain future requirements before paper-scale
+claims.

@@ -1,6 +1,6 @@
 {
-  "loop_method": "brownian_bridge",
-  "proxy_status": "reproduction_proxy_not_exact_white_method",
+  "loop_method": "v_loop",
+  "proxy_status": "paper_style_v_loop_morphology_proxy_not_si_normalized",
   "n_loops": 128,
   "n_points_per_loop": 200,
   "scale_grid": [
@@ -28,8 +28,8 @@
   "random_seed": 1,
   "geometry_config_hash": "bf80dac54e669a0c",
   "normalization": "normalized_morphology_proxy",
-  "elapsed_s": 8.478963698027655,
+  "elapsed_s": 8.280398412141949,
   "grid_points": 625,
   "loop_scale_tests": 1600000,
-  "loop_scale_tests_per_s": 188702.3057277844
+  "loop_scale_tests_per_s": 193227.41737328033
 }

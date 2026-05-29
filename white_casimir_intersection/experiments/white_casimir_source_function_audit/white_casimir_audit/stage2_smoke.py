@@ -18,7 +18,7 @@ import yaml
 from .geometry import ParallelPlates, SphereInCylinder, make_xy_grid
 from .loop_gen import generate_loops
 from .report import generate_phase0_phase1
-from .worldline_scalar import estimate_density_proxy
+from .worldline_scalar import estimate_density_proxy, proxy_status_for_loop_method
 
 
 def _write_csv(path: Path, grid: dict[str, np.ndarray], field: np.ndarray) -> None:
@@ -62,7 +62,39 @@ def _estimate_full_run_seconds(metadata: dict[str, Any], full_grid_points: int =
     return full_loop_scale_tests / max(smoke_rate, 1.0e-12) * point_factor
 
 
-def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
+def _field_metrics(grid: dict[str, np.ndarray], field: np.ndarray) -> dict[str, Any]:
+    finite = np.asarray(field, dtype=float)
+    min_index = np.unravel_index(int(np.nanargmin(finite)), finite.shape)
+    negative = finite[finite < 0.0]
+    return {
+        "min": float(np.nanmin(finite)),
+        "mean": float(np.nanmean(finite)),
+        "std": float(np.nanstd(finite)),
+        "negative_pixels": int(np.count_nonzero(finite < 0.0)),
+        "total_pixels": int(finite.size),
+        "negative_fraction": float(np.count_nonzero(finite < 0.0) / finite.size),
+        "contrast_abs_min_to_abs_mean": float(abs(np.nanmin(finite)) / max(abs(np.nanmean(finite)), 1.0e-12)),
+        "min_x_um": float(grid["x"][min_index]),
+        "min_section_um": float(grid["y"][min_index]),
+        "p05": float(np.nanpercentile(finite, 5)),
+        "p50": float(np.nanpercentile(finite, 50)),
+        "p95": float(np.nanpercentile(finite, 95)),
+        "negative_p05": float(np.nanpercentile(negative, 5)) if negative.size else 0.0,
+        "negative_p50": float(np.nanpercentile(negative, 50)) if negative.size else 0.0,
+    }
+
+
+def _method_suffix(loop_method: str) -> str:
+    return "" if loop_method == "brownian_bridge" else f"_{loop_method}"
+
+
+def _method_note(loop_method: str) -> str:
+    if loop_method == "v_loop":
+        return "Paper-style v-loop generator following White et al. Eq. 7-9 summary."
+    return "Brownian-bridge proxy loops with thickened smoke-test boundary surfaces."
+
+
+def run_stage2_smoke(base_dir: Path, loop_method: str = "brownian_bridge") -> dict[str, Any]:
     generate_phase0_phase1(base_dir)
     outputs_dir = base_dir / "outputs"
     reports_dir = base_dir / "reports"
@@ -73,8 +105,9 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
     n_loops = int(smoke_cfg["loops"]["n_loops"])
     n_points = int(smoke_cfg["loops"]["n_points_per_loop"])
     seed = int(smoke_cfg["seeds"][0])
-    loops = generate_loops(n_loops, n_points, seed, method="brownian_bridge")
+    loops = generate_loops(n_loops, n_points, seed, method=loop_method)
     scale_grid = np.linspace(0.5, 8.0, 20)
+    suffix = _method_suffix(loop_method)
 
     plate_grid = make_xy_grid(-2.0, 2.0, -1.8, 1.8, smoke_cfg["grid"]["nx"], smoke_cfg["grid"]["ny"])
     plate = ParallelPlates(gap_um=4.0, width_um=20.0, height_um=20.0, thickness_um=0.4)
@@ -83,7 +116,7 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
         plate_grid,
         loops,
         scale_grid,
-        loop_method="brownian_bridge",
+        loop_method=loop_method,
         random_seed=seed,
     )
     plate_field = plate_result["density_proxy"]
@@ -94,7 +127,7 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
         "midplane_symmetry_relative_error": plate_symmetry_error,
         "symmetry_smoke_pass": bool(plate_symmetry_error < 0.8),
         "boundary_thickness_um": 0.4,
-        "method_note": "Brownian-bridge proxy loops with thickened smoke-test boundary surfaces.",
+        "method_note": _method_note(loop_method),
     }
 
     gap_scaling: list[dict[str, Any]] = []
@@ -105,7 +138,7 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
             gap_grid,
             loops,
             scale_grid,
-            loop_method="brownian_bridge",
+            loop_method=loop_method,
             random_seed=seed,
         )
         gap_scaling.append(
@@ -117,13 +150,13 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
     gap_values = [row["mean_negative_magnitude"] for row in gap_scaling]
     gap_scaling_pass = bool(gap_values[0] > gap_values[1] > gap_values[2])
 
-    np.save(outputs_dir / "plate_validation_density_proxy.npy", plate_field)
-    _write_csv(outputs_dir / "plate_validation_density_proxy.csv", plate_grid, plate_field)
-    (outputs_dir / "plate_validation_metadata.json").write_text(
+    np.save(outputs_dir / f"plate_validation_density_proxy{suffix}.npy", plate_field)
+    _write_csv(outputs_dir / f"plate_validation_density_proxy{suffix}.csv", plate_grid, plate_field)
+    (outputs_dir / f"plate_validation_metadata{suffix}.json").write_text(
         json.dumps({**plate_result["metadata"], "validation": plate_validation, "gap_scaling": gap_scaling}, indent=2) + "\n",
         encoding="utf-8",
     )
-    _plot_density(reports_dir / "fig_plate_validation_density_proxy.png", "Plate Validation Density Proxy", plate_grid, plate_field)
+    _plot_density(reports_dir / f"fig_plate_validation_density_proxy{suffix}.png", f"Plate Validation Density Proxy ({loop_method})", plate_grid, plate_field)
 
     sphere_grid = make_xy_grid(-3.0, 3.0, -3.0, 3.0, smoke_cfg["grid"]["nx"], smoke_cfg["grid"]["ny"])
     sphere = SphereInCylinder(
@@ -138,37 +171,35 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
         sphere_grid,
         loops,
         np.linspace(0.25, 5.0, 20),
-        loop_method="brownian_bridge",
+        loop_method=loop_method,
         random_seed=seed,
     )
     sphere_field = sphere_result["density_proxy"]
-    np.save(outputs_dir / "sphere_cylinder_density_proxy_smoke.npy", sphere_field)
-    _write_csv(outputs_dir / "sphere_cylinder_density_proxy_smoke.csv", sphere_grid, sphere_field)
-    (outputs_dir / "sphere_cylinder_metadata_smoke.json").write_text(
+    np.save(outputs_dir / f"sphere_cylinder_density_proxy_smoke{suffix}.npy", sphere_field)
+    _write_csv(outputs_dir / f"sphere_cylinder_density_proxy_smoke{suffix}.csv", sphere_grid, sphere_field)
+    (outputs_dir / f"sphere_cylinder_metadata_smoke{suffix}.json").write_text(
         json.dumps(sphere_result["metadata"], indent=2) + "\n",
         encoding="utf-8",
     )
-    _plot_density(reports_dir / "fig_sphere_cylinder_density_proxy_smoke.png", "Sphere-Cylinder Density Proxy Smoke", sphere_grid, sphere_field)
+    _plot_density(reports_dir / f"fig_sphere_cylinder_density_proxy_smoke{suffix}.png", f"Sphere-Cylinder Density Proxy Smoke ({loop_method})", sphere_grid, sphere_field)
 
     full_estimate_s = _estimate_full_run_seconds(sphere_result["metadata"])
     summary = {
         "stage": "stage2_scalar_worldline_proxy_smoke",
-        "loop_method": "brownian_bridge",
-        "proxy_status": "reproduction_proxy_not_exact_white_method",
+        "loop_method": loop_method,
+        "proxy_status": proxy_status_for_loop_method(loop_method),
         "n_loops": n_loops,
         "n_points_per_loop": n_points,
         "plate_validation": plate_validation,
         "gap_scaling": gap_scaling,
         "gap_scaling_pass": gap_scaling_pass,
-        "sphere_proxy_min": float(np.nanmin(sphere_field)),
-        "sphere_proxy_mean": float(np.nanmean(sphere_field)),
-        "sphere_proxy_negative_pixels": int(np.count_nonzero(sphere_field < 0.0)),
+        "sphere_field_metrics": _field_metrics(sphere_grid, sphere_field),
         "sphere_smoke_metadata": sphere_result["metadata"],
         "estimated_full_100x100_2000x1000_seconds": float(full_estimate_s),
         "estimated_full_100x100_2000x1000_hours": float(full_estimate_s / 3600.0),
         "full_run_guidance": "Use this estimate only for the Python proxy. Exact v-loop/C++ kernels require a separate benchmark.",
     }
-    (outputs_dir / "stage2_smoke_summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+    (outputs_dir / f"stage2_smoke_summary{suffix}.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
     report_text = "\n".join(
         [
@@ -176,25 +207,29 @@ def run_stage2_smoke(base_dir: Path) -> dict[str, Any]:
             "",
             f"Status: `{'pass' if plate_validation['proxy_mean_negative'] and gap_scaling_pass else 'watch'}`.",
             "",
-            "This is a Brownian-bridge scalar morphology proxy, not an exact White v-loop reproduction.",
+            f"Loop method: `{loop_method}`.",
+            "",
+            _method_note(loop_method),
             "",
             f"- plate mean is negative: `{plate_validation['proxy_mean_negative']}`",
             f"- plate symmetry relative error: `{plate_symmetry_error:.6g}`",
             f"- gap scaling pass: `{gap_scaling_pass}`",
-            f"- sphere negative proxy pixels: `{summary['sphere_proxy_negative_pixels']}`",
+            f"- sphere negative proxy pixels: `{summary['sphere_field_metrics']['negative_pixels']}`",
+            f"- sphere contrast |min|/|mean|: `{summary['sphere_field_metrics']['contrast_abs_min_to_abs_mean']:.6g}`",
+            f"- sphere minimum coordinate: `({summary['sphere_field_metrics']['min_x_um']:.6g}, {summary['sphere_field_metrics']['min_section_um']:.6g}) um`",
             f"- estimated full Python-proxy runtime: `{summary['estimated_full_100x100_2000x1000_hours']:.3g}` hours",
             "",
             "Generated artifacts:",
             "",
-            "- `outputs/plate_validation_density_proxy.npy`",
-            "- `outputs/plate_validation_density_proxy.csv`",
-            "- `outputs/sphere_cylinder_density_proxy_smoke.npy`",
-            "- `outputs/sphere_cylinder_density_proxy_smoke.csv`",
-            "- `reports/fig_plate_validation_density_proxy.png`",
-            "- `reports/fig_sphere_cylinder_density_proxy_smoke.png`",
+            f"- `outputs/plate_validation_density_proxy{suffix}.npy`",
+            f"- `outputs/plate_validation_density_proxy{suffix}.csv`",
+            f"- `outputs/sphere_cylinder_density_proxy_smoke{suffix}.npy`",
+            f"- `outputs/sphere_cylinder_density_proxy_smoke{suffix}.csv`",
+            f"- `reports/fig_plate_validation_density_proxy{suffix}.png`",
+            f"- `reports/fig_sphere_cylinder_density_proxy_smoke{suffix}.png`",
         ]
     )
-    (reports_dir / "stage2_smoke_validation.md").write_text(report_text + "\n", encoding="utf-8")
+    (reports_dir / f"stage2_smoke_validation{suffix}.md").write_text(report_text + "\n", encoding="utf-8")
     return summary
 
 
@@ -202,8 +237,9 @@ def main() -> None:
     default_base = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description="Run Stage 2 scalar worldline proxy smoke.")
     parser.add_argument("--base-dir", type=Path, default=default_base)
+    parser.add_argument("--loop-method", choices=["brownian_bridge", "v_loop"], default="brownian_bridge")
     args = parser.parse_args()
-    print(json.dumps(run_stage2_smoke(args.base_dir.resolve()), indent=2))
+    print(json.dumps(run_stage2_smoke(args.base_dir.resolve(), loop_method=args.loop_method), indent=2))
 
 
 if __name__ == "__main__":

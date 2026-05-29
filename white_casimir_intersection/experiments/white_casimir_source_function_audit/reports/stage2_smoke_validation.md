@@ -2,13 +2,17 @@
 
 Status: `pass`.
 
-This is a Brownian-bridge scalar morphology proxy, not an exact White v-loop reproduction.
+Loop method: `brownian_bridge`.
+
+Brownian-bridge proxy loops with thickened smoke-test boundary surfaces.
 
 - plate mean is negative: `True`
 - plate symmetry relative error: `0.102105`
 - gap scaling pass: `True`
 - sphere negative proxy pixels: `625`
-- estimated full Python-proxy runtime: `2.96` hours
+- sphere contrast |min|/|mean|: `13.2321`
+- sphere minimum coordinate: `(0, -1) um`
+- estimated full Python-proxy runtime: `2.94` hours
 
 Generated artifacts:
 
