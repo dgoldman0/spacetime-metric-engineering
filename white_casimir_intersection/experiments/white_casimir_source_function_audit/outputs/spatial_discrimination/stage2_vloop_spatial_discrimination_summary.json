@@ -1,0 +1,3055 @@
+{
+  "stage": "stage2_vloop_spatial_discrimination",
+  "proxy_status": "paper_style_v_loop_morphology_proxy_not_si_normalized",
+  "parameters": {
+    "seeds": [
+      1,
+      7,
+      17
+    ],
+    "wall_thicknesses_um": [
+      0.2,
+      0.4
+    ],
+    "scale_windows": {
+      "low_0p25_0p75": {
+        "start_um": 0.25,
+        "stop_um": 0.75,
+        "count": 8
+      },
+      "mid_0p75_1p50": {
+        "start_um": 0.75,
+        "stop_um": 1.5,
+        "count": 8
+      },
+      "upper_1p50_2p75": {
+        "start_um": 1.5,
+        "stop_um": 2.75,
+        "count": 8
+      },
+      "broad_0p25_5p00": {
+        "start_um": 0.25,
+        "stop_um": 5.0,
+        "count": 20
+      }
+    },
+    "n_loops": 128,
+    "n_points_per_loop": 200,
+    "grid_n": 41,
+    "grid_extent_um": 2.5,
+    "workers": 4
+  },
+  "cases": [
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.2,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 27.731983587844297,
+      "min": -0.5125016953723613,
+      "mean": -0.06241457143437211,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 8.21125073191039,
+      "min_x_um": 0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9208880813291936,
+      "source_role_enrichment": 4.3722643754060275,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5006191382527846,
+      "near_shell_enrichment": 5.285461596880568,
+      "mid_gap_mag_fraction": 0.3069587457831794,
+      "wall_band_mag_fraction": 0.056649200467220266,
+      "boundary_mag_fraction": 0.01019696992882768,
+      "far_mag_fraction": 0.01297921186677939,
+      "readout_mag_fraction": 0.019676816962154745,
+      "central_axis_mag_fraction": 0.060079954812511396,
+      "top_decile_near_shell_fraction": 0.727810650887574,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.10217538570285495,
+          "negative_mag_fraction": 0.04382330156052986,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.13558280907248382,
+          "negative_mag_fraction": 0.08270483419862021,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.18995107354064716,
+          "negative_mag_fraction": 0.1520783290856035,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.23219646808555847,
+          "negative_mag_fraction": 0.24786769370183148,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1592518614578186,
+          "negative_mag_fraction": 0.20035710246801317,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07778079541842894,
+          "negative_mag_fraction": 0.12751084411796304,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.037514267725273824,
+          "negative_mag_fraction": 0.06579010662478506,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.019389750875266714,
+          "negative_mag_fraction": 0.039179093546167734,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.010277901638443073,
+          "negative_mag_fraction": 0.023510506883178853,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.004950323608665323,
+          "negative_mag_fraction": 0.015287092526185224,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.2,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 26.297920476878062,
+      "min": -0.46394874714099366,
+      "mean": -0.06073211112537475,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 7.639265926113166,
+      "min_x_um": -0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9260325973456488,
+      "source_role_enrichment": 4.7024846369440105,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.49061501691432763,
+      "near_shell_enrichment": 5.078109569347657,
+      "mid_gap_mag_fraction": 0.3135794023614026,
+      "wall_band_mag_fraction": 0.05598336445205544,
+      "boundary_mag_fraction": 0.010109736304804436,
+      "far_mag_fraction": 0.012628443597510277,
+      "readout_mag_fraction": 0.018873536502498012,
+      "central_axis_mag_fraction": 0.05772802998356264,
+      "top_decile_near_shell_fraction": 0.7041420118343196,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.08955873375491002,
+          "negative_mag_fraction": 0.0394761114949279,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.12440017346411736,
+          "negative_mag_fraction": 0.0779856809176848,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.17876667183168807,
+          "negative_mag_fraction": 0.1470888489537956,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.22464517788791513,
+          "negative_mag_fraction": 0.2464501188429162,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.15833526839266274,
+          "negative_mag_fraction": 0.2047224650980791,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07751481166489532,
+          "negative_mag_fraction": 0.13059515092706786,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.038080096793158574,
+          "negative_mag_fraction": 0.06863249311474585,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.020036122635096958,
+          "negative_mag_fraction": 0.041606717170417494,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.010720650065893554,
+          "negative_mag_fraction": 0.025202653621402143,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.005162930834960292,
+          "negative_mag_fraction": 0.01638533125806172,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.2,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 25.356632760958746,
+      "min": -0.4318915746123167,
+      "mean": -0.056912953804150394,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 7.58863397072216,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9206407214649653,
+      "source_role_enrichment": 4.357465419195153,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5129247529176866,
+      "near_shell_enrichment": 5.552198267122222,
+      "mid_gap_mag_fraction": 0.30006090630841153,
+      "wall_band_mag_fraction": 0.05177935646826016,
+      "boundary_mag_fraction": 0.009236684325003925,
+      "far_mag_fraction": 0.011765516573359837,
+      "readout_mag_fraction": 0.021477238448996478,
+      "central_axis_mag_fraction": 0.0655807768257764,
+      "top_decile_near_shell_fraction": 0.7514792899408284,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.09915994937556073,
+          "negative_mag_fraction": 0.04664122737525808,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.1313924086928257,
+          "negative_mag_fraction": 0.08789646488891378,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.18122107979767316,
+          "negative_mag_fraction": 0.15911428081954715,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.21139258766420957,
+          "negative_mag_fraction": 0.24747363529177882,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1441328278511246,
+          "negative_mag_fraction": 0.19886483719054415,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.06833703499255774,
+          "negative_mag_fraction": 0.12285865001329943,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.03280325414547112,
+          "negative_mag_fraction": 0.06308932952563519,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.016703324703555705,
+          "negative_mag_fraction": 0.03701348218137292,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.008781406680887836,
+          "negative_mag_fraction": 0.022029086716676374,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.004057815432556421,
+          "negative_mag_fraction": 0.013742269461465223,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.4,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 26.18331631505862,
+      "min": -0.615142049841481,
+      "mean": -0.0724494194602058,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 8.490641532046496,
+      "min_x_um": -0.25,
+      "min_section_um": 1.0,
+      "min_radius_from_sphere_um": 1.0307764064044151,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9228223335983657,
+      "source_role_enrichment": 4.491257271434665,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5425360813860249,
+      "near_shell_enrichment": 6.252866381513857,
+      "mid_gap_mag_fraction": 0.2808201435478125,
+      "wall_band_mag_fraction": 0.048804209953264,
+      "boundary_mag_fraction": 0.027324825906116706,
+      "far_mag_fraction": 0.0027291891675991966,
+      "readout_mag_fraction": 0.019836482830225276,
+      "central_axis_mag_fraction": 0.06070211880677986,
+      "top_decile_near_shell_fraction": 0.7633136094674556,
+      "top_decile_source_role_fraction": 0.9940828402366864,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.12381056851384253,
+          "negative_mag_fraction": 0.045747525545783714,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.1717747836473661,
+          "negative_mag_fraction": 0.09026861123063154,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.24539133760665205,
+          "negative_mag_fraction": 0.16925281117087537,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.2885620738050568,
+          "negative_mag_fraction": 0.2653717264575495,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1732972029258572,
+          "negative_mag_fraction": 0.18782909287586075,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.08080892693011593,
+          "negative_mag_fraction": 0.11412614912374859,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.03826845206530926,
+          "negative_mag_fraction": 0.057817072168738444,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.019649577612323388,
+          "negative_mag_fraction": 0.03420475286285106,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.01040034692800381,
+          "negative_mag_fraction": 0.020495402182436347,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.004983157908610234,
+          "negative_mag_fraction": 0.013257054341211579,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.4,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 26.50825465610251,
+      "min": -0.58477923238054,
+      "mean": -0.07072237924989518,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 8.268658924981045,
+      "min_x_um": 0.0,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9268406793397241,
+      "source_role_enrichment": 4.758574822472566,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5330185587052299,
+      "near_shell_enrichment": 6.017970814268045,
+      "mid_gap_mag_fraction": 0.2866782297466525,
+      "wall_band_mag_fraction": 0.048256412940613586,
+      "boundary_mag_fraction": 0.027010220004856027,
+      "far_mag_fraction": 0.00269460347109021,
+      "readout_mag_fraction": 0.019513652562214615,
+      "central_axis_mag_fraction": 0.05952197440458788,
+      "top_decile_near_shell_fraction": 0.7692307692307693,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.11207686657799393,
+          "negative_mag_fraction": 0.042423248216519875,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.15814797672448583,
+          "negative_mag_fraction": 0.08513713626247577,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.23305296459111807,
+          "negative_mag_fraction": 0.16466804962039652,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.280523714662286,
+          "negative_mag_fraction": 0.2642792268086728,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.17293152248306748,
+          "negative_mag_fraction": 0.1920098551272992,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.08064655875900738,
+          "negative_mag_fraction": 0.11667819744994859,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.03910844673286136,
+          "negative_mag_fraction": 0.06052904393074287,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.02038762677699949,
+          "negative_mag_fraction": 0.03635615608692989,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.010911873872140826,
+          "negative_mag_fraction": 0.02202855464797971,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.00523349095392608,
+          "negative_mag_fraction": 0.014263033812461698,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.4,
+      "scale_window": "broad_0p25_5p00",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 20,
+      "scale_min_um": 0.25,
+      "scale_max_um": 5.0,
+      "elapsed_s": 23.825456973863766,
+      "min": -0.5593215604015199,
+      "mean": -0.06650524225777907,
+      "negative_fraction": 1.0,
+      "contrast_abs_min_to_abs_mean": 8.410187549329564,
+      "min_x_um": 0.0,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.125,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9220162539664931,
+      "source_role_enrichment": 4.440950819138893,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5554768957911648,
+      "near_shell_enrichment": 6.588385901834925,
+      "mid_gap_mag_fraction": 0.27267475423956383,
+      "wall_band_mag_fraction": 0.044314444088706856,
+      "boundary_mag_fraction": 0.024641392102356382,
+      "far_mag_fraction": 0.002455266715499319,
+      "readout_mag_fraction": 0.022218617079352264,
+      "central_axis_mag_fraction": 0.06747455854727388,
+      "top_decile_near_shell_fraction": 0.7869822485207101,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 169,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.12153036147500366,
+          "negative_mag_fraction": 0.048918565161867655,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.16677670765350383,
+          "negative_mag_fraction": 0.09547546383122334,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.2359019600040121,
+          "negative_mag_fraction": 0.1772504074108696,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.2645551440797965,
+          "negative_mag_fraction": 0.26503952218109433,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1567304439058063,
+          "negative_mag_fraction": 0.18505622625766074,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07090638711754764,
+          "negative_mag_fraction": 0.10909132360170973,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0334408949987179,
+          "negative_mag_fraction": 0.05503920116804098,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.01692518569545554,
+          "negative_mag_fraction": 0.032095615600443266,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.008890914734066209,
+          "negative_mag_fraction": 0.019086842672653825,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.004088521217057774,
+          "negative_mag_fraction": 0.011849162973294405,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.2,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 9.834959836909547,
+      "min": -0.024691358024691357,
+      "mean": -4.4065481305219556e-05,
+      "negative_fraction": 0.001784651992861392,
+      "contrast_abs_min_to_abs_mean": 560.3333333333333,
+      "min_x_um": -0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 1.0,
+      "source_role_enrichment": 60617081.89367764,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 1.0,
+      "near_shell_enrichment": 276395798.7838585,
+      "mid_gap_mag_fraction": 0.0,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 1.0,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 3,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.0006613756613756613,
+          "negative_mag_fraction": 1.0,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.2,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 9.610870282864198,
+      "min": 0.0,
+      "mean": 0.0,
+      "negative_fraction": 0.0,
+      "contrast_abs_min_to_abs_mean": 0.0,
+      "min_x_um": -2.5,
+      "min_section_um": -2.5,
+      "min_radius_from_sphere_um": 3.5355339059327378,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.0,
+      "source_role_enrichment": 0.0,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.0,
+      "near_shell_enrichment": 0.0,
+      "mid_gap_mag_fraction": 0.0,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 0.0,
+      "top_decile_source_role_fraction": 0.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 0,
+      "peak_radial_bin_mid_um": 0.25,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.2,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 9.448719809995964,
+      "min": 0.0,
+      "mean": 0.0,
+      "negative_fraction": 0.0,
+      "contrast_abs_min_to_abs_mean": 0.0,
+      "min_x_um": -2.5,
+      "min_section_um": -2.5,
+      "min_radius_from_sphere_um": 3.5355339059327378,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.0,
+      "source_role_enrichment": 0.0,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.0,
+      "near_shell_enrichment": 0.0,
+      "mid_gap_mag_fraction": 0.0,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 0.0,
+      "top_decile_source_role_fraction": 0.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 0,
+      "peak_radial_bin_mid_um": 0.25,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.4,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 8.894492386141792,
+      "min": -0.024691358024691357,
+      "mean": -0.00010281945637884562,
+      "negative_fraction": 0.004164187983343248,
+      "contrast_abs_min_to_abs_mean": 240.14285714285714,
+      "min_x_um": -0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 1.0,
+      "source_role_enrichment": 141439857.7519145,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 1.0,
+      "near_shell_enrichment": 644923530.4956698,
+      "mid_gap_mag_fraction": 0.0,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 1.0,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 7,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.0015432098765432098,
+          "negative_mag_fraction": 1.0,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.4,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 9.094717958942056,
+      "min": -0.024691358024691357,
+      "mean": -4.4065481305219556e-05,
+      "negative_fraction": 0.001784651992861392,
+      "contrast_abs_min_to_abs_mean": 560.3333333333333,
+      "min_x_um": -0.5,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.231107225224513,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 1.0,
+      "source_role_enrichment": 60617081.89367764,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 1.0,
+      "near_shell_enrichment": 276395798.7838585,
+      "mid_gap_mag_fraction": 0.0,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 1.0,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 3,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.0006613756613756613,
+          "negative_mag_fraction": 1.0,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.4,
+      "scale_window": "low_0p25_0p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.25,
+      "scale_max_um": 0.75,
+      "elapsed_s": 9.173240404110402,
+      "min": -0.06153883464012555,
+      "mean": -0.000381675305055782,
+      "negative_fraction": 0.01189767995240928,
+      "contrast_abs_min_to_abs_mean": 161.2334720768262,
+      "min_x_um": 0.0,
+      "min_section_um": 1.125,
+      "min_radius_from_sphere_um": 1.125,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 1.0,
+      "source_role_enrichment": 525037796.8893369,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.8845472035483685,
+      "near_shell_enrichment": 40.39465701625161,
+      "mid_gap_mag_fraction": 0.11545279645163148,
+      "wall_band_mag_fraction": 0.0,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 1.0,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 2,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.004846703175892894,
+          "negative_mag_fraction": 0.8460629380644914,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.0007482229704451926,
+          "negative_mag_fraction": 0.15393706193550863,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.2,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 10.312045094091445,
+      "min": -0.6630929394171842,
+      "mean": -0.02833705784357829,
+      "negative_fraction": 0.364069006543724,
+      "contrast_abs_min_to_abs_mean": 23.400204180599275,
+      "min_x_um": 0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9950914250040184,
+      "source_role_enrichment": 76.14633982547124,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.6361270394029691,
+      "near_shell_enrichment": 9.21725154157784,
+      "mid_gap_mag_fraction": 0.34903265286821045,
+      "wall_band_mag_fraction": 0.00450819840160942,
+      "boundary_mag_fraction": 0.0003686825330144137,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0005831429494435714,
+      "central_axis_mag_fraction": 0.0016846351872814285,
+      "top_decile_near_shell_fraction": 0.7580645161290323,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 62,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.003767690879324589,
+          "negative_mag_fraction": 0.0035593058425767944,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.018583515493358578,
+          "negative_mag_fraction": 0.024968093266546393,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.08070276555187997,
+          "negative_mag_fraction": 0.14231321616610124,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.18451133892390878,
+          "negative_mag_fraction": 0.4338290331078303,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.10867354699836032,
+          "negative_mag_fraction": 0.3011447548602587,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.023131140819307023,
+          "negative_mag_fraction": 0.08352241233101386,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0025531532939655328,
+          "negative_mag_fraction": 0.009862164538895954,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00017998234566425042,
+          "negative_mag_fraction": 0.0008010198867767672,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.2,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 10.236770471092314,
+      "min": -0.5833022971140291,
+      "mean": -0.02542170348809331,
+      "negative_fraction": 0.34741225461035097,
+      "contrast_abs_min_to_abs_mean": 22.94505155357621,
+      "min_x_um": 0.125,
+      "min_section_um": 1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9971140889374356,
+      "source_role_enrichment": 129.77869101443767,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.6316118927408402,
+      "near_shell_enrichment": 9.039659359333086,
+      "mid_gap_mag_fraction": 0.35722049723602123,
+      "wall_band_mag_fraction": 0.001302574147378113,
+      "boundary_mag_fraction": 0.0,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0006861297221152892,
+      "top_decile_near_shell_fraction": 0.7288135593220338,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 59,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0021400455626571875,
+          "negative_mag_fraction": 0.002253529103586115,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.01320801197273249,
+          "negative_mag_fraction": 0.019780855278437186,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.07022266837987884,
+          "negative_mag_fraction": 0.13803342107081823,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.16641953566292103,
+          "negative_mag_fraction": 0.43616414984978696,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.10204648975908404,
+          "negative_mag_fraction": 0.3152097475107323,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.019914934219835048,
+          "negative_mag_fraction": 0.08015580144320253,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0017482333501250063,
+          "negative_mag_fraction": 0.007527397690058416,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00015455994665129115,
+          "negative_mag_fraction": 0.0007667617814654258,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 1.9290123456790123e-05,
+          "negative_mag_fraction": 0.0001083362719129404,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.2,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 9.76228568609804,
+      "min": -0.47652694749070335,
+      "mean": -0.023748481770078246,
+      "negative_fraction": 0.3277810826888757,
+      "contrast_abs_min_to_abs_mean": 20.065575227259394,
+      "min_x_um": 0.0,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.125,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9962492316335827,
+      "source_role_enrichment": 99.76753327153175,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.647262463030477,
+      "near_shell_enrichment": 9.674668907918692,
+      "mid_gap_mag_fraction": 0.339001906355954,
+      "wall_band_mag_fraction": 0.005769307670163822,
+      "boundary_mag_fraction": 0.00034926650084525284,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0,
+      "top_decile_near_shell_fraction": 0.8214285714285714,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 56,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.0019110169656369018,
+          "negative_mag_fraction": 0.0021541378534013483,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.019508024705825813,
+          "negative_mag_fraction": 0.0312744518762178,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.07368638822189738,
+          "negative_mag_fraction": 0.15504686590426006,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.15045032816190046,
+          "negative_mag_fraction": 0.4220924636361004,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.09097762979172903,
+          "negative_mag_fraction": 0.30081880749110007,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.018013972941846756,
+          "negative_mag_fraction": 0.07761298539218688,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.002224113835450407,
+          "negative_mag_fraction": 0.010251118896886457,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00014107415978320559,
+          "negative_mag_fraction": 0.0007491689498469798,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.4,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 9.366222274955362,
+      "min": -0.9044895158682837,
+      "mean": -0.04143000113822199,
+      "negative_fraction": 0.3771564544913742,
+      "contrast_abs_min_to_abs_mean": 21.83175213658951,
+      "min_x_um": 0.125,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9925323006363164,
+      "source_role_enrichment": 49.92284226392515,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.715601281017399,
+      "near_shell_enrichment": 13.266331378145374,
+      "mid_gap_mag_fraction": 0.27000063744628533,
+      "wall_band_mag_fraction": 0.003083492043616579,
+      "boundary_mag_fraction": 0.00090868832170057,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0009055304160544781,
+      "central_axis_mag_fraction": 0.002642469599312784,
+      "top_decile_near_shell_fraction": 0.859375,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 64,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.008886897738461299,
+          "negative_mag_fraction": 0.005742222781887065,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.04174793996681782,
+          "negative_mag_fraction": 0.03836474938944487,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.1560812416243429,
+          "negative_mag_fraction": 0.18825535494308973,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.2844174918903145,
+          "negative_mag_fraction": 0.4573952669828391,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1273007265199458,
+          "negative_mag_fraction": 0.24128046144186202,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.024914379608921088,
+          "negative_mag_fraction": 0.06153126809659239,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0026051332523691875,
+          "negative_mag_fraction": 0.00688279931282812,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00017998234566425042,
+          "negative_mag_fraction": 0.000547877051456531,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.4,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 10.431696119019762,
+      "min": -0.8290396121372491,
+      "mean": -0.03788598304221968,
+      "negative_fraction": 0.3801308744794765,
+      "contrast_abs_min_to_abs_mean": 21.88248913096375,
+      "min_x_um": 0.125,
+      "min_section_um": 1.125,
+      "min_radius_from_sphere_um": 1.1319231422671772,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9948391350863401,
+      "source_role_enrichment": 72.4055487583501,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.7134225571645697,
+      "near_shell_enrichment": 13.125389544620317,
+      "mid_gap_mag_fraction": 0.27512636402727303,
+      "wall_band_mag_fraction": 0.0008740344340280388,
+      "boundary_mag_fraction": 4.846282381018674e-05,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0007511737690578945,
+      "central_axis_mag_fraction": 0.0024040205949382755,
+      "top_decile_near_shell_fraction": 0.890625,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 64,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.005814398386780884,
+          "negative_mag_fraction": 0.0041083839595880065,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.03058355392524338,
+          "negative_mag_fraction": 0.030734181430999458,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.13783192360269447,
+          "negative_mag_fraction": 0.18179537461582448,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.26514325604836736,
+          "negative_mag_fraction": 0.46628595466379663,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.12167727147225171,
+          "negative_mag_fraction": 0.252195376062529,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.021664262908848493,
+          "negative_mag_fraction": 0.05850946006550743,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0019794297311249605,
+          "negative_mag_fraction": 0.005718888616596462,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00017414198344948607,
+          "negative_mag_fraction": 0.000579686349443251,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 1.9290123456790123e-05,
+          "negative_mag_fraction": 7.269423571528012e-05,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.4,
+      "scale_window": "mid_0p75_1p50",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 0.75,
+      "scale_max_um": 1.5,
+      "elapsed_s": 9.800382460933179,
+      "min": -0.7186050273507306,
+      "mean": -0.035120071336521605,
+      "negative_fraction": 0.36466389054134446,
+      "contrast_abs_min_to_abs_mean": 20.461377212621098,
+      "min_x_um": 0.0,
+      "min_section_um": -1.125,
+      "min_radius_from_sphere_um": 1.125,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9933145080734019,
+      "source_role_enrichment": 55.80779834470008,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.7242892685532504,
+      "near_shell_enrichment": 13.850509449711534,
+      "mid_gap_mag_fraction": 0.26207622818834153,
+      "wall_band_mag_fraction": 0.003901253409140376,
+      "boundary_mag_fraction": 0.0011674894916040102,
+      "far_mag_fraction": 0.0,
+      "readout_mag_fraction": 0.0,
+      "central_axis_mag_fraction": 0.0007580535557611889,
+      "top_decile_near_shell_fraction": 0.8870967741935484,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 62,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.006160023099789446,
+          "negative_mag_fraction": 0.004695390875962956,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.041518312545976356,
+          "negative_mag_fraction": 0.04500870992912282,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.14306354015973258,
+          "negative_mag_fraction": 0.2035565824724911,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.23290237379451686,
+          "negative_mag_fraction": 0.441843870738926,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.10788034929962269,
+          "negative_mag_fraction": 0.24120881347383466,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.01923879565385109,
+          "negative_mag_fraction": 0.0560509820161756,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0022873747498356302,
+          "negative_mag_fraction": 0.007129056273399077,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.00014107415978320559,
+          "negative_mag_fraction": 0.0005065942200877031,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0,
+          "negative_mag_fraction": 0.0,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.2,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 10.906974670942873,
+      "min": -0.3789285061101701,
+      "mean": -0.0532595149059761,
+      "negative_fraction": 0.9095776323616894,
+      "contrast_abs_min_to_abs_mean": 7.114756992795133,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9349473602591547,
+      "source_role_enrichment": 5.398383271237247,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5374275635274477,
+      "near_shell_enrichment": 6.1255847635545715,
+      "mid_gap_mag_fraction": 0.3155965563519467,
+      "wall_band_mag_fraction": 0.041264157052516334,
+      "boundary_mag_fraction": 0.006604003522660173,
+      "far_mag_fraction": 0.004712430249668501,
+      "readout_mag_fraction": 0.01599915946121534,
+      "central_axis_mag_fraction": 0.050172173116614434,
+      "top_decile_near_shell_fraction": 0.7843137254901961,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 153,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.08878807699442894,
+          "negative_mag_fraction": 0.044627467645032504,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.13320323420738114,
+          "negative_mag_fraction": 0.0952203610279543,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.18599289756622023,
+          "negative_mag_fraction": 0.17450614570555326,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.1993182778933366,
+          "negative_mag_fraction": 0.2493447502492278,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.13836375876370335,
+          "negative_mag_fraction": 0.20400056146114204,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.06951839854035644,
+          "negative_mag_fraction": 0.13355596384303067,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.028791228215719028,
+          "negative_mag_fraction": 0.059171570338926824,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.010852706880065224,
+          "negative_mag_fraction": 0.02569857335398827,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0037848954350661454,
+          "negative_mag_fraction": 0.01014612497749934,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0010070492070700203,
+          "negative_mag_fraction": 0.0036444398107609516,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.2,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 10.466702305013314,
+      "min": -0.3700605934104142,
+      "mean": -0.05249151610745982,
+      "negative_fraction": 0.9309934562760261,
+      "contrast_abs_min_to_abs_mean": 7.049912459240687,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9455227592619195,
+      "source_role_enrichment": 6.519260934852846,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5289332390784534,
+      "near_shell_enrichment": 5.920055341287219,
+      "mid_gap_mag_fraction": 0.32632529280312833,
+      "wall_band_mag_fraction": 0.037464462420991385,
+      "boundary_mag_fraction": 0.005900964564337057,
+      "far_mag_fraction": 0.002958002527920243,
+      "readout_mag_fraction": 0.01429756875510183,
+      "central_axis_mag_fraction": 0.04586182517995816,
+      "top_decile_near_shell_fraction": 0.7707006369426752,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 157,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.07428010350064906,
+          "negative_mag_fraction": 0.037881588656441326,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.1199268911737778,
+          "negative_mag_fraction": 0.08698406902643828,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.1779377048210661,
+          "negative_mag_fraction": 0.16939104231990568,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.19891819031298835,
+          "negative_mag_fraction": 0.25248506400889054,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.14121242595247496,
+          "negative_mag_fraction": 0.21124673980812475,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07091519443845128,
+          "negative_mag_fraction": 0.1382327394581825,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.029427517813731565,
+          "negative_mag_fraction": 0.06136413606016923,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.011459728174242591,
+          "negative_mag_fraction": 0.027532988102763434,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.004045415167441751,
+          "negative_mag_fraction": 0.011003162074033677,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0010393330673366295,
+          "negative_mag_fraction": 0.0038163036711639097,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.2,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 10.252149594947696,
+      "min": -0.33072939240407967,
+      "mean": -0.04884329344506678,
+      "negative_fraction": 0.9161213563355146,
+      "contrast_abs_min_to_abs_mean": 6.771234474105342,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9327543066607837,
+      "source_role_enrichment": 5.210078499420179,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5533088164812608,
+      "near_shell_enrichment": 6.53081794532661,
+      "mid_gap_mag_fraction": 0.3057682795759157,
+      "wall_band_mag_fraction": 0.03564667347968472,
+      "boundary_mag_fraction": 0.005738223520613013,
+      "far_mag_fraction": 0.0043255489114764865,
+      "readout_mag_fraction": 0.0184348451902553,
+      "central_axis_mag_fraction": 0.05665469421863265,
+      "top_decile_near_shell_fraction": 0.8181818181818182,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 154,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.08786850142519619,
+          "negative_mag_fraction": 0.04815851423530251,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.12855403454662978,
+          "negative_mag_fraction": 0.10020583964736704,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.17630543627697515,
+          "negative_mag_fraction": 0.18037333538166325,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.18642121558132776,
+          "negative_mag_fraction": 0.25429668837121794,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.1257719418149768,
+          "negative_mag_fraction": 0.2022018122463014,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.06014921414782475,
+          "negative_mag_fraction": 0.126004411661381,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.024029503049275848,
+          "negative_mag_fraction": 0.05385052710581179,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.008854067085752827,
+          "negative_mag_fraction": 0.022861568083413768,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.003085459892040514,
+          "negative_mag_fraction": 0.009019002211907818,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0007571919922568889,
+          "negative_mag_fraction": 0.00298798469730166,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "wall_thickness_um": 0.4,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 9.985121289966628,
+      "min": -0.4185914102710374,
+      "mean": -0.06112414155061032,
+      "negative_fraction": 0.9095776323616894,
+      "contrast_abs_min_to_abs_mean": 6.848217408901308,
+      "min_x_um": 0.0,
+      "min_section_um": 1.0,
+      "min_radius_from_sphere_um": 1.0,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9289436503140519,
+      "source_role_enrichment": 4.9105253460788845,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5631651616451749,
+      "near_shell_enrichment": 6.79713478229062,
+      "mid_gap_mag_fraction": 0.2917386848018623,
+      "wall_band_mag_fraction": 0.0359548442214333,
+      "boundary_mag_fraction": 0.01871331258533297,
+      "far_mag_fraction": 0.000711944082244829,
+      "readout_mag_fraction": 0.018600577736240274,
+      "central_axis_mag_fraction": 0.0579229036574061,
+      "top_decile_near_shell_fraction": 0.8562091503267973,
+      "top_decile_source_role_fraction": 0.9934640522875817,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 153,
+      "peak_radial_bin_mid_um": 0.875,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.11833675977354349,
+          "negative_mag_fraction": 0.051826478573220675,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.17583147298151341,
+          "negative_mag_fraction": 0.10952067254736512,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.22991061754636777,
+          "negative_mag_fraction": 0.1879567070965368,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.2284445843339126,
+          "negative_mag_fraction": 0.24901092597738048,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.14857971947329746,
+          "negative_mag_fraction": 0.19087672680751142,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07290105629698475,
+          "negative_mag_fraction": 0.12203426273962524,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.02977599253092046,
+          "negative_mag_fraction": 0.05332165046056321,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.011167793776581187,
+          "negative_mag_fraction": 0.02304213731645628,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.003888118583249661,
+          "negative_mag_fraction": 0.009081764948577684,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0010323949599083263,
+          "negative_mag_fraction": 0.003255445278986039,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "wall_thickness_um": 0.4,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 11.252027835929766,
+      "min": -0.4222304799015328,
+      "mean": -0.060835365478102796,
+      "negative_fraction": 0.9315883402736467,
+      "contrast_abs_min_to_abs_mean": 6.94054316240627,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9384991947291197,
+      "source_role_enrichment": 5.7318468991021145,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5578741347876439,
+      "near_shell_enrichment": 6.652695891605287,
+      "mid_gap_mag_fraction": 0.2993933588429543,
+      "wall_band_mag_fraction": 0.03235141943350815,
+      "boundary_mag_fraction": 0.016568514283883732,
+      "far_mag_fraction": 0.0003447573196946957,
+      "readout_mag_fraction": 0.017948203081647924,
+      "central_axis_mag_fraction": 0.05619895185014037,
+      "top_decile_near_shell_fraction": 0.8471337579617835,
+      "top_decile_source_role_fraction": 1.0,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 157,
+      "peak_radial_bin_mid_um": 1.125,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.10382480018155531,
+          "negative_mag_fraction": 0.0456866992816397,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.1631835620021279,
+          "negative_mag_fraction": 0.10212511246705187,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.22701757843243428,
+          "negative_mag_fraction": 0.1864725620737093,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.22908523336283684,
+          "negative_mag_fraction": 0.2508945823690076,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.15198940838615052,
+          "negative_mag_fraction": 0.1961839257690208,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.07469175016751717,
+          "negative_mag_fraction": 0.125625339335314,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.0306685646380972,
+          "negative_mag_fraction": 0.05518072961221529,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.011855122695433096,
+          "negative_mag_fraction": 0.024576389373090958,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.004186156329139645,
+          "negative_mag_fraction": 0.00982432790731564,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0010653648609753982,
+          "negative_mag_fraction": 0.0033753556798873713,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "wall_thickness_um": 0.4,
+      "scale_window": "upper_1p50_2p75",
+      "n_loops": 128,
+      "n_points_per_loop": 200,
+      "grid_n": 41,
+      "grid_extent_um": 2.5,
+      "n_scales": 8,
+      "scale_min_um": 1.5,
+      "scale_max_um": 2.75,
+      "elapsed_s": 10.677194457035512,
+      "min": -0.38139842052329664,
+      "mean": -0.05654946652985447,
+      "negative_fraction": 0.9161213563355146,
+      "contrast_abs_min_to_abs_mean": 6.744509611278877,
+      "min_x_um": -0.125,
+      "min_section_um": -1.0,
+      "min_radius_from_sphere_um": 1.0077822185373186,
+      "source_role_area_fraction": 0.726948245092207,
+      "source_role_mag_fraction": 0.9264893908694052,
+      "source_role_enrichment": 4.734039843500612,
+      "near_shell_area_fraction": 0.15942891136228435,
+      "near_shell_mag_fraction": 0.5805808563561801,
+      "near_shell_enrichment": 7.298301999641437,
+      "mid_gap_mag_fraction": 0.28008554822252435,
+      "wall_band_mag_fraction": 0.03078898953342966,
+      "boundary_mag_fraction": 0.016041094865179767,
+      "far_mag_fraction": 0.0006690454298075235,
+      "readout_mag_fraction": 0.02069478991885631,
+      "central_axis_mag_fraction": 0.0656979092192428,
+      "top_decile_near_shell_fraction": 0.8636363636363636,
+      "top_decile_source_role_fraction": 0.987012987012987,
+      "top_decile_boundary_fraction": 0.0,
+      "top_decile_far_fraction": 0.0,
+      "top_decile_count": 154,
+      "peak_radial_bin_mid_um": 0.875,
+      "radial_profile": [
+        {
+          "r_min_um": 0.0,
+          "r_max_um": 0.5,
+          "mean_negative_magnitude": 0.11762014258434335,
+          "negative_mag_fraction": 0.05567984140565764,
+          "area_fraction": 0.02676977989292088
+        },
+        {
+          "r_min_um": 0.5,
+          "r_max_um": 0.75,
+          "mean_negative_magnitude": 0.1667545082639761,
+          "negative_mag_fraction": 0.11226938207234935,
+          "area_fraction": 0.0380725758477097
+        },
+        {
+          "r_min_um": 0.75,
+          "r_max_um": 1.0,
+          "mean_negative_magnitude": 0.22195621590382744,
+          "negative_mag_fraction": 0.19613286500740465,
+          "area_fraction": 0.049970255800118976
+        },
+        {
+          "r_min_um": 1.0,
+          "r_max_um": 1.25,
+          "mean_negative_magnitude": 0.2166435345372633,
+          "negative_mag_fraction": 0.25525104544363636,
+          "area_fraction": 0.06662700773349196
+        },
+        {
+          "r_min_um": 1.25,
+          "r_max_um": 1.5,
+          "mean_negative_magnitude": 0.13513932517382932,
+          "negative_mag_fraction": 0.1876547022376607,
+          "area_fraction": 0.07852468768590125
+        },
+        {
+          "r_min_um": 1.5,
+          "r_max_um": 1.75,
+          "mean_negative_magnitude": 0.06307408159109604,
+          "negative_mag_fraction": 0.1141256217993627,
+          "area_fraction": 0.1023200475907198
+        },
+        {
+          "r_min_um": 1.75,
+          "r_max_um": 2.0,
+          "mean_negative_magnitude": 0.024772812480911,
+          "negative_mag_fraction": 0.04795091651700374,
+          "area_fraction": 0.10945865556216537
+        },
+        {
+          "r_min_um": 2.0,
+          "r_max_um": 2.25,
+          "mean_negative_magnitude": 0.009071793341217936,
+          "negative_mag_fraction": 0.020231718955987046,
+          "area_fraction": 0.12611540749553837
+        },
+        {
+          "r_min_um": 2.25,
+          "r_max_um": 2.5,
+          "mean_negative_magnitude": 0.0031795229890416456,
+          "negative_mag_fraction": 0.008027438470346801,
+          "area_fraction": 0.14277215942891136
+        },
+        {
+          "r_min_um": 2.5,
+          "r_max_um": 3.0,
+          "mean_negative_magnitude": 0.0007750429961612561,
+          "negative_mag_fraction": 0.002641645768799599,
+          "area_fraction": 0.19274241522903035
+        }
+      ]
+    }
+  ],
+  "aggregate_by_window_wall": [
+    {
+      "scale_window": "broad_0p25_5p00",
+      "wall_thickness_um": 0.2,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 1.0,
+      "negative_fraction_std": 0.0,
+      "negative_fraction_min": 1.0,
+      "negative_fraction_max": 1.0,
+      "near_shell_mag_fraction_mean": 0.5013863026949329,
+      "near_shell_mag_fraction_std": 0.009124051954253119,
+      "near_shell_mag_fraction_min": 0.49061501691432763,
+      "near_shell_mag_fraction_max": 0.5129247529176866,
+      "near_shell_enrichment_mean": 5.305256477783482,
+      "near_shell_enrichment_std": 0.19405137004045467,
+      "near_shell_enrichment_min": 5.078109569347657,
+      "near_shell_enrichment_max": 5.552198267122222,
+      "top_decile_near_shell_fraction_mean": 0.727810650887574,
+      "top_decile_near_shell_fraction_std": 0.01932536286219466,
+      "top_decile_near_shell_fraction_min": 0.7041420118343196,
+      "top_decile_near_shell_fraction_max": 0.7514792899408284,
+      "boundary_mag_fraction_mean": 0.00984779685287868,
+      "boundary_mag_fraction_std": 0.0004335868368113915,
+      "boundary_mag_fraction_min": 0.009236684325003925,
+      "boundary_mag_fraction_max": 0.01019696992882768,
+      "far_mag_fraction_mean": 0.012457724012549834,
+      "far_mag_fraction_std": 0.0005099823191928606,
+      "far_mag_fraction_min": 0.011765516573359837,
+      "far_mag_fraction_max": 0.01297921186677939,
+      "readout_mag_fraction_mean": 0.020009197304549742,
+      "readout_mag_fraction_std": 0.0010886301715329954,
+      "readout_mag_fraction_min": 0.018873536502498012,
+      "readout_mag_fraction_max": 0.021477238448996478,
+      "min_radius_from_sphere_um_mean": 1.0905428343572243,
+      "min_radius_from_sphere_um_std": 0.05852059266142997,
+      "min_radius_from_sphere_um_min": 1.0077822185373186,
+      "min_radius_from_sphere_um_max": 1.1319231422671772,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "broad_0p25_5p00",
+      "wall_thickness_um": 0.4,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 1.0,
+      "negative_fraction_std": 0.0,
+      "negative_fraction_min": 1.0,
+      "negative_fraction_max": 1.0,
+      "near_shell_mag_fraction_mean": 0.5436771786274731,
+      "near_shell_mag_fraction_std": 0.009204013738661358,
+      "near_shell_mag_fraction_min": 0.5330185587052299,
+      "near_shell_mag_fraction_max": 0.5554768957911648,
+      "near_shell_enrichment_mean": 6.286407699205609,
+      "near_shell_enrichment_std": 0.23407564023246416,
+      "near_shell_enrichment_min": 6.017970814268045,
+      "near_shell_enrichment_max": 6.588385901834925,
+      "top_decile_near_shell_fraction_mean": 0.7731755424063117,
+      "top_decile_near_shell_fraction_std": 0.010057237699394053,
+      "top_decile_near_shell_fraction_min": 0.7633136094674556,
+      "top_decile_near_shell_fraction_max": 0.7869822485207101,
+      "boundary_mag_fraction_mean": 0.02632547933777637,
+      "boundary_mag_fraction_std": 0.0011977358029925797,
+      "boundary_mag_fraction_min": 0.024641392102356382,
+      "boundary_mag_fraction_max": 0.027324825906116706,
+      "far_mag_fraction_mean": 0.0026263531180629085,
+      "far_mag_fraction_std": 0.00012179753817261914,
+      "far_mag_fraction_min": 0.002455266715499319,
+      "far_mag_fraction_max": 0.0027291891675991966,
+      "readout_mag_fraction_mean": 0.020522917490597387,
+      "readout_mag_fraction_std": 0.0012062621790648882,
+      "readout_mag_fraction_min": 0.019513652562214615,
+      "readout_mag_fraction_max": 0.022218617079352264,
+      "min_radius_from_sphere_um_mean": 1.0519254688014719,
+      "min_radius_from_sphere_um_std": 0.05317713876097475,
+      "min_radius_from_sphere_um_min": 1.0,
+      "min_radius_from_sphere_um_max": 1.125,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "low_0p25_0p75",
+      "wall_thickness_um": 0.2,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.000594883997620464,
+      "negative_fraction_std": 0.0008412930174735841,
+      "negative_fraction_min": 0.0,
+      "negative_fraction_max": 0.001784651992861392,
+      "near_shell_mag_fraction_mean": 0.3333333333333333,
+      "near_shell_mag_fraction_std": 0.4714045207910317,
+      "near_shell_mag_fraction_min": 0.0,
+      "near_shell_mag_fraction_max": 1.0,
+      "near_shell_enrichment_mean": 92131932.92795283,
+      "near_shell_enrichment_std": 130294229.07435922,
+      "near_shell_enrichment_min": 0.0,
+      "near_shell_enrichment_max": 276395798.7838585,
+      "top_decile_near_shell_fraction_mean": 0.3333333333333333,
+      "top_decile_near_shell_fraction_std": 0.4714045207910317,
+      "top_decile_near_shell_fraction_min": 0.0,
+      "top_decile_near_shell_fraction_max": 1.0,
+      "boundary_mag_fraction_mean": 0.0,
+      "boundary_mag_fraction_std": 0.0,
+      "boundary_mag_fraction_min": 0.0,
+      "boundary_mag_fraction_max": 0.0,
+      "far_mag_fraction_mean": 0.0,
+      "far_mag_fraction_std": 0.0,
+      "far_mag_fraction_min": 0.0,
+      "far_mag_fraction_max": 0.0,
+      "readout_mag_fraction_mean": 0.0,
+      "readout_mag_fraction_std": 0.0,
+      "readout_mag_fraction_min": 0.0,
+      "readout_mag_fraction_max": 0.0,
+      "min_radius_from_sphere_um_mean": 2.734330318044217,
+      "min_radius_from_sphere_um_std": 1.1330729802139292,
+      "min_radius_from_sphere_um_min": 1.1319231422671772,
+      "min_radius_from_sphere_um_max": 3.5355339059327378,
+      "peak_radial_bin_mid_um_mean": 0.5416666666666666,
+      "peak_radial_bin_mid_um_std": 0.41247895569215276,
+      "peak_radial_bin_mid_um_min": 0.25,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "low_0p25_0p75",
+      "wall_thickness_um": 0.4,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.00594883997620464,
+      "negative_fraction_std": 0.004317180459464057,
+      "negative_fraction_min": 0.001784651992861392,
+      "negative_fraction_max": 0.01189767995240928,
+      "near_shell_mag_fraction_mean": 0.9615157345161228,
+      "near_shell_mag_fraction_std": 0.05442497018526589,
+      "near_shell_mag_fraction_min": 0.8845472035483685,
+      "near_shell_mag_fraction_max": 1.0,
+      "near_shell_enrichment_mean": 307106456.5580618,
+      "near_shell_enrichment_std": 264182935.85659033,
+      "near_shell_enrichment_min": 40.39465701625161,
+      "near_shell_enrichment_max": 644923530.4956698,
+      "top_decile_near_shell_fraction_mean": 1.0,
+      "top_decile_near_shell_fraction_std": 0.0,
+      "top_decile_near_shell_fraction_min": 1.0,
+      "top_decile_near_shell_fraction_max": 1.0,
+      "boundary_mag_fraction_mean": 0.0,
+      "boundary_mag_fraction_std": 0.0,
+      "boundary_mag_fraction_min": 0.0,
+      "boundary_mag_fraction_max": 0.0,
+      "far_mag_fraction_mean": 0.0,
+      "far_mag_fraction_std": 0.0,
+      "far_mag_fraction_min": 0.0,
+      "far_mag_fraction_max": 0.0,
+      "readout_mag_fraction_mean": 0.0,
+      "readout_mag_fraction_std": 0.0,
+      "readout_mag_fraction_min": 0.0,
+      "readout_mag_fraction_max": 0.0,
+      "min_radius_from_sphere_um_mean": 1.1626767891638967,
+      "min_radius_from_sphere_um_std": 0.04847010012573017,
+      "min_radius_from_sphere_um_min": 1.125,
+      "min_radius_from_sphere_um_max": 1.231107225224513,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "mid_0p75_1p50",
+      "wall_thickness_um": 0.2,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.3464207812809836,
+      "negative_fraction_std": 0.01483106242420397,
+      "negative_fraction_min": 0.3277810826888757,
+      "negative_fraction_max": 0.364069006543724,
+      "near_shell_mag_fraction_mean": 0.6383337983914288,
+      "near_shell_mag_fraction_std": 0.006577103036169041,
+      "near_shell_mag_fraction_min": 0.6316118927408402,
+      "near_shell_mag_fraction_max": 0.647262463030477,
+      "near_shell_enrichment_mean": 9.310526602943206,
+      "near_shell_enrichment_std": 0.2675001052999896,
+      "near_shell_enrichment_min": 9.039659359333086,
+      "near_shell_enrichment_max": 9.674668907918692,
+      "top_decile_near_shell_fraction_mean": 0.7694355489598793,
+      "top_decile_near_shell_fraction_std": 0.038655404172454104,
+      "top_decile_near_shell_fraction_min": 0.7288135593220338,
+      "top_decile_near_shell_fraction_max": 0.8214285714285714,
+      "boundary_mag_fraction_mean": 0.00023931634461988886,
+      "boundary_mag_fraction_std": 0.00016940775302598074,
+      "boundary_mag_fraction_min": 0.0,
+      "boundary_mag_fraction_max": 0.0003686825330144137,
+      "far_mag_fraction_mean": 0.0,
+      "far_mag_fraction_std": 0.0,
+      "far_mag_fraction_min": 0.0,
+      "far_mag_fraction_max": 0.0,
+      "readout_mag_fraction_mean": 0.00019438098314785714,
+      "readout_mag_fraction_std": 0.0002748962226351156,
+      "readout_mag_fraction_min": 0.0,
+      "readout_mag_fraction_max": 0.0005831429494435714,
+      "min_radius_from_sphere_um_mean": 1.129615428178118,
+      "min_radius_from_sphere_um_std": 0.003263600562826787,
+      "min_radius_from_sphere_um_min": 1.125,
+      "min_radius_from_sphere_um_max": 1.1319231422671772,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "mid_0p75_1p50",
+      "wall_thickness_um": 0.4,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.3739837398373984,
+      "negative_fraction_std": 0.006701068906887089,
+      "negative_fraction_min": 0.36466389054134446,
+      "negative_fraction_max": 0.3801308744794765,
+      "near_shell_mag_fraction_mean": 0.7177710355784064,
+      "near_shell_mag_fraction_std": 0.004694126133973525,
+      "near_shell_mag_fraction_min": 0.7134225571645697,
+      "near_shell_mag_fraction_max": 0.7242892685532504,
+      "near_shell_enrichment_mean": 13.41407679082574,
+      "near_shell_enrichment_std": 0.31392276058073393,
+      "near_shell_enrichment_min": 13.125389544620317,
+      "near_shell_enrichment_max": 13.850509449711534,
+      "top_decile_near_shell_fraction_mean": 0.8790322580645161,
+      "top_decile_near_shell_fraction_std": 0.013974212924682998,
+      "top_decile_near_shell_fraction_min": 0.859375,
+      "top_decile_near_shell_fraction_max": 0.890625,
+      "boundary_mag_fraction_mean": 0.0007082135457049223,
+      "boundary_mag_fraction_std": 0.0004783288775632068,
+      "boundary_mag_fraction_min": 4.846282381018674e-05,
+      "boundary_mag_fraction_max": 0.0011674894916040102,
+      "far_mag_fraction_mean": 0.0,
+      "far_mag_fraction_std": 0.0,
+      "far_mag_fraction_min": 0.0,
+      "far_mag_fraction_max": 0.0,
+      "readout_mag_fraction_mean": 0.0005522347283707908,
+      "readout_mag_fraction_std": 0.0003955408870833944,
+      "readout_mag_fraction_min": 0.0,
+      "readout_mag_fraction_max": 0.0009055304160544781,
+      "min_radius_from_sphere_um_mean": 1.129615428178118,
+      "min_radius_from_sphere_um_std": 0.003263600562826787,
+      "min_radius_from_sphere_um_min": 1.125,
+      "min_radius_from_sphere_um_max": 1.1319231422671772,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "upper_1p50_2p75",
+      "wall_thickness_um": 0.2,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.9188974816577433,
+      "negative_fraction_std": 0.008960637341023201,
+      "negative_fraction_min": 0.9095776323616894,
+      "negative_fraction_max": 0.9309934562760261,
+      "near_shell_mag_fraction_mean": 0.539889873029054,
+      "near_shell_mag_fraction_std": 0.010102455790263414,
+      "near_shell_mag_fraction_min": 0.5289332390784534,
+      "near_shell_mag_fraction_max": 0.5533088164812608,
+      "near_shell_enrichment_mean": 6.192152683389467,
+      "near_shell_enrichment_std": 0.25374686282015135,
+      "near_shell_enrichment_min": 5.920055341287219,
+      "near_shell_enrichment_max": 6.53081794532661,
+      "top_decile_near_shell_fraction_mean": 0.7910653935382298,
+      "top_decile_near_shell_fraction_std": 0.019963373279403743,
+      "top_decile_near_shell_fraction_min": 0.7707006369426752,
+      "top_decile_near_shell_fraction_max": 0.8181818181818182,
+      "boundary_mag_fraction_mean": 0.006081063869203415,
+      "boundary_mag_fraction_std": 0.0003756954198072366,
+      "boundary_mag_fraction_min": 0.005738223520613013,
+      "boundary_mag_fraction_max": 0.006604003522660173,
+      "far_mag_fraction_mean": 0.003998660563021744,
+      "far_mag_fraction_std": 0.0007526159498603513,
+      "far_mag_fraction_min": 0.002958002527920243,
+      "far_mag_fraction_max": 0.004712430249668501,
+      "readout_mag_fraction_mean": 0.016243857802190825,
+      "readout_mag_fraction_std": 0.0016978755419201894,
+      "readout_mag_fraction_min": 0.01429756875510183,
+      "readout_mag_fraction_max": 0.0184348451902553,
+      "min_radius_from_sphere_um_mean": 1.0077822185373186,
+      "min_radius_from_sphere_um_std": 0.0,
+      "min_radius_from_sphere_um_min": 1.0077822185373186,
+      "min_radius_from_sphere_um_max": 1.0077822185373186,
+      "peak_radial_bin_mid_um_mean": 1.125,
+      "peak_radial_bin_mid_um_std": 0.0,
+      "peak_radial_bin_mid_um_min": 1.125,
+      "peak_radial_bin_mid_um_max": 1.125
+    },
+    {
+      "scale_window": "upper_1p50_2p75",
+      "wall_thickness_um": 0.4,
+      "n_cases": 3,
+      "seeds": [
+        1,
+        7,
+        17
+      ],
+      "negative_fraction_mean": 0.9190957763236168,
+      "negative_fraction_std": 0.009228694252008828,
+      "negative_fraction_min": 0.9095776323616894,
+      "negative_fraction_max": 0.9315883402736467,
+      "near_shell_mag_fraction_mean": 0.567206717596333,
+      "near_shell_mag_fraction_std": 0.009700495931566655,
+      "near_shell_mag_fraction_min": 0.5578741347876439,
+      "near_shell_mag_fraction_max": 0.5805808563561801,
+      "near_shell_enrichment_mean": 6.916044224512447,
+      "near_shell_enrichment_std": 0.2766543008527982,
+      "near_shell_enrichment_min": 6.652695891605287,
+      "near_shell_enrichment_max": 7.298301999641437,
+      "top_decile_near_shell_fraction_mean": 0.8556597573083149,
+      "top_decile_near_shell_fraction_std": 0.006748351553243179,
+      "top_decile_near_shell_fraction_min": 0.8471337579617835,
+      "top_decile_near_shell_fraction_max": 0.8636363636363636,
+      "boundary_mag_fraction_mean": 0.017107640578132157,
+      "boundary_mag_fraction_std": 0.0011556180905580998,
+      "boundary_mag_fraction_min": 0.016041094865179767,
+      "boundary_mag_fraction_max": 0.01871331258533297,
+      "far_mag_fraction_mean": 0.0005752489439156827,
+      "far_mag_fraction_std": 0.0001639204384699189,
+      "far_mag_fraction_min": 0.0003447573196946957,
+      "far_mag_fraction_max": 0.000711944082244829,
+      "readout_mag_fraction_mean": 0.0190811902455815,
+      "readout_mag_fraction_std": 0.001171658682291347,
+      "readout_mag_fraction_min": 0.017948203081647924,
+      "readout_mag_fraction_max": 0.02069478991885631,
+      "min_radius_from_sphere_um_mean": 1.0051881456915457,
+      "min_radius_from_sphere_um_std": 0.0036685730002757773,
+      "min_radius_from_sphere_um_min": 1.0,
+      "min_radius_from_sphere_um_max": 1.0077822185373186,
+      "peak_radial_bin_mid_um_mean": 0.9583333333333334,
+      "peak_radial_bin_mid_um_std": 0.11785113019775792,
+      "peak_radial_bin_mid_um_min": 0.875,
+      "peak_radial_bin_mid_um_max": 1.125
+    }
+  ],
+  "control_note": "Single-body sphere-only and cylinder-only controls are identically zero under this multi-body scalar contact proxy."
+}
