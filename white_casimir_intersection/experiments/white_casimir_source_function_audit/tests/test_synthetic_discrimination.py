@@ -50,8 +50,11 @@ def test_tiny_synthetic_discrimination_writes_parquet_and_heartbeat(tmp_path):
     observations = pd.read_parquet(tmp_path / "stage4" / "synthetic" / "synthetic_observations.parquet")
     recovery = pd.read_parquet(tmp_path / "stage4" / "synthetic" / "recovery_ledger.parquet")
     false_positive = pd.read_parquet(tmp_path / "stage4" / "synthetic" / "false_positive_ledger.parquet")
+    shell_samples = pd.read_parquet(tmp_path / "stage4" / "synthetic" / "shell_template_samples.parquet")
     recommendation = pd.read_csv(tmp_path / "stage4" / "synthetic" / "schedule_recommendation.csv")
     assert not observations.empty
     assert not recovery.empty
     assert not false_positive.empty
+    assert not shell_samples.empty
+    assert "shell_fit_template_correlation" in recovery
     assert bool(recommendation["recommended"].any())

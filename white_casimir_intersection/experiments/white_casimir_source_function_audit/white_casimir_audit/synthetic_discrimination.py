@@ -113,6 +113,8 @@ class DiscriminationConfig:
     base_seed: int
     chunk_size: int
     source_stage3_dir: str | None = None
+    template_mode: str = "block_bootstrap"
+    nuisance_model: str = "geometry"
 
 
 class Stage4ProgressRecorder:
@@ -201,6 +203,39 @@ def _schedule_frame() -> pd.DataFrame:
             row[variable] = float(weights.get(variable, 0.0))
         rows.append(row)
     return pd.DataFrame(rows)
+
+
+def _geometry_nuisance_vectors(schedule: pd.DataFrame, source_stage3_dir: str | None) -> dict[str, np.ndarray]:
+    """Build nuisance templates from schedule geometry controls."""
+
+    values = schedule.loc[:, SCHEDULE_VARIABLES].astype(float)
+    cylinder = values["cylinder_inner_radius"].to_numpy()
+    sphere = values["sphere_diameter"].to_numpy()
+    radial = values["sphere_radial_offset"].to_numpy()
+    axial = values["sphere_axial_offset"].to_numpy()
+    length = values["cylinder_length"].to_numpy()
+    readout = values["readout_accounting_radius"].to_numpy()
+    wall = values["wall_thickness"].to_numpy()
+
+    gap = cylinder - 0.55 * sphere
+    surface = 0.60 * np.abs(sphere) + 0.55 * np.abs(wall) + 0.25 * np.abs(length)
+    alignment = radial + 0.75 * axial
+    material_scale = _read_stage3_material_scale(source_stage3_dir)
+    patch_ratio = material_scale.get("patch_to_casimir_ratio_median") or 1.0
+    material_ratio = material_scale.get("casimir_to_material_rest_energy_ratio_median") or 1.0e-27
+    patch_gain = min(3.0, max(1.0, np.log10(float(patch_ratio) + 1.0) / 2.0))
+    material_gain = min(3.0, max(1.0, -np.log10(max(float(material_ratio), 1.0e-30)) / 16.0))
+
+    return {
+        "capacitance_shift": 0.65 * gap + 1.15 * readout + 0.30 * length + 0.20 * wall,
+        "patch_potential": patch_gain * (0.75 * gap + 0.45 * surface + 0.35 * np.abs(alignment) + 0.20 * readout),
+        "contact_loading": 1.10 * readout + 0.70 * length + 0.30 * wall + 0.15 * np.abs(radial),
+        "material_response": material_gain * (0.80 * wall + 0.45 * length + 0.35 * sphere + 0.30 * cylinder),
+        "thermal_drift": 0.55 * length + 0.45 * wall + 0.35 * cylinder + 0.25 * sphere + 0.20 * readout,
+        "vibration_alignment": 1.15 * radial + 0.85 * axial + 0.20 * length + 0.10 * readout,
+        "waveguide_dispersion": 1.20 * readout - 0.40 * cylinder + 0.65 * length + 0.20 * wall,
+        "readout_circuit_artifact": 1.30 * readout + 0.65 * length + 0.35 * gap + 0.10 * wall,
+    }
 
 
 def _read_stage3_material_scale(source_stage3_dir: str | None) -> dict[str, Any]:
@@ -308,15 +343,141 @@ def _shell_variable_vector(source_stage3_dir: str | None) -> tuple[np.ndarray, d
     return vector, provenance
 
 
-def build_template_bundle(source_stage3_dir: str | None = None) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
+def _shell_variable_samples(source_stage3_dir: str | None) -> tuple[pd.DataFrame, dict[str, Any]]:
+    columns = ["sample_id", "block_id", "wall_thickness_um", "scale_window", *SCHEDULE_VARIABLES]
+    if not source_stage3_dir:
+        return pd.DataFrame(columns=columns), {"shell_template_sample_source": "none_no_stage3_dir"}
+
+    base = Path(source_stage3_dir)
+    points_path = base / "tensor" / "stress_channel_points.parquet"
+    baseline_path = base / "tensor" / "stress_channel_baseline_blocks.parquet"
+    if not points_path.exists():
+        return pd.DataFrame(columns=columns), {"shell_template_sample_source": f"missing:{points_path}"}
+
+    points = pd.read_parquet(points_path)
+    channel_priority = (
+        "source_shell_candidate_signed_integral",
+        "source_shell_candidate_negative_magnitude_integral",
+    )
+    selected = pd.DataFrame()
+    for channel in channel_priority:
+        candidate = points[points["channel"] == channel]
+        if not candidate.empty:
+            selected = candidate
+            break
+    if selected.empty:
+        return pd.DataFrame(columns=columns), {"shell_template_sample_source": f"no_shell_channel:{points_path}"}
+
+    rows: list[dict[str, Any]] = []
+    grouped = selected.groupby(["block_id", "wall_thickness_um", "scale_window"], dropna=False)
+    sample_id = 0
+    for (block_id, wall, window), group in grouped:
+        row: dict[str, Any] = {
+            "sample_id": sample_id,
+            "block_id": int(block_id),
+            "wall_thickness_um": float(wall),
+            "scale_window": str(window),
+        }
+        vector = DEFAULT_SHELL_VECTOR.astype(float).copy()
+        for _, item in group.iterrows():
+            variable = STAGE3_PARAMETER_TO_VARIABLE.get(str(item["parameter"]))
+            if variable is not None:
+                vector[SCHEDULE_VARIABLES.index(variable)] = float(item["finite_difference_per_um"])
+        for index, variable in enumerate(SCHEDULE_VARIABLES):
+            row[variable] = float(vector[index])
+        rows.append(row)
+        sample_id += 1
+
+    samples = pd.DataFrame(rows, columns=columns)
+    provenance = {
+        "shell_template_sample_source": str(points_path),
+        "shell_template_sample_channel": str(selected["channel"].iloc[0]),
+        "shell_template_sample_rows": int(len(samples)),
+    }
+
+    if baseline_path.exists() and not samples.empty:
+        baseline = pd.read_parquet(baseline_path)
+        needed = {"block_id", "wall_thickness_um", "scale_window", "source_shell_candidate_signed_integral"}
+        if needed.issubset(set(baseline.columns)):
+            pivot = baseline.pivot_table(
+                index=["block_id", "scale_window"],
+                columns="wall_thickness_um",
+                values="source_shell_candidate_signed_integral",
+                aggfunc="median",
+            )
+            wall_derivatives: dict[tuple[int, str], float] = {}
+            for key, row in pivot.iterrows():
+                if 0.2 in row and 0.4 in row and pd.notna(row[0.2]) and pd.notna(row[0.4]):
+                    wall_derivatives[(int(key[0]), str(key[1]))] = float((row[0.4] - row[0.2]) / 0.2)
+            if wall_derivatives:
+                samples["wall_thickness"] = [
+                    wall_derivatives.get((int(row.block_id), str(row.scale_window)), row.wall_thickness)
+                    for row in samples.itertuples(index=False)
+                ]
+                provenance["wall_thickness_sample_source"] = str(baseline_path)
+                provenance["wall_thickness_sample_rows"] = int(len(wall_derivatives))
+    return samples, provenance
+
+
+def _shell_template_sample_frame(schedule: pd.DataFrame, source_stage3_dir: str | None) -> tuple[pd.DataFrame, dict[str, Any]]:
+    samples, provenance = _shell_variable_samples(source_stage3_dir)
+    if samples.empty:
+        shell_vector, shell_provenance = _shell_variable_vector(source_stage3_dir)
+        samples = pd.DataFrame(
+            [
+                {
+                    "sample_id": 0,
+                    "block_id": -1,
+                    "wall_thickness_um": np.nan,
+                    "scale_window": "fallback",
+                    **{variable: float(shell_vector[index]) for index, variable in enumerate(SCHEDULE_VARIABLES)},
+                }
+            ]
+        )
+        provenance.update(shell_provenance)
+        provenance["shell_template_sample_rows"] = 1
+
+    schedule_matrix = schedule.loc[:, SCHEDULE_VARIABLES].to_numpy(dtype=float)
+    rows: list[dict[str, Any]] = []
+    for sample in samples.itertuples(index=False):
+        vector = np.array([float(getattr(sample, variable)) for variable in SCHEDULE_VARIABLES], dtype=float)
+        template = _normalize(schedule_matrix @ vector)
+        for order, value in enumerate(template):
+            rows.append(
+                {
+                    "sample_id": int(sample.sample_id),
+                    "block_id": int(sample.block_id),
+                    "wall_thickness_um": float(sample.wall_thickness_um)
+                    if pd.notna(sample.wall_thickness_um)
+                    else np.nan,
+                    "scale_window": str(sample.scale_window),
+                    "schedule_order": int(order),
+                    "schedule_step": str(schedule.loc[order, "schedule_step"]),
+                    "template_value": float(value),
+                }
+            )
+    return pd.DataFrame(rows), provenance
+
+
+def build_template_bundle(
+    source_stage3_dir: str | None = None,
+    nuisance_model: str = "geometry",
+) -> tuple[pd.DataFrame, pd.DataFrame, dict[str, Any]]:
     schedule = _schedule_frame()
     schedule_matrix = schedule.loc[:, SCHEDULE_VARIABLES].to_numpy(dtype=float)
     shell_vector, provenance = _shell_variable_vector(source_stage3_dir)
     shell_template = _normalize(schedule_matrix @ shell_vector)
 
     template_columns: dict[str, np.ndarray] = {"shell_channel": shell_template}
-    for nuisance_name in NUISANCE_NAMES:
-        template_columns[nuisance_name] = _normalize(schedule_matrix @ DEFAULT_NUISANCE_VECTORS[nuisance_name])
+    if nuisance_model == "geometry":
+        nuisance_vectors = _geometry_nuisance_vectors(schedule, source_stage3_dir)
+        provenance["nuisance_template_model"] = "geometry_derived_proxy"
+        for nuisance_name in NUISANCE_NAMES:
+            template_columns[nuisance_name] = _normalize(np.asarray(nuisance_vectors[nuisance_name], dtype=float))
+    else:
+        provenance["nuisance_template_model"] = "fixed_abstract_vector"
+        for nuisance_name in NUISANCE_NAMES:
+            template_columns[nuisance_name] = _normalize(schedule_matrix @ DEFAULT_NUISANCE_VECTORS[nuisance_name])
 
     template_rows: list[dict[str, Any]] = []
     for template_name, values in template_columns.items():
@@ -365,11 +526,15 @@ def _generate_dataset_rows(
     rng: np.random.Generator,
     cfg: DiscriminationConfig,
     x_matrix: np.ndarray,
+    data_shell_template: np.ndarray,
+    template_sample_id: int,
     template_names: list[str],
     schedule_steps: list[str],
     nuisance_weights: Mapping[str, float],
 ) -> list[dict[str, Any]]:
-    shell_template = x_matrix[:, 0]
+    shell_template = _normalize(data_shell_template)
+    fit_shell_template = _normalize(x_matrix[:, 0])
+    template_correlation = float(shell_template @ fit_shell_template)
     nuisance_matrix = x_matrix[:, 1:]
     coefficient_scales = np.array(
         [cfg.nuisance_sigma * float(nuisance_weights.get(name, 1.0)) for name in template_names[1:]],
@@ -398,6 +563,8 @@ def _generate_dataset_rows(
             "noise_component": float(noise[order]),
             "true_shell_coefficient": shell_coefficient,
             "background_rms": background_rms,
+            "template_sample_id": int(template_sample_id),
+            "shell_fit_template_correlation": template_correlation,
         }
         for nuisance_index, nuisance_name in enumerate(template_names[1:]):
             row[f"{nuisance_name}_component"] = float(nuisance_components[order, nuisance_index])
@@ -431,6 +598,12 @@ def _fit_dataset(
         "dataset_id": int(ordered["dataset_id"].iloc[0]),
         "simulation_family": family,
         "sbr": float(ordered["sbr"].iloc[0]),
+        "template_sample_id": int(ordered["template_sample_id"].iloc[0])
+        if "template_sample_id" in ordered
+        else -1,
+        "shell_fit_template_correlation": float(ordered["shell_fit_template_correlation"].iloc[0])
+        if "shell_fit_template_correlation" in ordered
+        else 1.0,
         "true_shell_coefficient": true_shell,
         "shell_coefficient": float(coeff[0]),
         "shell_standard_error": shell_se,
@@ -601,16 +774,27 @@ def run_synthetic_discrimination(outdir: Path, cfg: DiscriminationConfig) -> dic
     recorder = Stage4ProgressRecorder(outdir)
     recorder.record("run_start", {"label": cfg.run_id, "preset": cfg.preset})
 
-    schedule, template_frame, provenance = build_template_bundle(cfg.source_stage3_dir)
+    schedule, template_frame, provenance = build_template_bundle(cfg.source_stage3_dir, cfg.nuisance_model)
     nuisance_weights = _nuisance_weight_map(cfg.source_stage3_dir)
     provenance["nuisance_amplitude_weights"] = nuisance_weights
     x_matrix, template_names, schedule_steps = _template_matrix(template_frame)
+    shell_samples, shell_sample_provenance = _shell_template_sample_frame(schedule, cfg.source_stage3_dir)
+    provenance.update(shell_sample_provenance)
+    sample_pivot = shell_samples.pivot(index="sample_id", columns="schedule_order", values="template_value").sort_index()
+    sample_ids = sample_pivot.index.astype(int).to_numpy()
+    sample_matrix = sample_pivot.to_numpy(dtype=float)
+    sample_correlations = sample_matrix @ _normalize(x_matrix[:, 0])
+    if cfg.template_mode != "block_bootstrap":
+        sample_ids = np.array([0], dtype=int)
+        sample_matrix = x_matrix[:, 0][None, :]
+        sample_correlations = np.array([1.0], dtype=float)
     orthogonality = pd.DataFrame(x_matrix.T @ x_matrix, columns=template_names)
     orthogonality.insert(0, "template_name", template_names)
     max_corr = _max_shell_nuisance_correlation(x_matrix)
     _write_manifest(outdir, cfg, provenance)
     _write_frame(outdir / "synthetic" / "schedule_matrix.parquet", schedule)
     _write_frame(outdir / "synthetic" / "template_matrix.parquet", template_frame)
+    _write_frame(outdir / "synthetic" / "shell_template_samples.parquet", shell_samples)
     _write_frame(outdir / "synthetic" / "template_orthogonality.csv", orthogonality)
     recorder.record(
         "template_stage_complete",
@@ -632,6 +816,7 @@ def run_synthetic_discrimination(outdir: Path, cfg: DiscriminationConfig) -> dic
             ("em_only", cfg.em_only_datasets_per_sbr),
         ):
             for _ in range(count):
+                sample_position = int(rng.integers(0, len(sample_ids)))
                 observation_rows.extend(
                     _generate_dataset_rows(
                         dataset_id,
@@ -640,6 +825,8 @@ def run_synthetic_discrimination(outdir: Path, cfg: DiscriminationConfig) -> dic
                         rng,
                         cfg,
                         x_matrix,
+                        sample_matrix[sample_position],
+                        int(sample_ids[sample_position]),
                         template_names,
                         schedule_steps,
                         nuisance_weights,
@@ -708,6 +895,14 @@ def run_synthetic_discrimination(outdir: Path, cfg: DiscriminationConfig) -> dic
         "claim_boundary": "synthetic_identifiability_proxy_not_physical_detection_claim",
         "n_schedule_steps": int(len(schedule_steps)),
         "n_templates": int(len(template_names)),
+        "n_shell_template_samples": int(len(sample_ids)),
+        "shell_template_correlation_median": float(np.median(sample_correlations)) if len(sample_correlations) else 1.0,
+        "shell_template_correlation_q16": float(np.quantile(sample_correlations, 0.16))
+        if len(sample_correlations)
+        else 1.0,
+        "shell_template_correlation_q84": float(np.quantile(sample_correlations, 0.84))
+        if len(sample_correlations)
+        else 1.0,
         "n_observation_rows": int(len(observations)),
         "n_fit_rows": int(len(recovery)),
         "recommended_schedule": str(recommendation["schedule_name"].iloc[0]) if not recommendation.empty else None,
@@ -746,6 +941,8 @@ def config_from_args(args: argparse.Namespace) -> DiscriminationConfig:
         base_seed=int(args.base_seed),
         chunk_size=int(preset["chunk_size"]),
         source_stage3_dir=str(args.source_stage3_dir) if args.source_stage3_dir is not None else None,
+        template_mode=str(args.template_mode),
+        nuisance_model=str(args.nuisance_model),
     )
 
 
@@ -764,6 +961,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--shell-detection-z", type=float, default=2.0)
     parser.add_argument("--base-seed", type=int, default=41)
     parser.add_argument("--chunk-size", type=int, default=None)
+    parser.add_argument("--template-mode", choices=("median", "block_bootstrap"), default="block_bootstrap")
+    parser.add_argument("--nuisance-model", choices=("geometry", "fixed"), default="geometry")
     return parser.parse_args(argv)
 
 

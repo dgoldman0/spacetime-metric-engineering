@@ -60,31 +60,39 @@ region remains a shell-placed source proxy under channel accounting, how its
 calibrated magnitude compares with an Alcubierre source demand, and how the
 central readout path participates.
 
-This paper evaluates the claim ladder with two role-resolved proxy layers. A
+This paper evaluates the claim ladder with three role-resolved proxy layers. A
 pair-resolved v-loop scalar morphology probe supplies the shape read: each
 dimensionless contribution is a loop-center/scale event whose segments cross
 both the sphere surface and the inner cylinder-wall surface, followed by the
-declared scale weight. A finite-difference tensor-scale audit then supplies
+declared scale weight. A finite-difference tensor-scale audit supplies
 the source-function read: common random loops, parallel-plate Casimir
 calibration brackets, source-demand comparison, linearized metric bounds,
-material-energy estimates, and explicit readout accounting. The sphere,
-cylinder wall, annular shell, central readout path, boundary infrastructure,
-ordinary electromagnetic competitor region, and far-field control are scored
-as separate roles.
+material-energy estimates, and explicit readout accounting. A synthetic
+readout-discrimination layer then treats the finite-difference shell response
+as a geometry-coded signal template and tests recovery against ordinary
+electromagnetic, material, drift, vibration, and readout nuisance templates.
+The sphere, cylinder wall, annular shell, central readout path, boundary
+infrastructure, ordinary electromagnetic competitor region, and far-field
+control are scored as separate roles.
 
-The integrated result gives White's geometry a clear physical interpretation.
-The selective scalar channel concentrates signed proxy magnitude in the
-annular source region, places the radial maximum near the sphere-wall gap, and
-keeps far-field leakage small. The tensor-scale proxy preserves this shell
-placement and assigns a small fraction of the source proxy to the central
+The integrated result separates a positive morphology/source-placement result
+from a closed direct-readout interpretation under the modeled laboratory
+backgrounds. The selective scalar channel concentrates signed proxy magnitude
+in the annular source region, places the radial maximum near the sphere-wall
+gap, and keeps far-field leakage small. The tensor-scale proxy preserves this
+shell placement and assigns a small fraction of the source proxy to the central
 readout role. This supports the shell-morphology interpretation and clarifies
-the readout path as a measurement role distinct from the main source channel. SI
-calibration then fixes the magnitude layer: the source-demand ratio is of
-order $10^{-39}$ in the most favorable tested row, and the linearized timing
-bound is of order $10^{-76}\,\mathrm{s}$. The geometry therefore reads as a
-real shell-shaped Casimir boundary morphology with Casimir-scale gravitational
-strength, giving useful structure to the Alcubierre analogy while locating
-warp-functionality at a source scale many orders above the achieved value.
+the readout path as a measurement role distinct from the main source channel.
+SI calibration then fixes the magnitude layer: the shell-shaped source proxy
+remains at Casimir gravitational strength, far beneath representative
+warp-source demand and far beneath a recoverable timing/readout scale for the
+modeled apparatus. The synthetic discrimination layer turns that scale result
+into a laboratory gate. Geometry-coded perturbations can separate a shell
+template from ordinary electromagnetic and material nuisance templates once a
+shell-coded observable has already reached background-scale amplitude.
+White's geometry therefore reads as a real shell-shaped Casimir boundary
+morphology with useful source-placement structure; the current direct
+laboratory detection interpretation closes under this audit class.
 \end{abstract}
 
 \section{Question}
@@ -113,6 +121,14 @@ Alcubierre source demand, how the central readout path participates, and how
 material and ordinary electromagnetic competitors enter a laboratory
 interpretation. The evidence is therefore organized as morphology, role
 placement, scale closure, material competition, and readout accounting.
+
+The third layer is readout discrimination. A geometry-coded laboratory schedule
+can vary the same apparatus controls that move the shell proxy and the ordinary
+electromagnetic competitors. The discriminating question asks what
+signal-to-background ratio allows a shell-template coefficient to be recovered
+from synthetic readout data with low ordinary-EM-only false positives. This
+layer assigns the perturbation schedule an engineering role: channel separation
+across controlled geometry changes.
 
 The analysis protocol draws on prior source-placement and role-separation work
 \cite{GoldmanRail2026,GoldmanDisclosure}. The White device is treated here in
@@ -239,11 +255,14 @@ loop ensemble, continuum proper-time scaling, parallel-plate normalization, and
 direct comparison to the reported $2000$-loop run. The source-function layer
 below adds a local finite-difference tensor-scale proxy, SI calibration
 brackets, source-demand comparison, material estimates, and readout accounting.
+The synthetic discrimination layer adds template recovery under geometry-coded
+ordinary electromagnetic and material nuisance backgrounds.
 A full worldline stress tensor and a modeled laboratory propagation observable
 belong to a higher-fidelity physical layer.
 The validation scope for this manuscript is crossing geometry, sign accounting,
 role bookkeeping, scale-window morphology, source-role stability, and calibrated
-scale comparison.
+scale comparison, with synthetic readout discrimination reported as an
+identifiability threshold.
 
 \begin{table}[h]
 \centering
@@ -478,6 +497,64 @@ material row. These estimates leave the shell morphology intact and set a
 strong condition on experimental interpretation: ordinary material and
 electromagnetic effects require explicit modeling.
 
+\section{Synthetic Readout Discrimination}
+
+The Stage 3 readout and material results motivate a direct engineering
+question: can a geometry-modulation schedule distinguish a shell-channel
+response from ordinary laboratory backgrounds? The synthetic discrimination
+layer treats the Stage 3 finite-difference shell response as a template and
+mixes it with nuisance templates for capacitance shift, patch potential,
+contact loading, material response, thermal drift, vibration alignment,
+waveguide dispersion, and readout-circuit artifact. The output is an
+identifiability threshold for a shell-coded observable under a declared
+geometry schedule.
+
+The upgraded synthetic run uses $48$ block-level shell-template samples from
+\path{tensor/stress_channel_points.parquet} and a geometry-derived nuisance
+model. The fit template is the median Stage 3 shell response. Each synthetic
+dataset draws a shell template from the block-level sample set. This tests
+recovery under template mismatch as well as ordinary nuisance mixing. The
+median correlation between sampled shell templates and the median fit template
+is $0.884$, and the largest shell--nuisance template correlation is $0.928$.
+The latter value occurs because geometry-derived patch, capacitance, material,
+and readout effects share several apparatus controls with the shell template.
+
+\begin{table}[h]
+\centering
+\caption{Synthetic readout-discrimination recovery under block-bootstrap shell templates and geometry-derived nuisance templates.}
+\label{tab:synthetic_discrimination}
+\small
+\begin{tabular}{rrrr}
+\toprule
+Signal/background & Shell recovery & EM-only false positive & Median shell $z$ \\
+\midrule
+$1.0$ & $0.705$ & $0.040$ & $2.801$ \\
+$1.2$ & $0.845$ & $0.040$ & $3.178$ \\
+$1.4$ & $0.875$ & $0.015$ & $3.933$ \\
+$1.6$ & $0.915$ & $0.045$ & $4.182$ \\
+$1.8$ & $0.950$ & $0.030$ & $5.002$ \\
+$2.0$ & $0.975$ & $0.035$ & $5.305$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The discrimination threshold is therefore near signal-to-background ratio
+$1.2$ for the current synthetic gate. The full geometry schedule is the
+preferred schedule in this model; reduced schedules lose rank and carry larger
+shell--nuisance degeneracies. Geometry modulation supplies separation by
+forcing shell, material, and readout templates to move through different
+patterns across sphere size, cylinder radius, offsets, length, wall thickness,
+and readout radius. This is useful separability and a severe physical gate:
+the schedule discriminates a shell-coded observable already sitting near
+background amplitude, and leaves the signal amplitude wherever the physical
+readout model places it. The calibrated Stage 3 Casimir/metric readout scale
+sits many orders below ordinary material and electromagnetic backgrounds.
+Under the modeled nuisance conditions, that gap closes the direct measurement
+route for the current apparatus. Any future positive laboratory claim must
+first identify a concrete material, propagation, or readout transduction
+mechanism that creates a shell-coded observable at order-unity
+signal-to-background ratio and survives the same perturbation test.
+
 \section{Interpretation}
 
 Within these role-resolved proxy layers, the White et al. sphere-cylinder
@@ -502,8 +579,8 @@ is assigned to the near-shell band. The explicit transit/readout mask receives
 about one tenth of one percent of the scalar magnitude and zero calibrated
 tensor-scale readout source fraction. Larger scale channels add weak central
 participation as part of the broader apparatus field. The source proxy is
-concentrated where a shell would be drawn, while the central path appears
-mainly through apparatus-scale accounting.
+concentrated where a shell would be drawn; the central path appears mainly
+through apparatus-scale accounting.
 
 The source-demand comparison supplies the scale-limiting result. The
 Alcubierre comparison requires stress components, sign placement, magnitude
@@ -517,6 +594,24 @@ proposed transit-time or current/photon/electron readout also carries ordinary
 electromagnetic competition: capacitance, impedance, dispersion, material
 response, contact loading, patch potentials, surface roughness, and
 geometry-dependent leakage can all dominate a laboratory signal.
+
+The synthetic readout-discrimination layer turns that laboratory statement into
+a gate. Geometry modulation can separate a shell-coded template from nuisance
+templates once the shell-coded observable reaches near-background scale; the
+current block-bootstrap geometry-derived run places that recovery threshold
+near signal-to-background ratio $1.2$. This result gives the perturbation
+schedule a precise role. It is a discriminator across channels, with cylinder
+radius, sphere size, offsets, wall thickness, length, and readout radius acting
+as the modulation coordinates. The calibrated Casimir/metric readout scale from
+Stage 3 sits far below this recovery threshold. Taken together, Stage 3 and
+Stage 4 give a negative direct-readout result for the modeled apparatus: the
+shell-shaped morphology remains real in the proxy, and the corresponding
+physical readout amplitude falls short of the level where the schedule can
+recover it. The perturbation schedule is therefore a diagnostic for any
+proposed transduction mechanism. A viable experimental claim must first show a
+concrete propagation/readout channel that produces a shell-coded observable at
+order-unity signal-to-background ratio and preserves the geometry-coded
+template.
 
 \section{Code and Data Availability}
 
@@ -548,50 +643,69 @@ The compact output files are:
 \item \path{readout/readout_coupling_summary.csv}
 \end{itemize}
 
+The synthetic readout-discrimination output used for the recovery-threshold
+table is stored under:
+\begin{quote}
+\small
+\path{/media/kir/9CDCBD3EDCBD140C/Research/}\\
+\path{white_casimir_synthetic_discrimination/}\\
+\path{stage4_block_bootstrap_geometry_sbr_refine_20260530}
+\end{quote}
+The compact and data-heavy output files are:
+\begin{itemize}
+\item \path{summary.json}
+\item \path{synthetic/template_matrix.parquet}
+\item \path{synthetic/shell_template_samples.parquet}
+\item \path{synthetic/synthetic_observations.parquet}
+\item \path{synthetic/recovery_ledger.parquet}
+\item \path{synthetic/false_positive_ledger.parquet}
+\item \path{synthetic/schedule_recommendation.csv}
+\end{itemize}
+
 \section{Conclusion}
 
-The audit gives White et al.'s sphere-cylinder observation a sharper physical
-identity. The apparatus behaves, in these role-resolved proxies, as a
-structured Casimir boundary system. The selective scalar field and tensor-scale
-source proxy both place the strongest accounting in the annular sphere-wall
-band, with far-field leakage small and the readout path retained as a minor
-measurement channel. The Alcubierre resemblance therefore has a concrete basis
-at the morphology/source-placement layer: the geometry can shape
-vacuum-boundary proxy structure into the same kind of shell role drawn in the
-metric comparison.
+The audit gives White et al.'s sphere-cylinder observation a narrower and
+cleaner physical identity. The apparatus behaves, in these role-resolved
+proxies, as a structured Casimir boundary system. The selective scalar field
+and tensor-scale source proxy both place the strongest accounting in the
+annular sphere-wall band, with far-field leakage small and the readout path
+retained as a minor measurement channel. The Alcubierre resemblance therefore
+has a concrete basis at the morphology/source-placement layer: the geometry can
+shape vacuum-boundary proxy structure into the same kind of shell role drawn in
+the metric comparison.
 
-That result is useful because it separates shape, source placement,
-gravitational scale, and laboratory readout into distinct physical claims. The
-shape claim receives the strongest support. The source-placement claim also
-receives support inside the finite-difference proxy: the source proxy follows
-the shell channel across the selective windows, and the bore path contributes a
-small counted share. The metric claim receives a scale assignment. The
-calibrated proxy places the gravitational/source magnitude many orders beneath
-representative Alcubierre source demand. Refinements may move the calibration
-bracket; the present scale gap is the controlling physical fact.
+The scale and readout layers are the gate. The calibrated proxy places the
+gravitational/source magnitude many orders beneath representative Alcubierre
+source demand and gives a linearized timing bound of order
+$10^{-76}\,\mathrm{s}$. Stage 4 then asks whether geometry-coded perturbations
+could recover a shell template from ordinary electromagnetic, material, drift,
+vibration, and readout backgrounds. Under the block-bootstrap,
+geometry-derived nuisance model, recovery becomes reliable near
+signal-to-background ratio $1.2$, with an ordinary-EM-only false-positive rate
+near $0.034$. That is a severe threshold because the calibrated
+Casimir/metric readout channel sits far below the electromagnetic/material
+background scales. The combined Stage 3/Stage 4 result is therefore a negative
+direct-detection result for the modeled apparatus.
 
-This scale assignment changes the narrative from a visual coincidence into a
-quantified boundary-physics result. White's geometry is valuable as a
-reproducible shell-forming Casimir configuration and as a test case for
-source-placement auditing. Its warp relevance, in this audit class, is
-geometric and organizational: it tells us where the source-like proxy lives,
-how sharply it stays in the shell role, and how small the associated metric
-scale is after SI calibration. That combination is scientifically meaningful
-even at Casimir gravitational strength, because it gives future calculations a
-well-defined target and removes ambiguity about which part of the apparatus is
-carrying the shell analogy.
+The synthetic schedule remains useful in a narrower role. It can rank geometry
+perturbations and test whether a proposed readout channel carries a
+shell-coded response with enough amplitude and template orthogonality. It is a
+discriminator, with signal amplitude supplied entirely by the physical
+transduction model being tested. Any future positive laboratory claim must
+first supply an independently modeled material, propagation, or readout
+mechanism that lifts a shell-coded observable to order-unity
+signal-to-background ratio and passes the same ordinary-EM-only false-positive
+test.
 
-The remaining experimental question is a propagation and materials question. A
-central-channel timing, photon, electron, or current readout depends on finite
-conductivity, patch potentials, contact loading, waveguide behavior, surface
-roughness, detector coupling, and the chosen material stack. Those effects
-enter at the same scale as the proposed observable and require a dedicated
-transport calculation tied to the actual apparatus. The present result
-therefore preserves the interesting physics in White et al.'s observation,
-gives the Alcubierre comparison its proper role, and sets the next calculation
-on firmer ground: a shell-shaped Casimir boundary morphology with calibrated
-source scale, material competition, and explicit readout propagation handled as
-coupled parts of a single physical model.
+White's geometry is therefore valuable as a reproducible shell-forming Casimir
+configuration and as a falsification harness for readout proposals. Its warp
+relevance, in this audit class, is geometric and organizational: it tells us
+where the source-like proxy lives, how sharply it stays in the shell role, how
+small the associated metric scale is after SI calibration, and where a
+geometry-coded laboratory schedule begins to recover a signal. The present
+claim ends at that gate: shell-shaped Casimir boundary morphology with
+calibrated source scale, material competition, synthetic recovery threshold,
+and a closed direct laboratory detection path under the modeled backgrounds.
 
 \begin{thebibliography}{9}
 
