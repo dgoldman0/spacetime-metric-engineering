@@ -22,7 +22,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{White Sphere--Cylinder Casimir Probe}
-\rhead{Scale-Resolved Scalar Morphology}
+\rhead{Pair-Resolved Scalar Morphology}
 \cfoot{\thepage\ of \pageref{LastPage}}
 
 \titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{0.5em}{}
@@ -52,22 +52,26 @@ Independent researcher\\
 \begin{abstract}
 White et al.'s sphere-in-cylinder Casimir result contains two separable parts:
 a boundary-geometry observation and a warp-source interpretation. The
-boundary-geometry question can be tested directly: does a $1\um$ sphere
-centered in a $4\um$ cylinder generate a stable negative scalar morphology in
-the annular region where the reported warp-like shell appears? This paper
-evaluates that question with a pair-resolved, worldline-style scalar probe. The
-sphere, cylinder wall, annular shell, central readout path, boundary
-infrastructure, and far-field control are scored separately; scale windows,
-seeds, wall thicknesses, and small geometry perturbations test whether the
-organization is tied to the sphere-wall gap.
+boundary-geometry question can be tested directly: does a $1\um$ diameter
+sphere centered in a nominal $4\um$ diameter cylinder generate a stable signed
+occupancy morphology in the annular region where the reported warp-like shell
+appears? This paper evaluates that question with a pair-resolved v-loop
+scalar morphology probe. The reported field is a dimensionless occupancy map:
+each contribution is a loop-center/scale event whose segments cross both the
+sphere surface and the inner cylinder-wall surface, followed by the declared
+scale weight. The sphere, cylinder wall, annular shell, central readout path,
+boundary infrastructure, and far-field control are scored separately; scale
+windows, baseline seeds, wall thicknesses, and single-seed geometry
+perturbations test how the organization tracks the sphere-wall gap.
 
 The probe resolves a shell-centered scalar morphology. The clean mid-scale
-channel concentrates negative proxy magnitude in the annular source region,
+channel concentrates signed proxy magnitude in the annular source region,
 places the radial maximum near the sphere-wall gap, keeps far-field leakage
-small, and preserves the pattern under modest sphere/cylinder changes. The
+small, and carries the pattern through the single-seed perturbation checks. The
 broad scale window adds apparatus-wide participation, while the explicit
 central readout path remains a small part of the selective shell signal. In
-this form, the White geometry is a structured scalar Casimir-morphology case.
+this form, the White geometry is a structured scalar boundary-interaction
+morphology case.
 The metric and laboratory-transport questions begin at the next layer:
 stress-tensor reconstruction, SI normalization, material response, and a
 central-channel observable.
@@ -79,22 +83,19 @@ White et al. applied worldline numerics to custom Casimir geometries and found
 a negative energy-density morphology that they described as intersecting with
 the energy-density requirements of the Alcubierre metric \cite{White2021}. The
 most compact version of that reported geometry is the sphere-in-cylinder toy model: a
-$1\um$ sphere centered in a $4\um$ cylinder. The reported calculation produced
-a shell-like negative distribution that was visually close to a two-dimensional
-section of an Alcubierre-style negative-energy shell.
+$1\um$ diameter sphere centered in a $4\um$ diameter cylinder. The reported
+calculation produced a shell-like negative distribution that was visually close
+to a two-dimensional section of an Alcubierre-style negative-energy shell.
 
-This study evaluates two linked scalar questions:
-\begin{quote}
-How robustly does the White et al. sphere-cylinder geometry organize negative
-scalar support into the proposed shell, and how strongly does that support
-couple to the central readout path under scale, seed, wall, and geometry
-variations?
-\end{quote}
+This study evaluates two linked scalar questions: how robustly the White et al.
+sphere-cylinder geometry organizes signed pair occupancy into the proposed
+shell, and how strongly that magnitude overlaps the central readout path under
+scale, seed, wall, and geometry variations.
 Here ``robust'' means concentration in the intended sphere-cylinder shell
-region under seed changes, wall-thickness changes, separated scale windows, and
-modest sphere and cylinder perturbations. The Alcubierre analogy depends on
-localized shell organization, with negative sign as one component of the
-evidence.
+region under baseline seed changes, wall-thickness changes, reported scale
+windows, and single-seed modest sphere and cylinder perturbations. The
+evidence in this scalar probe is the localization, scale placement, role
+placement, and readout-mask overlap of the signed occupancy field.
 
 The analysis protocol draws on prior source-placement and role-separation work
 \cite{GoldmanRail2026,GoldmanDisclosure}. The White device is treated here in
@@ -107,11 +108,17 @@ The evaluated geometry is the White et al. sphere-cylinder toy model:
 \begin{equation}
   d_s = 1.0\um,\qquad d_c = 4.0\um,
 \end{equation}
-with the sphere centered in the cylinder. The analysis treats the cylinder wall
-as boundary infrastructure, the sphere as the stress-shaping body, the annular
-region outside the sphere and inside the cylinder as the source-shell
-candidate, the central axis as the proposed transit/readout channel, and the
-exterior region as far-field control.
+where $d_s$ and $d_c$ are nominal diameters and the sphere is centered in the
+cylinder. The crossed cylinder surface is the inner wall surface
+\begin{equation}
+  R_{\mathrm{inner}} = R_c - \frac{t_{\mathrm{wall}}}{2}.
+\end{equation}
+For the $d_c=4.0\um$ baseline, the reported $0.2\um$ and $0.4\um$ wall rows
+use inner crossing diameters of $3.8\um$ and $3.6\um$. The analysis
+treats the cylinder wall as boundary infrastructure, the sphere as the
+stress-shaping body, the annular region outside the sphere and inside the
+cylinder as the source-shell candidate, the central axis as the proposed
+transit/readout channel, and the exterior region as far-field control.
 
 For a grid point $x=(x,y,z)$ in a two-dimensional section, let $r_s(x)$ be the
 distance from the sphere center and let $r_\perp(x)=\sqrt{y^2+z^2}$ be the
@@ -122,9 +129,11 @@ the principal concentration metric is
   \{x:\ R_s < r_s(x) \leq R_s + 0.75\um,\quad
   r_\perp(x) < R_c - 0.10\um\}.
 \end{equation}
-This band is a predefined role-labeled analysis region used for all reported
-cases to represent the intended sphere-cylinder shell, with the material wall
-and far field tracked as separate roles.
+This fixed nominal band is a predefined role-labeled accounting region used for
+all reported cases to represent the intended sphere-cylinder shell. The
+material wall, central readout mask, and far field are tracked with their own
+accounting masks, and those masks may overlap on grid cells where geometric
+roles share space.
 
 \section{Loop Construction and Kernel}
 
@@ -155,10 +164,13 @@ The normalized scalar morphology proxy at grid center $c$ is then
   \sum_{a=1}^{N_{\mathrm{loop}}} I_{a,\lambda}(c).
 \end{equation}
 The $\lambda^{-4}$ weighting keeps the scalar proxy aligned with the expected
-scale sensitivity of a four-dimensional Casimir-type contribution. The output
-category is a normalized scalar morphology proxy with explicit
-unnormalized-amplitude status. An SI energy-density estimate would require an
-additional normalization stage.
+scale sensitivity of a four-dimensional Casimir-type contribution. The sum over
+$\lambda$ is a declared discrete geometry-scale score for comparing morphology
+within the same support interval. A stress-tensor or energy-density estimator
+adds continuum proper-time quadrature, quadrature weights, point-splitting or
+derivative operators, material/boundary response, and SI normalization. The
+output category here is a normalized scalar morphology proxy with explicit
+dimensionless occupancy status.
 
 The single-body controls are embedded in the scoring rule. Contributions are
 accepted when a loop crosses both the sphere and the inner cylinder surface.
@@ -171,21 +183,21 @@ Let
 \begin{equation}
   \Nneg(c)=\max[-\Eproxy(c),0]
 \end{equation}
-be the nonnegative magnitude of the negative proxy. The principal shell
+be the signed-occupancy magnitude recorded by the proxy. The principal shell
 concentration metric is
 \begin{equation}
   F_{\shell} =
   \frac{\sum_{c\in\shell}\Nneg(c)}
        {\sum_{c}\Nneg(c)}.
 \end{equation}
-The shell enrichment is the ratio between mean negative magnitude in the
-near-shell band and mean negative magnitude outside the band:
+The shell enrichment is the ratio between mean signed magnitude in the
+near-shell band and mean signed magnitude outside the band:
 \begin{equation}
   Q_{\shell} =
   \frac{\langle \Nneg\rangle_{\shell}}
        {\langle \Nneg\rangle_{\R^2\setminus\shell}}.
 \end{equation}
-The top-decile shell fraction records the fraction of the strongest negative
+The top-decile shell fraction records the fraction of the strongest signed
 pixels that fall in $\shell$. Boundary, far-field, and readout participation
 are computed as the corresponding magnitude fractions in their role-labeled
 regions. Two central-channel quantities are tracked: the explicit readout path
@@ -194,23 +206,30 @@ mask,
 \begin{equation}
   A_{0.15}=\{x:\ r_\perp(x)\leq 0.15\um\}.
 \end{equation}
-The explicit readout path is the stricter transport-channel proxy; $A_{0.15}$
-records nearby central-axis participation on the grid.
+The explicit readout path is an accounting mask applied after the scalar field
+is computed. The crossing geometry keeps the sphere and cylinder boundary model
+fixed; a modeled bore, conductor, material removal, or propagation observable is
+a separate readout calculation. The wider $A_{0.15}$ mask records nearby
+central-axis participation on the grid.
 
 \section{Computation Configuration}
 
 The calculation used the configuration in Table~\ref{tab:config}. The
-computational design emphasizes the interaction kernel and role-separated scale
+computational design emphasizes the interaction kernel and role-accounted scale
 windows. Loop count and grid size set the scope of the present scalar
-morphology calculation; a full reproduction of White et al.'s worldline
-computation would add a larger loop ensemble and material-normalized
-stress-tensor reconstruction.
+morphology calculation. A normalized White-style scalar comparison adds a larger
+loop ensemble, continuum proper-time scaling, parallel-plate normalization, and
+direct comparison to the reported $2000$-loop run. Stress-tensor
+reconstruction, material response, and transport observables are the next
+physical-closure layer.
+The validation scope for this manuscript is crossing geometry, sign accounting,
+role bookkeeping, and scale-window morphology.
 
 \begin{table}[h]
 \centering
 \caption{Pair-surface scalar-probe configuration.}
 \label{tab:config}
-\begin{tabular}{ll}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.34\linewidth}X}
 \toprule
 Item & Value \\
 \midrule
@@ -219,6 +238,7 @@ Surfaces & Sphere surface and inner cylinder wall \\
 Loop method & Paper-style v-loop \\
 Baseline seeds & $1,7,17$ \\
 Wall thicknesses & $0.2\um$, $0.4\um$ \\
+Inner crossing diameters for $d_c=4.0\um$ & $3.8\um$, $3.6\um$ \\
 Baseline scale windows & $0.75$--$1.50\um$, $1.50$--$2.75\um$, $0.25$--$5.00\um$ \\
 Geometry perturbations & sphere $0.9\um$, sphere $1.1\um$, cylinder $3.8\um$, cylinder $4.2\um$ \\
 Perturbation seed & $1$ \\
@@ -227,17 +247,17 @@ Points per loop & $192$ \\
 Grid & $37\times37$ over $\pm2.5\um$ \\
 Workers & $4$ \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
 
 \section{Baseline Results}
 
 Table~\ref{tab:baseline} gives the baseline aggregate over the three seeds.
 The mid-scale window is the most spatially selective morphology channel. It covers about
-$0.35$--$0.37$ of the sampled pixels with negative proxy values, yet it places
-$0.647$--$0.726$ of the negative magnitude in the near-shell band. Boundary
-and far-field fractions are negligible, and the peak radial bin remains at
-$1.125\um$.
+$0.35$--$0.37$ of the sampled pixels with signed occupancy values, yet it places
+$0.647$--$0.726$ of the signed magnitude in the fixed nominal near-shell band.
+Boundary and far-field fractions are negligible, and the peak radial bin
+remains at $1.125\um$.
 
 \begin{table}[h]
 \centering
@@ -259,17 +279,17 @@ $0.25$--$5.00$ & $0.4$ & $1.000000$ & $0.547679$ & $6.464$ & $0.790754$ & $0.032
 \end{table}
 
 The upper-scale window is broader and fills most of the section, and its
-largest negative pixels remain shell-concentrated. The broad integration
-window gives apparatus-wide negative scalar participation because larger loops
-connect the sphere-wall system across much of the sampled section. Even in the
-broad field, approximately half of the negative magnitude remains in the
+largest signed pixels remain shell-concentrated. The broad scale-sum window
+gives apparatus-wide signed scalar participation because larger loops connect
+the sphere-wall system across much of the sampled section. Even in the broad
+field, approximately half of the signed magnitude remains in the fixed nominal
 near-shell band with $5$--$6$ fold enrichment. These rows separate two scalar
 channels: apparatus-wide broad-window participation and localized mid-scale
 pair interaction.
 
 Table~\ref{tab:readout} gives the corresponding central-channel read. In the
 mid-scale channel, the explicit readout path carries $0.000651$--$0.001225$ of
-the negative proxy magnitude, and the wider central-axis mask carries
+the signed proxy magnitude, and the wider central-axis mask carries
 $0.002918$--$0.005459$. The upper-scale and broad channels add apparatus-wide
 central participation at the few-percent level on the explicit readout path.
 
@@ -294,11 +314,11 @@ $0.25$--$5.00$ & $0.4$ & $0.023688$ & $0.073302$ \\
 
 \section{Geometry Perturbations}
 
-Table~\ref{tab:perturb} summarizes the mid-scale perturbation cases. The
-tighter cylinder strengthens the near-shell concentration, the wider cylinder
-weakens it, and both sphere-size perturbations preserve a recognizable
-shell-localized response. The peak radial bin remains near $1.125\um$ in the
-mid-scale cases.
+Table~\ref{tab:perturb} summarizes the mid-scale perturbation cases at seed
+$1$. In this single-seed geometry-direction check, the tighter cylinder
+strengthens the near-shell concentration, the wider cylinder weakens it, and
+both sphere-size perturbations retain a recognizable shell-localized response.
+The peak radial bin remains near $1.125\um$ in the mid-scale cases.
 
 \begin{table}[h]
 \centering
@@ -324,10 +344,10 @@ Sphere $1.1\um$ & $0.4$ & $0.401753$ & $0.762371$ & $15.723$ & $0.909091$ \\
 The upper-scale perturbation cases retain a broader and still organized read:
 near-shell magnitude fractions range from $0.515$ to $0.595$, top-decile
 near-shell fractions range from $0.719$ to $0.942$, and far-field magnitude
-fractions stay below $0.006655$. The perturbation rows follow the same
-qualitative picture as the baseline calculation: the mid-scale channel is
-localized, and larger scale channels add apparatus-wide participation while the
-largest magnitudes remain near the shell. Across the perturbation cases, the mid-scale explicit
+fractions stay below $0.006655$. The perturbation rows give the same
+geometry-direction picture as the baseline calculation: the mid-scale channel
+is localized, and larger scale channels add apparatus-wide participation while
+the largest magnitudes remain near the shell. Across the perturbation cases, the mid-scale explicit
 readout-path fraction stays in the $0.000000$--$0.002634$ range, with the wider
 central-axis fraction in the $0.000000$--$0.008408$ range. The upper-scale
 perturbation cases carry $0.017245$--$0.027398$ on the explicit readout path
@@ -335,33 +355,35 @@ and $0.055520$--$0.084184$ on the wider central-axis mask.
 
 \section{Interpretation}
 
-Within this normalized scalar morphology model, the White et al.
-sphere-cylinder geometry produces a stable near-shell pair interaction. The
-mid-scale channel supplies the most spatially discriminating read: negative
+Within this normalized scalar occupancy model, the White et al.
+sphere-cylinder geometry produces a near-shell pair-intersection morphology.
+The mid-scale channel gives the most spatially discriminating read: signed
 proxy magnitude concentrates in the annular source band, far-field magnitude is
 small, boundary participation remains secondary, and the radial peak stays near
-the middle of the sphere-wall gap. The sign map is accompanied by
-localization, role, and scale placement.
+the middle of the sphere-wall gap. The localization, role placement, and scale
+placement carry the scalar-probe result.
 
 The broad-window field describes a separate scale channel. Larger loops
 connect the apparatus over most of the sampled section, producing
-apparatus-wide negative scalar participation. The broad field retains a
+apparatus-wide signed scalar participation. The broad field retains a
 shell-enriched largest-magnitude component and combines localized sphere-wall
 morphology with long-scale apparatus connection.
 The Alcubierre-like comparison is carried by the separated mid-scale
 pair interaction, which localizes around the intended shell band.
 
-The readout-axis metrics separate shell formation from transit-path coupling.
-In the clean mid-scale channel, most negative proxy magnitude is assigned to
-the near-shell band, and the explicit transit/readout path receives about one
-tenth of one percent of the magnitude. Larger scale channels add weak central
-participation as part of the broader apparatus field. The scalar morphology is
-concentrated where a source shell would be drawn, with the central
-path appearing mainly through apparatus-scale coupling.
+The readout-axis metrics describe overlap between the scalar occupancy field
+and the central accounting masks. In the clean mid-scale channel, most signed
+proxy magnitude is assigned to the near-shell band, and the explicit
+transit/readout mask receives about one tenth of one percent of the magnitude.
+Larger scale channels add weak central participation as part of the broader
+apparatus field. The scalar morphology is concentrated where a source shell
+would be drawn, with the central path appearing mainly through apparatus-scale
+coupling. A modeled transport calculation would add bore or conductor geometry,
+material response, and propagation observables to this role accounting.
 
-This leaves the source-function question at the tensor and material level.
+This places the source-function question at the tensor and material level.
 The Alcubierre comparison requires stress components, sign placement, magnitude
-comparison, and metric source demand in addition to negative scalar support.
+comparison, and metric source demand in addition to scalar morphology.
 Recent work by Garattini and Zatrimaylov frames this same layer in terms of
 energy conditions and metric-source structure for warp-drive geometries
 \cite{GarattiniZatrimaylov2024}. A proposed transit-time or
@@ -373,29 +395,34 @@ geometry-dependent leakage can all dominate a laboratory signal.
 \section{Code and Data Availability}
 
 The repository contains the calculation code, machine-readable case table,
-summary data, and field arrays under the White Casimir experiment directory:
-\texttt{white\_casimir\_source\_function\_audit/}.
+summary data, and field arrays in the experiment directory
+\path{white_casimir_source_function_audit/} under
+\path{white_casimir_intersection/experiments/}.
+The test command is:
+\begin{verbatim}
+cd white_casimir_intersection/experiments/white_casimir_source_function_audit
+PYTHONPATH=. pytest tests
+\end{verbatim}
 
 \section{Conclusion}
 
-The scalar probe separates two parts of the White et al. sphere-cylinder
-proposal. The geometry forms a shell-centered Casimir proxy in the role-resolved
-calculation: mid-scale pair crossings concentrate in the annular source region,
-the radial placement tracks the sphere-wall gap, far-field leakage stays small,
-and modest sphere/cylinder perturbations preserve the same organization. The
-pair-crossing rule gives the annulus a built-in role, so annular activity alone
-carries little information. The combined radial, scale-window, leakage, and
-perturbation behavior carries the morphology.
+The White et al. sphere-cylinder geometry retains more structure in this probe
+than a visual analogy would require. A simple pair-interaction score, with the
+source shell, boundary, far field, and readout path kept separate, still
+organizes its strongest selective-scale signal around the annular sphere-wall
+region. That is the part of White et al.'s claim that survives this reduced
+test: the shell-like form is not just a drawing placed over a Casimir plot. It
+appears as the natural interaction morphology of the boundary geometry.
 
-The warp/transport reading asks for more structure than this scalar proxy
-supplies. The mid-scale morphology channel belongs to the shell geometry; the
-central transit/readout path is weak there and enters mainly through broader
-apparatus-scale participation. The White question moves from whether the toy
-geometry can produce a structured scalar shell to whether that shell can be
-converted into a metric source with material and transport behavior. The former
-is present in this proxy; the latter requires stress-tensor reconstruction, SI
-normalization, material response, and a transport observable tied to the central
-channel.
+The result also makes the unresolved part sharper. The signal that organizes
+the shell is not the signal that cleanly occupies the central readout path. The
+geometry therefore presents a real follow-on question: whether the annular
+morphology can be promoted from signed scalar occupancy into a stress-energy
+source with the tensor structure, physical scale, and material behavior needed
+for a metric or transport interpretation. That is where White et al.'s proposal
+becomes most interesting after this probe. The scalar shell is structured
+enough to justify the harder calculation, and the readout path is distinct
+enough to make that calculation nontrivial.
 
 \begin{thebibliography}{9}
 
