@@ -158,6 +158,38 @@ class ProgressRecorder:
         self.report_path.write_text(text, encoding="utf-8")
 
 
+def _worker_heartbeat(outdir_value: str | None, event: str, payload: Mapping[str, Any]) -> None:
+    """Write progress from worker processes during long block calculations."""
+
+    if not outdir_value:
+        return
+    try:
+        outdir = Path(outdir_value)
+        row = {
+            "utc": datetime.now(timezone.utc).isoformat(),
+            "event": event,
+            "worker_heartbeat": True,
+            **dict(payload),
+        }
+        with (outdir / "progress.jsonl").open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(row, sort_keys=True) + "\n")
+        (outdir / "latest_status.json").write_text(json.dumps(row, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        report_path = outdir / "reports" / "second_question_machine_readout.md"
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        text = (
+            "# Stage 3 Machine Readout\n\n"
+            "Status: worker heartbeat during long tensor/calibration task.\n\n"
+            f"- latest event: `{event}`\n"
+            f"- latest label: `{payload.get('label', '')}`\n"
+            f"- block id: `{payload.get('block_id', '')}`\n"
+            f"- output path: `{outdir}`\n\n"
+            "Progress events are appended to `progress.jsonl`; worker heartbeat rows do not advance task counts.\n"
+        )
+        report_path.write_text(text, encoding="utf-8")
+    except Exception:
+        return
+
+
 def _scale_values(name: str) -> np.ndarray:
     start, stop, count = SCALE_WINDOWS[name]
     return np.linspace(start, stop, int(count))
@@ -281,6 +313,12 @@ def _calibration_task(task: Mapping[str, Any]) -> list[dict[str, Any]]:
     block_id = int(task["block_id"])
     gap_um = float(task["gap_um"])
     window = str(task["scale_window"])
+    heartbeat_outdir = task.get("heartbeat_outdir")
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "calibration_task_started",
+        {"label": f"gap={gap_um} window={window} block={block_id}", "block_id": block_id},
+    )
     seed = int(cfg["base_seed"]) + 10_000 + block_id
     loops = generate_loops(int(cfg["loops_per_block"]), int(cfg["points_per_loop"]), seed, method="v_loop")
     scales = _scale_values(window)
@@ -320,6 +358,16 @@ def _calibration_task(task: Mapping[str, Any]) -> list[dict[str, Any]]:
                 "elapsed_s": float(result["metadata"]["elapsed_s"]),
             }
         )
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "calibration_task_finished",
+        {
+            "label": f"gap={gap_um} window={window} block={block_id}",
+            "block_id": block_id,
+            "proxy_mean": proxy_mean,
+            "elapsed_s": float(result["metadata"]["elapsed_s"]),
+        },
+    )
     return rows
 
 
@@ -363,12 +411,29 @@ def _tensor_task(task: Mapping[str, Any]) -> dict[str, list[dict[str, Any]]]:
     block_id = int(task["block_id"])
     wall = float(task["wall_thickness_um"])
     window = str(task["scale_window"])
+    heartbeat_outdir = task.get("heartbeat_outdir")
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "tensor_task_started",
+        {"label": f"wall={wall} window={window} block={block_id}", "block_id": block_id},
+    )
     seed = int(cfg["base_seed"]) + 20_000 + block_id
     loops = generate_loops(int(cfg["loops_per_block"]), int(cfg["points_per_loop"]), seed, method="v_loop")
     loop_hash = _sha256_array(loops)
     baseline_geometry = _sphere_geometry(cfg, wall)
     grid, baseline_field, baseline_elapsed = _field_for_geometry(baseline_geometry, cfg, loops, window)
     baseline_metrics = field_channel_metrics(grid, baseline_geometry, baseline_field)
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "tensor_task_baseline_complete",
+        {
+            "label": f"wall={wall} window={window} block={block_id}",
+            "block_id": block_id,
+            "shell_fraction": baseline_metrics["source_shell_candidate_negative_magnitude_fraction"],
+            "readout_fraction": baseline_metrics["transit_readout_channel_negative_magnitude_fraction"],
+            "elapsed_s": baseline_elapsed,
+        },
+    )
     baseline_row = {
         "block_id": block_id,
         "seed": seed,
@@ -406,11 +471,42 @@ def _tensor_task(task: Mapping[str, Any]) -> dict[str, list[dict[str, Any]]]:
 
     channel_rows: list[dict[str, Any]] = []
     elapsed_total = baseline_elapsed
-    for parameter, step, plus_overrides, minus_overrides in parameter_specs:
+    for parameter_index, (parameter, step, plus_overrides, minus_overrides) in enumerate(parameter_specs, start=1):
+        _worker_heartbeat(
+            heartbeat_outdir,
+            "tensor_task_parameter_started",
+            {
+                "label": f"{parameter} wall={wall} window={window} block={block_id}",
+                "block_id": block_id,
+                "parameter": parameter,
+                "parameter_index": parameter_index,
+                "parameter_total": len(parameter_specs),
+            },
+        )
         plus_geometry = _sphere_geometry(cfg, wall, **plus_overrides)
         minus_geometry = _sphere_geometry(cfg, wall, **minus_overrides)
         _, plus_field, plus_elapsed = _field_for_geometry(plus_geometry, cfg, loops, window)
+        _worker_heartbeat(
+            heartbeat_outdir,
+            "tensor_task_parameter_plus_complete",
+            {
+                "label": f"{parameter} plus wall={wall} window={window} block={block_id}",
+                "block_id": block_id,
+                "parameter": parameter,
+                "elapsed_s": plus_elapsed,
+            },
+        )
         _, minus_field, minus_elapsed = _field_for_geometry(minus_geometry, cfg, loops, window)
+        _worker_heartbeat(
+            heartbeat_outdir,
+            "tensor_task_parameter_minus_complete",
+            {
+                "label": f"{parameter} minus wall={wall} window={window} block={block_id}",
+                "block_id": block_id,
+                "parameter": parameter,
+                "elapsed_s": minus_elapsed,
+            },
+        )
         elapsed_total += plus_elapsed + minus_elapsed
         plus_metrics = field_channel_metrics(grid, plus_geometry, plus_field)
         minus_metrics = field_channel_metrics(grid, minus_geometry, minus_field)
@@ -425,6 +521,18 @@ def _tensor_task(task: Mapping[str, Any]) -> dict[str, list[dict[str, Any]]]:
                 wall_thickness_um=wall,
                 scale_window=window,
             )
+        )
+        _worker_heartbeat(
+            heartbeat_outdir,
+            "tensor_task_parameter_complete",
+            {
+                "label": f"{parameter} wall={wall} window={window} block={block_id}",
+                "block_id": block_id,
+                "parameter": parameter,
+                "parameter_index": parameter_index,
+                "parameter_total": len(parameter_specs),
+                "elapsed_total_s": elapsed_total,
+            },
         )
 
     readout_delta = delta
@@ -444,11 +552,30 @@ def _tensor_task(task: Mapping[str, Any]) -> dict[str, list[dict[str, Any]]]:
             scale_window=window,
         )
     )
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "tensor_task_readout_accounting_complete",
+        {
+            "label": f"readout_accounting wall={wall} window={window} block={block_id}",
+            "block_id": block_id,
+            "parameter": "readout_accounting_radius",
+        },
+    )
 
     for row in channel_rows:
         row["seed"] = seed
         row["loop_hash"] = loop_hash
     baseline_row["elapsed_s"] = elapsed_total
+    _worker_heartbeat(
+        heartbeat_outdir,
+        "tensor_task_finished",
+        {
+            "label": f"wall={wall} window={window} block={block_id}",
+            "block_id": block_id,
+            "elapsed_total_s": elapsed_total,
+            "channel_rows": len(channel_rows),
+        },
+    )
     return {"baseline_rows": [baseline_row], "channel_rows": channel_rows}
 
 
@@ -627,7 +754,13 @@ def run_tensor_scale_harness(outdir: Path, cfg: HarnessConfig) -> dict[str, Any]
     recorder.record("run_start", {"label": cfg.run_id, "preset": cfg.preset})
 
     calibration_tasks = [
-        {"config": cfg_payload, "block_id": block, "gap_um": gap, "scale_window": window}
+        {
+            "config": cfg_payload,
+            "block_id": block,
+            "gap_um": gap,
+            "scale_window": window,
+            "heartbeat_outdir": str(outdir),
+        }
         for block in range(cfg.loop_blocks)
         for gap in cfg.calibration_gaps_um
         for window in cfg.scale_windows
@@ -663,7 +796,13 @@ def run_tensor_scale_harness(outdir: Path, cfg: HarnessConfig) -> dict[str, Any]
     )
 
     tensor_tasks = [
-        {"config": cfg_payload, "block_id": block, "wall_thickness_um": wall, "scale_window": window}
+        {
+            "config": cfg_payload,
+            "block_id": block,
+            "wall_thickness_um": wall,
+            "scale_window": window,
+            "heartbeat_outdir": str(outdir),
+        }
         for block in range(cfg.loop_blocks)
         for wall in cfg.wall_thicknesses_um
         for window in cfg.scale_windows

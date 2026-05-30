@@ -58,6 +58,8 @@ def test_tiny_tensor_scale_harness_writes_progress_and_tables(tmp_path):
         json.loads(line)["event"]
         for line in (tmp_path / "stage3" / "progress.jsonl").read_text(encoding="utf-8").splitlines()
     ]
+    assert "tensor_task_baseline_complete" in progress_events
+    assert "tensor_task_parameter_complete" in progress_events
     assert "calibration_block_complete" in progress_events
     assert "tensor_block_complete" in progress_events
     calibration = pd.read_csv(tmp_path / "stage3" / "calibration" / "calibration_summary.csv")
