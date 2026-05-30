@@ -83,6 +83,8 @@ class Stage5Config:
     false_positive_threshold: float = 0.05
     preferred_correlation_threshold: float = 0.85
     candidate_ids: tuple[str, ...] = ()
+    backend_mode: str = "analytic"
+    physical_cases_per_branch: int = 9
 
 
 class Stage5ProgressRecorder:
@@ -152,4 +154,3 @@ def write_frame(path: Path, frame: pd.DataFrame) -> None:
 
 def dataclass_frame(items: list[Any]) -> pd.DataFrame:
     return pd.DataFrame([asdict(item) for item in items])
-

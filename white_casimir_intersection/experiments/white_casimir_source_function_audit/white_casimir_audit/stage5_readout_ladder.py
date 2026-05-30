@@ -24,14 +24,16 @@ from .readout_transduction import (
     write_frame,
     write_json,
 )
+from .stage5_cavity_backend import evaluate_cavity_backend
 from .stage5_gates import build_gate_ledgers
 from .stage5_models import (
     SCENARIO_FACTORS,
-    default_readout_candidates,
     evaluate_candidate_transduction,
     load_stage5_input_context,
     select_candidates,
 )
+from .stage5_pressure_backend import evaluate_pressure_backend
+from .stage5_superconducting_backend import evaluate_superconducting_backend
 from .synthetic_discrimination import NUISANCE_NAMES, build_template_bundle
 
 
@@ -47,6 +49,19 @@ PRESETS: dict[str, dict[str, Any]] = {
         "em_only_datasets_per_candidate": 200,
         "chunk_size": 100,
         "candidate_ids": (),
+    },
+    "priority_physical": {
+        "shell_datasets_per_candidate": 300,
+        "em_only_datasets_per_candidate": 300,
+        "chunk_size": 150,
+        "candidate_ids": (
+            "central_timing_reference",
+            "differential_pressure_cell",
+            "high_q_cavity_shift",
+            "superconducting_resonator_shift",
+            "material_impedance_control",
+        ),
+        "backend_mode": "physical",
     },
 }
 
@@ -148,26 +163,31 @@ def _nuisance_template_frame(
     schedule: pd.DataFrame,
     candidates: list[Any],
     templates: Mapping[str, np.ndarray],
+    transduction: pd.DataFrame,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
-    for candidate in candidates:
-        for scenario in SCENARIO_FACTORS:
-            for nuisance_name in NUISANCE_NAMES:
-                values = templates.get(nuisance_name)
-                if values is None:
-                    continue
-                for order, value in enumerate(values):
-                    rows.append(
-                        {
-                            "candidate_id": candidate.candidate_id,
-                            "scenario": scenario,
-                            "schedule_order": int(order),
-                            "schedule_step": str(schedule.loc[order, "schedule_step"]),
-                            "template_name": nuisance_name,
-                            "template_role": "nuisance",
-                            "template_value": float(value),
-                        }
-                    )
+    candidate_ids = {candidate.candidate_id for candidate in candidates}
+    for candidate_id, scenario in (
+        transduction[["candidate_id", "scenario"]].drop_duplicates().sort_values(["candidate_id", "scenario"]).itertuples(index=False)
+    ):
+        if str(candidate_id) not in candidate_ids:
+            continue
+        for nuisance_name in NUISANCE_NAMES:
+            values = templates.get(nuisance_name)
+            if values is None:
+                continue
+            for order, value in enumerate(values):
+                rows.append(
+                    {
+                        "candidate_id": str(candidate_id),
+                        "scenario": str(scenario),
+                        "schedule_order": int(order),
+                        "schedule_step": str(schedule.loc[order, "schedule_step"]),
+                        "template_name": nuisance_name,
+                        "template_role": "nuisance",
+                        "template_value": float(value),
+                    }
+                )
     return pd.DataFrame(rows)
 
 
@@ -293,23 +313,28 @@ def _template_metrics_frame(
     candidate_templates: Mapping[str, np.ndarray],
     nuisance_templates: Mapping[str, np.ndarray],
     cfg: Stage5Config,
+    transduction: pd.DataFrame,
 ) -> pd.DataFrame:
     rows: list[dict[str, Any]] = []
-    for candidate in candidates:
-        for scenario in SCENARIO_FACTORS:
-            x_matrix, names = _x_matrix(candidate_templates[candidate.candidate_id], nuisance_templates)
-            shell = _normalize(x_matrix[:, 0])
-            corr_values = [abs(float(shell @ _normalize(x_matrix[:, index]))) for index in range(1, x_matrix.shape[1])]
-            xtx = x_matrix.T @ x_matrix + cfg.ridge_alpha * np.eye(len(names))
-            rows.append(
-                {
-                    "candidate_id": candidate.candidate_id,
-                    "scenario": scenario,
-                    "template_count": int(len(names)),
-                    "max_abs_shell_nuisance_correlation": max(corr_values) if corr_values else 0.0,
-                    "template_condition_number": float(np.linalg.cond(xtx)),
-                }
-            )
+    candidate_ids = {candidate.candidate_id for candidate in candidates}
+    for candidate_id, scenario in (
+        transduction[["candidate_id", "scenario"]].drop_duplicates().sort_values(["candidate_id", "scenario"]).itertuples(index=False)
+    ):
+        if str(candidate_id) not in candidate_ids:
+            continue
+        x_matrix, names = _x_matrix(candidate_templates[str(candidate_id)], nuisance_templates)
+        shell = _normalize(x_matrix[:, 0])
+        corr_values = [abs(float(shell @ _normalize(x_matrix[:, index]))) for index in range(1, x_matrix.shape[1])]
+        xtx = x_matrix.T @ x_matrix + cfg.ridge_alpha * np.eye(len(names))
+        rows.append(
+            {
+                "candidate_id": str(candidate_id),
+                "scenario": str(scenario),
+                "template_count": int(len(names)),
+                "max_abs_shell_nuisance_correlation": max(corr_values) if corr_values else 0.0,
+                "template_condition_number": float(np.linalg.cond(xtx)),
+            }
+        )
     return pd.DataFrame(rows)
 
 
@@ -327,65 +352,64 @@ def _run_candidate_synthetic_gate(
     fit_rows: list[dict[str, Any]] = []
     dataset_id = 0
     completed = 0
-    total_groups = len(candidates) * len(SCENARIO_FACTORS)
+    candidate_by_id = {candidate.candidate_id: candidate for candidate in candidates}
+    scenario_groups = list(transduction.groupby(["candidate_id", "scenario"], sort=True))
+    total_groups = len(scenario_groups)
 
-    for candidate in candidates:
-        for scenario in SCENARIO_FACTORS:
-            recorder.record("candidate_started", {"label": f"{candidate.candidate_id}:{scenario}"})
-            x_matrix, names = _x_matrix(candidate_templates[candidate.candidate_id], nuisance_templates)
-            group = transduction[
-                (transduction["candidate_id"] == candidate.candidate_id) & (transduction["scenario"] == scenario)
-            ]
-            predicted_sbr = float(group["predicted_sbr"].iloc[0])
-            background_rms = float(group["background_observable_rms"].iloc[0])
-            local_dataset_ids: list[int] = []
-            generated_since_heartbeat = 0
-            for family, count in (
-                ("shell_plus_background", cfg.shell_datasets_per_candidate),
-                ("em_only", cfg.em_only_datasets_per_candidate),
-            ):
-                for _ in range(count):
-                    observation_rows.extend(
-                        _generate_synthetic_rows(
-                            candidate.candidate_id,
-                            scenario,
-                            dataset_id,
-                            family,
-                            rng,
-                            schedule,
-                            x_matrix,
-                            names,
-                            predicted_sbr,
-                            background_rms,
-                            cfg,
-                        )
+    for (candidate_id, scenario), group in scenario_groups:
+        candidate = candidate_by_id[str(candidate_id)]
+        recorder.record("candidate_started", {"label": f"{candidate.candidate_id}:{scenario}"})
+        x_matrix, names = _x_matrix(candidate_templates[candidate.candidate_id], nuisance_templates)
+        predicted_sbr = float(group["predicted_sbr"].iloc[0])
+        background_rms = float(group["background_observable_rms"].iloc[0])
+        local_dataset_ids: list[int] = []
+        generated_since_heartbeat = 0
+        for family, count in (
+            ("shell_plus_background", cfg.shell_datasets_per_candidate),
+            ("em_only", cfg.em_only_datasets_per_candidate),
+        ):
+            for _ in range(count):
+                observation_rows.extend(
+                    _generate_synthetic_rows(
+                        candidate.candidate_id,
+                        str(scenario),
+                        dataset_id,
+                        family,
+                        rng,
+                        schedule,
+                        x_matrix,
+                        names,
+                        predicted_sbr,
+                        background_rms,
+                        cfg,
                     )
-                    local_dataset_ids.append(dataset_id)
-                    dataset_id += 1
-                    generated_since_heartbeat += 1
-                    if generated_since_heartbeat >= cfg.chunk_size:
-                        recorder.record(
-                            "synthetic_chunk_complete",
-                            {
-                                "label": f"{candidate.candidate_id}:{scenario}:{dataset_id}",
-                                "datasets_generated": dataset_id,
-                            },
-                        )
-                        generated_since_heartbeat = 0
-            if generated_since_heartbeat:
-                recorder.record(
-                    "synthetic_chunk_complete",
-                    {"label": f"{candidate.candidate_id}:{scenario}:{dataset_id}", "datasets_generated": dataset_id},
                 )
-
-            local_observations = pd.DataFrame([row for row in observation_rows if row["dataset_id"] in local_dataset_ids])
-            for _, group_rows in local_observations.groupby("dataset_id", sort=True):
-                fit_rows.append(_fit_dataset(group_rows, x_matrix, names, cfg))
-            completed += 1
+                local_dataset_ids.append(dataset_id)
+                dataset_id += 1
+                generated_since_heartbeat += 1
+                if generated_since_heartbeat >= cfg.chunk_size:
+                    recorder.record(
+                        "synthetic_chunk_complete",
+                        {
+                            "label": f"{candidate.candidate_id}:{scenario}:{dataset_id}",
+                            "datasets_generated": dataset_id,
+                        },
+                    )
+                    generated_since_heartbeat = 0
+        if generated_since_heartbeat:
             recorder.record(
-                "candidate_model_complete",
-                {"label": f"{candidate.candidate_id}:{scenario}", "completed_candidate_scenarios": completed, "total": total_groups},
+                "synthetic_chunk_complete",
+                {"label": f"{candidate.candidate_id}:{scenario}:{dataset_id}", "datasets_generated": dataset_id},
             )
+
+        local_observations = pd.DataFrame([row for row in observation_rows if row["dataset_id"] in local_dataset_ids])
+        for _, group_rows in local_observations.groupby("dataset_id", sort=True):
+            fit_rows.append(_fit_dataset(group_rows, x_matrix, names, cfg))
+        completed += 1
+        recorder.record(
+            "candidate_model_complete",
+            {"label": f"{candidate.candidate_id}:{scenario}", "completed_candidate_scenarios": completed, "total": total_groups},
+        )
 
     return pd.DataFrame(observation_rows), pd.DataFrame(fit_rows)
 
@@ -409,6 +433,7 @@ def _write_manifest(outdir: Path, cfg: Stage5Config, context: Any, template_prov
             "em_only_false_positive_ledger",
             "gate_ledger",
             "required_gain_ledger",
+            "physical_backend_sweep",
         ],
     }
     write_json(outdir / "manifest.json", payload)
@@ -438,9 +463,38 @@ def _schedule_recommendation(stage4_dir: Path, gate_ledger: pd.DataFrame) -> pd.
     )
 
 
+def _evaluate_stage5_transduction(
+    candidates: list[Any],
+    context: Any,
+    schedule: pd.DataFrame,
+    candidate_templates: Mapping[str, np.ndarray],
+    cfg: Stage5Config,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    transduction_rows: list[Any] = []
+    backend_detail_frames: list[pd.DataFrame] = []
+    for candidate in candidates:
+        if cfg.backend_mode == "physical" and candidate.candidate_id == "differential_pressure_cell":
+            rows, details = evaluate_pressure_backend(candidate, context, schedule, candidate_templates)
+            transduction_rows.extend(rows)
+            backend_detail_frames.append(details)
+        elif cfg.backend_mode == "physical" and candidate.candidate_id == "high_q_cavity_shift":
+            rows, details = evaluate_cavity_backend(candidate, context, schedule, candidate_templates)
+            transduction_rows.extend(rows)
+            backend_detail_frames.append(details)
+        elif cfg.backend_mode == "physical" and candidate.candidate_id == "superconducting_resonator_shift":
+            rows, details = evaluate_superconducting_backend(candidate, context, schedule, candidate_templates)
+            transduction_rows.extend(rows)
+            backend_detail_frames.append(details)
+        else:
+            transduction_rows.extend(evaluate_candidate_transduction(candidate, context, schedule, candidate_templates))
+
+    details = pd.concat(backend_detail_frames, ignore_index=True) if backend_detail_frames else pd.DataFrame()
+    return dataclass_frame(transduction_rows), details
+
+
 def run_stage5_readout_ladder(outdir: Path, cfg: Stage5Config) -> dict[str, Any]:
     outdir.mkdir(parents=True, exist_ok=True)
-    for subdir in ("configs", "candidates", "templates", "synthetic", "gates", "schedules", "reports"):
+    for subdir in ("configs", "candidates", "templates", "synthetic", "gates", "schedules", "reports", "backends"):
         (outdir / subdir).mkdir(parents=True, exist_ok=True)
 
     recorder = Stage5ProgressRecorder(outdir)
@@ -487,17 +541,19 @@ def run_stage5_readout_ladder(outdir: Path, cfg: Stage5Config) -> dict[str, Any]
         },
     )
 
-    transduction_rows = []
-    for candidate in candidates:
-        transduction_rows.extend(evaluate_candidate_transduction(candidate, context, schedule, candidate_templates))
-    transduction = dataclass_frame(transduction_rows)
-    recorder.record("candidate_model_complete", {"label": "analytic_transduction", "rows": len(transduction)})
-    template_metrics = _template_metrics_frame(candidates, candidate_templates, nuisance_templates, cfg)
+    transduction, backend_details = _evaluate_stage5_transduction(
+        candidates, context, schedule, candidate_templates, cfg
+    )
+    recorder.record("candidate_model_complete", {"label": f"{cfg.backend_mode}_transduction", "rows": len(transduction)})
+    template_metrics = _template_metrics_frame(candidates, candidate_templates, nuisance_templates, cfg, transduction)
     candidate_template_frame = _candidate_observable_template_frame(schedule, candidate_templates, transduction)
-    nuisance_template_rows = _nuisance_template_frame(schedule, candidates, nuisance_templates)
+    nuisance_template_rows = _nuisance_template_frame(schedule, candidates, nuisance_templates, transduction)
     write_frame(outdir / "templates" / "candidate_observable_templates.parquet", candidate_template_frame)
     write_frame(outdir / "templates" / "nuisance_templates.parquet", nuisance_template_rows)
     write_frame(outdir / "templates" / "candidate_template_metrics.csv", template_metrics)
+    if not backend_details.empty:
+        write_frame(outdir / "backends" / "physical_backend_sweep.parquet", backend_details)
+        write_frame(outdir / "backends" / "physical_backend_sweep.csv", backend_details)
 
     observations, recovery = _run_candidate_synthetic_gate(
         candidates,
@@ -531,6 +587,8 @@ def run_stage5_readout_ladder(outdir: Path, cfg: Stage5Config) -> dict[str, Any]
         "source_stage4_dir": cfg.source_stage4_dir,
         "candidate_count": int(len(candidates)),
         "candidate_scenario_count": int(len(gate_ledger)),
+        "backend_mode": cfg.backend_mode,
+        "physical_backend_rows": int(len(backend_details)),
         "stage4_required_sbr": context.stage4_required_sbr,
         "n_observation_rows": int(len(observations)),
         "n_fit_rows": int(len(recovery)),
@@ -555,6 +613,7 @@ def config_from_args(args: argparse.Namespace) -> Stage5Config:
     if args.chunk_size is not None:
         preset["chunk_size"] = args.chunk_size
     candidate_ids = tuple(args.candidate_id) if args.candidate_id else tuple(preset["candidate_ids"])
+    backend_mode = args.backend_mode or str(preset.get("backend_mode", "analytic"))
     run_id = args.run_id or f"stage5_{preset_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     outdir = args.outdir or (DEFAULT_STAGE5_BASE / run_id)
     return Stage5Config(
@@ -576,6 +635,8 @@ def config_from_args(args: argparse.Namespace) -> Stage5Config:
         false_positive_threshold=float(args.false_positive_threshold),
         preferred_correlation_threshold=float(args.preferred_correlation_threshold),
         candidate_ids=candidate_ids,
+        backend_mode=backend_mode,
+        physical_cases_per_branch=int(args.physical_cases_per_branch),
     )
 
 
@@ -600,6 +661,8 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--recovery-threshold", type=float, default=0.80)
     parser.add_argument("--false-positive-threshold", type=float, default=0.05)
     parser.add_argument("--preferred-correlation-threshold", type=float, default=0.85)
+    parser.add_argument("--backend-mode", choices=("analytic", "physical"), default=None)
+    parser.add_argument("--physical-cases-per-branch", type=int, default=9)
     return parser.parse_args(argv)
 
 

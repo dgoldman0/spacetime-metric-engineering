@@ -95,3 +95,35 @@ def test_stage5_gate_summary_matches_gate_ledger(tmp_path):
     assert len(gate_summary) == len(gate_ledger)
     assert len(required_gain) == len(gate_ledger)
     assert "recommended_next_action" in gate_summary
+
+
+def test_stage5_physical_priority_mode_writes_backend_sweep(tmp_path):
+    cfg = _tiny_cfg(tmp_path)
+    cfg = Stage5Config(
+        **{
+            **cfg.__dict__,
+            "backend_mode": "physical",
+            "candidate_ids": (
+                "central_timing_reference",
+                "differential_pressure_cell",
+                "high_q_cavity_shift",
+                "superconducting_resonator_shift",
+                "material_impedance_control",
+            ),
+        }
+    )
+    summary = run_stage5_readout_ladder(tmp_path / "stage5_physical", cfg)
+    assert summary["backend_mode"] == "physical"
+    assert summary["candidate_count"] == 5
+    assert summary["physical_backend_rows"] == 27
+
+    backend = pd.read_parquet(tmp_path / "stage5_physical" / "backends" / "physical_backend_sweep.parquet")
+    gates = pd.read_parquet(tmp_path / "stage5_physical" / "gates" / "gate_ledger.parquet")
+    assert set(backend["backend"]) == {
+        "differential_pressure_physical",
+        "high_q_cavity_physical",
+        "superconducting_resonator_physical",
+    }
+    assert {"closed_physical_scale", "closed_nuisance_degeneracy", "candidate_survives_for_experiment"} & set(
+        gates["gate_status"]
+    )

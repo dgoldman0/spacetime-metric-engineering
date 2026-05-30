@@ -23,11 +23,19 @@ def _status_and_action(row: Mapping[str, object], candidate: ReadoutCandidate) -
     if not bool(row["claim_identity_pass"]):
         return "closed_identity", "Clarify the observable identity before treating this as shell evidence."
     if not bool(row["amplitude_gate_pass"]):
+        if "physical_backend" in str(candidate.model_status) or "physical_backend" in str(row.get("model_status", "")):
+            return "closed_physical_scale", "The physical backend does not lift the observable to the Stage 4 gate."
         return "closed_amplitude", "A stronger physical transduction model or lower background floor is required."
     if not bool(row["recovery_gate_pass"]):
+        if "physical_backend" in str(candidate.model_status) or "physical_backend" in str(row.get("model_status", "")):
+            return "closed_physical_scale", "The physical backend amplitude does not recover reliably in the synthetic gate."
         return "closed_amplitude", "The candidate amplitude does not recover reliably in the synthetic gate."
     if not bool(row["false_positive_gate_pass"]):
         return "closed_false_positive", "Add controls or schedule dimensions to reduce EM-only recovery."
+    if "nuisance_degenerate" in str(row.get("model_status", "")):
+        return "closed_nuisance_degeneracy", "A physically plausible nuisance remains too close to the shell readout."
+    if "physical_backend_controlled" in str(row.get("model_status", "")):
+        return "candidate_survives_for_experiment", "Physical-backend gate passes; move to apparatus design or external validation."
     if "high_fidelity" in str(candidate.model_status):
         return "candidate_for_apparatus_design", "Amplitude, recovery, false-positive, and identity gates pass."
     return "candidate_for_fidelity_upgrade", "Upgrade this analytic survivor with a candidate-specific physics backend."
@@ -83,7 +91,7 @@ def build_gate_ledgers(
             "template_condition_number": condition,
             "dominant_nuisance": str(group["dominant_nuisance"].iloc[0]),
             "calibration_control_status": "declared_controls_required",
-            "model_status": candidate.model_status,
+            "model_status": str(group["model_status"].iloc[0]) if "model_status" in group else candidate.model_status,
             "amplitude_gate_pass": predicted_sbr >= context.stage4_required_sbr,
             "recovery_gate_pass": recovery_fraction >= cfg.recovery_threshold,
             "false_positive_gate_pass": false_positive_rate <= cfg.false_positive_threshold,
@@ -112,4 +120,3 @@ def build_gate_ledgers(
         ]
     ].copy()
     return gate_ledger.reset_index(drop=True), required_gain_ledger.reset_index(drop=True)
-
