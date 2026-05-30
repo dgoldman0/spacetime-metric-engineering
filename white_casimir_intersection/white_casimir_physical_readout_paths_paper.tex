@@ -1,0 +1,643 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=0.88in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array,booktabs,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\setlength{\headheight}{14pt}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=black,
+  citecolor=black
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{White Casimir Physical Readouts}
+\rhead{Apparatus Path Paper}
+\cfoot{\thepage\ of \pageref{LastPage}}
+
+\titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\setlist[itemize]{nosep,leftmargin=1.2em}
+\setlist[enumerate]{nosep,leftmargin=1.4em}
+\renewcommand{\arraystretch}{1.16}
+
+\newcommand{\um}{\,\mu\mathrm{m}}
+\newcommand{\sbr}{\mathrm{SBR}}
+\newcommand{\fp}{\mathrm{FP}}
+\newcommand{\Tc}{T_{\mathrm{c}}}
+\newcommand{\df}{\delta f/f}
+\newcommand{\pathlocal}[1]{\texttt{#1}}
+
+\title{\bfseries From White-Style Casimir Shells to Physical Readout Paths:\\
+High-Q, Superconducting, and Differential-Pressure Apparatus Options}
+\author{
+Daniel S. Goldman\\
+Independent researcher\\
+\href{https://orcid.org/0000-0003-2835-3521}{ORCID: 0000-0003-2835-3521}
+}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+White et al.'s sphere-in-cylinder Casimir calculation created a useful split in
+the experimental question. One part is geometric: whether a custom Casimir
+boundary condition can organize a shell-like negative vacuum-stress proxy near
+the region visually compared with an Alcubierre source shell. A recent
+role-resolved audit found that this shell-morphology layer survives several
+proxy and perturbation tests, while the direct metric/timing readout layer does
+not survive calibrated scale and electromagnetic-background accounting. The
+result is not a warp-readout program. It is a narrower physical program:
+identify whether a shell-coded Casimir boundary response can be transduced by
+ordinary precision apparatus strongly enough to be measured and separated from
+material, patch-potential, thermal, vibration, and readout backgrounds.
+
+This paper starts from that narrowed claim boundary and translates the Stage 5
+readout ladder into apparatus paths. The three remaining physical branches are
+a high-Q electromagnetic cavity frequency/phase shift, a superconducting
+resonator frequency/phase shift, and a paired differential-pressure cell. The
+first two are the strongest surviving branches under clean-control priors. The
+differential-pressure cell is more direct as force metrology but survives only
+under unusually strong patch-potential and common-mode control. A material or
+impedance readout is retained as a calibration/control branch, not as evidence
+for a shell response. The old central timing branch closes by amplitude.
+
+The proposed continuation is therefore a Casimir-boundary metrology program.
+A positive result would not show practical warp behavior or a freely usable
+negative-energy fluid. It would show that a finite shell-coded boundary
+condition produces a repeatable renormalized-stress or boundary-mode response
+that survives physical controls in a modern apparatus. That would still be
+valuable: it would make the White-style geometry a precision test bed for
+finite-geometry Casimir physics, surface-patch systematics, high-Q resonant
+transduction, superconducting vacuum-boundary effects, and possible Casimir
+device engineering.
+\end{abstract}
+
+\section{Claim Boundary}
+
+White, Vera, Han, Bruccoleri, and MacArthur used worldline numerics on custom
+Casimir geometries and reported that one sphere-in-cylinder configuration
+generated a negative energy-density morphology qualitatively similar to a
+two-dimensional Alcubierre shell \cite{White2021}. The compact geometry is a
+$1\um$ diameter sphere centered in a nominal $4\um$ diameter cylinder. The
+important fact for this paper is not the visual resemblance alone. The useful
+fact is that the geometry separates three questions:
+\begin{enumerate}
+\item Does the boundary condition organize a shell-like Casimir response?
+\item Is the calibrated stress-energy scale remotely competitive with a metric
+source requirement?
+\item Is there a laboratory observable that can read the shell response through
+ordinary electromagnetic and material backgrounds?
+\end{enumerate}
+
+The prior role-resolved audit answered these in different directions. The
+source-placement layer was positive in the limited proxy sense: shell
+morphology remained concentrated in the annular sphere-wall region and was
+controlled by the sphere and cylinder geometry. The metric-source and central
+timing layers were negative: the calibrated scale was many orders below an
+Alcubierre-type source demand, and the central readout path did not carry a
+recoverable physical signal. The synthetic discrimination layer added one more
+condition. If a shell-coded observable already reaches near-background
+amplitude, a geometry schedule can separate it from nuisance templates at about
+\(\sbr=1.2\). The schedule is a discriminator, not an amplitude generator.
+
+The Stage 5 run therefore changed the research question. The question is no
+longer whether the White geometry gives a direct warp or metric readout. In
+this harness, it does not. The question is whether the shell-coded Casimir
+boundary response can be coupled into a practical physical transducer strongly
+enough to pass an apparatus gate. The word ``physical'' is doing real work
+here: the branch must specify a sensor, a noise floor, dominant nuisance
+channels, calibration controls, a geometry modulation schedule, and a failure
+criterion.
+
+\section{Negative Energy Is Not Just a Label}
+
+The first conceptual question is whether these readouts would say anything
+about negative energy in quantum field theory, or whether ``negative energy''
+is only bookkeeping. The careful answer is that QFT negative energy is
+operational but constrained. In renormalized stress-energy accounting, the
+local expectation value of energy density can be lower than the reference
+vacuum in some region. The Casimir effect is one familiar expression of this:
+boundaries alter the mode structure and produce measurable force, pressure,
+and energy changes. Ford's review emphasizes both sides of the point: local
+negative energy densities are allowed in QFT, while quantum inequalities and
+compensating positive energy restrict their magnitude, duration, and use
+\cite{Ford2009}.
+
+So a successful White-style physical readout would not merely attach a name to
+a calculation. If it survived geometry modulation, material substitution,
+surface-potential mapping, dummy-cell subtraction, and readout-nuisance
+controls, it would provide operational evidence that the finite boundary
+condition changed a measurable physical quantity in the direction predicted by
+renormalized vacuum-stress or Casimir-boundary theory. Depending on the branch,
+that quantity could be a force/pressure, a mechanical frequency shift, a
+cavity eigenfrequency shift, a microwave phase shift, or a superconducting
+resonator response.
+
+But the same result would not elevate the system into an exotic-matter or
+warp-source device. The Stage 3 scale comparison already placed the
+gravitational/source magnitude far beneath representative metric demand. A
+positive high-Q or superconducting readout would mean: the shell-coded
+boundary condition is physically readable as a Casimir-boundary response. It
+would not mean: the negative energy has become an unconstrained material,
+extractable fuel, or engineered stress tensor suitable for macroscopic metric
+control. The strongest interpretation remains QFT-metrological, not
+propulsion-metrological.
+
+\section{Stage 5 Inputs}
+
+The Stage 5 priority physical run used the Stage 3 shell proxy and Stage 4
+synthetic discrimination threshold as input. It evaluated five candidate
+readout families across physical backend cases. The run produced 33 candidate
+scenario gates, 27 physical-backend rows, 237600 synthetic observations, and
+19800 fits. The declared gate threshold inherited from Stage 4 was
+\(\sbr=1.2\), with ordinary-EM-only false-positive control near
+\(\fp<0.05\).
+
+\begin{table}[h]
+\centering
+\caption{Stage 5 gate counts for the priority physical closeout run.}
+\label{tab:gate_counts}
+\small
+\begin{tabular}{lr}
+\toprule
+Gate status & Count \\
+\midrule
+Candidate survives for experiment & 11 \\
+Closed physical scale & 14 \\
+Closed nuisance degeneracy & 2 \\
+Closed amplitude & 3 \\
+Background calibration only & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Highest-ranked Stage 5 survivors and near-survivors.}
+\label{tab:stage5_survivors}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.30\linewidth}lrr>{\raggedright\arraybackslash}X}
+\toprule
+Branch & Scenario & Pred. \(\sbr\) & \(\fp\) & Dominant nuisance \\
+\midrule
+High-Q cavity shift & optimistic clean & 19.34 & 0.040 & loss channel \\
+Superconducting resonator & optimistic clean & 17.76 & 0.0367 & surface loss \\
+Superconducting resonator & optimistic balanced & 12.10 & 0.040 & surface loss \\
+High-Q cavity shift & optimistic matched & 11.88 & 0.0267 & loss channel \\
+Superconducting resonator & optimistic lossy & 7.94 & 0.0433 & surface loss \\
+High-Q cavity shift & optimistic lossy & 6.07 & 0.0433 & loss channel \\
+Superconducting resonator & nominal clean & 5.46 & 0.0267 & surface loss \\
+Differential pressure cell & optimistic quiet & 5.31 & 0.0267 & patch potential \\
+Superconducting resonator & nominal balanced & 3.59 & 0.0333 & surface loss \\
+High-Q cavity shift & nominal clean & 2.22 & 0.0133 & loss channel \\
+Differential pressure cell & optimistic balanced & 2.02 & 0.030 & patch potential \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The central timing reference is retained in the ladder as a closure check. Its
+optimistic physical row has predicted \(\sbr\sim4.1\times10^{-59}\), and the
+three central timing rows all close by amplitude. The material impedance branch
+has predicted \(\sbr=0\) by construction because it is a background and
+calibration channel, not a shell measurement. The surviving physical program is
+therefore concentrated in resonant boundary readouts, with differential
+pressure as a harder but conceptually direct force channel.
+
+\section{Experimental Architecture}
+
+The viable apparatus cannot be a single static measurement. It has to be a
+geometry-modulated differential measurement, because the nuisance templates
+share many controls with the shell template. The experimental object is a
+finite boundary cell with controlled shell-gap modulation, sphere/cylinder
+geometry, wall thickness, readout coupling, and matched dummy geometry. A
+single absolute shift is not enough. The evidence is the vector of shifts
+across a modulation schedule.
+
+The common architecture has five parts. First, a shell cell implements the
+sphere-cylinder or a manufacturable surrogate geometry with a known gap,
+surface roughness, conductivity, coating thickness, and alignment tolerance.
+Second, at least one dummy cell carries the same material, wiring, thermal
+mass, and readout chain while suppressing the shell overlap. Third, a geometry
+schedule changes the coordinates that the Stage 3/Stage 4 templates identified
+as discriminating: gap, cylinder radius, sphere size or surrogate radius,
+offset, wall thickness, length, and readout overlap. Fourth, an independent
+surface and material metrology layer maps roughness, residual potential,
+finite conductivity, coating thickness, loss tangent, and thermal expansion.
+Fifth, the readout is fitted against both a shell template and ordinary
+background templates, with an EM-only false-positive test.
+
+This architecture is close to established Casimir metrology practice. Decca,
+Aksyuk, and Lopez review MEMS/NEMS force measurements as a natural platform
+for Casimir sensing \cite{Decca2011}. Garcia-Sanchez et al. used metallized
+high-Q silicon nitride nanomembranes and in situ surface-potential measurement
+to control residual electrostatic forces \cite{GarciaSanchez2012,
+GarciaSanchez2013}. Bimonte et al. measured differential Casimir forces from
+0.2 to \(8\um\) while explicitly treating surface roughness, edge effects, and
+patch potentials \cite{Bimonte2021}. These are not optional niceties for the
+White-style follow-on; they are the minimum machinery required to keep a
+Casimir claim from becoming a material-background claim.
+
+\section{Path A: High-Q Cavity Shift}
+
+The high-Q cavity branch treats the shell cell as a perturbation to an
+electromagnetic resonator. The observable is a fractional frequency or phase
+shift,
+\begin{equation}
+  y_{\mathrm{cav}} = \left(\frac{\delta f}{f}\right)_{\mathrm{meas}},
+\end{equation}
+measured over a geometry schedule. In the Stage 5 physical backend, the best
+high-Q case used a shell fractional frequency shift of
+\(9.40\times10^{-11}\) against a background fractional rms of
+\(4.86\times10^{-12}\), giving predicted \(\sbr=19.34\). The strongest
+nominal clean case gave \(\sbr=2.22\). Matched and lossy cases rapidly lose
+margin, which is exactly the point: the branch is viable only when the mode
+overlap and loss model are strong enough.
+
+The physical device would use a cavity mode with high electric or magnetic
+field overlap in the shell-sensitive region and a companion null or low-overlap
+mode. A vector network analyzer, Pound-style lock, or phase-locked loop tracks
+the resonant frequency and quality factor. The fit model has the form
+\begin{equation}
+  y_{\mathrm{cav}}(q) =
+  a_{\mathrm{shell}}T_{\mathrm{shell}}(q)
+  + a_{\mathrm{cond}}T_{\mathrm{cond}}(q)
+  + a_{\mathrm{therm}}T_{\mathrm{therm}}(q)
+  + a_{\mathrm{wg}}T_{\mathrm{wg}}(q)
+  + a_{\mathrm{mix}}T_{\mathrm{mix}}(q)
+  + a_{\mathrm{loss}}T_{\mathrm{loss}}(q)
+  + \epsilon ,
+\end{equation}
+where \(q\) denotes the geometry setting and the \(T_i\) are shell and
+nuisance templates. The cavity branch does not win by measuring a larger
+force directly. It wins by using resonance to make a small boundary-coded
+perturbation readable.
+
+The required machinery is therefore mode-engineering machinery: a validated
+finite-element eigenmode solver; a measured mode-overlap factor; independent
+thermal expansion tracking; dummy cavities; controlled wall and conductor
+loss; and a way to reverse, detune, or suppress the shell-overlap mode while
+leaving the material and readout chain intact. Without these controls, a
+frequency shift is easy to obtain and hard to interpret. With them, a positive
+result would imply that the finite Casimir boundary condition couples to an
+electromagnetic eigenmode in a reproducible, geometry-coded way.
+
+\section{Path B: Superconducting Resonator Shift}
+
+The superconducting resonator branch is the most interesting physically
+because it sits at the intersection of Casimir boundary conditions and
+cryogenic electrodynamics. The observable is again a fractional frequency or
+phase shift, but now the transducer is a superconducting resonator, microwave
+optomechanical structure, or superconducting boundary device. Stage 5 gave the
+best superconducting clean case \(\sbr=17.76\), with nominal clean at
+\(\sbr=5.46\) and nominal balanced at \(\sbr=3.59\). The conservative and
+lossy rows show the main risk: surface loss, vortex loss, quasiparticle loss,
+kinetic inductance, and material-control channels can remain too close to the
+shell readout.
+
+This branch has external motivation beyond the local harness. Perez et al.
+designed a NEMS system to probe Casimir energy corrections to superconducting
+condensation energy by measuring superconducting transition changes in a
+controlled cavity \cite{Perez2020}. de Jong et al. report measurement of the
+Casimir force between superconducting objects through the nonlinear dynamics
+of a superconducting drum resonator in a microwave optomechanical system
+\cite{DeJong2025}. Gurevich reviews the loss physics that must be confronted
+in superconducting resonators, including quasiparticles, dielectric loss,
+residual surface resistance, trapped vortices, and limits on high-Q operation
+\cite{Gurevich2023}. These sources make the branch concrete: this is the kind
+of machine that can plausibly read a tiny boundary perturbation, and also the
+kind of machine whose internal loss channels can counterfeit one.
+
+The clean experiment would use two resonator classes. The first is a material
+and loss reference resonator with the same film, substrate, wiring, field
+environment, and thermal cycle but no shell-sensitive Casimir geometry. The
+second is the shell-coupled resonator. The schedule should include temperature
+sweeps across and below \(\Tc\), controlled magnetic-field history for vortex
+loading, drive-power sweeps for quasiparticle and TLS response, and geometry
+modulation for shell template recovery. A strong positive result would have to
+remain locked to the shell geometry while changing differently from kinetic
+inductance, surface resistance, vortex, quasiparticle, and material-control
+templates.
+
+If it worked, the physical implication would be narrower and sharper than a
+warp claim. It would indicate that superconducting boundary conditions or
+cryogenic resonant structures can transduce finite Casimir geometry changes
+into a reproducible microwave observable. Practical utility could include
+surface-loss diagnostics, Casimir-calibrated resonator sensors, vacuum-gap
+metrology, and tests of how superconducting electrodynamics enters finite
+geometry Casimir forces.
+
+\section{Path C: Differential Pressure Cell}
+
+The differential-pressure branch is conceptually the most direct. Instead of
+asking a resonator to magnify a boundary perturbation, it tries to measure a
+force or pressure contrast between matched cells. For ideal parallel plates,
+the pressure scale is
+\begin{equation}
+  P_{\mathrm{C}}(a) = -\frac{\pi^2\hbar c}{240a^4},
+\end{equation}
+which is about \(1.3\times10^{-3}\,\mathrm{Pa}\) at \(a=1\um\), before real
+geometry, material, finite-temperature, and roughness corrections. Stage 5's
+optimistic pressure rows sit in this same experimental neighborhood: the
+optimistic quiet row used a shell pressure of \(7.18\times10^{-4}\,\mathrm{Pa}\)
+and passed with \(\sbr=5.31\). The nominal quiet row fell to
+\(\sbr=0.35\), and patchy or conservative rows close quickly.
+
+The pressure branch therefore requires a paired-cell design rather than a
+single membrane. The two cells should share temperature, vibration, readout
+electronics, electrode materials, and membrane mechanics while moving through
+opposite shell-gap modulations. Patch-potential mapping is central, not
+auxiliary. Bimonte et al.'s long-range force measurement is directly relevant
+because it treats experimental uncertainty, patch potentials, roughness, edge
+effects, and theory comparison without fitting parameters \cite{Bimonte2021}.
+Stange et al.'s commercial MEMS platform shows how a practical force sensor
+can be converted into a Casimir metrology platform with piconewton-scale
+resolution and electrostatic calibration \cite{Stange2019}. The
+nanomembrane/Kelvin-probe work shows why surface-potential control must be
+built into the apparatus \cite{GarciaSanchez2012}.
+
+The branch's positive implication would be the cleanest statement of force
+physics: a shell-coded boundary geometry produces a pressure contrast that
+tracks the template after common-mode subtraction. Its risk is also the
+cleanest: patch potentials and ordinary electrostatic forces are naturally
+large compared with the desired residual. In the Stage 5 ladder, pressure is
+not dismissed, but it is the least forgiving survivor.
+
+\section{Controls That Are Evidence-Bearing}
+
+The material impedance branch should be kept, but only as a control. It is a
+first-class competitor, not a shell readout. The most dangerous mistake would
+be to interpret any geometry-correlated impedance, capacitance, or loss change
+as evidence for a Casimir shell. Material response is exactly what must be
+measured so that it can be regressed out or used to close the claim.
+
+\begin{table}[h]
+\centering
+\caption{Control requirements by branch.}
+\label{tab:controls}
+\small
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.29\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+Branch & Required controls & Fail condition \\
+\midrule
+High-Q cavity & Mode-overlap solver, dummy cavity, thermal monitor, conductor-loss model, waveguide/mode-mixing checks & Frequency shift follows loss, thermal, or waveguide template more strongly than shell template \\
+Superconducting resonator & Material-only resonator, vortex history, quasiparticle and drive-power sweeps, surface-loss model, \(\Tc\) sweep & Shift remains degenerate with kinetic inductance, surface loss, vortex, quasiparticle, or material-control channels \\
+Differential pressure & Matched dummy cell, opposite gap modulation, Kelvin-probe map, roughness prior, vibration and thermal common-mode rejection & Residual pressure follows patch/electrostatic or membrane-drift template \\
+Material impedance & Four-terminal calibration, capacitance/impedance mapping, dummy readout path & Treated as shell evidence rather than background calibration \\
+Central timing & Matched central path and EM-only schedule & Closed by amplitude unless a new transduction model changes scale by many orders \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The evidence-bearing form is a multi-template fit, not an isolated
+instrumental shift. A plausible shell readout must pass four conditions:
+\begin{enumerate}
+\item It exceeds the Stage 4 recovery threshold under the same geometry
+schedule, or a more stringent validated schedule.
+\item EM-only and material-only synthetic or physical control datasets do not
+generate false positives above the declared rate.
+\item A physically measured nuisance template is not more correlated with the
+data than the shell template.
+\item The amplitude and sign remain stable under dummy-cell, material-swap,
+and geometry-reversal tests.
+\end{enumerate}
+
+\section{Comparison with White et al.}
+
+The proposed program keeps White et al.'s most durable contribution and drops
+the fragile one. White et al. showed that a custom Casimir geometry can produce
+a shell-like vacuum-response morphology in a worldline calculation
+\cite{White2021}. The prior audit did not erase that. It made the statement
+more precise: the shell morphology is a boundary-geometry result, while the
+metric-source and central-timing readouts fail under calibrated scale and
+background accounting.
+
+The continuation proposed here changes the observable. White-style central or
+transit language asks whether the apparatus creates a direct metric-like
+effect readable along the center. The Stage 5 answer is no for the modeled
+apparatus. The high-Q, superconducting, and pressure branches instead ask
+whether the same shell-coded boundary geometry can be read through ordinary
+Casimir metrology. That is a much more conservative question, but it is also
+physically buildable.
+
+The distinction matters for interpretation. A positive resonator or pressure
+result would strengthen the claim that the finite shell geometry is a real
+physical Casimir boundary condition, not a plotting artifact. It would not
+resurrect the direct warp-readout interpretation. The best narrative is:
+White et al. identified a provocative shell-forming Casimir geometry; the
+audit separated morphology from metric source scale; Stage 5 identified the
+physical readout branches worth testing as Casimir-boundary metrology.
+
+\section{Build Plan}
+
+The practical next program should be staged so that each step can close the
+line cleanly.
+
+\subsection{Phase 0: apparatus digital twin}
+
+Build branch-specific simulations before fabricating the shell cell. For
+the cavity branch, solve eigenmodes and perturbative frequency shifts for the
+actual geometry, including conductor thickness, ports, readout feed, and wall
+loss. For superconducting resonators, include kinetic inductance, surface
+resistance, quasiparticle, vortex, TLS, and material-control terms. For
+pressure cells, include membrane mechanics, patch maps, roughness, electrostatic
+calibration, and edge corrections. The output of Phase 0 is a measured or
+simulated template matrix that can be passed through the Stage 4/Stage 5
+synthetic gates.
+
+\subsection{Phase 1: known-geometry calibration}
+
+Do not begin with the White shell cell. First reproduce a standard
+sphere-plane, parallel-plate, trench, or membrane Casimir measurement at the
+chosen scale. The purpose is not novelty. It is to prove the apparatus can
+recover an ordinary Casimir signal while controlling residual electrostatics,
+roughness, thermal drift, and readout artifacts. This phase should use the
+Decca/Bimonte/Garcia-Sanchez style controls: electrostatic calibration,
+Kelvin-probe surface-potential mapping where possible, separation metrology,
+and explicit error budgets \cite{Decca2011,Bimonte2021,GarciaSanchez2012}.
+
+\subsection{Phase 2: dummy and material controls}
+
+Construct dummy geometries with the same materials and readout chain but
+suppressed shell overlap. Run the full geometry schedule on shell and dummy
+cells. This is where the material impedance branch earns its keep. A large
+geometry-correlated material response is not a surprise; it is the main
+background map.
+
+\subsection{Phase 3: shell-cell measurement}
+
+Run the shell cell under the full schedule. The acceptance gate should be
+predeclared: predicted and measured \(\sbr\), false-positive rate, nuisance
+correlations, mode/loss separation, and branch-specific amplitude bounds. If
+the high-Q and superconducting branches fail after measured template updates,
+the line should close as a physical readout program. If one branch survives,
+the next paper should be an apparatus design and uncertainty-budget paper, not
+a metric interpretation paper.
+
+\section{Physical Implications and Utility}
+
+If all three branches fail under measured apparatus templates, the physical
+conclusion is still useful. It would say that the White-style shell morphology
+is a real proxy-level organization of Casimir boundary response, but that
+available transducers do not lift it through ordinary material and
+electromagnetic backgrounds. That would close the current line at the
+metrology gate.
+
+If the pressure branch survives, the implication is a direct finite-geometry
+force result. It would show that a shell-coded Casimir boundary condition can
+produce a pressure contrast that remains after patch and common-mode controls.
+Practical utility would be strongest in precision force metrology, MEMS/NEMS
+calibration, and surface-patch diagnostics.
+
+If the high-Q cavity branch survives, the implication is resonant
+electromagnetic transduction. The shell boundary condition would be readable as
+a mode shift rather than as a direct force. Practical utility could include
+Casimir-assisted cavity sensors, mode-overlap diagnostics for microcavities,
+and precision tests of finite-geometry vacuum-boundary calculations.
+
+If the superconducting branch survives, the implication is the most
+interesting for condensed-matter/QFT overlap. It would suggest that
+superconducting boundary conditions, resonator loss physics, and Casimir
+geometry can be separated well enough to measure a shell-coded vacuum-boundary
+effect. Practical utility could include cryogenic gap metrology,
+superconducting surface-loss diagnostics, and improved understanding of how
+superconducting electrodynamics enters Casimir forces.
+
+None of these outcomes would imply practical warp propulsion. The value is
+smaller but real: a controlled way to ask how engineered boundaries shape
+renormalized vacuum stress and how those changes can be read by precision
+machines.
+
+\section{Code, Data, and Source Availability}
+
+The local source bundle for this paper is stored at
+\begin{quote}
+\small
+\path{white_casimir_intersection/sources}
+\end{quote}
+and is documented in
+\begin{quote}
+\small
+\path{white_casimir_intersection/sources/README.md}.
+\end{quote}
+
+The Stage 5 priority physical closeout used here is stored under:
+\begin{quote}
+\small
+\path{/media/kir/9CDCBD3EDCBD140C/Research/}\\
+\path{white_casimir_stage5_readout_ladder/stage5_priority_physical_closeout_20260530}
+\end{quote}
+The compact files used for the tables and claims are:
+\begin{itemize}
+\item \path{summary.json}
+\item \path{gates/gate_summary.csv}
+\item \path{candidates/readout_candidates.csv}
+\item \path{backends/physical_backend_sweep.csv}
+\end{itemize}
+
+\section{Conclusion}
+
+The current state of the White Casimir line is narrow but not empty. The
+central timing and metric-readout interpretation is closed in the present
+harness. The shell morphology is still useful as a finite Casimir boundary
+configuration. Stage 5 says that the strongest physical continuations are
+resonant readouts: a high-Q cavity and a superconducting resonator. A
+differential-pressure cell remains a possible force readout only under strong
+patch and common-mode control.
+
+The next honest question is whether one of those physical branches can survive
+measured apparatus templates. If the answer is yes, the result would be a
+valuable Casimir-boundary readout, not a warp signal. If the answer is no, the
+research line closes cleanly: White-style shell morphology exists at the proxy
+level, but no physically robust readout remains after ordinary backgrounds and
+controls.
+
+\begin{thebibliography}{12}
+
+\bibitem{White2021}
+H. White, J. Vera, A. Han, A. R. Bruccoleri, and J. MacArthur,
+``Worldline numerics applied to custom Casimir geometry generates
+unanticipated intersection with Alcubierre warp metric,''
+\emph{European Physical Journal C} \textbf{81}, 677 (2021).
+\url{https://doi.org/10.1140/epjc/s10052-021-09484-z}.
+
+\bibitem{Alcubierre1994}
+M. Alcubierre,
+``The warp drive: hyper-fast travel within general relativity,''
+\emph{Classical and Quantum Gravity} \textbf{11}, L73--L77 (1994).
+\url{https://doi.org/10.1088/0264-9381/11/5/001}.
+
+\bibitem{Ford2009}
+L. H. Ford,
+``Negative Energy Densities in Quantum Field Theory,''
+arXiv:0911.3597 (2009).
+\url{https://arxiv.org/abs/0911.3597}.
+
+\bibitem{Decca2011}
+R. S. Decca, V. Aksyuk, and D. Lopez,
+``Casimir force in micro and nano electro mechanical systems,''
+in \emph{Casimir Physics}, Lecture Notes in Physics \textbf{834} (2011).
+\url{https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=906575}.
+
+\bibitem{GarciaSanchez2012}
+D. Garcia-Sanchez, K. Y. Fong, H. Bhaskaran, S. Lamoreaux, and H. X. Tang,
+``Casimir Force and In Situ Surface Potential Measurements on
+Nanomembranes,''
+\emph{Physical Review Letters} \textbf{109}, 027202 (2012).
+\url{https://doi.org/10.1103/PhysRevLett.109.027202}.
+
+\bibitem{GarciaSanchez2013}
+D. Garcia-Sanchez, K. Y. Fong, H. Bhaskaran, S. Lamoreaux, and H. X. Tang,
+``Casimir probe based upon metallized high Q SiN nanomembrane resonator,''
+arXiv:1301.7025 (2013).
+\url{https://arxiv.org/abs/1301.7025}.
+
+\bibitem{Stange2019}
+A. Stange, M. Imboden, J. Javor, L. K. Barrett, and D. J. Bishop,
+``Building a Casimir metrology platform with a commercial MEMS sensor,''
+\emph{Microsystems \& Nanoengineering} \textbf{5}, 14 (2019).
+\url{https://doi.org/10.1038/s41378-019-0054-5}.
+
+\bibitem{Perez2020}
+D. J. Perez, A. Stange, R. Lally, L. Barrett, M. Imboden, A. Som,
+D. Campbell, V. Aksyuk, and D. Bishop,
+``A system for probing Casimir energy corrections to the condensation
+energy,''
+\emph{Microsystems \& Nanoengineering} \textbf{6}, 1 (2020).
+\url{https://doi.org/10.1038/s41378-020-00221-2}.
+
+\bibitem{Bimonte2021}
+G. Bimonte, B. Spreng, P. A. Maia Neto, G.-L. Ingold,
+G. L. Klimchitskaya, V. M. Mostepanenko, and R. S. Decca,
+``Measurement of the Casimir Force between 0.2 and 8 um: Experimental
+Procedures and Comparison with Theory,''
+\emph{Universe} \textbf{7}, 93 (2021).
+\url{https://doi.org/10.3390/universe7040093}.
+
+\bibitem{Gurevich2023}
+A. Gurevich,
+``Tuning microwave losses in superconducting resonators,''
+\emph{Superconductor Science and Technology} \textbf{36}, 073002 (2023).
+\url{https://doi.org/10.1088/1361-6668/acc6e3}.
+
+\bibitem{DeJong2025}
+M. H. J. de Jong, E. Korkmazgil, L. Banniard, M. A. Sillanp\"a\"a,
+and L. Mercier de L\'epinay,
+``Measurement of the Casimir force between superconductors,''
+arXiv:2501.13759 (2025).
+\url{https://arxiv.org/abs/2501.13759}.
+
+\end{thebibliography}
+
+\end{document}
