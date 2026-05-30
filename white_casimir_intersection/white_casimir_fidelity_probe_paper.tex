@@ -394,15 +394,12 @@ geometry-dependent leakage can all dominate a laboratory signal.
 
 \section{Code and Data Availability}
 
-The repository contains the calculation code, machine-readable case table,
-summary data, and field arrays in the experiment directory
-\path{white_casimir_source_function_audit/} under
-\path{white_casimir_intersection/experiments/}.
-The test command is:
-\begin{verbatim}
-cd white_casimir_intersection/experiments/white_casimir_source_function_audit
-PYTHONPATH=. pytest tests
-\end{verbatim}
+The calculation code and generated outputs are included with the project
+repository under the White Casimir experiment directory. The archived outputs
+include the case table, aggregate summary, and mean field arrays used for the
+tables in this manuscript. The experiment package also includes the pytest
+validation suite used for the local crossing-geometry, scoring, and
+bookkeeping checks.
 
 \section{Conclusion}
 
