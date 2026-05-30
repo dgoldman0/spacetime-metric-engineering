@@ -18,6 +18,9 @@ toolkit/adm_harness_cli/configs/screen_v10_*.yaml
 toolkit/adm_harness_cli/*_results.zip
 toolkit/adm_harness_cli/local_test_results.zip
 
+# White Casimir local/generated outputs
+white_casimir_intersection/experiments/white_casimir_source_function_audit/outputs/tensor_scale_probe/
+
 # Local LaTeX compile byproducts
 active_rail_technical_disclosure.aux
 active_rail_technical_disclosure.log
