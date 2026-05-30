@@ -5,4 +5,5 @@ __all__ = [
     "geometry",
     "report",
     "scoring",
+    "tensor_scale_harness",
 ]
