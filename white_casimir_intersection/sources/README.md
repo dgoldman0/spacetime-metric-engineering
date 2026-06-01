@@ -100,3 +100,18 @@ This folder contains local PDF sources used by
 - `ford_negative_energy_densities_qft_2009.pdf`
   Ford, "Negative Energy Densities in Quantum Field Theory" (2009).
   arXiv: https://arxiv.org/abs/0911.3597
+
+- `kontou_sanders_energy_conditions_gr_qft_2020.pdf`
+  Kontou and Sanders, "Energy conditions in general relativity and quantum
+  field theory," *Classical and Quantum Gravity* 37, 193001 (2020).
+  arXiv: https://arxiv.org/abs/2003.01815
+
+- `schafer_huet_gies_worldline_energy_momentum_tensors_2015.pdf`
+  Schafer, Huet, and Gies, "Worldline Numerics for Energy-Momentum Tensors in
+  Casimir Geometries" (2015).
+  arXiv: https://arxiv.org/abs/1509.03509
+
+- `funai_martin_martinez_engineering_negative_stress_energy_qet_2017.pdf`
+  Funai and Martin-Martinez, "Engineering negative stress-energy densities
+  with quantum energy teleportation," *Physical Review D* 96, 025014 (2017).
+  arXiv: https://arxiv.org/abs/1701.03805
