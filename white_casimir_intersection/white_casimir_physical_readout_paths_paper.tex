@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{placeins}
 
 \setlength{\headheight}{14pt}
 \hypersetup{
@@ -55,40 +56,23 @@ White et al. introduced a custom Casimir geometry in which a micron-scale
 sphere inside a conducting cylinder produced a shell-like worldline-numerics
 vacuum response. A role-resolved follow-on audit separated that result into
 morphology, calibrated scale, readout participation, and ordinary
-material/electromagnetic backgrounds. The durable outcome is a shell-forming
-finite boundary object: the annular sphere--wall region remains the physical
-feature to interrogate, while direct central timing is assigned to an
-amplitude-bounded reference role and material response becomes calibration.
+material/electromagnetic backgrounds. The durable target is a shell-forming
+finite-boundary response: the annular sphere--wall region remains the physical
+feature to interrogate, central timing is an amplitude-bounded reference, and
+material response is calibration.
 
-This paper develops the resulting physical continuation as a
-boundary-transduction problem. The experimental target is a geometry-locked
-Casimir response associated with the annular shell role, measured through
-ordinary precision apparatus channels with explicit material and
-electromagnetic controls. The central object is a shell-coded boundary
-response: a finite-geometry renormalized-stress organization whose physical
-evidence appears as force, pressure, resonant frequency, phase, or
-superconducting microwave response. The metric comparison supplies scale
-context; the apparatus claim is a measurable boundary response.
+The continuation is a boundary-transduction test: a geometry-locked Casimir
+response measured through ordinary precision apparatus channels with explicit
+material and electromagnetic controls. Three readout architectures survive
+branch triage: a paired differential-pressure cell for direct stress, a high-Q
+electromagnetic cavity for eigenmode perturbation, and a superconducting
+resonator for cryogenic microwave boundary response.
 
-Three readout architectures are selected by the branch triage. A paired
-differential-pressure cell gives the direct stress/force channel and places
-patch-potential, roughness, membrane, thermal, and vibration control at the
-center of interpretation. A high-Q electromagnetic cavity converts boundary
-response into a frequency, phase, or mode-overlap observable. A
-superconducting resonator provides a cryogenic microwave path in which shell
-response is decomposed alongside kinetic inductance, surface loss, vortex
-loading, quasiparticles, and material controls. Material impedance and
-capacitance measurements form the calibration channel that maps ordinary
-apparatus response.
-
-The resulting program is precision finite-geometry Casimir metrology. A
-shell-coherent finding identifies a repeatable boundary-conditioned vacuum
-response in a finite shell-forming geometry and supplies a calibrated
-transducer for that response. Background-selected and sensitivity-bounded
-outcomes map how real machines turn geometry, materials, patches, resonator
-loss, and cryogenic conditions into measurable signals. The White
-sphere--cylinder system thereby becomes a benchmark for
-reading engineered Casimir boundaries through practical instruments.
+A shell-coherent finding would identify a repeatable boundary-conditioned
+vacuum response in a finite shell-forming geometry. Background-selected and
+sensitivity-bounded outcomes would map how real machines turn geometry,
+materials, patches, resonator loss, and cryogenic conditions into measurable
+signals.
 \end{abstract}
 
 \section{Introduction}
@@ -115,25 +99,17 @@ cylinder. The geometry separates the stress-shaping body, inner wall, annular
 gap, material boundary, exterior control region, and possible readout channel
 into distinct experimental roles.
 
-This paper treats the White sphere--cylinder system as a finite Casimir
-boundary object. The program defines how the shell-coded boundary response is
-read by a real instrument. The required architecture is a physical
-measurement with a geometry-indexed response vector. A viable readout identifies
-a transduction channel, measures material and electromagnetic backgrounds,
-modulates geometry, fits a shell template against nuisance templates, and gives a
-physical interpretation for the recovered coefficient. Branch triage sets the
-route: amplitude-bounded central timing becomes a reference channel,
-material response becomes calibration, and pressure, cavity, and
-superconducting readouts become the physical continuation.
+A White-aligned readout would be a geometry-locked shell coefficient that
+survives material, electrostatic, thermal, resonator, and loss templates. The
+measurement schedule modulates the shell coordinate, records material and
+electromagnetic backgrounds, and fits the shell template against nuisance
+templates. Branch triage assigns central timing to a reference channel,
+material response to calibration, and pressure, cavity, and superconducting
+readouts to the physical continuation.
 
-The readout program has three apparatus families. Differential
-pressure reads boundary stress directly through paired force cells. High-Q
-electromagnetic cavities read boundary response through resonant mode
-perturbation. Superconducting resonators read cryogenic boundary response
-through microwave frequency, phase, loss, and nonlinear mechanical channels.
-These branches are supported by existing experimental machinery: MEMS/NEMS
-Casimir force sensors \cite{Decca2011,Stange2019}, high-Q nanomembrane force
-probes with Kelvin-probe surface-potential control
+The three apparatus families are supported by existing machinery: MEMS/NEMS
+Casimir force sensors \cite{Decca2011,Stange2019}, high-Q nanomembrane probes
+with Kelvin-probe surface-potential control
 \cite{GarciaSanchez2012,GarciaSanchez2013}, long-range differential force
 measurements with explicit patch and roughness accounting \cite{Bimonte2021},
 and superconducting Casimir or microwave-resonator platforms
@@ -141,26 +117,20 @@ and superconducting Casimir or microwave-resonator platforms
 
 \section{The Physical Claim}
 
-The shell-coded response is a statement about renormalized stress-energy in a
-finite boundary value problem. In QFT, local energy density is represented by
-the renormalized expectation value of the stress-energy tensor. Boundary
-conditions can make that local value lower than the reference vacuum in some
-regions while averaged constraints keep the physical system bounded. Ford's
-review describes this operational status of negative energy densities and the
-quantum inequality restrictions that accompany them \cite{Ford2009}.
+The shell-coded response concerns renormalized stress-energy in a finite
+boundary value problem. Ford's review gives the QFT status of negative energy
+densities and the quantum inequality restrictions that accompany them
+\cite{Ford2009}. Here the measurable content is the geometry-indexed
+projection of boundary-conditioned stress into force, pressure, energy, or
+mode behavior.
 
-Casimir apparatus makes this concept measurable. The negative sign in the
-ideal parallel-plate energy density expresses a boundary-conditioned stress
-relative to the reference state. The physical content is observed through
-force, pressure, energy, and mode behavior. Finite geometries add spatial
-structure: a boundary can concentrate the response in a specific region and
-the apparatus can couple to that region with varying strength.
-
-The White sphere--cylinder geometry contributes a candidate spatial code. Its
-annular sphere--wall region acts as the shell role. The physical readout
-program tests how that role couples to a pressure cell, a cavity mode, or a
-superconducting resonator with enough strength and template separation for
-measurement against ordinary material and electromagnetic controls.
+Finite geometries add spatial structure: a boundary can concentrate the
+response in a specific region, and an apparatus can couple to that region with
+varying strength. The White sphere--cylinder geometry supplies a candidate
+spatial code whose annular sphere--wall region acts as the shell role. The
+readout test measures how that role couples to a pressure cell, a cavity mode,
+or a superconducting resonator with enough strength and template separation
+for comparison against ordinary material and electromagnetic controls.
 
 \section{Relation to White et al.}
 
@@ -179,24 +149,18 @@ The first two pieces specify the controlled geometry: the shell band is the
 region to modulate, and the body-wall spacing is the coordinate that moves the
 shell template. The calibrated scale piece assigns direct central
 timing and direct metric readout to an amplitude-bounded reference role.
-Material and impedance observables become calibration channels because they
-measure ordinary capacitance, contact, conductivity, and loss responses that
-share geometry controls with the shell. Differential pressure carries the
-direct stress measurement, with interpretation governed by patch-potential,
-roughness, membrane, and common-mode rejection. High-Q cavity and
-superconducting resonator readouts carry the resonant route: they convert
-boundary perturbation into frequency, phase, mode-splitting, or microwave
-response while retaining nuisance templates in the same fit.
+Material and impedance observables calibrate ordinary capacitance, contact,
+conductivity, and loss responses. Differential pressure carries direct stress;
+high-Q cavity and superconducting readouts carry resonant frequency, phase,
+mode-splitting, or microwave response with nuisance templates in the same fit.
 
 \subsection{Three Physical Projections of the Boundary Response}
 
 The three surviving branches are complementary projections of the same
-finite-boundary object. The White-derived
-geometry specifies a boundary-conditioned stress organization in the annular
-sphere--wall region. A physical instrument then chooses which projection of
-that object it can read: mechanical stress, electromagnetic eigenmode
-perturbation, or cryogenic microwave boundary response. The evidence standard
-is therefore branch-specific, but the source object is shared.
+finite-boundary response. The White-derived geometry specifies a
+boundary-conditioned stress organization in the annular sphere--wall region;
+the apparatus reads it as mechanical stress, electromagnetic eigenmode
+perturbation, or cryogenic microwave boundary response.
 
 The pressure projection belongs to the classical Casimir measurement lineage.
 The ideal parallel-plate result supplies the clean stress formula, and the
@@ -204,14 +168,14 @@ experimental history moved quickly into torsion balances, sphere--plane
 measurements, AFM probes, and MEMS/NEMS sensors because controlled micron-scale
 parallelism is hard \cite{Lamoreaux1997,MohideenRoy1998,Decca2011,Stange2019}.
 Patch potentials, roughness, finite conductivity, optical data, and
-electrostatic calibration are core interpretive machinery in this lineage
-\cite{Bimonte2021,Behunin2011,Garrett2015}. In the
-present paper the pressure cell extends that lineage from a standard
-plate/sphere force law to a finite shell-coded stress contrast.
+electrostatic calibration are core measurement variables
+\cite{Bimonte2021,Behunin2011,Garrett2015}. The pressure cell extends that
+lineage from a standard plate/sphere force law to a finite shell-coded stress
+contrast.
 
 The cavity projection belongs to resonant metrology. Slater-style cavity
-perturbation showed that small metallic or dielectric perturbations can be read
-as frequency shifts whose size depends on local field overlap
+perturbation reads small metallic or dielectric perturbations as frequency
+shifts whose size depends on local field overlap
 \cite{MaierSlater1952}. Modern cavity optomechanics generalizes the same
 instrumental idea: small boundary, material, or mechanical changes are
 converted into frequency, phase, linewidth, and mode-coupling observables
@@ -222,19 +186,14 @@ The superconducting projection is a cryogenic boundary-metrology problem.
 Superconductors alter electromagnetic boundary response, but real microwave
 devices are dominated by kinetic inductance, quasiparticles, vortices,
 dielectric loss, residual surface resistance, magnetic history, drive power,
-and thermal cycling \cite{Gurevich2023}. The same field is now close to direct
-Casimir-superconductivity experiments, including condensation-energy tests,
+and thermal cycling \cite{Gurevich2023}. Recent experiments now reach direct
+Casimir-superconductivity tests, including condensation-energy concepts,
 superconducting drum optomechanics, and high-resolution force sensing across a
-superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. That makes the
-branch powerful and artifact-sensitive: small effects are amplified alongside
-highly structured material channels.
+superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. The branch
+amplifies small effects alongside highly structured material channels.
 
-This projection language is the organizing principle for the apparatus. A
-pressure readout measures the shell geometry as differential stress. A high-Q
-cavity maps the same geometry onto an electromagnetic eigenmode. A
-superconducting resonator decomposes the geometry through cryogenic material
-and microwave-loss channels. The paper therefore treats the branches as
-field-native observables of one boundary response.
+The same geometry schedule is therefore tested against three independent
+nuisance ledgers.
 
 \section{Readout Model}
 
@@ -256,12 +215,11 @@ vibration, finite conductivity, waveguide dispersion, mode mixing, kinetic
 inductance, surface loss, vortex response, quasiparticles, and material
 controls.
 
-Equation~\ref{eq:template_fit} defines the evidential standard. The result is
-a shell coefficient with uncertainty, a set of nuisance coefficients with
-uncertainties, and a false-positive check from material-only and
-electromagnetic-only control schedules. A single absolute shift has limited
-meaning in this apparatus class. A geometry-locked response vector can
-separate shell, material, and readout behavior.
+Evidence is selection of \(a_{\mathrm{shell}}\) over the nuisance family under
+material-only and electromagnetic-only controls. The output is a coefficient
+ledger: shell coefficient, nuisance coefficients, uncertainties, and
+false-positive checks. A geometry-locked response vector separates shell,
+material, and readout behavior.
 
 \begin{table}[htbp]
 \centering
@@ -308,42 +266,35 @@ Material impedance & calibration rows & background map & Measures ordinary appar
 \end{tabularx}
 \end{table}
 
+\FloatBarrier
+
 \section{Common Apparatus Architecture}
 
-All three readout branches require the same experimental skeleton. The
-apparatus contains a shell-sensitive cell, a matched dummy cell, a
-material-control channel, a geometry actuator, surface metrology, and a
-readout chain with environmental monitors. The shell cell implements the
-sphere--cylinder geometry or a manufacturable surrogate preserving the same
-shell-overlap coordinates. The dummy cell preserves material, wiring, thermal
-mass, and readout coupling while suppressing shell overlap. The material
-channel measures impedance, capacitance, contact, and loss behavior across
-the same schedule.
+All three readout branches share an experimental skeleton: a shell-sensitive
+cell, a matched dummy cell, a material-control channel, a geometry actuator,
+surface metrology, and a monitored readout chain. The shell cell implements
+the sphere--cylinder geometry or a manufacturable surrogate. The dummy and
+material channels preserve ordinary response while suppressing shell overlap.
 
-The common setup begins with branch-native calibration and then applies the
-White-geometry schedule. A pressure implementation recovers a known force or
-pressure law in a plate/sphere surrogate. A resonant implementation recovers a
-known cavity perturbation or optomechanical frequency response. A
-superconducting implementation records its ordinary temperature,
-magnetic-history, drive-power, and loss maps. Those calibrations make the
-shell-coded schedule evidence-bearing.
+The common setup begins with branch-native calibration: a known force or
+pressure law, a known cavity perturbation or optomechanical response, or the
+ordinary temperature, magnetic-history, drive-power, and loss maps of a
+superconducting resonator. Those calibrations make the White-geometry schedule
+evidence-bearing.
 
 The geometry schedule is part of the measurement. Gap, radius, offset, wall
 thickness, length, and readout overlap move the shell template differently
 from patch, capacitance, material, and drift templates. Surface measurements
-accompany those settings. Garcia-Sanchez et al. show how
-Kelvin-probe surface-potential mapping can be integrated into high-Q
-nanomembrane Casimir measurements \cite{GarciaSanchez2012}. Bimonte et al.
+accompany those settings. Garcia-Sanchez et al. integrated Kelvin-probe
+surface-potential mapping into high-Q nanomembrane Casimir measurements
+\cite{GarciaSanchez2012}. Bimonte et al.
 demonstrate a long-separation force measurement with explicit treatment of
 patch potentials, roughness, edge effects, uncertainty, and theory comparison
 \cite{Bimonte2021}. Patch-specific modeling and Kelvin-probe measurements are
 part of the apparatus definition \cite{Behunin2011,Garrett2015}.
 
-The instrument first demonstrates ordinary Casimir sensitivity in a known
-geometry. This calibration step establishes separation metrology,
-electrostatic calibration, roughness priors, and noise floors. The shell
-geometry then becomes a finite-boundary test object whose output is judged by
-template selection and control behavior.
+Valid runs use matched dummy and material channels to separate shell selection
+from geometry-correlated apparatus response.
 
 \section{Differential-Pressure Architecture}
 
@@ -354,7 +305,7 @@ large, perfectly parallel micron gaps are difficult to build and hold
 \cite{Lamoreaux1997,MohideenRoy1998,Decca2011}. The resulting literature made
 surface preparation, electrostatic calibration, finite conductivity,
 roughness, patch potentials, and separation metrology central to the physics
-claim \cite{Bimonte2021,Behunin2011,Garrett2015}. The White-derived pressure
+result \cite{Bimonte2021,Behunin2011,Garrett2015}. The White-derived pressure
 cell extends that lineage into a finite shell-coded stress contrast.
 
 The differential-pressure architecture reads boundary stress directly. Two
@@ -376,41 +327,35 @@ pressures around \(10^{-4}\)--\(10^{-3}\,\mathrm{Pa}\).
 
 \subsection{Expected Pressure Signatures}
 
-A White-positive pressure observation is a geometry-locked differential stress
-vector. The shell cell and dummy cell share environment, membrane mechanics,
-material stack, wiring, and readout chain. Opposite shell-gap modulation
-produces a pressure contrast that follows the annular sphere--wall shell
-template. Gap, radius, wall, offset, and length settings move the fitted shell
-coefficient in the White-derived schedule. Large-gap, far-field, and
-non-shell controls suppress that coefficient. Kelvin-probe maps and roughness
-measurements account for electrostatic and surface terms while leaving a
-residual shell-scheduled pressure component.
+A White-positive pressure observation would be a geometry-locked differential
+stress vector. The shell cell and dummy cell would share environment, membrane
+mechanics, material stack, wiring, and readout chain. Opposite shell-gap
+modulation would produce a pressure contrast following the annular
+sphere--wall shell template. Gap, radius, wall, offset, and length settings
+would move the fitted shell coefficient in the White-derived schedule.
+Large-gap, far-field, and non-shell controls would suppress that coefficient.
+Kelvin-probe maps and roughness measurements would account for electrostatic
+and surface terms while leaving a residual shell-scheduled pressure component.
 
-Alternative selections have distinct signatures. A patch-selected outcome
-follows measured surface-potential maps. A roughness or finite-conductivity
-selection follows surface and optical priors. A membrane or vibration
-selection follows mechanical drift monitors. An electrostatic calibration
-selection follows capacitance and bias schedules. A sensitivity-bounded
-outcome leaves the shell and nuisance coefficients below the inherited
-signal/background recovery gate after calibration.
+Alternative selections would assign the response to measured apparatus
+channels: patch selection to surface-potential maps, roughness or finite
+conductivity to surface and optical priors, membrane or vibration selection to
+mechanical drift, and electrostatic calibration to capacitance and bias
+schedules. A sensitivity-bounded outcome would place the shell and nuisance
+coefficients below the inherited signal/background recovery gate.
 
 \subsection{Pressure Controls and Screening}
 
-The apparatus machinery follows established Casimir force metrology.
-Decca, Aksyuk, and Lopez review micro- and nano-electromechanical systems for
-Casimir measurements \cite{Decca2011}. Stange et al. show a practical
-commercial MEMS force platform with piconewton-scale force resolution and
-electrostatic calibration \cite{Stange2019}. Garcia-Sanchez et al. demonstrate
-high-Q nanomembrane force-gradient readout with in situ surface-potential
-control \cite{GarciaSanchez2012,GarciaSanchez2013}. These examples define the
-required toolchain: calibrated actuation, separation sensing, patch mapping,
-roughness measurement, and common-mode rejection.
+Established Casimir force platforms define the required toolchain: calibrated
+actuation, separation sensing, patch mapping, roughness measurement, and
+common-mode rejection \cite{Decca2011,Stange2019,GarciaSanchez2012,
+GarciaSanchez2013}.
 
-In the priority physical screen, pressure survives in the two strong-control
+In the priority physical screen, pressure survives in two strong-control
 optimistic rows: \(\sbr=5.31\) for the quiet case and \(\sbr=2.02\) for the
-balanced case. The branch therefore asks for a paired-cell Lifshitz pressure
-model, patch-potential map prior, roughness and membrane-stress model, and
-validated common-mode rejection.
+balanced case. The required branch model combines paired-cell Lifshitz
+pressure, patch-potential priors, roughness, membrane stress, and common-mode
+rejection.
 
 \section{High-Q Cavity Architecture}
 
@@ -451,30 +396,26 @@ thermal, loss, waveguide, and mode-mixing channels in a successful readout.
 
 \subsection{Expected Cavity Signatures}
 
-A White-positive cavity observation is a mode-indexed shell coefficient. A
-high-shell-overlap mode shows a frequency, phase, \(Q\), or mode-splitting
-response that follows the White shell schedule. A low-shell-overlap mode, null
-mode, or dummy cavity suppresses the coefficient. The eigenmode solver predicts
-the sign and relative magnitude trend across gap, radius, wall, offset, and
-mode-overlap settings. Thermal expansion, conductor loss, waveguide, port
-coupling, and material-wall templates remain separately fitted coordinates.
+A White-positive cavity observation would be a mode-indexed shell coefficient.
+A high-shell-overlap mode would show a frequency, phase, \(Q\), or
+mode-splitting response following the White shell schedule. A
+low-shell-overlap mode, null mode, or dummy cavity would suppress the
+coefficient. The eigenmode solver would predict the sign and relative
+magnitude trend across gap, radius, wall, offset, and mode-overlap settings.
+Thermal expansion, conductor loss, waveguide, port coupling, and material-wall
+templates would remain separately fitted coordinates.
 
-Alternative selections have branch-specific signatures. A mode-mixing
-selection follows avoided crossings or mode-family exchange. A thermal
-selection follows expansion monitors. A conductor-loss or finite-conductivity
-selection follows surface and optical priors. A waveguide or port-coupling
-selection follows readout-chain sweeps. A material-wall selection follows the
-dummy cavity or material-control channel. A sensitivity-bounded outcome
-indicates insufficient shell overlap or excess resonator noise in the tested
-mode.
+Alternative selections would assign the response to branch-native apparatus
+channels: mode mixing to avoided crossings, thermal response to expansion
+monitors, conductor loss to surface and optical priors, waveguide or port
+coupling to readout-chain sweeps, and material response to the dummy cavity. A
+sensitivity-bounded outcome would indicate insufficient shell overlap or
+excess resonator noise in the tested mode.
 
 The screening ladder ranks this branch highly. The strongest cavity row gives
 \(\sbr=19.34\), and the nominal clean row remains above the recovery gate.
-Those values require measured templates for conductor loss, thermal expansion,
-waveguide dispersion, port coupling, and mode mixing. A strong cavity design
-therefore includes a shell-overlap mode, a low-overlap or null mode, a dummy
-cavity, independent thermal metrology, deliberate port-coupling sweeps, and a
-validated eigenmode model.
+Those values require a shell-overlap mode, a null mode or dummy cavity,
+thermal metrology, port-coupling sweeps, and a validated eigenmode model.
 
 \section{Superconducting-Resonator Architecture}
 
@@ -487,16 +428,15 @@ participation, residual surface resistance, drive-power dependence, and thermal
 history \cite{Gurevich2023}. Recent Casimir-superconductivity experiments make
 the branch experimentally timely, from NEMS transition-temperature concepts to
 superconducting drum force readout and on-chip force sensing across a
-superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. The branch is
-therefore read as superconducting-boundary metrology: the shell-coded Casimir
-geometry is tested inside the loss-channel decomposition of a real cryogenic
-microwave device.
+superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. The test is
+superconducting-boundary metrology: the shell-coded Casimir geometry is tested
+inside the loss-channel decomposition of a real cryogenic microwave device.
 
 The superconducting architecture uses a cryogenic microwave resonator, drum, or
 a cavity sensitive to the superconducting transition to read the shell-coded
-response. The observable can be frequency shift, phase shift, \(Q\) change,
-nonlinear mechanical response, or a superconducting transition response. The
-core fit is
+response. The readout observable is frequency shift, phase shift, \(Q\)
+change, nonlinear mechanical response, or a superconducting transition
+response. The core fit is
 \begin{equation}
   \left(\frac{\delta f}{f}\right)_{\mathrm{sc}}
   =
@@ -514,36 +454,31 @@ material response treated as measured templates.
 
 \subsection{Expected Superconducting Signatures}
 
-A White-positive superconducting observation is a microwave response locked to
-the shell schedule after cryogenic material terms are measured. A shell-coupled
-resonator differs from a material-only resonator on the same cooldown path.
-Low-shell-overlap modes, dummy resonators, or non-shell geometries suppress the
-coefficient. Temperature sweeps below and across \(\Tc\), magnetic-history
-tests, vortex-loading controls, drive-power sweeps, and quasiparticle checks
-leave a stable shell coefficient whose geometry dependence follows the
-sphere--wall schedule.
+A White-positive superconducting observation would be a microwave response
+locked to the shell schedule after cryogenic material terms are measured. A
+shell-coupled resonator would differ from a material-only resonator on the
+same cooldown path. Low-shell-overlap modes, dummy resonators, or non-shell
+geometries would suppress the coefficient. Temperature sweeps below and across
+\(\Tc\), magnetic-history tests, vortex-loading controls, drive-power sweeps,
+and quasiparticle checks would leave a stable shell coefficient whose geometry
+dependence follows the sphere--wall schedule.
 
-Alternative selections are branch-defining. A kinetic-inductance selection
-follows temperature, current, and film participation. A quasiparticle selection
-follows nonequilibrium population and drive history. A vortex selection follows
-magnetic preparation and cooldown history. A surface-loss or dielectric-loss
-selection follows \(Q\), field participation, and power sweeps. A material-only
-selection appears in the control resonator with the same schedule. A
-sensitivity-bounded or nuisance-degenerate outcome leaves the shell coefficient
-below the recovery gate or too close to a measured loss-channel template.
+Alternative selections would assign the response to cryogenic material
+channels: kinetic inductance to temperature, current, and film participation;
+quasiparticles to population and drive history; vortices to magnetic
+preparation and cooldown; surface or dielectric loss to \(Q\), field
+participation, and power sweeps. A material-only selection would appear in the
+control resonator, and a sensitivity-bounded or nuisance-degenerate outcome
+would place the shell coefficient below the recovery gate or close to a
+measured loss-channel template.
 
-This branch has unusually strong source support. Perez et al. designed a NEMS
-system to probe Casimir energy corrections to superconducting condensation
-energy by measuring a superconducting film in a controlled cavity
-\cite{Perez2020}. de Jong et al. report a superconducting Casimir force
-measurement through nonlinear dynamics of a superconducting drum resonator in
-a microwave optomechanical system \cite{DeJong2025}. Xu et al. add a parallel
-cryogenic plate platform aimed at Casimir force sensing across a superconducting
-transition \cite{Xu2026}. Gurevich reviews the microwave-loss mechanisms that
-govern superconducting resonators, including quasiparticles, residual surface
-resistance, dielectric loss, trapped vortices, kinetic inductance effects, and
-high-field limits \cite{Gurevich2023}. Those mechanisms are the exact nuisance
-family in Eq.~\ref{eq:sc}.
+Perez, de Jong, Xu, and Gurevich supply the branch basis:
+condensation-energy NEMS concepts, superconducting drum force readout,
+cryogenic plate sensing across a superconducting transition, and microwave-loss
+reviews covering quasiparticles, residual resistance, dielectric loss, trapped
+vortices, kinetic inductance, and high-field limits
+\cite{Perez2020,DeJong2025,Xu2026,Gurevich2023}. Those mechanisms are the
+nuisance family in Eq.~\ref{eq:sc}.
 
 The screening ladder gives superconducting rows from \(\sbr=3.59\) to
 \(\sbr=17.76\) across the viable nominal and optimistic cases. The apparatus
@@ -554,11 +489,10 @@ geometry modulation all become evidence-bearing coordinates.
 
 \section{Control Matrix and Outcome Classes}
 
-The control channels are measured observables. They identify where the
-White-derived geometry schedule lands: shell response, material response,
-resonator response, sensitivity bound, or central-reference channel.
-Table~\ref{tab:controls} summarizes the control standard for each physical
-branch.
+The control matrix distinguishes shell selection from material schedule
+selection, resonator dynamics, sensitivity closure, and central-reference
+closure. Table~\ref{tab:controls} summarizes the control standard for each
+physical branch.
 
 \begin{table}[htbp]
 \centering
@@ -587,7 +521,7 @@ Superconducting resonator & Material-only resonator, temperature sweep, drive-po
 >{\raggedright\arraybackslash}p{0.34\linewidth}
 >{\raggedright\arraybackslash}X}
 \toprule
-Outcome & Data signature & Physical meaning \\
+Outcome & Data signature & Physical assignment \\
 \midrule
 Shell coherent & Shell coefficient exceeds recovery gate and controls satisfy the false-positive target & The White sphere--cylinder shell schedule appears as a measurable Casimir/Lifshitz boundary response in that transducer \\
 Material selected & Patch, capacitance, impedance, contact, or loss template has the stable coefficient & Ordinary material or electromagnetic response carries or masks the White shell schedule \\
@@ -598,83 +532,52 @@ Central reference bounded & Central propagation/timing coefficient remains far b
 \end{tabularx}
 \end{table}
 
-\section{Implications for the White Sphere--Cylinder Observation}
+\FloatBarrier
+\clearpage
 
-A shell-coherent pressure result means the White annular sphere--wall
-morphology has a direct mechanical stress projection. The numerical
-shell-shaped energy-density pattern becomes a measured finite-geometry
-Casimir/Lifshitz stress contrast with the same shell schedule. The
-interpretation is a finite-boundary stress result tied to the White geometry.
+\section{Implications}
 
-A shell-coherent high-Q cavity result means the White shell response projects
-onto an electromagnetic eigenmode. The White geometry becomes a resonant
-boundary perturbation whose coefficient appears in frequency, phase,
-linewidth, or mode splitting after loss and thermal controls are included. The
-interpretation is an eigenmode readout of the finite boundary geometry.
+A shell-coherent result would promote the reported sphere--cylinder morphology
+from a worldline-numerics shell-like pattern to a measurable finite
+Casimir/Lifshitz boundary-response template in the annular sphere--wall
+region. The metric comparison would supply scale context, while central timing
+would remain an amplitude-bounded reference channel under the current audit.
 
-A shell-coherent superconducting resonator result means the White shell-coded
-boundary response survives cryogenic microwave loss-channel decomposition. The
-same annular shell schedule appears after kinetic-inductance, surface-loss,
-vortex, quasiparticle, magnetic-history, and material controls are measured.
-The interpretation is a superconducting-boundary projection of the White
-finite Casimir geometry.
+Pressure recovery would give the annular morphology a direct mechanical
+stress projection. High-Q cavity recovery would give it an electromagnetic
+eigenmode projection through mode overlap. Superconducting recovery would give
+it a cryogenic microwave projection after kinetic-inductance, quasiparticle,
+vortex, surface-loss, magnetic-history, and material controls.
 
-A material-, patch-, or loss-selected result means the White geometry schedule
-is experimentally carried by ordinary material or electromagnetic response in
-that apparatus. The numerical shell morphology remains a finite-boundary
-calculation, while the laboratory readout assigns the measured coefficient to
-surface potential, capacitance, contact, conductivity, thermal, waveguide, or
-microwave-loss physics.
+Cross-branch coherence would be the strongest result: recovery of a common
+shell coefficient in pressure, high-Q cavity, and superconducting readouts
+under independent nuisance ledgers. That pattern would identify the annular
+sphere--wall geometry as a shared finite-boundary response source and would
+favor a shared boundary source over branch-local pressure, cavity-mode,
+superconducting-loss, or material/patch explanations.
 
-A sensitivity-bounded result places the White-shell coefficient below the
-required signal/background gate in the tested branch. The result is an upper
-bound on measurable White-shell transduction for that physical projection. The
-central timing reference has the same interpretive role: the White-style
-current, photon, or electron transit channel remains below the laboratory
-recovery scale under the modeled backgrounds.
+Pressure-only recovery would point to a mechanically transducible stress
+response with weak resonant overlap in the tested designs. Cavity-only
+recovery would point to eigenmode overlap as the cleaner transduction route.
+Superconducting-only recovery would point to a cryogenic microwave projection
+and would place special weight on material-only resonators, magnetic-history
+controls, temperature sweeps, and drive-power sweeps.
 
-Across all branches, the physics is finite-boundary QFT metrology. The
-measured quantity is the consequence of boundary-conditioned renormalized
-stress as read through a calibrated apparatus channel. The metric comparison
-remains a scale reference and a motivation for the shell geometry.
+Material-, patch-, capacitance-, or loss-selected results would assign the
+White schedule to ordinary apparatus physics in that implementation.
+Sensitivity-bounded results would set upper limits on pressure, cavity, or
+superconducting transduction of the White shell coefficient. Central timing
+closure would assign the direct transit/timing interpretation to the bounded
+reference channel under the modeled backgrounds.
 
-\section{Outcome-Dependent White-Geometry Interpretations}
-
-The outcome classes interpret White's sphere-cylinder observation. The primary
-question is where the White shell coefficient lands after
-branch-native controls.
-
-If all three shell branches select the shell coefficient, the White
-sphere--cylinder geometry has mechanical, electromagnetic eigenmode, and
-cryogenic microwave projections. That cross-branch pattern establishes the
-annular sphere--wall region as a measurable finite-boundary response object.
-
-If pressure selects the shell coefficient while resonant branches remain
-bounded, the White shell response is strongest as a direct stress projection
-in the tested designs. The resonant nulls then constrain mode overlap and
-microwave coupling while the pressure branch carries the mechanical
-projection.
-
-If the high-Q cavity selects the shell coefficient while pressure remains
-bounded, the White shell response is more visible as an electromagnetic
-eigenmode perturbation than as a direct force contrast in the tested pressure
-cell. The result points to mode-overlap engineering as the active route.
-
-If the superconducting branch alone selects the shell coefficient, the White
-schedule has a cryogenic microwave projection with high artifact sensitivity.
-That pattern assigns special weight to material-only resonators,
-magnetic-history controls, temperature sweeps, and drive-power sweeps.
-
-If material, patch, or resonator-loss templates select the stable coefficient,
-the White geometry schedule lands in an ordinary apparatus channel in that
-branch. Those outcomes interpret the White-style schedule as background-coupled
-in that implementation and define the controls for a later shell-coherence
-test.
-
-If every branch is sensitivity bounded, the current readout line closes at the
-tested sensitivity. The result becomes a quantitative upper-bound statement on
-pressure, cavity, and superconducting transduction of the White shell
-coefficient.
+For finite-boundary Casimir metrology, engineered Casimir geometry would
+become a template-recovery problem across real precision instruments. The
+follow-up would extend the field beyond standard plate/sphere force laws into
+geometry-coded stress, eigenmode, and cryogenic microwave readouts. A
+shell-positive result would show that a designed finite boundary can organize
+a measurable response across one or more field-native transducers; bounded or
+background-selected results would define apparatus limits on measurable shell
+transduction.
 
 \section{Reproducibility and Source Basis}
 
@@ -694,40 +597,19 @@ design-screening values traceable.
 
 \section{Conclusion}
 
-The White sphere--cylinder geometry has an experimental role map. The sphere
-and inner cylinder wall set the finite boundary condition. The annular gap
-carries the shell template. The material wall, exterior region, and central
-channel supply control and reference roles. The prior audit maps those roles
-onto apparatus choices: shell morphology motivates modulation of the
-sphere--wall gap, calibrated scale makes central timing an amplitude-bounded
-reference, material and impedance response become calibration, and the
-remaining physical question is transduction.
+The White sphere--cylinder geometry has an experimental role map: the sphere
+and inner wall set the finite boundary condition, the annular gap carries the
+shell template, material response is calibration, and central timing is an
+amplitude-bounded reference. The remaining test is branch-native transduction.
 
-Pressure, cavity, and superconducting readouts are the three branch-native
-projections of that transduction problem. A pressure apparatus recovers or
-bounds a shell-indexed stress contrast after patch maps, roughness priors,
-membrane drift, and common-mode subtraction are included. A high-Q cavity
-recovers or bounds the same shell coordinate as an electromagnetic eigenmode
-perturbation after conductor loss, thermal expansion, waveguide coupling, and
-mode mixing are measured. A superconducting resonator recovers or bounds the
-shell coefficient after kinetic inductance, surface loss, vortex loading,
-quasiparticles, and material controls are included in the same fit.
-
-The outcome classes give direct interpretations for White's observation. Shell
-coherence assigns the annular sphere--wall morphology to a measurable
-finite-boundary response in a specific physical projection. Material or
-resonator selection assigns the same geometry schedule to ordinary apparatus
-physics. Sensitivity bounds set upper limits on measurable White-shell
-transduction in the tested branch. Central timing remains an amplitude-bounded
-reference channel in the current audit.
-
-The program converts the original visual metric comparison into a
-field-native boundary-readout problem. The next physical result identifies
-where the White shell coefficient lands: direct pressure, electromagnetic mode
-shift, superconducting microwave response, material/background response, or an
-upper bound. That answer sharpens how engineered vacuum-boundary structure
-becomes measurable force, pressure, frequency, phase, or cryogenic resonator
-response.
+Pressure, cavity, and superconducting readouts provide the three branch-native
+tests: direct stress, electromagnetic eigenmode perturbation, and cryogenic
+microwave boundary response. Shell coherence assigns the annular sphere--wall
+morphology to a measurable finite-boundary response; material or resonator
+selection assigns the same schedule to ordinary apparatus physics; sensitivity
+bounds set upper limits on measurable White-shell transduction. The original
+visual metric comparison becomes a field-native boundary-readout problem whose
+next result identifies where the White shell coefficient lands.
 
 \begingroup
 \raggedright
