@@ -22,7 +22,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \lhead{Negative-Energy Modalities}
-\rhead{Laboratory QFT Claim Grammar}
+\rhead{Laboratory QFT Modality Map}
 \cfoot{\thepage\ of \pageref{LastPage}}
 
 \titleformat{\section}{\large\bfseries\uppercase}{\thesection.}{0.5em}{}
@@ -40,7 +40,7 @@
 \newcommand{\um}{\,\mu\mathrm{m}}
 
 \title{\bfseries Negative-Energy Modalities in Laboratory Quantum Field Systems:\\
-Boundary, State, Tensor, and Readout Claims}
+Boundary, State, Tensor, and Readout Modalities}
 \author{
 Daniel S. Goldman\\
 Independent researcher\\
@@ -52,98 +52,85 @@ Independent researcher\\
 \maketitle
 
 \begin{abstract}
-Laboratory discussions of negative energy often join several distinct
-physical objects under one phrase. A Casimir boundary condition, a prepared
-nonclassical field state, a renormalized stress-tensor component, an averaged
-energy-condition quantity, and an instrument response can each carry
-negative-energy language while licensing different conclusions. This paper
-sets out a compact claim grammar for those cases. The grammar separates four
-modalities: boundary-conditioned response, state-conditioned response,
-tensor/averaging relevance, and readout-conditioned observability.
+Laboratory negative-energy work spans Casimir boundary response, prepared
+stress-energy states, tensor and averaged energy-condition statements, and
+instrument-native readouts. This paper supplies the central modality map for a
+three-paper ensemble built around the White et al. sphere--cylinder Casimir
+result. The map separates boundary response, state response,
+tensor/averaging relevance, and readout observability.
 
 The boundary-conditioned modality concerns vacuum response organized by
-material or geometric constraints, as in Casimir systems and finite
-worldline-numerics geometries. The state-conditioned modality concerns
-negative stress-energy created or selected by field-state preparation,
-measurement, squeezing, or quantum-energy-teleportation-type protocols. The
-tensor/averaging modality concerns the stress-energy object itself: which
-component is being discussed, how it is renormalized or smeared, which
-averaged condition it is compared against, and what source role it can play.
-The readout-conditioned modality concerns the apparatus channel: force,
-pressure, force gradient, resonant frequency, phase, loss, current, voltage,
-or detector response, together with the ordinary material and electromagnetic
-controls that define the measurement.
+material boundaries, geometry, and surface preparation. The state-conditioned
+modality concerns negative stress-energy created or selected by field-state
+preparation, measurement, squeezing, or quantum-energy-teleportation-type
+protocols. The tensor/averaging modality concerns the stress-energy object:
+component, contraction, sampling domain, averaging condition, and source
+comparison. The readout-conditioned modality concerns the apparatus channel:
+force, pressure, force gradient, resonant frequency, phase, loss, current,
+voltage, or detector response, together with the material and electromagnetic
+controls that make the measurement interpretable.
 
-This vocabulary turns negative-energy claims into transferable but
-well-labeled statements. A boundary morphology can motivate a readout
-schedule; a state-preparation protocol can supply a local stress-energy
-deficit; a tensor calculation can compare the result with energy-condition or
-source requirements; a precision instrument can test whether the corresponding
-coefficient appears in measured data. The White et al. sphere--cylinder
-Casimir result is used as a worked boundary-conditioned example: its
-shell-like morphology, source-scale accounting, and physical readout routes
-occupy different modalities that can be evaluated together while preserving
-their meanings. The resulting framework is intended as a central reference for
-a paper pair: one companion audit assigns the White geometry to the boundary
-and tensor/source layers, and one companion readout paper asks how the
-shell-coded object could enter pressure, cavity, and superconducting
-measurement ensembles.
+The interface between modalities is the paper's main object. A boundary
+morphology gains tensor content through stress components, normalization,
+material modeling, and smearing. A tensor object gains source relevance
+through a declared source demand and scale comparison. A boundary or
+state-conditioned object gains laboratory content through an observable,
+transfer function, controls, nuisance templates, and false-positive logic.
+The White sphere--cylinder case is used as the worked boundary example:
+its shell-like morphology, source-scale accounting, and physical readout
+routes are connected layers with distinct evidentiary roles. The companion
+audit applies this map to the White geometry; the companion readout paper
+applies it to pressure, cavity, and superconducting measurement ensembles.
 \end{abstract}
 
 \section{Purpose}
 
-Negative energy is a real and useful term in quantum field theory. It is also
-a term with several laboratory meanings. The Casimir effect supplies boundary
-conditioned vacuum response. Squeezed and measurement-conditioned states
-supply state-dependent local stress-energy structures. Quantum energy
-inequalities and averaged energy conditions supply duration, smearing, and
-source constraints. Precision instruments supply force, pressure, frequency,
-phase, loss, current, voltage, and detector observables. Each of those
-statements belongs to a different physical modality.
+Laboratory negative-energy work already spans several mature strands of
+physics. Casimir systems supply boundary-conditioned vacuum response. Squeezed,
+measurement-conditioned, and quantum-energy-teleportation protocols supply
+state-conditioned stress-energy structures. Energy conditions and quantum
+energy inequalities supply tensor, averaging, duration, and smearing context.
+Precision instruments supply force, pressure, frequency, phase, loss, current,
+voltage, and detector observables.
 
-The purpose of this paper is to make those modalities explicit. The goal is a
-positive claim grammar: a way to say exactly what has been shown, what kind of
-object carries the sign, which instrument can test it, and which additional
-evidence promotes it into a stronger claim. This is especially useful for
-finite Casimir geometries and exotic-spacetime-adjacent discussions, where a
-boundary-generated negative distribution can be visually suggestive while
-stress-tensor scale, averaged constraints, and apparatus readout remain
-separate questions.
+This paper is the central map for a three-paper ensemble around the White,
+Vera, Han, Bruccoleri, and MacArthur sphere--cylinder Casimir result
+\cite{White2021}. The map separates four modalities: boundary-conditioned
+response, state-conditioned response, tensor/averaging relevance, and
+readout-conditioned observability. The separation gives each layer its own
+evidence while keeping the interfaces visible.
 
-The motivating case is the White, Vera, Han, Bruccoleri, and MacArthur
-sphere--cylinder geometry \cite{White2021}. In that work, worldline numerics
-applied to custom Casimir cavities produced a shell-like negative energy
-density distribution that was compared with the Alcubierre metric source
-shape. That comparison intersects several mature parts of the field:
-worldline methods for Casimir geometries \cite{Schafer2015}, energy
-conditions and quantum energy inequalities \cite{Ford2009,KontouSanders2020},
-precision Casimir metrology \cite{Bimonte2021,Stange2019}, and emerging
-superconducting Casimir sensing \cite{Xu2026}. The value of the example is
-that it asks all modality questions at once.
+The White sphere--cylinder case is the motivating boundary example. White et
+al. used worldline numerics on custom Casimir cavities and reported a
+three-dimensional sphere--cylinder energy-density distribution correlated with
+the Alcubierre metric source shape \cite{White2021}. Reading that result
+field-wise brings together worldline methods for Casimir geometries
+\cite{Schafer2015}, energy conditions and quantum inequalities
+\cite{Ford2009,KontouSanders2020}, precision Casimir metrology
+\cite{Bimonte2021,Stange2019}, and emerging superconducting Casimir sensing
+\cite{Xu2026}.
 
-The central lesson is simple. A laboratory negative-energy claim becomes
-clear when it identifies the modality first. Boundary-conditioned statements
-describe how geometry organizes a vacuum response. State-conditioned
-statements describe how preparation or measurement changes a field state.
-Tensor/averaging statements describe the stress-energy object and its
-constraints. Readout-conditioned statements describe what the apparatus can
-recover against ordinary backgrounds. Those statements can support each other,
-and their interfaces are where the strongest experimental programs live.
+The paper pair that follows this central map uses the same separation. The
+companion audit asks what the White boundary geometry contributes at the
+morphology, tensor/source, scale, material, and readout-accounting layers. The
+companion readout paper asks how the shell-coded object enters pressure,
+cavity, and superconducting measurement ensembles. This paper supplies the
+shared modality language for those two more concrete studies.
 
 \section{Four Modalities}
 
-A modality is the physical route by which a negative-energy statement obtains
-meaning. It specifies the preparation or constraint, the stress-energy object,
+A modality is the physical route by which a negative-energy statement is made
+specific. It records the preparation or constraint, the stress-energy object,
 the spatial and temporal support, the compensation structure, the readout
-channel, and the inference licensed by the data.
-\Tab~\ref{tab:modalities} gives the working classification.
+channel, and the inference supported by the data. \Tab~\ref{tab:modalities}
+gives the working classification used in this ensemble.
 
 \begin{table}[h]
 \centering
 \small
 \begin{tabularx}{\textwidth}{p{0.18\textwidth}p{0.26\textwidth}X}
 \toprule
-Modality & Primary object & Licensed statement \\
+Modality & Primary object & Supported inference \\
 \midrule
 Boundary-conditioned &
 Vacuum response fixed by material boundaries, geometry, and field boundary
@@ -171,7 +158,7 @@ controls, nuisance templates, calibration, and false-positive logic. \\
 \bottomrule
 \end{tabularx}
 \caption{Four laboratory modalities for negative-energy claims. The
-modalities can be combined, but each licenses a different kind of conclusion.}
+modalities can be combined, and each supports a different kind of conclusion.}
 \label{tab:modalities}
 \end{table}
 
@@ -183,18 +170,19 @@ protocol can be state-conditioned in its preparation, tensor/averaging
 conditioned in its local deficit, and readout-conditioned in the detector or
 work-extraction channel used to score the event \cite{FunaiMartinMartinez2017}.
 
-The classification is therefore an interface map rather than a taxonomy wall.
-It helps a paper state which object is being advanced and which object is
-being reserved for a companion calculation or experiment.
+The classification is an interface map. It keeps the paper pair oriented:
+which object is being advanced, which object is being measured, and which
+object is being left to a companion calculation or experiment.
 
 \section{Boundary-Conditioned Response}
 
 The boundary-conditioned modality begins with a material or geometric
 constraint on quantum fields. Parallel plates, sphere--plate systems,
 microstructured surfaces, deep trenches, nanomembranes, and superconducting
-microplates all fit this class. The signed object is the boundary-conditioned
+microplates all fit this class. The signed object is a boundary-conditioned
 change in vacuum energy, stress, pressure, force, or a calculational proxy for
-those quantities. The physical control is geometry and material response.
+those quantities. The control variables are geometry, material response, and
+surface preparation.
 
 This modality is the native home of Casimir physics. Precision measurements
 typically recover force, force gradient, pressure, or resonator response, with
@@ -206,35 +194,36 @@ response whose interpretation depends on careful material and electrostatic
 accounting \cite{Decca2011,GarciaSanchez2012,Stange2019}.
 
 Worldline numerics adds a valuable finite-geometry language to this modality.
-It can evaluate Casimir energies and, in stress-tensor extensions, components
-of the fluctuation-induced energy-momentum tensor in arbitrary geometries
-\cite{Schafer2015}. That makes it natural to ask shape questions: where the
-response concentrates, how it shifts under geometry perturbations, how much of
-the signed weight lies in a chosen region, and whether the strongest response
-tracks a designed boundary feature.
+White et al. used worldline numerics to study custom Casimir cavities
+\cite{White2021}; Schafer, Huet, and Gies develop the corresponding
+worldline machinery for fluctuation-induced energy-momentum tensors in
+Casimir geometries \cite{Schafer2015}. That combination makes it natural to
+ask shape questions: where the response concentrates, how it shifts under
+geometry perturbations, how much signed weight lies in a chosen region, and
+whether the strongest response tracks a designed boundary feature.
 
-The White sphere--cylinder example is boundary-conditioned at this level. A
-\(1\um\) diameter sphere centered in a nominal \(4\um\) diameter cylinder
-produces a shell-like distribution in the reported worldline analysis
-\cite{White2021}. The field-facing boundary question is whether a finite
-sphere--wall geometry organizes the vacuum response into an annular shell
-role. That question is independent from the larger source-scale and direct
-readout questions. It asks what the boundary does.
+The White sphere--cylinder example is boundary-conditioned at this level.
+White et al. report that a \(1\um\) diameter sphere centered in a nominal
+\(4\um\) diameter cylinder gives a three-dimensional Casimir energy-density
+distribution correlated with the Alcubierre source shape \cite{White2021}.
+The field-facing boundary question is therefore concrete: how does a finite
+sphere--wall geometry organize the vacuum response, and how much of that
+organization belongs to an annular shell role?
 
 \section{State-Conditioned Response}
 
-The state-conditioned modality begins with a quantum field state rather than a
-static boundary geometry. The signed object is a local or smeared
-stress-energy feature of that state. Examples include squeezed-state
-stress-energy profiles, measurement-conditioned field states, and
+The state-conditioned modality begins with a quantum field state and a
+preparation record. The signed object is a local or smeared stress-energy
+feature of that state. Examples include squeezed-state stress-energy profiles,
+measurement-conditioned field states, and
 quantum-energy-teleportation-type protocols in which local operations and
 classical records create a negative stress-energy density in a target region
 \cite{Ford2009,FunaiMartinMartinez2017}.
 
-The preparation record is part of the claim. It tells the reader how the field
-state was made, which degrees of freedom were measured or driven, how the
-classical record enters, where compensating positive energy appears, and what
-time window carries the deficit. This modality is dynamic and operational. Its
+The preparation record is part of the claim. It states how the field state was
+made, which degrees of freedom were measured or driven, how the classical
+record enters, where compensating positive energy appears, and what time
+window carries the deficit. This modality is dynamic and operational. Its
 strength is that the sign can be tied to a controllable state-preparation
 procedure alongside fixed-boundary inference.
 
@@ -247,21 +236,20 @@ from pointwise conditions to averaged and quantum-inequality statements
 \cite{KontouSanders2020}. For state-conditioned claims, duration, smearing,
 compensation, and averaging are part of the observable content.
 
-This modality is useful beside boundary-conditioned Casimir work because it
-clarifies an important distinction. A Casimir geometry changes the vacuum
-state through boundary conditions. A QET-style or squeezed-state protocol
-changes, selects, or conditions the field state through operations. Both can
-produce negative stress-energy language. Their preparation logic, compensation
-logic, and readout logic are different.
+This modality sits beside boundary-conditioned Casimir work with a different
+preparation logic. A Casimir geometry changes the vacuum state through
+boundary conditions. A QET-style or squeezed-state protocol changes, selects,
+or conditions the field state through operations. Both can produce
+negative-stress-energy language, with distinct compensation and readout
+structures.
 
 \section{Tensor and Averaging Relevance}
 
 The tensor/averaging modality asks which stress-energy object is being used.
-For a relativistic source claim, the relevant object is more than a visual
-negative region. It is a component or contraction of the renormalized stress
-tensor, such as \(\Ttt\), \(\Tnn\), or an integral of \(\Tabmunu\) over a
-specified sampling domain. The tensor object then has to be compared with the
-source role under discussion.
+For a relativistic source claim, the object is a component or contraction of
+the renormalized stress tensor, such as \(\Ttt\), \(\Tnn\), or an integral of
+\(\Tabmunu\) over a specified sampling domain. The tensor object is then
+compared with the source role under discussion.
 
 This modality supplies the bridge from laboratory QFT to gravity-facing
 language. Energy conditions in general relativity were historically formulated
@@ -281,15 +269,14 @@ This layer is where morphology and source relevance separate cleanly. A
 boundary-conditioned morphology can be real and reproducible while its
 calibrated stress scale remains Casimir-scale relative to a gravity-facing
 source demand. A state-conditioned deficit can be operationally generated
-while its averaged integrals obey quantum-inequality restrictions. A readout can recover a
-geometry-locked coefficient while the corresponding tensor component remains
-an ordinary Casimir-scale object.
+while its averaged integrals obey quantum-inequality restrictions. A readout
+can recover a geometry-locked coefficient while the corresponding tensor
+component remains an ordinary Casimir-scale object.
 
 The positive role of the tensor/averaging modality is to keep each of those
-statements useful. It lets morphology remain morphology, readout remain
-readout, and source comparison remain source comparison. It gives the field a
-way to promote claims by adding tensor and averaging evidence while preserving
-the natural conclusion of each modality.
+statements useful. Morphology, readout, and source comparison can each carry
+their own evidence. Tensor and averaging evidence then provide the bridge
+between them.
 
 \section{Readout-Conditioned Observability}
 
@@ -301,7 +288,7 @@ physics through a transduction chain, and the same chain also carries ordinary
 material and electromagnetic effects.
 
 This modality is where laboratory claims become data statements. A readout
-claim should identify:
+statement identifies:
 \begin{itemize}
 \item the observable and units;
 \item the geometry schedule or state-preparation schedule;
@@ -322,28 +309,27 @@ against electrostatic, thermal, material, and alignment effects
 \cite{Xu2026}.
 
 Readout-conditioned observability is therefore a positive experimental
-language. It gives a boundary or state result an instrument-native test. It
-also keeps the measured object specific: pressure, frequency shift, phase,
-loss, current, and voltage each carry a distinct transfer function, nuisance
-structure, and claim boundary.
+language. It gives a boundary or state result an instrument-native test.
+Pressure, frequency shift, phase, loss, current, and voltage each carry a
+distinct transfer function, nuisance structure, and claim boundary.
 
-\section{Transfers Between Modalities}
+\section{Interfaces Between Modalities}
 
-Most strong laboratory papers move across modalities. A boundary calculation
-motivates an instrument. A state-preparation protocol predicts a stress-tensor
-deficit. A readout experiment recovers a coefficient that can be compared with
-a tensor model. The transfer is scientifically productive when the promoted
-claim carries the extra evidence required by the new modality.
+The interesting part of the map is the interface between modalities. A
+boundary calculation can motivate an instrument. A state-preparation protocol
+can predict a stress-tensor deficit. A readout experiment can recover a
+coefficient that is compared with a tensor model. The transfer is
+scientifically productive when the new modality brings its own evidence.
 
-\Tab~\ref{tab:transfers} lists common transfers and their evidence
-requirements.
+\Tab~\ref{tab:transfers} lists common interfaces and the added evidence that
+makes the handoff meaningful.
 
 \begin{table}[h]
 \centering
 \small
 \begin{tabularx}{\textwidth}{p{0.25\textwidth}p{0.31\textwidth}X}
 \toprule
-Transfer & Added evidence & Promoted conclusion \\
+Interface & Added evidence & Resulting statement \\
 \midrule
 Boundary morphology to tensor object &
 Stress-tensor component, normalization, convergence, material model, and
@@ -374,29 +360,26 @@ The local deficit is placed inside a finite-time and finite-region energy
 ledger. \\
 \bottomrule
 \end{tabularx}
-\caption{Evidence required when a claim moves from one modality to another.
-The promoted conclusion names the new physical object rather than relabeling
-the old one.}
+\caption{Evidence added when a result moves across modalities. The resulting
+statement names the new physical object being tested or compared.}
 \label{tab:transfers}
 \end{table}
 
-This transfer table is the practical core of the modality grammar. It
-protects useful intermediate results. A morphology result can stand as a
-morphology result. A readout architecture can stand as a readout architecture.
-A source comparison can stand as a source comparison. The strongest papers
-then show how those results connect.
+This interface table is the practical core of the modality map. A morphology
+result can stand as a morphology result. A readout architecture can stand as a
+readout architecture. A source comparison can stand as a source comparison.
+The connecting evidence shows how those results meet.
 
 \section{White Sphere--Cylinder Case Study}
 
-The White sphere--cylinder result is an ideal case study because it touches
-all four modalities. The original paper reports a boundary-conditioned
-worldline-numerics result: a custom Casimir geometry produces a shell-like
-negative distribution in a toy model consisting of a \(1\um\) sphere centered
-in a \(4\um\) cylinder \cite{White2021}. The visual resemblance to an
-Alcubierre-style source shape makes the tensor/source modality relevant. The
-proposed voltage, current, photon, or electron detection ideas make the
-readout modality relevant. The public interpretation then depends on keeping
-those modalities aligned.
+The White sphere--cylinder result is a useful case study because it touches
+several modalities at once. The original paper reports a
+boundary-conditioned worldline-numerics result: a custom Casimir geometry
+whose sphere--cylinder toy model is qualitatively correlated with the
+Alcubierre energy-density shape \cite{White2021}. That visual resemblance
+brings in the tensor/source modality. The proposed voltage, current, photon,
+or electron detection ideas bring in the readout modality. The case is
+therefore naturally read as a modality-interface problem.
 
 The companion audit in this paper ensemble treats the White geometry as a
 boundary-conditioned and tensor/source case. Its role-resolved question is:
@@ -414,7 +397,7 @@ readouts. Their success criteria are pressure contrast, eigenmode shift,
 phase/loss response, or cryogenic microwave response with material and
 electromagnetic controls.
 
-Placed in the modality grammar, the case study has a clean identity:
+Placed in the modality map, the case study has a clean identity:
 \begin{itemize}
 \item Boundary modality: the finite sphere--cylinder geometry organizes a
 shell-like Casimir response.
@@ -422,18 +405,18 @@ shell-like Casimir response.
 decide the gravity-facing interpretation.
 \item Readout modality: pressure, cavity, superconducting, voltage, current,
 photon, or electron channels decide what an apparatus can recover.
-\item State modality: the White setup is primarily boundary-conditioned; any
-state-conditioned extension would require an additional preparation protocol.
+\item State modality: the White setup is primarily boundary-conditioned; a
+state-conditioned extension would add a separate preparation protocol.
 \end{itemize}
 
 This is the value of the central paper. It lets the White pair stay
-technically sharp while the ensemble has a shared conceptual grammar. It also
+technically sharp while the ensemble has a shared modality map. It also
 lets other negative-energy experiments locate themselves on the same map.
 
-\section{Field-Facing Claim Grammar}
+\section{Using the Modality Map}
 
-The field-facing version of the framework is a short checklist. A laboratory
-negative-energy paper can state:
+For this ensemble, the map reduces each negative-energy statement to six
+coordinates:
 \begin{enumerate}
 \item \textbf{Modality.} Is the sign boundary-conditioned, state-conditioned,
 tensor/averaging-conditioned, readout-conditioned, or a declared combination?
@@ -446,18 +429,18 @@ the support defined?
 material response, reset cost, or background response appear?
 \item \textbf{Controls.} Which material, electromagnetic, thermal, patch,
 alignment, drift, and readout-chain controls share the same apparatus?
-\item \textbf{Promotion path.} Which additional evidence would move the result
-into a stronger modality?
+\item \textbf{Interface path.} Which additional evidence would connect the
+result to another modality?
 \end{enumerate}
 
-\Tab~\ref{tab:claimlevels} summarizes the resulting claim levels.
+\Tab~\ref{tab:claimlevels} summarizes the resulting evidence layers.
 
 \begin{table}[h]
 \centering
 \small
 \begin{tabularx}{\textwidth}{p{0.21\textwidth}p{0.31\textwidth}X}
 \toprule
-Claim level & Evidence basis & Clean conclusion \\
+Evidence layer & Evidence basis & Resulting statement \\
 \midrule
 Geometry organizes response &
 Finite-boundary calculation, perturbation checks, morphology metrics &
@@ -481,35 +464,35 @@ The stress-energy object can be assigned to the declared gravity-facing source
 role. \\
 \bottomrule
 \end{tabularx}
-\caption{Claim levels enabled by the modality grammar. Each level is useful
-on its own and can be promoted by adding the evidence named in the transfer
-table.}
+\caption{Evidence layers enabled by the modality map. Each layer is useful on
+its own and can be connected to another layer by adding the evidence named in
+the interface table.}
 \label{tab:claimlevels}
 \end{table}
 
-This grammar also improves peer review. A reviewer can ask whether the paper's
-evidence matches the modality being claimed. The authors can then answer at
-the right level: boundary morphology, field-state preparation, stress-tensor
-scale, readout recovery, or source relevance.
+This map keeps the ensemble's claims at the right level: boundary morphology,
+field-state preparation, stress-tensor scale, readout recovery, and source
+relevance can be discussed as connected but distinct evidence layers.
 
 \section{Implications for Laboratory Programs}
 
-The modality grammar suggests a constructive path for laboratory QFT programs.
-First, identify the modality with the strongest existing evidence. For many
+The modality map suggests a constructive path for laboratory QFT programs.
+One starts from the modality with the strongest existing evidence. For many
 Casimir platforms, that is boundary-conditioned response plus
 readout-conditioned force or pressure metrology. For QET-style protocols, it
 is state-conditioned preparation plus operational energy extraction or detector
 response. For energy-condition studies, it is tensor/averaging structure plus
 duration and smearing constraints.
 
-Second, design the transfer deliberately. A finite-boundary morphology needs a
-stress or readout model before it becomes an apparatus claim. A readout signal
-needs template separation before it becomes a field claim. A local
-stress-energy deficit needs smearing and compensation before it becomes an
-averaged-energy statement. A gravity-facing source comparison needs calibrated
-stress scale, tensor component, sign convention, and source-demand ratio.
+The next step is to design the interface deliberately. A finite-boundary
+morphology gains an apparatus role through a stress or readout model. A
+readout signal gains a field role through template separation and calibration.
+A local stress-energy deficit gains an averaged-energy role through smearing
+and compensation. A gravity-facing source comparison gains content through
+calibrated stress scale, tensor component, sign convention, and source-demand
+ratio.
 
-Third, treat ordinary apparatus physics as part of the field experiment.
+Ordinary apparatus physics is part of the field experiment.
 Material response, patch potentials, finite conductivity, thermal behavior,
 roughness, mode mixing, vibration, alignment, and readout-chain effects are
 the channels through which laboratory negative-energy claims become precise.
@@ -534,33 +517,33 @@ patch-potential, and superconducting-transition references used for the
 readout discussion.
 
 This manuscript is a conceptual synthesis. Its reproducible content is the
-claim grammar: the modality definitions,
-transfer-evidence table, and claim-level table. The two companion papers supply
-the worked White sphere--cylinder audit and the physical readout architecture
-application.
+modality map: the modality definitions, interface-evidence table, and
+evidence-layer table. The two companion papers supply the worked White
+sphere--cylinder audit and the physical readout architecture application.
 
 \section{Conclusion}
 
-Negative-energy language is most powerful when its modality is explicit.
-Boundary-conditioned response, state-conditioned response, tensor/averaging
-relevance, and readout-conditioned observability are different laboratory
-objects. They can reinforce one another, and their interfaces define strong
-experimental programs.
+The modality map gives this ensemble a stable center. It treats four
+connected laboratory objects: boundary response, prepared-state response,
+tensor/averaging relevance, and readout observability. Their interfaces are
+the places where a negative-energy result becomes experimentally and
+theoretically informative.
 
-The White sphere--cylinder case illustrates the payoff. The shell-like Casimir
-boundary morphology, the stress/source scale, and the proposed readout routes
-are connected but distinct. The central paper supplies the vocabulary for that
-separation. The companion audit applies it to the White geometry. The
-companion readout paper applies it to pressure, cavity, and superconducting
-measurement ensembles.
+The White sphere--cylinder case illustrates the map in a concrete setting. The
+reported shell-like Casimir boundary morphology, the stress/source scale, and
+the proposed readout routes belong to connected layers. The companion audit
+uses the map to keep boundary morphology, source scale, and central readout
+accounting distinct. The companion readout paper uses the same map to ask how
+pressure, cavity, and superconducting instruments could test the shell-coded
+boundary response.
 
-The field-level result is a clean claim grammar for laboratory QFT. A paper
-can now say which kind of negative energy it has, which object carries the
-sign, which controls make the readout meaningful, and which additional
-evidence would promote the result into a stronger modality. That grammar keeps
-boundary effects, prepared field states, stress-tensor constraints, and
-instrument responses scientifically connected while preserving the specific
-meaning of each.
+The field-facing result is a compact modality map for laboratory QFT. It names
+the object carrying the sign, the support assigned to that object, the
+compensation or background structure around it, the apparatus controls that
+make the readout meaningful, and the additional evidence that connects one
+modality to another. Boundary effects, prepared field states, stress-tensor
+constraints, and instrument responses remain scientifically connected while
+retaining their specific meanings.
 
 \begingroup
 \raggedright
