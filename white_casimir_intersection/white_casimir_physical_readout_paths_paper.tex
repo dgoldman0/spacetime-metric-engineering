@@ -103,8 +103,8 @@ responses. Contemporary Casimir metrology is therefore an instrumentation
 discipline as much as a field-theory calculation: it depends on surface
 potential control, separation metrology, material characterization, roughness
 models, finite-conductivity corrections, resonator stability, and
-environmental rejection \cite{Decca2011,Bimonte2021,GarciaSanchez2012,
-Stange2019}.
+environmental rejection \cite{Lamoreaux1997,MohideenRoy1998,Decca2011,
+Bimonte2021,GarciaSanchez2012,Stange2019,Behunin2011,Garrett2015}.
 
 White, Vera, Han, Bruccoleri, and MacArthur used worldline numerics to study
 custom Casimir cavities and reported a sphere-in-cylinder case whose negative
@@ -137,7 +137,7 @@ probes with Kelvin-probe surface-potential control
 \cite{GarciaSanchez2012,GarciaSanchez2013}, long-range differential force
 measurements with explicit patch and roughness accounting \cite{Bimonte2021},
 and superconducting Casimir or microwave-resonator platforms
-\cite{Perez2020,Gurevich2023,DeJong2025}.
+\cite{Perez2020,Gurevich2023,DeJong2025,Xu2026}.
 
 \section{The Physical Claim}
 
@@ -188,6 +188,55 @@ roughness, membrane, and common-mode rejection. High-Q cavity and
 superconducting resonator readouts carry the resonant route: they convert
 boundary perturbation into frequency, phase, mode-splitting, or microwave
 response while retaining nuisance templates in the same fit.
+
+\section{Three Physical Projections of the Boundary Response}
+
+The three surviving branches are not independent engineering guesses. They are
+different projections of the same finite-boundary object. The White-derived
+geometry specifies a boundary-conditioned stress organization in the annular
+sphere--wall region. A physical instrument then chooses which projection of
+that object it can read: mechanical stress, electromagnetic eigenmode
+perturbation, or cryogenic microwave boundary response. The evidence standard
+is therefore branch-specific, but the source object is shared.
+
+The pressure projection belongs to the classical Casimir measurement lineage.
+The ideal parallel-plate result supplies the clean stress formula, but the
+experimental history moved quickly into torsion balances, sphere--plane
+measurements, AFM probes, and MEMS/NEMS sensors because controlled micron-scale
+parallelism is hard \cite{Lamoreaux1997,MohideenRoy1998,Decca2011,Stange2019}.
+Patch potentials, roughness, finite conductivity, optical data, and
+electrostatic calibration are not afterthoughts in this lineage; they are the
+core interpretive machinery \cite{Bimonte2021,Behunin2011,Garrett2015}. In the
+present paper the pressure cell extends that lineage from a standard
+plate/sphere force law to a finite shell-coded stress contrast.
+
+The cavity projection belongs to resonant metrology. Slater-style cavity
+perturbation showed that small metallic or dielectric perturbations can be read
+as frequency shifts whose size depends on local field overlap
+\cite{MaierSlater1952}. Modern cavity optomechanics generalizes the same
+instrumental idea: small boundary, material, or mechanical changes are
+converted into frequency, phase, linewidth, and mode-coupling observables
+\cite{Aspelmeyer2014}. In this branch the shell-coded boundary response is the
+perturbation source, and the selected cavity eigenmode is the transducer.
+
+The superconducting projection is a cryogenic boundary-metrology problem.
+Superconductors alter electromagnetic boundary response, but real microwave
+devices are dominated by kinetic inductance, quasiparticles, vortices,
+dielectric loss, residual surface resistance, magnetic history, drive power,
+and thermal cycling \cite{Gurevich2023}. The same field is now close to direct
+Casimir-superconductivity experiments, including condensation-energy tests,
+superconducting drum optomechanics, and high-resolution force sensing across a
+superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. That makes the
+branch powerful and risky: it can amplify small effects, and it can also
+produce highly structured material artifacts.
+
+This projection language is the organizing principle for the apparatus. A
+pressure readout asks whether the shell geometry produces a differential
+stress. A high-Q cavity asks whether the same geometry projects cleanly onto an
+electromagnetic eigenmode. A superconducting resonator asks whether the
+geometry survives decomposition into cryogenic material and microwave-loss
+channels. The paper therefore treats the branches as field-native observables
+of one boundary response, not as three arbitrary sensor options.
 
 \section{Readout Model}
 
@@ -273,6 +322,15 @@ mass, and readout coupling while suppressing shell overlap. The material
 channel measures impedance, capacitance, contact, and loss behavior across
 the same schedule.
 
+The common setup should be staged as a lineage calibration before it is staged
+as a White-geometry test. A pressure implementation should first recover a
+known force or pressure law in a plate/sphere surrogate. A resonant
+implementation should first recover a known cavity perturbation or
+optomechanical frequency response. A superconducting implementation should
+first recover its ordinary temperature, magnetic-history, drive-power, and
+loss maps. Only after those branch-native calibrations are stable does the
+shell-coded schedule become evidence-bearing.
+
 The geometry schedule is part of the measurement. Gap, radius, offset, wall
 thickness, length, and readout overlap should move the shell template
 differently from patch, capacitance, material, and drift templates. Surface
@@ -281,7 +339,9 @@ Kelvin-probe surface-potential mapping can be integrated into high-Q
 nanomembrane Casimir measurements \cite{GarciaSanchez2012}. Bimonte et al.
 demonstrate a long-separation force measurement with explicit treatment of
 patch potentials, roughness, edge effects, uncertainty, and theory comparison
-\cite{Bimonte2021}.
+\cite{Bimonte2021}. Patch-specific modeling and Kelvin-probe measurements are
+therefore part of the apparatus definition rather than a late systematic-error
+appendix \cite{Behunin2011,Garrett2015}.
 
 The instrument must first demonstrate ordinary Casimir sensitivity in a known
 geometry. This calibration step establishes separation metrology,
@@ -290,6 +350,17 @@ geometry then becomes a finite-boundary test object whose output is judged by
 template selection and control behavior.
 
 \section{Differential-Pressure Architecture}
+
+Force and pressure are the original operational face of Casimir energy. The
+parallel-plate calculation gives the simplest stress law, but high-precision
+experiments largely adopted sphere--plane and microdevice geometries because
+large, perfectly parallel micron gaps are difficult to build and hold
+\cite{Lamoreaux1997,MohideenRoy1998,Decca2011}. The resulting literature made
+surface preparation, electrostatic calibration, finite conductivity,
+roughness, patch potentials, and separation metrology central to the physics
+claim \cite{Bimonte2021,Behunin2011,Garrett2015}. The White-derived pressure
+cell should be read inside that lineage: it is a finite-geometry extension of
+classical Casimir force metrology, not a new force-sensing category.
 
 The differential-pressure architecture reads boundary stress directly. Two
 matched cells share environment and readout while their geometry settings
@@ -308,7 +379,7 @@ scale reference for the apparatus model. The screening rows place the
 strongest pressure cases in the same metrological neighborhood, with shell
 pressures around \(10^{-4}\)--\(10^{-3}\,\mathrm{Pa}\).
 
-The machinery is close to established Casimir force metrology.
+The apparatus machinery is close to established Casimir force metrology.
 Decca, Aksyuk, and Lopez review micro- and nano-electromechanical systems for
 Casimir measurements \cite{Decca2011}. Stange et al. show a practical
 commercial MEMS force platform with piconewton-scale force resolution and
@@ -324,6 +395,18 @@ microforce calibration, patch-potential diagnostics, roughness validation, and
 MEMS/NEMS pressure metrology at micron gaps.
 
 \section{High-Q Cavity Architecture}
+
+The high-Q cavity branch belongs to the cavity perturbation and resonant
+metrology tradition. In a resonator, a small boundary, dielectric, conductor,
+or mechanical perturbation becomes a shift in frequency, phase, linewidth, or
+mode splitting. Maier and Slater's resonant-cavity perturbation work already
+used small inserted objects to infer local electromagnetic field components
+from frequency shifts \cite{MaierSlater1952}. Cavity optomechanics later made
+the same transduction logic a broad precision-measurement platform in which
+mechanical displacement and boundary motion modulate optical or microwave
+eigenmodes \cite{Aspelmeyer2014}. The White shell geometry therefore enters
+this branch as a boundary perturbation source whose usefulness is determined
+by mode overlap.
 
 The high-Q cavity architecture uses resonance as the transducer. A cavity mode
 with large field overlap in the shell-sensitive region converts a small
@@ -343,7 +426,10 @@ mode-splitting signal. In first-order perturbation language,
 where \(\Delta_{\mathrm{boundary}}\) denotes the shell-sensitive finite
 boundary contribution modeled by the apparatus eigenmode solver. The equation
 states the design requirement: maximize known shell overlap and measure the
-ordinary material terms in the same basis.
+ordinary material terms in the same basis. The relevant theoretical question
+is not only amplitude; it is whether the shell-coded boundary response projects
+onto a chosen eigenmode more cleanly than onto thermal, loss, waveguide, and
+mode-mixing nuisance channels.
 
 The screening ladder ranks this branch highly. The strongest cavity row gives
 \(\sbr=19.34\), and the nominal clean row remains above the recovery gate.
@@ -360,10 +446,25 @@ experimental validation of Casimir calculations in resonant structures.
 
 \section{Superconducting-Resonator Architecture}
 
-The superconducting architecture uses a cryogenic microwave resonator, drum,
-or transition-sensitive cavity to read the shell-coded response. The
-observable can be frequency shift, phase shift, \(Q\) change, nonlinear
-mechanical response, or a superconducting transition response. The core fit is
+The superconducting branch sits at the intersection of superconducting
+microwave resonators, Casimir forces involving superconductors, condensation
+energy, and cryogenic optomechanics. Superconducting boundaries change the
+electromagnetic response of a cavity, but practical resonator behavior is often
+set by kinetic inductance, quasiparticles, trapped vortices, dielectric
+participation, residual surface resistance, drive-power dependence, and thermal
+history \cite{Gurevich2023}. Recent Casimir-superconductivity experiments make
+the branch experimentally timely, from NEMS transition-temperature concepts to
+superconducting drum force readout and on-chip force sensing across a
+superconducting transition \cite{Perez2020,DeJong2025,Xu2026}. The branch must
+therefore be framed as superconducting-boundary metrology: can the shell-coded
+Casimir geometry survive the loss-channel decomposition of a real cryogenic
+microwave device?
+
+The superconducting architecture uses a cryogenic microwave resonator, drum, or
+a cavity sensitive to the superconducting transition to read the shell-coded
+response. The observable can be frequency shift, phase shift, \(Q\) change,
+nonlinear mechanical response, or a superconducting transition response. The
+core fit is
 \begin{equation}
   \left(\frac{\delta f}{f}\right)_{\mathrm{sc}}
   =
@@ -384,12 +485,13 @@ system to probe Casimir energy corrections to superconducting condensation
 energy by measuring a superconducting film in a controlled cavity
 \cite{Perez2020}. de Jong et al. report a superconducting Casimir force
 measurement through nonlinear dynamics of a superconducting drum resonator in
-a microwave optomechanical system \cite{DeJong2025}. Gurevich reviews the
-microwave-loss mechanisms that govern superconducting resonators, including
-quasiparticles, residual surface resistance, dielectric loss, trapped
-vortices, kinetic inductance effects, and high-field limits
-\cite{Gurevich2023}. Those mechanisms are the exact nuisance family in
-Eq.~\ref{eq:sc}.
+a microwave optomechanical system \cite{DeJong2025}. Xu et al. add a parallel
+cryogenic plate platform aimed at Casimir force sensing across a superconducting
+transition \cite{Xu2026}. Gurevich reviews the microwave-loss mechanisms that
+govern superconducting resonators, including quasiparticles, residual surface
+resistance, dielectric loss, trapped vortices, kinetic inductance effects, and
+high-field limits \cite{Gurevich2023}. Those mechanisms are the exact nuisance
+family in Eq.~\ref{eq:sc}.
 
 The screening ladder gives superconducting rows from \(\sbr=3.59\) to
 \(\sbr=17.76\) across the viable nominal and optimistic cases. The apparatus
@@ -593,7 +695,7 @@ response.
 
 \begingroup
 \raggedright
-\begin{thebibliography}{12}
+\begin{thebibliography}{20}
 
 \bibitem{White2021}
 H. White, J. Vera, A. Han, A. R. Bruccoleri, and J. MacArthur,
@@ -614,11 +716,35 @@ L. H. Ford,
 arXiv:0911.3597 (2009).
 \url{https://arxiv.org/abs/0911.3597}.
 
+\bibitem{Lamoreaux1997}
+S. K. Lamoreaux,
+``Demonstration of the Casimir Force in the 0.6 to 6 um Range,''
+\emph{Physical Review Letters} \textbf{78}, 5--8 (1997).
+\url{https://doi.org/10.1103/PhysRevLett.78.5}.
+
+\bibitem{MohideenRoy1998}
+U. Mohideen and A. Roy,
+``Precision Measurement of the Casimir Force from 0.1 to 0.9 um,''
+\emph{Physical Review Letters} \textbf{81}, 4549--4552 (1998).
+\url{https://doi.org/10.1103/PhysRevLett.81.4549}.
+
 \bibitem{Decca2011}
 R. S. Decca, V. Aksyuk, and D. Lopez,
 ``Casimir force in micro and nano electro mechanical systems,''
 in \emph{Casimir Physics}, Lecture Notes in Physics \textbf{834} (2011).
 \url{https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=906575}.
+
+\bibitem{MaierSlater1952}
+L. C. Maier and J. C. Slater,
+``Field Strength Measurements in Resonant Cavities,''
+\emph{Journal of Applied Physics} \textbf{23}, 68--77 (1952).
+\url{https://doi.org/10.1063/1.1701980}.
+
+\bibitem{Aspelmeyer2014}
+M. Aspelmeyer, T. J. Kippenberg, and F. Marquardt,
+``Cavity optomechanics,''
+\emph{Reviews of Modern Physics} \textbf{86}, 1391--1452 (2014).
+\url{https://doi.org/10.1103/RevModPhys.86.1391}.
 
 \bibitem{GarciaSanchez2012}
 D. Garcia-Sanchez, K. Y. Fong, H. Bhaskaran, S. Lamoreaux, and H. X. Tang,
@@ -655,6 +781,20 @@ Procedures and Comparison with Theory,''
 \emph{Universe} \textbf{7}, 93 (2021).
 \url{https://doi.org/10.3390/universe7040093}.
 
+\bibitem{Behunin2011}
+R. O. Behunin, F. Intravaia, D. A. R. Dalvit, P. A. Maia Neto, and
+S. Reynaud,
+``Modeling electrostatic patch effects in Casimir force measurements,''
+arXiv:1108.1761 (2011).
+\url{https://arxiv.org/abs/1108.1761}.
+
+\bibitem{Garrett2015}
+J. L. Garrett, D. Somers, and J. N. Munday,
+``The effect of patch potentials in Casimir force measurements determined by
+heterodyne Kelvin probe force microscopy,''
+\emph{Journal of Physics: Condensed Matter} \textbf{27}, 214012 (2015).
+\url{https://doi.org/10.1088/0953-8984/27/21/214012}.
+
 \bibitem{Gurevich2023}
 A. Gurevich,
 ``Tuning microwave losses in superconducting resonators,''
@@ -667,6 +807,14 @@ and L. Mercier de L\'epinay,
 ``Measurement of the Casimir force between superconductors,''
 arXiv:2501.13759 (2025).
 \url{https://arxiv.org/abs/2501.13759}.
+
+\bibitem{Xu2026}
+M. Xu, R. J. G. Elbertse, A. Ke\c{s}kekler, G. Bimonte, J. Lee,
+S. Otte, and R. A. Norte,
+``High-Resolution Casimir Force Sensing Across a Superconducting
+Transition,''
+arXiv:2504.10579v2 (2026).
+\url{https://arxiv.org/abs/2504.10579}.
 
 \end{thebibliography}
 \endgroup
