@@ -1,0 +1,217 @@
+{
+  "created_utc": "2026-09-08T13:08:58.821399+00:00",
+  "git_head": "5abf931016863ceca57afe6b6fde2ecf470f1d33",
+  "script_sha256": "1d41e20fd304fcaa12433069f3d232b6bb751b554016aaaeee42fb054fc4d196",
+  "legacy_classifier_sha256": "156b0b4e028030a5845c088bf9241ef1643d454adc26c3b93ef261a496e26d80",
+  "command": "toolkit/adm_harness_cli/scripts/run_le_boundary_preflight.py --jobs 4",
+  "requested_jobs": 4,
+  "surface_workers": 2,
+  "classifier_fixture_count": 19,
+  "classifier_fixture_failures": 15,
+  "classifier_type_failures": 10,
+  "classifier_rest_frame_failures": 7,
+  "same_source_parameters": true,
+  "source_parameter_differences": {},
+  "same_tensor_difference_steps": true,
+  "checks": {
+    "legacy_classifier_analytic_fixtures_pass": false,
+    "source_inputs_and_sample_regeneration_pass": true,
+    "endpoint_covariant_tensor_identity_pass": true,
+    "intermediate_reconstructs_its_declared_subset": true,
+    "intermediate_covers_entire_source_grid": false
+  },
+  "surfaces": [
+    {
+      "surface": "baseline",
+      "grid": {
+        "ns": 189,
+        "nl": 121,
+        "s_min": -1.5,
+        "s_max": 15.0,
+        "l_min": -6.0,
+        "l_max": 6.0,
+        "h_s": 0.0025,
+        "h_l": 0.0025
+      },
+      "source_module_sha_matches_manifest": true,
+      "ledger_rows": 22869,
+      "expected_grid_rows": 22869,
+      "source_channels_finite": true,
+      "metric_positive": true,
+      "intermediate_rows": 15664,
+      "intermediate_unique_points": 7832,
+      "intermediate_full_grid_fraction": 0.3424723424723425,
+      "intermediate_reconstruction_max_abs_error": 1.0408340855860843e-16,
+      "intermediate_reconstruction_weighted_abs_error": 9.757708733477622e-13,
+      "full_grid_complement_points": 15037,
+      "full_grid_complement_nonzero_points": 15037,
+      "full_grid_complement_weighted_channel_l1": 12.94861539933708,
+      "endpoint_medium_points": 7188,
+      "regulator_safety_factors": [
+        1.1
+      ],
+      "medium_projection_max_abs_error": 1.1449174941446927e-16,
+      "medium_resolved_type_i_points": 7188,
+      "medium_negative_radial_enthalpy_points": 6810,
+      "medium_stored_rest_energy_mismatch_points": 6810,
+      "medium_stored_rest_energy_max_abs_error": 0.03178006434225197,
+      "medium_stored_rest_energy_witness": {
+        "point_index": 7443,
+        "s": 3.85372340425532,
+        "l": 0.2000000000000001,
+        "stored_rest_energy": 0.0029967968541492,
+        "causal_eigenvector_rest_energy": -0.028783267488102768,
+        "eigenvector_metric_norm": -0.9999105607223704
+      },
+      "full_source_weighted_channel_l1": 180.25470000174755,
+      "target_J_weighted_channel_l1": 10.851276195720718,
+      "frozen_fit_vs_target_J_weighted_relative_l1": 0.48102895721931527,
+      "medium_vs_target_J_weighted_abs_error": 5.384194310251955,
+      "medium_vs_target_J_weighted_relative_l1": 0.49618074530028566,
+      "medium_replacement_error_relative_to_full_source_l1": 0.029869924668814492,
+      "medium_vs_target_J_by_channel": {
+        "rho_euler": {
+          "target_weighted_l1": 4.079308634121458,
+          "medium_error_weighted_l1": 0.6589136317366929,
+          "relative_l1": 0.16152581009075823
+        },
+        "p_l_unit": {
+          "target_weighted_l1": 0.9863172144476828,
+          "medium_error_weighted_l1": 0.5616950139029208,
+          "relative_l1": 0.5694871849290984
+        },
+        "j_l_unit": {
+          "target_weighted_l1": 0.3808110953041401,
+          "medium_error_weighted_l1": 0.2413116649121485,
+          "relative_l1": 0.6336781356630945
+        },
+        "p_omega_unit": {
+          "target_weighted_l1": 5.404839251847436,
+          "medium_error_weighted_l1": 3.922273999700193,
+          "relative_l1": 0.7256966982615652
+        }
+      },
+      "medium_vs_target_J_max_abs_error": 0.3348941304388332,
+      "regulator_already_in_medium_max_abs_identity_error": 1.0018028073766061e-16,
+      "support_exchange_rows": 7667,
+      "support_inherited_endpoint_tensor_max_abs_error": 3.3881317890172014e-21,
+      "support_inactive_inherited_tensor_max_abs": 0.0,
+      "support_explicit_stress_columns": [],
+      "component_assignment_rows": 84628,
+      "component_unique_points": 22869,
+      "component_max_rows_per_point": 4,
+      "component_repeated_full_tensor_max_abs_error": 3.3881317890172014e-21,
+      "component_names": [
+        "A_infrastructure_radial_null_support",
+        "B_core_radial_pressure_balance",
+        "C_live_handoff_angular_current",
+        "D_reset_support_edge_current_sink",
+        "E_live_handoff_radial_null_trim",
+        "F_live_handoff_radial_pressure_trim",
+        "G_infrastructure_angular_capacity",
+        "I_support_edge_radial_pressure_balance",
+        "unassigned"
+      ],
+      "end_of_domain_max_abs_source_channel": 8.034086958763282e-05,
+      "artifact_hash_failures": 0,
+      "regeneration_max_abs_error": 3.339897802767666e-13,
+      "support_coefficients_sha256": "13657e14392de4a45677472aafe1c686d6e11853594f211118c8eaf89b82ece6"
+    },
+    {
+      "surface": "dense",
+      "grid": {
+        "ns": 377,
+        "nl": 241,
+        "s_min": -1.5,
+        "s_max": 15.0,
+        "l_min": -6.0,
+        "l_max": 6.0,
+        "h_s": 0.0025,
+        "h_l": 0.0025
+      },
+      "source_module_sha_matches_manifest": true,
+      "ledger_rows": 90857,
+      "expected_grid_rows": 90857,
+      "source_channels_finite": true,
+      "metric_positive": true,
+      "intermediate_rows": 61762,
+      "intermediate_unique_points": 30881,
+      "intermediate_full_grid_fraction": 0.3398857545373499,
+      "intermediate_reconstruction_max_abs_error": 1.0408340855860843e-16,
+      "intermediate_reconstruction_weighted_abs_error": 9.67165255234992e-13,
+      "full_grid_complement_points": 59976,
+      "full_grid_complement_nonzero_points": 59976,
+      "full_grid_complement_weighted_channel_l1": 13.027558466161416,
+      "endpoint_medium_points": 28359,
+      "regulator_safety_factors": [
+        1.1
+      ],
+      "medium_projection_max_abs_error": 1.214306433183765e-16,
+      "medium_resolved_type_i_points": 28359,
+      "medium_negative_radial_enthalpy_points": 26929,
+      "medium_stored_rest_energy_mismatch_points": 26929,
+      "medium_stored_rest_energy_max_abs_error": 0.03178949263868246,
+      "medium_stored_rest_energy_witness": {
+        "point_index": 29285,
+        "s": 3.809840425531915,
+        "l": 0.2000000000000001,
+        "stored_rest_energy": 0.0030240884200339,
+        "causal_eigenvector_rest_energy": -0.028765404218648555,
+        "eigenvector_metric_norm": -0.9998760170262018
+      },
+      "full_source_weighted_channel_l1": 177.86056985878736,
+      "target_J_weighted_channel_l1": 10.627714629272003,
+      "frozen_fit_vs_target_J_weighted_relative_l1": 0.464366396613585,
+      "medium_vs_target_J_weighted_abs_error": 5.099685337457483,
+      "medium_vs_target_J_weighted_relative_l1": 0.47984778622220225,
+      "medium_replacement_error_relative_to_full_source_l1": 0.02867237714073662,
+      "medium_vs_target_J_by_channel": {
+        "rho_euler": {
+          "target_weighted_l1": 4.007312676789349,
+          "medium_error_weighted_l1": 0.626557562353687,
+          "relative_l1": 0.15635354984470134
+        },
+        "p_l_unit": {
+          "target_weighted_l1": 0.9472145475459086,
+          "medium_error_weighted_l1": 0.534949473327274,
+          "relative_l1": 0.5647606180809281
+        },
+        "j_l_unit": {
+          "target_weighted_l1": 0.37044106381858655,
+          "medium_error_weighted_l1": 0.22826313934470638,
+          "relative_l1": 0.6161928620756042
+        },
+        "p_omega_unit": {
+          "target_weighted_l1": 5.302746341118158,
+          "medium_error_weighted_l1": 3.7099151624318156,
+          "relative_l1": 0.6996214647615085
+        }
+      },
+      "medium_vs_target_J_max_abs_error": 0.464099497165207,
+      "regulator_already_in_medium_max_abs_identity_error": 1.0061396160665481e-16,
+      "support_exchange_rows": 29317,
+      "support_inherited_endpoint_tensor_max_abs_error": 3.3881317890172014e-21,
+      "support_inactive_inherited_tensor_max_abs": 0.0,
+      "support_explicit_stress_columns": [],
+      "component_assignment_rows": 336541,
+      "component_unique_points": 90857,
+      "component_max_rows_per_point": 4,
+      "component_repeated_full_tensor_max_abs_error": 3.3881317890172014e-21,
+      "component_names": [
+        "A_infrastructure_radial_null_support",
+        "B_core_radial_pressure_balance",
+        "C_live_handoff_angular_current",
+        "D_reset_support_edge_current_sink",
+        "E_live_handoff_radial_null_trim",
+        "F_live_handoff_radial_pressure_trim",
+        "G_infrastructure_angular_capacity",
+        "I_support_edge_radial_pressure_balance",
+        "unassigned"
+      ],
+      "end_of_domain_max_abs_source_channel": 8.034086958763282e-05,
+      "artifact_hash_failures": 0,
+      "regeneration_max_abs_error": 1.012204209338563e-12,
+      "support_coefficients_sha256": "6bf71cf358a3ab521316030c6bc578033e83c59f47c20476f5a0fe80235f51b9"
+    }
+  ]
+}
