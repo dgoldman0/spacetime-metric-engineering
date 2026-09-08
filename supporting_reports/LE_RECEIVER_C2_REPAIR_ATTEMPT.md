@@ -2,6 +2,10 @@
 
 Date: 8 September 2026.
 
+The [combined metric repair and uniform-rate diagnostic](LE_BOUNDED_METRIC_REPAIR.md)
+extends this candidate with the throat and shell-window repairs and records
+the stopping assessment for further local tuning.
+
 **The receiver regularity repair succeeds locally. The geometry-demand gate
 continues to fail through persistent Type IV stress.** The repaired candidate
 has finite curvature at both former receiver clipping points and a finite
