@@ -1,0 +1,18 @@
+{
+  "reference_rows": 16506,
+  "prescribed_source_rows": 8253,
+  "all_reference_and_source_eigensystems_certified": true,
+  "all_matched_static_reference_samples_type_i": true,
+  "all_csv_npz_row_indices_aligned": true,
+  "max_component_sum_error": 0.0,
+  "max_total_enthalpy_formula_error": 4.0158848468863084e-16,
+  "independent_complex_pair_count": 2030,
+  "source_type_counts": {
+    "type_i_boost_diagonalizable": 6223,
+    "type_iv_flux_dominant": 2030
+  },
+  "minimum_material_or_beam_density": 0.0,
+  "max_reference_projection_error": 7.586748566189468e-07,
+  "max_source_eigen_equation_relative_error": 4.440892098401851e-16,
+  "max_reference_eigen_equation_relative_error": 3.477763656540197e-16
+}

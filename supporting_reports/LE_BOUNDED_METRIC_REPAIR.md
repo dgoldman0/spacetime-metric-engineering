@@ -8,6 +8,12 @@ layer.** These results establish a stopping point for local repair attempts.
 Further source closure requires a design change that couples current to the
 diagonal stresses throughout the evolution.
 
+The subsequent [coupled reset source attempt](LE_COUPLED_RESET_SOURCE_ATTEMPT.md)
+tests one such prescription with tangential material and explicit null transfer
+streams. Its complete source retains an outward Type IV layer, and its radial
+Einstein mass response exceeds the stationary geometry's allowance during
+reset. That candidate stops at the source and radial-metric conditions.
+
 The candidate combines the [receiver repair](LE_RECEIVER_C2_REPAIR_ATTEMPT.md)
 with a smooth origin profile and a smooth cap on the support-shell time window.
 The frozen geometry and ledgers remain the reference. Implementation and tests

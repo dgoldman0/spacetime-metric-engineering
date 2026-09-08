@@ -2,6 +2,13 @@
 
 Date: 8 September 2026.
 
+**The registered source prescription fails both the complete-source Type IV
+condition and the radial metric condition.** Tangential material and explicit
+transfer energy remove the complex eigenvalue pair at the previous principal
+witness. A Type IV layer persists farther outward, while the integrated source
+energy exceeds the mass allowed by the chosen stationary material geometry
+during reset. The attempt stops at these necessary conditions.
+
 ## Registered candidate and stopping sequence
 
 This attempt tests one explicit source prescription inspired by Le's separation
@@ -13,9 +20,11 @@ the outer mass is free to change.
 
 The local domain is the negative-side endpoint annulus
 \(\ell\in[-6,-0.5]\). Its inner boundary excludes the areal-radius minimum,
-where a single polar-areal chart would fail. The intended reset begins at the
+where a single polar-areal chart would fail. The reference reset begins at the
 release onset \(s=0.745\), passes through release, receiver fade, and geometry
-decompression, and approaches the retained static endpoint at \(s=15\).
+decompression, and approaches its retained static endpoint at \(s=15\).
+Matching a surviving new source to that endpoint is a subsequent condition;
+the prescribed string reassignment changes even the late static source.
 
 Three necessary conditions precede spacetime evolution:
 
@@ -121,10 +130,163 @@ the radial mass integral is evaluated on each refinement grid. A matched-static
 lapse reconstruction supplies a quadrature control. The calculation uses four
 independent worker processes with one BLAS thread per worker.
 
-The implementation has passed the 285-test harness suite. An integration
-smoke run has exercised reference extraction, component assembly, radial
-constraints, eigensystem storage, and the diagnostic figure. The full candidate
-run follows this registered design.
+The implementation passes the 285-test harness suite, with four existing
+multiprocessing deprecation warnings. Its five new tests cover component
+accounting, the source enthalpy obstruction, Schwarzschild lapse convergence,
+the integrated mass response, and static-background input validation. An
+integration smoke run exercises reference extraction, component assembly,
+radial constraints, eigensystem storage, and the diagnostic figure. Commit
+`af814cd` records the implementation and registered design before the full run.
+
+## Complete-source result
+
+The run contains 8,253 prescribed-source samples and 16,506 freshly computed
+reference Einstein tensors. The prescribed total has 2,030 Type IV samples
+and 6,223 Type I samples across the three resolutions. Every matched-static
+reference sample is Type I. At the finest resolution the phase results are:
+
+| Phase \(s\) | Reference active Type IV / 519 | Prescribed total Type IV / 519 | Minimum required \(f\) |
+|---:|---:|---:|---:|
+| 0.745000 | 113 | 56 | 0.000005 |
+| 1.285000 | 134 | 88 | 0.000229 |
+| 1.571809 | 189 | 162 | 0.001893 |
+| 1.645000 | 226 | 182 | −0.085547 |
+| 1.878989 | 259 | 238 | −0.608659 |
+| 2.005000 | 260 | 245 | −0.741494 |
+| 2.600000 | 0 | 183 | 0.076420 |
+| 5.000000 | 0 | 0 | 0.075472 |
+| 15.000000 | 0 | 0 | 0.075472 |
+
+At reset, the former principal witness \(\ell=-1.8\) changes from reference
+demand \(\Delta\simeq-0.00206451\) to prescribed-source
+\(\Delta\simeq+0.00122729\). The former static-enthalpy-root witness near
+\(\ell=-0.981278\) also becomes Type I in the prescribed source. Thus the
+explicit material and transfer channels supply enough radial enthalpy to
+remove those local complex pairs.
+
+The reset source instead has a converged Type IV witness farther outward at
+\(\ell=-2.1328125\), where the handoff window is on its central plateau:
+
+| Curvature step | Source radial discriminant | Imaginary eigenvalue magnitude | Required \(f\) at this point |
+|---:|---:|---:|---:|
+| 0.0012500 | −0.000155194259 | 0.00622884939 | −0.602547 |
+| 0.0006250 | −0.000155193848 | 0.00622884115 | −0.601543 |
+| 0.0003125 | −0.000155193805 | 0.00622884029 | −0.601313 |
+
+Its finest source channels are
+\[
+(E,P_r,J,P_t)\simeq
+(0.0104192151,\;0.0075692225,\;0.0109404947,\;0.0258825066).
+\]
+The full mixed tensor has the complex pair at each resolution. Moreover, the
+prescription introduces a Type IV interval at \(s=2.6\), when all sampled
+active reference tensors in this annulus are Type I. The local improvement at
+the old witnesses therefore falls short of source closure across the reset.
+
+## Radial metric result
+
+At reset the minimum formal Hamiltonian response is
+\(f=-0.609791,-0.608845,-0.608659\) on the three grids. At the finest minimum,
+\(\ell=-2.250977\) and \(r\simeq2.957822\), the matched static source has
+\(f_b\simeq0.360538\). Its available mass increment before \(f=0\) is
+\[
+\frac r2-m_b\simeq0.533204,
+\]
+whereas the prescribed source requires
+\(\delta m\simeq1.433357\), including the energy released from radial
+support. These values use the reference geometry's units. Hence the failure
+has a substantial margin relative to numerical refinement.
+
+The radial mass integral crosses \(f=0\) in the receiver-fade onset, reset,
+and receiver-fade completion profiles at every resolution. The integral can
+be recorded algebraically beyond that crossing; the chosen stationary
+material metric ends there. Consequently these profiles carry no constructed
+lapse or mass time derivative. This calculation establishes an obstruction
+to this ansatz with its inherited inner mass. Formation of a dynamical horizon
+would require a different spacetime calculation.
+
+The matched-static lapse reconstruction at reset has maximum absolute error
+\(1.8421\times10^{-4},4.6029\times10^{-5},1.1502\times10^{-5}\), showing
+second-order quadrature convergence. The release-onset control, whose inner
+\(f_b\) is approximately \(5\times10^{-6}\), remains harder to integrate:
+its finest lapse error is 0.00543. The stopping evidence above uses the well
+resolved reset profile and the mass equation, which is independent of lapse
+quadrature.
+
+![Reset source classification, required radial metric, and current balance](data/le_coupled_reset_source/coupled_reset_constraints.png)
+
+## Mechanism and stopping decision
+
+The registered source gives an especially direct expression for the remaining
+radial obstruction:
+\[
+h_{\rm total}=E+P_r=h_b+3F,
+\qquad
+\Delta=(h_b+3F)^2-4J^2.
+\]
+Removing a radial string pair changes energy and radial pressure by opposite
+amounts, so its contribution \(B\) cancels from \(h_{\rm total}\). The
+material and null streams increase enthalpy, yet the signed static background
+still drives the sum into \(|h_{\rm total}|<2|J|\) elsewhere. At the outward
+reset witness, \(h_b\simeq-0.01484\), the total enthalpy is approximately
+0.0179884, and \(2|J|\simeq0.0218810\).
+
+At the same time, the energy change \(2F-B\) enters the Hamiltonian equation
+and consumes more radial mass allowance than this geometry provides. Changing
+the tangential-pressure ratio alone leaves both failing expressions unchanged.
+Increasing material density would alter the enthalpy balance and add further
+mass. These two requirements therefore need a common source and geometry
+construction.
+
+This is the registered stopping point for the single candidate. No additional
+support layer or fitted correction is introduced. The observed improvement
+followed by an outward residual fits the qualitative Le-inspired concern;
+the residual sits inside the trial's source plateau, and the retained rail has
+a signed exterior background. The calculation therefore establishes failure
+of this explicit construction, with a broader redesign remaining open.
+
+The completed work consists of a prescribed complete-source classification
+and its necessary radial Einstein response. A full time-dependent reset,
+angular Einstein matching, conserved endpoint/reservoir exchange, and retained
+rail service validation remain unperformed because the candidate fails before
+those stages. The endpoint and reservoir columns record their explicit
+instantaneous energy partition; a conserved transfer history would require
+the surviving spacetime and its exchange equations.
+
+## Retained evidence and reproduction
+
+The full run took 76.6 seconds with four workers. Data, numerical verification,
+and the figure occupy approximately 8.8 MB. The
+[manifest](data/le_coupled_reset_source/manifest.json) records the fixed source
+parameters, phases, software and reference hashes, runtime, and rejection
+before evolution. The frozen source kernel remains
+`c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff`.
+
+All 24,759 retained reference and source eigensystems pass certification. An
+independent eigenvalue calculation reproduces all 2,030 source complex pairs.
+The five stored component matrices sum exactly to the stored total matrices;
+the CSV enthalpy identity differs by at most \(4.02\times10^{-16}\) through
+serialization. Material and null-stream densities are nonnegative. The
+[artifact verification](data/le_coupled_reset_source/artifact_verification.json)
+also records row alignment and eigen-equation residuals.
+
+The principal files are
+[constraint_summary.csv](data/le_coupled_reset_source/constraint_summary.csv),
+[prescribed_source.csv.gz](data/le_coupled_reset_source/prescribed_source.csv.gz),
+and [reference_tensors.csv.gz](data/le_coupled_reset_source/reference_tensors.csv.gz).
+Each source and reference ledger has a corresponding eigensystem NPZ with
+matching `row_index`. The separate
+[component matrices](data/le_coupled_reset_source/component_tensors.npz)
+retain infrastructure, endpoint, reservoir, outgoing stream, and incoming
+stream in that order. Stored coordinate energies use \(\int4\pi r^2 E\,dr\),
+the mass-equation measure; proper-volume energy has a different measure.
+
+```bash
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/le-reset-matplotlib \
+python toolkit/adm_harness_cli/scripts/run_le_coupled_reset_attempt.py --workers 4
+```
 
 ## Source references
 
