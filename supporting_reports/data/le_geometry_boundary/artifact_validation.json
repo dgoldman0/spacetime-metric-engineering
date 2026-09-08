@@ -1,0 +1,79 @@
+{
+  "software_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_le_geometry_boundary.py": "b392549226751d4a4976c346dbd4bdc24ccedc8d81af5d6eaa1c8fe853e14ea5",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "eee70ceb7107dc5ca351c4f082a7fefd87180e4c906d8e83ae86acdf9c0e9cdf",
+    "toolkit/adm_harness_cli/adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+    "toolkit/adm_harness_cli/scripts/run_le_receiver_edge_diagnostic.py": "0fddbe01c471ab5d70c91f6de329a5198c8ecf39ebb84926261dac3ee3cd26bc"
+  },
+  "datasets": {
+    "exterior_tail": {
+      "rows": 60,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 1.1102230246251563e-16,
+      "type_iv_with_raw_complex_pair": 0,
+      "type_iv_points": 0
+    },
+    "local_patch": {
+      "rows": 8683,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 1.8319205572553522e-16,
+      "type_iv_with_raw_complex_pair": 7708,
+      "type_iv_points": 7708
+    },
+    "phase_profiles": {
+      "rows": 9008,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 4.436519864558258e-16,
+      "type_iv_with_raw_complex_pair": 1361,
+      "type_iv_points": 1361
+    },
+    "physical_width_variants": {
+      "rows": 2252,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 3.3306690738754696e-16,
+      "type_iv_with_raw_complex_pair": 806,
+      "type_iv_points": 806
+    },
+    "receiver_exact_edges": {
+      "rows": 128,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 2.2204399306988079e-16,
+      "type_iv_with_raw_complex_pair": 52,
+      "type_iv_points": 52
+    },
+    "receiver_one_sided": {
+      "rows": 976,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 3.3306656228343484e-16,
+      "type_iv_with_raw_complex_pair": 30,
+      "type_iv_points": 30
+    },
+    "receiver_width_variants": {
+      "rows": 858,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 3.376611507232129e-16,
+      "type_iv_with_raw_complex_pair": 429,
+      "type_iv_points": 429
+    },
+    "stored_baseline": {
+      "rows": 22869,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 4.4408919405757897e-16
+    },
+    "stored_dense": {
+      "rows": 90857,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 4.4408919405757897e-16
+    },
+    "witnesses": {
+      "rows": 104,
+      "uncertified": 0,
+      "max_eigen_equation_relative_error": 2.355138688025663e-16,
+      "type_iv_with_raw_complex_pair": 44,
+      "type_iv_points": 44
+    }
+  },
+  "source_manifest_link_pass": true,
+  "harness_tests_passed": 226,
+  "harness_existing_warnings": 4
+}

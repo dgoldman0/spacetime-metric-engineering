@@ -1,0 +1,17 @@
+{
+  "completed_utc": "2026-09-08T13:35:20.611822+00:00",
+  "workers": 4,
+  "elapsed_seconds": 12.622713327407837,
+  "fresh_points": 1962,
+  "base_manifest_sha256": "7a7d46cd3fa5318477264525e44d9dd289585b9c7d836d35edb060b730561f1c",
+  "inner": 0.875,
+  "outer": 1.7937499999999997,
+  "receiver_width": 0.11484374999999997,
+  "frozen_kernel_crosscheck_points": 10,
+  "source_ledger_sha256": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_le_receiver_edge_diagnostic.py": "0fddbe01c471ab5d70c91f6de329a5198c8ecf39ebb84926261dac3ee3cd26bc",
+    "toolkit/adm_harness_cli/scripts/run_le_geometry_boundary.py": "b392549226751d4a4976c346dbd4bdc24ccedc8d81af5d6eaa1c8fe853e14ea5",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "eee70ceb7107dc5ca351c4f082a7fefd87180e4c906d8e83ae86acdf9c0e9cdf"
+  }
+}
