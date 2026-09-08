@@ -1,0 +1,59 @@
+{
+  "datasets": {
+    "blend_sensitivity": {
+      "rows": 2252,
+      "type_iv": 779,
+      "uncertified": 0,
+      "max_eigen_equation_error": 3.376611507232129e-16
+    },
+    "exterior_tail": {
+      "rows": 60,
+      "type_iv": 0,
+      "uncertified": 0,
+      "max_eigen_equation_error": 1.1102230246251563e-16
+    },
+    "inner_one_sided": {
+      "rows": 976,
+      "type_iv": 488,
+      "uncertified": 0,
+      "max_eigen_equation_error": 1.1102230246251563e-16
+    },
+    "joins": {
+      "rows": 256,
+      "type_iv": 100,
+      "uncertified": 0,
+      "max_eigen_equation_error": 2.2204460122243115e-16
+    },
+    "local_patch": {
+      "rows": 8683,
+      "type_iv": 7671,
+      "uncertified": 0,
+      "max_eigen_equation_error": 1.665695898455916e-16
+    },
+    "phase_profiles": {
+      "rows": 9008,
+      "type_iv": 1365,
+      "uncertified": 0,
+      "max_eigen_equation_error": 4.436519864558258e-16
+    },
+    "witnesses": {
+      "rows": 208,
+      "type_iv": 88,
+      "uncertified": 0,
+      "max_eigen_equation_error": 2.355138688025663e-16
+    }
+  },
+  "software_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_le_receiver_repair.py": "7862170a6c1a6d050a8f7b44f670ade22172e29a4dc67fd6849dc3c3922c6bec",
+    "toolkit/adm_harness_cli/adm_harness/receiver_regularity.py": "20245a1bac76895cacb760bd5c9001a8eeb2b3db2b7ea44afb5338c9655ca94f",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+    "toolkit/adm_harness_cli/scripts/run_le_geometry_boundary.py": "b392549226751d4a4976c346dbd4bdc24ccedc8d81af5d6eaa1c8fe853e14ea5",
+    "toolkit/adm_harness_cli/scripts/run_le_throat_regularity_check.py": "7e46ebe89f4924379f1652f373bb0f94897e0bc24079f6157aa0f24502ec32c1",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff"
+  },
+  "harness_tests_passed": 259,
+  "harness_existing_warnings": 4,
+  "throat_rows": 64,
+  "all_104_witness_tensors_preserved_exactly": true
+}

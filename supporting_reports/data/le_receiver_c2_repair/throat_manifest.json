@@ -1,0 +1,11 @@
+{
+  "points": 64,
+  "reference_manifest_sha256": "7a7d46cd3fa5318477264525e44d9dd289585b9c7d836d35edb060b730561f1c",
+  "control": "eta_N=0 removes the lapse shoulder; all other candidate parameters retained",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_le_throat_regularity_check.py": "7e46ebe89f4924379f1652f373bb0f94897e0bc24079f6157aa0f24502ec32c1",
+    "toolkit/adm_harness_cli/adm_harness/receiver_regularity.py": "20245a1bac76895cacb760bd5c9001a8eeb2b3db2b7ea44afb5338c9655ca94f",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff"
+  }
+}
