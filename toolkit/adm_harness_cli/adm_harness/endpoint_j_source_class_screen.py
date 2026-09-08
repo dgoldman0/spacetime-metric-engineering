@@ -10,6 +10,7 @@ import pandas as pd
 
 from .source_ledger import sha256_file, write_manifest
 from .source_screening import resolve_manifest_path
+from .radial_stress import TYPE_I, TYPE_II, classify_radial_stress
 
 
 EPS = 1.0e-30
@@ -36,73 +37,33 @@ def _bool_series(series: pd.Series) -> pd.Series:
     return series.astype(str).str.lower().isin({"1", "true", "yes"})
 
 
-def _boost_velocity(rho_plus_p: np.ndarray, j_l: np.ndarray, discriminant: np.ndarray) -> np.ndarray:
-    out = np.zeros(len(rho_plus_p), dtype=float)
-    for idx, (rp, current, disc) in enumerate(zip(rho_plus_p, j_l, discriminant)):
-        if abs(current) <= EPS:
-            out[idx] = 0.0
-            continue
-        if disc < 0.0 or not math.isfinite(float(disc)):
-            out[idx] = float("nan")
-            continue
-        root = math.sqrt(max(float(disc), 0.0))
-        denom = 2.0 * float(current)
-        candidates = [((float(rp) - root) / denom), ((float(rp) + root) / denom)]
-        finite = [value for value in candidates if math.isfinite(value)]
-        subluminal = [value for value in finite if abs(value) < 1.0 + 1.0e-10]
-        pool = subluminal or finite
-        out[idx] = min(pool, key=lambda value: abs(value)) if pool else float("nan")
-    return out
-
-
 def classify_endpoint_source_frame(frame: pd.DataFrame, *, type_tolerance: float = 1.0e-12) -> pd.DataFrame:
+    """Classify spherical ADM channels; type_tolerance is a relative stress margin."""
     out = frame.copy()
     rho = out["sector_rho"].astype(float).to_numpy()
     p_l = out["sector_p_l"].astype(float).to_numpy()
     j_l = out["sector_j_l"].astype(float).to_numpy()
     p_omega = out["sector_p_omega"].astype(float).to_numpy()
-    rho_plus_p = rho + p_l
-    discriminant = np.square(rho_plus_p) - 4.0 * np.square(j_l)
-    sqrt_disc = np.sqrt(np.clip(discriminant, 0.0, np.inf))
-    boost_v = _boost_velocity(rho_plus_p, j_l, discriminant)
-    rest_energy = 0.5 * (rho - p_l + sqrt_disc)
-    rest_radial_pressure = 0.5 * (p_l - rho + sqrt_disc)
-    flux_ratio = 2.0 * np.abs(j_l) / np.maximum(np.abs(rho_plus_p), EPS)
-    regulator = np.maximum(0.0, 2.0 * np.abs(j_l) - np.abs(rho_plus_p))
-
-    stress_type = np.where(
-        discriminant < -abs(float(type_tolerance)),
-        "type_iv_flux_dominant",
-        np.where(np.abs(discriminant) <= abs(float(type_tolerance)), "type_ii_null_boundary", "type_i_boost_diagonalizable"),
-    )
-
+    diagnostic = classify_radial_stress(rho, p_l, j_l, p_omega, rtol=type_tolerance)
+    rho_plus_p = diagnostic["rho_plus_p_l"]
+    regulator = diagnostic["minimal_type_i_regulator"]
+    stress_type = diagnostic["stress_algebraic_type"]
+    scalar_tolerance = float(type_tolerance) * np.maximum.reduce([np.abs(rho), np.abs(p_l), np.abs(j_l), np.abs(p_omega)])
+    real_radial_block = np.isin(stress_type, [TYPE_I, TYPE_II])
     canonical_scalar = (
-        (discriminant >= -abs(float(type_tolerance)))
-        & (rho_plus_p >= -abs(float(type_tolerance)))
-        & ((p_l - p_omega) >= -abs(float(type_tolerance)))
+        real_radial_block
+        & (rho_plus_p >= -scalar_tolerance)
+        & ((p_l - p_omega) >= -scalar_tolerance)
     )
     phantom_scalar = (
-        (rho_plus_p <= abs(float(type_tolerance)))
-        & ((p_l - p_omega) <= abs(float(type_tolerance)))
-        & (np.abs(rho_plus_p) + abs(float(type_tolerance)) >= 2.0 * np.abs(j_l))
+        real_radial_block
+        & (rho_plus_p <= scalar_tolerance)
+        & ((p_l - p_omega) <= scalar_tolerance)
     )
-    type_i_heat_flux = (
-        (discriminant >= -abs(float(type_tolerance)))
-        & (np.isfinite(boost_v))
-        & (np.abs(boost_v) < 1.0 + 1.0e-10)
-    )
-
-    out["rho_plus_p_l"] = rho_plus_p
-    out["radial_block_discriminant"] = discriminant
-    out["radial_flux_ratio"] = flux_ratio
-    out["stress_algebraic_type"] = stress_type
-    out["boost_velocity_to_flux_frame"] = boost_v
-    out["rest_frame_energy_density"] = np.where(discriminant >= -abs(float(type_tolerance)), rest_energy, np.nan)
-    out["rest_frame_radial_pressure"] = np.where(discriminant >= -abs(float(type_tolerance)), rest_radial_pressure, np.nan)
-    out["rest_frame_angular_pressure"] = np.where(discriminant >= -abs(float(type_tolerance)), p_omega, np.nan)
+    for key, value in diagnostic.items():
+        out[key] = value
     out["canonical_scalar_compatible"] = canonical_scalar
     out["phantom_scalar_compatible"] = phantom_scalar
-    out["type_i_heat_flux_compatible"] = type_i_heat_flux
     out["minimal_type_i_regulator"] = regulator
     out["source_abs_density"] = np.abs(rho) + np.abs(p_l) + np.abs(j_l) + np.abs(p_omega)
     out["pair_abs_density"] = np.abs(rho) + np.abs(p_l)
