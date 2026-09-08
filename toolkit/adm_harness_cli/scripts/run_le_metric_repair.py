@@ -56,6 +56,8 @@ def evaluate(task):
     row = evaluate_demand(task["s"], task["l"], PARAMS, task["h_s"], task["h_l"],
                           h_theta=task.get("h_theta", 1e-4), holding=task["holding"], scalar_evaluator=provider)
     row.update(task)
+    scale = max(abs(row[key]) for key in CHANNELS)
+    row["transverse_to_density"] = abs(row["p_omega"])/max(abs(row["rho"]), 1e-12*scale, np.finfo(float).tiny)
     if not row["full_eigensystem_certified"]:
         raise ArithmeticError("uncertified demanded-tensor eigensystem")
     if row["stress_algebraic_type"] == "type_iv_flux_dominant" and row["raw_imaginary_eigenvalue_scale"] == 0:
