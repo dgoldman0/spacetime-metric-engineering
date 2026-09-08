@@ -17,7 +17,8 @@ def metric_scalars(s: float, l: float, params: SourceParams):
     return scalars(s, l, params)
 
 
-def evaluate_demand(s, l, params, h_s, h_l, *, holding=False, h_theta=1e-4):
+def evaluate_demand(s, l, params, h_s, h_l, *, holding=False, h_theta=1e-4,
+                    scalar_evaluator=metric_scalars):
     """Evaluate G/8pi and certify its full orthonormal mixed eigensystem.
 
     Holding is a family of static controls: for each requested s, freeze
@@ -25,6 +26,8 @@ def evaluate_demand(s, l, params, h_s, h_l, *, holding=False, h_theta=1e-4):
     spacetime neighborhood. All temporal metric derivatives then vanish.
     The finite-difference curvature equations follow source_ledger exactly;
     local metric/connection caching removes repeated stencil evaluations.
+    scalar_evaluator supplies all four metric fields throughout the stencil,
+    allowing an explicit candidate geometry to use the same curvature method.
     """
     if min(h_s, h_l, h_theta) <= 0:
         raise ValueError("finite-difference steps must be positive")
@@ -36,7 +39,7 @@ def evaluate_demand(s, l, params, h_s, h_l, *, holding=False, h_theta=1e-4):
         key = tuple(position)
         if key not in metrics:
             sigma, ell, theta, _ = position
-            fields = metric_scalars(float(s) if holding else float(sigma), float(ell), params)
+            fields = scalar_evaluator(float(s) if holding else float(sigma), float(ell), params)
             alpha, beta, radial, angular = [fields[k] for k in ("alpha", "beta", "gamma_ll", "gamma_omega")]
             if holding:
                 beta = 0.
@@ -82,7 +85,7 @@ def evaluate_demand(s, l, params, h_s, h_l, *, holding=False, h_theta=1e-4):
             ricci[mu, nu] = term1-term2+term3-term4
     scalar = float(np.einsum("ab,ab->", np.linalg.inv(g), ricci))
     demanded = (ricci-.5*g*scalar)/(8*math.pi)
-    fields = metric_scalars(float(s), float(l), params)
+    fields = scalar_evaluator(float(s), float(l), params)
     alpha, beta, radial, angular = [fields[k] for k in ("alpha", "beta", "gamma_ll", "gamma_omega")]
     if holding:
         beta = 0.
