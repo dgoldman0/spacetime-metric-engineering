@@ -229,6 +229,12 @@ stability discussion leaves the perturbation problem open. These families
 provide comparison data, with quantum normalization and dynamical
 stability preceding any rail fit.
 
+The [source restart assessment](SOURCE_CONSTRUCTION_RESTART_SHORTLIST.md)
+adds the 2026 criticism of the EDM single-particle interpretation and
+distinguishes these complete-source examples from a material-confined
+fermion component. It also records the free bound-state lapse condition
+against the saved rail profile.
+
 [Kontou's original inequality comparison](https://arxiv.org/html/2405.05963v2),
 section 6.3, also identifies tension between MMP and a proposed
 double-smeared null bound. Its application uses a flat, free-scalar bound
