@@ -1,0 +1,54 @@
+{
+  "created_utc": "2026-09-09T16:31:13.454702+00:00",
+  "workers": 4,
+  "seconds": 14.187953925691545,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_condensate_rail.py": "f983a71a6b705f1bacff417ef56c206eccb8a20ecc6751c585e4526771e47411",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855",
+    "supporting_reports/data/curved_quantum_boundary/geometry.json": "ac234fd7ac28ceba375af16d432205ff6a8c87480435b69a893a0816f4e86a76"
+  },
+  "boundary": {
+    "physical_radius": 6.8,
+    "inner_radius": 20.0,
+    "inner_mass": 0.6623158558171727,
+    "inner_lapse_gradient": -8.0018515958216e-67,
+    "matter_amplitude": 1.0,
+    "higgs_amplitude": 0.05,
+    "radial_pressure": -0.125
+  },
+  "couplings": {
+    "charge": 0.1,
+    "higgs_coupling": 1.0,
+    "matter_coupling": 1.4
+  },
+  "retained_geometry_phase": 0.745,
+  "model": "Ishihara-Ogawa screened scalar and Higgs fields, static gravitational exterior",
+  "primary_exterior_tolerance": 1e-10,
+  "reference": "https://arxiv.org/abs/2409.07818",
+  "full_perturbation_stability_evaluated": false,
+  "absolute_quantum_stress_evaluated": false,
+  "quantum_stress_in_exterior_einstein_equations": false,
+  "interior_metric": "retained rail snapshot, time derivatives omitted for the stationary material gate",
+  "inward_gate_counts": {
+    "cases": 16,
+    "reached_core_coordinate": 0
+  },
+  "neighborhood_counts": {
+    "cases": 9,
+    "exterior_converged": 9,
+    "reached_core_coordinate": 0
+  },
+  "output_sha256": {
+    "interior_analytic.csv.gz": "3f75570838c3b5b115d89b8eca1199777f93a847edb069868655f8ee0338b9a1",
+    "exterior_refinements.csv": "b8ef722286d79ed7576e20313bf982f86637b8f3c07ff516e922ecc5b8ee0b12",
+    "interior_retained.csv.gz": "fa370c690f8196b82b687c2ebe7cbfbe0fa8c5fed75434b64aaaa0c41ed0c329",
+    "condensate_rail_profiles.png": "37b66a84e2908e0ab4f71b341c69b27aa278e6453d00921f4cf90a8ca16e2a07",
+    "exterior_profile.csv.gz": "1ed760115127ecef3eaad04b32987e1b099fe31650fe1994b4f2b3a7b1c0cf5a",
+    "gravitational_continuation.csv": "2b5e42236e24d6811c66d5ea45b8f29bf67fb27400d139c1e8e61209acda171a",
+    "boundary_neighborhood.csv": "4e415fc7f98aa61738945145f14ca2f160c7092d7570f5e38285694c1f95006f",
+    "interior_regularities.csv": "fe960c31135e1079ee4da65be3b88ff7ac1fe34386ab3f652e1048f1a2776dcc"
+  }
+}
