@@ -126,6 +126,8 @@ For a metric update with the quantum profile held fixed, the inequality applies 
 
 A fully nonlinear fixed point also changes the quantum profile itself. Such a solution would have to generate a substantially larger negative quantum integral while preserving the rail requirements. The present calculation establishes the failed local update and the size of that remaining requirement; distant nonlinear branches retain an open existence question.
 
+The [longitudinal-source literature comparison](LONGITUDINAL_QUANTUM_SOURCE_LITERATURE.md) identifies magnetic fermion channels and quantum vortex strings as specific alternative source mechanisms. Its conformal-channel calculation relates the sign of their throat stress to the complete optical path and the curvature of the lapse, supplying an analytic selection condition for a revised construction.
+
 ## Verification and scope
 
 The absolute-source controls include a complete local-action subtraction through the curvature-squared ultraviolet order. Flat-space Bessel modes supply an exact reference. Regulator masses 2, 4, 8, and 16, angular sums through 192 and 384, frequency extensions, and local mesh refinement resolve the selected annulus estimates. Large-angular-order tails are fitted with inverse odd powers and compared against directly extended sums. These fitted tails carry a measured spread, retained in the numerical audit.

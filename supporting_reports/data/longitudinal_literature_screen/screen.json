@@ -1,0 +1,54 @@
+{
+  "scope": "Ideal static conformal channels on the fixed smooth seed; no joint solution",
+  "loop_assumption": "The channel spans the listed interval; exterior optical return length is set to zero for the most negative cylinder term",
+  "eta": 2.4127904527582454e-05,
+  "workers": 4,
+  "throat_proper": -0.00021048799687473343,
+  "throat_coordinate": -1.594487678680201e-06,
+  "throat_radius": 2.039575105792152,
+  "throat_lapse": 69.34321558026751,
+  "radius_over_planck_length": 415.2215637089643,
+  "required_tensor": [
+    0.009563542625740953,
+    -0.009564906638255544,
+    3.264183516225064e-05
+  ],
+  "throat_log_lapse_second": 0.0007694827884279221,
+  "critical_optical_loop_length": 3.2664531714711487,
+  "checks": {
+    "flat_cylinder_pass": true,
+    "mmp_null_relative_error": 2.1094237467877974e-15,
+    "trace_anomaly_relative_error": 2.220446049250313e-16,
+    "varying_radius_ward_relative_error": 5.798798459424938e-17
+  },
+  "optical_quadrature_max_relative_change": 1.100664004383134e-11,
+  "magnetic_same_radius_comparisons": [
+    {
+      "gauge_coupling": 0.1,
+      "continuous_flux": 23.426368110900874,
+      "one_flavor_ell": 240167.6569506418,
+      "one_flavor_center_lapse": 8.492297138125124e-06,
+      "rail_lapse_over_mmp_lapse": 8165425.026046212
+    },
+    {
+      "gauge_coupling": 0.3,
+      "continuous_flux": 70.27910433270262,
+      "one_flavor_ell": 80055.88565021394,
+      "one_flavor_center_lapse": 2.547689141437537e-05,
+      "rail_lapse_over_mmp_lapse": 2721808.342015404
+    },
+    {
+      "gauge_coupling": 1.0,
+      "continuous_flux": 234.26368110900873,
+      "one_flavor_ell": 24016.765695064183,
+      "one_flavor_center_lapse": 8.492297138125123e-05,
+      "rail_lapse_over_mmp_lapse": 816542.5026046212
+    }
+  ],
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/screen_longitudinal_casimir.py": "1683b66feafd3b67802731330d2130d0d4860faec71cc799395fe68bd9fc26de",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "01d7df2a3b528dd531b174545da618f4356e16467101716a0b010712b8841019",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a"
+  }
+}
