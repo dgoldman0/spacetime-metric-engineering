@@ -1,0 +1,30 @@
+{
+  "completed_utc": "2026-09-09T01:12:43.226250+00:00",
+  "status": "coupled_evolution_measured_with_failed_initial_rail_junctions",
+  "elapsed_seconds": 11.282582502812147,
+  "workers": 4,
+  "scenarios": 4,
+  "evolutions": 12,
+  "curvature_records": 432,
+  "evolution_status_counts": {
+    "duration_completed": 12
+  },
+  "max_worker_peak_rss_kib": 202188,
+  "parent_peak_rss_kib": 195756,
+  "worker_address_space_cap_mib": 1536,
+  "compute_cap_seconds": 600.0,
+  "output_cap_mb": 80.0,
+  "output_bytes_before_manifest": 56336137,
+  "full_rail_candidate_pass": false,
+  "signed_support_microscopic_dynamics_certified": false,
+  "general_comer_framework_excluded": false,
+  "source_kernel_sha256": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "reference_sha256": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_comer_two_current.py": "bb4ba3ea072c48c982e734c1c07263011d5c8066ea8c9958cdab19028c63bf09",
+    "toolkit/adm_harness_cli/adm_harness/comer_two_current.py": "beb2767815bea5383bb3cde2eaeb8cd09e84df5d9f000dbf839591d07bc4779d",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93"
+  },
+  "primary_paper": "https://arxiv.org/html/2606.17686v1",
+  "constitutive_scope": "barotropic two-current force equations with positive covariant resistance; separately conserved radial-tension support"
+}

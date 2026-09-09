@@ -2,6 +2,14 @@
 
 Date: 8 September 2026.
 
+The coupled currents complete the registered interval with positive rest
+energies, nonnegative resistance entropy production, and an unchanged GR
+tensor kinetic coefficient. Their independent Einstein-tensor discrepancies
+decrease with refinement. All 36 finest curvature witnesses are Type I.
+The explicit radial-tension support nevertheless fails the initial rail
+junction: the reference requires negative radial enthalpy, while this
+support contributes zero and the ordinary currents contribute positively.
+
 ## Question and registered scope
 
 The [quadratic startup attempt](COMER_ANDERSSON_SPHERICAL_STARTUP_ATTEMPT.md)
@@ -180,3 +188,190 @@ Thus this source choice fails the initial shell-free junction already at
 zero preload. The quantity measures extrinsic geometry and survives a time
 coordinate relabeling. The local evolution is retained to distinguish the
 behavior of the coupled currents from this independent embedding failure.
+
+## Coupled evolution result
+
+All twelve registered evolutions reach time 4. The minimum polar metric
+factor remains \(7.77698\times10^{-6}\), and all ordinary rest energies
+remain positive. The two fluids develop distinct velocities even in the
+zero-initial-drift control: their initial pressure profiles and equations of
+state produce different accelerations. Their largest relative drift on the
+512-cell histories is approximately 0.240. The calculation uses the full
+nonlinear velocity relations and resistance law throughout.
+
+The initial particle-plus-entropy energy is a reassignment of 0.0076864
+geometric mass units in the low-preload cases and 0.076864 in the high-preload
+case. The total initial mass change is zero by construction. This controls
+the preload energy cost while exposing the independent pressure cost in the
+junction test. The resistance coefficient varies with the subsequent local
+densities; its time variation is retained in the field data.
+
+At 512 cells, the final local results are:
+
+| Scenario | Maximum enclosed-mass change | Integrated resistance entropy production | Particle balance error | Entropy balance error |
+|---|---:|---:|---:|---:|
+| Low preload, slow drag | 0.002821 | \(3.2722\times10^{-4}\) | \(4.6115\times10^{-4}\) | \(4.8912\times10^{-4}\) |
+| Low preload, fast drag | 0.002835 | \(2.9511\times10^{-4}\) | \(4.6675\times10^{-4}\) | \(4.7989\times10^{-4}\) |
+| High preload, slow drag | 0.028110 | \(1.8382\times10^{-3}\) | \(3.3567\times10^{-4}\) | \(3.6407\times10^{-4}\) |
+| Zero initial drift | 0.002814 | \(3.1340\times10^{-4}\) | \(4.7859\times10^{-4}\) | \(4.7029\times10^{-4}\) |
+
+Balance errors are normalized to the corresponding initial particle number
+or entropy. They include boundary escape; the entropy balance also includes
+the computed production. For the low-preload slow-drag case, the maximum
+of those two errors falls from 0.006786 at 128 cells to 0.001973 at 256 and
+0.000489 at 512. The other three scenarios show the same improving trend.
+The computed mass response contains both inward accumulation and outward
+escape, with a larger response for the larger preload. The geometry and
+angular stress evolve together through the field equations.
+
+![Independent flows, entropy production, and conservation refinement](data/comer_two_current/two_current_evolution.png)
+
+## Curvature refinement and source classification
+
+For the explicit source, the complete radial discriminant is positive
+analytically. The signed support cancels from \(E+P_r\), giving
+\[
+h\pm2J=\sum_{x=n,s}(\rho_x+p_x)\gamma_x^2(1\pm v_x)^2>0,
+\qquad \Delta=(h+2J)(h-2J)>0.
+\]
+Thus both a timelike flux frame and an independent numerical curvature
+comparison are available. The original run retains 108 source witnesses and
+324 four-dimensional curvature tensors. All source witnesses are Type I.
+Some coarse curvature tensors are Type IV where the positive source margin
+is small relative to the discretization error.
+
+A targeted refinement re-evolves the same four scenarios at 1,024 cells
+and 161 retained times. It reuses the 512-cell witness coordinates and
+evaluates each at three further time and radial stencil sizes. This is a
+resolution test of the same constitutive model. It adds 36 source tensors
+and 108 curvature tensors while preserving every original run file.
+
+At the finest steps, \(h_t=6.25\times10^{-4}\) and
+\(h_r=\Delta r/16\), all 36 dynamic witnesses are Type I. The largest
+absolute four-channel error is \(3.24\times10^{-5}\), in the high-preload
+scenario. The largest error divided by the largest absolute source component
+at that witness is \(5.23\times10^{-4}\), or 0.0523%. These are local
+tensor comparisons on the evolved geometry, including its angular channel.
+
+For example, the low-preload slow-drag current-peak witness at time 3 has
+geometric discriminants approximately
+\(-6.91\times10^{-9}\), \(-1.70\times10^{-9}\), and
+\(-2.56\times10^{-10}\) at 128, 256, and 512 cells. The first three
+witness radii track the slightly shifting current peak. At the fixed
+512-cell radius \(r=3.01884765625\), the 1,024-cell evaluation gives
+\(+2.10\times10^{-10}\). The source discriminant is approximately
+\(3.4\times10^{-10}\). The negative coarse classifications therefore
+shrink and change sign as the source/curvature discrepancy is resolved.
+
+The 1,024-cell final particle and entropy balance errors are below
+\(1.15\times10^{-4}\) in every scenario. The largest absolute outer-mass
+balance error is \(3.66\times10^{-6}\), with errors below
+\(4.89\times10^{-7}\) in the three low-preload cases. The analytical
+entropy sign, numerical conservation convergence, and independent tensor
+comparison establish a consistent local evolution over this interval.
+They leave the initial and final rail matching conditions as additional
+requirements.
+
+![Mass redistribution and independent Einstein-tensor convergence](data/comer_two_current/two_current_audit.png)
+
+## Initial junction result
+
+The retained 2,049-point initial profile has radial enthalpy between
+\(-2.22196\times10^{-2}\) and \(-1.33850\times10^{-6}\). Both boundaries
+have a finite negative value. For the low-preload source, the initial
+junction measurements are:
+
+| Boundary | Reference \(E_i+P_{r,i}\) | Radial-pressure jump | Normal-acceleration jump |
+|---|---:|---:|---:|
+| Inner, \(r=2.15\) | \(-1.3441020\times10^{-6}\) | \(1.3441031\times10^{-6}\) | 0.01302193 |
+| Outer, \(r=6.25\) | \(-1.6020796\times10^{-4}\) | \(1.6020796\times10^{-4}\) | 0.01310710 |
+
+Initial mass and total-current jumps are zero. The pressure jumps remain
+strictly positive as the preload tends to zero, since their lower bounds
+are \(-h_i\). Changing the positive resistance coefficient or redistributing
+ordinary particle and thermal energy leaves this sign requirement in place
+for the chosen radial-tension support. Consequently all four scenarios
+fail shell-free matching to the retained initial worldtubes.
+
+The initial lapse change follows the changed stress balance. Its value
+alone depends on clock coordinates; the reported normal-acceleration jump
+is the geometric junction obstruction. A material surface stress, different
+initial worldtubes, or a support law carrying negative radial enthalpy would
+change the matching problem. This round adds none of those constructions.
+
+## Implication and stopping decision
+
+Allowing independently evolving currents and a responding geometry removes
+the forced kinetic cancellation encountered by the earlier prescribed-path
+quadratic fit. The positive resistance law also supplies a consistent
+entropy-production channel. The numerical curvature discrepancies decrease
+with resolution, including at the formerly negative-discriminant witnesses.
+This supplies a working local two-current example within the stated
+effective-support assumptions.
+
+Embedding that example in the retained rail requires a different supporting
+stress response. The rail's initial negative radial enthalpy must be carried
+by a constitutively specified sector; positive ordinary heat and particles
+plus radial tension cannot supply it. The relevant remaining question is
+therefore how the Comer currents couple to that signed support, including
+its angular response, energy exchanges, and characteristics. General
+model-(iii) dependence may provide further possibilities, and its full
+constitutive realization remains open.
+
+The round stops at the measured initial junction failure. Its results
+support continued consideration of the Comer framework while retaining the
+distinction between local fluid dynamics and an admissible rail handoff.
+The full An–T–Le construction and V=5 service conditions remain unresolved.
+
+## Verification, resources, and reproduction
+
+The full harness passed 305 tests. The six new tests cover exact fluid
+moment recovery, covariant drag and entropy production, nonlinear homogeneous
+relaxation, direct covariant conservation of the signed support, an exact
+static Einstein control, and coupled current-balance convergence. The
+implementation and registered contract are committed in `e656242`.
+
+The independent audit, committed in `9a59e55`, verifies all twelve field
+files, totaling 290,304 spacetime samples, including their moment equations,
+component sums, analytic positive radial discriminants, particle and entropy
+integrals, and shell mass accounting. All 576 retained eigensystems satisfy
+their eigen-equations to relative error below \(1.38\times10^{-16}\).
+Fresh eigenvalue calculations reproduce all 138 retained raw complex-pair
+records, which occur at the coarser numerical settings. The finest 36
+curvature witnesses have real spectra. Original outputs and the frozen
+source and reference hashes are preserved.
+
+The main run took 11.28 seconds with four workers. The targeted refinement
+and artifact audit took 12.39 seconds. The completed evidence occupies
+57.78 MB before Git storage. The largest main-run worker resident peak was
+197.4 MiB; the largest refinement-worker peak was 216.1 MiB. The original
+80 MB evidence allowance accommodates the full round.
+
+The [main manifest](data/comer_two_current/manifest.json) and
+[artifact verification](data/comer_two_current/artifact_verification.json)
+record run counts, resource measurements, software and source hashes, and
+the audit results. The [evolution summaries](data/comer_two_current/summaries.csv),
+[balance histories](data/comer_two_current/history.csv),
+[junction table](data/comer_two_current/junctions.csv), and
+[refinement histories](data/comer_two_current/refinement_history.csv)
+retain the scalar evidence. The NPZ files store the evolved metrics,
+individual fluid moments, support source, and reference profiles. Both
+curvature CSV files have companion NPZ files retaining projected and raw
+tensors, spectra, eigenvectors, and matching row indices.
+
+The main run requires an empty destination. The audit uses the resulting
+directory and preserves the original evidence:
+
+```bash
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/comer-two-current-matplotlib \
+python toolkit/adm_harness_cli/scripts/run_comer_two_current.py \
+  --workers 4 --output /tmp/comer-two-current-repeat
+
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/comer-two-current-matplotlib \
+python toolkit/adm_harness_cli/scripts/audit_comer_two_current.py \
+  --workers 4 --output /tmp/comer-two-current-repeat
+```

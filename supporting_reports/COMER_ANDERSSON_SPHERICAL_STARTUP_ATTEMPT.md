@@ -8,6 +8,13 @@ kinetic coefficient. All 72 registered evaluations fail the combined local
 conditions. This identifies a concrete limitation of the chosen action and
 prescribed paths; the general model-(iii) construction remains open.
 
+The subsequent [two-current evolution round](COMER_TWO_CURRENT_EVOLUTION_ROUND.md)
+evolves particles, entropy, and geometry together. It obtains a converging
+local evolution with positive resistance entropy production and regular GR
+kinetics, while its explicit signed-support law fails initial rail pressure
+matching. The coupled calculation therefore separates the behavior of the
+ordinary currents from the remaining support and junction requirements.
+
 ## Question and scope
 
 The [bounded reset search](LE_RESET_INVERSE_SEARCH.md) found an angular
