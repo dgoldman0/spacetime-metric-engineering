@@ -1,0 +1,108 @@
+{
+  "completed_utc": "2026-09-09T14:00:23.254989+00:00",
+  "elapsed_seconds": 2.9438133416697383,
+  "workers": 4,
+  "profile_tasks": [
+    {
+      "width": 0.025,
+      "nodes": 256,
+      "seconds": 0.012473191134631634,
+      "peak_rss_kib": 151012
+    },
+    {
+      "width": 0.025,
+      "nodes": 512,
+      "seconds": 0.03491977509111166,
+      "peak_rss_kib": 152960
+    },
+    {
+      "width": 0.025,
+      "nodes": 1024,
+      "seconds": 0.1359139485284686,
+      "peak_rss_kib": 164916
+    },
+    {
+      "width": 0.05,
+      "nodes": 256,
+      "seconds": 0.016611420549452305,
+      "peak_rss_kib": 150888
+    },
+    {
+      "width": 0.05,
+      "nodes": 512,
+      "seconds": 0.03896994423121214,
+      "peak_rss_kib": 152660
+    },
+    {
+      "width": 0.05,
+      "nodes": 1024,
+      "seconds": 0.14462982304394245,
+      "peak_rss_kib": 164664
+    },
+    {
+      "width": 0.1,
+      "nodes": 256,
+      "seconds": 0.02229159139096737,
+      "peak_rss_kib": 152960
+    },
+    {
+      "width": 0.1,
+      "nodes": 512,
+      "seconds": 0.03205286990851164,
+      "peak_rss_kib": 153220
+    },
+    {
+      "width": 0.1,
+      "nodes": 1024,
+      "seconds": 0.12795951683074236,
+      "peak_rss_kib": 163424
+    }
+  ],
+  "evidence_bytes_before_manifest": 564103,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_smooth_mirror.py": "78f2d25c5d3829814f959412d73af5732a95659d57984de4add77fe20999c945",
+    "toolkit/adm_harness_cli/adm_harness/smooth_mirror.py": "2dbca935bd6689cc0369f780a6b898f69c1f95cb8fbcffb0543dd8c0e496403f",
+    "toolkit/adm_harness_cli/adm_harness/spherical_support.py": "1e34c34ec356bf1708347827028729a401e7909d02347cd01c6e2adfe9b86156",
+    "supporting_reports/data/spherical_boundary_support/manifest.json": "7356527df9c900e25c7e190eaeaabccbba5aa617a86c174f85cbf7fd8afbd92f",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  },
+  "positive_tension_mass_interval": [
+    0.4593362777838497,
+    2.963212741823993
+  ],
+  "conditional_positive_radial_frequency_mass_interval": [
+    0.7060381063727244,
+    2.3386015168150283
+  ],
+  "positive_material_and_radial_scan_rows": 1029,
+  "negative_normal_stiffness_among_these_rows": 1029,
+  "example_mass_1p5": {
+    "surface_energy": 0.0025602000479107993,
+    "surface_pressure": 0.0004465178483507084,
+    "proper_shell_mass": 1.4876528232873192,
+    "interior_mass": 0.22518382352941177,
+    "surface_energy_derivative": -0.0007663753156418359,
+    "surface_pressure_derivative": -0.00022487049380391102,
+    "surface_momentum_flux": 0.00011795347737625441,
+    "conservation_identity_residual": 1.7618285302889447e-19,
+    "fluid_sound_speed_squared": 0.29701346368802983,
+    "fluid_radial_frequency_squared": 0.00022848453821655657,
+    "dec": true,
+    "positive_causal_fluid": true,
+    "ordinary_surface_mass_density_ceiling": 0.011308397267595078,
+    "wall_tension": 0.0005557214504031276,
+    "fermi_energy": 0.002004478597507672,
+    "positive_components": true,
+    "longitudinal_speed_squared": 0.5,
+    "normal_speed_squared": -0.17440740566936574,
+    "fermi_radial_frequency_squared": 0.01313809382035587,
+    "energy_reconstruction_error": 0.0,
+    "pressure_reconstruction_error": 0.0
+  },
+  "max_independent_quantum_relative_error": 5.6553428606775924e-11,
+  "max_medium_to_fine_peak_normalized_error": 9.520765954052674e-09,
+  "negative_local_shape_modes_in_scale_window": 65,
+  "quantum_scope": "Smooth planar massless minimal scalar stress at first order in V, Born parameter 0.05 and mu*width=1; finite inside the wall; full curved stress and quantum force remain unevaluated.",
+  "material_scope": "Leading measured wall tension plus trapped massless surface gas, pressure=gas_energy/2-wall_tension; prescribed-bulk radial diagnostic includes momentum flux; normal diagnostic is the local surface action with no added bending or nonlocal quantum response.",
+  "promotion": "Stopped at negative normal stiffness in the leading pressure-bearing surface description; a complete finite-width quantum material requires its own restoring response and coupled field equations."
+}
