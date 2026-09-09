@@ -1,5 +1,7 @@
 # Smooth joint condensate and quantum source
 
+The quantum/material update at fixed physical couplings preserves a roughly five-order deficit in the integrated negative radial stress required by the two-ended rail. The material block admits a regular solution with the quantum Higgs force and fixed particle number. Its recalculated vacuum supplies too little negative radial stress for a nearby alternating geometry update. The bounded continuation therefore encounters an Einstein-source solvability barrier.
+
 The joint source problem uses one smooth proper-distance chart,
 
 \[
@@ -55,7 +57,7 @@ The matter equation supplies the opposite exchange. Consequently the complete so
 
 ## Absolute-source calculation and acceptance
 
-The numerical control uses Pauli–Villars squared masses \(V_\chi+jM^2\), \(j=0,1,2,3\), with weights \((1,-3,3,-1)\). Their sums cancel the quartic, quadratic, and logarithmic ultraviolet orders. Spherical Euclidean modes use the reduced field \(\sqrt A R\chi\), with potential
+The numerical control uses Pauli–Villars squared masses \(V_\chi+iM^2\), \(i=0,1,2,3\), with weights \((1,-3,3,-1)\). Their sums cancel the quartic, quadratic, and logarithmic ultraviolet orders. Spherical Euclidean modes use the reduced field \(\sqrt A R\chi\), with potential
 
 \[
 U=\frac{\zeta^2}{A^2}+\frac{j(j+1)}{R^2}+V_\chi+
@@ -103,4 +105,65 @@ A fixed-charge material-block solve then includes the calculated quantum polariz
 
 Recomputing that vacuum through harmonic 192 gives required-to-available opening ratios of approximately 189,694 and 213,708 at regulator masses 4 and 8. The material response changes the available quantum support by a few percent. The signed quantum opening balance remains negative. Thus the first quantum/material update preserves the large deficit in the metric equation.
 
-The integral condition separates two different questions. A frozen quantum profile can support a nearby metric update only if its weighted negative null stress is sufficient. A fully nonlinear fixed point can also change the quantum profile itself. The measured deficit quantifies the increase in quantum response that such a continuation would have to produce; it leaves the existence of distant nonlinear branches open.
+The final refinement doubles the observation count, halves the radial spacing, and extends the angular and frequency calculations. It uses 133,684 radial nodes, 281 observations, harmonics through 256, and 320 frequency nodes. The resulting balances are:
+
+| Calculation | Regulator mass | Maximum helpful quantum balance | Fraction of required opening |
+| --- | ---: | ---: | ---: |
+| Initial smooth seed | 4 | \(1.09094\times10^{-5}\) | \(5.01217\times10^{-6}\) |
+| Initial smooth seed | 8 | \(9.63362\times10^{-6}\) | \(4.42602\times10^{-6}\) |
+| After the material update | 4 | \(1.14742\times10^{-5}\) | \(5.27164\times10^{-6}\) |
+| After the material update | 8 | \(1.01849\times10^{-5}\) | \(4.67929\times10^{-6}\) |
+| Refined updated source | 4 | \(1.17052\times10^{-5}\) | \(5.37778\times10^{-6}\) |
+| Refined updated source | 8 | \(1.06956\times10^{-5}\) | \(4.91395\times10^{-6}\) |
+
+The final required-to-available ratios are 185,950 and 203,502. The signed quantum balances are \(-1.79137\times10^{-5}\) and \(-2.10925\times10^{-5}\), so the opposing quantum contributions exceed the helpful ones on the updated material. The geometric integral agrees with its independent endpoint value to \(4.95\times10^{-12}\) fractionally.
+
+An empirical envelope combines the differences across these material, regulator, and numerical refinements with the fitted angular tails. Its opening integral is \(3.77917\times10^{-5}\), or \(1.73628\times10^{-5}\) of the requirement. Even doubling the geometric integration weight with this envelope supplies only \(3.47256\times10^{-5}\) of the required balance. The envelope measures the observed sensitivity; the finite-regulator calculations retain an unresolved continuum extrapolation error beyond these comparisons.
+
+![The required radial null stress and the computed absolute scalar contribution, together with their integrated opening balances.](data/semiclassical_joint/audit/joint_opening_balance.png)
+
+For a metric update with the quantum profile held fixed, the inequality applies to every classical material configuration, including a fully relaxed material solution. A step that increases the reference-coordinate measure \(R\,dl/A\) by at most a factor of two can at most double the available integral. The measured deficit exceeds this allowance by several orders. This supplies the stopping condition for the bounded alternating update.
+
+A fully nonlinear fixed point also changes the quantum profile itself. Such a solution would have to generate a substantially larger negative quantum integral while preserving the rail requirements. The present calculation establishes the failed local update and the size of that remaining requirement; distant nonlinear branches retain an open existence question.
+
+## Verification and scope
+
+The absolute-source controls include a complete local-action subtraction through the curvature-squared ultraviolet order. Flat-space Bessel modes supply an exact reference. Regulator masses 2, 4, 8, and 16, angular sums through 192 and 384, frequency extensions, and local mesh refinement resolve the selected annulus estimates. Large-angular-order tails are fitted with inverse odd powers and compared against directly extended sums. These fitted tails carry a measured spread, retained in the numerical audit.
+
+At coordinate \(-4\), the radial null source after the extended sum is approximately \(-2.38\times10^{-4}\) for regulator mass 8 and \(-2.42\times10^{-4}\) for mass 16, in one-field units. The finite regulator remains a numerical auxiliary. Its value is independent of the physical field count and of the fixed gravitational conversion \(\eta\).
+
+The local conservation test at that annulus includes pressure gradients, lapse acceleration, angular anisotropy, and the material exchange term. At regulator masses 4 and 8, the relative residuals are \(3.56\times10^{-5}\) and \(3.26\times10^{-4}\). The throat controls instead give a small positive radial null stress, approximately \(5.35\times10^{-7}\) at regulator masses 2 and 4. Their available tail spreads preserve this sign. The integrated opening condition supplies the stronger profile-wide test.
+
+Separate proper-distance stencils at the Higgs transition include a substantial quantum/material exchange term. Their relative conservation residuals are \(1.08\times10^{-4}\) and \(2.38\times10^{-4}\). Direct differentiation of the widely spaced profile observations retains large local truncation errors around rapid transitions; the [broad-stencil diagnostic](data/semiclassical_joint/audit/profile_ward_identity.csv) records its unconverged result. The [local conservation checks](data/semiclassical_joint/audit/ward_identity.csv) use independently evaluated nearby points.
+
+The material solve uses the preceding quantum polarization. Recomputing the vacuum on the changed amplitudes provides the next block of the alternating iteration. The complete Einstein–material–quantum fixed point remains a further requirement. The stopping condition already follows from an optimistic integral that grants the classical material zero opposing null stress.
+
+The recalculated polarization changes the Higgs-equation right-hand side by at most \(7.47\times10^{-5}\). Thus the material solve and the vacuum recalculation form one alternating iteration, with their remaining reciprocal residual recorded separately. The neutral scalar's lowest mode stays positive: its frequency changes from 0.211415 to 0.210714 across the material update. Three radial resolutions check this mode calculation. These frequencies describe the spectator field; coupled material and metric stability remains a subsequent problem.
+
+The retained manifests identify numerical parameters, source hashes, artifact hashes, worker memory, and run time. Earlier source versions are checked against the staged commits. The numerical audit compares the regulator choices, the material response, and the final mesh and mode refinement. Its empirical envelope summarizes these observed changes and the fitted angular tails; it is distinct from a mathematical error bound on the continuum quantum theory.
+
+Forty-nine relevant tests pass, covering the new joint equations and the existing condensate, vacuum-response, and curved-boundary calculations. The coupled-action tests verify the Higgs-force coefficient, quantum/material exchange, radial-constraint propagation, exact product-space modes, and the two-ended integrated Einstein identity.
+
+The scripts retain numerical arrays, tables, and a scientific figure. This narrative report is written manually. The complete active An–T–Le construction remains contingent on an adequate self-consistent source, followed by stability and rail-evolution checks.
+
+The eleven retained mode runs total 28.04 minutes. They use two or four workers per run, with a maximum of six during overlap. The largest measured mode-worker resident memory is 206.5 MiB. Retained evidence occupies approximately 10 MB. The [opening comparisons](data/semiclassical_joint/audit/opening_comparisons.csv), [local source controls](data/semiclassical_joint/audit/local_source_controls.csv), [spectral checks](data/semiclassical_joint/audit/spectral_gap.csv), and [audit](data/semiclassical_joint/audit/audit.json) retain the numerical details and source provenance.
+
+## Reproduction
+
+The research dependencies are available through the harness's `semiclassical` optional dependency group. From the repository root, a fresh numerical sequence is:
+
+```bash
+export PYTHONPATH=toolkit/adm_harness_cli
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
+python toolkit/adm_harness_cli/scripts/run_semiclassical_feedback.py --output /tmp/rail-joint-repeat/initial_profile
+python toolkit/adm_harness_cli/scripts/run_semiclassical_material.py --source /tmp/rail-joint-repeat/initial_profile --output /tmp/rail-joint-repeat/material_update
+python toolkit/adm_harness_cli/scripts/run_semiclassical_feedback.py --output /tmp/rail-joint-repeat/updated_192 --material /tmp/rail-joint-repeat/material_update/material.npz --angular-max 192 --frequency-nodes 256 --local-frequency-upper 192
+python toolkit/adm_harness_cli/scripts/run_semiclassical_feedback.py --output /tmp/rail-joint-repeat/updated_fine --material /tmp/rail-joint-repeat/material_update/material.npz --spacing .0025 --angular-max 256 --frequency-nodes 320 --local-frequency-upper 256 --witness-refinement 2
+```
+
+The control manifests retain their individual frequency, angular, regulator, and proper-offset arguments for `run_semiclassical_control.py`. The committed evidence can be checked and its numeric tables and figure rebuilt with:
+
+```bash
+PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MPLCONFIGDIR=/tmp/rail-joint-mpl python toolkit/adm_harness_cli/scripts/audit_semiclassical_feedback.py
+PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 pytest -q toolkit/adm_harness_cli/tests/test_semiclassical_joint.py toolkit/adm_harness_cli/tests/test_condensate_vacuum.py toolkit/adm_harness_cli/tests/test_curved_boundary.py toolkit/adm_harness_cli/tests/test_condensate_joint.py toolkit/adm_harness_cli/tests/test_condensate_rail.py toolkit/adm_harness_cli/tests/test_screened_condensate.py
+```

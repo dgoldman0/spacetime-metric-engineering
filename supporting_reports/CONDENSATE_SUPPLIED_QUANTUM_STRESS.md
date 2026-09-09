@@ -4,6 +4,8 @@ The resolved condensate preserves the enclosing boundary's useful vacuum-respons
 
 The absolute quantum source encounters a separate, decisive condition at the geometric join. The matched classical background has a curvature step, and the scalar vacuum develops a positive \(d^{-2}\) energy term on its interior side. The required additional energy stays finite and negative there. Hence this exact joined background fails the regular semiclassical source equation. A complete condensate–quantum construction requires the metric transition, absolute vacuum stress, and material response to satisfy a common set of equations.
 
+The [smooth joint investigation](SEMICLASSICAL_JOINT_INVESTIGATION.md) implements a common quantum stress and material force, then performs a fixed-charge material update and recalculates the absolute vacuum on that smooth seed. Its integrated negative radial stress remains roughly 186,000–204,000 times too small for the measured opening balance. This supplies a global solvability barrier for the bounded alternating geometry update beyond the original curvature-junction condition.
+
 ## Registered source and calculation
 
 The starting material is the regular, nodeless branch in the [joint-continuation calculation](CONDENSATE_JOINT_CONTINUATION.md). The quantum probe is one real, minimally coupled neutral scalar in its static ground state, with positive Higgs coupling

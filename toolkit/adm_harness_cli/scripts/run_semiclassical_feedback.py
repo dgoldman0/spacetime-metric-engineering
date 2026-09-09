@@ -71,9 +71,11 @@ def main():
     parser.add_argument('--regulators', type=float, nargs='+', default=[4., 8.])
     parser.add_argument('--budget-seconds', type=float, default=900.)
     parser.add_argument('--material', type=Path)
+    parser.add_argument('--witness-refinement', type=int, default=1)
     args = parser.parse_args()
-    if not 1 <= args.workers <= 6:
-        parser.error('one to six workers required')
+    if (not 1 <= args.workers <= 6 or args.witness_refinement not in (1, 2, 4)
+            or args.spacing <= 0 or args.angular_max < 32 or args.budget_seconds <= 0):
+        parser.error('one to six workers, resolved mesh/harmonics, and positive budget required')
     if args.output.exists() and any(args.output.iterdir()):
         parser.error('choose an empty output directory')
     started = time.monotonic()
@@ -90,6 +92,9 @@ def main():
     witnesses = np.unique(np.r_[-40., -30., np.arange(-20., -6., .5),
         np.arange(-6., -2., .125), np.arange(-2., 2., .25),
         np.arange(2., 6., .125), np.arange(6., 20.01, .5), 30., 40.])
+    if args.witness_refinement > 1:
+        fractions = np.arange(args.witness_refinement)/args.witness_refinement
+        witnesses = np.r_[(witnesses[:-1, None]+np.diff(witnesses)[:, None]*fractions).ravel(), witnesses[-1]]
     problem = ProfileRadialControl.from_seed(seed, witnesses, args.spacing, args.end_coordinate)
     sources = [Path(__file__).resolve(), profile.path, *[ROOT/'toolkit/adm_harness_cli/adm_harness'/name
         for name in ('semiclassical_joint.py', 'semiclassical_feedback.py', 'absolute_vacuum_control.py',

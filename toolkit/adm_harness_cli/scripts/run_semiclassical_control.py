@@ -17,6 +17,7 @@ from adm_harness.curved_boundary import frequency_quadrature
 from adm_harness.semiclassical_joint import (SmoothJointSeed, heavy_coefficients,
     vacuum_finite_coefficients, local_action_source, flat_renormalized_source)
 from adm_harness.source_ledger import sha256_file
+from adm_harness.semiclassical_material import UpdatedMaterialSeed
 
 ROOT = Path(__file__).resolve().parents[3]
 PROBLEM = OPTIONS = None
@@ -64,6 +65,7 @@ def main():
     parser.add_argument('--budget-seconds', type=float, default=600.)
     parser.add_argument('--flat', action='store_true')
     parser.add_argument('--no-local-correction', action='store_true')
+    parser.add_argument('--material', type=Path)
     args = parser.parse_args()
     if not 1 <= args.workers <= 6 or args.angular_max < 0:
         parser.error('one to six workers and nonnegative harmonic limit required')
@@ -82,6 +84,14 @@ def main():
         proper = r
     else:
         seed = SmoothJointSeed(profile, args.width, args.seed_spacing, args.extent)
+        if args.material:
+            checks = json.loads((args.material.parent/'checks.json').read_text())
+            if not checks['accepted'] or sha256_file(args.material) != checks['output_hashes'][args.material.name]:
+                raise ValueError('material input failed acceptance or hash check')
+            with np.load(args.material) as saved:
+                if float(saved['width']) != args.width or float(saved['seed_spacing']) != args.seed_spacing:
+                    raise ValueError('material and metric seed parameters must agree')
+                seed = UpdatedMaterialSeed(seed, saved['proper'], saved['amplitudes'])
         proper = float(seed.proper_of_coordinate(args.coordinate))+args.proper_offset
         problem = AbsoluteRadialControl.from_seed(seed, proper, args.spacing, args.far_spacing)
         jets = seed.jets(proper)
@@ -133,7 +143,13 @@ def main():
         ROOT/'toolkit/adm_harness_cli/adm_harness/condensate_rail.py',
         ROOT/'toolkit/adm_harness_cli/adm_harness/curved_boundary.py',
         ROOT/'supporting_reports/data/curved_quantum_boundary/geometry.npz']
+    if args.material:
+        sources.extend([args.material.resolve(), (args.material.parent/'checks.json').resolve(),
+            ROOT/'toolkit/adm_harness_cli/adm_harness/semiclassical_material.py'])
+    def key(path):
+        return str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
     manifest = {**vars(args), 'output': str(args.output),
+        'material': str(args.material) if args.material else None,
         'scope': 'Finite-regulator absolute-source control; continuum and regulator limits pending',
         'elapsed_seconds': time.monotonic()-started, 'worker_peak_rss_kib': peak,
         'nodes': len(problem.coordinate), 'eta': profile.eta,
@@ -141,7 +157,7 @@ def main():
         'proper_coordinate': proper, 'log_radius_gradient': float(rjets[1]),
         'log_lapse_gradient': float(ajets[1]), 'mass_squared_gradient': float(vjets[1]),
         'required_tensor': required.tolist(), 'mass_squared': float(vjets[0]),
-        'source_hashes': {str(p.relative_to(ROOT)): sha256_file(p) for p in sources},
+        'source_hashes': {key(p): sha256_file(p) for p in sources},
         'output_hashes': {p.name: sha256_file(p) for p in args.output.iterdir()}}
     (args.output/'manifest.json').write_text(json.dumps(manifest, indent=2)+'\n')
     print(pd.DataFrame(results).to_string(index=False), flush=True)
