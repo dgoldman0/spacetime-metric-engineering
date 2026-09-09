@@ -1,0 +1,15 @@
+[
+  {"label": "reference", "overrides": {}, "provenance": "supporting_reports/data/le_coupled_reset_source/manifest.json"},
+  {"label": "radius190", "overrides": {"Rth": 1.9, "ROmega": 1.9}, "provenance": "supporting_reports/STAGE1_TOPOLOGY_SUPPORT_SCALING.md"},
+  {"label": "radius205", "overrides": {"Rth": 2.05, "ROmega": 2.05}, "provenance": "supporting_reports/STAGE2_COMPOSITE_SOURCE_ANSATZ_PROMOTED_PAIR.md"},
+  {"label": "angular_width180", "overrides": {"wOmega": 1.8}, "provenance": "supporting_reports/STAGE1_TOPOLOGY_SUPPORT_SCALING.md"},
+  {"label": "angular_width220", "overrides": {"wOmega": 2.2}, "provenance": "supporting_reports/STAGE1_TOPOLOGY_SUPPORT_SCALING.md"},
+  {"label": "core_gain004", "overrides": {"standing_support_packet_radial_log_gain": 0.04}, "provenance": "toolkit/adm_harness_cli/scripts/run_radial_support_screen.py"},
+  {"label": "core_gain006", "overrides": {"standing_support_packet_radial_log_gain": 0.06}, "provenance": "toolkit/adm_harness_cli/scripts/run_radial_support_screen.py"},
+  {"label": "ring_previous", "overrides": {"standing_support_packet_radial_shoulder_radius_multiplier": 2.2, "standing_support_packet_radial_shoulder_width_multiplier": 2.8}, "provenance": "supporting_reports/STAGE1_RADIAL_SUPPORT_GEOMETRY_REFINEMENT.md"},
+  {"label": "ring_wider", "overrides": {"standing_support_packet_radial_shoulder_width_multiplier": 3.2}, "provenance": "supporting_reports/STAGE1_RADIAL_SUPPORT_GEOMETRY_REFINEMENT.md"},
+  {"label": "skirt_off", "overrides": {"standing_support_packet_radial_skirt_log_gain": 0.0}, "provenance": "supporting_reports/STAGE1_RADIAL_SUPPORT_GEOMETRY_REFINEMENT.md"},
+  {"label": "receiver_off_control", "overrides": {"support_edge_receiver_angular_log_gain": 0.0}, "provenance": "toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_promotion_dense.json"},
+  {"label": "receiver_outer_control", "overrides": {"support_edge_receiver_inner_multiplier": 0.65, "support_edge_receiver_outer_multiplier": 1.2}, "provenance": "toolkit/adm_harness_cli/specs/endpoint_beta_memory_receiver_negative_l_promotion_dense.json"},
+  {"label": "beta_w8_t2_control", "overrides": {"standing_support_packet_beta_rematch_width_multiplier": 8.0, "standing_support_packet_beta_rematch_temporal_width_multiplier": 2.0}, "provenance": "supporting_reports/STAGE2_BETA_COLLAR_GENERATOR_SCREEN.md"}
+]
