@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-09-09T01:35:04.460863+00:00",
+  "elapsed_seconds": 4.783084041438997,
+  "workers": 4,
+  "worker_memory_mib": 1536,
+  "max_worker_peak_rss_kib": 186208,
+  "evidence_bytes_before_manifest": 12117866,
+  "source_hashes": {
+    "supporting_reports/data/le_coupled_reset_source/reference_tensors.csv.gz": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93",
+    "toolkit/adm_harness_cli/adm_harness/vacuum_support.py": "1538e1a6b93e8aa6a3265622fa84aa0ad331ab814b32b93580ee116041797fa5",
+    "toolkit/adm_harness_cli/scripts/run_vacuum_support.py": "2fcc48b285b5beb402179270b8b970e08a8efa9802d06663cc982bab19c3b3e4"
+  },
+  "scenarios": [
+    [
+      "zero_preload",
+      0.0,
+      0.0
+    ],
+    [
+      "low_preload_zero_drift",
+      0.01,
+      0.0
+    ],
+    [
+      "low_preload_counterflow",
+      0.01,
+      0.04
+    ],
+    [
+      "high_preload_counterflow",
+      0.1,
+      0.04
+    ]
+  ],
+  "radial_points": [
+    513,
+    1025,
+    2049
+  ],
+  "comparisons": 48,
+  "full_algebraic_fits": 24,
+  "full_material_candidates": 0,
+  "scope": "Planar vacuum tensor weights plus pressure-bounded material remainder; boundary and constitutive checks separate."
+}
