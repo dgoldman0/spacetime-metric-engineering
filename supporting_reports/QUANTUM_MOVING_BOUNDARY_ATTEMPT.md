@@ -122,6 +122,12 @@ spatial stresses use the actual instantaneous coupling \(\chi V\).
 Excitation and the force lag compare the evolved state with the ground
 state of that same instantaneous operator.
 
+For a normal Fourier wave-number difference \(d\), the pair-potential
+element is \(2A\cos(da/2)\). Its divided difference is evaluated as
+\(-Ad\sin[d(a_1+a_2)/4]\operatorname{sinc}[d(a_2-a_1)/4]\),
+where \(\operatorname{sinc}(x)=\sin(x)/x\). This continuous expression
+preserves force accuracy at release from rest and at turning points.
+
 Energy histories split \(H\) into \(E_\mathrm{free}+U\) and
 \(B-U+K(a-a_\mathrm{nat})^2/2+2M_H/3\). These two complementary
 bookkeeping components exchange energy while their sum stays fixed.

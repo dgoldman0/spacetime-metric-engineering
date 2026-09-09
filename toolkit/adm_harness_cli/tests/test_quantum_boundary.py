@@ -43,6 +43,17 @@ def test_full_hamiltonian_generates_wall_velocity_and_force():
     assert abs(force-numerical_force) < 5e-9
 
 
+def test_force_secant_is_regular_at_rest_and_exact_for_finite_motion():
+    field = PlanarField(16, 8)
+    np.testing.assert_allclose(field.potential_secant(1., 1.), field.operator(1., 1), atol=2e-15)
+    for delta in [1e-12, 1e-8, .002, -.02]:
+        product = field.potential_secant(1., 1.+delta)*delta
+        np.testing.assert_allclose(product, field.operator(1.+delta)-field.operator(1.), atol=2e-14)
+    released = evolve(field, prepare_mechanics(field, 1., 0.), 0., duration=.3, step=.02, snapshots=7)
+    assert released['status'] == 'duration_completed'
+    assert released['histories'][-1]['separation'] < 1.
+
+
 @pytest.mark.parametrize('velocity', [0., .02])
 def test_coupled_energy_and_quantum_commutators(velocity):
     field = PlanarField(8, 6)

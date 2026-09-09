@@ -57,6 +57,19 @@ class PlanarField:
             return self.free+self.wall(-separation/2)+self.wall(separation/2)
         return (-.5)**derivative*self.wall(-separation/2, derivative)+.5**derivative*self.wall(separation/2, derivative)
 
+    def potential_secant(self, first, second):
+        """Exact divided difference, including coincident separations.
+
+        The pair potential has Fourier elements 2*envelope*cos(difference*a/2).
+        The sine/sinc identity avoids cancellation when a wall is released
+        from rest or passes through a turning point.
+        """
+        complex_matrix = (-self.envelope*self.difference
+            *np.sin(self.difference*(first+second)/4)
+            *np.sinc(self.difference*(second-first)/(4*np.pi)))
+        matrix = np.real(self.transform.conj().T@complex_matrix@self.transform)
+        return .5*(matrix+matrix.T)
+
     def spectrum(self, operator):
         values, vectors = np.linalg.eigh(operator)
         omega2 = values[None, :]+self.transverse[:, None]**2
@@ -189,9 +202,7 @@ def coupled_step(field, mechanics, f, p, separation, momentum, step):
         new_mass = mechanics.moving_rest_mass+new_interaction
         new_boundary = np.sqrt(new_mass**2+4*guess_momentum**2)
         next_chi = (old_mass+new_mass)/(old_boundary+new_boundary)
-        change = guess-separation
-        derivative = ((new_potential-old_potential)/change if abs(change) > 1e-7
-                      else field.operator(.5*(guess+separation), 1))
+        derivative = field.potential_secant(separation, guess)
         force = -.25*next_chi*(field.expectation(f, derivative)+field.expectation(fn, derivative))
         spring_force = -mechanics.stiffness*(.5*(guess+separation)-mechanics.natural)
         next_momentum = momentum+step*(force+spring_force)
@@ -199,7 +210,7 @@ def coupled_step(field, mechanics, f, p, separation, momentum, step):
         if max(abs(next_separation-guess), abs(next_momentum-guess_momentum), abs(next_chi-chi)) < 2e-13:
             return fn, pn, next_separation, next_momentum, iteration+1
         guess, guess_momentum, chi = next_separation, next_momentum, next_chi
-    raise RuntimeError('coupled discrete-gradient step did not converge')
+    raise RuntimeError(f'coupled discrete-gradient step did not converge at a={separation}, p={momentum}, h={step}')
 
 
 def evolve(field, mechanics, velocity, duration=3., step=.005, snapshots=61, deadline=np.inf):
