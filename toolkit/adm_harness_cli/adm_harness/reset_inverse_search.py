@@ -4,8 +4,9 @@ The mass history fixes energy density and conserved luminosity. A nonlinear
 radial lapse solve enforces a material radial equation of state. The angular
 Einstein equation, source admissibility, and exchanges remain independent
 acceptance conditions. A small residual is required before calling this a
-coupled solution; the construction is a local necessary relaxation of rail
-matching and service, which require separate verification on any survivor.
+coupled solution. This restricted family chooses static endpoint profiles;
+matching to the active rail and retaining its service require separate
+verification on any survivor.
 """
 from __future__ import annotations
 
@@ -96,7 +97,7 @@ class ReferenceGrid:
     path_kind: str = 'waypoints'
 
 
-def reference_grid(path: str | Path, radial_points=129, temporal_points=49, path_kind='waypoints'):
+def reference_grid(path: str | Path, radial_points=129, temporal_points=49, path_kind='waypoints', u_values=None):
     frame = pd.read_csv(path)
     frame = frame[frame.holding & frame.level.eq(2)]
     phases = np.sort(frame.s.unique())
@@ -106,7 +107,9 @@ def reference_grid(path: str | Path, radial_points=129, temporal_points=49, path
         raise ValueError('path_kind must be direct or waypoints')
     r = np.linspace(2.15, 6.25, radial_points)
     reference_radius = np.linspace(2.15, 6.25, 1025)
-    u = np.linspace(0., 1., temporal_points)
+    u = np.linspace(0., 1., temporal_points) if u_values is None else np.asarray(u_values,dtype=float)
+    if u.ndim!=1 or len(u)<2 or not np.isfinite(u).all() or u[0]!=0 or u[-1]!=1 or np.any(np.diff(u)<=0):
+        raise ValueError('time parameters must increase from zero to one')
     # Allocate clock time to the active part of the reset while retaining the
     # late s=15 endpoint. All endpoint phase derivatives through order two vanish.
     q = rise(u)
