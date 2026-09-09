@@ -19,6 +19,7 @@ from adm_harness.curved_boundary import frequency_quadrature
 from adm_harness.semiclassical_feedback import ProfileRadialControl
 from adm_harness.semiclassical_joint import (SmoothJointSeed, heavy_coefficients,
     vacuum_finite_coefficients, local_action_source, flat_renormalized_source)
+from adm_harness.semiclassical_material import UpdatedMaterialSeed
 from adm_harness.source_ledger import sha256_file
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -69,6 +70,7 @@ def main():
     parser.add_argument('--local-frequency-upper', type=float, default=128.)
     parser.add_argument('--regulators', type=float, nargs='+', default=[4., 8.])
     parser.add_argument('--budget-seconds', type=float, default=900.)
+    parser.add_argument('--material', type=Path)
     args = parser.parse_args()
     if not 1 <= args.workers <= 6:
         parser.error('one to six workers required')
@@ -77,6 +79,14 @@ def main():
     started = time.monotonic()
     profile = JoinedProfile(ROOT)
     seed = SmoothJointSeed(profile, args.width, args.seed_spacing)
+    if args.material:
+        checks = json.loads((args.material.parent/'checks.json').read_text())
+        if not checks['accepted'] or sha256_file(args.material) != checks['output_hashes'][args.material.name]:
+            raise ValueError('material archive failed its acceptance or hash check')
+        with np.load(args.material) as saved:
+            if float(saved['width']) != args.width or float(saved['seed_spacing']) != args.seed_spacing:
+                raise ValueError('material and metric seed parameters must agree')
+            seed = UpdatedMaterialSeed(seed, saved['proper'], saved['amplitudes'])
     witnesses = np.unique(np.r_[-40., -30., np.arange(-20., -6., .5),
         np.arange(-6., -2., .125), np.arange(-2., 2., .25),
         np.arange(2., 6., .125), np.arange(6., 20.01, .5), 30., 40.])
@@ -84,8 +94,12 @@ def main():
     sources = [Path(__file__).resolve(), profile.path, *[ROOT/'toolkit/adm_harness_cli/adm_harness'/name
         for name in ('semiclassical_joint.py', 'semiclassical_feedback.py', 'absolute_vacuum_control.py',
         'condensate_vacuum.py', 'condensate_joint.py', 'condensate_rail.py', 'curved_boundary.py',
-        'screened_condensate.py')], ROOT/'supporting_reports/data/curved_quantum_boundary/geometry.npz']
-    hashes = {str(p.relative_to(ROOT)): sha256_file(p) for p in sources}
+        'screened_condensate.py', 'semiclassical_material.py')], ROOT/'supporting_reports/data/curved_quantum_boundary/geometry.npz']
+    if args.material:
+        sources.extend([args.material.resolve(), (args.material.parent/'checks.json').resolve()])
+    def key(path):
+        return str(path.relative_to(ROOT)) if path.is_relative_to(ROOT) else str(path)
+    hashes = {key(p): sha256_file(p) for p in sources}
     print(f'{len(problem.coordinate)} nodes; {len(problem.probes)} observations', flush=True)
     moments = np.zeros((args.angular_max+1, len(args.regulators), len(problem.probes), 4), np.longdouble)
     peak, last = 0, started
@@ -146,9 +160,10 @@ def main():
     pd.DataFrame(balances).to_csv(args.output/'opening_balance.csv', index=False)
     np.savez_compressed(args.output/'angular_sums.npz', moments=moments.astype(float), proper=l)
     for path in sources:
-        if sha256_file(path) != hashes[str(path.relative_to(ROOT))]:
+        if sha256_file(path) != hashes[key(path)]:
             raise RuntimeError('source changed during computation: '+str(path))
-    manifest = {**vars(args), 'output': str(args.output), 'eta': profile.eta,
+    manifest = {**vars(args), 'output': str(args.output),
+        'material': str(args.material) if args.material else None, 'eta': profile.eta,
         'elapsed_seconds': time.monotonic()-started, 'worker_peak_rss_kib': peak,
         'scope': 'Necessary integrated Einstein balance for a frozen quantum update; full nonlinear fixed point remains separate',
         'nodes': len(problem.coordinate), 'probes': len(l), 'source_hashes': hashes,

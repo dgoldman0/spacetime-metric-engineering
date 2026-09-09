@@ -101,4 +101,6 @@ The initial smooth seed has \(B_{\rm opening}=2.1765897951\) between the coordin
 
 A fixed-charge material-block solve then includes the calculated quantum polarization in the Higgs equation. It preserves \(N=48954.28276875792\), selects \(\omega=0.8528237074\), and has independent equation residual \(2.50\times10^{-6}\). The largest amplitude change from the smoothed starting fields is 0.0595. The absolute vacuum is recalculated on these adjusted amplitudes before evaluating the subsequent metric step.
 
+Recomputing that vacuum through harmonic 192 gives required-to-available opening ratios of approximately 189,694 and 213,708 at regulator masses 4 and 8. The material response changes the available quantum support by a few percent. The signed quantum opening balance remains negative. Thus the first quantum/material update preserves the large deficit in the metric equation.
+
 The integral condition separates two different questions. A frozen quantum profile can support a nearby metric update only if its weighted negative null stress is sufficient. A fully nonlinear fixed point can also change the quantum profile itself. The measured deficit quantifies the increase in quantum response that such a continuation would have to produce; it leaves the existence of distant nonlinear branches open.

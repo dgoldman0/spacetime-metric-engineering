@@ -1,0 +1,45 @@
+{
+  "output": "/tmp/rail-feedback-updated-192",
+  "workers": 4,
+  "spacing": 0.005,
+  "width": 0.25,
+  "seed_spacing": 0.025,
+  "end_coordinate": 48.0,
+  "angular_max": 192,
+  "frequency_nodes": 256,
+  "local_frequency_upper": 192.0,
+  "regulators": [
+    4.0,
+    8.0
+  ],
+  "budget_seconds": 900.0,
+  "material": "supporting_reports/data/semiclassical_joint/material_update/material.npz",
+  "eta": 2.4127904527582454e-05,
+  "elapsed_seconds": 159.54801176302135,
+  "worker_peak_rss_kib": 189612,
+  "scope": "Necessary integrated Einstein balance for a frozen quantum update; full nonlinear fixed point remains separate",
+  "nodes": 66843,
+  "probes": 141,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_semiclassical_feedback.py": "103b1b84fb9f6cfd18663020f1efac441b69b18084632d135f858a8677932fe8",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "01d7df2a3b528dd531b174545da618f4356e16467101716a0b010712b8841019",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_feedback.py": "7df04065f955149f54af29879029f703033a4c031e473e04b58e9bbc03d3a3d2",
+    "toolkit/adm_harness_cli/adm_harness/absolute_vacuum_control.py": "ada3d06b8fe5874cb5426b8d250520b1b50e228f0105cafd901697647238b137",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_material.py": "3d9c3e16e68cbc9f69e462dc05eb81d046d9a390405957a12a07d0f21624247b",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855",
+    "supporting_reports/data/semiclassical_joint/material_update/material.npz": "2972212ba258e97515c5dad532ea90e83853b20bfa270bfb151b440b90fec21a",
+    "supporting_reports/data/semiclassical_joint/material_update/checks.json": "1b18dfcd43f5341717a4523d3578b143ef165a291585c5da9fb4730d15f78602"
+  },
+  "geometric_integral_relative_error": 6.13664674631309e-12,
+  "output_hashes": {
+    "source_profile.csv": "03a2a0d3980775d53853ff891423e48cab256ae403b805c4b9a3e63d944ff814",
+    "opening_balance.csv": "e3d140e04ce401fa20ca34afbd356ed286a3a7a74b9a401f8631b285a4820014",
+    "angular_sums.npz": "57e45774a3410950b997447d01e64d190f58a43767ab85acce31567248b126a7"
+  }
+}
