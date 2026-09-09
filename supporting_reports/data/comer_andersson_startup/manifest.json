@@ -1,0 +1,33 @@
+{
+  "completed_utc": "2026-09-09T00:46:50.725293+00:00",
+  "status": "minimal_model_iii_rate_specialization_rejected",
+  "scope": "fixed static-start paths; published onset closure and one quadratic rate-action choice",
+  "elapsed_seconds": 6.783067180775106,
+  "workers": 4,
+  "scenarios": 4,
+  "refinements": 12,
+  "rate_controls": 6,
+  "evaluations": 72,
+  "curvature_records": 216,
+  "rate_gate_survivors": [],
+  "max_worker_peak_rss_kib": 254584,
+  "parent_peak_rss_kib": 227312,
+  "worker_address_space_cap_mib": 1536,
+  "compute_cap_seconds": 600.0,
+  "output_cap_mb": 100.0,
+  "output_bytes_before_manifest": 65056681,
+  "source_kernel_sha256": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "reference_sha256": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+  "full_two_current_evolution_solved": false,
+  "full_rail_service_certified": false,
+  "general_comer_andersson_framework_excluded": false,
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_comer_andersson_startup.py": "7588c76722a51b8fc43e7e0a4f1caa4b38501ee2a3e1f0053c9dcfe204670663",
+    "toolkit/adm_harness_cli/adm_harness/comer_andersson_startup.py": "11f7b9284024102c97d7ec58ed13cd1975907af56e6510ae653658969b82e502",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93"
+  },
+  "paper_sources": [
+    "https://arxiv.org/html/2606.17686v1",
+    "https://eprints.soton.ac.uk/495878/1/entropy-26-00621.pdf"
+  ]
+}

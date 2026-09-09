@@ -1,0 +1,15 @@
+{
+  "density_and_three_pressure_variation_residuals": [
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "total_adm_kinetic_density_at_exact_match": "0",
+  "tensor_kinetic_ratio": "1 + 8*pi*b",
+  "source_match_coefficients": {
+    "a": "1/(8*pi)",
+    "b": "-1/(8*pi)"
+  },
+  "variation_precedes_areal_restriction": true
+}

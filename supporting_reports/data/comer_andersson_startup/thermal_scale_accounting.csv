@@ -1,0 +1,5 @@
+scenario,path_kind,duration,time_skew,thermal_normalization,diagnostic_initial_thermal_mass,min_f_if_thermal_energy_is_added_to_frozen_initial_source,scope
+direct_fast,direct,4.0,-0.65,6973.422467560776,6157817.251177506,-1970500.59879311,Tolman initial and comoving adiabatic thermal reference; carrier kinematics and mass price only
+direct_slow,direct,14.255,0.65,3351.642133560254,2959637.0857809116,-947082.9458662001,Tolman initial and comoving adiabatic thermal reference; carrier kinematics and mass price only
+waypoints_fast,waypoints,4.0,-0.65,730594.6668474225,645144972.0792539,-206446390.14377758,Tolman initial and comoving adiabatic thermal reference; carrier kinematics and mass price only
+waypoints_slow,waypoints,14.255,0.65,39059.66168120157,34491278.80098048,-11037208.294730062,Tolman initial and comoving adiabatic thermal reference; carrier kinematics and mass price only

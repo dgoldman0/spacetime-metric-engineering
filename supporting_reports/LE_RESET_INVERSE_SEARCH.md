@@ -454,6 +454,13 @@ the current static-start model supplies no general exclusion of the rail or
 the broader An–T–Le connection. The useful result is a source-and-boundary
 condition that a subsequent construction can confront before a larger run.
 
+The [Comer–Andersson spherical startup attempt](COMER_ANDERSSON_SPHERICAL_STARTUP_ATTEMPT.md)
+examines one action-derived deformation-rate response with pre-existing
+thermal capacity. It supplies the early angular term, while exact matching
+on the retained paths forces a degenerate gravitational kinetic coefficient.
+That report records the explicit constitutive choice, independent variation,
+entropy and mass accounting, and the bounded numerical evidence.
+
 ## Retained evidence and reproduction
 
 The full search took 44.24 seconds with four worker processes. Its output

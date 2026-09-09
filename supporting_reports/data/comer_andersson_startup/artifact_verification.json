@@ -1,0 +1,103 @@
+{
+  "completed_utc": "2026-09-09T00:51:05.964799+00:00",
+  "elapsed_seconds": 3.774525510147214,
+  "workers": 4,
+  "time_steps": [
+    0.0002,
+    5e-05,
+    1.25e-05,
+    3.125e-06
+  ],
+  "radial_step": 0.000625,
+  "max_worker_peak_rss_kib": 192536,
+  "witnesses": 36,
+  "refined_records": 288,
+  "curvature_finest_step_by_scenario": {
+    "direct_fast": {
+      "dynamic_difference_max_error": 1.0033624486607828e-06,
+      "dynamic_difference_relative_error": 0.0004341745577812229
+    },
+    "direct_slow": {
+      "dynamic_difference_max_error": 4.266343013523133e-07,
+      "dynamic_difference_relative_error": 0.0016962527533763115
+    },
+    "waypoints_fast": {
+      "dynamic_difference_max_error": 0.0030529785861190817,
+      "dynamic_difference_relative_error": 0.0001614149035285188
+    },
+    "waypoints_slow": {
+      "dynamic_difference_max_error": 4.998085958640708e-05,
+      "dynamic_difference_relative_error": 7.757564009028372e-05
+    }
+  },
+  "eigensystems": {
+    "independent_curvature_probes": {
+      "records": 216,
+      "max_eigen_equation_relative_error": 9.512051875443802e-17,
+      "max_replayed_raw_eigenvalue_relative_error": 0.0,
+      "raw_complex_pair_records": 66,
+      "classification_counts": {
+        "dynamic/type_iv_flux_dominant": 66,
+        "dynamic/type_i_boost_diagonalizable": 42,
+        "holding/type_i_boost_diagonalizable": 108
+      }
+    },
+    "refined_curvature_probes": {
+      "records": 288,
+      "max_eigen_equation_relative_error": 9.968987572022797e-17,
+      "max_replayed_raw_eigenvalue_relative_error": 0.0,
+      "raw_complex_pair_records": 88,
+      "classification_counts": {
+        "dynamic/type_iv_flux_dominant": 88,
+        "dynamic/type_i_boost_diagonalizable": 56,
+        "holding/type_i_boost_diagonalizable": 144
+      }
+    }
+  },
+  "field_verification": [
+    {
+      "scenario": "direct_fast",
+      "points": 131841,
+      "fields": 17,
+      "max_summary_replay_error": 1.0408340855860843e-17
+    },
+    {
+      "scenario": "direct_slow",
+      "points": 131841,
+      "fields": 17,
+      "max_summary_replay_error": 1.734723475976807e-18
+    },
+    {
+      "scenario": "waypoints_fast",
+      "points": 131841,
+      "fields": 17,
+      "max_summary_replay_error": 3.552713678800501e-15
+    },
+    {
+      "scenario": "waypoints_slow",
+      "points": 131841,
+      "fields": 17,
+      "max_summary_replay_error": 2.220446049250313e-16
+    }
+  ],
+  "main_files_sha256": {
+    "independent_curvature_probes.csv.gz": "8550db9dd546320e7516eb00757fb02906d5539a91e8de7a257ae773c50a6ed3",
+    "direct_fast_fields.npz": "64c3d98feffbe2054f356273f8a1d55bbccb3d948e505b0ac3a08140ba1862f9",
+    "waypoints_fast_fields.npz": "d1538bc8d51e91f620668c8dbe3353c6331e298175d4335b55075cc31e399d16",
+    "fits.csv": "c6ac9b8f1c45187d24c894fba26074b47060b76b60287ee0bec4e0cf6ed7efe8",
+    "comer_startup_diagnostic.png": "fadef123bc9729a93bd442402d1e96df34450480941f0fb2f6532585b8a94cbe",
+    "waypoints_slow_fields.npz": "24f61b1f218ada8617bbd716ba56f908f871e0fb9e41566a7f0912adc2fff5ae",
+    "summaries.csv": "c1a3f67a8229073a097803a65777e34866a1da4db07337f3a4e7333ec8289608",
+    "startup_orders.csv": "31a4541f0147d6facaa5b293a11ec4abeb777fa0f06e4f7e652b3ce0a777be3d",
+    "direct_slow_fields.npz": "dc9a43ac40e38705dc9089ccbd6a4f2484909440956f1570f861238e12622c15",
+    "symbolic_variation_audit.json": "5d0b8ec37ccc4f605e49e9e25e40b308d56316b53a0d568ad996d6a1505f146a",
+    "independent_curvature_probes_eigensystems.npz": "c36feb10ffcada3ff29ba4a8cdf5d82644c14c783586d6ecab2a8c153c419f22",
+    "thermal_scale_accounting.csv": "4d1c5d26ecb05692e5f53c5533b4f8dabaa84ac274f83e32bc76eabb2d8d9506",
+    "manifest.json": "71910698fc890d1704b791483ee1284b16bc68ea0f7e5d2b28d9d059417814ae",
+    "onsets.csv": "868ad96f44aeb030ce59ab54857e597a080a505e0b8da32767c7344f7f1f840b"
+  },
+  "source_kernel_sha256": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "reference_sha256": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+  "audit_software_sha256": "ee6ff64bef11eaeff6b677e7d8a56fd9dd4d5a14c8e40b472328a1c4b0c9ece5",
+  "output_bytes_before_audit_manifest": 65239387
+}
