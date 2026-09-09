@@ -2,6 +2,14 @@
 
 Status: component-level physical construction hypothesis.
 
+The [joint-coordination review](../../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+identifies the metric channels below as coordinated service targets. The
+engineering analogs supply controlled wave, impedance, and stiffness responses.
+A gravitational source construction assigns physical field couplings and
+counted actuator work, then determines the shared metric from the complete
+stress tensor. Component selection therefore follows the required stress and
+response, with the four metric channels retained as operating constraints.
+
 ## Controlling Sources
 
 - Internal: V5 support-shell final freeze, continuous support-shell 4D source

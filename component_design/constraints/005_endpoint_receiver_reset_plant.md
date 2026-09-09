@@ -2,6 +2,15 @@
 
 Status: component-level physical construction hypothesis.
 
+The [joint-coordination review](../../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+retains the receiver's angular, current, storage, and reset responsibilities.
+The [regularity repairs](../../supporting_reports/LE_BOUNDED_METRIC_REPAIR.md)
+resolve identified metric joins while leaving an active current/enthalpy
+mismatch. A source-derived receiver therefore coordinates its initial stored
+state, angular response, current, and reciprocal reservoir force. Its fitted
+endpoint tensor and geometric replacement residual remain separate quantities
+in the complete source ledger.
+
 ## Controlling Sources
 
 - Internal: endpoint-J source freeze, endpoint current-regulator screen,

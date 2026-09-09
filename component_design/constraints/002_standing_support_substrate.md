@@ -2,6 +2,16 @@
 
 Status: component-level physical construction hypothesis.
 
+The [joint-coordination review](../../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+retains this backbone as a separately counted load-bearing role. The recent
+condensate supplies only 0.612% of the static throat tension at its registered
+scale. A selected backbone must supply its stated share through its full
+tensor and include its termination forces. Ideal radial tension leaves
+\(\rho+p_r\) unchanged, so its bulk contribution and the quantum opening
+requirement have separate acceptance measures. The construction analogs below
+describe load paths and controllable response; their gravitational stress
+capacity requires a physical source model.
+
 ## Controlling Sources
 
 - Internal: source-family target split, radial string-cloud areal-flux checks,

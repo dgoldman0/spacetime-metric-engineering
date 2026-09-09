@@ -1,22 +1,35 @@
 # Active Rail Refined Design Base
 
-Current status, 2026-05-23: the active article is the sealed beta075
-`V=5` engineered operating embodiment. The current claim is bounded to
-prescribed-metric, fixed-background, effective source-family, source-law,
-energy-estimate, and local 3+1/backreaction evidence. It is not a physical
-matter construction proof, a coupled Einstein-matter evolution, a semiclassical
-stress-tensor result, or a service-family theorem.
+Current status, 2026-09-09: the beta075 `V=5` package is the archived
+prescribed-metric service reference. Its packet/carrier, source-role,
+effective fixed-background transport, and energy-estimate results supply
+constraints for the physical construction. The September boundary tests,
+independent current evolution, and counted material/quantum trials specify
+the remaining tensor, interface, and coupled-response requirements.
+
+The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+is the entry point for the current source construction. It preserves bulk
+radial support, angular response, directional quantum support, handoff currents,
+and reservoir exchange as explicit responsibilities. Complete source assembly
+and a coupled active-rail solution remain open. The support-exchange fit,
+static material branches, and tested quantum source each retain their stated
+scope and normalization.
 
 Do not describe the current package as a `V=10` final refreeze. The latest
 service-rating ladder makes `V=5` the active engineered scope:
 
-- `V=5`: sealed operating point with Stage II watch-pass evidence.
+- `V=5`: archived operating reference with Stage II effective-model evidence
+  and subsequent boundary/source-construction findings.
 - `V=2.5`: live-packet source safety remains clean, but the current
   service-independent medium/support closure calibration does not close.
 - `V=10`: fails live-packet source safety in the current beta075 ladder.
 
 Primary entry points:
 
+- `supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md`:
+  current architecture, trial cross-reference, and joint interaction contract.
+- `supporting_reports/COUPLED_SOURCE_ROLE_AUDIT.md`: measured bulk-load
+  allocation and static spatial stress requirements.
 - `active_rail_technical_disclosure.tex`: current technical disclosure source.
 - `active_rail_technical_disclosure.pdf`: generated disclosure PDF when present.
 - `supporting_reports/STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md`: latest

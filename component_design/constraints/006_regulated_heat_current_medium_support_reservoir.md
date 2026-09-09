@@ -2,10 +2,13 @@
 
 Status: detailed physical-source target card with engineering anchors.
 
-Current evidence scope: sealed beta075 `V=5` operating point, as summarized in
-the current disclosure and the May 22-23 Stage II source-family reports. This
-card is the lead component brief for the source family that the current
-evidence points toward.
+Current evidence scope: the archived beta075 `V=5` fixed-background endpoint
+model, cross-referenced against the September boundary and source tests in the
+[joint-coordination review](../../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md).
+The medium has an explicitly reconstructed fitted tensor and a complementary
+support-exchange fit. A physical reservoir must supply its own counted tensor,
+stored energy, and reciprocal force law. Independent Comer particle/entropy
+evolution provides a tested local transport basis for this wider construction.
 
 ## Controlling Reports
 
@@ -18,9 +21,11 @@ evidence points toward.
 - [`STAGE2_BETA075_BV_ANALOGUE_SOURCE_PATHOLOGY_MAP.md`](../../supporting_reports/STAGE2_BETA075_BV_ANALOGUE_SOURCE_PATHOLOGY_MAP.md): denominator and boundedness map.
 - [`STAGE2_BETA075_FINITE_DOMAIN_RADIAL_ANEC_DIAGNOSTIC.md`](../../supporting_reports/STAGE2_BETA075_FINITE_DOMAIN_RADIAL_ANEC_DIAGNOSTIC.md): finite-domain radial ANEC caveat.
 
-Older context: the May 16 ADM writeup and May 17-20 support-shell/component
-reports are provenance for how the source roles were discovered. The May 22-23
-beta075 source-family reports control this card.
+The May 16-23 reports establish the role map and effective fixed-background
+model. The September [pre-flight](../../supporting_reports/LE_BOUNDARY_GATE_PREFLIGHT.md),
+[classifier repair](../../supporting_reports/LE_CLASSIFIER_REPAIR.md), and
+[current evolution](../../supporting_reports/COMER_TWO_CURRENT_EVOLUTION_ROUND.md)
+control its source-accounting, rest-frame, and joint-dynamics requirements.
 
 ## Engineering Sources
 
@@ -149,8 +154,12 @@ physical layers.
 
 ## Current Margin Bookmarks
 
-These values are evidence bookmarks from the current reports and are treated
-as design-margin targets for later component work.
+These values are archived fixed-background bookmarks. Rest-frame-dependent
+admissibility uses the repaired classifier, while the effective symbol and
+transport estimates retain their stated operator assumptions. The bounded heat
+ratio \(2j_l/|\rho+p_l|\) and its transport variable are distinct from the
+physical rest-frame velocity. The coupled material/metric/quantum system needs
+its own response calculation.
 
 | Quantity | Current read |
 | --- | ---: |

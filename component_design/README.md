@@ -17,6 +17,21 @@ piezoelectric metamaterials, thermal metamaterials, superconducting current
 limiters, high-voltage pulse modulators, magnetic field routing, and
 distributed fiber diagnostics.
 
+## Current source construction
+
+The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+connects this architecture to the September boundary, current, quantum, and
+material tests. It retains the separate bulk, angular, handoff, current, and
+reservoir roles while requiring a counted tensor and reciprocal exchange law
+for each physical component. The source-role ledger is an assignment of
+responsibilities; the coupled material construction supplies those stresses.
+
+The selected condensate remains a regular transition-material candidate.
+Its measured bulk support share and the tested neutral scalar's opening deficit
+require distinct attention. The [source-role audit](../supporting_reports/COUPLED_SOURCE_ROLE_AUDIT.md)
+records those quantities. Cards 002 and 006 carry the resulting backbone and
+transport/reservoir requirements.
+
 ## Chronology
 
 Use the newer reports as controlling evidence:
@@ -25,8 +40,12 @@ Use the newer reports as controlling evidence:
 - May 17 support-shell reports: early reduced routing and V5 control freeze.
 - May 18-20 Stage I/II decomposition: component roles and source-sector
   separation.
-- May 22-23 beta075 reports: current endpoint/support source-family,
+- May 22-23 beta075 reports: archived endpoint/support source-family,
   closure, transport, energy, 3+1, ANEC, and boundedness evidence.
+- September 8-9 tests: corrected tensor classification, explicit limits of
+  support-exchange fitting, metric regularity and active boundary behavior,
+  independent current evolution, and counted material/quantum source trials.
+  These reports control physical source acceptance and the joint construction.
 
 The present design scope is `V=5`. `V=2.5` is a useful source-safe
 service-law calibration diagnostic, while `V=10` is a high-service boundary
