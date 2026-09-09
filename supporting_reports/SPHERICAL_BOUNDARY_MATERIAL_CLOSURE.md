@@ -9,9 +9,12 @@ stress requirement and the field's local material limit.
 
 ## Registered junction and material checks
 
-At areal radius \(R=6.8\), the retained initial metric has reached its
-ultrastatic tail to numerical precision. Its interior radial function is
-\(f_-=1-b^2/R^2\), with \(b=1.75\), and its lapse is constant.
+At areal radius \(R=6.8\), the retained initial lapse and radial proper
+scale are one to floating-point precision. The analytic asymptotic tail
+has interior radial function \(f_-=1-b^2/R^2\), with \(b=1.75\),
+and constant lapse. The remaining areal-radius deformation changes the
+retained \(f\) there by \(1.05\times10^{-6}\). This junction check
+uses the analytic tail.
 A Schwarzschild exterior has \(f_+=1-2M/R\). This exterior replaces
 the original tail beyond the new wall. Its mass and clock normalization
 are therefore additional data in the proposed enclosing construction.
@@ -53,6 +56,49 @@ while keeping the two bulk geometries prescribed. A microscopic material
 would also determine its optical coupling, particle and heat exchange,
 and quantum contribution to the surface response.
 
+## Surface material results
+
+The enclosed tail mass at the wall is 0.225183824. Ordinary surface energy
+and pressure satisfying the dominant energy condition occur for exterior
+mass between 0.339343399 and 3.248921307. The specified surface-fluid
+response has positive conditional radial frequency squared for
+\(1.085628969<M<1.611602548\), entirely within that ordinary interval.
+
+For exterior mass 1.5, the surface requirements are:
+
+| Quantity | Value |
+|---|---:|
+| Surface energy density \(\sigma\) | 0.002560200 |
+| Tangential surface pressure \(P\) | 0.000446518 |
+| Proper shell mass \(4\pi R^2\sigma\) | 1.487652823 |
+| Surface-fluid characteristic speed squared | 0.297013464 |
+| Conditional radial frequency squared | 0.000228485 |
+| Required momentum-flux coefficient \(\Xi\) | 0.000117953 |
+| Exterior lapse at the shell | 0.747545002 |
+
+The corresponding fluid parameters are \(n_0=0.002113682\) and
+\(K=99.944625\). This provides a concrete positive-pressure response
+to examine for the supporting layer. A surface with pure positive tension
+has \(P=-\sigma\); the required compression selects a different
+surface constitutive response.
+
+The positive-root mass-density ceiling is 0.011308397. The earlier planar
+illustrations with measured mass per area 0.25 and 1 exceed this spherical
+junction ceiling by factors 22.11 and 88.43 when their units are identified
+with the present rail-length normalization. The shell mass therefore has
+to be matched to the enclosing construction. A general physical scaling
+also fixes the conversion between the quantum and gravitational units.
+
+The scan contains 2,001 exterior masses. Direct radius differentiation
+checks both static stress derivatives, and the full surface conservation
+identity closes within \(5.48\times10^{-17}\). The nonzero flux is
+retained in the conditional response. The junction's Schwarzschild
+exterior specifies a new global quantum mode problem; its vacuum tensor,
+optical response, and surface dynamics belong to the same coupled source
+calculation.
+
+![Outer shell requirements and the local material barrier](data/spherical_boundary_support/material_closure.png)
+
 ## Local quantum condition
 
 The scalar remains massless and minimally coupled, with positive proper
@@ -93,3 +139,12 @@ finite thickness, a matched stress and optical response, and a recomputed
 absolute quantum tensor on the resulting geometry. Those additions define
 a new source construction; changing the present coupling or moving the
 ideal sheet preserves its local singularity.
+
+The local comparison uses 81 proper distances from \(10^{-6}\) through
+0.5, couplings 1, 8, and 64, and 64-, 128-, and 256-node Laguerre
+quadratures. At coupling 8 and distance \(10^{-6}\), the exact pressure
+is 0.999996 times its \(d^{-3}\) asymptote. The final two quadratures
+differ by at most \(3.63\times10^{-8}\) fractionally across the scan.
+Both this singular limit and the ordinary shell requirements survive the
+independent checks. The search stops at the complete material closure of
+the ideal boundary.

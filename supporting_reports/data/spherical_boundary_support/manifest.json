@@ -1,0 +1,64 @@
+{
+  "completed_utc": "2026-09-09T13:25:00.245949+00:00",
+  "elapsed_seconds": 4.90760537609458,
+  "workers": 2,
+  "radius": 6.8,
+  "interior_mass": 0.22518382352941177,
+  "dec_mass_interval": [
+    0.3393433992196442,
+    3.2489213066627265
+  ],
+  "specified_fluid_positive_frequency_mass_interval": [
+    1.085628969158672,
+    1.6116025476992915
+  ],
+  "example_exterior_mass_1p5": {
+    "surface_energy": 0.0025602000479107993,
+    "surface_pressure": 0.0004465178483507084,
+    "proper_shell_mass": 1.4876528232873192,
+    "interior_mass": 0.22518382352941177,
+    "surface_energy_derivative": -0.0007663753156418359,
+    "surface_pressure_derivative": -0.00022487049380391102,
+    "surface_momentum_flux": 0.00011795347737625441,
+    "conservation_identity_residual": 1.7618285302889447e-19,
+    "fluid_sound_speed_squared": 0.29701346368802983,
+    "fluid_radial_frequency_squared": 0.00022848453821655657,
+    "dec": true,
+    "positive_causal_fluid": true,
+    "ordinary_surface_mass_density_ceiling": 0.011308397267595078,
+    "surface_rest_density_parameter": 0.002113682199560091,
+    "surface_eos_coefficient": 99.94462511883103,
+    "exterior_lapse_at_shell": 0.747545001596402
+  },
+  "tail_metric_check": {
+    "lapse_difference_from_one": 0.0,
+    "radial_scale_difference_from_one": 0.0,
+    "areal_f_difference_from_tail": -1.0492495373659594e-06
+  },
+  "previous_mass_025_to_junction_ceiling_ratio": 22.107465283023856,
+  "previous_mass_1_to_junction_ceiling_ratio": 88.42986113209543,
+  "max_flux_identity_error": 5.471155212904977e-17,
+  "local_limit_quadrature_relative_difference": 3.624947952918234e-08,
+  "minimum_distance_asymptotic_ratios": [
+    {
+      "coupling": 1.0,
+      "asymptotic_ratio": 0.9999995000004953
+    },
+    {
+      "coupling": 8.0,
+      "asymptotic_ratio": 0.9999960000319926
+    },
+    {
+      "coupling": 64.0,
+      "asymptotic_ratio": 0.9999680020471964
+    }
+  ],
+  "hard_barrier": "Positive finite optical coupling produces a d^-3 off-wall angular pressure beside the ideal sheet; finite surface-mass matching does not remove this bulk singularity. A regular complete source requires a resolved material layer and its matched quantum stress.",
+  "surface_response_scope": "Static prescribed ultrastatic interior and Schwarzschild exterior; total barotropic surface response with nonzero momentum flux; quantum and material perturbations are not evolved.",
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_spherical_support.py": "f5f48491fe7870d542ebef1326ebe3ad6a8a19199322cd81fb9df2ef285c2d51",
+    "toolkit/adm_harness_cli/adm_harness/spherical_support.py": "1e34c34ec356bf1708347827028729a401e7909d02347cd01c6e2adfe9b86156",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  }
+}

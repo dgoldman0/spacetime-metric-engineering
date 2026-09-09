@@ -259,6 +259,16 @@ field and ordinary material therefore fail that part of the initial
 tensor requirement. An extended quantum construction needs angular
 structure as well as radial stress and admissible material boundaries.
 
+The [spherical continuation](CURVED_QUANTUM_BOUNDARY_SEARCH.md) computes
+these angular modes on the complete frozen holding geometry. An enclosing
+outer sheet supplies both negative null channels wherever the retained
+angular witnesses require them. Its
+[material-closure calculation](SPHERICAL_BOUNDARY_MATERIAL_CLOSURE.md)
+finds ordinary surface stress requirements and a conditional causal fluid
+response, together with the ideal sheet's divergent nearby bulk stress.
+The remaining source construction requires a resolved material layer and
+the absolute curved quantum tensor on its coupled geometry.
+
 These are necessary placement and source-shape conditions. The next
 construction would specify the field state, material response, and
 boundary locations on the curved geometry, with local conservation and
