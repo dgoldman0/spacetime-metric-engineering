@@ -64,6 +64,8 @@ backbone leaves its achievable energy-to-tension ratio to be established.
 
 | Test family | Result that carries forward | Constraint on a coupled construction |
 | --- | --- | --- |
+| [Angular-state and reservoir feasibility](STAGE2_BETA075_MATTER_ACTION_FEASIBILITY_WORKLOG.md) | Density/radial-pressure fits leave a substantial angular-response residual; the exchange has distinct power and radial-force requirements. | Retain an internal angular state and both P/F channels. Signed work and impulse determine the reservoir state across a cycle. |
+| [Aligned source timing](STAGE2_BETA075_ALIGNED_ENVELOPE_CERTIFICATE.md), [common jitter](STAGE2_BETA075_TIMING_JITTER_CERTIFICATE.md), and [angular/time capstone](STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md) | The specified common timing-kernel class stays within the effective transport budget; the capstone evolves damped scheduled response with bounded feedback and peak-load checks. | Preserve source timing as an interaction constraint. These are effective subsystem response estimates, with a prescribed metric and a separately required physical storage/energy law. |
 | [Le pre-flight and classifier](LE_BOUNDARY_GATE_PREFLIGHT.md), [repair](LE_CLASSIFIER_REPAIR.md) | The geometric tensor and fitted endpoint tensor are reproducible; the corrected classifier handles signed enthalpy and degenerate cases. | Supply independent tensors for every physical sector, retain endpoint replacement error, and reevaluate rest-frame-dependent claims with the repaired classifier. |
 | [Metric regularity and slowdown](LE_BOUNDED_METRIC_REPAIR.md) | Identified metric joins admit finite, convergent repairs. Active Type IV demand persists near static enthalpy zeros. | Coordinate current with diagonal stresses and evolution; taper smoothing and uniform slowing alone leave this mismatch. |
 | [Reset inverse search](LE_RESET_INVERSE_SEARCH.md) | Moving support improves the initially supplied ordinary density. | On the prescribed startup paths, angular demand appears as \(u^{n-2}\), while the initially empty moving sector responds as \(u^{2n-2}\). Select preload and response dynamics together. |
@@ -75,7 +77,7 @@ backbone leaves its achievable energy-to-tension ratio to be established.
 | [Charged screening](SCREENED_CHARGED_WALL_RESPONSE.md) and [gravitating atmosphere](GRAVITATING_SCREENING_ATMOSPHERE.md) | Screening gives a restoring contribution; a broad gravitating atmosphere admits positive-energy static matches. | Restoring response has a counted load. The relaxed atmosphere's local response is adverse in the tested controlled modes, so equilibrium and coupled shape response need separate checks. |
 | [Screened condensate](SCREENED_SCALAR_CONDENSATE.md) and [joint material continuation](CONDENSATE_JOINT_CONTINUATION.md) | A common interior/exterior boundary-value problem resolves the exterior-first inward runaway and supplies a regular branch. | Keep the global field matching and finite transition. Small added radial-null burden does not establish bulk-tension adequacy or a small angular-null burden. |
 | [Supplied optical stress](CONDENSATE_SUPPLIED_QUANTUM_STRESS.md) | The smooth material profile retains useful optical response signs. | The absolute-source calculation exposes an additional curvature-matching requirement: a classically shell-free join can still have a damaging curvature step. Component signs and absolute scale remain required. |
-| [Smooth semiclassical update](SEMICLASSICAL_JOINT_INVESTIGATION.md) | Quantum stress and material force share a renormalization prescription; the material responds regularly at fixed charge. | The tested neutral scalar remains short by about 186,000–204,000 in the optimistic integrated opening comparison. The signed quantum contribution opposes opening overall on that seed. |
+| [Smooth semiclassical update](SEMICLASSICAL_JOINT_INVESTIGATION.md) | Quantum stress and material force share a renormalization prescription; the material responds regularly at fixed charge. | The tested finite-regulator controls remain short by about 186,000–204,000 in the optimistic integrated opening comparison. The signed quantum contribution opposes opening overall on that seed; the continuum extrapolation and full fixed point remain unresolved. |
 | [Longitudinal source comparison](LONGITUDINAL_QUANTUM_SOURCE_LITERATURE.md) | Magnetic or vortex-confined modes provide specified tension-plus-quantum mechanisms. | Their complete optical path and lapse curvature control the quantum sign. The ideal long-loop family has the wrong throat sign on the retained profile. |
 | [Source-role allocation audit](COUPLED_SOURCE_ROLE_AUDIT.md) | Bulk tension and opening can be measured separately; 96.69% of the static negative radial-null balance lies outside \(|x|\leq2\). | Restore bulk support explicitly and assess the full transition tensor. A successful throat match alone leaves most of the integrated opening requirement elsewhere. |
 
@@ -157,8 +159,13 @@ The implementation review establishes the following accounting:
   specifies storage, derivative, damping, and P/F-driven response equations.
   Its effective coefficients and block characteristic speeds are chosen from the
   fixed-background data. The implemented 1+1 transport evolves a rapidity
-  increment; the 3+1 extension supplies constraint-driver proxies. A complete
-  microscopic coupled evolution remains to be derived.
+  increment; the first-order 3+1 extension supplies constraint-driver proxies.
+  The later [V5 capstone](STAGE2_BETA075_MODERATE_3P1_V5_CAPSTONE.md) advances a
+  damped response over azimuth and time with bounded feedback. Its azimuthal
+  bins are independent scheduled recurrences driven by a nonnegative
+  divergence-burden norm. They retain the prescribed metric and effective
+  response law. Physical material energy and full metric evolution require
+  their respective equations.
 
 The seven-state vector
 \((h,\psi,\chi_\Omega,\pi_\Omega,\Phi_{\rm support},\Pi_{\rm support},n_l)\)
@@ -181,6 +188,17 @@ constitutive model. The corrected causal eigensystem determines the rest frame.
 Consequently the archived cone and energy estimates remain evidence for their
 specified effective operators; physical admissibility and the coupled
 perturbation operator require their own evaluation.
+
+Timing also has an established admissible class. The
+[aligned-envelope certificate](STAGE2_BETA075_ALIGNED_ENVELOPE_CERTIFICATE.md)
+bounds the positive linear transport response for a common normalized
+nonnegative kernel over service-ordered bins, at a maximum budget fraction
+0.742835. The [jitter certificate](STAGE2_BETA075_TIMING_JITTER_CERTIFICATE.md)
+tests common offsets through eight steps in either direction. Independent
+row timing falls outside that class. The earlier simultaneous-impulse failure
+and the subsequent aligned-timing bound together constrain the admissible
+forcing. A physical source law must derive or satisfy the
+admissible timing class under its actual response and propagation rates.
 
 ## A common interaction and accounting contract
 
