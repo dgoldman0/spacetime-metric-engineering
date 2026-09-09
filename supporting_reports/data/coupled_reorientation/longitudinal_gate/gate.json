@@ -1,0 +1,24 @@
+{
+  "scope": "Necessary gate for a constant-c radial CFT channel plus an aggregate with nonnegative radial null stress; no full field solve",
+  "radius_profile": "Retained smooth seed",
+  "clock_variable_region": "|x| <= 7, fixed endpoint jets",
+  "clock_boxes": "Exploratory pointwise ranges; service admissibility is untested",
+  "optical_return": "Zero for the most favorable lower bound on the full loop length",
+  "eta": 2.4127904527582454e-05,
+  "throat_radius": 2.0395751057921525,
+  "workers": 4,
+  "fine_points": 160001,
+  "cases": 88,
+  "excluded_cases": 78,
+  "checks": {
+    "identity_scaled_error": 1.7215797984409363e-12,
+    "quadrature_relative_change": 7.507989068110201e-10
+  },
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/gate_coupled_longitudinal_support.py": "19bfdf66cf9d1857a4bc474db3d8d4bb036f3a7b54789665d2ca28ad037e29e9",
+    "toolkit/adm_harness_cli/adm_harness/longitudinal_balance.py": "04d41217b55ffee900a468ab9e39ab3d40f2681fe873222ecb51e184bd77a4d0",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "01d7df2a3b528dd531b174545da618f4356e16467101716a0b010712b8841019",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a"
+  }
+}

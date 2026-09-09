@@ -2,6 +2,14 @@
 
 Date: 9 September 2026.
 
+The subsequent [coupled reorientation](COUPLED_REORIENTATION_INVESTIGATION.md)
+derives an integrated radial balance for these ideal channels and every other
+sector whose aggregate radial null stress is nonnegative. It retains the
+radius profile while allowing a range of smooth clock profiles. The registered
+small-coefficient cases fail this stronger necessary condition even with
+independent bulk, angular, and host roles. The report states the channel,
+clock-range, and return-path assumptions of that exclusion.
+
 The new selection direction is a material carrying longitudinal tension
 and light quantum modes along the same path. Magnetic Landau modes and
 quantum fields on vortex strings provide concrete literature examples.

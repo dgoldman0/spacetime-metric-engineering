@@ -15,6 +15,13 @@ and a coupled active-rail solution remain open. The support-exchange fit,
 static material branches, and tested quantum source each retain their stated
 scope and normalization.
 
+The [bounded reorientation](supporting_reports/COUPLED_REORIENTATION_INVESTIGATION.md)
+counts backbone, condensate, directional quantum targets, and host separately.
+A 95% backbone allocation leaves a small throat quantum target, while angular
+response and finite transitions retain larger requirements. The tested
+independent planar holders and longitudinal-channel continuation encounter
+their stated mechanical and integrated-null-stress barriers.
+
 Do not describe the current package as a `V=10` final refreeze. The latest
 service-rating ladder makes `V=5` the active engineered scope:
 
@@ -26,6 +33,8 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- `supporting_reports/COUPLED_REORIENTATION_INVESTIGATION.md`: counted support
+  allocation and construction gates with clock-profile freedom.
 - `supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md`:
   current architecture, trial cross-reference, and joint interaction contract.
 - `supporting_reports/COUPLED_SOURCE_ROLE_AUDIT.md`: measured bulk-load

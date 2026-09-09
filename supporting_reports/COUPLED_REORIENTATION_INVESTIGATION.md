@@ -166,3 +166,152 @@ The numerical record comprises
 [allocation.json](data/coupled_reorientation/allocation/allocation.json) and
 [witnesses.csv](data/coupled_reorientation/allocation/witnesses.csv).
 This report is written manually.
+
+## An integrated gate for a coupled longitudinal construction
+
+The second comparison gives the bulk, angular, host, and storage roles freedom
+while specifying the radial quantum mechanism. The
+[Maldacena--Milekhin--Popov construction](https://arxiv.org/html/1807.04726v3)
+uses charged massless modes following closed magnetic field lines.
+[Emparan and collaborators](https://arxiv.org/html/2012.07821v2) also describe
+vortex zero modes and independent supporting strings. These provide explicit
+ways to separate classical tension from a longitudinal Casimir contribution.
+Their complete optical path and conformal anomaly enter the stress.
+
+For the same ideal massless radial channels used in the
+[literature screen](LONGITUDINAL_QUANTUM_SOURCE_LITERATURE.md), set
+
+\[
+a=\log A,\quad k=\frac{\eta c}{12\pi},\quad
+C=\frac{4\pi^2}{L_{\rm opt}^2},\qquad
+H_Q=\frac{k}{4\pi R^2}\left(a''-\frac{C}{A^2}\right).
+\]
+
+Here \(c\) is total central charge, constant along the tested radial interval.
+The calculation gives every channel the shortest allowed optical loop,
+\(L_{\rm opt}=\int dl/A\), by setting its exterior return length to zero.
+Actual positive return lengths reduce the negative Casimir contribution.
+Several loops spanning the same interval obey the same optimistic bound
+with their central charges summed.
+
+Let \(H_{\rm rem}\) contain every other component's radial null stress.
+Radial strings, radial Maxwell energy, and isotropic potential energy each
+saturate this null channel. Positive-kinetic material adds a nonnegative
+contribution. The independent pair of ideal angular Casimir orientations also
+has \(H_r=0\), so granting this angular quantum sector leaves the gate intact.
+The aggregate assumption is simply \(H_{\rm rem}\geq0\); it is weaker than
+the host's dominant-energy condition in the first comparison.
+
+Combining the radial Einstein equation with this quantum stress gives an
+integrating factor
+
+\[
+W=\exp\!\left[-\frac{R^2-R_0^2}{2k}\right]
+\]
+
+and the finite-interval identity
+
+\[
+\underbrace{C\int\frac{W}{A^2}\,dl}_{S}
+-\underbrace{\left(\int\frac{W R R''}{k}\,dl+[Wa']_-^+\right)}_{D}
+=\frac{4\pi}{k}\int W R^2 H_{\rm rem}\,dl\geq0.
+\]
+
+This weighted identity is derived here from the stated source equations.
+It removes interior clock curvature from the integrated demand: at fixed
+\(R(l)\) and endpoint clock slopes, changing \(a''\) locally changes its
+distribution while the required \(D\) remains fixed.
+
+The test allows any smooth clock shape inside \(|x|\leq7\) satisfying
+\((1-d)A_0\leq A\leq(1+d)A_0\), with fixed endpoint values and slopes.
+The exterior clock remains the saved profile. These are exploratory ranges;
+their compatibility with active service has a separate gate.
+For each range, the most favorable numerator and shortest denominator give
+
+\[
+S\leq S_{\rm upper}
+=\frac{4\pi^2\int W/A_{\min}^2\,dl}
+{\left(\int dl/A_{\max}\right)^2}.
+\]
+
+The numerator and denominator bounds may require different clock shapes.
+Their combination is therefore an optimistic upper bound over the entire
+allowed function class. A value below \(D\) excludes every clock shape in
+that class, including shapes that remove the original throat curvature sign.
+
+At \(k/R_0^2=0.01\), corresponding to \(c\simeq64{,}997\) in the registered
+normalization, the results are:
+
+| Interval traversed by every longitudinal channel | Original clock: \(S/D\) | Clock allowed between 50% and 150% of its original value: \(S_{\rm upper}/D\) |
+| --- | ---: | ---: |
+| \(-7\leq x\leq7\) | 0.00463311 | 0.0416980 |
+| \(-40\leq x\leq40\), clock variable only inside \(|x|\leq7\) | 0.000174786 | 0.000799290 |
+
+Thus even the optimistic supply reaches only 4.17% of the first interval's
+requirement and 0.0799% of the longer interval's requirement in these examples.
+The gate already grants arbitrary splitting among the remaining source roles
+and an angular quantum sector with zero radial null stress. More material
+whose summed radial null stress is nonnegative leaves the exclusion in place.
+
+The registered comparison has 11 channel strengths, two intervals, and four
+clock ranges, for 88 cases. It excludes 78. The other ten remain undecided
+by this upper bound and involve larger quantum coefficients or the broad
+10%--190% clock range. Those cases still require an admissible clock shape
+and an independently supplied source. A global rescaling of time leaves the source
+and the bound unchanged; the clock changes considered here alter relative
+clock rates along the path.
+
+The gate applies to the retained proper-distance/radius profile and the
+specified longitudinal quantum law. Segmented channels with turning regions,
+additional quantum stress with negative radial null projection, a different
+state or transverse spectrum, and a coordinated change of \(R(l)\) change its
+inputs or equations. Each needs its own counted source and return path.
+
+## Construction status and stopping point
+
+The reorientation produces a useful full tensor allocation and identifies the
+separate energy cost of angular response. It also supplies a stronger test of
+one concrete multicomponent quantum route: the registered small-coefficient
+longitudinal cases fail an integrated balance even after allowing substantial
+clock freedom. The independently held planar realization of the two-direction
+target fails its counted holding-energy condition.
+
+These source-family barriers set the stopping point for this bounded round.
+The regular condensate and independent-current results remain available for
+the finite material and transport roles. A complete supplied-stress solution
+for the active rail remains open. Within the longitudinal route, a meaningful
+continuation would change the radial and clock transition together, or specify
+an additional source of negative radial null stress. Its operational and field
+constraints remain to be selected before a further joint field solve.
+
+## Integrated-gate verification and resource record
+
+The [balance module](../toolkit/adm_harness_cli/adm_harness/longitudinal_balance.py)
+has six tests covering a direct Einstein/quantum evaluation of the identity,
+time-normalization covariance, the effect of return length, smooth clock-box
+examples, a flat cylinder, and the leading AdS2 cylindrical throat as an
+independent positive control. On the latter, the supply-to-demand ratio is
+exactly four for the ideal loop and clock. It tests the gate's sign and
+normalization on a background distinct from the rail.
+
+The [gate runner](../toolkit/adm_harness_cli/scripts/gate_coupled_longitudinal_support.py)
+compares 80,001 and 160,001 proper-distance points, integrating the variable
+clock region on its own grid with exact interval endpoints. The direct identity agrees
+within \(1.73\times10^{-12}\) in the scaled norm, and the largest quadrature
+change is \(7.51\times10^{-10}\). The evidence is
+[gate.json](data/coupled_reorientation/longitudinal_gate/gate.json) and
+[gate.csv](data/coupled_reorientation/longitudinal_gate/gate.csv).
+
+Both investigations use four-worker execution and small scalar tables.
+They reuse the saved geometry and material, with no regenerated service
+ledger or new quantum mode sum. All 12 allocation/balance tests pass. Serial
+and four-worker CSV outputs are byte-identical; JSON results differ only in
+worker metadata. The numerical evidence occupies less than 50 KB.
+The technical disclosure and its PDF include the allocation and integrated
+constraint in the coupled-source section. The commands are:
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=toolkit/adm_harness_cli python toolkit/adm_harness_cli/scripts/reorient_coupled_support.py
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=toolkit/adm_harness_cli python toolkit/adm_harness_cli/scripts/gate_coupled_longitudinal_support.py
+PYTHONPATH=toolkit/adm_harness_cli python -m pytest -q toolkit/adm_harness_cli/tests/test_vacuum_support.py toolkit/adm_harness_cli/tests/test_longitudinal_balance.py
+```
