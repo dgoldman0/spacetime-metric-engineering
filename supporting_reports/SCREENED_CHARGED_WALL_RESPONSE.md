@@ -194,8 +194,10 @@ absolute curved quantum tensor remains part of the complete source problem.
 The [gravitating-atmosphere construction](GRAVITATING_SCREENING_ATMOSPHERE.md)
 solves a compact, massive, one-sided screening gas together with its
 Einstein--Maxwell field and charged material junction. Its registered
-family includes positive-energy matches with a tensile wall, while the
-coupled deformation response remains a separate requirement.
+family includes positive-energy matches with a tensile wall. Its subsequent
+exterior-only local response calculation finds an adverse cloud deformation
+term that exceeds the selected wall's tension. The full curved coupled
+response remains open.
 
 ## Numerical results and verification
 

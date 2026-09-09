@@ -1,0 +1,174 @@
+{
+  "created_utc": "2026-09-09T15:40:40.070497+00:00",
+  "workers": 4,
+  "seconds": 2.4996973536908627,
+  "input_manifest_sha256": "f24079c27fe29c2d48e08206c3fd0d26c1e340265828bcc1464a01c13150694f",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_gravitating_atmosphere.py": "786d257efe91002c44a1d6e0a630a0365c2d598f39b75828d5b74053e2892c99",
+    "toolkit/adm_harness_cli/adm_harness/one_sided_screening.py": "677cbc9a1f149b544c30302494332245038d68b6fdfaf768c992d029fa2a95ee",
+    "toolkit/adm_harness_cli/adm_harness/screened_wall.py": "ddcf2a748b20b7dd0812b7c95ef1ec6c1d68c58980693bc7c7cc3f872eaa4d7e"
+  },
+  "checks": [
+    {
+      "check": "source hash toolkit/adm_harness_cli/scripts/run_gravitating_atmosphere.py",
+      "passed": true
+    },
+    {
+      "check": "source hash toolkit/adm_harness_cli/adm_harness/gravitating_atmosphere.py",
+      "passed": true
+    },
+    {
+      "check": "output hash selected_profile.csv.gz",
+      "passed": true
+    },
+    {
+      "check": "output hash selected_atmosphere.png",
+      "passed": true
+    },
+    {
+      "check": "output hash equilibria.csv",
+      "passed": true
+    },
+    {
+      "check": "output hash refinements.csv",
+      "passed": true
+    },
+    {
+      "check": "independent integrator preserves charge-constrained gas match",
+      "passed": true
+    },
+    {
+      "check": "independent integrator preserves tensile positive-energy wall",
+      "passed": true
+    },
+    {
+      "check": "independent proper particle integral neutralizes wall",
+      "passed": true
+    },
+    {
+      "check": "independent energy integral reproduces atmosphere ADM mass",
+      "passed": true
+    },
+    {
+      "check": "screening Klein integral remains constant",
+      "passed": true
+    },
+    {
+      "check": "all atmosphere points are outside a horizon",
+      "passed": true
+    },
+    {
+      "check": "cold compact edge is neutral and empty",
+      "passed": true
+    },
+    {
+      "check": "gas and electric fields satisfy dominant energy inequalities",
+      "passed": true
+    },
+    {
+      "check": "momentum quadrature at index 0",
+      "passed": true
+    },
+    {
+      "check": "momentum quadrature at index 500",
+      "passed": true
+    },
+    {
+      "check": "momentum quadrature at index 2000",
+      "passed": true
+    },
+    {
+      "check": "momentum quadrature at index 4000",
+      "passed": true
+    },
+    {
+      "check": "momentum quadrature at index 7000",
+      "passed": true
+    },
+    {
+      "check": "normal junction force matches both bulk radial stresses",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=0.05",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=0.1",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=0.2",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=0.5",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=1.0",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=2.0",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=3.0",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=5.0",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=10.0",
+      "passed": true
+    },
+    {
+      "check": "independent local response q=30.0",
+      "passed": true
+    },
+    {
+      "check": "local estimate window contains sampled ripples",
+      "passed": true
+    },
+    {
+      "check": "registered local estimates retain negative deformation stiffness",
+      "passed": true
+    },
+    {
+      "check": "independent optimization resolves heavy-particle gravitational well",
+      "passed": true
+    }
+  ],
+  "passed": 33,
+  "failed": 0,
+  "local_comparison_cloud": {
+    "cloud_length": 0.5260236026710464,
+    "cloud_energy": 0.003370784621418666,
+    "cloud_pressure": 0.001685392310709333,
+    "chemical_at_wall": 48.30316831764637,
+    "electric_energy_at_wall": 0.00480603618017681,
+    "gas_energy_at_wall": 0.014418108540530427
+  },
+  "normal_force_absolute_error": 1.2874900798265365e-19,
+  "local_estimate_mode_count": 37,
+  "local_estimate_negative_count": 37,
+  "minimum_cloud_over_tension_in_window": 4.086269820974083,
+  "maximum_chemical_profile_difference_in_window": 0.050303887845884465,
+  "formal_planar_crossing_wave_number": 35.200833279521504,
+  "formal_crossing_k_over_screening_momentum": 0.7241780635777917,
+  "formal_crossing_maximum_width_for_kd_point2": 0.005681683680947188,
+  "heavy_particle_bulk_exclusion_mass": 41.33882460564616,
+  "heavy_particle_chemical_maximum_radius": 7.805293528082344,
+  "full_curved_response_evaluated": false,
+  "finite_width_confinement_evaluated": false,
+  "absolute_quantum_stress_evaluated": false,
+  "output_sha256": {
+    "confinement_thresholds.csv": "5f8ea0cd4d726b94741a0ddf128877cd97a07278d3f690f49e35b7c17a08145f",
+    "momentum_quadrature.csv": "4e95e0f5113879dcb94461cc4f30a3c2a9fff223afa37bde4ff70664741c1ede",
+    "local_response_estimates.csv": "425abb2035080fd1fd1ed077fe6e3c92521e73b22b66de14482c6ef99d78a7cc",
+    "response_checks.csv": "f8e3d113af9d047bb16b99980a3b26173a497c4865119ad8bbe01bc0c34db62a"
+  }
+}
