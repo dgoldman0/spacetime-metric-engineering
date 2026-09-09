@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-09-09T12:26:51.799407+00:00",
+  "elapsed_seconds": 4.429515696130693,
+  "workers": 4,
+  "worker_memory_mib": 1536,
+  "max_worker_peak_rss_kib": 116804,
+  "evidence_bytes_before_manifest": 518659,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_casimir_matching.py": "978a396a13119b15ce9dca4dc64b357a674647d461e265c9af05c175465c4de5",
+    "toolkit/adm_harness_cli/adm_harness/casimir_matching.py": "2799630c01691402a965d9af26eb01a9cf4f814cbf6549cc533041fa93e76f1e",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93",
+    "supporting_reports/data/le_coupled_reset_source/reference_tensors.csv.gz": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+    "supporting_reports/data/comer_two_current/reference_initial_profile.csv": "add3ebe17eeb7cd1a84635fdead9351c16750d4482260c4aae3f4d7a2d2450d7",
+    "supporting_reports/data/quantum_boundary/static_cutoffs.csv": "3de517db8f96cecdfaa8d31152d84642770fae5c909a261123d52f3dd9046299"
+  },
+  "parameter_pairs": 154,
+  "quadrature_levels": [
+    128,
+    256,
+    512
+  ],
+  "interaction_comparisons": 462,
+  "gap_stress_rows": 456,
+  "boundary_partitions": 462,
+  "all_held_floors_positive": true,
+  "all_gap_radial_enthalpies_negative": true,
+  "scope": "Disjoint scalar sheets with fixed isolated physical masses; exact static continuum interaction, bulk stress and surface binding; necessary initial rail placement constraints."
+}

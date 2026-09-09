@@ -18,7 +18,10 @@ ROOT = Path(__file__).resolve().parents[3]
 
 def adaptive_interaction(row):
     first, second = row['lambda1'], row['lambda2']
-    scale = min(1., first*second)
+    # A weak sheet opposite a strong one has energy of order lambda_weak,
+    # whereas two weak sheets scale as their product. Normalize both regimes
+    # before the adaptive routine applies its absolute error threshold.
+    scale = min(1., first, second, first*second)
     breaks = sorted(set([0., 1., 5., 20., 80.]+[x for x in [first, second] if 0 < x < 80]))
     def integrand(y, component):
         if y == 0.:
@@ -104,6 +107,9 @@ def main():
     rail_unchanged = bool(np.array_equal(reference.to_numpy(), original.to_numpy()))
     placement = json.loads((args.output/'rail_placement.json').read_text())
     mass_difference_error = abs(placement['endpoint_mass_change']-placement['coordinate_mass'])
+    angular_negative = int(((reference.energy+reference.angular_pressure) < 0).sum())
+    positive_with_negative_radial = int(((reference.energy > 0)&(reference.radial_enthalpy < 0)).sum())
+    gap_angular_enthalpy_error = float(abs(profiles.energy+profiles.transverse_pressure).max())
     passed = bool(source_match and checks.passed.all() and local.passed.all()
                   and surface_error < 2e-9 and partition_error < 2e-9 and rail_unchanged and mass_difference_error < 1e-7)
     result = {'elapsed_seconds': time.monotonic()-started, 'workers': args.workers,
@@ -115,6 +121,9 @@ def main():
         'max_normalized_surface_binding_error': surface_error,
         'max_normalized_partition_error': partition_error,
         'mass_endpoint_vs_density_integral_error': mass_difference_error,
+        'negative_rail_angular_enthalpy_points': angular_negative,
+        'positive_rail_energy_points_with_negative_radial_enthalpy': positive_with_negative_radial,
+        'max_gap_angular_enthalpy': gap_angular_enthalpy_error,
         'all_passed': passed, 'audit_script_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'method': 'Adaptive material-scale quadrature, direct two-by-two Green resolvent, explicit surface binding, fixed-input rail mass identity.'}
     (args.output/'audit.json').write_text(json.dumps(result, indent=2)+'\n')

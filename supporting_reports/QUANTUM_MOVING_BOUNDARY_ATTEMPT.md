@@ -284,6 +284,15 @@ evolution and the repaired rail reference retain their existing status.
 The bounded investigation ends with this explicit field response and the
 complete-cell obstruction.
 
+The subsequent [matched-mass boundary comparison](RENORMALIZED_BOUNDARY_SUPPORT_ROUNDS.md)
+uses disjoint scalar sheets with fixed isolated physical masses. It retains
+continuum negative gap stress and the finite surface binding energy.
+An analytic bound makes the ordinary holding cost exceed the interaction
+binding throughout that positive-coupling family. The accompanying rail
+placement comparison distinguishes the positive proper energy of the
+annulus from its negative increment in enclosed mass, while preserving
+the full radial and angular stress requirements.
+
 ## Verification and retained evidence
 
 The independent audit reconstructs the barrier matrices by real-space

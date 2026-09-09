@@ -1,0 +1,20 @@
+{
+  "elapsed_seconds": 0.8866379354149103,
+  "workers": 4,
+  "source_hashes_match": true,
+  "rail_profile_unchanged": true,
+  "interaction_pairs_checked": 154,
+  "green_function_stresses_checked": 32,
+  "max_relative_energy_error": 8.055071915742409e-15,
+  "max_relative_pressure_error": 8.298599618214094e-15,
+  "max_normalized_green_stress_error": 4.255844623225085e-12,
+  "max_normalized_surface_binding_error": 1.1600040410961632e-14,
+  "max_normalized_partition_error": 1.1410839298908665e-15,
+  "mass_endpoint_vs_density_integral_error": 5.443767658874776e-11,
+  "negative_rail_angular_enthalpy_points": 1162,
+  "positive_rail_energy_points_with_negative_radial_enthalpy": 398,
+  "max_gap_angular_enthalpy": 0.0,
+  "all_passed": true,
+  "audit_script_sha256": "b5c0ff1db20b61f39cda93e55d66868721898a7c0e07e9145cd93e1a493da524",
+  "method": "Adaptive material-scale quadrature, direct two-by-two Green resolvent, explicit surface binding, fixed-input rail mass identity."
+}

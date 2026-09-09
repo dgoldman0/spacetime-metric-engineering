@@ -1,0 +1,24 @@
+{
+  "points": 2049,
+  "inner_radius": 2.15,
+  "outer_radius": 6.25,
+  "inner_misner_sharp_mass": 1.0749916397478883,
+  "outer_misner_sharp_mass": 0.24505096361463266,
+  "endpoint_mass_change": -0.8299406761332556,
+  "proper_radial_length": 95.9087566569685,
+  "positive_energy_points": 398,
+  "negative_radial_enthalpy_points": 2049,
+  "positive_energy_with_negative_radial_enthalpy_points": 398,
+  "linearly_interpolated_energy_zero_radii": [
+    2.945503054445769
+  ],
+  "coordinate_mass": -0.8299406760788179,
+  "coordinate_mass_positive_part": 0.36121090630169617,
+  "coordinate_mass_negative_part": -1.191151582380514,
+  "proper_energy": 43.35437039828398,
+  "proper_energy_positive_part": 45.302492344000356,
+  "proper_energy_negative_part": -1.948121945716378,
+  "lapse_weighted_slice_energy": 2745.628586668916,
+  "lapse_weighted_slice_energy_positive_part": 2747.912673791088,
+  "lapse_weighted_slice_energy_negative_part": -2.2840871221721004
+}
