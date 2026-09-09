@@ -281,8 +281,13 @@ The regular condensate and independent-current results remain available for
 the finite material and transport roles. A complete supplied-stress solution
 for the active rail remains open. Within the longitudinal route, a meaningful
 continuation would change the radial and clock transition together, or specify
-an additional source of negative radial null stress. Its operational and field
-constraints remain to be selected before a further joint field solve.
+an additional source of negative radial null stress. The
+[geometry-history cross-reference](GEOMETRY_DESIGN_HISTORY_CROSS_REFERENCE.md)
+recovers the existing radius, radial-shape, clock, and transition comparisons
+and their service constraints. A continuation can apply the newer integrated
+source criteria to relevant archived alternatives before a further joint field
+solve. The static gate responds to changes in the lapse and proper-distance
+radius profile; the beta-only collar controls address the active handoff.
 
 ## Integrated-gate verification and resource record
 

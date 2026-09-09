@@ -22,6 +22,11 @@ response and finite transitions retain larger requirements. The tested
 independent planar holders and longitudinal-channel continuation encounter
 their stated mechanical and integrated-null-stress barriers.
 
+The [geometry-history cross-reference](supporting_reports/GEOMETRY_DESIGN_HISTORY_CROSS_REFERENCE.md)
+connects those new source tests to the existing radius, clock, radial-shape,
+transition, and service comparisons, including the archived reasons for
+preferring compact support.
+
 Do not describe the current package as a `V=10` final refreeze. The latest
 service-rating ladder makes `V=5` the active engineered scope:
 
@@ -33,6 +38,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- `supporting_reports/GEOMETRY_DESIGN_HISTORY_CROSS_REFERENCE.md`: established
+  geometry tradeoffs, service constraints, and their relation to the newer
+  source-construction tests.
 - `supporting_reports/COUPLED_REORIENTATION_INVESTIGATION.md`: counted support
   allocation and construction gates with clock-profile freedom.
 - `supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md`:
