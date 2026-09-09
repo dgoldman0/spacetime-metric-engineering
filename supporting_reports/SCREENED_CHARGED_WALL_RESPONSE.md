@@ -36,6 +36,11 @@ The charge magnitude is \(e\); the registered numerical benchmark is
 Conversion to the rail's geometric energies multiplies them by the same
 \(\eta=G\hbar/L^2\) used for the wall material.
 
+The local-density approximation also requires gradients small relative to
+the screening Fermi momentum. At the wall, \(p_F a=c_e\simeq25.41\), so
+\(ka/c_e\) measures the tangential gradient scale. The extended response
+curve records this ratio alongside its formal large-wave-number limit.
+
 ## Counted planar cloud
 
 Let \(n\) be the number of positively charged wall particles per area and
@@ -140,6 +145,11 @@ This is a static energy condition. Cloud inertia and the frequency-dependent
 response belong to the dynamical problem. Negative \(K\) supplies a
 downhill energy direction even after allowing the cloud to relax.
 
+For the area-stationary flat Fermi ball, the leading total pressure is zero.
+The same calculation then gives \(K=P_c k^2f(ka)>0\), recovering the
+stabilizing role of screening in that equilibrium. The rail's positive
+required pressure creates the additional term that the cloud has to overcome.
+
 ## Bound over the enclosing branch
 
 For the retained analytic rail tail and Schwarzschild exterior, direct
@@ -175,3 +185,78 @@ geometries and the material equilibrium; its apparent planar crossing is
 a scale requirement for a new curved construction. Finite electron mass,
 thermal background, charged confinement, and the full curved quantum stress
 remain separate physical requirements of that construction.
+
+This bound uses the leading classical allocation of the junction stress.
+Quantum dressing of comparable magnitude would enter both the equilibrium
+allocation and its deformation response. The finite-width scalar wall's
+absolute curved quantum tensor remains part of the complete source problem.
+
+## Numerical results and verification
+
+The [retained run](data/screened_charged_wall/manifest.json) scans 2,001
+exterior masses for each of 1, 4, 16, and 64 charged wall species. The
+8,004 rows include 4,116 with positive material components and positive
+conditional radial frequency squared. The latter uses the original
+prescribed-bulk diagnostic, including its momentum flux, and the total
+adiabatic occupied-sector pressure law. The normal response supplies the
+additional exclusion established above.
+
+At the analytically optimal exterior mass, the finite-species bounds are:
+
+| Charged wall species | Maximum additional response / required response, as \(ka\to\infty\) | Formal \(a/R\) crossing for \(kR=\sqrt{110}\) |
+|---:|---:|---:|
+| 1 | 0.526894 | No crossing |
+| 4 | 0.854353 | No crossing |
+| 16 | 1.239531 | 1.282913 |
+| 64 | 1.600263 | 0.557954 |
+| All occupied energy assigned to cloud | 2.257143 | 0.299875 |
+
+The final row relaxes the material composition to establish an upper bound.
+Every finite crossing in the table lies beyond the thin-cloud approximation.
+The cloud length is a proper normal scale, while \(R\) is the enclosure's
+areal radius; the table compares their scales in the local construction.
+
+At exterior mass 1.5, the original 65 local wavelength/width combinations
+are crossed with the four species counts and \(a/R=0.01,0.025,0.05,0.1\).
+All 1,040 cases have negative static deformation stiffness. Of these, 420
+meet the registered hierarchy
+\[
+a/R\le0.05,\quad d/a\le0.2,\quad kR\ge10,\quad kd\le0.2.
+\]
+The sign holds in all 420 cases. Extrapolating the quartic bending term
+would instead produce 72 apparent passes within that hierarchy. The full
+response resolves these through its saturation with increasing \(ka\).
+
+![Screening response and the cloud-length requirement](data/screened_charged_wall/screened_wall_response.png)
+
+Eleven wave numbers and three numerical tolerances give 33 independent
+Poisson boundary-value checks. At tolerance \(10^{-10}\), the maximum
+absolute discrepancy in \(K_c/(P_c k^2)\) is \(2.47\times10^{-10}\).
+The independent energy integral agrees within \(3.4\times10^{-16}\), and
+direct charge/energy/stress integrals agree within \(4.5\times10^{-16}\).
+The [audit](data/screened_charged_wall_audit/audit.json) also locates the
+formal crossings through energy quadrature and checks them with the
+numerical Poisson response. A pressure-free control has positive
+deformation energy throughout the sampled wave-number range.
+
+All 41 focused tests and 41 audit checks pass. The retained run and audit
+use four workers and take 2.44 and 1.06 seconds, respectively. The peak
+reported worker memory is about 154 MiB. Their complete retained evidence
+occupies 984,919 bytes. Numerical CSV input uses exact floating-point round
+trips so that the near-horizon control masses preserve their written values.
+An external single-worker replay reproduces all numerical table entries
+exactly, and its separate four-worker audit passes all 41 checks.
+
+## Reproduction
+
+Both commands accept fresh output directories. The audit accepts an
+external run directory through `--input`.
+
+```bash
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export PYTHONPATH=toolkit/adm_harness_cli
+export MPLCONFIGDIR=/tmp/active-rail-mpl-cache
+python toolkit/adm_harness_cli/scripts/run_screened_wall.py --workers 4 --output /tmp/rail-screened-replay
+python toolkit/adm_harness_cli/scripts/audit_screened_wall.py --workers 4 --input /tmp/rail-screened-replay --output /tmp/rail-screened-audit-replay
+python -m pytest -q toolkit/adm_harness_cli/tests/test_screened_wall.py toolkit/adm_harness_cli/tests/test_smooth_mirror.py toolkit/adm_harness_cli/tests/test_smooth_mirror_material.py toolkit/adm_harness_cli/tests/test_spherical_support.py toolkit/adm_harness_cli/tests/test_curved_boundary.py
+```

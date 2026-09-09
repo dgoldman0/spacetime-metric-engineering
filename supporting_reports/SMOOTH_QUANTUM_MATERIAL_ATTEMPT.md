@@ -286,6 +286,14 @@ cannot pass that gate through a change of its gas density or wall tension
 while retaining the junction. The full absolute curved quantum tensor and
 coupled finite-width equilibrium have consequently remained unevaluated.
 
+The [screened charged-wall calculation](SCREENED_CHARGED_WALL_RESPONSE.md)
+derives a positive bending contribution from a surrounding charge cloud.
+Its full static response saturates, and counting the cloud's energy and
+pressure preserves the normal instability in the thin-cloud regime.
+The optimistic crossing for the longest registered local ripple requires
+a cloud length at least 0.30 times the enclosure radius, making the
+curved atmosphere part of the source construction.
+
 ## Reproduction and retained evidence
 
 The numerical outputs are in

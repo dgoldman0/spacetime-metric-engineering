@@ -1,0 +1,133 @@
+{
+  "completed_utc": "2026-09-09T14:46:33.455840+00:00",
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_screened_wall.py": "49b7083d3d3d2d9ce4d0afcd93da505a3b2a2ac7a8b208722b0676e86e5d8cb7",
+    "toolkit/adm_harness_cli/adm_harness/screened_wall.py": "ddcf2a748b20b7dd0812b7c95ef1ec6c1d68c58980693bc7c7cc3f872eaa4d7e",
+    "toolkit/adm_harness_cli/adm_harness/smooth_mirror.py": "2dbca935bd6689cc0369f780a6b898f69c1f95cb8fbcffb0543dd8c0e496403f",
+    "toolkit/adm_harness_cli/adm_harness/spherical_support.py": "1e34c34ec356bf1708347827028729a401e7909d02347cd01c6e2adfe9b86156",
+    "supporting_reports/data/smooth_quantum_material/manifest.json": "26ab9e46c12ef5d05df011822ec1d022fad834e0eb9c6c66628346946ec776d2",
+    "supporting_reports/data/smooth_quantum_material/shape_modes.csv": "156500f78d1e297e6b29e82d99453770dbfeb645071c66180b129b49679259e5"
+  },
+  "workers": 4,
+  "elapsed_seconds": 2.435351500287652,
+  "evidence_bytes_before_manifest": 975377,
+  "electric_charge": 0.30286190409413793,
+  "radius": 6.8,
+  "throat": 1.75,
+  "response_tasks": 33,
+  "maximum_worker_peak_rss_kib": 157720,
+  "fine_bvp_maximum_absolute_error": 2.460686099325926e-10,
+  "energy_maximum_absolute_error": 3.3306690738754696e-16,
+  "cloud_integral_maximum_relative_error": 4.440892098500626e-16,
+  "mass_scan_rows": 8004,
+  "mass_scan_rows_per_flavor": 2001,
+  "positive_material_and_conditional_radial_rows": 4116,
+  "mode_rows": 1040,
+  "registered_hierarchy_mode_rows": 420,
+  "negative_stiffness_registered_modes": 420,
+  "negative_stiffness_all_displayed_modes": 1040,
+  "false_quartic_passes_all_displayed_modes": 250,
+  "false_quartic_passes_registered_modes": 72,
+  "global_bound": {
+    "best_exterior_mass": 1.391812865497076,
+    "minimum_pressure_to_energy": 0.17326732673267328,
+    "maximum_cloud_restoring_ceiling": 2.257142857142857,
+    "minimum_critical_q": 3.145115855900128,
+    "minimum_cloud_length_over_radius_at_l10": 0.29987503074439037,
+    "maximum_restoring_fraction_at_a_over_R_0p05": 0.12802949269299577,
+    "maximum_restoring_fraction_at_a_over_R_0p1": 0.34263193418251603
+  },
+  "selected_matches": [
+    {
+      "exterior_mass": 1.5,
+      "flavors": 1,
+      "cloud_to_fermi_ratio": 0.3045195247349448,
+      "cloud_energy": 0.0004679139394087857,
+      "fermi_energy": 0.0015365646580988862,
+      "restoring_ceiling_over_required": 0.5239588306907635,
+      "finite_planar_crossing": false,
+      "critical_q": null,
+      "critical_cloud_length_over_radius_at_l10": null
+    },
+    {
+      "exterior_mass": 1.391812865497076,
+      "flavors": 1,
+      "cloud_to_fermi_ratio": 0.3045195247349448,
+      "cloud_energy": 0.0004226134047599758,
+      "fermi_energy": 0.0013878039679978496,
+      "restoring_ceiling_over_required": 0.5268944290087761,
+      "finite_planar_crossing": false,
+      "critical_q": null,
+      "critical_cloud_length_over_radius_at_l10": null
+    },
+    {
+      "exterior_mass": 1.5,
+      "flavors": 4,
+      "cloud_to_fermi_ratio": 0.6090390494698896,
+      "cloud_energy": 0.0007587172853952885,
+      "fermi_energy": 0.0012457613121123834,
+      "restoring_ceiling_over_required": 0.8495934576834311,
+      "finite_planar_crossing": false,
+      "critical_q": null,
+      "critical_cloud_length_over_radius_at_l10": null
+    },
+    {
+      "exterior_mass": 1.391812865497076,
+      "flavors": 4,
+      "cloud_to_fermi_ratio": 0.6090390494698896,
+      "cloud_energy": 0.0006852629687337083,
+      "fermi_energy": 0.001125154404024117,
+      "restoring_ceiling_over_required": 0.8543534979371314,
+      "finite_planar_crossing": false,
+      "critical_q": null,
+      "critical_cloud_length_over_radius_at_l10": null
+    },
+    {
+      "exterior_mass": 1.5,
+      "flavors": 16,
+      "cloud_to_fermi_ratio": 1.2180780989397793,
+      "cloud_energy": 0.0011007779575411196,
+      "fermi_energy": 0.0009037006399665522,
+      "restoring_ceiling_over_required": 1.2326248117595244,
+      "finite_planar_crossing": true,
+      "critical_q": 13.828866714966063,
+      "critical_cloud_length_over_radius_at_l10": 1.3185307064383731
+    },
+    {
+      "exterior_mass": 1.391812865497076,
+      "flavors": 16,
+      "cloud_to_fermi_ratio": 1.2180780989397793,
+      "cloud_energy": 0.000994207441455953,
+      "fermi_energy": 0.0008162099313018726,
+      "restoring_ceiling_over_required": 1.2395308721447869,
+      "finite_planar_crossing": true,
+      "critical_q": 13.45530283145382,
+      "critical_cloud_length_over_radius_at_l10": 1.2829127876761508
+    },
+    {
+      "exterior_mass": 1.5,
+      "flavors": 64,
+      "cloud_to_fermi_ratio": 2.4361561978795585,
+      "cloud_energy": 0.0014211295056518855,
+      "fermi_energy": 0.0005833490918557863,
+      "restoring_ceiling_over_required": 1.5913468083090916,
+      "finite_planar_crossing": true,
+      "critical_q": 5.928840831910251,
+      "critical_cloud_length_over_radius_at_l10": 0.5652927930818139
+    },
+    {
+      "exterior_mass": 1.391812865497076,
+      "flavors": 64,
+      "cloud_to_fermi_ratio": 2.4361561978795585,
+      "cloud_energy": 0.0012835445333115197,
+      "fermi_energy": 0.0005268728394463058,
+      "restoring_ceiling_over_required": 1.6002626901307377,
+      "finite_planar_crossing": true,
+      "critical_q": 5.8518662339715934,
+      "critical_cloud_length_over_radius_at_l10": 0.5579535531361408
+    }
+  ],
+  "scope": "Static planar cold massless Thomas-Fermi cloud; counted leading neutral-composite junction; finite optical wall with charge-sheet approximation requiring d/a and kd small. Registered a/R<=0.05, d/a<=0.2, kR>=10, kd<=0.2.",
+  "response_scope": "Static stiffness, with all cloud electric and particle energy counted. The q curve outside the small-gradient TF regime is a formal model diagnostic. Frequency-dependent cloud response is unevaluated.",
+  "outcome": "Negative deformation energy in the registered thin-cloud hierarchy. Optimistic planar crossing at a/R>=0.299875 for the longest local mode requires a new curved atmosphere construction."
+}

@@ -51,6 +51,17 @@ def test_bending_expansion_has_a_finite_pressure_ceiling():
     assert restoring_fraction(3) < .5
 
 
+def test_pressure_free_fermi_ball_control_has_positive_deformation_energy():
+    cloud = cold_cloud(.7)
+    gas = 4*np.sqrt(np.pi)*.7**1.5/3
+    tension = (gas+cloud['cloud_energy'])/2
+    material_pressure = -tension+gas/2
+    for q in [.05, 1., 10.]:
+        k = q/cloud['cloud_length']
+        cloud_stiffness = cloud['cloud_pressure']*k*k*independent_response_energy(q)['cloud_stiffness_ratio']
+        assert -material_pressure*k*k+cloud_stiffness > 0
+
+
 def test_static_matching_uses_the_same_particle_number_for_both_energies():
     n = .7
     cloud = cold_cloud(n)
