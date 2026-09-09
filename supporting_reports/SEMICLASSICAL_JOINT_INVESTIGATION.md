@@ -12,7 +12,7 @@ with the radius, lapse, condensate amplitudes, gauge potential, and quantum stat
 
 The material couplings retain \(e=0.1\), \(\lambda=1\), \(\mu=1.4\), \(v=12/6.8\), and \(G=\eta=2.4127904527582454\times10^{-5}\) in rail length units. The quantum sector contains one real minimally coupled scalar in the static ground state, with \(V_\chi=\kappa v^2h^2\) and \(\kappa=1.4\). Its stress and Higgs force follow from a common renormalized effective action. The material number of the initial branch, approximately 48,954.28, supplies the conserved-charge target for a joint continuation.
 
-An absolute source also requires finite renormalization conditions. Here the subtraction scale satisfies \(\mu_R^2=\kappa v^2\). The flat \(h=1\) vacuum has zero quantum energy and force; the Higgs mass and quartic coupling retain their registered values there. The vacuum Newton coefficient is fixed to the existing \(\eta\). Finite coefficients of \(R_{ab}R^{ab}\), \(\mathcal R^2\), and \(V_\chi\mathcal R\) are zero at this scale. These are explicit physical model choices for this round.
+An absolute source also requires finite renormalization conditions. Here the subtraction scale satisfies \(\mu_R^2=\kappa v^2\). The flat \(h=1\) vacuum has zero quantum energy and force, and its Higgs mass retains the registered value. More precisely, the added quantum potential and its first two derivatives with respect to \(V_\chi\) vanish there; higher derivatives retain the scalar's loop corrections. The vacuum Newton coefficient is fixed to the existing \(\eta\). Finite coefficients of \(R_{ab}R^{ab}\), \(\mathcal R^2\), and \(V_\chi\mathcal R\) are zero at this scale. These are explicit physical model choices for this round.
 
 Writing \(m_0^2=\mu_R^2\), the homogeneous quantum potential is
 
@@ -68,4 +68,37 @@ The heat-kernel construction follows [Vassilevich's account](https://arxiv.org/a
 
 The registered checks independently vary the radial mesh, frequency quadrature, angular range, regulator mass, and smooth-seed representation. Known flat-space modes, homogeneous vacuum conditions, local action variations, and constraint propagation provide analytic controls. Four workers perform independent angular calculations. A finite regulator value becomes eligible for geometric feedback only when these controls establish its limit and the quantum stress–force conservation identity is resolved. A failed numerical source check stops geometric feedback and yields a computational limitation for this round.
 
-Eight initial tests pass. They include an independent high-precision Bessel comparison, second-order radial convergence, the local Ward identity, and radial-constraint propagation with quantum material exchange. Full absolute-source refinement results are recorded at the next calculation milestone.
+Ten focused tests pass. They include an independent high-precision Bessel comparison, second-order radial convergence, the local Ward identity, radial-constraint propagation with quantum material exchange, exact product-space modes, and the integrated two-ended Einstein balance.
+
+## Integrated condition on the metric update
+
+The radial null equation supplies a useful solvability condition for the entire joint system:
+
+\[
+\left(\frac{R'}A\right)'=-4\pi\frac RA(\rho+p_r).
+\]
+
+Consequently the transition from a decreasing radius at the negative end to an increasing radius at the positive end requires
+
+\[
+B_{\rm opening}=\left[\frac{R'}A\right]_-^+
+=-4\pi\eta\int\frac RA
+\left[v^4(\rho_{\rm material}+p_{r,\rm material})+
+\rho_Q+p_{r,Q}\right]dl.
+\]
+
+The scalar–Higgs–gauge action has
+\(\rho_{\rm material}+p_{r,\rm material}=2(K+D)\geq0\)
+for every material configuration. Its quantum force changes the fields while preserving this algebraic property. Therefore, for a given quantum profile, an upper bound on its ability to open the geometry is
+
+\[
+B_Q^- =4\pi\eta\int\frac RA\max[-(\rho_Q+p_{r,Q}),0]dl.
+\]
+
+This deliberately generous bound omits every opposing quantum contribution and the complete positive material null stress. A necessary condition for the metric block is \(B_Q^-\geq B_{\rm opening}\). It tests the complete radial profile, including the enclosing material transitions.
+
+The initial smooth seed has \(B_{\rm opening}=2.1765897951\) between the coordinate-40 observations. Independent geometric integration reproduces the endpoint difference. A shared mode calculation evaluates 141 observations with four workers. At regulator masses 4 and 8, its maximum quantum opening balances are \(1.09094\times10^{-5}\) and \(9.63362\times10^{-6}\), respectively. Thus the necessary ratio is approximately \(5.0\times10^{-6}\) or \(4.4\times10^{-6}\). The signed quantum integral is negative in both controls: its opposing contributions outweigh its helpful ones on this seed.
+
+A fixed-charge material-block solve then includes the calculated quantum polarization in the Higgs equation. It preserves \(N=48954.28276875792\), selects \(\omega=0.8528237074\), and has independent equation residual \(2.50\times10^{-6}\). The largest amplitude change from the smoothed starting fields is 0.0595. The absolute vacuum is recalculated on these adjusted amplitudes before evaluating the subsequent metric step.
+
+The integral condition separates two different questions. A frozen quantum profile can support a nearby metric update only if its weighted negative null stress is sufficient. A fully nonlinear fixed point can also change the quantum profile itself. The measured deficit quantifies the increase in quantum response that such a continuation would have to produce; it leaves the existence of distant nonlinear branches open.

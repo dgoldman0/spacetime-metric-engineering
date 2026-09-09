@@ -1,0 +1,24 @@
+{
+  "solver_success": true,
+  "status": 0,
+  "nodes": 5141,
+  "target_matter_number": 48954.28276875792,
+  "frequency": 0.852823707430398,
+  "tolerance": 2e-06,
+  "independent_equation_residual": 2.5000535035712843e-06,
+  "boundary_residual": 8.584487099105547e-47,
+  "minimum_higgs": 5.409831729621539e-153,
+  "maximum_field_change": 0.05952075227489306,
+  "maximum_frequency_for_two_end_decay": 1.0047043262818882,
+  "accepted": true,
+  "elapsed_seconds": 0.5276207998394966,
+  "source_hashes": {
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_semiclassical_material.py": "4016787477762b8b19e9c3dcdb26a1893100e1f4ad6de46c6a920ca5b3bc2dde",
+    "supporting_reports/data/semiclassical_joint/initial_profile/source_profile.csv": "b9d60200e5d2dd689023e308a3ccfd8c400b53accfa6aeedd77d066a0aa6dfd3",
+    "supporting_reports/data/semiclassical_joint/initial_profile/manifest.json": "2a5e2d6dd71e5cdf12546c601597d38895a0a1f7e03a8de191b222c26b21cd47",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/adm_harness/semiclassical_material.py": "3d9c3e16e68cbc9f69e462dc05eb81d046d9a390405957a12a07d0f21624247b"
+  },
+  "output_hashes": {
+    "material.npz": "2972212ba258e97515c5dad532ea90e83853b20bfa270bfb151b440b90fec21a"
+  }
+}

@@ -5,6 +5,9 @@ description = "CLI harness for active-rail ADM ledger runs with whole-service fi
 requires-python = ">=3.10"
 dependencies = ["numpy", "pandas", "matplotlib", "pyyaml", "tabulate", "pyarrow"]
 
+[project.optional-dependencies]
+semiclassical = ["scipy", "sympy"]
+
 [project.scripts]
 adm-harness = "adm_harness.cli:main"
 

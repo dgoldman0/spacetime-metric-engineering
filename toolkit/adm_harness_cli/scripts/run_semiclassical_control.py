@@ -51,6 +51,7 @@ def main():
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--coordinate', type=float, default=-4.)
+    parser.add_argument('--proper-offset', type=float, default=0.)
     parser.add_argument('--spacing', type=float, default=.01)
     parser.add_argument('--far-spacing', type=float, default=.04)
     parser.add_argument('--width', type=float, default=.25)
@@ -78,9 +79,10 @@ def main():
         rjets = np.array([np.log(r), 1/r, -1/r**2, 2/r**3, -6/r**4])
         ajets, vjets = np.zeros(5), np.array([mu2, 0., 0., 0., 0.])
         required = np.zeros(3)
+        proper = r
     else:
         seed = SmoothJointSeed(profile, args.width, args.seed_spacing, args.extent)
-        proper = float(seed.proper_of_coordinate(args.coordinate))
+        proper = float(seed.proper_of_coordinate(args.coordinate))+args.proper_offset
         problem = AbsoluteRadialControl.from_seed(seed, proper, args.spacing, args.far_spacing)
         jets = seed.jets(proper)
         rjets, ajets = jets[:, 0], jets[:, 1]
@@ -136,6 +138,8 @@ def main():
         'elapsed_seconds': time.monotonic()-started, 'worker_peak_rss_kib': peak,
         'nodes': len(problem.coordinate), 'eta': profile.eta,
         'radius': float(problem.radius[problem.probe]), 'lapse': float(problem.lapse[problem.probe]),
+        'proper_coordinate': proper, 'log_radius_gradient': float(rjets[1]),
+        'log_lapse_gradient': float(ajets[1]), 'mass_squared_gradient': float(vjets[1]),
         'required_tensor': required.tolist(), 'mass_squared': float(vjets[0]),
         'source_hashes': {str(p.relative_to(ROOT)): sha256_file(p) for p in sources},
         'output_hashes': {p.name: sha256_file(p) for p in args.output.iterdir()}}

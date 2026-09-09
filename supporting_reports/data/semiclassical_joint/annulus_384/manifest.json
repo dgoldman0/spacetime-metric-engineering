@@ -1,0 +1,53 @@
+{
+  "output": "/tmp/rail-absolute-annulus-final",
+  "workers": 4,
+  "coordinate": -4.0,
+  "proper_offset": 0.0,
+  "spacing": 0.00125,
+  "far_spacing": 0.02,
+  "width": 0.25,
+  "seed_spacing": 0.025,
+  "extent": 180.0,
+  "angular_max": 384,
+  "frequency_nodes": 224,
+  "frequency_upper": 384.0,
+  "regulators": [
+    8.0,
+    16.0
+  ],
+  "budget_seconds": 600.0,
+  "flat": false,
+  "no_local_correction": false,
+  "scope": "Finite-regulator absolute-source control; continuum and regulator limits pending",
+  "elapsed_seconds": 166.04001099336892,
+  "worker_peak_rss_kib": 176776,
+  "nodes": 33994,
+  "eta": 2.4127904527582454e-05,
+  "radius": 4.367011987004031,
+  "lapse": 0.8491799789925124,
+  "proper_coordinate": -174.10796864226637,
+  "log_radius_gradient": -0.2059777412538826,
+  "log_lapse_gradient": 0.00041832813816013517,
+  "mass_squared_gradient": -4.831416492400829e-25,
+  "required_tensor": [
+    -0.001068006430906987,
+    -0.0004051171770277366,
+    0.000844031470551751
+  ],
+  "mass_squared": 6.131904461460668e-26,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_semiclassical_control.py": "3374c36d2c386a63a6264ade11070db373b6bf2c5c7184eeead3b8bb442716d3",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "690010ad845eb1e6bfdb33d994667cd7b25d175151a7c4f560b8471b10b58720",
+    "toolkit/adm_harness_cli/adm_harness/absolute_vacuum_control.py": "ada3d06b8fe5874cb5426b8d250520b1b50e228f0105cafd901697647238b137",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  },
+  "output_hashes": {
+    "estimates.csv": "c1ce7d7252ea1280ff0bf9d9cb9b826ba40ffbb61f99f5f8159bd30c69870c0b",
+    "angular_sums.npz": "f9503768e3e62bb73b5db96f228a915118be0f2505fb00df0d4d96de4828cbd3"
+  }
+}

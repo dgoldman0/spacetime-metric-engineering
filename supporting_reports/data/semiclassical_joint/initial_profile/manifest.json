@@ -1,0 +1,41 @@
+{
+  "output": "/tmp/rail-feedback-base",
+  "workers": 4,
+  "spacing": 0.005,
+  "width": 0.25,
+  "seed_spacing": 0.025,
+  "end_coordinate": 48.0,
+  "angular_max": 128,
+  "frequency_nodes": 224,
+  "local_frequency_upper": 128.0,
+  "regulators": [
+    4.0,
+    8.0
+  ],
+  "budget_seconds": 900.0,
+  "eta": 2.4127904527582454e-05,
+  "elapsed_seconds": 96.52255487255752,
+  "worker_peak_rss_kib": 186988,
+  "scope": "Necessary integrated Einstein balance for a frozen quantum update; full nonlinear fixed point remains separate",
+  "nodes": 66843,
+  "probes": 141,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_semiclassical_feedback.py": "33598f22d74448ae925865159c1048e96a93f6bc009c849cf1311da0f5196435",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "690010ad845eb1e6bfdb33d994667cd7b25d175151a7c4f560b8471b10b58720",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_feedback.py": "7df04065f955149f54af29879029f703033a4c031e473e04b58e9bbc03d3a3d2",
+    "toolkit/adm_harness_cli/adm_harness/absolute_vacuum_control.py": "ada3d06b8fe5874cb5426b8d250520b1b50e228f0105cafd901697647238b137",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  },
+  "geometric_integral_relative_error": 6.13664674631309e-12,
+  "output_hashes": {
+    "source_profile.csv": "b9d60200e5d2dd689023e308a3ccfd8c400b53accfa6aeedd77d066a0aa6dfd3",
+    "opening_balance.csv": "22a83a315c1ab437026171feab4da46fbf41653e4613b75506a74db8d4e6583e",
+    "angular_sums.npz": "a282da1903ad11ee138c04911bf79a083b1326d83c4538857e64afb9ae0f5bfa"
+  }
+}

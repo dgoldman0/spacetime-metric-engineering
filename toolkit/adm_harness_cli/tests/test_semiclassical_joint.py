@@ -112,3 +112,37 @@ def test_bessel_small_argument_large_order_fallback():
             (time+mixed-2*angle-potential)/2, (time-mixed-potential)/2, green])
     ref = [float(sum(int(c)*row[i] for c, row in zip(PV_WEIGHTS, reference))) for i in range(4)]
     np.testing.assert_allclose(flat_mode(frequency, j, scale, radius, 0.), ref, atol=2e-14, rtol=1e-6)
+
+
+def test_shared_profile_operator_matches_exact_product_space_modes():
+    from adm_harness.semiclassical_feedback import ProfileRadialControl
+    x = np.linspace(-16., 16., 6401)
+    probes = np.array([2800, 3200, 3600])
+    radius, clock, potential, omega, harmonic, scale = 3., 1.7, .6, .8, 2, 2.
+    p = ProfileRadialControl(x, np.full_like(x, radius), np.full_like(x, clock),
+        np.full_like(x, potential), np.zeros_like(x), probes, np.zeros(3))
+    channels = []
+    for mass in pv_masses(scale):
+        k = np.sqrt((omega/clock)**2+harmonic*(harmonic+1)/radius**2+potential+mass)
+        g = 1/(2*k*clock*radius**2)
+        t, b = -(omega/clock)**2*g, -k*k*g
+        angular = harmonic*(harmonic+1)/(2*radius**2)*g
+        v = (potential+mass)*g
+        channels.append([.5*(t+b+2*angular+v), .5*(t+b-2*angular-v), .5*(t-b-v), g])
+    expected = np.sum(PV_WEIGHTS[:, None]*channels, axis=0)
+    np.testing.assert_allclose(p.mode(omega, harmonic, scale), np.tile(expected, (3, 1)),
+                               atol=2e-12, rtol=1e-8)
+
+
+def test_integrated_null_equation_reproduces_two_end_opening():
+    from scipy.integrate import simpson
+    l = np.linspace(-100., 100., 40001)
+    throat = 2.
+    radius = np.sqrt(l*l+throat*throat)
+    rjets = np.array([np.log(radius), l/radius**2, (throat*throat-l*l)/radius**4])
+    a = .3*np.arctan(l/throat)
+    ajets = np.array([a, .3*throat/radius**2, -.6*throat*l/radius**4])
+    tensor = curvature(rjets, ajets)[1]/(8*np.pi)
+    integral = -4*np.pi*simpson(radius/np.exp(a)*(tensor[0]+tensor[1]), x=l)
+    endpoint = np.diff((l/radius/np.exp(a))[[0, -1]])[0]
+    np.testing.assert_allclose(integral, endpoint, rtol=2e-10)

@@ -150,7 +150,7 @@ def heavy_coefficients(scale, reference_mass_squared):
 
 
 def vacuum_finite_coefficients(reference_mass_squared):
-    """Keep flat h=1 vacuum, Higgs mass, quartic coupling and measured G.
+    """Keep the flat h=1 vacuum, Higgs mass, and measured G.
 
     mu^2=kappa*v^2. The added F=mu^2 V/(32pi^2)-mu^4/(128pi^2)
     sets the potential and its first two V derivatives at V=mu^2 to zero.

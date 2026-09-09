@@ -1,0 +1,50 @@
+{
+  "output": "/tmp/rail-absolute-annulus-192",
+  "workers": 4,
+  "coordinate": -4.0,
+  "spacing": 0.0025,
+  "far_spacing": 0.02,
+  "width": 0.25,
+  "seed_spacing": 0.025,
+  "extent": 180.0,
+  "angular_max": 192,
+  "frequency_nodes": 160,
+  "frequency_upper": 192.0,
+  "regulators": [
+    2.0,
+    4.0,
+    8.0,
+    16.0
+  ],
+  "budget_seconds": 600.0,
+  "flat": false,
+  "no_local_correction": false,
+  "scope": "Finite-regulator absolute-source control; continuum and regulator limits pending",
+  "elapsed_seconds": 111.64358143229038,
+  "worker_peak_rss_kib": 176432,
+  "nodes": 31532,
+  "eta": 2.4127904527582454e-05,
+  "radius": 4.367011987004031,
+  "lapse": 0.8491799789925124,
+  "required_tensor": [
+    -0.001068006430906987,
+    -0.0004051171770277366,
+    0.000844031470551751
+  ],
+  "mass_squared": 6.131904461460668e-26,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_semiclassical_control.py": "f38ed8961ab1d5cc097da4a9d46a20571a3f4d737ad99a2ebba8a30d06650537",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "690010ad845eb1e6bfdb33d994667cd7b25d175151a7c4f560b8471b10b58720",
+    "toolkit/adm_harness_cli/adm_harness/absolute_vacuum_control.py": "ada3d06b8fe5874cb5426b8d250520b1b50e228f0105cafd901697647238b137",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  },
+  "output_hashes": {
+    "estimates.csv": "a38093d898ee13ce5d5b1c71d33142396f4cc3afbef7bd53da08b6f9656fcbf9",
+    "angular_sums.npz": "fc7e74fa728f8aee5d82cc820f97a9c1c928b2229ed8f8c14953868a12fdf46d"
+  }
+}
