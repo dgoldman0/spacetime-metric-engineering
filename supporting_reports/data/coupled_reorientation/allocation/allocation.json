@@ -1,0 +1,83 @@
+{
+  "scope": "Restored static target allocation; ideal tensor weights are unsupplied quantum targets and the host is fitted",
+  "eta": 2.4127904527582454e-05,
+  "v": 1.7647058823529411,
+  "omega": 0.852823707430398,
+  "workers": 4,
+  "fine_points": 160001,
+  "coordinate_extent": 40.0,
+  "cases": [
+    {
+      "backbone_fraction": 0.0,
+      "throat_backbone_tension_share": 0.0,
+      "throat_material_tension_share": 0.006115911831349333,
+      "throat_quantum_radial_weight": 3.4147434018437506e-07,
+      "throat_quantum_angular_weight": 0.0,
+      "tensor_max_absolute_error": 1.0408340855860843e-17,
+      "host_min_dec_margin": -2.0816681711721685e-17,
+      "maximum_backbone_force": 0.0,
+      "backbone_area_weighted_force_max_absolute_error": 0.0,
+      "null_only_quantum_proper_energy_lower_magnitude": 2.5524187520477275,
+      "maximum_independent_cell_holder_deficit": 0.1377531509536512,
+      "proper_energy_quadrature_max_absolute_change": 3.293787329994302e-06,
+      "proper_energy": {
+        "demanded": 116.5605651650072,
+        "backbone": 0.0,
+        "matter": 2.69006059487111,
+        "quantum": -23.389248966175344,
+        "host": 137.25975353631145
+      }
+    },
+    {
+      "backbone_fraction": 0.5,
+      "throat_backbone_tension_share": 0.49999999999970474,
+      "throat_material_tension_share": 0.006115911831349333,
+      "throat_quantum_radial_weight": 3.4147434018437506e-07,
+      "throat_quantum_angular_weight": 0.0,
+      "tensor_max_absolute_error": 1.0408340855860843e-17,
+      "host_min_dec_margin": -2.0816681711721685e-17,
+      "maximum_backbone_force": 0.0008347714997128488,
+      "backbone_area_weighted_force_max_absolute_error": 7.83790921055072e-10,
+      "null_only_quantum_proper_energy_lower_magnitude": 2.5524187520477275,
+      "maximum_independent_cell_holder_deficit": 0.13854821801918168,
+      "proper_energy_quadrature_max_absolute_change": 1.2184673039428162e-06,
+      "proper_energy": {
+        "demanded": 116.5605651650072,
+        "backbone": 58.405791925254846,
+        "matter": 2.69006059487111,
+        "quantum": -25.136404059410978,
+        "host": 80.60111670429222
+      }
+    },
+    {
+      "backbone_fraction": 0.95,
+      "throat_backbone_tension_share": 0.9499999999994391,
+      "throat_material_tension_share": 0.006115911831349333,
+      "throat_quantum_radial_weight": 3.4147434018437506e-07,
+      "throat_quantum_angular_weight": 0.0,
+      "tensor_max_absolute_error": 1.0408340855860843e-17,
+      "host_min_dec_margin": -2.0816681711721685e-17,
+      "maximum_backbone_force": 0.0015860658494544128,
+      "backbone_area_weighted_force_max_absolute_error": 1.4892027055957158e-09,
+      "null_only_quantum_proper_energy_lower_magnitude": 2.8883345518278505,
+      "maximum_independent_cell_holder_deficit": 0.13927686119691518,
+      "proper_energy_quadrature_max_absolute_change": 5.545200139067674e-07,
+      "proper_energy": {
+        "demanded": 116.5605651650072,
+        "backbone": 110.97100465798421,
+        "matter": 2.69006059487111,
+        "quantum": -27.785485767380543,
+        "host": 30.684985679532424
+      }
+    }
+  ],
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/reorient_coupled_support.py": "8fe1b5c56d8c6bdb81dfcde9a23f3c00be45e8d6918649cfd2aad301ce5a5fdf",
+    "supporting_reports/data/semiclassical_joint/material_update/material.npz": "2972212ba258e97515c5dad532ea90e83853b20bfa270bfb151b440b90fec21a",
+    "toolkit/adm_harness_cli/adm_harness/vacuum_support.py": "1538e1a6b93e8aa6a3265622fa84aa0ad331ab814b32b93580ee116041797fa5",
+    "toolkit/adm_harness_cli/adm_harness/semiclassical_joint.py": "01d7df2a3b528dd531b174545da618f4356e16467101716a0b010712b8841019",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a"
+  }
+}
