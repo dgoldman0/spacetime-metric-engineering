@@ -90,6 +90,8 @@ The residuals should include scalar and gauge continuity, mass and lapse-gradien
 
 This direction uses the earlier trials to select the geometry, material organization, and matching conditions together. It supplies a concrete search within the current model, while the existence of a regular, stable source meeting the full rail tensor remains open.
 
+The [joint-continuation calculation](CONDENSATE_JOINT_CONTINUATION.md) realizes the stationary material-regularity part of this search, with two resolved branches on the retained asymmetric geometry. Its measured quantum remainder and stability requirements define the remaining source tests.
+
 ## Evidence links
 
 - [Reset startup and source-order obstruction](LE_RESET_INVERSE_SEARCH.md)

@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-09-09T17:57:40.792497+00:00",
+  "workers": 4,
+  "seconds": 118.70515780802816,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_condensate_joint.py": "18dede27541f2d587cc05f7de880c32179304764a3a7447f50d9dbb8492f5286",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint_audit.py": "18e061ad6a11817742538c14c8d950ed48092e450343f1f38947f17dc76c1d92",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855",
+    "supporting_reports/data/curved_quantum_boundary/geometry.json": "ac234fd7ac28ceba375af16d432205ff6a8c87480435b69a893a0816f4e86a76"
+  },
+  "branch_location_cases": 15,
+  "auxiliary_solutions": 3,
+  "full_retained_solutions": 2,
+  "refinements": 8,
+  "preferred_branch": "r12_q0.85_potential_x2",
+  "couplings": {
+    "charge": 0.1,
+    "higgs_coupling": 1.0,
+    "matter_coupling": 1.4
+  },
+  "core_einstein_source": "required quantum remainder measured; quantum expectation unevaluated",
+  "coupled_angular_stability_evaluated": false,
+  "time_dependent_rail_service_evaluated": false,
+  "output_sha256": {
+    "joint_condensate_profiles.png": "f1efeb699cc082aa10413283a4ffc7238393b85944209518ba07e6bcde4b1308",
+    "r12_q0.85_potential_x0_interior.csv.gz": "80d4be8e8b19b6dbdd61f5699f785377e2e830fe3c0bddb4437b1ad226c2b8e9",
+    "r12_q0.85_potential_x0_exterior.csv.gz": "9ced744f9ceadd364b026de67062d8dd50b4ebde0c4b2395f96c561367654a9c",
+    "r12_q0.85_potential_x0_required_remainder.csv.gz": "86c481be4854cbd29ef35f7d567ea2105aad0a82b6e3d275694b8933878ac49b",
+    "r12_q0.85_potential_x2_interior.csv.gz": "695f7500e9937f75bd5a7eff012bf78ea0bd511bb554eb02502e723c2c8b5bd4",
+    "refinements.csv": "e5d864f4122ee976ba49aff5df5c22fd3d60e4d1456292c2ceb57412825400ae",
+    "r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "r12_q0.85_potential_x0_solution.npz": "6ce68210cfc18eebdaf9c919db794ad80631d3804a951b4ce54f5bd7bbd80a09",
+    "r12_q0.85_potential_x2_required_remainder.csv.gz": "6ff83e19b956470302562e2c7d317c8cd3aa342309fdc40c7e44aaf66fa15208",
+    "continuation_summary.csv": "9b8550ea74cc12dcf889a29ed3778ad943b4300ac8f2cc860e9284565863d85d",
+    "primary_summaries.csv": "1ecc99fc0003afbd2942b019f08734a4c4a4835edc75e903c187ae779a704ddb",
+    "r12_q0.85_potential_x2_exterior.csv.gz": "dda92c2906be646fec23785d8922d3227925ebde977abd931108b97e7cbcceb5",
+    "branch_location.csv": "faa6128c7c1bee36ea93a179c7feb9678bbec85a139f3e927217ad5cb0a04d75",
+    "continuation_trace.csv": "e6a861658681798e749ce4c2f5ff6e240ad994914f30b4147b018bca5badb644"
+  }
+}

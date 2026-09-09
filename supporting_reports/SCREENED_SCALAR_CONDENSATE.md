@@ -196,6 +196,8 @@ A further construction using the same fields would instead have to select inner 
 
 The [joint-selection synthesis](CONDENSATE_JOINT_SELECTION_DIRECTION.md) combines this grid's monotone mass and event-radius trends with the earlier quantum placement and material constraints. It identifies the potential-dominated inner branch and the pressure-to-potential loading condition as concrete starting information for that global solve.
 
+The subsequent [joint continuation](CONDENSATE_JOINT_CONTINUATION.md) obtains two regular material profiles through the retained throat and a matched gravitational exterior. The branch with no resolved Higgs node removes this earlier inward runaway by solving the interior and exterior boundary data together. Its required quantum tensor and coupled stability remain part of the source construction.
+
 The exterior Einstein equations here contain the classical condensate stress. The supporting quantum sector, its common normalization, and the coupled angular perturbation spectrum still require a complete regular background. Those calculations remain beyond the regularity gate reached by this branch. In particular, the screened-condensate calculation alone supplies no new validation of the An–T–Le connection.
 
 ### Retained evidence and checks

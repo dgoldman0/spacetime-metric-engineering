@@ -163,7 +163,12 @@ def solve_joint(geometry, material, *, seed=None, kind='potential', inner_transi
             kind=kind, inner_transition=inner_transition)
     else:
         old_solution, old_geometry = seed
-        fields = old_solution.sol(t)
+        r = geometry.parameters.inner_radius+(geometry.parameters.exterior_extent-geometry.parameters.inner_radius)*t
+        old_setup = old_geometry.parameters
+        outer_t = (r-old_setup.inner_radius)/(old_setup.exterior_extent-old_setup.inner_radius)
+        fields = old_solution.sol(np.clip(outer_t, 0., 1.))
+        far = outer_t > 1.
+        fields[:8, far] = np.array([0., 0., 1., 0., 0., 0., old_solution.y[6, -1], 0.])[:, None]
         # Carry the core profile at the same physical coordinate during the
         # metric homotopy; its proper length changes as log(B) is switched on.
         x = geometry.coordinate(t)
@@ -172,6 +177,7 @@ def solve_joint(geometry, material, *, seed=None, kind='potential', inner_transi
         old_b = np.exp(old_geometry._b(old_t*old_geometry.length))
         new_b = np.exp(geometry._b(t*geometry.length))
         old_core[[1, 3, 5]] *= old_b/new_b
+        old_core[:, x > old_setup.positive_extent] = np.array([0., 0., 1., 0., 0., 0.])[:, None]
         fields[8:] = old_core
         eigenparameters = old_solution.p
     with np.errstate(over='ignore', invalid='ignore', divide='ignore'):
