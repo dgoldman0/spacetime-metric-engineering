@@ -140,6 +140,12 @@ absolute quantum tensor on the resulting geometry. Those additions define
 a new source construction; changing the present coupling or moving the
 ideal sheet preserves its local singularity.
 
+The subsequent [smooth quantum material attempt](SMOOTH_QUANTUM_MATERIAL_ATTEMPT.md)
+resolves the local first-order vacuum stress through a smooth scalar wall
+and constructs a trapped-fermion pressure response. Its leading surface
+description has negative normal gradient stiffness under the required
+compression, adding a shape-stability condition to the material closure.
+
 The local comparison uses 81 proper distances from \(10^{-6}\) through
 0.5, couplings 1, 8, and 64, and 64-, 128-, and 256-node Laguerre
 quadratures. At coupling 8 and distance \(10^{-6}\), the exact pressure

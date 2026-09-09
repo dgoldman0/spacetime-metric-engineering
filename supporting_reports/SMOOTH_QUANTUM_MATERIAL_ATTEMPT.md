@@ -149,7 +149,161 @@ required surface energy 0.00256020005, and their combined pressure is
 The separate normal-shape diagnostic has negative stiffness throughout
 the 1,029 scan rows that pass the material and radial checks. Direct
 area-dependent energy variations reproduce that sign. This result selects
-normal deformations as the next independent audit and blocks promotion
+normal deformations as an additional material gate and blocks promotion
 of the leading surface law by radial stability alone.
 
 ![Smooth quantum and material diagnostics](data/smooth_quantum_material/smooth_material_findings.png)
+
+## Microscopic confinement audit
+
+Let \(F\) count identical Dirac species, each with one positive-energy
+massless branch on the wall. In dimensionless microscopic variables,
+\[
+\epsilon_F=\eta F\frac{k_F^3}{6\pi},\qquad
+v^2=\frac{3\tau d}{4\eta},\qquad
+\lambda_\chi=\frac{2}{v^2d^2},\qquad
+g=\frac{\Lambda}{2v^2d}.
+\]
+Choosing \(\beta=2g^2/\lambda_\chi\) gives a strictly positive
+quartic determinant. Define the normal localization parameter
+\(a=yvd\). The squared transverse Dirac operator, with \(u=z/d\), is
+\[
+d^2 H_\perp^2=-\partial_u^2+a^2-a(a+1)\operatorname{sech}^2u.
+\]
+Its bound eigenvalues are \(n(2a-n)\), for integers \(0\le n<a\),
+and its continuum threshold is \(a^2\). Consequently the single-branch
+gas requires
+\[
+(k_Fd)^2<\begin{cases}a^2,&a\le1,\\2a-1,&a>1.\end{cases}
+\]
+This condition includes the first excited bound branch as well as escape
+into the bulk. An independent centered finite-difference calculation at
+normal spacings 0.04, 0.02 and 0.01 converges quadratically to the first
+two analytic eigenvalues for \(a=1.5,2.1,4\).
+
+The audit constructs twelve explicit tree-level matches: widths
+0.025, 0.05 and 0.1, each with \(F=1,4,16,64\), using
+\[
+\eta=\frac{2\pi\epsilon_F d^3}{\sqrt3 F},\qquad a=2.1.
+\]
+These give \(k_Fd=\sqrt3<\sqrt{3.2}\), so the occupied gas remains
+in the zero branch. Each match reproduces the stated wall energy, gas
+energy and optical strength with positive scalar potential determinant.
+The calculation establishes confinement and matching at the planar tree
+level. Quantum vacuum dressing and curved equilibrium determine the
+corrections to those coefficients.
+
+Confinement also identifies a quantitative limitation on a weak-coupling
+expansion. Set \(x=k_Fd\). The minimum required Yukawa coupling is
+\[
+y_{\min}(x)=\sqrt{\frac{8\pi\epsilon_F}{F\tau}}
+\begin{cases}x^{-1/2},&x\le1,\\
+(1+x^2)/(2x^{3/2}),&x>1.\end{cases}
+\]
+Its infimum occurs at \(x=\sqrt3\), with the strict band inequality
+approached from above. For the \(M=1.5\) match this gives
+\(y_{\min}=8.35374311/\sqrt F\). The corresponding collective measure is
+\[
+\frac{Fy_{\min}^2}{16\pi^2}
+=\frac{2\epsilon_F}{3\sqrt3\pi\tau}=0.441918827.
+\]
+The explicit \(a=2.1\) cases give 0.487215506. Adding identical species
+reduces their individual couplings while preserving this collective
+measure. This quantity diagnoses the size of the coupling expansion;
+the actual renormalized fermion correction requires its own calculation.
+
+## Normal deformation and the stopping condition
+
+For a local isotropic surface, let \(h\) denote displacement normal to
+the layer. The leading extrinsic equation is
+\[
+\Sigma\,\partial_t^2 h+P\,\nabla_\parallel^2h=0,
+\qquad \omega^2=-\frac P\Sigma k^2.
+\]
+The result follows from the surface stress contracted with extrinsic
+curvature. It is equation (56) of
+[Mourão, Natário and Vicente](https://arxiv.org/html/2409.10602v1),
+and equations (8.6)–(8.11) of
+[Emparan, Harmark, Niarchos and Obers](https://arxiv.org/abs/0910.1601).
+The first paper also exhibits the distinction between radial and shape
+stability for a gravitating spherical membrane. Its Schwarzschild test
+membrane has a different bulk geometry from the rail junction; the common
+local extrinsic equation is the condition used here.
+
+The rail junction forces \(P>0\) throughout the positive-energy branch.
+Writing \(x=M/R\),
+\[
+\frac{1-x}{\sqrt{1-2x}}\ge1>
+\sqrt{1-b^2/R^2}
+\]
+proves the pressure sign directly for \(0<x<1/2\) and \(b>0\).
+Thus positive \(\Sigma\) gives negative normal gradient stiffness.
+This is a gradient instability with positive inertia. It persists under
+changes of the surface equation of state that keep the required
+\(\Sigma,P\), including the preceding quadratic-density surface fluid.
+
+The fixed-particle-number energy supplies an independent check. For a
+small corrugation \(h=A\cos(kx)\), its area ratio is
+\(\mathcal A=1+A^2k^2/4+O(A^4)\). The energy per original area is
+\[
+E(\mathcal A)=\tau\mathcal A+
+\epsilon_F\mathcal A^{-1/2},\qquad
+\Delta E=-\frac{P k^2}{4}A^2+O(A^4).
+\]
+Increasing area lowers the gas energy enough to outweigh the wall's
+additional tension energy. Direct numerical area integration confirms the
+negative quadratic coefficient; the relative discrepancy is below
+\(2\times10^{-7}\) at amplitude 0.00025. Reducing the gas loading to
+a tension-dominated control reverses this sign.
+
+For \(M=1.5\), \(-P/\Sigma=-0.174407406\). The local wavelength
+label \(k=\sqrt{12\cdot13}/6.8=1.83676412\) has
+\(kd=0.0918382\) at width 0.05 and \(kR=12.4900\).
+The leading equation gives \(\omega^2=-0.588398687\), or an
+e-folding time 1.30365944 in local proper units. These are local surface
+diagnostics; the complete curved-space eigenvalue problem also contains
+bulk, gravitational and quantum response.
+
+A positive bending term would change the local dispersion to
+\(\omega^2=(-Pk^2+Dk^4)/\Sigma\). At the displayed wavelength its
+required coefficient is
+\[
+D\ge\frac{P}{k^2}=0.000132352470
+=20.6785\,\Sigma d^2.
+\]
+This value specifies the restoring response required at the displayed
+wavelength. The material coefficient remains to be computed from its action.
+Finite thickness, fermion profile changes and the nonlocal quantum force
+can contribute to that response; their magnitude and sign follow from
+the microscopic action and state.
+
+The bounded attempt therefore stops at the leading material's normal
+instability. Smoothing the optical profile resolves the first-order local
+boundary divergence, and the trapped gas supplies the required static
+compression. A stable complete source additionally needs its own bending
+or bulk-field restoring response. The present surface constitutive law
+cannot pass that gate through a change of its gas density or wall tension
+while retaining the junction. The full absolute curved quantum tensor and
+coupled finite-width equilibrium have consequently remained unevaluated.
+
+## Reproduction and retained evidence
+
+The numerical outputs are in
+[the first run](data/smooth_quantum_material/manifest.json) and
+[the independent audit](data/smooth_quantum_material_audit/audit.json).
+All 31 audit checks pass, including source hashes, quantum quadrature,
+material reconstruction, occupied-mode confinement, spectral refinement
+and the negative shape-energy direction. All 25 focused tests pass.
+The evidence totals less than 0.7 MB; the two four-worker commands take
+2.94 and 1.01 seconds on the current machine. A complete replay in external
+temporary directories also passes all checks. Each command accepts a fresh
+output directory for replay.
+
+```bash
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export PYTHONPATH=toolkit/adm_harness_cli
+export MPLCONFIGDIR=/tmp/active-rail-mpl-cache
+python toolkit/adm_harness_cli/scripts/run_smooth_mirror.py --workers 4 --output /tmp/rail-smooth-replay
+python toolkit/adm_harness_cli/scripts/audit_smooth_mirror.py --workers 4 --input /tmp/rail-smooth-replay --output /tmp/rail-smooth-audit-replay
+python -m pytest -q toolkit/adm_harness_cli/tests/test_smooth_mirror.py toolkit/adm_harness_cli/tests/test_smooth_mirror_material.py toolkit/adm_harness_cli/tests/test_spherical_support.py toolkit/adm_harness_cli/tests/test_curved_boundary.py
+```
