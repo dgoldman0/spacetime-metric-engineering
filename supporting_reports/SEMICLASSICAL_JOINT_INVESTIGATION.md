@@ -128,6 +128,15 @@ A fully nonlinear fixed point also changes the quantum profile itself. Such a so
 
 The [longitudinal-source literature comparison](LONGITUDINAL_QUANTUM_SOURCE_LITERATURE.md) identifies magnetic fermion channels and quantum vortex strings as specific alternative source mechanisms. Its conformal-channel calculation relates the sign of their throat stress to the complete optical path and the curvature of the lapse, supplying an analytic selection condition for a revised construction.
 
+The [coupled source-role audit](COUPLED_SOURCE_ROLE_AUDIT.md) measures this
+construction's allocation against the earlier rail architecture. The relaxed
+material carries 0.612% of the demanded throat tension; the quantum remainder
+receives the other 99.388%. Its spatial audit places 96.69% of the geometry's
+integrated negative radial-null contribution outside coordinate \(|x|\leq2\).
+These identify distinct bulk-support and transition requirements for a broader
+source allocation. The opening bound above remains a constraint on the tested
+quantum mechanism and its nearby fixed-profile metric update.
+
 ## Verification and scope
 
 The absolute-source controls include a complete local-action subtraction through the curvature-squared ultraviolet order. Flat-space Bessel modes supply an exact reference. Regulator masses 2, 4, 8, and 16, angular sums through 192 and 384, frequency extensions, and local mesh refinement resolve the selected annulus estimates. Large-angular-order tails are fitted with inverse odd powers and compared against directly extended sums. These fitted tails carry a measured spread, retained in the numerical audit.

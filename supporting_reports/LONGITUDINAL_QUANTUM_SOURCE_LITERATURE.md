@@ -242,3 +242,10 @@ fails the ideal long-loop sign test. Any next construction therefore
 needs an explicit change in the optical path, lapse curvature, or channel
 dynamics, together with its material source. This gives a defined
 selection problem before further nonlinear continuation.
+
+The [coupled source-role audit](COUPLED_SOURCE_ROLE_AUDIT.md) extends this local
+comparison to the saved material allocation and the sampled two-ended static
+profile. It recovers the earlier separation of bulk tension, directional
+quantum support, angular response, and current/reservoir exchange. Most of
+the integrated negative radial-null requirement lies in the enclosing
+transitions, which set further conditions on any core-matched source family.
