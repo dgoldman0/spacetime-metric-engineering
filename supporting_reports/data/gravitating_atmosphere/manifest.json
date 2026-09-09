@@ -1,0 +1,177 @@
+{
+  "created_utc": "2026-09-09T15:22:45.868358+00:00",
+  "model": "one-sided, cold, compact Einstein-Maxwell-Thomas-Fermi exterior",
+  "parameters": {
+    "edge_ratio": 1.5,
+    "screening_mass_parameter": 3.0,
+    "radius": 6.8,
+    "throat": 1.75,
+    "loadings": [
+      0.0001,
+      0.0003,
+      0.001,
+      0.003
+    ],
+    "wall_species": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "mass_search_interval": [
+      0.12,
+      0.4
+    ]
+  },
+  "workers": 4,
+  "seconds": 26.845211224630475,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_gravitating_atmosphere.py": "f082b359ce618471e0117deea1f07d20781707fd69650e17e2eb4b5c6b2e986e",
+    "toolkit/adm_harness_cli/adm_harness/gravitating_atmosphere.py": "71fa0f3226b03c00f6668579bcb0508dc482fefc7250942c3063013851fb2c12"
+  },
+  "search_count": 16,
+  "equilibrium_count": 16,
+  "tensile_count": 2,
+  "searches": [
+    {
+      "loading": 0.0001,
+      "flavors": 1,
+      "rejected_search_samples": 5
+    },
+    {
+      "loading": 0.0001,
+      "flavors": 4,
+      "rejected_search_samples": 5
+    },
+    {
+      "loading": 0.0001,
+      "flavors": 16,
+      "rejected_search_samples": 5
+    },
+    {
+      "loading": 0.0001,
+      "flavors": 64,
+      "rejected_search_samples": 5
+    },
+    {
+      "loading": 0.0003,
+      "flavors": 1,
+      "rejected_search_samples": 7
+    },
+    {
+      "loading": 0.0003,
+      "flavors": 4,
+      "rejected_search_samples": 7
+    },
+    {
+      "loading": 0.0003,
+      "flavors": 16,
+      "rejected_search_samples": 7
+    },
+    {
+      "loading": 0.0003,
+      "flavors": 64,
+      "rejected_search_samples": 7
+    },
+    {
+      "loading": 0.001,
+      "flavors": 1,
+      "rejected_search_samples": 9
+    },
+    {
+      "loading": 0.001,
+      "flavors": 4,
+      "rejected_search_samples": 9
+    },
+    {
+      "loading": 0.001,
+      "flavors": 16,
+      "rejected_search_samples": 9
+    },
+    {
+      "loading": 0.001,
+      "flavors": 64,
+      "rejected_search_samples": 9
+    },
+    {
+      "loading": 0.003,
+      "flavors": 1,
+      "rejected_search_samples": 14
+    },
+    {
+      "loading": 0.003,
+      "flavors": 4,
+      "rejected_search_samples": 14
+    },
+    {
+      "loading": 0.003,
+      "flavors": 16,
+      "rejected_search_samples": 14
+    },
+    {
+      "loading": 0.003,
+      "flavors": 64,
+      "rejected_search_samples": 14
+    }
+  ],
+  "selected_equilibrium": {
+    "radius": 6.8,
+    "throat": 1.75,
+    "edge_ratio": 1.5,
+    "screening_mass_parameter": 3.0,
+    "loading": 0.0001,
+    "flavors": 64,
+    "charge": 0.30286190409413793,
+    "adm_mass_ratio": 0.36837520561234377,
+    "wall_mass_ratio": 0.15611338284322218,
+    "adm_mass": 2.5049513981639375,
+    "wall_mass": 1.0615710033339107,
+    "cloud_adm_mass": 1.4433803948300268,
+    "eta": 1.0455999529108977e-07,
+    "wall_lapse": 0.5314320584836216,
+    "wall_log_lapse_slope": 0.13724116290322677,
+    "wall_U": 13.350192312911531,
+    "wall_Z": 167.1118944878989,
+    "surface_energy": 0.0016032113677432996,
+    "surface_pressure": -0.00013563018432782037,
+    "wall_tension": 0.0006248239121329801,
+    "surface_gas_energy": 0.0009783874556103195,
+    "charge_predicted_gas_energy": 0.000978387455610213,
+    "scaled_matching_residual": -9.103828801926284e-15,
+    "positive_components": true,
+    "tensile_wall": true,
+    "wall_only_transverse_speed_squared": 0.08459906601007647,
+    "wall_number_per_area": 1001.108364110044,
+    "wall_fermi_momentum": 14.020241354322797,
+    "wall_charge": 176178.71081644224,
+    "screening_rest_mass": 11.209679390679835,
+    "screening_chemical_at_wall": 49.88379187721892,
+    "electric_potential_energy_at_wall": 18.513697694281344,
+    "screening_klein_energy": 7.99614850799767,
+    "wall_fermi_energy_at_infinity": 25.964503417646306,
+    "charge_integral_relative_error": 1.9648505045211095e-11,
+    "mass_integral_relative_error": 6.242628636243808e-11,
+    "klein_maximum_relative_error": 4.4673487131774436e-11,
+    "stress_conservation_relative_error": 1.7458044446904203e-05,
+    "minimum_metric_f": 0.336962473796092,
+    "proper_atmosphere_width": 5.272447448914668,
+    "proper_mass_90_width": 0.5714262652485013,
+    "proper_number_90_width": 1.002223560750954,
+    "screening_klein_to_rest_mass": 0.7133253529656307,
+    "wall_radial_pressure": -0.00010622247404928221,
+    "wall_gas_energy_density": 0.01553162420909288,
+    "wall_electric_energy_density": 0.0048060361806821494,
+    "rejected_search_samples": 5,
+    "seconds": 5.933957831934094,
+    "peak_rss_kib": 147256
+  },
+  "full_coupled_stability_evaluated": false,
+  "finite_width_exclusion_evaluated": false,
+  "absolute_quantum_stress_evaluated": false,
+  "output_sha256": {
+    "selected_profile.csv.gz": "2649275ea04e8c1e30d43a20d7f12f97f0beb8e5561e141015239988ea3c2940",
+    "selected_atmosphere.png": "530caeb9cab8fd887b2d6b3c2ae66328da1fbfb9af10886cef157a516c0bb1a7",
+    "equilibria.csv": "b46339148f8089ee5166ae460a0e9751bc346262db33b3c04f57715703cb5762",
+    "refinements.csv": "f8080987da7a3c321e370930827d1e3150d1bc9505cd2c352bbe427eafd81802"
+  }
+}

@@ -191,6 +191,12 @@ Quantum dressing of comparable magnitude would enter both the equilibrium
 allocation and its deformation response. The finite-width scalar wall's
 absolute curved quantum tensor remains part of the complete source problem.
 
+The [gravitating-atmosphere construction](GRAVITATING_SCREENING_ATMOSPHERE.md)
+solves a compact, massive, one-sided screening gas together with its
+Einstein--Maxwell field and charged material junction. Its registered
+family includes positive-energy matches with a tensile wall, while the
+coupled deformation response remains a separate requirement.
+
 ## Numerical results and verification
 
 The [retained run](data/screened_charged_wall/manifest.json) scans 2,001
