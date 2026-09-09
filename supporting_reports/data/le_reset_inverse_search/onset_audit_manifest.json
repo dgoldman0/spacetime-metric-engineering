@@ -1,0 +1,11 @@
+{
+  "completed_utc": "2026-09-09T00:05:46.076563+00:00",
+  "scope": "audit of the registered source families; no additional construction or parameter search",
+  "rows": 80,
+  "max_default_reproduction_error": 0.0,
+  "max_checked_onset_coefficient_relative_error": 0.09955901800704237,
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_le_reset_onset_audit.py": "8686883414eff935646da03652effbb5fba3718169497634d0264489ae84e922",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93"
+  }
+}

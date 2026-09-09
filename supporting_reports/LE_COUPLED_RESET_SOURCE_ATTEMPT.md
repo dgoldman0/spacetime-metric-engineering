@@ -2,6 +2,14 @@
 
 Date: 8 September 2026.
 
+The subsequent [bounded construction search](LE_RESET_INVERSE_SEARCH.md)
+couples a conserved mass redistribution to the current and radial pressure
+equations. Its direct geometry path and moving infrastructure reduce the
+material deficit while retaining angular mismatch and Type IV witnesses.
+An initial boundary expansion identifies a source-law obstruction for those
+registered static-start families and a requirement for earlier angular stress
+response in a revised construction.
+
 **The registered source prescription fails both the complete-source Type IV
 condition and the radial metric condition.** Tangential material and explicit
 transfer energy remove the complex eigenvalue pair at the previous principal

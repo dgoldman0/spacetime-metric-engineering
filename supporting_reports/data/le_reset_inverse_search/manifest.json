@@ -1,0 +1,100 @@
+{
+  "completed_utc": "2026-09-08T23:44:03.979241+00:00",
+  "elapsed_seconds": 44.24435013812035,
+  "workers": 4,
+  "worker_address_space_cap_mib": 1536,
+  "compute_budget_seconds": 7200.0,
+  "output_cap_mb": 500.0,
+  "sobol_candidates": 1024,
+  "additional_seed_controls": 16,
+  "local_solves": 8,
+  "local_evaluations": 1928,
+  "control_names": [
+    "duration",
+    "time_skew",
+    "storage_mass",
+    "donor_radius",
+    "donor_width",
+    "reservoir_radius",
+    "reservoir_width",
+    "string_release",
+    "radial_ratio",
+    "tangential_ratio"
+  ],
+  "bounds": [
+    [
+      4.0,
+      14.255
+    ],
+    [
+      -0.65,
+      0.65
+    ],
+    [
+      0.0,
+      0.25
+    ],
+    [
+      2.35,
+      2.9
+    ],
+    [
+      0.16,
+      0.42
+    ],
+    [
+      3.4,
+      5.55
+    ],
+    [
+      0.25,
+      0.65
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      1.0
+    ]
+  ],
+  "finalists": [
+    1043,
+    1042,
+    1040
+  ],
+  "families": [
+    "direct/stationary",
+    "direct/moving",
+    "waypoints/stationary",
+    "waypoints/moving"
+  ],
+  "compute_budget_exhausted": false,
+  "completed_exploration": 1040,
+  "completed_refinements": 9,
+  "output_budget_exhausted": false,
+  "amplitude_coordinate_mapping": "A and string release use 1e-5*expm1(z*log1p(upper/1e-5)); other controls are linear",
+  "local_necessary_survivors": [],
+  "status": "bounded_search_found_no_local_construction",
+  "full_rail_service_certified": false,
+  "microscopic_source_realization_certified": false,
+  "universal_infeasibility_claim": false,
+  "source_kernel_sha256": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "reference_sha256": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_le_reset_inverse_search.py": "e1818620961438c244bdb7755faa99c7e1e4b10f780850c25acda0703484f1f5",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "08fe26e0e718732ede5811cf69c6e44dbf545d39493739c17710bda6b968b75b",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d"
+  },
+  "independent_curvature_probes": 135,
+  "max_reference_lp_error": 3.1086244689504383e-15,
+  "max_worker_peak_rss_kib": 198772,
+  "parent_peak_rss_kib": 319024,
+  "output_bytes_before_manifest": 171018797
+}

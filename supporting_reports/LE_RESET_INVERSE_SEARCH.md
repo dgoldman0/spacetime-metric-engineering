@@ -2,6 +2,23 @@
 
 Date: 8 September 2026.
 
+## Result
+
+The bounded search found no locally admissible reset. A direct path between
+the static endpoint geometries performed substantially better than the path
+through intermediate rest waypoints. Allowing bounded infrastructure motion
+also reduced the ordinary material energy deficit. All three finalists retain
+negative ordinary density, Type IV stress, and a finite angular Einstein
+mismatch on refinement. Their areal metrics remain positive.
+
+An initial boundary expansion identifies a further obstruction to exact
+closure throughout the registered source families. The prescribed geometry
+demands an angular stress correction at an earlier order in time than the
+initially empty material and transfer sectors can supply. This result concerns
+the chosen static startup, outer boundary contract, and source laws. The
+active rail's time-dependent worldtubes and a responsive material sector with
+energy already present at startup define a broader construction problem.
+
 ## Registered question and acceptance conditions
 
 This search seeks a local spherical reset whose mass history, transfer current,
@@ -12,14 +29,16 @@ and required more mass than its stationary geometry allowed. Here, a changing
 reservoir state determines a mass redistribution; the field equations then
 determine the current and the material energy remaining after transfer costs.
 
-The construction is a necessary local relaxation of the beta075 V=5 reset.
-It retains the matched-static initial and final reference profiles, their inner
-and outer mass histories, and the resulting net mass transfer. The active
-rail metric and source kernel remain the reference outside this calculation.
-Full matching to the original time-dependent worldtubes and the V=5 service
-checks are required for any survivor. A local solution alone supplies an
-endpoint construction candidate. Its microscopic signed-source realization
-remains the existing constitutive question.
+The construction is a restricted local model informed by the beta075 V=5
+reset. It chooses initial and final profiles from matched-static controls
+of the repaired geometry. Each candidate retains its selected reference
+path's inner and outer mass histories and the resulting net mass transfer.
+Static endpoint data are an additional modeling choice: the original rail
+is active at the initial reference phase. Full matching to its time-dependent
+worldtubes and the V=5 service checks are subsequent acceptance conditions.
+Consequently failure of this family excludes that specific local construction.
+Its microscopic signed-source realization remains the existing constitutive
+question. The frozen rail metric and source kernel supply the reference.
 
 Acceptance requires nonnegative ordinary material and null-stream densities,
 an admissible complete stress tensor, a positive stationary areal metric,
@@ -164,6 +183,8 @@ of geometric path and source family, using seed 8172026, for 1,024 candidates.
 Sixteen additional boundary controls supply analytic seeds. Up to two distinct
 candidates per combination receive
 bounded Powell refinement, with at most 240 evaluations per local solve.
+The implementation also evaluates each initial seed once outside Powell's
+evaluation allowance; the recorded total is therefore at most 241 per solve.
 Mass and string-release amplitudes use the search coordinate
 \(x=10^{-5}\operatorname{expm1}[z\log(1+x_{\max}/10^{-5})]\), with
 \(z\in[0,1]\). This includes zero and resolves small amplitudes near the
@@ -222,9 +243,265 @@ The complete harness passes 293 tests, with four existing multiprocessing
 deprecation warnings. A four-worker integration pilot exercises exploration,
 local optimization, all three field resolutions, component exchanges,
 independent four-dimensional curvature, output limits, and the diagnostic
-figure. The registered full batch follows these implementation checks.
+figure. The full batch uses the implementation and registered design committed
+as `9387443`. The later onset audit, committed as `812cfee`, adds optional nonuniform time sampling;
+its replay of the selected coarse candidate reproduces the stored mass,
+lapse, source, and reduced Einstein tensor exactly. The eight dedicated
+tests also pass after this extension.
 
 A failed finite search is reported with its best remaining violations and
 numerical convergence. Verified energy bounds can exclude their specified
 fixed constructions. Optimizer nonconvergence alone supplies no general
 infeasibility result.
+
+## Measured search outcome
+
+The batch completed 1,024 Sobol candidates, 16 boundary controls, and eight
+local solves. Each local solve reached its 240-evaluation Powell allowance;
+including the separate initial evaluations, the total was 1,928. All three
+finalists completed all three field resolutions and 135 independent curvature
+probes. The compute and output caps were both retained.
+
+| Geometry path | Infrastructure | Evaluated exploration controls | Lapse range exhausted | Best local objective |
+|---|---|---:|---:|---:|
+| Direct | Stationary | 83 | 177 | 0.301526 |
+| Direct | Moving | 132 | 128 | 0.252332 |
+| Rest waypoints | Stationary | 18 | 242 | 38.527338 |
+| Rest waypoints | Moving | 27 | 233 | 37.616367 |
+
+Each row includes 256 Sobol points and four additional controls. Lapse range
+exhaustion denotes termination of the numerical radial solve; those 780
+exploration controls remain physically undecided. The eight local solves
+also terminated at their evaluation allowance. The ranking describes the
+retained sample and refinements, with global optimality remaining open.
+
+The finest fields give the following remaining violations. The radial margin
+is \(|E+P|-2|J|\); its negative values identify Type IV stress. All stress
+values use the reference geometry's units.
+
+| Candidate | Infrastructure | Minimum material density | Minimum radial margin | Maximum angular mismatch | Minimum \(f\) |
+|---|---|---:|---:|---:|---:|
+| 1043 | Moving | −5.91945 × 10⁻⁵ | −7.30133 × 10⁻⁴ | 2.86201 × 10⁻³ | 7.77698 × 10⁻⁶ |
+| 1042 | Moving | −5.89661 × 10⁻⁵ | −7.16755 × 10⁻⁴ | 2.89750 × 10⁻³ | 7.77698 × 10⁻⁶ |
+| 1040 | Stationary | −2.55655 × 10⁻³ | −6.60394 × 10⁻⁴ | 1.48805 × 10⁻³ | 7.77698 × 10⁻⁶ |
+
+All three use the direct geometry path. Candidate 1043 ranks first on the
+coarse search objective; candidate 1040 has a smaller angular residual and
+a much larger material energy deficit. Candidate 1043 has duration 14.244402,
+clock skew −0.648617, redistributed mass 0.001803212, and string-release
+fraction 0.005524036. Its donor center and half-width are 2.762275 and
+0.419692; its reservoir values are 5.548844 and 0.250250. The material ratios
+are \(w=0.934296\) and \(\eta=0.001186\). Full precision controls reside
+in [local_solves.csv](data/le_reset_inverse_search/local_solves.csv).
+
+The moving infrastructure substantially lowers the material deficit, while
+the angular residual remains. For candidate 1043 its maximum is 0.002223,
+0.002310, and 0.002862 across the three grids. Refinement resolves a stronger
+inner-edge residual; these maxima provide rejection evidence and still have
+remaining discretization dependence. Independent four-dimensional curvature
+agrees with the finest reduced geometric tensor to within 6.43 × 10⁻⁶ over
+its probes and reproduces the approximately 0.002862 source disagreement.
+
+At \((t,r)=(3.253648,2.166016)\), the finest independent curvature probe
+has radial discriminant −1.51860 × 10⁻⁸ and material density approximately
+−5.9 × 10⁻⁵. Type IV also occurs where ordinary density is positive:
+at \((8.415262,2.230078)\), the independent discriminant is
+−3.87237 × 10⁻⁶ and material density is approximately 2.47 × 10⁻⁴.
+Thus the total stress obstruction extends beyond the negative-density points.
+
+The same candidate changes the inner lapse by as much as 93.48% relative to
+the selected static reference. The outer clock is fixed by construction;
+the inner clock would require a substantial full matching calculation even
+if the local source conditions closed. Its infrastructure speed reaches the
+registered bound of 0.5. These features identify further constraints on any
+continuation toward retained V=5 service.
+
+![Construction comparison and remaining energy and radial stress deficits](data/le_reset_inverse_search/inverse_search_analysis.png)
+
+The figure shows exploration controls and the eight retained local outcomes.
+Eleven evaluated points fall outside the displayed comparison range; the
+complete table retains them. The two spatial panels show candidate 1043's
+finest fields.
+
+## Energy and exchange controls
+
+The independent LP reproduces the analytic carrier bound with maximum
+objective difference 3.11 × 10⁻¹⁵. Applied to the previous fixed current
+and positive total-enthalpy branch, even this relaxed minimum energy yields
+\(\min f=-0.198989,-0.198459,-0.198413\) at reset phase 1.878989.
+At receiver-fade completion, phase 2.005, the corresponding values are
+−0.239701, −0.239831, and −0.239888. These fixed-current constructions exceed
+their radial mass allowance even when ordinary radial pressure is optimized
+within the stated relaxation. The present search changes the current through
+the geometry and lapse equations, so it requires a separate energy test.
+
+For the finest candidate 1043, allowing either feasible total-enthalpy branch
+and arbitrary ordinary radial pressure within the relaxation still leaves a
+maximum energy deficit of 0.00119015. This bound retains that candidate's
+geometry, infrastructure motion, and current. It excludes redistributing
+ordinary radial pressure as a complete repair of that fixed candidate.
+
+The component sources sum to the stored total within 3.47 × 10⁻¹⁸. The
+constructed energy, radial pressure, and current agree with their reduced
+Einstein channels within 6.94 × 10⁻¹⁸. Those three equations enter the solve;
+the finite angular residual remains the independent field-equation failure.
+Endpoint and boundary mass errors are zero to stored precision. Candidate
+1043's net-transfer quadrature errors decrease from 1.67125 × 10⁻⁷ through
+1.04828 × 10⁻⁸ to 6.55777 × 10⁻¹⁰.
+
+Its covariant total energy-exchange residual decreases from 5.52 × 10⁻⁷
+to 1.00 × 10⁻⁷ and 2.23 × 10⁻⁸. The radial-force residual remains near
+0.0011, consistently with the failed angular equation and the Bianchi
+identity. The individual component exchanges and both null-force directions
+are retained. Constitutive exchange laws and a closed full material evolution
+remain subsequent requirements for a surviving construction.
+
+## Initial boundary obstruction for the registered families
+
+The outer boundary \(r_o=6.25\) gives a direct local obstruction independent
+of the ten optimization controls. Both compact mass distributions end at or
+inside 6.20. Therefore their added mass and radial derivatives vanish near this
+boundary. The release window also satisfies \(B=B_r=0\) at \(r_o\).
+Consequently \(E=E_b\), \(m=m_b\), and \(\alpha=\alpha_b\) there.
+
+Write the initial outer log-metric expansion as
+\[
+\log f_b(u,r_o)=\log f_i+a u^n+O(u^{n+1}),
+\qquad \tau_0=T(1+z)>0.
+\]
+The direct path has \(n=3\) and
+\(a=10[\log f_{15}(r_o)-\log f_{0.745}(r_o)]\).
+The waypoint path first advances its phase at order \(u^3\), then uses a
+quintic rest-to-rest blend whose first change is cubic in that phase advance.
+It therefore has \(n=9\). With
+\[
+a_\sigma=\frac{40(15-0.745)}{e^4-1},\qquad
+a=10[\log f_{1.285}(r_o)-\log f_{0.745}(r_o)]
+\left(\frac{a_\sigma}{1.285-0.745}\right)^3,
+\]
+the retained boundary data give
+
+| Path | \(n\) | \(a\) | Initial \(h_i=E_i+P_i\) |
+|---|---:|---:|---:|
+| Direct | 3 | 0.000176958544 | −0.000160207957 |
+| Rest waypoints | 9 | 0.095382729981 | −0.000160207957 |
+
+Thus the current starts as
+\[
+J=j_*u^{n-1}+O(u^n),\qquad
+j_*=\frac{n\sqrt{f_i}\,a}{8\pi r_o\alpha_i\tau_0}.
+\]
+In the stationary family, \(M=-|J|\) at this boundary. The newly supplied
+ordinary material is negative as soon as the current starts. In the moving
+family, the prescribed response gives
+\(j_b=J+O(J^3)\), \(D=J^2/h_b+O(J^4)\), and \(F=O(|J|^3)\).
+Hence
+\[
+M=-\frac{j_*^2}{h_i}u^{2n-2}+o(u^{2n-2}).
+\]
+This leading material density is positive because \(h_i<0\), explaining
+the improvement from infrastructure motion. Its tangential pressure still
+starts at order \(u^{2n-2}\).
+
+At the boundary the radial source correction is
+\(P-P_b=(1-w)(D+F)\). Its contribution to the lapse's radial derivatives
+starts at order \(u^{n-1}\) in the stationary family and \(u^{2n-2}\)
+in the moving family. The radial derivatives of the mass redistribution and
+release supply zero lower-order boundary terms. Meanwhile the time-curvature
+term in the angular Einstein equation gives
+\[
+P_{t,G}-P_{t,\mathrm{source}}
+=\frac{n(n-1)a}{16\pi\alpha_i^2\tau_0^2}\,u^{n-2}
++O(u^{n-1}).
+\]
+Its coefficient is positive for both registered paths and every allowed
+finite clock choice. The prescribed material angular stress appears at a
+higher order, so the leading term remains. This establishes failure of exact
+angular closure for these source families and boundary conditions, including
+parameter choices beyond the finite sample. The expansion concerns the
+outer boundary's startup; the larger measured inner-region residuals and
+Type IV witnesses supply separate finite-tolerance rejection evidence for
+the sampled candidates.
+
+The [onset audit](data/le_reset_inverse_search/onset_boundary_audit.csv)
+checks both paths and infrastructure choices at the two extreme initial clock
+rates, using \(A=B=0,w=1,\eta=1/4\) so the lapse has the exact control
+\(\alpha=\alpha_b\). Eighty samples retain the angular, current, and
+material asymptotics. At the smallest time values above the stated roundoff
+floor, angular coefficient ratios are 0.9970–1.0000 for the direct path and
+0.9004–0.9430 for the ninth-order waypoint path. The latter approaches the
+static subtraction floor before higher-order corrections become negligible.
+The analytic expansion supplies the general argument; these numerical
+controls check its sign, scale, and onset behavior. The small boundary
+coefficient alone supplies no uniform lower bound at the search's finite
+numerical acceptance tolerance.
+
+## Construction implication and stopping decision
+
+The search identifies a concrete requirement for a revised source law:
+angular stress must be available when the geometry first accelerates. One
+candidate direction is a pre-existing material sector with an independently
+specified strain or stress response. Its initial positive energy must fit the
+same mass accounting, and its exchanges must satisfy conservation. Changing
+the exterior matching and associated energy supply defines another possible
+boundary contract. Either direction changes the physical construction at
+the point exposed by the onset calculation.
+
+The bounded search stops with the four registered families. Continuing to
+adjust their ten controls leaves the exact onset obstruction in place. Full
+matching to the actual active initial worldtube could alter that premise;
+the current static-start model supplies no general exclusion of the rail or
+the broader An–T–Le connection. The useful result is a source-and-boundary
+condition that a subsequent construction can confront before a larger run.
+
+## Retained evidence and reproduction
+
+The full search took 44.24 seconds with four worker processes. Its output
+occupied 171.02 MB before the manifest; the completed audit and figure bring
+the retained evidence to approximately 171.2 MB. The largest worker resident
+peak was 194.1 MiB, and the parent peak was 311.5 MiB. Summing four copies of
+the largest worker peak and the parent peak gives a conservative process-peak
+total of 1.06 GiB, comfortably inside the 8 GiB working budget. Process peaks
+can occur at different times.
+
+The [run manifest](data/le_reset_inverse_search/manifest.json) records the
+registered controls, actual counts, runtime, resource measurements, source
+hashes, and absence of a surviving construction. The
+[artifact verification](data/le_reset_inverse_search/artifact_verification.json)
+independently checks all nine field files, summary extrema, component sums,
+mass transfer, and the 135 stored eigensystems. All eigensystems certify;
+independent eigenvalues reproduce the 69 raw complex pairs. The full
+four-dimensional probe tensors, their unprojected tensors, and eigenvectors
+are retained with matching row indices. The frozen source kernel hash is
+`c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff`.
+
+The nine candidate NPZ files contain the metric, analytic mass derivatives,
+source and reduced Einstein channels, reservoir history, four component
+sources, and their exchanges. The component axis is infrastructure, material,
+outgoing stream, incoming stream; channel order is \(E,P_r,J,P_t\).
+Exchange channel order is energy and radial force. The full scalar ledgers
+are [exploration.csv](data/le_reset_inverse_search/exploration.csv),
+[refinement_summary.csv](data/le_reset_inverse_search/refinement_summary.csv),
+and [independent_curvature_probes.csv.gz](data/le_reset_inverse_search/independent_curvature_probes.csv.gz).
+The [onset manifest](data/le_reset_inverse_search/onset_audit_manifest.json)
+records the audit software hashes and exact default-construction replay.
+
+For a repeat, choose a new output directory. The search protects existing
+evidence by requiring an empty destination. CSV control replay uses pandas
+`float_precision='round_trip'` to preserve the stored binary control values.
+
+```bash
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/le-inverse-matplotlib \
+python toolkit/adm_harness_cli/scripts/run_le_reset_inverse_search.py \
+  --workers 4 --sobol-power 8 --local-evaluations 240 \
+  --budget-seconds 7200 --worker-memory-mib 1536 --output-cap-mb 500 \
+  --output /tmp/le-reset-inverse-repeat
+
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/le-inverse-matplotlib \
+python toolkit/adm_harness_cli/scripts/run_le_reset_onset_audit.py \
+  --output /tmp/le-reset-inverse-repeat
+```
