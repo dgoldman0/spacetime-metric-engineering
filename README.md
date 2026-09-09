@@ -27,6 +27,12 @@ connects those new source tests to the existing radius, clock, radial-shape,
 transition, and service comparisons, including the archived reasons for
 preferring compact support.
 
+The [archived-control source reassessment](supporting_reports/ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md)
+tests thirteen transfers on the repaired beta075 static background at fixed
+quantum strength. None removes a reference opening-gate exclusion; the small-
+coefficient longitudinal route remains below the required supply. The bounded
+geometry comparison stops at that source barrier.
+
 Do not describe the current package as a `V=10` final refreeze. The latest
 service-rating ladder makes `V=5` the active engineered scope:
 
@@ -38,6 +44,8 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- `supporting_reports/ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md`: measured
+  opening ratios, source-demand tradeoffs, and the geometry-comparison stop.
 - `supporting_reports/GEOMETRY_DESIGN_HISTORY_CROSS_REFERENCE.md`: established
   geometry tradeoffs, service constraints, and their relation to the newer
   source-construction tests.

@@ -289,6 +289,13 @@ source criteria to relevant archived alternatives before a further joint field
 solve. The static gate responds to changes in the lapse and proper-distance
 radius profile; the beta-only collar controls address the active handoff.
 
+The subsequent [archived-control reassessment](ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md)
+tests thirteen transfers on the repaired static slice. At fixed quantum
+strength it retains every reference exclusion. Its best change at the
+coefficient 0.01 raises the opening ratio by 0.315%, while broader support
+radius lowers the ratio and increases proper-volume source demand. This
+bounded geometry comparison reaches the same small-coefficient source barrier.
+
 ## Integrated-gate verification and resource record
 
 The [balance module](../toolkit/adm_harness_cli/adm_harness/longitudinal_balance.py)

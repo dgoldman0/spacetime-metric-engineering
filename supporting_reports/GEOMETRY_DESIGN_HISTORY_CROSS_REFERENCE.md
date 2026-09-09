@@ -2,6 +2,12 @@
 
 Date: 2026-09-09
 
+The subsequent [source reassessment](ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md)
+applies the longitudinal opening gate to thirteen archived-control transfers
+on repaired beta075. Their small-coefficient cases remain excluded, and none
+removes a reference exclusion at fixed source strength. The comparison below
+preserves the historical basis for that bounded test.
+
 ## Finding
 
 The archive already contains the service constraints, a component-level map of

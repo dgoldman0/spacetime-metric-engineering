@@ -1,0 +1,18 @@
+{
+  "witnesses": 10,
+  "stencil_levels": 3,
+  "maximum_finest_tensor_error": 1.741771977448813e-05,
+  "maximum_static_current": 0.0,
+  "source_hashes": {
+    "supporting_reports/data/le_coupled_reset_source/manifest.json": "084a813c950bd3919761e714064c009e42b687c48891e903c0943ebeba668f54",
+    "toolkit/adm_harness_cli/specs/archived_geometry_opening.json": "1e83e6d9e49dc6967463f31b4b22f2a681a76ecada24469053a580a1b86b1795",
+    "toolkit/adm_harness_cli/scripts/audit_archived_geometry_opening.py": "908891c4b82ec270f177c7e7a49fde337777a276dd8a45024afc7d3abf57b30a",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/geometry_opening.py": "64aef9f4006abb07d5c13a385a6a9ac7b40eead516ddd75291f6bafa14b9d0d5",
+    "toolkit/adm_harness_cli/adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/receiver_regularity.py": "20245a1bac76895cacb760bd5c9001a8eeb2b3db2b7ea44afb5338c9655ca94f",
+    "supporting_reports/data/archived_geometry_opening/reference_metric.npz": "75eff30a809bbbe895e83ea2202efafa369dca72addcf287c92c15bf207c5511",
+    "supporting_reports/data/archived_geometry_opening/radius205_metric.npz": "2e0ccb229daa0621a460f9c0bf00e12c951cc29d998af4bc1a9fa137a3ceccd1"
+  }
+}
