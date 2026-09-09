@@ -1,0 +1,7 @@
+before,after,maximum_relative_tensor_change
+base,space512,5.536558335554932e-06
+space512,space1024,1.396681869607771e-06
+space1024,frequency,1.0922160269600132e-06
+frequency,angular,2.9978756165565766e-11
+angular,ends,0.002965059234279315
+ends,plateau,8.769547001517385e-12

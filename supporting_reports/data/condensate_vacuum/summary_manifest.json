@@ -1,0 +1,9 @@
+{
+  "summary_script_sha256": "959f964ebbbc530d077afe2d900991819bb97e87d06b73179df95e6e45cb0964",
+  "audit_sha256": "59b2b17770ea1fa747fed9ab44f3321b8c000815edc92af01fd067c8cc60da43",
+  "output_hashes": {
+    "supply_summary.csv": "ee47d1418b215e30ded0873854b90319eb9a04d533441030c4a9d49e3bb656cf",
+    "selected_witnesses.csv": "97f783add7d261032567372f31954796dc2d74ae34793c3fe0b3beaf375ffc00",
+    "supplied_stress_fraction.png": "dfb60ed16ba47997e2c2b1ca76b0e765b86ecfcb1d9abb80d485b9023c9a283b"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "output": "supporting_reports/data/condensate_vacuum/plateau",
+  "workers": 4,
+  "spacing": 0.0009765625,
+  "extent": 384.0,
+  "angular_max": 48,
+  "frequency_nodes": 144,
+  "frequency_upper": 128.0,
+  "frequency_lower": 1e-09,
+  "plateau": 1e-09,
+  "budget_seconds": 600.0,
+  "completed_utc": "2026-09-09T18:28:41.983745+00:00",
+  "elapsed_seconds": 110.99491174612194,
+  "worker_peak_rss_kib": 264988,
+  "radial_nodes": 79894,
+  "portals": [
+    0.14,
+    1.4,
+    14.0
+  ],
+  "eta": 2.4127904527582454e-05,
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/run_condensate_vacuum.py": "a9da37c6856d8b4132f4ae1d4e960edf13def51200b0cd774dc4fdec3fdee012",
+    "supporting_reports/data/condensate_joint/r12_q0.85_potential_x2_solution.npz": "43fb5dddfc22b0ca2ce0869608763faee82f2339a012df0db269e2876493553a",
+    "toolkit/adm_harness_cli/adm_harness/condensate_vacuum.py": "b527829dc1d1d4a628070b3c114d3200d58ec6ea365166ce3419c03f762342b0",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint.py": "c86138db9192c372b4d857a530585b14c617e3e1d9210b30a0c2609cc8d10187",
+    "toolkit/adm_harness_cli/adm_harness/condensate_joint_audit.py": "18e061ad6a11817742538c14c8d950ed48092e450343f1f38947f17dc76c1d92",
+    "toolkit/adm_harness_cli/adm_harness/condensate_rail.py": "a61965f8c932a387ce458e32bb16264a75291cb2107f9262b5d9ad53f228a23b",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724",
+    "supporting_reports/data/curved_quantum_boundary/geometry.npz": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855"
+  },
+  "scope": "Neutral Higgs-portal scalar, static ground-state response relative to massless vacuum on the same joined geometry; controlled transparent Higgs plateau.",
+  "output_hashes": {
+    "angular_moments.npz": "480678d5c12c0f26d593383354c850905eb5bcca0e9355888a291080798aeb9c",
+    "conservation.csv": "b7d9060a28b76f4948136c43fc4c541d94a10648fca790632ac99bb0afc6d9cb",
+    "junction.json": "f3ec8efed96071bac6eed15a074bc606660b643429e1e20369b91f820a5239a2",
+    "response.csv.gz": "0ddd6eda98944b0fcd82dc6018b7cc8dfc855a7574dc255471fb6474249cac21"
+  }
+}

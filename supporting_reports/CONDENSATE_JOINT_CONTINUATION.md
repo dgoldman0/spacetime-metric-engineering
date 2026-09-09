@@ -2,6 +2,8 @@
 
 Two joint scalar–Higgs–gauge solutions extend regularly through the retained asymmetric throat, match a self-gravitating exterior at areal radius 6.8, and approach vacuum at both distant ends. The branch with no resolved Higgs node is the preferred material candidate. It carries the required radial boundary load while adding at most 2.64% to the magnitude of the negative radial quantum enthalpy required over the original annulus. The full angular tensor, absolute quantum stress, and coupled perturbations remain requirements of the complete source.
 
+The [supplied-quantum-stress calculation](CONDENSATE_SUPPLIED_QUANTUM_STRESS.md) evaluates a neutral scalar coupled to this branch's smooth Higgs profile. It also resolves the absolute source's geometric joining condition: the existing classical match has a finite curvature step, which generates a divergent one-sided scalar vacuum stress. The regular material solution therefore supplies a background for the coupled construction, with the metric transition and absolute quantum stress still requiring a common solution.
+
 ## Registered construction
 
 This bounded round uses the [joint-selection direction](CONDENSATE_JOINT_SELECTION_DIRECTION.md) to seek a regular stationary material profile through the retained throat. It keeps the Ishihara–Ogawa matter, Higgs, and gauge action with \(e=0.1\), \(\lambda=1\), and \(\mu=1.4\). The negative-side exterior obeys the classical Einstein–matter equations. The interior and positive-side tail retain the phase-0.745 geometry. A complete quantum source must subsequently account for the difference between that geometry's Einstein tensor and the material tensor.
