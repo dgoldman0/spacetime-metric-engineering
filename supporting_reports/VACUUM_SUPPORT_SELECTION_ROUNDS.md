@@ -2,6 +2,15 @@
 
 Date: 8 September 2026.
 
+The two-orientation vacuum family reproduces the complete initial rail tensor
+with a pressure-bounded positive-energy material remainder. Its local
+stored-energy realization has negative radial kinetic energy throughout the
+annulus. Independently supported planar cells also have the wrong averaged
+energy sign over much of the required source. These results identify a
+constitutive obstruction in the tested support family while preserving the
+earlier local Comer two-current result. A usable support construction remains
+open.
+
 ## Question and registered comparisons
 
 The [two-current calculation](COMER_TWO_CURRENT_EVOLUTION_ROUND.md) supplies
@@ -243,3 +252,121 @@ boundaries has additional field-state and boundary dynamics. Its negative
 local stress does not itself identify a propagating negative-kinetic
 material degree of freedom. Such a field calculation belongs to a broader
 construction than the local action tested here.
+
+## Round two result and stopping decision
+
+All 72 constitutive comparisons fail the positive kinetic-energy condition.
+They cover four ordinary states, two host pressure caps, three stiffness
+controls, and three velocity-differentiation steps. Every comparison has
+negative radial kinetic energy at all 2,049 radii. At the finest velocity
+step, the DEC-host results are:
+
+| Ordinary state | Minimum radial kinetic coefficient | Radii with negative radial coefficient | Radii with negative angular coefficient |
+|---|---:|---:|---:|
+| Zero preload | -0.022220 | 2,049 | 1,162 |
+| Low preload, zero drift | -0.022232 | 2,049 | 1,165 |
+| Low preload, counterflow | -0.022232 | 2,049 | 1,165 |
+| High preload, counterflow | -0.022340 | 2,049 | 1,188 |
+
+The half-energy host pressure cap gives the same support kinetic coefficients.
+It reallocates stress between host and vacuum while preserving their sum.
+The low-preload radial coefficient ranges from approximately -0.022232 to
+\(-1.33850\times10^{-6}\). Its largest value remains negative, including
+at both initial worldtube boundaries. Adding ordinary preload increases the
+negative enthalpy required of the support.
+
+The direct action Hessians agree with the stress-derived kinetic matrices
+to a maximum normalized error of \(4.20\times10^{-15}\). The normalization
+uses the largest absolute initial total tensor component at each radius.
+All 147,528 retained action matrices have their eigenvalues recomputed;
+the stored and replayed eigenvalues agree exactly in the recorded arithmetic.
+The positive-material controls have positive kinetic matrices, and the
+symbolic calculation preserves the identity for arbitrary host stiffness.
+
+![Local radial and angular kinetic coefficients](data/vacuum_support/vacuum_support_kinetic.png)
+
+This result closes the registered local elastic attempt. A different host
+stiffness, pressure cap, or redistribution of the fitted vacuum orientations
+leaves \(K_r=e+p_r<0\) under the same assumptions. Consequently a further
+coefficient search within this family has no route through the kinetic gate.
+
+The useful distinction for source selection is between a negative quantum
+stress expectation value and an elastic medium whose dynamical stored energy
+is assigned that same local tensor. The tensor fit demonstrates that the
+required pressure directions can be represented algebraically. The kinetic
+test shows that this local elastic identification supplies an inadmissible
+material motion. An explicit quantum field, its boundary forces, and its
+response to boundary motion would supply different dynamical information.
+Such a construction would have to retain the full angular stress, count the
+boundary material, and provide a consistent exchange law with the ordinary
+currents.
+
+The large angular-pressure peak is also a quantitative selection clue. In
+the low-preload DEC fit, \(C_r\) reaches approximately 0.04173 and each
+\(C_t\) reaches 0.02119. The material pressure bounds drive these amplitudes
+beyond those inferred from the negative radial enthalpy alone. Preserving
+the material's stress margin raises the minimum vacuum magnitude further.
+Thus the full angular tensor and the counted material response remain
+essential to selecting a field-and-boundary construction.
+
+Neither round changes the retained initial geometry, the earlier Comer
+evolution, or the full rail service result. The pressure mismatch has an
+algebraic resolution in an optimistic vacuum family; a physical support
+and an admissible active-rail handoff remain unresolved. No third family
+or additional fitted support term is introduced in these rounds.
+
+## Verification, evidence, and reproduction
+
+The independent audit replays all 57,392 saved tensor-comparison rows and
+reconstructs the ordinary currents from their primitive states. It agrees
+exactly with the retained initial-reference channels when the CSV data are
+read with round-trip floating-point conversion. An initial audit using the
+default CSV converter encountered outer-tail cancellation errors above its
+precision threshold; preserving the written binary values resolves that
+numerical issue while retaining the original tolerance and source data.
+
+The audit solves 864 independent five-variable linear programs, including
+336 infeasible comparisons. Every feasibility result agrees with the
+two-variable vertex solver, and the maximum normalized objective difference
+is \(3.56\times10^{-15}\). Main-run files remain byte-for-byte unchanged.
+The source kernel, reference tensor ledger, and reference interpolation
+retain their previous hashes.
+
+The complete harness passes **315 tests**, with four existing multiprocessing
+deprecation warnings, in 23.88 seconds. Ten new tests cover tensor geometry,
+independent optimization, scale covariance, current balance, static force,
+material costs, virtual work, general symbolic stiffness, action
+differentiation, and positive-material controls.
+
+The successful second-round audit takes 1.99 seconds with four workers.
+Its maximum worker resident memory is approximately 194 MiB. Together the
+successful main run and audit take 6.78 seconds, and their retained evidence
+occupies 18.09 MB before Git storage. The full test-suite time is separate.
+
+The [first-round manifest](data/vacuum_support/manifest.json) and
+[second-round manifest](data/vacuum_support/round_two_manifest.json) record
+hashes, resource measurements, and audit counts. The
+[tensor summaries](data/vacuum_support/summaries.csv),
+[independent linear programs](data/vacuum_support/independent_linear_programs.csv),
+and [kinetic summaries](data/vacuum_support/kinetic_summaries.csv) provide
+the scalar evidence. Twelve compressed CSV files retain every source split.
+Four kinetic NPZ files retain the action matrices, their eigenvalues, and
+the stress-derived matrices used for comparison.
+
+The registered first-round implementation is committed in `a91c04d`, its
+completed findings in `5cbbbf1`, and the conditional constitutive derivation
+in `0e88247`. Reproduction uses a fresh output directory:
+
+```bash
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/vacuum-support-matplotlib \
+python toolkit/adm_harness_cli/scripts/run_vacuum_support.py \
+  --workers 4 --output /tmp/vacuum-support-repeat
+
+PYTHONPATH=toolkit/adm_harness_cli \
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
+MPLCONFIGDIR=/tmp/vacuum-support-matplotlib \
+python toolkit/adm_harness_cli/scripts/audit_vacuum_support.py \
+  --workers 4 --output /tmp/vacuum-support-repeat
+```

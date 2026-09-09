@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-09-09T01:40:30.514798+00:00",
+  "elapsed_seconds": 1.9935795478522778,
+  "workers": 4,
+  "max_worker_peak_rss_kib": 198828,
+  "main_points_replayed": 57392,
+  "max_reference_replay_error": 0.0,
+  "independent_linear_programs": 864,
+  "independently_infeasible_programs": 336,
+  "max_lp_normalized_objective_gap": 3.552713678800501e-15,
+  "kinetic_comparisons": 72,
+  "max_normalized_kinetic_hessian_error": 4.197573051191325e-15,
+  "positive_definite_kinetic_points_across_comparisons": 0,
+  "total_evidence_bytes_before_audit_manifest": 18082788,
+  "original_evidence_hashes": {
+    "high_preload_counterflow_2049.csv.gz": "9c63a5b8a18958e282004aa2353daa37b74b6c99d488113d4706d2087ab0134a",
+    "low_preload_counterflow_2049.csv.gz": "e29a8564a881411bdc16842ae0bc4ad97bba86f880cc3aa96d1bf631b7464bac",
+    "zero_preload_1025.csv.gz": "7cc28329ed8a520f26213f36f6b373f4e546f39ae66e76d4f4d6ee63240da009",
+    "high_preload_counterflow_1025.csv.gz": "350c6e9f7108f3da78b7c39a4c1f812e9fb80d0b7a67aaf4ea99b57cd5231aa4",
+    "summaries.csv": "9eb7af638c98bfa259edda6ced739318fe84167673a09f43b38f48c8f3319013",
+    "zero_preload_2049.csv.gz": "73b23ef77aa509c212358602769cc09d755c6a3f253946911d3bbbfb094e3bec",
+    "low_preload_zero_drift_1025.csv.gz": "4b88da52d718a1aa441e4c8b2f56d75c184b853806a1b2fda6436e239e919056",
+    "low_preload_zero_drift_513.csv.gz": "050e577a80f013ecaecd0f83f90af0cf15ec53c1ec1d102f886b01e9d336a540",
+    "low_preload_counterflow_513.csv.gz": "49b0a95300764fdcdaf3dbbd575047ac4cd20d0c9f3a76170cc1d109d5019198",
+    "low_preload_zero_drift_2049.csv.gz": "118f4aac0918104a36e8e3c8a35ac79b24ce516ae7cd870a8d891b2fd7e3002f",
+    "vacuum_support_split.png": "c3f5e06d8d99d870a3519f4622f8da150a8ff270bb6f92a32bb7db5efc566ef5",
+    "manifest.json": "dca596afd779c3a7d34374e4ff1f971471e0656176096cc2d62852bb9ec16b00",
+    "high_preload_counterflow_513.csv.gz": "9fc0bbff130e49359ce4f6f2f55ca7b751cb00cbf0f456ee2d5ffcac8b7ee47d",
+    "low_preload_counterflow_1025.csv.gz": "ff19de7a9b86ad1d1ed296e7622f5495dab967439f3d796b022d61d071fe8984",
+    "zero_preload_513.csv.gz": "c9bd4b6cd9c5e78b3b06f8ce95374219df54c972974f8a3cc43817a8fc2c9947"
+  },
+  "audit_source_hashes": {
+    "toolkit/adm_harness_cli/scripts/audit_vacuum_support.py": "44e2781b3645bdea48031c1bc09516baa9ca30f72053fc8b7a0f143504516f7a",
+    "toolkit/adm_harness_cli/adm_harness/vacuum_support_elasticity.py": "7d978f04e340f7df93147ee593c1b25f40e9d85c86ce04d343392bbf49ddb151"
+  },
+  "scope": "Local first-derivative material-label action for locked vacuum and host; independent quantum-state dynamics absent."
+}

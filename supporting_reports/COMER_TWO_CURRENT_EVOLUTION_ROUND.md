@@ -10,6 +10,11 @@ The explicit radial-tension support nevertheless fails the initial rail
 junction: the reference requires negative radial enthalpy, while this
 support contributes zero and the ordinary currents contribute positively.
 
+The subsequent [vacuum-support selection rounds](VACUUM_SUPPORT_SELECTION_ROUNDS.md)
+find complete algebraic initial-tensor fits with radial and angular vacuum
+orientations. Their local elastic realization has negative radial kinetic
+energy, leaving the physical supporting sector unresolved.
+
 ## Question and registered scope
 
 The [quadratic startup attempt](COMER_ANDERSSON_SPHERICAL_STARTUP_ATTEMPT.md)

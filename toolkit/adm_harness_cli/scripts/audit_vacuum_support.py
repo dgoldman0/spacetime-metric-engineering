@@ -49,7 +49,9 @@ def audit_scenario(task):
     for count in POINTS:
         if time.monotonic() > deadline:
             raise TimeoutError('registered audit allowance exhausted')
-        data = pd.read_csv(output/f'{name}_{count}.csv.gz')
+        # Preserve the writer's binary floats. The default CSV converter
+        # perturbs small outer-tail kinetic margins through cancellation.
+        data = pd.read_csv(output/f'{name}_{count}.csv.gz', float_precision='round_trip')
         grid = reference_grid(reference, count, 2, path_kind='direct')
         reference_channels = np.stack([grid.energy[0], grid.pressure[0], grid.transverse[0]], axis=-1)
         for (cap, family), block in data.groupby(['pressure_cap', 'family'], sort=True):
