@@ -194,6 +194,8 @@ This model supplies a computable material action with distributed screening, sca
 
 A further construction using the same fields would instead have to select inner and outer data together in a global boundary-value problem. The interior regularity conditions would participate in determining the frequency, amplitudes, and material scale. The present grid covers a local patch at fixed couplings, scale, and inner radial pressure. It establishes the failure of that patch; the larger parameter space and fully time-dependent fields remain open. The stationary snapshot omits the rail's time derivatives, so the result applies to this proposed equilibrium attachment.
 
+The [joint-selection synthesis](CONDENSATE_JOINT_SELECTION_DIRECTION.md) combines this grid's monotone mass and event-radius trends with the earlier quantum placement and material constraints. It identifies the potential-dominated inner branch and the pressure-to-potential loading condition as concrete starting information for that global solve.
+
 The exterior Einstein equations here contain the classical condensate stress. The supporting quantum sector, its common normalization, and the coupled angular perturbation spectrum still require a complete regular background. Those calculations remain beyond the regularity gate reached by this branch. In particular, the screened-condensate calculation alone supplies no new validation of the An–T–Le connection.
 
 ### Retained evidence and checks
