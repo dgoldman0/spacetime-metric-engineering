@@ -1,0 +1,100 @@
+{
+  "elapsed_seconds": 67.78108394052833,
+  "workers": 4,
+  "ode_modes": 9,
+  "ode_tensor_checks": 27216,
+  "max_continuous_ode_relative_tensor_error": 0.011855362173880474,
+  "max_refined_continuous_ode_relative_tensor_error": 0.0007379866642947976,
+  "continuous_ode_errors_by_refinement": {
+    "1": 0.011855362173880474,
+    "2": 0.002953242184806535,
+    "4": 0.0007379866642947976
+  },
+  "max_conservation_relative_residual": 0.00014211295082332338,
+  "max_refined_conservation_relative_residual": 3.2887794801832465e-06,
+  "conservation_errors_by_stencil_step": {
+    "0.004": 3.2887794801832465e-06,
+    "0.008": 5.134633883386242e-06,
+    "0.016": 0.00014227641654576215
+  },
+  "conservation_stencil_omitted_angular_tail": 0.0,
+  "comparisons": [
+    {
+      "comparison": "core_128_to_256",
+      "max_relative_tensor_difference": 0.06030655006280911,
+      "outer_max_relative_tensor_difference": 0.00025821578310030016
+    },
+    {
+      "comparison": "core_256_to_512",
+      "max_relative_tensor_difference": 0.014951844268633661,
+      "outer_max_relative_tensor_difference": 6.571227803413641e-05
+    },
+    {
+      "comparison": "frequency_96_to_144",
+      "max_relative_tensor_difference": 1.4660477447238099e-09,
+      "outer_max_relative_tensor_difference": 1.4660477447238099e-09
+    },
+    {
+      "comparison": "angular_64_to_96",
+      "max_relative_tensor_difference": 0.0006843970566437045,
+      "outer_max_relative_tensor_difference": 0.0006843970566437045
+    },
+    {
+      "comparison": "extent_48_to_96",
+      "max_relative_tensor_difference": 0.01835643551750666,
+      "outer_max_relative_tensor_difference": 0.01835643551750666
+    },
+    {
+      "comparison": "frequency_144_to_192_and_endpoints",
+      "max_relative_tensor_difference": 9.324117186316799e-07,
+      "outer_max_relative_tensor_difference": 9.324117186316799e-07
+    },
+    {
+      "comparison": "angular_96_to_128",
+      "max_relative_tensor_difference": 3.4040832788621676e-06,
+      "outer_max_relative_tensor_difference": 3.4040832788621676e-06
+    },
+    {
+      "comparison": "core_512_to_1024",
+      "max_relative_tensor_difference": 0.0036757368961568967,
+      "outer_max_relative_tensor_difference": 1.6783228635366467e-05
+    },
+    {
+      "comparison": "core_1024_to_2048",
+      "max_relative_tensor_difference": 0.0009116335349741694,
+      "outer_max_relative_tensor_difference": 4.2004115084265915e-06
+    },
+    {
+      "comparison": "extent_96_to_384",
+      "max_relative_tensor_difference": 0.005579247300606702,
+      "outer_max_relative_tensor_difference": 0.005579247300606702
+    },
+    {
+      "comparison": "extent_384_to_1536",
+      "max_relative_tensor_difference": 0.0003410422163192526,
+      "outer_max_relative_tensor_difference": 0.0003410422163192526
+    }
+  ],
+  "geometry_check": {
+    "reference_radius_relative_error": 3.9618419656051174e-11,
+    "reference_lapse_relative_error": 2.2992219017581306e-08,
+    "reference_f_relative_error": 2.1762487989462898e-07,
+    "reference_f_absolute_error": 1.2119939496457732e-09,
+    "off_grid_metric_interpolation_relative_error": 4.455992019813948e-09
+  },
+  "checks": {
+    "source_hashes_match": true,
+    "reference_metric_agrees_below_0p000001": true,
+    "metric_interpolation_agrees_below_0p00000001": true,
+    "final_spatial_difference_below_0p002": true,
+    "outer_spatial_difference_below_0p00002": true,
+    "last_frequency_difference_below_0p0001": true,
+    "last_angular_tail_below_0p0001": true,
+    "outer_end_boundary_difference_below_0p001": true,
+    "refined_continuous_ode_agrees_below_0p002": true,
+    "conservation_stencil_omitted_angular_tail_below_1e_m10": true,
+    "refined_conservation_relative_residual_below_0p0001": true
+  },
+  "passed": true,
+  "audit_script_sha256": "91a679c4841f0b5692addd5d26a3c4b72a75001e50ca26df312e0a299e4669eb"
+}

@@ -1,0 +1,31 @@
+{
+  "completed_utc": "2026-09-09T13:24:43.169175+00:00",
+  "elapsed_seconds": 137.76770044490695,
+  "workers": 4,
+  "worker_peak_rss_kib": 369136,
+  "worker_memory_mib": 1536,
+  "spacing": 0.00048828125,
+  "extent": 384.0,
+  "radial_nodes": 159705,
+  "angular_max": 128,
+  "frequency_nodes": 192,
+  "frequency_upper": 4096.0,
+  "frequency_lower": 1e-08,
+  "main_witnesses": 64,
+  "total_witnesses": 84,
+  "cases": 12,
+  "evidence_bytes_before_manifest": 1553388,
+  "geometry_cache_sha256": "56406b3b648a3cb509c758997bd52a9aa0536c1c6853ba12388a69177add9855",
+  "source_hashes": {
+    "supporting_reports/data/le_coupled_reset_source/manifest.json": "084a813c950bd3919761e714064c009e42b687c48891e903c0943ebeba668f54",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+    "toolkit/adm_harness_cli/adm_harness/receiver_regularity.py": "20245a1bac76895cacb760bd5c9001a8eeb2b3db2b7ea44afb5338c9655ca94f",
+    "toolkit/adm_harness_cli/scripts/run_curved_boundary.py": "849e87f44fca380ff1ad7f3166a31553a31dbd2af84f8f103a8050f330a9d39d",
+    "toolkit/adm_harness_cli/adm_harness/curved_boundary.py": "3eb7e91898b4716a1c56981e33ad09f48d4bcae8722ce5989252a8b84184d5ca",
+    "toolkit/adm_harness_cli/adm_harness/reset_inverse_search.py": "040b3586429ee581f67ab703e27da922cd8e21c85eec18cc90818cbb56403c93",
+    "supporting_reports/data/le_coupled_reset_source/reference_tensors.csv.gz": "9d4f8b4e68c8fc7bc5960f221d036c6c5a25adcf51f83478741630c1bcba555e",
+    "supporting_reports/data/comer_two_current/reference_initial_profile.csv": "add3ebe17eeb7cd1a84635fdead9351c16750d4482260c4aae3f4d7a2d2450d7"
+  },
+  "scope": "Minimal massless scalar ground-state boundary response on the complete frozen holding geometry; bulk differences away from sheets; absolute curved vacuum and material remain separate source terms."
+}

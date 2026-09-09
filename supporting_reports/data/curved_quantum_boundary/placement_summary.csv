@@ -1,0 +1,13 @@
+arrangement,coupling,witnesses,negative_radial_response,negative_angular_demand,negative_angular_response_where_required,simultaneous_negative_response_where_required
+inner,1.0,64,59,37,0,0
+inner,8.0,64,59,37,0,0
+inner,64.0,64,59,37,0,0
+inner_pair,1.0,64,61,37,0,0
+inner_pair,8.0,64,61,37,0,0
+inner_pair,64.0,64,61,37,0,0
+outer,1.0,64,64,37,37,37
+outer,8.0,64,64,37,37,37
+outer,64.0,64,64,37,37,37
+spanning_pair,1.0,64,61,37,37,37
+spanning_pair,8.0,64,61,37,37,37
+spanning_pair,64.0,64,61,37,37,37
