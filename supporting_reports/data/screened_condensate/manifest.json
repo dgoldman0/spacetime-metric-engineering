@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-09-09T16:13:59.644293+00:00",
+  "workers": 4,
+  "seconds": 3.019075962714851,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_screened_condensate.py": "afc9d639fbde61be030827d68100f4c3ef600948a1a7dd63fe2f1fb17343bcff",
+    "toolkit/adm_harness_cli/adm_harness/screened_condensate.py": "8bd4b26fcf5eb6fa245325b49903f560395716e222aea6cbb461f0aecd0bd724"
+  },
+  "model": "Ishihara-Ogawa U(1) matter-Higgs condensates, flat material references",
+  "reduced_particle_numbers": {
+    "homogeneous": 58000.0,
+    "hollow": 85600.0
+  },
+  "references": [
+    "https://arxiv.org/abs/1901.08799",
+    "https://arxiv.org/abs/2103.13732",
+    "https://arxiv.org/abs/2409.07818"
+  ],
+  "rail_thin_junction_minimum_pressure_to_energy": 0.17326732673267328,
+  "rail_static_matching_evaluated": false,
+  "full_perturbation_stability_evaluated": false,
+  "absolute_quantum_stress_evaluated": false,
+  "output_sha256": {
+    "homogeneous_profile.csv.gz": "f0350fdb8caff4a45bc569f0e132809485a99fa92a2e763727dfbe360666c12a",
+    "hollow_profile.csv.gz": "d4a9147ec97e02ffc6c8b8ea14a2b625dd0055223b79a87757ab1b62b0022a6b",
+    "condensate_reference_profiles.png": "fbd83b6cd200c85bd992cfc80238122ec1c826f7ce190200ed38177788fbc7f3",
+    "reference_checks.csv": "90c588703cd77506d113a657a87aadea54448f592a0f47b207c4444027d1f49a"
+  }
+}
