@@ -1,0 +1,15 @@
+{
+  "elapsed_seconds": 0.893017066642642,
+  "workers": 4,
+  "sources_match": true,
+  "cases_checked": 16,
+  "all_passed": true,
+  "max_operator_error": 1.1368683772161603e-13,
+  "max_energy_balance_error": 4.420641630531463e-11,
+  "max_saved_scalar_error": 6.821210263296962e-13,
+  "max_quantum_normalization_error": 3.553823901825126e-13,
+  "max_spatial_profile_error": 8.526512829121202e-14,
+  "minimum_temporal_refinement_ratio": 3.1989685204076266,
+  "audit_script_sha256": "f060849638b62a0ea7968348109ba27d3d4362add932f820820a3ef646985606",
+  "method": "Real-space barrier quadrature; raw-mode Hamiltonian, commutators and scalar stress; matched-bandwidth time-step comparisons."
+}

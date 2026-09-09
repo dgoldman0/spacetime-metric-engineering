@@ -1,0 +1,11 @@
+{
+  "reference_points": 2049,
+  "negative_energy_points": 1651,
+  "negative_radial_enthalpy_points": 2049,
+  "min_energy": -0.011555333883208606,
+  "max_energy": 0.00860616542230816,
+  "min_radial_enthalpy": -0.02221963108229399,
+  "min_complete_cell_energy": 8.49800000312204,
+  "positive_whole_cell_arrays_pass_reference_energy_sign": false,
+  "scope": "Locally homogenized complete cells including exterior field, finite-cutoff dressing, positive bare walls and holding structure."
+}

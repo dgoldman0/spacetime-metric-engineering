@@ -315,6 +315,16 @@ algebraic resolution in an optimistic vacuum family; a physical support
 and an admissible active-rail handoff remain unresolved. No third family
 or additional fitted support term is introduced in these rounds.
 
+The subsequent [quantum field with moving material boundaries](QUANTUM_MOVING_BOUNDARY_ATTEMPT.md)
+retains explicit scalar modes and their positive kinetic energy. Its
+finite-cutoff gap stress has negative radial enthalpy, and sixteen
+self-consistent wall evolutions preserve field-plus-boundary energy.
+The complete cells have positive energy, while their local stress and
+field contribution to boundary inertia depend on the ultraviolet cutoff.
+These results identify microscopic material matching and the spatial
+placement of positive boundaries as the remaining source-construction
+inputs.
+
 ## Verification, evidence, and reproduction
 
 The independent audit replays all 57,392 saved tensor-comparison rows and
