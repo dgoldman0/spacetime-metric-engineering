@@ -235,6 +235,14 @@ distinguishes these complete-source examples from a material-confined
 fermion component. It also records the free bound-state lapse condition
 against the saved rail profile.
 
+The subsequent [confined-fermion evaluation](CONFINED_FERMION_EVALUATION.md)
+resolves a counted scalar mass well on the retained static rail. Every
+occupied multiplet in its three evaluated bound spectra opposes integrated
+opening, while the same tensor implementation reproduces Weinbaum's
+negative-ANEC example on that paper's prescribed metric. The mass-well result
+constrains the occupied-state repair; absolute fermion vacuum stress remains
+an independent source calculation.
+
 [Kontou's original inequality comparison](https://arxiv.org/html/2405.05963v2),
 section 6.3, also identifies tension between MMP and a proposed
 double-smeared null bound. Its application uses a flat, free-scalar bound

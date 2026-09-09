@@ -94,9 +94,9 @@ def main():
     parser.add_argument('--seconds', type=float, default=900.)
     args = parser.parse_args()
     if (not 1 <= args.workers <= 6 or args.spacing <= 0 or args.width <= 0
-            or args.seconds <= 0 or not 0 < args.cutoff_fraction < 1
+            or args.seconds <= 0 or not 0 < args.cutoff_fraction <= 1
             or min(args.yukawa) <= 0):
-        raise ValueError('positive parameters, subthreshold cutoff, and 1--6 workers required')
+        raise ValueError('positive parameters, cutoff at or below continuum, and 1--6 workers required')
     if args.output.exists() and any(args.output.iterdir()):
         raise FileExistsError('use an empty output directory for a new evidence run')
     args.output.mkdir(parents=True, exist_ok=True)
@@ -130,10 +130,13 @@ def main():
             wall_coordinates=background.wall_coordinates, wall_proper=background.wall_proper.tolist(),
             modes=[], worker_seconds=0., max_rss_kib=0)
         tasks += [(spec, sign*k, deadline) for k in range(1, angular_limit+1) for sign in (-1, 1)]
-        np.savez_compressed(args.output/f'{label}_background.npz',
-            coordinate=fields['coordinate'], z=z, radius=r, lapse=a, chi=fields['chi'],
-            scalar_tensor=scalar_tensor, geometric_radial_null=h_geom,
-            scalar_equation_residual=fields['chi_second']+(ap+2*rp/r)*fields['chi_prime']-fields['potential_prime'])
+        # The geometry and scalar tensor are common to every Yukawa choice.
+        # Store them once; only the Dirac spectrum depends on y in this block.
+        if yukawa == args.yukawa[0]:
+            np.savez_compressed(args.output/'background.npz',
+                coordinate=fields['coordinate'], z=z, radius=r, lapse=a, chi=fields['chi'],
+                scalar_tensor=scalar_tensor, geometric_radial_null=h_geom,
+                scalar_equation_residual=fields['chi_second']+(ap+2*rp/r)*fields['chi_prime']-fields['potential_prime'])
         print(json.dumps(dict(case=label, sectors=2*angular_limit, points=len(z),
                               scalar_opening=summaries[label]['scalar_opening'])), flush=True)
     profile_records = {key: [] for key in summaries}

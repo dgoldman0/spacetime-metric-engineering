@@ -1,0 +1,159 @@
+{
+  "published_control": [
+    {
+      "spacing": 0.0078125,
+      "points": 14681,
+      "published_frequency_units": 111.88615427519431,
+      "published_anec_units": -3.5951475610169767,
+      "minimum_radial_null": -6161.103061211648
+    },
+    {
+      "spacing": 0.00390625,
+      "points": 29361,
+      "published_frequency_units": 111.88404577982148,
+      "published_anec_units": -3.591440419373348,
+      "minimum_radial_null": -6152.640550539383
+    },
+    {
+      "spacing": 0.001953125,
+      "points": 58721,
+      "published_frequency_units": 111.88351893749923,
+      "published_anec_units": -3.5904669775319324,
+      "minimum_radial_null": -6150.4332467888335
+    }
+  ],
+  "independent_collocation": {
+    "solver_success": true,
+    "nodes": 2256,
+    "collocation_frequency": 0.3246073860471074,
+    "schur_frequency": 0.3246072806928436,
+    "frequency_relative_difference": 3.24559152220516e-07,
+    "maximum_solver_residual": 9.917174711304594e-08,
+    "collocation_opening": -4.300445545255306e-06,
+    "schur_opening": -4.300442298253878e-06,
+    "opening_relative_difference": 7.55038947808373e-07,
+    "norm": 0.9999999999618453
+  },
+  "control_source_hashes": {
+    "toolkit/adm_harness_cli/scripts/audit_confined_fermion.py": "7245ea8ef8fb195e5e8ae948280cef947e320bc338a502eef51e5082daedd00f",
+    "toolkit/adm_harness_cli/adm_harness/confined_fermion.py": "196911c50a0d74c631e314a1e1a9f37ab0c4b072ada27e395c73f94af168f3ae"
+  },
+  "comparisons": {
+    "initial_to_refined": {
+      "y1_d1": {
+        "same_modes": true,
+        "modes_compared": 52,
+        "max_frequency_relative_change": 3.9827449208607035e-06,
+        "max_opening_relative_change": 1.1028594991357998e-05,
+        "angular_bound_relative_change": 0.0,
+        "ward_residual_first": 3.847865669639047e-05,
+        "ward_residual_second": 9.619719542072545e-06,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      },
+      "y4_d1": {
+        "same_modes": true,
+        "modes_compared": 906,
+        "max_frequency_relative_change": 5.5711208069242346e-05,
+        "max_opening_relative_change": 0.00017054147047268486,
+        "angular_bound_relative_change": 0.0,
+        "ward_residual_first": 0.0014392783158167135,
+        "ward_residual_second": 0.0003601499680854985,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      },
+      "y2_d1": {
+        "same_modes": true,
+        "modes_compared": 224,
+        "max_frequency_relative_change": 1.4649218993745272e-05,
+        "max_opening_relative_change": 4.171471909530933e-05,
+        "angular_bound_relative_change": 0.0,
+        "ward_residual_first": 0.00018912054581449498,
+        "ward_residual_second": 4.729237101901232e-05,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      }
+    },
+    "higher_ceiling_to_far_boundary": {
+      "y4_d1": {
+        "same_modes": true,
+        "modes_compared": 1140,
+        "max_frequency_relative_change": 1.2695156037523248e-10,
+        "max_opening_relative_change": 3.776812196321089e-10,
+        "angular_bound_relative_change": 1.6157411630857155e-08,
+        "ward_residual_first": 0.0004710130897983435,
+        "ward_residual_second": 0.00047101586992476,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      }
+    },
+    "complete_band_to_complete_band_far": {
+      "y1_d1": {
+        "same_modes": true,
+        "modes_compared": 74,
+        "max_frequency_relative_change": 7.563927262310699e-11,
+        "max_opening_relative_change": 3.669550330265281e-08,
+        "angular_bound_relative_change": 1.2022841611170065e-09,
+        "ward_residual_first": 1.2668432383791592e-05,
+        "ward_residual_second": 1.2668512304032746e-05,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      },
+      "y4_d1": {
+        "same_modes": true,
+        "modes_compared": 1222,
+        "max_frequency_relative_change": 1.2724310494149904e-10,
+        "max_opening_relative_change": 3.448361818314538e-09,
+        "angular_bound_relative_change": 1.4596033603986314e-08,
+        "ward_residual_first": 0.0004990023654147126,
+        "ward_residual_second": 0.0004990051887847207,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      },
+      "y2_d1": {
+        "same_modes": true,
+        "modes_compared": 302,
+        "max_frequency_relative_change": 1.0723266719026014e-10,
+        "max_opening_relative_change": 6.497133875349448e-07,
+        "angular_bound_relative_change": 1.8160341674899882e-08,
+        "ward_residual_first": 6.546874696783287e-05,
+        "ward_residual_second": 6.546916487022315e-05,
+        "positive_opening_modes_first": 0,
+        "positive_opening_modes_second": 0
+      }
+    }
+  },
+  "spatial_read": {
+    "y1_d1": {
+      "maximum_core_probability_from_saved_probes": 0.032822687090306724,
+      "minimum_abs_probability_peak_coordinate": 2.875,
+      "maximum_abs_probability_peak_coordinate": 6.75,
+      "probe_points": 257,
+      "core_coordinate_extent": 2.0
+    },
+    "y2_d1": {
+      "maximum_core_probability_from_saved_probes": 0.07480234270620219,
+      "minimum_abs_probability_peak_coordinate": 2.4375,
+      "maximum_abs_probability_peak_coordinate": 7.125,
+      "probe_points": 257,
+      "core_coordinate_extent": 2.0
+    },
+    "y4_d1": {
+      "maximum_core_probability_from_saved_probes": 0.12787986249786715,
+      "minimum_abs_probability_peak_coordinate": 2.4375,
+      "maximum_abs_probability_peak_coordinate": 7.3125,
+      "probe_points": 257,
+      "core_coordinate_extent": 2.0
+    }
+  },
+  "source_hashes": {
+    "toolkit/adm_harness_cli/scripts/audit_confined_fermion.py": "e66b0ec98e5648d85233e2f54af00bebd72fba25d03de37fcc5aeeebdd3be0e0",
+    "toolkit/adm_harness_cli/adm_harness/confined_fermion.py": "196911c50a0d74c631e314a1e1a9f37ab0c4b072ada27e395c73f94af168f3ae",
+    "supporting_reports/data/confined_fermion/far_boundary/summary.json": "fe8480a43b06691c08a68ed2498bc3e8ca1e69e025bf24645958409e304985c4",
+    "supporting_reports/data/confined_fermion/initial/summary.json": "59ae4b85eea3ba97cf2ae80d50f3f3dd23876e29fd50c4c790372ef5bd1e8317",
+    "supporting_reports/data/confined_fermion/higher_ceiling/summary.json": "ba30f5ac5a033e99f568089281a784eb878666ba0f5d427d5cc2ce1a30d1e59a",
+    "supporting_reports/data/confined_fermion/refined/summary.json": "d8b1cdf1e81b6d54b1610410baca0000de607e41dc154a5670ba3e2c38ad2af5",
+    "supporting_reports/data/confined_fermion/complete_band_far/summary.json": "cbd0e0c7a10ef80eabbc52501ea8cf89797279367d58beeafdfc73f4ca6f36e9",
+    "supporting_reports/data/confined_fermion/complete_band/summary.json": "100c3a1108cb0a97cca718be12923abccc89bd946347d11990a6caaee059807e"
+  }
+}

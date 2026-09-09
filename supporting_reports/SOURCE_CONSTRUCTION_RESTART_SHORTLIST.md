@@ -2,11 +2,14 @@
 
 Date: 9 September 2026.
 
-The most useful deferred direction is a material-confined fermion sector with
-its occupied modes and vacuum stress evaluated separately. Finite-core vortex
-strings provide one possible material setting. This is a priority for a bounded
-assumption and spectrum audit; the available results establish neither its
-required amplitude nor a complete rail solution.
+The [material-confined fermion evaluation](CONFINED_FERMION_EVALUATION.md)
+now supplies a bounded test of the first deferred direction. A counted scalar
+mass well produces 74, 302 and 1,222 resolved positive-frequency multiplets
+at three couplings; every occupied multiplet opposes the required integrated
+opening. This ends the particle-occupation repair in that model. Its absolute
+vacuum stress remains a separate source question. Finite-core vortex strings
+provide another material setting whose spectrum, forces and useful signed
+stress still require a specified construction.
 
 The [archived geometry comparison](ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md)
 leaves the small-coefficient ideal longitudinal source excluded. Its remaining
@@ -19,7 +22,7 @@ radial-null stress, its spectrum or global path, or the geometric assumptions.
 
 | Family | Previous treatment | Current assessment |
 | --- | --- | --- |
-| Occupied fermions confined by material | The [smooth-wall calculation](SMOOTH_QUANTUM_MATERIAL_ATTEMPT.md) used wall-bound fermions as a positive-pressure surface gas. Published Einstein–Dirac–Maxwell examples entered the [literature comparison](LONGITUDINAL_QUANTUM_SOURCE_LITERATURE.md) without a rail implementation. | A four-dimensional fermion tensor in a separately supplied confining field remains a distinct hypothesis. The earlier surface-gas law supplies pressure; it establishes no useful negative radial-null contribution. |
+| Occupied fermions confined by material | The [smooth-wall calculation](SMOOTH_QUANTUM_MATERIAL_ATTEMPT.md) used wall-bound fermions as a positive-pressure surface gas. The [full spherical Dirac evaluation](CONFINED_FERMION_EVALUATION.md) now counts a scalar mass well and the occupied tensor on the retained rail. | All 1,598 resolved multiplets across three couplings oppose integrated opening. Other confinement mechanisms and absolute fermion vacuum stress remain outside this evaluated occupation model. |
 | Vortex or superconducting strings with quantum modes | The archive proposed a microscopic vortex/fermion extension of the condensate. Numerical tests used an ideal constant-central-charge longitudinal law. | This combines a possible backbone with a specified confinement mechanism. A useful reopening requires finite-core stress, additional mode structure, or a different counted path. Reproducing the same longitudinal law reproduces its gate. |
 | Spatially resolved quantum stress around finite material | [Curved boundaries](CURVED_QUANTUM_BOUNDARY_SEARCH.md) gave useful response signs. Thin sheets encountered a bulk singularity; smooth material exposed holding and shape costs. The [neutral spectator calculation](SEMICLASSICAL_JOINT_INVESTIGATION.md) encountered a large absolute opening deficit. | Other field spectra and shared, spatially separated supports remain uncomputed. Their merit depends on a specific enhancement mechanism and counted material forces. Corrected bulk allocation alone leaves the tested spectator's negative-null deficit. |
 | Magnetic constructions with many quantum channels, including the Randall–Sundrum extension | Literature benchmarks were compared with the rail's clock and stress requirements; a full large-channel material construction was deferred. | These supply an explicit route to stronger quantum stress. Their field content and strongly redshifted geometry add substantial assumptions and service-matching work. The larger-coefficient undecided gates remain conditional upper bounds. |
@@ -84,14 +87,14 @@ rail requirement open.
 
 ## Bounded decision before another coupled solve
 
-The first fermion audit should specify the confining interaction, physical
-particle states and normalizations, and distinguish occupied-state stress from
-absolute vacuum stress. It should then establish whether admissible modes can
-provide the required radial and angular signs and scale across the transition,
-including the confining material's positive contributions. A cheap necessary
-bound can end the attempt before an eigenmode search; an eigenmode search can
-end it before a full semiclassical calculation. Each stage requires its own
-specified model.
+The completed fermion audit specifies the confining interaction, physical
+particle states and normalizations, and separates occupied-state stress from
+absolute vacuum stress. Its integrated opening gate ends the evaluated
+particle-occupation branch after the eigenmode search. Numerical controls
+include an independently solved mode and reproduction of a published
+negative-ANEC fermion state. Reopening this direction requires a specific
+change to the signed source mechanism; a full semiclassical calculation
+retains its own absolute-vacuum and material-force requirements.
 
 Meanwhile, [independent-current transport](COMER_TWO_CURRENT_EVOLUTION_ROUND.md),
 the regular condensate transition, the standing backbone role, and the angular

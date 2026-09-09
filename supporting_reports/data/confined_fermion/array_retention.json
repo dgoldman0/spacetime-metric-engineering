@@ -1,0 +1,150 @@
+{
+  "arrays": [
+    {
+      "path": "complete_band/background.npz",
+      "bytes": 1314273,
+      "sha256": "19a766985b6436f2736fea872d73f96e29bf3c278352bc9e420d04ce7ec0a6b4",
+      "retained": false
+    },
+    {
+      "path": "complete_band/y1_d1_occupied_profiles.npz",
+      "bytes": 593956,
+      "sha256": "ec9764a374d6edc2d802790fc3b38ea863ccdd35b7d090bf71eeaaf345b42db7",
+      "retained": false
+    },
+    {
+      "path": "complete_band/y2_d1_occupied_profiles.npz",
+      "bytes": 2438118,
+      "sha256": "5541b40250ce741c25bb309a27ce0235365371fdab0a311d75524a8a0003224d",
+      "retained": false
+    },
+    {
+      "path": "complete_band/y4_d1_occupied_profiles.npz",
+      "bytes": 9889672,
+      "sha256": "29bc085bb002e5df52520a6da9aa87edb826f926fd669d2ecfcb3f3855eca3c6",
+      "retained": false
+    },
+    {
+      "path": "complete_band_far/background.npz",
+      "bytes": 1730231,
+      "sha256": "a92447fcae36c97886badfd1f382574e95c32dd7b0b219541cb794de1c27492a",
+      "retained": true
+    },
+    {
+      "path": "complete_band_far/y1_d1_occupied_profiles.npz",
+      "bytes": 591582,
+      "sha256": "6650091f965b8e4a1accf96edb39de4ff13b6a698f5c8726b12f61ac5456dc79",
+      "retained": true
+    },
+    {
+      "path": "complete_band_far/y2_d1_occupied_profiles.npz",
+      "bytes": 2433587,
+      "sha256": "1994cede27e37e859e13698e082c3a73cc1bc04c471f377227f2ea811f616e08",
+      "retained": true
+    },
+    {
+      "path": "complete_band_far/y4_d1_occupied_profiles.npz",
+      "bytes": 9897538,
+      "sha256": "47873fa9b725b370c9ac5abaa4be99a2aafcd0cbf29ecd94d32bc8342f68df7c",
+      "retained": true
+    },
+    {
+      "path": "far_boundary/y4_d1_background.npz",
+      "bytes": 1730231,
+      "sha256": "a92447fcae36c97886badfd1f382574e95c32dd7b0b219541cb794de1c27492a",
+      "retained": false
+    },
+    {
+      "path": "far_boundary/y4_d1_occupied_profiles.npz",
+      "bytes": 9224128,
+      "sha256": "729beaea432d6d077276bc6a9ba9906c53b6f85b9b73027c7fae8f33ae0a4d3b",
+      "retained": false
+    },
+    {
+      "path": "higher_ceiling/y4_d1_background.npz",
+      "bytes": 1314273,
+      "sha256": "19a766985b6436f2736fea872d73f96e29bf3c278352bc9e420d04ce7ec0a6b4",
+      "retained": false
+    },
+    {
+      "path": "higher_ceiling/y4_d1_occupied_profiles.npz",
+      "bytes": 9224614,
+      "sha256": "d6198081e88a83e835106831c0ef40e5069573638dc5d59325cd3a2dbc06cd21",
+      "retained": false
+    },
+    {
+      "path": "initial/y1_d1_background.npz",
+      "bytes": 656674,
+      "sha256": "00bbae92697a9938f79b6f183f4109a6fa693ce9052c1da6e983092da33de86b",
+      "retained": false
+    },
+    {
+      "path": "initial/y1_d1_occupied_profiles.npz",
+      "bytes": 414470,
+      "sha256": "52973c9d4450b96ea64213c88e7b3e8714d550fc3435110c5fe45327c1b945f5",
+      "retained": false
+    },
+    {
+      "path": "initial/y2_d1_background.npz",
+      "bytes": 656674,
+      "sha256": "00bbae92697a9938f79b6f183f4109a6fa693ce9052c1da6e983092da33de86b",
+      "retained": false
+    },
+    {
+      "path": "initial/y2_d1_occupied_profiles.npz",
+      "bytes": 1807417,
+      "sha256": "e98a96a1524ca6e4a6937c01c2a921069031f20840165c6998d63bc84e320338",
+      "retained": false
+    },
+    {
+      "path": "initial/y4_d1_background.npz",
+      "bytes": 656674,
+      "sha256": "00bbae92697a9938f79b6f183f4109a6fa693ce9052c1da6e983092da33de86b",
+      "retained": false
+    },
+    {
+      "path": "initial/y4_d1_occupied_profiles.npz",
+      "bytes": 7328784,
+      "sha256": "3c1a5da96a79b4cef473b4ec15a16df8f61e01d855c9ad0bbdc7e666c7692ec6",
+      "retained": false
+    },
+    {
+      "path": "refined/y1_d1_background.npz",
+      "bytes": 1314273,
+      "sha256": "19a766985b6436f2736fea872d73f96e29bf3c278352bc9e420d04ce7ec0a6b4",
+      "retained": false
+    },
+    {
+      "path": "refined/y1_d1_occupied_profiles.npz",
+      "bytes": 415003,
+      "sha256": "3da474ddaa8ed52700641f0ea4781edee669c578c671f17cff7b768e78e34959",
+      "retained": true
+    },
+    {
+      "path": "refined/y2_d1_background.npz",
+      "bytes": 1314273,
+      "sha256": "19a766985b6436f2736fea872d73f96e29bf3c278352bc9e420d04ce7ec0a6b4",
+      "retained": false
+    },
+    {
+      "path": "refined/y2_d1_occupied_profiles.npz",
+      "bytes": 1805016,
+      "sha256": "7292fa60f065b8e760f6a92c1307fa2f6477893c3c1443bc7190b5aedf82dd6b",
+      "retained": true
+    },
+    {
+      "path": "refined/y4_d1_background.npz",
+      "bytes": 1314273,
+      "sha256": "19a766985b6436f2736fea872d73f96e29bf3c278352bc9e420d04ce7ec0a6b4",
+      "retained": false
+    },
+    {
+      "path": "refined/y4_d1_occupied_profiles.npz",
+      "bytes": 7329255,
+      "sha256": "02e8f570d4e3f24d78fafd841952a35e6a476541835892cb70b743086037c757",
+      "retained": true
+    }
+  ],
+  "retained_array_bytes": 24202212,
+  "removed_redundant_array_bytes": 51192777
+}
