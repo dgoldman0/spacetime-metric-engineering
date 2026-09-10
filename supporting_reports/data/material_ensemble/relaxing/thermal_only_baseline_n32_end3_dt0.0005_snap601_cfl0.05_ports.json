@@ -1,0 +1,128 @@
+{
+  "case": "relaxing/thermal_only_baseline_n32_end3_dt0.0005_snap601_cfl0.05",
+  "s": 0.8365770977065469,
+  "status": "material_domain_limit",
+  "coldest_node": {
+    "reference_fraction": 0.5,
+    "l": -1.6749794572618049,
+    "heat": 2.3398590605999943e-08,
+    "velocity": -0.9998015654921534,
+    "effective_n": 0.0009755035595653882,
+    "endpoint_heat_rate": -28.19813677187838,
+    "electrical_heat_rate": 0.0,
+    "relaxation_heat_rate": 0.05019403373424325,
+    "net_heat_rate": -28.14794273814414,
+    "thermal_inventory": 5.8807072281731455e-09,
+    "field_slice_inventory": 0.0,
+    "endpoint_power": 8.579509918546506e-05,
+    "endpoint_force": 5.300500455492444e-05
+  },
+  "initial_thermal_inventory": 26.23890052525374,
+  "final_thermal_inventory": 27.85609652539154,
+  "total_endpoint_heat_rate": -12.208216860053232,
+  "total_electrical_heat_rate": 0.0,
+  "total_relaxation_heat_rate": 4.605089696307513,
+  "reference_fraction_cooling": 0.34375,
+  "maximum_anchor_force": 0.28556727253607683,
+  "directional_derivative_checks": [
+    {
+      "s": 0.1,
+      "samples": [
+        {
+          "step": 1.192197850078122e-07,
+          "canonical_rate": -2877.915458369952,
+          "expected_canonical_rate": -2877.91545911058,
+          "relative_canonical_error": 2.573487378357313e-10,
+          "momentum_rate": -461.6055929905998,
+          "expected_momentum_rate": -461.6055929851043,
+          "relative_momentum_error": 1.1905202476180858e-11
+        },
+        {
+          "step": 5.96098925039061e-08,
+          "canonical_rate": -2877.9154488340487,
+          "expected_canonical_rate": -2877.91545911058,
+          "relative_canonical_error": 3.570824543915346e-09,
+          "momentum_rate": -461.60559287140103,
+          "expected_momentum_rate": -461.6055929851043,
+          "relative_momentum_error": 2.4632124739731205e-10
+        }
+      ]
+    },
+    {
+      "s": 0.3,
+      "samples": [
+        {
+          "step": 1.572884563651548e-07,
+          "canonical_rate": -5028.374024942535,
+          "expected_canonical_rate": -5028.374022971577,
+          "relative_canonical_error": 3.9196721917575977e-10,
+          "momentum_rate": -402.9092751783518,
+          "expected_momentum_rate": -402.9092752918782,
+          "relative_momentum_error": 2.8176672158105386e-10
+        },
+        {
+          "step": 7.86442281825774e-08,
+          "canonical_rate": -5028.374035784414,
+          "expected_canonical_rate": -5028.374022971577,
+          "relative_canonical_error": 2.5481075211914477e-09,
+          "momentum_rate": -402.90927563009683,
+          "expected_momentum_rate": -402.9092752918782,
+          "relative_momentum_error": 8.394411525867391e-10
+        }
+      ]
+    },
+    {
+      "s": 0.5,
+      "samples": [
+        {
+          "step": 2.5688708862618826e-07,
+          "canonical_rate": -3143.36908662732,
+          "expected_canonical_rate": -3143.369086422268,
+          "relative_canonical_error": 6.52331754051211e-11,
+          "momentum_rate": -209.20358480164617,
+          "expected_momentum_rate": -209.2035847672454,
+          "relative_momentum_error": 1.6443687846721909e-10
+        },
+        {
+          "step": 1.2844354431309413e-07,
+          "canonical_rate": -3143.369086848598,
+          "expected_canonical_rate": -3143.369086422268,
+          "relative_canonical_error": 1.3562827732312522e-10,
+          "momentum_rate": -209.20358496760454,
+          "expected_momentum_rate": -209.2035847672454,
+          "relative_momentum_error": 9.577233272142602e-10
+        }
+      ]
+    },
+    {
+      "s": 0.75,
+      "samples": [
+        {
+          "step": 3.4833857306449295e-07,
+          "canonical_rate": -1108.1800732364852,
+          "expected_canonical_rate": -1108.1800729382414,
+          "relative_canonical_error": 2.691293442512155e-10,
+          "momentum_rate": -91.28068710731104,
+          "expected_momentum_rate": -91.28068767233765,
+          "relative_momentum_error": 6.189990728561478e-09
+        },
+        {
+          "step": 1.7416928653224647e-07,
+          "canonical_rate": -1108.180073644446,
+          "expected_canonical_rate": -1108.1800729382414,
+          "relative_canonical_error": 6.372652700150793e-10,
+          "momentum_rate": -91.28068735208763,
+          "expected_momentum_rate": -91.28068767233765,
+          "relative_momentum_error": 3.5084094127625574e-09
+        }
+      ]
+    }
+  ],
+  "scope": "material heat and local counter-exchange on the saved trajectory; heat inventory uses reference weights, with relativistic geometric work separately recorded in the canonical ledger",
+  "source_sha256": {
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n32_end3_dt0.0005_snap601_cfl0.05_states.npz": "fe8d1613097c083f14daad275c41d204e85a3eabb84c537094d5663f38b15ed5",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n32_end3_dt0.0005_snap601_cfl0.05_summary.json": "435761c1474464f041b067da21d0ed3a7eb2c84d60b398a6ca8336108dd05072",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py": "380bbfca81bd5a97858499efb40a33bf5edb0a751f6744ae0664f1da45c2235e",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble_ports.py": "2429244e3376bef221152cabe450b43301127cba528c317086e0222cf48f1ed0"
+  }
+}

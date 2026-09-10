@@ -1,0 +1,105 @@
+{
+  "case": "relaxing/frozen_internal_baseline_n32_end0.5_dt0.0005_snap101_cfl0.05",
+  "s": 0.5,
+  "status": "duration_completed",
+  "coldest_node": {
+    "reference_fraction": 0.0,
+    "l": -2.1,
+    "heat": 0.2500000000000001,
+    "velocity": 3.4806602869821435e-25,
+    "effective_n": 0.5001380796961291,
+    "endpoint_heat_rate": 0.0,
+    "electrical_heat_rate": 0.0,
+    "relaxation_heat_rate": 0.0,
+    "net_heat_rate": 0.0,
+    "thermal_inventory": 0.03141592653589783,
+    "field_slice_inventory": 0.0,
+    "endpoint_power": 0.0,
+    "endpoint_force": 0.0
+  },
+  "initial_thermal_inventory": 21.06751639378555,
+  "final_thermal_inventory": 21.279182932173764,
+  "total_endpoint_heat_rate": 4.563586329807025,
+  "total_electrical_heat_rate": 0.0,
+  "total_relaxation_heat_rate": 0.0,
+  "reference_fraction_cooling": 0.390625,
+  "maximum_anchor_force": 0.023717212252995775,
+  "directional_derivative_checks": [
+    {
+      "s": 0.1,
+      "samples": [
+        {
+          "step": 1.3862431372306624e-07,
+          "canonical_rate": -2944.724414181436,
+          "expected_canonical_rate": -2944.7244106156636,
+          "relative_canonical_error": 1.2109018388525697e-09,
+          "momentum_rate": -574.4476943803576,
+          "expected_momentum_rate": -574.4476943793202,
+          "relative_momentum_error": 1.805895304933949e-12
+        },
+        {
+          "step": 6.931215686153312e-08,
+          "canonical_rate": -2944.7244109010057,
+          "expected_canonical_rate": -2944.7244106156636,
+          "relative_canonical_error": 9.689943759133498e-11,
+          "momentum_rate": -574.4476943291008,
+          "expected_momentum_rate": -574.4476943793202,
+          "relative_momentum_error": 8.742195689092526e-11
+        }
+      ]
+    },
+    {
+      "s": 0.3,
+      "samples": [
+        {
+          "step": 2.150260826908625e-08,
+          "canonical_rate": -4958.133128651673,
+          "expected_canonical_rate": -4958.133159305888,
+          "relative_canonical_error": 6.182612135980406e-09,
+          "momentum_rate": -496.4821045391148,
+          "expected_momentum_rate": -496.48210350522913,
+          "relative_momentum_error": 2.0824228296597905e-09
+        },
+        {
+          "step": 1.0751304134543124e-08,
+          "canonical_rate": -4958.133102216081,
+          "expected_canonical_rate": -4958.133159305888,
+          "relative_canonical_error": 1.1514375390530815e-08,
+          "momentum_rate": -496.4821045391148,
+          "expected_momentum_rate": -496.48210350522913,
+          "relative_momentum_error": 2.0824228296597905e-09
+        }
+      ]
+    },
+    {
+      "s": 0.5,
+      "samples": [
+        {
+          "step": 3.193286147899541e-08,
+          "canonical_rate": -3138.1337487200335,
+          "expected_canonical_rate": -3138.1337467027324,
+          "relative_canonical_error": 6.428346425349889e-10,
+          "momentum_rate": -198.91562512841477,
+          "expected_momentum_rate": -198.91562518985984,
+          "relative_momentum_error": 3.0890013838379604e-10
+        },
+        {
+          "step": 1.5966430739497704e-08,
+          "canonical_rate": -3138.133738039484,
+          "expected_canonical_rate": -3138.1337467027324,
+          "relative_canonical_error": 2.7606371288110515e-09,
+          "momentum_rate": -198.91562601846059,
+          "expected_momentum_rate": -198.91562518985984,
+          "relative_momentum_error": 4.1655890347281965e-09
+        }
+      ]
+    }
+  ],
+  "scope": "material heat and local counter-exchange on the saved trajectory; heat inventory uses reference weights, with relativistic geometric work separately recorded in the canonical ledger",
+  "source_sha256": {
+    "supporting_reports/data/material_ensemble/relaxing/frozen_internal_baseline_n32_end0.5_dt0.0005_snap101_cfl0.05_states.npz": "bed30bb07b97c4573598548fecdd8a484ec28c851c7dfc861902405d86064243",
+    "supporting_reports/data/material_ensemble/relaxing/frozen_internal_baseline_n32_end0.5_dt0.0005_snap101_cfl0.05_summary.json": "03c835f8356d956558037eecedc22e39d2b8818795b86ce7bcdd38212f9aef66",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py": "380bbfca81bd5a97858499efb40a33bf5edb0a751f6744ae0664f1da45c2235e",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble_ports.py": "2429244e3376bef221152cabe450b43301127cba528c317086e0222cf48f1ed0"
+  }
+}

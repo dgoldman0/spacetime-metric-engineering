@@ -40,13 +40,15 @@ def load_case(label):
 def compare(first, second, name):
     a, b = load_case(first), load_case(second)
     common = np.linspace(0., 1., 1001)
+    inside = (common >= .15) & (common <= .85)
+    eulerian_x = np.linspace(max(a[1].edges[0], b[1].edges[0]), min(a[1].edges[1], b[1].edges[1]), 1001)
     rows = []
     for t in a[2]:
         indices = np.flatnonzero(abs(b[2]-t) < 1e-10)
         if not indices.size:
             continue
         ia = int(np.argmin(abs(a[2]-t)))
-        values = []
+        values, eulerian = [], []
         for case, index in ((a, ia), (b, int(indices[0]))):
             _, patch, _, states, fraction = case
             f = patch.fields(float(t), states[index])
@@ -58,6 +60,7 @@ def compare(first, second, name):
             fields = {key: f[key] for key in ('x', 'velocity', 'heat', 'charge')}
             fields.update(moments)
             values.append({key: np.interp(common, fraction, value) for key, value in fields.items()})
+            eulerian.append({key: np.interp(eulerian_x, f['x'], value) for key, value in moments.items()})
         row = dict(s=float(t))
         for key in values[0]:
             error = values[0][key]-values[1][key]
@@ -65,12 +68,25 @@ def compare(first, second, name):
             row[f'{key}_rms_difference'] = float(np.sqrt(np.trapezoid(error**2, common)))
             norm = float(np.sqrt(np.trapezoid(values[1][key]**2, common)))
             row[f'{key}_relative_rms_difference'] = row[f'{key}_rms_difference']/max(norm, 1e-12)
+            interior_error = float(np.trapezoid(error[inside]**2, common[inside]))
+            interior_norm = float(np.trapezoid(values[1][key][inside]**2, common[inside]))
+            row[f'{key}_interior_relative_rms_difference'] = float(np.sqrt(interior_error/max(interior_norm, 1e-24)))
+            all_error = float(np.trapezoid(error**2, common))
+            row[f'{key}_end_regions_squared_error_fraction'] = 1-interior_error/max(all_error, 1e-30) if all_error > 0 else 0.
+        g = b[1].model.metric(float(t), eulerian_x)
+        weight = g.b*g.radius**2
+        for key in eulerian[0]:
+            difference = np.trapezoid(weight*abs(eulerian[0][key]-eulerian[1][key]), eulerian_x)
+            norm = np.trapezoid(weight*abs(eulerian[1][key]), eulerian_x)
+            row[f'{key}_eulerian_volume_relative_l1_difference'] = float(difference/max(norm, 1e-12))
         rows.append(row)
     frame = pd.DataFrame(rows)
     frame.to_csv(OUTPUT/f'{name}.csv', index=False)
     final = frame.iloc[-1].to_dict()
     result = dict(first=first, second=second, final=final, comparison_times=len(frame),
                   scope='same normalized material reference coordinate; positions and state must converge together; tensor comparison is evaluated on those material histories, not at an independently fixed Eulerian coordinate',
+                  regional_scope='interior reference fraction [0.15,0.85] diagnoses localization of errors; the whole-body comparison remains the acceptance scope, including both anchor regions',
+                  eulerian_scope='additional fixed-coordinate L1 stress difference weighted by the shared proper-volume factor B R^2; interpolated nodal stresses',
                   maximum_differences={key: float(frame[key].max()) for key in frame.columns if key != 's'},
                   source_sha256={str(p.relative_to(ROOT)): sha256_file(p) for p in [
                       Path(__file__), OUTPUT/f'{first}_states.npz', OUTPUT/f'{second}_states.npz',

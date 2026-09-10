@@ -1,0 +1,17 @@
+{
+  "completed_utc": "2026-09-10T10:47:49.530001+00:00",
+  "case": "thermal_only",
+  "scope": "variational material reservoir with passive local internal-strain relaxation and counted heat; full active metric and pinned endpoint exchange",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_relaxing_ensemble.py": "733cdc10e52b96e39347c48d86c5e8fa9940492ae8a12c628dc00f4382324f9c",
+    "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+    "toolkit/adm_harness_cli/adm_harness/material_ensemble.py": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+    "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+    "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6"
+  },
+  "input_sha256": {
+    "metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  }
+}

@@ -11,6 +11,15 @@ internal-heat verification barrier identified in the
 then tests the resulting response against its operating interval and source
 accounting requirements.
 
+The variational formulation resolves the earlier numerical loss of internal
+heat, and the finite-relaxation extension supplies counted mechanical
+heating with a causal longitudinal response. The registered allocations
+still exhaust a local thermal element during release, while the total
+thermal inventory grows. Spatial refinement also leaves unresolved
+compressional stress near the fixed ends. These results identify heat
+delivery along moving material and support-contact response as the next
+joint-coupling requirements.
+
 ## Component responsibilities and operating gates
 
 | Duty | Supplied variables and tensor | Required check |
@@ -283,3 +292,170 @@ Six constitutive and evolution tests cover the energy-derived pressure and
 wave speed, the zero-modulus limit, reciprocal relaxation heating,
 Hamiltonian forces, and energy and anchor-momentum balances in both a
 flat control and a metric with active lapse, shift, radial scale, and radius.
+
+## Active relaxation results
+
+All four 32-cell controls reach the early checkpoint. The relaxing mixed
+ensemble has minimum heat 0.38475 at \(s=0.5\), while the thermal-only
+case has 0.39316. At 64 cells these values become 0.40243 and 0.40512;
+the mixed 128-cell result is 0.40010. The minimum across each complete
+early history remains the prepared value of 0.25. The frozen-strain
+control retains 0.25 through this interval.
+
+The mixed 64-cell initial ADM-slice energy is 122.12969, including
+thermal inventory 21.11821 and field energy 5.19065. Its initial canonical
+energy is 34,688.60419. The thermal-only allocation has the same initial
+slice energy and thermal inventory 26.30272. For this prepared reference
+profile, the added strain branch starts at its zero-energy minimum to
+roundoff. Thus the initial comparison includes a different constitutive
+response at the same measured initial energy.
+
+The relaxation extension improves the independent canonical-energy balance:
+the mixed 64-cell error through 0.5 is \(4.40\times10^{-6}\), and the
+128-cell error is \(2.06\times10^{-5}\). Its 64-cell release run has
+maximum error \(2.41\times10^{-5}\), approximately
+\(7.0\times10^{-10}\) of initial canonical energy. The corresponding
+thermal-only error is \(5.32\times10^{-5}\). Direct directional
+derivatives of the saved active states reproduce the instantaneous energy
+identity to relative errors below \(6.4\times10^{-8}\) in these two
+release cases. Their momentum derivatives, including end reactions, agree
+to below \(4.4\times10^{-7}\). These derivative checks are independent
+of the accumulated power ledger.
+
+### Release remains limited by local heat delivery
+
+| Material and allocation | Cells | Local heat stopping coordinate |
+| --- | ---: | ---: |
+| Original elastic law, mixed reserve | 64 | 0.765334 |
+| Relaxing strain, mixed reserve | 32 | 0.781846 |
+| Frozen strain, mixed reserve | 32 | 0.781294 |
+| Relaxing strain, mixed reserve | 64 | 0.764007 |
+| Original elastic law, thermal-only reserve | 64 | 0.819701 |
+| Relaxing strain, thermal-only reserve | 32 | 0.836577 |
+| Relaxing strain, thermal-only reserve | 64 | 0.817564 |
+
+The close frozen/relaxing pair isolates the limited effect of relaxation on
+this depletion event. Moreover, the same-resolution comparison with the
+original elastic law shows that the extension supplies essentially the
+same release reach. The resolution spread limits the precision assigned
+to each continuum event time; the repeated local depletion during release
+is the common result.
+
+In the relaxing mixed 64-cell run, the depleted element has material
+reference fraction 0.5 and position \(\ell=-1.63594\). Its normal-frame
+velocity is \(-0.999484\), and its effective number density is
+\(1.0522\times10^{-3}\). The local heat rates per reference unit and
+service coordinate are
+
+\[
+\dot q_{\rm endpoint}=-31.04070,\qquad
+\dot q_{\rm electrical}=0.21650,\qquad
+\dot q_{\rm relaxation}=0.06596.
+\]
+
+Together the two local conversion channels replace 0.91% of the imposed
+instantaneous withdrawal. Meanwhile, the whole body's thermal inventory
+has increased from 21.11821 to 23.94205. The thermal-only run similarly
+grows from 26.30272 to 27.93968 before its first element runs cold.
+Thus the tested body has available stored heat elsewhere while the
+withdrawal concentrates on a dilute, rapidly moving material element.
+
+The heat equation displays the mechanism explicitly:
+\(\dot q_{\rm endpoint}=\alpha R^2(-P+vF)/(A n_{\rm eff})\).
+The prescribed endpoint exchange acts on the evolving material density
+and velocity; local conversion depends on the field and strain energy
+available at that same element. Causal heat redistribution, preparation
+matched to material trajectories, or responding endpoint exchange could
+alter this balance. Each requires its counted transport or preparation law.
+The present evidence constrains the registered allocation and passive local
+conversion law; it leaves those further constructions open.
+
+### Supplied stress requires a resolved end-region response
+
+At \(s=0.5\), the mixed 64/128-cell comparison has whole-body relative
+RMS differences of 46.5% in density and 56.3% in radial stress. Its velocity
+RMS difference is 0.176. The reference intervals adjoining the two ends,
+\([0,0.15]\) and \([0.85,1]\), contain 97.6% of the squared density
+error and 99.6% of the squared radial-stress error.
+
+![Material positions, velocity, heat, and supplied density across three resolutions](data/material_ensemble/relaxing/ensemble_spatial_comparison_32_64_128.png)
+
+The central trajectories and heat profiles show useful agreement, while
+the end regions contain sharp compressions and oscillatory velocity.
+An additional comparison at fixed spatial coordinates, weighted by proper
+volume, gives density L1 differences of 8.41% for 32/64 cells and 8.54%
+for 64/128 cells. The corresponding radial-stress differences decrease
+from 8.48% to 5.34%. Consequently the present discretization has yet to
+establish a converged complete supplied tensor. The end-region partition
+locates the difficulty; all body regions remain in the acceptance scope.
+
+Finite local strain relaxation preserves the counted energy and entropy
+exchange, but its present implementation leaves those compression fronts
+unresolved. Further numerical work requires an entropy-consistent treatment
+of steep material fronts, with the associated mechanical heating, and
+verification against resolved controls. A physical support completion also
+requires a responding contact and anchor tensor in place of the prescribed
+position constraints. Increasing grid size alone has yet to establish that
+completion on the tested resource budget.
+
+## Requirement disposition and bounded stopping point
+
+| Requirement | Result of this investigation |
+| --- | --- |
+| Full active metric and protected packet separation | Retained; lapse, shift, both metric scales, and temporal derivatives remain active. The tested body stays outside the packet, with initial gap 0.15 and increasing separation. |
+| Positive material energy and causal longitudinal response | Established for the registered constitutive domain; all completed portions retain positive heat, ordered cells, timelike motion, and subluminal longitudinal characteristics. |
+| Reciprocal field/strain conversion and independent energy accounting | Verified in constitutive tests, controlled evolutions, and active-state derivative audits. Ideal material heat and electric flux are preserved. |
+| Early thermal-buffer duty through 0.5 | Completed by the mixed and thermal-only allocations, including the mixed 128-cell run. |
+| Local heat throughout release, fade, and reset | Open: both allocations deplete locally during release, before the fade ends at 1.285 or reset reaches 3. |
+| Converged supplied stress across the body | Open: compression fronts near the constrained ends remain sensitive to spatial resolution. |
+| Complete physical endpoint and anchor coupling | Open: the endpoint fitted tensor imposes the exchange, while end reactions are counted ports. The responding endpoint/contact laws and anchor tensors remain to be supplied. |
+| Complete rail source and earlier preparation | Beyond this late-patch construction, which carries 35.75% of the archived full-interval exchange weight. Earlier preparation, the other rail components, and joint gravitational closure retain their own duties. |
+
+The bounded investigation stops at local heat-delivery and stress-resolution
+barriers. It establishes a more complete thermodynamic reservoir model and
+an explicit failure mechanism. The useful continuation keeps the existing
+role separation: heat/current routing must track the material receiving
+the withdrawal, mechanical support must supply a resolved contact response,
+and the store must pay for every transfer. A responding endpoint law would
+change its trajectory, so that partner's tensor and service gates would
+then be recomputed with the reservoir.
+
+## Evidence and reproduction
+
+The [numerical evidence directory](data/material_ensemble/) contains case
+summaries, full saved material states, histories, input and software hashes,
+regional comparisons, local-port audits, and the plotted profiles. Scripts
+produce numerical evidence; this report is manually authored. The focused
+constitutive and reservoir suite passes 35 tests. Production controls use
+four concurrent workers, with one BLAS thread per worker. The complete
+evidence set occupies approximately 8 MB.
+
+The [integrity audit](data/material_ensemble/evidence_integrity.json) checks
+all 30 saved runs, their input hashes, and their production-software hashes
+against the current files or recorded Git versions. Eighteen runs complete
+their requested interval, nine reach a material-domain boundary, and three
+reach their computation budget. It also records numerical-file checksums
+and verifies positive saved heat, finite states, ordered material cells,
+and agreement between each stopping status and final stored time.
+
+Representative reproduction commands, from the repository root, are:
+
+```bash
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=toolkit/adm_harness_cli
+python toolkit/adm_harness_cli/scripts/run_material_ensemble.py --workers 4 --cells 64 --duration .5 --cases ideal_control field_only ensemble thermal_only
+python toolkit/adm_harness_cli/scripts/run_material_ensemble.py --workers 2 --cells 64 --duration 3 --snapshots 601 --max-step .0005 --cfl .05 --deadline 600 --cases ensemble thermal_only
+python toolkit/adm_harness_cli/scripts/run_relaxing_ensemble.py --workers 4 --cells 32 --duration .5 --deadline 300
+python toolkit/adm_harness_cli/scripts/run_relaxing_ensemble.py --workers 2 --cells 64 --duration .5 --cases ensemble thermal_only
+python toolkit/adm_harness_cli/scripts/run_relaxing_ensemble.py --workers 2 --cells 64 --duration 3 --snapshots 601 --deadline 540 --cases ensemble thermal_only
+python toolkit/adm_harness_cli/scripts/run_relaxing_ensemble.py --workers 1 --cells 128 --duration .5 --deadline 480 --cases ensemble
+python toolkit/adm_harness_cli/scripts/audit_material_ensemble.py relaxing/ensemble_baseline_n64_end0.5_dt0.0005_snap101_cfl0.05 relaxing/ensemble_baseline_n128_end0.5_dt0.0005_snap101_cfl0.05 --name relaxing/ensemble_space_regional_64_128
+python toolkit/adm_harness_cli/scripts/audit_material_ensemble_ports.py relaxing/ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05
+python toolkit/adm_harness_cli/scripts/verify_material_ensemble_evidence.py
+```
+
+Each case manifest identifies its code and input versions. Wall-time budgets
+are machine-dependent; the saved status distinguishes a compute limit from
+a constitutive-domain stop. The release cases listed above finish at the
+registered heat boundary with positive stored heat approaching the floor,
+and their states receive no floor correction or external heat injection.
