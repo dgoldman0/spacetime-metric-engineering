@@ -1,0 +1,142 @@
+# Graded radial capacitors and distributed reservoir contacts
+
+## Construction and scope
+
+This bounded study tests a radial electric force profile coupled to local
+energy buffers on the repaired active rail. It follows the
+[source selection](SOURCE_CONSTRUCTION_SELECTION.md) and the
+[prestressed reservoir feasibility audit](RESERVOIR_FEASIBILITY_ENVELOPE.md).
+The radial field supplies tension and local electrical conversion; the buffers
+carry stored material energy and the endpoint exchange. A segmented variant
+exposes finite mechanical contacts for transferring momentum to infrastructure.
+
+The domain is the previous late reservoir patch, \(x\in[-2.1,-0.5]\), starting
+at \(s=0\). The main comparison ends at carrying-flow fade, \(s=1.285\),
+with one segmented extension to \(s=3\). The geometry retains its lapse,
+shift, radial stroke, angular evolution, and protected moving packet.
+The reconstructed endpoint tensor and its divergence are the earlier pinned
+candidate. This patch carries 35.75% of the earlier full-interval exchange
+weight; earlier preparation and the other rail duties retain their own scope.
+
+The prescribed material worldlines have fixed coordinate position. This
+inverse problem determines field and energy histories required to support
+those worldlines. A physical realization additionally requires a responding
+charged material, finite current inertia, confinement, and stable control.
+The pressure-free buffer is an optimistic effective store. Its physical
+equation of state and confinement remain part of source completion.
+
+The charged multifluid framework supplies an appropriate subsequent dynamics
+model: Andersson's [resistive relativistic charged fluids](https://arxiv.org/abs/1204.2695)
+couple heat and charge transport, while
+[Andersson, Dionysopoulou, Hawke, and Comer](https://arxiv.org/abs/1610.00449)
+retain their inertia and their dependence on the equation of state.
+The present conservation screen precedes that constitutive evolution.
+
+## Conservation construction
+
+Write \(v=B\beta/\alpha\), \(\Gamma=(1-v^2)^{-1/2}\), and
+\(N=\alpha/\Gamma\), the proper-time rate on the chosen worldlines.
+The rest energy of a local buffer is \(w\), and a radial electric field has
+energy \(u_E\). Its orthonormal stress is
+\((u_E,-u_E,0,u_E)\) in the order
+\((\rho,p_r,j,p_\Omega)\). Thus it contributes zero radial null stress and
+positive angular null stress. Both channels enter the optimization.
+
+Define
+
+\[
+M=\Gamma BR^2w,\qquad H=R^4u_E=Q^2/2.
+\]
+
+The buffer's conserved rest-mass reference and initial heat profile are
+inherited from the preceding thermal allocation control at the same spatial
+resolution. Its energy floor is \(M\geq M_{\rm rest}\). Positive field flux
+energy obeys \(H\geq10^{-8}\); a \(10^{-6}\) control tests this numerical
+regularity floor. Physical size remains a free conversion parameter.
+
+For endpoint divergence \((P,F)\), the sum of buffer and field obeys
+
+\[
+M_s+\frac{\Gamma B}{R^2}H_s
+ =-\alpha\Gamma BR^2(P-vF),
+\]
+
+\[
+H_x-\frac{vR^2}{N}M_s-R^2a_s M=BR^4F,
+\]
+
+where the acceleration of a fixed-coordinate worldline is
+
+\[
+a_s=\Gamma\left[\frac{\partial_s\operatorname{atanh}v}{\alpha}
++\frac{\alpha_x}{\alpha B}-vK_l\right].
+\]
+
+These equations retain the reciprocal endpoint power and momentum together.
+Passive electrical conversion imposes \(H_s\leq0\), with
+\(\sigma=-H_s/(2NH)\geq0\) in the reduced Ohmic description. The initial
+field supplies that conversion energy. A finite charged-fluid construction
+must also supply charge continuity, carrier inertia, relaxation, and its own
+thermal and mechanical response.
+
+The primary objective minimizes the largest supplied null projection over
+all directions. A secondary objective minimizes the time integral of local
+slice energy at the same peak. Exact maximization of the angular quadratic
+checks the directional sampling and adds constraints as needed. The resulting
+optima belong to the discretized inverse family.
+
+## Contact variants and gates
+
+The continuous variant enforces interior momentum balance across the body.
+The segmented variant places three finite contact bands, centered at
+\(-1.7,-1.3,-0.9\), each of coordinate width 0.1. Energy balance continues
+through these bands. The remaining momentum divergence defines a mechanical
+force port; the infrastructure supplying that force needs the opposite
+divergence in its own tensor. Fixed coordinate contacts have zero canonical
+mechanical work and can have nonzero normal-frame power. Their force and
+material stress remain physical loads.
+
+Both variants retain terminal electrode tractions as external construction
+requirements. The segmented contact bands are a proposed addition to the
+station plant, with their proper widths measured in the active metric.
+
+A necessary local test examines a co-moving contact supported solely by
+positive rest energy and angular stress, with \(w_c\geq|p_{\Omega c}|\) and
+zero radial pressure. Its possible radial divergence per unit density lies in
+
+\[
+a_s-2|s^\mu\nabla_\mu\log R|
+\ \leq\ F_c/w_c\ \leq\
+a_s+2|s^\mu\nabla_\mu\log R|.
+\]
+
+An opposite-sign force requirement outside this cone excludes that local
+contact model even with unrestricted positive density. Radial transmission,
+moving supports, and separately routed momentum have different tensors and
+remain separate constructions.
+
+## Registered numerical checks
+
+The suite compares 32, 64, and 128 spatial cells, independent time refinement,
+the electric-flux floor, and the segmented reset extension. Four workers run
+independent cases with one BLAS thread each. Numeric artifacts stay separate
+from this manually maintained report.
+
+Seven focused tests check the covariant reduction against independent tensor
+divergence, worldline acceleration against its metric definition, exact oblique
+null maximization, an analytic forced flat capacitor, and contact-force signs.
+Production checks retain sparse optimization residuals and dual gaps, evaluate
+the interpolated tensor divergence between grid nodes, and compare geometric
+source tensors with two curvature steps and the actual metric interpolation.
+
+The complete remaining source is evaluated as
+\(G[g]/(8\pi)-T_{\rm endpoint}-T_{\rm buffer+field}\).
+Required negative contributions in its energy and null projections are
+reported alongside the added contact requirements. The fixed-background study
+assigns no independent quantum capacity ceiling.
+
+## Results
+
+The registered comparison is pending. The decision gate is whether the lower
+material velocity and changed force placement also reduce the counted source
+burden, and whether the required contacts have a viable local stress channel.
