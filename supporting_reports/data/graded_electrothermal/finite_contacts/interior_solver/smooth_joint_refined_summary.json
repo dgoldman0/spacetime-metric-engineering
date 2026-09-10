@@ -1,0 +1,95 @@
+{
+  "case": "smooth_joint_refined",
+  "cells": 128,
+  "time_intervals": 257,
+  "duration": 1.285,
+  "ports": [
+    -1.7,
+    -1.3,
+    -0.9
+  ],
+  "port_coordinate_width": 0.1,
+  "flux_floor": 1e-08,
+  "smooth_contacts": true,
+  "proper_conductivity_ceiling": 1.0,
+  "success": true,
+  "optimal_supplied_null_peak": 0.11015197781923844,
+  "angle_iterations": 1,
+  "secondary_energy_optimization_used": false,
+  "secondary_status": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+  "secondary_peak_allowance": 1e-06,
+  "primary_solver": "highs-ipm",
+  "interior_point_crossover": true,
+  "normalized_equality_residual": 9.213811494232698e-09,
+  "raw_equality_residual": 7.371049195386185e-07,
+  "inequality_violation": 2.7977620220553945e-14,
+  "primary_dual_gap": 8.756884106730922e-15,
+  "maximum_supplied_null": 0.11015197781923845,
+  "maximum_abs_velocity": 0.20214036673420838,
+  "minimum_heat": 0.25,
+  "maximum_heat": 20.77436930249471,
+  "initial_slice_energy": 689.9882626845356,
+  "maximum_slice_energy": 694.2372020678105,
+  "final_slice_energy": 108.67068162326623,
+  "initial_field_slice_energy": 655.572387095929,
+  "maximum_electric_density": 0.04520473133985842,
+  "maximum_radial_null": 0.10194678812892145,
+  "maximum_effective_discharge_conductivity": 1.0000000000003488,
+  "maximum_charge_increase": 2.7977620220553945e-14,
+  "minimum_packet_gap": 0.15000000000000002,
+  "maximum_collared_normal_force_density": 0.1437908389886953,
+  "maximum_left_terminal_traction": 0.025051286008183456,
+  "maximum_right_terminal_traction": 0.0320898751946289,
+  "hoop_force_cone_failures": 4128,
+  "hoop_witnesses": [
+    {
+      "s": 1.285,
+      "l": -1.7062500000000003,
+      "required_support_rest_divergence": -0.1437908389886953,
+      "acceleration": 0.3367433594634161,
+      "twice_abs_angular_gradient": 0.061092680716009526,
+      "allowed_force_per_density_low": 0.27565067874740656,
+      "allowed_force_per_density_high": 0.39783604017942564
+    }
+  ],
+  "independent_checks": {
+    "points": 238,
+    "energy_maximum_absolute_residual": 0.0005235137204280991,
+    "energy_sum_relative_term_residual": 0.004449658012394689,
+    "force_maximum_absolute_residual": 9.867930106851763e-05,
+    "force_sum_relative_term_residual": 0.0008497401995615205
+  },
+  "maximum_abs_integrated_collar_force": 4.073469736557167,
+  "phases": [
+    {
+      "s": 0.0,
+      "slice_energy": 689.9882626845356,
+      "field_slice_energy": 655.572387095929,
+      "required_negative_null_peak": 0.08635100770588347,
+      "required_negative_radial_null_peak": 0.013864874579997478,
+      "required_negative_slice_energy_integral": 514.1965051231133,
+      "geometry_fd_difference": 1.1680849602343363e-06,
+      "geometry_spline_difference": 8.156199574987227e-06
+    },
+    {
+      "s": 0.5,
+      "slice_energy": 410.81245236380647,
+      "field_slice_energy": 361.4639194624326,
+      "required_negative_null_peak": 0.08839948837502698,
+      "required_negative_radial_null_peak": 0.023071281468343852,
+      "required_negative_slice_energy_integral": 313.09329142343904,
+      "geometry_fd_difference": 1.0738546462017717e-06,
+      "geometry_spline_difference": 1.0865920617570551e-05
+    },
+    {
+      "s": 1.285,
+      "slice_energy": 108.67068162326623,
+      "field_slice_energy": 22.81655966246615,
+      "required_negative_null_peak": 0.10399313922289904,
+      "required_negative_radial_null_peak": 0.10227648908254673,
+      "required_negative_slice_energy_integral": 99.0604658980843,
+      "geometry_fd_difference": 1.0408232812889572e-05,
+      "geometry_spline_difference": 6.424506736808777e-05
+    }
+  ]
+}

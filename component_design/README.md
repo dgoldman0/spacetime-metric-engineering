@@ -26,6 +26,13 @@ a substantial, quantified improvement in complete assembly viability.
 The prestressed backbone/heat-buffer assembly is set aside following its
 measured source-completion burden.
 
+The [distributed electrothermal comparison](../supporting_reports/GRADED_ELECTROTHERMAL_ASSEMBLY.md)
+identifies a conditional continuation with graded radial capacitors, local
+stores, and confined-fluid pressure couplings connected to the endpoint
+heat/current and reset plant. It quantifies the separate momentum and thermal
+ports. Complete load paths, wall and buffer material laws, coupled evolution,
+and the remaining negative-stress source determine physical selection.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and

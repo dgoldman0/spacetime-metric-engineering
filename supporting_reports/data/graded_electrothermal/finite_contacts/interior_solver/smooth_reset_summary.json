@@ -1,0 +1,105 @@
+{
+  "case": "smooth_reset",
+  "cells": 64,
+  "time_intervals": 301,
+  "duration": 3.0,
+  "ports": [
+    -1.7,
+    -1.3,
+    -0.9
+  ],
+  "port_coordinate_width": 0.1,
+  "flux_floor": 1e-08,
+  "smooth_contacts": true,
+  "proper_conductivity_ceiling": 1.0,
+  "success": true,
+  "optimal_supplied_null_peak": 2.075716569034232,
+  "angle_iterations": 1,
+  "secondary_energy_optimization_used": false,
+  "secondary_status": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+  "secondary_peak_allowance": 2.075716569034232e-06,
+  "primary_solver": "highs-ipm",
+  "interior_point_crossover": true,
+  "normalized_equality_residual": 1.3012497976274545e-08,
+  "raw_equality_residual": 5.204999190509836e-07,
+  "inequality_violation": 1.723066134218243e-13,
+  "primary_dual_gap": 2.930988785010413e-14,
+  "maximum_supplied_null": 2.0757165690342325,
+  "maximum_abs_velocity": 0.20214036673420838,
+  "minimum_heat": 0.24999999999999956,
+  "maximum_heat": 21.284343618146842,
+  "initial_slice_energy": 7603.054902294538,
+  "maximum_slice_energy": 7603.054902294538,
+  "final_slice_energy": 141.01130164147773,
+  "initial_field_slice_energy": 7568.666372925157,
+  "maximum_electric_density": 0.5647833550877002,
+  "maximum_radial_null": 1.987808842427971,
+  "maximum_effective_discharge_conductivity": 1.0000000000003992,
+  "maximum_charge_increase": 1.723066134218243e-13,
+  "minimum_packet_gap": 0.15000000000000002,
+  "maximum_collared_normal_force_density": 5.002216665604171,
+  "maximum_left_terminal_traction": 0.22533612290484545,
+  "maximum_right_terminal_traction": 0.28575938447422455,
+  "hoop_force_cone_failures": 864,
+  "hoop_witnesses": [
+    {
+      "s": 1.76,
+      "l": -1.3125,
+      "required_support_rest_divergence": -2.3601973724441643,
+      "acceleration": 0.17186123965434585,
+      "twice_abs_angular_gradient": 0.17108862085748727,
+      "allowed_force_per_density_low": 0.0007726187968585818,
+      "allowed_force_per_density_high": 0.3429498605118331
+    }
+  ],
+  "independent_checks": {
+    "points": 238,
+    "energy_maximum_absolute_residual": 0.020897166853722393,
+    "energy_sum_relative_term_residual": 0.007073915844107118,
+    "force_maximum_absolute_residual": 0.005817480338491499,
+    "force_sum_relative_term_residual": 0.01072757071233693
+  },
+  "maximum_abs_integrated_collar_force": 28.53728175226077,
+  "phases": [
+    {
+      "s": 0.0,
+      "slice_energy": 7603.054902294538,
+      "field_slice_energy": 7568.666372925157,
+      "required_negative_null_peak": 1.090793360462908,
+      "required_negative_radial_null_peak": 0.013864874579997478,
+      "required_negative_slice_energy_integral": 7427.290922883267,
+      "geometry_fd_difference": 1.1680849602343363e-06,
+      "geometry_spline_difference": 8.156199574987227e-06
+    },
+    {
+      "s": 0.5,
+      "slice_energy": 4193.449391757948,
+      "field_slice_energy": 4150.736647206631,
+      "required_negative_null_peak": 1.0946280757424542,
+      "required_negative_radial_null_peak": 0.02346613994228749,
+      "required_negative_slice_energy_integral": 4095.7292134073596,
+      "geometry_fd_difference": 1.0738546462017717e-06,
+      "geometry_spline_difference": 1.0865920617570551e-05
+    },
+    {
+      "s": 1.285,
+      "slice_energy": 490.574361002038,
+      "field_slice_energy": 436.19273079121325,
+      "required_negative_null_peak": 1.106626472941272,
+      "required_negative_radial_null_peak": 0.07837352253385908,
+      "required_negative_slice_energy_integral": 480.9625016264067,
+      "geometry_fd_difference": 1.0408232812889572e-05,
+      "geometry_spline_difference": 6.424506736808777e-05
+    },
+    {
+      "s": 3.0,
+      "slice_energy": 141.01130164147773,
+      "field_slice_energy": 12.067551767069418,
+      "required_negative_null_peak": 2.0455980754400556,
+      "required_negative_radial_null_peak": 1.9945313619926337,
+      "required_negative_slice_energy_integral": 140.43923746273254,
+      "geometry_fd_difference": 4.8514983514921783e-08,
+      "geometry_spline_difference": 2.053191555835554e-06
+    }
+  ]
+}

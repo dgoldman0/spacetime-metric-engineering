@@ -1,4 +1,22 @@
-# Graded radial capacitors and distributed reservoir contacts
+# Distributed electrothermal storage and pressure-bearing contacts
+
+The evidence favors an adjusted assembly of separately graded radial
+capacitors, local stores, confined-fluid pressure couplings, and the existing
+endpoint heat/current and receiver/reset plant. Segmenting the field reduces
+the required preload and source stress. The resulting mechanical contacts
+require radial momentum transmission. A local isotropic-fluid calculation
+supplies positive-pressure profiles for that role, including their added
+energy, stress, loaded-end pressure, and thermal exchange.
+
+For the late patch through carrying-flow fade, the refined field-and-buffer
+history requires negative null stress of about 0.104 in the remaining source.
+Including the instantaneous pressure couplings raises that requirement to
+0.378, compared with 75.781 for the earlier prestressed reservoir at fade.
+The comparison retains the same active geometry and fitted endpoint tensor.
+The new histories prescribe motion below 0.203c and solve its conservation
+requirements. Physical buffer response, confined contact dynamics, complete
+pressure transmission, and the remaining negative-stress source constitute
+the next construction gate.
 
 ## Construction and scope
 
@@ -215,3 +233,172 @@ separate refinements to assess the remaining discretization sensitivity.
 Each primary solve retains the 180-second bound and each energy tie-break
 the 90-second bound. This final solver comparison retains the same physical
 equations, finite contact profile, and response-rate constraints.
+
+## Completed finite-response comparison
+
+The interior-point suite completed all eight primary optimizations, including
+separate spatial and temporal refinements, their joint refinement, and the
+reset extension. The smooth-contact family retains positive heat and its
+specified finite discharge rate. Its maximum prescribed normal-frame speed
+is 0.202140c, and the late-patch packet clearance is at least 0.15 in the rail
+coordinate. These are inverse histories with counted mechanical ports;
+stability and motion under a complete material/controller law require their
+own evolution.
+
+| Modeled pieces through fade | Initial local slice energy | Required negative null stress at fade |
+| --- | ---: | ---: |
+| Earlier freely evolved prestressed reservoir, 128 cells | 989.09 | 75.7805 |
+| Continuous graded field and buffers, 64 cells | 41,617.88 | 5.2778 |
+| Smooth segmented field and buffers, joint 128-cell refinement | 689.99 | 0.1040 |
+| Same segmented history plus instantaneous fluid pressure couplings | 848.33 | 0.3779 |
+
+The last row adds the modeled fluid stress inside the three contact bands.
+Its loaded-end transmission paths, confining walls, and thermal-transfer
+partners remain additional tensors. All quantities are in the earlier model
+units. The energy is the normal-frame slice integral, with the same physical
+scale conversion as the preceding feasibility report.
+
+The primary peak objective completes in every final case. The secondary
+energy tie-break completes for the 32-cell, 64-cell, and faster-response
+segmented cases. Other cases retain the verified primary solution. Their
+listed energies describe those retained histories, while their minimum
+possible energy at the same peak remains undetermined.
+
+| Smooth-contact comparison, conductivity ceiling 1 | Peak supplied null stress | Peak contact force density | Interior energy check | Interior force check |
+| --- | ---: | ---: | ---: | ---: |
+| 32 cells, 65 time intervals | 0.096495 | 0.063980 | 2.596% | 0.794% |
+| 64 cells, 129 time intervals | 0.105127 | 0.120979 | 1.176% | 0.295% |
+| 64 cells, 257 time intervals | 0.106363 | 0.121917 | 0.770% | 0.293% |
+| 128 cells, 129 time intervals | 0.108961 | 0.142687 | 0.796% | 0.086% |
+| 128 cells, 257 time intervals | 0.110152 | 0.143791 | 0.445% | 0.085% |
+
+The independent checks evaluate the bilinearly reconstructed tensor between
+grid points, differentiate its moments, and compare its covariant divergence
+with the endpoint exchange. The percentages are sums of absolute residuals
+divided by sums of the corresponding equation-term magnitudes at the sampled
+interior points. The joint-refinement maximum absolute rest-frame residuals
+are 0.000524 in energy and 0.0000987 in force. They resolve the broad source
+comparison while leaving finite discretization error. Spatial refinement has
+the larger remaining effect on the peak; the refinement from 64 to 128 cells
+at 257 time intervals changes it by about 3.6%.
+
+The finite contact profile removes the earlier doubling of force density
+with spatial resolution. A conductivity ceiling of 10 yields supplied null
+peak 0.085634 and initial energy 332.49 at 64 cells. This is a response-cost
+sensitivity; an identified physical conductivity and relaxation law must be
+matched to the chosen physical scale.
+
+![Field and buffer comparison](figures/graded_electrothermal_comparison.png)
+
+## Local pressure-coupling construction
+
+The strongest fade-time angular-support witness in the joint refinement
+requires support rest-frame divergence \(-0.143791\) at
+\(x=-1.70625\). Direct derivatives of the repaired geometry put the
+angular-only support cone between \(0.275553w_c\) and \(0.397825w_c\).
+The two derivative steps, \(10^{-4}\) and \(5\times10^{-5}\), agree on
+that sign separation. Increasing positive density preserves the mismatch.
+
+A radial pressure gradient supplies the missing signed force. Consider a
+local isotropic fluid with \(\rho_c=\kappa p_c\), \(\kappa=3\), and
+the same coordinate-fixed target motion. This explicit ultrarelativistic
+fluid model has \(dp_c/d\rho_c=1/3\). Its radial force projection is
+
+\[
+F_c=(\kappa+1)p_c a_s+
+\frac{\partial_xp_c}{\Gamma B}
++\frac{v}{N}\partial_s p_c.
+\]
+
+On each inspected slice, set \(\partial_s p_c=0\), specify zero pressure
+at the unloaded end, and integrate
+
+\[
+\partial_xp_c+(\kappa+1)\Gamma B a_s p_c
+=\Gamma B F_c.
+\]
+
+The resulting pressure stays nonnegative. Its nonzero loaded-end value is
+an explicit pressure-transmission requirement for the station structure.
+The opposite force signs use opposite loaded ends. Its required rest-frame
+thermal exchange on the inspected slice is
+
+\[
+P_c=(\kappa+1)p_c\Theta,\qquad
+\Theta=\frac{\partial_s\log(\Gamma BR^2)}{N}.
+\]
+
+This exchange is predominantly cooling during the examined compression.
+Its reciprocal transfer belongs in the heat/current medium. Time-dependent
+pressure evolution replaces the imposed zero pressure derivative with the
+fluid's energy equation and changes that transfer accordingly.
+
+| Contact center | Loaded pressure at startup | Loaded pressure at fade | Fluid slice energy at fade |
+| --- | ---: | ---: | ---: |
+| -1.7 | 0.05169 | 0.06859 | 4.8488 |
+| -1.3 | 0.06692 | 0.06573 | 8.5773 |
+| -0.9 | 0.00208 | 0.02023 | 3.2602 |
+
+The third contact changes force direction between startup and fade. Opposed
+pressure chambers provide a concrete arrangement to investigate for that
+bidirectional duty. The fluid's assigned role is local momentum transfer;
+the electromagnetic stores and endpoint medium retain their energy and
+current responsibilities.
+
+These three fluid pieces add slice energies 158.34 at startup, 85.49 at
+\(s=0.5\), and 16.69 at fade. Their full energy, radial, current, and angular
+moments enter the source comparison. The corresponding remaining negative
+null requirements are 0.35092, 0.34071, and 0.37794. The loaded-end pressure
+changes by less than \(10^{-7}\) under the local integration refinement
+across all 21 inspected contact slices, including the reset control.
+
+![Instantaneous pressure profiles](figures/graded_pressure_couplings.png)
+
+## Reset, source completion, and stopping point
+
+Extending the same passive storage family to \(s=3\) requires a larger
+prepared field. The retained 64-cell reset history has initial slice energy
+7,603.05 and peak supplied null stress 2.07572. Its remaining negative null
+requirement at \(s=3\) is 2.04560, or 2.21992 with the local fluid pieces.
+The reset extension has one resolved-grid control, with an independent force
+check of 1.07%; a continuum reset certificate remains open.
+
+This extension retains the prescribed endpoint exchange and mechanical
+contacts throughout. The existing receiver/reset plant's independently
+controlled energy export has yet to be coupled into this reservoir model.
+The result therefore measures the cost of this passive retention history.
+Full-architecture reset requires explicit current and energy transfer to
+that already identified plant, including its receiving stress and capacity.
+
+Physical assembly selection consequently remains open. The next
+concrete construction is a distributed capacitor and local-store assembly
+with opposed pressure couplings, a complete non-live pressure-transmission
+path, and reciprocal cooling/reset ports to the existing endpoint medium.
+Its component duties are distinct and its remaining loads are quantified.
+Its field, buffer, and fluid stresses obey the null energy condition; the
+remaining negative contribution requires an independently supplied sector.
+
+The present investigation stops at the complete load-path and constitutive
+gate. Confined-wall stress, charge-current inertia and relaxation, the
+physical buffer equation of state, coupled pressure/heat evolution, and
+earlier packet-safe preparation remain necessary parts of that construction.
+The local angular-only contact model has a force-sign obstruction. The
+pressure-gradient calculation gives a finite alternative local stress
+channel, with explicit interfaces for the remaining infrastructure work.
+The results retain the selection preference for specified fields and
+materials and establish no exception favoring ideal string matter.
+
+The focused tests and existing tensor tests total **26 passing cases**.
+The final production suite completes **eight primary optimizations** using
+four workers. **136 manifest hash comparisons** verify the three stages
+against their recorded outputs and source revisions. The repaired-geometry
+curvature-step differences through fade remain at most \(1.05\times10^{-5}\),
+and the spline comparison remains at most \(6.43\times10^{-5}\). At
+\(s=3\), the smooth temporal extension reduces the earlier boundary-stencil
+artifact to a spline difference of \(2.05\times10^{-6}\).
+
+Numeric comparisons, source projections, local pressure requirements, exact
+geometry witnesses, and integrity results are in
+[`data/graded_electrothermal/derived`](data/graded_electrothermal/derived/).
+The production histories and their bounded solver failures remain in the
+parent stage directories. Narrative findings are maintained in this report.

@@ -1,0 +1,34 @@
+{
+  "initial": {
+    "revision": "0448351",
+    "checked": 43,
+    "failures": []
+  },
+  "finite": {
+    "revision": "16e7cd3",
+    "checked": 38,
+    "failures": []
+  },
+  "interior": {
+    "revision": "37f69f0b87f345d1219f4cae3b9cc9f6aeda0073",
+    "checked": 55,
+    "failures": []
+  },
+  "postprocessor_sha256": "e85c81d72ccc742589de90d73f7742006467bb39290221d7688d51984f8590ca",
+  "pressure_kernel_sha256": "6cbdd65b564474fa93912556cd6b3234493df11552dac02192dcbfd494f40236",
+  "derived_sha256": {
+    "assembly_comparison.csv": "0a742aea8ea0730c9e7852f9c06c03d67d8edc2e9f6f45d5079bfda5d95f0f7a",
+    "exact_geometry_contact_witnesses.csv": "439bf60f524e269256123922077b76caab336474ce30e403f9c61d45d5f96a8a",
+    "phase_comparison.csv": "30a1c83c2fa24edc96300645e1aa6ed655dfc6da4fa64bc4d1acddf8f2d5b1a0",
+    "pressure_coupling_profiles.csv": "ca23fd5d886c6975289d7116123d36082aacf79c0a6483f4889b501e538c52e8",
+    "pressure_coupling_requirements.csv": "9d6733cbc28b575e1cfe7f581956abf29ab6ccf1edd7acd528667a5e629346fe",
+    "pressure_coupling_source_requirements.csv": "8e67b34dc3e2961a17d8679248478be095da0cdf137bca12fedc40e33662ac48",
+    "prestressed_angular_comparison.csv": "874592cefbfb319c3617e3b7b8e51e9703044dcf2c90dab63eeded65110108d3"
+  },
+  "figure_sha256": {
+    "supporting_reports/figures/graded_electrothermal_comparison.png": "4a8dd8c92c620da5b44075913bdd5cd9628618f5198c9c8b8c9019d34016413a",
+    "supporting_reports/figures/graded_electrothermal_comparison.pdf": "6971d467cdfe8407424a3f076db46b0b9b9fdc8713cbbf463afbaac87c3097b5",
+    "supporting_reports/figures/graded_pressure_couplings.png": "266449198e1fe632d10a6d9d0fa3bc1395e18df344deea98b0027b90dcc65f3e",
+    "supporting_reports/figures/graded_pressure_couplings.pdf": "8c35c7ef9dce47893b210d6933e7e35bd84947bcff92870b5da59076fbbb2ba8"
+  }
+}

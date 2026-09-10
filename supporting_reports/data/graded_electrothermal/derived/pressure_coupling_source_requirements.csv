@@ -1,0 +1,8 @@
+case,s,added_coupling_slice_energy,partial_assembly_required_negative_null_peak,scope
+smooth_joint_refined,0.0,158.34330639809357,0.3509191605263261,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_joint_refined,0.5,85.48927267639685,0.34071481875474946,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_joint_refined,1.285,16.686341539800647,0.3779405997995651,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_reset,0.0,2039.0894356441117,3.8184988019356982,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_reset,0.5,984.1153782344057,3.5424707397841226,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_reset,1.285,89.12351748344018,2.8878802905819088,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
+smooth_reset,3.0,2.977142039558666,2.2199168687969872,instantaneous rho=3p couplings with explicit loaded-end pressure and thermal ports; walls and transmission beyond the contact bands remain additional
