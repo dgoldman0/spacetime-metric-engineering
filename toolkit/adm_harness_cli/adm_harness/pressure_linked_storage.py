@@ -33,6 +33,28 @@ raising the integrating-factor primitive until its minimum reaches zero.
     return np.exp(-integral)*(primitive-primitive.min()), integral
 
 
+def balanced_end_witness(x, c, number, log_radius_x, conductivity_ceiling=1.):
+    """Integrated force/energy obstruction, retaining the shift and U_t term.
+
+For rho=n+3p, q=p-u_E and r=-H_t/H in [0,2*sigma*N_lapse],
+q_x+C*q+[C-4*(ln R)_x+b*D*r]*u_E=drive, where
+b=4*v/(3*N_lapse*R^2), C=4*Gamma*B*a-b*lambda*D.
+If the last coefficient is positive for every allowed r and the weighted
+drive integral is negative, q=0 at both ends is impossible for u_E>=0.
+"""
+    if conductivity_ceiling <= 0:
+        raise ValueError('positive finite discharge bound required')
+    d = c['rest_volume']
+    b = 4*c['v']/(3*c['lapse']*c['radius']**2)
+    coefficient = 4*c['gamma']*c['b']*c['acceleration']-b*c['volume_rate']*d
+    drive = -c['b']*c['normal_force']-c['gamma']*c['b']*c['acceleration']*number/d-b*c['source']
+    field_min = coefficient-4*log_radius_x+np.minimum(0., b*d*2*conductivity_ceiling*c['lapse'])
+    weight = np.exp(cumulative_trapezoid(coefficient, x, initial=0.))
+    return dict(weight=weight, coefficient=coefficient, drive=drive, field_min=field_min,
+                weighted_drive_integral=float(np.trapezoid(weight*drive, x)),
+                minimum_field_coefficient=float(field_min.min()))
+
+
 def fluid_coefficients(model, times, positions):
     c = coefficients(model, times, positions)
     expansion_rate = []

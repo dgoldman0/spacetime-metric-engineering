@@ -4,7 +4,7 @@ import pytest
 from adm_harness.active_transfer_reservoir import divergence_projections
 from adm_harness.graded_electrothermal import fixed_kinematics, maximum_null
 from adm_harness.pressure_linked_storage import (
-    fluid_moments, minimum_positive_pressure, reduced_divergence, solve_connected_schedule,
+    balanced_end_witness, fluid_moments, minimum_positive_pressure, reduced_divergence, solve_connected_schedule,
 )
 from test_graded_electrothermal import jets
 
@@ -72,6 +72,33 @@ def test_joint_energy_and_force_rows_cancel_the_endpoint_divergence_with_shift()
     energy, momentum = reduced_divergence(c, number, u, ut, px, ht, hx)
     np.testing.assert_allclose([energy, momentum],
         [-c['gamma']*(power-c['v']*force), -c['gamma']*(force-c['v']*power)], atol=1e-13)
+
+
+def test_integrated_end_identity_keeps_time_dependent_shift_terms():
+    x = np.linspace(-1.3, -.9, 21)
+    t, number, thermal, field, rate = .7, 1.1, 1.4, .7, .23
+    c = {key: [] for key in coefficient_point(t, x[0])}
+    logrx = []
+    for position in x:
+        cc = coefficient_point(t, position)
+        for key in c:
+            c[key].append(float(cc[key]))
+        logrx.append(float(jets(t, position)[0].logr_x))
+    c = {key: np.array(value) for key, value in c.items()}
+    c['source'] = -.27*c['alpha']*c['rest_volume']
+    c['normal_force'] = np.ones(len(x))*(-.19)
+    witness = balanced_end_witness(x, c, np.ones(len(x))*number, np.array(logrx))
+    ht = -rate*field
+    ut = c['source']-c['volume_rate']*thermal/3-c['rest_volume']/c['radius']**4*ht
+    px = .12
+    hx = (c['radius']**4*px+c['radius']**2*c['acceleration']*(number+4*thermal/3)
+          +4/3*c['v']*c['radius']**2/c['lapse']*ut+c['b']*c['radius']**4*c['normal_force'])
+    electric = field/c['radius']**4
+    q = thermal/(3*c['rest_volume'])-electric
+    qx = px-hx/c['radius']**4+4*electric*np.array(logrx)
+    br = 4*c['v']*c['rest_volume']*rate/(3*c['lapse']*c['radius']**2)
+    lhs = qx+witness['coefficient']*q+(witness['coefficient']-4*np.array(logrx)+br)*electric
+    np.testing.assert_allclose(lhs, witness['drive'], atol=2e-13)
 
 
 def flat_coefficients(nt, nx, rate=0.):

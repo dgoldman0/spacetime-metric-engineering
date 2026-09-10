@@ -18,7 +18,7 @@ from adm_harness.geometry_boundary import evaluate_demand
 from adm_harness.graded_electrothermal import maximum_null, smooth_spline_scalars
 from adm_harness.metric_regularity import regularized_scalars
 from adm_harness.pressure_linked_storage import (
-    fluid_coefficients, fluid_moments, minimum_positive_pressure, reduced_divergence,
+    balanced_end_witness, fluid_coefficients, fluid_moments, minimum_positive_pressure, reduced_divergence,
     solve_connected_schedule,
 )
 from adm_harness.relaxing_material_ensemble import RelaxingMaterialEnsemble, StrainRelaxation
@@ -42,6 +42,7 @@ CASES = [
     ('prepared_exposed_joint', 128, 256, 1.285, 'prepared', 'exposed', 1.),
     ('prepared_exposed_fast', 64, 128, 1.285, 'prepared', 'exposed', 10.),
     ('prepared_balanced_free_rate', 32, 64, 1.285, 'prepared', 'balanced', None),
+    ('fixed_exposed_free_rate', 32, 64, 1.285, 'fixed', 'exposed', None),
     ('prepared_reset', 64, 300, 3., 'prepared', 'exposed', 1.),
 ]
 
@@ -212,12 +213,36 @@ def archived_pressure_path(task):
     print(f'{label}: peak pressure={p.max():.7g}, field-fluid path E={summary["slice_energy"]:.7g}', flush=True)
 
 
+def force_witnesses(output):
+    model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
+    with np.load(PREVIOUS/'smooth_joint_refined_states.npz') as state:
+        oldx, oldnumber = state['x'], state['number']
+    rows = []
+    for nodes in (257, 513, 1025, 2049):
+        x = np.linspace(-2.1, -.5, nodes)
+        c = fluid_coefficients(model, np.array([1.285]), x)
+        c = {key: value[0] for key, value in c.items()}
+        number = np.interp(x, oldx, oldnumber)
+        g = model.metric(1.285, x)
+        for rate in (1., 10.):
+            witness = balanced_end_witness(x, c, number, g.logr_x, rate)
+            rows.append(dict(nodes=nodes, s=1.285, conductivity_ceiling=rate,
+                weighted_drive_integral=witness['weighted_drive_integral'],
+                minimum_field_coefficient=witness['minimum_field_coefficient'],
+                terminal_weight=float(witness['weight'][-1]), maximum_velocity=float(abs(c['v']).max())))
+            if nodes == 2049 and rate == 1.:
+                pd.DataFrame(dict(l=x, weight=witness['weight'], drive=witness['drive'],
+                    minimum_field_coefficient=witness['field_min'])).to_csv(output/'balanced_end_witness_profile.csv', index=False)
+    pd.DataFrame(rows).to_csv(output/'balanced_end_witness.csv', index=False)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--cases', nargs='+', choices=[case[0] for case in CASES], default=[case[0] for case in CASES[:4]])
     parser.add_argument('--output', type=Path, default=OUTPUT/'first_round')
     parser.add_argument('--pressure-paths', action='store_true')
+    parser.add_argument('--force-witnesses', action='store_true')
     args = parser.parse_args()
     if not 1 <= args.workers <= 6:
         parser.error('one to six workers required')
@@ -238,11 +263,13 @@ def main():
         list(pool.map(run_case, [(case, args.output) for case in selected]))
         if args.pressure_paths:
             list(pool.map(archived_pressure_path, [(time, nodes, args.output) for time in (0., .5, 1.285) for nodes in (513, 1025)]))
+    if args.force_witnesses:
+        force_witnesses(args.output)
     for name, expected in hashes.items():
         if sha256_file(ROOT/name) != expected:
             raise RuntimeError('software or input changed during run: '+name)
     write_json(args.output/'manifest.json', dict(completed_utc=datetime.now(timezone.utc).isoformat(), workers=args.workers,
-        cases=args.cases, pressure_paths=args.pressure_paths, software_and_input_sha256=hashes,
+        cases=args.cases, pressure_paths=args.pressure_paths, force_witnesses=args.force_witnesses, software_and_input_sha256=hashes,
         git_revision=subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip(),
         scope='inverse full-patch thermal-fluid and radial-field conservation; prescribed active worldlines, explicit end loads, actual EOS and charge transport completion open',
         output_sha256={p.name: sha256_file(p) for p in sorted(args.output.iterdir()) if p.is_file()}))

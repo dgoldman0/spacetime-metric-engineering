@@ -90,3 +90,36 @@ Tests compare the scalar fluid and field equations to covariant tensor
 divergence on a time-dependent metric, check manufactured flat-space pressure
 transmission and closed-end force obstruction, and verify compression work.
 Reports are written manually at the numerical milestones.
+
+## First round: the cost appears along the connection
+
+The initial four 32-cell cases establish one feasible joint history: extra
+thermal preparation with exposed end tractions. It has initial slice energy
+68,073.78 and peak supplied null stress 8.73223. Its remaining negative null
+requirements are 8.20130 at startup and 8.72294 at fade. The retained initial
+heat profile and both balanced-end cases are infeasible in this discretization.
+The feasible case's independent tensor residuals are 0.201% for energy and
+0.363% for force, measured against the sums of equation-term magnitudes.
+
+A separate extension of the archived short couplings makes the load-path
+mechanism explicit. For the rho=3p fluid on a slice with partial_s p=0,
+
+    p_x + 4 Gamma B a_s p = Gamma B F_required.
+
+The minimum positive solution connects all three archived force contacts
+through the full patch. Its two end pressures remain measured loads. At
+startup it requires peak pressure 221,216.7 and slice energy 30,913,090; at
+fade, peak pressure 56.4225 and slice energy 7,015.13. The earlier isolated
+pieces at those phases cost 158.34 and 16.69 in slice energy. The pressure
+link transmits each contact's load and also supports the intervening fluid.
+The integrating factor accumulates that self-weight across the large clock
+gradient. The 513-to-1025-point comparison changes pressure by at most
+0.0034% and energy by at most 0.0080%.
+
+Thus the earlier small local coupling cost supplies a component estimate;
+completing it as a continuous pressure column introduces a substantial new
+cost. Joint redistribution of field and thermal energy reduces the raw
+column cost, while its first solution still requires much more source stress
+than the local construction. The next bounded checks refine that joint
+solution and derive the balanced-end force obstruction with the time and
+shift terms retained.

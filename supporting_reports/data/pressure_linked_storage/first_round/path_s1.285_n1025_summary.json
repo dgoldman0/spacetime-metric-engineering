@@ -1,0 +1,11 @@
+{
+  "s": 1.285,
+  "nodes": 1025,
+  "instantaneous_pressure_time_derivative": 0,
+  "left_pressure": 56.422468676719376,
+  "right_pressure": 0.0,
+  "maximum_pressure": 56.422468676719376,
+  "logarithmic_pressure_gain": 7.381047257227811,
+  "maximum_supplied_null": 225.6898747068775,
+  "slice_energy": 7015.130892691492
+}
