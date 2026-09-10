@@ -22,7 +22,7 @@ CASES = {'zero': (0., 1.), 'slow': (.3, 1.), 'slow_long': (.3, 10.),
 
 
 def run_case(task):
-    name, archive, cells, tabulation_step, max_step, deadline = task
+    name, archive, cells, tabulation_step, max_step, deadline, output = task
     metadata, patch, times, states, _ = load_case(archive)
     background = FrozenHeatBackground(patch, times, states, cells=cells, tabulation_step=tabulation_step)
     law = HeatConductorLaw(*CASES[name])
@@ -30,13 +30,13 @@ def run_case(task):
     result = evolve_heat_conductor(conductor, max_step=max_step, deadline_seconds=deadline)
     label = f'{name}_{archive.split("/")[-1].split("_baseline")[0]}_history{metadata["cells"]}_heat{cells}_tab{tabulation_step:g}_dt{max_step:g}'
     frame = pd.DataFrame(result['history'])
-    frame.to_csv(OUTPUT/f'{label}_history.csv', index=False)
+    frame.to_csv(output/f'{label}_history.csv', index=False)
     q, r = [], []
     for t, state in zip(result['times'], result['states']):
         bg, _ = background.sample(float(t))
         qq, rr = thermal_primitive(state, bg['v'], law)
         q.append(qq); r.append(rr)
-    np.savez_compressed(OUTPUT/f'{label}_states.npz', t=result['times'], state=result['states'],
+    np.savez_compressed(output/f'{label}_states.npz', t=result['times'], state=result['states'],
                          q=np.array(q), r=np.array(r), material_reference=background.a)
     summary = dict(case=label, archive=archive, heat_law=law.__dict__, cells=cells,
                    band=background.band, background_tabulation_step=tabulation_step, max_step=max_step,
@@ -59,7 +59,7 @@ def run_case(task):
                      scope='entropy-consistent causal-conductor replay on prescribed archived material motion and heat source; additional stress and trajectory-maintenance force work are counted; joint mechanical feedback remains open',
                      source_sha256={str(p.relative_to(ROOT)): sha256_file(p) for p in sources})
     for suffix, data in (('summary', summary), ('manifest', manifest)):
-        (OUTPUT/f'{label}_{suffix}.json').write_text(json.dumps(data, indent=2, allow_nan=False)+'\n')
+        (output/f'{label}_{suffix}.json').write_text(json.dumps(data, indent=2, allow_nan=False)+'\n')
     print(f'{label}: {result["status"]} at s={summary["s"]:.9g}; '
           f'q_min={summary["minimum_heat"]:.6g}; |r|={summary["maximum_relative_heat_flux"]:.5g}; '
           f'canonical error={summary["maximum_canonical_balance_error"]:.5g}', flush=True)
@@ -73,12 +73,13 @@ def main():
     parser.add_argument('--tabulation-step', type=float, default=.0005)
     parser.add_argument('--max-step', type=float, default=.0005)
     parser.add_argument('--deadline', type=float, default=180.)
+    parser.add_argument('--output', type=Path, default=OUTPUT)
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
     args = parser.parse_args()
     if not 1 <= args.workers <= 6 or args.cells < 9 or args.cells % 2 != 1:
         parser.error('one to six workers and an odd number of heat cells >=9 required')
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    tasks = [(name, args.archive, args.cells, args.tabulation_step, args.max_step, args.deadline) for name in args.cases]
+    args.output.mkdir(parents=True, exist_ok=True)
+    tasks = [(name, args.archive, args.cells, args.tabulation_step, args.max_step, args.deadline, args.output) for name in args.cases]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
         list(pool.map(run_case, tasks))
 

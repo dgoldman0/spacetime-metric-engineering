@@ -43,7 +43,11 @@ def thermal_primitive(state, v, law):
         raise ElasticDomainError('heat-current characteristic reached the causal boundary')
     lower, upper = np.full_like(v, -limit), np.full_like(v, limit)
     r = np.clip(conjugate-c2*v*np.log(energy), lower, upper)
-    for _ in range(24):
+    # The inversion becomes poorly conditioned as a characteristic approaches
+    # the material light cone under a large boost. Retain a full bisection
+    # fallback budget so this numerical condition is distinct from the domain
+    # boundary itself.
+    for _ in range(64):
         error = residual(r)
         if np.max(abs(error)) < 2e-13:
             break

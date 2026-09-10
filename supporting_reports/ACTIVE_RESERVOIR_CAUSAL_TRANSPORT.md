@@ -235,3 +235,33 @@ closed-system conservation, the linear telegraph solution, Tolman
 equilibrium through the insulated ends, and mechanical work for a moving
 conductor. Together with the five ray controls, all 12 tests pass before
 the active replay.
+
+## First replay and numerical refinement
+
+The first five runs retain a small positive temperature at the archived
+depletion time only for \((c_h,\tau)=(0.3,10)\). Its minimum is
+0.003847, its maximum characteristic speed is 0.6167, and its additional
+positive mechanical work is 13.76. The initial heat inventory of the
+conducting band is 6.873 in the stated reference measure. Canonical
+mechanical work and this unweighted thermal inventory are distinct
+quantities; both enter the subsequent accounting.
+
+The three other finite-speed runs stop at a primitive-inversion limit
+with a characteristic already close to unity. Their final states still
+lie inside the analytic causal boundary. This identifies a numerical
+conditioning check before a physical classification. The monotone
+inversion now allows 64 safeguarded iterations, and an additional
+analytic control recovers admissible states within \(2\times10^{-8}\)
+of the constitutive boundary at material speed 0.99999. All 13 controls
+pass. The initial runs retain their original implementation hashes in
+the data directory.
+
+The zero-speed replay reaches its heat floor about
+\(7.9\times10^{-7}\) before the archived event. Its spurious
+canonical-energy change is 0.00262, and the successful finite-speed
+run has an independent canonical balance error of 0.00462. The next
+comparison therefore repeats the registered cases with the resolved
+inversion, then halves the background and time steps and doubles the
+heat resolution for the zero control and the informative finite-speed
+cases. This comparison tests whether the small thermal gain survives
+both interpolation error and spatial refinement.

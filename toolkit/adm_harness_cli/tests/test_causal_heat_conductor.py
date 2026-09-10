@@ -53,6 +53,17 @@ def test_heat_characteristics_transform_from_the_material_frame():
     assert np.max(abs(relative)) < 1
 
 
+def test_heat_inversion_resolves_states_close_to_the_causal_boundary():
+    for speed in (.3, 1/np.sqrt(3)):
+        law = HeatConductorLaw(speed=speed)
+        q = np.geomspace(1e-6, 100., 101)
+        r = np.full_like(q, (1-speed**2)*(1-2e-8))
+        v = np.full_like(q, -.99999)
+        recovered = thermal_primitive(thermal_conserved(q, r, v, law), v, law)
+        np.testing.assert_allclose(recovered[0], q, rtol=2e-7)
+        np.testing.assert_allclose(recovered[1], r, atol=2e-8)
+
+
 def test_entropy_identity_includes_flux_inertia_and_active_coefficients():
     law = HeatConductorLaw(speed=.3, proper_time=1.7)
     q, r, v = np.array([1.7]), np.array([.08]), np.array([-.7])
