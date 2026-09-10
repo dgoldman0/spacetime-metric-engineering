@@ -43,8 +43,12 @@ CASES = [
     ('prepared_exposed_fast', 64, 128, 1.285, 'prepared', 'exposed', 10.),
     ('prepared_balanced_free_rate', 32, 64, 1.285, 'prepared', 'balanced', None),
     ('fixed_exposed_free_rate', 32, 64, 1.285, 'fixed', 'exposed', None),
+    ('prepared_exposed_free_rate', 64, 128, 1.285, 'prepared', 'exposed', None),
+    ('prepared_fast_joint', 128, 256, 1.285, 'prepared', 'exposed', 10.),
     ('prepared_reset', 64, 300, 3., 'prepared', 'exposed', 1.),
 ]
+CASES = [case+(True,) for case in CASES]
+CASES += [('powered_exposed_n64', 64, 128, 1.285, 'prepared', 'exposed', None, False)]
 
 
 def write_json(path, value):
@@ -138,7 +142,7 @@ def source_comparison(model, t, x, c, u, h, number):
 
 def run_case(task):
     spec, output = task
-    name, cells, steps, duration, preparation, ends, rate = spec
+    name, cells, steps, duration, preparation, ends, rate, passive = spec
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     patch = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
         ElectricalLaw(energy_ratio=4., conductivity=.1, profile='capacitor'),
@@ -150,9 +154,9 @@ def run_case(task):
     u0 = number*initial['heat']
     c = fluid_coefficients(model, t, x)
     result = solve_connected_schedule(t, x, c, number, u0, initial_mode=preparation,
-        ends=ends, conductivity_ceiling=rate, deadline=180., secondary_deadline=60.)
+        ends=ends, conductivity_ceiling=rate, passive=passive, deadline=180., secondary_deadline=60.)
     metadata = dict(case=name, cells=cells, intervals=len(t)-1, duration=duration,
-                    initial_mode=preparation, ends=ends, conductivity_ceiling=rate, kappa=3.)
+                    initial_mode=preparation, ends=ends, conductivity_ceiling=rate, kappa=3., passive=passive)
     if not result['success']:
         write_json(output/(name+'_summary.json'), dict(**metadata, **result))
         print(name+': '+result['message'], flush=True)

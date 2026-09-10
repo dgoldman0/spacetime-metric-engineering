@@ -123,3 +123,43 @@ column cost, while its first solution still requires much more source stress
 than the local construction. The next bounded checks refine that joint
 solution and derive the balanced-end force obstruction with the time and
 shift terms retained.
+
+## Refinement and the reaction requirement
+
+The 64- and 128-cell refinements, with 128 and 256 time intervals, are all
+infeasible at the principal discharge rate. Thus the first coarse history
+supplies no converged candidate at that rate. Allowing unrestricted passive
+discharge restores a 32-cell history even with the original thermal allocation,
+at peak supplied null stress 11.63855 and maximum interval-averaged reduced
+discharge rate 290.775. Its initial slice energy is 90,902.04. These results
+motivate a final rate control at finer resolution and an optimistic reversible
+field-charging control. The latter tests the significance of passive discharge;
+its conversion entropy and charge-current laws remain additional requirements.
+
+The balanced-end obstruction has an independent integrated form that retains
+the active time dependence. Put q=p-u_E, b=4v/(3N_lapse R^2),
+r=-H_s/H, and C=4 Gamma B a_s-b lambda D. The coupled equations give
+
+    q_x + C q + [C-4(ln R)_x+b D r] u_E
+        = -B F_endpoint-Gamma B a_s n-b S.
+
+For passive conversion with reduced conductivity at most sigma,
+0 <= r <= 2 sigma N_lapse. With W=exp(integral C dx), integration yields
+
+    W_right q_right - q_left = I - integral W K u_E dx,
+    I = integral W [-B F_endpoint-Gamma B a_s n-b S] dx.
+
+At fade, the 2049-point evaluation gives I=-2.1946573 and a positive minimum
+K=0.4446935 over the allowed rate interval, for both sigma=1 and sigma=10.
+The 1025-to-2049 refinement changes I by 0.00037%; the positive coefficient
+margin persists. Therefore balanced q=0 ends conflict with the integrated
+force equation in this constitutive class. Field energy is nonnegative, so
+its contribution strengthens the required boundary reaction. The finite
+shift terms enter the displayed identity and numerical witness.
+
+The obstruction identifies a reaction-bearing role. Fluid pressure and field
+redistribution can transmit internal loads, while this co-moving assembly
+still needs a supplied external reaction. Additional divisions of the same
+fluid and field leave the summed force balance intact. A physical wall or
+support adds its own tensor and can change that balance; its capacity is
+precisely the remaining construction requirement.
