@@ -35,7 +35,7 @@ def quadrature(nodes):
     return leggauss(nodes)
 
 
-def loop_integrals(fields, center, leg, cap, nodes=128, second_log_lapse=None):
+def loop_integrals(fields, center, leg, cap, nodes=128, second_log_lapse=None, resolve_profiles=False):
     """Full capsule path in a meridian; fields returns R,A,R'/R,(log A)'."""
     if leg < 0 or cap <= 0:
         raise ValueError('nonnegative leg and positive cap required')
@@ -82,10 +82,13 @@ def loop_integrals(fields, center, leg, cap, nodes=128, second_log_lapse=None):
     if second_log_lapse is not None:
         ass = second_log_lapse(l)*t2+ap*lss
         result['anomaly_by_direct_derivative'] = float(np.dot(ds, w*(2*ass+ap*ap*t2*(1-t2)))/(24*np.pi))
+    if resolve_profiles:
+        result['profiles'] = dict(radius=r, lapse=a, radial_fraction=t2, arclength_weights=ds,
+                                  curvature=curvature)
     return result
 
 
-def magnetic_budget(loop, flux, margin, gap_ratio=.1):
+def magnetic_budget(loop, flux, margin, gap_ratio=.1, adaptive=False):
     if flux < 1 or margin <= 1 or gap_ratio <= 0:
         raise ValueError('positive integer flux, separated tube and positive gap ratio required')
     tube = min(1/(margin*loop['maximum_curvature']),
@@ -94,12 +97,27 @@ def magnetic_budget(loop, flux, margin, gap_ratio=.1):
     field_landau = .5*(np.pi/(gap_ratio*loop['optical_length']*loop['minimum_lapse']))**2
     field = max(field_geometry, field_landau)
     cost = 2*np.pi*flux*field*loop['bend_integral']
+    field_minimum = field
+    maximum_tube = np.sqrt(2*flux/field)
+    landau_ratio = np.pi/(loop['optical_length']*loop['minimum_lapse']*np.sqrt(2*field))
+    if adaptive:
+        p = loop['profiles']
+        field_geometry_local = 2*flux*margin**2*np.maximum(p['curvature']**2,
+            1/(loop['half_angle']*p['radius'])**2)
+        field_landau_local = .5*(np.pi/(gap_ratio*loop['optical_length']*p['lapse']))**2
+        local = np.maximum(field_geometry_local, field_landau_local)
+        cost = float(2*np.pi*flux*np.dot(p['arclength_weights'],
+            local*(1-p['radial_fraction'])/(p['lapse']*p['radius'])))
+        field, field_minimum = float(local.max()), float(local.min())
+        field_geometry, field_landau = float(field_geometry_local.max()), float(field_landau_local.max())
+        maximum_tube = float(np.sqrt(2*flux/local).max())
+        landau_ratio = float((np.pi/(loop['optical_length']*p['lapse']*np.sqrt(2*local))).max())
     quantum = flux*loop['quantum_coefficient']
     threshold = cost/quantum if quantum > 0 else None
-    return dict(flux=flux, margin=margin, field=field,
+    return dict(flux=flux, margin=margin, field=field, minimum_field=field_minimum, adaptive=adaptive,
         field_geometry=field_geometry, field_landau=field_landau,
-        tube_radius=float(np.sqrt(2*flux/field)),
-        landau_ratio=float(np.pi/(loop['optical_length']*loop['minimum_lapse']*np.sqrt(2*field))),
+        tube_radius=maximum_tube,
+        landau_ratio=landau_ratio,
         magnetic_load_at_e1=cost, quantum_opening_per_species=quantum,
         required_flavors_times_e_squared=threshold,
         required_loop_measure=threshold/(16*np.pi**2) if threshold is not None else None)

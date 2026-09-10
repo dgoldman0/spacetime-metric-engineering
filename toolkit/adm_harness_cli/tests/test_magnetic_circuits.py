@@ -52,3 +52,15 @@ def test_closed_loop_anomaly_matches_direct_second_derivative():
                          second_log_lapse=lambda l: -.06*np.cos(l))
     assert_allclose(row['anomaly_coefficient'], row['anomaly_by_direct_derivative'],
                     rtol=2e-11, atol=1e-14)
+
+
+def test_spreading_field_reduces_or_preserves_bend_cost():
+    def metric(l):
+        x = np.asarray(l)
+        return 5+.1*x*x, np.exp(.04*x), .2*x/(5+.1*x*x), np.full_like(x,.04)
+    row = loop_integrals(metric, 1., 3., .4, resolve_profiles=True)
+    fixed = magnetic_budget(row, 8, 5)
+    spread = magnetic_budget(row, 8, 5, adaptive=True)
+    assert spread['magnetic_load_at_e1'] <= fixed['magnetic_load_at_e1']*(1+1e-13)
+    assert spread['landau_ratio'] <= .1*(1+1e-13)
+    assert spread['minimum_field'] < spread['field']

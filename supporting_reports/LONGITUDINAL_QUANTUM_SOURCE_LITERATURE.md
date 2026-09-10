@@ -94,6 +94,17 @@ the Standard Model. The construction still uses a redshifted throat,
 an exterior return path, and an energy limit on transmitted matter.
 It supplies a comparison for theories with additional degrees of freedom.
 
+The [short magnetic circuit evaluation](SHORT_MAGNETIC_CIRCUIT_EVALUATION.md)
+adapts the Landau-channel mechanism directly to the repaired native rail,
+keeping the standing material responsibilities separate. Of 440 complete
+local paths, 303 have helpful quantum opening. Including the Maxwell stress
+at their turns leaves all 23,760 source combinations with negative net
+opening, both for constant fields and for locally spreading fields. The
+smallest inferred crossing is \(N_fe^2/(16\pi^2)=17.971\), compared with
+the registered preferred limit 0.1. Shortening paths therefore helps the
+quantum sign while exposing a separate return-field cost. The published
+global topology remains distinct from these contractible local loops.
+
 ## Vortex strings: the closer material pattern
 
 [Fu, Grado-White and Marolf](https://arxiv.org/html/1908.03273v2)

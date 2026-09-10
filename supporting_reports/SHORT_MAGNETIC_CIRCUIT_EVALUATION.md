@@ -2,6 +2,14 @@
 
 Date: 9 September 2026.
 
+Short circuits supply positive quantum opening on 303 of 440 registered
+geometries. Their quantum-plus-magnetic opening is negative in all 23,760
+source cases, both with constant fields and with locally spreading fields.
+The smallest magnetic-load-to-vacuum ratio in the preferred perturbative
+ladder is approximately 355. The resulting barrier concerns these local
+closed circuits on the retained rail; the published global magnetic
+constructions have different return geometry and remain separate models.
+
 ## Registered adaptation
 
 This evaluation adapts the channel mechanism in
@@ -110,3 +118,142 @@ curved quadrature refinement and the independent form of the anomaly integral
 check the calculation. Four workers may evaluate independent loop geometries.
 The allowance is 300 seconds per run and 10 MB of retained numerical evidence.
 The comparison proceeds after the finite-cavity result has been recorded.
+
+## Registered field-spreading follow-up
+
+The initial constant-field screen has zero positive complete circuits among
+23,760 source cases. A bounded follow-up relaxes that field assumption while
+retaining each full path, flux and mode count. At each point the field takes
+the lowest value allowed by the local tube-width, curvature and Landau-gap
+conditions. Its cross-section expands according to \(S(s)=2\pi q/B(s)\).
+The magnetic load then uses \(\oint WB(s)(1-t_r^2)ds\). This grants the
+material zero cost for producing the varying profile and ignores additional
+mode mixing from its gradients, making a favorable comparison of the bend
+load. The same parameter grid and doubled quadrature assess this relaxation.
+
+## Quantum gain and complete circuit cost
+
+The geometry grid contains 495 proposed paths. The angular-strip condition
+excludes 55, leaving 440 evaluated loops. Their quantum coefficient is
+positive on 303 paths and negative on 137. Shortening the optical path can
+therefore overcome the unfavorable quantum sign previously found for long
+loops spanning the rail. Each field prescription evaluates 23,760 combinations
+of geometry, flux, scale margin, species count and gauge coupling.
+
+| Field prescription | Smallest crossing \(N_fe^2\) | Corresponding \(N_fe^2/(16\pi^2)\) | Positive quantum-plus-magnetic cases |
+| --- | ---: | ---: | ---: |
+| Constant magnitude around the full circuit | 2,842.325 | 17.99923 | 0 / 23,760 |
+| Minimum allowed local magnitude, with spreading | 2,837.893 | 17.97117 | 0 / 23,760 |
+
+The best spreading case has native center coordinate \(x_c=1\), radial leg
+length \(D=0\), cap scale \(r_b=0.25\), flux \(q=1\), and scale margin
+\(\gamma=3\). Including the zero-leg limit gives the circular loop a
+favorable comparison even though it lacks extended radial service segments.
+Its proper circumference is 1.570509 and its optical circumference is
+0.09944798. The field ranges from 284.6010 to 292.0368, and the largest tube
+radius is 0.0838295. The native lapse ranges from 13.6277 to 18.4993 around
+the loop. In the fixed gravitational normalization
+\(\eta=2.4127904527582454\times10^{-5}\), its contributions are
+
+\[
+\frac{B_Q}{\eta}=0.01383079187\,N_f,\qquad
+\frac{B_B}{\eta}=-\frac{39.25030638}{e^2}.
+\]
+
+The largest \(N_fe^2\) on the preferred registered ladder is 8. Thus the
+best circuit has 354.74 times as much opposing magnetic load as helpful
+vacuum opening. Including the exploratory 54-species, \(e=1\) case lowers
+this ratio to 52.55; its loop-expansion measure is approximately 0.342.
+Even continuously filling the preferred limit
+\(N_fe^2/(16\pi^2)=0.1\) would leave a ratio of 179.71. These comparisons
+already grant the host and current-producing material zero additional
+radial-null cost.
+
+Field spreading removes more than 99.9% of the constant-field bend cost
+on some long paths. Those paths still have inadequate quantum opening.
+Consequently the smallest crossing changes only from 2,842.325 to
+2,837.893. Redistributing field strength within this path family leaves
+the source deficit intact.
+
+## Why loop size and extra flux fail to resolve the deficit
+
+The flat circular benchmark exposes the scale competition directly. With
+\(P=N_fe^2/(16\pi^2)\), its source ratio is
+
+\[
+\frac{B_Q}{|B_B|}=\frac{P}{Br_b^2},\qquad
+Br_b^2\geq2q\gamma^2.
+\]
+
+The second relation follows from fitting the flux tube inside its bend
+radius. At the most favorable registered flux and margin, \(q=1\) and
+\(\gamma=3\), a positive circuit requires \(P>18\). The native curved
+minimum, 17.97117, is close to this independently derived threshold.
+Shrinking the circuit raises its vacuum stress, while fitting the channels
+into the tighter bend requires a stronger field at the same scale. Increasing
+flux raises the channel count but also raises the field needed to keep the
+larger tube within the bend. This explains the near-constant best threshold
+across the nine sampled rail centers.
+
+The calculation grants the ideal \(qN_f\) channel count even for one flux
+quantum, where an actual finite transverse spectrum deserves particular
+attention. It also grants the most favorable cylinder vacuum and zero cost
+for holonomy control. The result is an optimistic leading-mode source gate.
+Its failure occurs before solving the four-dimensional fermion spectrum,
+the supporting currents, transverse quantum stresses, or material equilibrium.
+These uncomputed terms define further physics; the present result establishes
+the insufficiency of the assumed longitudinal vacuum plus counted Maxwell
+field within the registered local circuit family.
+
+The global paths in [Maldacena, Milekhin and Popov](https://arxiv.org/html/1807.04726v3)
+thread a wormhole and return through its ambient exterior. Their topology,
+optical length and field distribution differ from a contractible capsule in
+one rail meridian. A useful further adaptation would need a specified global
+return arrangement or a different relation between light-mode count and
+confining stress. Each would require its complete weighted load and quantum
+path. The present calculations provide a stopping point for tuning the sizes,
+fluxes and field profiles of these local circuits.
+
+## Validation and retained evidence
+
+Five scientific tests pass: flat circles and capsules with complete returns,
+clock-normalization invariance, flux/tube and Landau-gap scaling, agreement
+between direct and integrated-by-parts anomaly expressions, and reduced
+magnetic cost under local spreading. The constant-clock and flat-space
+relations provide independent analytic controls.
+
+Increasing Gaussian quadrature from 128 to 256 nodes changes the quantum
+coefficient by at most \(2.67\times10^{-9}\), normalized to the larger
+Casimir or anomaly term. The largest fractional magnetic-cost changes are
+\(6.22\times10^{-5}\) for constant fields and \(2.23\times10^{-4}\) for
+spreading fields. All quantum signs and all complete-source failures survive
+the refinement. Recomputing eight leading geometries at 512 nodes changes
+their crossing thresholds by at most \(7.50\times10^{-8}\) fractionally.
+A sevenfold native-clock rescaling changes the selected source ratio by
+\(2.22\times10^{-16}\).
+
+The registered model is committed as `283a91e`; the spreading follow-up and
+its source hashes accompany the retained results. The initial and refined
+constant-field geometry computations take 0.16 and 0.18 seconds with four
+workers. The spreading counterparts take 0.40 and 0.49 seconds with two
+workers. These timings exclude interpreter startup and evidence writing.
+The largest measured worker resident set is 72,740 KiB, approximately
+71 MiB. Numerical evidence occupies approximately 7.81 MB.
+
+The [audit](data/magnetic_circuits/audit.json) retains the refinement
+comparisons, per-center thresholds, best complete source budget, spreading
+comparison, clock check and source hashes. Each run also records its full
+geometry and source grids. From the repository root:
+
+```bash
+export PYTHONPATH=toolkit/adm_harness_cli
+export OPENBLAS_NUM_THREADS=1
+export OMP_NUM_THREADS=1
+pytest -q toolkit/adm_harness_cli/tests/test_magnetic_circuits.py
+python3 toolkit/adm_harness_cli/scripts/evaluate_magnetic_circuits.py \
+  --output /tmp/rail-magnetic-repeat --nodes 256 --adaptive
+python3 toolkit/adm_harness_cli/scripts/audit_magnetic_circuits.py
+```
+
+The last command audits the four retained repository runs. Their individual
+`summary.json` files record the constant-field and spreading parameters.

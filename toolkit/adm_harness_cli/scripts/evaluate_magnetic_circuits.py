@@ -24,14 +24,14 @@ def initialize():
 
 
 def one_loop(task):
-    x, leg, cap, nodes = task
+    x, leg, cap, nodes, adaptive = task
     center = float(CHART.proper_of_x(x))
-    row = loop_integrals(CHART.fields, center, leg, cap, nodes)
+    row = loop_integrals(CHART.fields, center, leg, cap, nodes, resolve_profiles=adaptive)
     row['center_coordinate'] = x
     row['budgets'] = []
     for q in (1, 8, 24):
         for margin in (3, 5):
-            budget = magnetic_budget(row, q, margin)
+            budget = magnetic_budget(row, q, margin, adaptive=adaptive)
             budget['positive_cases'] = []
             for flavors in (1, 8, 54):
                 for coupling in (.1, .3, 1.):
@@ -42,6 +42,7 @@ def one_loop(task):
                         budget['positive_cases'].append(dict(flavors=flavors, coupling=coupling,
                             loop_measure=loop_measure, net_opening=net))
             row['budgets'].append(budget)
+    row.pop('profiles', None)
     row['max_rss_kib'] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     return row
 
@@ -51,6 +52,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--nodes', type=int, default=128)
     parser.add_argument('--workers', type=int, default=4)
+    parser.add_argument('--adaptive', action='store_true')
     args = parser.parse_args()
     if not 1 <= args.workers <= 4 or args.nodes < 16:
         raise ValueError('one to four workers and at least 16 quadrature nodes required')
@@ -65,7 +67,7 @@ def main():
         for leg in (0., .25, .5, 1., 2., 4., 8., 16., 32., 64., 128.):
             for cap in (.05, .1, .25, .5, 1.):
                 if cap/r <= .25:
-                    tasks.append((x, leg, cap, args.nodes))
+                    tasks.append((x, leg, cap, args.nodes, args.adaptive))
                 else:
                     excluded.append(dict(center=x, leg=leg, cap=cap, half_angle=cap/r))
     with ProcessPoolExecutor(max_workers=args.workers, initializer=initialize) as pool:
@@ -83,7 +85,7 @@ def main():
         source_cases=len(rows)*6*9, positive_source_cases=len(positive),
         preferred_positive_source_cases=preferred_positive,
         negative_quantum_opening_geometries=sum(row['quantum_coefficient'] <= 0 for row in rows),
-        best=best_record, parameters=dict(nodes=args.nodes, workers=args.workers),
+        best=best_record, parameters=dict(nodes=args.nodes, workers=args.workers, adaptive=args.adaptive),
         elapsed_seconds=time.monotonic()-start, loops=rows, excluded=excluded,
         source_hashes={str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources})
     (args.output/'summary.json').write_text(json.dumps(result, indent=2)+'\n')
