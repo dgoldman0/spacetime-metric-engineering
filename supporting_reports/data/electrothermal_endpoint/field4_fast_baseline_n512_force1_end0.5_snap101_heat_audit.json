@@ -1,0 +1,43 @@
+{
+  "case": "field4_fast_baseline_n512_force1_end0.5_snap101",
+  "final_time": 0.24141259641989035,
+  "status": "constitutive_domain_limit",
+  "material_initial_l": -1.3533549261411988,
+  "material_final_l": -1.4890625000000002,
+  "material_initial_thermal": 0.29442924525783876,
+  "material_final_thermal": 3.303391942210965e-07,
+  "integrated_endpoint_heat": 0.1466410510619669,
+  "integrated_ohmic_heat": 0.298669377944141,
+  "material_heat_balance_residual": -0.7397393439247526,
+  "minimum_packet_distance": 1.0033549261411987,
+  "source_comparison": {
+    "interpolated": {
+      "endpoint_heat_rate": -5.036327911980788,
+      "ohmic_heat_rate": 11.65389793224955,
+      "heat_rate": 6.6175700202687615
+    },
+    "direct": {
+      "endpoint_heat_rate": -5.036327229181815,
+      "ohmic_heat_rate": 11.653897638390049,
+      "heat_rate": 6.617570409208234
+    }
+  },
+  "initial_force_comparison": {
+    "field": {
+      "peak_absolute_force": 0.017144214483422127,
+      "peak_l": -1.9109375000000002,
+      "weighted_absolute_force": 9.32034303829566
+    },
+    "endpoint": {
+      "peak_absolute_force": 0.0005766551342125565,
+      "peak_l": -2.0015625000000004,
+      "weighted_absolute_force": 0.2654680118114943
+    }
+  },
+  "scope": "material labels from conserved mass; snapshot-interpolated heat equation; final direct-metric source check at pinned physical state and electric flux; no direct-metric reintegration",
+  "source_sha256": {
+    "field4_fast_baseline_n512_force1_end0.5_snap101_states.npz": "06a2453220d18702770fcf12a1fb5228ce1a90ff937376bd5528ba8f32e4e083",
+    "field4_fast_baseline_n512_force1_end0.5_snap101_summary.json": "25937ee690af554eaec2d23f84a1f145e2a3cee1133234fab4773d12d0066485"
+  },
+  "audit_software_sha256": "ff228e4b35cdcab896f085cac9b53b2757d08a6f93e37f3b5bc30291285fcc78"
+}

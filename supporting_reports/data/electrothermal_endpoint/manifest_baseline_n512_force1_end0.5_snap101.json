@@ -1,0 +1,26 @@
+{
+  "completed_utc": "2026-09-10T09:46:50.563440+00:00",
+  "cases": [
+    "field1_fast",
+    "field4_fast",
+    "field4_ideal",
+    "material4_control"
+  ],
+  "cells": 512,
+  "workers": 4,
+  "medium": "baseline",
+  "forcing": 1.0,
+  "duration": 0.5,
+  "snapshots": 101,
+  "scope": "forced combined Maxwell/elastic response on full active metric; pinned endpoint history; late non-live material patch; counted support-end ports",
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_electrothermal_endpoint.py": "cef433b5891087caa4f9063feac40b0408794badc299e3e6100fe5a6dcab16b8",
+    "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py": "b89806980a8ecbff946fffde5815be3d28f7b99af9d46e16ff24010337d66e43",
+    "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6"
+  },
+  "input_sha256": {
+    "metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  }
+}

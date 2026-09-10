@@ -1,0 +1,43 @@
+{
+  "case": "capacitor/capacitor4_material_baseline_n512_force1_end0.5_snap101",
+  "final_time": 0.5,
+  "status": "duration_completed",
+  "material_initial_l": -2.076521584245993,
+  "material_final_l": -2.0984375,
+  "material_initial_thermal": 0.25004998699422004,
+  "material_final_thermal": 0.5324673452589541,
+  "integrated_endpoint_heat": 0.0018283145807141835,
+  "integrated_ohmic_heat": 0.0,
+  "material_heat_balance_residual": 0.2805890436840199,
+  "minimum_packet_distance": 1.726521584245993,
+  "source_comparison": {
+    "interpolated": {
+      "endpoint_heat_rate": 1.3346924524622175e-05,
+      "ohmic_heat_rate": 0.0,
+      "heat_rate": 1.3346924524622175e-05
+    },
+    "direct": {
+      "endpoint_heat_rate": 1.3346924331425542e-05,
+      "ohmic_heat_rate": 0.0,
+      "heat_rate": 1.3346924331425542e-05
+    }
+  },
+  "initial_force_comparison": {
+    "field": {
+      "peak_absolute_force": 0.0,
+      "peak_l": -2.0984375,
+      "weighted_absolute_force": 0.0
+    },
+    "endpoint": {
+      "peak_absolute_force": 0.0005766551342125565,
+      "peak_l": -2.0015625000000004,
+      "weighted_absolute_force": 0.2654680118114943
+    }
+  },
+  "scope": "material labels from conserved mass; snapshot-interpolated heat equation; final direct-metric source check at pinned physical state and electric flux; no direct-metric reintegration",
+  "source_sha256": {
+    "capacitor4_material_baseline_n512_force1_end0.5_snap101_states.npz": "f1163bb7d8b83bd50115e9a96bf760f687f65732a1da4c05d4ef844fc371f243",
+    "capacitor4_material_baseline_n512_force1_end0.5_snap101_summary.json": "4bdcd13fcb68061391dafcc76cc4523947b9909fa8997116723bb93bb22b51fc"
+  },
+  "audit_software_sha256": "ff228e4b35cdcab896f085cac9b53b2757d08a6f93e37f3b5bc30291285fcc78"
+}

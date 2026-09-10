@@ -1,0 +1,16 @@
+{
+  "case": "material4_control_baseline_n512_force1_end0.5_snap101",
+  "sampled_labels": 512,
+  "fully_covered_labels": 496,
+  "minimum_integrated_heat": 0.2554181251839396,
+  "minimum_evolved_heat": 0.2554181251839396,
+  "maximum_absolute_heat_discrepancy": 0.9332821154435218,
+  "scope": "integrated smooth-material heat equation along the numerical material histories; labels requiring extrapolation outside cell-center coverage are excluded; no independent evolution or shock-heating term",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_electrothermal_material_buffer.py": "459aed06ad019385dd715a50d72bc217adf47581f745e7de682eb3c83320a324",
+    "supporting_reports/data/electrothermal_endpoint/material4_control_baseline_n512_force1_end0.5_snap101_states.npz": "ce66c38fe3cb9ece7b1f2bb87d3aa25d9ce48b720ce8301dd3a5d6569852418c",
+    "supporting_reports/data/electrothermal_endpoint/material4_control_baseline_n512_force1_end0.5_snap101_summary.json": "e258cbe2bbce2facfbc0959c832ff75d7ca28f4a9c4ba4e5ef34c9d63143e587",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "case": "capacitor/capacitor4_material_baseline_n512_force1_end0.5_snap101",
+  "sampled_labels": 512,
+  "fully_covered_labels": 498,
+  "minimum_integrated_heat": 0.2500986460982715,
+  "minimum_evolved_heat": 0.2500986460982715,
+  "maximum_absolute_heat_discrepancy": 0.5765514535452335,
+  "scope": "integrated smooth-material heat equation along the numerical material histories; labels requiring extrapolation outside cell-center coverage are excluded; no independent evolution or shock-heating term",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_electrothermal_material_buffer.py": "459aed06ad019385dd715a50d72bc217adf47581f745e7de682eb3c83320a324",
+    "supporting_reports/data/electrothermal_endpoint/capacitor/capacitor4_material_baseline_n512_force1_end0.5_snap101_states.npz": "f1163bb7d8b83bd50115e9a96bf760f687f65732a1da4c05d4ef844fc371f243",
+    "supporting_reports/data/electrothermal_endpoint/capacitor/capacitor4_material_baseline_n512_force1_end0.5_snap101_summary.json": "4bdcd13fcb68061391dafcc76cc4523947b9909fa8997116723bb93bb22b51fc",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  }
+}
