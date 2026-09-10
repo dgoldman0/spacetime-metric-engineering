@@ -1,0 +1,789 @@
+{
+  "case": "relaxing/ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05",
+  "event_time": 0.7818464160649061,
+  "event_x": -1.644905780944698,
+  "event_fraction": 0.5,
+  "max_step": 0.002,
+  "scope": "finite-speed causal-access screen on archived material motion, with full active metric; subluminal speeds specify signal cones, not an independently supplied heat-current tensor",
+  "null_energy_scope": "null packet frequency transport includes active metric and emitter/receiver boosts along the boundary ray; emission/absorption recoil and material feedback remain construction duties",
+  "deadlines": [
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.1,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": 0.09461205744105786,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": 0.04138964973060811,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.3,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": 0.13922809128488892,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": 0.2662771736933,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": 0.14468745168313504,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": 0.024246454815716415,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": 0.23403346282502083,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": 0.36615247182013305,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": 0.4569973986237594,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": 0.19170944378249474,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": 0.09560079831198746,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": 0.02299068320161406,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.9,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": 0.46516773991184207,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": 0.5681282226067824,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": 0.6348890811200982,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": 0.19996013042195937,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": 0.1078557713431117,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": 0.038496288252705936,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 0.99,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.375,
+      "direction": 1,
+      "latest_emission": 0.6165029192902194,
+      "null_comoving_energy_gain": 6.677788687900893
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.4375,
+      "direction": 1,
+      "latest_emission": 0.6957681957472646,
+      "null_comoving_energy_gain": 3.875613311485665
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.46875,
+      "direction": 1,
+      "latest_emission": 0.7364833615289154,
+      "null_comoving_energy_gain": 2.4618484799472875
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.53125,
+      "direction": -1,
+      "latest_emission": 0.20080207347197687,
+      "null_comoving_energy_gain": 0.25322032259137944
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.5625,
+      "direction": -1,
+      "latest_emission": 0.10909017023613238,
+      "null_comoving_energy_gain": 0.2859418841141924
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.59375,
+      "direction": -1,
+      "latest_emission": 0.04004985582073087,
+      "null_comoving_energy_gain": 0.30230028418837257
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.625,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    },
+    {
+      "relative_speed": 1.0,
+      "donor_fraction": 0.75,
+      "direction": -1,
+      "latest_emission": null,
+      "null_comoving_energy_gain": null
+    }
+  ],
+  "cones": [
+    {
+      "relative_speed": 0.1,
+      "s": 0.0,
+      "left_l": -1.3221375876347157,
+      "right_l": -1.2793006421503372,
+      "left_fraction": 0.48616400772830276,
+      "right_fraction": 0.5129370986560392,
+      "minimum_packet_gap": 0.9293006421503373
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.1,
+      "left_l": -1.325313599139847,
+      "right_l": -1.2969665182370067,
+      "left_fraction": 0.49077869178579436,
+      "right_fraction": 0.5082268689588211,
+      "minimum_packet_gap": 1.046966518237007
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.25,
+      "left_l": -1.3642703583164635,
+      "right_l": -1.352456940628838,
+      "left_fraction": 0.49621438607096446,
+      "right_fraction": 0.5030732375513068,
+      "minimum_packet_gap": 1.252456940628838
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.5,
+      "left_l": -1.4889593061130166,
+      "right_l": -1.4879010912821828,
+      "left_fraction": 0.49964749762470795,
+      "right_fraction": 0.5002586736856395,
+      "minimum_packet_gap": 1.637901091282183
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.65,
+      "left_l": -1.5726178236717219,
+      "right_l": -1.5724740317566406,
+      "left_fraction": 0.4999505524342327,
+      "right_fraction": 0.5000360110990758,
+      "minimum_packet_gap": 1.8724740317566404
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.7,
+      "left_l": -1.6001320054171528,
+      "right_l": -1.6000824152502593,
+      "left_fraction": 0.4999828144413576,
+      "right_fraction": 0.5000124877445506,
+      "minimum_packet_gap": 1.9500824152502592
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.745,
+      "left_l": -1.6247771320486752,
+      "right_l": -1.6247665535933882,
+      "left_fraction": 0.4999963108570545,
+      "right_fraction": 0.5000026707136492,
+      "minimum_packet_gap": 2.019766553593388
+    },
+    {
+      "relative_speed": 0.1,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.0,
+      "left_l": -1.3707276541054012,
+      "right_l": -1.239961035611747,
+      "left_fraction": 0.4557952161841243,
+      "right_fraction": 0.5375243527426582,
+      "minimum_packet_gap": 0.889961035611747
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.1,
+      "left_l": -1.3598664543343235,
+      "right_l": -1.2726414992405224,
+      "left_fraction": 0.46946560311887964,
+      "right_fraction": 0.5231639313393407,
+      "minimum_packet_gap": 1.0226414992405224
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.25,
+      "left_l": -1.380425815771844,
+      "right_l": -1.3433078802421505,
+      "left_fraction": 0.48664922704331454,
+      "right_fraction": 0.5082613465572756,
+      "minimum_packet_gap": 1.2433078802421504
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.5,
+      "left_l": -1.4905955566641216,
+      "right_l": -1.4871588786430034,
+      "left_fraction": 0.4986572532971081,
+      "right_fraction": 0.5006622275714209,
+      "minimum_packet_gap": 1.6371588786430036
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.65,
+      "left_l": -1.572843060965946,
+      "right_l": -1.57237420895549,
+      "left_fraction": 0.4998099324056669,
+      "right_fraction": 0.500091666040568,
+      "minimum_packet_gap": 1.87237420895549
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.7,
+      "left_l": -1.6002098167265109,
+      "right_l": -1.6000480389005352,
+      "left_fraction": 0.4999339079840705,
+      "right_fraction": 0.5000317834957791,
+      "minimum_packet_gap": 1.950048038900535
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.745,
+      "left_l": -1.6247937460213724,
+      "right_l": -1.624759226512028,
+      "left_fraction": 0.4999858235985934,
+      "right_fraction": 0.500006804246563,
+      "minimum_packet_gap": 2.019759226512028
+    },
+    {
+      "relative_speed": 0.3,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.0,
+      "left_l": -1.4576574029301343,
+      "right_l": -1.1880613173450834,
+      "left_fraction": 0.40146412316866614,
+      "right_fraction": 0.569961676659323,
+      "minimum_packet_gap": 0.8380613173450834
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.1,
+      "left_l": -1.4274815290644314,
+      "right_l": -1.2428708625811897,
+      "left_fraction": 0.42697501106604524,
+      "right_fraction": 0.541704519853867,
+      "minimum_packet_gap": 0.9928708625811898
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.25,
+      "left_l": -1.4162896342876385,
+      "right_l": -1.3333198574697664,
+      "left_fraction": 0.4651473828414075,
+      "right_fraction": 0.513925201500525,
+      "minimum_packet_gap": 1.2333198574697666
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.5,
+      "left_l": -1.4952140655552775,
+      "right_l": -1.4864299028340195,
+      "left_fraction": 0.49586217266086435,
+      "right_fraction": 0.5010585843630287,
+      "minimum_packet_gap": 1.6364299028340197
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.65,
+      "left_l": -1.573501596083142,
+      "right_l": -1.572277319656053,
+      "left_fraction": 0.4993987961091196,
+      "right_fraction": 0.5001456854452453,
+      "minimum_packet_gap": 1.8722773196560532
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.7,
+      "left_l": -1.6004385050794088,
+      "right_l": -1.60001473523921,
+      "left_fraction": 0.49979017133119397,
+      "right_fraction": 0.5000504771374568,
+      "minimum_packet_gap": 1.9500147352392099
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.745,
+      "left_l": -1.6248427191348194,
+      "right_l": -1.6247521358601924,
+      "left_fraction": 0.49995491023983646,
+      "right_fraction": 0.5000108043990523,
+      "minimum_packet_gap": 2.0197521358601924
+    },
+    {
+      "relative_speed": 0.5773502691896258,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.0,
+      "left_l": -1.6559254733913369,
+      "right_l": -1.1316931102045062,
+      "left_fraction": 0.27754657913041453,
+      "right_fraction": 0.6051918061221836,
+      "minimum_packet_gap": 0.7816931102045063
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.1,
+      "left_l": -1.6063436338503727,
+      "right_l": -1.212495265427316,
+      "left_fraction": 0.31386974629726816,
+      "right_fraction": 0.560831935451616,
+      "minimum_packet_gap": 0.9624952654273161
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.25,
+      "left_l": -1.5425281480649486,
+      "right_l": -1.32435671510308,
+      "left_fraction": 0.3828339564625909,
+      "right_fraction": 0.5190078829638641,
+      "minimum_packet_gap": 1.22435671510308
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.5,
+      "left_l": -1.5244843705049864,
+      "right_l": -1.4858415769852982,
+      "left_fraction": 0.47814804359670987,
+      "right_fraction": 0.501378467331634,
+      "minimum_packet_gap": 1.6358415769852983
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.65,
+      "left_l": -1.578527945442406,
+      "right_l": -1.5721999501025978,
+      "left_fraction": 0.4962607483319258,
+      "right_fraction": 0.500188821862188,
+      "minimum_packet_gap": 1.8721999501025977
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.7,
+      "left_l": -1.6022427100850787,
+      "right_l": -1.5999881852405577,
+      "left_fraction": 0.49865618096687525,
+      "right_fraction": 0.5000653798881335,
+      "minimum_packet_gap": 1.9499881852405578
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.745,
+      "left_l": -1.6252367142509963,
+      "right_l": -1.6247464886155916,
+      "left_fraction": 0.49970620821708184,
+      "right_fraction": 0.500013990261237,
+      "minimum_packet_gap": 2.0197464886155916
+    },
+    {
+      "relative_speed": 0.9,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.0,
+      "left_l": -1.8926912491681918,
+      "right_l": -1.1168237216014716,
+      "left_fraction": 0.12956796926988023,
+      "right_fraction": 0.6144851739990803,
+      "minimum_packet_gap": 0.7668237216014716
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.1,
+      "left_l": -1.8393493731252744,
+      "right_l": -1.2048072477334526,
+      "left_fraction": 0.16714422574964302,
+      "right_fraction": 0.5656629351162797,
+      "minimum_packet_gap": 0.9548072477334527
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.25,
+      "left_l": -1.760303943712123,
+      "right_l": -1.3222301607681084,
+      "left_fraction": 0.2396206114519927,
+      "right_fraction": 0.5202137768186037,
+      "minimum_packet_gap": 1.2222301607681083
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.5,
+      "left_l": -1.6422384701486004,
+      "right_l": -1.4857105120280465,
+      "left_fraction": 0.39748895029573084,
+      "right_fraction": 0.5014497296222455,
+      "minimum_packet_gap": 1.6357105120280466
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.65,
+      "left_l": -1.6141583385145568,
+      "right_l": -1.5721828138243243,
+      "left_fraction": 0.4740160001481311,
+      "right_fraction": 0.5001983759776176,
+      "minimum_packet_gap": 1.8721828138243244
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.7,
+      "left_l": -1.618077617002195,
+      "right_l": -1.599982310087745,
+      "left_fraction": 0.48870352491755564,
+      "right_fraction": 0.5000686776637266,
+      "minimum_packet_gap": 1.9499823100877447
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.745,
+      "left_l": -1.6293200612229508,
+      "right_l": -1.6247452396153297,
+      "left_fraction": 0.49712867207554734,
+      "right_fraction": 0.5000146948779102,
+      "minimum_packet_gap": 2.0197452396153297
+    },
+    {
+      "relative_speed": 0.99,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.0,
+      "left_l": -2.07495039165983,
+      "right_l": -1.1151941940299013,
+      "left_fraction": 0.015656005212606235,
+      "right_fraction": 0.6155036287313117,
+      "minimum_packet_gap": 0.7651941940299013
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.1,
+      "left_l": -2.017458454652795,
+      "right_l": -1.2039729484902728,
+      "left_fraction": 0.05516333059403242,
+      "right_fraction": 0.5661866150664289,
+      "minimum_packet_gap": 0.9539729484902729
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.25,
+      "left_l": -1.9339155087492115,
+      "right_l": -1.32200232343388,
+      "left_fraction": 0.12760804731682435,
+      "right_fraction": 0.5203429753237667,
+      "minimum_packet_gap": 1.22200232343388
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.5,
+      "left_l": -1.7979318460295324,
+      "right_l": -1.4856966563352914,
+      "left_fraction": 0.28618650222594116,
+      "right_fraction": 0.5014572632027269,
+      "minimum_packet_gap": 1.6356966563352913
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.65,
+      "left_l": -1.7166704919903437,
+      "right_l": -1.5721810043603164,
+      "left_fraction": 0.4014090396213827,
+      "right_fraction": 0.5001993848214122,
+      "minimum_packet_gap": 1.8721810043603164
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.7,
+      "left_l": -1.689508565781383,
+      "right_l": -1.5999816898273518,
+      "left_fraction": 0.44073707337215445,
+      "right_fraction": 0.5000690258214089,
+      "minimum_packet_gap": 1.9499816898273514
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.745,
+      "left_l": -1.6650101044176793,
+      "right_l": -1.624745107767924,
+      "left_fraction": 0.4746000021243611,
+      "right_fraction": 0.5000147692589036,
+      "minimum_packet_gap": 2.019745107767924
+    },
+    {
+      "relative_speed": 1.0,
+      "s": 0.7818464160649061,
+      "left_l": -1.644905780944698,
+      "right_l": -1.644905780944698,
+      "left_fraction": 0.5,
+      "right_fraction": 0.5,
+      "minimum_packet_gap": 2.076752197009604
+    }
+  ],
+  "completed_utc": "2026-09-10T11:23:48.747852+00:00",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_causal_reservoir_access.py": "723487a56ef51e4d4a6318d3a9fb1aab0eafbba58c2c284b7ff189d2707ed034",
+    "toolkit/adm_harness_cli/adm_harness/causal_reservoir_transport.py": "49c1724ae964c9223882344702e022b658db4901fe3a6a3dadbdaf2d5c655c96",
+    "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_states.npz": "fe0f3529ff94e9b47d90b66dd93f6d9f8a45536b2da1c98a17f54c401abdbdf6",
+    "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_summary.json": "45131243ff7c511803b14e08f14ebd898f91d26f2fa93cc4b7b6678dadb48565",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8"
+  }
+}
