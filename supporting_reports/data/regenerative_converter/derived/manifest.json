@@ -1,0 +1,16 @@
+{
+  "completed_utc": "2026-09-10T18:59:37.902534+00:00",
+  "production_integrity_comparisons": 77,
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/summarize_regenerative_converter.py": "75404c0cdbd23f2766de69b5c60d66112425d4bbc8533c47e94c38b9070ca74f",
+    "toolkit/adm_harness_cli/scripts/run_regenerative_converter.py": "d7a0b10d9a2e0f6bec6d29a63cfc9a2060dd8efb61ebe57af1be972885de32ba",
+    "toolkit/adm_harness_cli/adm_harness/regenerative_converter.py": "d3ab0434f2069efef2feb7831890cbfe0c92d19df9ebc25f0f244900b7de861c",
+    "supporting_reports/data/regenerative_converter/manifest.json": "67ade128f098bce3fc92040daef06071d5b3b599334b072d7cebf12b467bb289"
+  },
+  "output_sha256": {
+    "supporting_reports/figures/regenerative_converter_inventory.png": "8dad46c3d531f0e19ff66e2617c455b7be922c4ce17a000208ad9d0ceb788764",
+    "supporting_reports/figures/regenerative_converter_inventory.pdf": "1a030476ac995cc037186982f7192833c72053d8a8b1b9f3e49fd869493fc9b0",
+    "supporting_reports/data/regenerative_converter/derived/integrity.csv": "7142b5a13bb5e549eba51706ab09d975d1412bf42ae3ebd0ef7929c88a66a22a",
+    "supporting_reports/data/regenerative_converter/derived/quadrature.csv": "bef60e9129f54854eaf0f3b48975335b112a9db608b7044b1924f9e1bde7b15c"
+  }
+}

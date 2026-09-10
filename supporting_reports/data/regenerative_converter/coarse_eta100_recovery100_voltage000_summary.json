@@ -1,0 +1,144 @@
+{
+  "case": "coarse_eta100_recovery100_voltage000",
+  "history": "coarse",
+  "efficiency": 1.0,
+  "recovery": 1.0,
+  "voltage_fraction": 0.0,
+  "cells": 64,
+  "intervals": 129,
+  "charging_work": 43.85120158120684,
+  "available_discharge_work": 1.4098578554912693,
+  "recovered_work": 1.4098578554912693,
+  "converter_loss": 0.0,
+  "net_endpoint_work": 0.7632617459664002,
+  "heat_return": 43.54284255630858,
+  "heat_supply": 1.8647605765594155,
+  "heat_receiver_gain": 43.54284255630858,
+  "heat_receiver_release": 1.8647605765594155,
+  "bank_capacity": 43.048654594546576,
+  "bank_initial": 43.0330384513084,
+  "heat_capacity": 42.86131665569557,
+  "heat_initial": 0.17321962519145223,
+  "initial_work_lower_bound_any_recovery": 43.0330384513084,
+  "bank_capacity_lower_bound_any_recovery": 43.0330384513084,
+  "maximum_rest_bank_power": 0.007978077042955969,
+  "maximum_rest_receiver_power": 0.012147298418803923,
+  "minimum_packet_gap": 0.15000000000000002,
+  "maximum_prescribed_velocity": 0.20214036673420838,
+  "port_identity_residual": 1.734723475976807e-18,
+  "store_energy_identity_residual": 5.530298441414061e-15,
+  "bank_minimum_voltage_residual": 0.0,
+  "minimum_thermal_inventory": 0.0,
+  "phases": [
+    {
+      "s": 0.0,
+      "model": "inventory_only",
+      "required_negative_null": 0.07924592512847721,
+      "baseline_required_negative_null": 0.0731271696096231,
+      "auxiliary_slice_energy": 43.33321153678419,
+      "required_negative_null_of_endpoint_remainder": 0.008706189344179311
+    },
+    {
+      "s": 0.0,
+      "model": "isotropic_wall_bound",
+      "required_negative_null": 0.08335199031861679,
+      "baseline_required_negative_null": 0.0731271696096231,
+      "auxiliary_slice_energy": 72.0545139403617,
+      "required_negative_null_of_endpoint_remainder": 0.014510901308146928
+    },
+    {
+      "s": 0.0,
+      "model": "benchmark_bank_mass_only",
+      "required_negative_null": 29849906455.665924,
+      "baseline_required_negative_null": 0.0731271696096231,
+      "auxiliary_slice_energy": 148031223553920.94,
+      "required_negative_null_of_endpoint_remainder": 29849906455.652786
+    },
+    {
+      "s": 0.0,
+      "model": "any_recovery_bank_mass_lower_bound",
+      "required_negative_null": 29849906455.665924,
+      "baseline_required_negative_null": 0.0731271696096231,
+      "auxiliary_slice_energy": 147977289752987.53,
+      "required_negative_null_of_endpoint_remainder": 29849906455.652786
+    },
+    {
+      "s": 0.5,
+      "model": "inventory_only",
+      "required_negative_null": 0.07481985824132596,
+      "baseline_required_negative_null": 0.07065375379886116,
+      "auxiliary_slice_energy": 42.9983285450472,
+      "required_negative_null_of_endpoint_remainder": 0.006129603551284994
+    },
+    {
+      "s": 0.5,
+      "model": "isotropic_wall_bound",
+      "required_negative_null": 0.07759753344365233,
+      "baseline_required_negative_null": 0.07065375379886116,
+      "auxiliary_slice_energy": 71.63498587426538,
+      "required_negative_null_of_endpoint_remainder": 0.010084727100675143
+    },
+    {
+      "s": 0.5,
+      "model": "benchmark_bank_mass_only",
+      "required_negative_null": 20745803842.520336,
+      "baseline_required_negative_null": 0.07065375379886116,
+      "auxiliary_slice_energy": 147595954197841.9,
+      "required_negative_null_of_endpoint_remainder": 20745803842.47933
+    },
+    {
+      "s": 0.5,
+      "model": "any_recovery_bank_mass_lower_bound",
+      "required_negative_null": 20745803842.520336,
+      "baseline_required_negative_null": 0.07065375379886116,
+      "auxiliary_slice_energy": 147542412929946.44,
+      "required_negative_null_of_endpoint_remainder": 20745803842.47933
+    },
+    {
+      "s": 1.285,
+      "model": "inventory_only",
+      "required_negative_null": 0.14107916411680604,
+      "baseline_required_negative_null": 0.10407907145903474,
+      "auxiliary_slice_energy": 42.44299633053345,
+      "required_negative_null_of_endpoint_remainder": 0.056467713303478
+    },
+    {
+      "s": 1.285,
+      "model": "isotropic_wall_bound",
+      "required_negative_null": 0.17863029364420346,
+      "baseline_required_negative_null": 0.10407907145903474,
+      "auxiliary_slice_energy": 71.0796534139475,
+      "required_negative_null_of_endpoint_remainder": 0.09401884283013232
+    },
+    {
+      "s": 1.285,
+      "model": "benchmark_bank_mass_only",
+      "required_negative_null": 193101347830.07663,
+      "baseline_required_negative_null": 0.10407907145903474,
+      "auxiliary_slice_energy": 147595952933838.0,
+      "required_negative_null_of_endpoint_remainder": 193101347830.07248
+    },
+    {
+      "s": 1.285,
+      "model": "any_recovery_bank_mass_lower_bound",
+      "required_negative_null": 193101347830.07663,
+      "baseline_required_negative_null": 0.10407907145903474,
+      "auxiliary_slice_energy": 147542411666077.2,
+      "required_negative_null_of_endpoint_remainder": 193101347830.07248
+    }
+  ],
+  "inventory_only_maximum_holding_force": 0.010083598740401501,
+  "inventory_only_maximum_endpoint_force_remainder": 0.010083598740401501,
+  "inventory_only_maximum_auxiliary_null": 0.05633237804881119,
+  "isotropic_wall_bound_maximum_holding_force": 0.01680599790066917,
+  "isotropic_wall_bound_maximum_endpoint_force_remainder": 0.01680599790066917,
+  "isotropic_wall_bound_maximum_auxiliary_null": 0.0938835075866133,
+  "benchmark_bank_mass_only_maximum_holding_force": 34572471058.8411,
+  "benchmark_bank_mass_only_maximum_endpoint_force_remainder": 34572471058.8411,
+  "benchmark_bank_mass_only_maximum_auxiliary_null": 193101347830.0725,
+  "any_recovery_bank_mass_lower_bound_maximum_holding_force": 34572471058.8411,
+  "any_recovery_bank_mass_lower_bound_maximum_endpoint_force_remainder": 34572471058.8411,
+  "any_recovery_bank_mass_lower_bound_maximum_auxiliary_null": 193101347830.0725,
+  "specific_energy_for_bank_mass_null_to_equal_previous_supply_peak_J_per_kg": 5.391413029745297e+16,
+  "benchmark_mass_lower_null_over_previous_supply_peak": 2056724229865.7986
+}

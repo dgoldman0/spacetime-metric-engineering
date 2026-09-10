@@ -339,3 +339,11 @@ The artifact audit verifies **178 source/input and output hash comparisons**
 across five stages, retaining historical source revisions where needed. Numeric
 comparisons, port histories, work/heat maps, and the reaction witness are in
 [`data/pressure_linked_storage/derived`](data/pressure_linked_storage/derived/).
+
+The subsequent [finite-converter evaluation](REGENERATIVE_CONVERTER_EVALUATION.md)
+supplies explicit work and thermal inventories for this duty. It identifies a
+local prepared-work requirement near 43 units under ideal recovery and a
+decisive material-mass burden for the benchmark capacitor implementation.
+The formal field/enclosure control retains physical thermal and mechanical
+completion requirements, so the small interface estimate above remains
+conditional on supplying those additional components.

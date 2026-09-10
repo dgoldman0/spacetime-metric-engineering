@@ -1,0 +1,12 @@
+{
+  "name": "Eaton XL60-3R0308T-R",
+  "capacitance_F": 3000.0,
+  "voltage_V": 3.0,
+  "mass_kg": 0.515,
+  "source_url": "https://www.eaton.com/content/dam/eaton/products/electronic-components/resources/data-sheet/eaton-xl60-supercapacitors-cylindrical-cells-data-sheet.pdf",
+  "source_date": "2020-07",
+  "accessed_date": "2026-09-10",
+  "rated_energy_J": 13500.0,
+  "specific_energy_J_per_kg": 26213.59223300971,
+  "cold_mass_energy_per_rated_energy": 3428584570736.7485
+}

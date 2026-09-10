@@ -37,6 +37,14 @@ electrical-work and heat-return interface, supplied terminal reactions, and
 physical carrier and converter tensors. Coupled evolution and the remaining
 negative-stress source continue to determine physical selection.
 
+The [finite regenerative-converter evaluation](../supporting_reports/REGENERATIVE_CONVERTER_EVALUATION.md)
+measures a local prepared-work requirement of about 43 units even with ideal
+recovery. A benchmark capacitor bank's material mass produces a decisive
+source burden. A formal field/enclosure control retains a much smaller burden
+and requires a physical supporting material, thermal law, and work route.
+The switching role and its finite work reserve therefore remain separate
+construction requirements.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and
