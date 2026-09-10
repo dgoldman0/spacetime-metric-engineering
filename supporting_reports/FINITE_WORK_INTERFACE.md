@@ -82,6 +82,83 @@ port alongside work input, electrical storage, and heat return.
 
 ## Evidence and decision
 
-Numerical results and the construction decision follow the registered
-calculations. Evidence is kept under data/finite_work_interface. The main
-technical disclosure continues to contain the established design.
+### Efficiency, finite bends, and the direct capacitive port
+
+The 1024-cell efficiency comparison gives the following matched-load results.
+Heat capacity is an integral of the individual receiving capacities. Startup
+energy is the additional ADM slice energy, including the same formal heat
+enclosure bound used in the preceding comparison.
+
+| Conversion efficiency | Added startup energy | Heat capacity | Fade required negative-null contribution |
+| --- | ---: | ---: | ---: |
+| 100% | 73.91 | 43.14 | 0.1988 |
+| 98% | 67.91 | 44.12 | 0.2038 |
+| 95% | 62.23 | 45.67 | 0.2142 |
+| 90% | 65.57 | 48.49 | 0.2384 |
+| 85% | 98.49 | 51.65 | 0.2681 |
+| Previous formal enclosed-store comparison | 93.94 | 44.12 | 0.2628 |
+
+The startup crossing is approximately 85.6% efficiency at 1024 cells and
+85.0% at 512 cells. In this registered family, the coupled heat and guide
+costs have a broad useful efficiency interval. The nonmonotonic startup
+result has a physical accounting explanation: reduced electrical recovery
+lowers a return-wave peak that sets the prepared guide requirement, while
+increasing receiving heat. This motivates a separate comparison that retains
+98% conversion and controls the recovered fraction directly.
+
+At the fixed drift comparison 0.5, reflected-amplitude guide envelopes of
+0.01 and 0.02 raise nominal startup energy to 86.36 and 104.91. The crossing
+is r=0.0141. This is a guide-margin requirement at the chosen drift value;
+minimum plasma drift is itself a design tradeoff. The continuation therefore
+also measures the reflection/drift relation with guide energy held fixed.
+
+A finite magnetic turn admits a simple local Maxwell control. In cylindrical
+bend coordinates, B_phi=k/r is divergence-free and curl-free within the
+vacuum aperture. Matching its flux to a straight guide of half-width a
+sets k/B_straight=2a/log[(b+a)/(b-a)], where b is the bend radius. For a/b=0.2,
+the field's integrated energy is 0.9865 times the uniform-field estimate
+u_straight A pi b, and its largest density is 1.5208 times the straight-leg
+density. The material boundary carries finite magnetic tractions.
+
+At b=0.01 model lengths, the two endpoint turns add approximately 0.0448
+units of initial magnetic energy in this local control. Their aggregate
+straight-cut magnetic reactions peak near 0.985 and 1.924 force units.
+The receiver turn retains packet clearance about 0.14994. Radial metric
+variation across the bend is about 1.1% at the left end and 0.043% at the
+receiver. These quantities locate a finite-size field continuation with a
+small magnetic inventory. A complete curved-background solution adds the
+transition field, wave delay, material boundary tensor, and its reaction.
+The calculation does not supply that supporting material.
+
+The retained electric cells contain 71.33 units of initial material-frame
+field energy and 8.44 at fade. Their individual maximum energies sum to
+80.59 units. An exact discrete capacitor-work identity separates +42.30
+units of net electrical charging from -105.19 units of mechanical work by
+the changing capacitance; together they give the -62.89 field-energy change.
+Thus electrical work remains necessary while the geometry releases field
+energy mechanically. Both roles were already present in the radial Maxwell
+stress calculation.
+
+Allowing each charging cell its own best fixed real impedance gives 72.41%
+reflected energy and incident energy 3.624 times useful charging work.
+The calculation grants disconnection during idle and recovery and evaluates
+only the charging samples. It therefore favors a simple direct connection.
+The result selects controlled work coupling for this duty. A frozen passive
+capacitive termination cannot supply the specified history efficiently.
+
+The electric-cell material question is now quantitative. If additional
+conserved capacitor material is proportional to each cell's maximum field
+energy, the remaining nominal fade margin permits material rest energy about
+0.401 times that rated energy. This corresponds to stored field energy per
+material mass of 2.24e17 J/kg. The comparison uses the previous formal fade
+value as a selection reference, with all remaining electric cells counted.
+It supplies a conditional material budget rather than a physical universal
+limit. Reusing already-counted pressure/support material requires an explicit
+common stress and charge-confinement construction. A conventional added
+capacitor bank remains far outside this budget.
+
+The numerical stage is stored under data/finite_work_interface. Its nominal
+98% case reproduces the previous finite-tap tensor exactly. Six independent
+analytical tests verify the circuit work split, port power, magnetic-envelope
+relation, and annular field quadrature. The second stage tests recovery
+control and the drift tradeoff before selecting the next physical interface.

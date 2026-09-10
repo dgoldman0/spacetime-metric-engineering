@@ -1,0 +1,267 @@
+{
+  "cases": [
+    {
+      "efficiency": 1.0,
+      "cells": 512,
+      "initial_auxiliary_energy": 72.84211703792272,
+      "heat_capacity": 43.14072022684292,
+      "converter_loss_change": -1.0519382152080463,
+      "guide_flux": 0.6763877938347388,
+      "startup_guide_only_break_even_amplitude": 0.011317565453655457
+    },
+    {
+      "efficiency": 0.98,
+      "cells": 512,
+      "initial_auxiliary_energy": 66.88367882184242,
+      "heat_capacity": 44.12123881912413,
+      "converter_loss_change": 0.0,
+      "guide_flux": 0.6683871886102499,
+      "startup_guide_only_break_even_amplitude": 0.014673602026176546
+    },
+    {
+      "efficiency": 0.95,
+      "cells": 512,
+      "initial_auxiliary_energy": 61.85692536681059,
+      "heat_capacity": 45.66866929827282,
+      "converter_loss_change": 1.6535811635905933,
+      "guide_flux": 0.6566066615810208,
+      "startup_guide_only_break_even_amplitude": 0.01971001997383002
+    },
+    {
+      "efficiency": 0.9,
+      "cells": 512,
+      "initial_auxiliary_energy": 63.72982285303792,
+      "heat_capacity": 48.494488837720276,
+      "converter_loss_change": 4.633768557066865,
+      "guide_flux": 0.6566271276803706,
+      "startup_guide_only_break_even_amplitude": 0.018676909617127525
+    },
+    {
+      "efficiency": 0.85,
+      "cells": 512,
+      "initial_auxiliary_energy": 93.98891369329854,
+      "heat_capacity": 51.64592163787438,
+      "converter_loss_change": 7.937094791340338,
+      "guide_flux": 0.6952522528380395
+    },
+    {
+      "efficiency": 0.8,
+      "cells": 512,
+      "initial_auxiliary_energy": 132.1727874067082,
+      "heat_capacity": 55.19077659730021,
+      "converter_loss_change": 11.624148399060491,
+      "guide_flux": 0.738705518640417
+    }
+  ],
+  "phases": [
+    {
+      "efficiency": 1.0,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.09898317439087619
+    },
+    {
+      "efficiency": 1.0,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.08419464010985492
+    },
+    {
+      "efficiency": 1.0,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.19723077709155107
+    },
+    {
+      "efficiency": 0.98,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.09835459536326713
+    },
+    {
+      "efficiency": 0.98,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.08381082515837888
+    },
+    {
+      "efficiency": 0.98,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.2021507490376298
+    },
+    {
+      "efficiency": 0.95,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.09775997938479612
+    },
+    {
+      "efficiency": 0.95,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.08346430874703668
+    },
+    {
+      "efficiency": 0.95,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.21236831978742438
+    },
+    {
+      "efficiency": 0.9,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.09905592976945236
+    },
+    {
+      "efficiency": 0.9,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.08514111524930038
+    },
+    {
+      "efficiency": 0.9,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.23550068755389025
+    },
+    {
+      "efficiency": 0.85,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.10407179613269674
+    },
+    {
+      "efficiency": 0.85,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.09079074098282745
+    },
+    {
+      "efficiency": 0.85,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.2644527493101635
+    },
+    {
+      "efficiency": 0.8,
+      "cells": 512,
+      "time": 0.0,
+      "required_negative_null": 0.10971757092108839
+    },
+    {
+      "efficiency": 0.8,
+      "cells": 512,
+      "time": 0.5,
+      "required_negative_null": 0.09707303489107044
+    },
+    {
+      "efficiency": 0.8,
+      "cells": 512,
+      "time": 1.285,
+      "required_negative_null": 0.29603410952275233
+    }
+  ],
+  "minimum_matched_efficiency_to_retain_startup_comparison": 0.8500747636026188,
+  "nominal_reproduction_residual": 0.0,
+  "capacitor_port": {
+    "normalized_cell_charge_min": 0.08541942365739079,
+    "normalized_cell_charge_max": 0.9556049062120868,
+    "initial_electric_rest_energy": 71.3321681857522,
+    "initial_electric_ADM_energy": 71.16251539931126,
+    "final_electric_rest_energy": 8.441788300870872,
+    "sum_local_electric_energy_capacities": 80.59064689160161,
+    "electrical_work_midpoint_identity": 42.29814602851651,
+    "mechanical_work_midpoint_identity": -105.18852591339785,
+    "electric_rest_energy_change": -62.89037988488133,
+    "maximum_discrete_energy_identity_residual": 1.7572748811645056e-15,
+    "fixed_real_impedance_minimum_reflection_energy_fraction": 0.7240701807769445,
+    "fixed_real_impedance_incident_to_useful_work": 3.6241099378665558,
+    "maximum_interval_electric_rate": 1.0000000000005338,
+    "conditional_capacitor_mass_energy_per_rated_energy": 0.41182451928455766,
+    "conditional_capacitor_specific_energy_J_per_kg": 2.1823741342506282e+17,
+    "capacitor_mass_comparison": "All remaining radial electric cells; added conserved mass only. Headroom ends at the old formal fade value, not a universal feasibility limit."
+  },
+  "finite_bends": [
+    {
+      "end": "left",
+      "bend_radius": 0.01,
+      "aperture_half_width": 0.002,
+      "initial_bend_ADM_energy": 0.015049499705397547,
+      "peak_bend_ADM_energy": 0.015231625014312154,
+      "peak_bend_guide_density": 0.006959770357327847,
+      "peak_straight_cut_magnetic_reaction": 0.9829238166880279,
+      "minimum_packet_clearance": 1.74835850345226,
+      "maximum_radial_metric_fractional_variation": 0.010972867069018344,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    },
+    {
+      "end": "left",
+      "bend_radius": 0.05,
+      "aperture_half_width": 0.010000000000000002,
+      "initial_bend_ADM_energy": 0.07524749852698774,
+      "peak_bend_ADM_energy": 0.07615812507156078,
+      "peak_bend_guide_density": 0.006959770357327847,
+      "peak_straight_cut_magnetic_reaction": 0.9829238166880279,
+      "minimum_packet_clearance": 1.741792517261299,
+      "maximum_radial_metric_fractional_variation": 0.056702206535188315,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    },
+    {
+      "end": "left",
+      "bend_radius": 0.1,
+      "aperture_half_width": 0.020000000000000004,
+      "initial_bend_ADM_energy": 0.15049499705397548,
+      "peak_bend_ADM_energy": 0.15231625014312156,
+      "peak_bend_guide_density": 0.006959770357327847,
+      "peak_straight_cut_magnetic_reaction": 0.9829238166880279,
+      "minimum_packet_clearance": 1.7335850345225978,
+      "maximum_radial_metric_fractional_variation": 0.11819663391230839,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    },
+    {
+      "end": "receiver",
+      "bend_radius": 0.01,
+      "aperture_half_width": 0.002,
+      "initial_bend_ADM_energy": 0.029625076757727582,
+      "peak_bend_ADM_energy": 0.029755684135711478,
+      "peak_bend_guide_density": 0.026560870913607974,
+      "peak_straight_cut_magnetic_reaction": 1.9201871495231084,
+      "minimum_packet_clearance": 0.14994450314110802,
+      "maximum_radial_metric_fractional_variation": 0.00043215291989540106,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    },
+    {
+      "end": "receiver",
+      "bend_radius": 0.05,
+      "aperture_half_width": 0.010000000000000002,
+      "initial_bend_ADM_energy": 0.14812538378863793,
+      "peak_bend_ADM_energy": 0.1487784206785574,
+      "peak_bend_guide_density": 0.026560870913607974,
+      "peak_straight_cut_magnetic_reaction": 1.9201871495231084,
+      "minimum_packet_clearance": 0.14972251570553996,
+      "maximum_radial_metric_fractional_variation": 0.0021619636770375816,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    },
+    {
+      "end": "receiver",
+      "bend_radius": 0.1,
+      "aperture_half_width": 0.020000000000000004,
+      "initial_bend_ADM_energy": 0.29625076757727586,
+      "peak_bend_ADM_energy": 0.2975568413571148,
+      "peak_bend_guide_density": 0.026560870913607974,
+      "peak_straight_cut_magnetic_reaction": 1.9201871495231084,
+      "minimum_packet_clearance": 0.1494450314110799,
+      "maximum_radial_metric_fractional_variation": 0.00432691555447362,
+      "supplied_support_material": false,
+      "curved_background_Maxwell_solution": false
+    }
+  ],
+  "compared_spatial_points": 641
+}
