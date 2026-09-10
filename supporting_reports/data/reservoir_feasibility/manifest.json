@@ -1,0 +1,35 @@
+{
+  "completed_utc": "2026-09-10T13:18:12.415823+00:00",
+  "workers": 4,
+  "scope": "full active geometric tensor and reconstructed endpoint; archived evolved reservoir states; local averaged Maxwell/string decomposition; no magnetic return or confinement solution and no assumed quantum capacity",
+  "software_and_background_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_reservoir_feasibility.py": "aaf961ead2e53cece6ec61c7b241ef7e049513bfcd5bc1b66b962966628c37a6",
+    "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+    "toolkit/adm_harness_cli/adm_harness/reservoir_feasibility.py": "01d0a13d74ee427524842c074f05336130fcef5659d151567fe055bd21a22fad",
+    "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+    "toolkit/adm_harness_cli/adm_harness/material_ensemble.py": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+    "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+    "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+    "toolkit/adm_harness_cli/adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "supporting_reports/data/le_metric_c2_repair/manifest.json": "9eceaac0a835a0236fd58104a379a05284fed9749c69f4e99f022313359aee0d"
+  },
+  "output_sha256": {
+    "energy_matched_n64_points.csv": "cd78e7630c0698275f9731d31cf96b0919e11f743b1b0ea3b6b27d5d1ec79e59",
+    "energy_matched_n64_summary.json": "5b8a4d35f9d1a5ab8cb192f9fb8f3b9ca1270ac30428c4a7c0c7bc8ad99f1e2e",
+    "equilibrated_n128_points.csv": "43e7d64c2f14b29433daf724fab952ef6e08ebbca188d186413b9297a0d31487",
+    "equilibrated_n128_summary.json": "a54405ddf7496419722a74ce5b63e539d28ad5e73be4f387b709c934d3a52b03",
+    "equilibrated_n64_points.csv": "5bc2e67a34d2040746fa9e710475cfcf3b30931c6db54d9049c34bea5ab35c7c",
+    "equilibrated_n64_summary.json": "28ef034d130be9887d6fb912f91eac5fddbda49a2b2701b50e43910a0d39fd7d",
+    "phase_summary.csv": "862d26c8f8291aef55c7e1bf26d5adbaf9b43d3b1a15738513ebc407febc84f0",
+    "prior_thermal_n64_points.csv": "4561ded59d48c94ed3131a7d67d7d3fd82a86f8650ddf00d132a9cbc001e66ee",
+    "prior_thermal_n64_summary.json": "0e60a164f2f7fc87174ecdfaa3dc6b24fd676bf5169334ea13f772eb5da429c1"
+  }
+}

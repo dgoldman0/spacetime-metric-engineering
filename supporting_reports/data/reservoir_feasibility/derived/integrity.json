@@ -1,0 +1,7 @@
+{
+  "verified_hash_references": 44,
+  "sampled_nodes": 972,
+  "maximum_reconstructed_requirement_error": 2.842170943040401e-14,
+  "maximum_relative_load_envelope_error": 1.0722674779956969e-13,
+  "physics_tests_passed": 13
+}

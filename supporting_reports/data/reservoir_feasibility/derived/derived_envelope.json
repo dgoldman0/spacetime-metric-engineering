@@ -1,0 +1,19 @@
+{
+  "verified_field_samples": 777,
+  "maximum_relative_null_envelope_error": 1.0722674779956969e-13,
+  "scale_example_scope": "conditional field ceilings, not acceptance limits; 4.414e9 T marks electron quantum-critical field scale; full construction feasibility remains unestablished",
+  "inputs_sha256": {
+    "supporting_reports/data/reservoir_feasibility/energy_matched_n64_points.csv": "cd78e7630c0698275f9731d31cf96b0919e11f743b1b0ea3b6b27d5d1ec79e59",
+    "supporting_reports/data/reservoir_feasibility/equilibrated_n128_points.csv": "43e7d64c2f14b29433daf724fab952ef6e08ebbca188d186413b9297a0d31487",
+    "supporting_reports/data/reservoir_feasibility/equilibrated_n64_points.csv": "5bc2e67a34d2040746fa9e710475cfcf3b30931c6db54d9049c34bea5ab35c7c",
+    "supporting_reports/data/reservoir_feasibility/prior_thermal_n64_points.csv": "4561ded59d48c94ed3131a7d67d7d3fd82a86f8650ddf00d132a9cbc001e66ee",
+    "supporting_reports/data/reservoir_feasibility/phase_summary.csv": "862d26c8f8291aef55c7e1bf26d5adbaf9b43d3b1a15738513ebc407febc84f0",
+    "supporting_reports/data/reservoir_feasibility/manifest.json": "35a56de3afab4be837a3a7f36e414ee6f5c9ab42fb4226265f0cf9d78170ca65",
+    "toolkit/adm_harness_cli/scripts/summarize_reservoir_feasibility.py": "0952cb972283945e2a6aee169364ee607062e693345fb80da86b82a61d2f355f"
+  },
+  "outputs_sha256": {
+    "supporting_reports/data/reservoir_feasibility/derived/conditional_scale_examples.csv": "cd199e2efee77cee117d355cd4ce9f5a2979caa63565c93db0ea2d90c17f9eed",
+    "supporting_reports/figures/reservoir_feasibility_source.png": "c9a46d7f4302e4334ca605325f88edd80091583c75e708ff3a5fca079d61d645",
+    "supporting_reports/figures/reservoir_feasibility_source.pdf": "f949369477cb3e66dd5211304db64cbc9cbcaa96526bdcdd4d84836ec396a53e"
+  }
+}

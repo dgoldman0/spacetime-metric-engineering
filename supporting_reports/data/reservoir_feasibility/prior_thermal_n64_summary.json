@@ -1,0 +1,72 @@
+{
+  "phases": [
+    {
+      "case": "prior_thermal_n64",
+      "s": 0.0,
+      "maximum_negative_null_requirement": 0.013230294855099368,
+      "maximum_bulk_negative_null_requirement": 0.003399268227227603,
+      "maximum_requirement_before_reservoir": 0.004374842534749157,
+      "maximum_geometry_abs_null": 0.004374842534749157,
+      "maximum_geometry_fd_difference": 1.1680849602343363e-06,
+      "maximum_geometry_spline_difference": 8.156199696563587e-06,
+      "maximum_requirement_spline_difference": 1.9066474022440966e-08,
+      "required_negative_slice_energy_integral": 1.1193398385083848,
+      "slice_energy": 122.12968735335788,
+      "material_fraction_requiring_negative_null": 1.0,
+      "maximum_density": 0.01110567261065208,
+      "maximum_abs_radial_pressure": 0.004427579289465285,
+      "worst_null_direction": -1,
+      "worst_material_fraction": 0.0,
+      "worst_x": -2.1,
+      "worst_geometry_null": -0.004374842534749157,
+      "worst_supplied_null": 0.008855452320350211
+    },
+    {
+      "case": "prior_thermal_n64",
+      "s": 0.5,
+      "maximum_negative_null_requirement": 0.2844961341435847,
+      "maximum_bulk_negative_null_requirement": 0.10086549803159155,
+      "maximum_requirement_before_reservoir": 0.007046848232127489,
+      "maximum_geometry_abs_null": 0.007046848232127489,
+      "maximum_geometry_fd_difference": 1.0738546462017717e-06,
+      "maximum_geometry_spline_difference": 1.0865920723891753e-05,
+      "maximum_requirement_spline_difference": 2.935409551541035e-08,
+      "required_negative_slice_energy_integral": 30.136747668090237,
+      "slice_energy": 109.21482541396689,
+      "material_fraction_requiring_negative_null": 1.0,
+      "maximum_density": 0.104940219182443,
+      "maximum_abs_radial_pressure": 0.04352200216233869,
+      "worst_null_direction": -1,
+      "worst_material_fraction": 0.015625,
+      "worst_x": -2.0937943178012555,
+      "worst_geometry_null": -0.006747884907451854,
+      "worst_supplied_null": 0.27774824923613284
+    },
+    {
+      "case": "prior_thermal_n64",
+      "s": 0.8150000000000001,
+      "maximum_negative_null_requirement": 4.656007262819896,
+      "maximum_bulk_negative_null_requirement": 4.656007262819896,
+      "maximum_requirement_before_reservoir": 0.010980773824354247,
+      "maximum_geometry_abs_null": 0.010980773824354247,
+      "maximum_geometry_fd_difference": 8.758051908766551e-07,
+      "maximum_geometry_spline_difference": 1.4783423609707191e-05,
+      "maximum_requirement_spline_difference": 3.2590388410191906e-07,
+      "required_negative_slice_energy_integral": 140.2070369171946,
+      "slice_energy": 181.2221953416356,
+      "material_fraction_requiring_negative_null": 1.0,
+      "maximum_density": 1.2056784723479794,
+      "maximum_abs_radial_pressure": 1.1222907772743087,
+      "worst_null_direction": 1,
+      "worst_material_fraction": 0.21875,
+      "worst_x": -2.0281748111741393,
+      "worst_geometry_null": -0.002461530064174213,
+      "worst_supplied_null": 4.653545732755721
+    }
+  ],
+  "preload_optimization": [],
+  "input_sha256": {
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896"
+  }
+}
