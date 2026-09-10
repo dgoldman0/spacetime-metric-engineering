@@ -1,0 +1,17 @@
+{
+  "completed_utc": "2026-09-10T01:14:56.542610+00:00",
+  "elapsed_seconds": 95.30253360420465,
+  "workers": 4,
+  "cases": [
+    "coarse",
+    "refined",
+    "time_refined",
+    "dense_source"
+  ],
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_active_transfer_reservoir.py": "52c4b6d54a3dacbc82e8e97029fce922667cd5a55c73668a173f712bfcdf803b",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6"
+  },
+  "input_manifest_sha256": "b0ceac58eabaf30e11811ec3eedf156f90e4aac211152f603354e34733cafa33",
+  "scope": "fixed active metric; necessary positive radial-stream completion and packet-exclusion test; sampled optimal preload is a lower bound"
+}

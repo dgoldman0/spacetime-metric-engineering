@@ -128,7 +128,7 @@ def prepare(args):
         'created_utc': datetime.now(timezone.utc).isoformat(), 'params': params,
         'reference_manifest_sha256': sha256_file(REFERENCE), 'medium': medium,
         'medium_representation': 'cubic moment interpolants, zero absent cells; C2 outer taper 1.9..2.1 and moving packet exclusion 0.35..0.45',
-        'metric': 'full scheduled repaired ADM fields; unit lapse/radial-scale analytic tails outside |l|=6',
+        'metric': 'full scheduled repaired ADM fields; C2 exterior blend over 5<|l|<6 to unit lapse/radial-scale analytic tails',
         'time_interval': [-1.5, 3.], 'cases': CASES, 'workers': args.workers,
         'elapsed_seconds': time.monotonic()-started,
     })

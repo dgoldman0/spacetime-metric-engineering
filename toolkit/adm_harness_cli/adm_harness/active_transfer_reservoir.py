@@ -111,6 +111,20 @@ class TabulatedActiveMedium:
             dx[i][inside] = spline.ev(times[inside], x[inside], dy=1)
             if i in (2, 3):
                 dt[i][inside] = spline.ev(times[inside], x[inside], dx=1)
+        # Complete the tabulated exterior with C2 matching. The medium is
+        # confined to |x|<2.1; this blend occupies 5<|x|<6 and is separately
+        # measured against the exact source evaluator.
+        weight, derivative = smooth_rise((6.-np.abs(x)))
+        derivative = -np.sign(x)*derivative
+        background = .5*np.log(x*x+self.core_radius**2)
+        background_x = x/(x*x+self.core_radius**2)
+        for i in range(4):
+            reference = background if i == 3 else np.zeros_like(x)
+            reference_x = background_x if i == 3 else np.zeros_like(x)
+            delta = values[i]-reference
+            dx[i] = reference_x+weight*(dx[i]-reference_x)+derivative*delta
+            dt[i] *= weight
+            values[i] = reference+weight*delta
         alpha, beta, b, radius = np.exp(values[0]), values[1], np.exp(values[2]), np.exp(values[3])
         return MetricJets(alpha, beta, b, radius, alpha*dx[0], dx[1], dt[2], dx[2], dt[3], dx[3])
 

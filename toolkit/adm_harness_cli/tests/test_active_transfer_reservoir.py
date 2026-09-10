@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 
 from adm_harness.active_transfer_reservoir import (
-    MetricJets, divergence_projections, medium_mask, required_preload,
+    MetricJets, TabulatedActiveMedium, divergence_projections, medium_mask, required_preload,
     trace_characteristics,
 )
 
@@ -118,3 +118,36 @@ def test_later_withdrawal_sets_unavoidable_earlier_energy():
     # If the middle event is in the packet, the first stream must carry 0.6
     # there. Additional initial preload only increases that exposure.
     np.testing.assert_allclose(initial+integral[1], [.6, 0.])
+
+
+def test_exterior_completion_preserves_core_and_matches_smoothly(tmp_path):
+    times, positions = np.linspace(-1., 1., 9), np.linspace(-6., 6., 97)
+    tt, xx = np.meshgrid(times, positions, indexing='ij')
+    values = dict(log_alpha=.03*tt+.02*xx, beta=.04*tt-.01*xx,
+                  log_b=.02*tt-.01*xx,
+                  log_r=.5*np.log(xx*xx+4.)+.01*tt+.03)
+    metric = tmp_path/'metric.npz'
+    medium = tmp_path/'medium.npz'
+    np.savez(metric, t=times, x=positions, core_radius=2., **values)
+    np.savez(medium, t=times, x=positions,
+             **{key: np.zeros_like(tt) for key in ('rho', 'pressure', 'current', 'angular')})
+    model = TabulatedActiveMedium(metric, medium)
+    core = model.metric(.2, np.array([-2., 0., 2.]))
+    np.testing.assert_allclose(core.alpha, np.exp(.006+.02*np.array([-2., 0., 2.])), atol=1e-14)
+    np.testing.assert_allclose(core.logb_t, .02, atol=1e-14)
+    for edge in (-6., -5., 5., 6.):
+        h = 1e-5
+        x = np.array([edge-h, edge, edge+h])
+        jets = model.metric(.2, x)
+        # The first metric derivatives also join with continuous slope (C2).
+        for gradient in (jets.alpha_x, jets.beta_x, jets.logb_x, jets.logr_x):
+            slopes = np.diff(gradient)/h
+            assert abs(slopes[0]-slopes[1]) < 2e-4
+        for values, gradient in ((jets.alpha, jets.alpha_x), (jets.beta, jets.beta_x),
+                                 (np.log(jets.b), jets.logb_x), (np.log(jets.radius), jets.logr_x)):
+            np.testing.assert_allclose((values[2]-values[0])/(2*h), gradient[1], atol=1e-8)
+    exterior = model.metric(.2, np.array([-7., 7.]))
+    np.testing.assert_array_equal(exterior.alpha, 1.)
+    np.testing.assert_array_equal(exterior.beta, 0.)
+    np.testing.assert_allclose(exterior.radius, np.sqrt(53.))
+    np.testing.assert_array_equal(exterior.logr_t, 0.)

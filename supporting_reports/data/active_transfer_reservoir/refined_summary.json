@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "case": "refined",
+      "direction": 1,
+      "metric": "fine",
+      "medium": "baseline",
+      "rays": 801,
+      "dt": 0.005,
+      "minimum_initial_proper_energy": 39021.87036505151,
+      "max_required_initial_density_weight": 137602.13934424875,
+      "max_live_stream_density": 0.013561339785879232,
+      "max_packet_interior_stream_density": 0.013561339785879232,
+      "minimum_ray_spacing": 2.1369803260284925e-07,
+      "max_abs_log_gain": 25.605573944251915,
+      "max_outer_seed_preload": -0.0,
+      "witness_s": -0.3599999999999999,
+      "witness_l": -0.3092170607189919,
+      "initial_l": -2.115,
+      "initial_preload": 43.30620947878194,
+      "witness_integral": 5.799530216194943,
+      "minimum_integral": -43.30620947878194,
+      "minimum_integral_time": -0.785
+    },
+    {
+      "case": "refined",
+      "direction": -1,
+      "metric": "fine",
+      "medium": "baseline",
+      "rays": 801,
+      "dt": 0.005,
+      "minimum_initial_proper_energy": 116.7564291941374,
+      "max_required_initial_density_weight": 37.11221032720195,
+      "max_live_stream_density": 1.0754916899546916,
+      "max_packet_interior_stream_density": 1.0754916899546916,
+      "minimum_ray_spacing": 0.0029988664308207014,
+      "max_abs_log_gain": 9.51441773518724,
+      "max_outer_seed_preload": -0.0,
+      "witness_s": -0.5499999999999999,
+      "witness_l": -0.6542490216316192,
+      "initial_l": -1.3050000000000006,
+      "initial_preload": 1.5055251143462973,
+      "witness_integral": 0.0,
+      "minimum_integral": -1.5055251143462973,
+      "minimum_integral_time": 0.48
+    }
+  ],
+  "elapsed_seconds": 46.06048792228103
+}
