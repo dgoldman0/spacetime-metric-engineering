@@ -5,8 +5,16 @@ from adm_harness.active_transfer_reservoir import divergence_projections
 from adm_harness.graded_electrothermal import fixed_kinematics, maximum_null
 from adm_harness.pressure_linked_storage import (
     balanced_end_witness, fluid_moments, minimum_positive_pressure, reduced_divergence, solve_connected_schedule,
+    retained_coefficient_program,
 )
 from test_graded_electrothermal import jets
+
+
+def test_small_coefficient_times_large_store_retains_its_force_contribution():
+    result = retained_coefficient_program(np.array([0., 1.]), method='highs-ipm', deadline=10.,
+        A_eq=np.array([[1e-10, 1.]]), b_eq=np.array([1e-6]), bounds=[(1e4, 1e4), (0., 0.)])
+    assert result.success, result.message
+    np.testing.assert_allclose(np.array([[1e-10, 1.]])@result.x, [1e-6], atol=1e-14)
 
 
 def test_connected_pressure_path_counts_accumulated_self_weight():

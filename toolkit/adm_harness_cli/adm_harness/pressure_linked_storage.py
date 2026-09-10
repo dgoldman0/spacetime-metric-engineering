@@ -8,12 +8,29 @@ either exposed explicitly or set to zero in a stronger closure control.
 """
 from __future__ import annotations
 
+import warnings
+
 import numpy as np
 from scipy.integrate import cumulative_trapezoid
+from scipy.optimize import linprog, OptimizeWarning
 
 from .graded_electrothermal import (
-    SparseRows, coefficients, maximum_null, solve_linear_program,
+    SparseRows, coefficients, maximum_null,
 )
+
+
+def retained_coefficient_program(cost, *, method, deadline, presolve=True, **kwargs):
+    """Keep small shift coefficients multiplying large volume-weighted stores.
+
+HiGHS defaults to deleting matrix entries at or below 1e-9. The active metric
+can produce small coefficients with measurable products. Its supported 1e-12
+threshold preserves these terms; full unmodified-matrix residuals are audited.
+"""
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore', message='Unrecognized options detected.*small_matrix_value', category=OptimizeWarning)
+        return linprog(cost, method=method,
+            options=dict(time_limit=deadline, presolve=presolve, small_matrix_value=1e-12,
+                         primal_feasibility_tolerance=1e-9, dual_feasibility_tolerance=1e-9), **kwargs)
 
 
 def minimum_positive_pressure(x, coefficient, drive):
@@ -105,7 +122,8 @@ def solve_connected_schedule(times, positions, c, number, initial_thermal, *,
                              kappa=3., initial_mode='fixed', ends='exposed',
                              conductivity_ceiling=1., passive=True, flux_floor=1e-8,
                              deadline=120., secondary_deadline=45., heat_floor=0.,
-                             charging_policy='unrestricted'):
+                             charging_policy='unrestricted', primary_solver='highs-ipm',
+                             presolve=True, inspect_problem=False):
     """Minimize total fluid+field peak null stress under joint conservation.
 
 U_t + (d_t ln D)*U/kappa + c*H_t = S,
@@ -194,8 +212,11 @@ runner. The initial force equation uses a forward thermal derivative.
     bounds += [(flux_floor, None)]*size+[(0., None)]
     cost = np.zeros(peak+1); cost[-1] = 1.
     equality = eq.matrix()
+    if inspect_problem:
+        return dict(A_eq=equality, b_eq=np.asarray(eq.rhs), A_ub=ub.matrix(), b_ub=np.asarray(ub.rhs),
+                    bounds=bounds, cost=cost, row_scales=np.asarray(eq.scales))
     for iteration in range(8):
-        result = solve_linear_program(cost, method='highs-ipm', deadline=deadline,
+        result = retained_coefficient_program(cost, method=primary_solver, deadline=deadline, presolve=presolve,
             A_eq=equality, b_eq=eq.rhs, A_ub=ub.matrix(), b_ub=ub.rhs, bounds=bounds)
         if not result.success:
             return dict(success=False, status=int(result.status), message=result.message,
@@ -222,7 +243,7 @@ runner. The initial force equation uses a forward thermal derivative.
         cost[size:2*size] = (weight*c['b']/c['radius']**2).ravel()
         cost /= cost.max()
         bounds[-1] = (0., optimum+peak_allowance)
-        secondary = solve_linear_program(cost, method='highs-ipm', deadline=secondary_deadline,
+        secondary = retained_coefficient_program(cost, method='highs-ipm', deadline=secondary_deadline,
             A_eq=equality, b_eq=eq.rhs, A_ub=ub.matrix(), b_ub=ub.rhs, bounds=bounds)
         secondary_message = secondary.message
         if secondary.success:

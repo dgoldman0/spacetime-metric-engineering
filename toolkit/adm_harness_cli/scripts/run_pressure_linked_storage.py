@@ -148,7 +148,7 @@ def source_comparison(model, t, x, c, u, h, number):
 
 
 def run_case(task):
-    spec, output = task
+    spec, output, solver_options = task
     name, cells, steps, duration, preparation, ends, rate, passive, policy = spec
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     patch = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
@@ -162,10 +162,10 @@ def run_case(task):
     c = fluid_coefficients(model, t, x)
     result = solve_connected_schedule(t, x, c, number, u0, initial_mode=preparation,
         ends=ends, conductivity_ceiling=rate, passive=passive, charging_policy=policy,
-        deadline=180., secondary_deadline=60.)
+        deadline=180., secondary_deadline=60., **solver_options)
     metadata = dict(case=name, cells=cells, intervals=len(t)-1, duration=duration,
                     initial_mode=preparation, ends=ends, conductivity_ceiling=rate, kappa=3., passive=passive,
-                    charging_policy=policy)
+                    charging_policy=policy, **solver_options)
     if not result['success']:
         write_json(output/(name+'_summary.json'), dict(**metadata, **result))
         print(name+': '+result['message'], flush=True)
@@ -257,6 +257,8 @@ def main():
     parser.add_argument('--output', type=Path, default=OUTPUT/'first_round')
     parser.add_argument('--pressure-paths', action='store_true')
     parser.add_argument('--force-witnesses', action='store_true')
+    parser.add_argument('--primary-solver', choices=('highs-ipm', 'highs-ds'), default='highs-ipm')
+    parser.add_argument('--disable-presolve', action='store_true')
     args = parser.parse_args()
     if not 1 <= args.workers <= 6:
         parser.error('one to six workers required')
@@ -273,8 +275,9 @@ def main():
         ROOT/'supporting_reports/data/le_metric_c2_repair/manifest.json', PREVIOUS/'smooth_joint_refined_states.npz']
     hashes = {str(path.relative_to(ROOT)): sha256_file(path) for path in software+inputs}
     selected = [case for case in CASES if case[0] in args.cases]
+    solver_options = dict(primary_solver=args.primary_solver, presolve=not args.disable_presolve)
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
-        list(pool.map(run_case, [(case, args.output) for case in selected]))
+        list(pool.map(run_case, [(case, args.output, solver_options) for case in selected]))
         if args.pressure_paths:
             list(pool.map(archived_pressure_path, [(time, nodes, args.output) for time in (0., .5, 1.285) for nodes in (513, 1025)]))
     if args.force_witnesses:
@@ -284,6 +287,7 @@ def main():
             raise RuntimeError('software or input changed during run: '+name)
     write_json(args.output/'manifest.json', dict(completed_utc=datetime.now(timezone.utc).isoformat(), workers=args.workers,
         cases=args.cases, pressure_paths=args.pressure_paths, force_witnesses=args.force_witnesses, software_and_input_sha256=hashes,
+        **solver_options,
         git_revision=subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip(),
         scope='inverse full-patch thermal-fluid and radial-field conservation; prescribed active worldlines, explicit end loads, actual EOS and charge transport completion open',
         output_sha256={p.name: sha256_file(p) for p in sorted(args.output.iterdir()) if p.is_file()}))

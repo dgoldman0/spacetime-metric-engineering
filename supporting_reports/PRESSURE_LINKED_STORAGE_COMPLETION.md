@@ -202,3 +202,26 @@ energy as usable work, so they remain generous physical screens. A charging
 history that draws fluid heat while possessing no assigned heat-dump port
 requires an additional free-energy store, a work-transfer current, or a changed
 thermal exchange. Its tensor and reciprocal exchange must enter the assembly.
+
+## Coefficient-retention audit
+
+The finite bidirectional comparison converges to a small supplied-null peak:
+0.0938878 at 64 cells and 0.0937354 at 128 cells with twice as many time
+intervals. The refined initial slice energy is 632.965; the independent force
+residual is 0.0529% of the summed equation-term magnitudes.
+
+However, the first heat-engine solver status conflicts with the feasible-set
+ordering: its constraints include every direct-work history, and a direct-work
+history succeeds on the same grid. Direct substitution of that accepted history
+into the heat-engine problem gives maximum scaled equality residual
+9.45e-9 and inequality violation 1.29e-14. This warrants a numerical audit of
+the infeasibility statuses before they support a physical conclusion.
+
+HiGHS deletes coefficients at or below 1e-9 by default, as documented in its
+[matrix-size options](https://ergo-code.github.io/HiGHS/dev/options/definitions/#small_matrix_value).
+The large volume-weighted stores can give small shift coefficients a measurable
+product. The audit therefore uses the supported 1e-12 retention threshold for
+both optimization stages and checks the original matrices after solving.
+A manufactured regression verifies a small coefficient multiplying a large
+store. Earlier infeasibility labels remain archived solver outcomes; the
+retained-coefficient rerun determines the final comparison.
