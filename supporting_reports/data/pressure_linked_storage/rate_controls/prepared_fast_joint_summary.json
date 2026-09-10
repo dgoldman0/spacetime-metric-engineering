@@ -1,0 +1,17 @@
+{
+  "case": "prepared_fast_joint",
+  "cells": 128,
+  "intervals": 257,
+  "duration": 1.285,
+  "initial_mode": "prepared",
+  "ends": "exposed",
+  "conductivity_ceiling": 10.0,
+  "kappa": 3.0,
+  "passive": true,
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "variables": 66565,
+  "equalities": 66177,
+  "inequalities": 299280
+}

@@ -104,7 +104,8 @@ def reduced_divergence(c, number, thermal, thermal_t, pressure_x, field_t, field
 def solve_connected_schedule(times, positions, c, number, initial_thermal, *,
                              kappa=3., initial_mode='fixed', ends='exposed',
                              conductivity_ceiling=1., passive=True, flux_floor=1e-8,
-                             deadline=120., secondary_deadline=45., heat_floor=0.):
+                             deadline=120., secondary_deadline=45., heat_floor=0.,
+                             charging_policy='unrestricted'):
     """Minimize total fluid+field peak null stress under joint conservation.
 
 U_t + (d_t ln D)*U/kappa + c*H_t = S,
@@ -126,6 +127,8 @@ runner. The initial force equation uses a forward thermal derivative.
         raise ValueError('positive discharge rate required')
     if flux_floor < 0:
         raise ValueError('nonnegative field floor required')
+    if charging_policy not in ('unrestricted', 'endpoint_work', 'heat_engine'):
+        raise ValueError('registered local charging-energy policy required')
     size, peak = nt*nx, 2*nt*nx
     eq, ub = SparseRows(peak+1), SparseRows(peak+1)
     for j in range(nx):
@@ -142,6 +145,14 @@ runner. The initial force equation uses a forward thermal derivative.
             if conductivity_ceiling is not None:
                 decay = np.exp(-conductivity_ceiling*(c['lapse'][i, j]+c['lapse'][i-1, j])*dt)
                 ub.add([(size+k-nx, decay), (size+k, -1.)])
+                if not passive:
+                    ub.add([(size+k, decay), (size+k-nx, -1.)])
+            # Incoming endpoint energy is generously available as coherent
+            # work. A heat engine can additionally extract fluid heat only
+            # where the endpoint has a net outgoing-energy (dump) port.
+            if charging_policy == 'endpoint_work' or (charging_policy == 'heat_engine' and c['source'][i, j] >= 0):
+                supplied_work = max(0., c['source'][i, j])/c['c'][i, j]
+                ub.add([(size+k, 1/dt), (size+k-nx, -1/dt)], supplied_work)
     enthalpy_factor = 1+1/kappa
     for i in range(nt):
         i0, i1 = (i-1, i) if i else (0, 1)

@@ -163,3 +163,42 @@ still needs a supplied external reaction. Additional divisions of the same
 fluid and field leave the summed force balance intact. A physical wall or
 support adds its own tensor and can change that balance; its capacity is
 precisely the remaining construction requirement.
+
+## Bidirectional conversion changes the interior result
+
+The final rate controls recover 64-cell passive histories at peak supplied
+null stress 7.24840 for rate ten and 7.11498 with unrestricted discharge.
+The 128-cell, 256-interval rate-ten control remains infeasible. Increasing
+the discharge rate therefore supplies no converged low-burden passive history.
+
+In contrast, permitting both charging and discharging produces a 64-cell
+history with peak supplied null stress 0.0913135, initial slice energy 625.359,
+and fade slice energy 43.9036. The remaining negative-null requirement at fade
+is 0.102688. The left and right peak terminal-traction magnitudes are 0.010383
+and 0.043245. The fluid carries its actual thermal pressure, and all interior
+force equations are present. Its sampled speed remains the prescribed
+coordinate-fixed target, at most 0.202141c.
+
+This control identifies a useful constitutive distinction: a field that can
+recharge locally has substantially more freedom to match the changing fluid
+pressure and geometry than a passively discharging store. Its unconstrained
+interval-averaged charging and discharge rates reach 228 and 423. The next
+comparison imposes finite rates in both directions and refines the grid.
+
+Local charging also has a thermodynamic requirement. Define C=H_s/(N_lapse R^4)
+and E=-Gamma(P_endpoint-v F_endpoint). Positive C stores work in the electric
+field; the fluid receives E-C as nonmechanical energy. Directly assigning
+incoming endpoint energy to electrical work requires C <= max(E,0).
+Where E<0, the endpoint can instead be a heat-dump port for a heat engine:
+heat extracted from the fluid is C-E, electrical work is C, and dump heat
+is -E. The required efficiency is C/(C-E). Its physical temperature ratio
+and entropy balance still require the endpoint medium's constitutive law.
+
+Two additional inverse controls isolate this requirement. The direct-work
+control limits charging to incoming endpoint energy. The optimistic heat-engine
+control also allows fluid heat extraction where the endpoint exports energy,
+while requiring direct work elsewhere. Both controls grant all incoming endpoint
+energy as usable work, so they remain generous physical screens. A charging
+history that draws fluid heat while possessing no assigned heat-dump port
+requires an additional free-energy store, a work-transfer current, or a changed
+thermal exchange. Its tensor and reciprocal exchange must enter the assembly.

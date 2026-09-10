@@ -1,0 +1,52 @@
+{
+  "completed_utc": "2026-09-10T15:02:31.865653+00:00",
+  "workers": 4,
+  "cases": [
+    "prepared_exposed_fast",
+    "prepared_fast_joint",
+    "prepared_exposed_free_rate",
+    "powered_exposed_n64"
+  ],
+  "pressure_paths": false,
+  "force_witnesses": false,
+  "software_and_input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_pressure_linked_storage.py": "d8aa1988e0bcd4f3bc4f93de79233c6b21dd381c868e4ee7020513e2f2d9befe",
+    "toolkit/adm_harness_cli/scripts/run_active_transfer_reservoir.py": "52c4b6d54a3dacbc82e8e97029fce922667cd5a55c73668a173f712bfcdf803b",
+    "toolkit/adm_harness_cli/adm_harness/pressure_linked_storage.py": "45d2d613994070280280a361fd09f34042bf6c6030509a1658136109ba00b87b",
+    "toolkit/adm_harness_cli/adm_harness/graded_electrothermal.py": "b4f85303b43de58a90e67d85032960082c385886d5aa15c1293e93b5d4da2b0b",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+    "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+    "toolkit/adm_harness_cli/adm_harness/material_ensemble.py": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+    "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/reservoir_feasibility.py": "01d0a13d74ee427524842c074f05336130fcef5659d151567fe055bd21a22fad",
+    "toolkit/adm_harness_cli/adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "supporting_reports/data/le_metric_c2_repair/manifest.json": "9eceaac0a835a0236fd58104a379a05284fed9749c69f4e99f022313359aee0d",
+    "supporting_reports/data/graded_electrothermal/finite_contacts/interior_solver/smooth_joint_refined_states.npz": "46d3cf6e6b70e9f64055cf045c30575446d1ddca35042cc3cafc7af6a51eb876"
+  },
+  "git_revision": "843a7101c88c55437414cf92435abd4ab275605c",
+  "scope": "inverse full-patch thermal-fluid and radial-field conservation; prescribed active worldlines, explicit end loads, actual EOS and charge transport completion open",
+  "output_sha256": {
+    "powered_exposed_n64_checks.csv": "385cde45b8b57c802e80a6a46f0bc483e07cab1b0c027a52dc3b9a31de91a6a1",
+    "powered_exposed_n64_points.csv": "0a928135b880cecc6a3c9dd57f4806460810befedbe98124bfabc55a5b134e89",
+    "powered_exposed_n64_ports.csv": "4e0cccc8cd66501174fd8cb47d3ab3711c2b2d285d4f80e60ec27eac58101e12",
+    "powered_exposed_n64_states.npz": "dcd77df78592e1f62315f9bd2d4372e42c5121b8a9ead76c91610b676d93c70b",
+    "powered_exposed_n64_summary.json": "2066310c3bac7b383411127858df73d685a032c52cc9a810560a35f316c7f144",
+    "prepared_exposed_fast_checks.csv": "b73339af1508964f27d535b4516080735f547a2c13085cfbc6e998d86e44be59",
+    "prepared_exposed_fast_points.csv": "0065d9c755b0510d26f57afc1030c7ed5e358cc40e69bf7d6a60698976d3a897",
+    "prepared_exposed_fast_ports.csv": "59d8f4b7b358f9a8d3fbb373c887008a7a2818ca220583dc7d6fc9db3c418b94",
+    "prepared_exposed_fast_states.npz": "f7fce7112aa5b177b81b2477b710e2ba2f3845df48a273ecc1482cbd11e531d6",
+    "prepared_exposed_fast_summary.json": "3f9f04f7e61ba0ab999f908e5d47f75a1fd8d1d375c590747333726decac70f3",
+    "prepared_exposed_free_rate_checks.csv": "af5d81d9855fec0588f42a13a4cee9e392b3046c8f421e2a46f3ec10a7cd36b7",
+    "prepared_exposed_free_rate_points.csv": "10b0195f4138e35dfcc8f68336ae3132a17e4f066f3360e3d161aea612a2ce1d",
+    "prepared_exposed_free_rate_ports.csv": "8a550eae5b84fe3b24fecfac8a1f9b75605bf3761ed6b2f896fd7179bc481d36",
+    "prepared_exposed_free_rate_states.npz": "7bef334daa8011e3bb40400c3aadf70cac5f612337aba8310e180c147e1bfdb3",
+    "prepared_exposed_free_rate_summary.json": "a7794639906d5c6af396593d4f5130cbd1645e502943572f38651ec342693be2",
+    "prepared_fast_joint_summary.json": "49f9ba56fb8ddbafd6c8c2924f489b4e34aa88edab84a5ca1869943936c09273"
+  }
+}

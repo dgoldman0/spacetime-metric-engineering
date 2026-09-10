@@ -177,3 +177,19 @@ def test_adiabatic_homogeneous_expansion_retains_pressure_work():
         np.testing.assert_allclose(result['flux_energy'], 0., atol=2e-5)
         errors.append(abs(result['thermal'][-1, 2]-3*np.exp(-rate/3)))
     assert 1.8 < errors[0]/errors[1] < 2.2
+
+
+def test_direct_endpoint_work_gate_prevents_unfunded_field_charging():
+    t, x = np.linspace(0, .5, 9), np.linspace(0, 1, 9)
+    c = flat_coefficients(len(t), len(x))
+    # A time-growing body-force gradient rewards growing H at the left end.
+    c['force'] = np.broadcast_to(-.3*t[:, None], c['force'].shape)
+    free = solve_connected_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*3,
+        passive=False, conductivity_ceiling=1., charging_policy='unrestricted')
+    gated = solve_connected_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*3,
+        passive=False, conductivity_ceiling=1., charging_policy='endpoint_work')
+    assert free['success'] and gated['success']
+    assert np.diff(free['flux_energy'], axis=0).max() > 1e-4
+    assert np.diff(gated['flux_energy'], axis=0).max() < 1e-8
+    rate = np.log(free['flux_energy'][1:]/free['flux_energy'][:-1])/(2*np.diff(t)[:, None])
+    assert abs(rate).max() < 1.0001

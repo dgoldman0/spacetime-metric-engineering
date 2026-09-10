@@ -49,6 +49,13 @@ CASES = [
 ]
 CASES = [case+(True,) for case in CASES]
 CASES += [('powered_exposed_n64', 64, 128, 1.285, 'prepared', 'exposed', None, False)]
+CASES += [('powered_finite_n64', 64, 128, 1.285, 'prepared', 'exposed', 1., False),
+          ('powered_finite_joint', 128, 256, 1.285, 'prepared', 'exposed', 1., False),
+          ('powered_fast_joint', 128, 256, 1.285, 'prepared', 'exposed', 10., False),
+          ('powered_free_joint', 128, 256, 1.285, 'prepared', 'exposed', None, False)]
+CASES = [case+('unrestricted',) for case in CASES]
+CASES += [('endpoint_work_n64', 64, 128, 1.285, 'prepared', 'exposed', None, False, 'endpoint_work'),
+          ('heat_engine_n64', 64, 128, 1.285, 'prepared', 'exposed', None, False, 'heat_engine')]
 
 
 def write_json(path, value):
@@ -142,7 +149,7 @@ def source_comparison(model, t, x, c, u, h, number):
 
 def run_case(task):
     spec, output = task
-    name, cells, steps, duration, preparation, ends, rate, passive = spec
+    name, cells, steps, duration, preparation, ends, rate, passive, policy = spec
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     patch = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
         ElectricalLaw(energy_ratio=4., conductivity=.1, profile='capacitor'),
@@ -154,9 +161,11 @@ def run_case(task):
     u0 = number*initial['heat']
     c = fluid_coefficients(model, t, x)
     result = solve_connected_schedule(t, x, c, number, u0, initial_mode=preparation,
-        ends=ends, conductivity_ceiling=rate, passive=passive, deadline=180., secondary_deadline=60.)
+        ends=ends, conductivity_ceiling=rate, passive=passive, charging_policy=policy,
+        deadline=180., secondary_deadline=60.)
     metadata = dict(case=name, cells=cells, intervals=len(t)-1, duration=duration,
-                    initial_mode=preparation, ends=ends, conductivity_ceiling=rate, kappa=3., passive=passive)
+                    initial_mode=preparation, ends=ends, conductivity_ceiling=rate, kappa=3., passive=passive,
+                    charging_policy=policy)
     if not result['success']:
         write_json(output/(name+'_summary.json'), dict(**metadata, **result))
         print(name+': '+result['message'], flush=True)
@@ -181,6 +190,7 @@ def run_case(task):
         maximum_slice_energy=float(energy.max()), maximum_pressure=float(pressure.max()),
         maximum_left_traction=float(abs(traction[:, 0]).max()), maximum_right_traction=float(abs(traction[:, -1]).max()),
         maximum_discharge_rate=float(sigma.max()), maximum_field_increase=float(max(0., np.diff(h, axis=0).max())),
+        maximum_charge_rate=float(max(0., -sigma.min())),
         maximum_sound_speed_squared=float((4*pressure/(3*(number/c['rest_volume']+4*pressure))).max()),
         minimum_packet_gap=float((abs(x[None, :]-t[:, None])-.35).min()), independent_checks=check_metrics, phases=phases)
     np.savez_compressed(output/(name+'_states.npz'), t=t, x=x, thermal=u, flux_energy=h, number=number, **c)
