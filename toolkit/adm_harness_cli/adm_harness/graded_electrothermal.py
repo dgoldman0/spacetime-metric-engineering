@@ -139,9 +139,15 @@ class SparseRows:
                           shape=(len(self.rhs), self.columns)).tocsr()
 
 
+def solve_linear_program(cost, *, method, deadline, **kwargs):
+    options = dict(time_limit=deadline, primal_feasibility_tolerance=1e-9,
+                   dual_feasibility_tolerance=1e-9)
+    return linprog(cost, method=method, options=options, **kwargs)
+
+
 def solve_schedule(times, positions, c, number, initial_energy, *, ports=(), port_width=.1,
                    passive=True, flux_floor=1e-8, deadline=120., smooth_contacts=False,
-                   conductivity_ceiling=None):
+                   conductivity_ceiling=None, primary_solver='highs'):
     """Minimax supplied null stress, followed by minimum time-integrated energy.
 
 Backward Euler energy balance and spatial finite-volume force balance retain
@@ -157,6 +163,8 @@ retain energy balance and expose the omitted mechanical force equation.
         raise ValueError('positive reference, admissible initial energy, and flux floor required')
     if conductivity_ceiling is not None and conductivity_ceiling <= 0:
         raise ValueError('positive proper conductivity ceiling required')
+    if primary_solver not in ('highs', 'highs-ipm'):
+        raise ValueError('registered HiGHS simplex or interior-point method required')
     amplitudes = nt*len(ports) if smooth_contacts else 0
     size, peak = nt*nx, 2*nt*nx+amplitudes
     eq, ub = SparseRows(peak+1), SparseRows(peak+1)
@@ -218,10 +226,8 @@ retain energy balance and expose the omitted mechanical force equation.
     matrix = eq.matrix()
     last_result = None
     for iteration in range(7):
-        result = linprog(cost, A_ub=ub.matrix(), b_ub=ub.rhs, A_eq=matrix, b_eq=eq.rhs,
-                         bounds=bounds, method='highs',
-                         options={'time_limit': deadline, 'primal_feasibility_tolerance': 1e-9,
-                                  'dual_feasibility_tolerance': 1e-9})
+        result = solve_linear_program(cost, A_ub=ub.matrix(), b_ub=ub.rhs, A_eq=matrix, b_eq=eq.rhs,
+                                      bounds=bounds, method=primary_solver, deadline=deadline)
         if not result.success:
             return dict(success=False, message=result.message)
         m = result.x[:size].reshape(nt, nx)
@@ -246,9 +252,8 @@ retain energy balance and expose the omitted mechanical force equation.
     cost /= cost.max()
     peak_allowance = 1e-6*max(1., optimum)
     bounds[-1] = (0., optimum+peak_allowance)
-    secondary = linprog(cost, A_ub=ub.matrix(), b_ub=ub.rhs, A_eq=matrix, b_eq=eq.rhs,
-                        bounds=bounds, method='highs-ipm', options={'time_limit': min(deadline, 90.),
-                            'primal_feasibility_tolerance': 1e-9, 'dual_feasibility_tolerance': 1e-9})
+    secondary = solve_linear_program(cost, A_ub=ub.matrix(), b_ub=ub.rhs, A_eq=matrix, b_eq=eq.rhs,
+                                     bounds=bounds, method='highs-ipm', deadline=min(deadline, 90.))
     # Preserve the verified primary optimum if the optional tie-break fails.
     secondary_used = bool(secondary.success)
     if secondary_used:
@@ -262,6 +267,7 @@ retain energy balance and expose the omitted mechanical force equation.
                 optimal_supplied_null_peak=optimum, angle_iterations=iteration+1,
                 secondary_energy_optimization_used=secondary_used, secondary_status=secondary.message,
                 secondary_peak_allowance=peak_allowance,
+                primary_solver=primary_solver, interior_point_crossover=True,
                 normalized_equality_residual=float(abs(matrix@vector-eq.rhs).max()),
                 raw_equality_residual=float((abs(matrix@vector-eq.rhs)*eq.scales).max()),
                 inequality_violation=float(max(0., np.max(ub.matrix()@vector-ub.rhs))),

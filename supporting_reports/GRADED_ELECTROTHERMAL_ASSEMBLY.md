@@ -197,3 +197,21 @@ primary optimum and records the missing energy tie-break explicitly.
 
 The remaining contact material and full source completion determine the
 stopping gate after this finite-response comparison.
+
+The first finite-profile suite completed the 32- and 64-cell cases, the faster
+response control, and the continuous-field recheck. Three larger linear
+programs reached their time limits. At 64 cells the smooth-contact case has
+initial energy 431.30 and supplied null peak 0.10513, with maximum effective
+conductivity 1. Its contact force density is 0.12098. The local angular-only
+support obstruction persists. Increasing the permitted conductivity to 10
+reduces the initial energy to 332.49 and supplied null peak to 0.08563.
+
+The final numerical refinement uses the HiGHS interior-point method for the
+primary optimization. An independent trial completed the formerly timed-out
+64-cell time refinement in 22 seconds. Both solver methods pass the analytic
+capacitor and smooth-contact tests; the focused and existing tensor checks
+total 19 passing cases. A joint spatial and temporal refinement joins the
+separate refinements to assess the remaining discretization sensitivity.
+Each primary solve retains the 180-second bound and each energy tie-break
+the 90-second bound. This final solver comparison retains the same physical
+equations, finite contact profile, and response-rate constraints.

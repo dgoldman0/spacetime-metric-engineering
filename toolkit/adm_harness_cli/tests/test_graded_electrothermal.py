@@ -78,10 +78,11 @@ def flat_coefficients(nt, nx):
                 acceleration=zero, angular_gradient=zero)
 
 
-def test_passive_schedule_recovers_exact_flat_capacitor_and_positive_buffer():
+@pytest.mark.parametrize('solver', ['highs', 'highs-ipm'])
+def test_passive_schedule_recovers_exact_flat_capacitor_and_positive_buffer(solver):
     t, x = np.linspace(0, 1, 9), np.linspace(0, 1, 9)
     c = flat_coefficients(len(t), len(x))
-    result = solve_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*2)
+    result = solve_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*2, primary_solver=solver)
     assert result['success']
     np.testing.assert_allclose(result['flux_energy'], np.broadcast_to(1e-8+.16*x, (len(t), len(x))), atol=2e-6)
     np.testing.assert_allclose(result['mass_energy'], np.broadcast_to(2-.08*t[:, None], (len(t), len(x))), atol=2e-6)
@@ -106,13 +107,14 @@ def test_port_sign_and_hoop_force_cone_count_opposite_support_divergence():
     assert low[0] > 0 and high[1] < 0
 
 
-def test_smooth_contacts_preserve_finite_force_shape_and_discharge_bound():
+@pytest.mark.parametrize('solver', ['highs', 'highs-ipm'])
+def test_smooth_contacts_preserve_finite_force_shape_and_discharge_bound(solver):
     t, x = np.linspace(0, 1, 13), np.linspace(0, 1, 17)
     c = flat_coefficients(len(t), len(x))
     c['force'][:] = 0.
     c['force'][:, 6:11] = .16
     result = solve_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*2,
-                            ports=(.5,), port_width=.5, smooth_contacts=True, conductivity_ceiling=1.)
+                            ports=(.5,), port_width=.5, smooth_contacts=True, conductivity_ceiling=1., primary_solver=solver)
     assert result['success']
     normal, _, _ = force_ports(t, x, c, result['mass_energy'], result['flux_energy'])
     profile = contact_profiles(x, (.5,), .5)[0]

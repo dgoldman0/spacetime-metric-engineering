@@ -6,6 +6,7 @@ from pathlib import Path
 import argparse
 import json
 import multiprocessing
+import subprocess
 
 import numpy as np
 import pandas as pd
@@ -47,6 +48,7 @@ FINITE_CASES = [
     ('smooth_reset', 64, 300, 3., PORTS, 1e-8, True, 1.),
     ('smooth_fast_discharge', 64, 128, 1.285, PORTS, 1e-8, True, 10.),
     ('continuous_recheck', 64, 128, 1.285, (), 1e-8, False, None),
+    ('smooth_joint_refined', 128, 256, 1.285, PORTS, 1e-8, True, 1.),
 ]
 
 
@@ -101,7 +103,7 @@ def independent_checks(model, t, x, m, h, port_mask):
 
 
 def run_case(task):
-    spec, output = task
+    spec, output, primary_solver = task
     name, cells, steps, duration, ports, floor, smooth_contacts, sigma_limit = spec
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     patch = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
@@ -114,7 +116,8 @@ def run_case(task):
     m0 = number*(1+initial['heat'])
     c = coefficients(model, t, x)
     result = solve_schedule(t, x, c, number, m0, ports=ports, flux_floor=floor, deadline=180.,
-                            smooth_contacts=smooth_contacts, conductivity_ceiling=sigma_limit)
+                            smooth_contacts=smooth_contacts, conductivity_ceiling=sigma_limit,
+                            primary_solver=primary_solver)
     if not result['success']:
         write_json(output/(name+'_summary.json'), dict(case=name, **result))
         print(name+': '+result['message'], flush=True)
@@ -217,6 +220,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--suite', choices=('relaxed', 'finite'), default='relaxed')
+    parser.add_argument('--primary-solver', choices=('highs', 'highs-ipm'), default='highs')
     parser.add_argument('--cases', nargs='+', choices=[case[0] for case in CASES+FINITE_CASES])
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
@@ -236,12 +240,14 @@ def main():
     suite = CASES if args.suite == 'relaxed' else FINITE_CASES
     selected = [case for case in suite if args.cases is None or case[0] in args.cases]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
-        list(pool.map(run_case, [(case, args.output) for case in selected]))
+        list(pool.map(run_case, [(case, args.output, args.primary_solver) for case in selected]))
     for name, expected in hashes.items():
         if sha256_file(ROOT/name) != expected:
             raise RuntimeError('software or input changed during run: '+name)
     write_json(args.output/'manifest.json', dict(completed_utc=datetime.now(timezone.utc).isoformat(), workers=args.workers,
         suite=args.suite, cases=[case[0] for case in selected], software_and_input_sha256=hashes,
+        primary_solver=args.primary_solver,
+        git_revision=subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip(),
         temporal_boundary_curvature='quadratic C2 extension of the endpoint time jets in the unblended metric core',
         scope='inverse conservation screen on active late patch; pressure-free local stores and passive radial Maxwell fields; segmented cases expose finite force collars; terminal material, current inertia, confinement, control dynamics and complete source remain open',
         output_sha256={p.name: sha256_file(p) for p in sorted(args.output.iterdir()) if p.name != 'manifest.json' and p.is_file()}))

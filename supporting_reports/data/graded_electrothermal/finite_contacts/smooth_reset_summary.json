@@ -1,0 +1,5 @@
+{
+  "case": "smooth_reset",
+  "success": false,
+  "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)"
+}
