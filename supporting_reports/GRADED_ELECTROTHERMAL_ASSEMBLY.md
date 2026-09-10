@@ -171,8 +171,29 @@ difference at exactly \(s=3\) crosses the metric table's temporal boundary;
 that entry requires a smooth boundary extension before use as a curvature
 error estimate. The direct repaired-geometry demand uses its full stencil.
 
-A bounded follow-up will impose a smooth fixed contact profile and a finite
-proper discharge rate, retain the independent divergence checks, and resolve
-the temporal-boundary curvature diagnostic. These changes address the two
-regularity defects directly. The remaining contact material and full source
-completion determine the stopping gate.
+A bounded follow-up imposes a smooth fixed contact profile and a finite
+proper discharge rate. Within each band, the coordinate profile is
+proportional to \((1-z^2)^3\), \(z=2(x-x_c)/0.1\), and vanishes outside.
+Its integral is one. A single signed amplitude at each time specifies the
+band's integrated force, with normal force density
+\(A(s)\psi(x)/(4\pi BR^2)\). The amplitude joins the simultaneous energy
+and momentum solve. This resolves the spatial concentration freedom.
+
+The rate control requires
+\(H_{i+1}\geq H_i\exp[-2\sigma_{\max}\Delta\tau_i]\), using the
+trapezoidal proper-time interval. The main comparison uses
+\(\sigma_{\max}=1\), with a value of 10 as a response sensitivity. These
+are specified model response rates for comparing source costs, with physical
+time conversion \(L/c\); a material conductivity and current-relaxation law
+remain to be supplied. They carry no general buildability threshold.
+
+The follow-up retains the independent divergence checks and uses a quadratic
+extension of the metric's temporal jets for curvature stencils crossing the
+table boundary. Nine focused tests now include the finite contact profile,
+its opposite momentum balance, the rate bound, and temporal jet continuity.
+The secondary optimization uses an interior-point solve and a numerical
+peak allowance of \(10^{-6}\max(1,z_*)\). Its failure preserves the checked
+primary optimum and records the missing energy tie-break explicitly.
+
+The remaining contact material and full source completion determine the
+stopping gate after this finite-response comparison.

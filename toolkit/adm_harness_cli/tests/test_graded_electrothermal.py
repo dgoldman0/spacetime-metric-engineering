@@ -3,7 +3,8 @@ import pytest
 
 from adm_harness.active_transfer_reservoir import MetricJets, divergence_projections
 from adm_harness.graded_electrothermal import (
-    fixed_kinematics, force_ports, hoop_force_cone, maximum_null, moments, solve_schedule,
+    contact_profiles, fixed_kinematics, force_ports, hoop_force_cone, maximum_null,
+    moments, solve_schedule, smooth_spline_scalars,
 )
 
 
@@ -103,3 +104,35 @@ def test_port_sign_and_hoop_force_cone_count_opposite_support_divergence():
                                        np.array([-.1, -.1, .1]))
     np.testing.assert_array_equal(allowed, [False, True, True])
     assert low[0] > 0 and high[1] < 0
+
+
+def test_smooth_contacts_preserve_finite_force_shape_and_discharge_bound():
+    t, x = np.linspace(0, 1, 13), np.linspace(0, 1, 17)
+    c = flat_coefficients(len(t), len(x))
+    c['force'][:] = 0.
+    c['force'][:, 6:11] = .16
+    result = solve_schedule(t, x, c, np.ones(len(x)), np.ones(len(x))*2,
+                            ports=(.5,), port_width=.5, smooth_contacts=True, conductivity_ceiling=1.)
+    assert result['success']
+    normal, _, _ = force_ports(t, x, c, result['mass_energy'], result['flux_energy'])
+    profile = contact_profiles(x, (.5,), .5)[0]
+    expected = result['contact_amplitudes']*profile[None, :]/(4*np.pi*4)
+    np.testing.assert_allclose(normal, expected, atol=1e-8)
+    hh = result['flux_energy']
+    rate = np.log(hh[:-1]/hh[1:])/(2*np.diff(t)[:, None])
+    assert rate.max() < 1.0001
+    assert np.diff(hh, axis=0).max() < 1e-9
+
+
+def test_temporal_curvature_extension_preserves_quadratic_boundary_jets():
+    from scipy.interpolate import RectBivariateSpline
+    t, x = np.linspace(0, 1, 7), np.linspace(-2, 2, 9)
+    tt, xx = np.meshgrid(t, x, indexing='ij')
+    class Model:
+        t_min, t_max = 0., 1.
+        metric_splines = [RectBivariateSpline(t, x, factor*(.1*tt**2+.03*xx)) for factor in (1, 2, 3, 4)]
+    value = smooth_spline_scalars(Model(), 1.002, -.3)
+    base = .1*1.002**2-.009
+    np.testing.assert_allclose([np.log(value['alpha']), value['beta'],
+                               .5*np.log(value['gamma_ll']), .5*np.log(value['gamma_omega'])],
+                              base*np.arange(1, 5), atol=1e-14)

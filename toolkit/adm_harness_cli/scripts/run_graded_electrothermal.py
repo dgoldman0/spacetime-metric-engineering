@@ -16,7 +16,7 @@ from adm_harness.electrothermal_endpoint import ElectricalLaw
 from adm_harness.geometry_boundary import evaluate_demand
 from adm_harness.graded_electrothermal import (
     coefficients, fixed_kinematics, force_ports, hoop_force_cone, maximum_null,
-    moments, solve_schedule,
+    moments, solve_schedule, smooth_spline_scalars,
 )
 from adm_harness.metric_regularity import regularized_scalars
 from adm_harness.relaxing_material_ensemble import RelaxingMaterialEnsemble, StrainRelaxation
@@ -37,6 +37,16 @@ CASES = [
     ('segmented_n128', 128, 256, 1.285, PORTS, 1e-8),
     ('segmented_reset', 64, 300, 3., PORTS, 1e-8),
     ('segmented_flux_floor', 64, 128, 1.285, PORTS, 1e-6),
+]
+CASES = [case+(False, None) for case in CASES]
+FINITE_CASES = [
+    ('smooth_n32', 32, 64, 1.285, PORTS, 1e-8, True, 1.),
+    ('smooth_n64', 64, 128, 1.285, PORTS, 1e-8, True, 1.),
+    ('smooth_time_refined', 64, 256, 1.285, PORTS, 1e-8, True, 1.),
+    ('smooth_space_refined', 128, 128, 1.285, PORTS, 1e-8, True, 1.),
+    ('smooth_reset', 64, 300, 3., PORTS, 1e-8, True, 1.),
+    ('smooth_fast_discharge', 64, 128, 1.285, PORTS, 1e-8, True, 10.),
+    ('continuous_recheck', 64, 128, 1.285, (), 1e-8, False, None),
 ]
 
 
@@ -92,7 +102,7 @@ def independent_checks(model, t, x, m, h, port_mask):
 
 def run_case(task):
     spec, output = task
-    name, cells, steps, duration, ports, floor = spec
+    name, cells, steps, duration, ports, floor, smooth_contacts, sigma_limit = spec
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     patch = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
         ElectricalLaw(energy_ratio=4., conductivity=.1, profile='capacitor'),
@@ -103,12 +113,14 @@ def run_case(task):
     number = patch.law.scale*patch.mass/initial['volume']
     m0 = number*(1+initial['heat'])
     c = coefficients(model, t, x)
-    result = solve_schedule(t, x, c, number, m0, ports=ports, flux_floor=floor, deadline=180.)
+    result = solve_schedule(t, x, c, number, m0, ports=ports, flux_floor=floor, deadline=180.,
+                            smooth_contacts=smooth_contacts, conductivity_ceiling=sigma_limit)
     if not result['success']:
         write_json(output/(name+'_summary.json'), dict(case=name, **result))
         print(name+': '+result['message'], flush=True)
         return
     m, h, mask = (result.pop(key) for key in ('mass_energy', 'flux_energy', 'port_mask'))
+    amplitudes = result.pop('contact_amplitudes')
     supplied = moments(m, h, c)
     peak_null, directions = maximum_null(supplied)
     energies = 4*np.pi*np.trapezoid(c['gamma']*m+c['b']*h/c['radius']**2, x, axis=1)
@@ -139,7 +151,8 @@ def run_case(task):
     check_frame.to_csv(output/(name+'_independent_checks.csv'), index=False)
     sigma = np.log(h[:-1]/h[1:])/(2*np.diff(t)[:, None]*.5*(c['lapse'][:-1]+c['lapse'][1:]))
     summary = dict(case=name, cells=cells, time_intervals=len(t)-1, duration=duration, ports=list(ports),
-        port_coordinate_width=.1, flux_floor=floor, **result,
+        port_coordinate_width=.1, flux_floor=floor, smooth_contacts=smooth_contacts,
+        proper_conductivity_ceiling=sigma_limit, **result,
         maximum_supplied_null=float(peak_null.max()), maximum_abs_velocity=float(abs(c['v']).max()),
         minimum_heat=float((m/number[None, :]-1).min()), maximum_heat=float((m/number[None, :]-1).max()),
         initial_slice_energy=float(energies[0]), maximum_slice_energy=float(energies.max()),
@@ -165,9 +178,7 @@ def run_case(task):
         medium = model.medium(time, x)[0]
         demands, coarse, splined = [np.zeros((4, len(x))) for _ in range(3)]
         def spline_scalars(tt, xx, unused):
-            g = model.metric(tt, np.array([xx]))
-            return dict(alpha=float(g.alpha[0]), beta=float(g.beta[0]),
-                        gamma_ll=float(g.b[0]**2), gamma_omega=float(g.radius[0]**2))
+            return smooth_spline_scalars(model, tt, xx)
         for j, position in enumerate(x):
             for array, step, evaluator in ((demands, .00125, regularized_scalars),
                                             (coarse, .0025, regularized_scalars),
@@ -193,7 +204,8 @@ def run_case(task):
             points.append(row)
     summary['phases'] = phase_rows
     np.savez_compressed(output/(name+'_states.npz'), t=t, x=x, mass_energy=m, flux_energy=h,
-                        number=number, port_mask=mask, normal_port_force=normal, **c)
+                        number=number, port_mask=mask, normal_port_force=normal,
+                        contact_amplitudes=amplitudes, **c)
     pd.DataFrame(points).to_csv(output/(name+'_points.csv'), index=False)
     write_json(output/(name+'_summary.json'), summary)
     print(f'{name}: E0={energies[0]:.7g}; peak supplied null={peak_null.max():.7g}; '
@@ -204,11 +216,14 @@ def run_case(task):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workers', type=int, default=4)
-    parser.add_argument('--cases', nargs='+', choices=[case[0] for case in CASES])
-    parser.add_argument('--output', type=Path, default=OUTPUT)
+    parser.add_argument('--suite', choices=('relaxed', 'finite'), default='relaxed')
+    parser.add_argument('--cases', nargs='+', choices=[case[0] for case in CASES+FINITE_CASES])
+    parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     if not 1 <= args.workers <= 6:
         parser.error('one to six workers required')
+    if args.output is None:
+        args.output = OUTPUT if args.suite == 'relaxed' else OUTPUT/'finite_contacts'
     args.output.mkdir(parents=True, exist_ok=True)
     software = [Path(__file__), Path(__file__).with_name('run_active_transfer_reservoir.py')]
     software += [ROOT/'toolkit/adm_harness_cli/adm_harness'/name for name in (
@@ -218,14 +233,16 @@ def main():
     inputs = [INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz',
               ROOT/'supporting_reports/data/le_metric_c2_repair/manifest.json']
     hashes = {str(p.relative_to(ROOT)): sha256_file(p) for p in software+inputs}
-    selected = [case for case in CASES if args.cases is None or case[0] in args.cases]
+    suite = CASES if args.suite == 'relaxed' else FINITE_CASES
+    selected = [case for case in suite if args.cases is None or case[0] in args.cases]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
         list(pool.map(run_case, [(case, args.output) for case in selected]))
     for name, expected in hashes.items():
         if sha256_file(ROOT/name) != expected:
             raise RuntimeError('software or input changed during run: '+name)
     write_json(args.output/'manifest.json', dict(completed_utc=datetime.now(timezone.utc).isoformat(), workers=args.workers,
-        cases=[case[0] for case in selected], software_and_input_sha256=hashes,
+        suite=args.suite, cases=[case[0] for case in selected], software_and_input_sha256=hashes,
+        temporal_boundary_curvature='quadratic C2 extension of the endpoint time jets in the unblended metric core',
         scope='inverse conservation screen on active late patch; pressure-free local stores and passive radial Maxwell fields; segmented cases expose finite force collars; terminal material, current inertia, confinement, control dynamics and complete source remain open',
         output_sha256={p.name: sha256_file(p) for p in sorted(args.output.iterdir()) if p.name != 'manifest.json' and p.is_file()}))
 

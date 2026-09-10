@@ -51,6 +51,28 @@ def coefficients(model, times, positions):
     return {key: np.asarray(value) for key, value in result.items()}
 
 
+def smooth_spline_scalars(model, time, position):
+    """C2 temporal continuation for a curvature stencil at a table boundary.
+
+The tabulated core is unblended. RectBivariateSpline clamps values outside
+its time domain while still returning endpoint derivatives; a quadratic jet
+extension preserves those derivatives for this diagnostic stencil.
+"""
+    if abs(position) >= 5:
+        raise ValueError('temporal jet continuation applies to the unblended core')
+    boundary = np.clip(time, model.t_min, model.t_max)
+    delta = time-boundary
+    values = []
+    for spline in model.metric_splines:
+        value = float(spline.ev(boundary, position))
+        if delta:
+            value += delta*float(spline.ev(boundary, position, dx=1))
+            value += delta**2/2*float(spline.ev(boundary, position, dx=2))
+        values.append(value)
+    return dict(alpha=np.exp(values[0]), beta=values[1],
+                gamma_ll=np.exp(2*values[2]), gamma_omega=np.exp(2*values[3]))
+
+
 def moments(mass_energy, electric_flux_energy, c):
     """M=Gamma B R^2 w; H=R^4 u_E=Q^2/2; orthonormal moments."""
     w = mass_energy/(c['gamma']*c['b']*c['radius']**2)
@@ -86,6 +108,20 @@ stress. Other stress channels and separate momentum routes remain open.
     return allowed, low, high
 
 
+def contact_profiles(positions, centers, width):
+    """C2 coordinate profiles with unit discrete integral, independent of time."""
+    midpoint = .5*(positions[1:]+positions[:-1])
+    values = []
+    for center in centers:
+        z = 2*(midpoint-center)/width
+        profile = np.maximum(0., 1-z*z)**3
+        normalization = np.dot(profile, np.diff(positions))
+        if normalization <= 0:
+            raise ValueError('contact band requires resolved interior quadrature points')
+        values.append(profile/normalization)
+    return np.array(values).reshape(len(centers), len(midpoint))
+
+
 class SparseRows:
     def __init__(self, columns):
         self.columns = columns
@@ -104,7 +140,8 @@ class SparseRows:
 
 
 def solve_schedule(times, positions, c, number, initial_energy, *, ports=(), port_width=.1,
-                   passive=True, flux_floor=1e-8, deadline=120.):
+                   passive=True, flux_floor=1e-8, deadline=120., smooth_contacts=False,
+                   conductivity_ceiling=None):
     """Minimax supplied null stress, followed by minimum time-integrated energy.
 
 Backward Euler energy balance and spatial finite-volume force balance retain
@@ -118,8 +155,12 @@ retain energy balance and expose the omitted mechanical force equation.
         raise ValueError('ordered grids of at least three points required')
     if np.any(number <= 0) or np.any(initial_energy < number) or flux_floor <= 0:
         raise ValueError('positive reference, admissible initial energy, and flux floor required')
-    size, peak = nt*nx, 2*nt*nx
+    if conductivity_ceiling is not None and conductivity_ceiling <= 0:
+        raise ValueError('positive proper conductivity ceiling required')
+    amplitudes = nt*len(ports) if smooth_contacts else 0
+    size, peak = nt*nx, 2*nt*nx+amplitudes
     eq, ub = SparseRows(peak+1), SparseRows(peak+1)
+    profiles = contact_profiles(x, ports, port_width)
     midpoint = .5*(x[1:]+x[:-1])
     port_mask = np.zeros(nx-1, dtype=bool)
     for center in ports:
@@ -135,10 +176,13 @@ retain energy balance and expose the omitted mechanical force equation.
                     (size+k, coeff/dt), (size+k-nx, -coeff/dt)], c['source'][i, j])
             if passive:
                 ub.add([(size+k, 1.), (size+k-nx, -1.)])
+            if conductivity_ceiling is not None:
+                decay = np.exp(-conductivity_ceiling*(c['lapse'][i, j]+c['lapse'][i-1, j])*dt)
+                ub.add([(size+k-nx, decay), (size+k, -1.)])
     for i in range(nt):
         dt = t[max(1, i)]-t[max(0, i-1)]
         for j, dx in enumerate(np.diff(x)):
-            if port_mask[j]:
+            if port_mask[j] and not smooth_contacts:
                 continue
             items = [(size+i*nx+j+1, 1/dx), (size+i*nx+j, -1/dx)]
             rhs = .5*(c['force'][i, j]+c['force'][i, j+1])
@@ -152,6 +196,10 @@ retain energy balance and expose the omitted mechanical force equation.
                     value = .5*c['d'][0, jj]*c['c'][0, jj]/dt
                     items.extend([(size+nx+jj, value), (size+jj, -value)])
                     rhs += .5*c['d'][0, jj]*c['source'][0, jj]
+            if smooth_contacts:
+                radius = .5*(c['radius'][i, j]+c['radius'][i, j+1])
+                for k in range(len(ports)):
+                    items.append((2*size+i*len(ports)+k, radius**2*profiles[k, j]/(4*np.pi)))
             eq.add(items, rhs)
 
     def null_row(i, j, z):
@@ -165,7 +213,7 @@ retain energy balance and expose the omitted mechanical force equation.
             for z in np.linspace(-1, 1, 9):
                 null_row(i, j, z)
     bounds = [(float(number[k % nx]), None) for k in range(size)]
-    bounds += [(flux_floor, None)]*size+[(0., None)]
+    bounds += [(flux_floor, None)]*size+[(None, None)]*amplitudes+[(0., None)]
     cost = np.zeros(peak+1); cost[peak] = 1.
     matrix = eq.matrix()
     last_result = None
@@ -196,22 +244,30 @@ retain energy balance and expose the omitted mechanical force equation.
     cost[:size] = (weight*c['gamma']).ravel()
     cost[size:2*size] = (weight*c['b']/c['radius']**2).ravel()
     cost /= cost.max()
-    bounds[-1] = (0., optimum+2e-8*max(1., optimum))
+    peak_allowance = 1e-6*max(1., optimum)
+    bounds[-1] = (0., optimum+peak_allowance)
     secondary = linprog(cost, A_ub=ub.matrix(), b_ub=ub.rhs, A_eq=matrix, b_eq=eq.rhs,
-                        bounds=bounds, method='highs', options={'time_limit': deadline,
+                        bounds=bounds, method='highs-ipm', options={'time_limit': min(deadline, 90.),
                             'primal_feasibility_tolerance': 1e-9, 'dual_feasibility_tolerance': 1e-9})
-    if not secondary.success:
-        return dict(success=False, message='secondary energy allocation: '+secondary.message)
-    vector = secondary.x
+    # Preserve the verified primary optimum if the optional tie-break fails.
+    secondary_used = bool(secondary.success)
+    if secondary_used:
+        sm = secondary.x[:size].reshape(nt, nx)
+        sh = secondary.x[size:2*size].reshape(nt, nx)
+        secondary_used = bool(maximum_null(moments(sm, sh, c))[0].max() <= optimum+peak_allowance+2e-8*max(1., optimum))
+    vector = secondary.x if secondary_used else result.x
     return dict(success=True, mass_energy=vector[:size].reshape(nt, nx),
                 flux_energy=vector[size:2*size].reshape(nt, nx), port_mask=port_mask,
+                contact_amplitudes=vector[2*size:peak].reshape(nt, len(ports)) if smooth_contacts else np.zeros((nt, 0)),
                 optimal_supplied_null_peak=optimum, angle_iterations=iteration+1,
+                secondary_energy_optimization_used=secondary_used, secondary_status=secondary.message,
+                secondary_peak_allowance=peak_allowance,
                 normalized_equality_residual=float(abs(matrix@vector-eq.rhs).max()),
                 raw_equality_residual=float((abs(matrix@vector-eq.rhs)*eq.scales).max()),
                 inequality_violation=float(max(0., np.max(ub.matrix()@vector-ub.rhs))),
                 primary_dual_gap=float(abs(result.fun-(np.dot(result.eqlin.marginals, eq.rhs)
                     +np.dot(result.ineqlin.marginals, ub.rhs)
-                    +np.dot(result.lower.marginals, [a for a, _ in bounds])))))
+                    +np.dot(result.lower.marginals, [a if a is not None else 0. for a, _ in bounds])))))
 
 
 def force_ports(times, positions, c, m, h):
