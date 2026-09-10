@@ -135,8 +135,44 @@ Required negative contributions in its energy and null projections are
 reported alongside the added contact requirements. The fixed-background study
 assigns no independent quantum capacity ceiling.
 
-## Results
+## Initial comparison and regularity gate
 
-The registered comparison is pending. The decision gate is whether the lower
-material velocity and changed force placement also reduce the counted source
-burden, and whether the required contacts have a viable local stress channel.
+The initial suite completed five schedules. Two cases encountered a numerical
+failure in secondary energy minimization, and the 128-cell optimization
+reached its registered time limit. Their status files retain these outcomes.
+The successful 64-cell segmented case has initial local slice energy 234.05,
+maximum supplied null stress 0.08519, and a fade-time required negative null
+contribution 0.07917. The prescribed velocity reaches 0.20214. Its initial
+field energy is 199.66, and the remaining buffer energy is 34.39.
+
+The continuous 32-cell case requires initial slice energy 41,391 and supplied
+null stress 5.262. The force placement changes the source burden substantially
+within this inverse family. The terminal electrodes and the segmented support
+tensors remain additional requirements in both comparisons.
+
+Spatial refinement from 32 to 64 cells changes the segmented initial energy
+from 249.55 to 234.05 and its largest integrated collar force from 3.476 to
+3.346. However, peak collar force density increases from 0.10891 to 0.21843.
+The optimizer concentrates the force inside the allowed band. Its effective
+discharge conductivity similarly increases from 174.6 to 342.1 under the
+combined refinement. These histories provide a relaxed bound; a finite
+physical interface and conversion law require a regularity constraint.
+
+The local angular-support test also produces a sign obstruction. At fade in
+the 64-cell case, a contact near \(x=-1.7375\) requires support divergence
+\(-0.21843\), while every positive-energy angular-only support at the same
+motion has positive radial divergence between \(0.31022w_c\) and
+\(0.43121w_c\). Its momentum must reach another stress channel or location.
+
+The segmented reset extension requires initial energy 2,303.9 and peak
+supplied null stress 1.743. Its fade-time initial-state requirements differ
+from those optimized only through fade. The printed spline-curvature
+difference at exactly \(s=3\) crosses the metric table's temporal boundary;
+that entry requires a smooth boundary extension before use as a curvature
+error estimate. The direct repaired-geometry demand uses its full stencil.
+
+A bounded follow-up will impose a smooth fixed contact profile and a finite
+proper discharge rate, retain the independent divergence checks, and resolve
+the temporal-boundary curvature diagnostic. These changes address the two
+regularity defects directly. The remaining contact material and full source
+completion determine the stopping gate.

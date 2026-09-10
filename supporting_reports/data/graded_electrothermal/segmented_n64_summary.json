@@ -1,0 +1,88 @@
+{
+  "case": "segmented_n64",
+  "cells": 64,
+  "time_intervals": 129,
+  "duration": 1.285,
+  "ports": [
+    -1.7,
+    -1.3,
+    -0.9
+  ],
+  "port_coordinate_width": 0.1,
+  "flux_floor": 1e-08,
+  "success": true,
+  "optimal_supplied_null_peak": 0.08518959553857021,
+  "angle_iterations": 1,
+  "normalized_equality_residual": 6.510052181303485e-09,
+  "raw_equality_residual": 2.604020872521403e-07,
+  "inequality_violation": 2.220446049250313e-16,
+  "primary_dual_gap": 8.326672684688674e-16,
+  "maximum_supplied_null": 0.08518959553857011,
+  "maximum_abs_velocity": 0.20214036673420838,
+  "minimum_heat": 0.24999999999999956,
+  "maximum_heat": 10.79292621888304,
+  "initial_slice_energy": 234.05222556612537,
+  "maximum_slice_energy": 234.05222556612537,
+  "final_slice_energy": 60.44712983635317,
+  "initial_field_slice_energy": 199.66369619674452,
+  "maximum_electric_density": 0.03149683819670239,
+  "maximum_radial_null": 0.07473741685487748,
+  "maximum_effective_discharge_conductivity": 342.1260265021739,
+  "maximum_charge_increase": 2.220446049250313e-16,
+  "minimum_packet_gap": 0.15000000000000002,
+  "maximum_collared_normal_force_density": 0.21843483615790893,
+  "maximum_left_terminal_traction": 0.016012435837728572,
+  "maximum_right_terminal_traction": 0.0007900860483234979,
+  "hoop_force_cone_failures": 842,
+  "hoop_witnesses": [
+    {
+      "s": 1.285,
+      "l": -1.7375,
+      "required_support_rest_divergence": -0.21843483615790893,
+      "acceleration": 0.3707140407892837,
+      "twice_abs_angular_gradient": 0.060493027693040255,
+      "allowed_force_per_density_low": 0.31022101309624345,
+      "allowed_force_per_density_high": 0.431207068482324
+    }
+  ],
+  "independent_checks": {
+    "points": 238,
+    "energy_maximum_absolute_residual": 0.001003224736813225,
+    "energy_sum_relative_term_residual": 0.011982698345370893,
+    "force_maximum_absolute_residual": 0.0003383604022639327,
+    "force_sum_relative_term_residual": 0.0029573694113777926
+  },
+  "maximum_abs_integrated_collar_force": 3.346320630269801,
+  "phases": [
+    {
+      "s": 0.0,
+      "slice_energy": 234.05222556612537,
+      "field_slice_energy": 199.66369619674452,
+      "required_negative_null_peak": 0.06107998453636657,
+      "required_negative_radial_null_peak": 0.013864874579997478,
+      "required_negative_slice_energy_integral": 127.88114689327642,
+      "geometry_fd_difference": 1.1680849602343363e-06,
+      "geometry_spline_difference": 8.156199696563587e-06
+    },
+    {
+      "s": 0.5,
+      "slice_energy": 144.74573105112475,
+      "field_slice_energy": 103.53916022278877,
+      "required_negative_null_peak": 0.0631020293637228,
+      "required_negative_radial_null_peak": 0.022758593752182848,
+      "required_negative_slice_energy_integral": 79.9748577842242,
+      "geometry_fd_difference": 1.0738546462017717e-06,
+      "geometry_spline_difference": 1.0865920723891753e-05
+    },
+    {
+      "s": 1.285,
+      "slice_energy": 60.44712983635317,
+      "field_slice_energy": 9.998471582040212,
+      "required_negative_null_peak": 0.07917467339715854,
+      "required_negative_radial_null_peak": 0.07615688993401812,
+      "required_negative_slice_energy_integral": 50.8352704607218,
+      "geometry_fd_difference": 1.0408232812889572e-05,
+      "geometry_spline_difference": 6.424506736870186e-05
+    }
+  ]
+}
