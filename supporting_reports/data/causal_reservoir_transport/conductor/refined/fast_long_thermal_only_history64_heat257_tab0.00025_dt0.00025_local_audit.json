@@ -1,0 +1,36 @@
+{
+  "case": "fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025",
+  "maximum_added_force_per_reference": 22.69121353815305,
+  "maximum_positive_holding_power": 285.0713510878893,
+  "final_local_state": {
+    "s": 0.8139251267539325,
+    "receiver_heat": 0.12016055215983201,
+    "receiver_archived_heat": 0.11847827656005624,
+    "receiver_heat_rate": -24.06004344050223,
+    "receiver_prescribed_heat_rate": -30.741376383068314,
+    "receiver_relative_flux": -0.6666666518587514,
+    "receiver_material_velocity": -0.9996954500885367,
+    "receiver_added_force_per_reference": 22.328437636442253,
+    "minimum_heat_fraction": 0.4999999999999982,
+    "maximum_flux_fraction": 0.4999999999999982,
+    "maximum_force_fraction": 0.49902723735408383,
+    "thermal_inventory_difference": -0.42363558991643474,
+    "inverse_step": 8.172025857131684,
+    "maximum_decay": 0.2832387949947938,
+    "heat_input": -17.254716652746065,
+    "acceleration_work": -1.5659261077376585,
+    "entropy_supply": -40.324718977038046,
+    "entropy_production": 0.010948899587663277,
+    "holding_work": -176.55951522417703,
+    "holding_positive_work": 285.0713510878893,
+    "holding_negative_work": -461.63086631206625,
+    "geometric_work": 6.615135550797541,
+    "maximum_added_force_per_reference": 22.69121353815305
+  },
+  "source_sha256": {
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "fe26bc6bd4227f7ed3c7aa422127b53788965d8e152c495623a3b5a5ec174a5b",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "dc2104ffcd9d07a2284409bd52cbeaa1c20b322866d41ec671beaf12a06ed399",
+    "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+    "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e"
+  }
+}

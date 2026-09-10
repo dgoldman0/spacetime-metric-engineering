@@ -1,0 +1,36 @@
+{
+  "case": "zero_thermal_only_history64_heat257_tab0.00025_dt0.00025",
+  "maximum_added_force_per_reference": 0.0011971409345631016,
+  "maximum_positive_holding_power": 0.0012664355688274882,
+  "final_local_state": {
+    "s": 0.8175634690340011,
+    "receiver_heat": 1.3861977425613331e-08,
+    "receiver_archived_heat": 6.953787025220746e-06,
+    "receiver_heat_rate": -34.65105509196482,
+    "receiver_prescribed_heat_rate": -34.65105509196482,
+    "receiver_relative_flux": 0.0,
+    "receiver_material_velocity": -0.999775777647357,
+    "receiver_added_force_per_reference": 0.0011971409345631016,
+    "minimum_heat_fraction": 0.4999999999999982,
+    "maximum_flux_fraction": 0.37548638132295586,
+    "maximum_force_fraction": 0.4999999999999982,
+    "thermal_inventory_difference": -1.3894227676233016e-06,
+    "inverse_step": 0.0,
+    "maximum_decay": 2.7367957255812994,
+    "heat_input": -17.91307735453819,
+    "acceleration_work": -0.0,
+    "entropy_supply": -19556438.8316797,
+    "entropy_production": 0.0,
+    "holding_work": -0.02215655984958552,
+    "holding_positive_work": 2.8878617685651105e-05,
+    "holding_negative_work": -0.02218543846727117,
+    "geometric_work": -7.5754890014499794e-06,
+    "maximum_added_force_per_reference": 0.0011971409345631016
+  },
+  "source_sha256": {
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "4ca332280c3b2b21e2c74f8297c3eee12bcc25f82d5eebd5201fa1b7883edd58",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "e5f8d5ca754a13743b7fdeae891ea498b3e93fc6d9f15044b6233c9c52605c61",
+    "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+    "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e"
+  }
+}

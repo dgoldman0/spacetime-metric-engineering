@@ -1,0 +1,12 @@
+{
+  "completed_utc": "2026-09-10T11:45:52.080547+00:00",
+  "scope": "entropy-consistent causal-conductor replay on prescribed archived material motion and heat source; additional stress and trajectory-maintenance force work are counted; joint mechanical feedback remains open",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+    "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8"
+  }
+}

@@ -1,0 +1,1073 @@
+{
+  "causal_access_runs": 4,
+  "conductor_runs": 18,
+  "source_checks": 161,
+  "failed_checks": [],
+  "verified_sources": [
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "0cd4a52271aea19b7daf807ce7b3afaba252b53586953130c2645a2086865b4c",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "f2df37e486ff243851fc57fee18801a4b123ca2009aded3627b99a3d7fb3f946",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "0cd4a52271aea19b7daf807ce7b3afaba252b53586953130c2645a2086865b4c",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "f2df37e486ff243851fc57fee18801a4b123ca2009aded3627b99a3d7fb3f946",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "toolkit/adm_harness_cli/scripts/plot_causal_reservoir_transport.py",
+      "sha256": "56c44753062907ef6321d1cc9c00bc7c7b8ecde732997dd9ada5663ffc6bf403",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_history.csv",
+      "sha256": "34aaf7f01582cd5bc9515093720b0fce3a1dd048a85607b2fc09cf67a0c1fde8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.csv",
+      "sha256": "4694e946b7053f68226e0e7f8f6f5426eba82a16b65e2c382032ecfa629139e6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_summary.json",
+      "sha256": "81e03f73a4ffe601e6485caf26138da8ee6ccf675feded8d5a8e3cd346b1873a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv",
+      "sha256": "a8523922246ba0329b9b89aefea4964c742928105a0fa43c42673903e05e45c2",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv",
+      "sha256": "1eb77c951ce307c677a2939a2000443460031779d0b5d594abba76a912f6ced8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv",
+      "sha256": "23a1bf359e6864ab94f6b21da2db9dedc93da23669e02aacf006d7ede69eae95",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_history.csv",
+      "sha256": "1b30c322757a3575379d66a4c4a636eb4707477242dff720de2b7447880a14b0",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv",
+      "sha256": "5aebcbe8bd8f5d87b6cc835feaa74b94efe608c59fdb6852f5762c0ba1ddbd66",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json",
+      "sha256": "fe26bc6bd4227f7ed3c7aa422127b53788965d8e152c495623a3b5a5ec174a5b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz",
+      "sha256": "dc2104ffcd9d07a2284409bd52cbeaa1c20b322866d41ec671beaf12a06ed399",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json",
+      "sha256": "fdcf2b577b80ae06760ed9e3b760dc0bca0509e45dac03a73c2cfc60dd2133ca",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz",
+      "sha256": "331f0ff96be3b4815ce5573ffc27702583edd7393aaf0d29df9f13f914c2fead",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_summary.json",
+      "sha256": "81e03f73a4ffe601e6485caf26138da8ee6ccf675feded8d5a8e3cd346b1873a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_states.npz",
+      "sha256": "53942c4633122219f16ba204aabd0225d31dc0f871ef70138e617926c552e77d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json",
+      "sha256": "6c9179fa674a7402d6cb43109091891d9fe17423b22a17e4cd67eb839eaa1739",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz",
+      "sha256": "5387c1e2827a4b6cabcce9f6dbe0cf10d3e866d8beb9ea21546584a6020bd8ff",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json",
+      "sha256": "4ca332280c3b2b21e2c74f8297c3eee12bcc25f82d5eebd5201fa1b7883edd58",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz",
+      "sha256": "e5f8d5ca754a13743b7fdeae891ea498b3e93fc6d9f15044b6233c9c52605c61",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_summary.json",
+      "sha256": "ac5adf80d69f868bb0a841850fd786a703eeccd30a030800f405c4090626f81c",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_states.npz",
+      "sha256": "1b8d7f2df2997496a111e95fddcf8f653901a0ad462822fc004d15747b64e65f",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_heat_conductor.py",
+      "sha256": "718cc7051f27bf4d31bc29399d95f64732a92fae8354dceff26f475d21fa1037",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "321d0c21ed10382239e1a5fc4fae599fda440effa7b5b7fdf9db08fb8466ea2b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "80034c7bb4e64dc2bba5b454c324b83c4614b2fe9c55af45de18f74207ae417e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "0cd4a52271aea19b7daf807ce7b3afaba252b53586953130c2645a2086865b4c",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "f2df37e486ff243851fc57fee18801a4b123ca2009aded3627b99a3d7fb3f946",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "0cd4a52271aea19b7daf807ce7b3afaba252b53586953130c2645a2086865b4c",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "f2df37e486ff243851fc57fee18801a4b123ca2009aded3627b99a3d7fb3f946",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_causal_heat_conductor.py",
+      "sha256": "0cd4a52271aea19b7daf807ce7b3afaba252b53586953130c2645a2086865b4c",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_heat_conductor.py",
+      "sha256": "f2df37e486ff243851fc57fee18801a4b123ca2009aded3627b99a3d7fb3f946",
+      "verified_against": "05eab89"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_reservoir_access.py",
+      "sha256": "723487a56ef51e4d4a6318d3a9fb1aab0eafbba58c2c284b7ff189d2707ed034",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_reservoir_transport.py",
+      "sha256": "49c1724ae964c9223882344702e022b658db4901fe3a6a3dadbdaf2d5c655c96",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "fe0f3529ff94e9b47d90b66dd93f6d9f8a45536b2da1c98a17f54c401abdbdf6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "45131243ff7c511803b14e08f14ebd898f91d26f2fa93cc4b7b6678dadb48565",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_reservoir_access.py",
+      "sha256": "723487a56ef51e4d4a6318d3a9fb1aab0eafbba58c2c284b7ff189d2707ed034",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_reservoir_transport.py",
+      "sha256": "49c1724ae964c9223882344702e022b658db4901fe3a6a3dadbdaf2d5c655c96",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "9b0c84c37ce1d8db7ab39bdbd3813cafbe704a40629e7b2ede0283e1b7c8881b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "811d25fcde8a55deebdc2e9e576b6f480b3703e3554df3ce8538596a0bb678af",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_reservoir_access.py",
+      "sha256": "723487a56ef51e4d4a6318d3a9fb1aab0eafbba58c2c284b7ff189d2707ed034",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_reservoir_transport.py",
+      "sha256": "49c1724ae964c9223882344702e022b658db4901fe3a6a3dadbdaf2d5c655c96",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "9b0c84c37ce1d8db7ab39bdbd3813cafbe704a40629e7b2ede0283e1b7c8881b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "811d25fcde8a55deebdc2e9e576b6f480b3703e3554df3ce8538596a0bb678af",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_causal_reservoir_access.py",
+      "sha256": "723487a56ef51e4d4a6318d3a9fb1aab0eafbba58c2c284b7ff189d2707ed034",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/causal_reservoir_transport.py",
+      "sha256": "49c1724ae964c9223882344702e022b658db4901fe3a6a3dadbdaf2d5c655c96",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    }
+  ],
+  "data_sha256": {
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "14bf2a6182b7ae40376f2a7fe3a443779b261cad1d8faaacefd245a6e16c06bd",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "eee29aa167197bd8ebfad7de05e68d1bcce76c0edfc9bbfbaf33a3e140b24b9e",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "ea68f196ef30facb027c9f417402dfca96da83eabeb1b961bf7c4a8695014962",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "93add17136f9bc40536e29f1ec6f2f8e55a61d1c2c821e47bcec89a06e8d35e6",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "dcbf1c6ec4f74456e442f4c35c01c9b8900b66b3aacb584fa858bcaf646b2fe2",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "6df850fbea76149085e61ce4ac3056982fd6c4777d0b61aaf881e5dabd39fda7",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "dc4c90358e253809b5794e0777daac8132d60113071d215d97d87e2885be65c7",
+    "supporting_reports/data/causal_reservoir_transport/conductor/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "c1aba9f337301a365f86988fce44bee3b1f5e6181d8cdab7b118e76f21c0f1b1",
+    "supporting_reports/data/causal_reservoir_transport/conductor/figure_inputs.json": "cc776dbf9a8b909a4320ffff79bb431093704d1353c27450f39c192edc4984b4",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv": "1eb77c951ce307c677a2939a2000443460031779d0b5d594abba76a912f6ced8",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.csv": "d079ad4941d37cd83bcf9cdea40a980abfd5ca51909836799b7c998ac5bf13c8",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json": "284a755264950e9698224d81d4b43841a521cb469df9fe020d6187105fd172db",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json": "bfda1953558c153e46208e675c1d32bd00fe8f5fdb8a8acd8119fe7cc6a8295b",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "dc2104ffcd9d07a2284409bd52cbeaa1c20b322866d41ec671beaf12a06ed399",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/fast_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "fe26bc6bd4227f7ed3c7aa422127b53788965d8e152c495623a3b5a5ec174a5b",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_history.csv": "1b30c322757a3575379d66a4c4a636eb4707477242dff720de2b7447880a14b0",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json": "803853746fa300a785b6e0bb699723257aa7749371a9f0f503c1a7ddd7d3e905",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_states.npz": "ef4161d5f8a1c79b110049ee5c5f22a4e7d332765eeac3c5e00d7bad50e4217a",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat129_tab0.000125_dt0.000125_summary.json": "ac5b4a2fd01ae87b438cd51023f003be8822119cff3f545d8a3d46aecf145be6",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv": "5aebcbe8bd8f5d87b6cc835feaa74b94efe608c59fdb6852f5762c0ba1ddbd66",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.csv": "c530f2ac8155a759cd06b5da7323affcdee04d753c97ea10c1db018c2d2b4133",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json": "9e11913fb22f953ce83e11f7ea601be89ea5c84dcdc66804791adf3553ef1c36",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json": "3821505d47c68aef765a59848ea01fdb14c45867a9a89fa674e59dfde5eaa5c3",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "331f0ff96be3b4815ce5573ffc27702583edd7393aaf0d29df9f13f914c2fead",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "fdcf2b577b80ae06760ed9e3b760dc0bca0509e45dac03a73c2cfc60dd2133ca",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_history.csv": "34aaf7f01582cd5bc9515093720b0fce3a1dd048a85607b2fc09cf67a0c1fde8",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.csv": "4694e946b7053f68226e0e7f8f6f5426eba82a16b65e2c382032ecfa629139e6",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json": "da6995ea9c242b7817c52128378f9e0a9f7bfa84c15e6ed7a2b35511fb5627aa",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json": "9c8bf43962e7d102b9e3e972c09560b61093bce5436e5a777d58d5e65f673fbc",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_states.npz": "53942c4633122219f16ba204aabd0225d31dc0f871ef70138e617926c552e77d",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_long_thermal_only_history64_heat513_tab0.000125_dt0.000125_summary.json": "81e03f73a4ffe601e6485caf26138da8ee6ccf675feded8d5a8e3cd346b1873a",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv": "a8523922246ba0329b9b89aefea4964c742928105a0fa43c42673903e05e45c2",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.csv": "099bbf7872150aadd367067abfbec95a7c02b69e27d1d0359861454a4927a8b4",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json": "3a2c7c34ddd025ccf5b603c7d63151d49df20d149e9e6cbf8c6d8b759befd620",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json": "c897823fc7088a78d2877f19cb1bbb2ab3dc21b31ebd7744a300eba4ada1e9b4",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "5387c1e2827a4b6cabcce9f6dbe0cf10d3e866d8beb9ea21546584a6020bd8ff",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/slow_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "6c9179fa674a7402d6cb43109091891d9fe17423b22a17e4cd67eb839eaa1739",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_history.csv": "da4e95df73b580ccd20ff2e0712b003260f29a49c60492011d9e342e7885d95b",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_manifest.json": "c3ad6d2173a20d76da4a3705981f72c5d740b372587b0c36a1c4f16134901446",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_states.npz": "e8f7a990c82d5bc08f2dcb4131db26d8375af64e7ac54b8f410022f54a802a00",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat129_tab0.000125_dt0.000125_summary.json": "06ba0b6d3c224ae20b1096ac6c841cb92d7719aa1fa07c84ae2dbe523644b8f7",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_history.csv": "ffb89b35279f7d358bde47b10ec04798bafccaca3e6e825ba17f02190f3d6045",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.csv": "897c0b9ef676649b2418c2a8b32d793a780b78553f9ef40b1f0b612ad019c938",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_local_audit.json": "89870ab5bdc1b276179f7e4f8c827b57e8e23b158ed5b0e1496e960f6412b7a1",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_manifest.json": "70b46b39a9b4b172741c338f7e4fcd0b3621794f291a8079ae8f72e0e65f1a33",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_states.npz": "e5f8d5ca754a13743b7fdeae891ea498b3e93fc6d9f15044b6233c9c52605c61",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat257_tab0.00025_dt0.00025_summary.json": "4ca332280c3b2b21e2c74f8297c3eee12bcc25f82d5eebd5201fa1b7883edd58",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_history.csv": "6ef3d931883a6c5b655b74c5784ef8eea31d6e3e8e0430347f6a4974ff9f1dd3",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.csv": "76c3c55e1f88b30531b4947a1126957c48953d269eb43f00495abc3842ab9f84",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_local_audit.json": "10e3911996889b59fb1de29e1f3888779f33785ebf9b5e4fd6bf8efd0222be8f",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_manifest.json": "2409450d907d6af24f7df6a4a23d4f31a4efa4f4630d6331e94f3b5c09864cba",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_states.npz": "1b8d7f2df2997496a111e95fddcf8f653901a0ad462822fc004d15747b64e65f",
+    "supporting_reports/data/causal_reservoir_transport/conductor/refined/zero_thermal_only_history64_heat513_tab0.000125_dt0.000125_summary.json": "ac5adf80d69f868bb0a841850fd786a703eeccd30a030800f405c4090626f81c",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "f1a776bf00d2a4259b76b7e3145a9245ad0f6db18f53f6dbc770d6cff63b89de",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "3f8fe95b39278f69e3728ea12a1c1efb221507af53e8f42519080131afa4f397",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "5dc41c74b16e93f63c15f0f528e38e8b018e52e974963874ccb4efb2f31b9936",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "7895203913373d1dbff7aa2a237935ee921e40d29d01daa2a771a064622d8582",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "23a1bf359e6864ab94f6b21da2db9dedc93da23669e02aacf006d7ede69eae95",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "709a3f3811858a2a491f2a092274c427353338ce3adf3f05889171109bfd908c",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "65ff0476af8bbab9160a0b9471759e32d506687f3ed600e7f309faf7c98a7dfe",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/fast_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "4cbb436b54ac324041be88acf729dd05cdef3aba25d79d08939e7f6f1adeb4e5",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "c17b5c434c48bc7a2eca13b889f4deee6ceeb82c1e39b1ae4114942a9b9d7ce9",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "2f64c4c1858b2805e703c83037cc53c157b42603745157456b1fbf0588fb3ee8",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "17447f094c6487a97cd270815d8a4371c473efa652d2e5687cd0cd95104ead4e",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "b196ebf9eee0cba8edc0522cafa73c67b227ddd18f7d43357fb6296f2d3fe079",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "94060b2ab944b3030a973e5f6716656eb1cd881c69fa2ecb9911237c63e0cdf5",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "e43f20dd91cad8583fd3c6dfdd5181a13b1af1c65af248a0611d71507cecf6ec",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "678d838ec55ab2fcfd150d87364bb7bbd98e217c00a49a74ac295100e2faecf9",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "b47dd920e32c0b202481ee15716e88512111fa116d9f19a6e968fd4c750b8ae5",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "ef42f26925e496c6a9e84e838e193c9ed0d24684cc952789e95d9801263d1208",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "b63edcee222a4615dbef33681ebd688955099b4d9664de2f185606964ee453fa",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "90374de99811673b5eafa218c467a2e2427461cf298877aabcc21de694c4e9ba",
+    "supporting_reports/data/causal_reservoir_transport/conductor/resolved_inversion/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "4f867901a95b323bda489935d726d6d0aee4fd3418bf9fa372a0d33d4f39de13",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "c17b5c434c48bc7a2eca13b889f4deee6ceeb82c1e39b1ae4114942a9b9d7ce9",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "4f74547184c0ee7ab6c81731ff0848583e42cf2e7ba1b498286788c11ef2228b",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "17447f094c6487a97cd270815d8a4371c473efa652d2e5687cd0cd95104ead4e",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_long_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "51cd1c42f383a94f94eefa4f5866beb4fc9a5048c5ede506b7a14299c51c8528",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "d5bf0a18c50922c3301f4a60cda91104b45e0ecb5626f326b8d24b02e694b08c",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "56912ba5f2bbd4789095069e539d4c0e0b5cc427af52b458713dc520dda9d624",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "b1fb766cc00d5df363d6a5497b2f92da8847f93e155ceba60ffa529b061797d0",
+    "supporting_reports/data/causal_reservoir_transport/conductor/slow_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "dfc0fe5f1820c1187bb4cf2e7891d2e92d5242ed888d44b35560eb53eea362d8",
+    "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_history.csv": "ef42f26925e496c6a9e84e838e193c9ed0d24684cc952789e95d9801263d1208",
+    "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_manifest.json": "298aea46e6b31ae2306121a5196ef42d4baffe1b39ba23bcd3ce44072f114822",
+    "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_states.npz": "90374de99811673b5eafa218c467a2e2427461cf298877aabcc21de694c4e9ba",
+    "supporting_reports/data/causal_reservoir_transport/conductor/zero_thermal_only_history64_heat129_tab0.0005_dt0.0005_summary.json": "24db950c3844e60cef5115efd85c0df5821106ae66b6754580b2afe3a91885ee",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002.json": "62086b153eb8f9f03ccfdbba58b28dfd0a4c9851b5432c8717ae2acddc76025e",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002_cones.csv": "cf5a6244364a298389eebfce1c6aa252074ad77a15dde368bddd721f217d4e4d",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n32_end3_dt0.0005_snap601_cfl0.05_step0.002_deadlines.csv": "04f50d49582c43dac329ffdce2d889c5017283a09839bdf942248a8cc0c1c6a2",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001.json": "60b686588ba98a3b9eea727011ccf41f21609f04b28edc9814c9cfc1e9d28fd2",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001_cones.csv": "4a9e2c39f2219ae427ef85f3e5484008daa09245d13a2cd44d2415747d1b5618",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.001_deadlines.csv": "49f154940187abeb8acacebe28d1e211850eafb09950ba018d90d66dbac28c0e",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json": "1a4d857621bdf80ffe44a06afa7c090d3a5310be7f1bfa9995db8d4f9ee5ad2f",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002_cones.csv": "1659eacd998e934ad7ddca2cc40f65953bed313dec1a65629cde4dfc1bbe0e1e",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_ensemble_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002_deadlines.csv": "272632a3ed9d0a14e9893beb38a900eb6903c4831dc78534457a77ab8a240e22",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002.json": "9815f7a28d5f810270e456c711124eee7c47b1eabf0888250561396080792349",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002_cones.csv": "9801087b2687f469770b7a7dc3bcb8bbabe9f04fe20b8e4bf1fcc3d434caecb4",
+    "supporting_reports/data/causal_reservoir_transport/relaxing_thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_step0.002_deadlines.csv": "64666a1afea45ccdcfa37411a83a02be23d790bbc9e2db7f261cbb22f93eef94"
+  }
+}

@@ -2,10 +2,20 @@
 
 Date: 10 September 2026.
 
+Finite-speed conduction supplies a small, refinement-stable thermal gain
+on the prescribed active reservoir motion. The surviving registered
+setting retains heat 0.004462 at the original depletion event, with an
+instantaneous drain of 25.39 per service-coordinate unit. Its heat
+current also requires additional mechanical work and changes the local
+normal-frame energy density by up to 12.6%. The result supports early
+charging of distributed buffers and an explicit mechanical response to
+their heat current. Sustained release service and the compliant end
+couplings remain open construction requirements.
+
 The [reservoir refinement](ACTIVE_RESERVOIR_ENSEMBLE_REFINEMENT.md) preserves
 local heat and accounts for field and strain conversion, while its tested
 allocations reach local depletion during release. The body's thermal
-inventory grows over the same interval. The next question is whether a
+inventory grows over the same interval. This calculation tests whether a
 conducting support can deliver some of that energy to the material
 undergoing withdrawal before the recorded depletion event.
 
@@ -265,3 +275,149 @@ inversion, then halves the background and time steps and doubles the
 heat resolution for the zero control and the informative finite-speed
 cases. This comparison tests whether the small thermal gain survives
 both interpolation error and spatial refinement.
+
+## Refined transport result
+
+Resolving primitive inversion takes the three limited finite-speed cases
+to their analytic heat-current causal boundary. Their temperatures and
+combined material/current Type-I stresses remain admissible at the last
+accepted state. The limit belongs to the chosen constitutive propagation
+law.
+
+| Equilibrium speed \(c_h\) | Proper relaxation \(\tau\) | Heat cells | Final \(s\) | Minimum \(q\) | Limiting gate |
+|---|---:|---:|---:|---:|---|
+| 0 | 1 | 513 | 0.817563623 | \(1.62\times10^{-8}\) | Positive-temperature floor |
+| 0.3 | 1 | 257 | 0.817004176 | \(2.43\times10^{-5}\) | Heat characteristic reaches unity |
+| 0.3 | 10 | 513 | 0.817563670 | 0.00446190 | Archived motion ends |
+| \(1/\sqrt3\) | 1 | 129 | 0.809327883 | 0.103304 | Heat characteristic reaches unity |
+| \(1/\sqrt3\) | 10 | 257 | 0.813925127 | 0.120161 | Heat characteristic reaches unity |
+
+For the surviving \((0.3,10)\) setting, the temperature benefit changes
+by 2.2% between the last two spatial levels. A separate 129-cell run
+with the finest time tabulation changes its final heat by 0.50%, which
+separates this temporal effect from the larger spatial correction.
+
+| Heat cells | Background / maximum time step | Final minimum heat | Maximum independent canonical error |
+|---:|---:|---:|---:|
+| 129 | 0.0005 | 0.00384673 | 0.00461821 |
+| 129 | 0.000125 | 0.00386582 | 0.0017201 |
+| 257 | 0.00025 | 0.00436219 | 0.00120892 |
+| 513 | 0.000125 | 0.00446190 | 0.00028192 |
+
+The fine zero-speed control reaches the heat floor only
+\(4.70\times10^{-8}\) before the reference event, with a local
+temperature discrepancy of \(1.62\times10^{-6}\). This error is
+approximately 0.036% of the surviving conductor's final temperature.
+Its canonical error falls from 0.002581 at the first resolution to
+0.0001534 at the finest. The heat equation's conservative ledger closes
+within \(5\times10^{-15}\) across the reported comparisons. The
+surviving conductor's excess over the continuum entropy balance falls
+from \(1.20\times10^{-4}\) to \(1.02\times10^{-6}\) under
+refinement, alongside its nonnegative constitutive entropy production.
+These controls establish a resolved small thermal effect on the
+specified material history.
+
+At the depleted material label, the surviving conductor retains 0.153%
+of its initial heat 2.91448. Its final heat rate is \(-25.3927\),
+compared with the prescribed local rate \(-34.6513\). The current
+and its coupling to the accelerating material therefore reduce the
+instantaneous drain by 26.7%. The remaining heat divided by that drain
+is \(1.76\times10^{-4}\) in service-coordinate units. This local
+scale measures the small margin at the endpoint; the archive supplies
+motion only through \(s=0.817564\), so further evolution requires a
+new mechanical trajectory. The carrying-flow fade ends at 1.285 and
+reset at 3.
+
+The current remains subluminal in this prescribed-motion subsystem:
+its largest material-frame characteristic speed is 0.60598. The
+combined stress has \(2|J|/(\epsilon+p)=0.06172\) at its largest
+final ratio. Over the run, the largest added normal-frame energy density
+relative to the archived material density is 12.603%. The conducting
+band's minimum coordinate clearance from the packet is 0.75039, with
+the full declared body retaining its earlier minimum clearance 0.15.
+
+## Required reciprocal force and work
+
+Maintaining the archived motion under this current has the following
+integrated budget, including the full \(4\pi A\) reference measure:
+
+| Quantity | Canonical work / energy |
+|---|---:|
+| Positive mechanical work required | 13.768264 |
+| Negative mechanical work required | −5.659962 |
+| Net mechanical work required | 8.108301 |
+| Additional work from the active metric | 4.857942 |
+| Additional canonical energy | 12.965961 |
+| Final independent balance residual | −0.000282 |
+
+The maximum additional force per material reference reaches 36.13 at
+the cold element. This force is the residual necessary to preserve the
+prescribed motion after including the added heat tensor. A responding
+support and endpoint contact law would have to produce it, or change
+the material motion and hence the heat-delivery paths. The measured
+work is a required port budget whose physical supplier remains to be
+constructed.
+
+The unweighted thermal inventory of the conducting band ends 0.11931
+below its archived value. Consequently the local improvement comes
+with redistribution and active mechanical/geometric exchange. The
+complete conservation calculation retains these contributions through
+the canonical budget above.
+
+![Conductor response, heat refinement, causal limits, and required work](figures/active_reservoir_causal_transport.png)
+
+The same figure is available as a
+[standalone PDF](figures/active_reservoir_causal_transport.pdf).
+
+## Construction direction and bounded stopping point
+
+The causal screen and conductor replay give compatible selection
+criteria. Delivery from the warmer higher-label material requires early
+charging of the receiver's buffer, while donors and receivers still
+share a sufficiently wide causal access region. The closest
+higher-label donor's deadline is about
+0.20 even for light, and about 0.04 for a signal bounded by 0.3 in
+the material rest frame. A conductor's evolving current can change
+its characteristic speeds, so the separate null deadline supplies the
+absolute comparison for this trajectory.
+
+The lower-label null routes retain later access, as quantified above.
+Their useful supplied power and reciprocal material response remain
+separate transport questions.
+
+Within the registered laws, extending heat-current memory provides a
+small surviving margin. Increasing the equilibrium signal speed reaches
+the constitutive causal boundary during release. These results favor
+scheduled local preparation followed by counted transport and support
+response. They supply a concrete requirement for the existing endpoint
+heat/current plant's coupling to its reservoir.
+
+The present calculation ends at this constitutive and reciprocal-force
+checkpoint. The next coupled construction would need to evolve material
+momentum, heat current, local buffer state, and endpoint exchange
+together, including the complete characteristic spectrum. The earlier
+fixed-anchor stress convergence problem retains its separate requirement
+for finite compliant/dissipative end contacts. Sustained heat supply,
+those contact tensors, and the complete active source closure remain
+unsatisfied gates. The useful result of this round is the quantitative
+timing, thermal-margin, and force budget that such a construction must
+meet.
+
+## Reproduction and evidence
+
+The causal-access screen, conductor runner, local force audit, and figure
+script reside in `toolkit/adm_harness_cli/scripts/`. The corresponding
+two kernel modules and their 13 analytic tests are in `adm_harness/`
+and `tests/`. Independent runs use at most four workers with a single
+BLAS thread per process.
+
+The data directory retains four causal-access screens and eighteen
+conductor runs, including the initial inversion-limited evidence and
+the subsequent resolution controls. Each input and software manifest
+identifies its implementation by SHA-256. The
+[integrity audit](data/causal_reservoir_transport/integrity.json) verifies
+all 161 source references against current files or the recorded stage's
+committed implementation. The local audits retain
+sampled heat rates, force maxima, locations, and signed work rates.
+The figure derives from those archived numerical records. Narrative
+findings in this supporting report were written manually.
