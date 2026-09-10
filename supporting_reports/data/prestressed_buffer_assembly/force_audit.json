@@ -1,0 +1,17 @@
+{
+  "archive": "relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05",
+  "maximum_force_decomposition_residual": 3.552713678800501e-14,
+  "maximum_coordinate_fixed_speed": 0.20214036673420838,
+  "minimum_coordinate_fixed_packet_gap": 0.15000000000000002,
+  "scope": "force decomposition on the archived thermal material; coordinate-fixed paths are a kinematic control with their holding stress still to be supplied",
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_reservoir_acceleration.py": "2612e5d60d73c8d7128cd41af2b7a6cf13b8e738b48d8d76c1adce7d50117362",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "toolkit/adm_harness_cli/adm_harness/material_ensemble.py": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+    "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+    "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396"
+  }
+}

@@ -146,3 +146,40 @@ nodes, convergence toward its continuum preload, and preservation of
 heat under the equal-energy allocation. These controls precede the
 registered active evolutions. The main design disclosure retains its
 established content; this report records the bounded assembly trial.
+
+## First dynamic milestone
+
+Both equal-energy assemblies complete the carrying-flow fade at 1.285.
+Their minimum heat stays at 0.25, and the previously depleted material
+label retains heat about 3.0. This thermal improvement occurs with
+evolved mechanical motion and the same initial heat and total energy.
+Their peak whole-body speeds are 0.992935 and 0.992801 at 32 and
+64 cells, respectively. The Lorentz factor remains much lower than
+the prior cold-element value near 47, while highly relativistic local
+motion persists.
+
+The fully equilibrated versions keep speeds below 0.293 at 32 cells
+and 0.210 at 64 cells before reaching a compression-resolution limit
+at 0.57736 and 0.49926. Their canonical energy errors remain below
+\(1.5\times10^{-10}\). The compressed cell is precisely the cell
+whose optimized backbone weight equals the \(10^{-12}\) floor:
+cell 24 of 32 or cell 49 of 64, near \(\ell=-0.86\). Thus the
+minimum-energy initial equilibrium contains a weak section. Its
+compression, alongside the measured sixfold energy burden, limits
+this first assembly.
+
+The equal-energy solutions also develop rapidly oscillating local
+velocities. At 1.285 the label-0.5 velocities are −0.2804 and +0.2159
+at 32 and 64 cells, although their temperatures remain close. The
+full supplied stress and local motion therefore require further
+resolution and an adequately stiff response through the weak section.
+
+The next bounded refinement requires an initial composite longitudinal
+signal speed of at least 0.5 at every cell endpoint quadrature value.
+This gives a positive lower bound on each backbone weight before
+minimizing the initial equilibrium energy. Its associated equal-energy
+control scales that completed profile to the prior budget; its actual
+minimum signal speed is measured after scaling. The two versions are
+registered at 64 and 128 cells with the same time-step and duration
+controls. This addresses the identified weak section without adding a
+new force port or changing the endpoint load.
