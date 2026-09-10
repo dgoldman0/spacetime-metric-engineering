@@ -254,6 +254,11 @@ be evaluated for a proposed state and boundary construction.
 
 ## Disposition and evidence
 
+The user has set this assembly aside from the active search. The
+[source-construction selection constraints](SOURCE_CONSTRUCTION_SELECTION.md)
+prioritize alternatives without string matter or ideal string-cloud sources;
+reconsideration requires a substantial assembly-level viability benefit.
+
 The local field interpretation strengthens the case that the mechanical
 response has a recognizable physical basis. Completing this particular
 assembly on the retained active geometry requires an independently supplied

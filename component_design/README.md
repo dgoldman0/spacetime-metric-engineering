@@ -19,6 +19,13 @@ distributed fiber diagnostics.
 
 ## Current source construction
 
+The [source-construction selection constraints](../supporting_reports/SOURCE_CONSTRUCTION_SELECTION.md)
+set the current search preference: constructions without string matter or
+ideal string-cloud sources receive priority. A string-based candidate requires
+a substantial, quantified improvement in complete assembly viability.
+The prestressed backbone/heat-buffer assembly is set aside following its
+measured source-completion burden.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and
