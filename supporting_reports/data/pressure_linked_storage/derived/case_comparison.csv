@@ -1,0 +1,27 @@
+stage,case,success,message,initial_slice_energy,final_slice_energy,maximum_supplied_null,secondary_energy_optimization_succeeded,maximum_charge_rate,maximum_discharge_rate,maximum_left_traction,maximum_right_traction,maximum_raw_equality_residual,fade_required_negative_null
+conversion_controls,endpoint_work_n64,True,,55164.5786366079,3357.5710010571775,7.110583298966617,True,4.692931753779203e-06,540.487609011149,1.7724164499808885,3.4546697795152133,3.777952949188704e-07,7.131579311716783
+conversion_controls,heat_engine_n64,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+conversion_controls,powered_fast_joint,True,,625.3253632417286,44.05752985932431,0.09172469080946183,False,10.000000000000005,10.000000000000009,0.010259288413040126,0.04345074484608372,2.7162905627637954e-06,0.10279735752154814
+conversion_controls,powered_finite_joint,True,,632.9653855514392,44.8306027836072,0.09373541888918566,False,1.0000000000000149,1.0000000000000189,0.010142227926812698,0.04445610888594563,1.8694924193343437e-07,0.10398176225972747
+conversion_controls,powered_finite_n64,True,,633.5373636142941,44.88290669034356,0.09388781686238626,True,1.0000000000000149,1.000000000000005,0.01013901083969303,0.04453230787254598,7.59359560474622e-08,0.10407907145903497
+conversion_controls,powered_free_joint,True,,625.4001759030613,43.89016376626753,0.09126425765122329,False,429.3484530669013,822.002429021163,0.010327026864441445,0.04322052826696445,1.9046243167255827e-07,0.1025807200179242
+first_round,fixed_balanced_n32,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+first_round,fixed_exposed_n32,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+first_round,prepared_balanced_n32,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+first_round,prepared_exposed_n32,True,,68073.7839723635,4081.385738124825,8.732234121540568,True,,1.000000000000002,1.8640887110620095,4.274694263604087,1.525373994297603e-07,8.722937314695185
+rate_controls,powered_exposed_n64,True,,625.3594469872108,43.903580356529226,0.09131352339196493,True,,422.8796630740858,0.010382601394175048,0.043245161137335314,7.574226990828713e-08,0.10268766321806344
+rate_controls,prepared_exposed_fast,True,,56250.827994906685,3417.1006330651376,7.248398494459994,False,,10.000000000000002,1.771055564521916,3.523477020663594,3.7808178574992885e-07,7.2397307819076735
+rate_controls,prepared_exposed_free_rate,True,,55198.325840290534,3359.632317633893,7.114981904459705,False,,540.5343993479802,1.7735161013541605,3.4567554772147226,3.780715539345339e-07,7.135977917209871
+rate_controls,prepared_fast_joint,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+refinement,fixed_exposed_free_rate,True,,90902.03756098625,5225.180016513761,11.638549237040476,True,,290.77474765553075,1.4641830980742379,5.727862212978705,1.525373994297603e-07,11.629273212315086
+refinement,prepared_balanced_free_rate,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+refinement,prepared_exposed_joint,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+refinement,prepared_exposed_n64,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+refinement,prepared_exposed_space,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+refinement,prepared_exposed_time,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+retained_coefficients,endpoint_work_n64,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+retained_coefficients,heat_engine_n64,True,,43659.08940322758,2662.4515172610036,5.609872727337764,True,0.00030118466788776785,535.9442770987353,1.3972388070736756,2.7340102587251836,3.156916937072813e-07,5.630868740087932
+retained_coefficients,powered_finite_joint,True,,632.9653858974995,44.83060256409514,0.09373541843614848,False,1.0000000000005338,1.0000000000000189,0.010142227902506795,0.04445610865942651,2.6815871502217575e-06,0.10398176192529479
+retained_coefficients,prepared_balanced_n32,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+retained_coefficients,prepared_exposed_n64,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,
+retained_coefficients,prepared_fast_joint,False,The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None),,,,,,,,,,

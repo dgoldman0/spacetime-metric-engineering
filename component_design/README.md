@@ -30,8 +30,12 @@ The [distributed electrothermal comparison](../supporting_reports/GRADED_ELECTRO
 identifies a conditional continuation with graded radial capacitors, local
 stores, and confined-fluid pressure couplings connected to the endpoint
 heat/current and reset plant. It quantifies the separate momentum and thermal
-ports. Complete load paths, wall and buffer material laws, coupled evolution,
-and the remaining negative-stress source determine physical selection.
+ports. The [connected-pressure completion](../supporting_reports/PRESSURE_LINKED_STORAGE_COMPLETION.md)
+closes the interior force equations with a thermal-fluid EOS and finite
+bidirectional field conversion. Its small stress estimate requires an explicit
+electrical-work and heat-return interface, supplied terminal reactions, and
+physical carrier and converter tensors. Coupled evolution and the remaining
+negative-stress source continue to determine physical selection.
 
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and

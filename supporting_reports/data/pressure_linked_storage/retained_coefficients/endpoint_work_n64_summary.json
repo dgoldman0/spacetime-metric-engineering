@@ -1,0 +1,20 @@
+{
+  "case": "endpoint_work_n64",
+  "cells": 64,
+  "intervals": 129,
+  "duration": 1.285,
+  "initial_mode": "prepared",
+  "ends": "exposed",
+  "conductivity_ceiling": null,
+  "kappa": 3.0,
+  "passive": false,
+  "charging_policy": "endpoint_work",
+  "primary_solver": "highs-ipm",
+  "presolve": true,
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "variables": 16901,
+  "equalities": 16705,
+  "inequalities": 67535
+}

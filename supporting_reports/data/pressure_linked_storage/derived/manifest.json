@@ -1,0 +1,22 @@
+{
+  "completed_utc": "2026-09-10T15:26:14.060175+00:00",
+  "stage_hash_comparisons": 178,
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/summarize_pressure_linked_storage.py": "64ad645ba9c6a9f08b7ef8247463486de7475991d5698e3c9dfd4ad19cf1291f",
+    "toolkit/adm_harness_cli/adm_harness/pressure_linked_storage.py": "f82a037f21d622b1cbf4e8c93d7bd2c22c7bc22c57e079c7547ab833c250598e"
+  },
+  "output_sha256": {
+    "supporting_reports/data/pressure_linked_storage/derived/retained_coefficients_heat_engine_n64_channels.csv": "95ae207d22557dc0d0af4cfd3e9f38d0dee65c1537738c579b71df0c8bc7cefd",
+    "supporting_reports/data/pressure_linked_storage/derived/conversion_controls_powered_finite_n64_channels.csv": "641ee8ef7029e9b6cc60b3102997de984e13ade53035addb3f723f8aa4e11120",
+    "supporting_reports/data/pressure_linked_storage/derived/case_comparison.csv": "8a05c32b0c7d7df1012048301d60471225306406c772c1ff638d4c6623ffb5df",
+    "supporting_reports/data/pressure_linked_storage/derived/retained_coefficients_powered_finite_joint_channel_maps.npz": "b547c4f269c06c94218636eec0a63228e9a3ec1011f5398e0184f8e5243f5d6d",
+    "supporting_reports/data/pressure_linked_storage/derived/integrity.csv": "a6b2fb221aaa7f54cbd9b2fae1cf5551199dac4282df721497ab02256f9c47d7",
+    "supporting_reports/data/pressure_linked_storage/derived/retained_coefficients_powered_finite_joint_channels.csv": "5d900da368b5859d4a1b5d889947f75bbf034fcb46f9001f27901b6fa7649dc1",
+    "supporting_reports/data/pressure_linked_storage/derived/conversion_controls_powered_finite_n64_channel_maps.npz": "0247809fc91a760843ce2ee4eb6819c7445c5351a33a5b1812383df301ea0eb3",
+    "supporting_reports/data/pressure_linked_storage/derived/interface_requirements.csv": "3f0e227d0d15c8896d6bfad72b2c4ee61e5e4467ca2318eea1589130621c3606",
+    "supporting_reports/data/pressure_linked_storage/derived/bidirectional_reaction_witness.csv": "20c3404edcf5def28e4adefd9dafba4c1d34c44c1a1d3c4f5a536df0fcabf569",
+    "supporting_reports/data/pressure_linked_storage/derived/retained_coefficients_heat_engine_n64_channel_maps.npz": "cd459b7820107f6cc7ca7cc48790bc0578ff7e5f74a6bb78825f8a3a1b3be590",
+    "supporting_reports/figures/pressure_linked_interface.png": "c67109330740a17f23860003776fef47896ef16c93906ed61f3ecc739845cff0",
+    "supporting_reports/figures/pressure_linked_interface.pdf": "0d1b2e4bdbd8d4d79db01272ac464ea9ea2def4211a8d75cf4d8fe2f3318b044"
+  }
+}

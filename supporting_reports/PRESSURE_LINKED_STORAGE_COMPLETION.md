@@ -1,5 +1,14 @@
 # Connected pressure paths for distributed electrothermal storage
 
+The connected fluid and radial field close their interior energy and force
+equations at a small stress burden when the electrical stores can charge
+and discharge. The refined finite-rate history requires negative null stress
+0.104 at carrying-flow fade, with the fluid's thermal pressure included.
+Its physical completion is an interface that delivers electrical work and
+returns heat simultaneously, together with specified terminal reactions.
+The archived endpoint tensor fixes the net exchange; the separate work and
+heat duties require their own constitutive and receiving-capacity calculation.
+
 The short confined-fluid couplings in the [graded-storage study](GRADED_ELECTROTHERMAL_ASSEMBLY.md)
 leave loaded pressure ends and a thermal exchange. This investigation connects
 the pressure-bearing material across the tested storage patch and includes its
@@ -197,11 +206,12 @@ and entropy balance still require the endpoint medium's constitutive law.
 Two additional inverse controls isolate this requirement. The direct-work
 control limits charging to incoming endpoint energy. The optimistic heat-engine
 control also allows fluid heat extraction where the endpoint exports energy,
-while requiring direct work elsewhere. Both controls grant all incoming endpoint
-energy as usable work, so they remain generous physical screens. A charging
-history that draws fluid heat while possessing no assigned heat-dump port
-requires an additional free-energy store, a work-transfer current, or a changed
-thermal exchange. Its tensor and reciprocal exchange must enter the assembly.
+while requiring direct work elsewhere. These controls use a single net-energy
+port, granting all incoming endpoint energy as usable work. The rail's distinct
+work-current and heat-current channels also permit simultaneous work delivery
+and heat return with positive net incoming power. Their separate physical
+response and stress therefore remain a larger construction class than either
+restricted control.
 
 ## Coefficient-retention audit
 
@@ -225,3 +235,107 @@ both optimization stages and checks the original matrices after solving.
 A manufactured regression verifies a small coefficient multiplying a large
 store. Earlier infeasibility labels remain archived solver outcomes; the
 retained-coefficient rerun determines the final comparison.
+
+## Final comparison and the missing interface
+
+The retained-coefficient run preserves the finite bidirectional result and
+recovers a feasible heat-engine control. The passive rate-one 64-cell case,
+passive rate-ten joint refinement, balanced-end case, and direct-net-work
+control retain infeasible solver outcomes. The analytic reaction witness and
+the explicit work/heat decomposition provide the physical conclusions; these
+solver outcomes concern their registered discrete constitutive restrictions.
+
+| Retained comparison | Peak supplied null | Initial slice energy | Required negative null at fade |
+| --- | ---: | ---: | ---: |
+| Finite bidirectional stores, 128 cells / 257 intervals | 0.0937354 | 632.9654 | 0.103982 |
+| Single-net-port heat-engine control, 64 cells / 129 intervals | 5.60987 | 43,659.09 | 5.63087 |
+
+The refined bidirectional history has slice energies 632.9654 at startup,
+371.9845 at s=0.5, and 44.8306 at fade. Its remaining negative-null requirements
+at those phases are 0.073106, 0.070556, and 0.103982. The secondary energy
+optimization reaches its time limit in this run, so these are the retained
+primary history's energies. The minimax peak has a primal-dual gap below 7e-16.
+The maximum original scaled equation residual is 6.96e-9; the maximum unscaled
+residual is 2.69e-6. Independent reconstructed-tensor residuals are 0.559% for
+energy and 0.0529% for force relative to summed term magnitudes.
+
+The essential interface can be written explicitly. Let W=max(C,0) be
+electrical work delivered from the endpoint current system into charging
+stores, and let Q=E-W be heat delivered from that system to the fluid.
+Discharging field energy heats the fluid locally in this particular split.
+Then the endpoint exchange is exactly W+Q=E, and the fluid receives E-C,
+as required by the coupled equations. Thus W>0 and Q<0 describe concurrent
+electrical delivery and heat return. A positive E can coexist with both.
+
+For the refined history, integrating local rest power over the proper
+worldtube gives the following duties:
+
+| Interface duty | Processed energy in model units |
+| --- | ---: |
+| Electrical work delivered for charging | 46.9435 |
+| Heat returned to the endpoint medium | 46.7339 |
+| Heat delivered from the endpoint to the fluid | 0.55334 |
+| Net endpoint energy delivered | 0.76287 |
+| Heat return occurring during positive net endpoint delivery | 21.7676 |
+
+These are throughputs for this history. Initial work-reserve capacity depends
+on preparation, recovery, incoming work currents, and the separate storage
+law. Likewise, the time-dependent geometry gives local proper-work integrals
+rather than a global conserved Killing energy. The 64-cell comparison processes
+43.8512 units of charging work and 43.6401 units of returned heat. Their roughly
+7% variation exceeds the 0.16% change in peak supplied null stress; the port
+duties remain preliminary sizing data. Neither optimization minimizes
+converter throughput.
+
+![Separate electrical and thermal port requirements](figures/pressure_linked_interface.png)
+
+The largest refined charging and return-heat densities are each 0.008485 in
+model units. The integrated work/heat split agrees with the prescribed net
+exchange to floating-point precision. Supplying those gross currents still
+requires finite stored free energy or an incoming work route, a receiving
+entropy capacity, carrier inertia, current relaxation, and the full tensor
+of any added converter or storage material. The earlier Comer particle and
+entropy construction supplies a relevant constitutive framework; its separate
+reference evolution supplies no temperature or capacity certificate for this
+archived active endpoint tensor.
+
+The mechanical completion also remains explicit. Peak end-traction magnitudes
+are 0.0101422 on the left and 0.0444561 on the right. The integrated reaction
+witness extends to charging and discharging with |r| <= 2 sigma N_lapse:
+replace its field coefficient minimum by
+C-4(ln R)_x-|bD|2 sigma N_lapse. It remains positive at fade for sigma one
+and ten, while the weighted drive remains -2.1946573. The existing standing
+support therefore needs a specified reaction-bearing connection. Its tensor
+and capacity remain separate from the completed interior force balance.
+
+## Construction decision and limits
+
+The useful continuation is a bidirectional electrical converter with separately
+counted work and heat-return ports, connected to the existing regulated
+heat/current and receiver infrastructure. The confined fluid supplies the
+pressure response and transmits interior loads. The standing support receives
+the terminal reactions. This division preserves the rail's component duties
+and identifies a concrete interface law and duty map to construct next.
+
+The current result is an inverse supplied-stress construction on the late
+non-live patch, which covers 35.75% of the earlier full-interval exchange
+weight. Material motion is prescribed with maximum speed 0.202141c; its free
+evolution and feedback stability remain to be demonstrated. The EOS has
+positive conserved rest mass and nonnegative thermal energy, with some cells
+reaching zero thermal reserve. Physical temperature margins, entropy flow,
+finite current response, earlier packet-safe preparation, and a complete
+reset cycle consequently remain acceptance conditions. The independently
+supplied negative-stress sector also remains open.
+
+This round stops at the physical work/heat-interface and terminal-reaction
+gate. The small stress estimate includes the connected thermal fluid and field;
+it acquires further contributions when the required converter, carrier, and
+support tensors are supplied. A measured net endpoint exchange alone provides
+insufficient information to select their capacities.
+
+The focused fluid, field, local-pressure, and existing covariant-tensor tests
+total **40 passing cases**. Four computation workers were used throughout.
+The artifact audit verifies **178 source/input and output hash comparisons**
+across five stages, retaining historical source revisions where needed. Numeric
+comparisons, port histories, work/heat maps, and the reaction witness are in
+[`data/pressure_linked_storage/derived`](data/pressure_linked_storage/derived/).

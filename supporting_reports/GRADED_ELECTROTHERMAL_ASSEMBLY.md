@@ -18,6 +18,12 @@ requirements. Physical buffer response, confined contact dynamics, complete
 pressure transmission, and the remaining negative-stress source constitute
 the next construction gate.
 
+The subsequent [connected-pressure study](PRESSURE_LINKED_STORAGE_COMPLETION.md)
+includes thermal pressure and every interior force equation across the patch.
+It retains a small stress burden with finite bidirectional electrical
+conversion. Its explicit work-delivery, heat-return, and terminal-reaction
+requirements specify the physical interface still needed for that candidate.
+
 ## Construction and scope
 
 This bounded study tests a radial electric force profile coupled to local
