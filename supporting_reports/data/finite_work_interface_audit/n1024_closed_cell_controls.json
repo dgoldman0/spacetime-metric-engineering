@@ -1,0 +1,57 @@
+{
+  "cells": 1024,
+  "controls": [
+    {
+      "cells": 1024,
+      "control": "instantaneous_wall_bound",
+      "time": 0.0,
+      "required_negative_null": 0.09794805226999091,
+      "added_wall_ADM_energy": 100.7424292002624,
+      "wall_rest_energy": 99.99952006094648
+    },
+    {
+      "cells": 1024,
+      "control": "instantaneous_wall_bound",
+      "time": 0.5,
+      "required_negative_null": 0.0804452915945925,
+      "added_wall_ADM_energy": 74.69518114004931,
+      "wall_rest_energy": 74.69517890257184
+    },
+    {
+      "cells": 1024,
+      "control": "instantaneous_wall_bound",
+      "time": 1.285,
+      "required_negative_null": 0.21312250836897234,
+      "added_wall_ADM_energy": 9.778940274742954,
+      "wall_rest_energy": 9.778940274742952
+    },
+    {
+      "cells": 1024,
+      "control": "adiabatic_wall_bound",
+      "time": 0.0,
+      "required_negative_null": 0.11913840441764653,
+      "added_wall_ADM_energy": 121.5337926737958,
+      "wall_rest_energy": 120.5342623722228
+    },
+    {
+      "cells": 1024,
+      "control": "adiabatic_wall_bound",
+      "time": 0.5,
+      "required_negative_null": 0.08743685828447088,
+      "added_wall_ADM_energy": 171.62379660607075,
+      "wall_rest_energy": 171.6237936774937
+    },
+    {
+      "cells": 1024,
+      "control": "adiabatic_wall_bound",
+      "time": 1.285,
+      "required_negative_null": 0.5338253523807293,
+      "added_wall_ADM_energy": 253.05294572658843,
+      "wall_rest_energy": 253.05294572658843
+    }
+  ],
+  "closed_cell_electrical_energy_balance_max": 1.541822225448186e-14,
+  "port_wave_power_relative_residual": 7.125529468377217e-14,
+  "instantaneous_wall_inventory_is_supplied": false,
+  "physical_wall_equation_of_state_is_supplied": false
+}

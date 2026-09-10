@@ -53,6 +53,13 @@ and stress comparison. The physical continuation supplies the converter's
 force and loss law, finite guide turns and electric isolation, and the thermal
 receiver's material stress while preserving earlier arming and full reset.
 
+The [finite work-interface investigation](../supporting_reports/FINITE_WORK_INTERFACE.md)
+retains useful conversion-efficiency and recovery choices and quantifies the
+remaining capacitor's electrical and mechanical duties. Limiting recovery
+can reduce added guide energy while increasing the electric storage requiring
+confinement. The next construction couples charged boundaries to the existing
+pressure/support material, with their full stress and work exchange included.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and

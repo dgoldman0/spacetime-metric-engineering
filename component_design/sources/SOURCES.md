@@ -220,6 +220,29 @@ These primary papers support the construction target in
   Design use: a time-dependent electromagnetic loss and surface-heating model
   checked against particle-in-cell calculations.
 
+The [finite work-interface investigation](../../supporting_reports/FINITE_WORK_INTERFACE.md)
+adds the following coupling and charged-boundary references.
+
+- Angelica V. Marini, Davide Ramaccia, Alessandro Toscano, and Filiberto Bilotti,
+  [Perfect Matching of Reactive Loads Through Complex Frequencies: From Circuital Analysis to Experiments](https://doi.org/10.1109/TAP.2022.3177571).
+  Published in 2022; [author manuscript deposited in 2025](https://arxiv.org/abs/2502.03076).
+  Design use: transient capacitive/inductive matching under shaped excitation.
+
+- J. Wenner and colleagues,
+  [Catching Time-Reversed Microwave Coherent State Photons with 99.4% Absorption Efficiency](https://doi.org/10.1103/PhysRevLett.112.210501).
+  Design use: controlled reversible capture, release, and sensitivity to timing
+  and impedance. The experiment operates at small signal energies.
+
+- M. S. Mirmoosa, G. A. Ptitcyn, V. S. Asadchy, and S. A. Tretyakov,
+  [Unlimited Accumulation of Electromagnetic Energy Using Time-Varying Reactive Elements](https://arxiv.org/abs/1802.07719).
+  Design use: time-dependent matching with an explicitly counted modulation
+  energy port.
+
+- Ian Khai-Shuen Ng, Wei Zheng Choo, and Yen-Kheng Lim,
+  [Model for an Electrostatic Capacitor in Einstein--Maxwell Theory](https://arxiv.org/abs/2302.03192).
+  Design use: charged-interface stress and gravitational matching; the
+  spherical family is a candidate mathematical basis for capacitor boundaries.
+
 ## Diagnostics And Governance Sources
 
 - [`intelligent_dofs_transportation_infrastructures_2601.13891.pdf`](intelligent_dofs_transportation_infrastructures_2601.13891.pdf)

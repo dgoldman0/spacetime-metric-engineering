@@ -1,0 +1,16 @@
+drift_comparison,reflected_amplitude,auxiliary_energy_with_guide_margin,guide_flux,calculation
+0.5,0.0,52.78614617424247,0.6166493644346595,Field envelope; reflected propagation and plasma dynamics remain separate
+0.5,0.01,56.06222477286808,0.6372660081855915,Field envelope; reflected propagation and plasma dynamics remain separate
+0.5,0.02,61.23838291224892,0.6580059818094107,Field envelope; reflected propagation and plasma dynamics remain separate
+0.5,0.05,110.13447252041811,0.7209658819181894,Field envelope; reflected propagation and plasma dynamics remain separate
+0.5,0.1,198.61408514899904,0.8283656462238927,Field envelope; reflected propagation and plasma dynamics remain separate
+0.55,0.0,43.77540170593736,0.4739536437390357,Field envelope; reflected propagation and plasma dynamics remain separate
+0.55,0.01,44.446299368045814,0.49170210350398585,Field envelope; reflected propagation and plasma dynamics remain separate
+0.55,0.02,45.19253794257702,0.5095453539976836,Field envelope; reflected propagation and plasma dynamics remain separate
+0.55,0.05,48.101023876279825,0.5636438498512643,Field envelope; reflected propagation and plasma dynamics remain separate
+0.55,0.1,60.50485686898868,0.6557038241821879,Field envelope; reflected propagation and plasma dynamics remain separate
+0.6,0.0,40.60120160806658,0.36542184559090934,Field envelope; reflected propagation and plasma dynamics remain separate
+0.6,0.01,40.9971013906328,0.3809888162130821,Field envelope; reflected propagation and plasma dynamics remain separate
+0.6,0.02,41.41043175595753,0.39662887120437307,Field envelope; reflected propagation and plasma dynamics remain separate
+0.6,0.05,42.774965740083196,0.44398754239295485,Field envelope; reflected propagation and plasma dynamics remain separate
+0.6,0.1,45.880299409248316,0.524380348422955,Field envelope; reflected propagation and plasma dynamics remain separate

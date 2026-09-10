@@ -1,0 +1,254 @@
+{
+  "cases": [
+    {
+      "initial": 51.749034842641066,
+      "extra_heat": 1.37286713194769,
+      "heat_capacity": 44.9563288187254,
+      "flux": 0.6077853011243556,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.16529640646745697,
+      "cells": 1024,
+      "recovery_fraction": 0.7
+    },
+    {
+      "initial": 51.74831657424231,
+      "extra_heat": 1.2870440744089724,
+      "heat_capacity": 44.90016665927747,
+      "flux": 0.6077853011243556,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.16850277699356128,
+      "cells": 1024,
+      "recovery_fraction": 0.7187541216935451
+    },
+    {
+      "initial": 51.7547745422854,
+      "extra_heat": 0.9152447546317931,
+      "heat_capacity": 44.66424064680353,
+      "flux": 0.6077853011243556,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.1824235238186923,
+      "cells": 1024,
+      "recovery_fraction": 0.8
+    },
+    {
+      "initial": 52.78614617424247,
+      "extra_heat": 0.45762237731589656,
+      "heat_capacity": 44.38316885468434,
+      "flux": 0.6166493644346595,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.1995629011115403,
+      "cells": 1024,
+      "recovery_fraction": 0.9
+    },
+    {
+      "initial": 57.30868248900045,
+      "extra_heat": 0.2288111886579485,
+      "heat_capacity": 44.245048290312745,
+      "flux": 0.6431324889659424,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.20813349157473865,
+      "cells": 1024,
+      "recovery_fraction": 0.95
+    },
+    {
+      "initial": 61.62119274448605,
+      "extra_heat": 0.09152447546317939,
+      "heat_capacity": 44.16289399333302,
+      "flux": 0.6590508345144585,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.213285059713417,
+      "cells": 1024,
+      "recovery_fraction": 0.98
+    },
+    {
+      "initial": 67.91305284804363,
+      "extra_heat": 0.0,
+      "heat_capacity": 44.12123881912413,
+      "flux": 0.6696630648801359,
+      "forward_guide_peak": 0.19669427220852934,
+      "return_guide_peak": 0.2167194384725359,
+      "cells": 1024,
+      "recovery_fraction": 1.0
+    }
+  ],
+  "phases": [
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7,
+      "time": 0.0,
+      "required_negative_null": 0.0940181505295093
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7,
+      "time": 0.5,
+      "required_negative_null": 0.08280935562501714
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7,
+      "time": 1.285,
+      "required_negative_null": 0.24525380444751718
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7187541216935451,
+      "time": 0.0,
+      "required_negative_null": 0.0940258044271494
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7187541216935451,
+      "time": 0.5,
+      "required_negative_null": 0.08258546987007422
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.7187541216935451,
+      "time": 1.285,
+      "required_negative_null": 0.24223734670444858
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.8,
+      "time": 0.0,
+      "required_negative_null": 0.09405896327495653
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.8,
+      "time": 0.5,
+      "required_negative_null": 0.08161556069611291
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.8,
+      "time": 1.285,
+      "required_negative_null": 0.22916988463372237
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.9,
+      "time": 0.0,
+      "required_negative_null": 0.09411615379792522
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.9,
+      "time": 0.5,
+      "required_negative_null": 0.08043943046582273
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.9,
+      "time": 1.285,
+      "required_negative_null": 0.21310526836322322
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.95,
+      "time": 0.0,
+      "required_negative_null": 0.09604519008306366
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.95,
+      "time": 0.5,
+      "required_negative_null": 0.08189574527509434
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.95,
+      "time": 1.285,
+      "required_negative_null": 0.2072159384797531
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.98,
+      "time": 0.0,
+      "required_negative_null": 0.0975557816445834
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.98,
+      "time": 0.5,
+      "required_negative_null": 0.0831346108811045
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 0.98,
+      "time": 1.285,
+      "required_negative_null": 0.20420007874282617
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 1.0,
+      "time": 0.0,
+      "required_negative_null": 0.09874860314462296
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 1.0,
+      "time": 0.5,
+      "required_negative_null": 0.08407612231384282
+    },
+    {
+      "cells": 1024,
+      "recovery_fraction": 1.0,
+      "time": 1.285,
+      "required_negative_null": 0.20375190670901622
+    }
+  ],
+  "startup_only_optimum_recovery_fraction": 0.7187541216935451,
+  "selected_recovery_fraction": 0.9,
+  "full_recovery_tensor_residual": 0.0,
+  "maximum_electric_rate": 1.0000000000005338,
+  "minimum_electric_flux_energy": 0.0035093235933707223,
+  "maximum_endpoint_force_remainder": 0.04386544368427425,
+  "maximum_heat_holding_force": 0.012615823137919986,
+  "capacitor_port": {
+    "normalized_cell_charge_min": 0.08460237917665868,
+    "normalized_cell_charge_max": 0.9598791659327282,
+    "initial_electric_rest_energy": 99.99952006094648,
+    "initial_electric_ADM_energy": 99.75370877454934,
+    "final_electric_rest_energy": 9.778940274742952,
+    "sum_local_electric_energy_capacities": 111.84657912929325,
+    "electrical_work_midpoint_identity": 42.29810356816209,
+    "mechanical_work_midpoint_identity": -132.5186833543656,
+    "electric_rest_energy_change": -90.22057978620353,
+    "maximum_discrete_energy_identity_residual": 1.762479051592436e-15,
+    "fixed_real_impedance_minimum_reflection_energy_fraction": 0.7385654569594096,
+    "fixed_real_impedance_incident_to_useful_work": 3.8250492393606215,
+    "maximum_interval_electric_rate": 1.0000000000005338,
+    "conditional_capacitor_mass_energy_per_rated_energy": 0.3243129301101409,
+    "conditional_capacitor_specific_energy_J_per_kg": 2.771259161426554e+17,
+    "capacitor_mass_comparison": "All remaining radial electric cells; added conserved mass only. Headroom ends at the old formal fade value, not a universal feasibility limit."
+  },
+  "fixed_guide_reflection_drift": [
+    {
+      "reflected_amplitude": 0.0,
+      "field_drift": 0.49446817643414875,
+      "meaning": "Minimum E=0 frame speed; no maximum particle speed established"
+    },
+    {
+      "reflected_amplitude": 0.01,
+      "field_drift": 0.5006322628318542,
+      "meaning": "Minimum E=0 frame speed; no maximum particle speed established"
+    },
+    {
+      "reflected_amplitude": 0.02,
+      "field_drift": 0.5068170475155508,
+      "meaning": "Minimum E=0 frame speed; no maximum particle speed established"
+    },
+    {
+      "reflected_amplitude": 0.05,
+      "field_drift": 0.5254928807219159,
+      "meaning": "Minimum E=0 frame speed; no maximum particle speed established"
+    },
+    {
+      "reflected_amplitude": 0.1,
+      "field_drift": 0.5570066518960167,
+      "meaning": "Minimum E=0 frame speed; no maximum particle speed established"
+    }
+  ]
+}
