@@ -1,0 +1,126 @@
+{
+  "cases": [
+    {
+      "cells": 1024,
+      "opacity_ceiling": 1.0,
+      "maximum_sampled_opacity": 0.9708737864077669,
+      "original_and_transport_check_points": 1153,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 3.734404943139476,
+      "guide_flux_energy": 41.0468029108593,
+      "initial_extra_travelling_energy": 4.556754374229635,
+      "final_extra_travelling_energy": 40.46968358179012,
+      "extra_incoming_boundary_energy": 1.2472675576789916,
+      "extra_returned_boundary_energy": 8.842982560993267e-186,
+      "extra_wave_geometric_energy": 34.6656658421513,
+      "initial_extra_guide_energy": 33298.630990056074,
+      "initial_auxiliary_slice_energy": 33336.498101641,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.36407887533705235,
+      "peak_bend_power_times_proper_delay_coefficient": 19.541281230633132,
+      "maximum_free_wave_balance_residual": 1.2793585635328952e-16
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 10.0,
+      "maximum_sampled_opacity": 9.70873786407767,
+      "original_and_transport_check_points": 1153,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 0.37344049431394755,
+      "guide_flux_energy": 4.10468029108593,
+      "initial_extra_travelling_energy": 0.4556754374229635,
+      "final_extra_travelling_energy": 4.0469683581790115,
+      "extra_incoming_boundary_energy": 0.12472675576789914,
+      "extra_returned_boundary_energy": 8.842982560993265e-187,
+      "extra_wave_geometric_energy": 3.4665665842151294,
+      "initial_extra_guide_energy": 2864.4422354955614,
+      "initial_auxiliary_slice_energy": 2898.2082681436914,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.03640788753370523,
+      "peak_bend_power_times_proper_delay_coefficient": 1.9541281230633132,
+      "maximum_free_wave_balance_residual": 1.2793585635328952e-16
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 100.0,
+      "maximum_sampled_opacity": 97.0873786407767,
+      "original_and_transport_check_points": 1153,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 0.03734404943139476,
+      "guide_flux_energy": 0.6696630648801359,
+      "initial_extra_travelling_energy": 0.045567543742296344,
+      "final_extra_travelling_energy": 0.40469683581790117,
+      "extra_incoming_boundary_energy": 0.012472675576789917,
+      "extra_returned_boundary_energy": 8.842982560993266e-188,
+      "extra_wave_geometric_energy": 0.346656658421513,
+      "initial_extra_guide_energy": 34.557128093594784,
+      "initial_auxiliary_slice_energy": 67.91305284804363,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.003640788753370524,
+      "peak_bend_power_times_proper_delay_coefficient": 0.19541281230633134,
+      "maximum_free_wave_balance_residual": 1.2793585635328952e-16
+    }
+  ],
+  "phases": [
+    {
+      "cells": 1024,
+      "opacity_ceiling": 1.0,
+      "s": 0.0,
+      "required_negative_null": 4.106353519216465,
+      "auxiliary_slice_energy": 33336.498101641
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 1.0,
+      "s": 0.5,
+      "required_negative_null": 4.108321481608513,
+      "auxiliary_slice_energy": 18798.271532261162
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 1.0,
+      "s": 1.285,
+      "required_negative_null": 4.430378027831201,
+      "auxiliary_slice_energy": 1863.598787261784
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 10.0,
+      "s": 0.0,
+      "required_negative_null": 0.43702097970620557,
+      "auxiliary_slice_energy": 2898.2082681436914
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 10.0,
+      "s": 0.5,
+      "required_negative_null": 0.4264208654432834,
+      "auxiliary_slice_energy": 1664.6872921777522
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 10.0,
+      "s": 1.285,
+      "required_negative_null": 0.5633352155068293,
+      "auxiliary_slice_energy": 216.17590482373257
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 100.0,
+      "s": 0.0,
+      "required_negative_null": 0.09874860314462296,
+      "auxiliary_slice_energy": 67.91305284804363
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 100.0,
+      "s": 0.5,
+      "required_negative_null": 0.08407612231384282,
+      "auxiliary_slice_energy": 71.4730376797285
+    },
+    {
+      "cells": 1024,
+      "opacity_ceiling": 100.0,
+      "s": 1.285,
+      "required_negative_null": 0.20375190670901622,
+      "auxiliary_slice_energy": 62.73679074419721
+    }
+  ]
+}

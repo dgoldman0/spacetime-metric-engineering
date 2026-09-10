@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-09-10T20:38:31.766762+00:00",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_poynting_delivery.py": "b1a4226780999e606bc49793127081c0263f66e4bcf2f68af7cbee94c59e7acc",
+    "toolkit/adm_harness_cli/scripts/run_poynting_delivery.py": "7c44f2bdb772e153d2d47ebedf101246e8a09725d62a5a30a16edb11c078d8be",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "supporting_reports/data/poynting_delivery/branched_guides/manifest.json": "fae3e5745631b3d59a5fa0a8eaa55cae8d0690c527c59a606c901b955ef6798e",
+    "supporting_reports/data/poynting_delivery/finite_taps/manifest.json": "bd2d3dfe9c29a7d56a17a4549ebe06e20d1aea6059a51d392ec21a2ec52295ba",
+    "supporting_reports/data/poynting_delivery/maxwell_current/manifest.json": "c17b6c644c3c63fc335548c6572c80592e177bdd694160675f5fb4ae4115974f",
+    "supporting_reports/data/poynting_delivery/route_screen/manifest.json": "5bc196cacb37dcbec5ec940bc4a96ffedfd4fb0677e5f7f2c4029de0bc81e9ea",
+    "supporting_reports/data/poynting_delivery/shared_field/manifest.json": "9233a6092b8cffcd58030398bcd7ba097898949a7513d16bffa079141951d62a",
+    "supporting_reports/data/poynting_delivery/spatial_refinement/manifest.json": "d9e481a5ab98578c927fbaff27d5f4b154d17a63cd7311c4b778c36490954ed0",
+    "supporting_reports/data/poynting_delivery/time_refinement/manifest.json": "95d97c19ef8205bdb896041c1c0269463a1f0de700b0038e8af2bd34f3b9de09"
+  },
+  "output_sha256": {
+    "hash_checks.csv": "394f00382c2b22580bf185673951c8d20daf3a3082f7c89f68c54d86f4f6bf2f",
+    "independent_rays.csv": "0e630008651428ad84c05ee86cea21a791960ae6e68fc078d0462cd0b53ebc31",
+    "shared_field_delivery.pdf": "03ef0cad7513d1d3cc9d94a86119eddb392b713ce92e0b60ffe7727d15a75bac",
+    "shared_field_delivery.png": "fdffba66c858448b4a8ea104a68cb6282b7e37300b6e1b913707450b09793b6d",
+    "transport_comparison.csv": "eb9fa2ab6dcd0fc454b2b1a573c2ddcbff14170b1aa5f5793085fd328a7ad3ff",
+    "verification.json": "a914a59d6b2ebca6d64f802c3905f32f29e32eb5f38c544c819258f1a68a209c"
+  }
+}

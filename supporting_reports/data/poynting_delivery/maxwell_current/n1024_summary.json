@@ -1,0 +1,14 @@
+{
+  "cells": 1024,
+  "maximum_rest_electron_velocity": 0.19801979904593006,
+  "maximum_prescribed_ion_velocity": 0.20157194667340605,
+  "minimum_electron_density_in_charge_units": 0.006200264230652,
+  "maximum_carrier_null_stress": 2.944082362947732e-19,
+  "maximum_carrier_slice_energy": 7.107671809754557e-17,
+  "maximum_rest_current_in_geometric_charge_units": 0.09105720719921058,
+  "maximum_rest_charge_in_geometric_charge_units": 0.806318636320295,
+  "maximum_charge_reconstruction_residual": 1.1102230246251565e-16,
+  "maximum_current_reconstruction_residual": 1.3877787807814457e-17,
+  "relative_Maxwell_charge_continuity_residual": 3.210092159575324e-13,
+  "maximum_added_carrier_rest_energy_over_existing_cold_fluid": 1.936203632123164e-17
+}

@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-09-10T20:37:59.724716+00:00",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_delivery_maxwell_current.py": "2a9b77753d84eb200311420f8e7351515d9463f7da95a306eda53ee83ff002de",
+    "toolkit/adm_harness_cli/scripts/run_poynting_delivery.py": "7c44f2bdb772e153d2d47ebedf101246e8a09725d62a5a30a16edb11c078d8be",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/adm_harness/pressure_linked_storage.py": "f82a037f21d622b1cbf4e8c93d7bd2c22c7bc22c57e079c7547ab833c250598e",
+    "toolkit/adm_harness_cli/adm_harness/graded_electrothermal.py": "b4f85303b43de58a90e67d85032960082c385886d5aa15c1293e93b5d4da2b0b",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_states.npz": "3219b5970bb4182aeb8f628fd040cb7d7824ec39f9227575b46a112bdafe4409",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "supporting_reports/data/poynting_delivery/finite_taps/finite_n512_states.npz": "59b00e55be8c89e022ae83aec3bb1a4a210dcea29d36b6a6e06edbef939236f2",
+    "supporting_reports/data/poynting_delivery/finite_taps/finite_n1024_states.npz": "6ef8d8629722ebf64b0b68f3883dd5eb8a8924fe14a4810429233767af647c60"
+  },
+  "output_sha256": {
+    "n1024_summary.json": "2ecb337810a83d98815b7232177173cff42faa2e7fa570ed61275c4ee499816f",
+    "n512_summary.json": "a69c56fd0d71afcfbfdb4ffa59200cbcbadbe3752064e135159b4b2bfa525d85"
+  }
+}

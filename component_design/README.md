@@ -45,6 +45,14 @@ and requires a physical supporting material, thermal law, and work route.
 The switching role and its finite work reserve therefore remain separate
 construction requirements.
 
+The [finite electromagnetic delivery study](../supporting_reports/POYNTING_WORK_DELIVERY.md)
+selects a receiver-side paired work/return guide with part of its magnetic
+field allocated from the existing radial electric-support budget. Finite
+absorption and conserved-current checks retain an improved late-patch energy
+and stress comparison. The physical continuation supplies the converter's
+force and loss law, finite guide turns and electric isolation, and the thermal
+receiver's material stress while preserving earlier arming and full reset.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and

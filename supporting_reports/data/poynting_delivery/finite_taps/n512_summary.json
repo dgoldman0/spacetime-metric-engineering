@@ -1,0 +1,126 @@
+{
+  "cases": [
+    {
+      "cells": 512,
+      "opacity_ceiling": 1.0,
+      "maximum_sampled_opacity": 0.9708737864077669,
+      "original_and_transport_check_points": 641,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 3.7353313480677364,
+      "guide_flux_energy": 40.97246044778377,
+      "initial_extra_travelling_energy": 4.5578608374962295,
+      "final_extra_travelling_energy": 40.48703434100112,
+      "extra_incoming_boundary_energy": 1.2475784832340908,
+      "extra_returned_boundary_energy": 6.07528922006259e-113,
+      "extra_wave_geometric_energy": 34.681600642949135,
+      "initial_extra_guide_energy": 33237.43146265079,
+      "initial_auxiliary_slice_energy": 33275.32134689768,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.36365458484048707,
+      "peak_bend_power_times_proper_delay_coefficient": 19.512197468672536,
+      "maximum_free_wave_balance_residual": 1.457167719820518e-16
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 10.0,
+      "maximum_sampled_opacity": 9.70873786407767,
+      "original_and_transport_check_points": 641,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 0.37353313480677364,
+      "guide_flux_energy": 4.097246044778377,
+      "initial_extra_travelling_energy": 0.45578608374962293,
+      "final_extra_travelling_energy": 4.048703434100113,
+      "extra_incoming_boundary_energy": 0.1247578483234091,
+      "extra_returned_boundary_energy": 6.07528922006259e-114,
+      "extra_wave_geometric_energy": 3.468160064294914,
+      "initial_extra_guide_energy": 2858.321645361838,
+      "initial_auxiliary_slice_energy": 2892.109454854986,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.03636545848404871,
+      "peak_bend_power_times_proper_delay_coefficient": 1.9512197468672536,
+      "maximum_free_wave_balance_residual": 1.457167719820518e-16
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 100.0,
+      "maximum_sampled_opacity": 97.0873786407767,
+      "original_and_transport_check_points": 641,
+      "maximum_electric_rate": 1.0000000000005338,
+      "transparent_wave_multiplier": 0.03735331348067736,
+      "guide_flux_energy": 0.6683871886102499,
+      "initial_extra_travelling_energy": 0.04557860837496229,
+      "final_extra_travelling_energy": 0.40487034341001116,
+      "extra_incoming_boundary_energy": 0.012475784832340908,
+      "extra_returned_boundary_energy": 6.07528922006259e-115,
+      "extra_wave_geometric_energy": 0.34681600642949134,
+      "initial_extra_guide_energy": 33.506076804069174,
+      "initial_auxiliary_slice_energy": 66.88367882184242,
+      "maximum_ideal_bend_wave_reaction_pressure": 0.0036365458484048704,
+      "peak_bend_power_times_proper_delay_coefficient": 0.19512197468672535,
+      "maximum_free_wave_balance_residual": 1.457167719820518e-16
+    }
+  ],
+  "phases": [
+    {
+      "cells": 512,
+      "opacity_ceiling": 1.0,
+      "s": 0.0,
+      "required_negative_null": 4.097019528296196,
+      "auxiliary_slice_energy": 33275.32134689768
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 1.0,
+      "s": 0.5,
+      "required_negative_null": 4.099062270507107,
+      "auxiliary_slice_energy": 18763.810271872477
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 1.0,
+      "s": 1.285,
+      "required_negative_null": 4.419336159550132,
+      "auxiliary_slice_energy": 1860.3739899083666
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 10.0,
+      "s": 0.0,
+      "required_negative_null": 0.4358905937389372,
+      "auxiliary_slice_energy": 2892.109454854986
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 10.0,
+      "s": 0.5,
+      "required_negative_null": 0.42539614563382466,
+      "auxiliary_slice_energy": 1661.2412635436322
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 10.0,
+      "s": 1.285,
+      "required_negative_null": 0.5609368683095217,
+      "auxiliary_slice_energy": 215.8534221656289
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 100.0,
+      "s": 0.0,
+      "required_negative_null": 0.09835459536326713,
+      "auxiliary_slice_energy": 66.88367882184242
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 100.0,
+      "s": 0.5,
+      "required_negative_null": 0.08381082515837888,
+      "auxiliary_slice_energy": 70.88169450319612
+    },
+    {
+      "cells": 512,
+      "opacity_ceiling": 100.0,
+      "s": 1.285,
+      "required_negative_null": 0.2021507490376298,
+      "auxiliary_slice_energy": 62.681318975665334
+    }
+  ]
+}

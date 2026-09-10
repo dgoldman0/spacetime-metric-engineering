@@ -190,6 +190,36 @@ copy.
   Source URL: https://accelconf.web.cern.ch/e00/papers/TUP6A07.pdf
   Design use: pulse-forming and high-average-power station hardware analogs.
 
+## Electromagnetic Work Delivery And Plasma Interfaces
+
+These primary papers support the construction target in
+[`POYNTING_WORK_DELIVERY.md`](../../supporting_reports/POYNTING_WORK_DELIVERY.md).
+
+- R. V. E. Lovelace and P. P. Kronberg,
+  [Transmission Line Analogy for Relativistic Poynting-Flux Jets](https://arxiv.org/abs/1212.0577).
+  Design use: distributed electromagnetic energy, current, load impedance,
+  reflected waves, and magnetic-insulation failure.
+
+- Samuel E. Gralla and Ted Jacobson,
+  [Nonaxisymmetric Poynting Jets](https://arxiv.org/abs/1503.03848).
+  Design use: local travelling fields, guide/drift relations, and the
+  surrounding-field or material requirements for confinement.
+
+- Alexander Y. Chen, Yajie Yuan, Andrei M. Beloborodov, and Xinyu Li,
+  [Relativistic Alfvén Waves Entering Charge Starvation in the Magnetospheres of Neutron Stars](https://arxiv.org/abs/2010.15619).
+  Design use: finite charge supply, longitudinal two-fluid currents, and
+  kinetic acceleration and dissipation when the current exceeds that supply.
+
+- J. Pace VanDevender and colleagues,
+  [Requirements for Self-Magnetically Insulated Transmission Lines](https://doi.org/10.1103/PhysRevSTAB.18.030401).
+  Design use: finite load interfaces, electron retrapping, electrode/plasma
+  losses, and gap closure.
+
+- E. G. Evstatiev, M. H. Hess, N. D. Hamlin, and B. T. Hutsel,
+  [Non-local, Diamagnetic Electromagnetic Effects in Magnetically Insulated Transmission Lines](https://arxiv.org/abs/2408.12053).
+  Design use: a time-dependent electromagnetic loss and surface-heating model
+  checked against particle-in-cell calculations.
+
 ## Diagnostics And Governance Sources
 
 - [`intelligent_dofs_transportation_infrastructures_2601.13891.pdf`](intelligent_dofs_transportation_infrastructures_2601.13891.pdf)

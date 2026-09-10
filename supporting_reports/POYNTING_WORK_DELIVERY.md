@@ -4,7 +4,10 @@ Receiver-side electromagnetic delivery reduces the required travelling
 preparation and supports a useful allocation of the existing radial field to
 its magnetic guides. The selected continuation combines a paired work/return
 route, finite distributed taps, complementary electric storage, and the
-existing thermal receiving role. Its complete material and curved-turn
+existing thermal receiving role. A finite-response comparison reduces the
+sampled fade negative-null requirement to about 0.204, against 0.263 for the
+previous formal enclosed-store control. Its additional startup slice energy
+is about 68 units, against 94. Its complete material and curved-turn
 realization remains the next physical gate.
 
 ## Registered question and architecture
@@ -190,8 +193,166 @@ Conservative interval minima and quintic interpolation produce a C2 spatial
 profile below that cap, with an additional 2% allocation margin. The selected
 guide includes a 3% wave-energy margin. Independent electric/magnetic tensor,
 rate, and covariant-force tests accompany this construction.
+The allocation cap includes the union of the original material knots and
+transport cell centers. This preserves tight original-knot rate constraints
+that a cell-center-only representation can miss.
 
 The added radial field's material-rest power vanishes in the interior. Its
 rest force is -partial_x(G-S)/(Gamma B R^4), which joins the tap momentum and
 thermal holding force in the remaining standing-support duty. This allocation
 preserves the work port while making its changed mechanical load explicit.
+
+## Shared-field result and finite power taps
+
+The matched-load allocation with drift comparison 0.5 retains the original
+electric rate ceiling, a positive electric energy floor, and the same
+electrical charging/discharging work. Approximately 500.7 units of initial
+magnetic-guide energy include about 482.2 units reallocated from the existing
+electric support. The resulting added guide energy is about 18.5 units.
+Together with travelling energy and the thermal/enclosure control, the added
+startup slice energy is about 51.8 units. Its sampled fade negative-null
+requirement is approximately 0.199.
+
+![Shared-field allocation and the separate inventories](data/poynting_delivery/audit/shared_field_delivery.png)
+
+The minimum travelling solution reaches zero energy at its last absorption
+event. A physical tap with finite absorption requires a positive field there.
+Define its local material-rest absorption coefficient by chi=q/u_incident.
+A transparent positive travelling field supplies the additional inventory
+needed to keep chi finite. Its amplitude is the smallest multiple of a
+registered source-free reference field that covers the sampled q/chi floor,
+with a 3% energy margin. Original material knots, transport centers, and five
+times in each archived interval enter this check.
+
+The transparent field returns through the paired leg after a lossless local
+bend at the left end. The returning wave has its material-frame energy
+matched to the incident wave, including the Doppler factor at the fixed
+coordinate boundary. Its boundary energy, geometric work, and final travelling
+inventory are counted. The bend is a zero-length control in this propagation
+calculation; its wave reaction and the energy coefficient for a finite proper
+transit time are recorded as separate physical completion quantities.
+
+| Finite tap comparison | Added startup slice energy | Fade negative-null requirement |
+| --- | ---: | ---: |
+| Absorption ceiling chi=1 | about 33,300 | about 4.43 |
+| Absorption ceiling chi=10 | about 2,900 | about 0.563 |
+| Absorption ceiling chi=100 | about 68 | about 0.204 |
+| Previous nominal formal enclosed stores | 93.9352 | 0.262788 |
+
+Here chi is in inverse model proper time. If one model length is L metres,
+its SI value is chi*c/L. These values compare finite coupling strengths;
+they assign no universal material or engineering limit. The selected
+comparison requires an absorption time scale of order 0.01 model proper
+time. A microscopic converter must supply this coupling and the nominal
+98% work-conversion efficiency together. The opacity model prescribes their
+necessary macroscopic response.
+
+The chi=100 comparison adds approximately 0.046 units of initial transparent
+wave energy. About 0.405 units remain travelling at fade, including geometric
+work. The additional wave has yet to complete the whole return path at that
+time. Its peak ideal-bend reaction pressure is about 0.00364. The bend's
+additional travelling-energy coefficient is about 0.195 per unit of proper
+transit time, alongside the magnetic turn energy and its supporting stress.
+These quantities provide explicit finite-turn requirements for the next
+field construction.
+
+The earlier branch comparison and this finite-tap comparison use different
+controls. Independent branches increased prepared guide energy, while a
+small transparent field retained finite absorption on the selected single
+pair. Thus a simpler shared guide with a fast distributed converter remains
+the preferred continuation of the tested arrangements.
+
+## Current availability and physical realization
+
+For the remaining electric field, Q=sqrt(2 H_electric) determines its Maxwell
+charge and current. In the ADM frame,
+
+    rho_charge = Q_x/(B R^2),
+    j_charge = -Q_t/(alpha R^2)+v rho_charge.
+
+Consequently its charge continuity equation reduces to Q_xt-Q_tx=0. The
+material-frame current is -Q_t/(N_lapse R^2). Conserved co-moving ion
+inventories can be chosen to cover the full charge history, with the
+electrons providing the complementary current. The numerical construction
+keeps electron speed below approximately 0.1981 relative to the material and
+the prescribed ion speed below approximately 0.202 in the ADM frame.
+Its extra cold-carrier null stress is about 3e-19 in model units. The
+charge-continuity residual is of order 2e-13 relative to its derivative scale.
+This supplies finite conserved number currents and their kinematic tensor;
+their force and energy exchange with a working converter require their own
+material equations.
+
+The travelling plasma has a complementary literature test.
+[Chen, Yuan, Beloborodov, and Li](https://arxiv.org/abs/2010.15619) analyse
+current-starved Alfvén waves with a cold two-fluid model and kinetic
+simulations. Their result connects insufficient background charge to particle
+acceleration and dissipation. The local rail screen uses a compact transverse
+profile psi=A(1-r_perp^2/a^2)^3, with its longitudinal current returning within
+the profile. Its peak current is sqrt(120*u_wave_mean)/a in rationalized
+field units. Choosing background density to keep |j|/(e n0 c) at 0.1 or 0.2
+provides an explicit current-availability comparison.
+
+Extending the cold longitudinal equations to unequal species masses preserves
+m_+ q_+ + m_- q_-=m_+ + m_-, where q=gamma(1-beta). In the electron-proton
+comparison at current ratio 0.2, the largest longitudinal electron speed is
+about 0.250 and the proton speed is about 0.000159. A transverse radius
+0.01 L gives a reference background mass energy around 1e-14 of the peak
+mean wave energy. The local strong-guide approximation and its kinematic
+current budget leave transverse motion, instabilities, and actual converter
+losses to a kinetic calculation. The minimum drift parameter used for the
+guide is a field-frame comparison; it is distinct from a proven maximum
+speed for all plasma particles.
+
+Two additional primary sources make that next calculation concrete.
+[VanDevender and colleagues](https://doi.org/10.1103/PhysRevSTAB.18.030401)
+analyse magnetically insulated transmission lines, including load coupling,
+electron retrapping, plasma formation, and losses. Their engineering examples
+identify finite electrodes and material interfaces as part of the power
+route. Meanwhile [Evstatiev and colleagues](https://arxiv.org/abs/2408.12053)
+develop a time-dependent one-dimensional electromagnetic model checked
+against two-dimensional particle-in-cell simulations. Its emitted-charge
+fields change losses along the line and affect surface heating. These supply
+appropriate physical ingredients for evaluating a finite plasma coupler with
+the measured work and heat duties.
+
+## Verification and construction decision
+
+The fixed-history initial travelling energy changes from 18.1236 at 256 cells
+to 18.0411 at 512 and 18.0194 at 1024. The last change is 0.12%. An independent
+characteristic integrating-factor calculation agrees with the 1024-cell
+initial density within about 0.11% on seven selected rays. Its step-halving
+control changes the weakest edge ray by 0.24%; the other ray changes are
+smaller. Doubling temporal sampling at 256 cells has a much smaller effect
+than spatial refinement. Finite-tap source requirements at 512 and 1024
+cells agree at approximately the one-percent level.
+
+The retained wave equations satisfy their conservative energy ledgers to
+floating-point precision. The focused suite passes 57 tests, including
+analytic gravitational redshift, positive causal propagation, supplied
+boundary flux, paired-return inventory, original-knot allocation limits,
+electromagnetic stress sharing, and an independent covariant force identity.
+The [audit](data/poynting_delivery/audit/verification.json) records the input
+and output hash checks. Transport refinement holds the existing material
+history fixed. The three geometric stress comparisons remain s=0, 0.5, and
+1.285; coupled-material refinement and full-cycle geometry receive their own
+validation.
+
+The selected construction target is a receiver-side paired plasma guide that
+shares the radial electromagnetic support, a distributed bidirectional work
+converter, and the separate thermal receiving plant. The counted late-patch
+benefit survives finite absorption and finite-current checks. The thermal
+inventory of about 44 units remains the dominant late added energy duty.
+Unwanted reflected amplitudes also consume guide margin: in the matched-load
+control, margins of 0.05 and 0.1 raise added startup energy to roughly 102
+and 189 units. This sensitivity makes impedance matching a material design
+requirement. The combined finite-opacity/reflection response remains to be
+calculated.
+
+The physical completion gate is now the finite curved guide/return,
+electrically isolated storage layout, converter force and loss law, and a
+thermal receiver with a supplied stress tensor. The current calculation
+uses a formal heat-enclosure energy bound and prescribed macroscopic tap
+response. Exterior feed preparation, earlier packet-safe arming, full reset,
+and absolute quantum stress remain parts of the complete rail construction.
+The new result selects a coordinated electromagnetic assembly for that work;
+it supplies no complete An-T-Le source solution by itself.

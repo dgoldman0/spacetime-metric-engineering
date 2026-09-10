@@ -1,0 +1,68 @@
+[
+  {
+    "transverse_radius_over_L": 0.003,
+    "kappa_max": 0.1,
+    "peak_current_density_times_L_squared_A": 3.5420526878348816e+27,
+    "background_number_density_times_L_squared_per_m": 7.374352957651639e+38,
+    "background_mass_energy_density_model": 9.164789269474267e-16,
+    "mass_energy_over_peak_mean_wave_energy": 9.380336328932589e-14,
+    "maximum_longitudinal_ion_speed": 6.423649313826263e-05,
+    "maximum_longitudinal_electron_speed": 0.11103180736461647,
+    "electron_inertial_length_over_L": 1.9568935969745504e-13
+  },
+  {
+    "transverse_radius_over_L": 0.003,
+    "kappa_max": 0.2,
+    "peak_current_density_times_L_squared_A": 3.5420526878348816e+27,
+    "background_number_density_times_L_squared_per_m": 3.687176478825819e+38,
+    "background_mass_energy_density_model": 4.582394634737133e-16,
+    "mass_energy_over_peak_mean_wave_energy": 4.6901681644662945e-14,
+    "maximum_longitudinal_ion_speed": 0.0001583075931732794,
+    "maximum_longitudinal_electron_speed": 0.24975265417484738,
+    "electron_inertial_length_over_L": 2.767465464962479e-13
+  },
+  {
+    "transverse_radius_over_L": 0.01,
+    "kappa_max": 0.1,
+    "peak_current_density_times_L_squared_A": 1.0626158063504645e+27,
+    "background_number_density_times_L_squared_per_m": 2.212305887295492e+38,
+    "background_mass_energy_density_model": 2.74943678084228e-16,
+    "mass_energy_over_peak_mean_wave_energy": 2.8141008986797765e-14,
+    "maximum_longitudinal_ion_speed": 6.423649313826263e-05,
+    "maximum_longitudinal_electron_speed": 0.11103180736461647,
+    "electron_inertial_length_over_L": 3.572782552334615e-13
+  },
+  {
+    "transverse_radius_over_L": 0.01,
+    "kappa_max": 0.2,
+    "peak_current_density_times_L_squared_A": 1.0626158063504645e+27,
+    "background_number_density_times_L_squared_per_m": 1.106152943647746e+38,
+    "background_mass_energy_density_model": 1.37471839042114e-16,
+    "mass_energy_over_peak_mean_wave_energy": 1.4070504493398882e-14,
+    "maximum_longitudinal_ion_speed": 0.0001583075931732794,
+    "maximum_longitudinal_electron_speed": 0.24975265417484738,
+    "electron_inertial_length_over_L": 5.052677540921574e-13
+  },
+  {
+    "transverse_radius_over_L": 0.03,
+    "kappa_max": 0.1,
+    "peak_current_density_times_L_squared_A": 3.542052687834882e+26,
+    "background_number_density_times_L_squared_per_m": 7.37435295765164e+37,
+    "background_mass_energy_density_model": 9.164789269474266e-17,
+    "mass_energy_over_peak_mean_wave_energy": 9.380336328932589e-15,
+    "maximum_longitudinal_ion_speed": 6.423649313826263e-05,
+    "maximum_longitudinal_electron_speed": 0.11103180736461647,
+    "electron_inertial_length_over_L": 6.188240905039164e-13
+  },
+  {
+    "transverse_radius_over_L": 0.03,
+    "kappa_max": 0.2,
+    "peak_current_density_times_L_squared_A": 3.542052687834882e+26,
+    "background_number_density_times_L_squared_per_m": 3.68717647882582e+37,
+    "background_mass_energy_density_model": 4.582394634737133e-17,
+    "mass_energy_over_peak_mean_wave_energy": 4.690168164466294e-15,
+    "maximum_longitudinal_ion_speed": 0.0001583075931732794,
+    "maximum_longitudinal_electron_speed": 0.24975265417484738,
+    "electron_inertial_length_over_L": 8.751494215138342e-13
+  }
+]
