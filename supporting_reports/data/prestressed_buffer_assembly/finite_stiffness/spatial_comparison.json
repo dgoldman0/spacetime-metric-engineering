@@ -1,0 +1,146 @@
+[
+  {
+    "first": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+    "second": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_summary.json",
+    "comparison": [
+      {
+        "s": 0.25,
+        "x_rms": 4.038690944912048e-05,
+        "velocity_rms": 0.0013566267985559819,
+        "heat_rms": 0.031591272972841714,
+        "density_rms": 0.01234386788480515,
+        "density_relative_rms": 0.007822870517818483,
+        "density_squared_error_at_ends": 0.995152207173988,
+        "radial_rms": 0.012341957869657643,
+        "radial_relative_rms": 0.007835009034525055,
+        "radial_squared_error_at_ends": 0.9951561310219085
+      },
+      {
+        "s": 0.5,
+        "x_rms": 0.00010786948484734663,
+        "velocity_rms": 0.003465120442139357,
+        "heat_rms": 0.031247769353043495,
+        "density_rms": 0.015833226328835565,
+        "density_relative_rms": 0.007328561091240079,
+        "density_squared_error_at_ends": 0.9939848186140164,
+        "radial_rms": 0.015830594553490757,
+        "radial_relative_rms": 0.007338530207744311,
+        "radial_squared_error_at_ends": 0.9939858866588583
+      },
+      {
+        "s": 0.744999999999973,
+        "x_rms": 0.00021483107258658026,
+        "velocity_rms": 0.014072064814883234,
+        "heat_rms": 0.03108829709397273,
+        "density_rms": 0.022065632638349018,
+        "density_relative_rms": 0.006718258488586368,
+        "density_squared_error_at_ends": 0.9924419031371892,
+        "radial_rms": 0.022060507939650822,
+        "radial_relative_rms": 0.006725789680690867,
+        "radial_squared_error_at_ends": 0.9924428745998599
+      },
+      {
+        "s": 0.8149999999999653,
+        "x_rms": 0.00026205254566715624,
+        "velocity_rms": 0.016737579080598655,
+        "heat_rms": 0.031241579619267268,
+        "density_rms": 0.024518952846496928,
+        "density_relative_rms": 0.0065200796599986085,
+        "density_squared_error_at_ends": 0.9918488359094204,
+        "radial_rms": 0.024512369676094936,
+        "radial_relative_rms": 0.006526809874882201,
+        "radial_squared_error_at_ends": 0.9918880347627259
+      },
+      {
+        "s": 0.9999999999999449,
+        "x_rms": 0.00036887434239117465,
+        "velocity_rms": 0.031027994150384357,
+        "heat_rms": 0.03147253422426547,
+        "density_rms": 0.0326228544195222,
+        "density_relative_rms": 0.005937150104903743,
+        "density_squared_error_at_ends": 0.9865875207212922,
+        "radial_rms": 0.032590101450299655,
+        "radial_relative_rms": 0.00593824938381875,
+        "radial_squared_error_at_ends": 0.9879137564413606
+      },
+      {
+        "s": 1.2849999999999135,
+        "x_rms": 0.0005104057634502063,
+        "velocity_rms": 0.04347353341920423,
+        "heat_rms": 0.0313745604057085,
+        "density_rms": 0.05074440343317918,
+        "density_relative_rms": 0.005066223977295974,
+        "density_squared_error_at_ends": 0.8885372343584496,
+        "radial_rms": 0.05025370189669978,
+        "radial_relative_rms": 0.005022928538436082,
+        "radial_squared_error_at_ends": 0.9044908632849616
+      }
+    ]
+  },
+  {
+    "first": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+    "second": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_summary.json",
+    "comparison": [
+      {
+        "s": 0.25,
+        "x_rms": 0.00016863913302818766,
+        "velocity_rms": 0.0031429693166235805,
+        "heat_rms": 0.03166738696504343,
+        "density_rms": 0.0009014417895914238,
+        "density_relative_rms": 0.006092006985633983,
+        "density_squared_error_at_ends": 0.9951979517534061,
+        "radial_rms": 0.0008991278870941329,
+        "radial_relative_rms": 0.006190806657531406,
+        "radial_squared_error_at_ends": 0.9954907884989417
+      },
+      {
+        "s": 0.5,
+        "x_rms": 0.0003588349862715042,
+        "velocity_rms": 0.007163332601959048,
+        "heat_rms": 0.03272071098180719,
+        "density_rms": 0.001191741733438527,
+        "density_relative_rms": 0.005627417167911553,
+        "density_squared_error_at_ends": 0.9929681819589579,
+        "radial_rms": 0.001187537336662917,
+        "radial_relative_rms": 0.005703088993328004,
+        "radial_squared_error_at_ends": 0.994345156549907
+      },
+      {
+        "s": 0.745,
+        "x_rms": 0.0004732877903151964,
+        "velocity_rms": 0.07051810037422276,
+        "heat_rms": 0.04414075421711143,
+        "density_rms": 0.005293724208401031,
+        "density_relative_rms": 0.01442529856619315,
+        "density_squared_error_at_ends": 0.10211469746569864,
+        "radial_rms": 0.006352795271315648,
+        "radial_relative_rms": 0.017589880671694154,
+        "radial_squared_error_at_ends": 0.07016310251113989
+      },
+      {
+        "s": 0.8150000000000001,
+        "x_rms": 0.0007414301322006095,
+        "velocity_rms": 0.10675792400692793,
+        "heat_rms": 0.04930302537712471,
+        "density_rms": 0.012773644845671844,
+        "density_relative_rms": 0.02846588407403193,
+        "density_squared_error_at_ends": 0.02569461817231198,
+        "radial_rms": 0.014152462293474027,
+        "radial_relative_rms": 0.03204478298463314,
+        "radial_squared_error_at_ends": 0.02063870886613182
+      },
+      {
+        "s": 1.0,
+        "x_rms": 0.0014678084744359995,
+        "velocity_rms": 0.2283036370245409,
+        "heat_rms": 0.044453994799674254,
+        "density_rms": 0.07796873931129629,
+        "density_relative_rms": 0.09053557566277717,
+        "density_squared_error_at_ends": 0.0012964912144910656,
+        "radial_rms": 0.07949868085892037,
+        "radial_relative_rms": 0.09369040619788765,
+        "radial_squared_error_at_ends": 0.0011606052292421824
+      }
+    ]
+  }
+]

@@ -1,0 +1,787 @@
+{
+  "active_runs": 8,
+  "source_checks": 120,
+  "failed_checks": [],
+  "verified_sources": [
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "80d5d8365c227825f38be58d13ca23e261b285c13afbb506d5dce40ae59e9ef2",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "a85b2e023bcd32bc0b56df514354fd6c74863b4920c5b033972ed704480ff729",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "794c4210c56ea83875e23065d278a127ff5e06b9763536e8df5c57e6c08df504",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "a59d4a1478837e6b5ae47814cbd02e19b7f861a697312b094a9f5db88939f6ca",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "ebf39824fb7ac05dc7ca71a347e95b22509b77d615cfdc565f20d1623898998d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "559cddc5bce6d36b04ef3b33275d6b1d6e5396e24c516e66f468aa2d8781c8de",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "794c4210c56ea83875e23065d278a127ff5e06b9763536e8df5c57e6c08df504",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "a59d4a1478837e6b5ae47814cbd02e19b7f861a697312b094a9f5db88939f6ca",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "66f343c1ce663128530ea55e92f31a6778b99212b2d9d3ecd5030c64093408ca",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "ac710b618da1cc6d81fc40675f5bccc2e784b0394724efd59a4a797b27334b7b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "794c4210c56ea83875e23065d278a127ff5e06b9763536e8df5c57e6c08df504",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "a59d4a1478837e6b5ae47814cbd02e19b7f861a697312b094a9f5db88939f6ca",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "f75dfbf34d9ea4f29711b3c314538dc7c39caa13d28fed74f9c8810a59a859bd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "09b7ac64d43fe292ff8f1d4d4acb9b5aba01db556a680439915166d806a8fbcc",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "794c4210c56ea83875e23065d278a127ff5e06b9763536e8df5c57e6c08df504",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "a59d4a1478837e6b5ae47814cbd02e19b7f861a697312b094a9f5db88939f6ca",
+      "verified_against": "6b6433b"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "toolkit/adm_harness_cli/scripts/plot_prestressed_buffer_assembly.py",
+      "sha256": "78c7a7bf765d02b12c8e2ec4aefb7117577de66cf5721fa4ee331da9f15d9ae0",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_history.csv",
+      "sha256": "b5129c4b2273e963793f34c9b86fff66280a68be96d587b9ac93df351aacc01b",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_history.csv",
+      "sha256": "f4cd22ccf718c278872b7c8e1e774221f190c902330bf476e1886f57147ef867",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_history.csv",
+      "sha256": "7f2f2d361c555274f0ed44bf905af8696b2aca9d2c7762346d426771f9990e99",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "3a95ed45cc7fcc2460f304da048e078ebaf2621d468fe0006eb69036c6cd52f0",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "052eabb2f5e67d522fdbd99c48050d520ea077c5b8495a5200988cdac0ebaeb7",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "4a6600a0d54a6d5192796171e70128b48518b6b0a785ce54d5bdab0d9634fe22",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "4686f9120f68774bf9b4860fe145c4dbbd9d2eaf4c78eaebb0b31be32f5dbaca",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "9cdbd43acbb2be6cea070157906ecdd19bb0fe14c322268d1248815d03e0b064",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "052eabb2f5e67d522fdbd99c48050d520ea077c5b8495a5200988cdac0ebaeb7",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "0a6c77d00052135ebc1e223cdee140bf3ad396b9cc708097f38b44a42113776c",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "9cdbd43acbb2be6cea070157906ecdd19bb0fe14c322268d1248815d03e0b064",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "3a95ed45cc7fcc2460f304da048e078ebaf2621d468fe0006eb69036c6cd52f0",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "33900781e459e9b52a8c5feb3ecd6afabbea84d850754703c166f8ed8f6b2940",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "9cdbd43acbb2be6cea070157906ecdd19bb0fe14c322268d1248815d03e0b064",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+      "sha256": "d42d26def05a94b5ae868cfb9f997b596a4d69381dc202c1aebcc65027c8c315",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_states.npz",
+      "sha256": "d2e38ce65b8b2cff4299d60e37ca01966349bb4648106eae99e4aaf6e692af61",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py",
+      "sha256": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/scripts/run_prestressed_buffer_assembly.py",
+      "sha256": "9cdbd43acbb2be6cea070157906ecdd19bb0fe14c322268d1248815d03e0b064",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py",
+      "sha256": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py",
+      "sha256": "e4edfeeec66fcc1ee3af420611a3c6090270b537dbe0cb96b269dac6173f8edd",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/electrothermal_endpoint.py",
+      "sha256": "1318559910958fd45527eaba1e12e0978c49f90da38e8361ef33e1b03e96781d",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py",
+      "sha256": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_reservoir_acceleration.py",
+      "sha256": "2612e5d60d73c8d7128cd41af2b7a6cf13b8e738b48d8d76c1adce7d50117362",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz",
+      "sha256": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json",
+      "sha256": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/material_ensemble.py",
+      "sha256": "c51990a20a28d39f1a4e451eb3ca74299ede5e775265a50e65f26cd97dad9a23",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "toolkit/adm_harness_cli/adm_harness/relaxing_material_ensemble.py",
+      "sha256": "16d2b1809907fd932ddf4d6f9f837f2cea968171bce9e723555be152b438130e",
+      "verified_against": "working_tree"
+    },
+    {
+      "manifest": "supporting_reports/data/prestressed_buffer_assembly/force_audit.json",
+      "source": "toolkit/adm_harness_cli/scripts/audit_material_ensemble.py",
+      "sha256": "c535d5f3b75f677f5a76f0955b663c11a36982c342a22097a37be5a2e383e396",
+      "verified_against": "working_tree"
+    }
+  ],
+  "data_sha256": {
+    "supporting_reports/data/prestressed_buffer_assembly/archived_cold_element_force.csv": "b2a012b8dfb23f66be4d06023421366ebb647b869ef4543f2c3e60339b8eb0b8",
+    "supporting_reports/data/prestressed_buffer_assembly/coordinate_fixed_kinematics.csv": "4220d1a94b298bc446b25aaac5186eaf19debc4258990de9e9c54a7a9878d83e",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_history.csv": "a431b1fa9b6b2ffb5aeb51eec81be947468f09b805b4a61017fc968874c051be",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.csv": "812b4dfed141552c335a3dc4d7616e6f41b71022b6df0ce11cf8b8accedc5ee4",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_local_audit.json": "1eb150d9cf775cfa38a1d236432486f65db5b19782fa1205116a497cf0012bb4",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_manifest.json": "cf1a3075b98cdf7d83249a6826616999cd5f859a481b2939ba6cbf38229fe24e",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_states.npz": "a85b2e023bcd32bc0b56df514354fd6c74863b4920c5b033972ed704480ff729",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_summary.json": "80d5d8365c227825f38be58d13ca23e261b285c13afbb506d5dce40ae59e9ef2",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_history.csv": "ec972723e8ac99d62d91ba0d0adf81ea02885afac4419509e6b3fdd0386a8e88",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.csv": "3b90a45de09f6e9b57dd7fd86a5eea28bd2b667d30eab63b8c227d6ee0a1b223",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json": "dd8841e040a1b3247a2957db32a3611fdc021337a934f383fe10b6a520f86c12",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json": "ebafd1a5a149dfc4741abb947b5d35cddd765d77650de46d81e87de295a366fd",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_states.npz": "559cddc5bce6d36b04ef3b33275d6b1d6e5396e24c516e66f468aa2d8781c8de",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json": "ebf39824fb7ac05dc7ca71a347e95b22509b77d615cfdc565f20d1623898998d",
+    "supporting_reports/data/prestressed_buffer_assembly/energy_matched_spatial_comparison.csv": "745044c3a2184827bef4472763dc5daa28fa75055201a78242e063aa1385b557",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_history.csv": "1afdae7c636c21a68fd63961e5ff41199ac8398e18e786d92619303d00a18fbe",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.csv": "84503207ef7063a3b2b3310affe59673321fa34c209f918be25afea1edb06e8a",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_local_audit.json": "d426cfde5a65b9f3b2d4ad4c4dc13fc89f112c40ae290de0ff63e5b176e160c8",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_manifest.json": "314f2b102eac81a081d19600180b4ed0a44f242dedda6cfdbb39e3f3883c635d",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_states.npz": "ac710b618da1cc6d81fc40675f5bccc2e784b0394724efd59a4a797b27334b7b",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_summary.json": "66f343c1ce663128530ea55e92f31a6778b99212b2d9d3ecd5030c64093408ca",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_history.csv": "371881762e171b5fc60bd9b8b77d3a46e03ceb17464057d77f3f6d8d2639c2eb",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.csv": "998d8c671b7e4a4be1af83419ca417ec24ed780bc68900bff7d1c67519b5781d",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json": "609dee17797369521de462acaf3969891f63b68c80149e47b14211f0bf048b74",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json": "ec7d66ecc7cf8a950d7c033aee364376b0a70b1bec45deeb00d4aaa1e06ad633",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_states.npz": "09b7ac64d43fe292ff8f1d4d4acb9b5aba01db556a680439915166d806a8fbcc",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json": "f75dfbf34d9ea4f29711b3c314538dc7c39caa13d28fed74f9c8810a59a859bd",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_spatial_comparison.csv": "b66a8ec02484f466a1abf06356dbbb72bc3dbe2f20380a2dc32cc96486ce972b",
+    "supporting_reports/data/prestressed_buffer_assembly/figure_inputs.json": "7309c315080199046c6a23157ab93a67272c43ed2fed0f1ae2820b6672f8d1a8",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_history.csv": "aa68ce07ccd2a43eb9e586ed6e9d41b7a4d11d1c21937c2b07cbb6454adaf122",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.csv": "6217989280f3eb8c47897b34967e0c35085d5bf2ef348a3c14a48935ccf9efa3",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_local_audit.json": "2d0f534414a1797585cb753a570f211fe9ec19fe11855ca9c128a33a46948360",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_manifest.json": "070ca29546992a2ea9aecdc44b8e132e0362845c6e209eb5ec5de1a254adf6df",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_states.npz": "4686f9120f68774bf9b4860fe145c4dbbd9d2eaf4c78eaebb0b31be32f5dbaca",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n128_end1.285_dt0.0005_cfl0.05_summary.json": "4a6600a0d54a6d5192796171e70128b48518b6b0a785ce54d5bdab0d9634fe22",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_history.csv": "f4cd22ccf718c278872b7c8e1e774221f190c902330bf476e1886f57147ef867",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.csv": "3bfcaeb8d95e6fdb425e51af9d9b6297b95e9e9168ba70e9871a20c7e2e1a0ff",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_local_audit.json": "1d8fe93c33afebc6eadc0a06b16f893a41788d6c373123f45e76bd08551ca2e1",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_manifest.json": "e5234f169f01f67c76499c5c71faebbb74172811542847bc9ffc9b6b40dd0fb9",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_states.npz": "0a6c77d00052135ebc1e223cdee140bf3ad396b9cc708097f38b44a42113776c",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json": "052eabb2f5e67d522fdbd99c48050d520ea077c5b8495a5200988cdac0ebaeb7",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_spatial_comparison.csv": "b2fd66521b3f3b17b22b200ff913c4a5cfdbde827a2f2c8846e7a3a2641e3946",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_history.csv": "b5129c4b2273e963793f34c9b86fff66280a68be96d587b9ac93df351aacc01b",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.csv": "4849458632e7a5d529ceb215a8b2a0627ce3b39cb4d07d2ed5e92614cf3467d0",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_local_audit.json": "9332c4c69f8967eb23ebde69936fce56cf25be7e97ad4445e025fe74fe4c7b4a",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_manifest.json": "c67626ea914627e3cf11b209fb8ac18a7e9cbcf3adec5779744646ae63590119",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_states.npz": "33900781e459e9b52a8c5feb3ecd6afabbea84d850754703c166f8ed8f6b2940",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_summary.json": "3a95ed45cc7fcc2460f304da048e078ebaf2621d468fe0006eb69036c6cd52f0",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_history.csv": "7f2f2d361c555274f0ed44bf905af8696b2aca9d2c7762346d426771f9990e99",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.csv": "b3bbe38a2f6f2dbbfbfe269ae8a8a05c2b18205740f5824d0d2a8f300b30cd50",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_local_audit.json": "7f4c163b8bec7e10d292bf40311f5b6e8703af7848b8fdd1f55177b41d9ad96f",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_manifest.json": "691448ea6d8da4ab4aaee1d58118a256c8689daba53010fbe11a18b9646bb2a5",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_states.npz": "d2e38ce65b8b2cff4299d60e37ca01966349bb4648106eae99e4aaf6e692af61",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json": "d42d26def05a94b5ae868cfb9f997b596a4d69381dc202c1aebcc65027c8c315",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_spatial_comparison.csv": "1ae792b2eca35498dc5f7dc285806ae2415b36c12361ee87b6d9ff0d1127b37b",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/spatial_comparison.json": "2ee9c01a5737c43a2563a416e8e4ffd3c4da84c004a6b78ceca614ce616cb336",
+    "supporting_reports/data/prestressed_buffer_assembly/force_audit.json": "77b0dae16c6d7679edc96148be0b90c1ace57aa1f42f1bf1fce07db3cc4f83c4",
+    "supporting_reports/data/prestressed_buffer_assembly/spatial_comparison.json": "a23415c6c7512a13bfe8d653c528e3b1af5fc03a42e81f20939c690d1e5514cf"
+  }
+}

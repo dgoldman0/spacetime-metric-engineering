@@ -1,0 +1,12 @@
+{
+  "source_sha256": {
+    "toolkit/adm_harness_cli/scripts/plot_prestressed_buffer_assembly.py": "78c7a7bf765d02b12c8e2ec4aefb7117577de66cf5721fa4ee331da9f15d9ae0",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_states.npz": "1adcf3c6b0e48fb8ad25da06d35b7fa69ddb48d634d2eca76fc5f1fc41501896",
+    "supporting_reports/data/material_ensemble/relaxing/thermal_only_baseline_n64_end3_dt0.0005_snap601_cfl0.05_summary.json": "861c3e5e5c9bb38c5b364de9df2ecee7c087bf41541129475696341f9018113a",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_history.csv": "b5129c4b2273e963793f34c9b86fff66280a68be96d587b9ac93df351aacc01b",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_history.csv": "f4cd22ccf718c278872b7c8e1e774221f190c902330bf476e1886f57147ef867",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n64_end1.285_dt0.0005_cfl0.05_history.csv": "7f2f2d361c555274f0ed44bf905af8696b2aca9d2c7762346d426771f9990e99",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/equilibrated_n128_end1.285_dt0.0005_cfl0.05_summary.json": "3a95ed45cc7fcc2460f304da048e078ebaf2621d468fe0006eb69036c6cd52f0",
+    "supporting_reports/data/prestressed_buffer_assembly/finite_stiffness/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json": "052eabb2f5e67d522fdbd99c48050d520ea077c5b8495a5200988cdac0ebaeb7"
+  }
+}

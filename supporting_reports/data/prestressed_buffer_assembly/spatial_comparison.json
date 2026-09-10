@@ -1,0 +1,98 @@
+[
+  {
+    "first": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_summary.json",
+    "second": "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+    "comparison": [
+      {
+        "s": 0.25,
+        "x_rms": 0.0003608778152132473,
+        "velocity_rms": 0.004366921149050301,
+        "heat_rms": 0.10865406259685917,
+        "density_rms": 0.024902656231526505,
+        "density_relative_rms": 0.020425283423712106,
+        "density_squared_error_at_ends": 0.9930710788884057,
+        "radial_rms": 0.024890806961227703,
+        "radial_relative_rms": 0.020460655282992877,
+        "radial_squared_error_at_ends": 0.9930823879775207
+      }
+    ]
+  },
+  {
+    "first": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n32_end1.285_dt0.0005_cfl0.05_summary.json",
+    "second": "supporting_reports/data/prestressed_buffer_assembly/energy_matched_n64_end1.285_dt0.0005_cfl0.05_summary.json",
+    "comparison": [
+      {
+        "s": 0.25,
+        "x_rms": 0.00034829550405990274,
+        "velocity_rms": 0.007658209218824556,
+        "heat_rms": 0.10910986106797299,
+        "density_rms": 0.0029307452367440855,
+        "density_relative_rms": 0.01956724586787263,
+        "density_squared_error_at_ends": 0.9927277252301008,
+        "radial_rms": 0.0029183430940266843,
+        "radial_relative_rms": 0.01984642641425288,
+        "radial_squared_error_at_ends": 0.9930105838949661
+      },
+      {
+        "s": 0.5,
+        "x_rms": 0.0009261604008780182,
+        "velocity_rms": 0.016497816432145613,
+        "heat_rms": 0.11182515652557157,
+        "density_rms": 0.003753295765038903,
+        "density_relative_rms": 0.017562867342329223,
+        "density_squared_error_at_ends": 0.9879548754736938,
+        "radial_rms": 0.0037338857560027744,
+        "radial_relative_rms": 0.017765776556930703,
+        "radial_squared_error_at_ends": 0.9899215164933355
+      },
+      {
+        "s": 0.745,
+        "x_rms": 0.0014890125190006032,
+        "velocity_rms": 0.08292068275659337,
+        "heat_rms": 0.17186013469033037,
+        "density_rms": 0.007797355296576535,
+        "density_relative_rms": 0.021203412804570762,
+        "density_squared_error_at_ends": 0.4454776411552165,
+        "radial_rms": 0.008857656962794511,
+        "radial_relative_rms": 0.024470953012275285,
+        "radial_squared_error_at_ends": 0.3410915158451701
+      },
+      {
+        "s": 0.8150000000000001,
+        "x_rms": 0.002541277228313991,
+        "velocity_rms": 0.10164305897959995,
+        "heat_rms": 0.1709948723830279,
+        "density_rms": 0.016017161701368375,
+        "density_relative_rms": 0.03572089034450722,
+        "density_squared_error_at_ends": 0.14223866066600566,
+        "radial_rms": 0.017020559407061472,
+        "radial_relative_rms": 0.038564734276249256,
+        "radial_squared_error_at_ends": 0.1244104956575048
+      },
+      {
+        "s": 1.0,
+        "x_rms": 0.0033516185460900753,
+        "velocity_rms": 0.26942316099146874,
+        "heat_rms": 0.17635404944456812,
+        "density_rms": 0.09725336750324952,
+        "density_relative_rms": 0.11408038154737864,
+        "density_squared_error_at_ends": 0.008012260207692306,
+        "radial_rms": 0.09965505356270155,
+        "radial_relative_rms": 0.1186118613145584,
+        "radial_squared_error_at_ends": 0.007506107665242361
+      },
+      {
+        "s": 1.285,
+        "x_rms": 0.007765183285230783,
+        "velocity_rms": 0.46861893182107983,
+        "heat_rms": 0.46680071786204436,
+        "density_rms": 0.5407699769585245,
+        "density_relative_rms": 0.16640943957365206,
+        "density_squared_error_at_ends": 0.0012153549047359674,
+        "radial_rms": 0.5375609575785615,
+        "radial_relative_rms": 0.16688735068514562,
+        "radial_squared_error_at_ends": 0.0008286554167127206
+      }
+    ]
+  }
+]

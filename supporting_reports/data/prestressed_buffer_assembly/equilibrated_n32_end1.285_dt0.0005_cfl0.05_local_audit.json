@@ -1,0 +1,20 @@
+{
+  "case": "equilibrated",
+  "cells": 32,
+  "velocity_peak_location": {
+    "s": 0.577364632377326,
+    "peak_velocity": -0.2926773219969095,
+    "peak_velocity_fraction": 0.8125,
+    "peak_velocity_l": -0.8531918060596706
+  },
+  "maximum_material_fraction_above_09": 0.0,
+  "maximum_material_fraction_above_099": 0.0,
+  "maximum_density_peak_ratio_on_common_interval": 501.5561033685243,
+  "maximum_radial_peak_ratio_on_common_interval": 1502.5071300576244,
+  "source_sha256": {
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_summary.json": "66f343c1ce663128530ea55e92f31a6778b99212b2d9d3ecd5030c64093408ca",
+    "supporting_reports/data/prestressed_buffer_assembly/equilibrated_n32_end1.285_dt0.0005_cfl0.05_states.npz": "ac710b618da1cc6d81fc40675f5bccc2e784b0394724efd59a4a797b27334b7b",
+    "toolkit/adm_harness_cli/scripts/audit_prestressed_buffer_assembly.py": "49b45aeef3576f760098313e88bcce2b52c5100079b8df6b9266072d6534512a",
+    "toolkit/adm_harness_cli/adm_harness/prestressed_buffer_assembly.py": "d1279a38ec445009ad674ae0a6f68dc84d0b723f8bcad20771564936fc69b8f3"
+  }
+}
