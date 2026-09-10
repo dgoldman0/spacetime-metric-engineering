@@ -20,13 +20,16 @@ from adm_harness.source_ledger import sha256_file
 ROOT = Path(__file__).resolve().parents[3]
 INPUT = ROOT/'supporting_reports/data/active_transfer_reservoir'
 CASES = {
-    'elastic_control': (0., 0., 'field'),
-    'field1_slow': (1., .03, 'field'),
-    'field1_fast': (1., .1, 'field'),
-    'field4_slow': (4., .03, 'field'),
-    'field4_fast': (4., .1, 'field'),
-    'field4_ideal': (4., 0., 'field'),
-    'material4_control': (4., 0., 'material'),
+    'elastic_control': (0., 0., 'field', 'thermal'),
+    'field1_slow': (1., .03, 'field', 'thermal'),
+    'field1_fast': (1., .1, 'field', 'thermal'),
+    'field4_slow': (4., .03, 'field', 'thermal'),
+    'field4_fast': (4., .1, 'field', 'thermal'),
+    'field4_ideal': (4., 0., 'field', 'thermal'),
+    'material4_control': (4., 0., 'material', 'thermal'),
+    'capacitor4_fast': (4., .1, 'field', 'capacitor'),
+    'capacitor4_ideal': (4., 0., 'field', 'capacitor'),
+    'capacitor4_material': (4., 0., 'material', 'capacitor'),
 }
 
 
@@ -37,9 +40,9 @@ def write_json(path, value):
 def run_case(task):
     name, cells, medium, forcing, duration, snapshots, deadline, output = task
     output = Path(output)
-    ratio, sigma, allocation = CASES[name]
+    ratio, sigma, allocation, profile = CASES[name]
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/f'medium_{medium}.npz')
-    law, electrical = ElasticLaw(stiffness=.1, scale=.4), ElectricalLaw(energy_ratio=ratio, conductivity=sigma)
+    law, electrical = ElasticLaw(stiffness=.1, scale=.4), ElectricalLaw(energy_ratio=ratio, conductivity=sigma, profile=profile)
     patch = ElectrothermalPatch(model, law, electrical, allocation=allocation, cells=cells, forcing=forcing)
     result = evolve_electrothermal(patch, duration=duration, snapshots=snapshots, deadline_seconds=deadline)
     label = f'{name}_{medium}_n{cells}_force{forcing:g}_end{duration:g}_snap{snapshots}'
@@ -74,7 +77,7 @@ def main():
     parser.add_argument('--duration', type=float, default=.5)
     parser.add_argument('--snapshots', type=int, default=101)
     parser.add_argument('--deadline', type=float, default=240.)
-    parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
+    parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES)[:7])
     args = parser.parse_args()
     if not 1 <= args.workers <= 6 or args.cells < 16 or not 0 < args.duration <= 3 or args.snapshots < 2:
         parser.error('one to six workers, at least 16 cells, 0<duration<=3, and at least two snapshots required')

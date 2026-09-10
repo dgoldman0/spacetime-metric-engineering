@@ -22,11 +22,14 @@ class ElectricalLaw:
     conductivity: float = .1
     heat_target: float = .25
     edge_width: float = .15
+    profile: str = 'thermal'
 
     def __post_init__(self):
         if (self.energy_ratio < 0 or self.conductivity < 0
                 or self.heat_target <= 0 or self.edge_width <= 0):
             raise ValueError('nonnegative electrical preload/conductivity and positive scales required')
+        if self.profile not in ('thermal', 'capacitor'):
+            raise ValueError('field profile must be thermal or capacitor')
 
     def sigma(self, thermal):
         # A local passive switch. Its coefficients depend on the current
@@ -85,6 +88,13 @@ class ElectrothermalPatch(ElasticPatch):
         window = smooth_rise(distance/self.electrical.edge_width)[0]
         charge = faces.radius*np.sqrt(2*self.electrical.energy_ratio*self.law.scale*n*q)*window
         charge[[0, -1]] = 0.
+        if self.electrical.profile == 'capacitor':
+            # Constant enclosed electric flux in the interior removes its
+            # volume charge and Lorentz force initially. Retain the same
+            # total field energy and the counted finite end-charge layers.
+            target = np.sum(em_conserved_energy(charge, g))
+            normalization = np.sum(em_conserved_energy(window, g))
+            charge = window*np.sqrt(target/normalization)
         total = material.copy()
         total[1] += em_conserved_energy(charge, g)
         if self.allocation == 'material':

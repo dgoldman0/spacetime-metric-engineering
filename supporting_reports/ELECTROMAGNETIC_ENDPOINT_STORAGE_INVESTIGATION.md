@@ -115,3 +115,23 @@ establish a field/material response across the earlier heat stop; endpoint
 feedback, a physical current-carrier model, complete-cycle preparation,
 transverse stability, anchor tensors, and the active Einstein-source sum
 retain their separate requirements.
+
+## Mechanical preparation refinement
+
+The first field preparation follows the material's heat profile. Its charge
+gradients consequently inherit that profile's spatial structure. At 512 cells
+the ratio-4 initial field exerts peak radial Lorentz force 0.01714, compared
+with 0.0005767 for the prescribed endpoint force. Their
+\(\int\alpha BR^2|F|\,d\ell\) values are 9.3203 and 0.26547,
+respectively. The new field therefore changes the mechanical preparation
+substantially.
+
+A single additional preparation tests this identified force burden. Constant
+\(Q\) in the interior removes its volume charge and initial Lorentz force;
+the original smooth end layers retain the opposite charges. Normalization
+preserves the 20.7793 initial field energy at 512 cells. The peak field force
+falls to 0.0006256 and its weighted absolute integral to 1.7905. This exchanges
+distributed charge for two finite charge layers and makes their mechanical
+support explicit. Three cases compare resistive discharge, ideal storage, and
+the corresponding cellwise energy allocation to material. The target remains
+\(s=0.5\); this fixed profile comparison closes the present shape investigation.

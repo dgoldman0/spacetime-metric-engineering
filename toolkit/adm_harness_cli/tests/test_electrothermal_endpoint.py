@@ -79,6 +79,21 @@ def test_field_and_material_allocation_have_identical_initial_conserved_totals()
     np.testing.assert_array_equal(qb, 0)
 
 
+def test_capacitor_preparation_preserves_field_energy_with_charge_free_interior():
+    class CurvedModel(FlatModel):
+        def metric(self, t, x):
+            return metric(t, x)
+    args = (CurvedModel(), ElasticLaw(scale=.4))
+    thermal = ElectrothermalPatch(*args, ElectricalLaw(energy_ratio=4.), cells=64)
+    capacitor = ElectrothermalPatch(*args, ElectricalLaw(energy_ratio=4., profile='capacitor'), cells=64)
+    a, qa = thermal.initial_pair()
+    b, qb = capacitor.initial_pair()
+    np.testing.assert_allclose(a[1].sum(), b[1].sum(), rtol=1e-14)
+    interior = (capacitor.faces > capacitor.faces[0]+.15) & (capacitor.faces < capacitor.faces[-1]-.15)
+    assert np.ptp(qa[interior]) > .01
+    assert np.ptp(qb[interior]) == 0
+
+
 def test_combined_evolution_conserves_energy_and_converges_to_joule_heat_balance():
     residuals = []
     # Resolve the 0.15-wide field taper; three-cell coarse tapers exhibit
