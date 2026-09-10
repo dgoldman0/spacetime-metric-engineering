@@ -1,5 +1,12 @@
 # Finite electromagnetic work delivery on the active rail
 
+Receiver-side electromagnetic delivery reduces the required travelling
+preparation and supports a useful allocation of the existing radial field to
+its magnetic guides. The selected continuation combines a paired work/return
+route, finite distributed taps, complementary electric storage, and the
+existing thermal receiving role. Its complete material and curved-turn
+realization remains the next physical gate.
+
 ## Registered question and architecture
 
 This investigation measures whether supplying electrical work during the
@@ -48,7 +55,9 @@ relations; the propagation screen below uses the scheduled curved background.
 
 Use the existing metric
 
-    ds^2 = -alpha^2 ds^2 + B^2(dx+beta ds)^2 + R^2 dOmega^2.
+    ds_spacetime^2 = -alpha^2 dt^2 + B^2(dx+beta dt)^2 + R^2 dOmega^2,
+
+where t is the archived service coordinate s.
 
 For direction sigma=+1 or -1, a wave has orthonormal stress
 (mu,mu,sigma mu,0), with mu nonnegative. Let D_wave=B R^2 mu,
@@ -107,3 +116,82 @@ a quantified field, receiving, and mechanical burden. Any positive result at
 this gate precedes the complete source comparison with exterior supply,
 plasma, converter, confinement, and the independently calculated quantum
 stress. The main technical disclosure remains the established design record.
+
+## Route comparison and guide topology
+
+The first route comparison uses the same 128-cell material history for every
+transport resolution. The table gives 256 transport cells, with energies in
+the ADM slice/boundary accounting of the covariant wave equation.
+
+| Feed arrangement | Initial travelling energy | Incident boundary energy | Recovered boundary energy | Travelling energy remaining at fade |
+| --- | ---: | ---: | ---: | ---: |
+| Left end | 53.9253 | 1.92648 | 0.356118 | 80.6395 |
+| Receiver-side right end | 18.1236 | 17.0542 | 2.70271 | 1.67144 |
+| Split at x=-1.3 | 31.9189 | 18.9764 | 3.05883 | 1.77345 |
+
+The direction matters through the active lapse, expansion, and timing of the
+work. Leftward recovery in the left-fed case gains 75.8575 units from the
+time-dependent geometry while remaining in the patch. Consequently its wave
+stress and guide requirement grow strongly. The receiver-side feed instead
+has 0.270723 units of geometric work on its recovery stream. Its absorption
+stream receives 13.4727 units of geometric work. These terms appear explicitly
+in the energy balance alongside prepared and incident energy.
+
+At 1024 transport cells the selected initial travelling energy is 18.0194
+in the ADM frame and 16.5045 as the integral of material-frame energy on the
+same initial slice. The latter compares with 58.7090 units of prepared local
+electrical charge in the nominal converter-bank construction. Its incident
+and recovered boundary energies are 17.1141 and approximately 2.7027 units.
+The thermal capacity remains 44.1212 units. All the route's worldtubes stay
+within the registered non-live interval; the nearest boundary has packet
+clearance 0.15 throughout this late patch.
+
+A single radial guide's constant flux carries its peak requirement along its
+whole length. Separately terminated branches offer a concrete alternative:
+each load zone has its own feed and equal-area magnetic return leg, and each
+guide pair ends at that zone's downstream edge. One, two, four, and eight
+uniform load zones were compared at 256 cells. For minimum drift comparison
+0.5, their initial guide energies are 468.973, 824.055, 906.044, and 1040.348.
+Independent peak requirements along overlapping branches outweigh the saved
+downstream guide volume in this arrangement. The single pair therefore
+provides the selected topology. The evidence retains each branch's terminal
+traction and the field-energy coefficient per unit of proper turn length.
+
+## Allocation within the existing radial field
+
+Radial electric and magnetic fields both supply the orthonormal moments
+(u,-u,0,u). The useful alternative to adding every guide on top of the
+existing support is therefore to divide its electromagnetic role between
+electric storage and magnetic guidance. Write the archived radial flux-energy
+as H(t,x), allocate a static share S(x), and let G be the constant paired-guide
+flux-energy requirement:
+
+    H_electric = H-S, H_magnetic = G,
+    H_electric+H_magnetic = H+(G-S),
+    partial_t H_electric = partial_t H.
+
+Thus the original electrical work history is preserved, and only G-S adds
+radial Maxwell stress. The calculation uses separate electric-storage cells
+and plasma-guide volumes with a common averaged radial tensor. This supplies
+a material-layout requirement: electric isolation of the guide plasma avoids
+placing the storage electric field along its guiding magnetic field. The
+finite separators, guide turns, and local stress departures need a resolved
+electromagnetic/material construction.
+
+The allocation retains at least 10% of the original minimum electric energy
+and the earlier bidirectional exponential rate ceiling. If d is the archived
+interval decay factor, its two rate constraints require
+
+    S <= (H_i-d H_(i-1))/(1-d),
+    S <= (H_(i-1)-d H_i)/(1-d).
+
+The minimum over all intervals gives a time-independent allocation cap.
+Conservative interval minima and quintic interpolation produce a C2 spatial
+profile below that cap, with an additional 2% allocation margin. The selected
+guide includes a 3% wave-energy margin. Independent electric/magnetic tensor,
+rate, and covariant-force tests accompany this construction.
+
+The added radial field's material-rest power vanishes in the interior. Its
+rest force is -partial_x(G-S)/(Gamma B R^4), which joins the tap momentum and
+thermal holding force in the remaining standing-support duty. This allocation
+preserves the work port while making its changed mechanical load explicit.

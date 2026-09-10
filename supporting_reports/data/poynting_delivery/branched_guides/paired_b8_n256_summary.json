@@ -1,0 +1,718 @@
+{
+  "case": "paired_b8_n256",
+  "branches": 8,
+  "cells": 256,
+  "initial_wave_slice_energy": 18.12290157691036,
+  "initial_wave_material_inventory": 16.589855775787502,
+  "final_wave_slice_energy": 1.6714372642448752,
+  "maximum_wave_slice_energy": 19.523985724682067,
+  "maximum_balance_residual": 9.71445146547012e-17,
+  "legs": [
+    {
+      "leg": 0,
+      "load_left": -2.1,
+      "load_right": -1.9000000000000001,
+      "guide_left": -2.1,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.08475056683074285,
+      "recovery_flux_requirement": 0.13408713237510803,
+      "paired_guide_flux_per_multiplier": 0.26817426475021605,
+      "initial_wave_slice_energy": 0.13675851107252485
+    },
+    {
+      "leg": 1,
+      "load_left": -1.9000000000000001,
+      "load_right": -1.7000000000000002,
+      "guide_left": -1.9000000000000001,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.037436144076158466,
+      "recovery_flux_requirement": 0.09098849269288936,
+      "paired_guide_flux_per_multiplier": 0.18197698538577872,
+      "initial_wave_slice_energy": 0.29581877632104736
+    },
+    {
+      "leg": 2,
+      "load_left": -1.7000000000000002,
+      "load_right": -1.5,
+      "guide_left": -1.7000000000000002,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.025273848742783257,
+      "recovery_flux_requirement": 0.08225286825332948,
+      "paired_guide_flux_per_multiplier": 0.16450573650665895,
+      "initial_wave_slice_energy": 0.6689612052639663
+    },
+    {
+      "leg": 3,
+      "load_left": -1.5,
+      "load_right": -1.3,
+      "guide_left": -1.5,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.022482662395939653,
+      "recovery_flux_requirement": 0.0208612815854782,
+      "paired_guide_flux_per_multiplier": 0.044965324791879306,
+      "initial_wave_slice_energy": 1.3968304708246397
+    },
+    {
+      "leg": 4,
+      "load_left": -1.3,
+      "load_right": -1.1,
+      "guide_left": -1.3,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.020357423505554476,
+      "recovery_flux_requirement": 0.03350299502360176,
+      "paired_guide_flux_per_multiplier": 0.06700599004720352,
+      "initial_wave_slice_energy": 2.7272197812527494
+    },
+    {
+      "leg": 5,
+      "load_left": -1.1,
+      "load_right": -0.8999999999999999,
+      "guide_left": -1.1,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.023830247674650227,
+      "recovery_flux_requirement": 0.026169427753092965,
+      "paired_guide_flux_per_multiplier": 0.05233885550618593,
+      "initial_wave_slice_energy": 4.895250670774077
+    },
+    {
+      "leg": 6,
+      "load_left": -0.8999999999999999,
+      "load_right": -0.7,
+      "guide_left": -0.8999999999999999,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.03495471236512985,
+      "recovery_flux_requirement": 0.03028422551873811,
+      "paired_guide_flux_per_multiplier": 0.0699094247302597,
+      "initial_wave_slice_energy": 5.4748172583847206
+    },
+    {
+      "leg": 7,
+      "load_left": -0.7,
+      "load_right": -0.5,
+      "guide_left": -0.7,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.1543898734668296,
+      "recovery_flux_requirement": 0.12909485286481304,
+      "paired_guide_flux_per_multiplier": 0.3087797469336592,
+      "initial_wave_slice_energy": 2.527244903016635
+    }
+  ],
+  "phases": [
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 1.4671526067401186,
+      "guide_slice_energy": 8322.787886990005,
+      "auxiliary_slice_energy": 8356.201694749017
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 1.4605037001704582,
+      "guide_slice_energy": 4848.642233995601,
+      "auxiliary_slice_energy": 4899.829263124372
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 1.6426472055080195,
+      "guide_slice_energy": 434.47627711044845,
+      "auxiliary_slice_energy": 493.9700553874818
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 1.7795270050909642,
+      "guide_slice_energy": 10209.286474707742,
+      "auxiliary_slice_energy": 10242.700282466752
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 1.7739329083076787,
+      "guide_slice_energy": 5947.667807034604,
+      "auxiliary_slice_energy": 5998.854836163377
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 1.971227846386251,
+      "guide_slice_energy": 532.9575665888168,
+      "auxiliary_slice_energy": 592.4513448658503
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.2619467399886109,
+      "guide_slice_energy": 1040.3484858737509,
+      "auxiliary_slice_energy": 1073.762293632762
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.2505781436640252,
+      "guide_slice_energy": 606.0802792494501,
+      "auxiliary_slice_energy": 657.267308378222
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.3742397514419175,
+      "guide_slice_energy": 54.309534638806056,
+      "auxiliary_slice_energy": 113.80331291583947
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.3209109144717176,
+      "guide_slice_energy": 1397.5347993570722,
+      "auxiliary_slice_energy": 1430.9486071160834
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.3099213756901421,
+      "guide_slice_energy": 814.1678417917617,
+      "auxiliary_slice_energy": 865.3548709205332
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.4364498796620706,
+      "guide_slice_energy": 72.9558081981295,
+      "auxiliary_slice_energy": 132.4495864751629
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.12344115423538972,
+      "guide_slice_energy": 195.06534110132824,
+      "auxiliary_slice_energy": 228.4791488603393
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.11014649774043077,
+      "guide_slice_energy": 113.64005235927185,
+      "auxiliary_slice_energy": 164.8270814880437
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.22703171137355285,
+      "guide_slice_energy": 10.183037744776133,
+      "auxiliary_slice_energy": 69.67681602180954
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.15258037371745056,
+      "guide_slice_energy": 374.74219418244064,
+      "auxiliary_slice_energy": 408.1560019414518
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.13999602708650652,
+      "guide_slice_energy": 218.31516725464567,
+      "auxiliary_slice_energy": 269.50219638341747
+    },
+    {
+      "branches": 8,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.2583195502319696,
+      "guide_slice_energy": 19.56274695635327,
+      "auxiliary_slice_energy": 79.05652523338667
+    }
+  ],
+  "turn_ports": [
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.04407193303439866,
+      "peak_integrated_cut_force": 4.732494153166578,
+      "peak_turn_energy_per_unit_proper_path_length": 4.732494153166578
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.035134325460323516,
+      "peak_integrated_cut_force": 3.4807636119405085,
+      "peak_turn_energy_per_unit_proper_path_length": 3.4807636119405085
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0370836361943135,
+      "peak_integrated_cut_force": 3.40002543868936,
+      "peak_turn_energy_per_unit_proper_path_length": 3.40002543868936
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.012096254133640962,
+      "peak_integrated_cut_force": 1.0152308485511439,
+      "peak_turn_energy_per_unit_proper_path_length": 1.0152308485511439
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.02158605189534311,
+      "peak_integrated_cut_force": 1.6555561301467479,
+      "peak_turn_energy_per_unit_proper_path_length": 1.6555561301467479
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.02030163537484928,
+      "peak_integrated_cut_force": 1.4189859965872462,
+      "peak_turn_energy_per_unit_proper_path_length": 1.4189859965872462
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.03311298255678406,
+      "peak_integrated_cut_force": 2.0944379644120934,
+      "peak_turn_energy_per_unit_proper_path_length": 2.0944379644120934
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.17065773765947534,
+      "peak_integrated_cut_force": 9.992815811966826,
+      "peak_turn_energy_per_unit_proper_path_length": 9.992815811966826
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.054061571188862366,
+      "peak_integrated_cut_force": 5.805192827884338,
+      "peak_turn_energy_per_unit_proper_path_length": 5.805192827884338
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.043098105897996855,
+      "peak_integrated_cut_force": 4.269736697313691,
+      "peak_turn_energy_per_unit_proper_path_length": 4.269736697313691
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0454892603983579,
+      "peak_integrated_cut_force": 4.170697871458949,
+      "peak_turn_energy_per_unit_proper_path_length": 4.170697871458949
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.01483807173726625,
+      "peak_integrated_cut_force": 1.2453498408894035,
+      "peak_turn_energy_per_unit_proper_path_length": 1.2453498408894035
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.02647889032495422,
+      "peak_integrated_cut_force": 2.0308155196466777,
+      "peak_turn_energy_per_unit_proper_path_length": 2.0308155196466777
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.024903339393148455,
+      "peak_integrated_cut_force": 1.740622822480356,
+      "peak_turn_energy_per_unit_proper_path_length": 1.740622822480356
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.04061859193632179,
+      "peak_integrated_cut_force": 2.5691772363455017,
+      "peak_turn_energy_per_unit_proper_path_length": 2.5691772363455017
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.20934015819562313,
+      "peak_integrated_cut_force": 12.257854062679309,
+      "peak_turn_energy_per_unit_proper_path_length": 12.257854062679309
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.005508991629299833,
+      "peak_integrated_cut_force": 0.5915617691458224,
+      "peak_turn_energy_per_unit_proper_path_length": 0.5915617691458224
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.00439179068254044,
+      "peak_integrated_cut_force": 0.4350954514925636,
+      "peak_turn_energy_per_unit_proper_path_length": 0.4350954514925636
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.004635454524289188,
+      "peak_integrated_cut_force": 0.4250031798361701,
+      "peak_turn_energy_per_unit_proper_path_length": 0.4250031798361701
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0015120317667051202,
+      "peak_integrated_cut_force": 0.12690385606889298,
+      "peak_turn_energy_per_unit_proper_path_length": 0.12690385606889298
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0026982564869178893,
+      "peak_integrated_cut_force": 0.2069445162683435,
+      "peak_turn_energy_per_unit_proper_path_length": 0.2069445162683435
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.00253770442185616,
+      "peak_integrated_cut_force": 0.17737324957340578,
+      "peak_turn_energy_per_unit_proper_path_length": 0.17737324957340578
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.004139122819598009,
+      "peak_integrated_cut_force": 0.26180474555151173,
+      "peak_turn_energy_per_unit_proper_path_length": 0.26180474555151173
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.02133221720743442,
+      "peak_integrated_cut_force": 1.2491019764958535,
+      "peak_turn_energy_per_unit_proper_path_length": 1.2491019764958535
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.007400412088692778,
+      "peak_integrated_cut_force": 0.7946646432192217,
+      "peak_turn_energy_per_unit_proper_path_length": 0.7946646432192217
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.005899638816879326,
+      "peak_integrated_cut_force": 0.5844782231716773,
+      "peak_turn_energy_per_unit_proper_path_length": 0.5844782231716773
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.006226960577628478,
+      "peak_integrated_cut_force": 0.5709209382465886,
+      "peak_turn_energy_per_unit_proper_path_length": 0.5709209382465886
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.002031162673273879,
+      "peak_integrated_cut_force": 0.17047417998587966,
+      "peak_turn_energy_per_unit_proper_path_length": 0.17047417998587966
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0036246578807596994,
+      "peak_integrated_cut_force": 0.2779954668538082,
+      "peak_turn_energy_per_unit_proper_path_length": 0.2779954668538082
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.003408982940026776,
+      "peak_integrated_cut_force": 0.23827139859360852,
+      "peak_turn_energy_per_unit_proper_path_length": 0.23827139859360852
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0055602216543266594,
+      "peak_integrated_cut_force": 0.3516910415241975,
+      "peak_turn_energy_per_unit_proper_path_length": 0.3516910415241975
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.028656278448653583,
+      "peak_integrated_cut_force": 1.6779603217594303,
+      "peak_turn_energy_per_unit_proper_path_length": 1.6779603217594303
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0010329359304937186,
+      "peak_integrated_cut_force": 0.11091783171484168,
+      "peak_turn_energy_per_unit_proper_path_length": 0.11091783171484168
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0008234607529763321,
+      "peak_integrated_cut_force": 0.08158039715485564,
+      "peak_turn_energy_per_unit_proper_path_length": 0.08158039715485564
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0008691477233042224,
+      "peak_integrated_cut_force": 0.07968809621928186,
+      "peak_turn_energy_per_unit_proper_path_length": 0.07968809621928186
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.00028350595625720995,
+      "peak_integrated_cut_force": 0.023794473012917428,
+      "peak_turn_energy_per_unit_proper_path_length": 0.023794473012917428
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0005059230912971041,
+      "peak_integrated_cut_force": 0.0388020968003144,
+      "peak_turn_energy_per_unit_proper_path_length": 0.0388020968003144
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.00047581957909802983,
+      "peak_integrated_cut_force": 0.03325748429501357,
+      "peak_turn_energy_per_unit_proper_path_length": 0.03325748429501357
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0007760855286746262,
+      "peak_integrated_cut_force": 0.049088389790908425,
+      "peak_turn_energy_per_unit_proper_path_length": 0.049088389790908425
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.003999790726393952,
+      "peak_integrated_cut_force": 0.23420662059297243,
+      "peak_turn_energy_per_unit_proper_path_length": 0.23420662059297243
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0019843846931373774,
+      "peak_integrated_cut_force": 0.21308547892773477,
+      "peak_turn_energy_per_unit_proper_path_length": 0.21308547892773477
+    },
+    {
+      "leg": 1,
+      "x": -1.9000000000000001,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0015819596021067542,
+      "peak_integrated_cut_force": 0.1567250074230505,
+      "peak_turn_energy_per_unit_proper_path_length": 0.1567250074230505
+    },
+    {
+      "leg": 2,
+      "x": -1.7000000000000002,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0016697293484366678,
+      "peak_integrated_cut_force": 0.15308968707015375,
+      "peak_turn_energy_per_unit_proper_path_length": 0.15308968707015375
+    },
+    {
+      "leg": 3,
+      "x": -1.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0005446464426319069,
+      "peak_integrated_cut_force": 0.04571182648814917,
+      "peak_turn_energy_per_unit_proper_path_length": 0.04571182648814917
+    },
+    {
+      "leg": 4,
+      "x": -1.3,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0009719344720585481,
+      "peak_integrated_cut_force": 0.07454313929749291,
+      "peak_turn_energy_per_unit_proper_path_length": 0.07454313929749291
+    },
+    {
+      "leg": 5,
+      "x": -1.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0009141022802894377,
+      "peak_integrated_cut_force": 0.06389132260675388,
+      "peak_turn_energy_per_unit_proper_path_length": 0.06389132260675388
+    },
+    {
+      "leg": 6,
+      "x": -0.8999999999999999,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0014909465323093658,
+      "peak_integrated_cut_force": 0.09430425105386744,
+      "peak_turn_energy_per_unit_proper_path_length": 0.09430425105386744
+    },
+    {
+      "leg": 7,
+      "x": -0.7,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.007684042406594606,
+      "peak_integrated_cut_force": 0.4499369411169438,
+      "peak_turn_energy_per_unit_proper_path_length": 0.4499369411169438
+    }
+  ],
+  "maximum_prescribed_material_velocity": 0.19989288236248115,
+  "packet_gap": 0.15000000000000002
+}

@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-09-10T19:53:57.422823+00:00",
+  "git_head": "919f973c69292f5f48931cde203bc9a4d340c4f3",
+  "workers": 2,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_poynting_delivery.py": "7c44f2bdb772e153d2d47ebedf101246e8a09725d62a5a30a16edb11c078d8be",
+    "toolkit/adm_harness_cli/adm_harness/poynting_delivery.py": "b5007fd00037518d5f78f5dd1a8e9c503f507c4c5879b41bc116dc5914077d1a",
+    "toolkit/adm_harness_cli/tests/test_poynting_delivery.py": "79a7976a7bd63358bdc4e00d50c448498075e0e4c96979845e85336778240290",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/adm_harness/pressure_linked_storage.py": "f82a037f21d622b1cbf4e8c93d7bd2c22c7bc22c57e079c7547ab833c250598e",
+    "toolkit/adm_harness_cli/adm_harness/regenerative_converter.py": "d3ab0434f2069efef2feb7831890cbfe0c92d19df9ebc25f0f244900b7de861c",
+    "toolkit/adm_harness_cli/adm_harness/graded_electrothermal.py": "b4f85303b43de58a90e67d85032960082c385886d5aa15c1293e93b5d4da2b0b",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_states.npz": "3219b5970bb4182aeb8f628fd040cb7d7824ec39f9227575b46a112bdafe4409",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_points.csv": "98673586b1d9ed98f6e5b245d1b94da40d52d5b6678496fb8a6b298771d9c43b",
+    "supporting_reports/data/regenerative_converter/refined_eta098_recovery100_voltage050_states.npz": "f3388f96053869bb5b94b066ac6b898e0df50b2f9904db927309ddf6e42193c1",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  },
+  "verified_archived_inputs": [
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_states.npz",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_points.csv",
+    "supporting_reports/data/regenerative_converter/refined_eta098_recovery100_voltage050_states.npz"
+  ],
+  "output_sha256": {
+    "right_n1024_t1_balance.csv": "5ef13e017fc315a10e8bd38bc8e225096eaa0db5bc50b12a267d53c8733debf7",
+    "right_n1024_t1_inventory.csv": "de8d4ccb4d1b158cf86f0f92f0048a265cf8e81014e5a91bedfd8751baa01d1c",
+    "right_n1024_t1_source.csv": "06697c6214d575ad5ffee6ee955d22cebf043189d2c80223ae8ab104981991e1",
+    "right_n1024_t1_states.npz": "9dee6a5047c229d15844773ba6011eafd6741c8fc7f697397e7d55628b087dff",
+    "right_n1024_t1_summary.json": "7c6b34d0cd5bec7c60c7cb8aab2ee8efe0bc48a0d4b49b9edefd03255e008a1a",
+    "right_n512_t1_balance.csv": "ceaaa87699cd425e3dca57d871fb47bbbc400901bbddedb02d8bee7240f2cf2b",
+    "right_n512_t1_inventory.csv": "e65d4d48382b434f5c34f900edb59b9d0ee4ac77c610662c871e1f804e03fd2d",
+    "right_n512_t1_source.csv": "caea59d666e5993bd3c443a0fb5a9cc3f67ec7ac9afe84752f53dda21bfcd165",
+    "right_n512_t1_states.npz": "f0f3cb3af8b5212335e21a1c51f9d8f5064245af09bbdcbc7c9a19fb8a51c87f",
+    "right_n512_t1_summary.json": "185128baf97c4226cd95047137b6a0905a80c1afdbad8e9f900a56b81457b25e",
+    "summary.json": "654bfe310cfb0e924d08a34fd6c02451a6c9274238a6545941d1878d40ab768c"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "created_utc": "2026-09-10T19:56:23.514998+00:00",
+  "git_head": "919f973c69292f5f48931cde203bc9a4d340c4f3",
+  "workers": 4,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_branched_poynting_delivery.py": "41fe0ddd98284cfdc16848bec8dfba80131a96248779a1665127daef26a87ac7",
+    "toolkit/adm_harness_cli/scripts/run_poynting_delivery.py": "7c44f2bdb772e153d2d47ebedf101246e8a09725d62a5a30a16edb11c078d8be",
+    "toolkit/adm_harness_cli/adm_harness/poynting_delivery.py": "b5007fd00037518d5f78f5dd1a8e9c503f507c4c5879b41bc116dc5914077d1a",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/adm_harness/pressure_linked_storage.py": "f82a037f21d622b1cbf4e8c93d7bd2c22c7bc22c57e079c7547ab833c250598e",
+    "toolkit/adm_harness_cli/adm_harness/graded_electrothermal.py": "b4f85303b43de58a90e67d85032960082c385886d5aa15c1293e93b5d4da2b0b",
+    "toolkit/adm_harness_cli/adm_harness/regenerative_converter.py": "d3ab0434f2069efef2feb7831890cbfe0c92d19df9ebc25f0f244900b7de861c",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_states.npz": "3219b5970bb4182aeb8f628fd040cb7d7824ec39f9227575b46a112bdafe4409",
+    "supporting_reports/data/pressure_linked_storage/retained_coefficients/powered_finite_joint_points.csv": "98673586b1d9ed98f6e5b245d1b94da40d52d5b6678496fb8a6b298771d9c43b",
+    "supporting_reports/data/regenerative_converter/refined_eta098_recovery100_voltage050_states.npz": "f3388f96053869bb5b94b066ac6b898e0df50b2f9904db927309ddf6e42193c1",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19"
+  },
+  "output_sha256": {
+    "paired_b1_n256_balance.csv": "b401f06e9ab2776a470b13eb87c036e396fba0f78cf25d5b531976152a4ff596",
+    "paired_b1_n256_source.csv": "19ebe57ec9cd630708f6af40e0d12f931f1820ce71d4349d743a24649074bb48",
+    "paired_b1_n256_states.npz": "fbdbec7ed697adecb2d8063a5009e286e4b433ba33519d389719a0ff46c0d423",
+    "paired_b1_n256_summary.json": "ff8fc3690a076ac1d2b6792146e97d99f554e8976c635aa01903646f342f7a00",
+    "paired_b2_n256_balance.csv": "049f6c77533bf8de123e2b1a9650036e4c354ab261e24e26f40f1e76322e1236",
+    "paired_b2_n256_source.csv": "45640e02010edd3ad0de37a6c8adbbb14bc7cb8f4c6f281ae9a4b9b943999b3a",
+    "paired_b2_n256_states.npz": "880432271e14093c3b1bab04326b896e33e77e81a2d2c0aa9f66c008d987c7c9",
+    "paired_b2_n256_summary.json": "529bd41a896b24427be1d15853d2b0b0adeb22e9b53821ac35d389f3f4e3fb8f",
+    "paired_b4_n256_balance.csv": "42b417f3960ae84e43ff026cfab58374d1ac7cb4a3c0f6480af5eb84efd205db",
+    "paired_b4_n256_source.csv": "a30e6bf5609654354c8b4743caa72751000bc00f820eaceef2c1c443a3f38187",
+    "paired_b4_n256_states.npz": "e76c55eb308e8d266ff68b2de062781a64463c759e81689a74a47756da6fdd91",
+    "paired_b4_n256_summary.json": "b8fe3de953e319d5550fe523b078bb388e1cbdd330894f5de24990038abb12dd",
+    "paired_b8_n256_balance.csv": "83fa997f25fe15011237f00ae4f99cf6424e8fa0637f9c545ad3c0372d47f8e3",
+    "paired_b8_n256_source.csv": "614fe8b6edf19d873d732c6d2415b8701b5e5f5a134bdd1da1265c27a98314d9",
+    "paired_b8_n256_states.npz": "2c1f30051dc6f6be51a382ac65742a65fd5faece90723282f80d9738d9a2d318",
+    "paired_b8_n256_summary.json": "d6273c2cd3d3549508efe832260e5687f7e1907edb849a433dd531d1b9dc99d3"
+  }
+}

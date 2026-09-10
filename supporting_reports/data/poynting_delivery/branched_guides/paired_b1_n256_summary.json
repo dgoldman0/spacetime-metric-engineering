@@ -1,0 +1,263 @@
+{
+  "case": "paired_b1_n256",
+  "branches": 1,
+  "cells": 256,
+  "initial_wave_slice_energy": 18.123635393730332,
+  "initial_wave_material_inventory": 16.590146355726855,
+  "final_wave_slice_energy": 1.6714379256149456,
+  "maximum_wave_slice_energy": 19.523883147853642,
+  "maximum_balance_residual": 4.510281037539698e-16,
+  "legs": [
+    {
+      "leg": 0,
+      "load_left": -2.1,
+      "load_right": -0.5,
+      "guide_left": -2.1,
+      "guide_right": -0.5,
+      "absorption_flux_requirement": 0.18975073332243375,
+      "recovery_flux_requirement": 0.1712658964972142,
+      "paired_guide_flux_per_multiplier": 0.3795014666448675,
+      "initial_wave_slice_energy": 18.123635393730332
+    }
+  ],
+  "phases": [
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.5409856503958067,
+      "guide_slice_energy": 3751.782184428833,
+      "auxiliary_slice_energy": 3785.1967260046636
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.531028402172156,
+      "guide_slice_energy": 2110.9121294834586,
+      "auxiliary_slice_energy": 2162.099139441139
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.6682425959134357,
+      "guide_slice_energy": 198.5949713753195,
+      "auxiliary_slice_energy": 258.088750313723
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.6433293527278959,
+      "guide_slice_energy": 4602.186146232702,
+      "auxiliary_slice_energy": 4635.600687808534
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.633776067381194,
+      "guide_slice_energy": 2589.38554549971,
+      "auxiliary_slice_energy": 2640.57255545739
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.7759565212651608,
+      "guide_slice_energy": 243.60983155372534,
+      "auxiliary_slice_energy": 303.1036104921288
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.1470891157030642,
+      "guide_slice_energy": 468.97277305360416,
+      "auxiliary_slice_energy": 502.38731462943525
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.13439772715807866,
+      "guide_slice_energy": 263.8640161854324,
+      "auxiliary_slice_energy": 315.05102614311267
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.25245159993175714,
+      "guide_slice_energy": 24.824371421914943,
+      "auxiliary_slice_energy": 84.31815036031841
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.16620156008789108,
+      "guide_slice_energy": 629.986758468675,
+      "auxiliary_slice_energy": 663.4013000445061
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.15385062611482622,
+      "guide_slice_energy": 354.45732840909756,
+      "auxiliary_slice_energy": 405.64433836677784
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.2728426093773736,
+      "guide_slice_energy": 33.347405610105746,
+      "auxiliary_slice_energy": 92.84118454850923
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.10254452051255002,
+      "guide_slice_energy": 87.93239494755075,
+      "auxiliary_slice_energy": 121.34693652338181
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.08836479674146978,
+      "guide_slice_energy": 49.474503034768546,
+      "auxiliary_slice_energy": 100.6615129924488
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "required_negative_null": 0.20420267033276027,
+      "guide_slice_energy": 4.65456964160905,
+      "auxiliary_slice_energy": 64.14834858001252
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.0,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.11187065932329246,
+      "guide_slice_energy": 168.92790096035034,
+      "auxiliary_slice_energy": 202.3424425361814
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 0.5,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.09814927384203087,
+      "guide_slice_energy": 95.04601749679429,
+      "auxiliary_slice_energy": 146.23302745447455
+    },
+    {
+      "branches": 1,
+      "cells": 256,
+      "s": 1.285,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "required_negative_null": 0.2144574483937876,
+      "guide_slice_energy": 8.941945455935612,
+      "auxiliary_slice_energy": 68.43572439433909
+    }
+  ],
+  "turn_ports": [
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.062367517778065255,
+      "peak_integrated_cut_force": 6.697094792775152,
+      "peak_turn_energy_per_unit_proper_path_length": 6.697094792775152
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.2,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.07650415514109339,
+      "peak_integrated_cut_force": 8.215102945804187,
+      "peak_turn_energy_per_unit_proper_path_length": 8.215102945804187
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.007795939722258159,
+      "peak_integrated_cut_force": 0.8371368490968942,
+      "peak_turn_energy_per_unit_proper_path_length": 0.8371368490968942
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.5,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.010472545693566796,
+      "peak_integrated_cut_force": 1.1245538339534948,
+      "peak_turn_energy_per_unit_proper_path_length": 1.1245538339534948
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.0,
+      "peak_cut_traction": 0.0014617386979234042,
+      "peak_integrated_cut_force": 0.15696315920566759,
+      "peak_turn_energy_per_unit_proper_path_length": 0.15696315920566759
+    },
+    {
+      "leg": 0,
+      "x": -2.1,
+      "drift_comparison": 0.8,
+      "reflected_amplitude_margin": 0.1,
+      "peak_cut_traction": 0.0028081624541217405,
+      "peak_integrated_cut_force": 0.3015436691851104,
+      "peak_turn_energy_per_unit_proper_path_length": 0.3015436691851104
+    }
+  ],
+  "maximum_prescribed_material_velocity": 0.19989288236248115,
+  "packet_gap": 0.15000000000000002
+}
