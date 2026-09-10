@@ -36,16 +36,18 @@ def write_json(path, value):
 
 
 def run_case(task):
-    name, cells, medium, duration, snapshots, max_step, deadline, output = task
+    name, cells, medium, duration, snapshots, max_step, cfl, deadline, output = task
     output = Path(output)
     ratio, share, sigma, forcing = CASES[name]
     law = ElasticLaw(stiffness=.1, scale=.4)
     electrical = ElectricalLaw(energy_ratio=ratio, conductivity=sigma, profile='capacitor')
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/f'medium_{medium}.npz')
     patch = MaterialEnsemble(model, law, electrical, cells=cells, thermal_share=share, forcing=forcing)
-    result = evolve_material_ensemble(patch, duration=duration, snapshots=snapshots, max_step=max_step,
+    result = evolve_material_ensemble(patch, duration=duration, snapshots=snapshots, max_step=max_step, cfl=cfl,
                                       deadline_seconds=deadline)
     label = f'{name}_{medium}_n{cells}_end{duration:g}_dt{max_step:g}_snap{snapshots}'
+    if cfl != .2:
+        label += f'_cfl{cfl:g}'
     frame = pd.DataFrame(result['history'])
     frame.to_csv(output/f'{label}_history.csv', index=False)
     np.savez_compressed(output/f'{label}_states.npz', t=result['times'], states=result['states'],
@@ -53,7 +55,7 @@ def run_case(task):
     first, last = frame.iloc[0], frame.iloc[-1]
     summary = dict(case=label, material_law=law.__dict__, electrical_law=electrical.__dict__,
                    thermal_share=share, forcing=forcing, cells=cells, medium=medium,
-                   duration=duration, max_step=max_step, snapshots=snapshots,
+                   duration=duration, max_step=max_step, cfl=cfl, snapshots=snapshots,
                    status=result['status'], failure=result['failure'], elapsed_seconds=result['elapsed_seconds'],
                    initial_slice_energy=float(first.slice_energy), initial_canonical_energy=float(first.canonical_energy),
                    initial_thermal_inventory=float(first.thermal_inventory), initial_field_energy=float(first.field_slice_energy),
@@ -88,13 +90,14 @@ def main():
     parser.add_argument('--duration', type=float, default=.5)
     parser.add_argument('--snapshots', type=int, default=101)
     parser.add_argument('--max-step', type=float, default=.002)
+    parser.add_argument('--cfl', type=float, default=.2)
     parser.add_argument('--deadline', type=float, default=240.)
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
     args = parser.parse_args()
-    if not 1 <= args.workers <= 6 or args.cells < 8 or not 0 < args.duration <= 3 or args.max_step <= 0:
+    if not 1 <= args.workers <= 6 or args.cells < 8 or not 0 < args.duration <= 3 or args.max_step <= 0 or not 0 < args.cfl <= .2:
         parser.error('one to six workers, at least eight cells, 0<duration<=3, and positive time step required')
     args.output.mkdir(parents=True, exist_ok=True)
-    tasks = [(name, args.cells, args.medium, args.duration, args.snapshots, args.max_step,
+    tasks = [(name, args.cells, args.medium, args.duration, args.snapshots, args.max_step, args.cfl,
               args.deadline, str(args.output)) for name in args.cases]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
         for future in as_completed([pool.submit(run_case, task) for task in tasks]):

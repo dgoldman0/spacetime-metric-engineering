@@ -136,10 +136,11 @@ Adding heat at those velocities changes the initial canonical momentum by
 its specified inertia contribution; this preparation differs from the
 previous cellwise fixed-momentum allocation control.
 
-Six initial tests check Hamiltonian force and velocity derivatives, explicit
+Seven initial tests check Hamiltonian force and velocity derivatives, explicit
 metric work, reciprocal Ohmic conversion, ideal preservation of material heat
 and electric flux, resistive energy balance, and a controlled physical
-heat-depletion event. The old numerical method and evidence remain available
+heat-depletion event, and convergence of the discrete electromagnetic force
+to the covariant Lorentz force. The old numerical method and evidence remain available
 for comparison.
 
 Active controls begin at 64 material cells and four workers. Spatial
@@ -153,3 +154,28 @@ classification before any source-family conclusion.
 
 The main disclosure and its PDF retain their existing design content. This
 supporting report records the bounded research construction and its tests.
+
+## First active verification milestone
+
+The material-coordinate ideal-field control completes \(s=0.5\), preserving
+every material heat value and electric flux. The previously observed
+zero-exchange temperature collapse is removed. The forced field-only case
+also reaches 0.5, with minimum heat 0.09118 and integrated Ohmic heat 0.03287
+per solid angle. The mixed ensemble and thermal-only control retain minimum
+heat 0.25 through the same interval. Their initial reserve follows the
+registered fixed-energy allocation; the mixed ensemble's conductivity remains
+inactive over this first interval because its thermal preparation covers
+the withdrawal.
+
+The original elastic-only control retains a physical heat stop, moving from
+\(s=0.38387\) at 64 cells to 0.37998 at 128 cells. This approaches the
+earlier refined depletion time while using explicit material heat evolution.
+
+The first electromagnetic runs have recomputed canonical-energy errors near
+0.5 against initial energies around 34,700. Direct directional derivatives
+of the actual active states reproduce the registered energy-power identity;
+the remaining error is accumulated time integration during strong compression.
+Reducing the maximum step alone leaves much of it because the material-wave
+step restriction is already controlling. The next verification therefore
+also refines that restriction, from a Courant factor of 0.2 to 0.05, before
+using the electromagnetic response for longer-interval conclusions.

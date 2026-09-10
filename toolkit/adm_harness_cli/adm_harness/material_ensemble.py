@@ -64,8 +64,10 @@ class MaterialEnsemble:
         kappa = 2*a/self.mass
         # c*sinh(eta)+kappa*tanh(eta)=target is strictly increasing.
         eta = np.arcsinh(target/c)
-        for _ in range(12):
+        for _ in range(16):
             residual = c*np.sinh(eta)+kappa*np.tanh(eta)-target
+            if np.all(abs(residual) <= 2e-14*(1+abs(target))):
+                break
             derivative = c*np.cosh(eta)+kappa/np.cosh(eta)**2
             correction = np.clip(residual/derivative, -1., 1.)
             eta -= correction
@@ -190,7 +192,7 @@ class MaterialEnsemble:
         return self.pack(xrate, prate, qrate, charge_rate), diagnostics
 
 
-def evolve_material_ensemble(patch, *, duration=.5, snapshots=101, max_step=.002,
+def evolve_material_ensemble(patch, *, duration=.5, snapshots=101, max_step=.002, cfl=.2,
                             deadline_seconds=240., initial=None, max_steps=60000):
     state = patch.initial() if initial is None else initial.copy()
     initial_fields = patch.fields(0., state)
@@ -208,7 +210,7 @@ def evolve_material_ensemble(patch, *, duration=.5, snapshots=101, max_step=.002
             if time.monotonic()-start > deadline_seconds or steps >= max_steps:
                 status = 'compute_budget_reached'; break
             first, d1 = patch.rhs(t, state)
-            dt = min(max_step, target-t, .2/max(d1['inverse_step'], 1e-15), .2/max(d1['maximum_decay'], 1e-15))
+            dt = min(max_step, target-t, cfl/max(d1['inverse_step'], 1e-15), cfl/max(d1['maximum_decay'], 1e-15))
             accepted = False
             for _ in range(20):
                 try:

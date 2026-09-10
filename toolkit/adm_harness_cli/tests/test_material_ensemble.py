@@ -102,3 +102,24 @@ def test_real_imposed_heat_extraction_still_reaches_a_thermal_boundary():
     assert result['status'] == 'material_domain_limit'
     np.testing.assert_allclose(result['final_time'], .125, atol=1e-7)
     assert abs(result['history'][-1]['canonical_balance_residual']) < 1e-9
+
+
+def test_discrete_field_force_converges_to_covariant_lorentz_force():
+    errors = []
+    for cells in (64, 128):
+        patch = MaterialEnsemble(Model(varying=True), ElasticLaw(scale=.4), ElectricalLaw(energy_ratio=0),
+                                 cells=cells, thermal_share=0., forcing=0.)
+        state = patch.initial()
+        x, p, q, _ = patch.split(state)
+        charge = .4+.1*np.sin(x)
+        charged = patch.pack(x, p, q, charge)
+        bare = patch.pack(x, p, q, np.zeros_like(x))
+        charged_rate, _ = patch.rhs(.2, charged)
+        bare_rate, _ = patch.rhs(.2, bare)
+        f = patch.fields(.2, charged)
+        g = f['metric']
+        computed = (charged_rate[cells-1:2*(cells-1)]-bare_rate[cells-1:2*(cells-1)])/f['volume'][1:-1]
+        expected = (g.alpha*g.b*charge*.1*np.cos(x)/g.radius**2)[1:-1]
+        errors.append(np.max(abs(computed-expected)))
+    assert errors[1] < .3*errors[0]
+    assert errors[1] < 1e-6
