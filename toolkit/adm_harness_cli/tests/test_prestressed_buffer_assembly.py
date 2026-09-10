@@ -111,3 +111,16 @@ def test_budget_control_preserves_heat_and_matches_declared_total_energy():
     f = patch.fields(0., patch.initial())
     np.testing.assert_allclose(4*np.pi*f['matter_adm'].sum(), target, rtol=1e-12)
     np.testing.assert_array_equal(f['heat'], first_heat)
+
+
+def test_sound_floor_supplies_a_finite_response_through_the_entire_equilibrium():
+    patch = make_patch()
+    bare = patch.equilibrate_initial_preload()
+    complete = patch.equilibrate_initial_preload(minimum_sound_speed=.5)
+    f = patch.fields(0., patch.initial())
+    assert np.sqrt(f['sound2'].min()) >= .5-1e-10
+    assert complete['initial_slice_energy'] > bare['initial_slice_energy']
+    assert np.max(abs(patch.fixed_motion_residual())) < 1e-10
+    result = evolve_material_ensemble(patch, duration=.05, snapshots=3, max_step=.001, cfl=.05)
+    assert result['status'] == 'duration_completed'
+    assert max(row['maximum_abs_velocity'] for row in result['history']) < 1e-8

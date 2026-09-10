@@ -24,14 +24,14 @@ OUTPUT = ROOT/'supporting_reports/data/prestressed_buffer_assembly'
 
 
 def run_case(task):
-    case, cells, duration, max_step, cfl, snapshots, deadline, output = task
+    case, cells, duration, max_step, cfl, snapshots, deadline, output, minimum_sound_speed = task
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/'medium_baseline.npz')
     template = RelaxingMaterialEnsemble(model, ElasticLaw(stiffness=.1, scale=.4),
                                          ElectricalLaw(energy_ratio=4., conductivity=.1, profile='capacitor'),
                                          relaxation=StrainRelaxation(stiffness=.1, proper_time=1.),
                                          cells=cells, thermal_share=1., forcing=1.)
     patch = PrestressedBufferAssembly(template, backbone_scale=.001)
-    preload = patch.equilibrate_initial_preload()
+    preload = patch.equilibrate_initial_preload(minimum_sound_speed=minimum_sound_speed)
     fraction = patch.match_template_energy(preload) if case == 'energy_matched' else 1.
     if case == 'unforced':
         patch.forcing = 0.
@@ -48,6 +48,7 @@ def run_case(task):
                    receiver_l=float(f['x'][cells//2]),
                    receiver_effective_n=float(f['effective_n'][cells//2]),
                    maximum_gamma=float(f['gamma'].max()),
+                   minimum_sound2=float(f['sound2'].min()),
                    minimum_rest_dec_margin=f['minimum_rest_dec_margin'],
                    maximum_density=float(density.max()), maximum_abs_radial_stress=float(abs(stress).max()),
                    backbone_slice_energy=float(4*np.pi*f['backbone_adm'].sum()),
@@ -64,6 +65,8 @@ def run_case(task):
                    backbone_scale=patch.backbone_scale, density_scale=patch.law.scale,
                    status=result['status'], failure=result['failure'], elapsed_seconds=result['elapsed_seconds'],
                    preload_fraction=fraction, initial_fixed_motion_residual=initial_residual,
+                   requested_equilibrium_minimum_sound_speed=minimum_sound_speed,
+                   actual_initial_minimum_sound_speed=float(np.sqrt(first.minimum_sound2)),
                    minimum_preload_initial_slice_energy=preload['initial_slice_energy'],
                    template_initial_slice_energy=patch.template_initial_slice_energy,
                    initial_slice_energy=float(first.slice_energy), initial_canonical_energy=float(first.canonical_energy),
@@ -109,12 +112,13 @@ def main():
     parser.add_argument('--snapshots', type=int, default=258)
     parser.add_argument('--deadline', type=float, default=240.)
     parser.add_argument('--workers', type=int, default=4)
+    parser.add_argument('--minimum-sound-speed', type=float, default=0.)
     parser.add_argument('--output', type=Path, default=OUTPUT)
     args = parser.parse_args()
-    if not 1 <= args.workers <= 6 or any(n < 8 or n % 2 for n in args.cells):
+    if not 1 <= args.workers <= 6 or any(n < 8 or n % 2 for n in args.cells) or not 0 <= args.minimum_sound_speed < 1:
         parser.error('one to six workers and even material cell counts >=8 required')
     args.output.mkdir(parents=True, exist_ok=True)
-    tasks = [(case, cells, args.duration, args.max_step, args.cfl, args.snapshots, args.deadline, args.output)
+    tasks = [(case, cells, args.duration, args.max_step, args.cfl, args.snapshots, args.deadline, args.output, args.minimum_sound_speed)
              for case in args.cases for cells in args.cells]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
         list(pool.map(run_case, tasks))

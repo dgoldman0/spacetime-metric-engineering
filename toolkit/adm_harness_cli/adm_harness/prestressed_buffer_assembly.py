@@ -117,7 +117,7 @@ class PrestressedBufferAssembly(MaterialEnsemble):
         required = self.required_fixed_momentum_rate(0., f, qrate)
         return rate[self.cells-1:2*(self.cells-1)]-required[1:-1]
 
-    def equilibrate_initial_preload(self, *, floor=1e-12):
+    def equilibrate_initial_preload(self, *, floor=1e-12, minimum_sound_speed=0.):
         """Minimize initial backbone ADM energy with zero interior acceleration.
 
         The squared reference weights enter the momentum balance linearly.
@@ -125,10 +125,18 @@ class PrestressedBufferAssembly(MaterialEnsemble):
         derivatives, the attached buffer inertia, and endpoint load enter
         this finite-dimensional initial equilibrium.
         """
+        if not 0 <= minimum_sound_speed < 1:
+            raise ValueError('initial sound-speed floor must lie in [0,1)')
         self.backbone_weight = np.zeros(self.cells)
         base_residual = self.fixed_motion_residual()
         base = self.fields(0., self.initial())
         e0 = float(4*np.pi*base['matter_adm'].sum())
+        g = base['metric']
+        cell_bg = np.array([g.b[:-1]*base['gamma'][:-1], g.b[1:]*base['gamma'][1:]])
+        heat = np.array([base['heat'][:-1], base['heat'][1:]])
+        ratio = minimum_sound_speed**2/(1-minimum_sound_speed**2)
+        lower = np.maximum(floor, ratio*np.max(self.reference[None, :]*(self.buffer_mass+heat)
+                                              *base['width'][None, :]*cell_bg, axis=0))
         matrix, cost = [], []
         for i in range(self.cells):
             weights = np.zeros(self.cells); weights[i] = 1.
@@ -141,7 +149,7 @@ class PrestressedBufferAssembly(MaterialEnsemble):
         normalization = np.maximum(normalization, 1e-15)
         solution = linprog(np.array(cost)/max(cost),
                            A_eq=matrix/normalization[:, None], b_eq=-base_residual/normalization,
-                           bounds=(floor, None), method='highs')
+                           bounds=[(value, None) for value in lower], method='highs')
         if not solution.success:
             raise ElasticDomainError('positive initial backbone equilibrium failed: '+solution.message)
         self.backbone_weight = solution.x.copy()
@@ -152,6 +160,7 @@ class PrestressedBufferAssembly(MaterialEnsemble):
                     zero_preload_slice_energy=e0,
                     maximum_initial_momentum_residual=float(abs(residual).max()),
                     maximum_relative_initial_momentum_residual=float(np.max(abs(residual)/normalization)),
+                    minimum_initial_sound_speed=float(np.sqrt(f['sound2'].min())),
                     squared_reference_weights=self.backbone_weight.copy())
 
     def match_template_energy(self, full_preload):
