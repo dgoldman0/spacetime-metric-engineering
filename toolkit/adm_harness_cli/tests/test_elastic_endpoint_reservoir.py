@@ -106,3 +106,23 @@ def test_closed_ends_in_shifted_coordinates_have_counted_work_and_zero_mass_flux
     np.testing.assert_allclose(rate, 0., atol=1e-11)
     np.testing.assert_allclose(diag['boundary'], 0., atol=1e-11)
     np.testing.assert_allclose(diag['end_traction'], patch.law.scale*fields['pressure'][0], atol=1e-12)
+
+
+def test_prepared_heat_budget_matches_integrated_work_and_keeps_control_state():
+    class PrescribedEndpoint(HomogeneousModel):
+        def medium(self, t, x):
+            moments, dt, dx = [np.zeros((4, x.size)) for _ in range(3)]
+            moments[0] = .1*np.sin(t)
+            dt[0] = .1*np.cos(t)
+            return moments, dt, dx
+
+    model, law = PrescribedEndpoint(), ElasticLaw(scale=.2)
+    driven = ElasticPatch(model, law, cells=16)
+    control = ElasticPatch(model, law, cells=16, forcing=0.)
+    state = driven.initial(initialization='prepared_reference')
+    np.testing.assert_array_equal(state, control.initial(initialization='prepared_reference'))
+    f = recover(state, model.metric(0., driven.x).b, law)
+    # q'=-R^2 P/(A n)=-2 cos(t); its greatest withdrawal is 2 at pi/2.
+    # Covers quadrature and sampled-minimum errors at the 0.005 cadence.
+    np.testing.assert_allclose(f['thermal'], .25+2., atol=1.1e-5)
+    np.testing.assert_allclose(f['n'], 1., atol=1e-12)

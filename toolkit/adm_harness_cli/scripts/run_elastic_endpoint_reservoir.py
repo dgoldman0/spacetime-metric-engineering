@@ -33,21 +33,27 @@ def write_json(path, value):
 
 
 def run_case(task):
-    name, cells, medium, forcing, output = task
+    name, cells, medium, forcing, initialization, duration, snapshots, output = task
     output = Path(output)
     stiffness, scale = CASES[name]
     law = ElasticLaw(stiffness=stiffness, scale=scale)
     model = TabulatedActiveMedium(INPUT/'metric_fine.npz', INPUT/f'medium_{medium}.npz')
     patch = ElasticPatch(model, law, cells=cells, forcing=forcing)
-    result = evolve(patch, deadline_seconds=240.)
+    result = evolve(patch, deadline_seconds=240., initialization=initialization, duration=duration, snapshots=snapshots)
     label = f'{name}_{medium}_n{cells}_force{forcing:g}'
+    if initialization != 'uniform':
+        label += f'_{initialization}'
+    if duration != 3.:
+        label += f'_end{duration:g}'
+    if snapshots != 61:
+        label += f'_snap{snapshots}'
     history = pd.DataFrame(result['history'])
     history.to_csv(output/f'{label}_history.csv', index=False)
     np.savez_compressed(output/f'{label}_states.npz', t=result['times'], x=patch.x,
                          faces=patch.faces, states=result['states'])
     last = history.iloc[-1].to_dict()
-    summary = dict(case=label, law=law.__dict__, cells=cells, medium=medium, forcing=forcing,
-                   status=result['status'], failure=result['failure'], final_time=result['final_time'],
+    summary = dict(case=label, law=law.__dict__, cells=cells, medium=medium, forcing=forcing, initialization=initialization,
+                   status=result['status'], failure=result['failure'], final_time=result['final_time'], duration=duration, snapshots=snapshots,
                    elapsed_seconds=result['elapsed_seconds'],
                    initial_proper_energy=float(history.proper_energy.iloc[0]), **last)
     final = recover(result['states'][-1], model.metric(result['final_time'], patch.x).b, law)
@@ -99,23 +105,34 @@ def main():
     parser.add_argument('--cells', type=int, default=128)
     parser.add_argument('--medium', choices=['baseline', 'dense'], default='baseline')
     parser.add_argument('--forcing', type=float, default=1.)
+    parser.add_argument('--initialization', choices=['uniform', 'relaxed_reference', 'prepared_reference'], default='uniform')
+    parser.add_argument('--duration', type=float, default=3.)
+    parser.add_argument('--snapshots', type=int, default=61)
     parser.add_argument('--cases', nargs='+', choices=list(CASES), default=list(CASES))
     parser.add_argument('--scope-only', action='store_true')
     args = parser.parse_args()
-    if not 1 <= args.workers <= 6 or args.cells < 16:
-        parser.error('one to six workers and at least 16 cells required')
+    if not 1 <= args.workers <= 6 or args.cells < 16 or not 0 < args.duration <= 3 or args.snapshots < 2:
+        parser.error('one to six workers, at least 16 cells, 0<duration<=3, and at least two snapshots required')
     args.output.mkdir(parents=True, exist_ok=True)
     if args.scope_only:
         scope_audit(args.output); return
-    tasks = [(name, args.cells, args.medium, args.forcing, str(args.output)) for name in args.cases]
+    tasks = [(name, args.cells, args.medium, args.forcing, args.initialization, args.duration, args.snapshots, str(args.output)) for name in args.cases]
     with ProcessPoolExecutor(max_workers=args.workers, mp_context=multiprocessing.get_context('spawn')) as pool:
         futures = [pool.submit(run_case, task) for task in tasks]
         rows = [future.result() for future in as_completed(futures)]
     suffix = f'{args.medium}_n{args.cells}_force{args.forcing:g}'
+    if args.initialization != 'uniform':
+        suffix += f'_{args.initialization}'
+    if args.duration != 3.:
+        suffix += f'_end{args.duration:g}'
+    if args.snapshots != 61:
+        suffix += f'_snap{args.snapshots}'
     pd.DataFrame([{k: v for k, v in row.items() if k != 'law'} for row in rows]).to_csv(args.output/f'summary_{suffix}.csv', index=False)
     write_json(args.output/f'run_manifest_{suffix}.json', {
         'completed_utc': datetime.now(timezone.utc).isoformat(), 'cases': args.cases,
         'cells': args.cells, 'workers': args.workers, 'medium': args.medium, 'forcing': args.forcing,
+        'initialization': args.initialization,
+        'duration': args.duration, 'snapshots': args.snapshots,
         'software_sha256': {str(p.relative_to(ROOT)): sha256_file(p) for p in (
             Path(__file__), ROOT/'toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py')},
     })

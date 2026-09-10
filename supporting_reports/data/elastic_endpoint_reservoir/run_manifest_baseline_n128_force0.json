@@ -1,0 +1,15 @@
+{
+  "completed_utc": "2026-09-10T09:11:16.856983+00:00",
+  "cases": [
+    "soft_low",
+    "stiff_low"
+  ],
+  "cells": 128,
+  "workers": 2,
+  "medium": "baseline",
+  "forcing": 0.0,
+  "software_sha256": {
+    "toolkit/adm_harness_cli/scripts/run_elastic_endpoint_reservoir.py": "68073ba58b30acd3b813b93fcdc7e54293449855fa7684f4b6dedc036c38646b",
+    "toolkit/adm_harness_cli/adm_harness/elastic_endpoint_reservoir.py": "1659b31750b1fcd0f6be034a8beb8a352bc49b1b0801084ba9035bd0a38f88c2"
+  }
+}

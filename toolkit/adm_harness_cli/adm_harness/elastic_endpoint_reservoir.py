@@ -11,6 +11,7 @@ from dataclasses import dataclass
 import time
 
 import numpy as np
+from scipy.integrate import cumulative_trapezoid
 
 from .active_transfer_reservoir import divergence_projections
 
@@ -107,13 +108,38 @@ class ElasticPatch:
         self.x = .5*(self.faces[:-1]+self.faces[1:])
         self.dx = float(self.faces[1]-self.faces[0])
 
-    def initial(self, t=0., inverse_stretch=.75, thermal=.25):
+    def initial(self, t=0., inverse_stretch=.75, thermal=.25, initialization='uniform'):
         g = self.model.metric(t, self.x)
         velocity = g.b*g.beta/g.alpha  # zero coordinate velocity initially
         if np.max(abs(velocity)) >= 1:
             raise ElasticDomainError('coordinate-fixed initial body is not timelike')
-        return encode(np.full_like(self.x, inverse_stretch), velocity,
-                      np.full_like(self.x, thermal), g.b, self.law)
+        density = np.full_like(self.x, inverse_stretch)
+        initial_heat = np.full_like(self.x, thermal)
+        if initialization in ('relaxed_reference', 'prepared_reference'):
+            final = self.model.metric(3., self.x)
+            final_velocity = final.b*final.beta/final.alpha
+            # Conserved labels for a coordinate-fixed body relaxed at s=3.
+            # Initial strain is determined by the actual metric stroke.
+            density = final.b/g.b*np.sqrt((1-velocity**2)/(1-final_velocity**2))
+            if initialization == 'prepared_reference':
+                # A preparation estimate on coordinate-fixed material paths.
+                # Actual material trajectories subsequently follow the PDE.
+                times = np.linspace(0., 3., 601)
+                number = final.b/np.sqrt(1-final_velocity**2)
+                heat_rates = []
+                for phase in times:
+                    reference = self.model.metric(phase, self.x)
+                    vv = reference.b*reference.beta/reference.alpha
+                    nn = number/reference.b*np.sqrt(1-vv*vv)
+                    power, force = divergence_projections(reference, *self.model.medium(phase, self.x))
+                    # Keep the same preparation in a zero-exchange control.
+                    heat_rates.append(-reference.alpha*reference.radius**2*(power-vv*force)/(self.law.scale*nn))
+                accumulated = cumulative_trapezoid(heat_rates, times, axis=0, initial=0.)
+                initial_heat += np.maximum(0., -accumulated.min(axis=0))
+        elif initialization != 'uniform':
+            raise ValueError('unknown initial material reference')
+        return encode(density, velocity,
+                      initial_heat, g.b, self.law)
 
     def rhs(self, t, state):
         g = self.model.metric(t, self.x)
@@ -159,8 +185,9 @@ class ElasticPatch:
                             end_traction=face_flux[2, [0, -1]]/(faces.alpha[[0, -1]]*faces.b[[0, -1]]))
 
 
-def evolve(patch, *, duration=3., cfl=.25, snapshots=61, deadline_seconds=180., max_steps=30000):
-    state = patch.initial()
+def evolve(patch, *, duration=3., cfl=.25, snapshots=61, deadline_seconds=180., max_steps=30000,
+           initialization='uniform'):
+    state = patch.initial(initialization=initialization)
     t, steps = 0., 0
     targets = np.linspace(0., duration, snapshots)
     initial_integral = patch.dx*state.sum(axis=1)
