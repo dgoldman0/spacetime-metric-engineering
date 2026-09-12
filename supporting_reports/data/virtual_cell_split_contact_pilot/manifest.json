@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-09-12T22:49:40.409827+00:00",
+  "git_head": "91e2bc99aa93fe0e0d0eb03d790c9b7eed70dc01",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_split_contact.py": "ba88beb9b4b65153acd44c2c2b1cedd0713d34e81db26630e368d714b49143a1",
+    "toolkit/adm_harness_cli/adm_harness/thermal_receiver_contact.py": "65fb67c008d975ccf1e3c026721e9eb6a925c136df7147fd24ece6da99940832",
+    "toolkit/adm_harness_cli/scripts/audit_joint_dense_work.py": "6d6dd31e4da4c60f9e54c34aac42f9c4db44a135518349a5f067e867657509b2",
+    "supporting_reports/data/virtual_cell_fluid_receiver_split10/manifest.json": "f1bee83013bbe8a65961067e1ca94cefa79af1b3f88e7122fca0085f1d7cc84a",
+    "supporting_reports/data/virtual_cell_fluid_receiver_split10/x-1.975_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_states.npz": "9dd280810d5af6f89e1f8ed585318a84b8016b9d466d752766669d03273210d9",
+    "supporting_reports/data/virtual_cell_fluid_receiver_split10/x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_states.npz": "13fd18c82f8ad4ab711f0386db39bb870a211fb13feb41f9ea3be79b2ac1992d"
+  },
+  "output_sha256": {
+    "summary.json": "c5cad8ec9485d0f6834c5cbcc3520fed658b93c1da6409d506fed041b696d4d0",
+    "x-1.975_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_contact.npz": "50e0bf72d0867c48939dfa312b663317d58da815262817ce8452174dfe867cdb",
+    "x-1.975_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_summary.json": "bbe2faeed8d04ab727087caf89ff28a465a0d451e0fdf366b14fd65d024fe70f",
+    "x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_contact.npz": "c309c1b5a06cea128d06ed54fba34d394cb77b02d551301ec7515d5a169f1e05",
+    "x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_summary.json": "ac18683f05bc7cffb299414342b44579c1ca349023309fa14a3d2225530e69a5"
+  }
+}

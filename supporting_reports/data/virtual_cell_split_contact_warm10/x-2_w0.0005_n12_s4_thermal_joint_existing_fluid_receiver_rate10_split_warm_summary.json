@@ -1,0 +1,23 @@
+{
+  "input": "supporting_reports/data/virtual_cell_fluid_receiver_warm10/x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_rate10_split_warm_states.npz",
+  "spatial_samples": 12,
+  "hot_compatible_positions": 12,
+  "cold_compatible_positions": 12,
+  "common_pair_temperature_coefficients_possible": true,
+  "maximum_negative_thermal_roundoff": 1.7322027059257783e-15,
+  "hot_coefficient_lower": 49196.41307696311,
+  "cold_coefficient_upper": 0.02443169617790645,
+  "cold_upper_unbounded": false,
+  "scope": "midpoint photon temperatures and panel heat rates; physical packing and optical coupling remain open",
+  "selected_hot_coefficient": 98392.82615392622,
+  "selected_cold_coefficient": 0.012215848088953225,
+  "minimum_cold_to_hot_volume_ratio": 2013630.6836302,
+  "selected_cold_to_hot_volume_ratio": 8054522.7345208,
+  "maximum_hot_radiative_conductance": 0.00019613198545618434,
+  "maximum_cold_radiative_conductance": 1180.793567498023,
+  "maximum_hot_energy_turnover": 19.297980348214733,
+  "maximum_fluid_energy_turnover": 2.3851194856678894,
+  "positive_hot_contact_at_zero_fluid_temperature": 0,
+  "maximum_hot_temperature": 4.5083365913267865,
+  "maximum_cold_temperature": 0.10762015323147414
+}

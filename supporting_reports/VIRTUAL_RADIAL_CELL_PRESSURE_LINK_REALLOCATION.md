@@ -17,7 +17,7 @@ requirements.
 
 ## Component ownership and reciprocal power
 
-The original pressure link has conserved particle inventory `N_m(x)` and
+The original pressure link has conserved rest-mass inventory `N_m(x)` and
 thermal energy `U_0(t,x)` per material label. With `D=ell R^2`, its thermal
 density is `B_0=U_0/D`, and its thermal tensor is
 `B_0(1,1/3,1/3)`. The prior support target excludes this fluid. Reusing its
@@ -141,8 +141,8 @@ Changing the macroscopic material volume changes cell spacing, while the
 internally balanced cells retain their individual proper volume. Their
 packing, wall response, and optical contacts require explicit construction.
 
-Define `T_Z=alpha(x) Z^(1/4)`, with `alpha>0`, and use the registered fluid
-temperature `T_f=U/(3N_m)`. The capacity fixes an energy ceiling; it supplies
+Define `T_Z=alpha(x) Z^(1/4)`, with `alpha>0`, and use the fluid's caloric
+comparison parameter `T_f=U/(3N_m)`. The capacity fixes an energy ceiling; it supplies
 neither `alpha` nor a caloric heat capacity by itself. A finite passive
 contact follows the ordering of these actual evolving temperatures.
 
@@ -255,3 +255,71 @@ physical comparison keeps the fluid warm enough to reduce the cold bank's
 required volume while retaining the complete stress and rated-capacity
 constraints. The split-inventory regression brings the focused suite to
 80 passing tests.
+
+The [split-receiver temporal refinement](data/virtual_cell_fluid_receiver_split10_refined/summary.json)
+clears the second pair with a maximum density residual below `9.6e-10`.
+The first pair reaches its solver time limit without returning a primal
+state. This leaves that particular refined optimization unresolved.
+
+## Keeping the pressure-link fluid warm
+
+The [warm-fluid pilot](data/virtual_cell_fluid_receiver_warm10/summary.json)
+maximizes a common lower bound on `Theta_f=U/(3N_m)` across each pair and
+the entire schedule. It retains zero added density, the split receiver's
+separate ratings, both finite donor rates, and all existing stress duties.
+A second optimization minimizes counted inventory while retaining 99% of
+the maximum temperature floor. Both stages succeed at both locations.
+
+| Pair center | Maximum uniform floor | Retained floor | Minimum cold/hot photon volume ratio |
+| --- | ---: | ---: | ---: |
+| -2 | 0.1243283 | 0.1230850 | 2.01e6 |
+| -1.975 | 0.03420248 | 0.03386045 | 7.62e7 |
+
+The [independent temperature audit](data/virtual_cell_split_contact_warm10/summary.json)
+finds a common hot coefficient and a common cold coefficient for every
+sample in each pair. Keeping the fluid warmer reduces the required volume
+contrast by more than thirteen orders of magnitude compared with the
+inventory-minimized split controls. Finite temperature gaps can be obtained
+by doubling each hot lower bound and halving each cold upper bound; this
+choice gives four times the minimum volume ratio. The computed nonnegative
+radiative conductances describe the contact response required along these
+histories. A material optical law must supply that response.
+
+The numerical floor has a conditional temperature interpretation. The
+registered fluid obeys `rho=n+3p` and conserves rest mass `N_m=D n`.
+Identifying `Theta_f` with `k_B T/(m_eff c^2)` additionally requires a
+thermal-particle count and `m_eff` equal to rest mass per thermal particle.
+An ordinary monatomic gas has a thermal-energy coefficient approaching
+`3/2` in its nonrelativistic regime and `3` in its relativistically hot
+regime. A mixture carrying cold rest mass and relativistic light particles
+could support the registered thermal relation, subject to its composition
+and interaction law. The present comparison leaves that caloric closure
+explicit.
+
+Absolute photon-cell volume follows once this normalization and the rail's
+length scale `L` are selected. With reduced normalization length
+`lambda_eff=hbar/(m_eff c)`, Planck length `l_P`, and photon coefficients
+`Theta_j^4=a_j Z_j`, blackbody thermodynamics gives
+
+```
+V_j/(L^3 D) = (15/pi^2) lambda_eff^4/(l_P^2 L^2 D a_j).
+L >= (lambda_eff^2/l_P)
+     sqrt[(15/pi^2)(1/a_h+1/a_c)/D_min].
+```
+
+The second expression is the conditional bound for both banks together
+to occupy the available material volume. A bank packing fraction `f`
+replaces `D_min` with `f D_min`. The whole patch requires the largest
+bound over its material labels. The repository's stress unit is
+`c^4/(G L^2)`; its Einstein tensor already includes the division by `8pi`.
+Stored heat and material volume use the same per-label, per-solid-angle
+normalization. Fluid, walls, insulation, guides, and valves also consume
+volume and energy. Thus the improved volume contrast identifies a useful
+control direction while absolute packing remains scale- and material-dependent.
+
+The warm-floor regression and independent curved-replay adapter bring the
+focused suite to 88 passing tests. The adapter separately evolves the
+aggregate balanced-radiation energy and all six explicit work/heat beams
+on the registered curved geometry, preserving the archived controls and
+their prepared inventories. Its numerical results will determine how much
+of the finite-panel allocation survives continuous metric evolution.

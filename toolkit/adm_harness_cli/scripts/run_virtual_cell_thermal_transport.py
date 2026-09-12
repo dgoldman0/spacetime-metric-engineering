@@ -20,7 +20,7 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
-     reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver)=spec
+     reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -67,12 +67,14 @@ def evaluate(spec):
         receiver_reference=receiver,
         receiver_contact=contact, target_budget_only=budget_only,
         split_receiver=split_receiver,
+        thermal_particle_number=number if warm_fluid else None,maximize_thermal_floor=warm_fluid,
         solver_threads=1, solver_method=solver_method, deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
     if reallocate_receiver: label+='_receiver'
     if turnover is not None: label+=f'_rate{turnover:g}'
     if split_receiver: label+='_split'
+    if warm_fluid: label+='_warm'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -129,6 +131,7 @@ def main():
     parser.add_argument('--turnover',type=float)
     parser.add_argument('--target-budget-only',action='store_true')
     parser.add_argument('--split-receiver',action='store_true')
+    parser.add_argument('--warm-fluid',action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
@@ -141,6 +144,8 @@ def main():
         parser.error('positive donor turnover requires the receiver')
     if args.split_receiver and args.turnover is None:
         parser.error('split receiver requires a finite turnover comparison')
+    if args.warm_fluid and (not args.target_budget_only or not args.reallocate_fluid):
+        parser.error('warm fluid optimization requires a reallocated fluid and direct target budget')
     output = BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal-transport evidence')
@@ -165,7 +170,7 @@ def main():
     output.mkdir()
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
-              args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver) for center in args.centers]
+              args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))

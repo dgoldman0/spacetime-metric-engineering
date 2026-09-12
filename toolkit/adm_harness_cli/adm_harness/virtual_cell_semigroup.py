@@ -39,6 +39,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                thermal_reference_density=None,
                receiver_reference=None,
                receiver_contact=None, split_receiver=False, target_budget_only=False,
+               thermal_particle_number=None, maximize_thermal_floor=False,
                solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -85,6 +86,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             raise ValueError('receiver_contact requires finite nonnegative loss and positive duration/turnover')
     if split_receiver and receiver_contact is None:
         raise ValueError('split_receiver requires total contact loss and a finite donor comparison')
+    if maximize_thermal_floor:
+        thermal_number=np.asarray(thermal_particle_number,float)
+        if (not distributed or not target_budget_only or thermal_number.shape!=(nx,) or
+                np.any(thermal_number<=0) or not np.isfinite(thermal_number).all()):
+            raise ValueError('thermal floor optimization requires a direct thermal budget and positive particle inventory')
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -146,6 +152,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         density_weight_mid=weights[None,:]/(4*np.pi*mids['D'])
         work_rate=dx*np.sum(weights[None,:]*(wr*mids.get('log_ell_t',np.zeros_like(mids['D']))
                          +2*wt*mids.get('log_radius_t',np.zeros_like(mids['D']))),axis=1)
+    if maximize_thermal_floor:
+        temperature_column=epsilon;epsilon+=1
     columns=epsilon+1
     eq,ub=Rows(columns),Rows(columns)
     direction=np.r_[-np.ones(halfnx),np.ones(halfnx)]
@@ -232,6 +240,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 # its maximum. Fixed containment remains sufficient for both.
                 ub.add([(hot_inventory[i,j],1),(receiver_inventory[-1,j],1),
                         (hot_inventory[-1,j],-1)],receiver_cap[j])
+            if maximize_thermal_floor:
+                ub.add([(temperature_column,3*thermal_number[j]*nodes['D'][i,j]**(1/3)),
+                        (material_inventory[i,j],-1)])
         if confine_reservoir: add_confinement(i)
     operators=[]
     port_terms=[]
@@ -312,6 +323,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 add_budget([(A[i,half],.5),(A[i+1,half],.5)],ua,ur,
                     *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
                     *material_terms(i,j,True))
+                if maximize_thermal_floor:
+                    ub.add([(temperature_column,3*thermal_number[j]*mids['D'][i,j]**(1/3)),
+                            (material_inventory[i,j],-.5),(material_inventory[i+1,j],-.5)])
                 if wave_envelope:
                     for end in (i,i+1):
                         add_budget([(A[end,half],1.)],
@@ -383,7 +397,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     cost=np.zeros(columns); cost[epsilon]=1
     if target_budget_only:
         bounds[epsilon]=(0.,0.);cost=inventory_cost
-    options={'time_limit':deadline if target_budget_only else deadline/2,'primal_feasibility_tolerance':1e-9,
+    if maximize_thermal_floor:
+        cost=np.zeros(columns);cost[temperature_column]=-1
+    options={'time_limit':deadline if target_budget_only and not maximize_thermal_floor else deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10}
     if solver_threads is not None:options['threads']=int(solver_threads)
     def optimize():
@@ -396,8 +412,12 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
                     target_budget_only=bool(target_budget_only))
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
+    if maximize_thermal_floor:
+        maximum_floor=float(first.x[temperature_column])
+        bounds[temperature_column]=(.99*maximum_floor,None)
+        bounds[epsilon]=(0.,0.)
     cost=inventory_cost
-    second=first if target_budget_only else optimize()
+    second=first if target_budget_only and not maximize_thermal_floor else optimize()
     r=second if second.success else first
     amplitude=np.repeat(r.x[A],halfnx,axis=1)
     plus=np.repeat(r.x[positive],halfnx,axis=1)
@@ -406,6 +426,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     core=amplitude/nodes['radius']**2
     rho,p,q=target
     reservoir={}
+    if maximize_thermal_floor:
+        reservoir.update(maximum_uniform_fluid_temperature=maximum_floor,
+            retained_uniform_fluid_temperature=float(r.x[temperature_column]),
+            thermal_floor_retention_fraction=.99,
+            temperature_convention='gamma-law U/(3*N_mass); microscopic caloric equation remains a material choice')
     if wave_envelope:
         reservoir.update(absorption_panel_ceiling=r.x[ceiling_abs],
             recovery_panel_ceiling=r.x[ceiling_rec],
@@ -525,7 +550,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         target_budget_only=bool(target_budget_only),
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
-        second_optimization_success=None if target_budget_only else bool(second.success),
+        second_optimization_success=None if target_budget_only and not maximize_thermal_floor else bool(second.success),
         inventory_minimization_success=bool(second.success),
         matched_pair_phase_history=bool(matched_pair),
         transport_method='positive matrix exponential with node and midpoint budgets',

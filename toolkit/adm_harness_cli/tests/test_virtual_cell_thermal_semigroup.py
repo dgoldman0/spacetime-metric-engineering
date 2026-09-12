@@ -189,3 +189,17 @@ def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends(sp
         for hh,uu in ((hot[:-1],U[:-1]),(hot[1:],U[1:])):
             assert np.max(qhot-rate*duration*hh)<1e-8
             assert np.max(qcold-rate*duration*uu)<1e-8
+
+
+def test_uniform_thermal_floor_uses_counted_fluid_pressure_and_particle_number():
+    t=np.linspace(0,1,4);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    number=np.ones(4)/3
+    result=solve_pair(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves,
+        matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_particle_number=number,maximize_thermal_floor=True)
+    assert result['success'] and result['minimum_added_density']==0
+    assert_allclose(result['maximum_uniform_fluid_temperature'],1.,atol=1e-8)
+    assert result['retained_uniform_fluid_temperature']>=.99-1e-8
+    assert np.min(result['thermal_reservoir_rest']/(3*number))>=.99-1e-8
+    assert result['second_optimization_success']
