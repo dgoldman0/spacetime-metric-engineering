@@ -6,9 +6,11 @@ serve each whole physical cell. Both endpoint and midpoint stresses are
 constrained. Independent explicit replay still tests spatial and coefficient
 discretization errors on the original active metric.
 """
+import warnings
+
 import numpy as np
 from scipy.linalg import expm
-from scipy.optimize import linprog
+from scipy.optimize import OptimizeWarning, linprog
 
 from .virtual_cell_transport import Rows, upwind_operator
 
@@ -33,7 +35,8 @@ def transport_map(dt, faces, gain, source, dx, backwards=False, observable=None)
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
                guide_drift=None, reservoir_eos=None, confine_reservoir=False,
-               wave_envelope=False, matched_pair=False, deadline=180.):
+               wave_envelope=False, matched_pair=False, thermal_eos=None,
+               solver_threads=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -43,6 +46,13 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     guide=0. if guide_drift is None else .5*(guide_drift**-2-1)
     if guide_drift is not None and not 0<guide_drift<1:
         raise ValueError('guide drift fraction must be subluminal and positive')
+    distributed=thermal_eos is not None
+    if distributed and (thermal_eos!=1/3 or reservoir_eos is not None):
+        raise ValueError('thermal_eos must be 1/3 and uses a separate distributed reservoir')
+    if solver_threads is not None and (
+            isinstance(solver_threads,(bool,np.bool_)) or
+            not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
+        raise ValueError('solver_threads must be a positive integer or None')
     phase_groups=1 if matched_pair else 2
     A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
     positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
@@ -62,6 +72,14 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         ceiling_rec=ceiling_abs+(nt-1)*nx
         epsilon+=2*(nt-1)*nx
     closed=reservoir_eos is not None
+    if distributed:
+        balanced_inventory=np.arange(nt*nx).reshape(nt,nx)+epsilon
+        material_inventory=balanced_inventory+nt*nx
+        epsilon+=2*nt*nx
+        measure=(nodes['ell']*nodes['radius'])**2
+        measure_mid=(mids['ell']*mids['radius'])**2
+        thermal_weight=nodes['D']**(4/3)
+        thermal_weight_mid=mids['D']**(4/3)
     if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
         raise ValueError('axial confinement comparison is defined for the directed radiation store')
     if closed:
@@ -89,14 +107,39 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     wall=2*interface_sigma/(nodes['ell']*halfnx*dx)
     wallm=2*interface_sigma/(mids['ell']*halfnx*dx)
 
-    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density,buffer=()):
+    def material_terms(index,j,midpoint=False):
+        """Independent local material/radiation inventories in the same frame."""
+        if distributed:
+            if midpoint:
+                return ([(material_inventory[index,j],.5/thermal_weight_mid[index,j]),
+                         (material_inventory[index+1,j],.5/thermal_weight_mid[index,j])],
+                        [(balanced_inventory[index,j],.5/measure_mid[index,j]),
+                         (balanced_inventory[index+1,j],.5/measure_mid[index,j])])
+            return ([(material_inventory[index,j],1/thermal_weight[index,j])],
+                    [(balanced_inventory[index,j],1/measure[index,j])])
+        if closed:
+            if midpoint:
+                return ([(store[index],.5*density_weight_mid[index,j]),
+                         (store[index+1],.5*density_weight_mid[index,j])],())
+            return ([(store[index],density_weight[index,j])],())
+        return (),()
+
+    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density,buffer=(),balanced=()):
         scaled=lambda items,k:[(i,k*v) for i,v in items]
         aa=scaled(amplitude,1/radius**2)
-        w1,w2,w3=(1-wr-2*wt,1-wr+wt,1+2*wr+wt) if closed else (0,0,0)
-        for entries,rhs in [(scaled(aa,2)+scaled(buffer,w1),rho-p-2*q-3*wall_density),
-                            (scaled(aa,2)+scaled(buffer,w2),rho-p+q),
-                            (scaled(aa,-1)+scaled(ua,6)+scaled(buffer,w3),rho+2*p+q),
-                            (scaled(aa,-1)+scaled(ur,6)+scaled(buffer,w3),rho+2*p+q)]:
+        w1,w2,w3=(0,1,2) if distributed else ((1-wr-2*wt,1-wr+wt,1+2*wr+wt) if closed else (0,0,0))
+        facets=[(scaled(aa,2)+scaled(buffer,w1),rho-p-2*q-3*wall_density),
+                (scaled(aa,2)+scaled(buffer,w2),rho-p+q)]
+        if distributed:
+            facets.append((scaled(aa,-1)+scaled(balanced,3)+scaled(buffer,w3),rho+2*p+q))
+            # W includes drive, useful return, heat return and complementary
+            # photons. Nonnegative populations require both directional floors.
+            ub.add(scaled(ua,2)+scaled(balanced,-1))
+            ub.add(scaled(ur,2)+scaled(balanced,-1))
+        else:
+            facets.extend([(scaled(aa,-1)+scaled(ua,6)+scaled(buffer,w3),rho+2*p+q),
+                           (scaled(aa,-1)+scaled(ur,6)+scaled(buffer,w3),rho+2*p+q)])
+        for entries,rhs in facets:
             ub.add(entries+[(epsilon,-1)],rhs)
         if guide:
             # Radial field already in the balanced core supplies a/2. Only
@@ -126,7 +169,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         for j in range(nx):
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
                 [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
-                [(store[i],density_weight[i,j])] if closed else ())
+                *material_terms(i,j))
         if confine_reservoir: add_confinement(i)
     operators=[]
     port_terms=[]
@@ -206,21 +249,26 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                            (positive[i,half],crm[i,j]*sr[local]*(1/efficiency-1))])
                 add_budget([(A[i,half],.5),(A[i+1,half],.5)],ua,ur,
                     *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
-                    [(store[i],.5*density_weight_mid[i,j]),
-                     (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
+                    *material_terms(i,j,True))
                 if wave_envelope:
                     for end in (i,i+1):
                         add_budget([(A[end,half],1.)],
                             [(ceiling_abs[i,j],ca[end,j])],[(ceiling_rec[i,j],cr[end,j])],
                             *target[:,end,j],nodes['radius'][end,j],wall[end,j],
-                            [(store[end],density_weight[end,j])] if closed else ())
+                            *material_terms(end,j))
                     add_budget([(A[i,half],.5),(A[i+1,half],.5)],
                         [(ceiling_abs[i,j],cam[i,j])],[(ceiling_rec[i,j],crm[i,j])],
                         *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
-                        [(store[i],.5*density_weight_mid[i,j]),
-                         (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
+                        *material_terms(i,j,True))
             panel.append(pair)
         operators.append(panel)
+        if distributed:
+            for j in range(nx):
+                half=j//halfnx;phi=mids['ell'][i,j]**2
+                psi=measure_mid[i,j]/thermal_weight_mid[i,j]
+                eq.add([(balanced_inventory[i+1,j],1),(balanced_inventory[i,j],-1),
+                    (A[i+1,half],phi),(A[i,half],-phi),
+                    (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)])
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
@@ -234,7 +282,13 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     cost=np.zeros(columns); cost[epsilon]=1
     options={'time_limit':deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10}
-    first=linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,method='highs-ipm',options=options)
+    if solver_threads is not None:options['threads']=int(solver_threads)
+    def optimize():
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
+            return linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
+                           method='highs-ds' if distributed else 'highs-ipm',options=options)
+    first=optimize()
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message)
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
@@ -244,7 +298,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     cost[recovery.ravel()]=(time_weight[:,None]*dx*nodes['D']*cr).ravel()
     cost[positive.ravel()]=1e-9; cost[negative.ravel()]=1e-9
     if closed: cost[store]=time_weight/(4*np.pi)
-    second=linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,method='highs-ipm',options=options)
+    if distributed:
+        cost[absorption.ravel()]=0.;cost[recovery.ravel()]=0.
+        cost[balanced_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/measure).ravel()
+        cost[material_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/thermal_weight).ravel()
+    second=optimize()
     r=second if second.success else first
     amplitude=np.repeat(r.x[A],halfnx,axis=1)
     plus=np.repeat(r.x[positive],halfnx,axis=1)
@@ -259,6 +317,23 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             within_panel_wave_bound=True,
             within_panel_wave_bound_scope='positive supersolution for frozen-panel finite-volume geometry')
     confinement_added_density=0.
+    if distributed:
+        u=r.x[balanced_inventory];k_state=r.x[material_inventory]
+        buffer_density=k_state/thermal_weight;balanced_density=u/measure
+        rho=rho-buffer_density;p=p-buffer_density/3;q=q-buffer_density/3
+        phase_weight=mids['ell']**2;exchange_weight=measure_mid/thermal_weight_mid
+        thermal_balance=np.diff(u,axis=0)+phase_weight*np.diff(amplitude,axis=0)+exchange_weight*np.diff(k_state,axis=0)
+        floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
+        reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
+            thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,
+            balanced_radiation_rest=balanced_density,
+            counterstream_rest=balanced_density-ua-ur,
+            thermal_exchange_balance_residual=float(abs(thermal_balance).max()),
+            thermal_exchange_panel_residual=thermal_balance,
+            maximum_balanced_wave_floor_violation=float(floor_violation.max()),
+            distributed_thermal_inventory_jointly_optimized=True,
+            thermal_force_and_opacity_supplied=False,
+            thermal_exchange_scope='piecewise-linear A,K and frozen-panel geometry; midpoint U is the endpoint mean; changing-geometry reconstruction remains independent')
     if closed:
         buffer_density=r.x[store,None]*density_weight
         # Use the reduced target so the same facets independently reconstruct
@@ -289,8 +364,12 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 reservoir_minimum_integrated_axial_tension_margin=float(integrated.min()),
                 reservoir_axial_tension_margin=integrated,
                 reservoir_confinement_model='locally contained quasistatic store; all radial core and auxiliary fields available; host and attachment mass omitted')
-    shortfall=np.maximum.reduce([p+2*q+2*core+3*wall,p-q+2*core,
-        -2*p-q-core+6*ua,-2*p-q-core+6*ur])-rho
+    if distributed:
+        shortfall=np.maximum.reduce([p+2*q+2*core+3*wall,p-q+2*core,
+            -2*p-q-core+3*balanced_density])-rho
+    else:
+        shortfall=np.maximum.reduce([p+2*q+2*core+3*wall,p-q+2*core,
+            -2*p-q-core+6*ua,-2*p-q-core+6*ur])-rho
     if guide:
         shortfall=np.maximum(shortfall,p-q+.5*core+3*guide*(ua+ur)-rho)
     thermal=np.zeros((nt,nx))

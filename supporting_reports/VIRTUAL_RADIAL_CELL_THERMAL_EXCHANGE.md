@@ -204,3 +204,53 @@ The selected continuation restores coherent paired phase and actual causal
 drive/return/heat waves to the bidirectional pressure-bearing energy gate.
 Its purpose is to determine whether the useful local opening survives the
 work-delivery duties already present in the radial-cell architecture.
+
+## Coherent thermal response with work-wave transport
+
+The coupled finite-cell model gives each pair one phase history and each
+spatial sample its counted `U,K` inventories. It restores 98% beam/phase
+conversion, separate heat return, the guide comparison 0.5, interface
+surface allowance `1e-7`, and a 0.2% numerical density reserve. Positive
+exponential propagation supplies the drive and recovery waves. Whole-panel
+wave ceilings constrain `W` at both ends and the midpoint of each panel.
+Thermal exchange uses the midpoint geometry in its panel power balance.
+
+The [12-cell, 132-time pilot](data/virtual_cell_thermal_transport_pilot/summary.json)
+requires added density `0.00132490` at `x=-2` and `0.00312356` at
+`x=-1.975`. Independent reconstruction of the complete component cone agrees
+with these values to about `1e-9`. The retained controls have large phase
+changes just after `t=0.5`, when thermal and radial-photon inventories
+compete with the changing core and guide requirements.
+
+Prepared or converted radiation contributes substantially to this conflict.
+At the final time the total radial radiation peaks at `0.09844` and
+`0.24432`, while the actual travelling-wave floors there are approximately
+`0.000267` and `0.000291`. At one tight second-pair sample near `t=0.507`,
+the envelope floor exceeds the instantaneous wave floor, so temporal
+resolution also matters. These histories therefore motivate refinement
+before assigning the pilot deficit to the continuous construction.
+
+Reintegrating the fixed pilot `A,K` histories using eight-point Gauss geometry
+changes the required radiation density by at most `6.56e-7` and `1.53e-6`.
+The corresponding cone changes are much smaller than the pilot deficits.
+This checks the energy-weight quadrature; the independent wave propagation
+and optimized control resolution remain separate questions.
+
+The [24-cell, 515-time comparison](data/virtual_cell_thermal_transport_refined/summary.json)
+reaches the dual-simplex time limit at both locations, with no returned
+primal state. Each primary optimization has a 300-second allowance. These
+are unresolved refined cases. The archive preserves the numerical status
+and exact inputs for a solver-method comparison on the same model.
+
+The new `B` can also represent additional internal energy in the existing
+pressure-link fluid, with `U_fluid,new=U_fluid,old+D B` and its already
+counted particle inventory. That interpretation changes the fluid's pressure,
+temperature, and reciprocal contact law together. Its entropy and force
+equations still require a joint solution. The registered beam/phase
+efficiency applies to that converter; a thermal-to-work conversion would
+have its own entropy and receiving-temperature requirements.
+
+The complete virtual-cell, driven-condensate, and surface-interface suite
+passes 70 tests at this stage. Four new semigroup tests cover a static common
+core, driven conversion with actual wave/counterstream/heat inventory, an
+incompatible disappearing energy capacity, and model-option validation.
