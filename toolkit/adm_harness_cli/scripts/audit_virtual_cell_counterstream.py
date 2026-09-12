@@ -56,6 +56,66 @@ def find_control(source, label, explicit=None):
     raise ValueError('identify the replayed controls explicitly with --controls')
 
 
+def verify_input_identity(source, replay, control):
+    """Verify direct archives and the replay's registered model/control link."""
+    replay_manifest_path=source/'manifest.json'
+    control_manifest_path=control.parent/'manifest.json'
+    replay_manifest=json.loads(replay_manifest_path.read_text())
+    control_manifest=json.loads(control_manifest_path.read_text())
+    verified=[]
+
+    def check(path, expected, description):
+        if expected is None:
+            raise ValueError('missing immutable input identity: '+description)
+        actual=sha256_file(path)
+        if actual!=expected:
+            raise ValueError('changed immutable input: '+str(path))
+        verified.append(dict(path=str(path.relative_to(ROOT)),sha256=actual,check=description))
+
+    for path in (replay,replay.with_name(replay.name.replace('_states.npz','_summary.json'))):
+        check(path,replay_manifest.get('output_sha256',{}).get(path.name),'replay output manifest')
+    for path in (control,control.with_name(control.name.replace('_states.npz','_summary.json'))):
+        check(path,control_manifest.get('output_sha256',{}).get(path.name),'control output manifest')
+
+    inherited=replay_manifest.get('input_sha256',{})
+    control_key=str(control.relative_to(ROOT))
+    manifest_key=str(control_manifest_path.relative_to(ROOT))
+    if control_key in inherited:
+        check(control,inherited[control_key],'replay control linkage')
+    elif manifest_key in inherited:
+        check(control_manifest_path,inherited[manifest_key],'replay control-manifest linkage')
+    else:
+        raise ValueError('replay does not identify the selected control archive or its manifest')
+    control_summary=control.with_name(control.name.replace('_states.npz','_summary.json'))
+    summary_key=str(control_summary.relative_to(ROOT))
+    if summary_key in inherited:
+        check(control_summary,inherited[summary_key],'replay control-summary linkage')
+
+    def verify_registered_model(path):
+        key=str(path.relative_to(ROOT))
+        pending=[replay_manifest]; visited={replay_manifest_path.resolve()}
+        while pending:
+            current=pending.pop(0).get('input_sha256',{})
+            if key in current:
+                check(path,current[key],'replay inherited or linked model identity')
+                return
+            for relative,expected in current.items():
+                linked=ROOT/relative
+                if linked.name!='manifest.json' or linked.resolve() in visited:
+                    continue
+                visited.add(linked.resolve())
+                check(linked,expected,'replay model input-manifest linkage')
+                pending.append(json.loads(linked.read_text()))
+        raise ValueError('replay has no hash-verified registered model identity: '+key)
+
+    for filename in ('metric_fine.npz','medium_baseline.npz'):
+        path=BASE/'active_transfer_reservoir'/filename
+        # Averaged designs preserve the previous manifest instead of copying
+        # its full input table. Follow only immutable manifest links.
+        verify_registered_model(path)
+    return verified,control_manifest_path
+
+
 def integrated_phase_work(model, times, positions, control_times, increments, order):
     """Gauss integration of ell^2 A_t, resolving every amplitude-control knot."""
     if (np.any(positions<model.x_min) or np.any(positions>model.x_max)):
@@ -185,6 +245,10 @@ def evaluate(item):
     gap_quad=abs(gap-interval4['constant_interval_gap'][::2])
     gap_decimation=abs(gap-interval_coarse['constant_interval_gap'])
     interval_resolved=spatial_interval_mask & (gap>10*np.maximum(gap_quad,gap_decimation)+1e-8)
+    zero_gap=interval8['zero_inventory_constant_gap'][::2]
+    zero_quad=abs(zero_gap-interval4['zero_inventory_constant_gap'][::2])
+    zero_decimation=abs(zero_gap-interval_coarse['zero_inventory_constant_gap'])
+    zero_resolved=spatial_interval_mask & (zero_gap>10*np.maximum(zero_quad,zero_decimation)+1e-8)
     interval_witnesses=[]
     for cj in np.flatnonzero(interval_resolved)[np.argsort(gap[interval_resolved])[-5:][::-1]]:
         jj=2*cj; lo=int(interval8['lower_witness_index'][jj]); hi=int(interval8['upper_witness_index'][jj])
@@ -195,6 +259,14 @@ def evaluate(item):
             decimated_gap_change=float(gap_decimation[cj]),
             radiation_capacity_shortfall=float(interval8['radiation_density_shortfall'][jj]),
             equivalent_target_density_relaxation=float(3*interval8['radiation_density_shortfall'][jj])))
+    zero_witnesses=[]
+    for cj in np.flatnonzero(zero_resolved)[np.argsort(zero_gap[zero_resolved])[-3:][::-1]]:
+        jj=2*cj; lo=int(interval8['zero_inventory_lower_witness_index'][jj]); hi=int(interval8['upper_witness_index'][jj])
+        zero_witnesses.append(dict(x=float(x[jj]),lower_time=float(t[lo]),upper_time=float(t[hi]),
+            initial_constant_lower=float(interval8['zero_inventory_constant_lower'][jj]),
+            initial_constant_upper=float(interval8['initial_constant_upper'][jj]),
+            constant_gap=float(zero_gap[cj]),quadrature_gap_change=float(zero_quad[cj]),
+            decimated_gap_change=float(zero_decimation[cj])))
     result = dict(label=meta['label'], source=str(path.relative_to(ROOT)),
         controls=str(control.relative_to(ROOT)), fine_time_samples=nt, fine_spatial_samples=nx,
         coarse_time_samples=len(t[::2]), coarse_spatial_samples=len(x[::2]),
@@ -221,6 +293,13 @@ def evaluate(item):
             passive_energy_completion_excluded_by_resolved_witness=bool(interval_resolved.any()),
             maximum_radiation_capacity_shortfall=float(interval8['radiation_density_shortfall'].max()),
             witnesses=interval_witnesses,
+            zero_inventory_relaxation=dict(radiation_lower_floor=0.,fixed_phase_history=True,
+                minimum_wave_and_counter_inventories_discarded=True,
+                sampled_incompatible_positions=int(np.sum(interval8['zero_inventory_constant_gap']>1e-8)),
+                resolved_interior_incompatibilities=int(zero_resolved.sum()),
+                passive_energy_completion_excluded_by_resolved_witness=bool(zero_resolved.any()),
+                maximum_constant_gap=float(interval8['zero_inventory_constant_gap'].max()),
+                witnesses=zero_witnesses),
             scope='necessary interval intersection on sampled actual replay; quadrature controlled and sampling sensitivity reported; propagation error is inherited from the independent replay'),
         witnesses=witnesses)
     stem=meta['label']; write_json(output/(stem+'_summary.json'), result)
@@ -232,7 +311,8 @@ def evaluate(item):
         passive_initial_upper=interval8['initial_constant_upper'][::2],
         passive_constant_gap=gap,passive_gap_decimation_change=gap_decimation,
         passive_counter_density=interval8['counter_density'][::2,::2],
-        passive_resolved_mask=interval_resolved)
+        passive_resolved_mask=interval_resolved,zero_inventory_constant_gap=zero_gap,
+        zero_inventory_gap_decimation_change=zero_decimation,zero_inventory_resolved_mask=zero_resolved)
     print(stem+': resolved exchange witnesses='+str(int(resolved.sum())), flush=True)
     return result
 
@@ -250,13 +330,16 @@ def main():
     if not paths: paths=sorted(source.glob('*_states.npz'))
     if not paths: raise ValueError('no replayed states found')
     if output.exists(): raise RuntimeError('preserve completed counterstream audit')
-    pairs=[]; input_paths=[source/'manifest.json', BASE/'active_transfer_reservoir/metric_fine.npz',
+    pairs=[]; verifications=[]; input_paths=[source/'manifest.json', BASE/'active_transfer_reservoir/metric_fine.npz',
         BASE/'active_transfer_reservoir/medium_baseline.npz']
     for path in paths:
         mp=path.with_name(path.name.replace('_states.npz', '_summary.json'))
         meta=json.loads(mp.read_text()); control=find_control(source, meta['label'], args.controls)
+        checked,control_manifest=verify_input_identity(source,path,control)
+        verifications.extend(checked)
         pairs.append((str(path), str(control), str(output)))
-        input_paths.extend([path, mp, control, control.with_name(control.name.replace('_states.npz', '_summary.json'))])
+        input_paths.extend([path, mp, control, control_manifest,
+                            control.with_name(control.name.replace('_states.npz', '_summary.json'))])
     input_paths.extend([Path(__file__), ROOT/'toolkit/adm_harness_cli/adm_harness/virtual_cell_counterstream.py',
         ROOT/'toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py',
         ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_counterstream.py'])
@@ -269,6 +352,7 @@ def main():
     write_json(output/'manifest.json', dict(created_utc=datetime.now(timezone.utc).isoformat(),
         git_head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         workers=min(args.workers,len(pairs)), input_sha256=hashes,
+        immutable_input_checks=verifications,
         output_sha256={p.name:sha256_file(p) for p in sorted(output.iterdir()) if p.is_file()}))
 
 

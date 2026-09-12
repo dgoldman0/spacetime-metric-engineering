@@ -1,4 +1,9 @@
+import importlib.util
+import json
+from pathlib import Path
+
 import numpy as np
+import pytest
 from numpy.testing import assert_allclose
 
 from adm_harness.virtual_cell_counterstream import (
@@ -84,3 +89,45 @@ def test_passive_interval_rejects_incompatible_initial_capacity():
     assert np.all(result['instantaneous_lower'] <= result['instantaneous_upper'])
     assert_allclose(result['constant_interval_gap'], .1)
     assert_allclose(result['radiation_density_shortfall'], .1)
+    assert np.all(result['zero_inventory_constant_gap'] <= result['constant_interval_gap'])
+
+
+def test_phase_work_can_fail_even_with_zero_radiation_floor():
+    ua=np.zeros((3,1)); one=np.ones_like(ua)
+    result=passive_total_radiation_interval(ua,ua,.3*one,ua,ua,ua,one,one,
+                                           np.array([[0.],[.5],[0.]]))
+    assert_allclose(result['zero_inventory_constant_lower'],.5)
+    assert_allclose(result['initial_constant_upper'],.1)
+    assert_allclose(result['zero_inventory_constant_gap'],.4)
+
+
+def test_replay_identity_follows_registered_model_manifest_and_rejects_changes(tmp_path):
+    script=Path(__file__).resolve().parents[1]/'scripts/audit_virtual_cell_counterstream.py'
+    spec=importlib.util.spec_from_file_location('counterstream_cli',script)
+    cli=importlib.util.module_from_spec(spec);spec.loader.exec_module(cli)
+    cli.ROOT=tmp_path;cli.BASE=tmp_path/'data'
+    replay_dir=cli.BASE/'replay';control_dir=cli.BASE/'controls'
+    model_dir=cli.BASE/'active_transfer_reservoir'
+    for directory in (replay_dir,control_dir,model_dir):directory.mkdir(parents=True)
+    replay=replay_dir/'case_factor4_states.npz';control=control_dir/'case_states.npz'
+    replay_summary=replay_dir/'case_factor4_summary.json'
+    control_summary=control_dir/'case_summary.json'
+    model_paths=[model_dir/name for name in ('metric_fine.npz','medium_baseline.npz')]
+    for path in [replay,control,replay_summary,control_summary,*model_paths]:
+        path.write_bytes(path.name.encode())
+    def hashes(paths,relative=False):
+        return {(str(path.relative_to(tmp_path)) if relative else path.name):cli.sha256_file(path)
+                for path in paths}
+    upstream=cli.BASE/'manifest.json'
+    upstream.write_text(json.dumps(dict(input_sha256=hashes(model_paths,True))))
+    control_manifest=control_dir/'manifest.json'
+    control_manifest.write_text(json.dumps(dict(output_sha256=hashes([control,control_summary]),
+        input_sha256=hashes([upstream],True))))
+    replay_manifest=replay_dir/'manifest.json'
+    replay_manifest.write_text(json.dumps(dict(output_sha256=hashes([replay,replay_summary]),
+        input_sha256=hashes([control,control_manifest],True))))
+    verified,_=cli.verify_input_identity(replay_dir,replay,control)
+    assert all(str(path.relative_to(tmp_path)) in {row['path'] for row in verified} for path in model_paths)
+    model_paths[0].write_bytes(b'changed')
+    with pytest.raises(ValueError,match='changed immutable input'):
+        cli.verify_input_identity(replay_dir,replay,control)

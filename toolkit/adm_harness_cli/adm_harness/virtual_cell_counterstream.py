@@ -121,11 +121,15 @@ law, guide construction or auxiliary force law is supplied by this test.
     upper_history = work+measure*high
     lower = lower_history.max(axis=0)
     upper = upper_history.min(axis=0)
+    zero_inventory_lower = work.max(axis=0)
     total = (lower[None, :]-work)/measure
     shortfall = np.maximum(total-high, 0.).max(axis=0)
     return dict(initial_constant_lower=lower, initial_constant_upper=upper,
         lower_witness_index=lower_history.argmax(axis=0),
         upper_witness_index=upper_history.argmin(axis=0),
         constant_interval_gap=lower-upper, radiation_density_shortfall=shortfall,
+        zero_inventory_constant_lower=zero_inventory_lower,
+        zero_inventory_lower_witness_index=work.argmax(axis=0),
+        zero_inventory_constant_gap=zero_inventory_lower-upper,
         total_radiation=total, counter_density=total-ua-ur,
         instantaneous_lower=low, instantaneous_upper=high)

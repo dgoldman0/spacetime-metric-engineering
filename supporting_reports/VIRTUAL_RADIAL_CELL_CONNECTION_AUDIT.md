@@ -253,3 +253,87 @@ changing-geometry replay, with minimum density margin `0.000111923`. Its
 [retained evidence](data/virtual_cell_matched_replay/summary.json) covers
 the `x=-2` location. The deterministic averaged candidate provides the
 two-location comparison described above.
+
+## Reoptimizing the passive phase itself
+
+The fixed-control interval result leaves a separate question about the
+phase schedule. A final local relaxation optimizes that schedule together
+with prepared balanced radial radiation at each tested position. It allows
+perfect conversion, zero required travelling inventory, and arbitrary
+initial radiation. The finite interface allowance remains in the target
+budget; additional guide requirements are omitted in this favorable gate.
+
+Let `U=(ell R)^2 W`. For a piecewise-linear phase amplitude, conservation
+on a panel is
+
+```
+U_(i+1)-U_i + mean_panel(ell^2) (A_(i+1)-A_i) = 0.
+```
+
+Nonnegative `A,U` and the three remaining component-cone facets define a
+linear program. Its objective is the smallest uniform extra density needed
+by that local history. It uses the full archived target density and permits
+independent phase histories at different positions. Spatial coherence,
+photon transport, opacity, and the force exchange law remain additional
+requirements.
+
+| Position | Added density, 1029 times | Added density, 2057 times |
+| --- | ---: | ---: |
+| -2.00000260417 | 0 | 0 |
+| -1.99999739583 | 0 | 0 |
+| -1.97500260417 | 0.000380990 | 0.000380853 |
+| -1.97499739583 | 0.000370185 | 0.000370049 |
+
+The [passive-phase archive](data/virtual_cell_passive_phase/summary.json)
+therefore contains an optimistic local energy/cone opening near `x=-2`
+and a small remaining deficit near `x=-1.975`. The latter persists when
+the phase controls change and the travelling inventory requirement is
+removed. The fixed-control failures alone would have missed the opening
+at the first location.
+
+Each positive optimum has a separately reconstructed bounded-domain dual
+lower bound within `9e-16` of the primal value. The finite variable bounds
+follow from the explicit feasible competitor `A=U=0` with a sufficiently
+large density allowance. The archive retains those bounds, multipliers,
+controls, and residuals. An independent algebraic reconstruction of all eight
+solutions finds maximum panel residual `1.58e-14`, facet violation
+`1.12e-16`, and primal/dual discrepancy `6.40e-16`.
+
+This certificate concerns the sampled local phase family and its stated
+favorable component assumptions. The continuing construction requires joint
+phase and constituent response, with energy exchange, transport, and the
+full target solved together.
+
+## Retained common-phase stress comparison
+
+The deterministic averaged phases pass independent changing-geometry replay
+at both locations. Minimum density margins are `0.0000831843` at `x=-2`
+and `0.0000731197` at `x=-1.975`. Each replay uses 96 spatial samples and
+2057 time samples with the original 98% conversion efficiency, thermal
+return, guide comparison, and interface allowance. The exact common phase
+removes the middle core traction jump.
+
+The [averaged replay](data/virtual_cell_averaged_replay/summary.json) retains
+the complete tested wave and stress histories. Source-identity checks compare
+the replay and controls with their immutable manifests and follow verified
+manifest links to the original active metric and medium data.
+
+The [common-phase counterstream audit](data/virtual_cell_counterstream_averaged/summary.json)
+still finds empty passive-energy intervals at all 96 sampled positions in
+both pairs. Representative interior gaps are `26.049549` near `x=-2` and
+`44.548457` near `x=-1.975`; temporal decimation changes them by `0.261`
+and `0.124`, respectively. Quadrature differences stay below `5e-14`.
+
+An additional relaxation removes the entire lower bound on radiation
+inventory while holding the common phase fixed. Its required initial
+constant becomes simply `max_t I`. Even this relaxation has empty intervals
+at every sampled position, with maximum gaps `25.906096` and `44.427205`.
+The fixed phase work and the available correlated stress already require
+an energy-exchanging partner. Travelling peaks alone therefore do not
+account for this remaining conflict.
+
+The minimal-counterstream differential audit again resolves power exchange
+of both signs. The largest resolved magnitudes are `2.21508` and `1.22055`
+in the two pairs. Phase matching retains the useful local stress model and
+removes the core discontinuity, while reciprocal material energy exchange
+remains the limiting physical completion.

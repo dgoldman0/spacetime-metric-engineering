@@ -1,0 +1,152 @@
+{
+  "created_utc": "2026-09-12T21:20:50.419168+00:00",
+  "git_head": "05a94a2eac0fd9d772cb88c6c776ae4f45f5895c",
+  "workers": 1,
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_averaged_replay/manifest.json": "014660f57ccc5a42e17090e03bcd5e3543a112f25823824812ff32a8a38b0f9d",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "supporting_reports/data/virtual_cell_averaged_controls/manifest.json": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_counterstream.py": "1366d77ed1b3b7556e0bfa3898d3f300b4284248f6ba64d7d14e942e04d03d3f",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_counterstream.py": "1a97db62f5542726fbec6ea93806c458cb036d6ce5992f4d06b332497fdcafed",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_counterstream.py": "06f0c6911a718dc028b0b62bcf42b0e4deca417ca2c465aca207e16fb4d250f9"
+  },
+  "immutable_input_checks": [
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    }
+  ],
+  "output_sha256": {
+    "summary.json": "f475cf866362ce91255972e7840b09159690915ccb610310d300e5a3dc2fa1ca",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_exchange.npz": "bf5bab69dfb20fd3a4d5ecaa91b710b7afc4ce3d0f669a7b58340df4c6c8b83d",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "f46ffa55aaa05a072072ba54f87c513a986d80bf73eba730c04d5fc76d4b494b",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_exchange.npz": "c7370e809bf978fcc593f3b288fcd9c2b04be08f290fc3fbd3b3e4b36352775c",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "c51d09a966462822652c79f925ee168f3c57cdfa0ea7220f20ce3e9cf451d988"
+  }
+}

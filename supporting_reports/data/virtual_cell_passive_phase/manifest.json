@@ -1,0 +1,126 @@
+{
+  "created_utc": "2026-09-12T21:18:41.407212+00:00",
+  "git_head": "afd711c3a2da2fe4eda797fcee25ecd17fffe6ee",
+  "workers": 1,
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_reconstructed_replay/manifest.json": "e6dc1db376a012b2ddd88894233f584b7e23e0019ee464f3f47c86ce825248c1",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_passive_phase.py": "e8145eebdfaf5116f201e83d8e38b6cfd4c05eff4803c492ceb09a870a321168",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_counterstream.py": "1366d77ed1b3b7556e0bfa3898d3f300b4284248f6ba64d7d14e942e04d03d3f",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_passive_phase.py": "ffaf02a77d4ee3da1e8eb1df629d86091894df1348557f09124ac9b8c65989ba",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_counterstream.py": "1a97db62f5542726fbec6ea93806c458cb036d6ce5992f4d06b332497fdcafed",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_passive_phase.py": "36d1bb51b36996134ca770f3cf5a387a09cfa09a109b7dee0640758332191f51",
+    "supporting_reports/data/virtual_cell_reconstructed_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "05514c05bb246a63a55ec4728dd7c28d6f8814ea4475368f0a4c6bbb9c27b0cb",
+    "supporting_reports/data/virtual_cell_reconstructed_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "57bbcae2441a0a80e35bde0ae5c9e49e7f5ac60c7dddfa6191f6820f2ba4409d",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+    "supporting_reports/data/virtual_cell_reconstructed_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "288580b2803d7c2951b04f56f4bbdf675922213a1060eb5b3fc37ce54d24b48e",
+    "supporting_reports/data/virtual_cell_reconstructed_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "dfb03e796d5e064bf2ff77da13b39841e41aa8aae9e8fdbaa88f5d3c5b6dc17f",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184"
+  },
+  "immutable_input_checks": [
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "05514c05bb246a63a55ec4728dd7c28d6f8814ea4475368f0a4c6bbb9c27b0cb",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "57bbcae2441a0a80e35bde0ae5c9e49e7f5ac60c7dddfa6191f6820f2ba4409d",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "288580b2803d7c2951b04f56f4bbdf675922213a1060eb5b3fc37ce54d24b48e",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "dfb03e796d5e064bf2ff77da13b39841e41aa8aae9e8fdbaa88f5d3c5b6dc17f",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    }
+  ],
+  "output_sha256": {
+    "summary.json": "b2a317ff088f77cb5641de86c6d2d1aa326db4272b02ca08745d47c8d6177db3",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_states.npz": "84b3352b60f4411c545440a5cab41ddc764c8ed8a23f712e87de67cebd73abf8",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_summary.json": "2368f866086c600886012f340c6d68257602660616c277516ea9037792eaee39",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_states.npz": "8bbc9649e8ea20be7ede6e62da883d7d244fc3b1c67d4b10175f23c91e73c1e6",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_summary.json": "c4ce7277ca7c772459038a1571217f8612a36de0ca55d43c706506d16874bcab",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_states.npz": "8c7a0a564ebd8f1724b3957fa1d3ee8193b6385bcea3d51ff4d68beea62c8505",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_summary.json": "8e9108a34b974bbfc26f97cc5d589f79ecf57b88b23358b840e278cdbaf40e84",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_states.npz": "656e7d01f832d2402b06e960fb85a68ab428372072e19a118fa9941f8146089b",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_summary.json": "540cb2d1c646eff21b0383d15f7c81c61f439f9404269a9e6e7053818a327b63",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_states.npz": "d16eb123905a9e0bdf239ee808ad68a185f86ab5ccc8a37dad58800cedefd366",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_summary.json": "fd61205cd77de1c0f5af33c8c6ee79cc428358e89a26c93d9c4290222193e5ea",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_states.npz": "8a1276b275abb1c45bd07fd0829a2ff5a3f77884e88172b2149a7ef6502fadc5",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_summary.json": "69dab9e09ce1a4872058eb42f65c326036b38d7b8581730e651f1b58084052f2",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_states.npz": "57151e9a5e4ef88c27750b816bd35419efce3f8712f213494a31d3f8d66b6130",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_summary.json": "9b5f32906406212b9954fbef7bac175ee2c8bc779aedebee167542d8ee0473a6",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_states.npz": "a5a0082ace105f3c378aea4f958570fd8c4f3f5b53406359de160d523e9c8dd0",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_summary.json": "3ce169e91518ed8be4c8598bbf37695de28b28a0e1c5dc7aa335058a60dc68de"
+  }
+}
