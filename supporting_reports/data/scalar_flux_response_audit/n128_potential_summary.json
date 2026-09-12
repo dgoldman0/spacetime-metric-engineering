@@ -1,0 +1,184 @@
+{
+  "label": "n128_potential",
+  "source": "supporting_reports/data/scalar_flux_response_family/n128_potential_states.npz",
+  "node_audit": {
+    "temporal_samples": 258,
+    "spatial_samples": 129,
+    "local_component_gate_passes": true,
+    "maximum_scalar_flux_density_shortfall": 2.047667591043023e-14,
+    "maximum_old_field_membrane_shortfall": 0.9288317755674341,
+    "minimum_density": 0.035506614476482394,
+    "worst_local_margin": {
+      "time": 0.5,
+      "x": -2.0,
+      "density": 0.05081683024494374,
+      "radial_pressure": 0.0508168302449567,
+      "angular_pressure": 3.757411048965764e-15,
+      "energy_margin": -2.047667591043023e-14
+    },
+    "equilibrium_vortices": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "required_lower": {
+        "value": 5.17767179265337,
+        "time": 1.2799804687499998,
+        "x": -1.125
+      },
+      "permitted_upper": {
+        "value": -8.49487145395875e-14,
+        "time": 0.5,
+        "x": -2.0
+      },
+      "lower_over_upper": null,
+      "static_spatial_grading_feasible": false,
+      "worst_temporal_ratio": {
+        "x": -2.1,
+        "lower": 0.0,
+        "upper": -2.602421746566697e-14,
+        "ratio": null
+      },
+      "positions_requiring_time_variation": 118,
+      "spatial_samples": 129,
+      "temporal_samples": 258
+    },
+    "leading_volume_bags": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "invalid_samples": 9,
+      "reason": "local component interval is empty at the evaluated floating-point precision"
+    },
+    "fixed_core_potential": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "required_lower": {
+        "value": 0.4644158877837171,
+        "time": 1.2599023437499999,
+        "x": -1.05
+      },
+      "permitted_upper": {
+        "value": -9.204442763532938e-15,
+        "time": 0.5,
+        "x": -2.0
+      },
+      "lower_over_upper": null,
+      "static_spatial_grading_feasible": false,
+      "worst_temporal_ratio": {
+        "x": -2.1,
+        "lower": 0.0,
+        "upper": -1.5057399771478686e-15,
+        "ratio": null
+      },
+      "positions_requiring_time_variation": 118,
+      "spatial_samples": 129,
+      "temporal_samples": 258
+    },
+    "allocation_tensor_residual": 2.220446049250313e-16,
+    "minimum_component_energy": -2.047667591043023e-14
+  },
+  "dense_conserved_work_audit": {
+    "temporal_samples": 1029,
+    "spatial_samples": 513,
+    "local_component_gate_passes": false,
+    "maximum_scalar_flux_density_shortfall": 0.0006687518860813979,
+    "maximum_old_field_membrane_shortfall": 0.9288317755674281,
+    "minimum_density": 0.035506614476482394,
+    "weighted_force_residual": 0.008874674654291672,
+    "weighted_power_residual": 1.9841692166489417e-06,
+    "worst_local_margin": {
+      "time": 1.2799804687499998,
+      "x": -0.6610912291827593,
+      "density": 0.7667174470819336,
+      "radial_pressure": -0.42382320921969474,
+      "angular_pressure": -0.767386198968015,
+      "energy_margin": -0.0006687518860813979
+    },
+    "equilibrium_vortices": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "required_lower": {
+        "value": 5.177671792653317,
+        "time": 1.2799804687499998,
+        "x": -1.125
+      },
+      "permitted_upper": {
+        "value": -0.00031137634974243145,
+        "time": 0.0803125,
+        "x": -2.01875
+      },
+      "lower_over_upper": null,
+      "static_spatial_grading_feasible": false,
+      "worst_temporal_ratio": {
+        "x": -2.1,
+        "lower": 0.0,
+        "upper": -2.008781762902865e-14,
+        "ratio": null
+      },
+      "positions_requiring_time_variation": 467,
+      "spatial_samples": 513,
+      "temporal_samples": 1029
+    },
+    "leading_volume_bags": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "invalid_samples": 98,
+      "reason": "local component interval is empty at the evaluated floating-point precision"
+    },
+    "fixed_core_potential": {
+      "local_intervals_nonempty": false,
+      "common_invariant_feasible": false,
+      "required_lower": {
+        "value": 0.4644158877837141,
+        "time": 1.2599023437499999,
+        "x": -1.05
+      },
+      "permitted_upper": {
+        "value": -1.8605731955668726e-05,
+        "time": 0.0803125,
+        "x": -2.01875
+      },
+      "lower_over_upper": null,
+      "static_spatial_grading_feasible": false,
+      "worst_temporal_ratio": {
+        "x": -2.1,
+        "lower": 0.0,
+        "upper": -1.1622647289044608e-15,
+        "ratio": null
+      },
+      "positions_requiring_time_variation": 466,
+      "spatial_samples": 513,
+      "temporal_samples": 1029
+    }
+  },
+  "isolated_end_jackets": [
+    {
+      "end": "left",
+      "success": false,
+      "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+      "witness_time": 0.5,
+      "witness_load": -1.2178128224774765,
+      "witness_acceleration": 0.7581760953524507,
+      "witness_angular_gradient": -0.04155997546421727,
+      "witness_force_interval_per_unit_energy": [
+        0.6750561444240162,
+        0.8412960462808852
+      ],
+      "pointwise_force_cone_incompatible": true,
+      "incompatible_sample_fraction": 1.0
+    },
+    {
+      "end": "right",
+      "success": false,
+      "reason": "prepared surface inventory has an empty admissible interval",
+      "initial_energy_lower": 4693.1977837366985,
+      "initial_energy_upper": 45.63817532645909,
+      "pointwise_force_cone_incompatible": false,
+      "incompatible_sample_fraction": 0.0
+    }
+  ],
+  "scope": "prescribed active-rail backing target and registered component bases",
+  "field_equations_solved": false,
+  "finite_tube_wall_response_supplied": false,
+  "current_carrier_energy_supplied": false,
+  "continuing_rail_connections_supplied": false,
+  "quantum_source_supplied": false
+}

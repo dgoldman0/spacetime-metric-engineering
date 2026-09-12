@@ -2,12 +2,12 @@
 
 Scalar potential energy supplies the correlated stress missing from the
 previous electromagnetic/radiation/angular-membrane comparison. Its local
-addition admits the retained active-rail backing target. A conserved radial
-population of equilibrium flux tubes has a stronger restriction: its tension
-per solid angle stays fixed. That specialization fails both on the retained
-target and after reoptimizing the registered support family. Stable causal
-elastic excitations about a fixed tube ground state remain inside the same
-excluded stress envelope.
+addition admits the retained active-rail backing target and a conservatively
+blended target with a lower comparison peak. Permanent radial flux-tube
+populations impose a stronger temporal restriction. Both a common population
+and arbitrary time-independent spatial grading fail after reoptimizing the
+registered support family. Stable causal elastic excitations about a fixed
+tube ground state remain inside the same excluded stress envelope.
 
 The calculation concerns the scheduled backing patch `-2.1 <= x <= -0.5`,
 its pressure link, and its standing-support connections. It uses the active
@@ -125,12 +125,87 @@ coexists with increased prepared energy.
 These peaks cover the backing and pressure medium in the existing comparison.
 The changed route's full tensor, physical field dynamics, and complete quantum
 source remain separate entries in the construction. The nodal potentials
-provide an algebraic response target. Independent work reconstruction and
-between-node admissibility determine its numerical continuation.
+provide an algebraic response target. Their independent work audit is
+reported below.
 
 The conserved-bundle result is a finite-family numerical infeasibility
 result, obtained on both representations. The local interval contradiction
 above independently excludes that realization of the retained target.
+
+## Conservative audit and a retained scalar target
+
+The dense audit evaluates 2057 times and 1025 positions on the refined
+representation, including original knots, physical cuts, and three Gauss
+points per panel. Energy comes from integrating the actual radial work,
+angular work, and registered exchange. The original `f=0.99` target passes
+the scalar/field component cone throughout this sample. Its weighted force
+residual is 0.3752% and its weighted power residual is `1.33e-7`.
+
+The unconstrained potential optima touch component-energy boundaries at their
+nodes. Between nodes, the coarse and refined targets exceed their available
+energy by `0.00066875` and `0.00084963`, respectively. These optima therefore
+remain failed dense-admissibility controls.
+
+A single deterministic continuation uses 90% of the refined potential target
+and 10% of the already admissible `f=0.99` target. The material controls,
+direction fractions, initial energy, and pressure histories are blended
+together. Replaying the archived conservative response basis reproduces the
+blend to `2.83e-12`; the total tensor has a common force and work history.
+
+The blend passes the dense scalar/field energy gate. Its smallest sampled
+energy margin is `5.72821e-5`, minimum density is 0.0370150, weighted force
+residual is 0.3775%, and weighted power residual is `1.66e-7`. Its analytic
+angular maximum at the original nodes is 0.797139, compared with 1.765117 for
+the earlier target. The comparison peak falls by about 55%, while initial
+support inventory rises about 25%, to 9911.83. This retains a useful stress
+allocation improvement with positive sampled component energy. A constitutive
+field evolution and continuum convergence remain separate requirements.
+
+The end reactions remain substantial. The blend's left cut requires signed
+load `-1.26754` at `t=0.5`, while every admissible positive-energy angular
+jacket supplies force per unit energy in `[0.67506,0.84130]`. The right
+adiabatic jacket requires initial inventory simultaneously above 5275.34 and
+below 51.54. A continuing standing-support connection must carry those loads
+and its accompanying work.
+
+## Allowing arbitrary permanent spatial grading
+
+The stronger test gives each spatial node its own amplitude `A(x)`, constant
+only through time. Each amplitude is positive and unbounded. This allows
+arbitrary grading with no imposed smoothness or spatial-amplitude budget.
+A varying amplitude has radial divergence
+
+```
+F_v = -A_x/(ell R^2)
+```
+
+and vanishing material-frame power. The remaining backing receives the
+opposite exchange. The total response still satisfies the registered
+conservation equations. The medium that establishes this grading has an additional construction duty,
+so the test grants an optimistic local stress envelope.
+
+The direct program rejects the coarse representation. Its refined version
+reaches the constraint-generation iteration limit. Eliminating the amplitudes
+resolves that numerical uncertainty: at every position, a time-independent
+amplitude exists exactly when the greatest lower bound through time lies
+below the least upper bound, with all upper bounds nonnegative. Separating
+those temporal inequality pairs leaves only the original 29 material and
+route controls plus the comparison peak.
+
+The eliminated programs are infeasible on both representations. Each
+contradiction uses 30 nonnegative weighted inequalities. Their weighted
+right-hand sides are `-0.000485543` and `-0.000571242`, with floating-point
+coefficient cancellation errors below `3.0e-16`. Independent full-program
+positive and negative controls verify that temporal elimination preserves
+feasibility. The resulting obstruction covers the registered response family
+even after granting arbitrary permanent grading.
+
+Exact rational verification of the archived normalized eliminated matrices
+retains nonnegative weights, unit weight sum, exact coefficient cancellation,
+and strictly negative right-hand sides on both grids. Thus each archived
+matrix requires `0 <=` a negative number. This exact statement applies to
+those finite coefficient matrices; constructing them from discretized geometry
+and floating-point elimination retains its numerical scope.
 
 ## Why ordinary elastic or current excitations stay within this gate
 
@@ -155,16 +230,51 @@ Its diagonal stress has the exact positive decomposition
 The last two terms already belong to the radial-wave and rest-inventory
 basis used by the conserved-bundle test. Consequently those causal elastic
 branches, including the transonic law `UT=mu^2`, fit inside its more generous
-component envelope. Adding their currents or waves preserves the finite-family
-obstruction. This implication is derived here from the characteristic-speed
-condition; the cited work studies microscopic string models and also shows
+component envelope. A fixed spatial dependence in `mu` belongs to the
+graded version of the same gate. Adding these excitations therefore preserves
+the finite-family obstruction. This implication is derived here from the
+characteristic-speed condition; the cited work studies microscopic string
+models and also shows
 that macroscopic stability can coexist with microscopic instability in excited
 branches.
 
 The implication assumes a fixed ground state, radial orientation, conserved
 bundle count, and the stated equilibrium branch. A changing condensate phase,
-resolved transverse dynamics, tube redistribution, or additional interaction
-stress introduces different material equations and counted exchanges.
+resolved transverse dynamics, changing tube orientation or distribution, or
+additional interaction stress introduces different material equations and counted exchanges.
+
+## Changing the tube cross section
+
+For a leading-volume magnetic bag population of one species, let `a` be the
+common physical tube cross section at a given slice. Fixed tube count,
+magnetic flux, and core potential give averaged energies
+`E proportional to 1/(R^2 a)` and `V proportional to a/R^2`. Therefore
+
+```
+A0 = 2 R^2 sqrt(E V)
+```
+
+stays fixed even when the cross section changes. The exact local component
+polytope above gives the minimum and maximum possible `E V`. At fixed `V`,
+its minimum uses `E=max(0,-p_r-V)` and its maximum uses
+`E=(rho-p_r+p_t-V)/3`. Endpoint evaluation gives the minimum product;
+maximizing the latter concave quadratic gives the maximum.
+
+On the densely audited original `f=0.99` target, the resulting interval
+requires `A0 >= 2.03052` and `A0 <= 0.00274627`. At `x=-2.0` alone, its
+temporal lower/upper conflict has a factor of about 132. The improved blended
+target also fails this invariant, with global bounds 2.47300 and 0.000274627.
+Thus changing the tube cross section alone preserves a large mismatch in
+these two targets.
+
+This product test uses the leading-volume, large-flux approximation. Finite
+domain-wall energy, transverse inertia, and longitudinal gradients introduce
+additional stress and dynamics. A resolved equilibrium wall remains covered
+by the equilibrium-tube test; an appreciably driven wall requires its own
+coupled equations. An ensemble with independently varying cross sections
+also has extra state variables. Those broader bag models have a separate
+scope from the tested common-cross-section family and the reoptimized
+equilibrium/elastic-tube family.
 
 ## Literature and physical construction boundary
 
@@ -184,17 +294,43 @@ requires its host's rest energy and mechanical tensor in the gravitational
 accounting.
 
 The positive local result identifies a useful stress correlation. The
-conserved-bundle and elastic-envelope results identify the material response
-that this realization lacks. The ongoing independent audit addresses
-conserved work, finite-load witnesses, and the leading-volume tube invariant.
-Those results belong to this supporting record; the technical disclosure
-retains its established design content.
+conserved-bundle, graded-support, elastic-envelope, and bag results identify
+the response that this realization lacks. Within the radial tube realization,
+the amount or type of ground-state prestress at a fixed rail label must be
+able to change during the schedule, or a different interaction stress must
+carry the changing demand. Ordinary excitations of a permanent equilibrium
+bundle supply insufficient freedom
+within the tested family.
+
+The bounded investigation stops at that physical construction boundary.
+A further field construction needs an independently specified mechanism for
+changing the condensate state, orientation, or distribution, with its carrier
+energy, reciprocal force, and continuing rail connections counted. The cited
+literature supplies the relevant stress ingredients and their stability questions; it supplies
+no completed active-rail implementation of that response. The improved tensor
+allocation remains a numerical source target. The technical disclosure and
+its PDF retain their established design content.
 
 ## Evidence and validation
 
-The [response-family results](data/scalar_flux_response_family/summary.json)
-contain both resolutions and both constitutive envelopes. Their manifest
-records source and result hashes. Seven focused tests compare the local cone
-with independent component programs, verify conserved expanding and squeezed
-tube controls, check product bounds, and test the elastic-envelope inclusion.
-Independent cases run in parallel with a configurable worker count.
+The [response-family results](data/scalar_flux_response_family/summary.json),
+[retained-target audit](data/scalar_flux_support_gate/summary.json),
+[potential-optimum audit](data/scalar_flux_response_audit/summary.json),
+[conservative blend](data/scalar_flux_support_blend/fraction0.9_summary.json),
+and [blend audit](data/scalar_flux_blend_audit/summary.json) preserve the
+allocation and work comparisons. The [direct grading test](data/graded_vortex_support_gate/summary.json)
+records its refined iteration limit. The
+[eliminated grading test](data/graded_vortex_eliminated_gate/summary.json)
+resolves both cases and archives the short contradiction matrices and weights.
+The [exact certificates](data/graded_vortex_exact_certificates/summary.json)
+provide the rational verification of both archived representations.
+
+Nine focused tests compare the local cone with independent component
+programs, verify conserved expanding and squeezed tube controls, check product
+bounds and elastic-envelope inclusion, and compare temporal elimination with
+independent complete linear programs. Independent cases run in parallel with
+a configurable worker count. Each completed calculation records input and
+output hashes in its manifest. Final verification passes 825 hash comparisons
+over 126 distinct files and independently multiplies both exact rational
+certificates back into their archived matrices. The new numerical evidence
+occupies approximately 48.4 MB.

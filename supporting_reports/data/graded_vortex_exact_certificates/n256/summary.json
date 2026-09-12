@@ -1,0 +1,9 @@
+{
+  "exact_coefficient_cancellation": true,
+  "nonnegative_weights": true,
+  "exact_weight_sum": 1,
+  "weighted_rhs_decimal": -0.0005712420670451752,
+  "constraints": 30,
+  "controls": 30,
+  "scope": "Exact dyadic coefficients of the archived normalized finite response matrix; continuum and material laws remain separate"
+}

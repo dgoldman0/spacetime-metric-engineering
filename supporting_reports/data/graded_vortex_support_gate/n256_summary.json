@@ -1,0 +1,375 @@
+{
+  "label": "n256",
+  "success": false,
+  "status": 1,
+  "message": "constraint-generation budget reached",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.5052060778096532
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.19077041333277858
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.17622034816758841
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 0,
+      "maximum_full_violation": 0.21050248552123185
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3403,
+      "status": 0,
+      "maximum_full_violation": 0.25216504160335435
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3804,
+      "status": 0,
+      "maximum_full_violation": 0.17289580911632313
+    },
+    {
+      "iteration": 6,
+      "active_rows": 4205,
+      "status": 0,
+      "maximum_full_violation": 0.20854390002140702
+    },
+    {
+      "iteration": 7,
+      "active_rows": 4605,
+      "status": 0,
+      "maximum_full_violation": 0.20363310893026304
+    },
+    {
+      "iteration": 8,
+      "active_rows": 5005,
+      "status": 0,
+      "maximum_full_violation": 0.18926136240124283
+    },
+    {
+      "iteration": 9,
+      "active_rows": 5405,
+      "status": 0,
+      "maximum_full_violation": 0.18409232224593938
+    },
+    {
+      "iteration": 10,
+      "active_rows": 5805,
+      "status": 0,
+      "maximum_full_violation": 0.1547807305488229
+    },
+    {
+      "iteration": 11,
+      "active_rows": 6205,
+      "status": 0,
+      "maximum_full_violation": 0.15164991242823161
+    },
+    {
+      "iteration": 12,
+      "active_rows": 6606,
+      "status": 0,
+      "maximum_full_violation": 0.2522252117395025
+    },
+    {
+      "iteration": 13,
+      "active_rows": 7007,
+      "status": 0,
+      "maximum_full_violation": 0.19487495670929084
+    },
+    {
+      "iteration": 14,
+      "active_rows": 7408,
+      "status": 0,
+      "maximum_full_violation": 0.2124332119772976
+    },
+    {
+      "iteration": 15,
+      "active_rows": 7809,
+      "status": 0,
+      "maximum_full_violation": 0.15619588943093632
+    },
+    {
+      "iteration": 16,
+      "active_rows": 8209,
+      "status": 0,
+      "maximum_full_violation": 0.13133503590620554
+    },
+    {
+      "iteration": 17,
+      "active_rows": 8610,
+      "status": 0,
+      "maximum_full_violation": 0.15252622394415657
+    },
+    {
+      "iteration": 18,
+      "active_rows": 9011,
+      "status": 0,
+      "maximum_full_violation": 0.13940021097809166
+    },
+    {
+      "iteration": 19,
+      "active_rows": 9412,
+      "status": 0,
+      "maximum_full_violation": 0.4398079204807559
+    },
+    {
+      "iteration": 20,
+      "active_rows": 9812,
+      "status": 0,
+      "maximum_full_violation": 0.34447709055980047
+    },
+    {
+      "iteration": 21,
+      "active_rows": 10212,
+      "status": 0,
+      "maximum_full_violation": 0.2019480937958925
+    },
+    {
+      "iteration": 22,
+      "active_rows": 10613,
+      "status": 0,
+      "maximum_full_violation": 0.1893704483929454
+    },
+    {
+      "iteration": 23,
+      "active_rows": 11013,
+      "status": 0,
+      "maximum_full_violation": 0.16834200497896296
+    },
+    {
+      "iteration": 24,
+      "active_rows": 11414,
+      "status": 0,
+      "maximum_full_violation": 0.25185297230069803
+    },
+    {
+      "iteration": 25,
+      "active_rows": 11815,
+      "status": 0,
+      "maximum_full_violation": 0.3937966871904801
+    },
+    {
+      "iteration": 26,
+      "active_rows": 12215,
+      "status": 0,
+      "maximum_full_violation": 0.24323026200038106
+    },
+    {
+      "iteration": 27,
+      "active_rows": 12616,
+      "status": 0,
+      "maximum_full_violation": 0.2987126390482109
+    },
+    {
+      "iteration": 28,
+      "active_rows": 13016,
+      "status": 0,
+      "maximum_full_violation": 0.2787600797255442
+    },
+    {
+      "iteration": 29,
+      "active_rows": 13417,
+      "status": 0,
+      "maximum_full_violation": 0.1670370634104037
+    },
+    {
+      "iteration": 30,
+      "active_rows": 13818,
+      "status": 0,
+      "maximum_full_violation": 0.22252006614961078
+    },
+    {
+      "iteration": 31,
+      "active_rows": 14218,
+      "status": 0,
+      "maximum_full_violation": 0.15807167079937023
+    },
+    {
+      "iteration": 32,
+      "active_rows": 14619,
+      "status": 0,
+      "maximum_full_violation": 0.21596673297108143
+    },
+    {
+      "iteration": 33,
+      "active_rows": 15020,
+      "status": 0,
+      "maximum_full_violation": 0.1282837617578063
+    },
+    {
+      "iteration": 34,
+      "active_rows": 15421,
+      "status": 0,
+      "maximum_full_violation": 0.12721247833107274
+    },
+    {
+      "iteration": 35,
+      "active_rows": 15822,
+      "status": 0,
+      "maximum_full_violation": 0.11185832567950368
+    },
+    {
+      "iteration": 36,
+      "active_rows": 16223,
+      "status": 0,
+      "maximum_full_violation": 0.10873614885723991
+    },
+    {
+      "iteration": 37,
+      "active_rows": 16624,
+      "status": 0,
+      "maximum_full_violation": 0.1306077205257315
+    },
+    {
+      "iteration": 38,
+      "active_rows": 17025,
+      "status": 0,
+      "maximum_full_violation": 0.10487605481280049
+    },
+    {
+      "iteration": 39,
+      "active_rows": 17426,
+      "status": 0,
+      "maximum_full_violation": 0.15790224016291343
+    },
+    {
+      "iteration": 40,
+      "active_rows": 17826,
+      "status": 0,
+      "maximum_full_violation": 0.2732705671132751
+    },
+    {
+      "iteration": 41,
+      "active_rows": 18226,
+      "status": 0,
+      "maximum_full_violation": 0.08794466280973848
+    },
+    {
+      "iteration": 42,
+      "active_rows": 18626,
+      "status": 0,
+      "maximum_full_violation": 0.08188467969008545
+    },
+    {
+      "iteration": 43,
+      "active_rows": 19027,
+      "status": 0,
+      "maximum_full_violation": 0.08689734106609809
+    },
+    {
+      "iteration": 44,
+      "active_rows": 19428,
+      "status": 0,
+      "maximum_full_violation": 0.1237739201679246
+    },
+    {
+      "iteration": 45,
+      "active_rows": 19829,
+      "status": 0,
+      "maximum_full_violation": 0.21078200654525173
+    },
+    {
+      "iteration": 46,
+      "active_rows": 20229,
+      "status": 0,
+      "maximum_full_violation": 0.09681865247161447
+    },
+    {
+      "iteration": 47,
+      "active_rows": 20629,
+      "status": 0,
+      "maximum_full_violation": 0.08262365026073697
+    },
+    {
+      "iteration": 48,
+      "active_rows": 21030,
+      "status": 0,
+      "maximum_full_violation": 0.08189387607630587
+    },
+    {
+      "iteration": 49,
+      "active_rows": 21431,
+      "status": 0,
+      "maximum_full_violation": 0.1104633494428014
+    },
+    {
+      "iteration": 50,
+      "active_rows": 21831,
+      "status": 0,
+      "maximum_full_violation": 0.11405898034271902
+    },
+    {
+      "iteration": 51,
+      "active_rows": 22232,
+      "status": 0,
+      "maximum_full_violation": 0.10016226403089784
+    },
+    {
+      "iteration": 52,
+      "active_rows": 22633,
+      "status": 0,
+      "maximum_full_violation": 0.1004529785965373
+    },
+    {
+      "iteration": 53,
+      "active_rows": 23034,
+      "status": 0,
+      "maximum_full_violation": 0.14510105610657387
+    },
+    {
+      "iteration": 54,
+      "active_rows": 23435,
+      "status": 0,
+      "maximum_full_violation": 0.10974335259476026
+    },
+    {
+      "iteration": 55,
+      "active_rows": 23836,
+      "status": 0,
+      "maximum_full_violation": 0.110475671283083
+    },
+    {
+      "iteration": 56,
+      "active_rows": 24236,
+      "status": 0,
+      "maximum_full_violation": 0.0910673691749958
+    },
+    {
+      "iteration": 57,
+      "active_rows": 24636,
+      "status": 0,
+      "maximum_full_violation": 0.13206050280862958
+    },
+    {
+      "iteration": 58,
+      "active_rows": 25037,
+      "status": 0,
+      "maximum_full_violation": 0.1317151117407242
+    },
+    {
+      "iteration": 59,
+      "active_rows": 25437,
+      "status": 0,
+      "maximum_full_violation": 0.07184544425256273
+    }
+  ],
+  "total_constraints": 1323550,
+  "spatial_grading_parameters": 257,
+  "time_independent_grading": true,
+  "smoothness_restriction_imposed": false,
+  "grading_medium_tensor_supplied": false,
+  "grading_exchange_law_supplied": false,
+  "finite_connections_supplied": false
+}

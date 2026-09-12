@@ -1,0 +1,146 @@
+{
+  "label": "n128",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.2006414406426425
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.1675906993997638
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.1205672670418933
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 0,
+      "maximum_full_violation": 0.17298874074413828
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3404,
+      "status": 0,
+      "maximum_full_violation": 0.136826298660083
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3805,
+      "status": 0,
+      "maximum_full_violation": 0.11282908538805914
+    },
+    {
+      "iteration": 6,
+      "active_rows": 4206,
+      "status": 0,
+      "maximum_full_violation": 0.2361152773006185
+    },
+    {
+      "iteration": 7,
+      "active_rows": 4606,
+      "status": 0,
+      "maximum_full_violation": 0.2853541775585652
+    },
+    {
+      "iteration": 8,
+      "active_rows": 5006,
+      "status": 0,
+      "maximum_full_violation": 0.10938089307898702
+    },
+    {
+      "iteration": 9,
+      "active_rows": 5407,
+      "status": 0,
+      "maximum_full_violation": 0.16395974481215478
+    },
+    {
+      "iteration": 10,
+      "active_rows": 5808,
+      "status": 0,
+      "maximum_full_violation": 0.34517182190279255
+    },
+    {
+      "iteration": 11,
+      "active_rows": 6208,
+      "status": 0,
+      "maximum_full_violation": 0.12182777070758274
+    },
+    {
+      "iteration": 12,
+      "active_rows": 6609,
+      "status": 0,
+      "maximum_full_violation": 0.17606320805936146
+    },
+    {
+      "iteration": 13,
+      "active_rows": 7009,
+      "status": 0,
+      "maximum_full_violation": 0.1989513031626524
+    },
+    {
+      "iteration": 14,
+      "active_rows": 7409,
+      "status": 0,
+      "maximum_full_violation": 0.13655564985093638
+    },
+    {
+      "iteration": 15,
+      "active_rows": 7810,
+      "status": 0,
+      "maximum_full_violation": 0.2270527567342881
+    },
+    {
+      "iteration": 16,
+      "active_rows": 8210,
+      "status": 0,
+      "maximum_full_violation": 0.10331150913616677
+    },
+    {
+      "iteration": 17,
+      "active_rows": 8610,
+      "status": 0,
+      "maximum_full_violation": 0.08456715215173444
+    },
+    {
+      "iteration": 18,
+      "active_rows": 9011,
+      "status": 0,
+      "maximum_full_violation": 0.09711270360451839
+    },
+    {
+      "iteration": 19,
+      "active_rows": 9411,
+      "status": 0,
+      "maximum_full_violation": 0.04390741307956514
+    },
+    {
+      "iteration": 20,
+      "active_rows": 9812,
+      "status": 0,
+      "maximum_full_violation": 0.10844559488522992
+    },
+    {
+      "iteration": 21,
+      "active_rows": 10212,
+      "status": 2
+    }
+  ],
+  "total_constraints": 332820,
+  "spatial_grading_parameters": 129,
+  "time_independent_grading": true,
+  "smoothness_restriction_imposed": false,
+  "grading_medium_tensor_supplied": false,
+  "grading_exchange_law_supplied": false,
+  "finite_connections_supplied": false
+}

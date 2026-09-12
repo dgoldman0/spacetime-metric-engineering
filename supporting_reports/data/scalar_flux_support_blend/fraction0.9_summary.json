@@ -1,0 +1,21 @@
+{
+  "label": "fraction0.9",
+  "potential_target_fraction": 0.9,
+  "reference_target_fraction": 0.09999999999999998,
+  "response_basis_replay_residuals": {
+    "support_energy": 2.8279600883251987e-12,
+    "radial_pressure": 1.3641518470386416e-13,
+    "angular_volume": 3.410605131648481e-13
+  },
+  "maximum_node_density_shortfall": 0.0,
+  "maximum_node_component_cost_fraction": 0.9986534595635189,
+  "minimum_component_energy": -1.1102230246251565e-16,
+  "material_peak_upper": 0.7971390860513505,
+  "initial_support_rest": 9911.83143338586,
+  "final_support_rest": 961.3439708899563,
+  "absorption_left_feed_fraction": 0.24895120485570507,
+  "recovery_left_emission_fraction": 0.0,
+  "physical_field_law_supplied": false,
+  "continuing_connections_supplied": false,
+  "changed_route_stress_counted": false
+}

@@ -1,0 +1,226 @@
+{
+  "cases": [
+    {
+      "label": "fraction0.9",
+      "source": "supporting_reports/data/scalar_flux_support_blend/fraction0.9_states.npz",
+      "node_audit": {
+        "temporal_samples": 515,
+        "spatial_samples": 257,
+        "local_component_gate_passes": true,
+        "maximum_scalar_flux_density_shortfall": 0.0,
+        "maximum_old_field_membrane_shortfall": 0.9254039872091996,
+        "minimum_density": 0.03701504431154171,
+        "worst_local_margin": {
+          "time": 0.072783203125,
+          "x": -2.0,
+          "density": 0.04254020341135019,
+          "radial_pressure": 0.04223226778102166,
+          "angular_pressure": -0.0002506535262590118,
+          "energy_margin": 5.728210406951567e-05
+        },
+        "equilibrium_vortices": {
+          "local_intervals_nonempty": false,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 5.14390365087709,
+            "time": 1.2799804687499998,
+            "x": -1.125
+          },
+          "permitted_upper": {
+            "value": 0.00023783386289281112,
+            "time": 0.072783203125,
+            "x": -2.0
+          },
+          "lower_over_upper": 21628.138181464034,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.24671441203344743,
+            "upper": 0.00023783386289281112,
+            "ratio": 1037.339296568709
+          },
+          "positions_requiring_time_variation": 228,
+          "spatial_samples": 257,
+          "temporal_samples": 515
+        },
+        "leading_volume_bags": {
+          "local_intervals_nonempty": true,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 2.4729991192352645,
+            "time": 1.0214746093749998,
+            "x": -1.3
+          },
+          "permitted_upper": {
+            "value": 0.0002746268895271461,
+            "time": 0.072783203125,
+            "x": -2.0
+          },
+          "lower_over_upper": 9004.94166282583,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.2903919330800777,
+            "upper": 0.0002746268895271461,
+            "ratio": 1057.405316646436
+          },
+          "positions_requiring_time_variation": 228,
+          "spatial_samples": 257,
+          "temporal_samples": 515
+        },
+        "fixed_core_potential": {
+          "local_intervals_nonempty": true,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 0.4627019936045998,
+            "time": 1.2548828125,
+            "x": -1.05
+          },
+          "permitted_upper": {
+            "value": 2.0689991436210227e-05,
+            "time": 0.5,
+            "x": -2.0
+          },
+          "lower_over_upper": 22363.566221434485,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.01485493170455988,
+            "upper": 2.0689991436210227e-05,
+            "ratio": 717.9766966245226
+          },
+          "positions_requiring_time_variation": 227,
+          "spatial_samples": 257,
+          "temporal_samples": 515
+        },
+        "allocation_tensor_residual": 2.220446049250313e-16,
+        "minimum_component_energy": -1.1102230246251565e-16
+      },
+      "dense_conserved_work_audit": {
+        "temporal_samples": 2057,
+        "spatial_samples": 1025,
+        "local_component_gate_passes": true,
+        "maximum_scalar_flux_density_shortfall": 0.0,
+        "maximum_old_field_membrane_shortfall": 0.9254039872091985,
+        "minimum_density": 0.03701504431154171,
+        "weighted_force_residual": 0.0037749778680252607,
+        "weighted_power_residual": 1.6562806897319473e-07,
+        "worst_local_margin": {
+          "time": 0.072783203125,
+          "x": -2.0,
+          "density": 0.04254020341135002,
+          "radial_pressure": 0.04223226778102166,
+          "angular_pressure": -0.00025065352625901183,
+          "energy_margin": 5.728210406934914e-05
+        },
+        "equilibrium_vortices": {
+          "local_intervals_nonempty": false,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 5.143903650877024,
+            "time": 1.2799804687499998,
+            "x": -1.125
+          },
+          "permitted_upper": {
+            "value": 0.00023783386289211945,
+            "time": 0.072783203125,
+            "x": -2.0
+          },
+          "lower_over_upper": 21628.138181526654,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.24671441203344754,
+            "upper": 0.00023783386289211945,
+            "ratio": 1037.3392965717262
+          },
+          "positions_requiring_time_variation": 910,
+          "spatial_samples": 1025,
+          "temporal_samples": 2057
+        },
+        "leading_volume_bags": {
+          "local_intervals_nonempty": true,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 2.4729991192352663,
+            "time": 1.0214746093749998,
+            "x": -1.3
+          },
+          "permitted_upper": {
+            "value": 0.00027462688952634737,
+            "time": 0.072783203125,
+            "x": -2.0
+          },
+          "lower_over_upper": 9004.941662852027,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.29039193308007777,
+            "upper": 0.00027462688952634737,
+            "ratio": 1057.4053166495116
+          },
+          "positions_requiring_time_variation": 911,
+          "spatial_samples": 1025,
+          "temporal_samples": 2057
+        },
+        "fixed_core_potential": {
+          "local_intervals_nonempty": true,
+          "common_invariant_feasible": false,
+          "required_lower": {
+            "value": 0.46270199360459924,
+            "time": 1.2548828125,
+            "x": -1.05
+          },
+          "permitted_upper": {
+            "value": 2.0689991434339405e-05,
+            "time": 0.5,
+            "x": -2.0
+          },
+          "lower_over_upper": 22363.566223456608,
+          "static_spatial_grading_feasible": false,
+          "worst_temporal_ratio": {
+            "x": -2.0,
+            "lower": 0.014854931704559886,
+            "upper": 2.0689991434339405e-05,
+            "ratio": 717.9766966894434
+          },
+          "positions_requiring_time_variation": 908,
+          "spatial_samples": 1025,
+          "temporal_samples": 2057
+        }
+      },
+      "isolated_end_jackets": [
+        {
+          "end": "left",
+          "success": false,
+          "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+          "witness_time": 0.5,
+          "witness_load": -1.2675437219129098,
+          "witness_acceleration": 0.7581760953524507,
+          "witness_angular_gradient": -0.04155997546421727,
+          "witness_force_interval_per_unit_energy": [
+            0.6750561444240162,
+            0.8412960462808852
+          ],
+          "pointwise_force_cone_incompatible": true,
+          "incompatible_sample_fraction": 1.0
+        },
+        {
+          "end": "right",
+          "success": false,
+          "reason": "prepared surface inventory has an empty admissible interval",
+          "initial_energy_lower": 5275.3363553896315,
+          "initial_energy_upper": 51.54080337334662,
+          "pointwise_force_cone_incompatible": false,
+          "incompatible_sample_fraction": 0.0
+        }
+      ],
+      "scope": "prescribed active-rail backing target and registered component bases",
+      "field_equations_solved": false,
+      "finite_tube_wall_response_supplied": false,
+      "current_carrier_energy_supplied": false,
+      "continuing_rail_connections_supplied": false,
+      "quantum_source_supplied": false
+    }
+  ]
+}
