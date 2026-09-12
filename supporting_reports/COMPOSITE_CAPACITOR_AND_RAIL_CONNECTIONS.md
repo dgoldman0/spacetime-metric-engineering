@@ -7,13 +7,22 @@ inside each cell or transmitted to the standing rail support. This study
 evaluates those alternatives on the scheduled active-rail patch, including
 credit for the pressure medium already present.
 
-The first calculation identifies a distinction between storing charge and
-supporting the charged assembly through the prescribed deformation. A passive
-skin and directional backing covering the electric tractions require about
-171.53 units of initial material energy and reach 1,864.41 at fade. Allowing
-controlled unloading greatly reduces the instantaneous material inventory;
-the resulting electrical and mechanical exchange must then be supplied through
-the assembly's connections. The continuation below evaluates that exchange.
+The composite calculations put the immediate construction problem in the
+joint backing, pressure link, and standing rail support. Internally balancing
+the capacitor cancels the macroscopic electric stresses that participated in
+the original pressure-link force balance. The counted material then requires
+an additional longitudinal force channel. Even arbitrary resolved sharing
+of the existing pressure leaves a fade pressure-drop deficit of about 0.03190:
+the most favorable required drop is 0.03775, compared with 0.00586 available.
+
+The energy calculations identify the associated tradeoff. A passive skin and
+directional backing covering the electric tractions require about 171.53 units
+of initial material energy and reach 1,864.41 at fade. Controlled unloading
+reduces the inventory and increases the return-channel burden. Partial
+unloading improves that comparison while leaving the mechanical completion
+open. The bounded material-selection search therefore stops at the rail
+connection, with an explicit force and work specification for the next joint
+component calculation.
 
 ## Architecture and material basis
 
@@ -24,6 +33,13 @@ standing radial support, angular jacket, endpoint heat/current medium, delivery
 guides, and thermal receiver retain distinct roles. The
 [architecture scope review](ACTIVE_RAIL_ARCHITECTURE_SCOPE_REVIEW.md) and
 [finite work interface](FINITE_WORK_INTERFACE.md) specify that decomposition.
+
+The archived endpoint and pressure-fluid/field tensors have cancelling
+divergences. The constructed delivery, receiver, and capacitor material replace
+part of that endpoint realization. Their remaining required force is the
+archived endpoint force minus the forces of the supplied components. The
+original endpoint tensor is consequently a completion target, and its
+unconstructed remainder receives its own source and mechanical requirements.
 
 The charged-skin material basis is a phase boundary carrying trapped charged
 fermions. Its leading surface thermodynamics are
@@ -167,19 +183,184 @@ backing takes the opposite field work, and an attached cell, whose residual
 tractions enter the wider support equations. The second case requires the
 standing support's reciprocal forces, work, and constitutive response.
 
-## Evidence and continuation
+## Partial unloading through the existing route
 
-Producer:
-`toolkit/adm_harness_cli/scripts/evaluate_composite_capacitor.py`.
+An unloading fraction lambda interpolates between retained and controlled
+support energy:
+
+    U_support(lambda) = (1-lambda) U_retained + lambda U_floor,
+    W_joint = W_electrical + lambda W_support,port.
+
+The two leading families use lambda=0, 0.025, 0.05, 0.1, 0.25, 0.5, and 1.
+The two isotropic-fluid composites also receive retained/full-unloading
+comparisons. Every case sends its complete joint work through the existing
+receiver-side route. The screen grants perfect local reuse, perfect
+conversion, ideal absorption, and omission of the heat-receiver tensor.
+These concessions make the transport source comparisons optimistic. The
+separate attachment audit below retains the actual preceding heat receiver.
+
+At 1024 cells with four geometry subdivisions per original time interval:
+
+| Family | Best sampled unloading fraction with the guide | Fade remainder with the guide | Best sampled remainder with the guide omitted | Full-unloading fade remainder with the guide |
+| --- | ---: | ---: | ---: | ---: |
+| General anisotropic floor | 0.10 | 0.39163 | 0.34248 | 8.81767 |
+| Directional backing and skins | 0.05 | 0.52686 | 0.48043 | 12.33417 |
+| Stiff-fluid backing and skins | 0 | 0.67979 | 0.62493 | 15.85141 |
+| Radiation-fluid backing and skins | 0 | 0.95331 | 0.89845 | 22.88608 |
+
+The guide uses the existing 0.5 field-frame-speed comparison. A relaxed 0.9
+comparison reduces the general-floor best sampled value to 0.38837. The
+guide-omitted best unloading fractions are 0.05 for the general floor and
+0.025 for the directional composite. All these are sampled controls with
+the specified time history, route, and material-energy assumptions.
+
+The modest unloading fractions reduce retained material energy without
+creating the large return stream of full unloading. Full unloading raises
+the required guide flux from the preceding 0.66966 to about 70.57 for the
+general floor and 98.67 for the directional composite. The separately
+supported capacitor therefore exposes a storage-versus-return tradeoff;
+changing its constituent material alone leaves that tradeoff in place.
+
+![Composite energy-return comparison and mechanical force diagnostic](data/composite_capacitor_audit/composite_capacitor_connections.png)
+
+In the right panel, the blue curve is the force still required to complete
+the preceding endpoint realization. The orange curve is a lower bound on
+the complete closed-cell assembly's force residual where its full local
+fluid pressure has been assigned to the cell. The two curves describe those
+distinct construction controls at the last interval midpoint.
+
+## The material connection requires longitudinal stress
+
+For a co-moving surface skin with zero radial pressure, its radial divergence
+is F_skin=rho a-2 p_t k, where k is the material-frame derivative of ln R.
+The charged Fermi skin spans -rho<=p_t<=rho/2. A wider control grants the
+entire DEC interval -rho<=p_t<=rho and arbitrary positive density.
+
+On the pinned 1024-cell allocation evaluated at 4096 positions, the Fermi
+skin's force sign cannot supply 72.30% of the remaining force demand, weighted
+by absolute force and proper spacetime volume. The wider DEC skin misses
+71.15%. At s=1.28249, x=-2.00605, the required force is about -0.04496.
+The wider skin has F_skin/rho between +0.55468 and +0.84140 there. Changing
+the skin density or its allowed tangential stress preserves that sign
+conflict. A longitudinal stress gradient provides an additional channel.
+
+The complete internally balanced composite gives a second witness. Wherever
+p_*=p, adding the electric field, allocated fluid, and balancing support
+leaves zero averaged radial and tangential pressure. The DEC material floor
+then gives total density at least n+4p+2u, before the receiver. Its rest-frame
+force is bounded below by
+
+    F_closed >= (n+4p+2u+rho_receiver) a + F_workwaves.
+
+For the selected receiver-side work route F_workwaves is nonnegative.
+The constant-flux radial guide has zero local divergence. Thus positive a
+requires a separate opposing force. This witness applies to about 78.12% of
+the force-weighted demand and reaches approximately 0.04525. It is independent
+of the skin's microscopic charge-confinement mechanism. Extra retained
+co-moving energy increases its holding-force requirement in this region.
+
+### Allowing the existing pressure to be shared differently
+
+The final control releases the maximum-pressure-credit choice. Let r=p-p_*
+be the original fluid pressure left outside the internal cell balance. It
+can take any value in
+
+    max(p-u,0) <= r <= p.
+
+The general DEC floor gives rho_total+pr_total >= n+4p+2u regardless of this
+allocation. At fade, on a connected interval of positive acceleration,
+force balance therefore requires
+
+    r_x <= -Gamma B a (n+4p+2u) - Gamma B v r_t/N.
+
+This grants omission of charge-carrier excess energy, the thermal receiver,
+work-wave momentum, and retained support energy. Each adds positive force
+on the chosen interval. Integrating from left to right gives a necessary
+pressure budget: the required drop must fit between the largest allowed
+left pressure and the smallest allowed right pressure.
+
+The last-time material velocity is at most 1.4e-10. The calculation retains
+the most favorable temporal term for any pressure allocation linear across
+the final archived interval, using |r_t|<=max(p_previous,p_final)/Delta s.
+Its integrated allowance is approximately 5.3e-18 on the selected interval.
+Pressure variations within that interval would require a separately resolved
+constitutive and propagation calculation.
+
+| Pinned allocation / evaluation cells | Required pressure drop | Available pressure drop | Deficit |
+| --- | ---: | ---: | ---: |
+| 512 / 512 | 0.03786736 | 0.00597849 | 0.03188887 |
+| 1024 / 1024 | 0.03780258 | 0.00590868 | 0.03189389 |
+| 1024 / 4096 | 0.03775449 | 0.00585647 | 0.03189802 |
+
+The dense witness spans x=-2.05020 to -0.84473 at s=1.285. The necessary
+pressure drop is about 6.45 times the available drop. The deficit changes
+by 0.013% between the 1024 and 4096 evaluations. This control allows the
+pressure allocation to vary independently at every resolved location and
+time before imposing a joint equation of state. The remaining mismatch is
+therefore already a property of this closed-composite/pressure-link class.
+
+## Construction consequence
+
+The charged tensile skin remains a useful electrode candidate, and the
+separate backing makes its load path explicit. The current family gives two
+ways to close that path. Internal closure transfers the electric tractions
+into material stress and removes their macroscopic radial contribution;
+the fixed pressure link then lacks the pressure gradient required by its
+counted energy. External attachments preserve a longitudinal stress path
+through the rail, whose reciprocal force, deformation work, and source tensor
+must be supplied by the standing components.
+
+Consequently the next joint problem is the capacitor backing, pressure link,
+and standing-support connection. Its unknowns include the longitudinal and
+angular support stresses, their end tractions, and the split between retained
+mechanical energy and returned electrical work. The capacitor supplies its
+electrode tractions and constitutive energy/work relations as boundary data.
+The heat/current medium, delivery route, and protected-packet constraints stay
+in that joint ledger. This is the stopping condition for the present material
+search: the broader mechanical completion now determines which capacitor
+construction can be selected.
+
+The bounds concern this prescribed history and these composite/connection
+classes. They establish neither a general obstruction to capacitors nor an
+impossibility result for the active rail. A completed charge-confining finite
+layer, its stability, and physical contacts remain to be constructed after
+the mechanical allocation is settled. The separate absolute quantum source
+and the full An-T-Le construction also remain open.
+
+## Evidence and verification
+
 Material/work controls:
 `toolkit/adm_harness_cli/adm_harness/composite_capacitor.py`.
-Evidence: [`data/composite_capacitor`](data/composite_capacitor).
-Four independent cases use 512/1024 cells and 90%/100% recovery. Eight new
-unit tests cover charged-skin thermodynamics, chemical work, preparation,
-boosted stress cancellation, pressure credit, and retained/controlled energy
-identities; the eight preceding charged-capacitor tests also pass.
+The three numerical producers are `evaluate_composite_capacitor.py`,
+`evaluate_composite_capacitor_transport.py`, and
+`evaluate_composite_pressure_allocation.py` in
+`toolkit/adm_harness_cli/scripts`. The independent audit is
+`audit_composite_capacitor.py` in that directory.
 
-The next bounded calculation sends partial and full unloading through the
-existing delivery route and checks the remaining material-frame holding
-force. Charge confinement, finite skin thickness, carrier costs, material
-stability, and contact losses remain explicit physical construction duties.
+Evidence directories:
+
+- [`data/composite_capacitor`](data/composite_capacitor): four material/work
+  cases, with 512/1024 cells and 90%/100% recovery.
+- [`data/composite_capacitor_transport`](data/composite_capacitor_transport):
+  18 unloading/material cases at each of three spatial/geometry resolutions.
+- [`data/composite_capacitor_audit`](data/composite_capacitor_audit): force
+  witnesses, resolution comparisons, and standalone PNG/PDF figures.
+- [`data/composite_capacitor_pressure_allocation`](data/composite_capacitor_pressure_allocation):
+  the resolved pressure-sharing bound at three evaluations.
+
+Forty-six focused tests pass across the new composite controls and the
+associated capacitor, pressure-link, and transport modules. The tests include
+an independent normal-frame covariant-divergence comparison and a source-free
+radial-field control, establishing the distinction between deformation work
+and an actual material force. Analytical hydrostatic examples check the
+pressure-drop witness and its treatment of disconnected acceleration domains.
+
+The largest exact composite work residual is 2.56e-14; the largest transport
+balance residual is 1.81e-14. Across all sampled source comparisons, spatial
+refinement changes the result by at most 1.21%, while doubling the transport
+geometry subdivisions changes it by at most 0.00428%. Those subdivisions
+refine geometry interpolation; the material/field history retains its original
+257 time intervals. The force-sign fractions are stable under denser spatial
+evaluation; the pointwise force maxima vary more with spatial sampling, as
+the separate tables record. All 140 input/output hash checks pass. New numerical
+evidence occupies 5,471,189 bytes, approximately 5.5 MB.

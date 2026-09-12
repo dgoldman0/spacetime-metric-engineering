@@ -1,0 +1,110 @@
+{
+  "cases": [
+    {
+      "pinned_cells": 512,
+      "evaluation_cells": 512,
+      "maximum_original_holding_force": 0.04082629799552433,
+      "skins": [
+        {
+          "skin": "charged_fermi_skin",
+          "unsupported_force_weighted_fraction": 0.72471826782744,
+          "maximum_unsupported_force": 0.04082629799552433,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0046875,
+          "required_at_peak": -0.04082629799552433,
+          "lower_force_per_energy_at_peak": 0.5539682033364521,
+          "upper_force_per_energy_at_peak": 0.7681167714298188
+        },
+        {
+          "skin": "any_DEC_skin",
+          "unsupported_force_weighted_fraction": 0.7135340061589333,
+          "maximum_unsupported_force": 0.04082629799552433,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0046875,
+          "required_at_peak": -0.04082629799552433,
+          "lower_force_per_energy_at_peak": 0.5539682033364521,
+          "upper_force_per_energy_at_peak": 0.839499627460941
+        }
+      ],
+      "closed_cell_witness_force_weighted_coverage": 0.781610495568597,
+      "maximum_closed_cell_force_lower_bound": 0.043753320313040106,
+      "force_witness_peak_time": 0.840771484375,
+      "force_witness_peak_x": -2.0859375,
+      "force_witness_pressure_to_electric": 0.9882712646602985,
+      "force_witness_acceleration": 0.7793065547270267,
+      "force_witness_density_floor": 0.05288056571128863,
+      "force_witness_wave_force": 0.00254314883655962
+    },
+    {
+      "pinned_cells": 1024,
+      "evaluation_cells": 1024,
+      "maximum_original_holding_force": 0.04395310306162726,
+      "skins": [
+        {
+          "skin": "charged_fermi_skin",
+          "unsupported_force_weighted_fraction": 0.7234832753699227,
+          "maximum_unsupported_force": 0.04395310306162726,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0054687500000004,
+          "required_at_peak": -0.04395310306162726,
+          "lower_force_per_energy_at_peak": 0.5543778477996972,
+          "upper_force_per_energy_at_peak": 0.7690344285867723
+        },
+        {
+          "skin": "any_DEC_skin",
+          "unsupported_force_weighted_fraction": 0.7118459663967948,
+          "maximum_unsupported_force": 0.04395310306162726,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0054687500000004,
+          "required_at_peak": -0.04395310306162726,
+          "lower_force_per_energy_at_peak": 0.5543778477996972,
+          "upper_force_per_energy_at_peak": 0.840586622182464
+        }
+      ],
+      "closed_cell_witness_force_weighted_coverage": 0.7815241829696007,
+      "maximum_closed_cell_force_lower_bound": 0.044533460716702715,
+      "force_witness_peak_time": 0.825712890625,
+      "force_witness_peak_x": -2.08828125,
+      "force_witness_pressure_to_electric": 0.9949345512194535,
+      "force_witness_acceleration": 0.7811537054033099,
+      "force_witness_density_floor": 0.05436187708141442,
+      "force_witness_wave_force": 0.0020684790018765725
+    },
+    {
+      "pinned_cells": 1024,
+      "evaluation_cells": 4096,
+      "maximum_original_holding_force": 0.04495928681245312,
+      "skins": [
+        {
+          "skin": "charged_fermi_skin",
+          "unsupported_force_weighted_fraction": 0.7229979428110951,
+          "maximum_unsupported_force": 0.04495928681245312,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0060546875,
+          "required_at_peak": -0.04495928681245312,
+          "lower_force_per_energy_at_peak": 0.5546829999495109,
+          "upper_force_per_energy_at_peak": 0.769720615363289
+        },
+        {
+          "skin": "any_DEC_skin",
+          "unsupported_force_weighted_fraction": 0.7115273444867998,
+          "maximum_unsupported_force": 0.04495928681245312,
+          "peak_time": 1.282490234375,
+          "peak_x": -2.0060546875,
+          "required_at_peak": -0.04495928681245312,
+          "lower_force_per_energy_at_peak": 0.5546829999495109,
+          "upper_force_per_energy_at_peak": 0.841399820501215
+        }
+      ],
+      "closed_cell_witness_force_weighted_coverage": 0.7812189281864702,
+      "maximum_closed_cell_force_lower_bound": 0.04524745426535008,
+      "force_witness_peak_time": 0.8307324218749998,
+      "force_witness_peak_x": -2.0880859375,
+      "force_witness_pressure_to_electric": 0.998893262704995,
+      "force_witness_acceleration": 0.7813972397218288,
+      "force_witness_density_floor": 0.05442158963216648,
+      "force_witness_wave_force": 0.0027225743455011014
+    }
+  ],
+  "verified_hashes": 85
+}

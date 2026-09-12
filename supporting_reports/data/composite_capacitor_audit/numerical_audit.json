@@ -1,0 +1,152 @@
+{
+  "refinements": [
+    {
+      "comparison": "512_to_1024_cells",
+      "max_absolute": 0.005041515602965063,
+      "max_relative": 0.0121136954942363,
+      "relative_peak_case": [
+        "dec_floor",
+        0.5,
+        "guide_omitted_tensor_bound",
+        0.5
+      ]
+    },
+    {
+      "comparison": "2_to_4_geometry_subdivisions",
+      "max_absolute": 2.9692416045890013e-05,
+      "max_relative": 4.279120600226625e-05,
+      "relative_peak_case": [
+        "radiation_fluid",
+        1.0,
+        "guide_omitted_tensor_bound",
+        0.0
+      ]
+    }
+  ],
+  "best_sampled_unloading": [
+    {
+      "family": "dec_floor",
+      "unload_fraction": 0.1,
+      "route": "delivery_drift050",
+      "time": 1.285,
+      "required_negative_null": 0.3916268728527224,
+      "peak_x": -0.51171875,
+      "peak_null_cosine": -0.2289867085737274,
+      "auxiliary_ADM": 187.9279812698668
+    },
+    {
+      "family": "dec_floor",
+      "unload_fraction": 0.1,
+      "route": "delivery_drift090",
+      "time": 1.285,
+      "required_negative_null": 0.3883670457991908,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.2451205094746465,
+      "auxiliary_ADM": 186.4776474547336
+    },
+    {
+      "family": "dec_floor",
+      "unload_fraction": 0.05,
+      "route": "guide_omitted_tensor_bound",
+      "time": 1.285,
+      "required_negative_null": 0.3424779942730581,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -1.0,
+      "auxiliary_ADM": 162.26147582203828
+    },
+    {
+      "family": "directional",
+      "unload_fraction": 0.05,
+      "route": "delivery_drift050",
+      "time": 1.285,
+      "required_negative_null": 0.5268563999425369,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.1254882579799564,
+      "auxiliary_ADM": 259.54189477427866
+    },
+    {
+      "family": "directional",
+      "unload_fraction": 0.05,
+      "route": "delivery_drift090",
+      "time": 1.285,
+      "required_negative_null": 0.5268563999425369,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.1254882579799564,
+      "auxiliary_ADM": 259.54189477427866
+    },
+    {
+      "family": "directional",
+      "unload_fraction": 0.025,
+      "route": "guide_omitted_tensor_bound",
+      "time": 1.285,
+      "required_negative_null": 0.4804273357168081,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -1.0,
+      "auxiliary_ADM": 234.17056618944636
+    },
+    {
+      "family": "radiation_fluid",
+      "unload_fraction": 0.0,
+      "route": "delivery_drift050",
+      "time": 1.285,
+      "required_negative_null": 0.953305524759428,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.0335077568710156,
+      "auxiliary_ADM": 478.4704048429551
+    },
+    {
+      "family": "radiation_fluid",
+      "unload_fraction": 0.0,
+      "route": "delivery_drift090",
+      "time": 1.285,
+      "required_negative_null": 0.953305524759428,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.0335077568710156,
+      "auxiliary_ADM": 478.4704048429551
+    },
+    {
+      "family": "radiation_fluid",
+      "unload_fraction": 0.0,
+      "route": "guide_omitted_tensor_bound",
+      "time": 1.285,
+      "required_negative_null": 0.8984517593410047,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -1.0,
+      "auxiliary_ADM": 449.3211541069728
+    },
+    {
+      "family": "stiff_fluid",
+      "unload_fraction": 0.0,
+      "route": "delivery_drift050",
+      "time": 1.285,
+      "required_negative_null": 0.6797880352712092,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.0335077573261689,
+      "auxiliary_ADM": 338.4976298041878
+    },
+    {
+      "family": "stiff_fluid",
+      "unload_fraction": 0.0,
+      "route": "delivery_drift090",
+      "time": 1.285,
+      "required_negative_null": 0.6797880352712092,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -0.0335077573261689,
+      "auxiliary_ADM": 338.4976298041878
+    },
+    {
+      "family": "stiff_fluid",
+      "unload_fraction": 0.0,
+      "route": "guide_omitted_tensor_bound",
+      "time": 1.285,
+      "required_negative_null": 0.624934269904451,
+      "peak_x": -0.51328125,
+      "peak_null_cosine": -1.0,
+      "auxiliary_ADM": 309.3483790682056
+    }
+  ],
+  "maximum_work_identity_residual": 2.56175289314875e-14,
+  "maximum_stream_balance_residual": 1.8096635301390052e-14,
+  "field_time_intervals": 257,
+  "time_refinement_scope": "Transport geometry interpolation; original material/field time history retained."
+}

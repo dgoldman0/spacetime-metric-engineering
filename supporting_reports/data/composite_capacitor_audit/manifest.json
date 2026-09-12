@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-09-12T13:47:11.693910+00:00",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_composite_capacitor.py": "972a785754f829f15d5b3920c5ea4207457005fc81be262223fa57b53585c083",
+    "toolkit/adm_harness_cli/tests/test_composite_capacitor_transport.py": "f4dce2ba07749f659222fe9f0d5908c275385d4b0af34e09291141985b77f922",
+    "supporting_reports/data/composite_capacitor/manifest.json": "04bad24c00017fafdec5ed790eb2462f6e5c9d7b044e93ccf434fc4006b81e87",
+    "supporting_reports/data/composite_capacitor_transport/manifest.json": "c2d02698bf7e2b8865436d68f626cfb6019da6c2b156192410ddaad691da834a"
+  },
+  "output_sha256": {
+    "composite_capacitor_connections.pdf": "cfeab4fb5b729b12541c6f9fdf015584670f2daeecc9746b50fbaf4d583a8008",
+    "composite_capacitor_connections.png": "c6b03187c8750619abb4f9db34da853781a32b89e05a14e686b808ad2998edc7",
+    "force_witnesses.json": "fb1c764d1ba8a2bef966193b3cb369fc6842734d5c334a68e6988b045a00dbd3",
+    "numerical_audit.json": "8447ab884178ebf777fbdcc0db00915876e79c8ad1b7a0dc19804a8e65696cad",
+    "pinned1024_sample1024_fade_force.csv": "e65669fa0f822d868b23a2f25713d667259fa1c2537900e5dbdce1579791f6be",
+    "pinned1024_sample1024_force.json": "f6a1e660b8cc028a965863f9128871e617654f74e710b8a66e5e2a50956d658e",
+    "pinned1024_sample4096_fade_force.csv": "8e002869fe21d42ff7c08511f492da3d21c85ed9e8e87a95184fb10f65376237",
+    "pinned1024_sample4096_force.json": "e96d7cfce2cb9141896be061db1a67f385e355800171f994c7d7051c7d016971",
+    "pinned512_sample512_fade_force.csv": "8861ead238274e179a0b5eed8a80305d150fed661621ded2cdabcb4f071d9ff4",
+    "pinned512_sample512_force.json": "8e63291a820a1a1671e483cbbe497674a9901e2c04a12643044070a488bae41e"
+  }
+}

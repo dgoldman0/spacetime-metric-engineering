@@ -1,0 +1,22 @@
+{
+  "pinned_cells": 1024,
+  "evaluation_cells": 4096,
+  "time": 1.285,
+  "gap": 0.031898024041363444,
+  "left_index": 127,
+  "right_index": 3213,
+  "left_x": -2.0501953125,
+  "right_x": -0.8447265625,
+  "required_pressure_drop": 0.03775449145871679,
+  "maximum_available_pressure_drop": 0.005856467417353343,
+  "maximum_fade_material_speed": 1.3748375828626442e-10,
+  "interval_minimum_acceleration": 2.1633565106205304e-05,
+  "integrated_temporal_allowance": 5.319824139029291e-18,
+  "omitted_positive_costs": [
+    "charge-carrier excess energy",
+    "heat receiver",
+    "work-wave momentum",
+    "extra retained support energy"
+  ],
+  "temporal_scope": "Arbitrary pressure allocation at archived times, linear across the final interval; no subinterval pulses."
+}

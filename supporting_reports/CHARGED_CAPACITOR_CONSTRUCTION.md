@@ -343,3 +343,9 @@ The largest conservative stream-balance residual is below 5.4e-14. The
 guide-omitted fade maximum agrees exactly with the independent radial-null
 expression. New evidence occupies approximately 25 MB, and independent cases
 run with at most four workers.
+
+The [composite capacitor and rail-connection continuation](COMPOSITE_CAPACITOR_AND_RAIL_CONNECTIONS.md)
+separates charged tensile skins from directional and fluid backing, credits
+the existing pressure, and counts partial unloading through the work route.
+Its pressure-allocation bound locates the remaining construction duty in
+the longitudinal backing, pressure link, and standing-support connection.
