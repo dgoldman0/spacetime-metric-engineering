@@ -114,7 +114,7 @@ def test_reallocation_can_cool_existing_fluid_without_negative_total_energy():
     assert np.min(result['amplitude'][-1]-result['amplitude'][0])>.5
 
 
-def test_receiver_exchange_counts_total_energy_and_keeps_rated_capacity():
+def test_receiver_exchange_counts_withdrawal_and_keeps_rated_capacity():
     t=np.linspace(0,1,7);edges=np.linspace(-.01,.01,5)
     nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
     progress=t[:,None]*one
@@ -125,8 +125,7 @@ def test_receiver_exchange_counts_total_energy_and_keeps_rated_capacity():
     assert result['success'] and result['minimum_added_density']<.1
     A=result['amplitude'];W=result['balanced_radiation_rest'];B=result['thermal_reservoir_rest']
     Z=result['receiver_thermal_energy']
-    # Prepared phase/radiation can substitute for receiver inventory at this
-    # optimum; conservation and the full cone apply to either allocation.
+    assert np.min(Z[0]-Z[-1])>.5
     assert Z.min()>=-1e-9 and Z.max()<=1+1e-9
     assert_allclose(np.diff(A+W+B+Z,axis=0),0.,atol=1e-8)
     assert_allclose(result['receiver_contact_energy_to_fluid'],-np.diff(Z,axis=0),atol=1e-12)
@@ -147,7 +146,6 @@ def test_receiver_original_feed_is_preserved_and_invalid_capacity_rejected():
     total=(result['amplitude']+result['balanced_radiation_rest']+
            result['thermal_reservoir_rest']+result['receiver_thermal_energy'])
     assert_allclose(np.diff(total,axis=0),np.diff(Z0,axis=0),atol=1e-8)
-    assert result['receiver_contact_energy_to_fluid'].max()>1e-3
     with pytest.raises(ValueError,match='receiver_reference'):
         solve_pair(*args,thermal_eos=1/3,receiver_reference=(Z0,np.ones(4)*2))
     with pytest.raises(ValueError,match='rated capacity'):

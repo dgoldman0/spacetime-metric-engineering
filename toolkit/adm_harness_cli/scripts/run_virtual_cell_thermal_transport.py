@@ -19,7 +19,7 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 
 def evaluate(spec):
-    center, width, intervals, stride, reserve, output, deadline, solver_method, reallocate_fluid = spec
+    center, width, intervals, stride, reserve, output, deadline, solver_method, reallocate_fluid, reallocate_receiver = spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -36,11 +36,18 @@ def evaluate(spec):
     budget[0] *= 1-reserve
     extra={}
     reference=None
+    receiver=None
     if reallocate_fluid:
         old=h.h.reference.h.state
         reference=bilinear(old['t'],old['x'],old['thermal'],t,x)[0]/nodes['D']
         number=np.interp(x,old['x'],old['number'])
         extra=dict(reference_fluid_density=reference,fluid_particle_number=number)
+        if reallocate_receiver:
+            ref=h.h.reference;state=h.h.state
+            heat=bilinear(ref.t,ref.x,state['heat'],t,x)[0]
+            capacity=np.interp(x,ref.x,state['heat_cap'])
+            receiver=(heat,capacity)
+            extra['receiver_fixed_containment_energy']=capacity/3
     model = h.h.reference.h.model
     gm = [model.metric(float(now), x) for now in tm]
     ge = [model.metric(float(now), edges) for now in tm]
@@ -51,9 +58,11 @@ def evaluate(spec):
         interface_sigma=1e-7, coherent_cells=True, return_heat=True,
         guide_drift=.5, wave_envelope=True, matched_pair=True,
         thermal_eos=1/3, thermal_reference_density=reference,
+        receiver_reference=receiver,
         solver_threads=1, solver_method=solver_method, deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
+    if reallocate_receiver: label+='_receiver'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -63,6 +72,9 @@ def evaluate(spec):
         existing_fluid_thermal_state_reallocated=reallocate_fluid,
         existing_fluid_original_power_duty_preserved=reallocate_fluid,
         existing_fluid_cold_particle_inventory_retained=reallocate_fluid,
+        existing_receiver_heat_reallocated=reallocate_receiver,
+        existing_receiver_rated_capacity_retained=reallocate_receiver,
+        existing_receiver_containment_retained=reallocate_receiver,
         remaining_backing_original_power_duty_preserved=True,
         prepared_radiation_and_thermal_inventories_counted=True,
         endpoint_external_power_added=0.,
@@ -103,12 +115,15 @@ def main():
     parser.add_argument('--deadline', type=float, default=240.)
     parser.add_argument('--solver-method', choices=['highs-ds', 'highs-ipm'], default='highs-ds')
     parser.add_argument('--reallocate-fluid', action='store_true')
+    parser.add_argument('--reallocate-receiver', action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
         parser.error('one or two workers and an even spatial count >=4 required')
     if args.stride < 1 or args.width <= 0 or not 0 <= args.reserve < 1 or args.deadline <= 0:
         parser.error('positive scales and reserve in [0,1) required')
+    if args.reallocate_receiver and not args.reallocate_fluid:
+        parser.error('receiver exchange requires the reallocated pressure-link fluid')
     output = BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal-transport evidence')
@@ -131,7 +146,8 @@ def main():
             raise RuntimeError('changed input dependency: '+relative)
     output.mkdir()
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
-              str(output), args.deadline, args.solver_method, args.reallocate_fluid) for center in args.centers]
+              str(output), args.deadline, args.solver_method, args.reallocate_fluid,
+              args.reallocate_receiver) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))

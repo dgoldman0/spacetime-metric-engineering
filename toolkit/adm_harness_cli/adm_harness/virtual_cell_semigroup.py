@@ -37,6 +37,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                guide_drift=None, reservoir_eos=None, confine_reservoir=False,
                wave_envelope=False, matched_pair=False, thermal_eos=None,
                thermal_reference_density=None,
+               receiver_reference=None,
                solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -58,6 +59,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         # Reopen the existing fluid thermal state. The caller's target excludes
         # that baseline fluid; its full stress is available exactly once.
         target=target+np.array([reference,reference/3,reference/3])
+    receiver_reopened=receiver_reference is not None
+    if receiver_reopened:
+        if thermal_reference_density is None or len(receiver_reference)!=2:
+            raise ValueError('receiver_reference requires existing fluid and (heat, rated capacity)')
+        receiver_old,receiver_cap=map(np.asarray,receiver_reference)
+        if (receiver_old.shape!=(nt,nx) or receiver_cap.shape!=(nx,) or
+                not np.all(np.isfinite(receiver_old)) or not np.all(np.isfinite(receiver_cap)) or
+                np.any(receiver_old<0) or np.any(receiver_cap<0) or
+                np.any(receiver_old>receiver_cap+1e-10)):
+            raise ValueError('receiver_reference requires finite heat within nonnegative rated capacity')
+        # Only stored heat is reopened. Its fixed containment and cold fluid
+        # mass retain their original allocation outside this target.
+        target=target.copy();target[0]+=receiver_old/nodes['D']
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -95,6 +109,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         reference_inventory=(thermal_weight*reference if thermal_reference_density is not None
                              else np.zeros((nt,nx)))
         reference_power_panel=(measure_mid/thermal_weight_mid)*np.diff(reference_inventory,axis=0)
+        if receiver_reopened:
+            receiver_inventory=np.arange(nt*nx).reshape(nt,nx)+epsilon
+            epsilon+=nt*nx
+            receiver_weight=measure_mid/mids['D']
+            receiver_reference_panel=receiver_weight*np.diff(receiver_old,axis=0)
     if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
         raise ValueError('axial confinement comparison is defined for the directed radiation store')
     if closed:
@@ -125,13 +144,18 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     def material_terms(index,j,midpoint=False):
         """Independent local material/radiation inventories in the same frame."""
         if distributed:
+            receiver=()
+            if receiver_reopened:
+                receiver=([(receiver_inventory[index,j],.5/mids['D'][index,j]),
+                           (receiver_inventory[index+1,j],.5/mids['D'][index,j])] if midpoint
+                          else [(receiver_inventory[index,j],1/nodes['D'][index,j])])
             if midpoint:
                 return ([(material_inventory[index,j],.5/thermal_weight_mid[index,j]),
                          (material_inventory[index+1,j],.5/thermal_weight_mid[index,j])],
                         [(balanced_inventory[index,j],.5/measure_mid[index,j]),
-                         (balanced_inventory[index+1,j],.5/measure_mid[index,j])])
+                         (balanced_inventory[index+1,j],.5/measure_mid[index,j])],receiver)
             return ([(material_inventory[index,j],1/thermal_weight[index,j])],
-                    [(balanced_inventory[index,j],1/measure[index,j])])
+                    [(balanced_inventory[index,j],1/measure[index,j])],receiver)
         if closed:
             if midpoint:
                 return ([(store[index],.5*density_weight_mid[index,j]),
@@ -139,7 +163,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             return ([(store[index],density_weight[index,j])],())
         return (),()
 
-    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density,buffer=(),balanced=()):
+    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density,buffer=(),balanced=(),receiver=()):
         scaled=lambda items,k:[(i,k*v) for i,v in items]
         aa=scaled(amplitude,1/radius**2)
         w1,w2,w3=(0,1,2) if distributed else ((1-wr-2*wt,1-wr+wt,1+2*wr+wt) if closed else (0,0,0))
@@ -155,11 +179,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             facets.extend([(scaled(aa,-1)+scaled(ua,6)+scaled(buffer,w3),rho+2*p+q),
                            (scaled(aa,-1)+scaled(ur,6)+scaled(buffer,w3),rho+2*p+q)])
         for entries,rhs in facets:
-            ub.add(entries+[(epsilon,-1)],rhs)
+            ub.add(entries+list(receiver)+[(epsilon,-1)],rhs)
         if guide:
             # Radial field already in the balanced core supplies a/2. Only
             # the remaining guide requirement constrains the auxiliary field.
-            ub.add(scaled(aa,.5)+scaled(ua+ur,3*guide)+scaled(buffer,w2)+[(epsilon,-1)],rho-p+q)
+            ub.add(scaled(aa,.5)+scaled(ua+ur,3*guide)+scaled(buffer,w2)+list(receiver)+[(epsilon,-1)],rho-p+q)
 
     def add_confinement(index,midpoint=False):
         # Generous integrated axial-restraint bound for a locally contained,
@@ -281,16 +305,23 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             for j in range(nx):
                 half=j//halfnx;phi=mids['ell'][i,j]**2
                 psi=measure_mid[i,j]/thermal_weight_mid[i,j]
+                receiver=[];forcing=reference_power_panel[i,j]
+                if receiver_reopened:
+                    receiver=[(receiver_inventory[i+1,j],receiver_weight[i,j]),
+                              (receiver_inventory[i,j],-receiver_weight[i,j])]
+                    forcing+=receiver_reference_panel[i,j]
                 eq.add([(balanced_inventory[i+1,j],1),(balanced_inventory[i,j],-1),
                     (A[i+1,half],phi),(A[i,half],-phi),
-                    (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)],
-                    reference_power_panel[i,j])
+                    (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)]+receiver,forcing)
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
                     (store[i],-1+dt*work_rate[i]/2)]+incident+[(k,-v) for k,v in returned])
             port_terms.append((incident,returned,total_return))
     bounds=[(0.,None)]*columns
+    if receiver_reopened:
+        for i in range(nt):
+            for j in range(nx):bounds[int(receiver_inventory[i,j])]=(0.,float(receiver_cap[j]))
     for k in np.r_[absorption[-1],recovery[0]]: bounds[int(k)]=(0.,0.)
     if closed:
         for k in useful[0]: bounds[int(k)]=(0.,0.)
@@ -318,6 +349,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         cost[absorption.ravel()]=0.;cost[recovery.ravel()]=0.
         cost[balanced_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/measure).ravel()
         cost[material_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/thermal_weight).ravel()
+        if receiver_reopened:
+            cost[receiver_inventory.ravel()]=np.broadcast_to(time_weight[:,None]*dx,(nt,nx)).ravel()
     second=optimize()
     r=second if second.success else first
     amplitude=np.repeat(r.x[A],halfnx,axis=1)
@@ -340,6 +373,17 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         phase_weight=mids['ell']**2;exchange_weight=measure_mid/thermal_weight_mid
         thermal_balance=(np.diff(u,axis=0)+phase_weight*np.diff(amplitude,axis=0)
                          +exchange_weight*np.diff(k_state,axis=0)-reference_power_panel)
+        if receiver_reopened:
+            receiver_energy=r.x[receiver_inventory];receiver_density=receiver_energy/nodes['D']
+            rho=rho-receiver_density
+            thermal_balance+=receiver_weight*np.diff(receiver_energy,axis=0)-receiver_reference_panel
+            reservoir.update(receiver_thermal_energy=receiver_energy,receiver_rest=receiver_density,
+                receiver_reference_energy=receiver_old,receiver_rated_capacity=receiver_cap,
+                receiver_reference_power_panel=receiver_reference_panel,
+                receiver_contact_energy_to_fluid=-np.diff(receiver_energy-receiver_old,axis=0),
+                receiver_capacity_violation=float(np.maximum(receiver_energy-receiver_cap,0).max()),
+                receiver_containment_energy_reallocated=False,
+                receiver_contact_temperature_and_rate_supplied=False)
         floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
         reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
             thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,
