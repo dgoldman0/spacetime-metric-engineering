@@ -1,0 +1,214 @@
+{
+  "created_utc": "2026-09-12T21:40:27.559925+00:00",
+  "git_head": "54685c44028892080aefa58360ba8d704c30edf9",
+  "workers": 2,
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_averaged_replay/manifest.json": "014660f57ccc5a42e17090e03bcd5e3543a112f25823824812ff32a8a38b0f9d",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_exchange.py": "2772331760959ed873149a6949d9c1b5b29e6e55df1e075d91bfc54e0bacc468",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_counterstream.py": "1366d77ed1b3b7556e0bfa3898d3f300b4284248f6ba64d7d14e942e04d03d3f",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_thermal_exchange.py": "96ddaa1b3d43b646cb31a326c352cf3894911f98f0c794b51078ada42307f823",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_counterstream.py": "1a97db62f5542726fbec6ea93806c458cb036d6ce5992f4d06b332497fdcafed",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_exchange.py": "2237864abfd4de20f5a85383defbaec10fc2be961382ab6fe1607c6f940f20a8",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "supporting_reports/data/virtual_cell_averaged_controls/manifest.json": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c"
+  },
+  "immutable_input_checks": [
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    }
+  ],
+  "output_sha256": {
+    "summary.json": "227a205a50928ac9d15b58db5fd74cc9540a10958e300711273bc3e4e3d21360",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_fixed_phase_states.npz": "5ad85f15933492f204d61312ef35e542885b2f8ad35d1a71a95de61d4ff30f92",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_fixed_phase_summary.json": "390d1c71333d3a7b4061e3c68bed346d99ea4e9edb28adf3ed1736a5bcaa1d8a",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_joint_phase_states.npz": "c470292dc3f56a463d34d42bd3eaa50bb82f5ac597fd745fb0cf1e5186361f43",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_joint_phase_summary.json": "1a1971a891888c0ddacb610d887c817178acfa682ca6dda9e28e2570d59d9b83",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_fixed_phase_states.npz": "18244776ca78ccae089ae2527423edb9a9d015e11cfbc7db937c7a311506ba4c",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_fixed_phase_summary.json": "33ccb12973d593a49b7259e9705f0b3626c1f8d83903cc6ca9b139d28ebf2e7c",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_states.npz": "dc5d198ac71396ffd5681e07b32cee7c785365034a96cc1f6c25d93a59bcd409",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_summary.json": "2bdbf91e97702cd008c87d08ae4b8fbf6c4eebb77fe505eb1a9c3196f70c986a",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_fixed_phase_states.npz": "11798e7694ccd7435b8f2f836d8892ea9870c0990d9bc965e68d26022c8a4469",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_fixed_phase_summary.json": "303759ac54c34a5eebdfeb5dff20d042d2dae567b967c90c6ba73c1ce65790bf",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_joint_phase_states.npz": "58227078e256b7f035a8a299e346d2b451f8fdd10ac7d46a70ca92171fdfbe85",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_joint_phase_summary.json": "315b2516e958a00b483ad95a2fc2f814c184c99b0f9363b0a6e813cdda525127",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_fixed_phase_states.npz": "de2395456e18e21a9701cea7c876d96c000da984c549517db44ca02e8915f702",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_fixed_phase_summary.json": "9dc5690c6cc7495c2c1f3c49bf79359d569a4ddae815b758777395915ba672af",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_states.npz": "fc854b4e6f40e5c92b670ff83842091f8d1c97aff60ef60f01833a0aaad6c82a",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_summary.json": "bda6b66ff4d659e4a19c093fd9b1b702dbac472fc79cbecd9382f7b5ec510fbb",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_fixed_phase_states.npz": "421b67372549a28722d8e76b8824dc75167b55f61f61345a65186f378356a0e9",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_fixed_phase_summary.json": "de894d74371787b67076dcb0f5ecb16c387bfc32e4dc8f5394ef02679b80299f",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_joint_phase_states.npz": "83699fcff93539b58a3b6ade916f52c0dfc494c55a46f1f468eb07d5efa0d8c2",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_joint_phase_summary.json": "ee3febaca89d92043bfe6a6072cf47ccafec3a48e3e852f1840532de8d7aa2b9",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_fixed_phase_states.npz": "b83cd2a55935bf9e7245fcad5263e5ca0a132def0eed7e130e08b5fa6a7a019e",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_fixed_phase_summary.json": "696797898eb867e86813e9cca44c1be27485411556686cb517798bd60a8d1418",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_states.npz": "0fa85cd863f633bb59a192195c12ac80fed8b37dd94fb5b77d61986044b86b68",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_summary.json": "05258a74313d8afee7424094872e5ddbe17caf3e882dfe7efe2491fbdf57f0f6",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_fixed_phase_states.npz": "80c30556f9659dc4bf2e7581856ddbd349a0482ba058c23b673c76b6e44de50b",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_fixed_phase_summary.json": "93fb7352055edfd9a8ec82a52adf4028ca904e32a32f27e3ed89d8d5838a1351",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_joint_phase_states.npz": "7afb57f1d660c8e7f9201c20da0783b2cfe470411b418a6931173ad96435c950",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_joint_phase_summary.json": "57012b4e9abd3acd27ee205f794e213571189f152aa796db31292bc5b016369d",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_fixed_phase_states.npz": "1eff1fd1a0666ee0ac9a6c4a6eb07ca76818ff684404a05df20b7845b61ebf30",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_fixed_phase_summary.json": "b4609feca3ff74fb76da45d0f1db7b97be238b391eea0a8d2dda33f267da8f98",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_states.npz": "d3fbb1e035d8b6df8b0e11ed3186b5f0e0cfbba65a9a6e99ff1245b5c5a5ad9b",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_summary.json": "66dcc64eff891fd2e0ff52b48e191be6f5bca05fc7c51082e8faa9814c60b63a",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_fixed_phase_states.npz": "318cc45436c4cfbd0f6b45788dbb6a3a01c54e579990d530c860ef552b2d25d6",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_fixed_phase_summary.json": "f0e04eafe410c0f9f5f8d92e0961ca3e39348bb59080d1bfb6165b3146120e41",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_joint_phase_states.npz": "2f086b0f8ebc61c899e4670f36dfd52e879f96ea71830aab9662c268686cc7d1",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_stored_excitation_joint_phase_summary.json": "88ecbd9f6a8b191e4aee942e5981a2fc51ddcbe156552e45d543e0b7cc8937b8",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_fixed_phase_states.npz": "cdd487f7c8b8e4a56b283cbcb940b221453ac337509a2a399efdcc6f68cb4db3",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_fixed_phase_summary.json": "2681ba3fef41617ec14ef4a2adc0799e65aa7beeb64405fd546053a6fb6ad40b",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_states.npz": "a2d30981b9caef9675d80bad74ffeceab3155bb4db13fca78f1a978f2a3ef208",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_summary.json": "ad08be06d02cc5b257ae6bad1c796c531f6ef657ef14a43b8cff7545bc0d7fcd",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_fixed_phase_states.npz": "167bafd53b0e5cead37fc1c8279d5c75a901a2a7bbe82b261136f671ff2c679d",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_fixed_phase_summary.json": "85fe1bd1164d03913f3b08daacd36c9fe22df0198bbc2f1736dd6a1ed1735827",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_joint_phase_states.npz": "7043cb4395830d2f11ef3f67e0dc1c56cac0fc989539e1f0f84199c8ca6ab87a",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_stored_excitation_joint_phase_summary.json": "7f8c2f1582fa6ddc761ca9afe73c7e4683fb0bc0977f06359883ce0b913fa622",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_fixed_phase_states.npz": "f101fd745bdc1fdd0409beeecfaa63afd783f3b2492849f9069e9397900964b0",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_fixed_phase_summary.json": "ef838ef8c50b4716a417f40828497cb390bae16feb2267ad439a51fa75444e7c",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_states.npz": "bd517c59c8062e8aabdd2d929d8ef7f12266fd1a3a332b44a356664a4e549919",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_summary.json": "29f84d6f085e8f0b5eef8c69b8dfeda698fa4616cbdc7f5009c8e11a48efe0e3",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_fixed_phase_states.npz": "3b047fbe6e388e778a6ee9773b61eda8110d6365593f2c8d799f52f7500abb32",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_fixed_phase_summary.json": "e7bae81066ba63bc887e4c115160f2cc5f9a4590e6f8db16c750b15dd5efb2ae",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_joint_phase_states.npz": "961022a0352274d36861b73cf47106eee31da1678fc2519df94bc75075bb444b",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_stored_excitation_joint_phase_summary.json": "b0ec6760bddff338fb37781377993c048d620389dd2555315ee0677073cc0672",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_fixed_phase_states.npz": "eed93cb9ab49be672d46f4db6b428d0fb226707fe371b3c6f6e56fdfe0f99c5f",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_fixed_phase_summary.json": "64b5a27c0aea50d853233c06ba0528607f52deeba5cfcffe79b81d9de3ce3391",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_states.npz": "ac4670557b9fdf632d0dc7ca4318c95e300338a92d421fcb7696190af94b580b",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_summary.json": "9893cf74cb599d91cc468226535db7e635dcaa17a1f7dbe0e2a5a0e07ebadf78",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_fixed_phase_states.npz": "6ad53232807e2da950c47594057d7f2fa6ca702b91a9c02478a117902b77118f",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_fixed_phase_summary.json": "9c0af906cf8380e12d0a482a7dedcbda280b97968951adf9f810c8cadd8538e4",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_joint_phase_states.npz": "52fab03213fa6dbd7017186f09a802270280ea70cfb7e8fc11d06df94cfa478d",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_stored_excitation_joint_phase_summary.json": "9f010dde428d78ee4c496b783fd0e877bac0084224379c26560ebfe628fff825",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_fixed_phase_states.npz": "9ee7d993e15b5c60659baf684bee0dd849fc9121980eff1839335d8825b263f5",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_fixed_phase_summary.json": "4698272b630d99407eddca1594f2193262bfe3547b531e67635c53b6219dd6c9",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_states.npz": "bfd33b5e3c9e9380e009e1bdca3f052f99f98a253e394a4e233e0d42c5de02bb",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_summary.json": "9ef6608be12c2e19c3a8e37cac8b56988db6c0903ecd8ea3c9fe4e0c7a3a2566"
+  }
+}
