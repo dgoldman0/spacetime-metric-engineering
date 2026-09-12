@@ -211,6 +211,33 @@ separate guide check allocates guiding magnetic energy from the field already
 present in the core and auxiliary mixture. These changes address the
 identified numerical and component-accounting gaps directly.
 
+## Positive transport with resolved replay
+
+The exponential calculation uses all 515 original time nodes, a 0.2%
+reserved density margin, and pair width 0.0005 at both startup locations.
+Each run has 24 spatial samples. It includes 98% conversion efficiency,
+thermal return, and the same finite membrane allowance. A guide requirement
+corresponding to a drift bound of 0.5 is supplied from existing core and
+auxiliary radial field energy. This bounds the electromagnetic guide
+contribution for the explicit transport streams; current-carrier inertia
+and the complete guide geometry remain separate construction requirements.
+
+Both optimized controls pass independent replay at 48 spatial samples and
+1029 time samples. The smallest remaining density margins are 0.00010765
+at `x=-2` and 0.00007134 at `x=-1.975`. The largest travelling densities are
+0.0015582 and 0.0021441. The wave ledgers close within `1.2e-19`; conversion
+increments remain positive and contain zero simultaneous forward/reverse
+cycling. The selected short, coherent phase-volume cells therefore clear
+this local stress and causal transport comparison at the tested resolution.
+
+The common power port still connects to an external supply and recovery
+system. A post-processing comparison of these schedules finds insufficient
+space in their stress budget for an isolated pressureless shared buffer.
+The controls were selected by minimizing travelling inventory, so that
+comparison supplies a reason to optimize the store and cells together.
+The source target remains the retained `f=0.99` history; the lower-null-load
+scalar blend has a different angular-stress requirement.
+
 ## Reproduction
 
 The [controller gate](data/virtual_cell_controller_gate/summary.json) contains
@@ -234,3 +261,10 @@ and [independent wider-cell replay](data/virtual_cell_independent_replay/summary
 retain the controls and transient failures. The
 [narrower replay](data/virtual_cell_narrow_replay/summary.json) records its
 completed `x=-1.975` case and the numerical positivity failure at `x=-2`.
+
+The [exponential transport cases](data/virtual_cell_semigroup/summary.json)
+and their [independent replay](data/virtual_cell_semigroup_replay/summary.json)
+retain the two successful short-cell controls, finite wave histories, guide
+comparison, and local margins. Four additional tests check the exact
+single-cell propagator, positivity at large transit Courant number, a
+constant-tension control, and the monotonic cost of adding a guide bound.

@@ -30,6 +30,8 @@ def audit(spec):
     if not meta['coherent_cell_amplitudes'] or not meta['heat_return']:
         raise ValueError('audit requires coherent cells with explicit heat return')
     with np.load(path) as z: s={k:z[k] for k in z.files}
+    if min(s['positive_increment'].min(),s['negative_increment'].min()) < 0:
+        raise ValueError('archived conversion source has a negative increment; no silent clipping is applied')
     h=DenseHistory('routed_family',ROOT/meta['input'])
     oldt,oldx=s['t'],s['x']; oldn=len(oldx)
     t=np.r_[(oldt[:-1,None]+np.diff(oldt)[:,None]*np.arange(factor)[None,:]/factor).ravel(),oldt[-1]]
@@ -78,7 +80,13 @@ def audit(spec):
     p=h.pressure(t,x)[0]; q=c['Q']/c['D']
     core=amplitude/radius**2
     wall=2*meta['interface_sigma']/(c['ell']*(edges[-1]-edges[0])/2)
-    need=core+travelling+abs(current)+wall+minimum_energy(p+core-travelling-abs(current),q+wall)
+    residual_p=p+core-travelling-abs(current); residual_q=q+wall
+    drift=meta.get('guide_drift_bound')
+    guide=0. if drift is None else .5*(drift**-2-1)
+    extra_guide=np.maximum(guide*travelling-core/2,0.)
+    auxiliary=np.maximum.reduce([residual_p+2*residual_q,
+        residual_p-residual_q+3*extra_guide,-2*residual_p-residual_q])
+    need=core+travelling+abs(current)+wall+auxiliary
     deficit=need-rho
     i,j=np.unravel_index(np.argmax(deficit),deficit.shape)
     result=dict(label=label,factor=factor,spatial_samples=nx,time_samples=len(t),
@@ -94,6 +102,7 @@ def audit(spec):
         maximum_wave_balance_residual=float(max(abs(row['balance_residual']) for row in ledgers)),
         maximum_travelling_density=float(travelling.max()),
         maximum_travelling_heat_density=float(heat.max()),
+        guide_drift_bound=drift,maximum_auxiliary_guide_floor=float(extra_guide.max()),
         simultaneous_conversion_increment=float(np.minimum(s['positive_increment'],s['negative_increment']).max()),
         phase_field_equations_solved=False,full_interface_and_guide_construction_supplied=False)
     stem=label+f'_factor{factor}'
