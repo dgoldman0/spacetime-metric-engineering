@@ -9,8 +9,8 @@ receiver containment. It identifies a useful thermal allocation within the
 existing assembly. Resolving the actual midpoint stress and reconstructing
 continuous heat-transfer rates subsequently clears the sampled curved
 replay at `x=-1.975`, including its full thermal preparation. The first
-location also has a verified refined finite allocation after disabling
-solver presolve; its curved replay follows separately. Physical photon
+location also clears a refined curved replay after a verified finite
+allocation obtained with solver presolve disabled. Physical photon
 contacts, reciprocal forces, and material constitutive closure remain the
 next construction requirements.
 
@@ -588,3 +588,13 @@ the remaining fluid-support power continue to apply. The resulting
 routing test separates a temperature mismatch from an insufficient
 existing heat-transfer budget; a joint thermal reallocation can be
 tested with linear panel constraints if the unchanged histories fail.
+
+The [passive photon-closure analysis](VIRTUAL_RADIAL_CELL_PASSIVE_PHOTON_CLOSURE.md)
+records the first-location curved clearance and the explicit bank-routing
+test. Both locations satisfy the counted sampled stress and thermal-bank
+budgets. At the second location, separate banks repair the photon
+temperature ordering while their available transfer rates fail to supply
+the unchanged complementary-photon history. This identifies the next
+joint constraint without changing the rail architecture. The focused
+acceptance and transport suite has 125 passing tests; five additional
+routing tests cover the subsequent bank audit.
