@@ -1,0 +1,41 @@
+{
+  "label": "field_membrane_fraction1",
+  "fraction": 1.0,
+  "components": "field_membrane",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.3185451563549302
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.14484917571478725
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.12733376921764022
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 2
+    }
+  ],
+  "total_constraints": 1323550,
+  "intervals": 256,
+  "time_nodes": 515,
+  "physical_material_law_supplied": false,
+  "end_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_validated": false,
+  "elapsed_seconds": 36.50861172750592
+}

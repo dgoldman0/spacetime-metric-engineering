@@ -1,0 +1,25 @@
+{
+  "absorption_left_fraction": 0.24521321571097193,
+  "recovery_left_fraction": 0.0,
+  "node_density_deficit": 0.13802131151614727,
+  "witness": {
+    "t": 0.5,
+    "x": -2.1,
+    "density": 0.03546132667734466,
+    "radial_pressure": 0.17348263737743752,
+    "angular_pressure": -8.160546003931892e-10
+  },
+  "weighted_force_residual": 0.005737493113160349,
+  "weighted_power_residual": 0.015108733984085104,
+  "maximum_force_residual": 0.009950090241355609,
+  "maximum_power_residual": 0.007229407217981513,
+  "maximum_separate_member_density_shortfall": 0.13687112488467976,
+  "maximum_batch_relative_member_shortfall": 0.9400223673539093,
+  "minimum_support_density": -0.0208953366459263,
+  "audit_time_samples": 1542,
+  "audit_spatial_samples": 768,
+  "wave_power_history_unchanged": true,
+  "added_route_cost_included": false,
+  "member_energy_admissible": false,
+  "physical_route_supplied": false
+}

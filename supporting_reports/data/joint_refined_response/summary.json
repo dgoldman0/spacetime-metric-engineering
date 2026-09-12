@@ -1,0 +1,432 @@
+{
+  "cases": [
+    {
+      "label": "members_fraction0.9",
+      "fraction": 0.9,
+      "components": "members",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 2
+        }
+      ],
+      "total_constraints": 1455905,
+      "intervals": 256,
+      "time_nodes": 515,
+      "physical_material_law_supplied": false,
+      "end_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_validated": false,
+      "elapsed_seconds": 34.77376722730696
+    },
+    {
+      "label": "members_fraction0.99",
+      "fraction": 0.99,
+      "components": "members",
+      "success": true,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.14384388810347554
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.15274604338768816
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2602,
+          "status": 0,
+          "maximum_full_violation": 0.13163421471684367
+        },
+        {
+          "iteration": 3,
+          "active_rows": 3003,
+          "status": 0,
+          "maximum_full_violation": 0.2909259404734282
+        },
+        {
+          "iteration": 4,
+          "active_rows": 3403,
+          "status": 0,
+          "maximum_full_violation": 0.04162476360345216
+        },
+        {
+          "iteration": 5,
+          "active_rows": 3803,
+          "status": 0,
+          "maximum_full_violation": 0.025319333006471267
+        },
+        {
+          "iteration": 6,
+          "active_rows": 4204,
+          "status": 0,
+          "maximum_full_violation": 0.029167033190879543
+        },
+        {
+          "iteration": 7,
+          "active_rows": 4604,
+          "status": 0,
+          "maximum_full_violation": 0.0036745937604066303
+        },
+        {
+          "iteration": 8,
+          "active_rows": 5004,
+          "status": 0,
+          "maximum_full_violation": 1.683085268378015e-11
+        }
+      ],
+      "total_constraints": 1455905,
+      "intervals": 256,
+      "time_nodes": 515,
+      "physical_material_law_supplied": false,
+      "end_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_validated": false,
+      "material_peak_upper": 1.7651173284008435,
+      "material_peak_sampled_lower": 1.7651173284008108,
+      "maximum_original_inequality_violation": 1.683085268378015e-11,
+      "maximum_node_member_density_shortfall": 0.0,
+      "initial_support_rest": 7914.706422893736,
+      "final_support_rest": 806.6314039436588,
+      "absorption_left_feed_fraction": 0.22748575007546273,
+      "recovery_left_emission_fraction": 0.0,
+      "parameters": [
+        13.420715819840783,
+        5.5396366173792675,
+        3.5679937930199257,
+        1.8312504152251923,
+        2.672390576548707,
+        1.6118043413564676,
+        -0.18661102216959707,
+        -0.6133573455588348,
+        5.612403110630258,
+        -0.22391851508765784,
+        0.8496685050117047,
+        -2.505975364579195,
+        0.21305907040136973,
+        0.5296325278848693,
+        -0.2207265263271671,
+        0.2349422502946251,
+        -0.9629389794870881,
+        0.9201694559219943,
+        0.26467710427709534,
+        -0.11560336274124099,
+        -1.7979421636214918,
+        0.41338276989777917,
+        -0.49680415858682375,
+        0.4409215884171917,
+        -1.633986768794541,
+        -1.611270296135488,
+        -1.7115645700001334,
+        0.22748575007546273,
+        0.0
+      ],
+      "elapsed_seconds": 34.93983639776707
+    },
+    {
+      "label": "members_fraction1",
+      "fraction": 1.0,
+      "components": "members",
+      "success": true,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.1450436983857395
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.1472107064846
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2602,
+          "status": 0,
+          "maximum_full_violation": 0.16115406733359477
+        },
+        {
+          "iteration": 3,
+          "active_rows": 3003,
+          "status": 0,
+          "maximum_full_violation": 0.1407180781503024
+        },
+        {
+          "iteration": 4,
+          "active_rows": 3404,
+          "status": 0,
+          "maximum_full_violation": 0.09700545072559547
+        },
+        {
+          "iteration": 5,
+          "active_rows": 3805,
+          "status": 0,
+          "maximum_full_violation": 0.04581240206187992
+        },
+        {
+          "iteration": 6,
+          "active_rows": 4206,
+          "status": 0,
+          "maximum_full_violation": 0.03441075887675118
+        },
+        {
+          "iteration": 7,
+          "active_rows": 4606,
+          "status": 0,
+          "maximum_full_violation": 0.012932850837901022
+        },
+        {
+          "iteration": 8,
+          "active_rows": 5006,
+          "status": 0,
+          "maximum_full_violation": 0.01890403196957227
+        },
+        {
+          "iteration": 9,
+          "active_rows": 5406,
+          "status": 0,
+          "maximum_full_violation": 0.003105150438600268
+        },
+        {
+          "iteration": 10,
+          "active_rows": 5412,
+          "status": 0,
+          "maximum_full_violation": 5.141824876758738e-05
+        },
+        {
+          "iteration": 11,
+          "active_rows": 5413,
+          "status": 0,
+          "maximum_full_violation": 1.6763227958516147e-11
+        }
+      ],
+      "total_constraints": 1455905,
+      "intervals": 256,
+      "time_nodes": 515,
+      "physical_material_law_supplied": false,
+      "end_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_validated": false,
+      "material_peak_upper": 1.4825101533408471,
+      "material_peak_sampled_lower": 1.4825101533408134,
+      "maximum_original_inequality_violation": 1.6763227958516147e-11,
+      "maximum_node_member_density_shortfall": 1.6763201937664007e-11,
+      "initial_support_rest": 7861.812067960965,
+      "final_support_rest": 787.3807680541514,
+      "absorption_left_feed_fraction": 0.23841604652232548,
+      "recovery_left_emission_fraction": 0.0,
+      "parameters": [
+        11.317860564644223,
+        5.601603203433258,
+        3.5317357056923697,
+        1.8187578393995911,
+        2.6524367275535936,
+        1.5767943877803892,
+        -0.11630909379013035,
+        -3.1435433606019125,
+        11.516317723559457,
+        -0.5052400052365214,
+        3.525695194933384,
+        -7.676373810612484,
+        0.3653438420863708,
+        -0.4966724027791885,
+        1.4655512460105118,
+        0.18515120826678216,
+        -0.6509960314294878,
+        0.2269135469449939,
+        0.30271786004353674,
+        -0.2103440322569311,
+        -1.764558368137336,
+        0.43399723121671135,
+        -0.586326187289471,
+        0.527310647349151,
+        -1.6274937122923963,
+        -1.581210532928039,
+        -1.704809477837799,
+        0.23841604652232548,
+        0.0
+      ],
+      "elapsed_seconds": 33.59144463762641
+    },
+    {
+      "label": "field_membrane_fraction1",
+      "fraction": 1.0,
+      "components": "field_membrane",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.3185451563549302
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.14484917571478725
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2602,
+          "status": 0,
+          "maximum_full_violation": 0.12733376921764022
+        },
+        {
+          "iteration": 3,
+          "active_rows": 3003,
+          "status": 2
+        }
+      ],
+      "total_constraints": 1323550,
+      "intervals": 256,
+      "time_nodes": 515,
+      "physical_material_law_supplied": false,
+      "end_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_validated": false,
+      "elapsed_seconds": 36.50861172750592
+    }
+  ],
+  "selected_dense_work_audit": {
+    "label": "joint_refined_response_members_fraction0.99_states",
+    "kind": "routed_family",
+    "input": "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz",
+    "weighted_force_residual": 0.003751626286117966,
+    "weighted_power_residual": 1.3290746199887384e-07,
+    "maximum_force_residual": 0.044024116589024984,
+    "maximum_power_residual": 4.420661230155367e-09,
+    "maximum_work_reconstruction_density_change": 0.0007482443425864905,
+    "maximum_member_density_shortfall": 0.0,
+    "minimum_density": 0.04824775238357906,
+    "worst_member_witness": {
+      "time": 0.072783203125,
+      "x": -2.0007043854086204,
+      "density": 0.05783267695548459,
+      "radial_pressure": 0.05620116287782523,
+      "angular_pressure": -0.0009564366949853458
+    },
+    "member_energy_admissible": true,
+    "sampled_prestress_intervals": {
+      "1.0": {
+        "feasible": true,
+        "lower": 0.0,
+        "upper": null,
+        "minimum_radial_enthalpy_margin": 0.0008157120272717931
+      },
+      "0.9999": {
+        "feasible": true,
+        "lower": 0.0,
+        "upper": 66.66527784191554
+      },
+      "0.999": {
+        "feasible": true,
+        "lower": 0.0,
+        "upper": 6.305458591392115
+      },
+      "0.99": {
+        "feasible": false,
+        "lower": 0.0,
+        "upper": -0.28945246151167425
+      },
+      "0.95": {
+        "feasible": false,
+        "lower": 0.055859135068478435,
+        "upper": -1.8443670769885048
+      },
+      "0.9": {
+        "feasible": false,
+        "lower": 0.13228866338550735,
+        "upper": -2.0485922206709106
+      },
+      "0.75": {
+        "feasible": false,
+        "lower": 0.3877816580452905,
+        "upper": -2.3897064185287173
+      }
+    },
+    "minimum_prestress_member_fraction": 0.9912961936987829,
+    "end_jackets": [
+      {
+        "end": "left",
+        "success": false,
+        "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+        "witness_time": 1.285,
+        "witness_load": -4.999678602432223,
+        "witness_acceleration": 0.7586462280203643,
+        "witness_angular_gradient": -0.0924786518432612,
+        "witness_force_interval_per_unit_energy": [
+          0.5736889243338419,
+          0.9436035317068867
+        ],
+        "pointwise_force_cone_incompatible": true,
+        "incompatible_sample_fraction": 1.0
+      },
+      {
+        "end": "right",
+        "success": false,
+        "reason": "prepared surface inventory has an empty admissible interval",
+        "initial_energy_lower": 4273.658501936093,
+        "initial_energy_upper": 41.70485701589679,
+        "pointwise_force_cone_incompatible": false,
+        "incompatible_sample_fraction": 0.0
+      }
+    ],
+    "source_phases": null,
+    "temporal_samples": 2057,
+    "spatial_samples": 770,
+    "constitutive_law_supplied": false,
+    "full_construction_supplied": false,
+    "minimum_conserved_prestress": {
+      "amplitude": 0.0,
+      "added_initial_rest": 0.0,
+      "end_jackets": [
+        {
+          "end": "left",
+          "success": false,
+          "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+          "witness_time": 1.285,
+          "witness_load": -4.999678602432223,
+          "witness_acceleration": 0.7586462280203643,
+          "witness_angular_gradient": -0.0924786518432612,
+          "witness_force_interval_per_unit_energy": [
+            0.5736889243338419,
+            0.9436035317068867
+          ],
+          "pointwise_force_cone_incompatible": true,
+          "incompatible_sample_fraction": 1.0
+        },
+        {
+          "end": "right",
+          "success": false,
+          "reason": "prepared surface inventory has an empty admissible interval",
+          "initial_energy_lower": 4273.658501936093,
+          "initial_energy_upper": 41.70485701589679,
+          "pointwise_force_cone_incompatible": false,
+          "incompatible_sample_fraction": 0.0
+        }
+      ],
+      "source_phases": null,
+      "radial_null_change": 0.0,
+      "physical_material_supplied": false
+    },
+    "elapsed_seconds": 89.0840094955638
+  }
+}

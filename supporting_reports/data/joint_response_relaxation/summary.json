@@ -1,0 +1,112 @@
+{
+  "cases": [
+    {
+      "label": "fraction0.9_unbounded",
+      "success": false,
+      "status": 1,
+      "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+      "control_bounds": null,
+      "fraction": 0.9,
+      "conserved_radial_increment": false,
+      "end_connections_supplied": false,
+      "constitutive_law_supplied": false,
+      "elapsed_seconds": 141.49436543509364
+    },
+    {
+      "label": "fraction1_unbounded",
+      "success": true,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "control_bounds": null,
+      "fraction": 1.0,
+      "conserved_radial_increment": false,
+      "end_connections_supplied": false,
+      "constitutive_law_supplied": false,
+      "weighted_force_residual": 0.006866261709251315,
+      "weighted_power_residual": 0.1062569618874111,
+      "maximum_force_residual": 0.11025669312085862,
+      "maximum_power_residual": 0.0077906045083265,
+      "maximum_separate_member_density_shortfall": 0.0,
+      "maximum_batch_relative_member_shortfall": 0.0,
+      "minimum_support_density": 0.05777366004766345,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "parameters": [
+        17.261093828230333,
+        5.858851159265815,
+        3.8900625856254796,
+        1.9768228631185034,
+        2.877146199091111,
+        1.7565134117602972,
+        0.4935958147781535,
+        -2.941640265556085,
+        10.766638555390674,
+        -0.3366705963756778,
+        1.426852870567415,
+        -3.301622801215799,
+        0.2211687948135229,
+        0.019826728115209996,
+        0.2937218432343088,
+        0.2552219924186543,
+        -0.9388428359776063,
+        0.7959260729794216,
+        0.2671239662445598,
+        -0.23430873681620148,
+        -1.7181543609412375,
+        0.45046548743646514,
+        -0.6271679626562847,
+        0.5733267941200041,
+        -1.781408970459128,
+        -1.7261487841889758,
+        -1.9119453222511424
+      ],
+      "material_peak_sampled_lower": 2.0915302383372594,
+      "material_peak_exact_upper": 2.091530238337284,
+      "maximum_original_inequality_violation": 2.733924198139448e-14,
+      "maximum_absolute_control": 17.261093828230333,
+      "radial_increment": 0.0,
+      "initial_support_rest": 8377.220227094154,
+      "final_support_rest": 821.7334181320857,
+      "member_energy_admissible": true,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.5761465716108392
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.7420170648640991
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 2.1269779471874632
+        }
+      ],
+      "elapsed_seconds": 82.59605275094509
+    },
+    {
+      "label": "fraction0.9_prestress",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "control_bounds": null,
+      "fraction": 0.9,
+      "conserved_radial_increment": true,
+      "end_connections_supplied": false,
+      "constitutive_law_supplied": false,
+      "elapsed_seconds": 48.199840085580945
+    },
+    {
+      "label": "fraction0.75_prestress",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "control_bounds": null,
+      "fraction": 0.75,
+      "conserved_radial_increment": true,
+      "end_connections_supplied": false,
+      "constitutive_law_supplied": false,
+      "elapsed_seconds": 40.14941346459091
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "cases": [
+    {
+      "label": "original_route",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "components": [
+        "radial Maxwell field",
+        "balanced radial radiation",
+        "angular radiation",
+        "angular tensile membrane",
+        "rest inventory"
+      ],
+      "control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        0.0
+      ],
+      "currents_material_response_and_end_connections_supplied": false,
+      "elapsed_seconds": 39.52675925567746
+    },
+    {
+      "label": "variable_route",
+      "success": false,
+      "status": 1,
+      "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+      "components": [
+        "radial Maxwell field",
+        "balanced radial radiation",
+        "angular radiation",
+        "angular tensile membrane",
+        "rest inventory"
+      ],
+      "control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        1.0
+      ],
+      "currents_material_response_and_end_connections_supplied": false,
+      "elapsed_seconds": 170.23548600263894
+    }
+  ],
+  "current_candidate_composition": [
+    {
+      "input": "joint_response_relaxation/fraction1_unbounded_states.npz",
+      "energy_reconstructed_from_work": true,
+      "maximum_density_shortfall": 0.4933848436145276,
+      "energy_weighted_deficient_fraction": 0.9817011493915826,
+      "energy_weighted_radial_tension_fraction": 0.9927255350233615,
+      "energy_weighted_tension_above_90_percent_fraction": 0.23281930943805093,
+      "radial_pressure_density_ratio_range": [
+        -1.000000000000085,
+        0.9999999999998849
+      ]
+    },
+    {
+      "input": "joint_route_response/fraction0.99_states.npz",
+      "energy_reconstructed_from_work": true,
+      "maximum_density_shortfall": 0.45940322604894124,
+      "energy_weighted_deficient_fraction": 0.9827205127053181,
+      "energy_weighted_radial_tension_fraction": 0.9937415514231268,
+      "energy_weighted_tension_above_90_percent_fraction": 0.16025169861887437,
+      "radial_pressure_density_ratio_range": [
+        -0.9899999999999912,
+        0.9900000000000038
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "label": "fraction0.75",
+  "fraction": 0.75,
+  "success": false,
+  "status": 1,
+  "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+  "constitutive_law_supplied": false,
+  "physical_route_supplied": false,
+  "changed_route_stress_counted": false,
+  "end_connections_supplied": false,
+  "elapsed_seconds": 170.59039128478616
+}

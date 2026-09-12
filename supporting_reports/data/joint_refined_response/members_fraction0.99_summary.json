@@ -1,0 +1,111 @@
+{
+  "label": "members_fraction0.99",
+  "fraction": 0.99,
+  "components": "members",
+  "success": true,
+  "status": 0,
+  "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.14384388810347554
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.15274604338768816
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.13163421471684367
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 0,
+      "maximum_full_violation": 0.2909259404734282
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3403,
+      "status": 0,
+      "maximum_full_violation": 0.04162476360345216
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3803,
+      "status": 0,
+      "maximum_full_violation": 0.025319333006471267
+    },
+    {
+      "iteration": 6,
+      "active_rows": 4204,
+      "status": 0,
+      "maximum_full_violation": 0.029167033190879543
+    },
+    {
+      "iteration": 7,
+      "active_rows": 4604,
+      "status": 0,
+      "maximum_full_violation": 0.0036745937604066303
+    },
+    {
+      "iteration": 8,
+      "active_rows": 5004,
+      "status": 0,
+      "maximum_full_violation": 1.683085268378015e-11
+    }
+  ],
+  "total_constraints": 1455905,
+  "intervals": 256,
+  "time_nodes": 515,
+  "physical_material_law_supplied": false,
+  "end_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_validated": false,
+  "material_peak_upper": 1.7651173284008435,
+  "material_peak_sampled_lower": 1.7651173284008108,
+  "maximum_original_inequality_violation": 1.683085268378015e-11,
+  "maximum_node_member_density_shortfall": 0.0,
+  "initial_support_rest": 7914.706422893736,
+  "final_support_rest": 806.6314039436588,
+  "absorption_left_feed_fraction": 0.22748575007546273,
+  "recovery_left_emission_fraction": 0.0,
+  "parameters": [
+    13.420715819840783,
+    5.5396366173792675,
+    3.5679937930199257,
+    1.8312504152251923,
+    2.672390576548707,
+    1.6118043413564676,
+    -0.18661102216959707,
+    -0.6133573455588348,
+    5.612403110630258,
+    -0.22391851508765784,
+    0.8496685050117047,
+    -2.505975364579195,
+    0.21305907040136973,
+    0.5296325278848693,
+    -0.2207265263271671,
+    0.2349422502946251,
+    -0.9629389794870881,
+    0.9201694559219943,
+    0.26467710427709534,
+    -0.11560336274124099,
+    -1.7979421636214918,
+    0.41338276989777917,
+    -0.49680415858682375,
+    0.4409215884171917,
+    -1.633986768794541,
+    -1.611270296135488,
+    -1.7115645700001334,
+    0.22748575007546273,
+    0.0
+  ],
+  "elapsed_seconds": 34.93983639776707
+}

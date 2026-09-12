@@ -1,0 +1,129 @@
+{
+  "label": "members_fraction1",
+  "fraction": 1.0,
+  "components": "members",
+  "success": true,
+  "status": 0,
+  "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.1450436983857395
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.1472107064846
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.16115406733359477
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 0,
+      "maximum_full_violation": 0.1407180781503024
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3404,
+      "status": 0,
+      "maximum_full_violation": 0.09700545072559547
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3805,
+      "status": 0,
+      "maximum_full_violation": 0.04581240206187992
+    },
+    {
+      "iteration": 6,
+      "active_rows": 4206,
+      "status": 0,
+      "maximum_full_violation": 0.03441075887675118
+    },
+    {
+      "iteration": 7,
+      "active_rows": 4606,
+      "status": 0,
+      "maximum_full_violation": 0.012932850837901022
+    },
+    {
+      "iteration": 8,
+      "active_rows": 5006,
+      "status": 0,
+      "maximum_full_violation": 0.01890403196957227
+    },
+    {
+      "iteration": 9,
+      "active_rows": 5406,
+      "status": 0,
+      "maximum_full_violation": 0.003105150438600268
+    },
+    {
+      "iteration": 10,
+      "active_rows": 5412,
+      "status": 0,
+      "maximum_full_violation": 5.141824876758738e-05
+    },
+    {
+      "iteration": 11,
+      "active_rows": 5413,
+      "status": 0,
+      "maximum_full_violation": 1.6763227958516147e-11
+    }
+  ],
+  "total_constraints": 1455905,
+  "intervals": 256,
+  "time_nodes": 515,
+  "physical_material_law_supplied": false,
+  "end_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_validated": false,
+  "material_peak_upper": 1.4825101533408471,
+  "material_peak_sampled_lower": 1.4825101533408134,
+  "maximum_original_inequality_violation": 1.6763227958516147e-11,
+  "maximum_node_member_density_shortfall": 1.6763201937664007e-11,
+  "initial_support_rest": 7861.812067960965,
+  "final_support_rest": 787.3807680541514,
+  "absorption_left_feed_fraction": 0.23841604652232548,
+  "recovery_left_emission_fraction": 0.0,
+  "parameters": [
+    11.317860564644223,
+    5.601603203433258,
+    3.5317357056923697,
+    1.8187578393995911,
+    2.6524367275535936,
+    1.5767943877803892,
+    -0.11630909379013035,
+    -3.1435433606019125,
+    11.516317723559457,
+    -0.5052400052365214,
+    3.525695194933384,
+    -7.676373810612484,
+    0.3653438420863708,
+    -0.4966724027791885,
+    1.4655512460105118,
+    0.18515120826678216,
+    -0.6509960314294878,
+    0.2269135469449939,
+    0.30271786004353674,
+    -0.2103440322569311,
+    -1.764558368137336,
+    0.43399723121671135,
+    -0.586326187289471,
+    0.527310647349151,
+    -1.6274937122923963,
+    -1.581210532928039,
+    -1.704809477837799,
+    0.23841604652232548,
+    0.0
+  ],
+  "elapsed_seconds": 33.59144463762641
+}

@@ -1,0 +1,12 @@
+{
+  "label": "fraction0.9",
+  "fraction": 0.9,
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "constitutive_law_supplied": false,
+  "physical_route_supplied": false,
+  "changed_route_stress_counted": false,
+  "end_connections_supplied": false,
+  "elapsed_seconds": 60.998077682219446
+}

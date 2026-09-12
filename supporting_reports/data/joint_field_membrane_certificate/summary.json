@@ -1,0 +1,72 @@
+{
+  "family_result": {
+    "label": "variable_route",
+    "success": false,
+    "status": 2,
+    "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+    "components": [
+      "radial Maxwell field",
+      "balanced radial radiation",
+      "angular radiation",
+      "angular tensile membrane",
+      "rest inventory"
+    ],
+    "control_amplitude_bounds": null,
+    "route_fraction_bounds": [
+      0.0,
+      1.0
+    ],
+    "currents_material_response_and_end_connections_supplied": false,
+    "elapsed_seconds": 17.06189601495862
+  },
+  "certificate": {
+    "valid": true,
+    "balance_residual": 2.487108961704912e-16,
+    "weighted_rhs": -0.0017657448943441826,
+    "weight_sum": 0.9999999999999948,
+    "original_row_count": 2602,
+    "appended_bound_labels": [
+      [
+        27,
+        "lower"
+      ],
+      [
+        27,
+        "upper"
+      ],
+      [
+        28,
+        "lower"
+      ],
+      [
+        28,
+        "upper"
+      ],
+      [
+        29,
+        "lower"
+      ]
+    ],
+    "retained_constraint_count": 30,
+    "cut_history": [
+      {
+        "iteration": 0,
+        "active_rows": 1800,
+        "status": 0,
+        "maximum_full_violation": 0.30348031820115073
+      },
+      {
+        "iteration": 1,
+        "active_rows": 2201,
+        "status": 0,
+        "maximum_full_violation": 0.09737290216257953
+      },
+      {
+        "iteration": 2,
+        "active_rows": 2602,
+        "status": 2
+      }
+    ]
+  },
+  "scope": "Pinned 27-control material response plus two bounded directional work fractions; finite 128-cell/258-time representation"
+}

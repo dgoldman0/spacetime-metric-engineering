@@ -1,0 +1,20 @@
+{
+  "label": "variable_route",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+  "components": [
+    "radial Maxwell field",
+    "balanced radial radiation",
+    "angular radiation",
+    "angular tensile membrane",
+    "rest inventory"
+  ],
+  "control_amplitude_bounds": null,
+  "route_fraction_bounds": [
+    0.0,
+    1.0
+  ],
+  "currents_material_response_and_end_connections_supplied": false,
+  "elapsed_seconds": 16.869835363700986
+}

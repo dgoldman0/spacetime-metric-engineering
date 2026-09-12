@@ -1,0 +1,20 @@
+{
+  "label": "variable_route",
+  "success": false,
+  "status": 1,
+  "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+  "components": [
+    "radial Maxwell field",
+    "balanced radial radiation",
+    "angular radiation",
+    "angular tensile membrane",
+    "rest inventory"
+  ],
+  "control_amplitude_bounds": null,
+  "route_fraction_bounds": [
+    0.0,
+    1.0
+  ],
+  "currents_material_response_and_end_connections_supplied": false,
+  "elapsed_seconds": 170.23548600263894
+}

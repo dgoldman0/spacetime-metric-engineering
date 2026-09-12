@@ -1,0 +1,23 @@
+{
+  "label": "members_fraction0.9",
+  "fraction": 0.9,
+  "components": "members",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 2
+    }
+  ],
+  "total_constraints": 1455905,
+  "intervals": 256,
+  "time_nodes": 515,
+  "physical_material_law_supplied": false,
+  "end_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_validated": false,
+  "elapsed_seconds": 34.77376722730696
+}

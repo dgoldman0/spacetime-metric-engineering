@@ -1,0 +1,12 @@
+{
+  "label": "fraction0.75_prestress",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "control_bounds": null,
+  "fraction": 0.75,
+  "conserved_radial_increment": true,
+  "end_connections_supplied": false,
+  "constitutive_law_supplied": false,
+  "elapsed_seconds": 40.14941346459091
+}

@@ -1,0 +1,104 @@
+{
+  "label": "joint_response_relaxation_fraction1_unbounded_states",
+  "kind": "family",
+  "input": "supporting_reports/data/joint_response_relaxation/fraction1_unbounded_states.npz",
+  "weighted_force_residual": 0.006898055609254912,
+  "weighted_power_residual": 1.9197788585914454e-06,
+  "maximum_force_residual": 0.11054907531711444,
+  "maximum_power_residual": 2.747247684539575e-07,
+  "maximum_work_reconstruction_density_change": 0.003175742929117118,
+  "maximum_member_density_shortfall": 0.00018545283390736245,
+  "minimum_density": 0.05777007209155224,
+  "worst_member_witness": {
+    "time": 1.285,
+    "x": -0.5139087708172407,
+    "density": 0.5269384021553494,
+    "radial_pressure": -0.4931787679700414,
+    "angular_pressure": -0.033945087019215385
+  },
+  "member_energy_admissible": false,
+  "sampled_prestress_intervals": {
+    "1.0": {
+      "feasible": false,
+      "lower": 0.0,
+      "upper": null,
+      "minimum_radial_enthalpy_margin": -0.00018545283390741102
+    },
+    "0.9999": {
+      "feasible": false,
+      "lower": 0.0,
+      "upper": -10.457221028493494
+    },
+    "0.999": {
+      "feasible": false,
+      "lower": 0.0,
+      "upper": -3.1281699153280775
+    },
+    "0.99": {
+      "feasible": false,
+      "lower": 0.014157793365497157,
+      "upper": -2.395264804011798
+    },
+    "0.95": {
+      "feasible": false,
+      "lower": 0.08782525280897882,
+      "upper": -2.3301176830058923
+    },
+    "0.9": {
+      "feasible": false,
+      "lower": 0.18427146615932619,
+      "upper": -2.4750422944902764
+    },
+    "0.75": {
+      "feasible": false,
+      "lower": 0.5084497302392335,
+      "upper": -2.6708029318508673
+    }
+  },
+  "minimum_prestress_member_fraction": null,
+  "end_jackets": [
+    {
+      "end": "left",
+      "success": false,
+      "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+      "witness_time": 1.285,
+      "witness_load": -5.7441493573727636,
+      "witness_acceleration": 0.7586462280203643,
+      "witness_angular_gradient": -0.0924786518432612,
+      "witness_force_interval_per_unit_energy": [
+        0.5736889243338419,
+        0.9436035317068867
+      ],
+      "pointwise_force_cone_incompatible": true,
+      "incompatible_sample_fraction": 1.0
+    },
+    {
+      "end": "right",
+      "success": false,
+      "reason": "prepared surface inventory has an empty admissible interval",
+      "initial_energy_lower": 4525.183414112526,
+      "initial_energy_upper": 44.68476590202551,
+      "pointwise_force_cone_incompatible": false,
+      "incompatible_sample_fraction": 0.0
+    }
+  ],
+  "source_phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 0.5761465716108392
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 0.7420170648640999
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 2.126977947187353
+    }
+  ],
+  "temporal_samples": 1029,
+  "spatial_samples": 386,
+  "constitutive_law_supplied": false,
+  "full_construction_supplied": false,
+  "elapsed_seconds": 49.76812570076436
+}

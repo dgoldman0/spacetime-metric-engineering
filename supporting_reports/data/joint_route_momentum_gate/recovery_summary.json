@@ -1,0 +1,15 @@
+{
+  "fractions": [
+    0.0,
+    1.0
+  ],
+  "weighted_force_residual": 0.005996944841590012,
+  "weighted_power_residual": 0.01695502405626328,
+  "maximum_force_residual": 0.009290531142657333,
+  "maximum_power_residual": 0.010546611906728735,
+  "maximum_separate_member_density_shortfall": 0.4039191767808287,
+  "maximum_batch_relative_member_shortfall": 2.653593220113894,
+  "minimum_support_density": 0.0026842128988802424,
+  "audit_time_samples": 1542,
+  "audit_spatial_samples": 768
+}
