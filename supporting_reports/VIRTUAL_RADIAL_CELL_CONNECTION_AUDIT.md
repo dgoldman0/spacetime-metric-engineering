@@ -212,3 +212,44 @@ opposing streams, independent ADM/tetrad agreement under refinement, and
 compatible and incompatible prepared-radiation intervals. The archived
 evidence records the controls, metric, source code, derivative witnesses,
 and passive-energy intervals.
+
+## Explicit port subledger on the accepted controls
+
+An independent SSP RK2 replay accumulates each beam's port traffic at both
+integration stages. The six streams share corrected-step observation times,
+so the radial reaction compares their simultaneous values. Each case uses
+96 spatial samples and 2057 saved times, with finer internal steps selected
+by the same causal transport restriction as the accepted replay.
+
+| Pair center | Incident work | Useful return | Heat return | Signed radial beam impulse | Peak proper beam reaction |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| -2 | 0.05601246 | 0.05527565 | 0.00224866 | 0.01529292 | 0.89677449 |
+| -1.975 | 0.07277549 | 0.06549560 | 0.00279258 | -0.00620367 | 0.18671659 |
+
+Energies integrate material-frame photon energy per coordinate time; the
+force is per common-port proper time. All entries include the spherical
+`4 pi` factor. The signed radial quantity is the sphere-integrated local
+radial component in the prescribed tetrad.
+
+If the minimum counterstream crosses the same cut, the radiation energy
+current cancels and its radial pressure adds to that of the work beams. The
+resulting conditional radiation reactions peak at `1.575659` and `0.373433`.
+The independent core traction steps peak at `4.603748` and `2.850815`.
+Those component contributions retain their separate attachment and transport
+requirements; the complete material traction follows from their shared
+source construction.
+
+The [port archive](data/virtual_cell_port_baseline/summary.json) retains each
+arm's incident, useful-return, and thermal histories, initial and final wave
+inventories, geometric work, conversion sources, and counterstream flux
+requirements. Its physical-time ADM balances close within `2.39e-18`.
+Replayed wave fields agree with the earlier accepted arrays within `5.01e-12`.
+Thirteen analytic tests check transformed port flux, recoil signs, symmetric
+cancellation, backward absorption bookkeeping, geometric work, and common
+observation times.
+
+The first optimized common-phase case separately passes independent
+changing-geometry replay, with minimum density margin `0.000111923`. Its
+[retained evidence](data/virtual_cell_matched_replay/summary.json) covers
+the `x=-2` location. The deterministic averaged candidate provides the
+two-location comparison described above.
