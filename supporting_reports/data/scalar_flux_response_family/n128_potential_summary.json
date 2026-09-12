@@ -1,0 +1,99 @@
+{
+  "label": "n128_potential",
+  "mode": "potential",
+  "basis": "supporting_reports/data/joint_route_response/responses.npz",
+  "success": true,
+  "status": 0,
+  "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.10625636515963777
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2200,
+      "status": 0,
+      "maximum_full_violation": 0.26723718921905104
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2600,
+      "status": 0,
+      "maximum_full_violation": 0.09468206032901327
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3000,
+      "status": 0,
+      "maximum_full_violation": 0.05471234497302602
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3294,
+      "status": 0,
+      "maximum_full_violation": 0.01141907067676659
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3416,
+      "status": 0,
+      "maximum_full_violation": 1.2745360322696797e-13
+    }
+  ],
+  "total_constraints": 366102,
+  "material_control_amplitude_bounds": null,
+  "route_fraction_bounds": [
+    0.0,
+    1.0
+  ],
+  "intervals": 128,
+  "temporal_nodes": 258,
+  "scalar_field_equations_supplied": false,
+  "current_carrier_energy_supplied": false,
+  "continuing_rail_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_convergence_established": false,
+  "material_peak_sampled_lower": 0.6630471654617558,
+  "material_peak_upper": 0.6635989800033949,
+  "maximum_original_inequality_violation": 1.2156942119645464e-14,
+  "minimum_component_energy": -2.047667591043023e-14,
+  "initial_support_rest": 9280.857623203665,
+  "final_support_rest": 903.1592859299433,
+  "absorption_left_feed_fraction": 0.35797677755101404,
+  "recovery_left_emission_fraction": 0.0,
+  "parameters": [
+    7.490757805083263,
+    5.43284122026883,
+    5.280516722684782,
+    2.393531722564929,
+    3.047896702705026,
+    1.6824010161729719,
+    -1.2701006179700256,
+    9.634348962306209,
+    -19.12570145071268,
+    0.7989563562960852,
+    -1.4398293841575855,
+    -11.107506202487414,
+    -7.953328009185991,
+    27.170470603629578,
+    1.0667885193952595,
+    -2.1422037937285014,
+    -16.04034868573081,
+    -6.233127229745547,
+    1.5540386546446638,
+    3.5752949156435463,
+    -9.018567521665322,
+    1.5773744844527078,
+    -6.560176842016018,
+    1.6621440400774619,
+    -1.8285760892566305,
+    -1.9780525369815072,
+    -1.4985647956912969,
+    0.35797677755101404,
+    0.0
+  ],
+  "elapsed_seconds": 29.124236919917166
+}

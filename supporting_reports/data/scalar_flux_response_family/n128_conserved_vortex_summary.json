@@ -1,0 +1,41 @@
+{
+  "label": "n128_conserved_vortex",
+  "mode": "conserved_vortex",
+  "basis": "supporting_reports/data/joint_route_response/responses.npz",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.30348031820111565
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.12665988757808572
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2601,
+      "status": 2
+    }
+  ],
+  "total_constraints": 332820,
+  "material_control_amplitude_bounds": null,
+  "route_fraction_bounds": [
+    0.0,
+    1.0
+  ],
+  "intervals": 128,
+  "temporal_nodes": 258,
+  "scalar_field_equations_supplied": false,
+  "current_carrier_energy_supplied": false,
+  "continuing_rail_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_convergence_established": false,
+  "elapsed_seconds": 28.41749337594956
+}

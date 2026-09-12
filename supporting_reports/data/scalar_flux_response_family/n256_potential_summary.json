@@ -1,0 +1,147 @@
+{
+  "label": "n256_potential",
+  "mode": "potential",
+  "basis": "supporting_reports/data/joint_refined_response/responses.npz",
+  "success": true,
+  "status": 0,
+  "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+  "cut_history": [
+    {
+      "iteration": 0,
+      "active_rows": 1800,
+      "status": 0,
+      "maximum_full_violation": 0.14136424110700752
+    },
+    {
+      "iteration": 1,
+      "active_rows": 2201,
+      "status": 0,
+      "maximum_full_violation": 0.10924028993261331
+    },
+    {
+      "iteration": 2,
+      "active_rows": 2602,
+      "status": 0,
+      "maximum_full_violation": 0.16067092329552657
+    },
+    {
+      "iteration": 3,
+      "active_rows": 3003,
+      "status": 0,
+      "maximum_full_violation": 0.1015747090451303
+    },
+    {
+      "iteration": 4,
+      "active_rows": 3404,
+      "status": 0,
+      "maximum_full_violation": 0.08136394374424682
+    },
+    {
+      "iteration": 5,
+      "active_rows": 3805,
+      "status": 0,
+      "maximum_full_violation": 0.11404945766851204
+    },
+    {
+      "iteration": 6,
+      "active_rows": 4206,
+      "status": 0,
+      "maximum_full_violation": 0.10885625970873058
+    },
+    {
+      "iteration": 7,
+      "active_rows": 4607,
+      "status": 0,
+      "maximum_full_violation": 0.08687631172118992
+    },
+    {
+      "iteration": 8,
+      "active_rows": 5008,
+      "status": 0,
+      "maximum_full_violation": 0.102256401026811
+    },
+    {
+      "iteration": 9,
+      "active_rows": 5409,
+      "status": 0,
+      "maximum_full_violation": 0.07797275253008712
+    },
+    {
+      "iteration": 10,
+      "active_rows": 5810,
+      "status": 0,
+      "maximum_full_violation": 0.04793052941548767
+    },
+    {
+      "iteration": 11,
+      "active_rows": 6178,
+      "status": 0,
+      "maximum_full_violation": 0.010242878206805583
+    },
+    {
+      "iteration": 12,
+      "active_rows": 6244,
+      "status": 0,
+      "maximum_full_violation": 0.00014621696488291425
+    },
+    {
+      "iteration": 13,
+      "active_rows": 6248,
+      "status": 0,
+      "maximum_full_violation": 4.742872761198669e-13
+    }
+  ],
+  "total_constraints": 1455905,
+  "material_control_amplitude_bounds": null,
+  "route_fraction_bounds": [
+    0.0,
+    1.0
+  ],
+  "intervals": 256,
+  "temporal_nodes": 515,
+  "scalar_field_equations_supplied": false,
+  "current_carrier_energy_supplied": false,
+  "continuing_rail_connections_supplied": false,
+  "changed_route_stress_counted": false,
+  "continuum_convergence_established": false,
+  "material_peak_sampled_lower": 0.6895859480125333,
+  "material_peak_upper": 0.6900923821680698,
+  "maximum_original_inequality_violation": 1.2434497875801753e-13,
+  "minimum_component_energy": -1.2040368702059823e-13,
+  "initial_support_rest": 10133.73421232943,
+  "final_support_rest": 978.5342561062116,
+  "absorption_left_feed_fraction": 0.2513362553868431,
+  "recovery_left_emission_fraction": 0.0,
+  "parameters": [
+    7.652052371907496,
+    5.331636426174913,
+    5.7657151502154305,
+    2.579850240094319,
+    3.6074083343911507,
+    2.0191773509981736,
+    -1.3604293494516286,
+    8.356228496669049,
+    -14.190080690984653,
+    1.6932254538103988,
+    -2.2988744276937494,
+    -10.930778476109321,
+    -11.01777805449737,
+    28.562531709253417,
+    -1.1759853079710048,
+    1.854378844589051,
+    -16.626836416405705,
+    -5.510463135708171,
+    0.8592072365363587,
+    6.996352895446183,
+    -10.22356365364521,
+    1.3983883943425868,
+    -6.956113307536046,
+    1.3129112967902556,
+    -2.1746583586094204,
+    -2.399974816286678,
+    -1.693317592927704,
+    0.2513362553868431,
+    0.0
+  ],
+  "elapsed_seconds": 45.07806771155447
+}

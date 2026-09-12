@@ -1,0 +1,332 @@
+{
+  "cases": [
+    {
+      "label": "n128_potential",
+      "mode": "potential",
+      "basis": "supporting_reports/data/joint_route_response/responses.npz",
+      "success": true,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.10625636515963777
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2200,
+          "status": 0,
+          "maximum_full_violation": 0.26723718921905104
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2600,
+          "status": 0,
+          "maximum_full_violation": 0.09468206032901327
+        },
+        {
+          "iteration": 3,
+          "active_rows": 3000,
+          "status": 0,
+          "maximum_full_violation": 0.05471234497302602
+        },
+        {
+          "iteration": 4,
+          "active_rows": 3294,
+          "status": 0,
+          "maximum_full_violation": 0.01141907067676659
+        },
+        {
+          "iteration": 5,
+          "active_rows": 3416,
+          "status": 0,
+          "maximum_full_violation": 1.2745360322696797e-13
+        }
+      ],
+      "total_constraints": 366102,
+      "material_control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        1.0
+      ],
+      "intervals": 128,
+      "temporal_nodes": 258,
+      "scalar_field_equations_supplied": false,
+      "current_carrier_energy_supplied": false,
+      "continuing_rail_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_convergence_established": false,
+      "material_peak_sampled_lower": 0.6630471654617558,
+      "material_peak_upper": 0.6635989800033949,
+      "maximum_original_inequality_violation": 1.2156942119645464e-14,
+      "minimum_component_energy": -2.047667591043023e-14,
+      "initial_support_rest": 9280.857623203665,
+      "final_support_rest": 903.1592859299433,
+      "absorption_left_feed_fraction": 0.35797677755101404,
+      "recovery_left_emission_fraction": 0.0,
+      "parameters": [
+        7.490757805083263,
+        5.43284122026883,
+        5.280516722684782,
+        2.393531722564929,
+        3.047896702705026,
+        1.6824010161729719,
+        -1.2701006179700256,
+        9.634348962306209,
+        -19.12570145071268,
+        0.7989563562960852,
+        -1.4398293841575855,
+        -11.107506202487414,
+        -7.953328009185991,
+        27.170470603629578,
+        1.0667885193952595,
+        -2.1422037937285014,
+        -16.04034868573081,
+        -6.233127229745547,
+        1.5540386546446638,
+        3.5752949156435463,
+        -9.018567521665322,
+        1.5773744844527078,
+        -6.560176842016018,
+        1.6621440400774619,
+        -1.8285760892566305,
+        -1.9780525369815072,
+        -1.4985647956912969,
+        0.35797677755101404,
+        0.0
+      ],
+      "elapsed_seconds": 29.124236919917166
+    },
+    {
+      "label": "n128_conserved_vortex",
+      "mode": "conserved_vortex",
+      "basis": "supporting_reports/data/joint_route_response/responses.npz",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.30348031820111565
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.12665988757808572
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2601,
+          "status": 2
+        }
+      ],
+      "total_constraints": 332820,
+      "material_control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        1.0
+      ],
+      "intervals": 128,
+      "temporal_nodes": 258,
+      "scalar_field_equations_supplied": false,
+      "current_carrier_energy_supplied": false,
+      "continuing_rail_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_convergence_established": false,
+      "elapsed_seconds": 28.41749337594956
+    },
+    {
+      "label": "n256_potential",
+      "mode": "potential",
+      "basis": "supporting_reports/data/joint_refined_response/responses.npz",
+      "success": true,
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.14136424110700752
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.10924028993261331
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2602,
+          "status": 0,
+          "maximum_full_violation": 0.16067092329552657
+        },
+        {
+          "iteration": 3,
+          "active_rows": 3003,
+          "status": 0,
+          "maximum_full_violation": 0.1015747090451303
+        },
+        {
+          "iteration": 4,
+          "active_rows": 3404,
+          "status": 0,
+          "maximum_full_violation": 0.08136394374424682
+        },
+        {
+          "iteration": 5,
+          "active_rows": 3805,
+          "status": 0,
+          "maximum_full_violation": 0.11404945766851204
+        },
+        {
+          "iteration": 6,
+          "active_rows": 4206,
+          "status": 0,
+          "maximum_full_violation": 0.10885625970873058
+        },
+        {
+          "iteration": 7,
+          "active_rows": 4607,
+          "status": 0,
+          "maximum_full_violation": 0.08687631172118992
+        },
+        {
+          "iteration": 8,
+          "active_rows": 5008,
+          "status": 0,
+          "maximum_full_violation": 0.102256401026811
+        },
+        {
+          "iteration": 9,
+          "active_rows": 5409,
+          "status": 0,
+          "maximum_full_violation": 0.07797275253008712
+        },
+        {
+          "iteration": 10,
+          "active_rows": 5810,
+          "status": 0,
+          "maximum_full_violation": 0.04793052941548767
+        },
+        {
+          "iteration": 11,
+          "active_rows": 6178,
+          "status": 0,
+          "maximum_full_violation": 0.010242878206805583
+        },
+        {
+          "iteration": 12,
+          "active_rows": 6244,
+          "status": 0,
+          "maximum_full_violation": 0.00014621696488291425
+        },
+        {
+          "iteration": 13,
+          "active_rows": 6248,
+          "status": 0,
+          "maximum_full_violation": 4.742872761198669e-13
+        }
+      ],
+      "total_constraints": 1455905,
+      "material_control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        1.0
+      ],
+      "intervals": 256,
+      "temporal_nodes": 515,
+      "scalar_field_equations_supplied": false,
+      "current_carrier_energy_supplied": false,
+      "continuing_rail_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_convergence_established": false,
+      "material_peak_sampled_lower": 0.6895859480125333,
+      "material_peak_upper": 0.6900923821680698,
+      "maximum_original_inequality_violation": 1.2434497875801753e-13,
+      "minimum_component_energy": -1.2040368702059823e-13,
+      "initial_support_rest": 10133.73421232943,
+      "final_support_rest": 978.5342561062116,
+      "absorption_left_feed_fraction": 0.2513362553868431,
+      "recovery_left_emission_fraction": 0.0,
+      "parameters": [
+        7.652052371907496,
+        5.331636426174913,
+        5.7657151502154305,
+        2.579850240094319,
+        3.6074083343911507,
+        2.0191773509981736,
+        -1.3604293494516286,
+        8.356228496669049,
+        -14.190080690984653,
+        1.6932254538103988,
+        -2.2988744276937494,
+        -10.930778476109321,
+        -11.01777805449737,
+        28.562531709253417,
+        -1.1759853079710048,
+        1.854378844589051,
+        -16.626836416405705,
+        -5.510463135708171,
+        0.8592072365363587,
+        6.996352895446183,
+        -10.22356365364521,
+        1.3983883943425868,
+        -6.956113307536046,
+        1.3129112967902556,
+        -2.1746583586094204,
+        -2.399974816286678,
+        -1.693317592927704,
+        0.2513362553868431,
+        0.0
+      ],
+      "elapsed_seconds": 45.07806771155447
+    },
+    {
+      "label": "n256_conserved_vortex",
+      "mode": "conserved_vortex",
+      "basis": "supporting_reports/data/joint_refined_response/responses.npz",
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is Infeasible)",
+      "cut_history": [
+        {
+          "iteration": 0,
+          "active_rows": 1800,
+          "status": 0,
+          "maximum_full_violation": 0.3185451563528505
+        },
+        {
+          "iteration": 1,
+          "active_rows": 2201,
+          "status": 0,
+          "maximum_full_violation": 0.11662110776722356
+        },
+        {
+          "iteration": 2,
+          "active_rows": 2602,
+          "status": 2
+        }
+      ],
+      "total_constraints": 1323550,
+      "material_control_amplitude_bounds": null,
+      "route_fraction_bounds": [
+        0.0,
+        1.0
+      ],
+      "intervals": 256,
+      "temporal_nodes": 515,
+      "scalar_field_equations_supplied": false,
+      "current_carrier_energy_supplied": false,
+      "continuing_rail_connections_supplied": false,
+      "changed_route_stress_counted": false,
+      "continuum_convergence_established": false,
+      "elapsed_seconds": 38.921068103052676
+    }
+  ]
+}
