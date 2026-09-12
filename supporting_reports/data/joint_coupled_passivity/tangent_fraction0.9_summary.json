@@ -1,0 +1,13 @@
+{
+  "label": "tangent_fraction0.9",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "mode": "tangent",
+  "separate_member_fraction": 0.9,
+  "time_nodes": 35,
+  "intervals": 32,
+  "constitutive_energy_supplied": false,
+  "relativistic_stability_supplied": false,
+  "elapsed_seconds": 23.20862165093422
+}

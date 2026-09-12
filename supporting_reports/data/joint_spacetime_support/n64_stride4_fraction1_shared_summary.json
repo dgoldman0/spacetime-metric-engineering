@@ -1,0 +1,69 @@
+{
+  "success": true,
+  "material_peak_lower": 0.1399511452167337,
+  "material_peak_upper": 0.13995156511911502,
+  "max_scaled_equality_residual": 3.587312114028407e-09,
+  "max_raw_equality_residual": 2.320655348795155e-12,
+  "max_inequality_violation": 1.6964055160606506e-09,
+  "angular_trace": [
+    {
+      "lower": 0.13995110731924107,
+      "upper": 0.14134422579412748
+    },
+    {
+      "lower": 0.1399511452167337,
+      "upper": 0.13995156511911502
+    }
+  ],
+  "elapsed_seconds": 122.52757705934346,
+  "label": "n64_stride4_fraction1_shared",
+  "intervals": 64,
+  "time_stride": 4,
+  "fraction": 1.0,
+  "allocation": "shared",
+  "weighted_force_residual": 0.07434044084292468,
+  "weighted_power_residual": 0.12153567403009861,
+  "maximum_force_residual": 0.04464379266568976,
+  "maximum_power_residual": 0.011795390301273082,
+  "maximum_separate_member_shortfall_per_label": 9.8113606128436e-10,
+  "minimum_support_density": 0.0051391791852828635,
+  "audit_time_samples": 771,
+  "audit_spatial_samples": 384,
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 0.1792303021983992,
+      "peak_x": -0.5
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 0.18772785198064054,
+      "peak_x": -0.5
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 0.3403412685860631,
+      "peak_x": -0.5
+    }
+  ],
+  "initial_support_rest": 1463.1533416507714,
+  "final_support_rest": 177.95068893421106,
+  "gross_local_exchange": 0.3115631954877023,
+  "end_connections": [
+    {
+      "end": "left",
+      "min_force": -3.1370873444631986,
+      "max_force": 1.45381041040553,
+      "signed_ADM_work_out": 8.906019155088576e-14,
+      "peak_abs_ADM_power": 1.0316528876511708e-11
+    },
+    {
+      "end": "right",
+      "min_force": -10.042095102077168,
+      "max_force": -4.475371170350121,
+      "signed_ADM_work_out": 40.34683111008256,
+      "peak_abs_ADM_power": 244.8366665459496
+    }
+  ],
+  "constitutive_law_supplied": false
+}

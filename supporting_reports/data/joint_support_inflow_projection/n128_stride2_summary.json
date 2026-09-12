@@ -1,0 +1,22 @@
+{
+  "label": "n128_stride2",
+  "intervals": 128,
+  "time_stride": 2,
+  "time_nodes": 130,
+  "weighted_force_residual": 0.11873195081886269,
+  "weighted_power_residual": 0.14366181921394144,
+  "maximum_force_residual": 0.04374667743733746,
+  "maximum_power_residual": 0.08067253967944535,
+  "maximum_separate_member_density_shortfall": 0.42740423000053607,
+  "maximum_batch_relative_member_shortfall": 4.704559894455182,
+  "minimum_support_density": 0.00440867073749708,
+  "audit_time_samples": 771,
+  "audit_spatial_samples": 384,
+  "maximum_block_residual": 4.440892098500626e-16,
+  "sampled_maximum_block_condition": 190.25443218671157,
+  "initial_support_rest": 1271.6585711771572,
+  "final_support_rest": 213.75308247239255,
+  "gross_local_exchange": 0.3162928408221665,
+  "elapsed_seconds": 39.21513432729989,
+  "constitutive_law_supplied": false
+}

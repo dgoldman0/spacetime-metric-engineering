@@ -1,0 +1,22 @@
+{
+  "label": "n64_stride4",
+  "intervals": 64,
+  "time_stride": 4,
+  "time_nodes": 66,
+  "weighted_force_residual": 0.08263533242323498,
+  "weighted_power_residual": 0.18239824353648618,
+  "maximum_force_residual": 0.07915203210009958,
+  "maximum_power_residual": 0.14225215769289176,
+  "maximum_separate_member_density_shortfall": 0.35128953349187003,
+  "maximum_batch_relative_member_shortfall": 3.8665312746748173,
+  "minimum_support_density": 0.0043972590418355825,
+  "audit_time_samples": 771,
+  "audit_spatial_samples": 384,
+  "maximum_block_residual": 1.1102230246251565e-16,
+  "sampled_maximum_block_condition": 96.16246678425884,
+  "initial_support_rest": 1271.658571177157,
+  "final_support_rest": 174.70775760194513,
+  "gross_local_exchange": 0.3115631954877023,
+  "elapsed_seconds": 34.535432705655694,
+  "constitutive_law_supplied": false
+}
