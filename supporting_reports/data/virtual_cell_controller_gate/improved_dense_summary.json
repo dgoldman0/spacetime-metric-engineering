@@ -1,0 +1,49 @@
+{
+  "label": "improved",
+  "dense": true,
+  "temporal_samples": 2057,
+  "spatial_samples": 1025,
+  "common_core_height_feasible": false,
+  "arbitrary_static_spatial_grading_feasible": false,
+  "positions_requiring_different_actuation": 851,
+  "common_required_height": {
+    "value": 0.46270199360459924,
+    "time": 1.2548828125,
+    "x": -1.05
+  },
+  "common_permitted_height": {
+    "value": 0.01870691043001613,
+    "time": 0.0501953125,
+    "x": -1.975
+  },
+  "worst_temporal_conflict": {
+    "x": -1.5,
+    "required_height": 0.2073097234216574,
+    "permitted_height": 0.08026080762657833,
+    "ratio": 2.5829508766742943,
+    "required_at": 0.0,
+    "permitted_at": 0.6324609375
+  },
+  "startup_bottleneck": {
+    "x": -2.0,
+    "required_height": 0.014854931704559886,
+    "permitted_height": 0.02170900024370079,
+    "ratio": 0.6842752562440216
+  },
+  "least_permitted_height_replay": {
+    "maximum_density_shortfall": 0.37208044240000776,
+    "witness": {
+      "value": 0.37208044240000776,
+      "time": 0.07751987960935088,
+      "x": -0.5
+    }
+  },
+  "conservation": {
+    "weighted_force_residual": 0.0037749778680252607,
+    "weighted_power_residual": 1.6562806897319473e-07
+  },
+  "scope": "adiabatic homogeneous amplitude control with counted matter and interaction energy",
+  "phase_volume_conversion_tested": false,
+  "driven_field_equations_solved": false,
+  "currents_gradients_interfaces_and_continuing_connections_supplied": false
+}
