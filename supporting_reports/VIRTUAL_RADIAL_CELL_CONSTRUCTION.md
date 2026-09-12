@@ -238,6 +238,51 @@ comparison supplies a reason to optimize the store and cells together.
 The source target remains the retained `f=0.99` history; the lower-null-load
 scalar blend has a different angular-stress requirement.
 
+## Joint shared-reservoir comparison
+
+The next calculation optimizes the two coherent amplitudes, travelling waves,
+and shared stored energy together. A reservoir has
+`(rho_b,p_r_b,p_t_b)=(b,w_r b,w_t b)`. Its energy is distributed with fixed
+material-volume weights over the pair, granting perfect internal mixing.
+The common-port flux is integrated with an augmented matrix exponential on
+each panel. Useful return work recharges the store; conversion heat leaves
+through the existing thermal-return channel. Reservoir energy obeys
+
+```
+dE_b/dt = P_return,useful - P_incident
+          - integral(b [w_r d(log ell)/dt + 2 w_t d(log R)/dt] dVolume).
+```
+
+The calculation charges this energy and pressure against the same support
+target. It leaves the store's redistribution stresses, confinement, and host
+mass open. The geometric-work integral uses midpoint time quadrature.
+Flat-space tests independently conserve the combined core, wave, store,
+and exported-heat energies. The rail reservoir ledgers close within
+`2.1e-12` in project energy units.
+
+| Reservoir pressure ratios `(w_r,w_t)` | Density deficit at `x=-2` | Density deficit at `x=-1.975` |
+| --- | ---: | ---: |
+| Negligible pressure `(0,0)` | 0.0133824 | 0.0165346 |
+| Isotropic radiation `(1/3,1/3)` | 0.0133931 | 0.0159377 |
+| Directed counterpropagating radiation `(1,0)` | 0 | 0.00002822 |
+
+Deficits refer to the target with its 0.2% numerical reserve. The directed
+store at the second location misses that reserve by less than its full
+amount. These are allocation comparisons; both directed cases require a
+separate confinement check. Their optimized histories also contain large
+simultaneous conversion cycles, which use the converter losses to export
+heat. This grants a favorable dissipative control channel whose physical
+phase-front realization remains open.
+
+The directed case at `x=-2` begins with reservoir energy 0.0023283 and exports
+0.0148129 as heat. Near `t=0.0727832`, even the maximum radial tension
+available from its core and auxiliary field falls below the stored axial
+radiation pressure. Integrated over the pair, the deficit is 0.0152582 in
+project energy units. Thus the initial directed-storage allocation requires
+an external axial reaction. The next comparison places the confinement
+requirement inside the optimization and permits use of the radial field
+already present in the support mixture.
+
 ## Reproduction
 
 The [controller gate](data/virtual_cell_controller_gate/summary.json) contains
@@ -268,3 +313,9 @@ retain the two successful short-cell controls, finite wave histories, guide
 comparison, and local margins. Four additional tests check the exact
 single-cell propagator, positivity at large transit Courant number, a
 constant-tension control, and the monotonic cost of adding a guide bound.
+
+The [joint reservoir cases](data/virtual_cell_joint_reservoir/summary.json)
+contain the three pressure laws at both startup locations. Four additional
+tests compare the integrated port flux with analytic decay, conserve the
+full flat-space inventory with ideal and lossy conversion, and verify the
+additional restriction imposed by closing an unrestricted external port.

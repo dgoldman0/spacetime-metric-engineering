@@ -13,20 +13,26 @@ from scipy.optimize import linprog
 from .virtual_cell_transport import Rows, upwind_operator
 
 
-def transport_map(dt, faces, gain, source, dx, backwards=False):
+def transport_map(dt, faces, gain, source, dx, backwards=False, observable=None):
     """Positive homogeneous map and response to one panel's source increment."""
     n=len(gain)
     generator=upwind_operator(-faces if backwards else faces,dx)
     generator+=np.diag(-gain if backwards else gain)
-    block=np.zeros((n+1,n+1)); block[:n,:n]=dt*generator
+    size=n+1+(observable is not None)
+    block=np.zeros((size,size)); block[:n,:n]=dt*generator
     block[:n,n]=source
+    if observable is not None:
+        block[n+1,:n]=dt*np.asarray(observable)
     exponential=expm(block)
+    if observable is not None:
+        return (exponential[:n,:n],exponential[:n,n],
+                exponential[n+1,:n],exponential[n+1,n])
     return exponential[:n,:n],exponential[:n,n]
 
 
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
-               guide_drift=None, deadline=180.):
+               guide_drift=None, reservoir_eos=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -41,7 +47,23 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     negative=positive+2*(nt-1)
     absorption=np.arange(nt*nx).reshape(nt,nx)+6*nt-4
     recovery=absorption+nt*nx
-    epsilon=6*nt-4+2*nt*nx; columns=epsilon+1
+    epsilon=6*nt-4+2*nt*nx
+    closed=reservoir_eos is not None
+    if closed:
+        wr,wt=map(float,reservoir_eos)
+        if abs(wr)>1 or abs(wt)>1:
+            raise ValueError('reservoir comparison requires dominant-energy pressure bounds')
+        useful=np.arange(nt*nx).reshape(nt,nx)+epsilon
+        store=np.arange(nt)+epsilon+nt*nx
+        epsilon+=nt*nx+nt
+        # Fixed material volume weights permit a favorable, perfectly mixed
+        # shared inventory. Its local redistribution and supports are open.
+        weights=nodes['D'][0]/(dx*nodes['D'][0].sum())
+        density_weight=weights[None,:]/(4*np.pi*nodes['D'])
+        density_weight_mid=weights[None,:]/(4*np.pi*mids['D'])
+        work_rate=dx*np.sum(weights[None,:]*(wr*mids.get('log_ell_t',np.zeros_like(mids['D']))
+                         +2*wt*mids.get('log_radius_t',np.zeros_like(mids['D']))),axis=1)
+    columns=epsilon+1
     eq,ub=Rows(columns),Rows(columns)
     direction=np.r_[-np.ones(halfnx),np.ones(halfnx)]
     def factors(c):
@@ -52,26 +74,30 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     wall=2*interface_sigma/(nodes['ell']*halfnx*dx)
     wallm=2*interface_sigma/(mids['ell']*halfnx*dx)
 
-    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density):
+    def add_budget(amplitude,ua,ur,rho,p,q,radius,wall_density,buffer=()):
         scaled=lambda items,k:[(i,k*v) for i,v in items]
         aa=scaled(amplitude,1/radius**2)
-        for entries,rhs in [(scaled(aa,2),rho-p-2*q-3*wall_density),
-                            (scaled(aa,2),rho-p+q),
-                            (scaled(aa,-1)+scaled(ua,6),rho+2*p+q),
-                            (scaled(aa,-1)+scaled(ur,6),rho+2*p+q)]:
+        w1,w2,w3=(1-wr-2*wt,1-wr+wt,1+2*wr+wt) if closed else (0,0,0)
+        for entries,rhs in [(scaled(aa,2)+scaled(buffer,w1),rho-p-2*q-3*wall_density),
+                            (scaled(aa,2)+scaled(buffer,w2),rho-p+q),
+                            (scaled(aa,-1)+scaled(ua,6)+scaled(buffer,w3),rho+2*p+q),
+                            (scaled(aa,-1)+scaled(ur,6)+scaled(buffer,w3),rho+2*p+q)]:
             ub.add(entries+[(epsilon,-1)],rhs)
         if guide:
             # Radial field already in the balanced core supplies a/2. Only
             # the remaining guide requirement constrains the auxiliary field.
-            ub.add(scaled(aa,.5)+scaled(ua+ur,3*guide)+[(epsilon,-1)],rho-p+q)
+            ub.add(scaled(aa,.5)+scaled(ua+ur,3*guide)+scaled(buffer,w2)+[(epsilon,-1)],rho-p+q)
 
     for i in range(nt):
         for j in range(nx):
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
-                [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j])
+                [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
+                [(store[i],density_weight[i,j])] if closed else ())
     operators=[]
+    port_terms=[]
     for i,dt in enumerate(np.diff(t)):
         panel=[]
+        incident=[]; returned=[]; total_return=[]
         for half in (0,1):
             start=half*halfnx; stop=start+halfnx; sl=slice(start,stop)
             eq.add([(A[i+1,half],1),(A[i,half],-1),(positive[i,half],-1),(negative[i,half],1)])
@@ -81,7 +107,26 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 faces=wave_geometry[sign]['faces'][i,start:stop+1]
                 gain=wave_geometry[sign]['gain'][i,sl]
                 source=mids['b'][i,sl]/(1-sign*mids['v'][i,sl])
-                full=transport_map(dt,faces,gain,source,dx,back)
+                if closed:
+                    port_index=halfnx-1 if half==0 else 0
+                    face_index=halfnx if half==0 else 0
+                    port_v=.5*(mids['v'][i,halfnx-1]+mids['v'][i,halfnx])
+                    boost=(1-sign*port_v)/np.sqrt(1-port_v*port_v)
+                    observable=np.zeros(halfnx)
+                    observable[port_index]=4*np.pi*abs(faces[face_index])*boost
+                    mapped=transport_map(dt,faces,gain,source,dx,back,observable)
+                    full=mapped[:2]; flux_row,flux_source=mapped[2:]
+                    if back:
+                        incident.extend((absorption[i+1,start+k],v) for k,v in enumerate(flux_row) if v)
+                        incident.append((positive[i,half],flux_source/efficiency))
+                    else:
+                        returned.extend((useful[i,start+k],v) for k,v in enumerate(flux_row) if v)
+                        returned.append((negative[i,half],efficiency*flux_source))
+                        total_return.extend((recovery[i,start+k],v) for k,v in enumerate(flux_row) if v)
+                        total_return.extend([(negative[i,half],flux_source),
+                            (positive[i,half],(1/efficiency-1)*flux_source)])
+                else:
+                    full=transport_map(dt,faces,gain,source,dx,back)
                 mid=transport_map(dt/2,faces,gain,source/2,dx,back)
                 pair[back]=(full,mid)
                 matrix,response=full
@@ -95,6 +140,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                         items.extend([(negative[i,half],-response[local]),
                                       (positive[i,half],-response[local]*(1/efficiency-1))])
                     eq.add(items)
+                    if closed and not back:
+                        eq.add([(useful[i+1,j],1)]+[(useful[i,start+k],-value)
+                            for k,value in enumerate(matrix[local]) if value!=0]
+                            +[(negative[i,half],-response[local]*efficiency)])
             for local,j in enumerate(range(start,stop)):
                 ma,sa=pair[True][1]; mr,sr=pair[False][1]
                 ua=[(absorption[i+1,start+k],cam[i,j]*v) for k,v in enumerate(ma[local]) if v!=0]
@@ -103,11 +152,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 ur.extend([(negative[i,half],crm[i,j]*sr[local]),
                            (positive[i,half],crm[i,j]*sr[local]*(1/efficiency-1))])
                 add_budget([(A[i,half],.5),(A[i+1,half],.5)],ua,ur,
-                    *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j])
+                    *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
+                    [(store[i],.5*density_weight_mid[i,j]),
+                     (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
             panel.append(pair)
         operators.append(panel)
+        if closed:
+            eq.add([(store[i+1],1+dt*work_rate[i]/2),
+                    (store[i],-1+dt*work_rate[i]/2)]+incident+[(k,-v) for k,v in returned])
+            port_terms.append((incident,returned,total_return))
     bounds=[(0.,None)]*columns
     for k in np.r_[absorption[-1],recovery[0]]: bounds[int(k)]=(0.,0.)
+    if closed:
+        for k in useful[0]: bounds[int(k)]=(0.,0.)
     ae,be=eq.matrix(),np.array(eq.rhs); au,bu=ub.matrix(),np.array(ub.rhs)
     cost=np.zeros(columns); cost[epsilon]=1
     options={'time_limit':deadline/2,'primal_feasibility_tolerance':1e-9,
@@ -117,10 +174,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         return dict(success=False,status=int(first.status),message=first.message)
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
     cost[:]=0
-    wt=np.r_[np.diff(t)[0]/2,(np.diff(t)[:-1]+np.diff(t)[1:])/2,np.diff(t)[-1]/2]
-    cost[absorption.ravel()]=(wt[:,None]*dx*nodes['D']*ca).ravel()
-    cost[recovery.ravel()]=(wt[:,None]*dx*nodes['D']*cr).ravel()
+    time_weight=np.r_[np.diff(t)[0]/2,(np.diff(t)[:-1]+np.diff(t)[1:])/2,np.diff(t)[-1]/2]
+    cost[absorption.ravel()]=(time_weight[:,None]*dx*nodes['D']*ca).ravel()
+    cost[recovery.ravel()]=(time_weight[:,None]*dx*nodes['D']*cr).ravel()
     cost[positive.ravel()]=1e-9; cost[negative.ravel()]=1e-9
+    if closed: cost[store]=time_weight/(4*np.pi)
     second=linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,method='highs-ipm',options=options)
     r=second if second.success else first
     amplitude=np.repeat(r.x[A],halfnx,axis=1)
@@ -129,6 +187,27 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     ua=ca*r.x[absorption]; ur=cr*r.x[recovery]
     core=amplitude/nodes['radius']**2
     rho,p,q=target
+    reservoir={}
+    if closed:
+        buffer_density=r.x[store,None]*density_weight
+        # Use the reduced target so the same facets independently reconstruct
+        # the total required density, including the optimized buffer tensor.
+        eos_r,eos_t=map(float,reservoir_eos)
+        rho=rho-buffer_density; p=p-eos_r*buffer_density; q=q-eos_t*buffer_density
+        port_in=np.array([sum(v*r.x[k] for k,v in a) for a,b,c in port_terms])
+        port_out=np.array([sum(v*r.x[k] for k,v in b) for a,b,c in port_terms])
+        port_total=np.array([sum(v*r.x[k] for k,v in c) for a,b,c in port_terms])
+        geometric_work=np.diff(t)*work_rate*(r.x[store][:-1]+r.x[store][1:])/2
+        reservoir=dict(reservoir_energy=r.x[store],reservoir_rest=buffer_density,
+            reservoir_incident_panel_energy=port_in,reservoir_recovered_work_panel_energy=port_out,
+            reservoir_exported_heat_panel_energy=port_total-port_out,
+            reservoir_geometric_work_panel_energy=geometric_work,
+            useful_return_state=r.x[useful],
+            reservoir_eos=list(reservoir_eos),shared_reservoir_jointly_optimized=True,
+            reservoir_initial_energy=float(r.x[store][0]),reservoir_final_energy=float(r.x[store][-1]),
+            reservoir_balance_residual=float(abs(np.diff(r.x[store])+geometric_work+port_in-port_out).max()),
+            reservoir_distribution='fixed material weights; perfectly mixed energy; redistribution stress omitted',
+            reservoir_heat_reconverted_to_work=False,reservoir_confinement_supplied=False)
     shortfall=np.maximum.reduce([p+2*q+2*core+3*wall,p-q+2*core,
         -2*p-q-core+6*ua,-2*p-q-core+6*ur])-rho
     if guide:
@@ -151,4 +230,4 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         absorption_rest=ua,recovery_rest=ur,heat_rest=np.zeros_like(ua),wall_rest=wall,
         thermal_return_state=thermal,thermal_return_rest=cr*thermal,
         positive_increment=plus,negative_increment=minus,density_shortfall=shortfall,
-        variables=columns,equalities=ae.shape[0],inequalities=au.shape[0])
+        variables=columns,equalities=ae.shape[0],inequalities=au.shape[0],**reservoir)
