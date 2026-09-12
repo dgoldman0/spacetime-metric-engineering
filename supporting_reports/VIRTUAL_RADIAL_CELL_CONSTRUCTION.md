@@ -211,7 +211,7 @@ separate guide check allocates guiding magnetic energy from the field already
 present in the core and auxiliary mixture. These changes address the
 identified numerical and component-accounting gaps directly.
 
-## Positive transport with resolved replay
+## Exponential transport and temporal refinement
 
 The exponential calculation uses all 515 original time nodes, a 0.2%
 reserved density margin, and pair width 0.0005 at both startup locations.
@@ -227,8 +227,12 @@ Both optimized controls pass independent replay at 48 spatial samples and
 at `x=-2` and 0.00007134 at `x=-1.975`. The largest travelling densities are
 0.0015582 and 0.0021441. The wave ledgers close within `1.2e-19`; conversion
 increments remain positive and contain zero simultaneous forward/reverse
-cycling. The selected short, coherent phase-volume cells therefore clear
-this local stress and causal transport comparison at the tested resolution.
+cycling. This supplies a positive result at that resolution. The further
+replay at 96 spatial samples and 2057 time samples resolves brief overloads
+between the previous sample times: 0.0011494 at `x=-2` and 0.0010623 at
+`x=-1.975`. The local clearance therefore fails temporal refinement. A
+positive supersolution for each wave operator can bound the inventory
+throughout a control interval and directly address this sampling failure.
 
 The common power port still connects to an external supply and recovery
 system. A post-processing comparison of these schedules finds insufficient
@@ -283,6 +287,41 @@ an external axial reaction. The next comparison places the confinement
 requirement inside the optimization and permits use of the radial field
 already present in the support mixture.
 
+## Axial restraint for the local directed store
+
+For directed stored radiation, let its density be `b` and the balanced core
+density be `s`. The auxiliary radial field can occupy at most
+
+```
+E_aux,max = (rho-p_r+p_t-2s-b)/3.
+```
+
+A locally contained, quasistatic store needs radial tension to balance its
+axial radiation pressure. Granting the store every radial tensile field in
+the pair gives the generous integrated condition
+
+```
+integral(s + E_aux,max - b) dVolume >= 0,
+equivalently integral(rho-p_r+p_t+s-3b) dVolume >= 0.
+```
+
+This comparison reuses the core and auxiliary field already counted in the
+tensor. It adds zero host or attachment mass, and permits restraint to be
+shared across the complete pair. Reoptimizing with this condition requires
+additional density 0.0123869 at `x=-2` and 0.0147331 at `x=-1.975`. Both
+deficits greatly exceed the 0.2% numerical reserve. Reservoir energy ledgers
+close within `9.7e-14`. The local confined-storage realization therefore
+exceeds the prescribed support budget even under these favorable allowances.
+
+The confinement comparison concerns a locally contained quasistatic module.
+[Giulini's treatment of Laue's theorem](https://arxiv.org/abs/1808.09320)
+identifies the conservation, stationarity, and boundary assumptions behind
+integrated stress cancellation for an isolated system. The active rail has
+time-dependent fields and continuing support connections; those connections
+can transmit an external axial reaction, with their own energy, stress, and
+work requirements. Thus the confined-module failure selects a system-level
+load-transfer problem for an externally supported implementation.
+
 ## Reproduction
 
 The [controller gate](data/virtual_cell_controller_gate/summary.json) contains
@@ -309,8 +348,10 @@ completed `x=-1.975` case and the numerical positivity failure at `x=-2`.
 
 The [exponential transport cases](data/virtual_cell_semigroup/summary.json)
 and their [independent replay](data/virtual_cell_semigroup_replay/summary.json)
-retain the two successful short-cell controls, finite wave histories, guide
-comparison, and local margins. Four additional tests check the exact
+retain the short-cell controls, finite wave histories, guide comparison,
+and original sampled margins. Their
+[finer replay](data/virtual_cell_semigroup_replay_refined/summary.json)
+records the subsequent transient failures. Four additional tests check the exact
 single-cell propagator, positivity at large transit Courant number, a
 constant-tension control, and the monotonic cost of adding a guide bound.
 
@@ -319,3 +360,8 @@ contain the three pressure laws at both startup locations. Four additional
 tests compare the integrated port flux with analytic decay, conserve the
 full flat-space inventory with ideal and lossy conversion, and verify the
 additional restriction imposed by closing an unrestricted external port.
+
+The [confined reservoir comparison](data/virtual_cell_confined_reservoir/summary.json)
+adds the integrated axial-restraint gate. An additional test checks that
+confinement tightens the directed-store allocation and independently
+reconstructs its integrated tension allowance.

@@ -32,7 +32,7 @@ def transport_map(dt, faces, gain, source, dx, backwards=False, observable=None)
 
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
-               guide_drift=None, reservoir_eos=None, deadline=180.):
+               guide_drift=None, reservoir_eos=None, confine_reservoir=False, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -49,6 +49,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     recovery=absorption+nt*nx
     epsilon=6*nt-4+2*nt*nx
     closed=reservoir_eos is not None
+    if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
+        raise ValueError('axial confinement comparison is defined for the directed radiation store')
     if closed:
         wr,wt=map(float,reservoir_eos)
         if abs(wr)>1 or abs(wt)>1:
@@ -88,11 +90,31 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             # the remaining guide requirement constrains the auxiliary field.
             ub.add(scaled(aa,.5)+scaled(ua+ur,3*guide)+scaled(buffer,w2)+[(epsilon,-1)],rho-p+q)
 
+    def add_confinement(index,midpoint=False):
+        # Generous integrated axial-restraint bound for a locally contained,
+        # quasistatic directed radiation store. Reuse every available radial
+        # tensile field, including the balanced core. Omit host and attachment
+        # mass. The maximum auxiliary radial field is
+        # (rho-p+q-2s-b)/3, hence integral(rho-p+q+s-3b) >= 0.
+        c=mids if midpoint else nodes
+        local_target=(target[:,index]+target[:,index+1])/2 if midpoint else target[:,index]
+        measures=dx*c['D'][index]
+        entries=[]
+        for j,measure in enumerate(measures):
+            amplitude=[(A[index,j//halfnx],.5),(A[index+1,j//halfnx],.5)] if midpoint else [(A[index,j//halfnx],1.)]
+            buffer=[(store[index],.5*density_weight_mid[index,j]),
+                    (store[index+1],.5*density_weight_mid[index,j])] if midpoint else [(store[index],density_weight[index,j])]
+            entries.extend((k,-measure*v/c['radius'][index,j]**2) for k,v in amplitude)
+            entries.extend((k,3*measure*v) for k,v in buffer)
+        entries.append((epsilon,-measures.sum()))
+        ub.add(entries,float(np.sum(measures*(local_target[0]-local_target[1]+local_target[2]))))
+
     for i in range(nt):
         for j in range(nx):
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
                 [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
                 [(store[i],density_weight[i,j])] if closed else ())
+        if confine_reservoir: add_confinement(i)
     operators=[]
     port_terms=[]
     for i,dt in enumerate(np.diff(t)):
@@ -157,6 +179,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                      (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
             panel.append(pair)
         operators.append(panel)
+        if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
                     (store[i],-1+dt*work_rate[i]/2)]+incident+[(k,-v) for k,v in returned])
@@ -188,6 +211,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     core=amplitude/nodes['radius']**2
     rho,p,q=target
     reservoir={}
+    confinement_added_density=0.
     if closed:
         buffer_density=r.x[store,None]*density_weight
         # Use the reduced target so the same facets independently reconstruct
@@ -208,6 +232,16 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             reservoir_balance_residual=float(abs(np.diff(r.x[store])+geometric_work+port_in-port_out).max()),
             reservoir_distribution='fixed material weights; perfectly mixed energy; redistribution stress omitted',
             reservoir_heat_reconverted_to_work=False,reservoir_confinement_supplied=False)
+        if confine_reservoir:
+            original_rho,original_p,original_q=target
+            available=(original_rho-original_p+original_q+core-3*buffer_density)/3
+            integrated=4*np.pi*dx*np.sum(nodes['D']*available,axis=1)
+            confinement_added_density=max(0.,float(np.max(-3*integrated/(4*np.pi*dx*np.sum(nodes['D'],axis=1)))))
+            reservoir.update(integrated_axial_restraint_gate=True,
+                confinement_added_density=confinement_added_density,
+                reservoir_minimum_integrated_axial_tension_margin=float(integrated.min()),
+                reservoir_axial_tension_margin=integrated,
+                reservoir_confinement_model='locally contained quasistatic store; all radial core and auxiliary fields available; host and attachment mass omitted')
     shortfall=np.maximum.reduce([p+2*q+2*core+3*wall,p-q+2*core,
         -2*p-q-core+6*ua,-2*p-q-core+6*ur])-rho
     if guide:
@@ -221,7 +255,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             thermal[i+1,sl]=matrix@thermal[i,sl]+response*loss
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
     return dict(success=eqerror<2e-7 and uberror<2e-7,
-        minimum_added_density=optimum,exact_added_density=max(0.,float(shortfall.max())),
+        minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=bool(second.success),
         transport_method='positive matrix exponential with node and midpoint budgets',

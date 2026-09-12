@@ -15,12 +15,13 @@ import run_virtual_cell_transport as common
 from run_poynting_delivery import BASE, ROOT, write_json
 
 
-EOS={'rest':(0.,0.),'radiation':(1/3,1/3),'radial_stream':(1.,0.)}
+EOS={'rest':(0.,0.),'radiation':(1/3,1/3),'radial_stream':(1.,0.),'confined_radial_stream':(1.,0.)}
 
 
 def evaluate(item):
     spec,kind=item
-    common.solve_pair=partial(solve_pair,guide_drift=.5,reservoir_eos=EOS[kind])
+    common.solve_pair=partial(solve_pair,guide_drift=.5,reservoir_eos=EOS[kind],
+                             confine_reservoir=kind=='confined_radial_stream')
     result=common.evaluate(spec)
     output=Path(spec[5]); old=result['label']; new=old+'_store_'+kind
     for suffix in ['_states.npz','_summary.json']:
@@ -41,7 +42,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--workers',type=int,default=4)
     parser.add_argument('--centers',type=float,nargs='+',default=[-2.,-1.975])
-    parser.add_argument('--kinds',choices=list(EOS),nargs='+',default=list(EOS))
+    parser.add_argument('--kinds',choices=list(EOS),nargs='+',default=['rest','radiation','radial_stream'])
     parser.add_argument('--width',type=float,default=.0005)
     parser.add_argument('--intervals',type=int,default=24)
     parser.add_argument('--stride',type=int,default=1)

@@ -44,3 +44,16 @@ def test_closed_store_cannot_improve_on_an_unrestricted_external_port():
     closed=solve_pair(t,edges,target,n,m,w,reservoir_eos=(0.,0.))
     assert opened['success'] and closed['success']
     assert closed['minimum_added_density']>opened['minimum_added_density']+1e-4
+
+
+def test_axial_confinement_gate_restricts_the_directed_store():
+    t=np.linspace(0,1,11); edges=np.linspace(-.02,.02,9)
+    n,m,w=flat_problem(t,edges)
+    rho=np.broadcast_to(1+t[:,None],(len(t),len(edges)-1))
+    target=np.array([rho,-rho,np.zeros_like(rho)])
+    bare=solve_pair(t,edges,target,n,m,w,reservoir_eos=(1.,0.))
+    confined=solve_pair(t,edges,target,n,m,w,reservoir_eos=(1.,0.),confine_reservoir=True)
+    assert bare['success'] and confined['success']
+    assert confined['minimum_added_density']>=bare['minimum_added_density']-1e-8
+    volume=4*np.pi*(edges[-1]-edges[0])
+    assert confined['reservoir_minimum_integrated_axial_tension_margin']>=-volume*confined['minimum_added_density']/3-2e-8
