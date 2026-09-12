@@ -40,7 +40,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                receiver_reference=None,
                receiver_contact=None, split_receiver=False, target_budget_only=False,
                thermal_particle_number=None, maximize_thermal_floor=False,
+               minimum_thermal_floor=None, midpoint_credited_target=None,
                solver_threads=None, solver_method=None, deadline=180.):
+    """Frozen-panel transport with independently supplied available stresses.
+
+    midpoint_credited_target, when supplied, is the COMPLETE available target
+    at actual midpoint geometry, shape (3, nt-1, nx). The caller includes its
+    chosen reserve and every reopened baseline fluid/receiver credit exactly
+    once. The default remains the average of the credited endpoint targets.
+
+    minimum_thermal_floor sets a fixed lower bound on U/(3*N_mass) at nodes
+    and midpoints in direct-budget mode, using a single inventory optimization.
+    maximize_thermal_floor retains the separate two-stage floor search.
+    """
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -74,6 +86,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         # Only stored heat is reopened. Its fixed containment and cold fluid
         # mass retain their original allocation outside this target.
         target=target.copy();target[0]+=receiver_old/nodes['D']
+    midpoint_target=(target[:,:-1]+target[:,1:])/2
+    if midpoint_credited_target is not None:
+        midpoint_target=np.asarray(midpoint_credited_target,dtype=float)
+        if midpoint_target.shape!=(3,nt-1,nx) or not np.isfinite(midpoint_target).all():
+            raise ValueError('midpoint_credited_target requires finite shape (3, nt-1, nx) including all baseline credits')
     if receiver_contact is not None:
         if not receiver_reopened or len(receiver_contact)!=3:
             raise ValueError('receiver_contact requires a reopened receiver and (loss, proper duration, turnover)')
@@ -86,11 +103,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             raise ValueError('receiver_contact requires finite nonnegative loss and positive duration/turnover')
     if split_receiver and receiver_contact is None:
         raise ValueError('split_receiver requires total contact loss and a finite donor comparison')
-    if maximize_thermal_floor:
+    if minimum_thermal_floor is not None:
+        if (isinstance(minimum_thermal_floor,(bool,np.bool_)) or
+                not isinstance(minimum_thermal_floor,(int,float,np.integer,np.floating)) or
+                not np.isfinite(minimum_thermal_floor) or minimum_thermal_floor<0):
+            raise ValueError('minimum_thermal_floor must be a finite nonnegative scalar or None')
+        if maximize_thermal_floor:
+            raise ValueError('minimum_thermal_floor and maximize_thermal_floor are mutually exclusive')
+    thermal_floor_active=maximize_thermal_floor or minimum_thermal_floor is not None
+    if thermal_floor_active:
         thermal_number=np.asarray(thermal_particle_number,float)
         if (not distributed or not target_budget_only or thermal_number.shape!=(nx,) or
                 np.any(thermal_number<=0) or not np.isfinite(thermal_number).all()):
-            raise ValueError('thermal floor optimization requires a direct thermal budget and positive particle inventory')
+            raise ValueError('thermal floor requires a direct thermal budget and positive particle inventory')
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -216,7 +241,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         # mass. The maximum auxiliary radial field is
         # (rho-p+q-2s-b)/3, hence integral(rho-p+q+s-3b) >= 0.
         c=mids if midpoint else nodes
-        local_target=(target[:,index]+target[:,index+1])/2 if midpoint else target[:,index]
+        local_target=midpoint_target[:,index] if midpoint else target[:,index]
         measures=dx*c['D'][index]
         entries=[]
         for j,measure in enumerate(measures):
@@ -243,6 +268,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             if maximize_thermal_floor:
                 ub.add([(temperature_column,3*thermal_number[j]*nodes['D'][i,j]**(1/3)),
                         (material_inventory[i,j],-1)])
+            elif minimum_thermal_floor is not None:
+                ub.add([(material_inventory[i,j],-1)],
+                       -3*thermal_number[j]*nodes['D'][i,j]**(1/3)*minimum_thermal_floor)
         if confine_reservoir: add_confinement(i)
     operators=[]
     port_terms=[]
@@ -321,11 +349,14 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 ur.extend([(negative[i,half],crm[i,j]*sr[local]),
                            (positive[i,half],crm[i,j]*sr[local]*(1/efficiency-1))])
                 add_budget([(A[i,half],.5),(A[i+1,half],.5)],ua,ur,
-                    *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
+                    *midpoint_target[:,i,j],mids['radius'][i,j],wallm[i,j],
                     *material_terms(i,j,True))
                 if maximize_thermal_floor:
                     ub.add([(temperature_column,3*thermal_number[j]*mids['D'][i,j]**(1/3)),
                             (material_inventory[i,j],-.5),(material_inventory[i+1,j],-.5)])
+                elif minimum_thermal_floor is not None:
+                    ub.add([(material_inventory[i,j],-.5),(material_inventory[i+1,j],-.5)],
+                           -3*thermal_number[j]*mids['D'][i,j]**(1/3)*minimum_thermal_floor)
                 if wave_envelope:
                     for end in (i,i+1):
                         add_budget([(A[end,half],1.)],
@@ -334,7 +365,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                             *material_terms(end,j))
                     add_budget([(A[i,half],.5),(A[i+1,half],.5)],
                         [(ceiling_abs[i,j],cam[i,j])],[(ceiling_rec[i,j],crm[i,j])],
-                        *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
+                        *midpoint_target[:,i,j],mids['radius'][i,j],wallm[i,j],
                         *material_terms(i,j,True))
             panel.append(pair)
         operators.append(panel)
@@ -410,6 +441,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     first=optimize()
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
+                    fixed_uniform_fluid_temperature_floor=minimum_thermal_floor,
+                    explicit_credited_midpoint_target=midpoint_credited_target is not None,
                     target_budget_only=bool(target_budget_only))
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
     if maximize_thermal_floor:
@@ -430,6 +463,15 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         reservoir.update(maximum_uniform_fluid_temperature=maximum_floor,
             retained_uniform_fluid_temperature=float(r.x[temperature_column]),
             thermal_floor_retention_fraction=.99,
+            temperature_convention='gamma-law U/(3*N_mass); microscopic caloric equation remains a material choice')
+    elif minimum_thermal_floor is not None:
+        observed_node=r.x[material_inventory]/(3*thermal_number*nodes['D']**(1/3))
+        observed_mid=(r.x[material_inventory][:-1]+r.x[material_inventory][1:])/(6*thermal_number*mids['D']**(1/3))
+        reservoir.update(fixed_uniform_fluid_temperature_floor=float(minimum_thermal_floor),
+            retained_uniform_fluid_temperature=float(minimum_thermal_floor),
+            minimum_observed_fluid_temperature=float(min(observed_node.min(),observed_mid.min())),
+            thermal_floor_violation=float(max(0.,minimum_thermal_floor-observed_node.min(),
+                                              minimum_thermal_floor-observed_mid.min())),
             temperature_convention='gamma-law U/(3*N_mass); microscopic caloric equation remains a material choice')
     if wave_envelope:
         reservoir.update(absorption_panel_ceiling=r.x[ceiling_abs],
@@ -548,6 +590,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     return dict(success=eqerror<2e-7 and uberror<2e-7,
         solver_method=method,
         target_budget_only=bool(target_budget_only),
+        explicit_credited_midpoint_target=midpoint_credited_target is not None,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=None if target_budget_only and not maximize_thermal_floor else bool(second.success),

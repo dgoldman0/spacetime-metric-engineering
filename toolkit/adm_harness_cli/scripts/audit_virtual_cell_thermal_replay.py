@@ -240,7 +240,10 @@ def audit(spec):
     counter = W-wave
     cap = spatial_history(oldx, s['receiver_rated_capacity'], x)
     original_cap = np.interp(x, ref.x, receiver_state['heat_cap'])
-    capacity = max(positive_max(-Z), positive_max(Z-cap), positive_max(cap-original_cap))
+    # The registered local rating bounds the actual inventory. Spatially
+    # extending a coarse allowance is reported separately; an unused excess
+    # allowance consumes no heat capacity or additional wall energy.
+    capacity = max(positive_max(-Z), positive_max(Z-original_cap))
     loss, duration = panels[4:6]
     contact = loss-np.diff(Z, axis=0)
     fluid_energy = K/g['D']**(1/3)

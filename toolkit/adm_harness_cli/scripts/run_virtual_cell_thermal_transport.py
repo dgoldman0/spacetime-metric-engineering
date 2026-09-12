@@ -20,7 +20,8 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
-     reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid)=spec
+     reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
+     minimum_temperature, exact_midpoint)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -35,6 +36,11 @@ def evaluate(spec):
                       h.pressure(t, x)[0], nodes['Q']/nodes['D']])
     budget = target.copy()
     budget[0] *= 1-reserve
+    midpoint_budget=None
+    if exact_midpoint:
+        midpoint_budget=np.array([h.energy(x).evaluate(tm)[0]/mids['D'],
+                                  h.pressure(tm,x)[0],mids['Q']/mids['D']])
+        midpoint_budget[0]*=1-reserve
     extra={}
     reference=None
     receiver=None
@@ -44,12 +50,17 @@ def evaluate(spec):
         reference=bilinear(old['t'],old['x'],old['thermal'],t,x)[0]/nodes['D']
         number=np.interp(x,old['x'],old['number'])
         extra=dict(reference_fluid_density=reference,fluid_particle_number=number)
+        if exact_midpoint:
+            bm=bilinear(old['t'],old['x'],old['thermal'],tm,x)[0]/mids['D']
+            midpoint_budget+=np.array([bm,bm/3,bm/3])
         if reallocate_receiver:
             ref=h.h.reference;state=h.h.state
             heat=bilinear(ref.t,ref.x,state['heat'],t,x)[0]
             capacity=np.interp(x,ref.x,state['heat_cap'])
             receiver=(heat,capacity)
             extra['receiver_fixed_containment_energy']=capacity/3
+            if exact_midpoint:
+                midpoint_budget[0]+=bilinear(ref.t,ref.x,state['heat'],tm,x)[0]/mids['D']
             if turnover is not None:
                 from audit_virtual_cell_receiver_contact import integrated_loss
                 loss,duration=integrated_loss(h,t,x,order=4)
@@ -67,7 +78,9 @@ def evaluate(spec):
         receiver_reference=receiver,
         receiver_contact=contact, target_budget_only=budget_only,
         split_receiver=split_receiver,
-        thermal_particle_number=number if warm_fluid else None,maximize_thermal_floor=warm_fluid,
+        thermal_particle_number=number if warm_fluid or minimum_temperature is not None else None,
+        maximize_thermal_floor=warm_fluid,minimum_thermal_floor=minimum_temperature,
+        midpoint_credited_target=midpoint_budget,
         solver_threads=1, solver_method=solver_method, deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
@@ -75,11 +88,14 @@ def evaluate(spec):
     if turnover is not None: label+=f'_rate{turnover:g}'
     if split_receiver: label+='_split'
     if warm_fluid: label+='_warm'
+    if minimum_temperature is not None: label+=f'_floor{minimum_temperature:g}'
+    if exact_midpoint: label+='_exactmid'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
         efficiency=.98, interface_sigma=1e-7, guide_drift=.5,
         reserved_density_fraction=reserve, common_phase_across_pair=True,
+        midpoint_target_sampled_from_registered_history=exact_midpoint,
         distributed_thermal_reservoir_eos=1/3,
         existing_fluid_thermal_state_reallocated=reallocate_fluid,
         existing_fluid_original_power_duty_preserved=reallocate_fluid,
@@ -101,6 +117,7 @@ def evaluate(spec):
         summary['target_budget_passes'] = bool(max(result['minimum_added_density'],
                                                    result['exact_added_density']) <= 2e-7)
         arrays = {key: value for key, value in result.items() if isinstance(value, np.ndarray)}
+        if exact_midpoint:extra['midpoint_credited_target']=midpoint_budget
         np.savez_compressed(output/(label+'_states.npz'), t=t, x=x, edges=edges,
             target=target, budget_target=budget, radius=nodes['radius'], D=nodes['D'],
             lapse=nodes['lapse'], ell=nodes['ell'], v=nodes['v'], **extra, **arrays)
@@ -132,6 +149,8 @@ def main():
     parser.add_argument('--target-budget-only',action='store_true')
     parser.add_argument('--split-receiver',action='store_true')
     parser.add_argument('--warm-fluid',action='store_true')
+    parser.add_argument('--minimum-fluid-temperature',type=float)
+    parser.add_argument('--exact-midpoint-target',action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
@@ -146,6 +165,10 @@ def main():
         parser.error('split receiver requires a finite turnover comparison')
     if args.warm_fluid and (not args.target_budget_only or not args.reallocate_fluid):
         parser.error('warm fluid optimization requires a reallocated fluid and direct target budget')
+    if args.minimum_fluid_temperature is not None and (
+            args.warm_fluid or not args.reallocate_fluid or not args.target_budget_only
+            or not np.isfinite(args.minimum_fluid_temperature) or args.minimum_fluid_temperature<0):
+        parser.error('fixed nonnegative fluid temperature requires direct reallocated-fluid budget and no maximization')
     output = BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal-transport evidence')
@@ -170,7 +193,8 @@ def main():
     output.mkdir()
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
-              args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid) for center in args.centers]
+              args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
+              args.minimum_fluid_temperature,args.exact_midpoint_target) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))

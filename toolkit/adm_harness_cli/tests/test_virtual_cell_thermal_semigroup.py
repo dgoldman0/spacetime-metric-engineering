@@ -203,3 +203,55 @@ def test_uniform_thermal_floor_uses_counted_fluid_pressure_and_particle_number()
     assert result['retained_uniform_fluid_temperature']>=.99-1e-8
     assert np.min(result['thermal_reservoir_rest']/(3*number))>=.99-1e-8
     assert result['second_optimization_success']
+
+
+def test_fixed_thermal_floor_uses_one_inventory_solve_and_cannot_buy_extra_density(monkeypatch):
+    import adm_harness.virtual_cell_semigroup as module
+    t=np.linspace(0,1,4);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    number=np.ones(4)/3
+    calls=[];original=module.linprog
+    def counted(*args,**kwargs):
+        calls.append(1)
+        return original(*args,**kwargs)
+    monkeypatch.setattr(module,'linprog',counted)
+    args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
+    result=solve_pair(*args,matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_particle_number=number,minimum_thermal_floor=.03)
+    assert result['success'] and len(calls)==1
+    assert result['second_optimization_success'] is None
+    assert result['minimum_added_density']==0
+    assert result['minimum_observed_fluid_temperature']>=.03-1e-8
+    assert result['thermal_floor_violation']<1e-8
+    assert_allclose(result['retained_uniform_fluid_temperature'],.03)
+    impossible=solve_pair(*args,matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_particle_number=number,minimum_thermal_floor=1.01)
+    assert not impossible['success'] and len(calls)==2
+
+
+def test_explicit_midpoint_capacity_rejects_a_dip_missed_by_endpoint_averaging():
+    t=np.linspace(0,1,4);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    args=(t,edges,np.array([one,-one,zero]),nodes,mids,waves)
+    options=dict(matched_pair=True,thermal_eos=1/3,target_budget_only=True,wave_envelope=True)
+    averaged=solve_pair(*args,**options)
+    assert averaged['success']
+    exact=solve_pair(*args,midpoint_credited_target=np.zeros((3,len(t)-1,4)),**options)
+    assert not exact['success']
+    assert exact['explicit_credited_midpoint_target']
+
+
+def test_fixed_thermal_floor_and_midpoint_inputs_require_their_declared_contract():
+    t=np.linspace(0,1,3);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((3,4))
+    args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
+    options=dict(thermal_eos=1/3,target_budget_only=True,thermal_particle_number=np.ones(4))
+    for bad in (True,-.01,float('nan'),'0.03'):
+        with pytest.raises(ValueError,match='minimum_thermal_floor'):
+            solve_pair(*args,minimum_thermal_floor=bad,**options)
+    with pytest.raises(ValueError,match='mutually exclusive'):
+        solve_pair(*args,minimum_thermal_floor=.03,maximize_thermal_floor=True,**options)
+    with pytest.raises(ValueError,match='positive particle inventory'):
+        solve_pair(*args,thermal_eos=1/3,target_budget_only=True,minimum_thermal_floor=.03)
+    with pytest.raises(ValueError,match='midpoint_credited_target'):
+        solve_pair(*args,midpoint_credited_target=np.zeros((3,3,4)),**options)

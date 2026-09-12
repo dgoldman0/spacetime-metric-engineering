@@ -112,8 +112,11 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
     one, zero = np.ones((3, 4)), np.zeros((3, 4))
     old = dict(t=t, x=x, thermal=one, flux_energy=one, number=np.ones(4))
     model = StaticModel()
-    reference = SimpleNamespace(t=t, x=x, h=SimpleNamespace(state=old, model=model))
-    state = dict(heat=.5*one, heat_cap=np.ones(4))
+    receiver_x = np.r_[edges[0], x, edges[-1]]
+    capacity = .7+.6*(receiver_x-edges[0])/(edges[-1]-edges[0])
+    local_capacity = np.interp(x, receiver_x, capacity)
+    reference = SimpleNamespace(t=t, x=receiver_x, h=SimpleNamespace(state=old, model=model))
+    state = dict(heat=.5*np.ones((len(t), len(receiver_x))), heat_cap=capacity)
     history = SimpleNamespace(h=SimpleNamespace(reference=reference, state=state),
         coefficients=lambda at, ax: dict(Q=np.zeros((len(at), len(ax)))),
         pressure=lambda at, ax: (np.zeros((len(at), len(ax))), None, None),
@@ -124,8 +127,8 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
     arrays = dict(t=t, x=x, edges=edges, amplitude=.1*one,
         positive_increment=zero[:-1], negative_increment=zero[:-1], thermal_inventory=one,
         balanced_radiation_inventory=2*one, receiver_thermal_energy=.5*one,
-        receiver_reference_energy=.5*one, receiver_rated_capacity=np.ones(4),
-        receiver_fixed_containment_energy=np.ones(4)/3, D=one,
+        receiver_reference_energy=.5*one, receiver_rated_capacity=local_capacity,
+        receiver_fixed_containment_energy=local_capacity/3, D=one,
         reference_fluid_density=one, thermal_return_rest=zero, receiver_hot_energy=.4*one)
     np.savez_compressed(source/'case_states.npz', **arrays)
     meta = dict(input='manufactured', common_phase_across_pair=True,
@@ -136,6 +139,8 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
     assert result['full_sampled_gate_passes']
     assert result['aggregate_panel_balance_residual'] == 0.
     assert result['split_donor_violation'] == 0.
+    assert result['receiver_capacity_interpolation_difference'] > .01
+    assert result['receiver_capacity_violation'] == 0.
     with np.load(output/'case_factor2_states.npz') as replayed:
         assert_allclose(replayed['balanced_radiation_inventory'], 2.)
         assert_allclose(replayed['counterstream_rest'], 2.)

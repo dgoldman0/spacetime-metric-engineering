@@ -6,7 +6,9 @@ the fluid alone clears `x=-2` and reduces the second pair's added-density
 requirement from `0.00312356` to `0.00112186`. The combined result preserves
 the original power duties, cold particle inventory, receiver capacity, and
 receiver containment. It identifies a useful thermal allocation within the
-existing assembly, with refinement and constitutive contact still open.
+existing assembly. Independent curved replay exposes missed stress features
+between the coarse pilot samples, so the finite pilot clearance requires
+repair before it can support a continuous construction.
 
 This continues the [thermal-exchange investigation](VIRTUAL_RADIAL_CELL_THERMAL_EXCHANGE.md)
 on the scheduled active rail. The protected packet, geometry, capacitor,
@@ -323,3 +325,45 @@ aggregate balanced-radiation energy and all six explicit work/heat beams
 on the registered curved geometry, preserving the archived controls and
 their prepared inventories. Its numerical results will determine how much
 of the finite-panel allocation survives continuous metric evolution.
+
+## Independent curved replay and the sampling repair
+
+The [fourfold pilot replay](data/virtual_cell_thermal_replay_warm10/summary.json)
+preserves the optimized phase, fluid, and receiver histories, evolves the
+complete radiation inventory with the registered metric, and independently
+propagates the six explicit beams. Both controls exceed the full density
+budget between their coarse target samples:
+
+| Pair center | Maximum full-density shortfall | Time of maximum | Maximum wave-floor violation |
+| --- | ---: | ---: | ---: |
+| -2 | 0.01008994 | 0.00501953 | 0.0000635184 |
+| -1.975 | 0.02172730 | 0.49595703 | 0 |
+
+The energy quadrature is well resolved: Gauss orders four and eight differ
+by less than `2e-15` in radiation density, and explicit wave balance closes
+within `1.9e-19`. Replacing the evolved radiation with the archived linear
+inventory leaves the first shortfall unchanged and the second at
+`0.02157522`. The principal discrepancy therefore belongs to the target's
+time sampling. At the two worst samples, the exact radial stress differs
+from the endpoint-averaged target by `+0.0102620` and `-0.0212212`.
+Applying the averaged target to the very same replayed states produces
+positive density margins of `0.000112567` and `0.00109504` there.
+
+The replay also resolves short intervals with reversed hot-bank transfer
+and donor-bound violations around `2e-5` in panel heat. The coarse linear
+hot-energy history averages over variation in the original converter loss.
+The separate bank ratings remain below the actual local receiver rating.
+An overly restrictive diagnostic comparison between an interpolated unused
+allowance and the local rating has been corrected to compare actual stored
+heat with the original local rating; the independent split-rating check
+continues to constrain both banks' maxima.
+
+The [515-time warm-floor maximizations](data/virtual_cell_fluid_receiver_warm10_refined/summary.json)
+reach their primary 300-second solver limits without returning states.
+The next solve therefore uses a fixed positive temperature floor and one
+inventory optimization. It also supplies the actual midpoint stress from
+the registered history, including the baseline fluid and receiver credits
+once. This retains the physical assembly while resolving known target
+features and reducing the solver work. A manufactured capacity-dip test
+demonstrates the difference between true midpoint stress and endpoint
+averaging.
