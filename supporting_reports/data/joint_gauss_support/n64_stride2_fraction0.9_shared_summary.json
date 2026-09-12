@@ -1,0 +1,11 @@
+{
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "elapsed_seconds": 254.9290127120912,
+  "label": "n64_stride2_fraction0.9_shared",
+  "intervals": 64,
+  "time_stride": 2,
+  "fraction": 0.9,
+  "allocation": "shared"
+}

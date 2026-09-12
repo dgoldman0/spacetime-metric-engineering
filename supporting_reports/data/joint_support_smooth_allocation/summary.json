@@ -1,0 +1,302 @@
+{
+  "cases": [
+    {
+      "success": true,
+      "message": "solved",
+      "optimizer_converged": true,
+      "optimizer_iterations": 10125,
+      "optimizer_primal_residual": 1.7704127552864435e-08,
+      "optimizer_dual_residual": 3.1368482031612193e-11,
+      "maximum_scaled_constraint_violation": 1.3498436026923577e-08,
+      "max_member_density_violation": 2.69968720656212e-08,
+      "minimum_support_density": 0.00486156726878843,
+      "max_raw_energy_residual": 7.161291628132011e-08,
+      "weighted_squared_divergence": 4.286492277510132e-10,
+      "material_peak_upper": 0.19999999686338094,
+      "conservative_material_cap": 0.2,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 285.70988886989653,
+      "variables": 50310,
+      "constraints": 217945,
+      "osqp_version": "1.0.5",
+      "label": "n64_stride1_fraction0.9_pchip_cap0.2",
+      "intervals": 64,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "pchip",
+      "allocation_cap_violation": 0.0,
+      "minimum_electric_retained_fraction": 0.11799999999999998,
+      "maximum_electric_average_rate": 1.0000000000005338,
+      "field_allocation_regularity": "C1 shape-preserving cubic; no singular force layer",
+      "weighted_force_residual": 0.039088437954451355,
+      "weighted_power_residual": 0.030196300510709796,
+      "maximum_force_residual": 0.019101848448125805,
+      "maximum_power_residual": 0.0009162788843416154,
+      "maximum_separate_member_shortfall_per_label": 0.0,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.22500224761473547,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.20157880328910346,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.40038153425919737,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 2297.4170722717527,
+      "final_support_rest": 292.3425714881657,
+      "gross_local_exchange": 0.369584815007817,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -5.756516721483859,
+          "max_force": -1.078244939548929,
+          "signed_ADM_work_out": -3.009383338458842e-13,
+          "peak_abs_ADM_power": 1.5887058021639372e-11
+        },
+        {
+          "end": "right",
+          "min_force": -11.736639912589048,
+          "max_force": -5.9559172462011,
+          "signed_ADM_work_out": 52.8244594327418,
+          "peak_abs_ADM_power": 327.5926544469374
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "run time limit reached",
+      "optimizer_converged": false,
+      "optimizer_iterations": 4548,
+      "optimizer_primal_residual": 3.6689009936599626e-06,
+      "optimizer_dual_residual": 1.266965904641982e-10,
+      "maximum_scaled_constraint_violation": 3.0000208086916483e-06,
+      "max_member_density_violation": 6.000041617382483e-06,
+      "minimum_support_density": 0.0051772512020817636,
+      "max_raw_energy_residual": 2.166244868987018e-06,
+      "weighted_squared_divergence": 2.3948372109062632e-08,
+      "material_peak_upper": 0.20000005300089163,
+      "conservative_material_cap": 0.2,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 300.4743642164394,
+      "variables": 99846,
+      "constraints": 432537,
+      "osqp_version": "1.0.5",
+      "label": "n128_stride1_fraction0.9_pchip_cap0.2",
+      "intervals": 128,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "pchip",
+      "allocation_cap_violation": 0.0,
+      "minimum_electric_retained_fraction": 0.11799999999999998,
+      "maximum_electric_average_rate": 1.0000000000005338,
+      "field_allocation_regularity": "C1 shape-preserving cubic; no singular force layer",
+      "weighted_force_residual": 0.2963397728251127,
+      "weighted_power_residual": 0.021777877878808683,
+      "maximum_force_residual": 0.02780537209625114,
+      "maximum_power_residual": 0.0006871117029296415,
+      "maximum_separate_member_shortfall_per_label": 0.0,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.2546461943324046,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.2003225562151493,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.40038750973119785,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 2149.8793271423506,
+      "final_support_rest": 327.0806650764513,
+      "gross_local_exchange": 0.3670376629482236,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -5.185130131287291,
+          "max_force": -1.2686124976270043,
+          "signed_ADM_work_out": -3.538857553376165e-13,
+          "peak_abs_ADM_power": 1.8691968417870304e-11
+        },
+        {
+          "end": "right",
+          "min_force": -11.577934923759228,
+          "max_force": -4.506850747081734,
+          "signed_ADM_work_out": 39.35170349176779,
+          "peak_abs_ADM_power": 247.46369801480645
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "run time limit reached",
+      "optimizer_converged": false,
+      "optimizer_iterations": 4560,
+      "optimizer_primal_residual": 4.857519101009178e-06,
+      "optimizer_dual_residual": 1.4085555009701634e-10,
+      "maximum_scaled_constraint_violation": 4.857519101009178e-06,
+      "max_member_density_violation": 4.857519101015002e-06,
+      "minimum_support_density": 0.007732426960342053,
+      "max_raw_energy_residual": 3.0297526558929744e-06,
+      "weighted_squared_divergence": 3.137798627215509e-08,
+      "material_peak_upper": 0.4000000372720544,
+      "conservative_material_cap": 0.4,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 300.34480168670416,
+      "variables": 99846,
+      "constraints": 432537,
+      "osqp_version": "1.0.5",
+      "label": "n128_stride1_fraction0.9_pchip_cap0.4",
+      "intervals": 128,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "pchip",
+      "allocation_cap_violation": 0.0,
+      "minimum_electric_retained_fraction": 0.11799999999999998,
+      "maximum_electric_average_rate": 1.0000000000005338,
+      "field_allocation_regularity": "C1 shape-preserving cubic; no singular force layer",
+      "weighted_force_residual": 0.20494112430846656,
+      "weighted_power_residual": 0.029705184910329363,
+      "maximum_force_residual": 0.019061063417037526,
+      "maximum_power_residual": 0.003247690416177835,
+      "maximum_separate_member_shortfall_per_label": 0.0,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.39028441770821687,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.2678806361981574,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.5641279052308259,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 2999.2314454376756,
+      "final_support_rest": 513.5900844523464,
+      "gross_local_exchange": 0.3670376629482236,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -8.791857305874192,
+          "max_force": -2.4217031005257135,
+          "signed_ADM_work_out": -6.728116644669794e-13,
+          "peak_abs_ADM_power": 3.573795250886946e-11
+        },
+        {
+          "end": "right",
+          "min_force": -17.797078506979293,
+          "max_force": -4.560808546689127,
+          "signed_ADM_work_out": 49.905505696739894,
+          "peak_abs_ADM_power": 298.32157071983124
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "run time limit reached",
+      "optimizer_converged": false,
+      "optimizer_iterations": 10599,
+      "optimizer_primal_residual": 0.003842542449979003,
+      "optimizer_dual_residual": 4.375376293214955e-11,
+      "maximum_scaled_constraint_violation": 0.0037251123135655373,
+      "max_member_density_violation": 5.063210187302626e-06,
+      "minimum_support_density": 0.004808623922013691,
+      "max_raw_energy_residual": 0.09405321642328031,
+      "weighted_squared_divergence": 2.696297564610089e-08,
+      "material_peak_upper": 0.39896386371434095,
+      "conservative_material_cap": 0.4,
+      "surface_width": 0.01,
+      "regularization": 1e-10,
+      "elapsed_seconds": 300.14168449118733,
+      "variables": 51342,
+      "constraints": 221555,
+      "osqp_version": "1.0.5",
+      "label": "n64_stride1_fraction0.9_pchip_cap0.4_jacket0.01",
+      "intervals": 64,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "pchip",
+      "allocation_cap_violation": 0.0,
+      "minimum_electric_retained_fraction": 0.11799999999999998,
+      "maximum_electric_average_rate": 1.0000000000005338,
+      "field_allocation_regularity": "C1 shape-preserving cubic; no singular force layer",
+      "weighted_force_residual": 0.5860228586824987,
+      "weighted_power_residual": 0.009146722162703175,
+      "maximum_force_residual": 0.061330909654699964,
+      "maximum_power_residual": 0.00012490386105321692,
+      "maximum_separate_member_shortfall_per_label": 0.0,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "maximum_jacket_acceleration_thickness": 0.07014793929634613,
+      "maximum_jacket_angular_thickness": 0.0020695390142010084,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.10930183277537656,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.09482605337932148,
+          "peak_x": -0.6499999999999999
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.5186624655910164,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 393.39809443066434,
+      "final_support_rest": 216.45015545026305,
+      "gross_local_exchange": 0.369584815007817,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": 0.973024805390607,
+          "max_force": 0.9847999194887288,
+          "signed_ADM_work_out": 2.685848572013903e-13,
+          "peak_abs_ADM_power": 1.433672533274472e-11
+        },
+        {
+          "end": "right",
+          "min_force": -2.046597315296552,
+          "max_force": -1.8792228372857787,
+          "signed_ADM_work_out": 14.001910004263276,
+          "peak_abs_ADM_power": 93.0749492892058
+        }
+      ],
+      "constitutive_law_supplied": false
+    }
+  ]
+}

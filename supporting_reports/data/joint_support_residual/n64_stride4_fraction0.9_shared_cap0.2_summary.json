@@ -1,0 +1,11 @@
+{
+  "success": false,
+  "status": 1,
+  "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+  "elapsed_seconds": 300.1392337139696,
+  "label": "n64_stride4_fraction0.9_shared_cap0.2",
+  "intervals": 64,
+  "time_stride": 4,
+  "fraction": 0.9,
+  "allocation": "shared"
+}

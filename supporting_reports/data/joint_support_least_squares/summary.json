@@ -1,0 +1,290 @@
+{
+  "cases": [
+    {
+      "success": false,
+      "message": "solved",
+      "optimizer_converged": true,
+      "optimizer_iterations": 5450,
+      "optimizer_primal_residual": 2.5875315741185913e-08,
+      "optimizer_dual_residual": 1.6871841433468612e-11,
+      "maximum_scaled_constraint_violation": 6.273613449794059e-09,
+      "max_member_density_violation": 1.2547226899108747e-08,
+      "minimum_support_density": 0.0018269654868627876,
+      "max_raw_energy_residual": 8.246535537797433e-09,
+      "weighted_squared_divergence": 2.2099784230845391e-10,
+      "material_peak_upper": 0.18040122004812945,
+      "conservative_material_cap": 0.2,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 19.995950956828892,
+      "variables": 6534,
+      "constraints": 28281,
+      "osqp_version": "1.0.5",
+      "label": "n32_stride4_fraction0.9_linear_basis_cap0.2",
+      "intervals": 32,
+      "time_stride": 4,
+      "fraction": 0.9,
+      "allocation": "linear_basis",
+      "weighted_force_residual": 0.04093710022562116,
+      "weighted_power_residual": 0.07319937735083298,
+      "maximum_force_residual": 0.008159259596162871,
+      "maximum_power_residual": 0.0016182586689488805,
+      "maximum_separate_member_shortfall_per_label": 0.09956967034536086,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "admissibility_message": "enriched member-energy inequality failed",
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.16761699261416768,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.1576830391301694,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.367296039464592,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 1317.7290408563633,
+      "final_support_rest": 190.3971608256816,
+      "gross_local_exchange": 0.31246815042444,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -2.3149016285665067,
+          "max_force": -0.15011619481436708,
+          "signed_ADM_work_out": -5.796969001174065e-14,
+          "peak_abs_ADM_power": 2.2118394527325727e-12
+        },
+        {
+          "end": "right",
+          "min_force": -10.083803253790004,
+          "max_force": -4.180797647750645,
+          "signed_ADM_work_out": 37.72656357351978,
+          "peak_abs_ADM_power": 232.02031605099978
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "solved",
+      "optimizer_converged": true,
+      "optimizer_iterations": 6550,
+      "optimizer_primal_residual": 2.542338499704025e-08,
+      "optimizer_dual_residual": 2.4376892805812928e-11,
+      "maximum_scaled_constraint_violation": 2.1936023340838292e-08,
+      "max_member_density_violation": 4.3872046680746105e-08,
+      "minimum_support_density": 0.0020289656182811778,
+      "max_raw_energy_residual": 2.1788492722535748e-08,
+      "weighted_squared_divergence": 2.251136138489127e-10,
+      "material_peak_upper": 0.1798070152088317,
+      "conservative_material_cap": 0.2,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 78.50861934851855,
+      "variables": 25350,
+      "constraints": 109785,
+      "osqp_version": "1.0.5",
+      "label": "n64_stride2_fraction0.9_linear_basis_cap0.2",
+      "intervals": 64,
+      "time_stride": 2,
+      "fraction": 0.9,
+      "allocation": "linear_basis",
+      "weighted_force_residual": 0.0293083270538544,
+      "weighted_power_residual": 0.036497526568834704,
+      "maximum_force_residual": 0.005391021379197164,
+      "maximum_power_residual": 0.001013576762038813,
+      "maximum_separate_member_shortfall_per_label": 0.06404191718169955,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "admissibility_message": "enriched member-energy inequality failed",
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.186417839332436,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.16535055771258614,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.38019811679493065,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 1341.874143076132,
+      "final_support_rest": 196.81446835019025,
+      "gross_local_exchange": 0.3161140808698811,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -2.9868421676701895,
+          "max_force": -0.3071523603723692,
+          "signed_ADM_work_out": -9.278146556659901e-14,
+          "peak_abs_ADM_power": 5.160015014984893e-12
+        },
+        {
+          "end": "right",
+          "min_force": -10.126132146528189,
+          "max_force": -4.164627742749503,
+          "signed_ADM_work_out": 36.61789328671566,
+          "peak_abs_ADM_power": 230.29056044813368
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "solved inaccurate",
+      "optimizer_converged": false,
+      "optimizer_iterations": 8787,
+      "optimizer_primal_residual": 2.3284837491477361e-07,
+      "optimizer_dual_residual": 3.859843705079743e-11,
+      "maximum_scaled_constraint_violation": 1.5347173649212387e-07,
+      "max_member_density_violation": 3.069434729849093e-07,
+      "minimum_support_density": 0.005311869346449757,
+      "max_raw_energy_residual": 2.902611053821468e-07,
+      "weighted_squared_divergence": 5.868920927470034e-10,
+      "material_peak_upper": 0.1999999962936384,
+      "conservative_material_cap": 0.2,
+      "surface_width": null,
+      "regularization": 1e-10,
+      "elapsed_seconds": 180.06992396339774,
+      "variables": 50310,
+      "constraints": 217945,
+      "osqp_version": "1.0.5",
+      "label": "n64_stride1_fraction0.9_linear_basis_cap0.2",
+      "intervals": 64,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "linear_basis",
+      "weighted_force_residual": 0.036217743966547644,
+      "weighted_power_residual": 0.030167485065311334,
+      "maximum_force_residual": 0.019973662684664266,
+      "maximum_power_residual": 0.0009110264258973353,
+      "maximum_separate_member_shortfall_per_label": 0.007537817512801498,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "admissibility_message": "enriched member-energy inequality failed",
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.2266222053697339,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.20110638927644242,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.4003819849152728,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 2312.5537057744987,
+      "final_support_rest": 294.82165810198774,
+      "gross_local_exchange": 0.369584815007817,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": -5.861539633912616,
+          "max_force": -1.0850749809950773,
+          "signed_ADM_work_out": -3.0283799898706206e-13,
+          "peak_abs_ADM_power": 1.5987693100706426e-11
+        },
+        {
+          "end": "right",
+          "min_force": -11.721777377321526,
+          "max_force": -5.965423094291046,
+          "signed_ADM_work_out": 52.63348012073377,
+          "peak_abs_ADM_power": 326.44057877574795
+        }
+      ],
+      "constitutive_law_supplied": false
+    },
+    {
+      "success": false,
+      "message": "solved",
+      "optimizer_converged": true,
+      "optimizer_iterations": 15525,
+      "optimizer_primal_residual": 3.1123372462801206e-08,
+      "optimizer_dual_residual": 3.4729577797700736e-11,
+      "maximum_scaled_constraint_violation": 3.1123372462801206e-08,
+      "max_member_density_violation": 6.224674492776396e-08,
+      "minimum_support_density": 0.005027504701071933,
+      "max_raw_energy_residual": 9.83408800167302e-08,
+      "weighted_squared_divergence": 2.3430109807124008e-08,
+      "material_peak_upper": 0.4000000005087546,
+      "conservative_material_cap": 0.4,
+      "surface_width": 0.05,
+      "regularization": 1e-10,
+      "elapsed_seconds": 36.04381389264017,
+      "variables": 6798,
+      "constraints": 29203,
+      "osqp_version": "1.0.5",
+      "label": "n32_stride4_fraction0.9_linear_basis_cap0.4_jacket0.05",
+      "intervals": 32,
+      "time_stride": 4,
+      "fraction": 0.9,
+      "allocation": "linear_basis",
+      "weighted_force_residual": 0.5096534793174761,
+      "weighted_power_residual": 0.019329964085324936,
+      "maximum_force_residual": 0.0519082690101053,
+      "maximum_power_residual": 0.0007113874089096917,
+      "maximum_separate_member_shortfall_per_label": 0.7204691519764055,
+      "audit_time_samples": 771,
+      "audit_spatial_samples": 384,
+      "admissibility_message": "enriched member-energy inequality failed",
+      "maximum_jacket_acceleration_thickness": 0.35073969648173065,
+      "maximum_jacket_angular_thickness": 0.010347695071005043,
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 0.13968244362917598,
+          "peak_x": -0.5
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 0.09388440633721093,
+          "peak_x": -0.5
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 0.5196986013957593,
+          "peak_x": -0.5
+        }
+      ],
+      "initial_support_rest": 427.05824130566975,
+      "final_support_rest": 221.76517679586146,
+      "gross_local_exchange": 0.31246815042444,
+      "end_connections": [
+        {
+          "end": "left",
+          "min_force": 0.9730248108271207,
+          "max_force": 0.9848001140659594,
+          "signed_ADM_work_out": 2.919055326450372e-13,
+          "peak_abs_ADM_power": 1.4336725412847306e-11
+        },
+        {
+          "end": "right",
+          "min_force": -2.4340747388801547,
+          "max_force": -1.8825969014361332,
+          "signed_ADM_work_out": 14.742902824100394,
+          "peak_abs_ADM_power": 110.6966090466995
+        }
+      ],
+      "constitutive_law_supplied": false
+    }
+  ]
+}

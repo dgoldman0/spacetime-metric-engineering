@@ -1,0 +1,76 @@
+{
+  "success": false,
+  "message": "run time limit reached",
+  "optimizer_converged": false,
+  "optimizer_iterations": 10599,
+  "optimizer_primal_residual": 0.003842542449979003,
+  "optimizer_dual_residual": 4.375376293214955e-11,
+  "maximum_scaled_constraint_violation": 0.0037251123135655373,
+  "max_member_density_violation": 5.063210187302626e-06,
+  "minimum_support_density": 0.004808623922013691,
+  "max_raw_energy_residual": 0.09405321642328031,
+  "weighted_squared_divergence": 2.696297564610089e-08,
+  "material_peak_upper": 0.39896386371434095,
+  "conservative_material_cap": 0.4,
+  "surface_width": 0.01,
+  "regularization": 1e-10,
+  "elapsed_seconds": 300.14168449118733,
+  "variables": 51342,
+  "constraints": 221555,
+  "osqp_version": "1.0.5",
+  "label": "n64_stride1_fraction0.9_pchip_cap0.4_jacket0.01",
+  "intervals": 64,
+  "time_stride": 1,
+  "fraction": 0.9,
+  "allocation": "pchip",
+  "allocation_cap_violation": 0.0,
+  "minimum_electric_retained_fraction": 0.11799999999999998,
+  "maximum_electric_average_rate": 1.0000000000005338,
+  "field_allocation_regularity": "C1 shape-preserving cubic; no singular force layer",
+  "weighted_force_residual": 0.5860228586824987,
+  "weighted_power_residual": 0.009146722162703175,
+  "maximum_force_residual": 0.061330909654699964,
+  "maximum_power_residual": 0.00012490386105321692,
+  "maximum_separate_member_shortfall_per_label": 0.0,
+  "audit_time_samples": 771,
+  "audit_spatial_samples": 384,
+  "maximum_jacket_acceleration_thickness": 0.07014793929634613,
+  "maximum_jacket_angular_thickness": 0.0020695390142010084,
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 0.10930183277537656,
+      "peak_x": -0.5
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 0.09482605337932148,
+      "peak_x": -0.6499999999999999
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 0.5186624655910164,
+      "peak_x": -0.5
+    }
+  ],
+  "initial_support_rest": 393.39809443066434,
+  "final_support_rest": 216.45015545026305,
+  "gross_local_exchange": 0.369584815007817,
+  "end_connections": [
+    {
+      "end": "left",
+      "min_force": 0.973024805390607,
+      "max_force": 0.9847999194887288,
+      "signed_ADM_work_out": 2.685848572013903e-13,
+      "peak_abs_ADM_power": 1.433672533274472e-11
+    },
+    {
+      "end": "right",
+      "min_force": -2.046597315296552,
+      "max_force": -1.8792228372857787,
+      "signed_ADM_work_out": 14.001910004263276,
+      "peak_abs_ADM_power": 93.0749492892058
+    }
+  ],
+  "constitutive_law_supplied": false
+}

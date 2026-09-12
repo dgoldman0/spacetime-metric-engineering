@@ -1,0 +1,35 @@
+{
+  "label": "joint_spacetime_support_n64_stride4_fraction0.9_shared_states_fraction0.9",
+  "input": "supporting_reports/data/joint_spacetime_support/n64_stride4_fraction0.9_shared_states.npz",
+  "time_samples": 2057,
+  "ends": [
+    {
+      "success": false,
+      "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+      "witness_time": 1.23982421875,
+      "witness_load": -0.33843098045858516,
+      "witness_acceleration": 0.7722870623719853,
+      "witness_angular_gradient": -0.0874915118809993,
+      "witness_force_interval_per_unit_energy": [
+        0.6148023409861866,
+        0.929771783757784
+      ],
+      "pointwise_force_cone_incompatible": true,
+      "incompatible_sample_fraction": 1.0,
+      "end": "left",
+      "stress_fraction": 0.9
+    },
+    {
+      "success": false,
+      "reason": "prepared surface inventory has an empty admissible interval",
+      "initial_energy_lower": 1134.9015682294478,
+      "initial_energy_upper": 5.722865068202455,
+      "pointwise_force_cone_incompatible": false,
+      "incompatible_sample_fraction": 0.0,
+      "end": "right",
+      "stress_fraction": 0.9
+    }
+  ],
+  "continuing_guide_traction_matched": true,
+  "finite_thickness_construction_supplied": false
+}

@@ -1,0 +1,48 @@
+{
+  "cases": [
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed_seconds": 7.108128376305103,
+      "label": "n32_stride8_fraction0.9_shared",
+      "intervals": 32,
+      "time_stride": 8,
+      "fraction": 0.9,
+      "allocation": "shared"
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed_seconds": 71.24434075132012,
+      "label": "n64_stride4_fraction0.9_shared",
+      "intervals": 64,
+      "time_stride": 4,
+      "fraction": 0.9,
+      "allocation": "shared"
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "elapsed_seconds": 254.9290127120912,
+      "label": "n64_stride2_fraction0.9_shared",
+      "intervals": 64,
+      "time_stride": 2,
+      "fraction": 0.9,
+      "allocation": "shared"
+    },
+    {
+      "success": false,
+      "status": 1,
+      "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is None)",
+      "elapsed_seconds": 300.52885009814054,
+      "label": "n64_stride1_fraction0.9_shared",
+      "intervals": 64,
+      "time_stride": 1,
+      "fraction": 0.9,
+      "allocation": "shared"
+    }
+  ]
+}

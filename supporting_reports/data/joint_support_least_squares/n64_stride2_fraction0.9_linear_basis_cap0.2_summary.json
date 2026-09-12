@@ -1,0 +1,71 @@
+{
+  "success": false,
+  "message": "solved",
+  "optimizer_converged": true,
+  "optimizer_iterations": 6550,
+  "optimizer_primal_residual": 2.542338499704025e-08,
+  "optimizer_dual_residual": 2.4376892805812928e-11,
+  "maximum_scaled_constraint_violation": 2.1936023340838292e-08,
+  "max_member_density_violation": 4.3872046680746105e-08,
+  "minimum_support_density": 0.0020289656182811778,
+  "max_raw_energy_residual": 2.1788492722535748e-08,
+  "weighted_squared_divergence": 2.251136138489127e-10,
+  "material_peak_upper": 0.1798070152088317,
+  "conservative_material_cap": 0.2,
+  "surface_width": null,
+  "regularization": 1e-10,
+  "elapsed_seconds": 78.50861934851855,
+  "variables": 25350,
+  "constraints": 109785,
+  "osqp_version": "1.0.5",
+  "label": "n64_stride2_fraction0.9_linear_basis_cap0.2",
+  "intervals": 64,
+  "time_stride": 2,
+  "fraction": 0.9,
+  "allocation": "linear_basis",
+  "weighted_force_residual": 0.0293083270538544,
+  "weighted_power_residual": 0.036497526568834704,
+  "maximum_force_residual": 0.005391021379197164,
+  "maximum_power_residual": 0.001013576762038813,
+  "maximum_separate_member_shortfall_per_label": 0.06404191718169955,
+  "audit_time_samples": 771,
+  "audit_spatial_samples": 384,
+  "admissibility_message": "enriched member-energy inequality failed",
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 0.186417839332436,
+      "peak_x": -0.5
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 0.16535055771258614,
+      "peak_x": -0.5
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 0.38019811679493065,
+      "peak_x": -0.5
+    }
+  ],
+  "initial_support_rest": 1341.874143076132,
+  "final_support_rest": 196.81446835019025,
+  "gross_local_exchange": 0.3161140808698811,
+  "end_connections": [
+    {
+      "end": "left",
+      "min_force": -2.9868421676701895,
+      "max_force": -0.3071523603723692,
+      "signed_ADM_work_out": -9.278146556659901e-14,
+      "peak_abs_ADM_power": 5.160015014984893e-12
+    },
+    {
+      "end": "right",
+      "min_force": -10.126132146528189,
+      "max_force": -4.164627742749503,
+      "signed_ADM_work_out": 36.61789328671566,
+      "peak_abs_ADM_power": 230.29056044813368
+    }
+  ],
+  "constitutive_law_supplied": false
+}

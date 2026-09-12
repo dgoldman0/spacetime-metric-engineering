@@ -1,0 +1,2 @@
+# Optional sparse convex solver for the bounded joint-support investigation.
+osqp==1.0.5
