@@ -1,0 +1,56 @@
+{
+  "success": true,
+  "optimal_material_null_peak": 19.700948940948102,
+  "max_scaled_equality_residual": 9.489624155922805e-09,
+  "max_raw_equality_residual": 9.550296255533438e-09,
+  "max_inequality_violation": 2.51164540554516e-13,
+  "angular_rounds": 1,
+  "variables": 2476,
+  "equalities": 2242,
+  "inequalities": 5841,
+  "intervals": 32,
+  "time_stride": 8,
+  "time_nodes": 35,
+  "prestrain_floor": 1e-06,
+  "ends": "exposed",
+  "fluid_fixed": false,
+  "label": "n32_stride8_prestrain1e-06_exposed",
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 3.742669586313689,
+      "peak_x": -2.1,
+      "peak_null_cosine": 1.0,
+      "material_ADM": 59525.31943652601
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 5.962981774981883,
+      "peak_x": -2.1,
+      "peak_null_cosine": -1.0,
+      "material_ADM": 37282.878681203416
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 19.823602597721433,
+      "peak_x": -0.8500000000000001,
+      "peak_null_cosine": -0.02174531920067777,
+      "material_ADM": 12470.266849948232
+    }
+  ],
+  "initial_cold_rest": 54726.273781311014,
+  "final_cold_rest": 6567.210012165143,
+  "initial_warm_rest": 386.49091057988403,
+  "final_warm_rest": 5347.774429509004,
+  "initial_fluid_thermal": 4476.7998212236735,
+  "final_fluid_thermal": 547.2399310808958,
+  "internal_heat_gross": 6531.798724020971,
+  "internal_heat_identity_residual": 9.550293000870624e-09,
+  "heat_duty_with_compatible_constant_capacity_fraction": 0.0,
+  "maximum_left_traction": 6.324809697726351,
+  "maximum_right_traction": 2.5855481177517308,
+  "maximum_left_end_force": 679.1652385888964,
+  "maximum_right_end_force": 145.53134975179813,
+  "finite_charge_confinement_supplied": false,
+  "full_thermal_contact_law_supplied": false
+}

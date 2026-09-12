@@ -329,6 +329,12 @@ and the full An-T-Le construction also remain open.
 
 ## Evidence and verification
 
+The subsequent [joint elastic backing and pressure screen](JOINT_ELASTIC_BACKING_PRESSURE_SCREEN.md)
+puts a prepared radial frame, angular members, fluid adjustment, and warm
+storage into the same force-and-work calculation. Its finite elastic
+continuation exposes the constitutive-response and end-reaction costs of
+that connection family.
+
 Material/work controls:
 `toolkit/adm_harness_cli/adm_harness/composite_capacitor.py`.
 The three numerical producers are `evaluate_composite_capacitor.py`,

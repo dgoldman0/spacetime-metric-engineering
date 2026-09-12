@@ -1,0 +1,15 @@
+{
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "variables": 2476,
+  "equalities": 2312,
+  "inequalities": 5841,
+  "intervals": 32,
+  "time_stride": 8,
+  "time_nodes": 35,
+  "prestrain_floor": 0.0,
+  "ends": "balanced",
+  "fluid_fixed": false,
+  "label": "n32_stride8_prestrain0_balanced"
+}

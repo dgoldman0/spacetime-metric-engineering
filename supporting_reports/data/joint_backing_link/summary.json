@@ -1,0 +1,120 @@
+{
+  "cases": [
+    {
+      "success": true,
+      "optimal_material_null_peak": 19.59032798377471,
+      "max_scaled_equality_residual": 6.1791771144292795e-09,
+      "max_raw_equality_residual": 6.223001551984389e-09,
+      "max_inequality_violation": 9.462916561453483e-16,
+      "angular_rounds": 1,
+      "variables": 2476,
+      "equalities": 2242,
+      "inequalities": 5841,
+      "intervals": 32,
+      "time_stride": 8,
+      "time_nodes": 35,
+      "prestrain_floor": 0.0,
+      "ends": "exposed",
+      "fluid_fixed": false,
+      "label": "n32_stride8_prestrain0_exposed",
+      "phases": [
+        {
+          "time": 0.0,
+          "required_negative_null": 3.723273268485028,
+          "peak_x": -2.1,
+          "peak_null_cosine": 1.0,
+          "material_ADM": 59134.38632880762
+        },
+        {
+          "time": 0.5,
+          "required_negative_null": 5.932339798197347,
+          "peak_x": -2.1,
+          "peak_null_cosine": -1.0,
+          "material_ADM": 36991.240033510636
+        },
+        {
+          "time": 1.285,
+          "required_negative_null": 19.7129816405478,
+          "peak_x": -0.8500000000000001,
+          "peak_null_cosine": -0.02174531920068889,
+          "material_ADM": 12291.226165249702
+        }
+      ],
+      "initial_cold_rest": 54389.176302896805,
+      "final_cold_rest": 6446.5229700137825,
+      "initial_warm_rest": 414.2770345211739,
+      "final_warm_rest": 5266.586116386715,
+      "initial_fluid_thermal": 4395.745765282086,
+      "final_fluid_thermal": 570.074601656014,
+      "internal_heat_gross": 6452.869047894822,
+      "internal_heat_identity_residual": 6.223002252392362e-09,
+      "heat_duty_with_compatible_constant_capacity_fraction": 0.0,
+      "maximum_left_traction": 6.284258526268124,
+      "maximum_right_traction": 2.5740629294905726,
+      "maximum_left_end_force": 674.8108078068309,
+      "maximum_right_end_force": 144.88779699176052,
+      "finite_charge_confinement_supplied": false,
+      "full_thermal_contact_law_supplied": false
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "variables": 2476,
+      "equalities": 2242,
+      "inequalities": 5841,
+      "intervals": 32,
+      "time_stride": 8,
+      "time_nodes": 35,
+      "prestrain_floor": 0.01,
+      "ends": "exposed",
+      "fluid_fixed": false,
+      "label": "n32_stride8_prestrain0.01_exposed"
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "variables": 2476,
+      "equalities": 2242,
+      "inequalities": 5841,
+      "intervals": 32,
+      "time_stride": 8,
+      "time_nodes": 35,
+      "prestrain_floor": 0.1,
+      "ends": "exposed",
+      "fluid_fixed": false,
+      "label": "n32_stride8_prestrain0.1_exposed"
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "variables": 2476,
+      "equalities": 2312,
+      "inequalities": 5841,
+      "intervals": 32,
+      "time_stride": 8,
+      "time_nodes": 35,
+      "prestrain_floor": 0.01,
+      "ends": "balanced",
+      "fluid_fixed": false,
+      "label": "n32_stride8_prestrain0.01_balanced"
+    },
+    {
+      "success": false,
+      "status": 2,
+      "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+      "variables": 2476,
+      "equalities": 2242,
+      "inequalities": 5841,
+      "intervals": 32,
+      "time_stride": 8,
+      "time_nodes": 35,
+      "prestrain_floor": 0.01,
+      "ends": "exposed",
+      "fluid_fixed": true,
+      "label": "n32_stride8_prestrain0.01_exposed_fixedfluid"
+    }
+  ]
+}
