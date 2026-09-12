@@ -1,0 +1,13 @@
+{
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/evaluate_charged_shell_capacitor.py": "16e45e3e39a33b5d331b8b61b1bbef88e1ba874fc19e7877257399b2ee0f4fb7",
+    "toolkit/adm_harness_cli/adm_harness/charged_capacitor.py": "257bbb9ee26e1e203f65492911492231ba94e37ac19974bd4e34e43cc142deb4",
+    "toolkit/adm_harness_cli/tests/test_charged_capacitor.py": "f96ead84de236a781bd3061d2d4259758901371a35de6aa0c78b02579f2e22cf"
+  },
+  "output_sha256": {
+    "best_sampled.csv": "2a56a052fff3186567f85647fd54fbe1799e397f335164be408aa3e15ba379d2",
+    "charge_envelopes.csv": "a3cc09dde8d6dbc94b3f434c7035d8627413dde12fdacf749f0dd896ed3aed9b",
+    "quadrature_checks.csv": "2b54e658d7a69252e087dd6ff01891b46030aa82654b23b44ac8d3e3bd8cfc89",
+    "summary.json": "9a7a1eb3f88c556f2745fb4a3f412356742e136b074d5106e8a2774645c3eb0c"
+  }
+}

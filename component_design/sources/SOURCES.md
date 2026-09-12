@@ -243,6 +243,24 @@ adds the following coupling and charged-boundary references.
   Design use: charged-interface stress and gravitational matching; the
   spherical family is a candidate mathematical basis for capacitor boundaries.
 
+The [charged capacitor construction study](../../supporting_reports/CHARGED_CAPACITOR_CONSTRUCTION.md)
+adds explicit surface stability and energy controls.
+
+- Jiří Bičák and Norman Gürlebeck,
+  [Spherical Gravitating Condensers in General Relativity](https://arxiv.org/abs/1008.1137).
+  Design use: two charged material surfaces, their pressure/tension, and
+  gravitational matching across an electric gap.
+
+- Ernesto F. Eiroa and Claudio Simeone,
+  [Stability of Charged Thin Shells](https://arxiv.org/abs/1102.1683).
+  Design use: fixed-charge radial perturbations and the local sound-slope
+  stability test in Einstein--Maxwell theory.
+
+- Luz Marina Reyes, Marcelo Chiapparini, and Santiago Esteban Perez Bergliaffa,
+  [Thermodynamical and Dynamical Stability of a Self-Gravitating Charged Thin Shell](https://doi.org/10.1140/epjc/s10052-022-10107-4).
+  Design use: distinguishing material stability from energy conditions;
+  the uncharged limit supplies an independent analytical test.
+
 ## Diagnostics And Governance Sources
 
 - [`intelligent_dofs_transportation_infrastructures_2601.13891.pdf`](intelligent_dofs_transportation_infrastructures_2601.13891.pdf)
