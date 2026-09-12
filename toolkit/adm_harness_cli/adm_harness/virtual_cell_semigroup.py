@@ -32,7 +32,8 @@ def transport_map(dt, faces, gain, source, dx, backwards=False, observable=None)
 
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
-               guide_drift=None, reservoir_eos=None, confine_reservoir=False, deadline=180.):
+               guide_drift=None, reservoir_eos=None, confine_reservoir=False,
+               wave_envelope=False, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -48,6 +49,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     absorption=np.arange(nt*nx).reshape(nt,nx)+6*nt-4
     recovery=absorption+nt*nx
     epsilon=6*nt-4+2*nt*nx
+    if wave_envelope:
+        ceiling_abs=np.arange((nt-1)*nx).reshape(nt-1,nx)+epsilon
+        ceiling_rec=ceiling_abs+(nt-1)*nx
+        epsilon+=2*(nt-1)*nx
     closed=reservoir_eos is not None
     if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
         raise ValueError('axial confinement comparison is defined for the directed radiation store')
@@ -153,6 +158,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 pair[back]=(full,mid)
                 matrix,response=full
                 at=i if back else i+1; other=i+1 if back else i
+                if wave_envelope:
+                    ceiling=ceiling_abs if back else ceiling_rec
+                    generator=upwind_operator(-faces if back else faces,dx)
+                    generator+=np.diag(-gain if back else gain)
                 for local,j in enumerate(range(start,stop)):
                     items=[(ids[at,j],1)]+[(ids[other,start+k],-value)
                         for k,value in enumerate(matrix[local]) if value!=0]
@@ -162,6 +171,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                         items.extend([(negative[i,half],-response[local]),
                                       (positive[i,half],-response[local]*(1/efficiency-1))])
                     eq.add(items)
+                    if wave_envelope:
+                        # A positive supersolution bounds the whole frozen
+                        # time interval, including unresolved transit peaks:
+                        # z >= y(start), G z + source_rate <= 0.
+                        ub.add([(ids[other,j],1),(ceiling[i,j],-1)])
+                        envelope=[(ceiling[i,start+k],value)
+                            for k,value in enumerate(generator[local]) if value]
+                        if back:
+                            envelope.append((positive[i,half],source[local]/(dt*efficiency)))
+                        else:
+                            envelope.extend([(negative[i,half],source[local]/dt),
+                                (positive[i,half],source[local]*(1/efficiency-1)/dt)])
+                        ub.add(envelope)
                     if closed and not back:
                         eq.add([(useful[i+1,j],1)]+[(useful[i,start+k],-value)
                             for k,value in enumerate(matrix[local]) if value!=0]
@@ -177,6 +199,17 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                     *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
                     [(store[i],.5*density_weight_mid[i,j]),
                      (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
+                if wave_envelope:
+                    for end in (i,i+1):
+                        add_budget([(A[end,half],1.)],
+                            [(ceiling_abs[i,j],ca[end,j])],[(ceiling_rec[i,j],cr[end,j])],
+                            *target[:,end,j],nodes['radius'][end,j],wall[end,j],
+                            [(store[end],density_weight[end,j])] if closed else ())
+                    add_budget([(A[i,half],.5),(A[i+1,half],.5)],
+                        [(ceiling_abs[i,j],cam[i,j])],[(ceiling_rec[i,j],crm[i,j])],
+                        *(target[:,i,j]+target[:,i+1,j])/2,mids['radius'][i,j],wallm[i,j],
+                        [(store[i],.5*density_weight_mid[i,j]),
+                         (store[i+1],.5*density_weight_mid[i,j])] if closed else ())
             panel.append(pair)
         operators.append(panel)
         if confine_reservoir: add_confinement(i,True)
@@ -211,6 +244,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     core=amplitude/nodes['radius']**2
     rho,p,q=target
     reservoir={}
+    if wave_envelope:
+        reservoir.update(absorption_panel_ceiling=r.x[ceiling_abs],
+            recovery_panel_ceiling=r.x[ceiling_rec],
+            within_panel_wave_bound=True,
+            within_panel_wave_bound_scope='positive supersolution for frozen-panel finite-volume geometry')
     confinement_added_density=0.
     if closed:
         buffer_density=r.x[store,None]*density_weight
@@ -222,7 +260,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         port_out=np.array([sum(v*r.x[k] for k,v in b) for a,b,c in port_terms])
         port_total=np.array([sum(v*r.x[k] for k,v in c) for a,b,c in port_terms])
         geometric_work=np.diff(t)*work_rate*(r.x[store][:-1]+r.x[store][1:])/2
-        reservoir=dict(reservoir_energy=r.x[store],reservoir_rest=buffer_density,
+        reservoir.update(reservoir_energy=r.x[store],reservoir_rest=buffer_density,
             reservoir_incident_panel_energy=port_in,reservoir_recovered_work_panel_energy=port_out,
             reservoir_exported_heat_panel_energy=port_total-port_out,
             reservoir_geometric_work_panel_energy=geometric_work,

@@ -322,6 +322,23 @@ can transmit an external axial reaction, with their own energy, stress, and
 work requirements. Thus the confined-module failure selects a system-level
 load-transfer problem for an externally supported implementation.
 
+## Bounding the full control interval
+
+For a frozen-panel positive wave generator `G` and source rate `S`, a
+nonnegative ceiling `z` satisfying `z >= y_initial` and `G z + S <= 0`
+bounds the wave throughout the panel. Applying this condition to forward
+recovery and backward absorption covers the transit peaks that the earlier
+time samples missed. Stress gates use the ceiling at both panel ends and
+at the midpoint, with the phase amplitude shared by each physical cell.
+
+Both width-0.0005 locations admit zero added density in this stronger
+optimization. The primary controls close the scaled equality constraints
+within `2.9e-11`. Their secondary inventory minimizations fail, leaving
+primary controls with simultaneous conversion and negative roundoff at
+approximately `1e-9`. These raw controls therefore require an explicit
+physical control reconstruction and a fresh wave replay. The source and
+propagator comparisons remain available for verification.
+
 ## Reproduction
 
 The [controller gate](data/virtual_cell_controller_gate/summary.json) contains
@@ -365,3 +382,8 @@ The [confined reservoir comparison](data/virtual_cell_confined_reservoir/summary
 adds the integrated axial-restraint gate. An additional test checks that
 confinement tightens the directed-store allocation and independently
 reconstructs its integrated tension allowance.
+
+The [interval-envelope cases](data/virtual_cell_wave_envelope/summary.json)
+preserve the raw controls and wave ceilings. Two additional tests verify
+positive-supersolution bounds between samples and the stronger restriction
+imposed by the full-panel wave ceiling.

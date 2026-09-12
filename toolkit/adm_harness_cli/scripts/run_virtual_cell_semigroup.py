@@ -16,10 +16,10 @@ from run_poynting_delivery import BASE,ROOT,write_json
 
 
 def evaluate(item):
-    spec,guide=item
+    spec,guide,envelope=item
     # The common runner retains identical geometry, target and diagnostics;
     # each worker injects only the alternate finite-volume optimization.
-    transport_run.solve_pair=partial(solve_pair,guide_drift=guide)
+    transport_run.solve_pair=partial(solve_pair,guide_drift=guide,wave_envelope=envelope)
     result=transport_run.evaluate(spec)
     output=Path(spec[5]); old_label=result['label']
     new_label=old_label+('_guide_none' if guide is None else f'_guide{guide:g}')
@@ -43,6 +43,7 @@ def main():
     parser.add_argument('--sigma',type=float,default=1e-7)
     parser.add_argument('--reserve',type=float,default=.002)
     parser.add_argument('--output-name',default='virtual_cell_semigroup')
+    parser.add_argument('--envelope',action='store_true')
     args=parser.parse_args(); output=BASE/args.output_name
     if output.exists(): raise RuntimeError('preserve completed exponential transport evidence')
     source=BASE/'joint_refined_response/manifest.json'; previous=json.loads(source.read_text())
@@ -67,7 +68,7 @@ def main():
             case=output/f'x{center:g}_guide{guide:g}'; case.mkdir()
             spec=(args.width,args.intervals,args.stride,args.efficiency,args.sigma,
                   str(case),center,True,True,args.reserve)
-            specs.append((spec,None if guide==0 else guide))
+            specs.append((spec,None if guide==0 else guide,args.envelope))
     with ProcessPoolExecutor(max_workers=max(1,min(args.workers,len(specs))),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         results=list(pool.map(evaluate,specs))

@@ -84,7 +84,7 @@ def evaluate(spec):
         initial=max(0.,float(drawn.max())); buffer=initial-drawn
         spare=4*np.pi*dx*np.sum(nodes['D']*np.maximum(-r['density_shortfall'],0),axis=1)
         upper=float(np.min(drawn+spare))
-        summary.update(target_budget_passes=bool(r['exact_added_density']<=2e-7),
+        summary.update(target_budget_passes=bool(max(r['minimum_added_density'],r['exact_added_density'])<=2e-7),
             maximum_travelling_rest_density=float((ua+ur).max()),
             maximum_countercurrent_density=float(abs(d*(ua-ur)).max()),
             maximum_conversion_heat_density=float(r['heat_rest'].max()),
