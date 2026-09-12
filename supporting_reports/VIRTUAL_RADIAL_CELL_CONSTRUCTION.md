@@ -125,10 +125,56 @@ the gravitational energy accounting of a physical superconductor additionally
 includes its host material. Its condensation free energy alone supplies no
 rail-scale stress-to-total-energy demonstration.
 
-The next bounded comparison evaluates phase-volume conversion and its power
-transfer on the retained schedule. A completed cell construction additionally
-requires resolved interfaces, the shared reservoir tensor, and its continuing
-rail reactions.
+## Two cells with a common power port
+
+The phase-volume comparison uses the retained `f=0.99` schedule. An adjustable
+balanced field/potential contribution has
+`(rho_s,p_r_s,p_t_s)=(A/R^2,-A/R^2,0)`. Its required material-frame power and
+radial force are
+
+```
+P_s = A_t/(N R^2),
+F_s = -(A_x/ell + v A_t/N)/R^2.
+```
+
+Two finite feeding regions share a middle power port. Absorbed radial waves
+travel outward from that port, while recovered waves travel back to it. A
+positive backward transport solve supplies the minimum prepared absorption
+inventory; forward transport evolves recovery. The two streams, the phase
+amplitude, conversion heat, and complementary material budget are optimized
+together. The remaining radial current is balanced by a separately counted
+counterstream. The optimization includes the full auxiliary component cone.
+
+This first comparison allows distributed actuation inside each feeding
+region, ideal conversion efficiency, and zero interface energy. It therefore
+tests a favorable transport limit. The source-free propagation coefficients
+come from the prescribed active metric, and the local conversion exchanges
+cancel algebraically. The registered support target retains its previous
+continuum force residual.
+
+| Pair width in rail coordinates | Pair center | Additional density required |
+| ---: | ---: | ---: |
+| 1.6 | -1.3 | 0.0143110 |
+| 0.05 | -1.9875 | 0.00368280 |
+| 0.005 | -1.9875 | 0 within `2e-7` |
+| 0.0005 | -1.9875 | 0 within `2e-7` |
+
+Each comparison uses 24 spatial cells and 132 temporal samples. For width
+0.005, the maximum travelling rest density is 0.009095. The two individual
+feeding regions have proper lengths between 0.00745 and 0.02806 in the
+project's length unit during the schedule. Their common port receives
+0.10114 units of incident work and returns 0.21720 units over the sampled
+interval. The minimum initially stored energy for an isolated pressureless
+buffer is 0.10059. That particular optimized schedule leaves insufficient
+spare energy for the isolated buffer through the whole interval. The port
+therefore remains an external supply and recovery interface in the passing
+transport comparison.
+
+The narrowing comparison also changes the sampled neighbourhood: the narrow
+pairs sit between the earlier startup witnesses. A follow-up must test those
+witness locations directly, resolve the temporal and spatial transport,
+restrict each cell to a coherent amplitude, and include conversion loss and
+heat return. Interface and guide stresses remain additional requirements.
 
 ## Reproduction
 
@@ -141,3 +187,9 @@ controller energy directly, and check shared-buffer conversion bookkeeping.
 Independent histories run with four worker processes. The manifest hashes
 the archived inputs, source code, tests, and outputs. The disclosure and its
 PDF retain their design content.
+
+The [first transport comparison](data/virtual_cell_transport/summary.json)
+retains the optimized amplitudes, both wave histories, heat, required
+reaction forces, and common-port energy histories. Four further tests check
+the finite-volume boundary balance, a constant-tension control, the cost of
+changing pure tension, and conversion heat with finite membrane energy.
