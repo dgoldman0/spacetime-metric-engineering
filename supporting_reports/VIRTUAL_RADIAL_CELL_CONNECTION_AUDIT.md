@@ -13,6 +13,12 @@ controls from the final externally powered cell comparison. The present
 audit tests the retained work beams, complementary current, and component
 tractions together, then separately relaxes the phase schedule itself.
 
+The [joint thermal-exchange continuation](VIRTUAL_RADIAL_CELL_THERMAL_EXCHANGE.md)
+adds a counted pressure-bearing state and optimizes it with the phase and
+radial radiation. Its sampled local energy gate opens at both locations;
+causal delivery and a physical reciprocal constitutive law determine the
+remaining construction.
+
 This investigation uses the scheduled active-rail patch
 `-2.1 <= x <= -0.5`, `0 <= t <= 1.285`, and the retained `f=0.99` support
 history. The capacitor, pressure link, endpoint heat/current medium, and

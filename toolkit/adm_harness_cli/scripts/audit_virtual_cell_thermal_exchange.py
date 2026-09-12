@@ -37,7 +37,7 @@ def panel_weights(model, times, position, w, order):
 
 
 def evaluate(spec):
-    filename, destination, strides = spec
+    filename, destination, strides, monotone, only_joint_radiation = spec
     path, output = Path(filename), Path(destination)
     meta = json.loads(path.with_name(path.name.replace('_states.npz', '_summary.json')).read_text())
     with np.load(path) as z:
@@ -63,14 +63,17 @@ def evaluate(spec):
             original_a = s['amplitude'][sample, index]
             actual_floor = 2*np.maximum(s['absorption_rest'][sample, index],
                 s['work_return_rest'][sample, index]+s['heat_return_rest'][sample, index])
-            for w, eos_name in ((0., 'stored_excitation'), (1/3, 'thermal_radiation')):
+            equations = ((1/3, 'thermal_radiation'),) if only_joint_radiation else (
+                (0., 'stored_excitation'), (1/3, 'thermal_radiation'))
+            for w, eos_name in equations:
                 mean4, exchange4 = panel_weights(model, t, x, w, 4)
                 mean8, exchange8 = panel_weights(model, t, x, w, 8)
-                for mode in ('fixed_phase', 'joint_phase'):
+                for mode in (('joint_phase',) if only_joint_radiation else ('fixed_phase', 'joint_phase')):
                     fixed = original_a if mode == 'fixed_phase' else None
                     floor = actual_floor if mode == 'fixed_phase' else None
                     solved = solve_thermal_exchange(*fields, radius, ell, mean8, exchange8,
-                        w=w, fixed_amplitude=fixed, radiation_floor=floor, solver_threads=1)
+                        w=w, fixed_amplitude=fixed, radiation_floor=floor,
+                        monotone_thermal=monotone, solver_threads=1)
                     label = meta['label']+f'_side{side}_stride{stride}_{eos_name}_{mode}'
                     scalars = {key: value for key, value in solved.items() if np.isscalar(value)}
                     result = dict(label=label, source=str(path.relative_to(ROOT)),
@@ -85,6 +88,8 @@ def evaluate(spec):
                         radiation_current_zero=True, reservoir_current_zero=True,
                         local_phase_radiation_reservoir_power_sum=0.,
                         endpoint_external_power_added=0.,
+                        monotonically_charged_adiabatic_inventory=monotone,
+                        perfect_isotropic_zero_flux_comparison=bool(monotone and w == 1/3),
                         full_source_construction_supplied=False,
                         maximum_phase_weight_quadrature_change=float(abs(mean8-mean4).max()),
                         maximum_exchange_weight_quadrature_change=float(abs(exchange8-exchange4).max()),
@@ -96,6 +101,10 @@ def evaluate(spec):
                     np.savez_compressed(output/(label+'_states.npz'), t=t, x=np.array(x),
                         density=fields[0], radial_pressure=fields[1], angular_pressure=fields[2],
                         wall_rest=fields[3], radius=radius, ell=ell,
+                        material_lapse=kin['lapse'][sample, side],
+                        radial_expansion=kin['theta_r'][sample, side],
+                        angular_expansion=kin['theta_t'][sample, side],
+                        material_acceleration=kin['acceleration'][sample, side],
                         original_amplitude=original_a, original_wave_inventory_floor=actual_floor,
                         panel_mean_ell_squared=mean8, panel_mean_exchange_weight=exchange8,
                         panel_mean_ell_squared_order4=mean4, panel_mean_exchange_weight_order4=exchange4,
@@ -114,6 +123,8 @@ def main():
     parser.add_argument('--output', type=Path, default=BASE/'virtual_cell_thermal_exchange')
     parser.add_argument('--strides', type=int, nargs='+', default=[2, 1])
     parser.add_argument('--workers', type=int, default=2)
+    parser.add_argument('--monotone-thermal', action='store_true')
+    parser.add_argument('--only-joint-radiation', action='store_true')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or min(args.strides) < 1:
         parser.error('one or two workers and positive temporal strides required')
@@ -142,7 +153,8 @@ def main():
     output.mkdir(parents=True)
     with ProcessPoolExecutor(max_workers=min(args.workers, len(paths)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
-        groups = list(pool.map(evaluate, [(str(path), str(output), args.strides) for path in paths]))
+        groups = list(pool.map(evaluate, [(str(path), str(output), args.strides,
+            args.monotone_thermal, args.only_joint_radiation) for path in paths]))
     cases = [case for group in groups for case in group]
     write_json(output/'summary.json', dict(cases=cases))
     write_json(output/'manifest.json', dict(created_utc=datetime.now(timezone.utc).isoformat(),

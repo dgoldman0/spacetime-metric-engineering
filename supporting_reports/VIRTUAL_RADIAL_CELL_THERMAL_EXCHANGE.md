@@ -152,3 +152,55 @@ passes 18 tests. The numerical runner uses two independent workers with one
 solver thread each. Input identities, source versions, and output hashes
 are retained in the calculation manifest. The complete phase-front,
 transport, force, and constitutive source construction remains open.
+
+## Passive angular redistribution comparison
+
+The simplest elastic angular-relaxation operator is
+`C[I]=kappa[(W+B)/(4 pi)-I]`. Applied to opposed radial radiation plus
+an isotropic distribution, its collision step transfers `kappa W` from
+the radial population into the isotropic population. Its total local
+power and force vanish. The operator and the distinction from the actual
+Thomson angular kernel are discussed by [Achterberg and Norman](https://academic.oup.com/mnras/article/479/2/1783/5034957).
+
+Treating the receiving population as exactly isotropic with zero flux
+gives `K_t=N D^(4/3) kappa W >= 0`. The
+[monotone-inventory comparison](data/virtual_cell_isotropization_gate/summary.json)
+therefore adds `K_(i+1)>=K_i` to the joint pressure-bearing gate. It permits
+arbitrary positive rates and prepared inventory, with zero travelling-wave
+floor. A constant `K` and sufficiently prepared `U` supply the finite
+feasible competitor used for its dual bounds.
+
+| Position | Added density, 1029 times | Added density, 2057 times |
+| --- | ---: | ---: |
+| -2.00000260417 | 0 | 0 |
+| -1.99999739583 | 0 | 0 |
+| -1.97500260417 | 0.000300121 | 0.000299962 |
+| -1.97499739583 | 0.000288798 | 0.000288640 |
+
+The second port needs energy return beyond the geometric work allowed by
+this perfect-isotropic receiving-population model. Maximum panel residual
+is `6.76e-14`, cone violation `2.23e-16`, and primal/dual discrepancy
+`1.78e-15`. The bidirectional thermal interpretation retains its separate
+opening from the preceding comparison.
+
+Finite scattering also requires angular dynamics. For an exactly isotropic
+population, the radiation moment hierarchy generates a dipole from
+`D_s B+4aB` and a quadrupole from shear. At vanishing flux, anisotropic
+pressure, and higher multipoles, the quadrupole derivative is
+`D_u pi^(ab)=-(8/15)B sigma^(ab)`. These follow from
+[Maartens, Gebbie, and Ellis's covariant moment hierarchy](https://arxiv.org/html/astro-ph/9808163v2#S6).
+Scattering relaxes a finite quadrupole; it leaves a shear-driven correction
+to the perfect-fluid tensor.
+
+Moreover, a tensor decomposition of one evolving angular distribution has
+geometric exchange between its apparent radial and isotropic parts. In a
+homogeneous anisotropic local check with `delta=theta_r-theta_t`, the
+radial-plus-isotropic fourth moment gives
+`D_u B+(4/3)Theta B=kappa W+(8/15)delta B`. Thus monotonic `K` tests the
+separately maintained perfect-isotropic comparison. Full angular transport
+has additional flux and shear-work terms and remains a distinct construction.
+
+The selected continuation restores coherent paired phase and actual causal
+drive/return/heat waves to the bidirectional pressure-bearing energy gate.
+Its purpose is to determine whether the useful local opening survives the
+work-delivery duties already present in the radial-cell architecture.

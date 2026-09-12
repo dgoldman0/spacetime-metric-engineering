@@ -1,0 +1,166 @@
+{
+  "created_utc": "2026-09-12T21:50:24.896543+00:00",
+  "git_head": "4d6af24f7bc262e6930c8f46d943be8d717fe4dd",
+  "workers": 2,
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_averaged_replay/manifest.json": "014660f57ccc5a42e17090e03bcd5e3543a112f25823824812ff32a8a38b0f9d",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_exchange.py": "88d491fc50045a2647034665da73faafcb9574c59931412e27626f5acf55e4e5",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_counterstream.py": "1366d77ed1b3b7556e0bfa3898d3f300b4284248f6ba64d7d14e942e04d03d3f",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_thermal_exchange.py": "5bb3ae30547a6ed20a60bf8ebd109291357cbf0500f6d47f9f94062d13223235",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_counterstream.py": "1a97db62f5542726fbec6ea93806c458cb036d6ce5992f4d06b332497fdcafed",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_exchange.py": "5cd9bcf0fecd97156b8d27994412490747ff75c939393294ae4823163533c4a8",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "supporting_reports/data/virtual_cell_averaged_controls/manifest.json": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+    "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c"
+  },
+  "immutable_input_checks": [
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "f40fd02d8d70ed053737d7bee55dbdb1ca3071fa0cd1f22b823ade10fa65201d",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "f69608f0d3c8ca0787e52ad3fd49d640694af06cbd4fe5d1933d786c56f54cea",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz",
+      "sha256": "8e63e4e40701e11e5eb88bf544014e10efe039b629573e9e5868b5c7449f2333",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_replay/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json",
+      "sha256": "2ccdb6a631d9228fc41d2f44466f65e42c3056211fdab5c8fed47927df5f7fb3",
+      "check": "replay output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "control output manifest"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "sha256": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+      "check": "replay control linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json",
+      "sha256": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+      "check": "replay control-summary linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/metric_fine.npz",
+      "sha256": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+      "check": "replay inherited or linked model identity"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json",
+      "sha256": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/virtual_cell_averaged_controls/manifest.json",
+      "sha256": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+      "check": "replay model input-manifest linkage"
+    },
+    {
+      "path": "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz",
+      "sha256": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+      "check": "replay inherited or linked model identity"
+    }
+  ],
+  "output_sha256": {
+    "summary.json": "21e33c5f86eee9d247815703cd6c597e261d2e9e12fb360c2d3b2d00be6c9a60",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_states.npz": "0e17f5ff11352d71a7590e252cc26ebc15e3116aa94b469b450a7c62dcac9d87",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_summary.json": "e813f8da158e5e379057599bb16eca1dc0f3c817bfafc17a530d9b7ca8cf0dc0",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_states.npz": "c0303756edb77848e7bec1e7d34a4178c779d5c505f1bc4ab1820f58df248f2f",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_summary.json": "ea4576523c92718251ca21ebfb22b808d83f3dda907d305bef85c11b69dd1b96",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_states.npz": "a2dc7245fc92669359e7ae9f4036bee6abccf9b5d0ce8ce50c8a926804e761a1",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_summary.json": "ac0c08205cd0e3b582454e3c0f815a51ebd017add67efbb20932fcef08bdd8f1",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_states.npz": "69f9a0fcce00b8cc9087f78e29ddd9716b147cc62632aea71ffe26db307e6c72",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_summary.json": "8dcf9c888bc648db09c8dd5ded89f9108e37978d22ef8f1cd5a0a285be58ae65",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_states.npz": "f27d82049cc4aec1852c7bab80496d735f2d957fc2cf4e2330f3273ba7814ad1",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride1_thermal_radiation_joint_phase_summary.json": "1d97f5b814cd3098e9dbc973278261e5cd033a3b9381638dbb2d794692220955",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_states.npz": "9fdc1f255856c6d682e85ef7e9415e20dd5d646bc172a7c6d145394169002506",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side0_stride2_thermal_radiation_joint_phase_summary.json": "a02fb107cac2173427c13a72b0e37d70319e14bbe3fd0fae5a0c41ae55adf87c",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_states.npz": "2f84cc1aa0cc30a85ccbda004a39cb785794fee53213f12a621910e56f6545ee",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride1_thermal_radiation_joint_phase_summary.json": "2d787f548761130293262b856783c628322d3e15024716f8097793a32016f066",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_states.npz": "db200c957575946fa6b2714e455abf0f33488df549eb7b3536b90cf1e087ccfd",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_side1_stride2_thermal_radiation_joint_phase_summary.json": "ed96f22909af892ec4bcaee49db99fc82e18c1d4df7be591e2c1a3e495c87f24"
+  }
+}

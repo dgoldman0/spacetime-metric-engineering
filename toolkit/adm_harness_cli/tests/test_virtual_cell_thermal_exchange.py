@@ -70,3 +70,36 @@ def test_thread_and_reservoir_arguments_are_checked_before_solve():
         thermal_exchange_problem(*args,w=.2)
     with pytest.raises(ValueError,match='radiation_floor'):
         thermal_exchange_problem(*args,w=0.,radiation_floor=-one)
+
+
+def test_monotone_angular_reservoir_accepts_radial_isotropization():
+    one=np.ones(3);zero=np.zeros(3)
+    radial=np.array([.2,.15,.1]);angular=np.array([0.,.05,.1])
+    result=solve_thermal_exchange(.2*one,radial+angular/3,angular/3,zero,
+        one,one,one[:-1],one[:-1],w=1/3,fixed_amplitude=zero,
+        radiation_floor=radial,monotone_thermal=True)
+    assert_allclose(result['density_allowance'],0.,atol=1e-10)
+    assert result['maximum_thermal_monotonicity_violation']<1e-10
+    assert result['maximum_equality_residual']<1e-10
+
+
+def test_monotone_reservoir_rejects_required_thermal_depletion_and_has_valid_competitor():
+    one=np.ones(3);zero=np.zeros(3);phase=np.array([0.,.2,0.])
+    thermal=np.array([.2,0.,.2]);radial=.1*one
+    args=(.3*one,-phase+radial+thermal/3,thermal/3,zero,one,one,one[:-1],one[:-1])
+    kwargs=dict(w=1/3,fixed_amplitude=phase,radiation_floor=radial)
+    unrestricted=solve_thermal_exchange(*args,**kwargs)
+    monotone=solve_thermal_exchange(*args,**kwargs,monotone_thermal=True)
+    assert_allclose(unrestricted['density_allowance'],0.,atol=1e-10)
+    assert monotone['dual_lower_bound']>.01
+    problem=thermal_exchange_problem(*args,**kwargs,monotone_thermal=True)
+    competitor=problem['feasible_competitor']
+    assert np.max(problem['inequality']@competitor-problem['rhs'])<=1e-10
+    assert_allclose(problem['equality']@competitor,0.,atol=1e-13)
+    assert np.all(competitor>=problem['lower']-1e-13)
+    assert np.all(competitor<=problem['upper']+1e-13)
+    reduced=problem['cost']-problem['inequality'].T@monotone['dual_inequality']-\
+        problem['equality'].T@monotone['dual_equality']
+    dual=problem['rhs']@monotone['dual_inequality']+np.maximum(reduced,0.)@problem['lower']+\
+        np.minimum(reduced,0.)@problem['upper']
+    assert_allclose(dual,monotone['dual_lower_bound'],atol=1e-13)
