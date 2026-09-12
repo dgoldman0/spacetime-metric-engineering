@@ -1,0 +1,46 @@
+{
+  "pointwise_force_max": 0.020211057514835908,
+  "pointwise_power_max": 0.00045667636570651936,
+  "force_sum_relative_residual": 0.09754334325058381,
+  "power_sum_relative_residual": 0.005183691788036489,
+  "cell_force_sum_relative_residual": 0.008743524249193682,
+  "max_cell_average_ell_force_residual": 0.10588045190444502,
+  "sampled_times": 65,
+  "sampled_positions": 512,
+  "preserved_full_reference_fluid": true,
+  "allocation_lift_force_max": 0.015453272621803174,
+  "allocation_lift_force_sum_relative_residual": 0.04972001901360258,
+  "allocation_lift_max_DEC_violation": 0.0013478662770309846,
+  "allocation_lift_min_density": 0.0016693946115457128,
+  "allocation_lift_max_abs_density_change": 0.0006739331385139338,
+  "label": "n64_stride4_stress1_exposed_fixedfluid",
+  "source_directory": "joint_support_envelope_refinement",
+  "end_connections": [
+    {
+      "end": "left",
+      "signed_work_out": 6.682736342075596e-14,
+      "gross_work_out": 6.68301044555795e-14,
+      "gross_work_in": 2.7410348235335474e-18,
+      "max_abs_power": 3.308939069959942e-12,
+      "min_signed_force": -0.6853273728961135,
+      "max_signed_force": 0.9691559730677908
+    },
+    {
+      "end": "right",
+      "signed_work_out": 34.76607108213796,
+      "gross_work_out": 34.76607108213796,
+      "gross_work_in": 0.0,
+      "max_abs_power": 233.86167605525262,
+      "min_signed_force": -10.580089591159192,
+      "max_signed_force": -4.196996017569561
+    }
+  ],
+  "axial_force_change_fraction_opposing_uncoupled_positive_stiffness": 0.7504047151402518,
+  "minimum_support_density": 0.0016337010859413675,
+  "minimum_radial_pressure": -0.1449154838975073,
+  "maximum_radial_pressure": 0.008325208984316199,
+  "minimum_angular_pressure": -0.16838537699317346,
+  "maximum_angular_pressure": 0.04042064449819799,
+  "max_separate_member_energy_shortfall_per_label": 113.51007476529801,
+  "energy_weighted_node_fraction_with_separate_member_shortfall": 0.9883378923307838
+}

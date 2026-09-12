@@ -1,0 +1,8 @@
+{
+  "label": "separate_members_monotone",
+  "success": false,
+  "status": 2,
+  "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+  "separate_members": true,
+  "monotone_axial_response": true
+}

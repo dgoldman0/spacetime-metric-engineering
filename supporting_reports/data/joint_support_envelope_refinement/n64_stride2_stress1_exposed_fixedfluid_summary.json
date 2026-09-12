@@ -1,0 +1,158 @@
+{
+  "success": false,
+  "status": -1,
+  "message": "angular maximization remained unresolved",
+  "angular_trace": [
+    {
+      "round": 1,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08306612285264824,
+      "angular_gap": 8.03739514205759e-05
+    },
+    {
+      "round": 2,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.0835474220112504,
+      "angular_gap": 0.0005616731100227396
+    },
+    {
+      "round": 3,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08353476362208456,
+      "angular_gap": 0.0005490147208569024
+    },
+    {
+      "round": 4,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08495552572228421,
+      "angular_gap": 0.0019697768210565486
+    },
+    {
+      "round": 5,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08359082208143097,
+      "angular_gap": 0.0006050731802033082
+    },
+    {
+      "round": 6,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08336267512586087,
+      "angular_gap": 0.00037692622463321446
+    },
+    {
+      "round": 7,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08300517399358001,
+      "angular_gap": 1.942509235235146e-05
+    },
+    {
+      "round": 8,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08301621813748415,
+      "angular_gap": 3.0469236256491783e-05
+    },
+    {
+      "round": 9,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.0830254087022819,
+      "angular_gap": 3.965980105423428e-05
+    },
+    {
+      "round": 10,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08315695694220913,
+      "angular_gap": 0.00017120804098147424
+    },
+    {
+      "round": 11,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08375135778157877,
+      "angular_gap": 0.0007656088803511124
+    },
+    {
+      "round": 12,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08299923069969548,
+      "angular_gap": 1.3481798467815387e-05
+    },
+    {
+      "round": 13,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08329315707142451,
+      "angular_gap": 0.00030740817019685174
+    },
+    {
+      "round": 14,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08299052530096242,
+      "angular_gap": 4.776399734757186e-06
+    },
+    {
+      "round": 15,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08305429233288956,
+      "angular_gap": 6.854343166190491e-05
+    },
+    {
+      "round": 16,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08299712931333565,
+      "angular_gap": 1.13804121079919e-05
+    },
+    {
+      "round": 17,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08329860593125533,
+      "angular_gap": 0.0003128570300276745
+    },
+    {
+      "round": 18,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08306266168026452,
+      "angular_gap": 7.691277903686122e-05
+    },
+    {
+      "round": 19,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08325559935858319,
+      "angular_gap": 0.0002698504573555305
+    },
+    {
+      "round": 20,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08298727073342589,
+      "angular_gap": 1.521832198231321e-06
+    },
+    {
+      "round": 21,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08300834201509383,
+      "angular_gap": 2.2593113866167802e-05
+    },
+    {
+      "round": 22,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.0829869842278431,
+      "angular_gap": 1.2353266154452314e-06
+    },
+    {
+      "round": 23,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08298917677363091,
+      "angular_gap": 3.4278724032471564e-06
+    },
+    {
+      "round": 24,
+      "lower_peak": 0.08298574890122766,
+      "exact_peak": 0.08340228637318926,
+      "angular_gap": 0.0004165374719616033
+    }
+  ],
+  "label": "n64_stride2_stress1_exposed_fixedfluid",
+  "intervals": 64,
+  "time_stride": 2,
+  "stress_fraction": 1.0,
+  "ends": "exposed",
+  "fluid_fixed": true,
+  "constitutive_law_supplied": false
+}

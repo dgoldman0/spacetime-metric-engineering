@@ -1,0 +1,8 @@
+{
+  "label": "general_DEC_monotone",
+  "success": false,
+  "status": 4,
+  "message": "(HiGHS Status 0: Not Set)",
+  "separate_members": false,
+  "monotone_axial_response": true
+}

@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "optimal_material_null_peak": 0.03952697130315021,
+  "max_scaled_equality_residual": 3.2369076030658306e-09,
+  "exact_material_null_peak": 0.039527830062354816,
+  "angular_optimization_gap": 8.58759204608317e-07,
+  "angular_trace": [
+    {
+      "round": 1,
+      "lower_peak": 0.039526971302943345,
+      "exact_peak": 0.039984813768992974,
+      "angular_gap": 0.0004578424660496294
+    },
+    {
+      "round": 2,
+      "lower_peak": 0.03952697126645338,
+      "exact_peak": 0.03954134818579438,
+      "angular_gap": 1.4376919340995664e-05
+    },
+    {
+      "round": 3,
+      "lower_peak": 0.039526971303192576,
+      "exact_peak": 0.03958045716928401,
+      "angular_gap": 5.348586609143363e-05
+    },
+    {
+      "round": 4,
+      "lower_peak": 0.03952697130315021,
+      "exact_peak": 0.039527830062354816,
+      "angular_gap": 8.58759204608317e-07
+    }
+  ],
+  "max_raw_equality_residual": 3.314831959380359e-09,
+  "max_inequality_violation": 9.108575227401161e-09,
+  "angular_rounds": 4,
+  "variables": 4621,
+  "equalities": 2242,
+  "inequalities": 10424,
+  "label": "n32_stride8_stress1_exposed",
+  "intervals": 32,
+  "time_stride": 8,
+  "stress_fraction": 1.0,
+  "ends": "exposed",
+  "fluid_fixed": false,
+  "constitutive_law_supplied": false,
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 0.12782872339676166,
+      "peak_x": -0.5,
+      "peak_null_cosine": 0.25447155786604303,
+      "material_ADM": 1432.1837576664757
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 0.10060391668924724,
+      "peak_x": -0.8,
+      "peak_null_cosine": 0.010506921646048648,
+      "material_ADM": 866.4940860812075
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 0.2038063005515949,
+      "peak_x": -0.5,
+      "peak_null_cosine": -0.022147269529502436,
+      "material_ADM": 133.88799242342392
+    }
+  ],
+  "initial_support_rest": 1274.0967186586925,
+  "final_support_rest": 125.84551523023391,
+  "initial_fluid_thermal": 151.64709624049723,
+  "final_fluid_thermal": 0.0,
+  "support_mechanical_input": 87.88007365274564,
+  "support_mechanical_output": 1364.32204734226,
+  "support_internal_heat_gross": 838.7683208145104,
+  "energy_identity_residual": 3.314827487152505e-09,
+  "maximum_left_end_force": 2.6044363849101777,
+  "maximum_right_end_force": 9.787710936531855,
+  "max_support_radial_pressure": 0.13050002467870014,
+  "max_support_angular_pressure": 0.13336347048088373
+}

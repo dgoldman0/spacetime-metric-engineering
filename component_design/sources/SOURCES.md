@@ -125,6 +125,18 @@ copy.
   Design use: causal elastic support intuition for the standing substrate and
   support reservoir.
 
+- Jose Natario, "Relativistic elasticity of rigid rods and strings,"
+  arXiv:1406.0634. Source URL: https://arxiv.org/abs/1406.0634
+  Design use: finite-strain radial-member energy and causal longitudinal
+  response in the joint backing/pressure/support screen. The one-dimensional
+  model supplies a constitutive comparison; angular members and their
+  connections carry separate energy and stresses.
+
+- J. David Brown, "Elasticity Theory in General Relativity,"
+  arXiv:2004.03641. Source URL: https://arxiv.org/abs/2004.03641
+  Design use: derive support stresses, strain work, and evolution from a
+  common material action when continuing the joint support stress schedule.
+
 ## Magnetic And Protected-Bore Field-Routing Sources
 
 - [`prat_camps_long_distance_transfer_static_magnetic_fields_1304.6300.pdf`](prat_camps_long_distance_transfer_static_magnetic_fields_1304.6300.pdf)

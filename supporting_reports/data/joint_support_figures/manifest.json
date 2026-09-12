@@ -1,0 +1,14 @@
+{
+  "created_utc": "2026-09-12T14:37:14.060654+00:00",
+  "input_sha256": {
+    "supporting_reports/data/joint_component_cone/separate_members_scheduled_states.npz": "54b5ec373c3769f6b8101da796adab312188f43e616ae0f1032932d651cb23fa",
+    "supporting_reports/data/joint_support_audit/joint_component_cone_separate_members_scheduled_ends.csv": "e5842eb3f39840826fccdb27675754bc790d2cd99c59bad5be008869a1c1fe18",
+    "supporting_reports/data/joint_support_audit/joint_component_cone_separate_members_scheduled_residuals.npz": "09eea985f9bb042762702836cb7f895442656f4beb0ee14df47c8688f0a403d0",
+    "supporting_reports/data/joint_support_audit/manifest.json": "50b7fba1da1c11239cf37bad09ec879e63afc39fb8df4d0327732e259d21647c",
+    "toolkit/adm_harness_cli/scripts/plot_joint_support.py": "370ab91595dfc4421902cfa09f0cb79c3fa5e07017d1c71b84432961f482a0d1"
+  },
+  "output_sha256": {
+    "joint_composite_support.pdf": "f93a4664a9a243f7d40612c1cb94e875fd856fc62a334768009627344f976c9d",
+    "joint_composite_support.png": "b6435ce7e734c18ac1a4a6218f40dff7cb13201fa54636a21327b3423dc83649"
+  }
+}

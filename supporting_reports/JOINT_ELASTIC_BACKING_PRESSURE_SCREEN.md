@@ -170,6 +170,11 @@ as a distinct possibility. An endpoint traction record specifies a required
 connection; a complete attachment additionally supplies its stress tensor,
 work exchange, and stability.
 
+The subsequent [joint support stress schedule](JOINT_SUPPORT_STRESS_SCHEDULE.md)
+tests that freedom with independently counted radial and angular members,
+records the mechanical work at both ends, and audits the resulting continuum
+interpolation.
+
 The cold strain-energy identities and an independently manufactured
 accelerated, expanding metric verify the frame equations. Static force
 controls verify that a transmitted load appears at the ends and that setting

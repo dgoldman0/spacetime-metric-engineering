@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "optimal_material_null_peak": 8.602915706270723,
+  "max_scaled_equality_residual": 6.076934094823017e-11,
+  "exact_material_null_peak": 8.60291570627243,
+  "angular_optimization_gap": 1.7070789226636407e-12,
+  "angular_trace": [
+    {
+      "round": 1,
+      "lower_peak": 8.602915706270723,
+      "exact_peak": 8.60291570627243,
+      "angular_gap": 1.7070789226636407e-12
+    }
+  ],
+  "max_raw_equality_residual": 1.1627594599023336e-11,
+  "max_inequality_violation": 2.248157215944957e-10,
+  "angular_rounds": 1,
+  "variables": 4621,
+  "equalities": 2312,
+  "inequalities": 10395,
+  "label": "n32_stride8_stress1_balanced",
+  "intervals": 32,
+  "time_stride": 8,
+  "stress_fraction": 1.0,
+  "ends": "balanced",
+  "fluid_fixed": false,
+  "constitutive_law_supplied": false,
+  "phases": [
+    {
+      "time": 0.0,
+      "required_negative_null": 1.107031581382609,
+      "peak_x": -0.6000000000000001,
+      "peak_null_cosine": 0.11203495162990412,
+      "material_ADM": 5070.803594991137
+    },
+    {
+      "time": 0.5,
+      "required_negative_null": 1.4837908435236598,
+      "peak_x": -0.95,
+      "peak_null_cosine": 0.0008386337334929549,
+      "material_ADM": 4774.855405379926
+    },
+    {
+      "time": 1.285,
+      "required_negative_null": 8.745470143046466,
+      "peak_x": -0.6499999999999999,
+      "peak_null_cosine": -0.02297367871501929,
+      "material_ADM": 4116.3581885465355
+    }
+  ],
+  "initial_support_rest": 5050.432605414667,
+  "final_support_rest": 4108.315711353345,
+  "initial_fluid_thermal": 0.0,
+  "final_fluid_thermal": 0.0,
+  "support_mechanical_input": 107.64090286246247,
+  "support_mechanical_output": 1018.8248642280442,
+  "support_internal_heat_gross": 558.1070413576613,
+  "energy_identity_residual": 1.1621648088322445e-11,
+  "maximum_left_end_force": 1.8852583181028125e-16,
+  "maximum_right_end_force": 3.9116874979351027e-16,
+  "max_support_radial_pressure": 0.8972280523151664,
+  "max_support_angular_pressure": 8.70593554360712
+}
