@@ -1,0 +1,78 @@
+{
+  "cases": [
+    {
+      "label": "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_store_radial_stream",
+      "center": -1.975,
+      "cuts": [
+        {
+          "success": false,
+          "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+          "witness_time": 0.072783203125,
+          "witness_load": -0.2985479042926902,
+          "witness_acceleration": 0.44424566254162184,
+          "witness_angular_gradient": -0.0176150140437339,
+          "witness_force_interval_per_unit_energy": [
+            0.40901563445415406,
+            0.4794756906290896
+          ],
+          "pointwise_force_cone_incompatible": true,
+          "incompatible_sample_fraction": 0.11844660194174757,
+          "side": "left",
+          "x": -1.9752500000000002,
+          "maximum_residual_pressure": 0.036319244536916234
+        },
+        {
+          "success": false,
+          "reason": "prepared surface inventory has an empty admissible interval",
+          "initial_energy_lower": 0.6237112143495567,
+          "initial_energy_upper": -0.0004678109266884992,
+          "pointwise_force_cone_incompatible": false,
+          "incompatible_sample_fraction": 0.0,
+          "side": "right",
+          "x": -1.97475,
+          "maximum_residual_pressure": 0.03628313814409939
+        }
+      ],
+      "scope": "existing directed-store histories after maximum radial field reuse; spherical angular jackets",
+      "cell_controls_reoptimized": false,
+      "full_connected_support_excluded": false
+    },
+    {
+      "label": "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_store_radial_stream",
+      "center": -2.0,
+      "cuts": [
+        {
+          "success": false,
+          "reason": "surface force has the opposite sign to every positive-energy admissible jacket",
+          "witness_time": 0.072783203125,
+          "witness_load": -0.23929447649871588,
+          "witness_acceleration": 0.49557891584754116,
+          "witness_angular_gradient": -0.020153057474991187,
+          "witness_force_interval_per_unit_energy": [
+            0.4552728008975588,
+            0.5358850307975236
+          ],
+          "pointwise_force_cone_incompatible": true,
+          "incompatible_sample_fraction": 0.07184466019417475,
+          "side": "left",
+          "x": -2.00025,
+          "maximum_residual_pressure": 0.02881399814479235
+        },
+        {
+          "success": false,
+          "reason": "prepared surface inventory has an empty admissible interval",
+          "initial_energy_lower": 0.4476923833705328,
+          "initial_energy_upper": -0.00023946353464718832,
+          "pointwise_force_cone_incompatible": false,
+          "incompatible_sample_fraction": 0.0,
+          "side": "right",
+          "x": -1.99975,
+          "maximum_residual_pressure": 0.02881384063543498
+        }
+      ],
+      "scope": "existing directed-store histories after maximum radial field reuse; spherical angular jackets",
+      "cell_controls_reoptimized": false,
+      "full_connected_support_excluded": false
+    }
+  ]
+}

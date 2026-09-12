@@ -1,12 +1,19 @@
 # Driven radial support cells
 
-A locally driven field pattern can vary the amount of radial prestress at a
-rail location. The first construction test counts the condensate that controls
-that variation. Adiabatic, spatially homogeneous amplitude control clears the
-previous startup conflict at `x=-2`, while its complete local energy exceeds
-the allowance elsewhere in both retained support histories. This locates a
-specific distinction between changing a condensate's amplitude throughout a
-cell and changing the volume occupied by its phases.
+A phase-volume model of locally driven radial support cells admits the two
+tested startup histories after counting causal drive and return waves,
+conversion heat, guide-field energy, and a finite interface allowance.
+Reconstructed controls pass both interval-envelope checks and independent
+wave replay on the active geometry. This retains a useful local control
+candidate, with phase-front dynamics, complementary current transport, and
+material attachments still requiring construction.
+
+The shared local store supplies the limiting continuation. Negligible-pressure
+and isotropic-radiation stores exceed the prescribed budget. Directed
+radiation gives a favorable pressure response, while its counted axial
+restraint again exceeds the budget; the selected histories also conflict
+with the existing angular jackets. A connected power and axial-support
+implementation remains the required broader construction.
 
 The calculation uses the scheduled active-rail backing, pressure link, and
 standing-support connections from the
@@ -322,6 +329,19 @@ can transmit an external axial reaction, with their own energy, stress, and
 work requirements. Thus the confined-module failure selects a system-level
 load-transfer problem for an externally supported implementation.
 
+The existing spherical angular jackets provide a separate closure option.
+A cross-check grants the two selected directed-store histories their maximum
+available radial-field restraint, then asks a jacket to carry the remaining
+end pressure. At `t=0.0727832`, the left cuts require signed loads
+`-0.239294` at the `x=-2` pair and `-0.298548` at the `x=-1.975` pair.
+Every positive-energy jacket with `|angular stress| <= surface energy`
+instead supplies force per unit surface inventory in `[0.455273,0.535885]`
+and `[0.409016,0.479476]`, respectively. Their signs conflict regardless of
+prepared surface energy. The right adiabatic jackets have empty allowed
+initial-energy intervals. This cross-check covers those two selected
+histories; it preserves the continuing-support alternative and its separate
+load-transfer requirements.
+
 ## Bounding the full control interval
 
 For a frozen-panel positive wave generator `G` and source rate `S`, a
@@ -338,6 +358,50 @@ primary controls with simultaneous conversion and negative roundoff at
 approximately `1e-9`. These raw controls therefore require an explicit
 physical control reconstruction and a fresh wave replay. The source and
 propagator comparisons remain available for verification.
+
+The physical reconstruction sets phase amplitude to its nonnegative value,
+changing it by at most `9.96e-10`. Each panel then uses the positive and
+negative parts of the exact amplitude increment as its forward and reverse
+conversion. This removes simultaneous cycling and preserves phase work.
+The new control archive contains zero previously computed wave histories.
+
+Fresh exponential evolution and a triangular upwind obstacle solve rebuild
+the least positive wave ceiling for each panel. The resulting minimum
+density margins are `0.000112148` at `x=-2` and `0.0000971534` at `x=-1.975`.
+The ceiling inequalities close within `1.14e-12`, and the actual target and
+boost factors are evaluated at five times per panel. These bounds cover
+continuous wave evolution for the frozen-panel transport coefficients. The
+separate explicit replay tests evolution on the changing active geometry.
+
+That replay evolves the reconstructed controls at 96 spatial samples and
+2057 time samples per pair, using the independently implemented limited
+finite-volume SSP RK2 solver. Both cases pass. The minimum density margins
+are `0.0000974998` at `x=-2` and `0.0000624104` at `x=-1.975`; maximum
+travelling densities are 0.00861794 and 0.00624494. Wave-energy balances
+close within `3.46e-19`, and the reconstructed controls contain zero
+simultaneous conversion cycles. This retains the local stress and
+work-transport result after the earlier sampling failures have been resolved.
+
+## Construction requirements retained by the comparison
+
+The local allocation includes phase/potential energy, drive and recovery
+waves, transported conversion heat, a complementary counterstream, radial
+guide energy, angular support, and the stated interface allowance. The
+counterstream has an assigned positive stress tensor; its transport and
+exchange law remain part of the required material construction. The phase
+fronts, current-carrier rest energy, and resolved mechanical attachments
+also retain their own equations and loads.
+
+The reservoir comparison distinguishes the useful pressure response from
+the force needed to contain it. Directed radiation supplies compression
+efficiently when the schedule reduces radial prestress. Housing that energy
+inside a self-contained module requires a compensating axial reaction, which
+exceeds the tested local budget. The selected histories also conflict with
+the existing angular-jacket response. A connected implementation therefore
+needs coordinated power delivery, heat return, and axial load transfer
+through the continuing support. This is the construction limit reached by
+the two-cell/shared-reservoir investigation; the capacitor retains its
+electrical storage role throughout.
 
 ## Reproduction
 
@@ -387,3 +451,21 @@ The [interval-envelope cases](data/virtual_cell_wave_envelope/summary.json)
 preserve the raw controls and wave ceilings. Two additional tests verify
 positive-supersolution bounds between samples and the stronger restriction
 imposed by the full-panel wave ceiling.
+
+The [reconstructed controls](data/virtual_cell_reconstructed_controls/summary.json)
+record every amplitude correction and remove the previous wave solution.
+Their [rebuilt interval envelopes](data/virtual_cell_reconstructed_envelopes/summary.json)
+use fresh propagation and a triangular obstacle solve, independently checked
+against linear optimization. Three control tests check phase-work balance,
+the reduction in conversion heat after cycle removal, and rejection of
+substantial negative phases.
+
+The [final independent replay](data/virtual_cell_reconstructed_replay/summary.json)
+contains the retained margins, actual travelling and thermal densities,
+and complete sampled histories. The focused suite has 24 passing tests;
+three existing surface-termination tests also pass. Archived manifests
+retain the source version used by each calculation. Earlier source hashes
+resolve to their staged commits as the implementation evolves.
+
+The [angular-jacket cross-check](data/virtual_cell_jacket_crosscheck/summary.json)
+retains the left-cut sign witnesses and right-cut surface-work conflicts.

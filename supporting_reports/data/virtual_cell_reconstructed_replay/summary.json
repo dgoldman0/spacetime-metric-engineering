@@ -1,0 +1,64 @@
+{
+  "cases": [
+    {
+      "label": "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+      "factor": 4,
+      "spatial_samples": 96,
+      "time_samples": 2057,
+      "independently_replayed_controls": true,
+      "activation_reoptimized": false,
+      "method": "limited finite-volume SSP RK2, independent of the implicit optimization operator",
+      "target_budget_passes": true,
+      "maximum_density_shortfall": 0.0,
+      "minimum_density_margin": 9.74998132581284e-05,
+      "worst_sample": {
+        "time": 0.04015625,
+        "x": -2.0000026041666663,
+        "density": 0.05667744725725398,
+        "required_density": 0.05657994744399585,
+        "core_density": 0.032237035777115695,
+        "travelling_density": 0.0030385376971685707,
+        "countercurrent_density": 0.002919443778417519,
+        "wall_density": 7.786036284250256e-05
+      },
+      "maximum_wave_balance_residual": 3.4558944247975454e-19,
+      "maximum_travelling_density": 0.008617938577474176,
+      "maximum_travelling_heat_density": 0.00015058856615653984,
+      "guide_drift_bound": 0.5,
+      "maximum_auxiliary_guide_floor": 0.011184469268133018,
+      "simultaneous_conversion_increment": 0.0,
+      "phase_field_equations_solved": false,
+      "full_interface_and_guide_construction_supplied": false
+    },
+    {
+      "label": "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+      "factor": 4,
+      "spatial_samples": 96,
+      "time_samples": 2057,
+      "independently_replayed_controls": true,
+      "activation_reoptimized": false,
+      "method": "limited finite-volume SSP RK2, independent of the implicit optimization operator",
+      "target_budget_passes": true,
+      "maximum_density_shortfall": 0.0,
+      "minimum_density_margin": 6.241039264786447e-05,
+      "worst_sample": {
+        "time": 0.0501953125,
+        "x": -1.9749973958333333,
+        "density": 0.048597242827638755,
+        "required_density": 0.04853483243499089,
+        "core_density": 0.04446002811735157,
+        "travelling_density": 0.00027263758059876996,
+        "countercurrent_density": 0.00027263758059876996,
+        "wall_density": 6.794947861621019e-05
+      },
+      "maximum_wave_balance_residual": 9.486769009248164e-20,
+      "maximum_travelling_density": 0.0062449389035933575,
+      "maximum_travelling_heat_density": 0.0001225560825288086,
+      "guide_drift_bound": 0.5,
+      "maximum_auxiliary_guide_floor": 0.009184131522907247,
+      "simultaneous_conversion_increment": 0.0,
+      "phase_field_equations_solved": false,
+      "full_interface_and_guide_construction_supplied": false
+    }
+  ]
+}
