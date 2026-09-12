@@ -153,3 +153,26 @@ def test_receiver_original_feed_is_preserved_and_invalid_capacity_rejected():
     with pytest.raises(ValueError,match='rated capacity'):
         solve_pair(*args,thermal_eos=1/3,thermal_reference_density=zero,
             receiver_reference=(Z0,np.ones(4)))
+
+
+def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends():
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    Z0=(1+t[:,None])*one;duration=np.diff(t)[:,None]*one[:-1]
+    loss=.1*duration;rate=2.
+    result=solve_pair(t,edges,np.array([zero,zero,zero]),nodes,mids,waves,
+        matched_pair=True,thermal_eos=1/3,thermal_reference_density=zero,
+        receiver_reference=(Z0,np.ones(4)*2),receiver_contact=(loss,duration,rate),
+        target_budget_only=True)
+    assert result['success'] and result['minimum_added_density']==0.
+    assert result['second_optimization_success'] is None
+    assert result['inventory_minimization_success']
+    Z=result['receiver_thermal_energy'];U=result['thermal_reservoir_rest']
+    H=loss-np.diff(Z,axis=0)
+    for zz,uu in ((Z[:-1],U[:-1]),(Z[1:],U[1:])):
+        assert np.max(H-rate*duration*zz)<1e-8
+        assert np.max(-H-rate*duration*uu)<1e-8
+    assert Z.max()>1e-3
+    assert result['receiver_donor_energy_violation']<1e-8
+    total=result['amplitude']+result['balanced_radiation_rest']+U+Z
+    assert_allclose(np.diff(total,axis=0),np.diff(Z0,axis=0),atol=1e-8)

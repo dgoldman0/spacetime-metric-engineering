@@ -1,0 +1,266 @@
+{
+  "label": "x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver",
+  "input": "supporting_reports/data/virtual_cell_fluid_receiver_pilot/x-2_w0.0005_n12_s4_thermal_joint_existing_fluid_receiver_states.npz",
+  "compatible_positions": 0,
+  "spatial_samples": 12,
+  "all_positions_compatible": false,
+  "total_contact_used": true,
+  "temperature_law": "T_receiver**4=constant(x)*Z; T_fluid=U/(3*N_mass)",
+  "fixed_proper_receiver_volume": true,
+  "finite_contact_law_constructed": false,
+  "scope": "panel-averaged total contact with midpoint thermal states",
+  "positions": [
+    {
+      "x": -2.0002291666666663,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010671009576667324,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -2.091746224868889,
+        "receiver_energy": 0.015054390275178265,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 45
+    },
+    {
+      "x": -2.0001875,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010674883081072793,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -1.6744044338573012,
+        "receiver_energy": 0.012053490639844894,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 17
+    },
+    {
+      "x": -2.000145833333333,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010678756800821653,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -1.257203099139293,
+        "receiver_energy": 0.009052338112649464,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 11
+    },
+    {
+      "x": -2.0001041666666666,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010682630735864592,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -0.8401421923413285,
+        "receiver_energy": 0.006050932627979825,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 5
+    },
+    {
+      "x": -2.0000625000000003,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010686504886152591,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -0.42322168508608005,
+        "receiver_energy": 0.0030492741201888856,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 5
+    },
+    {
+      "x": -2.000020833333333,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.025097656249999996,
+        "heat_power": 0.00011690039881291699,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -0.006441548992500401,
+        "receiver_energy": 4.736252359490314e-05,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 3
+    },
+    {
+      "x": -1.9999791666666666,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.025097656249999996,
+        "heat_power": 0.0001169300840258091,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.03513671875,
+        "heat_power": -0.13869721926219158,
+        "receiver_energy": 0.004016855885296701,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 20
+    },
+    {
+      "x": -1.9999375,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010696899223941179,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -0.4186065384605234,
+        "receiver_energy": 0.0030179391495791775,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 5
+    },
+    {
+      "x": -1.9998958333333332,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.0001069995455659985,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -0.8371844498042404,
+        "receiver_energy": 0.006035985835703465,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 5
+    },
+    {
+      "x": -1.9998541666666665,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010703010043938407,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -1.2556009755871076,
+        "receiver_energy": 0.00905414011035883,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 7
+    },
+    {
+      "x": -1.9998125,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010706065685918526,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -1.6738561552767122,
+        "receiver_energy": 0.012072402025572856,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 22
+    },
+    {
+      "x": -1.9997708333333333,
+      "compatible": false,
+      "coefficient_lower": null,
+      "coefficient_upper": 0.0,
+      "lower_unbounded": true,
+      "upper_unbounded": false,
+      "lower_witness": {
+        "time": 0.00501953125,
+        "heat_power": 0.00010709121482501934,
+        "receiver_energy": 0.0,
+        "fluid_temperature": 0.0
+      },
+      "upper_witness": {
+        "time": 0.048940429687499995,
+        "heat_power": -2.091950028343406,
+        "receiver_energy": 0.01509077163341559,
+        "fluid_temperature": 0.0
+      },
+      "empty_receiver_outflow_samples": 88
+    }
+  ]
+}

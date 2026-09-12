@@ -38,6 +38,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                wave_envelope=False, matched_pair=False, thermal_eos=None,
                thermal_reference_density=None,
                receiver_reference=None,
+               receiver_contact=None, target_budget_only=False,
                solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -72,6 +73,16 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         # Only stored heat is reopened. Its fixed containment and cold fluid
         # mass retain their original allocation outside this target.
         target=target.copy();target[0]+=receiver_old/nodes['D']
+    if receiver_contact is not None:
+        if not receiver_reopened or len(receiver_contact)!=3:
+            raise ValueError('receiver_contact requires a reopened receiver and (loss, proper duration, turnover)')
+        contact_loss,contact_duration,turnover=receiver_contact
+        contact_loss,contact_duration=map(np.asarray,(contact_loss,contact_duration))
+        if (contact_loss.shape!=(nt-1,nx) or contact_duration.shape!=contact_loss.shape or
+                not np.isfinite(turnover) or turnover<=0 or np.any(contact_loss<0) or
+                np.any(contact_duration<=0) or
+                not np.isfinite(contact_loss).all() or not np.isfinite(contact_duration).all()):
+            raise ValueError('receiver_contact requires finite nonnegative loss and positive duration/turnover')
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -313,6 +324,17 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 eq.add([(balanced_inventory[i+1,j],1),(balanced_inventory[i,j],-1),
                     (A[i+1,half],phi),(A[i,half],-phi),
                     (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)]+receiver,forcing)
+                if receiver_contact is not None:
+                    # Total contact heat H=loss-DeltaZ. Bound the outgoing
+                    # power by each donor's actual energy at both panel ends.
+                    for end in (i,i+1):
+                        rate=turnover*contact_duration[i,j]
+                        ub.add([(receiver_inventory[i,j],1),
+                                (receiver_inventory[i+1,j],-1),
+                                (receiver_inventory[end,j],-rate)],-contact_loss[i,j])
+                        ub.add([(receiver_inventory[i+1,j],1),
+                                (receiver_inventory[i,j],-1),
+                                (material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))],contact_loss[i,j])
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
@@ -326,8 +348,22 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     if closed:
         for k in useful[0]: bounds[int(k)]=(0.,0.)
     ae,be=eq.matrix(),np.array(eq.rhs); au,bu=ub.matrix(),np.array(ub.rhs)
+    inventory_cost=np.zeros(columns)
+    time_weight=np.r_[np.diff(t)[0]/2,(np.diff(t)[:-1]+np.diff(t)[1:])/2,np.diff(t)[-1]/2]
+    inventory_cost[absorption.ravel()]=(time_weight[:,None]*dx*nodes['D']*ca).ravel()
+    inventory_cost[recovery.ravel()]=(time_weight[:,None]*dx*nodes['D']*cr).ravel()
+    inventory_cost[positive.ravel()]=1e-9; inventory_cost[negative.ravel()]=1e-9
+    if closed: inventory_cost[store]=time_weight/(4*np.pi)
+    if distributed:
+        inventory_cost[absorption.ravel()]=0.;inventory_cost[recovery.ravel()]=0.
+        inventory_cost[balanced_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/measure).ravel()
+        inventory_cost[material_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/thermal_weight).ravel()
+        if receiver_reopened:
+            inventory_cost[receiver_inventory.ravel()]=np.broadcast_to(time_weight[:,None]*dx,(nt,nx)).ravel()
     cost=np.zeros(columns); cost[epsilon]=1
-    options={'time_limit':deadline/2,'primal_feasibility_tolerance':1e-9,
+    if target_budget_only:
+        bounds[epsilon]=(0.,0.);cost=inventory_cost
+    options={'time_limit':deadline if target_budget_only else deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10}
     if solver_threads is not None:options['threads']=int(solver_threads)
     def optimize():
@@ -337,21 +373,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                            method=method,options=options)
     first=optimize()
     if not first.success:
-        return dict(success=False,status=int(first.status),message=first.message,solver_method=method)
+        return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
+                    target_budget_only=bool(target_budget_only))
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
-    cost[:]=0
-    time_weight=np.r_[np.diff(t)[0]/2,(np.diff(t)[:-1]+np.diff(t)[1:])/2,np.diff(t)[-1]/2]
-    cost[absorption.ravel()]=(time_weight[:,None]*dx*nodes['D']*ca).ravel()
-    cost[recovery.ravel()]=(time_weight[:,None]*dx*nodes['D']*cr).ravel()
-    cost[positive.ravel()]=1e-9; cost[negative.ravel()]=1e-9
-    if closed: cost[store]=time_weight/(4*np.pi)
-    if distributed:
-        cost[absorption.ravel()]=0.;cost[recovery.ravel()]=0.
-        cost[balanced_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/measure).ravel()
-        cost[material_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/thermal_weight).ravel()
-        if receiver_reopened:
-            cost[receiver_inventory.ravel()]=np.broadcast_to(time_weight[:,None]*dx,(nt,nx)).ravel()
-    second=optimize()
+    cost=inventory_cost
+    second=first if target_budget_only else optimize()
     r=second if second.success else first
     amplitude=np.repeat(r.x[A],halfnx,axis=1)
     plus=np.repeat(r.x[positive],halfnx,axis=1)
@@ -384,6 +410,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 receiver_capacity_violation=float(np.maximum(receiver_energy-receiver_cap,0).max()),
                 receiver_containment_energy_reallocated=False,
                 receiver_contact_temperature_and_rate_supplied=False)
+            if receiver_contact is not None:
+                H=contact_loss-np.diff(receiver_energy,axis=0)
+                fluid_energy=k_state/nodes['D']**(1/3)
+                donor_violation=np.maximum.reduce([
+                    H-turnover*contact_duration*receiver_energy[:-1],
+                    H-turnover*contact_duration*receiver_energy[1:],
+                    -H-turnover*contact_duration*fluid_energy[:-1],
+                    -H-turnover*contact_duration*fluid_energy[1:]])
+                reservoir.update(receiver_total_contact_panel_heat=H,
+                    receiver_converter_loss_panel=contact_loss,
+                    receiver_contact_proper_duration=contact_duration,
+                    receiver_donor_turnover=float(turnover),
+                    receiver_donor_energy_violation=float(np.maximum(donor_violation,0).max()))
         floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
         reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
             thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,
@@ -447,9 +486,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
     return dict(success=eqerror<2e-7 and uberror<2e-7,
         solver_method=method,
+        target_budget_only=bool(target_budget_only),
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
-        second_optimization_success=bool(second.success),
+        second_optimization_success=None if target_budget_only else bool(second.success),
+        inventory_minimization_success=bool(second.success),
         matched_pair_phase_history=bool(matched_pair),
         transport_method='positive matrix exponential with node and midpoint budgets',
         guide_drift_bound=guide_drift,guide_field_reused_from_core_and_auxiliary=True,

@@ -166,3 +166,46 @@ The receiver extension and independent temperature-order tests bring the
 focused validation to 78 tests. The execution-time test-file snapshots and
 the corrected validation version are recorded separately in the two receiver
 manifests; the numerical module and state identities remain preserved.
+
+## Finite donor turnover and the temperature conflict
+
+The [first contact audit](data/virtual_cell_receiver_contact_pilot/summary.json)
+finds no admissible constant photon-receiver temperature coefficient at any
+of the 12 spatial samples in either pilot. Some panels require positive heat
+outflow from an empty receiver, while others return heat from fluid at zero
+temperature. These are defects of the selected unrestricted histories.
+
+The next optimization limits each donor's outgoing heat to ten times its
+thermal energy per unit proper time. With panel heat `H`, proper duration
+`Delta tau`, and actual fluid energy `U`, it requires
+
+```
+ H <= 10 Delta tau Z,
+-H <= 10 Delta tau U
+```
+
+at both panel ends. The rate is a finite comparison in the project's time
+unit. Its physical realization depends on the eventual scale and contact
+geometry. These donor bounds permit heat exchange in either direction and
+leave temperature ordering as an independent requirement.
+
+Both [finite-turnover pilots](data/virtual_cell_fluid_receiver_rate10/summary.json)
+fit the reserved target with zero added density. A direct budget solve fixes
+that allowance at zero and minimizes counted inventory in one optimization.
+The [temperature audit](data/virtual_cell_receiver_contact_rate10/summary.json)
+then removes the empty-donor failures but retains incompatible ordering at
+all 12 samples in each pair. At the sample just right of the second pair's
+center, outgoing heat near `t=0.496` requires `alpha^4>124.95`; incoming heat
+near `t=1.245` requires `alpha^4<1.694e-16`. The selected fluid reaches very
+different temperatures through the schedule. These inequalities constrain
+these particular controls; the passive-contact equations were absent from
+their optimization.
+
+This identifies a specific receiver architecture to test: separate hot and
+cold banks, with the hot bank supplying heat and the cold bank accepting it.
+Their separate fixed rated capacities must sum to at most the original
+receiver rating. A pointwise bound on combined stored heat alone would allow
+the two banks to reuse containment capacity at different times.
+
+The direct-budget and finite-donor regression brings the focused suite to
+79 passing tests.

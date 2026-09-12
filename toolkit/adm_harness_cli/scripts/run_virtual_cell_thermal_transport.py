@@ -19,7 +19,8 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 
 def evaluate(spec):
-    center, width, intervals, stride, reserve, output, deadline, solver_method, reallocate_fluid, reallocate_receiver = spec
+    (center, width, intervals, stride, reserve, output, deadline, solver_method,
+     reallocate_fluid, reallocate_receiver, turnover, budget_only)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -37,6 +38,7 @@ def evaluate(spec):
     extra={}
     reference=None
     receiver=None
+    contact=None
     if reallocate_fluid:
         old=h.h.reference.h.state
         reference=bilinear(old['t'],old['x'],old['thermal'],t,x)[0]/nodes['D']
@@ -48,6 +50,10 @@ def evaluate(spec):
             capacity=np.interp(x,ref.x,state['heat_cap'])
             receiver=(heat,capacity)
             extra['receiver_fixed_containment_energy']=capacity/3
+            if turnover is not None:
+                from audit_virtual_cell_receiver_contact import integrated_loss
+                loss,duration=integrated_loss(h,t,x,order=4)
+                contact=(loss,duration,turnover)
     model = h.h.reference.h.model
     gm = [model.metric(float(now), x) for now in tm]
     ge = [model.metric(float(now), edges) for now in tm]
@@ -59,10 +65,12 @@ def evaluate(spec):
         guide_drift=.5, wave_envelope=True, matched_pair=True,
         thermal_eos=1/3, thermal_reference_density=reference,
         receiver_reference=receiver,
+        receiver_contact=contact, target_budget_only=budget_only,
         solver_threads=1, solver_method=solver_method, deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
     if reallocate_receiver: label+='_receiver'
+    if turnover is not None: label+=f'_rate{turnover:g}'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -116,6 +124,8 @@ def main():
     parser.add_argument('--solver-method', choices=['highs-ds', 'highs-ipm'], default='highs-ds')
     parser.add_argument('--reallocate-fluid', action='store_true')
     parser.add_argument('--reallocate-receiver', action='store_true')
+    parser.add_argument('--turnover',type=float)
+    parser.add_argument('--target-budget-only',action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
@@ -124,6 +134,8 @@ def main():
         parser.error('positive scales and reserve in [0,1) required')
     if args.reallocate_receiver and not args.reallocate_fluid:
         parser.error('receiver exchange requires the reallocated pressure-link fluid')
+    if args.turnover is not None and (not args.reallocate_receiver or args.turnover<=0):
+        parser.error('positive donor turnover requires the receiver')
     output = BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal-transport evidence')
@@ -135,6 +147,7 @@ def main():
     hashes = dict(previous['input_sha256'])
     files = [source, target, Path(__file__), Path(__file__).with_name('audit_joint_dense_work.py'),
         Path(__file__).with_name('audit_joint_support.py'),
+        Path(__file__).with_name('audit_virtual_cell_receiver_contact.py'),
         ROOT/'toolkit/adm_harness_cli/adm_harness/virtual_cell_semigroup.py',
         ROOT/'toolkit/adm_harness_cli/adm_harness/virtual_cell_transport.py',
         ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_semigroup.py',
@@ -147,7 +160,7 @@ def main():
     output.mkdir()
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
-              args.reallocate_receiver) for center in args.centers]
+              args.reallocate_receiver,args.turnover,args.target_budget_only) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))
