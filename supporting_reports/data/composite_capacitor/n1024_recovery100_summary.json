@@ -1,0 +1,177 @@
+{
+  "cells": 1024,
+  "recovery_fraction": 1.0,
+  "guide_flux": 0.6696630648801359,
+  "electric_work_identity_residual": 1.762479051592436e-15,
+  "radial_length_fade_to_start_quantiles": [
+    0.038012518450454676,
+    0.04446288749639986,
+    0.06233106885437567,
+    0.11750973100621945,
+    0.36658254597486234
+  ],
+  "radius_fade_to_start_quantiles": [
+    0.9874511324371572,
+    0.9883713615810723,
+    0.9953994350286277,
+    1.0007317027856075,
+    1.0038651682877435
+  ],
+  "electric_work_input": 46.96771472761659,
+  "electric_work_export": 4.669611159454493,
+  "fluid_compression_net": 6.841659592374256,
+  "fluid_compression_positive": 7.969444086578273,
+  "pressure_credit_energy_duration_fraction": 0.107470912180072,
+  "cases": [
+    {
+      "case": "prepared_skin_directional_backing_coverage",
+      "initial_added_rest": 171.53180396034278,
+      "final_added_rest": 1864.412886425266,
+      "initial_skin_rest": 80.60585214824117,
+      "final_skin_rest": 79.28631729231354,
+      "initial_backing_rest": 90.92595181210163,
+      "final_backing_rest": 1785.126569132952,
+      "maximum_excess_radial_pressure": 3.003852421749624,
+      "maximum_excess_angular_tension": 0.13164267484631614,
+      "force_equilibrium_supplied": false
+    },
+    {
+      "case": "dec_floor_retained",
+      "initial_added_rest": 96.56887272600719,
+      "final_added_rest": 194.98109171060264,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": -1.7763568394002505e-15,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "work_residual": 4.440892098500626e-15
+    },
+    {
+      "case": "dec_floor_controlled_floor",
+      "initial_added_rest": 83.36270940798158,
+      "final_added_rest": 8.88187802213115,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": 0.0,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "support_port_input": 14.561077630211013,
+      "support_port_export": 187.4541280006569,
+      "joint_port_input": 20.85665197333692,
+      "joint_port_export": 151.45159877562068,
+      "work_residual": 1.3162648054843018e-14
+    },
+    {
+      "case": "directional_retained",
+      "initial_added_rest": 165.87293183438982,
+      "final_added_rest": 264.28515081898524,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": -3.552713678800501e-15,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "work_residual": 7.94850296692573e-15
+    },
+    {
+      "case": "directional_controlled_floor",
+      "initial_added_rest": 142.6643197187045,
+      "final_added_rest": 16.883589389944255,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": 0.0,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "support_port_input": 28.098902555926657,
+      "support_port_export": 252.29185186928228,
+      "joint_port_input": 35.704396262234674,
+      "joint_port_export": 217.59924200742822,
+      "work_residual": 1.5341027059800894e-14
+    },
+    {
+      "case": "stiff_fluid_retained",
+      "initial_added_rest": 235.59546232032508,
+      "final_added_rest": 334.00768130492054,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": -3.552713678800501e-15,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "work_residual": 7.993605777301127e-15
+    },
+    {
+      "case": "stiff_fluid_controlled_floor",
+      "initial_added_rest": 201.96593002942734,
+      "final_added_rest": 24.88530075775736,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": 0.0,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "support_port_input": 42.39073244971809,
+      "support_port_export": 317.88358070598355,
+      "joint_port_input": 50.719147637148225,
+      "joint_port_export": 283.91389232525154,
+      "work_residual": 1.5394803487556175e-14
+    },
+    {
+      "case": "radiation_fluid_retained",
+      "initial_added_rest": 375.5682373590923,
+      "final_added_rest": 473.98045634368776,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": -7.105427357601002e-15,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "work_residual": 1.4727802311043092e-14
+    },
+    {
+      "case": "radiation_fluid_controlled_floor",
+      "initial_added_rest": 320.56915065087315,
+      "final_added_rest": 40.888723493383566,
+      "support_mechanical_work": 98.41221898459544,
+      "credited_fluid_compression": 6.776249747946766,
+      "energy_condition_floor_margin": 0.0,
+      "additional_transport_counted": false,
+      "constitutive_trajectory_supplied": false,
+      "support_port_input": 71.84070842164466,
+      "support_port_export": 449.9333545637296,
+      "joint_port_input": 80.90930631497193,
+      "joint_port_export": 416.7038488888949,
+      "work_residual": 2.0311009818474446e-14
+    }
+  ],
+  "connections": [
+    {
+      "case": "electric_cells",
+      "mechanical_work_net": -105.1884687325422,
+      "gross_mechanical_output": 111.9009279770059,
+      "gross_mechanical_input": 6.712459244463697,
+      "optimistic_colocated_fluid_reuse": 7.90195236866598,
+      "remaining_mechanical_export": 103.99897560833993,
+      "remaining_mechanical_input": 5.652166468171971,
+      "coupling_supplied": false
+    },
+    {
+      "case": "delivery_guides",
+      "mechanical_work_net": -523.6971544508407,
+      "gross_mechanical_output": 569.0954146477046,
+      "gross_mechanical_input": 45.39826019686399,
+      "optimistic_colocated_fluid_reuse": 7.966367351864546,
+      "remaining_mechanical_export": 561.1290472958401,
+      "remaining_mechanical_input": 44.273552437373695,
+      "coupling_supplied": false
+    },
+    {
+      "case": "electric_and_guides",
+      "mechanical_work_net": -628.8856231833828,
+      "gross_mechanical_output": 680.9963426247105,
+      "gross_mechanical_input": 52.110719441327674,
+      "optimistic_colocated_fluid_reuse": 7.969336198164597,
+      "remaining_mechanical_export": 673.0270064265459,
+      "remaining_mechanical_input": 50.983042835537326,
+      "coupling_supplied": false
+    }
+  ],
+  "normalization": "Sum of local material-frame label energies/work; L is free. These are not globally conserved ADM work.",
+  "open_attachment": "The standing support response and the reciprocal mechanical work are exposed duties."
+}

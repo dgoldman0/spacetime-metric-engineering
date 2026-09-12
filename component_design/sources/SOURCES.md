@@ -271,6 +271,22 @@ adds explicit surface stability and energy controls.
   Design use: finite spatial voltage and the quasistatic pair-production
   threshold; a short gap also needs a counted charge-carrier inventory.
 
+The [composite capacitor and rail-connection study](../../supporting_reports/COMPOSITE_CAPACITOR_AND_RAIL_CONNECTIONS.md)
+separates charged tensile skins, pressure backing, and mechanical attachments.
+
+- J. R. Morris,
+  [Charged Vacuum Bubble Stability](https://arxiv.org/abs/hep-ph/9810420).
+  Design use: a charged phase boundary with trapped fermions, counted wall,
+  carrier and electric energies, and charge-emission constraints. The
+  trapping phase and couplings are model assumptions.
+
+- Patrick Peter,
+  [Surface Current-Carrying Domain Walls](https://arxiv.org/abs/hep-ph/9503408).
+  Design use: surface energy and tension from an explicit wall/condensate
+  action, with a carrier localization threshold. The published global-current
+  model omits the long-range electromagnetic interaction required by an
+  electrode adaptation.
+
 ## Diagnostics And Governance Sources
 
 - [`intelligent_dofs_transportation_infrastructures_2601.13891.pdf`](intelligent_dofs_transportation_infrastructures_2601.13891.pdf)
