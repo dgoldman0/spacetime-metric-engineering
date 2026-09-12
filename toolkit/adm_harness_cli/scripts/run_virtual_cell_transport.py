@@ -19,9 +19,9 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 
 def evaluate(spec):
-    width, intervals, stride, eta, sigma, output = spec
+    width, intervals, stride, eta, sigma, output, selected_center, coherent, return_heat, reserve = spec
     started=time.monotonic()
-    center=-1.3 if width>1 else -1.9875
+    center=selected_center if selected_center is not None else (-1.3 if width>1 else -1.9875)
     path=BASE/'joint_refined_response/members_fraction0.99_states.npz'
     h=DenseHistory('routed_family',path)
     # Include the known startup witnesses in both temporal resolutions.
@@ -39,11 +39,15 @@ def evaluate(spec):
     wave={sign:dict(faces=np.array([-g.beta+sign*g.alpha/g.b for g in ge]),
                     gain=np.array([g.alpha*g.k_l-sign*g.alpha_x/g.b for g in gm]))
           for sign in [-1,1]}
-    r=solve_pair(t,edges,target,nodes,mids,wave,efficiency=eta,interface_sigma=sigma,deadline=180.)
-    label=f'w{width:g}_n{intervals}_s{stride}_eta{eta:g}_sigma{sigma:g}'
+    budget=target.copy(); budget[0]*=1-reserve
+    r=solve_pair(t,edges,budget,nodes,mids,wave,efficiency=eta,interface_sigma=sigma,
+                 coherent_cells=coherent,return_heat=return_heat,deadline=240.)
+    label=f'x{center:g}_w{width:g}_n{intervals}_s{stride}_eta{eta:g}_sigma{sigma:g}'
     summary={k:v for k,v in r.items() if not isinstance(v,np.ndarray)}
     summary.update(label=label,width=width,center=center,intervals=intervals,time_nodes=len(t),
         efficiency=eta,interface_sigma=sigma,
+        coherent_cell_amplitudes=coherent,heat_return=return_heat,
+        reserved_density_fraction=reserve,
         input=str(path.relative_to(ROOT)),
         scope='two finite phase-volume cells with optimized activation and causal radial work streams',
         microscopic_phase_fronts_solved=False,guide_and_current_carrier_energy_supplied=False,
@@ -59,20 +63,23 @@ def evaluate(spec):
         ax=np.gradient((a[1:]+a[:-1])/2,x,axis=1,edge_order=2)
         core_power=at/(mids['lapse']*mids['radius']**2)
         core_force=-(ax/mids['ell']+mids['v']*at/mids['lapse'])/mids['radius']**2
-        tap_force=-d*(positive/eta+eta*negative)/(mids['lapse']*mids['radius']**2)
-        heat_power=((1/eta-1)*positive+(1-eta)*negative)/(mids['lapse']*mids['radius']**2)
-        photon_power=(-positive/eta+eta*negative)/(mids['lapse']*mids['radius']**2)
+        losses=(1/eta-1)*positive+(1-eta)*negative
+        returned=eta*negative+(losses if return_heat else 0.)
+        tap_force=-d*(positive/eta+returned)/(mids['lapse']*mids['radius']**2)
+        heat_power=(np.zeros_like(losses) if return_heat else losses)/(mids['lapse']*mids['radius']**2)
+        photon_power=(-positive/eta+returned)/(mids['lapse']*mids['radius']**2)
         power_residual=core_power+photon_power+heat_power
         # Common middle port: convert ADM photon energy into the same local
         # material-frame energy on both sides before integrating the buffer.
         port=h.coefficients(tm,np.array([center]))
-        incoming=np.zeros(len(tm)); outgoing=np.zeros(len(tm))
+        incoming=np.zeros(len(tm)); outgoing=np.zeros(len(tm)); thermal_out=np.zeros(len(tm))
         for j,sign in [(intervals//2-1,-1),(intervals//2,1)]:
             f=intervals//2
             boost=port['gamma'][:,0]*(1-sign*port['v'][:,0])
             incoming+=4*np.pi*abs(wave[sign]['faces'][:,f])*r['absorption_state'][:-1,j]*boost
             boost_return=port['gamma'][:,0]*(1+sign*port['v'][:,0])
             outgoing+=4*np.pi*abs(wave[-sign]['faces'][:,f])*r['recovery_state'][1:,j]*boost_return
+            thermal_out+=4*np.pi*abs(wave[-sign]['faces'][:,f])*r['thermal_return_state'][1:,j]*boost_return
         drawn=np.r_[0.,np.cumsum(np.diff(t)*(incoming-outgoing))]
         initial=max(0.,float(drawn.max())); buffer=initial-drawn
         spare=4*np.pi*dx*np.sum(nodes['D']*np.maximum(-r['density_shortfall'],0),axis=1)
@@ -81,6 +88,7 @@ def evaluate(spec):
             maximum_travelling_rest_density=float((ua+ur).max()),
             maximum_countercurrent_density=float(abs(d*(ua-ur)).max()),
             maximum_conversion_heat_density=float(r['heat_rest'].max()),
+            maximum_travelling_heat_density=float(r['thermal_return_rest'].max()),
             maximum_interface_density=float(r['wall_rest'].max()),
             maximum_phase_power=float(abs(core_power).max()),
             maximum_phase_force=float(abs(core_force).max()),
@@ -88,6 +96,8 @@ def evaluate(spec):
             maximum_internal_power_residual=float(abs(power_residual).max()),
             incident_common_port_energy=float(np.sum(np.diff(t)*incoming)),
             recovered_common_port_energy=float(np.sum(np.diff(t)*outgoing)),
+            returned_heat_energy=float(np.sum(np.diff(t)*thermal_out)),
+            returned_useful_work_energy=float(np.sum(np.diff(t)*(outgoing-thermal_out))),
             minimum_closed_buffer_initial_energy=initial,
             closed_buffer_maximum_energy=float(buffer.max()),
             maximum_closed_buffer_initial_energy_permitted_by_spare=upper,
@@ -100,6 +110,7 @@ def evaluate(spec):
             target=target,radius=nodes['radius'],D=nodes['D'],lapse=nodes['lapse'],ell=nodes['ell'],
             v=nodes['v'],**{k:v for k,v in r.items() if isinstance(v,np.ndarray)},
             shared_port_incoming=incoming,shared_port_outgoing=outgoing,
+            shared_port_heat=thermal_out,
             closed_buffer_energy=buffer,target_spare_energy=spare,
             core_force=core_force,tap_force=tap_force,core_power=core_power)
     summary['elapsed_seconds']=time.monotonic()-started
@@ -117,6 +128,10 @@ def main():
     parser.add_argument('--stride',type=int,default=4)
     parser.add_argument('--efficiency',type=float,default=1.)
     parser.add_argument('--sigma',type=float,default=0.)
+    parser.add_argument('--centers',type=float,nargs='+')
+    parser.add_argument('--coherent',action='store_true')
+    parser.add_argument('--return-heat',action='store_true')
+    parser.add_argument('--reserve',type=float,default=0.)
     parser.add_argument('--output-name',default='virtual_cell_transport')
     args=parser.parse_args(); output=BASE/args.output_name
     if output.exists(): raise RuntimeError('preserve completed transport evidence')
@@ -132,7 +147,8 @@ def main():
     for relative,expected in hashes.items():
         if sha256_file(ROOT/relative)!=expected: raise RuntimeError('changed dependency: '+relative)
     output.mkdir()
-    specs=[(w,args.intervals,args.stride,args.efficiency,args.sigma,str(output)) for w in args.widths]
+    specs=[(w,args.intervals,args.stride,args.efficiency,args.sigma,str(output),center,
+            args.coherent,args.return_heat,args.reserve) for center in (args.centers or [None]) for w in args.widths]
     with ProcessPoolExecutor(max_workers=max(1,min(args.workers,len(specs))),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         results=list(pool.map(evaluate,specs))

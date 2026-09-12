@@ -1,0 +1,28 @@
+{
+  "label": "x-1.975_w0.005_n24_s2_eta0.98_sigma1e-07",
+  "factor": 2,
+  "spatial_samples": 48,
+  "time_samples": 519,
+  "independently_replayed_controls": true,
+  "activation_reoptimized": false,
+  "method": "limited finite-volume SSP RK2, independent of the implicit optimization operator",
+  "target_budget_passes": false,
+  "maximum_density_shortfall": 0.014184352925050686,
+  "minimum_density_margin": -0.014184352925050686,
+  "worst_sample": {
+    "time": 0.05521484375,
+    "x": -1.9749479166666668,
+    "density": 0.04881779387236598,
+    "required_density": 0.06300214679741667,
+    "core_density": 0.03459318985438815,
+    "travelling_density": 0.009331861130101883,
+    "countercurrent_density": 0.009331861130101883,
+    "wall_density": 6.8047067476878715e-06
+  },
+  "maximum_wave_balance_residual": 1.0842021724855044e-18,
+  "maximum_travelling_density": 0.012049087562086318,
+  "maximum_travelling_heat_density": 0.00024098175124172665,
+  "simultaneous_conversion_increment": 0.0,
+  "phase_field_equations_solved": false,
+  "full_interface_and_guide_construction_supplied": false
+}

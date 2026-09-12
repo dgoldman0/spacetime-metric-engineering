@@ -176,6 +176,41 @@ witness locations directly, resolve the temporal and spatial transport,
 restrict each cell to a coherent amplitude, and include conversion loss and
 heat return. Interface and guide stresses remain additional requirements.
 
+## Coherent cells and independent wave replay
+
+The next comparison places pairs directly around `x=-2` and `x=-1.975`.
+Each physical cell has one amplitude through its whole radial extent.
+Conversion efficiency is 0.98; conversion losses travel back to the common
+port in a separately tracked thermal stream. Two end membranes per cell have
+surface energy `sigma=1e-7` in project units, represented by their volume
+average `rho_wall=2 sigma/(ell cell_width)` and angular tension
+`p_t_wall=-rho_wall`. This is a finite energy allowance for interfaces; their
+resolved profiles and mechanical attachment remain construction requirements.
+
+The implicit transport optimization initially admits widths 0.005 and
+0.0005 at both locations with 24 spatial cells, 260 time nodes, and a 0.1%
+reserved density margin. Replaying its fixed controls with the independent
+limited finite-volume SSP RK2 solver changes that assessment. At width
+0.005, the maximum density deficits are 0.001617 at `x=-2` and 0.014184 at
+`x=-1.975`. The latter needs density 0.063002 where the target provides
+0.048818, near `t=0.05521`. Both explicit wave ledgers close to better than
+`1.1e-18` in their finite-volume balance. The unresolved issue is transient
+inventory under the selected controls, rather than an energy-ledger leak.
+
+The width-0.0005 replay at `x=-1.975` also fails, by 0.001451. At `x=-2`,
+the secondary inventory optimization fails numerically; its retained primary
+solution contains large simultaneous conversion cycles and small negative
+increments at solver tolerance. Explicit evolution rejects that candidate
+on positivity. It therefore supplies no accepted narrower-cell result.
+
+These replays withdraw the preliminary transport clearances. A revised
+discretization uses a positive matrix exponential for each time panel and
+tests stresses at panel midpoints as well as at nodes. Its source amplitude
+and conversion increments are shared by each complete physical cell. A
+separate guide check allocates guiding magnetic energy from the field already
+present in the core and auxiliary mixture. These changes address the
+identified numerical and component-accounting gaps directly.
+
 ## Reproduction
 
 The [controller gate](data/virtual_cell_controller_gate/summary.json) contains
@@ -193,3 +228,9 @@ retains the optimized amplitudes, both wave histories, heat, required
 reaction forces, and common-port energy histories. Four further tests check
 the finite-volume boundary balance, a constant-tension control, the cost of
 changing pure tension, and conversion heat with finite membrane energy.
+
+The [coherent heat-return runs](data/virtual_cell_coherent_heat_return/summary.json)
+and [independent wider-cell replay](data/virtual_cell_independent_replay/summary.json)
+retain the controls and transient failures. The
+[narrower replay](data/virtual_cell_narrow_replay/summary.json) records its
+completed `x=-1.975` case and the numerical positivity failure at `x=-2`.

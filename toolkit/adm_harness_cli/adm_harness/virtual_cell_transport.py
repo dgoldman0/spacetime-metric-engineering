@@ -46,7 +46,7 @@ class Rows:
 
 
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
-               interface_sigma=0., deadline=120.):
+               interface_sigma=0., coherent_cells=False, return_heat=False, deadline=120.):
     """Minimize the added local density needed by an actuated cell pair.
 
 `nodes/mids` contain radius, ell, lapse, gamma, v, b, D. `wave_geometry`
@@ -54,7 +54,10 @@ contains face speeds and gains for direction +1/-1 at panel midpoints.
 interface_sigma is the constant surface energy of two angular end membranes
 per cell, conservatively volume-averaged as 2*sigma/(ell*cell_width).
 Absorption is solved backward with zero final/outgoing inventory; recovery
-forward with zero initial/incoming inventory. Shared-port energies are paid.
+    forward with zero initial/incoming inventory. Shared-port energies are paid.
+    Coherent cells have one amplitude per cell at each time. With return_heat,
+    conversion losses join the causal return stream; its thermal portion is
+    reconstructed separately and retains its heat-receiver obligation.
 """
     t, edges, target=map(np.asarray,(t,edges,target))
     nt,nx=len(t),len(edges)-1
@@ -77,6 +80,11 @@ forward with zero initial/incoming inventory. Shared-port energies are paid.
     wall=2*interface_sigma/(nodes['ell']*(nx//2)*dx)
     rho,p,q=target
     for i in range(nt):
+        if coherent_cells:
+            for half in (0,1):
+                start=half*(nx//2)
+                for j in range(start+1,start+nx//2):
+                    eq.add([(A[i,j],1),(A[i,start],-1)])
         for j in range(nx):
             a=A[i,j]; ya=absorption[i,j]; yr=recovery[i,j]; h=heat[i,j]; k=counter[i,j]
             invr2=1/nodes['radius'][i,j]**2; invd=1/nodes['D'][i,j]
@@ -90,9 +98,12 @@ forward with zero initial/incoming inventory. Shared-port energies are paid.
         for j in range(nx):
             eq.add([(A[i+1,j],1),(A[i,j],-1),(positive[i,j],-1),(negative[i,j],1)])
             ell=mids['ell'][i,j]
-            eq.add([(heat[i+1,j],1),(heat[i,j],-1),
-                    (positive[i,j],-ell*(1/efficiency-1)),
-                    (negative[i,j],-ell*(1-efficiency))])
+            if return_heat:
+                eq.add([(heat[i+1,j],1),(heat[i,j],-1)])
+            else:
+                eq.add([(heat[i+1,j],1),(heat[i,j],-1),
+                        (positive[i,j],-ell*(1/efficiency-1)),
+                        (negative[i,j],-ell*(1-efficiency))])
         for half in (0,1):
             start=half*(nx//2); stop=start+nx//2
             for kind, ids, sign, increments in (
@@ -106,19 +117,24 @@ forward with zero initial/incoming inventory. Shared-port energies are paid.
                 if np.any(np.diag(matrix)<=0):
                     raise ValueError('refine temporal panels to resolve homogeneous wave growth')
                 at=i if back else i+1; other=i+1 if back else i
-                factor=(1/efficiency if back else efficiency)
+                factor=(1/efficiency if back else (1. if return_heat else efficiency))
                 source=mids['b'][i,start:stop]/(1-sign*mids['v'][i,start:stop])*factor
                 for local,j in enumerate(range(start,stop)):
                     nz=np.flatnonzero(matrix[local])
-                    eq.add([(ids[at,start+k],matrix[local,k]) for k in nz]+
-                           [(ids[other,j],-1),(increments[i,j],-source[local])])
+                    entries=([(ids[at,start+k],matrix[local,k]) for k in nz]+
+                             [(ids[other,j],-1),(increments[i,j],-source[local])])
+                    if return_heat and not back:
+                        entries.append((positive[i,j],-source[local]*(1/efficiency-1)))
+                    eq.add(entries)
     bounds=[(0.,None)]*columns
     for k in np.r_[absorption[-1],recovery[0],heat[0]]: bounds[int(k)]=(0.,0.)
     matrix_eq=eq.matrix(); rhs_eq=np.array(eq.rhs)
     matrix_ub=ub.matrix(); rhs_ub=np.array(ub.rhs)
     cost=np.zeros(columns); cost[epsilon]=1
+    options={'time_limit':deadline/2,'primal_feasibility_tolerance':1e-9,
+             'dual_feasibility_tolerance':1e-9}
     first=linprog(cost,A_eq=matrix_eq,b_eq=rhs_eq,A_ub=matrix_ub,b_ub=rhs_ub,
-                  bounds=bounds,method='highs',options={'time_limit':deadline/2})
+                  bounds=bounds,method='highs',options=options)
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message)
     optimum=float(first.x[epsilon])
@@ -133,7 +149,7 @@ forward with zero initial/incoming inventory. Shared-port energies are paid.
     cost[heat.ravel()]=(weight/nodes['D']).ravel()
     cost[positive.ravel()]=1e-8; cost[negative.ravel()]=1e-8
     second=linprog(cost,A_eq=matrix_eq,b_eq=rhs_eq,A_ub=matrix_ub,b_ub=rhs_ub,
-                   bounds=bounds,method='highs',options={'time_limit':deadline/2})
+                   bounds=bounds,method='highs',options=options)
     r=second if second.success else first
     a=r.x[A]; ua=ca*r.x[absorption]; ur=cr*r.x[recovery]
     w=ua+ur; current=direction*(ua-ur); h=r.x[heat]/nodes['D']
@@ -142,12 +158,27 @@ forward with zero initial/incoming inventory. Shared-port energies are paid.
     exact=s+w+abs(current)+h+wall+minimum_energy(p+s-w-abs(current),q+wall)-rho
     eqerror=float(np.max(abs(matrix_eq@r.x-rhs_eq)))
     uberror=float(np.max(np.maximum(matrix_ub@r.x-rhs_ub,0)))
+    thermal_return=np.zeros((nt,nx))
+    if return_heat:
+        # Independent linear propagation of the thermal fraction through the
+        # same return operator; the remaining return state is useful work.
+        for i,dt in enumerate(np.diff(t)):
+            for half in (0,1):
+                start=half*(nx//2); stop=start+nx//2; sign=-int(direction[start])
+                faces=wave_geometry[sign]['faces'][i,start:stop+1]
+                gain=wave_geometry[sign]['gain'][i,start:stop]
+                matrix=np.eye(stop-start)-dt*upwind_operator(faces,dx)-dt*np.diag(gain)
+                source=mids['b'][i,start:stop]/(1-sign*mids['v'][i,start:stop])
+                increment=(1/efficiency-1)*r.x[positive[i,start:stop]]+(1-efficiency)*r.x[negative[i,start:stop]]
+                thermal_return[i+1,start:stop]=np.linalg.solve(matrix,
+                    thermal_return[i,start:stop]+source*increment)
     return dict(success=eqerror<2e-7 and uberror<2e-7,
         minimum_added_density=optimum, exact_added_density=max(0.,float(exact.max())),
         scaled_equality_residual=eqerror, scaled_inequality_violation=uberror,
         second_optimization_success=bool(second.success),
         amplitude=a, absorption_state=r.x[absorption], recovery_state=r.x[recovery],
         absorption_rest=ua,recovery_rest=ur,heat_rest=h,wall_rest=wall,
+        thermal_return_state=thermal_return,thermal_return_rest=cr*thermal_return,
         positive_increment=r.x[positive],negative_increment=r.x[negative],
         density_shortfall=exact,
         variables=columns,equalities=matrix_eq.shape[0],inequalities=matrix_ub.shape[0])

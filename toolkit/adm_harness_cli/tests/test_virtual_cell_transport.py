@@ -54,3 +54,16 @@ def test_conversion_heat_and_finite_interfaces_are_charged():
     assert_allclose(r['wall_rest'],.01)
     assert_allclose(np.diff(r['heat_rest'],axis=0),
         (1/.98-1)*r['positive_increment']+.02*r['negative_increment'],atol=2e-8)
+
+
+def test_coherent_cells_return_heat_as_positive_causal_inventory():
+    t=np.linspace(0,1,9); edges=np.linspace(-.02,.02,9)
+    n,m,w=flat_problem(t,edges)
+    rho=np.broadcast_to(1+t[:,None],(len(t),len(edges)-1))
+    r=solve_pair(t,edges,np.array([rho,-rho,np.zeros_like(rho)]),n,m,w,
+                 efficiency=.98,coherent_cells=True,return_heat=True)
+    assert r['success']
+    assert_allclose(r['amplitude'][:,:4],np.broadcast_to(r['amplitude'][:,0,None],(9,4)),atol=2e-8)
+    assert_allclose(r['heat_rest'],0,atol=2e-8)
+    assert r['thermal_return_rest'].max()>0
+    assert np.min(r['recovery_state']-r['thermal_return_state'])>-2e-8
