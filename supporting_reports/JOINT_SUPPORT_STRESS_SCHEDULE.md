@@ -1,5 +1,10 @@
 # Joint support stress schedule and counted rail connections
 
+The [continuum audit correction](JOINT_SUPPORT_CONTINUUM_CORRECTION.md)
+supersedes the force residual figures below by retaining temporal electric
+momentum in the moving material frame. The solved schedules and end-work
+results retain their values.
+
 The joint investigation identifies a regulated composite support as a useful
 construction target. Separate radial members and angular skins can satisfy
 the resolved force and energy equations while retaining the original pressure

@@ -1,0 +1,47 @@
+{
+  "pointwise_force_max": 0.024780579815454496,
+  "pointwise_power_max": 0.0004937543641633159,
+  "force_sum_relative_residual": 0.08256892664963708,
+  "power_sum_relative_residual": 0.023926990417446392,
+  "cell_force_sum_relative_residual": 0.007951480466456265,
+  "max_cell_average_ell_force_residual": 0.14669967565106656,
+  "sampled_times": 34,
+  "sampled_positions": 512,
+  "preserved_full_reference_fluid": true,
+  "allocation_lift_force_max": 0.008900766836260225,
+  "allocation_lift_force_sum_relative_residual": 0.05568420342283485,
+  "allocation_lift_max_DEC_violation": 0.00019070514985567453,
+  "allocation_lift_min_density": 0.0020814498677023535,
+  "allocation_lift_max_abs_density_change": 0.0005580939806664727,
+  "temporal_field_momentum_retained": true,
+  "label": "n32_stride8_stress0.75_exposed_fixedfluid",
+  "source_directory": "joint_support_envelope_refinement",
+  "end_connections": [
+    {
+      "end": "left",
+      "signed_work_out": 1.8214058025427064e-14,
+      "gross_work_out": 1.8214139301829323e-14,
+      "gross_work_in": 8.127640226457249e-20,
+      "max_abs_power": 7.500978476685848e-13,
+      "min_signed_force": -0.09503120473733936,
+      "max_signed_force": 0.47438451282074673
+    },
+    {
+      "end": "right",
+      "signed_work_out": 44.151012545810154,
+      "gross_work_out": 44.151012545810154,
+      "gross_work_in": 0.0,
+      "max_abs_power": 288.03761057904296,
+      "min_signed_force": -11.523327892659688,
+      "max_signed_force": -5.089618428950796
+    }
+  ],
+  "axial_force_change_fraction_opposing_uncoupled_positive_stiffness": 0.8744503898734839,
+  "minimum_support_density": 0.0020427735300986923,
+  "minimum_radial_pressure": -0.16207547828843677,
+  "maximum_radial_pressure": 0.006749222493749359,
+  "minimum_angular_pressure": -0.18745206956188235,
+  "maximum_angular_pressure": 0.04391036520940025,
+  "max_separate_member_energy_shortfall_per_label": 98.36242040057274,
+  "energy_weighted_node_fraction_with_separate_member_shortfall": 0.9377560212710359
+}
