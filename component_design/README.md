@@ -60,6 +60,15 @@ can reduce added guide energy while increasing the electric storage requiring
 confinement. The next construction couples charged boundaries to the existing
 pressure/support material, with their full stress and work exchange included.
 
+The [charged capacitor construction study](../supporting_reports/CHARGED_CAPACITOR_CONSTRUCTION.md)
+tests charged-shell boundaries and transverse magnetic insulation. Economical
+shells require an unidentified relativistic material law. Passive insulation
+accumulates compression energy; active insulation sends a large additional
+work return through the receiver route. Counting that return removes the
+instantaneous field tensor's apparent advantage. The capacitor construction
+therefore remains open at the joint charge-confinement and mechanical-work
+requirement.
+
 The [component cross-reference and joint-coordination review](../supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 connects this architecture to the September boundary, current, quantum, and
 material tests. It retains the separate bulk, angular, handoff, current, and

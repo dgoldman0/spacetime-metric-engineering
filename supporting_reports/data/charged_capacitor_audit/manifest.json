@@ -1,0 +1,27 @@
+{
+  "created_utc": "2026-09-12T13:09:14.859010+00:00",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_charged_capacitor.py": "09f5aa00a32175810322e6b226d42c5b899b50a7312c286d8fa9645d7fe2f170",
+    "supporting_reports/data/poynting_delivery/audit/manifest.json": "5b5bd70d535fe583ad361bed65da44608030068b2808c328d32f669f108fabc2",
+    "supporting_reports/data/poynting_delivery/branched_guides/manifest.json": "fae3e5745631b3d59a5fa0a8eaa55cae8d0690c527c59a606c901b955ef6798e",
+    "supporting_reports/data/poynting_delivery/finite_taps/manifest.json": "bd2d3dfe9c29a7d56a17a4549ebe06e20d1aea6059a51d392ec21a2ec52295ba",
+    "supporting_reports/data/poynting_delivery/maxwell_current/manifest.json": "c17b6c644c3c63fc335548c6572c80592e177bdd694160675f5fb4ae4115974f",
+    "supporting_reports/data/poynting_delivery/route_screen/manifest.json": "5bc196cacb37dcbec5ec940bc4a96ffedfd4fb0677e5f7f2c4029de0bc81e9ea",
+    "supporting_reports/data/poynting_delivery/shared_field/manifest.json": "9233a6092b8cffcd58030398bcd7ba097898949a7513d16bffa079141951d62a",
+    "supporting_reports/data/poynting_delivery/spatial_refinement/manifest.json": "d9e481a5ab98578c927fbaff27d5f4b154d17a63cd7311c4b778c36490954ed0",
+    "supporting_reports/data/poynting_delivery/time_refinement/manifest.json": "95d97c19ef8205bdb896041c1c0269463a1f0de700b0038e8af2bd34f3b9de09",
+    "supporting_reports/data/finite_work_interface/manifest.json": "1d8f056cc9ab85de18463a6b75f14386fc63ccd03e5ec0dc822c9499865a8b73",
+    "supporting_reports/data/finite_work_interface_recovery/manifest.json": "4a14d556612485eca279028e0444ee6ea46faf7384b275d798813980218c7199",
+    "supporting_reports/data/finite_work_interface_audit/manifest.json": "6835fd6b69d94386a32f9789382cdd38168dffe80c5e3745d6810f5697688ce3",
+    "supporting_reports/data/charged_capacitor_shells/manifest.json": "70e6cf920780ceb17186d970a05ca6f2a204b0bdbc529c36eb571c9eee30aa6d",
+    "supporting_reports/data/charged_capacitor_insulation/manifest.json": "5994a08c2cf75a6188914f42226b62e431b12f541252ca690483fd84f0451ff4",
+    "supporting_reports/data/charged_capacitor_work_delivery/manifest.json": "06be94fbec6009a167802bf77e802cfbb2503541385c363c1bb12e81bb0c2417"
+  },
+  "output_sha256": {
+    "capacitor_construction_controls.pdf": "c1a2145efcd4af57e8dc9da44d675b62a1db901380880cd56c286be9bae4d2d0",
+    "capacitor_construction_controls.png": "16ab26aa52ac88270095dc6cf12b21051b0f66b35f69183d5f585fdd61ac29e9",
+    "hash_checks.csv": "7f95ea2c1d7cbad3c5dd67585006f16cdfda208abd617d9c35d7cf699ecd4dbc",
+    "refinement.csv": "f6065524486b1dee54ffbaf62493e536a2b876397ab93256485a2bffdb0bc694",
+    "verification.json": "49b853be0b5426a90e1f3012310c01a0bffec9e73e17ad9e359c5802a8ddfa8d"
+  }
+}

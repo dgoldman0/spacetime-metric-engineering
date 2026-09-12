@@ -261,6 +261,16 @@ adds explicit surface stability and energy controls.
   Design use: distinguishing material stability from energy conditions;
   the uncharged limit supplies an independent analytical test.
 
+- François Gelis and Naoto Tanji,
+  [Schwinger Mechanism Revisited](https://arxiv.org/abs/1510.05451).
+  Design use: field strength, field history, and quantum discharge in a
+  capacitor leakage calculation with an explicitly chosen physical scale.
+
+- Holger Gies and Greger Torgrimsson,
+  [Critical Schwinger Pair Production](https://arxiv.org/abs/1507.07802).
+  Design use: finite spatial voltage and the quasistatic pair-production
+  threshold; a short gap also needs a counted charge-carrier inventory.
+
 ## Diagnostics And Governance Sources
 
 - [`intelligent_dofs_transportation_infrastructures_2601.13891.pdf`](intelligent_dofs_transportation_infrastructures_2601.13891.pdf)

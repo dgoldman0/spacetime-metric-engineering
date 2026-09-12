@@ -292,3 +292,9 @@ data/finite_work_interface_audit. The full curved guide, physical converter,
 thermal receiving material, earlier preparation, reset, and quantum source
 continue to require their respective constructions. The main disclosure
 remains the established design document.
+
+The subsequent [charged capacitor construction](CHARGED_CAPACITOR_CONSTRUCTION.md)
+evaluates the boundary material and magnetic-insulation alternatives. Its
+counted joint work return establishes a barrier for the tested magnetic
+capacitor arrangement, while the economical spherical interfaces continue to
+require an identified finite material law.

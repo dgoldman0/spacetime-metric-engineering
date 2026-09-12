@@ -1,10 +1,14 @@
 # Charged capacitor construction for the active rail support
 
-The charged-shell literature provides useful equilibria and radial stability
-controls. Its economical examples require relativistic boundary stress; their
-material law and integration with the scheduled rail remain construction
-requirements. A separate magnetic-insulation calculation addresses a field
-cell supported through the existing infrastructure.
+This bounded investigation supplies no capacitor construction meeting the
+retained assembly conditions. Charged-shell models admit equilibria and radial
+stability, with economical boundaries requiring an unidentified relativistic
+stress law. Magnetic insulation uses familiar electromagnetic physics, but
+the scheduled radial compression creates a substantial additional work duty.
+Counting its transport through the selected receiver route removes the
+apparent source advantage. This is a construction barrier for the evaluated
+arrangements; the active rail's geometry and separated component roles remain
+the basis of the comparison.
 
 The electrical store considered here is the remaining radial electric field
 in the [finite work-interface assembly](FINITE_WORK_INTERFACE.md). It serves
@@ -143,7 +147,180 @@ construction target. The spherical family has acceptable mathematical
 equilibria, while the economical finite material and the required rail tensor
 remain unprovided by those equilibria.
 
-## Evidence
+## Magnetic insulation coupled to the support history
+
+[VanDevender and colleagues](https://doi.org/10.1103/PhysRevSTAB.18.030401)
+and [Evstatiev and colleagues](https://arxiv.org/abs/2408.12053) provide
+physical and computational starting points for magnetically insulated pulsed
+power structures. Their electrode, current, and loss treatments motivate an
+orthogonal-field charge-confinement control. They establish useful plasma
+physics, while a rail capacitor still requires its own finite boundaries and
+driven field solution.
+
+For radial electric energy u_E and a transverse magnetic field, E dot B=0
+and the minimum electric-field-free frame speed is v_i=E/B, with c=1.
+Consequently u_B=u_E/v_i². Oppositely directed cells cancel their angular
+Poynting flux in the coarse average. Equal transverse orientations have
+material-frame magnetic tensor (rho,p_r,j,p_t)=(u_B,u_B,0,0). Its radial
+boost is included explicitly in the ADM source comparison. This favorable
+field control grants full useful volume; finite layers, current returns,
+and confinement add their respective tensors.
+
+Let ell=Gamma B_metric be the material radial length per coordinate label.
+The transverse flux variable and energy per unit label are
+
+    K = u_B (ell R)²,        U_B = K/ell.
+
+Preserving K through the scheduled support contraction raises U_B. Conversely,
+keeping u_B proportional to the required electric field requires changing K.
+The exact endpoint identity separates the external field work from mechanical
+compression:
+
+    Delta U_B = average(1/ell) Delta K + average(K) Delta(1/ell).
+
+The first control prescribes the minimum insulating field at every time.
+The second prepares K(x)=max_t[u_E(ell R)²]/v_i² and then conserves it.
+This second choice covers the whole history. Merely setting the initial field
+to its initial insulation minimum leaves some later samples with only about
+2.72% of the required magnetic energy.
+
+At full electrical recovery, the 1024-cell results are:
+
+| Insulation frame speed | Controlled field: initial added ADM energy | Controlled field: gross work export | Frozen field: initial added ADM energy | Frozen field: fade added ADM energy |
+| --- | ---: | ---: | ---: | ---: |
+| 0.9 | 88.70 | 229.41 | 113.87 | 2,203.86 |
+| 0.7 | 146.62 | 379.24 | 188.24 | 3,643.12 |
+| 0.5 | 287.38 | 743.30 | 368.95 | 7,140.51 |
+
+The work columns sum local material-frame work over the patch; ADM columns
+use the selected slices. The distinction matters on this varying metric.
+At v_i=0.5, active control takes 69.49 units of additional field work in and
+exports 743.30. The geometry contributes +422.25 mechanically. At 90%
+electrical recovery, the corresponding export rises to 983.43 because that
+operating choice retains more electric field. Full recovery is therefore the
+more favorable capacitor setting for this construction.
+
+Before counting the active field's power transport, full recovery at v_i=0.5
+has sampled fade source requirement 0.25405. This is below the previous formal
+reference 0.262788 and would look favorable from the instantaneous field
+tensor alone. Its large additional work port is essential to that result.
+For the frozen-flux alternative, the fade requirement rises to 24.23.
+
+The existing pressure medium also provides a limited simple pressure-balancing
+option. If that medium alone balances the local magnetic pressure, it requires
+p>=u_B. With electric energy weighted by proper volume and proper duration,
+the full-recovery v_i=0.9 control satisfies this inequality for about
+1.17e-5 of the weighted exposure. This is a test of a simple local cell with
+the pinned fluid pressure. Loads transmitted to the standing substrate or
+angular jacket require those components' actual response and work equations.
+
+### Joint work delivery is the decisive additional check
+
+The continuation sends the combined electric and transverse-magnetic work
+through the selected receiver-side route. It grants perfect local reuse of
+opposing work flows, perfect conversion, ideal matched absorption, and zero
+added heat-receiver tensor. Electric-to-guide sharing is increased to its
+allowed maximum, preserving the original electric floor and rate allocation.
+Thus the comparison gives the active capacitor considerable operating freedom.
+
+The per-label field work P enters the same conservative wave transport as
+P/[Gamma(1-direction*v_material)]. Incoming charging waves propagate toward
+decreasing x; recovered work propagates toward the receiver. The paired
+radial delivery guides are counted using their established 0.5 frame-speed
+comparison, with a separate relaxed 0.9 comparison. Both require guide flux
+well above the sharing cap 0.66843, so the saturated allocation is consistent.
+
+| Capacitor insulation speed | Joint work input | Joint work export | Fade source requirement, delivery speed 0.5 | Fade requirement with delivery guide omitted |
+| --- | ---: | ---: | ---: | ---: |
+| 1, formal null-field limit | 24.10 | 150.26 | 8.640 | 4.699 |
+| 0.9 | 27.87 | 193.54 | 11.365 | 6.182 |
+| 0.7 | 41.36 | 342.84 | 20.732 | 11.279 |
+| 0.5 | 75.04 | 706.55 | 43.501 | 23.666 |
+
+The first row grants the limit u_B=u_E; a massive insulating plasma requires
+magnetic dominance and a subluminal frame. The last column is an optimistic
+tensor bound with the delivery guide removed and the retained electric share
+accounted for. It locates a radial-null burden at the receiver-side edge
+x approximately -0.50078. Radial guide fields have zero radial-null
+contribution, so reducing their energy cannot remove that component. The
+relaxed 0.9 delivery-speed comparison already reaches the same fade values.
+
+For capacitor v_i=0.9, the full guide requires flux about 90.88, compared with
+0.66966 in the preceding full-recovery interface. Its added startup ADM
+energy is about 74,456 units. Relaxing the delivery comparison to 0.9 reduces
+that startup figure to about 5,441, while retaining fade requirement 6.182.
+These values are conditional assembly comparisons, with the omitted material,
+loss, and finite-coupler costs still to be supplied.
+
+The physical cause is specific. Radial electric energy decreases as the
+support length contracts, delivering mechanical work. Transverse magnetic
+energy with conserved flux increases under that same contraction. Active
+control must remove both stored magnetic energy and compression work to keep
+the insulating field small. The resulting return wave develops a substantial
+stress at the receiver. This couples capacitor confinement to the existing
+work and mechanical-response roles; assigning insulation to a magnetic field
+does not by itself close their joint balance.
+
+## Field strength and finite-gap material controls
+
+The physical length scale L remains free. In the full-recovery electric
+history, the peak field is approximately
+
+    E_peak = (5.86e26 volt)/L.
+
+Thus L about 4.43e8 m places the peak near the electron Schwinger field, and
+L about 4.43e10 m places it near one percent of that field. These are scale
+markers. A leakage calculation requires the actual field invariants, spatial
+gap, and duration, as treated by
+[Gelis and Tanji](https://arxiv.org/abs/1510.05451).
+
+Shrinking a quasistatic unidirectional gap until its available electrostatic
+work falls below a pair's rest energy is a separate way of removing that
+static pair-production channel; the finite-potential threshold is discussed
+by [Gies and Torgrimsson](https://arxiv.org/abs/1507.07802). For two independent
+electron/positron charge layers, even the particle rest-energy accounting gives
+
+    M_carriers c²/U_E = 4 m_e c²/(e V_gap).
+
+Keeping e V_gap below 2 m_e c² therefore gives a ratio exceeding 2 before
+support or confinement is added. The previous full-recovery added-mass
+comparison instead requires a voltage at least about 5.10 MV for these ideal
+layers, exceeding the approximately 1.022 MV quasistatic threshold. At 90%
+recovery the comparison rises to 6.30 MV. Electron/proton layers require
+roughly 4.68--5.79 GV for the same added-mass comparison.
+
+This calculation applies to separately counted charged layers. Reusing
+existing material requires its charge and force budget, while finite pulse
+profiles and magnetic field invariants require their own discharge analysis.
+Increasing L lowers the electric field without improving the dimensionless
+material-energy ratio. Neither high permittivity nor a short gap alone
+supplies the missing stress and work construction.
+
+## Construction decision and evidence
+
+The spherical-shell family remains a mathematical source of boundary
+conditions. Its economical points require material properties that the cited
+models leave unspecified, and a complete spherical cell changes the averaged
+stress orientation. The passive magnetic-insulation control encounters a
+compression-energy barrier. Active control transfers that barrier into a work
+return whose source burden exceeds the retained assembly comparison even
+under the generous joint test above.
+
+Accordingly this round stops before another converter or storage component is
+introduced. A further candidate needs a specified finite charge-bearing
+boundary whose mechanical work is compatible with the existing pressure,
+substrate, and jacket dynamics. Such a construction could use known physics;
+the evaluated families provide no demonstrated instance satisfying this
+rail's combined conditions. This result concerns the tested capacitor
+arrangements and receiver route, rather than a general exclusion of
+electromagnetic storage or of the active rail architecture.
+
+The capacitor gap remains open. Even a successful capacitor would leave the
+full physical converter, finite curved guide boundaries, thermal receiving
+material, earlier arming, reset, and independent quantum source to be supplied
+for the complete An--T--Le construction.
+
+![Charged boundary cost and the effect of counting insulation work](data/charged_capacitor_audit/capacitor_construction_controls.png)
 
 The shell evidence is in [data/charged_capacitor_shells](data/charged_capacitor_shells).
 Its manifest records the producer, model, tests, grid, numerical envelopes,
@@ -151,4 +328,18 @@ and quadrature verification. Eight focused tests cover the junction mass
 identity, static potential, independent finite-difference stability,
 published uncharged stability boundary, proper energy quadrature, Maxwell
 tensor boost, and transverse-field work identities. Narrative reporting is
-maintained manually in this supporting document.
+maintained manually in this supporting document. The magnetic work and scale
+controls are in [data/charged_capacitor_insulation](data/charged_capacitor_insulation),
+and the optimistic coupled route is in
+[data/charged_capacitor_work_delivery](data/charged_capacitor_work_delivery).
+The focused suite passes 63 tests, including the eight new capacitor controls.
+The final [audit](data/charged_capacitor_audit/verification.json) verifies 379
+input/output hashes across inherited and new evidence. Joint-transport source
+comparisons change by at most 0.432% between 512 and 1024 spatial cells and
+0.00375% when the geometry interpolation is refined from two to four
+subintervals per archived time interval. This time check concerns geometry
+interpolation; the field-work schedule retains its original 257 intervals.
+The largest conservative stream-balance residual is below 5.4e-14. The
+guide-omitted fade maximum agrees exactly with the independent radial-null
+expression. New evidence occupies approximately 25 MB, and independent cases
+run with at most four workers.

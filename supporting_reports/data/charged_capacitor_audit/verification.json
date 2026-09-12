@@ -1,0 +1,30 @@
+{
+  "evidence_hash_checks": 379,
+  "failed_hash_checks": 0,
+  "refinements": [
+    {
+      "comparison": "spatial_512_1024",
+      "quantity": "required_negative_null",
+      "maximum_relative_change": 0.004312364879915505
+    },
+    {
+      "comparison": "spatial_512_1024",
+      "quantity": "auxiliary_ADM",
+      "maximum_relative_change": 0.000827473438064068
+    },
+    {
+      "comparison": "geometry_time_2_4",
+      "quantity": "required_negative_null",
+      "maximum_relative_change": 3.7412517904320836e-05
+    },
+    {
+      "comparison": "geometry_time_2_4",
+      "quantity": "auxiliary_ADM",
+      "maximum_relative_change": 4.055517466643763e-06
+    }
+  ],
+  "guide_omitted_fade_radial_null_identity_error": 0.0,
+  "focused_test_result": "63 tests passed in the focused capacitor, work, delivery, and pressure/converter suite.",
+  "physical_capacitor_constructed": false,
+  "complete_rail_source_closed": false
+}

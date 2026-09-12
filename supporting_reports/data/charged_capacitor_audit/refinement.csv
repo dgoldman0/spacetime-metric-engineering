@@ -1,0 +1,5 @@
+comparison,quantity,maximum_relative_change
+spatial_512_1024,required_negative_null,0.004312364879915505
+spatial_512_1024,auxiliary_ADM,0.000827473438064068
+geometry_time_2_4,required_negative_null,3.7412517904320836e-05
+geometry_time_2_4,auxiliary_ADM,4.055517466643763e-06
