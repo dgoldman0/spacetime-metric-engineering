@@ -1,0 +1,16 @@
+{
+  "label": "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+  "minimum_density_margin": 0.00011314479565507213,
+  "target_budget_passes": true,
+  "supersolution_maximum_inequality_residual": 1.2505552149377763e-12,
+  "worst_sample": {
+    "time": 0.037646484375,
+    "x": -1.9997604166666667,
+    "density": 0.056572397827530464
+  },
+  "source_controls_reconstructed": true,
+  "activation_reoptimized": false,
+  "wave_bound": "continuous in time for frozen-panel finite-volume transport",
+  "geometry_target_samples_per_panel": 5,
+  "variable_geometry_explicit_replay_required": true
+}

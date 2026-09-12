@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-09-12T21:09:07.388253+00:00",
+  "git_head": "8065c5584379889cedb54b9ca2987499eca92243",
+  "provenance": "direct immutable source controls and upstream manifest; current reconstruction runtime",
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+    "toolkit/adm_harness_cli/scripts/average_virtual_cell_controls.py": "188e160b4ad6ef434813513968c02bd0842eefa9d68fd3466d4c189af5d3b866",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_controls.py": "2f56e4793ea041d2140c37732698e0cd41b422bfa5137e6fb6ada61c8ec40b6b",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+    "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz": "e478e273adc50871483420d59a53e95ab391e545613a8a0ca4d3e0b2321db3df",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184"
+  },
+  "output_sha256": {
+    "summary.json": "fff8efdc0fa54b59f30a8ea071ae1f853a98bbef104182f7930826c61e84c7bf",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c"
+  }
+}

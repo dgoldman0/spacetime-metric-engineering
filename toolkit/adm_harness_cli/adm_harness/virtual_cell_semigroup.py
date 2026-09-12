@@ -43,12 +43,20 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     guide=0. if guide_drift is None else .5*(guide_drift**-2-1)
     if guide_drift is not None and not 0<guide_drift<1:
         raise ValueError('guide drift fraction must be subluminal and positive')
-    A=np.arange(2*nt).reshape(nt,2)
-    positive=np.arange(2*(nt-1)).reshape(nt-1,2)+2*nt
-    negative=positive+2*(nt-1)
-    absorption=np.arange(nt*nx).reshape(nt,nx)+6*nt-4
+    phase_groups=1 if matched_pair else 2
+    A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
+    positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
+    negative=positive+phase_groups*(nt-1)
+    if matched_pair:
+        # One actual control variable serves both arms. Eliminating duplicate
+        # equalities avoids a rank-deficient representation of this choice.
+        A=np.repeat(A,2,axis=1)
+        positive=np.repeat(positive,2,axis=1)
+        negative=np.repeat(negative,2,axis=1)
+    control_columns=phase_groups*(3*nt-2)
+    absorption=np.arange(nt*nx).reshape(nt,nx)+control_columns
     recovery=absorption+nt*nx
-    epsilon=6*nt-4+2*nt*nx
+    epsilon=control_columns+2*nt*nx
     if wave_envelope:
         ceiling_abs=np.arange((nt-1)*nx).reshape(nt-1,nx)+epsilon
         ceiling_rec=ceiling_abs+(nt-1)*nx
@@ -115,11 +123,6 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         ub.add(entries,float(np.sum(measures*(local_target[0]-local_target[1]+local_target[2]))))
 
     for i in range(nt):
-        if matched_pair:
-            # Both opposed feeding regions share the same physical phase
-            # history. This removes the core traction step at the middle
-            # interface without assuming cancellation of other components.
-            eq.add([(A[i,0],1.),(A[i,1],-1.)])
         for j in range(nx):
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
                 [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
@@ -128,14 +131,12 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     operators=[]
     port_terms=[]
     for i,dt in enumerate(np.diff(t)):
-        if matched_pair:
-            for increments in (positive,negative):
-                eq.add([(increments[i,0],1.),(increments[i,1],-1.)])
         panel=[]
         incident=[]; returned=[]; total_return=[]
         for half in (0,1):
             start=half*halfnx; stop=start+halfnx; sl=slice(start,stop)
-            eq.add([(A[i+1,half],1),(A[i,half],-1),(positive[i,half],-1),(negative[i,half],1)])
+            if not matched_pair or half==0:
+                eq.add([(A[i+1,half],1),(A[i,half],-1),(positive[i,half],-1),(negative[i,half],1)])
             pair={}
             for back,ids,sign in [(True,absorption,int(direction[start])),
                                   (False,recovery,-int(direction[start]))]:

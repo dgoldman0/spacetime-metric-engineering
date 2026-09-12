@@ -100,3 +100,115 @@ phase penalty is `2/3`. The latter verifies that the constraint introduces
 a physical restriction. Reconstruction tests reject a finite unmatched
 history. Eighteen control, exponential-transport, and shared-reservoir tests
 pass at this stage.
+
+Eliminating the duplicate equality variables preserves the common-phase
+model and the successful first location. The second location again returns
+an unresolved numerical status. An explicit alternative takes the arithmetic
+mean of the two previously accepted phase histories and applies it to both
+arms. This changes the controls deliberately, preserving a shared phase
+without a further optimization. The
+[averaged controls](data/virtual_cell_averaged_controls/summary.json) pass
+[fresh whole-panel envelopes](data/virtual_cell_averaged_envelopes/summary.json)
+at both locations, with density margins `0.0000848228` and `0.0000757241`.
+Their changing-geometry replay supplies the separate refinement check.
+
+## Reciprocal power required by the complementary current
+
+The minimum counterstream has density `c=|j_wave|` and current
+`j_c=-j_wave`. Define material derivatives and kinematic coefficients by
+
+```
+D_u = (1/N) partial_t,
+D_s = (1/ell) partial_x + (v/N) partial_t,
+theta_r = D_u ln ell,       theta_t = D_u ln R,
+a = radial material acceleration,       k = D_s ln R.
+```
+
+The counterstream's required power and radial force are
+
+```
+P_c = D_u c + 2(theta_r+theta_t)c + D_s j_c + 2(a+k)j_c,
+F_c = D_s c + 2(a+k)c + D_u j_c + 2(theta_r+theta_t)j_c.
+```
+
+Its partner receives `-P_c,-F_c`. A free counterstream has both quantities
+zero. Material-frame elastic direction scattering permits a force exchange
+with zero power. On a smooth region of the minimum allocation only one
+null direction is populated, so `F_c=sign(j_c)P_c`; zero-power completion
+there also requires vanishing force. Additional counterpropagating photons
+provide a larger class with their own energy requirement.
+
+The [differential audit](data/virtual_cell_counterstream_baseline/summary.json)
+reconstructs this exchange in the material tetrad and independently through
+the conservative directional ADM wave equations. It compares derivatives
+on the retained replay with derivatives after time/space decimation. Firm
+witnesses avoid current switches, control-knot crossings, and material cuts;
+their exchange exceeds the measured numerical sensitivity by a factor of
+ten. Both signs of reciprocal power are resolved at each location.
+
+| Pair center | Resolved nonzero-exchange samples | Largest resolved `|P_c|` | Largest resolved `|F_c|` |
+| --- | ---: | ---: | ---: |
+| -2 | 9296 | 4.42379 | 4.42379 |
+| -1.975 | 6765 | 1.52179 | 1.52179 |
+
+These values use project stress per proper time/length. They describe the
+required exchange between constituents of the retained decomposition. The
+total backing tensor and its previously measured continuum residual remain
+the prescribed target. The derivative comparison measures sensitivity of
+the sampled replay; it supplies empirical witnesses rather than a continuum
+error bound.
+
+## Extra prepared radiation and the passive energy bound
+
+A stronger comparison permits counterstream density above `|j_wave|` and
+arbitrary prepared spatial grading. Let `u_r=u_w+u_h`, and let `W` be the
+energy of all drive, return, heat, and counterstream photons. Their total
+current is zero. The counted beam conversion obeys
+`P_wave=-A_t/(N R^2)`. Requiring `P_c=0` therefore gives
+
+```
+partial_t[(ell R)^2 W] = -ell^2 A_t,
+I(t,x) = integral_0^t ell^2 A_t dt,
+(ell R)^2 W = C(x)-I(t,x).
+```
+
+Nonnegative photon populations require `W >= 2 max(u_a,u_r)`. The existing
+component cone permits at most `W <= (rho+2p_r+p_t+s)/3`. Every prepared
+constant must consequently satisfy
+
+```
+max_t[I+(ell R)^2 2 max(u_a,u_r)] <= C(x)
+    <= min_t[I+(ell R)^2 (rho+2p_r+p_t+s)/3].
+```
+
+This interval uses the full available density, including the former
+numerical reserve. It permits arbitrary extra balanced counterphotons and
+imposes no additional material mass or guide requirement on them. Integrating
+the known piecewise-linear phase controls avoids differentiation of the
+current in this energy test.
+
+All 96 positions in each retained pair have empty intervals. Representative
+interior witnesses are:
+
+| Pair center | Witness position | Required lower `C` | Permitted upper `C` | Gap |
+| --- | ---: | ---: | ---: | ---: |
+| -2 | -2.00002864583 | 25.234190 | -4.862000 | 30.096189 |
+| -1.975 | -1.97497656250 | 54.379269 | 9.809304 | 44.569965 |
+
+The first witness compares `t=0.0445483` with `t=0.547129`; the second
+compares `t=0.0445483` with startup. Four- and eight-point Gauss quadrature
+change the work integrals by less than `6e-14`. Decimating the sampled
+histories changes these gaps by approximately `0.093` and `0.125`.
+Propagation uncertainty remains inherited from the independent wave replay.
+
+Thus a counterstream with zero local power exchange cannot complete these
+prescribed controls within their allotted stress. The required continuation
+is reciprocal energy exchange with another counted constituent, or revised
+joint controls that satisfy that exchange. The isolated-store/jacket failures
+and this counterstream result address different construction assumptions.
+
+Five manufactured tests cover source-free propagation, explicitly sourced
+opposing streams, independent ADM/tetrad agreement under refinement, and
+compatible and incompatible prepared-radiation intervals. The archived
+evidence records the controls, metric, source code, derivative witnesses,
+and passive-energy intervals.

@@ -1,0 +1,36 @@
+{
+  "cases": [
+    {
+      "label": "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+      "minimum_density_margin": 7.572406857644931e-05,
+      "target_budget_passes": true,
+      "supersolution_maximum_inequality_residual": 7.958078640513122e-13,
+      "worst_sample": {
+        "time": 0.0501953125,
+        "x": -1.9750104166666667,
+        "density": 0.0485903367905769
+      },
+      "source_controls_reconstructed": true,
+      "activation_reoptimized": false,
+      "wave_bound": "continuous in time for frozen-panel finite-volume transport",
+      "geometry_target_samples_per_panel": 5,
+      "variable_geometry_explicit_replay_required": true
+    },
+    {
+      "label": "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+      "minimum_density_margin": 8.482280891543986e-05,
+      "target_budget_passes": true,
+      "supersolution_maximum_inequality_residual": 4.547473508864641e-13,
+      "worst_sample": {
+        "time": 0.04517578125,
+        "x": -1.9997604166666667,
+        "density": 0.056617141387452156
+      },
+      "source_controls_reconstructed": true,
+      "activation_reoptimized": false,
+      "wave_bound": "continuous in time for frozen-panel finite-volume transport",
+      "geometry_target_samples_per_panel": 5,
+      "variable_geometry_explicit_replay_required": true
+    }
+  ]
+}

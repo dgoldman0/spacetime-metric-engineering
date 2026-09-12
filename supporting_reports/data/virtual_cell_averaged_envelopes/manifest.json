@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-09-12T21:10:18.824738+00:00",
+  "git_head": "8065c5584379889cedb54b9ca2987499eca92243",
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+    "toolkit/adm_harness_cli/scripts/average_virtual_cell_controls.py": "188e160b4ad6ef434813513968c02bd0842eefa9d68fd3466d4c189af5d3b866",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_controls.py": "2f56e4793ea041d2140c37732698e0cd41b422bfa5137e6fb6ada61c8ec40b6b",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+    "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz": "e478e273adc50871483420d59a53e95ab391e545613a8a0ca4d3e0b2321db3df",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184",
+    "supporting_reports/data/virtual_cell_averaged_controls/manifest.json": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_envelopes.py": "028b16cfa8c3cc951ede25267cd4ae4f16faaec8385d4aca54d77e87b6833708",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_envelope_audit.py": "248bb01123c138730ad0c6265942f9f5cc6f5e6c335bb68ad02163ece96aeb25",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_envelope_audit.py": "a9cc82ed4880bd2987a04a040e4320447b912bd729808212ac60dab0178cd61d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c"
+  },
+  "output_sha256": {
+    "summary.json": "02fa4e6166a0b09c148a89a5c93ae1d426d5d6a274e48b593e0793e0f91d1d26",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "662b3de3481bec0e734456d0612c78a3b44ce85c7ff5ce0e54729912467d449f",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "3aad7717b38d471d4148cdf45760d8864e83238e71a44ec49586effe8dafd3ed",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "73a3800c2a5a10e8490389bf2cccf71f3ca0167c6dcc036db91ce18068c11510",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "6540577cf7d7475a51aace670dfb0acf91936e73fffd5fabb47a62a1b29be74a"
+  }
+}
