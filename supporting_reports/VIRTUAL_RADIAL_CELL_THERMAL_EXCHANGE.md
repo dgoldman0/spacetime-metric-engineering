@@ -2,10 +2,16 @@
 
 A pressure-bearing reservoir, evolved jointly with the phase and balanced
 radial radiation, clears the sampled local energy/cone gate at both tested
-locations. The pressureless storage comparison retains the earlier small
-deficit near `x=-1.975`. Keeping the previously accepted phase schedule
-fixed instead requires substantial extra density for either reservoir.
-The useful change is therefore coordinated pressure work and phase evolution.
+locations. Restoring coherent finite-cell control and causal work delivery
+leaves an added-density requirement of `0.00293618` at the refined
+`x=-1.975` pair. The pressure-bearing response is useful, while the tested
+local thermal completion reaches its coupled stress-budget boundary.
+
+The pressureless storage comparison retains the earlier small local deficit
+near `x=-1.975`. Keeping the previously accepted phase schedule fixed instead
+requires substantial extra density for either reservoir. The useful change
+is coordinated pressure work and phase evolution, with the actual work
+delivery and material connections determining physical completion.
 
 This calculation continues the [connection audit](VIRTUAL_RADIAL_CELL_CONNECTION_AUDIT.md)
 on the scheduled active-rail patch, with `f=0.99`, the protected packet's
@@ -179,7 +185,7 @@ feasible competitor used for its dual bounds.
 
 The second port needs energy return beyond the geometric work allowed by
 this perfect-isotropic receiving-population model. Maximum panel residual
-is `6.76e-14`, cone violation `2.23e-16`, and primal/dual discrepancy
+is below `6.81e-14`, cone violation `2.23e-16`, and primal/dual discrepancy
 `1.78e-15`. The bidirectional thermal interpretation retains its separate
 opening from the preceding comparison.
 
@@ -254,3 +260,81 @@ The complete virtual-cell, driven-condensate, and surface-interface suite
 passes 70 tests at this stage. Four new semigroup tests cover a static common
 core, driven conversion with actual wave/counterstream/heat inventory, an
 incompatible disappearing energy capacity, and model-option validation.
+
+## Refined solver comparison and the construction boundary
+
+The [interior-point comparison](data/virtual_cell_thermal_transport_ipm/summary.json)
+uses the same 24-cell, 515-time equations, target, and physical allowances.
+It returns an optimum for the second pair, including successful secondary
+inventory minimization. The first pair again reaches its primary time limit
+and remains unresolved at this resolution.
+
+| Pair center | 12 cells / 132 times | 24 cells / 515 times |
+| --- | ---: | ---: |
+| -2 | Added density 0.00132490 | Unresolved solver time limit |
+| -1.975 | Added density 0.00312356 | Added density 0.00293618 |
+
+The second-pair refinement reduces the reported optimum by about 6%.
+Its maximum scaled equation residual is `2.53e-11` and inequality violation
+`9.38e-10`. The reconstructed local phase/radiation/thermal energy balance
+closes within `1.58e-14`, with nonnegative complementary photon populations.
+The reconstructed density deficit agrees with the optimized allowance to
+`5.54e-10`.
+
+Independent reconstruction recovers the complete node cone, including the
+guide cost, within `1.25e-16` of the archived deficit. The stronger midpoint
+ceiling budget exceeds the reported optimum by `1.04e-9`; node, midpoint,
+and endpoint ceiling wave-floor violations remain below `2.2e-19`. The
+shared phase agrees exactly across the pair, and its increment equation
+closes within `8.4e-17`. Independently rebuilt propagation envelopes have
+normalized equation residual below `7.1e-17` and initial-state/ceiling
+dominance mismatch below `2.2e-10`.
+
+Releasing the numerical density reserve cannot close this finite-model gap.
+The largest full target density is `0.355568`, so restoring 0.2% changes
+any density constraint by at most `0.000711135`. Comparing the uniform
+allowances therefore places the full-density optimum above approximately
+`0.00222504`, subject to the accuracy of the reported reserved-density
+optimum. This semigroup archive retains primal residuals; the explicit
+dual witnesses belong to the earlier local LP archives. For the retained
+optimized history itself, the worst full-density shortfall is `0.00284009`
+at startup, approximately 5.91% of the local target density.
+
+At that startup sample the limiting facet is
+`2s <= rho-p_r-2p_t-3 rho_wall`, with `s=0.0305199`, prepared radial
+radiation `W=0.0122439`, zero thermal density, and zero travelling-wave
+floor. Near `t=0.496934`, the guide facet becomes tight with `s=0.0103331`,
+`B=0.0366000`, and `W=0.0120784`. The common phase has just fallen from
+`A=0.246167` to `0.0848604` over about `0.00251` coordinate time. Together
+these samples show the startup core/angular-stress capacity and the
+thermal/guide competition through the transition in the retained solution.
+
+The refined histories contain up to `0.255747` of balanced radial radiation
+and `0.0385770` of thermal density. Their largest actual travelling-wave
+floor is `0.00690509`. Thus the joint cost includes substantial stored
+radiation and thermal pressure in addition to the work pulses. Those
+inventories must coexist with the core change, guide field, and prescribed
+stress transition.
+
+This ends the bounded local thermal-completion attempt. The pressure-bearing
+state resolves the earlier local energy/cone obstruction, while the restored
+finite-cell duties exceed the allotted stress. The result applies to the
+common-phase histories, frozen-panel transport/envelope constraints, and
+closed phase–radiation–thermal power allocation tested here. A continuous
+angular transport model or a changed pressure-link/capacitor exchange
+allocation has different evolution equations and remains open.
+
+The existing power components have explicit reciprocal duties. Their gross
+fluid, field, work-wave, and receiving-heat exchanges largely cancel; using
+one of those exchanges for the new thermal state requires its opposite
+assignment and an updated physical contact law. The remaining construction
+therefore concerns coordinated constituent and interface dynamics. Adding
+an arbitrary thermal source to the retained histories would leave that
+requirement unsatisfied.
+
+An explicit solver-method regression brings the focused suite to 71 passing
+tests. The archived successful and timed-out comparisons retain their
+distinct source versions and numerical outcomes. Hash verification covers
+361 file references across five manifests, including six historical source
+versions resolved against the Git record. The main technical
+disclosure and its PDF receive no changes from this investigation.

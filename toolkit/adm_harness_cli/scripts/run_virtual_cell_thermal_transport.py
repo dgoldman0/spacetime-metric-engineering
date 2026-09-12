@@ -18,7 +18,7 @@ from run_poynting_delivery import BASE, ROOT, write_json
 
 
 def evaluate(spec):
-    center, width, intervals, stride, reserve, output, deadline = spec
+    center, width, intervals, stride, reserve, output, deadline, solver_method = spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -42,7 +42,7 @@ def evaluate(spec):
     result = solve_pair(t, edges, budget, nodes, mids, wave, efficiency=.98,
         interface_sigma=1e-7, coherent_cells=True, return_heat=True,
         guide_drift=.5, wave_envelope=True, matched_pair=True,
-        thermal_eos=1/3, solver_threads=1, deadline=deadline)
+        thermal_eos=1/3, solver_threads=1, solver_method=solver_method, deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
@@ -81,6 +81,7 @@ def main():
     parser.add_argument('--stride', type=int, default=4)
     parser.add_argument('--reserve', type=float, default=.002)
     parser.add_argument('--deadline', type=float, default=240.)
+    parser.add_argument('--solver-method', choices=['highs-ds', 'highs-ipm'], default='highs-ds')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
@@ -108,7 +109,7 @@ def main():
             raise RuntimeError('changed input dependency: '+relative)
     output.mkdir()
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
-              str(output), args.deadline) for center in args.centers]
+              str(output), args.deadline, args.solver_method) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))

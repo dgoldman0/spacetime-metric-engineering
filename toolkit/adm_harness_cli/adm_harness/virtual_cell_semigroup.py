@@ -36,7 +36,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
                guide_drift=None, reservoir_eos=None, confine_reservoir=False,
                wave_envelope=False, matched_pair=False, thermal_eos=None,
-               solver_threads=None, deadline=180.):
+               solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -53,6 +53,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
         raise ValueError('solver_threads must be a positive integer or None')
+    if solver_method is not None and solver_method not in ('highs-ipm','highs-ds'):
+        raise ValueError('solver_method must be highs-ipm, highs-ds, or None')
+    method=solver_method or ('highs-ds' if distributed else 'highs-ipm')
     phase_groups=1 if matched_pair else 2
     A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
     positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
@@ -287,10 +290,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
             return linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
-                           method='highs-ds' if distributed else 'highs-ipm',options=options)
+                           method=method,options=options)
     first=optimize()
     if not first.success:
-        return dict(success=False,status=int(first.status),message=first.message)
+        return dict(success=False,status=int(first.status),message=first.message,solver_method=method)
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
     cost[:]=0
     time_weight=np.r_[np.diff(t)[0]/2,(np.diff(t)[:-1]+np.diff(t)[1:])/2,np.diff(t)[-1]/2]
@@ -381,6 +384,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             thermal[i+1,sl]=matrix@thermal[i,sl]+response*loss
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
     return dict(success=eqerror<2e-7 and uberror<2e-7,
+        solver_method=method,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=bool(second.success),
