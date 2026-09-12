@@ -338,3 +338,9 @@ distinct source versions and numerical outcomes. Hash verification covers
 361 file references across five manifests, including six historical source
 versions resolved against the Git record. The main technical
 disclosure and its PDF receive no changes from this investigation.
+
+The subsequent [pressure-link reallocation](VIRTUAL_RADIAL_CELL_PRESSURE_LINK_REALLOCATION.md)
+reopens the existing fluid and receiver inventories with their reciprocal
+power and full stress contributions retained. It examines coordinated hot
+and cold receiver banks, positive fluid temperature, and the actual stress
+transition between the original coarse samples.

@@ -89,6 +89,25 @@ def full_budget(rho, p, q, *, phase, radiation, thermal, receiver, wall,
     return minimum-residual_rho, guide, 2*np.maximum(incident, returned)-radiation
 
 
+def preparation_interval(rho, p, q, *, phase, radiation, thermal, receiver,
+                         wall, incident, returned, guide_multiplier, metric_weight):
+    """Allowed time-independent addition to V=M*W at each material label.
+
+    Two cone facets are independent of balanced radial radiation; the third
+    pays three times its added density. A constant addition to V preserves
+    the already integrated radiation energy equation, including its source.
+    """
+    rr = rho-phase-radiation-thermal-receiver-wall
+    rp = p+phase-radiation-thermal/3
+    rq = q+wall-thermal/3
+    guide = np.maximum(guide_multiplier*(incident+returned)-phase/2, 0.)
+    fixed = np.maximum(rp+2*rq-rr, rp-rq+3*guide-rr)
+    lower = np.maximum(0., np.max(metric_weight*(2*np.maximum(incident, returned)-radiation), axis=0))
+    upper = np.min(metric_weight*(rr+2*rp+rq)/3, axis=0)
+    possible = bool(np.max(fixed) <= 2e-7 and np.all(upper >= lower))
+    return lower, upper, positive_max(fixed), possible
+
+
 def geometry(model, times, x):
     """Registered spline metric in its unblended interior, including gamma_t."""
     if (np.any(abs(x) >= 5) or np.any(x < model.x_min) or np.any(x > model.x_max)
@@ -114,7 +133,8 @@ def positive_max(a):
 
 
 def audit(spec):
-    source, label, factor, output = spec
+    source, label, factor, output, *options = spec
+    prepare_radiation = bool(options[0]) if options else False
     started = time.monotonic()
     source, output = Path(source), Path(output)
     meta = json.loads((source/(label+'_summary.json')).read_text())
@@ -233,6 +253,30 @@ def audit(spec):
         receiver=Z/g['D'], wall=wall, incident=beam['incident'], returned=returned,
         guide_multiplier=multiplier)
     reserve = meta.get('reserved_density_fraction', 0.)*rho
+    preparation = dict(additional_radiation_preparation_requested=prepare_radiation,
+                       additional_radiation_preparation_applied=False)
+    prepared_extra = np.zeros(nx)
+    if prepare_radiation:
+        lower, upper, fixed_violation, possible = preparation_interval(*available,
+            phase=core, radiation=W, thermal=B, receiver=Z/g['D'], wall=wall,
+            incident=beam['incident'], returned=returned, guide_multiplier=multiplier,
+            metric_weight=g['M'])
+        preparation.update(preparation_interval_nonempty=possible,
+            preparation_fixed_facet_violation=fixed_violation,
+            preparation_minimum_interval_width=float((upper-lower).min()),
+            before_preparation_density_shortfall=positive_max(deficit),
+            before_preparation_wave_floor_violation=positive_max(floor))
+        if possible:
+            prepared_extra=lower
+            V=V+prepared_extra
+            V4=V4+prepared_extra
+            W=V/g['M']
+            deficit, guide, floor = full_budget(*available, phase=core, radiation=W,
+                thermal=B, receiver=Z/g['D'], wall=wall, incident=beam['incident'],
+                returned=returned, guide_multiplier=multiplier)
+            preparation.update(additional_radiation_preparation_applied=True,
+                maximum_added_prepared_inventory=float(prepared_extra.max()),
+                maximum_added_radiation_density=float((prepared_extra/g['M']).max()))
     reserved_deficit = deficit+reserve
     direction = np.r_[-np.ones(nx//2), np.ones(nx//2)]
     wave = beam['incident']+returned
@@ -279,6 +323,8 @@ def audit(spec):
     i, j = np.unravel_index(np.argmax(deficit), deficit.shape)
     negative = max(positive_max(-core), positive_max(-B), positive_max(-Z/g['D']), positive_max(-W))
     tolerance = 2e-7
+    thermal_floor_error = positive_max(meta.get('retained_uniform_fluid_temperature', 0.)-fluid_temperature)
+    floor_pass = thermal_floor_error <= tolerance
     contact_pass = bool(max(value for key, value in diagnostics.items()
                            if key.endswith('violation')) <= tolerance)
     full_pass = bool(max(float(deficit.max()), float(floor.max()), negative) <= tolerance)
@@ -287,7 +333,8 @@ def audit(spec):
         input=meta['input'], controls_source=str(source.relative_to(ROOT)) if source.is_relative_to(ROOT) else str(source),
         efficiency=eta, interface_sigma=meta['interface_sigma'], guide_drift_bound=drift,
         full_density_budget_passes=full_pass, reserved_density_budget_passes=reserve_pass,
-        receiver_contact_checks_pass=contact_pass, full_sampled_gate_passes=full_pass and contact_pass,
+        receiver_contact_checks_pass=contact_pass, fluid_temperature_floor_passes=floor_pass,
+        full_sampled_gate_passes=full_pass and contact_pass and floor_pass,
         maximum_density_shortfall=positive_max(deficit), minimum_density_margin=float(-deficit.max()),
         maximum_reserved_density_shortfall=positive_max(reserved_deficit),
         maximum_wave_floor_violation=positive_max(floor), minimum_counterstream_margin=float((counter-abs(current)).min()),
@@ -301,14 +348,14 @@ def audit(spec):
         source_reference_reconstruction_errors=reference_errors,
         minimum_fluid_temperature=float(fluid_temperature.min()),
         archived_uniform_fluid_temperature_floor=meta.get('retained_uniform_fluid_temperature'),
-        uniform_fluid_temperature_floor_violation=positive_max(
-            meta.get('retained_uniform_fluid_temperature', 0.)-fluid_temperature),
+        uniform_fluid_temperature_floor_violation=thermal_floor_error,
         receiver_donor_scope='endpoint donor-energy comparison on each replay panel',
         baseline_power_and_full_stress_credits_retained=True, full_balanced_radiation_inventory_retained=True,
         aggregate_energy_integrated=True, beam_transport_independently_replayed=True,
         counterstream_opacity_and_force_supplied=False, thermal_constitutive_law_supplied=False,
-        scope='fixed inventories and controls; exact registered metric energy quadrature and explicit beam replay; sampled tensor and contact checks',
+        scope='archived phase/fluid/receiver controls, explicitly recorded initial-radiation adjustment when requested; exact registered metric energy quadrature and explicit beam replay; sampled tensor and contact checks',
         spatial_extension='linear separately in each cell, constant from outermost sample to cell edge',
+        **preparation,
         worst_density_sample=dict(time=float(t[i]), x=float(x[j]), original_density=float(rho[i,j]),
             phase_density=float(core[i,j]), radiation_density=float(W[i,j]), thermal_density=float(B[i,j]),
             receiver_density=float(Z[i,j]/g['D'][i,j])), elapsed_seconds=time.monotonic()-started, **diagnostics)
@@ -326,7 +373,8 @@ def audit(spec):
         heat_return_rest=beam['heat'], density_shortfall=deficit, reserved_density_shortfall=reserved_deficit,
         wave_floor_violation=floor, guide_rest=guide, wall_rest=wall,
         phase_energy_panel=panels[0], thermal_energy_panel=panels[1], receiver_energy_panel=panels[2],
-        baseline_energy_panel=panels[3], gauss4_8_panel_difference=panels-comparison, **contact_output)
+        baseline_energy_panel=panels[3], gauss4_8_panel_difference=panels-comparison,
+        additional_prepared_radiation_inventory=prepared_extra, **contact_output)
     print(stem+': '+json.dumps({key: result[key] for key in ('full_density_budget_passes',
         'maximum_density_shortfall', 'maximum_wave_floor_violation', 'elapsed_seconds')}), flush=True)
     return result
@@ -339,6 +387,8 @@ def main():
     parser.add_argument('--factors', type=int, nargs='+', default=[2])
     parser.add_argument('--workers', type=int, default=2)
     parser.add_argument('--output-name', required=True)
+    parser.add_argument('--prepare-radiation', action='store_true',
+                        help='add only counted initial radiation within its sampled full-density interval')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or any(f < 1 for f in args.factors):
         parser.error('one or two workers and positive refinement factors required')
@@ -365,7 +415,8 @@ def main():
     for path in sources:
         hashes[str(path.relative_to(ROOT))] = sha256_file(path)
     output.mkdir()
-    specs = [(str(source), label, factor, str(output)) for label in labels for factor in args.factors]
+    specs = [(str(source), label, factor, str(output), args.prepare_radiation)
+             for label in labels for factor in args.factors]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
             mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(audit, specs))

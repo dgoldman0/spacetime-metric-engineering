@@ -41,7 +41,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                receiver_contact=None, split_receiver=False, target_budget_only=False,
                thermal_particle_number=None, maximize_thermal_floor=False,
                minimum_thermal_floor=None, midpoint_credited_target=None,
-               solver_threads=None, solver_method=None, deadline=180.):
+               solver_threads=None, solver_method=None, solver_crossover=None,
+               solver_log=False, deadline=180.):
     """Frozen-panel transport with independently supplied available stresses.
 
     midpoint_credited_target, when supplied, is the COMPLETE available target
@@ -123,6 +124,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     if solver_method is not None and solver_method not in ('highs-ipm','highs-ds'):
         raise ValueError('solver_method must be highs-ipm, highs-ds, or None')
     method=solver_method or ('highs-ds' if distributed else 'highs-ipm')
+    if solver_crossover is not None and (
+            not isinstance(solver_crossover,(bool,np.bool_)) or method!='highs-ipm'):
+        raise ValueError('solver_crossover requires a boolean and highs-ipm')
     phase_groups=1 if matched_pair else 2
     A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
     positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
@@ -433,6 +437,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     options={'time_limit':deadline if target_budget_only and not maximize_thermal_floor else deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10}
     if solver_threads is not None:options['threads']=int(solver_threads)
+    if solver_crossover is not None:options['run_crossover']='on' if solver_crossover else 'off'
+    if solver_log:options['disp']=True
     def optimize():
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
@@ -441,6 +447,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     first=optimize()
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
+                    solver_crossover=solver_crossover,solver_iterations=getattr(first,'nit',None),
+                    crossover_iterations=getattr(first,'crossover_nit',None),
                     fixed_uniform_fluid_temperature_floor=minimum_thermal_floor,
                     explicit_credited_midpoint_target=midpoint_credited_target is not None,
                     target_budget_only=bool(target_budget_only))
@@ -540,7 +548,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             thermal_reference_power_panel=reference_power_panel,
             thermal_inventory_increment=k_state-reference_inventory,
             thermal_force_and_opacity_supplied=False,
-            thermal_exchange_scope='piecewise-linear A,K and frozen-panel geometry; midpoint U is the endpoint mean; changing-geometry reconstruction remains independent')
+            thermal_exchange_scope='piecewise-linear A,K and frozen-panel geometry; midpoint U equals midpoint K divided by D_mid^(1/3); changing-geometry reconstruction remains independent')
     if closed:
         buffer_density=r.x[store,None]*density_weight
         # Use the reduced target so the same facets independently reconstruct
@@ -589,6 +597,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
     return dict(success=eqerror<2e-7 and uberror<2e-7,
         solver_method=method,
+        solver_crossover=solver_crossover,solver_iterations=getattr(r,'nit',None),
+        crossover_iterations=getattr(r,'crossover_nit',None),
         target_budget_only=bool(target_budget_only),
         explicit_credited_midpoint_target=midpoint_credited_target is not None,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),

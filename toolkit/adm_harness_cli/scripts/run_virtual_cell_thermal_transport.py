@@ -21,7 +21,7 @@ from run_poynting_delivery import BASE, ROOT, write_json
 def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
      reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
-     minimum_temperature, exact_midpoint)=spec
+     minimum_temperature, exact_midpoint, no_crossover, solver_log)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -81,7 +81,8 @@ def evaluate(spec):
         thermal_particle_number=number if warm_fluid or minimum_temperature is not None else None,
         maximize_thermal_floor=warm_fluid,minimum_thermal_floor=minimum_temperature,
         midpoint_credited_target=midpoint_budget,
-        solver_threads=1, solver_method=solver_method, deadline=deadline)
+        solver_threads=1, solver_method=solver_method,
+        solver_crossover=False if no_crossover else None,solver_log=solver_log,deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
     if reallocate_receiver: label+='_receiver'
@@ -90,6 +91,7 @@ def evaluate(spec):
     if warm_fluid: label+='_warm'
     if minimum_temperature is not None: label+=f'_floor{minimum_temperature:g}'
     if exact_midpoint: label+='_exactmid'
+    if no_crossover: label+='_nocross'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -151,6 +153,8 @@ def main():
     parser.add_argument('--warm-fluid',action='store_true')
     parser.add_argument('--minimum-fluid-temperature',type=float)
     parser.add_argument('--exact-midpoint-target',action='store_true')
+    parser.add_argument('--no-crossover',action='store_true')
+    parser.add_argument('--solver-log',action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or args.intervals < 4 or args.intervals % 2:
@@ -169,6 +173,8 @@ def main():
             args.warm_fluid or not args.reallocate_fluid or not args.target_budget_only
             or not np.isfinite(args.minimum_fluid_temperature) or args.minimum_fluid_temperature<0):
         parser.error('fixed nonnegative fluid temperature requires direct reallocated-fluid budget and no maximization')
+    if args.no_crossover and args.solver_method!='highs-ipm':
+        parser.error('disabling crossover requires highs-ipm')
     output = BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal-transport evidence')
@@ -194,7 +200,8 @@ def main():
     specs = [(center, args.width, args.intervals, args.stride, args.reserve,
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
               args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
-              args.minimum_fluid_temperature,args.exact_midpoint_target) for center in args.centers]
+              args.minimum_fluid_temperature,args.exact_midpoint_target,args.no_crossover,args.solver_log)
+             for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:
         cases = list(pool.map(evaluate, specs))

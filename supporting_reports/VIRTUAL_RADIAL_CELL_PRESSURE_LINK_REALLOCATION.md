@@ -367,3 +367,102 @@ once. This retains the physical assembly while resolving known target
 features and reducing the solver work. A manufactured capacity-dip test
 demonstrates the difference between true midpoint stress and endpoint
 averaging.
+
+## Resolved time sampling with a fixed positive floor
+
+The [515-time exact-midpoint solve](data/virtual_cell_fluid_receiver_floor001_exactmid/summary.json)
+clears the second location with zero added density and `Theta_f>=0.01`.
+Independent reconstruction matches the complete credited midpoint target
+exactly. The maximum node and midpoint-envelope density residuals are
+`4.15e-10` and `6.07e-10`; the energy-panel residual is `6.54e-14`.
+The separate hot and cold ratings use 36.3011% of the original receiver
+capacity, and contact directions and donor bounds hold within `5.4e-15`.
+Thus the actual midpoint stress features permit a finite allocation at
+this location.
+
+The first location reaches its 600-second primary solver limit. An
+[eight-position comparison](data/virtual_cell_fluid_receiver_floor001_exactmid_n8/summary.json)
+retaining the same 515 time nodes and physical constraints returns HiGHS
+status 0, exposed by SciPy as numerical status 4, without a usable state.
+Both first-location outcomes are unresolved numerical cases. A further
+bounded comparison disables interior-point crossover while retaining
+the same equations and independently checked feasibility tolerances.
+
+## Conserved preparation and guided thermal contact
+
+The independent replay can test a small addition to the initially prepared
+balanced radiation. For each material label, a constant increment
+`deltaV>=0` changes `W` by `deltaV/M` and supplies zero additional proper
+power. The complete stress remains counted throughout the schedule.
+Two remainder-cone facets are independent of `W`; the third consumes
+three times its added density. Thus a single preparation must satisfy
+
+```
+max_t {0, M [2 max(u_incident,u_returned)-W]} <= deltaV
+deltaV <= min_t {M [rho_rem+2 p_rem+q_rem]/3}.
+```
+
+The other two facets retain their independent bounds. This interval tests
+whether the held density margin can pay a wave-floor correction over the
+entire history. It preserves the original energy equation and records the
+added initial inventory explicitly.
+
+Beyond stress and energy balance, the complementary photons have a
+specific remaining contact duty. The prescribed phase and its drive,
+useful-return, and heat-return waves satisfy `P_phase+P_wave=0`.
+Consequently, with `q_R=L_0-P_Z`,
+
+```
+P_counter = P_fluid,0+P_Z,0-P_fluid-P_Z
+          = P_fixed+q_R-P_fluid,
+P_fluid   = q_R+P_fixed-P_counter.
+```
+
+The receiver contacts supply `q_R`, the retained support allocation
+supplies `P_fixed`, and the complementary photons supply `-P_counter`
+to the fluid. The support retains the opposite `-P_fixed`. Fluid
+compression work is already included in the derivative of
+`K=D^(1/3)U`; its physical heat and work partners must obey these separate
+assignments.
+
+A useful conditional photon model consists of fixed, gapless,
+nondispersive one-dimensional channels. For `g` independent species,
+including polarization and both propagation directions, integration of
+Planck occupation gives proper-length energy
+`e_1D=pi g (k_B T)^2/(6 hbar c)`. Its one-direction power agrees with
+the temperature-squared single-mode result of
+[Fohrmann et al., Single mode thermal emission](https://doi.org/10.1364/OE.23.027672).
+For a fixed channel count per material solid angle `DeltaOmega`,
+
+```
+c_eq = a_2 Theta_f^2/R^2,
+a_2  = pi g l_P^2/(6 DeltaOmega lambda_eff^2).
+```
+
+The rail scale cancels from this coefficient. Ideal fixed-number modes
+with frequency independent of transverse area have radial pressure equal
+to their energy density and zero thermodynamic transverse pressure.
+Their guides, conductors, and terminations carry separate material
+stresses. Actual cutoffs, dispersion, higher-mode occupation, and changes
+in channel count require their corresponding energy and stress terms.
+
+Passive grey absorption and emission require
+`P_counter=kappa_a(c_eq-c)`, with `kappa_a>=0` and the complete complementary
+population `c=W-u_incident-u_returned`. The required fixed coefficient
+therefore lies in
+
+```
+max_(P_counter>0) [c R^2/Theta_f^2] < a_2
+a_2 < min_(P_counter<0) [c R^2/Theta_f^2].
+```
+
+These are necessary power-ordering bounds for the specified guided mode
+law. Positive but arbitrarily small populations remain admissible at a
+finite, potentially large opacity. Force balance additionally constrains
+absorption and scattering through the required counter-photon momentum
+exchange, as in the comoving radiation-matter source structure of
+[Sadowski et al., equations 17–18](https://arxiv.org/html/1212.5050v2#S2.SS1).
+The optical coupling must also preserve the separately prescribed work
+and heat beams. The support contact retains its own heat, work, and
+entropy closure. The associated preparation and contact regressions
+bring the focused suite to 100 passing tests.

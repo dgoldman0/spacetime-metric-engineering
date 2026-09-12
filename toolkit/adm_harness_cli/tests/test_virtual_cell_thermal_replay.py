@@ -97,6 +97,32 @@ def test_material_volume_rate_contains_boost_evolution():
     assert_allclose(c['logD_t'], np.broadcast_to(expected[:, None], (3, 2)), atol=1e-14)
 
 
+def test_extra_preparation_is_one_conserved_inventory_with_its_full_stress_cost():
+    one=np.ones((3,1)); M=np.array([[1.],[2.],[3.]])
+    args=dict(phase=.1*one,radiation=.2*one,thermal=.2*one,receiver=.1*one,
+              wall=0*one,incident=.2*one,returned=.1*one,guide_multiplier=1.5)
+    lower,upper,fixed,possible=replay.preparation_interval(10*one,0*one,0*one,
+                                                         metric_weight=M,**args)
+    assert possible and fixed==0
+    assert_allclose(lower,.6)
+    assert np.all(upper>=lower)
+    args['radiation']=args['radiation']+lower/M
+    deficit,unused,floor=replay.full_budget(10*one,0*one,0*one,**args)
+    assert deficit.max()<0 and floor.max()<=1e-15
+    # The changing density has zero additional d(MW)/dt and needs no new feed.
+    assert_allclose(np.diff(M*(args['radiation']-.2),axis=0),0.,atol=1e-15)
+
+
+def test_initial_preparation_cannot_reuse_a_later_density_budget():
+    zero=np.zeros((2,1));one=np.ones_like(zero)
+    lower,upper,unused,possible=replay.preparation_interval(np.array([[10.],[.5]]),
+        zero,zero,phase=zero,radiation=zero,thermal=zero,receiver=zero,wall=zero,
+        incident=np.array([[1.],[0.]]),returned=zero,guide_multiplier=0.,metric_weight=one)
+    assert not possible
+    assert_allclose(lower,2.)
+    assert_allclose(upper,1/6)
+
+
 def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_path, monkeypatch):
     class StaticModel:
         t_min, t_max, x_min, x_max = 0., 1., -4., 4.

@@ -7,19 +7,20 @@ from adm_harness.virtual_cell_semigroup import solve_pair
 from test_virtual_cell_transport import flat_problem
 
 
-@pytest.mark.parametrize('solver_method',[None,'highs-ipm'])
-def test_constant_shared_core_remains_feasible_with_distributed_thermal_gate(solver_method):
+@pytest.mark.parametrize('solver_method,solver_crossover',[(None,None),('highs-ipm',None),('highs-ipm',False)])
+def test_constant_shared_core_remains_feasible_with_distributed_thermal_gate(solver_method,solver_crossover):
     t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
     nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=np.zeros_like(one)
     result=solve_pair(t,edges,np.array([one,-one,zero]),nodes,mids,waves,
         efficiency=.98,matched_pair=True,wave_envelope=True,guide_drift=.5,thermal_eos=1/3,
-        solver_method=solver_method)
+        solver_method=solver_method,solver_crossover=solver_crossover)
     assert result['success'] and result['exact_added_density']<2e-8
     assert_allclose(result['amplitude'],1.,atol=2e-8)
     assert result['thermal_exchange_balance_residual']<1e-10
     assert_allclose(result['balanced_radiation_rest'],0.,atol=2e-8)
     assert_allclose(result['thermal_reservoir_rest'],0.,atol=2e-8)
     assert result['solver_method']==(solver_method or 'highs-ds')
+    assert result['solver_crossover']==solver_crossover
 
 
 def test_driven_thermal_to_core_conversion_counts_wave_counter_and_heat_inventory():
