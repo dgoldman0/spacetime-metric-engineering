@@ -1,0 +1,30 @@
+{
+  "cases": [
+    {
+      "label": "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+      "width": 0.0005,
+      "center": -2.0,
+      "intervals": 24,
+      "time_nodes": 515,
+      "efficiency": 0.98,
+      "interface_sigma": 1e-07,
+      "coherent_cell_amplitudes": true,
+      "heat_return": true,
+      "guide_drift_bound": 0.5,
+      "input": "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz",
+      "source_control": "supporting_reports/data/virtual_cell_matched_pair/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz",
+      "activation_reoptimized": false,
+      "matched_pair_phase_history": true,
+      "control_construction": "nonnegative phase amplitude; positive and negative parts of its exact time increment",
+      "maximum_amplitude_change": 5.551115123125783e-17,
+      "maximum_forward_increment_increase": 1.1102230246251565e-16,
+      "maximum_reverse_increment_increase": 2.7755575615628914e-17,
+      "raw_simultaneous_increment": 0.0013501937459274719,
+      "reconstructed_simultaneous_increment": 0.0,
+      "wave_solution_retained": false,
+      "independent_replay_required": true,
+      "microscopic_phase_fronts_solved": false,
+      "full_construction_supplied": false
+    }
+  ]
+}

@@ -33,7 +33,7 @@ def transport_map(dt, faces, gain, source, dx, backwards=False, observable=None)
 def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
                guide_drift=None, reservoir_eos=None, confine_reservoir=False,
-               wave_envelope=False, deadline=180.):
+               wave_envelope=False, matched_pair=False, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
     t,edges,target=map(np.asarray,(t,edges,target))
@@ -115,6 +115,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         ub.add(entries,float(np.sum(measures*(local_target[0]-local_target[1]+local_target[2]))))
 
     for i in range(nt):
+        if matched_pair:
+            # Both opposed feeding regions share the same physical phase
+            # history. This removes the core traction step at the middle
+            # interface without assuming cancellation of other components.
+            eq.add([(A[i,0],1.),(A[i,1],-1.)])
         for j in range(nx):
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
                 [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
@@ -123,6 +128,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     operators=[]
     port_terms=[]
     for i,dt in enumerate(np.diff(t)):
+        if matched_pair:
+            for increments in (positive,negative):
+                eq.add([(increments[i,0],1.),(increments[i,1],-1.)])
         panel=[]
         incident=[]; returned=[]; total_return=[]
         for half in (0,1):
@@ -296,6 +304,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=bool(second.success),
+        matched_pair_phase_history=bool(matched_pair),
         transport_method='positive matrix exponential with node and midpoint budgets',
         guide_drift_bound=guide_drift,guide_field_reused_from_core_and_auxiliary=True,
         amplitude=amplitude,absorption_state=r.x[absorption],recovery_state=r.x[recovery],

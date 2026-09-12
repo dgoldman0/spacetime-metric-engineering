@@ -8,7 +8,7 @@ import subprocess
 import numpy as np
 
 from adm_harness.source_ledger import sha256_file
-from adm_harness.virtual_cell_controls import canonical_actuation
+from adm_harness.virtual_cell_controls import canonical_actuation,canonical_matched_actuation
 from run_poynting_delivery import BASE,ROOT,write_json
 
 
@@ -33,11 +33,14 @@ def main():
             hashes[str(p.relative_to(ROOT))]=sha256_file(p)
         meta=json.loads(meta_path.read_text())
         with np.load(path) as z: old={k:z[k] for k in z.files}
-        amplitude,forward,reverse=canonical_actuation(old['amplitude'])
+        matched=meta.get('matched_pair_phase_history',False)
+        reconstruct=canonical_matched_actuation if matched else canonical_actuation
+        amplitude,forward,reverse=reconstruct(old['amplitude'])
         label=meta['label']
         result={k:meta[k] for k in ['label','width','center','intervals','time_nodes','efficiency',
             'interface_sigma','coherent_cell_amplitudes','heat_return','guide_drift_bound','input']}
         result.update(source_control=str(path.relative_to(ROOT)),activation_reoptimized=False,
+            matched_pair_phase_history=matched,
             control_construction='nonnegative phase amplitude; positive and negative parts of its exact time increment',
             maximum_amplitude_change=float(abs(amplitude-old['amplitude']).max()),
             maximum_forward_increment_increase=float(np.maximum(forward-old['positive_increment'],0).max()),

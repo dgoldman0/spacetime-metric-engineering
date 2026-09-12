@@ -63,3 +63,27 @@ def test_full_panel_bound_is_stronger_than_sampled_budgets():
     assert sampled['success'] and bounded['success']
     assert bounded['minimum_added_density']>=sampled['minimum_added_density']-1e-8
     assert bounded['within_panel_wave_bound']
+
+
+def test_common_phase_pair_preserves_symmetric_constant_tension():
+    t=np.linspace(0,1,7); edges=np.linspace(-.1,.1,9)
+    n,m,w=flat_problem(t,edges); rho=np.ones((len(t),len(edges)-1))
+    r=solve_pair(t,edges,np.array([rho,-rho,np.zeros_like(rho)]),n,m,w,
+                 efficiency=.98,wave_envelope=True,matched_pair=True)
+    assert r['success'] and r['exact_added_density']<2e-8
+    assert_allclose(r['amplitude'],rho,atol=2e-8)
+    assert r['matched_pair_phase_history']
+
+
+def test_common_phase_has_a_real_cost_for_incompatible_neighboring_tensions():
+    t=np.linspace(0,1,5); edges=np.linspace(-.1,.1,9)
+    n,m,w=flat_problem(t,edges)
+    rho=np.broadcast_to(np.r_[np.ones(4),2*np.ones(4)],(len(t),8))
+    target=np.array([rho,-rho,np.zeros_like(rho)])
+    independent=solve_pair(t,edges,target,n,m,w,wave_envelope=True)
+    matched=solve_pair(t,edges,target,n,m,w,wave_envelope=True,matched_pair=True)
+    assert independent['success'] and matched['success']
+    assert independent['exact_added_density']<2e-8
+    # Left-cell budget gives A <= 1+epsilon/2; the right gives
+    # A >= 2-epsilon, so every common phase needs epsilon >= 2/3.
+    assert_allclose(matched['minimum_added_density'],2/3,atol=2e-8)
