@@ -36,6 +36,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                interface_sigma=0., coherent_cells=True, return_heat=True,
                guide_drift=None, reservoir_eos=None, confine_reservoir=False,
                wave_envelope=False, matched_pair=False, thermal_eos=None,
+               thermal_reference_density=None,
                solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -49,6 +50,14 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     distributed=thermal_eos is not None
     if distributed and (thermal_eos!=1/3 or reservoir_eos is not None):
         raise ValueError('thermal_eos must be 1/3 and uses a separate distributed reservoir')
+    if thermal_reference_density is not None:
+        reference=np.asarray(thermal_reference_density,dtype=float)
+        if (not distributed or reference.shape!=(nt,nx) or
+                not np.all(np.isfinite(reference)) or np.any(reference<0)):
+            raise ValueError('thermal_reference_density requires nonnegative finite thermal_eos=1/3 history')
+        # Reopen the existing fluid thermal state. The caller's target excludes
+        # that baseline fluid; its full stress is available exactly once.
+        target=target+np.array([reference,reference/3,reference/3])
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -83,6 +92,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         measure_mid=(mids['ell']*mids['radius'])**2
         thermal_weight=nodes['D']**(4/3)
         thermal_weight_mid=mids['D']**(4/3)
+        reference_inventory=(thermal_weight*reference if thermal_reference_density is not None
+                             else np.zeros((nt,nx)))
+        reference_power_panel=(measure_mid/thermal_weight_mid)*np.diff(reference_inventory,axis=0)
     if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
         raise ValueError('axial confinement comparison is defined for the directed radiation store')
     if closed:
@@ -271,7 +283,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 psi=measure_mid[i,j]/thermal_weight_mid[i,j]
                 eq.add([(balanced_inventory[i+1,j],1),(balanced_inventory[i,j],-1),
                     (A[i+1,half],phi),(A[i,half],-phi),
-                    (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)])
+                    (material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)],
+                    reference_power_panel[i,j])
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
@@ -325,7 +338,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         buffer_density=k_state/thermal_weight;balanced_density=u/measure
         rho=rho-buffer_density;p=p-buffer_density/3;q=q-buffer_density/3
         phase_weight=mids['ell']**2;exchange_weight=measure_mid/thermal_weight_mid
-        thermal_balance=np.diff(u,axis=0)+phase_weight*np.diff(amplitude,axis=0)+exchange_weight*np.diff(k_state,axis=0)
+        thermal_balance=(np.diff(u,axis=0)+phase_weight*np.diff(amplitude,axis=0)
+                         +exchange_weight*np.diff(k_state,axis=0)-reference_power_panel)
         floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
         reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
             thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,
@@ -335,6 +349,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             thermal_exchange_panel_residual=thermal_balance,
             maximum_balanced_wave_floor_violation=float(floor_violation.max()),
             distributed_thermal_inventory_jointly_optimized=True,
+            existing_thermal_state_reallocated=thermal_reference_density is not None,
+            thermal_reference_inventory=reference_inventory,
+            thermal_reference_power_panel=reference_power_panel,
+            thermal_inventory_increment=k_state-reference_inventory,
             thermal_force_and_opacity_supplied=False,
             thermal_exchange_scope='piecewise-linear A,K and frozen-panel geometry; midpoint U is the endpoint mean; changing-geometry reconstruction remains independent')
     if closed:

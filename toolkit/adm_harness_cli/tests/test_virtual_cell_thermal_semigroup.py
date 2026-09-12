@@ -73,3 +73,42 @@ def test_distributed_thermal_gate_rejects_shared_store_and_invalid_thread_option
         solve_pair(*args,thermal_eos=1/3,solver_threads=True)
     with pytest.raises(ValueError,match='solver_method'):
         solve_pair(*args,thermal_eos=1/3,solver_method='highs')
+    with pytest.raises(ValueError,match='thermal_reference_density'):
+        solve_pair(*args,thermal_reference_density=one)
+    with pytest.raises(ValueError,match='thermal_reference_density'):
+        solve_pair(*args,thermal_eos=1/3,thermal_reference_density=-one)
+
+
+def test_reallocated_fluid_preserves_original_power_and_counts_total_stress():
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    reference=(1+t[:,None])*one
+    # The backing needs no tensor. The growing reference fluid already owns
+    # the required power port. It must remain present in the enlarged budget.
+    target=np.zeros((3,len(t),4))
+    result=solve_pair(t,edges,target,nodes,mids,waves,thermal_eos=1/3,
+        matched_pair=True,wave_envelope=True,thermal_reference_density=reference)
+    assert result['success'] and result['exact_added_density']<1e-8
+    A=result['amplitude'];W=result['balanced_radiation_rest'];B=result['thermal_reservoir_rest']
+    assert_allclose(np.diff(A+W+B,axis=0),np.diff(reference,axis=0),atol=1e-8)
+    assert result['thermal_exchange_balance_residual']<1e-9
+    p=reference/3+A-W-B/3;q=reference/3-B/3
+    need=A+W+B+np.maximum.reduce([p+2*q,p-q,-2*p-q])
+    assert np.max(need-reference)<1e-8
+    assert_allclose(target,0.)
+
+
+def test_reallocation_can_cool_existing_fluid_without_negative_total_energy():
+    t=np.linspace(0,1,7);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    progress=t[:,None]*one
+    # The total target evolves from isotropic thermal pressure to radial
+    # tension. Reusing the fluid's constant energy can drive that conversion.
+    total=np.array([one,(1-4*progress)/3,(1-progress)/3])
+    baseline=np.array([one,one/3,one/3])
+    result=solve_pair(t,edges,total-baseline,nodes,mids,waves,efficiency=.98,
+        matched_pair=True,wave_envelope=True,thermal_eos=1/3,thermal_reference_density=one)
+    assert result['success'] and result['minimum_added_density']<.1
+    assert result['thermal_inventory_increment'].min()<-.5
+    assert result['thermal_reservoir_rest'].min()>=-1e-9
+    assert np.min(result['amplitude'][-1]-result['amplitude'][0])>.5
