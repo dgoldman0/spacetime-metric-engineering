@@ -209,3 +209,49 @@ the two banks to reuse containment capacity at different times.
 
 The direct-budget and finite-donor regression brings the focused suite to
 79 passing tests.
+
+## Two separately rated receiving banks
+
+The [split-receiver pilot](data/virtual_cell_fluid_receiver_split10/summary.json)
+fits both reserved stress budgets with zero added density. The hot bank
+has energy `H`, receives the original converter losses, and sends positive
+heat `Q_h` into the fluid. The cold bank has energy `C=Z-H` and receives
+positive heat `Q_c` from the fluid:
+
+```
+Delta H = L_panel-Q_h,       Delta C = Q_c,
+Q_h-Q_c = L_panel-Delta Z.
+```
+
+The actual total receiver energy remains `Z`; its tensor is counted once.
+Cold inventory increases monotonically, so the separate fixed-rating
+constraint is `H(t)+C_final<=C_Z` at every node. This is equivalent to
+requiring the maximum hot and cold inventories to fit within the original
+total rating. Both donor rates retain the ten-per-proper-time comparison.
+The additional divider, insulation, and valve realization remain explicit
+construction costs beyond the optimistic existing wall allowance.
+
+Independent reconstruction checks the separate ratings, contact directions,
+and `Q_h-Q_c` identity. The identity residual is below `1.4e-17`, and the
+finite-donor residual is below `1.5e-12`. These endpoint rate bounds define
+a conservative panel restriction; continuous contacts can charge and release
+within a panel, so this restriction has a narrower scope than a general
+finite-rate model.
+
+Separate photon temperatures permit distinct constants:
+`T_h^4=a_h H`, `T_c^4=a_c C`. Their passive-contact inequalities give a lower
+bound on `a_h` and an upper bound on `a_c`. For equal photon content physics,
+the corresponding proper volumes obey `V_c/V_h=a_h/a_c`. The pilot controls
+allow this ordering, but require a volume ratio above about `2.68e19` at
+the first pair and `4.69e21` at the second. This large ratio follows from
+the nearly cold fluid state selected by inventory minimization. It is a
+property of those controls, with fluid temperature still available as a
+joint design variable.
+
+The [single-receiver finite-rate temporal refinement](data/virtual_cell_fluid_receiver_rate10_refined/summary.json)
+also passes at both locations with 12 spatial samples and all 515 original
+time nodes. Its maximum density residual is below `9.7e-10`. The next
+physical comparison keeps the fluid warm enough to reduce the cold bank's
+required volume while retaining the complete stress and rated-capacity
+constraints. The split-inventory regression brings the focused suite to
+80 passing tests.

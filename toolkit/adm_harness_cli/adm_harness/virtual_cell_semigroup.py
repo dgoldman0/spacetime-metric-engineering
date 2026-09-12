@@ -38,7 +38,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                wave_envelope=False, matched_pair=False, thermal_eos=None,
                thermal_reference_density=None,
                receiver_reference=None,
-               receiver_contact=None, target_budget_only=False,
+               receiver_contact=None, split_receiver=False, target_budget_only=False,
                solver_threads=None, solver_method=None, deadline=180.):
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -83,6 +83,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 np.any(contact_duration<=0) or
                 not np.isfinite(contact_loss).all() or not np.isfinite(contact_duration).all()):
             raise ValueError('receiver_contact requires finite nonnegative loss and positive duration/turnover')
+    if split_receiver and receiver_contact is None:
+        raise ValueError('split_receiver requires total contact loss and a finite donor comparison')
     if solver_threads is not None and (
             isinstance(solver_threads,(bool,np.bool_)) or
             not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
@@ -123,6 +125,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         if receiver_reopened:
             receiver_inventory=np.arange(nt*nx).reshape(nt,nx)+epsilon
             epsilon+=nt*nx
+            if split_receiver:
+                hot_inventory=np.arange(nt*nx).reshape(nt,nx)+epsilon
+                epsilon+=nt*nx
             receiver_weight=measure_mid/mids['D']
             receiver_reference_panel=receiver_weight*np.diff(receiver_old,axis=0)
     if confine_reservoir and (not closed or tuple(reservoir_eos)!=(1.,0.)):
@@ -220,6 +225,13 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             add_budget([(A[i,j//halfnx],1)],[(absorption[i,j],ca[i,j])],
                 [(recovery[i,j],cr[i,j])],*target[:,i,j],nodes['radius'][i,j],wall[i,j],
                 *material_terms(i,j))
+            if split_receiver:
+                ub.add([(hot_inventory[i,j],1),(receiver_inventory[i,j],-1)])
+                # Separately rated, insulated banks: max hot + max cold must
+                # fit the old rating. Cold is monotone, so its final value is
+                # its maximum. Fixed containment remains sufficient for both.
+                ub.add([(hot_inventory[i,j],1),(receiver_inventory[-1,j],1),
+                        (hot_inventory[-1,j],-1)],receiver_cap[j])
         if confine_reservoir: add_confinement(i)
     operators=[]
     port_terms=[]
@@ -335,6 +347,14 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                         ub.add([(receiver_inventory[i+1,j],1),
                                 (receiver_inventory[i,j],-1),
                                 (material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))],contact_loss[i,j])
+                    if split_receiver:
+                        dh=[(hot_inventory[i+1,j],1),(hot_inventory[i,j],-1)]
+                        dc=[(receiver_inventory[i+1,j],1),(receiver_inventory[i,j],-1)]+[(k,-v) for k,v in dh]
+                        ub.add(dh,contact_loss[i,j])  # Q_hot = loss-DeltaHot >= 0.
+                        ub.add([(k,-v) for k,v in dc])  # Q_cold = DeltaCold >= 0.
+                        for end in (i,i+1):
+                            ub.add([(k,-v) for k,v in dh]+[(hot_inventory[end,j],-rate)],-contact_loss[i,j])
+                            ub.add(dc+[(material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))])
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
@@ -423,6 +443,22 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                     receiver_contact_proper_duration=contact_duration,
                     receiver_donor_turnover=float(turnover),
                     receiver_donor_energy_violation=float(np.maximum(donor_violation,0).max()))
+                if split_receiver:
+                    hot=r.x[hot_inventory];cold=receiver_energy-hot
+                    qhot=contact_loss-np.diff(hot,axis=0);qcold=np.diff(cold,axis=0)
+                    split_violation=np.maximum.reduce([
+                        qhot-turnover*contact_duration*hot[:-1],
+                        qhot-turnover*contact_duration*hot[1:],
+                        qcold-turnover*contact_duration*fluid_energy[:-1],
+                        qcold-turnover*contact_duration*fluid_energy[1:]])
+                    reservoir.update(receiver_hot_energy=hot,receiver_cold_energy=cold,
+                        receiver_hot_contact_panel_heat=qhot,receiver_cold_contact_panel_heat=qcold,
+                        receiver_hot_rated_capacity=hot.max(axis=0),receiver_cold_rated_capacity=cold.max(axis=0),
+                        receiver_split_rating_violation=float(np.maximum(hot.max(axis=0)+cold.max(axis=0)-receiver_cap,0).max()),
+                        receiver_split_donor_violation=float(np.maximum(split_violation,0).max()),
+                        receiver_split_direction_violation=float(max(0.,-qhot.min(),-qcold.min())),
+                        receiver_split_contact_identity=float(abs(qhot-qcold-H).max()),
+                        receiver_two_separately_rated_banks=True)
         floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
         reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
             thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,

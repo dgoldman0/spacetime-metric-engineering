@@ -155,7 +155,8 @@ def test_receiver_original_feed_is_preserved_and_invalid_capacity_rejected():
             receiver_reference=(Z0,np.ones(4)))
 
 
-def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends():
+@pytest.mark.parametrize('split_receiver',[False,True])
+def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends(split_receiver):
     t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
     nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
     Z0=(1+t[:,None])*one;duration=np.diff(t)[:,None]*one[:-1]
@@ -163,7 +164,7 @@ def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends():
     result=solve_pair(t,edges,np.array([zero,zero,zero]),nodes,mids,waves,
         matched_pair=True,thermal_eos=1/3,thermal_reference_density=zero,
         receiver_reference=(Z0,np.ones(4)*2),receiver_contact=(loss,duration,rate),
-        target_budget_only=True)
+        target_budget_only=True,split_receiver=split_receiver)
     assert result['success'] and result['minimum_added_density']==0.
     assert result['second_optimization_success'] is None
     assert result['inventory_minimization_success']
@@ -176,3 +177,15 @@ def test_direct_budget_gate_pays_for_finite_donor_turnover_at_both_panel_ends():
     assert result['receiver_donor_energy_violation']<1e-8
     total=result['amplitude']+result['balanced_radiation_rest']+U+Z
     assert_allclose(np.diff(total,axis=0),np.diff(Z0,axis=0),atol=1e-8)
+    if split_receiver:
+        hot=result['receiver_hot_energy'];cold=result['receiver_cold_energy']
+        qhot=loss-np.diff(hot,axis=0);qcold=np.diff(cold,axis=0)
+        assert hot.min()>-1e-9 and cold.min()>-1e-9
+        assert qhot.min()>-1e-9 and qcold.min()>-1e-9
+        assert_allclose(hot+cold,Z,atol=1e-10)
+        assert_allclose(qhot-qcold,H,atol=1e-10)
+        assert np.max(hot.max(axis=0)+cold.max(axis=0))<=2+1e-9
+        assert result['receiver_split_rating_violation']<1e-9
+        for hh,uu in ((hot[:-1],U[:-1]),(hot[1:],U[1:])):
+            assert np.max(qhot-rate*duration*hh)<1e-8
+            assert np.max(qcold-rate*duration*uu)<1e-8
