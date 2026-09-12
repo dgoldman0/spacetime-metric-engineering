@@ -242,10 +242,12 @@ def test_explicit_midpoint_capacity_rejects_a_dip_missed_by_endpoint_averaging()
     assert exact['explicit_credited_midpoint_target']
 
 
-def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypatch):
+@pytest.mark.parametrize('presolve',[True,False])
+def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypatch,presolve):
     import adm_harness.highs_feasible as native
     original=native.linprog_feasible
     def unfinished_but_verified(*args,**kwargs):
+        assert kwargs['options']['presolve'] is presolve
         result=original(*args,**kwargs)
         assert result.verified_feasible
         result.optimality_certified=False
@@ -258,11 +260,13 @@ def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypat
     args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
     options=dict(matched_pair=True,thermal_eos=1/3,thermal_particle_number=np.ones(4)/3,
                  minimum_thermal_floor=.03,solver_method='highs-ipm',solver_crossover=False,
-                 retain_feasible_interior=True)
+                 solver_presolve=presolve,retain_feasible_interior=True)
     result=solve_pair(*args,target_budget_only=True,**options)
     assert result['success'] and result['verified_feasible']
-    assert result['minimum_added_density']==0 and result['status']==4
+    assert abs(result['minimum_added_density'])<=2e-7 and result['status']==4
     assert result['feasibility_only_success'] and not result['inventory_minimization_success']
+    assert result['solver_presolve'] is presolve
+    assert result['backend_run_ok'] and result['backend_run_status']==0
     with pytest.raises(ValueError,match='fixed direct budget'):
         solve_pair(*args,**dict(options,minimum_thermal_floor=None))
 
@@ -281,3 +285,6 @@ def test_fixed_thermal_floor_and_midpoint_inputs_require_their_declared_contract
         solve_pair(*args,thermal_eos=1/3,target_budget_only=True,minimum_thermal_floor=.03)
     with pytest.raises(ValueError,match='midpoint_credited_target'):
         solve_pair(*args,midpoint_credited_target=np.zeros((3,3,4)),**options)
+    for bad in (None,0,'off'):
+        with pytest.raises(ValueError,match='solver_presolve'):
+            solve_pair(*args,solver_presolve=bad,**options)

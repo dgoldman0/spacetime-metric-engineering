@@ -17,6 +17,23 @@ replay = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(replay)
 
 
+def test_replay_acceptance_requires_contact_and_energy_conservation():
+    metrics={key:1e-14 for key in (
+        'conversion_identity_residual','aggregate_panel_balance_residual',
+        'maximum_explicit_wave_balance_residual','receiver_contact_subtraction_identity',
+        'gauss4_8_panel_difference','gauss4_8_radiation_density_difference',
+        'split_contact_identity','hot_contact_subtraction_identity','cold_contact_subtraction_identity',
+        'hot_parent_heat_reconstruction_residual','cold_parent_heat_reconstruction_residual')}
+    metrics['continuous_contact_reconstruction_applied']=True
+    assert replay.replay_integrity(metrics)['numerical_integrity_checks_pass']
+    for key in list(metrics)[:-1]:
+        for error in (2e-9,np.nan):
+            broken=dict(metrics,**{key:error})
+            assert not replay.replay_integrity(broken)['numerical_integrity_checks_pass']
+    del metrics['hot_parent_heat_reconstruction_residual']
+    assert not replay.replay_integrity(metrics)['numerical_integrity_checks_pass']
+
+
 def test_quadrature_splits_unaligned_reference_knots():
     times = np.array([0., .2, .8, 1.])
     kink = .37

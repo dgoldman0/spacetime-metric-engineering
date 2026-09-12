@@ -94,7 +94,7 @@ def verify_candidate(c, x, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
 
 def _verified_result(problem, x, *, value_valid, backend_status, backend_message,
                      feasibility_tolerance, nit=0, crossover_nit=0,
-                     backend_status_code=None, run_status=None):
+                     backend_status_code=None, run_status=None, backend_run_ok=True):
     check = _check(x, problem, feasibility_tolerance)
     # Retain feasible points from ordinary unfinished terminations. A backend
     # load/solve error or infeasible/unbounded declaration stays a failure even
@@ -103,25 +103,28 @@ def _verified_result(problem, x, *, value_valid, backend_status, backend_message
                   'Solution limit reached', 'Bound on objective reached',
                   'Target for objective reached', 'Interrupted by user'}
     eligible = backend_status == 'Optimal' or backend_status in unfinished
-    feasible = bool(value_valid and eligible and check.verified_feasible)
+    feasible = bool(backend_run_ok and value_valid and eligible and check.verified_feasible)
     optimal = bool(feasible and backend_status == 'Optimal')
     status = (0 if backend_status == 'Optimal' else
               1 if backend_status in unfinished-{'Unknown'} else
               2 if backend_status == 'Infeasible' else
               3 if backend_status == 'Unbounded' else 4)
-    if backend_status == 'Optimal' and not feasible:
+    if not backend_run_ok or (backend_status == 'Optimal' and not feasible):
         status = 4
     point = np.asarray(x, dtype=float).copy() if feasible else None
     message = (backend_message+'; original matrices and bounds verify a feasible primal'
                if feasible else backend_message+'; no independently verified admissible primal retained')
     if feasible and not optimal:
         message += '; inventory optimality is uncertified'
+    if not backend_run_ok:
+        message += '; backend model loading or solving returned an error'
     result = OptimizeResult(success=feasible, x=point,
         fun=float(problem[0]@point) if feasible else None, status=status, message=message,
         nit=int(nit), crossover_nit=int(crossover_nit),
         optimality_certified=optimal, feasibility_only_success=feasible and not optimal,
         backend_model_status=backend_status, backend_model_status_code=backend_status_code,
-        backend_run_status=run_status, backend_value_valid=bool(value_valid),
+        backend_run_status=run_status, backend_run_ok=bool(backend_run_ok),
+        backend_value_valid=bool(value_valid),
         feasibility_tolerance=float(feasibility_tolerance), **check)
     result.lower = OptimizeResult(residual=check.lower_residual)
     result.upper = OptimizeResult(residual=check.upper_residual)
@@ -130,14 +133,18 @@ def _verified_result(problem, x, *, value_valid, backend_status, backend_message
 
 def checked_highs_result(c, x, *, value_valid, backend_status, A_ub=None, b_ub=None,
                         A_eq=None, b_eq=None, bounds=(0., None),
-                        feasibility_tolerance=2e-7):
+                        feasibility_tolerance=2e-7, backend_run_ok=True,
+                        backend_run_status=None):
     """Testable native-result boundary; backend claims never replace row checks."""
     if not np.isfinite(feasibility_tolerance) or not 0 < feasibility_tolerance <= 2e-7:
         raise ValueError('feasibility_tolerance must be positive and at most 2e-7')
+    if not isinstance(backend_run_ok, (bool, np.bool_)):
+        raise ValueError('backend_run_ok must be a boolean')
     problem = _problem(c, A_ub, b_ub, A_eq, b_eq, bounds)
     return _verified_result(problem, x, value_valid=value_valid,
         backend_status=backend_status, backend_message=backend_status,
-        feasibility_tolerance=feasibility_tolerance)
+        feasibility_tolerance=feasibility_tolerance, backend_run_ok=backend_run_ok,
+        run_status=backend_run_status)
 
 
 def linprog_feasible(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
@@ -202,13 +209,15 @@ def linprog_feasible(c, A_ub=None, b_ub=None, A_eq=None, b_eq=None,
     status_name = highs.modelStatusToString(model_status)
     info, solution = highs.getInfo(), highs.getSolution()
     result = _verified_result(problem, solution.col_value,
-        value_valid=solution.value_valid and load_status != core.HighsStatus.kError,
+        value_valid=solution.value_valid,
+        backend_run_ok=(load_status != core.HighsStatus.kError and run_status != core.HighsStatus.kError),
         backend_status=status_name, backend_message='HiGHS '+status_name,
         feasibility_tolerance=feasibility_tolerance,
         nit=max(info.ipm_iteration_count, info.simplex_iteration_count, 0),
         crossover_nit=max(info.crossover_iteration_count, 0),
         backend_status_code=int(model_status), run_status=int(run_status))
     result.native_version = highs.version()
+    result.backend_load_status = int(load_status)
     result.backend_dual_valid = bool(solution.dual_valid)
     result.backend_info_valid = bool(info.valid)
     result.backend_reported_primal_infeasibility = float(info.max_primal_infeasibility)

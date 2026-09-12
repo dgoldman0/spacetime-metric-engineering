@@ -222,6 +222,22 @@ def contact_preparation(hot, cold, thermal_inventory, D, hot_panel, cold_panel,
     return dh, dc, dk
 
 
+def replay_integrity(metrics):
+    """Require conservation identities and quadrature agreement as well as stress."""
+    keys = ['conversion_identity_residual', 'aggregate_panel_balance_residual',
+        'maximum_explicit_wave_balance_residual', 'receiver_contact_subtraction_identity',
+        'gauss4_8_panel_difference', 'gauss4_8_radiation_density_difference']
+    if 'split_contact_identity' in metrics:
+        keys += ['split_contact_identity', 'hot_contact_subtraction_identity',
+                 'cold_contact_subtraction_identity']
+    if metrics.get('continuous_contact_reconstruction_applied'):
+        keys += ['hot_parent_heat_reconstruction_residual', 'cold_parent_heat_reconstruction_residual']
+    values = np.asarray([metrics.get(key, np.nan) for key in keys], dtype=float)
+    return dict(numerical_integrity_checks_pass=bool(np.isfinite(values).all()
+        and np.all(values >= 0) and np.max(values) <= 1e-9),
+        numerical_integrity_absolute_tolerance=1e-9, numerical_integrity_checked_fields=keys)
+
+
 def audit(spec):
     source, label, factor, output, *options = spec
     if len(options) > 3:
@@ -521,6 +537,9 @@ def audit(spec):
         worst_density_sample=dict(time=float(t[i]), x=float(x[j]), original_density=float(rho[i,j]),
             phase_density=float(core[i,j]), radiation_density=float(W[i,j]), thermal_density=float(B[i,j]),
             receiver_density=float(Z[i,j]/g['D'][i,j])), elapsed_seconds=time.monotonic()-started, **diagnostics)
+    result.update(replay_integrity(result))
+    result['full_sampled_gate_passes'] = bool(result['full_sampled_gate_passes']
+        and result['numerical_integrity_checks_pass'])
     write_json(output/(stem+'_summary.json'), result)
     write_json(output/(stem+'_wave_ledger.json'), ledger_rows)
     np.savez_compressed(output/(stem+'_states.npz'), t=t, x=x, edges=edges,
@@ -539,7 +558,7 @@ def audit(spec):
         phase_energy_panel=panels[0], thermal_energy_panel=panels[1], receiver_energy_panel=panels[2],
         baseline_energy_panel=panels[3], gauss4_8_panel_difference=panels-comparison,
         additional_prepared_radiation_inventory=prepared_extra, **reconstruction_output, **contact_output)
-    print(stem+': '+json.dumps({key: result[key] for key in ('full_density_budget_passes',
+    print(stem+': '+json.dumps({key: result[key] for key in ('full_sampled_gate_passes', 'full_density_budget_passes',
         'maximum_density_shortfall', 'maximum_wave_floor_violation', 'elapsed_seconds')}), flush=True)
     return result
 

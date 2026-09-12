@@ -21,7 +21,7 @@ from run_poynting_delivery import BASE, ROOT, write_json
 def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
      reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
-     minimum_temperature, exact_midpoint, no_crossover, solver_log, retain_interior)=spec
+     minimum_temperature, exact_midpoint, no_crossover, solver_log, retain_interior, no_presolve)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -82,7 +82,7 @@ def evaluate(spec):
         maximize_thermal_floor=warm_fluid,minimum_thermal_floor=minimum_temperature,
         midpoint_credited_target=midpoint_budget,
         solver_threads=1, solver_method=solver_method,
-        solver_crossover=False if no_crossover else None,solver_log=solver_log,
+        solver_crossover=False if no_crossover else None,solver_presolve=not no_presolve,solver_log=solver_log,
         retain_feasible_interior=retain_interior,deadline=deadline)
     label = f'x{center:g}_w{width:g}_n{intervals}_s{stride}_thermal_joint'
     if reallocate_fluid: label+='_existing_fluid'
@@ -94,6 +94,7 @@ def evaluate(spec):
     if exact_midpoint: label+='_exactmid'
     if no_crossover: label+='_nocross'
     if retain_interior:label+='_feasible'
+    if no_presolve:label+='_nopresolve'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -156,6 +157,8 @@ def main():
     parser.add_argument('--minimum-fluid-temperature',type=float)
     parser.add_argument('--exact-midpoint-target',action='store_true')
     parser.add_argument('--no-crossover',action='store_true')
+    parser.add_argument('--no-presolve',action='store_true',
+                        help='disable LP presolve while retaining all original constraints')
     parser.add_argument('--solver-log',action='store_true')
     parser.add_argument('--retain-feasible-interior',action='store_true')
     parser.add_argument('--output-name', default='virtual_cell_thermal_transport_pilot')
@@ -209,7 +212,7 @@ def main():
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
               args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
               args.minimum_fluid_temperature,args.exact_midpoint_target,args.no_crossover,args.solver_log,
-              args.retain_feasible_interior)
+              args.retain_feasible_interior,args.no_presolve)
              for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:

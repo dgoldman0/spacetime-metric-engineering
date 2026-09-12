@@ -1,4 +1,6 @@
 """Native feasible-primal retention is independent of backend status claims."""
+from types import SimpleNamespace
+
 import numpy as np
 from numpy.testing import assert_allclose
 import pytest
@@ -25,6 +27,7 @@ def test_native_optimum_preserves_original_objective_rows_bounds_and_options():
     assert_allclose(result.slack,bu-au@result.x,atol=0.)
     assert result.maximum_feasibility_violation<=2e-7
     assert result.crossover_nit==0
+    assert result.backend_run_ok and result.backend_run_status==0
 
 
 def test_forged_optimal_backend_claim_cannot_hide_original_row_violation():
@@ -58,6 +61,44 @@ def test_bounds_and_native_value_valid_are_both_required():
     assert not fixed.verified_feasible and fixed.upper_bound_violation==1e-6
 
 
+@pytest.mark.parametrize('status',['Optimal','Unknown','Time limit reached'])
+def test_backend_run_error_rejects_even_a_valid_feasible_candidate(status):
+    result=checked_highs_result([1.],[.5],value_valid=True,backend_status=status,
+        bounds=[(0.,1.)],backend_run_ok=False,backend_run_status=-1)
+    assert result.verified_feasible and result.backend_value_valid
+    assert not result.success and result.x is None and result.status==4
+    assert not result.optimality_certified and not result.feasibility_only_success
+    assert not result.backend_run_ok and result.backend_run_status==-1
+    assert result.backend_model_status==status
+
+
+@pytest.mark.parametrize('error_stage',['load','run'])
+def test_native_load_and_run_errors_reach_the_retention_gate(monkeypatch,error_stage):
+    from scipy.optimize._highspy import _core as core
+    calls=[]
+    error,ok=core.HighsStatus.kError,core.HighsStatus.kOk
+    def run():
+        calls.append('run')
+        return error if error_stage=='run' else ok
+    backend=SimpleNamespace(
+        setOptionValue=lambda key,value:ok,
+        passModel=lambda lp:error if error_stage=='load' else ok,
+        run=run,getModelStatus=lambda:core.HighsModelStatus.kOptimal,
+        modelStatusToString=lambda status:'Optimal',version=lambda:'test',
+        getSolution=lambda:SimpleNamespace(col_value=[.5],value_valid=True,dual_valid=False),
+        getInfo=lambda:SimpleNamespace(ipm_iteration_count=1,simplex_iteration_count=0,
+            crossover_iteration_count=0,valid=True,max_primal_infeasibility=0.,
+            max_dual_infeasibility=0.))
+    monkeypatch.setattr(core,'_Highs',lambda:backend)
+    result=linprog_feasible([1.],bounds=[(0.,1.)])
+    assert result.verified_feasible and result.backend_value_valid
+    assert not result.success and result.status==4 and result.x is None
+    assert not result.backend_run_ok
+    assert result.backend_run_status==int(error)
+    assert result.backend_load_status==int(error if error_stage=='load' else ok)
+    assert calls==([] if error_stage=='load' else ['run'])
+
+
 def test_verification_uses_small_original_coefficients_and_rejects_nonfinite_candidates():
     # A solver may drop this coefficient; its finite product remains part of
     # the original physical constraint and must still be checked.
@@ -76,3 +117,5 @@ def test_native_adapter_rejects_invalid_options_and_never_repurposes_thread_sche
         linprog_feasible([1.],bounds=[(2.,1.)])
     with pytest.raises(ValueError,match='at most'):
         verify_candidate([1.],[0.],feasibility_tolerance=1e-6)
+    with pytest.raises(ValueError,match='backend_run_ok'):
+        checked_highs_result([1.],[0.],value_valid=True,backend_status='Optimal',backend_run_ok='false')

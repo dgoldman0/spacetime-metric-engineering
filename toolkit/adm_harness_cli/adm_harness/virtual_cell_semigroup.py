@@ -42,7 +42,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                thermal_particle_number=None, maximize_thermal_floor=False,
                minimum_thermal_floor=None, midpoint_credited_target=None,
                solver_threads=None, solver_method=None, solver_crossover=None,
-               solver_log=False, retain_feasible_interior=False, deadline=180.):
+               solver_presolve=True, solver_log=False, retain_feasible_interior=False, deadline=180.):
     """Frozen-panel transport with independently supplied available stresses.
 
     midpoint_credited_target, when supplied, is the COMPLETE available target
@@ -127,6 +127,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     if solver_crossover is not None and (
             not isinstance(solver_crossover,(bool,np.bool_)) or method!='highs-ipm'):
         raise ValueError('solver_crossover requires a boolean and highs-ipm')
+    if not isinstance(solver_presolve,(bool,np.bool_)):
+        raise ValueError('solver_presolve requires a boolean')
     if retain_feasible_interior and (not target_budget_only or maximize_thermal_floor or method!='highs-ipm'):
         raise ValueError('retaining a feasible interior requires a fixed direct budget and highs-ipm, without floor maximization')
     phase_groups=1 if matched_pair else 2
@@ -443,7 +445,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         cost=np.zeros(columns);cost[temperature_column]=-1
     options={'time_limit':deadline if target_budget_only and not maximize_thermal_floor else deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10,
-             'small_matrix_value':1e-12}
+             'small_matrix_value':1e-12,'presolve':bool(solver_presolve)}
     if solver_threads is not None:options['threads']=int(solver_threads)
     if solver_crossover is not None:options['run_crossover']='on' if solver_crossover else 'off'
     if solver_log:options['disp']=True
@@ -459,7 +461,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     first=optimize()
     native_metadata={key:first[key] for key in (
         'verified_feasible','candidate_finite','optimality_certified','feasibility_only_success',
-        'backend_model_status','backend_value_valid','maximum_feasibility_violation',
+        'backend_model_status','backend_model_status_code','backend_run_status','backend_load_status',
+        'backend_run_ok','backend_value_valid','maximum_feasibility_violation',
         'equality_residual','inequality_violation','lower_bound_violation','upper_bound_violation',
         'backend_reported_primal_infeasibility','backend_reported_dual_infeasibility',
         'native_version') if key in first}
@@ -467,7 +470,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                      for key,value in native_metadata.items()}
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
-                    solver_crossover=solver_crossover,solver_iterations=getattr(first,'nit',None),
+                    solver_crossover=solver_crossover,solver_presolve=bool(solver_presolve),
+                    solver_iterations=getattr(first,'nit',None),
                     crossover_iterations=getattr(first,'crossover_nit',None),
                     inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
                     fixed_uniform_fluid_temperature_floor=minimum_thermal_floor,
@@ -621,7 +625,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         solver_method=method,
         status=int(r.status),native_feasible_interior_retention=bool(retain_feasible_interior),
         **native_metadata,
-        solver_crossover=solver_crossover,solver_iterations=getattr(r,'nit',None),
+        solver_crossover=solver_crossover,solver_presolve=bool(solver_presolve),
+        solver_iterations=getattr(r,'nit',None),
         crossover_iterations=getattr(r,'crossover_nit',None),
         inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
         target_budget_only=bool(target_budget_only),

@@ -9,7 +9,8 @@ receiver containment. It identifies a useful thermal allocation within the
 existing assembly. Resolving the actual midpoint stress and reconstructing
 continuous heat-transfer rates subsequently clears the sampled curved
 replay at `x=-1.975`, including its full thermal preparation. The first
-location remains an unresolved refined numerical case. Physical photon
+location also has a verified refined finite allocation after disabling
+solver presolve; its curved replay follows separately. Physical photon
 contacts, reciprocal forces, and material constitutive closure remain the
 next construction requirements.
 
@@ -534,3 +535,56 @@ inventory optimality as separate results. Its solve-error acceptance
 boundary and the replay integrity flag are identified for tightening
 before the next refinement. The focused numerical suite has 115 passing
 tests, including explicit contact conservation and native row checks.
+
+## Refined acceptance and the physical photon contact
+
+The [presolve-disabled native solve](data/virtual_cell_fluid_receiver_floor001_nopresolve/summary.json)
+recovers a valid first-location allocation on the full 515-time grid.
+Every original equality, inequality, and variable bound is independently
+checked: the largest violation is `2.18e-9` and equality residual is
+`1.33e-14`. Added density is fixed to zero, with independently evaluated
+tensor excess `8.51e-10`. Inventory optimality remains uncertified; this
+finite feasibility result suffices for the independent replay. Native
+load and solve errors now explicitly reject retention.
+
+At the second location, the [36-position, 1,543-time replay](data/virtual_cell_thermal_replay_floor001_contacts_refined/summary.json)
+passes the combined tensor, capacity, contact, temperature, conservation,
+and quadrature gates. Its minimum full density margin is `3.98277e-5`,
+compared with `5.44436e-5` at the preceding resolution. The minimum
+complementary-photon directional margin is `6.21768e-6`. Added receiver
+and fluid densities are at most `1.16e-8` and `5.87e-8`, with zero added
+radiation. The acceptance flag now requires all reported contact and
+energy identities, parent heat reconstruction, and Gauss agreement to
+be finite and within `1e-9`. The explicit sampled scope remains; these
+two resolutions provide positive margins through the registered stress
+transition.
+
+The [separated-bank temperature audit](data/virtual_cell_split_contact_floor001_refined/summary.json)
+admits hot and cold temperature coefficients across this history.
+However, the [fixed grey guided-fluid contact](data/virtual_cell_guided_contact_floor001_refined/summary.json)
+fails at every one of the 36 sampled positions. Its common coefficient
+would require `a_2>18749.7` for emission and `a_2<0.0185387` for
+absorption. The preceding resolution gives the same conflict, with
+bounds `18745.1` and `0.0265452`. The fluid becomes hot around the sharp
+stress transition and later returns to its low retained temperature;
+the prescribed complementary-photon power demands an incompatible
+sequence for this fixed equilibrium law. This confines the failed
+closure to the specified grey photon-fluid contact.
+
+An alternative within the existing components routes positive counter
+power from the hot bank and negative counter power into the cold bank.
+In proper-label units, let `p=D P_counter`, with current bank heat rates
+`q_h,q_c>=0`. Setting `e=max(p,0)` and `a=max(-p,0)` leaves fluid branches
+`q_h-e` and `q_c-a`. The bank inventories and full fluid power remain
+unchanged exactly when
+
+```
+-q_c <= p <= q_h.
+```
+
+The photon temperature interval then uses the hot bank for emission and
+the cold bank for absorption. Bank capacity, finite donor rates, and
+the remaining fluid-support power continue to apply. The resulting
+routing test separates a temperature mismatch from an insufficient
+existing heat-transfer budget; a joint thermal reallocation can be
+tested with linear panel constraints if the unchanged histories fail.
