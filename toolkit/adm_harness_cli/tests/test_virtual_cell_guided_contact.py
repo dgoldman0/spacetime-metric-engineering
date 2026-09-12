@@ -103,3 +103,17 @@ def test_failed_parent_cannot_receive_an_overall_guided_pass():
     assert not guided.necessary_overall_pass(True,False,0.)
     assert not guided.necessary_overall_pass(True,True,2*guided.POPULATION_TOLERANCE)
     assert guided.necessary_overall_pass(True,True,0.)
+
+
+def test_reconstructed_receiver_derivative_preserves_positive_contacts_with_variable_loss():
+    state=dict(contact_control_time=np.array([0.,1.,2.]),
+        applied_hot_parent_proper_rate=np.array([[.3],[.5]]),
+        applied_cold_parent_proper_rate=np.array([[.1],[.2]]))
+    times=np.array([.25,.75,1.25,1.75]);lapse=np.array([[1.],[2.],[3.],[4.]])
+    D=np.full_like(lapse,2.);loss=np.array([[.1],[.4],[.5],[.1]])
+    rate,method=guided.receiver_inventory_rate(state,times,lapse,D,loss)
+    assert_allclose(loss-rate/(lapse*D),np.array([[.1],[.1],[.15],[.15]]),atol=1e-15)
+    assert 'saved parent proper' in method
+    state['applied_hot_parent_proper_rate'][0,0]=-.1
+    with pytest.raises(ValueError,match='nonnegative proper'):
+        guided.receiver_inventory_rate(state,times,lapse,D,loss)

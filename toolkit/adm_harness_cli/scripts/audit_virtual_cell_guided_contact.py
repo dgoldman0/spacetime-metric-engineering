@@ -80,6 +80,24 @@ def required_counter_power(U0, U0_t, Z0_t, Z_t, K_t, lapse, D, logD_t):
     return (U0_t+U0*logD_t/3+Z0_t-Z_t-K_t/D**(1/3))/(lapse*D)
 
 
+def receiver_inventory_rate(state, times, lapse, D, loss_density):
+    """Use saved proper contact rates when the receiver was reconstructed."""
+    if 'contact_control_time' not in state:
+        return linear_history(state['t'], state['receiver_thermal_energy'], times)[1], 'linear replay-node receiver history'
+    control = np.asarray(state['contact_control_time'])
+    hot, cold = [np.asarray(state[key]) for key in
+        ('applied_hot_parent_proper_rate', 'applied_cold_parent_proper_rate')]
+    expected = (len(control)-1, lapse.shape[1])
+    if (control.ndim != 1 or len(control) < 2 or np.any(np.diff(control) <= 0)
+            or hot.shape != expected or cold.shape != expected
+            or not all(np.isfinite(a).all() for a in (control, hot, cold))
+            or np.any(hot < 0) or np.any(cold < 0)
+            or np.min(times) < control[0] or np.max(times) > control[-1]):
+        raise ValueError('valid saved nonnegative proper contact rates required')
+    owner = np.clip(np.searchsorted(control, times, side='right')-1, 0, len(control)-2)
+    return lapse*(D*loss_density-hot[owner]+cold[owner]), 'exact converter loss and saved parent proper heat rates'
+
+
 def necessary_overall_pass(parent_passes, pair_interval_passes, directional_violation):
     return bool(parent_passes and pair_interval_passes
                 and directional_violation <= POPULATION_TOLERANCE)
@@ -108,7 +126,8 @@ def evaluate(spec):
     Z0t = bilinear(ref.t, ref.x, h.h.state['heat'], tm, x)[1]
     Ft = bilinear(old['t'], old['x'], old['flux_energy'], tm, x)[1]
     K, Kt = linear_history(t, s['thermal_inventory'], tm)
-    Z, Zt = linear_history(t, s['receiver_thermal_energy'], tm)
+    loss = ((1/.98-1)*np.maximum(Ft, 0)+(1-.98)*np.maximum(-Ft, 0))/(c['lapse']*c['radius']**4)
+    Zt, receiver_rate_method = receiver_inventory_rate(s, tm, c['lapse'], c['D'], loss)
     V = linear_history(t, s['balanced_radiation_inventory'], tm)[0]
     incident = linear_history(t, s['absorption_rest'], tm)[0]
     returned = linear_history(t, s['work_return_rest']+s['heat_return_rest'], tm)[0]
@@ -128,7 +147,6 @@ def evaluate(spec):
     fluid_power = Kt/(c['lapse']*c['D']**(4/3))
     old_fluid_power = (U0t+U0*c['logD_t']/3)/(c['lapse']*c['D'])
     old_receiver_power = Z0t/(c['lapse']*c['D'])
-    loss = ((1/.98-1)*np.maximum(Ft, 0)+(1-.98)*np.maximum(-Ft, 0))/(c['lapse']*c['radius']**4)
     fixed = old_fluid_power+old_receiver_power-loss
     receiver_contact = loss-Zt/(c['lapse']*c['D'])
     result = guided_interval(power, counter, c['radius'], theta)
@@ -189,7 +207,8 @@ def evaluate(spec):
         opacity_law_constructed=False, momentum_balance_supplied=False,
         remaining_support_contact_entropy_supplied=False, full_source_construction_supplied=False,
         scope='necessary grey power sign ordering; one fixed a2 per position or common to the pair',
-        midpoint_approximation='V,K,Z and explicit beam rest energies are linearly interpolated between replay nodes; metric is independently evaluated at midpoints',
+        receiver_derivative_method=receiver_rate_method,
+        midpoint_approximation='V,K and explicit beam rest energies are linearly interpolated between replay nodes; metric is independently evaluated at midpoints; receiver derivative follows its reported saved-contact or linear-history method',
         positions=positions)
     label = path.stem.removesuffix('_states')
     write_json(output/(label+'_summary.json'), summary)

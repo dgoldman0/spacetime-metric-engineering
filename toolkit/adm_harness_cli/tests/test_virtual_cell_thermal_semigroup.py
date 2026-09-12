@@ -242,6 +242,31 @@ def test_explicit_midpoint_capacity_rejects_a_dip_missed_by_endpoint_averaging()
     assert exact['explicit_credited_midpoint_target']
 
 
+def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypatch):
+    import adm_harness.highs_feasible as native
+    original=native.linprog_feasible
+    def unfinished_but_verified(*args,**kwargs):
+        result=original(*args,**kwargs)
+        assert result.verified_feasible
+        result.optimality_certified=False
+        result.feasibility_only_success=True
+        result.status=4
+        return result
+    monkeypatch.setattr(native,'linprog_feasible',unfinished_but_verified)
+    t=np.linspace(0,1,4);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
+    options=dict(matched_pair=True,thermal_eos=1/3,thermal_particle_number=np.ones(4)/3,
+                 minimum_thermal_floor=.03,solver_method='highs-ipm',solver_crossover=False,
+                 retain_feasible_interior=True)
+    result=solve_pair(*args,target_budget_only=True,**options)
+    assert result['success'] and result['verified_feasible']
+    assert result['minimum_added_density']==0 and result['status']==4
+    assert result['feasibility_only_success'] and not result['inventory_minimization_success']
+    with pytest.raises(ValueError,match='fixed direct budget'):
+        solve_pair(*args,**dict(options,minimum_thermal_floor=None))
+
+
 def test_fixed_thermal_floor_and_midpoint_inputs_require_their_declared_contract():
     t=np.linspace(0,1,3);edges=np.linspace(-.01,.01,5)
     nodes,mids,waves=flat_problem(t,edges);one=np.ones((3,4))

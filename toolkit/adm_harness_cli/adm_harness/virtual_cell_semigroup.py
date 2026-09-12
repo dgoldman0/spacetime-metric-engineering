@@ -42,7 +42,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                thermal_particle_number=None, maximize_thermal_floor=False,
                minimum_thermal_floor=None, midpoint_credited_target=None,
                solver_threads=None, solver_method=None, solver_crossover=None,
-               solver_log=False, deadline=180.):
+               solver_log=False, retain_feasible_interior=False, deadline=180.):
     """Frozen-panel transport with independently supplied available stresses.
 
     midpoint_credited_target, when supplied, is the COMPLETE available target
@@ -127,6 +127,8 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     if solver_crossover is not None and (
             not isinstance(solver_crossover,(bool,np.bool_)) or method!='highs-ipm'):
         raise ValueError('solver_crossover requires a boolean and highs-ipm')
+    if retain_feasible_interior and (not target_budget_only or maximize_thermal_floor or method!='highs-ipm'):
+        raise ValueError('retaining a feasible interior requires a fixed direct budget and highs-ipm, without floor maximization')
     phase_groups=1 if matched_pair else 2
     A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
     positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
@@ -429,29 +431,49 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         inventory_cost[material_inventory.ravel()]=(time_weight[:,None]*dx*nodes['D']/thermal_weight).ravel()
         if receiver_reopened:
             inventory_cost[receiver_inventory.ravel()]=np.broadcast_to(time_weight[:,None]*dx,(nt,nx)).ravel()
+    # The physical quadrature weights can be O(1e-9). Normalize this positive
+    # linear objective without changing its minimizer or any constraint.
+    inventory_cost_max=float(np.max(np.abs(inventory_cost)))
+    inventory_cost_scale=1/inventory_cost_max if inventory_cost_max else 1.
+    inventory_cost=inventory_cost*inventory_cost_scale
     cost=np.zeros(columns); cost[epsilon]=1
     if target_budget_only:
         bounds[epsilon]=(0.,0.);cost=inventory_cost
     if maximize_thermal_floor:
         cost=np.zeros(columns);cost[temperature_column]=-1
     options={'time_limit':deadline if target_budget_only and not maximize_thermal_floor else deadline/2,'primal_feasibility_tolerance':1e-9,
-             'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10}
+             'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10,
+             'small_matrix_value':1e-12}
     if solver_threads is not None:options['threads']=int(solver_threads)
     if solver_crossover is not None:options['run_crossover']='on' if solver_crossover else 'off'
     if solver_log:options['disp']=True
     def optimize():
+        if retain_feasible_interior:
+            from adm_harness.highs_feasible import linprog_feasible
+            return linprog_feasible(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
+                                    method=method,options=options)
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
             return linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
                            method=method,options=options)
     first=optimize()
+    native_metadata={key:first[key] for key in (
+        'verified_feasible','candidate_finite','optimality_certified','feasibility_only_success',
+        'backend_model_status','backend_value_valid','maximum_feasibility_violation',
+        'equality_residual','inequality_violation','lower_bound_violation','upper_bound_violation',
+        'backend_reported_primal_infeasibility','backend_reported_dual_infeasibility',
+        'native_version') if key in first}
+    native_metadata={key:(None if isinstance(value,(float,np.floating)) and not np.isfinite(value) else value)
+                     for key,value in native_metadata.items()}
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
                     solver_crossover=solver_crossover,solver_iterations=getattr(first,'nit',None),
                     crossover_iterations=getattr(first,'crossover_nit',None),
+                    inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
                     fixed_uniform_fluid_temperature_floor=minimum_thermal_floor,
                     explicit_credited_midpoint_target=midpoint_credited_target is not None,
-                    target_budget_only=bool(target_budget_only))
+                    target_budget_only=bool(target_budget_only),
+                    native_feasible_interior_retention=bool(retain_feasible_interior),**native_metadata)
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
     if maximize_thermal_floor:
         maximum_floor=float(first.x[temperature_column])
@@ -597,14 +619,17 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
     return dict(success=eqerror<2e-7 and uberror<2e-7,
         solver_method=method,
+        status=int(r.status),native_feasible_interior_retention=bool(retain_feasible_interior),
+        **native_metadata,
         solver_crossover=solver_crossover,solver_iterations=getattr(r,'nit',None),
         crossover_iterations=getattr(r,'crossover_nit',None),
+        inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
         target_budget_only=bool(target_budget_only),
         explicit_credited_midpoint_target=midpoint_credited_target is not None,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=None if target_budget_only and not maximize_thermal_floor else bool(second.success),
-        inventory_minimization_success=bool(second.success),
+        inventory_minimization_success=bool(second.success and getattr(second,'optimality_certified',True)),
         matched_pair_phase_history=bool(matched_pair),
         transport_method='positive matrix exponential with node and midpoint budgets',
         guide_drift_bound=guide_drift,guide_field_reused_from_core_and_auxiliary=True,

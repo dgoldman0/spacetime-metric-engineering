@@ -1,0 +1,11 @@
+{
+  "label": "x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid",
+  "factor": 2,
+  "success": false,
+  "reason": "negative archived conversion increment; controls were left unchanged",
+  "conversion_increment_minima": {
+    "positive_increment": -1.954982948999832e-10,
+    "negative_increment": 0.0
+  },
+  "conversion_increments_clipped": false
+}

@@ -6,9 +6,12 @@ the fluid alone clears `x=-2` and reduces the second pair's added-density
 requirement from `0.00312356` to `0.00112186`. The combined result preserves
 the original power duties, cold particle inventory, receiver capacity, and
 receiver containment. It identifies a useful thermal allocation within the
-existing assembly. Independent curved replay exposes missed stress features
-between the coarse pilot samples, so the finite pilot clearance requires
-repair before it can support a continuous construction.
+existing assembly. Resolving the actual midpoint stress and reconstructing
+continuous heat-transfer rates subsequently clears the sampled curved
+replay at `x=-1.975`, including its full thermal preparation. The first
+location remains an unresolved refined numerical case. Physical photon
+contacts, reciprocal forces, and material constitutive closure remain the
+next construction requirements.
 
 This continues the [thermal-exchange investigation](VIRTUAL_RADIAL_CELL_THERMAL_EXCHANGE.md)
 on the scheduled active rail. The protected packet, geometry, capacitor,
@@ -466,3 +469,68 @@ The optical coupling must also preserve the separately prescribed work
 and heat beams. The support contact retains its own heat, work, and
 entropy closure. The associated preparation and contact regressions
 bring the focused suite to 100 passing tests.
+
+## Continuous heat rates within the original budget
+
+The second-location exact-midpoint solution contains a negative conversion
+increment of `-1.95e-10`. The default replay rejects this input. An explicit
+phase-preserving repair retains every positive overlap cycle, sets
+`p=max(DeltaA,0)+overlap` and `m=max(-DeltaA,0)+overlap`, and records each
+change. The applied correction is `1.95e-10`, within its declared `1e-8`
+allowance; all six incident and returned beams are independently replayed.
+The [corrected-conversion replay](data/virtual_cell_thermal_replay_floor001_repaired/summary.json)
+clears the complete stress with margin `5.44496e-5`. Linear interpolation
+of receiver energy leaves a small contact mismatch: the donor excess is
+`4.36e-7` and the minimum hot withdrawal is `-1.67e-8` per replay panel.
+
+The [continuous-contact replay](data/virtual_cell_thermal_replay_floor001_contacts/summary.json)
+instead distributes each original nonnegative hot and cold heat total
+uniformly in proper time within its parent panel. With lapse `N`, these
+rates determine the bank histories through
+
+```
+H_t = L_coord - N q_h,
+C_t = N q_c,
+Z_t = L_coord - N q_h + N q_c.
+```
+
+The revised `Z_t` enters the independently integrated radiation equation
+with its full factor `ell`. Small constant additions to `H`, `C`, and `K`
+cover the refined donor bounds and the original temperature floor. Their
+entire receiver and fluid stress enters the same available tensor. This
+retains the original converter losses, receiver ratings, and baseline
+component power duties.
+
+At 24 spatial positions and 1,029 time nodes, the complete density margin
+is `5.44436e-5`. The wave floor, thermal positivity, bank ratings, donor
+bounds, and `Theta_f>=0.01` all hold. The largest added receiver density
+is `8.63e-9`; the largest added fluid density is `4.95e-8`. Added balanced
+radiation is zero. The initial 0.2% numerical reserve is partly consumed,
+while the full physical density budget remains positive. The largest
+aggregate energy-panel residual is `8.88e-15`, contact subtraction
+residual is `1.88e-17`, and Gauss-4/Gauss-8 radiation-density difference
+is `4.05e-16`. These separately reviewed identities substantiate this
+sampled clearance. A subsequent acceptance refinement will require these
+integrity checks directly in the combined pass flag.
+
+## Retaining a solver state requires the original equations
+
+The first-location [crossover-free comparison](data/virtual_cell_fluid_receiver_floor001_exactmid_nocross/summary.json)
+and [normalized-objective comparison](data/virtual_cell_fluid_receiver_floor001_exactmid_scaled/summary.json)
+both terminate with an unfinished interior-point solution. Normalizing
+the inventory objective by a positive constant preserves its minimizer;
+reducing the matrix drop threshold to `1e-12` retains most previously
+discarded small coefficients. The internal solver log still lacks an
+accepted optimum.
+
+A [native-state comparison](data/virtual_cell_fluid_receiver_floor001_native/summary.json)
+retrieves the candidate and independently checks every original matrix
+row and variable bound. Although the backend marks its values valid and
+reports zero primal infeasibility, the retrieved candidate has equality
+residual `0.5094` and inequality excess `7.9125`. It is rejected. Internal
+feasibility during an unfinished solve therefore provides insufficient
+evidence for this location. The adapter keeps verified feasibility and
+inventory optimality as separate results. Its solve-error acceptance
+boundary and the replay integrity flag are identified for tightening
+before the next refinement. The focused numerical suite has 115 passing
+tests, including explicit contact conservation and native row checks.

@@ -132,20 +132,113 @@ def positive_max(a):
     return max(0., float(np.max(a)))
 
 
+def conversion_controls(amplitude, positive, negative, *, repair=False):
+    """Explicit bounded repair, preserving phase and positive overlap cycles.
+
+    Arrays returned on rejection are copies of the raw controls. Reconstruction
+    uses d=DeltaA and overlap=max(0,min(p,m)); its hard absolute allowance is
+    1e-8 for either increment. The source arrays are never modified in place.
+    """
+    amplitude, positive, negative = map(np.asarray, (amplitude, positive, negative))
+    if (amplitude.ndim != 2 or positive.shape != (len(amplitude)-1, amplitude.shape[1])
+            or negative.shape != positive.shape or not all(np.isfinite(a).all()
+                for a in (amplitude, positive, negative))):
+        raise ValueError('finite matching phase and conversion histories required')
+    change = np.diff(amplitude, axis=0)
+    minima = dict(positive_increment=float(positive.min()), negative_increment=float(negative.min()))
+    original_error = float(abs(change-positive+negative).max())
+    proposed = dict(positive_increment=0., negative_increment=0.)
+    applied_positive, applied_negative = positive.copy(), negative.copy()
+    valid, reason, applied = True, None, False
+    if repair:
+        overlap = np.maximum(0., np.minimum(positive, negative))
+        candidate_positive = np.maximum(change, 0.)+overlap
+        candidate_negative = np.maximum(-change, 0.)+overlap
+        proposed = dict(positive_increment=float(abs(candidate_positive-positive).max()),
+                        negative_increment=float(abs(candidate_negative-negative).max()))
+        if max(proposed.values()) > 1e-8:
+            valid = False
+            reason = 'phase-preserving conversion repair exceeds the 1e-8 allowance; raw controls retained'
+        else:
+            applied_positive, applied_negative = candidate_positive, candidate_negative
+            applied = max(proposed.values()) > 0.
+    elif min(minima.values()) < 0:
+        valid = False
+        reason = 'negative archived conversion increment; controls were left unchanged'
+    elif original_error > 1e-8:
+        valid = False
+        reason = 'archived phase/conversion identity exceeds tolerance; controls were left unchanged'
+    actual = dict(positive_increment=float(abs(applied_positive-positive).max()),
+                  negative_increment=float(abs(applied_negative-negative).max()))
+    metadata = dict(conversion_increment_minima=minima, conversion_increments_clipped=False,
+        conversion_roundoff_repair_requested=bool(repair), conversion_roundoff_repair_applied=applied,
+        conversion_roundoff_repair_allowance=1e-8,
+        conversion_repair_proposed_maximum_changes=proposed, conversion_actual_maximum_changes=actual,
+        original_conversion_identity_residual=original_error,
+        conversion_identity_residual=float(abs(change-applied_positive+applied_negative).max()),
+        conversion_repair_method='d=DeltaA; overlap=max(0,min(p_old,m_old)); p=max(d,0)+overlap; m=max(-d,0)+overlap')
+    return applied_positive, applied_negative, valid, reason, metadata
+
+
+def nonnegative_contact_totals(hot, cold):
+    """Explicitly correct only negative contact roundoff no larger than 1e-10."""
+    hot, cold = map(np.asarray, (hot, cold))
+    if hot.ndim != 2 or cold.shape != hot.shape or not all(np.isfinite(a).all() for a in (hot, cold)):
+        raise ValueError('finite matching parent hot/cold contact arrays required')
+    minimum = dict(hot=float(hot.min()), cold=float(cold.min()))
+    valid = min(minimum.values()) >= -1e-10
+    applied_hot = np.maximum(hot, 0.) if valid else hot.copy()
+    applied_cold = np.maximum(cold, 0.) if valid else cold.copy()
+    corrections = dict(hot=float(abs(applied_hot-hot).max()), cold=float(abs(applied_cold-cold).max()))
+    return applied_hot, applied_cold, valid, dict(contact_original_parent_minima=minimum,
+        contact_roundoff_allowance=1e-10, contact_roundoff_maximum_corrections=corrections,
+        contact_roundoff_correction_applied=max(corrections.values()) > 0.)
+
+
+def contact_preparation(hot, cold, thermal_inventory, D, hot_panel, cold_panel,
+                        duration, number, *, turnover, temperature_floor=0.):
+    """Minimal nonnegative constant label inventories for sampled donor bounds."""
+    hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number = map(np.asarray,
+        (hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number))
+    if (hot.shape != cold.shape or hot.shape != thermal_inventory.shape or D.shape != hot.shape
+            or hot_panel.shape != (len(hot)-1, hot.shape[1]) or cold_panel.shape != hot_panel.shape
+            or duration.shape != hot_panel.shape or number.shape != (hot.shape[1],)
+            or np.any(duration <= 0) or np.any(D <= 0) or np.any(number <= 0)
+            or np.any(hot_panel < 0) or np.any(cold_panel < 0)
+            or not np.isfinite(turnover) or turnover <= 0 or not np.isfinite(temperature_floor)
+            or temperature_floor < 0
+            or not all(np.isfinite(a).all() for a in
+                       (hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number))):
+        raise ValueError('finite physical states, nonnegative heats, and positive donor scales required')
+    required_hot = hot_panel/(turnover*duration)
+    required_fluid = cold_panel/(turnover*duration)
+    dh = np.maximum.reduce([np.zeros(hot.shape[1]), np.max(-hot, axis=0),
+        np.max(required_hot-hot[:-1], axis=0), np.max(required_hot-hot[1:], axis=0)])
+    dc = np.maximum(0., np.max(-cold, axis=0))
+    dk = np.maximum.reduce([np.zeros(hot.shape[1]), np.max(-thermal_inventory, axis=0),
+        np.max(required_fluid*D[:-1]**(1/3)-thermal_inventory[:-1], axis=0),
+        np.max(required_fluid*D[1:]**(1/3)-thermal_inventory[1:], axis=0),
+        np.max(3*number*temperature_floor*D**(1/3)-thermal_inventory, axis=0)])
+    return dh, dc, dk
+
+
 def audit(spec):
     source, label, factor, output, *options = spec
+    if len(options) > 3:
+        raise ValueError('at most preparation, conversion-repair and contact-reconstruction options are accepted')
     prepare_radiation = bool(options[0]) if options else False
+    repair_conversion = bool(options[1]) if len(options) > 1 else False
+    reconstruct_contacts = bool(options[2]) if len(options) > 2 else False
     started = time.monotonic()
     source, output = Path(source), Path(output)
     meta = json.loads((source/(label+'_summary.json')).read_text())
     with np.load(source/(label+'_states.npz')) as f:
         s = {key: f[key] for key in f.files}
     stem = label+f'_factor{factor}'
-    minima = {key: float(s[key].min()) for key in ('positive_increment', 'negative_increment')}
-    if min(minima.values()) < 0:
-        result = dict(label=label, factor=factor, success=False,
-            reason='negative archived conversion increment; controls were left unchanged',
-            conversion_increment_minima=minima, conversion_increments_clipped=False)
+    positive_applied, negative_applied, valid, reason, conversion_metadata = conversion_controls(
+        s['amplitude'], s['positive_increment'], s['negative_increment'], repair=repair_conversion)
+    if not valid:
+        result = dict(label=label, factor=factor, success=False, reason=reason, **conversion_metadata)
         write_json(output/(stem+'_summary.json'), result)
         return result
     required = ('thermal_inventory', 'balanced_radiation_inventory', 'receiver_thermal_energy',
@@ -157,10 +250,9 @@ def audit(spec):
     if not (meta.get('common_phase_across_pair') and meta.get('existing_fluid_thermal_state_reallocated')
             and meta.get('existing_receiver_heat_reallocated')):
         raise ValueError('common phase and existing fluid/receiver credits required')
-    coherence = max(float(np.ptp(s[key], axis=1).max()) for key in
-                    ('amplitude', 'positive_increment', 'negative_increment'))
-    conversion = float(abs(np.diff(s['amplitude'], axis=0)-s['positive_increment']
-                           +s['negative_increment']).max())
+    coherence = max(float(np.ptp(a, axis=1).max()) for a in
+                    (s['amplitude'], positive_applied, negative_applied))
+    conversion = conversion_metadata['conversion_identity_residual']
     if coherence > 1e-10 or conversion > 1e-8:
         raise ValueError(f'incoherent phase or inconsistent conversion: {coherence}, {conversion}')
     oldt, oldx = s['t'], s['x']
@@ -190,6 +282,41 @@ def audit(spec):
     if max(reference_errors.values()) > 1e-10:
         raise ValueError('archived fluid/receiver reference differs from registered assembly: '+str(reference_errors))
     knots = np.unique(np.r_[oldt, baseline['t'], ref.t])
+    number = np.interp(x, baseline['x'], baseline['number'])
+    turnover = meta.get('receiver_donor_turnover')
+    reconstruction = dict(continuous_contact_reconstruction_requested=reconstruct_contacts,
+                          continuous_contact_reconstruction_applied=False)
+    reconstruction_output = {}
+    linear_receiver = Z.copy()
+    if reconstruct_contacts:
+        if turnover is None or not np.isfinite(turnover) or turnover <= 0:
+            raise ValueError('continuous contact reconstruction requires a positive archived turnover')
+        for key in ('receiver_hot_energy', 'receiver_hot_contact_panel_heat', 'receiver_cold_contact_panel_heat'):
+            if key not in s:
+                raise ValueError('continuous reconstruction requires split receiver field '+key)
+        unused_hot, unused_cold, source_valid, source_correction = nonnegative_contact_totals(
+            s['receiver_hot_contact_panel_heat'], s['receiver_cold_contact_panel_heat'])
+        reconstruction['contact_original_source_grid_minima'] = source_correction['contact_original_parent_minima']
+        raw_hot = spatial_history(oldx, s['receiver_hot_contact_panel_heat'], x)
+        raw_cold = spatial_history(oldx, s['receiver_cold_contact_panel_heat'], x)
+        parent_hot, parent_cold, valid, correction = nonnegative_contact_totals(raw_hot, raw_cold)
+        reconstruction.update(correction)
+        if not valid or not source_valid:
+            result = dict(label=label, factor=factor, success=False,
+                reason='negative parent contact exceeds 1e-10 allowance; source controls retained',
+                **conversion_metadata, **reconstruction)
+            write_json(output/(stem+'_summary.json'), result)
+            return result
+        parent_duration = integrate_panels(oldt, knots,
+            lambda at: geometry(model, at, x)['lapse'], order=8)
+        hot_rate, cold_rate = parent_hot/parent_duration, parent_cold/parent_duration
+        linear_hot = linear_history(oldt, spatial_history(oldx, s['receiver_hot_energy'], x), t)[0]
+        initial_hot, initial_cold = linear_hot[0], linear_receiver[0]-linear_hot[0]
+        reconstruction_output.update(contact_control_time=oldt, contact_control_position=x,
+            original_hot_parent_heat=raw_hot, original_cold_parent_heat=raw_cold,
+            applied_hot_parent_heat=parent_hot, applied_cold_parent_heat=parent_cold,
+            applied_hot_parent_proper_rate=hot_rate, applied_cold_parent_proper_rate=cold_rate,
+            contact_parent_proper_duration=parent_duration)
 
     def integrand(at):
         c = geometry(model, at, x)
@@ -202,13 +329,44 @@ def audit(spec):
         # Original capacitor converters use the registered efficiency .98.
         loss = c['ell']/c['radius']**2*((1/.98-1)*np.maximum(Ft, 0)
                                       +(1-.98)*np.maximum(-Ft, 0))
+        extra = []
+        if reconstruct_contacts:
+            owner = np.clip(np.searchsorted(oldt, at, side='right')-1, 0, len(oldt)-2)
+            hot_source, cold_source = c['lapse']*hot_rate[owner], c['lapse']*cold_rate[owner]
+            revised_Zt = loss-hot_source+cold_source
+            extra = [c['ell']*(revised_Zt-Zt), hot_source, cold_source]
+            Zt = revised_Zt
         return np.array([c['ell']**2*At, c['M']/c['D']**(4/3)*Kt,
-            c['ell']*Zt, c['ell']*(U0t+U0*c['logD_t']/3+Z0t), loss, c['lapse']])
+            c['ell']*Zt, c['ell']*(U0t+U0*c['logD_t']/3+Z0t), loss, c['lapse'], *extra])
 
     panels = integrate_panels(t, knots, integrand, order=8)
     comparison = integrate_panels(t, knots, integrand, order=4)
     V = reconstruct_inventory(initial, *panels[:4])
     V4 = reconstruct_inventory(initial, *comparison[:4])
+    if reconstruct_contacts:
+        qhot, qcold = panels[7:9]
+        H = np.vstack([initial_hot, initial_hot+np.cumsum(panels[4]-qhot, axis=0)])
+        cold = np.vstack([initial_cold, initial_cold+np.cumsum(qcold, axis=0)])
+        dh, dc, dk = contact_preparation(H, cold, K, g['D'], qhot, qcold, panels[5], number,
+            turnover=turnover, temperature_floor=meta.get('retained_uniform_fluid_temperature', 0.))
+        H, cold, K = H+dh, cold+dc, K+dk
+        Z = H+cold
+        reconstruction.update(continuous_contact_reconstruction_applied=True,
+            continuous_contact_method='parent hot/cold heat totals distributed uniformly in proper time; H_t=Lcoord-N*qh, C_t=N*qc; constant nonnegative prepared H,C,K increments cover sampled donor and temperature bounds',
+            maximum_added_hot_inventory=float(dh.max()), maximum_added_cold_inventory=float(dc.max()),
+            maximum_added_thermal_inventory=float(dk.max()),
+            maximum_added_receiver_density=float(((dh+dc)/g['D']).max()),
+            maximum_added_fluid_density=float((dk/g['D']**(4/3)).max()),
+            maximum_receiver_history_change=float(abs(Z-linear_receiver).max()),
+            maximum_hot_history_change=float(abs(H-linear_hot).max()),
+            hot_parent_heat_reconstruction_residual=float(abs(qhot.reshape(len(oldt)-1,factor,nx).sum(axis=1)-parent_hot).max()),
+            cold_parent_heat_reconstruction_residual=float(abs(qcold.reshape(len(oldt)-1,factor,nx).sum(axis=1)-parent_cold).max()),
+            maximum_receiver_energy_source_panel_change=float(abs(panels[6]).max()),
+            maximum_receiver_source_change_cumulative=float(abs(np.cumsum(panels[6], axis=0)).max()))
+        reconstruction_output.update(additional_prepared_hot_inventory=dh,
+            additional_prepared_cold_inventory=dc, additional_prepared_thermal_inventory=dk,
+            receiver_history_change=Z-linear_receiver, hot_history_change=H-linear_hot,
+            receiver_energy_source_panel_change=panels[6])
     # Independent explicit waves. Every control breakpoint remains a time node.
     geom = [model.metric(float(now), x) for now in t]
     edgegeom = [model.metric(float(now), edges) for now in t]
@@ -218,14 +376,16 @@ def audit(spec):
     eta = meta['efficiency']
     beam = {name: np.zeros_like(V) for name in ('incident', 'useful', 'heat')}
     ledger_rows = []
+    # Interpolate the applied sources with the same spatial rule as A; this
+    # retains DeltaA=p-m even for permitted roundoff-level spatial differences.
+    plus = spatial_history(oldx, positive_applied, x)/np.diff(oldt)[:, None]
+    minus = spatial_history(oldx, negative_applied, x)/np.diff(oldt)[:, None]
     for half, direction in enumerate((-1, 1)):
         sl = slice(half*nx//2, (half+1)*nx//2)
-        plus = s['positive_increment'].mean(axis=1)/np.diff(oldt)
-        minus = s['negative_increment'].mean(axis=1)/np.diff(oldt)
         for name, sign, rates, back in (
-                ('incident', direction, plus/eta, True),
-                ('useful', -direction, eta*minus, False),
-                ('heat', -direction, (1/eta-1)*plus+(1-eta)*minus, False)):
+                ('incident', direction, plus[:, sl]/eta, True),
+                ('useful', -direction, eta*minus[:, sl], False),
+                ('heat', -direction, (1/eta-1)*plus[:, sl]+(1-eta)*minus[:, sl], False)):
             tab = tables[sign]
             faces = tab['faces'][:, half*nx//2:(half+1)*nx//2+1]
             def coefficients(now, interval):
@@ -289,25 +449,27 @@ def audit(spec):
     # allowance consumes no heat capacity or additional wall energy.
     capacity = max(positive_max(-Z), positive_max(Z-original_cap))
     loss, duration = panels[4:6]
-    contact = loss-np.diff(Z, axis=0)
+    contact = qhot-qcold if reconstruct_contacts else loss-np.diff(Z, axis=0)
     fluid_energy = K/g['D']**(1/3)
-    number = np.interp(x, baseline['x'], baseline['number'])
     fluid_temperature = fluid_energy/(3*number)
-    turnover = meta.get('receiver_donor_turnover')
     if 'receiver_hot_energy' in s and turnover is None:
         raise ValueError('split receiver archive must identify its donor turnover')
     contact_output = dict(receiver_total_contact_panel_heat=contact,
         receiver_converter_loss_panel=loss, receiver_contact_proper_duration=duration)
     diagnostics = dict(receiver_capacity_violation=capacity,
-        receiver_capacity_interpolation_difference=float(abs(cap-original_cap).max()))
+        receiver_capacity_interpolation_difference=float(abs(cap-original_cap).max()),
+        receiver_contact_subtraction_identity=float(abs(contact-(loss-np.diff(Z, axis=0))).max()))
     if 'receiver_hot_energy' in s:
-        H = linear_history(oldt, spatial_history(oldx, s['receiver_hot_energy'], x), t)[0]
-        cold = Z-H
-        qhot, qcold = loss-np.diff(H, axis=0), np.diff(cold, axis=0)
+        if not reconstruct_contacts:
+            H = linear_history(oldt, spatial_history(oldx, s['receiver_hot_energy'], x), t)[0]
+            cold = Z-H
+            qhot, qcold = loss-np.diff(H, axis=0), np.diff(cold, axis=0)
         diagnostics.update(split_direction_violation=max(positive_max(-qhot), positive_max(-qcold)),
             split_state_positivity_violation=max(positive_max(-H), positive_max(-cold)),
             split_fixed_rating_violation=positive_max(H.max(axis=0)+cold.max(axis=0)-original_cap),
-            split_contact_identity=float(abs(qhot-qcold-contact).max()))
+            split_contact_identity=float(abs(qhot-qcold-contact).max()),
+            hot_contact_subtraction_identity=float(abs(qhot-(loss-np.diff(H, axis=0))).max()),
+            cold_contact_subtraction_identity=float(abs(qcold-np.diff(cold, axis=0)).max()))
         contact_output.update(receiver_hot_energy=H, receiver_cold_energy=cold,
             receiver_hot_contact_panel_heat=qhot, receiver_cold_contact_panel_heat=qcold)
         if turnover is not None:
@@ -338,8 +500,8 @@ def audit(spec):
         maximum_density_shortfall=positive_max(deficit), minimum_density_margin=float(-deficit.max()),
         maximum_reserved_density_shortfall=positive_max(reserved_deficit),
         maximum_wave_floor_violation=positive_max(floor), minimum_counterstream_margin=float((counter-abs(current)).min()),
-        inventory_positivity_violation=negative, conversion_increment_minima=minima,
-        conversion_increments_clipped=False, common_phase_spread=coherence, conversion_identity_residual=conversion,
+        inventory_positivity_violation=negative, common_phase_spread=coherence,
+        **conversion_metadata,
         gauss4_8_panel_difference=float(abs(panels-comparison).max()),
         gauss4_8_radiation_density_difference=float((abs(V-V4)/g['M']).max()),
         aggregate_panel_balance_residual=float(abs(np.diff(V, axis=0)+panels[0]+panels[1]+panels[2]-panels[3]).max()),
@@ -353,15 +515,17 @@ def audit(spec):
         baseline_power_and_full_stress_credits_retained=True, full_balanced_radiation_inventory_retained=True,
         aggregate_energy_integrated=True, beam_transport_independently_replayed=True,
         counterstream_opacity_and_force_supplied=False, thermal_constitutive_law_supplied=False,
-        scope='archived phase/fluid/receiver controls, explicitly recorded initial-radiation adjustment when requested; exact registered metric energy quadrature and explicit beam replay; sampled tensor and contact checks',
+        scope='archived phase and fluid-shape controls with explicitly recorded conversion, contact and prepared-inventory adjustments when requested; exact registered metric energy quadrature and explicit beam replay; sampled tensor and contact checks',
         spatial_extension='linear separately in each cell, constant from outermost sample to cell edge',
-        **preparation,
+        **preparation, **reconstruction,
         worst_density_sample=dict(time=float(t[i]), x=float(x[j]), original_density=float(rho[i,j]),
             phase_density=float(core[i,j]), radiation_density=float(W[i,j]), thermal_density=float(B[i,j]),
             receiver_density=float(Z[i,j]/g['D'][i,j])), elapsed_seconds=time.monotonic()-started, **diagnostics)
     write_json(output/(stem+'_summary.json'), result)
     write_json(output/(stem+'_wave_ledger.json'), ledger_rows)
     np.savez_compressed(output/(stem+'_states.npz'), t=t, x=x, edges=edges,
+        control_time=oldt, control_position=oldx, control_amplitude=s['amplitude'],
+        applied_positive_increment=positive_applied, applied_negative_increment=negative_applied,
         amplitude=phase, radius=g['radius'], ell=g['ell'], D=g['D'], lapse=g['lapse'],
         target=np.array([rho, p, q]), credited_target=available,
         thermal_inventory=K, thermal_reservoir_rest=B, receiver_thermal_energy=Z,
@@ -374,7 +538,7 @@ def audit(spec):
         wave_floor_violation=floor, guide_rest=guide, wall_rest=wall,
         phase_energy_panel=panels[0], thermal_energy_panel=panels[1], receiver_energy_panel=panels[2],
         baseline_energy_panel=panels[3], gauss4_8_panel_difference=panels-comparison,
-        additional_prepared_radiation_inventory=prepared_extra, **contact_output)
+        additional_prepared_radiation_inventory=prepared_extra, **reconstruction_output, **contact_output)
     print(stem+': '+json.dumps({key: result[key] for key in ('full_density_budget_passes',
         'maximum_density_shortfall', 'maximum_wave_floor_violation', 'elapsed_seconds')}), flush=True)
     return result
@@ -389,6 +553,10 @@ def main():
     parser.add_argument('--output-name', required=True)
     parser.add_argument('--prepare-radiation', action='store_true',
                         help='add only counted initial radiation within its sampled full-density interval')
+    parser.add_argument('--repair-conversion-roundoff', action='store_true',
+                        help='preserve phase and positive overlap while repairing increments by at most 1e-8')
+    parser.add_argument('--reconstruct-contacts', action='store_true',
+                        help='reconstruct positive proper-time heat rates and count required prepared donor inventory')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or any(f < 1 for f in args.factors):
         parser.error('one or two workers and positive refinement factors required')
@@ -415,7 +583,8 @@ def main():
     for path in sources:
         hashes[str(path.relative_to(ROOT))] = sha256_file(path)
     output.mkdir()
-    specs = [(str(source), label, factor, str(output), args.prepare_radiation)
+    specs = [(str(source), label, factor, str(output), args.prepare_radiation,
+              args.repair_conversion_roundoff, args.reconstruct_contacts)
              for label in labels for factor in args.factors]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
             mp_context=multiprocessing.get_context('spawn')) as pool:

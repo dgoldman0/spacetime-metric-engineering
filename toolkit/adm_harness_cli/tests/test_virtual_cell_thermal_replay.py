@@ -123,6 +123,65 @@ def test_initial_preparation_cannot_reuse_a_later_density_budget():
     assert_allclose(upper,1/6)
 
 
+def test_bounded_conversion_repair_keeps_phase_and_existing_positive_cycles():
+    amplitude=np.array([[.1],[.1-2e-10],[.3]])
+    raw_amplitude=amplitude.copy()
+    delta=np.diff(amplitude,axis=0)
+    positive=np.array([[-1.954982948999832e-10],[delta[1,0]+.03]])
+    negative=np.array([[0.],[.03]])
+    raw_positive,raw_negative=positive.copy(),negative.copy()
+    p,m,valid,reason,info=replay.conversion_controls(amplitude,positive,negative,repair=True)
+    assert valid and reason is None and info['conversion_roundoff_repair_applied']
+    assert p[0,0]==0. and m[0,0]==-delta[0,0]
+    assert_allclose(p-m,delta,atol=0.,rtol=0.)
+    assert p[1,0]==positive[1,0] and m[1,0]==negative[1,0]
+    assert np.all(p>=0) and np.all(m>=0)
+    assert_allclose(amplitude,raw_amplitude,atol=0.,rtol=0.)
+    assert_allclose(positive,raw_positive,atol=0.,rtol=0.)
+    assert_allclose(negative,raw_negative,atol=0.,rtol=0.)
+    assert max(info['conversion_actual_maximum_changes'].values())<=1e-8
+
+
+def test_conversion_repair_rejects_a_large_defect_and_returns_raw_controls():
+    amplitude=np.array([[0.],[1e-5]])
+    positive=np.zeros((1,1));negative=positive.copy()
+    p,m,valid,reason,info=replay.conversion_controls(amplitude,positive,negative,repair=True)
+    assert not valid and 'exceeds' in reason
+    assert not info['conversion_roundoff_repair_applied']
+    assert max(info['conversion_actual_maximum_changes'].values())==0.
+    assert info['conversion_repair_proposed_maximum_changes']['positive_increment']==1e-5
+    assert_allclose(p,positive,atol=0.,rtol=0.)
+    assert_allclose(m,negative,atol=0.,rtol=0.)
+
+
+def test_contact_roundoff_correction_is_bounded_and_explicit():
+    hot=np.array([[-5e-11],[.2]]);cold=np.array([[0.],[.1]])
+    qh,qc,valid,info=replay.nonnegative_contact_totals(hot,cold)
+    assert valid and info['contact_roundoff_correction_applied']
+    assert info['contact_roundoff_maximum_corrections']['hot']==5e-11
+    assert qh[0,0]==0. and hot[0,0]==-5e-11
+    qh,qc,valid,info=replay.nonnegative_contact_totals(-np.ones((2,1))*2e-10,cold)
+    assert not valid and np.all(qh==-2e-10)
+    assert not info['contact_roundoff_correction_applied']
+
+
+def test_constant_prepared_inventories_cover_donors_without_changing_proper_power():
+    hot=np.array([[.1],[.2],[.1]]);cold=np.array([[-.1],[0.],[.1]])
+    K=np.ones((3,1))*.2;D=np.array([[1.],[8.],[27.]])
+    qh=np.array([[.3],[.4]]);qc=np.array([[.2],[.3]]);dtau=np.array([[.1],[.2]])
+    dh,dc,dk=replay.contact_preparation(hot,cold,K,D,qh,qc,dtau,np.ones(1),
+                                       turnover=2.,temperature_floor=.4)
+    assert_allclose(dh,1.4);assert_allclose(dc,.1);assert_allclose(dk,3.4)
+    H,C,Knew=hot+dh,cold+dc,K+dk
+    assert C.min()>=0
+    for end in (slice(None,-1),slice(1,None)):
+        assert np.max(qh-2*dtau*H[end])<1e-14
+        assert np.max(qc-2*dtau*Knew[end]/D[end]**(1/3))<1e-14
+    assert np.min(Knew/(3*D**(1/3)))>=.4-1e-14
+    assert_allclose(np.diff(Knew,axis=0),np.diff(K,axis=0),atol=1e-15)
+    assert_allclose(np.diff(H+C,axis=0),np.diff(hot+cold,axis=0),atol=1e-15)
+
+
 def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_path, monkeypatch):
     class StaticModel:
         t_min, t_max, x_min, x_max = 0., 1., -4., 4.
@@ -182,3 +241,55 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
     assert not rejected['success']
     assert not rejected['conversion_increments_clipped']
     assert rejected['conversion_increment_minima']['positive_increment'] == -1e-15
+    # Opting in reconstructs a tiny release from the exact archived phase and
+    # reruns all six streams; the old cached zero-wave arrays are irrelevant.
+    arrays['amplitude']=.1*one.copy()
+    arrays['amplitude'][1:]-=2e-10
+    arrays['positive_increment']=zero[:-1].copy()
+    arrays['positive_increment'][0]=-1.954982948999832e-10
+    arrays['negative_increment']=zero[:-1].copy()
+    np.savez_compressed(source/'repaired_states.npz',**arrays)
+    (source/'repaired_summary.json').write_text(json.dumps(meta))
+    calls=[];original_propagate=replay.propagate
+    def counted_propagate(*args,**kwargs):
+        calls.append(1)
+        return original_propagate(*args,**kwargs)
+    monkeypatch.setattr(replay,'propagate',counted_propagate)
+    repaired=replay.audit((str(source),'repaired',2,str(output),False,True))
+    assert repaired['success'] and repaired['conversion_roundoff_repair_applied']
+    assert len(calls)==6
+    with np.load(output/'repaired_factor2_states.npz') as replayed:
+        assert_allclose(replayed['control_time'],t,atol=0.,rtol=0.)
+        assert_allclose(replayed['control_amplitude'],arrays['amplitude'],atol=0.,rtol=0.)
+        assert_allclose(replayed['applied_positive_increment']-replayed['applied_negative_increment'],
+                        np.diff(arrays['amplitude'],axis=0),atol=0.,rtol=0.)
+        assert replayed['work_return_rest'].max()>0
+        assert replayed['heat_return_rest'].max()>0
+        assert_allclose(replayed['absorption_rest'],0.,atol=0.,rtol=0.)
+    # The old converter has unresolved positive variations inside each coarse
+    # control panel. Zero parent hot withdrawal should stay zero, whereas a
+    # linear interpolation of the old hot store would create negative qh.
+    baseline_t=np.linspace(0.,1.,5)
+    old.update(t=baseline_t,thermal=np.ones((5,4)),flux_energy=baseline_t[:,None]**2*np.ones((5,4)))
+    coefficient=1/.98-1
+    arrays['amplitude']=.1*one
+    arrays['positive_increment']=zero[:-1].copy()
+    arrays['negative_increment']=zero[:-1].copy()
+    arrays['receiver_hot_energy']=.4*one+coefficient*t[:,None]**2
+    arrays['receiver_thermal_energy']=.5*one+coefficient*t[:,None]**2
+    arrays['receiver_hot_contact_panel_heat']=zero[:-1].copy()
+    arrays['receiver_cold_contact_panel_heat']=zero[:-1].copy()
+    np.savez_compressed(source/'contact_states.npz',**arrays)
+    (source/'contact_summary.json').write_text(json.dumps(meta))
+    reconstructed=replay.audit((str(source),'contact',4,str(output),False,False,True))
+    assert reconstructed['full_sampled_gate_passes']
+    assert reconstructed['continuous_contact_reconstruction_applied']
+    assert reconstructed['maximum_receiver_energy_source_panel_change']>1e-4
+    assert reconstructed['receiver_contact_subtraction_identity']<1e-14
+    with np.load(output/'contact_factor4_states.npz') as replayed:
+        assert_allclose(replayed['receiver_hot_contact_panel_heat'],0.,atol=0.,rtol=0.)
+        assert_allclose(replayed['receiver_cold_contact_panel_heat'],0.,atol=0.,rtol=0.)
+        assert_allclose(replayed['balanced_radiation_inventory']+replayed['receiver_thermal_energy'],
+                        2.5,atol=1e-14)
+        assert np.all(np.diff(replayed['receiver_hot_energy'],axis=0)>=0)
+        assert_allclose(replayed['additional_prepared_thermal_inventory'],0.)
