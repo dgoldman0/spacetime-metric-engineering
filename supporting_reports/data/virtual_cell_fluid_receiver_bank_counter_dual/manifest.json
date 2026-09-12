@@ -1,10 +1,8 @@
 {
-  "created_utc": "2026-09-12T23:21:06.947609+00:00",
-  "git_head": "e12a40fbe4d5295a3ffcaafdffd0c2f5f6af5d14",
+  "created_utc": "2026-09-12T23:51:54.133212+00:00",
+  "git_head": "a0d158ef9eadb2aa5681fad8e379f9aed6c15b00",
   "workers": 1,
   "input_sha256": {
-    "supporting_reports/data/virtual_cell_fluid_receiver_floor001_exactmid/x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_states.npz": "40e990db21b7f5003f9aca66bcf969a3ddbe55bc134d0e9ba4ca886ae0070a22",
-    "supporting_reports/data/virtual_cell_fluid_receiver_floor001_exactmid/x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_summary.json": "4953d8dd3660825fd1abc88952f1f02de0ea34aba36b1c8f59f32591729d9415",
     "supporting_reports/data/finite_work_interface_recovery/manifest.json": "4a14d556612485eca279028e0444ee6ea46faf7384b275d798813980218c7199",
     "toolkit/adm_harness_cli/scripts/evaluate_finite_work_interface.py": "38a959bbc9e2897041bdc43b6094f429e3ff19afef4521ad848f59c0c0501884",
     "toolkit/adm_harness_cli/scripts/run_poynting_delivery.py": "7c44f2bdb772e153d2d47ebedf101246e8a09725d62a5a30a16edb11c078d8be",
@@ -77,56 +75,17 @@
     "toolkit/adm_harness_cli/adm_harness/conserved_radial_prestress.py": "270fe1eba19e168b4edbe715da25dbcc431316c809ef126304acc47f6ecbc392",
     "supporting_reports/data/joint_refined_response/manifest.json": "e5fe4ee17b34d4088b6d92e7942ce71ea0393320fc86a1fc0d4957b86258ce3b",
     "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz": "e478e273adc50871483420d59a53e95ab391e545613a8a0ca4d3e0b2321db3df",
+    "toolkit/adm_harness_cli/scripts/run_virtual_cell_thermal_transport.py": "5e54109fc784277f1c52bf71d6fdbcc130607d715602e81e9de88a17c4de38d2",
     "toolkit/adm_harness_cli/scripts/audit_virtual_cell_receiver_contact.py": "a846509bfe2932a15c4a50a3bfc0b9006c511e2f5a224e230a3d84142b932892",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_semigroup.py": "bb60a327921854d601cf4b9d633d031d2f599d334710931e9b94c48e6e39c349",
     "toolkit/adm_harness_cli/adm_harness/virtual_cell_transport.py": "337892f301f6d61c358df1187edcc87d5a38b376588852ba7ac8dc5e36d3277f",
+    "toolkit/adm_harness_cli/adm_harness/highs_feasible.py": "d03ab79ecab94f93b4dcc74c655dc95ec76626404c5a4abd87c9eadf4af9ea5e",
+    "toolkit/adm_harness_cli/tests/test_highs_feasible.py": "dfcaedb267e52eb91a22cf3f67b0ab9405f7e7e1ef4d1baaa5ce64b9826e2b04",
     "toolkit/adm_harness_cli/tests/test_virtual_cell_semigroup.py": "f857827a425e1423a8dc960862f75a05bf8eac50a1d47e49a433221698edfae7",
-    "supporting_reports/data/virtual_cell_fluid_receiver_floor001_exactmid/manifest.json": "a6a60b3e7c4bd19f1d31ffaea4e20dab9d7111f20cfa7d1c294dda1ad2d78228",
-    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_replay.py": "16078791f0764b34627b85a269fe334a9fb53eeca727c0064ab31dd94cc90096",
-    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_ports.py": "a45a04bea445cd9842d9c0a00d2eafcf3285a2a4448d5da353943e958c150c96",
-    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_replay.py": "19dbef5109d96b87a779e742adfaa421324392e3cfd2787a4753f689e1690215",
-    "toolkit/adm_harness_cli/adm_harness/__init__.py": "a096e9139fae99e5048627357d09cbab12b86fd298dd53cb9ecbc90cc1d6f178",
-    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
-    "toolkit/adm_harness_cli/adm_harness/surface_support_termination.py": "530cb577d0072679e10530afdf4d0aff4a2ccb34f56f03aa30511c7294c32a57",
-    "toolkit/adm_harness_cli/adm_harness/joint_support_projection.py": "4bfa9af317bd80a3e3a8cfc521950f85c8150a8d00c40624c34bac06cf141fe9",
-    "toolkit/adm_harness_cli/adm_harness/joint_support_spacetime.py": "5d5cbfa2899c9a7da345069820e86271c3a87a56bc6d422f3cfcd75eefccbfb9",
-    "toolkit/adm_harness_cli/scripts/run_joint_spacetime_support.py": "2b9519c8f9613663abb1159d247302d35d8fd45e8276f31714e6efe8e7dd613b",
-    "toolkit/adm_harness_cli/scripts/run_joint_route_momentum_gate.py": "19dda53a5aa35f8cc5ae25bbbc8cd378bf937cc905261a40cd846056aea08f0d",
-    "toolkit/adm_harness_cli/adm_harness/virtual_cell_ports.py": "b56e12b9520bc82322d09cca27907bc9d650b230335c4956e8f5566b3c95a486"
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_semigroup.py": "873cfd4549a968d5ac27abcd7ccb3fc0e638e14a48ffea369169f21ebb94782b"
   },
-  "historical_source": [
-    {
-      "path": "toolkit/adm_harness_cli/scripts/run_virtual_cell_thermal_transport.py",
-      "recorded_sha256": "fdbd201111e466f94e257dc764ddcc93ac4ff6378f5d71ead4c897c9b95c94b4",
-      "current_sha256": "e1cf05249dcab56d1718692acfb4be30ad79fc82af2ccee6fa46d2724345ad31",
-      "verified_at_commit": "ae538aed1678fda6971e3fba897a28350eadc0a9"
-    },
-    {
-      "path": "toolkit/adm_harness_cli/adm_harness/virtual_cell_semigroup.py",
-      "recorded_sha256": "0fa22a57d5cfe01204f87d0dbee78b8f48e5092521cf9aa6479a2b226574ad42",
-      "current_sha256": "7abb0ca2103edf6797b9dc33c72ea4d39a17a1ca5ad25b3ed3c6526253d3551c",
-      "verified_at_commit": "ae538aed1678fda6971e3fba897a28350eadc0a9"
-    },
-    {
-      "path": "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_semigroup.py",
-      "recorded_sha256": "0a1fe72241e00551fe2a085bb3e0518d1c320d8de0e7396db0fdfa66fcff7c44",
-      "current_sha256": "0009276f220ab12f4f4a98303e9ce552e1c6ff598a184129294ff3b6e56f4481",
-      "verified_at_commit": "ae538aed1678fda6971e3fba897a28350eadc0a9"
-    }
-  ],
   "output_sha256": {
-    "summary.json": "eb189e91258194ddd0ee8f9501f9ff90e1622f339e4a6e4d3ffa3d455047ccd8",
-    "x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_factor2_states.npz": "b0f648ccce906efcbc24400802583bc07e4789cec10c0063a249783a36e6c894",
-    "x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_factor2_summary.json": "194fbc928ba60a130422dd6eaf66fc6f53fb43aa87918ba9dfeaf0905ef51ed1",
-    "x-1.975_w0.0005_n12_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_factor2_wave_ledger.json": "6f07449caab6bba26d48edafa204ef975eb98e1ef4660ab97f3a5cd7f91a1f22",
-    "execution_replay_source.py": "16078791f0764b34627b85a269fe334a9fb53eeca727c0064ab31dd94cc90096",
-    "execution_test_source.py": "19dbef5109d96b87a779e742adfaa421324392e3cfd2787a4753f689e1690215"
-  },
-  "source_snapshot": {
-    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_replay.py": "execution_replay_source.py",
-    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_replay.py": "execution_test_source.py"
-  },
-  "source_snapshot_verification": {
-    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_replay.py": "Recovered execution bytes match the original recorded SHA-256 exactly; numerical products and original input hashes are preserved.",
-    "toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_replay.py": "Recovered execution bytes match the original recorded SHA-256 exactly; numerical products and original input hashes are preserved."
+    "summary.json": "fa405eb6bde2ece6ebcca50a84df03a0aeb56e1913c2f3975a2de8cec74e0493",
+    "x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_bank_counter_relaxation_summary.json": "532b9e3fa88ce7b37303e9861701996667721f99e286bf75e9613f990de23c85"
   }
 }

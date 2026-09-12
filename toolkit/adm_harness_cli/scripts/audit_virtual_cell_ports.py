@@ -58,7 +58,8 @@ def validate_controls(source, labels):
 
     Historical solver code is not substituted into this new independent replay.
     Current runtime code has its own hashes in the new manifest. A changed
-    historical solver is accepted only when git reproduces its recorded bytes.
+    historical solver requires matching git bytes or a separately hashed
+    execution snapshot inside the source archive.
     """
     manifest_path=source/'manifest.json'; manifest=json.loads(manifest_path.read_text())
     checked={}; historical=[]; commit=manifest['git_head']
@@ -73,6 +74,17 @@ def validate_controls(source, labels):
         if current==expected:
             checked[relative]=expected
         elif p.suffix=='.py':
+            snapshot_name=manifest.get('source_snapshot',{}).get(relative)
+            if snapshot_name is not None:
+                snapshot=(source/snapshot_name).resolve()
+                if (not snapshot.is_relative_to(source.resolve()) or not snapshot.is_file()
+                        or manifest['output_sha256'].get(snapshot_name)!=expected
+                        or sha(snapshot)!=expected):
+                    raise RuntimeError('unverified execution snapshot: '+relative)
+                checked[str(snapshot.relative_to(ROOT))]=expected
+                historical.append(dict(path=relative,recorded_sha256=expected,
+                    current_sha256=current,verified_at_snapshot=str(snapshot.relative_to(ROOT))))
+                continue
             # A run records HEAD before its new code is committed. Locate the
             # exact recorded bytes, including the subsequent evidence commit.
             revisions=[commit]+subprocess.check_output(

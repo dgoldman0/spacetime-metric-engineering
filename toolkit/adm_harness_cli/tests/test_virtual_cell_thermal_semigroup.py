@@ -288,3 +288,111 @@ def test_fixed_thermal_floor_and_midpoint_inputs_require_their_declared_contract
     for bad in (None,0,'off'):
         with pytest.raises(ValueError,match='solver_presolve'):
             solve_pair(*args,solver_presolve=bad,**options)
+
+
+def test_bank_routing_rejects_a_source_port_that_bypasses_empty_banks():
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    reference=.1*t[:,None]*one
+    # A pure radial-radiation target forces K=Z=A=0. The original fluid port
+    # can feed W directly, but routing that feed through zero-capacity banks
+    # is impossible. The two gates share all remaining constraints.
+    total=np.array([one,one,zero])
+    target=total-np.array([reference,reference/3,reference/3])
+    duration=np.diff(t)[:,None]*one[:-1]
+    options=dict(matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_reference_density=reference,receiver_reference=(zero,np.zeros(4)),
+        receiver_contact=(duration*0,duration,10.),split_receiver=True)
+    ordinary=solve_pair(t,edges,target,nodes,mids,waves,**options)
+    assert ordinary['success']
+    routed=solve_pair(t,edges,target,nodes,mids,waves,bank_counter_relaxation=True,**options)
+    assert not routed['success'] and routed['bank_counter_relaxation']
+
+
+def _pin_bank_histories(monkeypatch,*,radiation,thermal,receiver,hot):
+    """Hold a trial inventory history while testing the physical LP constraints."""
+    import adm_harness.virtual_cell_semigroup as module
+    original=module.linprog
+    histories=(radiation,thermal,receiver,hot)
+    size=radiation.size
+    def pinned(cost,**kwargs):
+        bounds=list(kwargs['bounds'])
+        # These four inventories precede the final density-slack variable;
+        # this fixture uses neither a wave envelope nor a temperature column.
+        first=len(bounds)-1-4*size
+        for block,history in enumerate(histories):
+            for i,value in enumerate(history.ravel()):
+                bounds[first+block*size+i]=(float(value),float(value))
+        return original(cost,**dict(kwargs,bounds=bounds))
+    monkeypatch.setattr(module,'linprog',pinned)
+
+
+def test_bank_routing_weighted_split_preserves_original_fluid_power(monkeypatch):
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    for c in (nodes,mids):
+        for key,value in dict(b=2.,ell=2.,radius=3.,D=18.).items():c[key][:]=value
+    for wave in waves.values():wave['faces']*=.5
+    progress=t[:,None]*one
+    U=.3+.1*progress;K=18**(1/3)*U
+    hot=.3-.05*progress;cold=.1+.02*progress;Z=hot+cold
+    V=1.8+.06*progress
+    _pin_bank_histories(monkeypatch,radiation=V,thermal=K,receiver=Z,hot=hot)
+    duration=np.diff(t)[:,None]*one[:-1];loss=.04*duration
+    result=solve_pair(t,edges,np.array([10*one,zero,zero]),nodes,mids,waves,
+        matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_reference_density=(.5+.1*progress)/18,
+        receiver_reference=(.4*one,np.ones(4)),receiver_contact=(loss,duration,10.),
+        split_receiver=True,bank_counter_relaxation=True)
+    assert result['success'] and result['receiver_cold_donor_bounds_omitted']
+    assert_allclose(result['counter_panel_energy'],.03*duration,atol=1e-10)
+    assert_allclose(result['bank_hot_to_counter_panel_heat'],.03*duration,atol=1e-10)
+    assert_allclose(result['bank_counter_to_cold_panel_heat'],0.,atol=1e-10)
+    assert_allclose(result['bank_hot_to_fluid_panel_heat'],.06*duration,atol=1e-10)
+    assert_allclose(result['bank_fluid_to_cold_panel_heat'],.02*duration,atol=1e-10)
+    assert_allclose(result['retained_support_to_fluid_panel_energy'],.06*duration,atol=1e-10)
+    assert_allclose(result['actual_fluid_power_panel_energy'],.1*duration,atol=1e-10)
+    assert_allclose(result['receiver_contact_energy_to_fluid'],0.,atol=1e-10)
+    for key in ('bank_counter_routing_violation','bank_fluid_power_identity_residual',
+                'bank_counter_energy_identity_residual','receiver_hot_donor_energy_violation'):
+        assert result[key]<1e-9
+
+
+def test_counter_supplied_cold_bank_does_not_require_fluid_donor_inventory(monkeypatch):
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    progress=t[:,None]*one
+    _pin_bank_histories(monkeypatch,radiation=1-.2*progress,thermal=zero,
+                        receiver=.2*progress,hot=zero)
+    duration=np.diff(t)[:,None]*one[:-1]
+    args=(t,edges,np.array([10*one,zero,zero]),nodes,mids,waves)
+    options=dict(matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_reference_density=zero,receiver_reference=(zero,np.ones(4)),
+        receiver_contact=(duration*0,duration,10.),split_receiver=True)
+    # The entire cold receipt comes from photons; the fluid remains empty.
+    ordinary=solve_pair(*args,**options)
+    assert not ordinary['success']
+    routed=solve_pair(*args,bank_counter_relaxation=True,**options)
+    assert routed['success'] and routed['receiver_cold_donor_bounds_omitted']
+    assert_allclose(routed['thermal_inventory'],0.,atol=1e-12)
+    assert_allclose(routed['bank_counter_to_cold_panel_heat'],.2*duration,atol=1e-10)
+    assert_allclose(routed['bank_fluid_to_cold_panel_heat'],0.,atol=1e-10)
+    assert_allclose(routed['bank_hot_to_fluid_panel_heat'],0.,atol=1e-10)
+    assert routed['receiver_hot_donor_energy_violation']<1e-10
+    assert routed['receiver_split_donor_violation']<1e-10
+    assert routed['receiver_donor_energy_violation']<1e-10
+    assert not routed['cold_photon_donor_law_supplied']
+
+
+def test_bank_counter_relaxation_requires_boolean_distributed_split_receiver():
+    t=np.linspace(0,1,3);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    args=(t,edges,np.array([one,zero,zero]),nodes,mids,waves)
+    for bad in (None,1,'yes'):
+        with pytest.raises(ValueError,match='bank_counter_relaxation requires a boolean'):
+            solve_pair(*args,bank_counter_relaxation=bad)
+    for options in ({},{'thermal_eos':1/3},{'split_receiver':True}):
+        with pytest.raises(ValueError,match='distributed thermal energy and split_receiver'):
+            solve_pair(*args,bank_counter_relaxation=True,**options)
+    with pytest.raises(ValueError,match='split_receiver requires total contact loss'):
+        solve_pair(*args,bank_counter_relaxation=True,thermal_eos=1/3,split_receiver=True)

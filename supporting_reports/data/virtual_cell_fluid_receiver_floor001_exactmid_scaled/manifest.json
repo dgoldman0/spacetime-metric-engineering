@@ -84,6 +84,13 @@
   },
   "output_sha256": {
     "summary.json": "c21b04747dcae40bf7cd603152aeff26929e96a032c65de56ee8e832def09bd1",
-    "x-2_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_summary.json": "43ce511b3cfb222edd5404b3bb06f9dd18bc6a0eba7768447a6b11e6d2503f5e"
+    "x-2_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_summary.json": "43ce511b3cfb222edd5404b3bb06f9dd18bc6a0eba7768447a6b11e6d2503f5e",
+    "execution_semigroup_source.py": "7abb0ca2103edf6797b9dc33c72ea4d39a17a1ca5ad25b3ed3c6526253d3551c"
+  },
+  "source_snapshot": {
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_semigroup.py": "execution_semigroup_source.py"
+  },
+  "source_snapshot_verification": {
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_semigroup.py": "Recovered execution bytes match the original recorded SHA-256 exactly; numerical products and original input hashes are preserved."
   }
 }

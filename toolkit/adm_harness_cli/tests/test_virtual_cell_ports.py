@@ -123,3 +123,29 @@ def test_known_panel_interpolation_preserves_registered_coefficients(monkeypatch
         for now in np.linspace(t[i],t[i+1],9):
             expected=[np.interp(now,t,values[:,j]) for j in range(2)]
             np.testing.assert_allclose(interp(t,values,now,i),expected,atol=2e-15,rtol=0)
+
+
+def test_execution_snapshot_requires_original_hash_and_separate_manifest_binding(tmp_path,monkeypatch):
+    import hashlib,json
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/'scripts'))
+    import audit_virtual_cell_ports as audit
+    monkeypatch.setattr(audit,'ROOT',tmp_path)
+    monkeypatch.setattr(audit,'verify_registered_model',lambda path:{})
+    source=tmp_path/'archive';source.mkdir()
+    (tmp_path/'solver.py').write_bytes(b'current version')
+    snapshot=source/'execution.py';snapshot.write_bytes(b'original execution')
+    expected=hashlib.sha256(snapshot.read_bytes()).hexdigest()
+    manifest=dict(git_head='unused',input_sha256={'solver.py':expected},
+        source_snapshot={'solver.py':'execution.py'},output_sha256={'execution.py':expected})
+    path=source/'manifest.json';path.write_text(json.dumps(manifest))
+    checked,historical=audit.validate_controls(source,[])
+    assert checked['archive/execution.py']==expected and 'solver.py' not in checked
+    assert historical[0]['verified_at_snapshot']=='archive/execution.py'
+    snapshot.write_bytes(b'altered execution')
+    with pytest.raises(RuntimeError,match='unverified execution snapshot'):
+        audit.validate_controls(source,[])
+    snapshot.write_bytes(b'original execution')
+    manifest['output_sha256']={};path.write_text(json.dumps(manifest))
+    with pytest.raises(RuntimeError,match='unverified execution snapshot'):
+        audit.validate_controls(source,[])

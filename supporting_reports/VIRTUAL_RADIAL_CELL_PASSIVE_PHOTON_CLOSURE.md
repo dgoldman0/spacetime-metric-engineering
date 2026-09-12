@@ -30,22 +30,24 @@ thermal donor bounds. The full stress of this preparation is included.
 
 | Curved replay | First location, `x=-2` | Second location, `x=-1.975` |
 |---|---:|---:|
-| Spatial positions / time nodes | 24 / 1,543 | 36 / 1,543 |
-| Minimum full density margin | `1.02761e-4` | `3.98277e-5` |
-| Largest added fluid density | `6.78e-8` | `5.87e-8` |
-| Largest added receiver density | `1.87e-8` | `1.16e-8` |
-| Largest added balanced radiation density | `9.64e-5` | `0` |
+| Spatial positions / time nodes | 32 / 2,057 | 36 / 1,543 |
+| Minimum full density margin | `1.01450e-4` | `3.98277e-5` |
+| Largest added fluid density | `7.62e-8` | `5.87e-8` |
+| Largest added receiver density | `2.10e-8` | `1.16e-8` |
+| Largest added balanced radiation density | `1.04596e-4` | `0` |
 | Minimum retained fluid temperature parameter | `0.01` | `0.01` |
-| Aggregate energy-panel residual | `5.27e-15` | `8.88e-15` |
+| Aggregate energy-panel residual | `5.37e-15` | `8.88e-15` |
 
-The [first replay](data/virtual_cell_thermal_replay_first_floor001_contacts/summary.json)
+The [first replay](data/virtual_cell_thermal_replay_first_floor001_contacts_refined/summary.json)
 and [second replay](data/virtual_cell_thermal_replay_floor001_contacts_refined/summary.json)
 pass the sampled tensor, wave population, receiver capacity, separately
 rated bank, donor, temperature, conservation, and quadrature checks. The
 initial 0.2% numerical reserve is partly consumed in both cases. At the
 first location, the added radiation brings one directional population to
 its zero boundary; at the second, the minimum directional margin remains
-`6.22e-6`. These histories establish the stated sampled budgets while
+`6.22e-6`. The preceding first-location resolution has density margin
+`1.02761e-4`, while the preceding second-location resolution has margin
+`5.44436e-5`. These histories establish the stated sampled budgets while
 retaining physical contact and force closure as separate requirements.
 
 ## The complementary photons carry a separate power duty
@@ -90,6 +92,12 @@ contact to that fluid cannot supply this sequence. The moment ledger
 alone does not specify spectral occupations or a more general optical
 coupling.
 
+The [first-location contact audit](data/virtual_cell_guided_contact_first_floor001/summary.json)
+also has an empty common interval, requiring `a_2>4747.87` and
+`a_2<0.000238302`. Its separate receiver-bank temperature coefficients
+remain admissible. The grey contact failure therefore occurs in both
+tested local histories.
+
 ## Routing through the existing hot and cold banks
 
 Use proper-label powers `p=D P_counter`, `f=D P_fluid`, and
@@ -123,6 +131,56 @@ The required positive power instead demands hot inventory about
 counted energy and rate allowance directly. It is independent of the
 original hot/cold partition and its temperature coefficients.
 
+## Total stored heat imposes a rate-independent bound
+
+The continuous power source permits an independent storage calculation.
+Its coordinate-time energy rate per material label is
+
+```
+S = N D P_counter
+  = U_0,t + U_0 (log D)_t/3 + Z_0,t - Z_t - K_t/D^(1/3).
+```
+
+The reconstructed receiver derivative is
+`Z_t=L_coord-N q_h+N q_c`. Integrating `max(S,0)` and `max(-S,0)`
+separately gives cumulative photon emission `E_+` and absorption `E_-`.
+The original converter supplies cumulative heat `L_cum`. Even allowing
+all its heat to serve the photon duty and assigning zero initial cold
+inventory, necessary bank ratings obey
+
+```
+H_initial >= max_t {0, E_+(t)-L_cum(t)},
+C_cold,rated >= E_-(t_final),
+C_hot,rated + C_cold,rated <= C_receiver,rated.
+```
+
+The [first](data/virtual_cell_bank_capacity_first_floor001/summary.json)
+and [second](data/virtual_cell_bank_capacity_floor001_refined/summary.json)
+integrated screens give the following worst capacity witnesses:
+
+| Required stored energy | First location | Second location |
+|---|---:|---:|
+| Initial hot energy, favorable lower bound | `4.76495` | `6.93567` |
+| Cold-bank rating, favorable lower bound | `4.80065` | `6.82266` |
+| Combined separate-rating lower bound | `9.56560` | `13.75832` |
+| Original combined receiver rating | `0.26812` | `0.25523` |
+| Required / original combined rating | `35.68` | `53.91` |
+
+The cold-bank requirement alone exceeds the entire original rating by
+about 18 and 27 times. Thus reassigning the two bank ratings or increasing
+contact speed leaves a storage deficit for these fixed histories.
+Meanwhile, the maximum absolute final net photon transfer across the
+sampled positions is only `0.04446` and `0.20007`, respectively. Net energy
+therefore understates the opposed heat transfers by a large amount.
+
+The source is integrated on the exact registered geometry with every
+replay, control, contact, baseline, and metric knot included. Gauss-4 and
+Gauss-8 cumulative energies differ by at most `1.13e-9` and `1.84e-9`.
+These numerical comparisons are small relative to the measured capacity
+deficits. They retain the stated sampled and quadrature scope. Cold-bank
+export is absent in this local route; adding export would require its
+own counted transport and reciprocal power terms.
+
 ## A joint linear test of the bank route
 
 Changing the fluid and receiver histories changes `P_counter`, so the
@@ -155,3 +213,33 @@ provide part of that input. Its future physical bound applies to the
 remaining fluid branch. This test addresses passive bank routing with
 the original component resources; its feasibility alone supplies
 neither an opacity law nor the reciprocal momentum and entropy closure.
+
+The full 515-time, eight-position joint relaxation retains a shared
+phase and the causal work-wave envelopes. Its
+[interior-point comparison](data/virtual_cell_fluid_receiver_bank_counter_relaxation/summary.json)
+returns an unfinished candidate whose largest original constraint
+violation is `0.00156`; independent verification rejects it. A
+[dual-simplex comparison](data/virtual_cell_fluid_receiver_bank_counter_dual/summary.json)
+reaches its 180-second solver limit. Both outcomes leave joint
+feasibility unresolved. The integrated storage bounds above apply to
+the two resolved histories, while the changing joint histories require
+their own feasibility result.
+
+An additional favorable local relaxation isolates this question from
+the large transport solve. It releases shared phase coherence, explicit
+work-wave constraints, guide and interface costs, and contact-rate
+bounds while retaining the local stress, energy, and bank-routing
+equations. Its full physical budget and optional zero thermal floor
+provide a bounded check of the underlying storage requirement.
+
+## Verification record
+
+The focused suite contains 136 transport, thermal, native-solver,
+contact, and capacity tests at this stage. The independent source audit
+checks every archived numerical product and input hash against current
+files, recorded git versions, or separately hashed execution snapshots.
+Three intermediate execution versions were recovered with exact matches
+to their original recorded SHA-256 values. Their snapshots preserve the
+original numerical products and input identities. Snapshot acceptance
+also requires its independent output-manifest hash; the corresponding
+validation regression rejects altered or unbound snapshots.

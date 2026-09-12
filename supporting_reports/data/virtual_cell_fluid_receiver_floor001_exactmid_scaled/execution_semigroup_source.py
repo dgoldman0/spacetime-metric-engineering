@@ -39,11 +39,10 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                thermal_reference_density=None,
                receiver_reference=None,
                receiver_contact=None, split_receiver=False, target_budget_only=False,
-               bank_counter_relaxation=False,
                thermal_particle_number=None, maximize_thermal_floor=False,
                minimum_thermal_floor=None, midpoint_credited_target=None,
                solver_threads=None, solver_method=None, solver_crossover=None,
-               solver_presolve=True, solver_log=False, retain_feasible_interior=False, deadline=180.):
+               solver_log=False, deadline=180.):
     """Frozen-panel transport with independently supplied available stresses.
 
     midpoint_credited_target, when supplied, is the COMPLETE available target
@@ -54,10 +53,6 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     minimum_thermal_floor sets a fixed lower bound on U/(3*N_mass) at nodes
     and midpoints in direct-budget mode, using a single inventory optimization.
     maximize_thermal_floor retains the separate two-stage floor search.
-
-    bank_counter_relaxation routes net counter-photon power through the two
-    receiver banks. Hot donor bounds remain; cold-transfer donor bounds are
-    omitted because the counter photons can supply the cold bank directly.
     """
     if not coherent_cells or not return_heat:
         raise ValueError('exponential gate uses coherent cells and a heat-return stream')
@@ -71,10 +66,6 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     distributed=thermal_eos is not None
     if distributed and (thermal_eos!=1/3 or reservoir_eos is not None):
         raise ValueError('thermal_eos must be 1/3 and uses a separate distributed reservoir')
-    if not isinstance(bank_counter_relaxation,(bool,np.bool_)):
-        raise ValueError('bank_counter_relaxation requires a boolean')
-    if bank_counter_relaxation and (not distributed or not split_receiver):
-        raise ValueError('bank_counter_relaxation requires distributed thermal energy and split_receiver')
     if thermal_reference_density is not None:
         reference=np.asarray(thermal_reference_density,dtype=float)
         if (not distributed or reference.shape!=(nt,nx) or
@@ -136,10 +127,6 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
     if solver_crossover is not None and (
             not isinstance(solver_crossover,(bool,np.bool_)) or method!='highs-ipm'):
         raise ValueError('solver_crossover requires a boolean and highs-ipm')
-    if not isinstance(solver_presolve,(bool,np.bool_)):
-        raise ValueError('solver_presolve requires a boolean')
-    if retain_feasible_interior and (not target_budget_only or maximize_thermal_floor or method!='highs-ipm'):
-        raise ValueError('retaining a feasible interior requires a fixed direct budget and highs-ipm, without floor maximization')
     phase_groups=1 if matched_pair else 2
     A=np.arange(phase_groups*nt).reshape(nt,phase_groups)
     positive=np.arange(phase_groups*(nt-1)).reshape(nt-1,phase_groups)+phase_groups*nt
@@ -406,10 +393,9 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                         ub.add([(receiver_inventory[i,j],1),
                                 (receiver_inventory[i+1,j],-1),
                                 (receiver_inventory[end,j],-rate)],-contact_loss[i,j])
-                        if not bank_counter_relaxation:
-                            ub.add([(receiver_inventory[i+1,j],1),
-                                    (receiver_inventory[i,j],-1),
-                                    (material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))],contact_loss[i,j])
+                        ub.add([(receiver_inventory[i+1,j],1),
+                                (receiver_inventory[i,j],-1),
+                                (material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))],contact_loss[i,j])
                     if split_receiver:
                         dh=[(hot_inventory[i+1,j],1),(hot_inventory[i,j],-1)]
                         dc=[(receiver_inventory[i+1,j],1),(receiver_inventory[i,j],-1)]+[(k,-v) for k,v in dh]
@@ -417,17 +403,7 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                         ub.add([(k,-v) for k,v in dc])  # Q_cold = DeltaCold >= 0.
                         for end in (i,i+1):
                             ub.add([(k,-v) for k,v in dh]+[(hot_inventory[end,j],-rate)],-contact_loss[i,j])
-                            if not bank_counter_relaxation:
-                                ub.add(dc+[(material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))])
-                        if bank_counter_relaxation:
-                            # Ec=(forcing-psi*DeltaK-chi*DeltaZ)/chi.
-                            # -Qc <= Ec <= Qh with Qh=L-DeltaH, Qc=DeltaC
-                            # needs two linear rows and no new power credit.
-                            chi=receiver_weight[i,j]
-                            dk=[(material_inventory[i+1,j],psi),(material_inventory[i,j],-psi)]
-                            ub.add(dk+[(k,chi*v) for k,v in dh],forcing)
-                            ub.add([(k,-v) for k,v in dk]+[(k,-chi*v) for k,v in dc],
-                                   chi*contact_loss[i,j]-forcing)
+                            ub.add(dc+[(material_inventory[end,j],-rate/nodes['D'][end,j]**(1/3))])
         if confine_reservoir: add_confinement(i,True)
         if closed:
             eq.add([(store[i+1],1+dt*work_rate[i]/2),
@@ -465,41 +441,24 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
         cost=np.zeros(columns);cost[temperature_column]=-1
     options={'time_limit':deadline if target_budget_only and not maximize_thermal_floor else deadline/2,'primal_feasibility_tolerance':1e-9,
              'dual_feasibility_tolerance':1e-9,'ipm_optimality_tolerance':1e-10,
-             'small_matrix_value':1e-12,'presolve':bool(solver_presolve)}
+             'small_matrix_value':1e-12}
     if solver_threads is not None:options['threads']=int(solver_threads)
     if solver_crossover is not None:options['run_crossover']='on' if solver_crossover else 'off'
     if solver_log:options['disp']=True
     def optimize():
-        if retain_feasible_interior:
-            from adm_harness.highs_feasible import linprog_feasible
-            return linprog_feasible(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
-                                    method=method,options=options)
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
             return linprog(cost,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
                            method=method,options=options)
     first=optimize()
-    native_metadata={key:first[key] for key in (
-        'verified_feasible','candidate_finite','optimality_certified','feasibility_only_success',
-        'backend_model_status','backend_model_status_code','backend_run_status','backend_load_status',
-        'backend_run_ok','backend_value_valid','maximum_feasibility_violation',
-        'equality_residual','inequality_violation','lower_bound_violation','upper_bound_violation',
-        'backend_reported_primal_infeasibility','backend_reported_dual_infeasibility',
-        'native_version') if key in first}
-    native_metadata={key:(None if isinstance(value,(float,np.floating)) and not np.isfinite(value) else value)
-                     for key,value in native_metadata.items()}
     if not first.success:
         return dict(success=False,status=int(first.status),message=first.message,solver_method=method,
-                    solver_crossover=solver_crossover,solver_presolve=bool(solver_presolve),
-                    solver_iterations=getattr(first,'nit',None),
+                    solver_crossover=solver_crossover,solver_iterations=getattr(first,'nit',None),
                     crossover_iterations=getattr(first,'crossover_nit',None),
                     inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
                     fixed_uniform_fluid_temperature_floor=minimum_thermal_floor,
                     explicit_credited_midpoint_target=midpoint_credited_target is not None,
-                    target_budget_only=bool(target_budget_only),
-                    native_feasible_interior_retention=bool(retain_feasible_interior),
-                    bank_counter_relaxation=bool(bank_counter_relaxation),
-                    receiver_cold_donor_bounds_omitted=bool(bank_counter_relaxation),**native_metadata)
+                    target_budget_only=bool(target_budget_only))
     optimum=float(first.x[epsilon]); bounds[epsilon]=(0.,optimum+1e-10)
     if maximize_thermal_floor:
         maximum_floor=float(first.x[temperature_column])
@@ -556,13 +515,11 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             if receiver_contact is not None:
                 H=contact_loss-np.diff(receiver_energy,axis=0)
                 fluid_energy=k_state/nodes['D']**(1/3)
-                donor_terms=[
+                donor_violation=np.maximum.reduce([
                     H-turnover*contact_duration*receiver_energy[:-1],
-                    H-turnover*contact_duration*receiver_energy[1:]]
-                if not bank_counter_relaxation:
-                    donor_terms.extend([-H-turnover*contact_duration*fluid_energy[:-1],
-                                        -H-turnover*contact_duration*fluid_energy[1:]])
-                donor_violation=np.maximum.reduce(donor_terms)
+                    H-turnover*contact_duration*receiver_energy[1:],
+                    -H-turnover*contact_duration*fluid_energy[:-1],
+                    -H-turnover*contact_duration*fluid_energy[1:]])
                 reservoir.update(receiver_total_contact_panel_heat=H,
                     receiver_converter_loss_panel=contact_loss,
                     receiver_contact_proper_duration=contact_duration,
@@ -571,55 +528,19 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
                 if split_receiver:
                     hot=r.x[hot_inventory];cold=receiver_energy-hot
                     qhot=contact_loss-np.diff(hot,axis=0);qcold=np.diff(cold,axis=0)
-                    hot_donor=np.maximum.reduce([
+                    split_violation=np.maximum.reduce([
                         qhot-turnover*contact_duration*hot[:-1],
-                        qhot-turnover*contact_duration*hot[1:]])
-                    split_violation=hot_donor
-                    if not bank_counter_relaxation:
-                        split_violation=np.maximum.reduce([hot_donor,
-                            qcold-turnover*contact_duration*fluid_energy[:-1],
-                            qcold-turnover*contact_duration*fluid_energy[1:]])
+                        qhot-turnover*contact_duration*hot[1:],
+                        qcold-turnover*contact_duration*fluid_energy[:-1],
+                        qcold-turnover*contact_duration*fluid_energy[1:]])
                     reservoir.update(receiver_hot_energy=hot,receiver_cold_energy=cold,
                         receiver_hot_contact_panel_heat=qhot,receiver_cold_contact_panel_heat=qcold,
                         receiver_hot_rated_capacity=hot.max(axis=0),receiver_cold_rated_capacity=cold.max(axis=0),
                         receiver_split_rating_violation=float(np.maximum(hot.max(axis=0)+cold.max(axis=0)-receiver_cap,0).max()),
                         receiver_split_donor_violation=float(np.maximum(split_violation,0).max()),
-                        receiver_hot_donor_energy_violation=float(np.maximum(hot_donor,0).max()),
                         receiver_split_direction_violation=float(max(0.,-qhot.min(),-qcold.min())),
                         receiver_split_contact_identity=float(abs(qhot-qcold-H).max()),
                         receiver_two_separately_rated_banks=True)
-                    if bank_counter_relaxation:
-                        baseline_panel=reference_power_panel+receiver_reference_panel
-                        thermal_panel=exchange_weight*np.diff(k_state,axis=0)
-                        counter_panel=(baseline_panel-thermal_panel)/receiver_weight-np.diff(receiver_energy,axis=0)
-                        to_counter=np.maximum(counter_panel,0.)
-                        from_counter=np.maximum(-counter_panel,0.)
-                        to_fluid=qhot-to_counter
-                        from_fluid=qcold-from_counter
-                        support_panel=baseline_panel/receiver_weight-contact_loss
-                        fluid_panel=thermal_panel/receiver_weight
-                        routing=max(0.,float((counter_panel-qhot).max()),float((-counter_panel-qcold).max()))
-                        reservoir.update(counter_panel_energy=counter_panel,
-                            bank_hot_to_counter_panel_heat=to_counter,
-                            bank_counter_to_cold_panel_heat=from_counter,
-                            bank_hot_to_fluid_panel_heat=to_fluid,
-                            bank_fluid_to_cold_panel_heat=from_fluid,
-                            bank_fluid_net_contact_panel_heat=to_fluid-from_fluid,
-                            retained_support_to_fluid_panel_energy=support_panel,
-                            actual_fluid_power_panel_energy=fluid_panel,
-                            bank_counter_routing_violation=routing,
-                            bank_fluid_power_identity_residual=float(abs(fluid_panel-support_panel-to_fluid+from_fluid).max()),
-                            bank_counter_energy_identity_residual=float(abs(counter_panel-
-                                (np.diff(u,axis=0)+phase_weight*np.diff(amplitude,axis=0))/receiver_weight).max()),
-                            receiver_contact_energy_to_fluid=-np.diff(receiver_energy-receiver_old,axis=0)-counter_panel,
-                            receiver_contact_destination='fluid and counter photons; exported branches give the actual split',
-                            receiver_contact_energy_to_fluid_convention='increment relative to original fluid contact',
-                            receiver_split_donor_scope='hot-bank donor only; all fluid-as-entire-cold-donor comparisons omitted',
-                            receiver_cold_donor_omissions=['net negative receiver contact versus fluid inventory',
-                                                         'total cold-bank receipt versus fluid inventory'],
-                            bank_counter_relaxation_scope='necessary net bank-power feasibility with counted original capacity; cold-photon donor, opacity, temperatures and force remain unsupplied',
-                            cold_photon_donor_law_supplied=False,bank_contact_temperatures_supplied=False,
-                            bank_counter_opacity_supplied=False)
         floor_violation=np.maximum(2*np.maximum(ua,ur)-balanced_density,0.)
         reservoir.update(thermal_eos=float(thermal_eos),thermal_inventory=k_state,
             thermal_reservoir_rest=buffer_density,balanced_radiation_inventory=u,
@@ -681,24 +602,17 @@ def solve_pair(t, edges, target, nodes, mids, wave_geometry, *, efficiency=1.,
             loss=(1/efficiency-1)*r.x[positive[i,half]]+(1-efficiency)*r.x[negative[i,half]]
             thermal[i+1,sl]=matrix@thermal[i,sl]+response*loss
     eqerror=float(abs(ae@r.x-be).max()); uberror=float(np.maximum(au@r.x-bu,0).max())
-    routing_error=max(reservoir.get(key,0.) for key in (
-        'bank_counter_routing_violation','bank_fluid_power_identity_residual','bank_counter_energy_identity_residual'))
-    return dict(success=eqerror<2e-7 and uberror<2e-7 and routing_error<2e-7,
+    return dict(success=eqerror<2e-7 and uberror<2e-7,
         solver_method=method,
-        status=int(r.status),native_feasible_interior_retention=bool(retain_feasible_interior),
-        **native_metadata,
-        solver_crossover=solver_crossover,solver_presolve=bool(solver_presolve),
-        solver_iterations=getattr(r,'nit',None),
+        solver_crossover=solver_crossover,solver_iterations=getattr(r,'nit',None),
         crossover_iterations=getattr(r,'crossover_nit',None),
         inventory_objective_scale=inventory_cost_scale,solver_matrix_drop_threshold=1e-12,
         target_budget_only=bool(target_budget_only),
-        bank_counter_relaxation=bool(bank_counter_relaxation),
-        receiver_cold_donor_bounds_omitted=bool(bank_counter_relaxation),
         explicit_credited_midpoint_target=midpoint_credited_target is not None,
         minimum_added_density=optimum,exact_added_density=max(confinement_added_density,0.,float(shortfall.max())),
         scaled_equality_residual=eqerror,scaled_inequality_violation=uberror,
         second_optimization_success=None if target_budget_only and not maximize_thermal_floor else bool(second.success),
-        inventory_minimization_success=bool(second.success and getattr(second,'optimality_certified',True)),
+        inventory_minimization_success=bool(second.success),
         matched_pair_phase_history=bool(matched_pair),
         transport_method='positive matrix exponential with node and midpoint budgets',
         guide_drift_bound=guide_drift,guide_field_reused_from_core_and_auxiliary=True,
