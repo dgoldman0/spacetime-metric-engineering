@@ -51,7 +51,7 @@ def evaluate(spec):
             radius=g['radius'][sample,side];ell=kin['ell'][sample,side]
             mean4=panel_mean_ell_squared(model,t,x,4)
             mean8=panel_mean_ell_squared(model,t,x,8)
-            solved=solve_passive_phase(*fields,radius,ell,mean8)
+            solved=solve_passive_phase(*fields,radius,ell,mean8,solver_threads=1)
             scalars={key:value for key,value in solved.items() if np.isscalar(value)}
             label=meta['label']+f'_side{side}_stride{stride}'
             result=dict(label=label,source=str(path.relative_to(ROOT)),position=x,

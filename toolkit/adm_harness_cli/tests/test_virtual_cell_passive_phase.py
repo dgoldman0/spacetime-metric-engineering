@@ -1,7 +1,26 @@
 import numpy as np
 from numpy.testing import assert_allclose
+import pytest
+from scipy.optimize import linprog
 
 from adm_harness.virtual_cell_passive_phase import passive_phase_problem, solve_passive_phase
+
+
+def test_default_solver_reuses_scheduler_after_regular_scipy_solve():
+    regular=linprog([1.],A_ub=[[-1.]],b_ub=[-1.],method='highs')
+    assert regular.success
+    one=np.ones(3);zero=np.zeros(3)
+    result=solve_passive_phase(one,-.2*one,.1*one,zero,one,one,one[:-1])
+    assert result['solver_status']==0
+    assert_allclose(result['density_allowance'],0.,atol=1e-10)
+
+
+def test_explicit_solver_thread_count_requires_positive_integer():
+    one=np.ones(3);zero=np.zeros(3)
+    for invalid in (0,-1,True,np.bool_(True),1.5,'1'):
+        with pytest.raises(ValueError,match='solver_threads'):
+            solve_passive_phase(one,zero,zero,zero,one,one,one[:-1],
+                                solver_threads=invalid)
 
 
 def test_static_positive_material_and_prepared_phase_are_feasible():

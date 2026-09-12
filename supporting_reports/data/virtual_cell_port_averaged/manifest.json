@@ -1,0 +1,50 @@
+{
+  "created_utc": "2026-09-12T21:26:36.949480+00:00",
+  "git_head": "0de47962490e740fc603d99739187a1a4a77ce5d",
+  "input_sha256": {
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "2e3c10f3c1eddbd5d7e0e61d68aae18b2071db25428a2588a58c17894583482a",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "e1e2dbb471c853570bffe2b35babb5c0bab807b9359e65af35ee7be5ad6d3b32",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "1556a2348691b20a7def85d0033f196794b7a87d8acc3360314289b83e37655d",
+    "supporting_reports/data/virtual_cell_averaged_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "1b29951c4ca744e4cee5d85838cd074f51ce77ea85e8840ca43e9ff46b06420c",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/manifest.json": "6f9b95b64f80b1c228e1f362271200f903373886ee3f3af85c576e5e28ece6c9",
+    "toolkit/adm_harness_cli/scripts/average_virtual_cell_controls.py": "188e160b4ad6ef434813513968c02bd0842eefa9d68fd3466d4c189af5d3b866",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_controls.py": "2f56e4793ea041d2140c37732698e0cd41b422bfa5137e6fb6ada61c8ec40b6b",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "397b79426e22137da6c738a1c0dc5da50c84997751889ed0b0a7dab16925aaf4",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "cfebf2287c9c01ebef9c081ce50943c667074a33edd7cdfe0c7aeb105eecdcc3",
+    "supporting_reports/data/joint_refined_response/members_fraction0.99_states.npz": "e478e273adc50871483420d59a53e95ab391e545613a8a0ca4d3e0b2321db3df",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_states.npz": "521ba52e7c70c958d2d9b3dabb26d083fcd000d2f957cef268552cec21c323fc",
+    "supporting_reports/data/virtual_cell_reconstructed_controls/x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_summary.json": "512887429f5ea1adf492c733b5dd0179f82f40e859a4b30b51bd0a6a345d6184",
+    "supporting_reports/data/active_transfer_reservoir/medium_baseline.npz": "15b11464ee0ade315f1b1ac2fe2d4de5b5496a1b13253bdcce51bdec429c8e19",
+    "supporting_reports/data/active_transfer_reservoir/metric_fine.npz": "a525374697bbcbbf054b6c32408a77cd69facd7233397255fe7943eb547e5ec8",
+    "supporting_reports/data/finite_work_interface_recovery/manifest.json": "4a14d556612485eca279028e0444ee6ea46faf7384b275d798813980218c7199",
+    "supporting_reports/data/finite_work_interface/manifest.json": "1d8f056cc9ab85de18463a6b75f14386fc63ccd03e5ec0dc822c9499865a8b73",
+    "supporting_reports/data/charged_capacitor_work_delivery/manifest.json": "06be94fbec6009a167802bf77e802cfbb2503541385c363c1bb12e81bb0c2417",
+    "supporting_reports/data/charged_capacitor_insulation/manifest.json": "5994a08c2cf75a6188914f42226b62e431b12f541252ca690483fd84f0451ff4",
+    "supporting_reports/data/composite_capacitor/manifest.json": "04bad24c00017fafdec5ed790eb2462f6e5c9d7b044e93ccf434fc4006b81e87",
+    "supporting_reports/data/composite_capacitor_transport/manifest.json": "c2d02698bf7e2b8865436d68f626cfb6019da6c2b156192410ddaad691da834a",
+    "supporting_reports/data/joint_backing_link/manifest.json": "8656ba0a94bd6c176bc5528369c659753dc89d96bc51440deb0a9010df095c70",
+    "supporting_reports/data/joint_backing_link_continuation/manifest.json": "7c0a2a048e5b707b619327948eb90a645e99452d7d20005b816689ffe1735714",
+    "supporting_reports/data/joint_support_envelope/manifest.json": "dc8ed58bbf31dc538fc7228745229a60d3af14b48f5ebeff01594dfdc19625fb",
+    "supporting_reports/data/joint_component_cone/manifest.json": "e7637746f09b765e50eec23567263e32756dfa3fe6bddd9e93336af0279b2551",
+    "supporting_reports/data/joint_support_smooth_allocation/manifest.json": "034f36bee263c88464c806da60d0cb0410dd3d1c18b541d0f2c0d5570be505d3",
+    "supporting_reports/data/joint_response_family/manifest.json": "88c626033bb74b32c218cd5e6feaa1a5afd5bbc6ede0dbb5ecea426d39114959",
+    "supporting_reports/data/joint_route_response/manifest.json": "3a18a3c4909bb49468c6b89729b83c28a56f0a71b574cfc811902ad49b6e00b3",
+    "supporting_reports/data/joint_refined_response/manifest.json": "e5fe4ee17b34d4088b6d92e7942ce71ea0393320fc86a1fc0d4957b86258ce3b",
+    "supporting_reports/data/virtual_cell_wave_envelope/manifest.json": "d2c0af64ab08edf127d4f042e3bb2417fb6231ff61b0a88cbead91a414f6ebe9",
+    "supporting_reports/data/virtual_cell_averaged_controls/manifest.json": "3d342a08c1f719389632c67817bb4741deedd5ee61cc992a752ba3d2d2161071"
+  },
+  "historical_source_dependencies": [],
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_ports.py": "a45a04bea445cd9842d9c0a00d2eafcf3285a2a4448d5da353943e958c150c96",
+    "toolkit/adm_harness_cli/adm_harness/virtual_cell_ports.py": "b56e12b9520bc82322d09cca27907bc9d650b230335c4956e8f5566b3c95a486",
+    "toolkit/adm_harness_cli/tests/test_virtual_cell_ports.py": "5628671e2f1d2b66576109814c6b3eaa174edb18614edbcfea69cff594622879",
+    "toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py": "26281c9f623e18ca58d9b6d2681fc5c948ba8924a81ad67f183b9ff28bb848a6"
+  },
+  "output_sha256": {
+    "summary.json": "9a0009adaf59fe21a42d26d4d3cfdff308587fcc00ceedf2a6766eb04063bf77",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "6ee0a7b341c65937cab9f90c582731ec55f5b74aa89103ceadf8fe4e9b30c9b4",
+    "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "740020c716a7db0c123a959e5234f565121c8e2311afdfcaeba8b32b04d3f9d8",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_states.npz": "4b26d07ca80a1f924b352bb919fa809cf040f8e375985cc399810fbfe14214ad",
+    "x-2_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5_factor4_summary.json": "428bed332e1243a8fc51e3a0c321583aaa41ad2e5e80c4c6ae6c63070e0d5e2b"
+  }
+}

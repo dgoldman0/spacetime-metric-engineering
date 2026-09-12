@@ -1,11 +1,17 @@
 # Connections and reciprocal exchange for driven radial cells
 
-The retained cell histories admit a sharper connection test when the work
-beams, their complementary current, and the material traction are considered
-together. The earlier locally confined reservoir failures concern different
-optimized controls from the final externally powered cell comparison. The
-remaining construction question is the reciprocal transport and material
-response of the retained decomposition.
+Sharing the phase between opposed radial-cell feeds preserves the local
+stress-budget pass at both tested locations, removes the central core
+traction jump, and reduces peak net central beam recoil by 99.89% and
+99.18%. Each arm continues to carry appreciable force. The remaining
+construction question is the reciprocal energy exchange and transport of
+the complementary radiation and its material partner. A passive completion
+with zero material-frame power exchange fails for these prescribed controls.
+
+The earlier locally confined reservoir failures concern different optimized
+controls from the final externally powered cell comparison. The present
+audit tests the retained work beams, complementary current, and component
+tractions together, then separately relaxes the phase schedule itself.
 
 This investigation uses the scheduled active-rail patch
 `-2.1 <= x <= -0.5`, `0 <= t <= 1.285`, and the retained `f=0.99` support
@@ -304,6 +310,12 @@ favorable component assumptions. The continuing construction requires joint
 phase and constituent response, with energy exchange, transport, and the
 full target solved together.
 
+The backing target retains its registered continuum force residual of
+approximately `0.3752%` and weighted power residual `1.33e-7`. The local
+optimization certifies its finite input problem; those certificates do not
+bound changes from further refinement or reoptimization of the backing
+itself.
+
 ## Retained common-phase stress comparison
 
 The deterministic averaged phases pass independent changing-geometry replay
@@ -337,3 +349,77 @@ of both signs. The largest resolved magnitudes are `2.21508` and `1.22055`
 in the two pairs. Phase matching retains the useful local stress model and
 removes the core discontinuity, while reciprocal material energy exchange
 remains the limiting physical completion.
+
+## Opposed-feed recoil comparison
+
+The [common-phase port replay](data/virtual_cell_port_averaged/summary.json)
+uses the same transport scheme and resolution as the original port replay.
+Its shared phase balances most of the central recoil while retaining the
+gross work delivery and heat-return duties.
+
+| Pair center | Original peak net beam reaction | Common-phase peak net beam reaction | Reduction | Largest common-phase arm reaction |
+| --- | ---: | ---: | ---: | ---: |
+| -2 | 0.89677449 | 0.000971147 | 99.8917% | 0.450558 |
+| -1.975 | 0.18671659 | 0.001538490 | 99.1760% | 0.647610 |
+
+Forces use the common material frame, proper time, and spherical `4 pi`
+normalization defined above. Opposite arm forces account for the small net
+reaction; their individual connections still transmit the tabulated loads.
+The central core traction jump is exactly zero in both cases. The different
+metric paths leave a small residual beam asymmetry even with identical
+phase histories.
+
+| Pair center | Incident work | Useful return | Heat return | Signed beam energy entering cells | Signed radial beam impulse |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| -2 | 0.05544427 | 0.05473690 | 0.00222630 | -0.00151893 | -0.000133258 |
+| -1.975 | 0.07172822 | 0.06448985 | 0.00275110 | 0.00448727 | -0.000172295 |
+
+If the allocated minimum counterstream crosses the same cut, its energy
+current cancels the beam current and its pressure contributes to the
+reaction. The conditional complete-radiation peaks are `0.001907653` and
+`0.003017384`. This calculation supplies the kinematic port requirement;
+the counterstream's transport, energy exchange, and material attachments
+remain to be constructed.
+
+The port wave fields agree with the independent common-phase stress replay
+within `2.503e-12`. The resulting conservative density-budget perturbation
+bound is `1.502e-11`, well below the retained margins. Physical-time ADM
+wave balances, including the summed ledgers, close within `5e-18`. The two
+cases take 5.80 and 6.01 minutes with two independent workers and retain
+approximately 71 MB of evidence.
+
+## Construction boundary and reproducibility
+
+The retained result is a common-phase cell pair with a verified local
+stress allowance and substantially balanced central recoil. Physical
+completion requires a joint phase, radiation, and material exchange law
+whose constituents supply opposite four-forces and whose stresses remain
+within the complete allocation. The endpoint medium, pressure link, and
+standing support already carry assigned duties; any participation in this
+exchange must enter their existing budgets and evolution equations.
+
+The passive fixed-control route reaches its energy/cone boundary in this
+round. Allowing the phase itself to change opens the favorable local gate
+near `x=-2`, while the second location retains a small sampled deficit.
+These distinct outcomes support keeping the common-phase control and
+reformulating the reciprocal constituent dynamics before extending the
+material search. A complete active-rail source and sustained operation
+remain open.
+
+The focused control, transport, counterstream, passive-phase, and interface
+suite passes 58 tests. The final port checks also cover linked model
+identity, tampered inputs, and equivalence of interpolation on known time
+panels. Library use preserves the initialized HiGHS thread configuration;
+fresh audit workers explicitly request one solver thread. This avoids a
+process-global scheduler conflict while preserving the archived numerical
+problems.
+
+Every calculation directory links its controls, target geometry, numerical
+outputs, and source versions through SHA-256 manifests. Earlier source
+versions remain recoverable from the staged commits. Verification of all
+13 calculation manifests checks 698 file references, including nine
+historical source versions. The port runner
+accepts `--source`, `--output-name`, `--factor`, and `--workers`; the recorded
+comparison uses factor 4 and two workers. The counterstream and passive-phase
+audit scripts reproduce the separate source and energy/cone tests from the
+registered histories.

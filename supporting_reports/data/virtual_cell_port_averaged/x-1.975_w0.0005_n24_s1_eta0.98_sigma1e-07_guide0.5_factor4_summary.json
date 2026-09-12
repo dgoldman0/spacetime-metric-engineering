@@ -1,0 +1,219 @@
+{
+  "label": "x-1.975_w0.0005_n24_s1_eta0.98_sigma1e-07_guide0.5",
+  "factor": 4,
+  "center": -1.975,
+  "time_start": 0.0,
+  "time_end": 1.285,
+  "spatial_samples": 96,
+  "time_samples": 2057,
+  "synchronized_port_samples": 417427,
+  "subledger": "drive/return photons only; excludes counterstream, connector and material attachments",
+  "energy_convention": "material-frame photon energy integrated per coordinate time; 4*pi spherical normalization",
+  "radial_sign": "positive toward increasing x in the common material tetrad; sphere-integrated radial component",
+  "beam_incident_energy_by_side": [
+    0.03581910021238525,
+    0.03590911613272699
+  ],
+  "beam_useful_return_energy_by_side": [
+    0.03220548905831473,
+    0.03228435723022439
+  ],
+  "beam_returned_heat_energy_by_side": [
+    0.0013738446605629617,
+    0.0013772552034391002
+  ],
+  "beam_incident_energy": 0.07172821634511227,
+  "beam_useful_return_energy": 0.06448984628853915,
+  "beam_returned_heat_energy": 0.002751099864002058,
+  "beam_signed_net_energy_to_cells": 0.004487270192571065,
+  "beam_signed_port_reaction_impulse_by_side": [
+    0.06939843393126292,
+    -0.06957072856639049
+  ],
+  "beam_signed_port_reaction_impulse": -0.00017229463512763023,
+  "beam_peak_proper_power": {
+    "incident": {
+      "maximum": 1.2684337431650103,
+      "minimum": 0.0,
+      "maximum_absolute": 1.2684337431650103
+    },
+    "useful": {
+      "maximum": 0.7274423136648346,
+      "minimum": 0.0,
+      "maximum_absolute": 0.7274423136648346
+    },
+    "heat": {
+      "maximum": 0.025396971832606658,
+      "minimum": 0.0,
+      "maximum_absolute": 0.025396971832606658
+    }
+  },
+  "beam_peak_coordinate_power": {
+    "incident": {
+      "maximum": 6.3276573721129825,
+      "minimum": 0.0,
+      "maximum_absolute": 6.3276573721129825
+    },
+    "useful": {
+      "maximum": 4.734266315661677,
+      "minimum": 0.0,
+      "maximum_absolute": 4.734266315661677
+    },
+    "heat": {
+      "maximum": 0.1268638294106778,
+      "minimum": 0.0,
+      "maximum_absolute": 0.1268638294106778
+    }
+  },
+  "beam_port_reaction_proper": {
+    "maximum": 0.0,
+    "minimum": -0.0015384897821307034,
+    "maximum_absolute": 0.0015384897821307034
+  },
+  "beam_port_reaction_proper_by_side": [
+    {
+      "maximum": 0.6460755949591196,
+      "minimum": 0.0,
+      "maximum_absolute": 0.6460755949591196
+    },
+    {
+      "maximum": -0.0,
+      "minimum": -0.6476099203297553,
+      "maximum_absolute": 0.6476099203297553
+    }
+  ],
+  "beam_port_signed_supply_proper": {
+    "maximum": 1.2617279293359216,
+    "minimum": -0.7422880751681987,
+    "maximum_absolute": 1.2617279293359216
+  },
+  "peak_observation_scope": "synchronized corrected SSP substep states; integrals use both RK stages",
+  "maximum_absolute_ADM_wave_balance_residual": 3.903127820947816e-18,
+  "ADM_wave_ledger_columns": [
+    "boundary",
+    "geometric",
+    "conversion_source",
+    "inventory_change",
+    "balance_residual",
+    "material_port_traffic"
+  ],
+  "ADM_wave_totals": {
+    "incident_0": {
+      "boundary": 0.035819100212347445,
+      "geometric": 2.66470896448728e-05,
+      "conversion_source": -0.035845747301992296,
+      "inventory_change": 7.623296525288703e-20,
+      "balance_residual": 1.7391705097813773e-18,
+      "material_port_traffic": 0.03581910021238525
+    },
+    "useful_0": {
+      "boundary": -0.03220548905832235,
+      "geometric": -1.366234818237951e-05,
+      "conversion_source": 0.03221915140650472,
+      "inventory_change": 5.69442838003606e-20,
+      "balance_residual": 1.1871844573837958e-18,
+      "material_port_traffic": 0.03220548905831473
+    },
+    "heat_0": {
+      "boundary": -0.0013738446605638503,
+      "geometric": -6.039876510552381e-07,
+      "conversion_source": 0.001374448648214905,
+      "inventory_change": 5.411688193511061e-22,
+      "balance_residual": 3.298029705338626e-20,
+      "material_port_traffic": 0.0013738446605629617
+    },
+    "incident_1": {
+      "boundary": 0.03590911613276489,
+      "geometric": -1.630473910526955e-05,
+      "conversion_source": -0.03589281139365964,
+      "inventory_change": -3.049318610115481e-20,
+      "balance_residual": -4.7973433870620246e-18,
+      "material_port_traffic": 0.03590911613272699
+    },
+    "useful_1": {
+      "boundary": -0.03228435723021674,
+      "geometric": 2.3871165120811967e-05,
+      "conversion_source": 0.03226048606509594,
+      "inventory_change": 3.0774933307024087e-20,
+      "balance_residual": 4.464428603175119e-18,
+      "material_port_traffic": 0.03228435723022439
+    },
+    "heat_1": {
+      "boundary": -0.0013772552034382092,
+      "geometric": 1.0217089318899358e-06,
+      "conversion_source": 0.0013762334945063147,
+      "inventory_change": 8.260430108372685e-22,
+      "balance_residual": -2.67840291268581e-20,
+      "material_port_traffic": 0.0013772552034391002
+    }
+  },
+  "ADM_initial_final_inventory": {
+    "incident_0": [
+      0.0,
+      0.0
+    ],
+    "useful_0": [
+      0.0,
+      0.0
+    ],
+    "heat_0": [
+      0.0,
+      0.0
+    ],
+    "incident_1": [
+      0.0,
+      0.0
+    ],
+    "useful_1": [
+      0.0,
+      0.0
+    ],
+    "heat_1": [
+      0.0,
+      0.0
+    ]
+  },
+  "maximum_required_counterstream_density": 0.00612031341560082,
+  "maximum_counterstream_rest_inventory": 0.0013876923290610447,
+  "counterstream_initial_final_rest_inventory": [
+    0.0,
+    0.0
+  ],
+  "wave_signed_radial_inventory_initial_final": [
+    0.0,
+    0.0
+  ],
+  "maximum_absolute_wave_signed_radial_inventory": 1.727711594882669e-06,
+  "counterstream_transport_supplied": false,
+  "same_cut_counterstream_completion": "pointwise kinematic null tensor only; transport, exchange and delivery unspecified",
+  "same_cut_counterstream_peak_signed_proper_flux_by_side": [
+    {
+      "maximum": 0.63011925472925,
+      "minimum": -0.37064055908889415,
+      "maximum_absolute": 0.63011925472925
+    },
+    {
+      "maximum": 0.3716475160793045,
+      "minimum": -0.6316086746066716,
+      "maximum_absolute": 0.6316086746066716
+    }
+  ],
+  "same_cut_counterstream_peak_density_by_side": [
+    0.006105953485928419,
+    0.00612038619596592
+  ],
+  "same_cut_completed_current_maximum_residual": 0.0,
+  "same_cut_completed_signed_energy_supply_maximum_residual": 0.0,
+  "same_cut_completed_radiation_port_reaction_proper": {
+    "maximum": 0.0,
+    "minimum": -0.003017384169772502,
+    "maximum_absolute": 0.003017384169772502
+  },
+  "maximum_absolute_core_phase_traction_jump": 0.0,
+  "core_phase_traction_jump_extreme_time": 0.0,
+  "core_phase_traction_convention": "4*pi*(A_right-A_left), proper force on common interface; excludes attachment/inertia",
+  "simultaneous_conversion_increment": 0.0,
+  "original_stress_budget_retested": false,
+  "full_external_power_or_mechanical_closure": false,
+  "elapsed_seconds": 347.72630867082626
+}

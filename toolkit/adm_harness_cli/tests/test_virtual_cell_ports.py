@@ -86,3 +86,40 @@ def test_refuse_invalid_port_and_step_schedule():
         instrumented_propagate([0.,1.],[0.,1.],c,lambda t:(1.,1.),port_face=1)
     with pytest.raises(ValueError):
         instrumented_propagate([0.,1.],[0.,1.],c,lambda t:(1.,1.),port_face=0,substeps=[0])
+
+
+def test_linked_model_identity_and_tampering(tmp_path,monkeypatch):
+    import hashlib
+    import json
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/'scripts'))
+    from audit_virtual_cell_ports import verify_registered_model
+    folder=tmp_path/'supporting_reports/data/active_transfer_reservoir'; folder.mkdir(parents=True)
+    hashes={}
+    for filename in ('metric_fine.npz','medium_baseline.npz'):
+        path=folder/filename; path.write_bytes(filename.encode())
+        hashes[str(path.relative_to(tmp_path))]=hashlib.sha256(path.read_bytes()).hexdigest()
+    linked=tmp_path/'older/manifest.json'; linked.parent.mkdir()
+    linked.write_text(json.dumps(dict(input_sha256=hashes)))
+    source=tmp_path/'manifest.json'
+    source.write_text(json.dumps(dict(input_sha256={str(linked.relative_to(tmp_path)):
+        hashlib.sha256(linked.read_bytes()).hexdigest()})))
+    verified=verify_registered_model(source,tmp_path)
+    assert all(verified[key]==value for key,value in hashes.items())
+    (folder/'metric_fine.npz').write_bytes(b'changed model')
+    with pytest.raises(RuntimeError,match='changed registered model'):
+        verify_registered_model(source,tmp_path)
+    linked.write_text('{}')
+    with pytest.raises(RuntimeError,match='changed model-manifest link'):
+        verify_registered_model(source,tmp_path)
+
+
+def test_known_panel_interpolation_preserves_registered_coefficients(monkeypatch):
+    from pathlib import Path
+    monkeypatch.syspath_prepend(str(Path(__file__).resolve().parents[1]/'scripts'))
+    from audit_virtual_cell_ports import interp
+    t=np.array([0.,.07,.2,1.285]); values=np.array([[1.,2.],[4.,-3.],[.4,.1],[2.,3.]])
+    for i in range(len(t)-1):
+        for now in np.linspace(t[i],t[i+1],9):
+            expected=[np.interp(now,t,values[:,j]) for j in range(2)]
+            np.testing.assert_allclose(interp(t,values,now,i),expected,atol=2e-15,rtol=0)

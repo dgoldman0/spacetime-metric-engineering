@@ -55,20 +55,30 @@ A uniform density allowance epsilon is added to rho in all three facets.
 
 
 def solve_passive_phase(density, radial, angular, wall, radius, ell,
-                        panel_mean_ell_squared):
-    """Solve the sampled LP and retain a checkable bounded-domain dual witness."""
+                        panel_mean_ell_squared, *, solver_threads=None):
+    """Solve the sampled LP and retain a checkable bounded-domain dual witness.
+
+The default reuses HiGHS' process-global thread configuration. An explicit
+thread count is intended for fresh workers whose scheduler is uninitialized.
+"""
+    if solver_threads is not None and (
+            isinstance(solver_threads,(bool,np.bool_)) or
+            not isinstance(solver_threads,(int,np.integer)) or solver_threads<1):
+        raise ValueError('solver_threads must be a positive integer or None')
     problem=passive_phase_problem(density,radial,angular,wall,radius,ell,
                                  panel_mean_ell_squared)
     a=problem['inequality'];b=problem['rhs'];e=problem['equality']
     upper=problem['upper'];cost=problem['cost'];n=problem['node_count']
-    # The HiGHS thread limit is passed through by scipy. Every independent
-    # location can be scheduled by the caller without solver oversubscription.
+    options=dict(primal_feasibility_tolerance=1e-9,
+                 dual_feasibility_tolerance=1e-9,time_limit=90.)
+    if solver_threads is not None:options['threads']=int(solver_threads)
+    # SciPy passes the optional limit through to HiGHS. Library callers can
+    # reuse an initialized scheduler; fresh spawned workers can limit threads.
     with warnings.catch_warnings():
         warnings.filterwarnings('ignore',message='Unrecognized options detected',category=OptimizeWarning)
         result=linprog(cost,A_ub=a,b_ub=b,A_eq=e,b_eq=np.zeros(n-1),
             bounds=np.column_stack([np.zeros_like(upper),upper]),method='highs-ds',
-            options=dict(threads=1,primal_feasibility_tolerance=1e-9,
-                         dual_feasibility_tolerance=1e-9,time_limit=90.))
+            options=options)
     if not result.success:
         raise RuntimeError('passive phase LP failed: '+result.message)
     x=result.x;y=np.minimum(result.ineqlin.marginals,0.)

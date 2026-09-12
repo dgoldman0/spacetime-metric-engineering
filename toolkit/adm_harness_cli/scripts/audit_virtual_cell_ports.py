@@ -14,7 +14,7 @@ import numpy as np
 
 from adm_harness.virtual_cell_ports import (instrumented_propagate, beam_port_moments,
     counterstream_moments, phase_port_traction)
-from audit_joint_dense_work import DenseHistory
+from adm_harness.active_transfer_reservoir import TabulatedActiveMedium
 from run_poynting_delivery import BASE, ROOT, write_json
 
 
@@ -22,10 +22,35 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def interp(grid, values, now):
-    i=int(np.clip(np.searchsorted(grid,now,side='right')-1,0,len(grid)-2))
+def interp(grid, values, now, interval):
+    i=interval
     f=(now-grid[i])/(grid[i+1]-grid[i])
     return (1-f)*values[i]+f*values[i+1]
+
+
+def verify_registered_model(source_manifest, root=ROOT):
+    """Find the two model identities through hash-verified upstream manifests."""
+    root=Path(root); source_manifest=Path(source_manifest)
+    required={'supporting_reports/data/active_transfer_reservoir/'+name
+              for name in ('metric_fine.npz','medium_baseline.npz')}
+    pending=[source_manifest]; visited=set(); verified={}
+    while pending and required:
+        path=pending.pop(0)
+        if path.resolve() in visited: continue
+        visited.add(path.resolve())
+        inputs=json.loads(path.read_text()).get('input_sha256',{})
+        for relative in list(required):
+            if relative in inputs:
+                if sha(root/relative)!=inputs[relative]:
+                    raise RuntimeError('changed registered model: '+relative)
+                verified[relative]=inputs[relative]; required.remove(relative)
+        for relative,expected in inputs.items():
+            linked=root/relative
+            if linked.name=='manifest.json' and linked.resolve() not in visited:
+                if sha(linked)!=expected: raise RuntimeError('changed model-manifest link: '+relative)
+                verified[relative]=expected; pending.append(linked)
+    if required: raise RuntimeError('missing registered model identities: '+', '.join(sorted(required)))
+    return verified
 
 
 def validate_controls(source, labels):
@@ -62,6 +87,7 @@ def validate_controls(source, labels):
                 current_sha256=current,verified_at_commit=verified))
         else:
             raise RuntimeError('changed input data: '+relative)
+    checked.update(verify_registered_model(manifest_path))
     checked[str(manifest_path.relative_to(ROOT))]=sha(manifest_path)
     return checked,historical
 
@@ -82,7 +108,8 @@ def audit(spec):
     edges=np.linspace(z['edges'][0],z['edges'][-1],oldn*factor+1)
     x=(edges[:-1]+edges[1:])/2; nx=len(x); half=nx//2; dx=edges[1]-edges[0]
     center=(edges[0]+edges[-1])/2
-    h=DenseHistory('routed_family',ROOT/meta['input']); model=h.h.reference.h.model
+    model=TabulatedActiveMedium(BASE/'active_transfer_reservoir/metric_fine.npz',
+                               BASE/'active_transfer_reservoir/medium_baseline.npz')
     geom=[model.metric(float(now),x) for now in t]
     edgegeom=[model.metric(float(now),edges) for now in t]
     b=np.array([g.b for g in geom]); radius=np.array([g.radius for g in geom])
@@ -111,10 +138,10 @@ def audit(spec):
             tab=tables[sign]; faces=tab['faces'][:,side*half:(side+1)*half+1]
             def coefficients(now,interval):
                 original=min(interval//factor,len(oldt)-2)
-                return (interp(t,faces,now),interp(t,tab['gain'][:,sl],now),
-                        interp(t,tab['source'][:,sl],now)*rates[original])
+                return (interp(t,faces,now,interval),interp(t,tab['gain'][:,sl],now,interval),
+                        interp(t,tab['source'][:,sl],now,interval)*rates[original])
             def port_geometry(now):
-                return interp(t,tab['boost'],now),interp(t,port_lapse,now)
+                return np.interp(now,t,tab['boost']),np.interp(now,t,port_lapse)
             result=instrumented_propagate(t,edges[side*half:(side+1)*half+1],coefficients,
                 port_geometry,port_face=-1 if side==0 else 0,backwards=back,substeps=counts)
             key=purpose+'_'+str(side)
@@ -222,7 +249,7 @@ def main():
     inputs,historical=validate_controls(source,labels)
     runtime=[Path(__file__),ROOT/'toolkit/adm_harness_cli/adm_harness/virtual_cell_ports.py',
         ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_ports.py',
-        Path(__file__).with_name('audit_joint_dense_work.py')]
+        ROOT/'toolkit/adm_harness_cli/adm_harness/active_transfer_reservoir.py']
     output.mkdir()
     specs=[(str(source),label,args.factor,str(output)) for label in labels]
     with ProcessPoolExecutor(max_workers=min(args.workers,len(specs)),mp_context=multiprocessing.get_context('spawn')) as pool:

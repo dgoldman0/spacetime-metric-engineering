@@ -15,6 +15,16 @@ restraint again exceeds the budget; the selected histories also conflict
 with the existing angular jackets. A connected power and axial-support
 implementation remains the required broader construction.
 
+The [connection and reciprocal-exchange audit](VIRTUAL_RADIAL_CELL_CONNECTION_AUDIT.md)
+tests the accepted cell controls directly. A shared phase across opposed
+feeding regions preserves their local stress budgets and removes the middle
+core traction jump. The minimum balancing current also requires its own
+energy exchange with a counted constituent. Its passive completion fails
+for those controls, including the shared-phase continuation; independently
+reoptimized local phase histories retain a more limited energy/cone opening.
+The isolated-store loads above remain specific to their archived storage
+histories.
+
 The calculation uses the scheduled active-rail backing, pressure link, and
 standing-support connections from the
 [scalar/flux construction](SCALAR_FLUX_SUPPORT_CONSTRUCTION.md). The
