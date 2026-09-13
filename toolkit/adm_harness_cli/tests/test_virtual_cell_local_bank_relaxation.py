@@ -130,3 +130,71 @@ def test_recursive_data_provenance_pins_model_and_receiver_without_old_python(tm
     data.write_bytes(b'changed receiver')
     with pytest.raises(RuntimeError,match='changed upstream data: receiver.npz'):
         local.verified_data_dependencies(source,tmp_path)
+
+
+def _pin_histories(monkeypatch, histories):
+    """Fix a physical witness while leaving the original LP checks intact."""
+    original=local.linprog
+    def pinned(cost,**kwargs):
+        bounds=np.array(kwargs['bounds'],copy=True)
+        for block,values in enumerate(histories):
+            for i,value in enumerate(values):bounds[block*len(values)+i]=value
+        return original(cost,**dict(kwargs,bounds=bounds))
+    monkeypatch.setattr(local,'linprog',pinned)
+
+
+def test_hot_donor_rejects_zero_inventory_converter_passthrough(monkeypatch):
+    args,options=problem();t=args[0];zero=np.zeros(len(t))
+    _pin_histories(monkeypatch,[zero,np.full(len(t),.1),.1*t,zero,zero])
+    options.update(reference_thermal_energy=.1*t,
+        midpoint_reference_thermal_energy=.1*(t[:-1]+t[1:])/2,
+        reference_receiver_energy=zero,midpoint_reference_receiver_energy=zero[:-1],
+        converter_loss=.02*np.diff(t),temperature_floor=0.,proper_duration=np.diff(t))
+    unbounded,_=local.solve_local(*args,**options)
+    bounded,_=local.solve_local(*args,hot_donor_turnover=10.,**options)
+    assert unbounded['success']
+    assert not bounded['success'] and bounded['status']==2
+    assert bounded['hot_endpoint_donor_bound_enforced']
+    assert bounded['local_necessary_relaxation_passes'] is False
+
+
+def test_prepared_hot_inventory_covers_finite_endpoint_donor_rows(monkeypatch):
+    args,options=problem();t=args[0];zero=np.zeros(len(t))
+    _pin_histories(monkeypatch,[zero,np.full(len(t),.1),.1*t,np.full(len(t),.1),zero])
+    options.update(reference_thermal_energy=.1*t,
+        midpoint_reference_thermal_energy=.1*(t[:-1]+t[1:])/2,
+        reference_receiver_energy=zero,midpoint_reference_receiver_energy=zero[:-1],
+        converter_loss=.02*np.diff(t),temperature_floor=0.,proper_duration=np.diff(t))
+    result,state=local.solve_local(*args,hot_donor_turnover=1.,**options)
+    assert result['success'] and result['original_lp_rows_and_bounds_verified']
+    assert_allclose(state['hot_endpoint_donor_margin'],.08*np.diff(t)[None,:]+np.zeros((2,len(t)-1)))
+    assert result['hot_endpoint_donor_violation']==0.
+    assert sum('hot_donor_endpoint' in tag for tag in state['lp_inequality_labels'])==2*(len(t)-1)
+
+
+def test_conservative_cold_bound_can_reject_valid_photon_supplied_receipt(monkeypatch):
+    args,options=problem();t=args[0];zero=np.zeros(len(t))
+    _pin_histories(monkeypatch,[zero,.5-.2*t,zero,zero,.2*t])
+    options.update(reference_thermal_energy=zero,midpoint_reference_thermal_energy=zero[:-1],
+        reference_receiver_energy=zero,midpoint_reference_receiver_energy=zero[:-1],
+        converter_loss=zero[:-1],temperature_floor=0.,proper_duration=np.diff(t))
+    relaxed,state=local.solve_local(*args,hot_donor_turnover=10.,**options)
+    conservative,_=local.solve_local(*args,hot_donor_turnover=10.,cold_fluid_donor_turnover=10.,**options)
+    assert relaxed['success']
+    assert_allclose(state['counter_to_cold_panel_heat'],.2*np.diff(t),atol=1e-12)
+    assert not conservative['success'] and conservative['status']==2
+    assert conservative['local_necessary_relaxation_passes'] is None
+    assert conservative['local_conservative_donor_comparison_passes'] is False
+    assert conservative['cold_fluid_bound_is_sufficient_conservative_comparison']
+
+
+def test_donor_options_require_positive_turnover_and_proper_duration():
+    args,options=problem()
+    for key in ('hot_donor_turnover','cold_fluid_donor_turnover'):
+        for invalid in (0.,-1.,float('nan'),True):
+            with pytest.raises(ValueError,match=key):
+                local.solve_local(*args,**dict(options,**{key:invalid}))
+        with pytest.raises(ValueError,match='proper_duration'):
+            local.solve_local(*args,**dict(options,**{key:10.}))
+        with pytest.raises(ValueError,match='proper duration'):
+            local.solve_local(*args,**dict(options,proper_duration=np.zeros(4),**{key:10.}))

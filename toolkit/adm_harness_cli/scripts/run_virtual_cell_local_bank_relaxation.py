@@ -60,7 +60,8 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
                 reference_thermal_energy, midpoint_reference_thermal_energy,
                 reference_receiver_energy, midpoint_reference_receiver_energy,
                 cold_mass, receiver_capacity, converter_loss, temperature_floor=.01,
-                bank_routing=True, method='highs', deadline=60.):
+                bank_routing=True, method='highs', deadline=60., proper_duration=None,
+                hot_donor_turnover=None, cold_fluid_donor_turnover=None):
     """Check one material label; target inputs exclude reopened U0 and Z0.
 
     A,V,K,H,C are local nonnegative inventories. Stress uses actual geometry
@@ -68,6 +69,12 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
     registered frozen-panel weights. The false bank_routing option provides
     a manufactured comparison with unrestricted counter/material exchange;
     project runners always enforce the routing rows.
+
+    Optional donor comparisons use the actual energy at both panel endpoints.
+    The hot comparison bounds total hot withdrawal. The optional cold-fluid
+    comparison charges every cold receipt against the fluid, including heat
+    supplied by photons; it defines a sufficient conservative comparison and
+    its failure supplies no necessary-gate rejection.
     """
     t=np.asarray(t,float);nt=len(t)
     if t.ndim!=1 or nt<2 or not np.isfinite(t).all() or np.any(np.diff(t)<=0):
@@ -89,6 +96,17 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
     Z0=_vector(reference_receiver_energy,nt,'reference Z',nonnegative=True)
     Z0m=_vector(midpoint_reference_receiver_energy,nt-1,'midpoint reference Z',nonnegative=True)
     loss=_vector(converter_loss,nt-1,'converter loss',nonnegative=True)
+    for name,value in (('hot_donor_turnover',hot_donor_turnover),
+                       ('cold_fluid_donor_turnover',cold_fluid_donor_turnover)):
+        if value is not None and (isinstance(value,(bool,np.bool_)) or
+                not isinstance(value,(int,float,np.integer,np.floating)) or
+                not np.isfinite(value) or value<=0):
+            raise ValueError(name+' must be a finite positive scalar or None')
+    donors_active=hot_donor_turnover is not None or cold_fluid_donor_turnover is not None
+    duration=(_vector(proper_duration,nt-1,'proper duration',positive=True)
+              if proper_duration is not None else None)
+    if donors_active and duration is None:
+        raise ValueError('donor comparisons require positive proper_duration')
     if max(Z0.max(),Z0m.max())>receiver_capacity+1e-10:
         raise ValueError('reference receiver exceeds original capacity')
     B0,B0m=U0/nodes['D'],U0m/mids['D']
@@ -128,6 +146,14 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
                forcing[i],f'panel:{i}:original_energy')
         ub.add(delta('H'),loss[i],f'panel:{i}:hot_direction')
         ub.add(delta('C',-1),0.,f'panel:{i}:cold_direction')
+        for end in (i,i+1):
+            if hot_donor_turnover is not None:
+                ub.add(delta('H',-1)+[(ids['H'][end],-hot_donor_turnover*duration[i])],
+                       -loss[i],f'panel:{i}:hot_donor_endpoint:{end}')
+            if cold_fluid_donor_turnover is not None:
+                ub.add(delta('C')+[(ids['K'][end],
+                    -cold_fluid_donor_turnover*duration[i]/nodes['D'][end]**(1/3))],
+                    0.,f'panel:{i}:conservative_cold_fluid_donor_endpoint:{end}')
         if bank_routing:
             ub.add(delta('K',psi[i])+delta('H',chi[i]),forcing[i],f'panel:{i}:routing_lower')
             ub.add(delta('K',-psi[i])+delta('C',-chi[i]),chi[i]*loss[i]-forcing[i],f'panel:{i}:routing_upper')
@@ -141,19 +167,33 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
     check=verify_candidate(cost,result.x,A_eq=ae,b_eq=be,A_ub=au,b_ub=bu,bounds=bounds,
                            feasibility_tolerance=2e-7)
     passed=bool(result.success and check.verified_feasible)
-    summary=dict(success=passed,local_necessary_relaxation_passes=passed,target_budget_passes=passed,
+    omissions=['explicit work-wave transport','wave population floors','guide and new interface costs',
+               'shared spatial phase coherence','photon donor-rate law']
+    if hot_donor_turnover is None:omissions.append('hot donor-rate limits')
+    if cold_fluid_donor_turnover is None:omissions.append('fluid-to-cold donor-rate limits')
+    conservative_cold=cold_fluid_donor_turnover is not None
+    summary=dict(success=passed,
+        local_necessary_relaxation_passes=passed if not conservative_cold else None,
+        local_conservative_donor_comparison_passes=passed if conservative_cold else None,
+        target_budget_passes=passed,
         ordinary_solver_success=bool(result.success),status=int(result.status),message=str(result.message),
         solver_method=method,solver_seconds=time.monotonic()-started,solver_deadline=float(deadline),
         solver_iterations=int(result.nit),variables=columns,equalities=len(be),inequalities=len(bu),
         original_lp_rows_and_bounds_verified=bool(check.verified_feasible),
         candidate_finite=bool(check.candidate_finite),temperature_floor=float(temperature_floor),
         bank_routing_enforced=bool(bank_routing),added_density=0.,reserved_density_fraction=0.,
+        hot_donor_turnover=hot_donor_turnover,cold_fluid_donor_turnover=cold_fluid_donor_turnover,
+        hot_endpoint_donor_bound_enforced=hot_donor_turnover is not None,
+        total_cold_receipt_fluid_donor_bound_enforced=conservative_cold,
+        cold_fluid_bound_is_sufficient_conservative_comparison=conservative_cold,
+        donor_comparison_scope='frozen-panel heat bounded by turnover times exact proper panel duration times actual endpoint donor energy',
         original_cold_rest_mass_retained=True,original_receiver_containment_retained=True,
         baseline_stress_and_power_credited_once=True,
-        omitted_constraints=['explicit work-wave transport','wave population floors','guide and new interface costs',
-            'shared spatial phase coherence','all hot and cold donor-rate limits'],
+        omitted_constraints=omissions,
         full_source_construction_supplied=False,
-        scope='favorable local net-bank-power necessity gate with full physical target, sampled stress and frozen-panel energy; transport, coherence, finite rates, optical and mechanical realization remain separate')
+        scope=('local net-bank-power gate with conservative total-cold-receipt fluid-donor comparison; a failure of this comparison does not reject photon-supplied cold transfer'
+               if conservative_cold else
+               'favorable local net-bank-power necessity gate with full physical target, sampled stress and frozen-panel energy; configured hot donor limits are endpoint comparisons; transport, coherence, optical and mechanical realization remain separate'))
     for key in ('equality_residual','inequality_violation','lower_bound_violation','upper_bound_violation',
                 'maximum_feasibility_violation'):
         value=float(check[key]);summary[key]=value if np.isfinite(value) else None
@@ -168,6 +208,7 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
         lp_cost=cost,lp_lower_bound=lower,lp_upper_bound=upper,
         lp_equality_rhs=be,lp_inequality_rhs=bu,
         lp_equality_labels=np.array(eq.labels),lp_inequality_labels=np.array(ub.labels))
+    if duration is not None:arrays['proper_duration']=duration
     for prefix,matrix in (('lp_equality',ae),('lp_inequality',au)):
         arrays.update({prefix+'_data':matrix.data,prefix+'_indices':matrix.indices,
                        prefix+'_indptr':matrix.indptr,prefix+'_shape':np.array(matrix.shape)})
@@ -198,11 +239,25 @@ def solve_local(t, target, midpoint_target, nodes, mids, *,
             net_routing_violation=max(0.,float((counter-qh).max()),float((-counter-qc).max())),
             separate_rating_violation=max(0.,float(H.max()+C.max()-receiver_capacity)),
             minimum_fluid_temperature=float(min(arrays['fluid_temperature'].min(),arrays['midpoint_fluid_temperature'].min())))
+        if hot_donor_turnover is not None:
+            hot_margin=hot_donor_turnover*duration[None,:]*np.array([H[:-1],H[1:]])-qh
+            arrays['hot_endpoint_donor_margin']=hot_margin
+            summary.update(minimum_hot_endpoint_donor_margin=float(hot_margin.min()),
+                hot_endpoint_donor_violation=max(0.,float(-hot_margin.min())))
+        if cold_fluid_donor_turnover is not None:
+            U=K/nodes['D']**(1/3)
+            cold_margin=cold_fluid_donor_turnover*duration[None,:]*np.array([U[:-1],U[1:]])-qc
+            arrays['conservative_cold_fluid_endpoint_donor_margin']=cold_margin
+            summary.update(minimum_conservative_cold_fluid_endpoint_donor_margin=float(cold_margin.min()),
+                conservative_cold_fluid_endpoint_donor_violation=max(0.,float(-cold_margin.min())))
     return summary,arrays
 
 
 def evaluate(spec):
-    center,floor,method,deadline,output=spec;output=Path(output)
+    center,floor,method,deadline,output,*options=spec;output=Path(output)
+    if len(options)>2:raise ValueError('at most hot and cold-fluid donor turnover options required')
+    hot_turnover=options[0] if options else None
+    cold_turnover=options[1] if len(options)>1 else None
     source=BASE/'joint_refined_response/members_fraction0.99_states.npz'
     h=DenseHistory('routed_family',source);x=np.array([center])
     t=np.unique(np.r_[h.state['t'],.047685546875,.0501953125,.072783203125,.5]);tm=(t[:-1]+t[1:])/2
@@ -222,8 +277,11 @@ def evaluate(spec):
         reference_receiver_energy=Z0,midpoint_reference_receiver_energy=Z0m,
         cold_mass=float(np.interp(center,old['x'],old['number'])),
         receiver_capacity=float(np.interp(center,ref.x,receiver['heat_cap'])),
-        converter_loss=loss[:,0],temperature_floor=floor,bank_routing=True,method=method,deadline=deadline)
+        converter_loss=loss[:,0],temperature_floor=floor,bank_routing=True,method=method,deadline=deadline,
+        proper_duration=duration[:,0],hot_donor_turnover=hot_turnover,cold_fluid_donor_turnover=cold_turnover)
     label=f'x{center:g}_floor{floor:g}_local_bank_relaxation'
+    if hot_turnover is not None:label+=f'_hotrate{hot_turnover:g}'
+    if cold_turnover is not None:label+=f'_coldfluidrate{cold_turnover:g}'
     summary.update(label=label,center=center,time_nodes=len(t),spatial_samples=1,input=str(source.relative_to(ROOT)))
     arrays.update(x=x,proper_duration=duration[:,0])
     np.savez_compressed(output/(label+'_states.npz'),**arrays)
@@ -265,12 +323,17 @@ def main():
     parser.add_argument('--solver-method',choices=['highs','highs-ds','highs-ipm'],default='highs')
     parser.add_argument('--deadline',type=float,default=60.)
     parser.add_argument('--workers',type=int,default=2)
+    parser.add_argument('--hot-donor-turnover',type=float)
+    parser.add_argument('--cold-fluid-donor-turnover',type=float)
     parser.add_argument('--output-name',required=True)
     args=parser.parse_args()
     if (not np.isfinite(args.temperature_floor) or args.temperature_floor<0 or
             not np.isfinite(args.deadline) or not 0<args.deadline<=60 or not 1<=args.workers<=2 or
             not np.isfinite(args.centers).all()):
         parser.error('nonnegative floor, finite centers, deadline in (0,60], and one or two workers required')
+    if any(value is not None and (not np.isfinite(value) or value<=0)
+           for value in (args.hot_donor_turnover,args.cold_fluid_donor_turnover)):
+        parser.error('optional donor turnover bounds must be positive and finite')
     output=BASE/args.output_name
     if output.exists():raise RuntimeError('preserve completed local bank evidence')
     source=BASE/'joint_refined_response/manifest.json';previous=json.loads(source.read_text())
@@ -285,7 +348,8 @@ def main():
             if path.suffix=='.py' and path.is_relative_to(ROOT):files.append(path)
     hashes.update({str(path.relative_to(ROOT)):sha256_file(path) for path in files})
     output.mkdir()
-    specs=[(center,args.temperature_floor,args.solver_method,args.deadline,str(output)) for center in args.centers]
+    specs=[(center,args.temperature_floor,args.solver_method,args.deadline,str(output),
+            args.hot_donor_turnover,args.cold_fluid_donor_turnover) for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers,len(specs)),mp_context=multiprocessing.get_context('spawn')) as pool:
         cases=list(pool.map(evaluate,specs))
     for relative,expected in hashes.items():

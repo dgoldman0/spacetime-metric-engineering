@@ -253,6 +253,34 @@ Finite donor rates and explicit work-wave populations therefore provide
 the next discriminating constraints. The local result leaves the finite
 cell assembly and its physical contacts to those stronger tests.
 
+Restoring the original hot-bank donor comparison also
+[passes locally](data/virtual_cell_local_bank_hot10/summary.json) at both
+locations with the warm floor. Maximum original-row violations are
+`3.56e-15` and `1.30e-14`. Thus finite hot withdrawal and initial preparation
+fit the original local resource budgets when the histories are optimized
+together.
+
+The [four-position finite-pair comparison](data/virtual_cell_bank_transport_n4_fullbudget/summary.json)
+restores shared phase, explicit causal work waves, their population
+envelopes, the existing guide and interface charges, and the hot-donor
+bound. The first location supplies an independently verified primal with
+maximum constraint violation `2.82e-9`; inventory optimality remains
+uncertified. At the second location the interior-point candidate has
+violation `0.00122`, and a
+[dual-simplex comparison](data/virtual_cell_bank_transport_n4_second_dual/summary.json)
+also leaves feasibility unresolved. The original full physical budget
+is used in these comparisons.
+
+The first-location [curved replay](data/virtual_cell_bank_transport_n4_replay/summary.json)
+applies the preceding conservative contact preparation, which assigns
+all cold-bank receipts to the fluid. That preparation adds fluid density
+`0.00223212` and produces a density shortfall `0.00224214`. Photon-supplied
+cold receipts require their own partition before this comparison can
+decide the bank route. Independently, the finite-pair history still has
+a true remaining-fluid rate deficit even after allowing additional
+hot-to-photon-to-cold circulation. This identifies a specific missing
+donor constraint for the next joint allocation.
+
 ## Verification record
 
 The focused suite contains 145 transport, thermal, native-solver,
