@@ -1,0 +1,209 @@
+{
+  "label": "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8",
+  "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz",
+  "parent_full_sampled_gate_passes": true,
+  "independent_state_and_contact_checks_pass": true,
+  "joint_bank_temperature_selection_passes": true,
+  "time_samples": 4112,
+  "spatial_samples": 32,
+  "limits": {
+    "Lf": 0.029835561391240113,
+    "Uf": null,
+    "Lg": 357.35358137851455,
+    "Ug": 4.2715643961360066e-05
+  },
+  "fluid_cold_upper_unbounded": true,
+  "photon_cold_upper_unbounded": false,
+  "selection_possible": true,
+  "contrast_infimum": 8365871.335142957,
+  "fluid_contrast_infimum": 0.0,
+  "photon_contrast_infimum": 8365871.335142957,
+  "selected_hot_coefficient": 2.0,
+  "selected_cold_coefficient": 5.976663756465195e-08,
+  "selected_channel_coefficient": 18.903798067544905,
+  "selected_cold_to_hot_volume_ratio": 33463485.34057183,
+  "selected_hot_channel_product": 714.7071627570291,
+  "selected_cold_channel_product": 2.1357821980680033e-05,
+  "hot_safety_factor": 2.0,
+  "cold_safety_factor": 0.5,
+  "strict_contrast_infimum_attained": false,
+  "positive_active_temperature_gaps": true,
+  "finite_grey_contact_coefficients": true,
+  "contact_partition_residuals": {
+    "hot_partition": 1.3552527156068805e-20,
+    "cold_partition": 0.0,
+    "counter_power": 7.792703114739563e-20,
+    "total_bank_heat": 2.710505431213761e-20
+  },
+  "active_grey_counter_power_identity_residual": 2.710505431213761e-20,
+  "full_grey_counter_power_identity_residual": 2.710505431213761e-20,
+  "fluid_particle_normalization_error": 0.0,
+  "maximum_directional_population_violation": 0.0,
+  "active_fluid_hot_samples": 131584,
+  "active_fluid_cold_samples": 0,
+  "active_photon_hot_samples": 131584,
+  "active_photon_cold_samples": 131584,
+  "invalid_state_or_donor_samples": 0,
+  "first_invalid_witness": null,
+  "limit_witnesses": {
+    "Lf": {
+      "time": 1.285,
+      "sampling_location": "right_endpoint",
+      "panel_start": 1.284686279296875,
+      "panel_end": 1.285,
+      "x": -2.0002421874999996,
+      "fluid_temperature": 0.14843796088640354,
+      "hot_energy": 0.01627217869963804,
+      "cold_energy": 0.0979888790978605,
+      "counter_density": 0.2733168511956796,
+      "counter_current": -5.474473351952619e-05,
+      "radius": 2.8636576998711645,
+      "fluid_hot_heat": 1.6430415126101842e-05,
+      "fluid_cold_heat": 0.0,
+      "photon_hot_heat": 3.779398101710294e-05,
+      "photon_cold_heat": 1.874865297973762e-05,
+      "threshold": 0.029835561391240113
+    },
+    "Uf": null,
+    "Lg": {
+      "time": 1.285,
+      "sampling_location": "right_endpoint",
+      "panel_start": 1.284686279296875,
+      "panel_end": 1.285,
+      "x": -1.9999453125,
+      "fluid_temperature": 0.11142095576207,
+      "hot_energy": 0.014077032240261633,
+      "cold_energy": 0.1146231290440792,
+      "counter_density": 0.2735363812289545,
+      "counter_current": 0.0006851357965680558,
+      "radius": 2.8634840112883877,
+      "fluid_hot_heat": 6.126322544033021e-06,
+      "fluid_cold_heat": 0.0,
+      "photon_hot_heat": 4.011019217839777e-05,
+      "photon_cold_heat": 3.166613898822353e-05,
+      "threshold": 357.35358137851455
+    },
+    "Ug": {
+      "time": 0.04517578125,
+      "sampling_location": "left_endpoint",
+      "panel_start": 0.04517578125,
+      "panel_end": 0.045489501953125,
+      "x": -1.9997578125,
+      "fluid_temperature": 0.027737367579073843,
+      "hot_energy": 0.16239235436536387,
+      "cold_energy": 0.0038667907298086676,
+      "counter_density": 4.894598960191985e-05,
+      "counter_current": -9.938781666045082e-10,
+      "radius": 2.881547943921823,
+      "fluid_hot_heat": 0.00024312648765742177,
+      "fluid_cold_heat": 0.0,
+      "photon_hot_heat": 6.597882673873965e-06,
+      "photon_cold_heat": 3.402312948420683e-05,
+      "threshold": 4.2715643961360066e-05
+    }
+  },
+  "sampling_locations": [
+    "midpoint",
+    "left_endpoint",
+    "right_endpoint",
+    "quarter",
+    "three_quarter"
+  ],
+  "sample_location_limits": {
+    "midpoint": {
+      "Lf": 0.029770520529512404,
+      "Uf": null,
+      "Lg": 355.54264047362784,
+      "Ug": 7.318856414892166e-05
+    },
+    "left_endpoint": {
+      "Lf": 0.02970570307590231,
+      "Uf": null,
+      "Lg": 353.7399008118546,
+      "Ug": 4.2715643961360066e-05
+    },
+    "right_endpoint": {
+      "Lf": 0.029835561391240113,
+      "Uf": null,
+      "Lg": 357.35358137851455,
+      "Ug": 4.2715643961360066e-05
+    },
+    "quarter": {
+      "Lf": 0.02973808394638859,
+      "Uf": null,
+      "Lg": 354.6402480629123,
+      "Ug": 5.878244161936907e-05
+    },
+    "three_quarter": {
+      "Lf": 0.02980301296454986,
+      "Uf": null,
+      "Lg": 356.4470831908956,
+      "Ug": 5.692234002675723e-05
+    }
+  },
+  "reconstructed_branch_donor_turnover": {
+    "photon_cold": {
+      "active_samples": 131584,
+      "empty_active_donor_samples": 0,
+      "nonrepresentable_active_rate_samples": 0,
+      "maximum_finite_required_turnover": 4.514060870763208,
+      "turnover10_endpoint_comparison_passes": true,
+      "witness": {
+        "panel_start": 0.04517578125,
+        "panel_end": 0.045489501953125,
+        "x": -1.9997578125,
+        "required_turnover": 4.514060870763208,
+        "minimum_endpoint_inventory": 0.004174964693259707
+      }
+    },
+    "hot_total": {
+      "active_samples": 131584,
+      "empty_active_donor_samples": 0,
+      "nonrepresentable_active_rate_samples": 0,
+      "maximum_finite_required_turnover": 6.090613511675001,
+      "turnover10_endpoint_comparison_passes": true,
+      "witness": {
+        "panel_start": 1.284686279296875,
+        "panel_end": 1.285,
+        "x": -1.9998046875,
+        "required_turnover": 6.090613511675001,
+        "minimum_endpoint_inventory": 0.015401969847357672
+      }
+    },
+    "fluid_cold": {
+      "active_samples": 0,
+      "empty_active_donor_samples": 0,
+      "nonrepresentable_active_rate_samples": 0,
+      "maximum_finite_required_turnover": null,
+      "turnover10_endpoint_comparison_passes": true,
+      "witness": null
+    }
+  },
+  "heat_activity_tolerance": 1e-10,
+  "heat_validation_tolerance": 1e-10,
+  "population_tolerance": 1e-10,
+  "inactive_heat_maximum": 0.0,
+  "bank_negative_roundoff_mapped_to_zero_for_temperature": false,
+  "equilibrium_law": "c_eq=a2*Theta**2/R**2 for fixed bidirectional gapless photon channels",
+  "bank_caloric_law": "Theta_hot**4=ah*H, Theta_cold**4=ac*C",
+  "fluid_caloric_law": "Theta_fluid=K/(3*N_mass*D**(1/3))",
+  "volume_contrast_interpretation": "ah/ac equals cold/hot proper volume only for equal bank caloric normalization",
+  "midpoint_scope": "exact registered midpoint geometry and stored particle normalization; linear interpolation of replay H,C,K,V and explicit beam densities; actual integrated branch heat divided by midpoint D and proper panel duration",
+  "coefficient_bound_scope": "both one-sided endpoints, midpoint and quarter points of each replay panel; each active integrated branch imposes its temperature ordering at all five samples, a conservative shape comparison",
+  "continuous_time_temperature_order_certified": false,
+  "donor_turnover_scope": "actual reconstructed gross branch heat divided by proper panel duration and the minimum endpoint donor energy; exact positive signs retained, no denominator floor",
+  "temporal_grey_coefficients_selected": true,
+  "local_dynamical_opacity_law_supplied": false,
+  "spectrum_or_mode_selectivity_supplied": false,
+  "force_closure_supplied": false,
+  "complete_entropy_evolution_supplied": false,
+  "material_packing_supplied": false,
+  "full_source_construction_supplied": false,
+  "inventories_and_heat_branches_modified": false,
+  "maximum_coefficients": {
+    "hot_photon_grey_coefficient": 0.02386582266981582,
+    "cold_photon_grey_coefficient": 7.052333430392539,
+    "hot_fluid_heat_coefficient": 1.0908321541779447,
+    "cold_fluid_heat_coefficient": 0.0
+  }
+}

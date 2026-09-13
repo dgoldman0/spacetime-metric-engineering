@@ -4,8 +4,9 @@ The first tested location admits a refined curved-space allocation with
 counted hot-bank, actual fluid, and photon donor comparisons within the
 original stress budget. Joint bank temperatures add a large required
 contrast between the hot and cold stores. At the second location, selective
-cost comparisons identify the prescribed electromagnetic guide requirement
-as an obstruction to the stronger bank-contact gate. Earlier sampled
+cost comparisons isolate an observed solver restriction at electromagnetic
+guide comparison `0.5` in the hot-bank routing gate. That gate passes at
+guide comparison `0.8`. Earlier sampled
 allocations at both locations remain useful energy and tensor histories.
 The phase, balanced radiation, existing pressure-link fluid, and separated
 receiver banks retain distinct duties throughout these comparisons.
@@ -245,7 +246,7 @@ violations between `6.95e-15` and `2.85e-14`. The warm comparison retains
 the previously selected temperature floor `Theta_f=0.01`.
 
 Thus the original local energy, stress, and receiver-capacity budgets
-admit passive bank routing when the omitted transport and contact
+admit directional bank-power allocation when the omitted transport and contact
 conditions are free. The much larger storage requirements of the two
 earlier resolved histories depend on their particular allocation. These
 local witnesses use the full receiver rating, and the zero-floor
@@ -426,7 +427,13 @@ margin is `0.000133322`, its minimum directional photon margin is
 fluid, bank, and radiation preparation inventories remain zero. Energy
 residual is `4.44e-15`, and the Gauss-4/Gauss-8 difference is `2.71e-15`.
 Thus the stronger first allocation preserves its sampled conservation,
-stress, and donor margins under this refinement.
+stress, and donor margins under this refinement. A
+[further replay](data/virtual_cell_bank_fluid_donor_first_replay_factor8/summary.json)
+with 32 spatial positions and 4,113 time nodes also passes. Minimum density
+margin is `0.000132823`, minimum directional photon margin is `0.0000489450`,
+and all additional preparation inventories remain zero. The original
+reserve is retained. Energy residual is `4.50e-15`, and the Gauss-4/Gauss-8
+difference is `1.11e-15`.
 
 The actual reconstructed branches separately specify hot-bank heat to
 fluid and photons, and cold-bank receipt from fluid and photons. A joint
@@ -447,8 +454,9 @@ admits finite positive coefficients and reproduces the prescribed photon
 power to `4.07e-20`. Its limits are `L_f=0.0297049`, `L_g=354.507`, and
 `U_g=0.000115540`. With equal bank caloric normalization, the infimum of
 the cold/hot proper-volume ratio is `3.06826e6`; the illustrative strict
-selection uses four times that ratio. These coefficients specify sampled
-contact directions and rates. Their realization requires a material
+selection uses four times that ratio. These coefficients establish sampled
+temperature order and permit positive fitted transfer rates. Their
+constitutive realization requires a material
 opacity law, selective coupling, force and entropy evolution, and bank
 packing.
 
@@ -476,11 +484,24 @@ quarter samples give looser bounds. This identifies a positive minimum
 missed by the earlier midpoint-only audit; a continuous-time temperature
 certificate remains a further requirement.
 
+The [factor-eight temperature comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperature_endpoints_factor8/summary.json)
+also passes. Its contrast infimum is `8.36587e6`, a further change of
+5.23%, and its illustrative strict selection uses `3.34635e7`. The
+limiting knot remains fixed, with positive photon density `4.89460e-5`.
+The two successive changes in that density approximately halve. These
+three resolutions support a positive limiting population while leaving a
+continuous-time bound open. The volume contrast applies to this selected
+energy history and the stated bank caloric laws; different bank responses
+or gross heat allocations require their own conserved stress and contact
+calculation.
+
 The corrected audits also check the actual reconstructed gross heat
 branches against endpoint donor energies. At factor four the photon-cold
 turnover requirement peaks at `4.40113`, and total hot-bank withdrawal
 peaks at `6.09050`; both fit the declared comparison value 10. Fluid-cold
-withdrawal remains zero. The selected grey contact coefficients divide
+withdrawal remains zero. At factor eight the corresponding maxima are
+`4.51406` and `6.09061`, with fluid-cold withdrawal still absent and every
+active donor retaining positive energy. The selected grey contact coefficients divide
 heat by a temperature-dependent population gap, while these donor bounds
 divide heat by the full available donor inventory. Consequently the
 declared donor comparison and a microscopic opacity bound represent
@@ -503,8 +524,8 @@ wave envelopes. It also passes, with original maximum violation
 the same hot-bank routing gate as the second-location infeasibility runs;
 it leaves actual remaining-fluid and photon donor construction open.
 Only the guide drift charge and interface tension coefficient are removed.
-Their removal changes the outcome, concentrating the remaining finite-model
-obstruction in the mechanical costs of carrying and attaching the waves.
+Their removal changes the observed solver outcome, isolating its dependence
+on the mechanical costs of carrying and attaching the waves.
 The successful relaxation supplies a diagnostic history whose missing
 mechanical costs still require a counted construction.
 
@@ -516,7 +537,7 @@ comparison `0.5` retained and only the interface cost removed, the
 [solver reports infeasibility](data/virtual_cell_bank_guide_only_second/summary.json).
 As in the full-cost case, the latter status has no independently checked
 infeasibility certificate. The selective outcomes identify the prescribed
-guide requirement as the relevant finite-model restriction; the interface
+guide allowance as the relevant restriction in these solver comparisons; the interface
 allowance can coexist with the other retained duties in a relaxed guide
 construction.
 
@@ -546,6 +567,47 @@ passes while retaining the original interface allowance. This brackets a
 useful guide sensitivity inside the tested finite model. The successful
 necessary routing gate still requires actual fluid and photon donor checks,
 the restored numerical reserve, and an independent curved replay.
+
+Adding the actual remaining-fluid donor rows and restoring the original
+0.2% reserve gives feasible finite allocations at both
+[guide comparison 0.7](data/virtual_cell_bank_fluid_donor_guide07_second/summary.json)
+and [guide comparison 0.8](data/virtual_cell_bank_fluid_donor_guide08_second/summary.json).
+Their maximum original constraint violations are `8.00e-16` and
+`1.88e-14`, respectively. Both retain the original interface allowance,
+separate bank ratings, hot and fluid turnover comparisons at 10, and warm
+fluid floor `0.01`.
+
+The [independent guide-0.7 replay](data/virtual_cell_bank_fluid_donor_guide07_second_replay/summary.json)
+fails the full stress budget at factors two and four. Density shortfalls
+are `2.16991e-5` and `8.29736e-5`, respectively. Bank directions, donor
+bounds, ratings, and positive populations pass; additional preparation
+inventories remain zero. The positive-part contact quadratures differ by
+`4.63e-9` and `1.71e-9`, above the numerical-integrity tolerance. These
+results retain the finite allocation while rejecting its curved replay
+as a supplied stress construction.
+
+The [guide-0.8 replay](data/virtual_cell_bank_fluid_donor_guide08_second_replay/summary.json)
+also fails, with shortfalls `3.60416e-6` and `6.52422e-5` at factors two
+and four. At guide `0.7`, the worst factor-four witness is
+`t=0.04517578125, x=-1.974984375`. Its active failure is the
+guide-independent facet
+
+```
+3 W + 2 rho_f + z - s <= rho + 2 p_r + p_t.
+```
+
+The additional guide demand is zero at that witness. Relative to the
+nearest original right-cell sample, the parent control has density margin
+`1.00844e-4`; the actual target change toward the interface consumes
+`1.56845e-4`. Reconstruction changes the radiation contribution by
+approximately `2.599e-5`, and other component-density changes contribute
+`9.85e-7`. The witness lies at an original time node. Finer spatial replay
+approaches the interface beyond the innermost original sample, where the
+controls have constant extension. Its larger deficit therefore identifies
+an unresolved spatial margin. Separately, a guide-facet deficit
+`2.18880e-5` occurs at `t=0.5` at the same position. The positive-part
+quadrature discrepancy belongs to the fluid-heating split elsewhere;
+radiation-density quadrature disagreement is only `3.21e-16`.
 
 ## Verification record
 
