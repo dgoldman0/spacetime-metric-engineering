@@ -232,10 +232,31 @@ bounds while retaining the local stress, energy, and bank-routing
 equations. Its full physical budget and optional zero thermal floor
 provide a bounded check of the underlying storage requirement.
 
+The [zero-floor](data/virtual_cell_local_bank_floor0/summary.json) and
+[warm-fluid](data/virtual_cell_local_bank_floor001/summary.json) local
+comparisons both pass at both locations. Each problem has 2,577 variables,
+514 energy equalities, and 7,203 inequalities on the complete 515-time
+grid. Ordinary HiGHS solves each in less than one second; independent
+verification of the archived original matrices and bounds gives maximum
+violations between `6.95e-15` and `2.85e-14`. The warm comparison retains
+the previously selected temperature floor `Theta_f=0.01`.
+
+Thus the original local energy, stress, and receiver-capacity budgets
+admit passive bank routing when the omitted transport and contact
+conditions are free. The much larger storage requirements of the two
+earlier resolved histories depend on their particular allocation. These
+local witnesses use the full receiver rating, and the zero-floor
+witnesses expose the remaining physical freedoms directly: one drains
+its hot bank to zero within a single panel, while another absorbs
+photons during a panel with zero balanced radiation at both endpoints.
+Finite donor rates and explicit work-wave populations therefore provide
+the next discriminating constraints. The local result leaves the finite
+cell assembly and its physical contacts to those stronger tests.
+
 ## Verification record
 
-The focused suite contains 136 transport, thermal, native-solver,
-contact, and capacity tests at this stage. The independent source audit
+The focused suite contains 145 transport, thermal, native-solver,
+contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.
 Three intermediate execution versions were recovered with exact matches
