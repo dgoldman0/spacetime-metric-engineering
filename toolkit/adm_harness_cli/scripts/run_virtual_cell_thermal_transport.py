@@ -22,7 +22,11 @@ def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
      reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
      minimum_temperature, exact_midpoint, no_crossover, solver_log, retain_interior, no_presolve,
-     bank_counter_relaxation, bank_fluid_donor, zero_objective)=spec
+     bank_counter_relaxation, bank_fluid_donor, zero_objective, omit_guide_interface_costs)=spec
+    if omit_guide_interface_costs and (not budget_only or not zero_objective):
+        raise ValueError('omitting guide/interface costs requires a fixed budget and zero objective')
+    interface_sigma=0. if omit_guide_interface_costs else 1e-7
+    guide_drift=None if omit_guide_interface_costs else .5
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -73,8 +77,8 @@ def evaluate(spec):
                        gain=np.array([g.alpha*g.k_l-sign*g.alpha_x/g.b for g in gm]))
             for sign in (-1, 1)}
     result = solve_pair(t, edges, budget, nodes, mids, wave, efficiency=.98,
-        interface_sigma=1e-7, coherent_cells=True, return_heat=True,
-        guide_drift=.5, wave_envelope=True, matched_pair=True,
+        interface_sigma=interface_sigma, coherent_cells=True, return_heat=True,
+        guide_drift=guide_drift, wave_envelope=True, matched_pair=True,
         thermal_eos=1/3, thermal_reference_density=reference,
         receiver_reference=receiver,
         receiver_contact=contact, target_budget_only=budget_only,
@@ -100,10 +104,15 @@ def evaluate(spec):
     if bank_counter_relaxation:label+='_bank_counter_relaxation'
     if bank_fluid_donor:label+='_fluid_donor'
     if zero_objective:label+='_zeroobj'
+    if omit_guide_interface_costs:label+='_omit_guide_interface_costs'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
-        efficiency=.98, interface_sigma=1e-7, guide_drift=.5,
+        efficiency=.98, interface_sigma=interface_sigma, guide_drift=guide_drift,
+        guide_interface_costs_omitted=bool(omit_guide_interface_costs),
+        favorable_transport_only_relaxation=bool(omit_guide_interface_costs),
+        work_wave_transport_preserved=True,wave_population_floors_preserved=True,
+        wave_envelope_preserved=True,
         reserved_density_fraction=reserve, common_phase_across_pair=True,
         midpoint_target_sampled_from_registered_history=exact_midpoint,
         distributed_thermal_reservoir_eos=1/3,
@@ -127,6 +136,10 @@ def evaluate(spec):
         changed_fluid_contact_force_and_entropy_supplied=False,
         full_source_construction_supplied=False,
         elapsed_seconds=time.monotonic()-started)
+    if omit_guide_interface_costs:
+        summary.update(retained_source_gate_scope=summary['scope'],
+            scope='favorable transport-only necessity relaxation with zero guide/interface cost; work-wave transport, population floors, envelope, shared phase and configured receiver constraints retained',
+            guide_material_clearance_supplied=False,interface_material_construction_supplied=False)
     if result['success']:
         summary['target_budget_passes'] = bool(max(result['minimum_added_density'],
                                                    result['exact_added_density']) <= 2e-7)
@@ -168,6 +181,8 @@ def main():
                         help='bound minimum remaining-fluid withdrawal using the registered donor turnover')
     parser.add_argument('--zero-objective',action='store_true',
                         help='solve fixed target-budget feasibility without inventory minimization')
+    parser.add_argument('--omit-guide-interface-costs',action='store_true',
+                        help='test favorable transport-only necessity with zero guide/interface cost')
     parser.add_argument('--warm-fluid',action='store_true')
     parser.add_argument('--minimum-fluid-temperature',type=float)
     parser.add_argument('--exact-midpoint-target',action='store_true')
@@ -194,6 +209,8 @@ def main():
         parser.error('bank-fluid-donor requires bank-counter-relaxation')
     if args.zero_objective and (not args.target_budget_only or args.warm_fluid):
         parser.error('zero-objective requires target-budget-only without warm-fluid maximization')
+    if args.omit_guide_interface_costs and (not args.target_budget_only or not args.zero_objective):
+        parser.error('omit-guide-interface-costs requires target-budget-only and zero-objective')
     if args.warm_fluid and (not args.target_budget_only or not args.reallocate_fluid):
         parser.error('warm fluid optimization requires a reallocated fluid and direct target budget')
     if args.minimum_fluid_temperature is not None and (
@@ -222,7 +239,8 @@ def main():
         ROOT/'toolkit/adm_harness_cli/adm_harness/highs_feasible.py',
         ROOT/'toolkit/adm_harness_cli/tests/test_highs_feasible.py',
         ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_semigroup.py',
-        ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_semigroup.py']
+        ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_semigroup.py',
+        ROOT/'toolkit/adm_harness_cli/tests/test_virtual_cell_thermal_transport_runner.py']
     for path in files:
         hashes[str(path.relative_to(ROOT))] = sha256_file(path)
     for relative, expected in hashes.items():
@@ -234,7 +252,7 @@ def main():
               args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
               args.minimum_fluid_temperature,args.exact_midpoint_target,args.no_crossover,args.solver_log,
               args.retain_feasible_interior,args.no_presolve,args.bank_counter_relaxation,
-              args.bank_fluid_donor,args.zero_objective)
+              args.bank_fluid_donor,args.zero_objective,args.omit_guide_interface_costs)
              for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:

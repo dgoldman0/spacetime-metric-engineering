@@ -1,0 +1,23 @@
+{
+  "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor2_states.npz",
+  "spatial_samples": 8,
+  "hot_compatible_positions": 8,
+  "cold_compatible_positions": 8,
+  "common_pair_temperature_coefficients_possible": true,
+  "maximum_negative_thermal_roundoff": 0.0,
+  "hot_coefficient_lower": 0.02957435384892927,
+  "cold_coefficient_upper": 0.0001545335151500387,
+  "cold_upper_unbounded": false,
+  "scope": "midpoint photon temperatures and panel heat rates; physical packing and optical coupling remain open",
+  "selected_hot_coefficient": 0.05914870769785854,
+  "selected_cold_coefficient": 7.726675757501935e-05,
+  "minimum_cold_to_hot_volume_ratio": 191.37825099115312,
+  "selected_cold_to_hot_volume_ratio": 765.5130039646125,
+  "maximum_hot_radiative_conductance": 181.68909329105426,
+  "maximum_cold_radiative_conductance": 60381.60676559649,
+  "maximum_hot_energy_turnover": 10.746675070961519,
+  "maximum_fluid_energy_turnover": 1.1249423357879864,
+  "positive_hot_contact_at_zero_fluid_temperature": 0,
+  "maximum_hot_temperature": 0.31642321463669926,
+  "maximum_cold_temperature": 0.05454515746395641
+}

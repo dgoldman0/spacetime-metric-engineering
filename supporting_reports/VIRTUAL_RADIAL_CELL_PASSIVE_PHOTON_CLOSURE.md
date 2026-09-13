@@ -402,9 +402,8 @@ checks.
 
 Increasing the hot-bank turnover to 100 in an otherwise matched
 [second-location comparison](data/virtual_cell_bank_zero_objective_second_rate100/summary.json)
-also returns native infeasibility. A shared-phase local relaxation can
-isolate whether the remaining conflict already occurs in coordinated
-inventories or requires the explicit work-wave and guide constraints.
+also returns native infeasibility. The comparisons below isolate the
+dependence on common phase, wave transport, and mechanical guide costs.
 
 For comparison, applying the actual-fluid reconstruction to the older
 first-location history still
@@ -415,9 +414,78 @@ quadratures differ by `4.94e-9`, above the declared numerical-integrity
 tolerance. The successful joint allocation above changes the history
 itself, while retaining the original component budgets.
 
+## Refinement and joint bank temperatures
+
+The [finer first-location replay](data/virtual_cell_bank_fluid_donor_first_replay_refined/summary.json)
+uses 16 spatial positions and 2,057 time nodes. Its minimum full density
+margin is `0.000133322`, its minimum directional photon margin is
+`0.0000502039`, and the original 0.2% reserve remains available. Added
+fluid, bank, and radiation preparation inventories remain zero. Energy
+residual is `4.44e-15`, and the Gauss-4/Gauss-8 difference is `2.71e-15`.
+Thus the stronger first allocation preserves its sampled conservation,
+stress, and donor margins under this refinement.
+
+The actual reconstructed branches separately specify hot-bank heat to
+fluid and photons, and cold-bank receipt from fluid and photons. A joint
+temperature comparison uses
+
+```
+Theta_h^4 = a_h H,       Theta_c^4 = a_c C,
+c_eq = a_2 Theta^2/R^2,
+a_h > L_f,              a_c < U_f,
+a_h a_2^2 > L_g,        a_c a_2^2 < U_g.
+```
+
+Each limit is taken over the corresponding active heat branch. In this
+first history the fluid receives heat throughout, so its cold-bank upper
+bound is unbounded. Both photon branches remain active. The
+[refined midpoint comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperature/summary.json)
+admits finite positive coefficients and reproduces the prescribed photon
+power to `4.07e-20`. Its limits are `L_f=0.0297049`, `L_g=354.507`, and
+`U_g=0.000115540`. With equal bank caloric normalization, the infimum of
+the cold/hot proper-volume ratio is `3.06826e6`; the illustrative strict
+selection uses four times that ratio. These coefficients specify sampled
+contact directions and rates. Their realization requires a material
+opacity law, selective coupling, force and entropy evolution, and bank
+packing.
+
+The [coarser comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperature_coarse/summary.json)
+gives volume-ratio infimum `1.53248e6`. The near doubling arises mainly
+from a smaller cold-photon temperature upper bound near `t=0.0449`,
+where the complementary photon population becomes small while absorption
+continues. This temperature requirement has yet to show refinement
+convergence. The finite-midpoint selections therefore leave a continuous
+contact construction open even though the full stress replay passes.
+The archived [single-fluid grey comparison](data/virtual_cell_bank_fluid_donor_first_guided/summary.json)
+also fails its common-coefficient interval. The
+[separate fluid/bank comparison](data/virtual_cell_bank_fluid_donor_first_temperatures/summary.json)
+omits the tighter joint photon temperature requirement.
+
+## Isolating the second-location mechanical burden
+
+A [four-position local comparison](data/virtual_cell_shared_phase_local_second/summary.json)
+retains the complete 515-time history, exact local and midpoint targets,
+original bank capacities, hot turnover 10, warm-fluid floor `0.01`, and a
+single phase history shared by all positions. It passes the original
+assembled matrix and bounds with maximum violation `4.23e-11`. Each
+individual local block also passes. Coordinating those inventories through
+a common phase is therefore feasible in this relaxation.
+
+The [transport comparison with guide and interface costs removed](data/virtual_cell_bank_transport_only_second/summary.json)
+restores explicit wave transport, wave population floors, and within-panel
+wave envelopes. It also passes, with original maximum violation
+`2.01e-13`. This favorable comparison uses the full physical budget and
+the same hot-bank routing gate as the second-location infeasibility runs;
+it leaves actual remaining-fluid and photon donor construction open.
+Only the guide drift charge and interface tension coefficient are removed.
+Their removal changes the outcome, concentrating the remaining finite-model
+obstruction in the mechanical costs of carrying and attaching the waves.
+The successful relaxation supplies a diagnostic history whose missing
+mechanical costs still require a counted construction.
+
 ## Verification record
 
-The focused suite contains 164 transport, thermal, native-solver,
+The focused suite contains 179 transport, thermal, native-solver,
 contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.

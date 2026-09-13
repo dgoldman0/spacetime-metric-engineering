@@ -1,0 +1,16 @@
+{
+  "created_utc": "2026-09-13T00:24:51.006351+00:00",
+  "git_head": "6aa4b7865e5f69f3c93616cd5beed35598abd8f0",
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_split_contact.py": "ba88beb9b4b65153acd44c2c2b1cedd0713d34e81db26630e368d714b49143a1",
+    "toolkit/adm_harness_cli/adm_harness/thermal_receiver_contact.py": "65fb67c008d975ccf1e3c026721e9eb6a925c136df7147fd24ece6da99940832",
+    "toolkit/adm_harness_cli/scripts/audit_joint_dense_work.py": "6d6dd31e4da4c60f9e54c34aac42f9c4db44a135518349a5f067e867657509b2",
+    "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay/manifest.json": "354c4333f8066b6cc70d4466a32048880d55e1fb6f02ca66c8247b23ad36ea9e",
+    "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor2_states.npz": "4052b143eeb79d81a0366a4d06d008958e7b15e06d55dedeb03189d3f90fbe3a"
+  },
+  "output_sha256": {
+    "summary.json": "9b344cac82dfa7286df8442a0b8ad659d3d328b9415a2e6a236ae6782fede91b",
+    "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor2_contact.npz": "65139bea39cef4827f04aa7a44851e72548f3b86e8705b2c3d4c6b717f9653eb",
+    "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor2_summary.json": "ccdeac03cbac7296e76133426af30b9cd9cf11cad052b00802fb2a5dd55f8db2"
+  }
+}
