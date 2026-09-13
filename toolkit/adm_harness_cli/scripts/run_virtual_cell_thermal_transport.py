@@ -22,7 +22,7 @@ def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
      reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
      minimum_temperature, exact_midpoint, no_crossover, solver_log, retain_interior, no_presolve,
-     bank_counter_relaxation)=spec
+     bank_counter_relaxation, bank_fluid_donor, zero_objective)=spec
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -79,6 +79,7 @@ def evaluate(spec):
         receiver_reference=receiver,
         receiver_contact=contact, target_budget_only=budget_only,
         split_receiver=split_receiver,bank_counter_relaxation=bank_counter_relaxation,
+        bank_fluid_donor=bank_fluid_donor,zero_objective=zero_objective,
         thermal_particle_number=number if warm_fluid or minimum_temperature is not None else None,
         maximize_thermal_floor=warm_fluid,minimum_thermal_floor=minimum_temperature,
         midpoint_credited_target=midpoint_budget,
@@ -97,6 +98,8 @@ def evaluate(spec):
     if retain_interior:label+='_feasible'
     if no_presolve:label+='_nopresolve'
     if bank_counter_relaxation:label+='_bank_counter_relaxation'
+    if bank_fluid_donor:label+='_fluid_donor'
+    if zero_objective:label+='_zeroobj'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
@@ -113,7 +116,9 @@ def evaluate(spec):
         remaining_backing_original_power_duty_preserved=True,
         prepared_radiation_and_thermal_inventories_counted=True,
         endpoint_external_power_added=0.,
-        scope=('necessary net bank-power routing relaxation and frozen-panel target-budget gate; cold-photon donor, opacity, temperatures and force remain unsupplied'
+        scope=(('necessary net bank-power routing relaxation with registered remaining-fluid donor bound and frozen-panel target-budget gate; cold-photon donor, opacity, temperatures and force remain unsupplied'
+                if bank_fluid_donor else
+                'necessary net bank-power routing relaxation and frozen-panel target-budget gate; cold-photon donor, opacity, temperatures and force remain unsupplied')
                if bank_counter_relaxation else
                'frozen-panel coherent phase and causal work-wave gate with counted bidirectional thermal exchange'),
         independent_curved_geometry_replay_supplied=False,
@@ -159,6 +164,10 @@ def main():
     parser.add_argument('--split-receiver',action='store_true')
     parser.add_argument('--bank-counter-relaxation',action='store_true',
                         help='test net bank/counter power routing with cold-donor comparisons relaxed')
+    parser.add_argument('--bank-fluid-donor',action='store_true',
+                        help='bound minimum remaining-fluid withdrawal using the registered donor turnover')
+    parser.add_argument('--zero-objective',action='store_true',
+                        help='solve fixed target-budget feasibility without inventory minimization')
     parser.add_argument('--warm-fluid',action='store_true')
     parser.add_argument('--minimum-fluid-temperature',type=float)
     parser.add_argument('--exact-midpoint-target',action='store_true')
@@ -181,6 +190,10 @@ def main():
         parser.error('split receiver requires a finite turnover comparison')
     if args.bank_counter_relaxation and (not args.split_receiver or not args.target_budget_only):
         parser.error('bank-counter relaxation requires split receiver and target-budget-only')
+    if args.bank_fluid_donor and not args.bank_counter_relaxation:
+        parser.error('bank-fluid-donor requires bank-counter-relaxation')
+    if args.zero_objective and (not args.target_budget_only or args.warm_fluid):
+        parser.error('zero-objective requires target-budget-only without warm-fluid maximization')
     if args.warm_fluid and (not args.target_budget_only or not args.reallocate_fluid):
         parser.error('warm fluid optimization requires a reallocated fluid and direct target budget')
     if args.minimum_fluid_temperature is not None and (
@@ -220,7 +233,8 @@ def main():
               str(output), args.deadline, args.solver_method, args.reallocate_fluid,
               args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
               args.minimum_fluid_temperature,args.exact_midpoint_target,args.no_crossover,args.solver_log,
-              args.retain_feasible_interior,args.no_presolve,args.bank_counter_relaxation)
+              args.retain_feasible_interior,args.no_presolve,args.bank_counter_relaxation,
+              args.bank_fluid_donor,args.zero_objective)
              for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:

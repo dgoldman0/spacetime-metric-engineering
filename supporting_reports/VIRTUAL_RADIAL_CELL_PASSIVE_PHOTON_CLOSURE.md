@@ -322,9 +322,102 @@ retaining the fluid's own cooling limit. The declared comparison
 `kappa_f=10` is measured in the project's proper-time unit; its physical
 realization depends on the eventual scale and contact geometry.
 
+The [independent donor audit](data/virtual_cell_bank_donor_baseline/summary.json)
+finds ten panels where the first finite-pair history exceeds that fluid
+allowance even with unrestricted photon circulation. The largest witness
+is at `x=-1.9998125`, from `t=1.2071973` to `1.2097070`. Its unavoidable
+fluid cooling is `0.00366990`, while the endpoint allowance is
+`0.000886210`. The necessary turnover for that history reaches `41.4112`.
+At this witness, the hot bank already directs all its withdrawal to the
+photons, leaving no additional circulation that could reduce fluid cooling.
+The separately rated bank capacity still has margin above `0.2525` in
+each sampled position.
+
+The least photon absorption compatible with the existing bank and fluid
+duties reaches an endpoint turnover requirement `548.011`. At its witness,
+the proper cell crossing time is `ell Delta_x_cell=0.0014420–0.0014464`,
+using `Delta_x_cell=0.00025`. Thus the product of the required photon rate
+and a cell crossing time is about `0.7914`; the corresponding exchange
+time is about 1.26 crossing times. Under a homogeneous pure-absorption
+interpretation, that product is a nominal optical depth, giving about
+55% absorption in one crossing. The analogous fluid exchange takes
+about thirty crossing times. These conversions put the rate comparisons
+on the existing cell scale; a microscopic absorption or fluid transport
+law remains to be specified.
+
+Such an optical response must distinguish the complementary photons from
+the prescribed work and heat-return streams. Applying the same absorption
+to those streams would change their delivered energy and momentum. The
+registered transport assignments therefore require selective coupling and
+its associated guide stress, recoil, and thermal balance in one material
+model.
+
+## Joint allocation with the actual fluid donor
+
+The fixed-budget solve can seek feasibility directly by assigning a zero
+objective. This preserves every physical matrix row and variable bound
+while removing the separate inventory-minimization requirement. Original
+constraints are verified independently for both ordinary and native solver
+results; optimality of a zero objective carries no inventory-optimality
+claim.
+
+With the remaining-fluid donor rows included, the
+[first-location comparison](data/virtual_cell_bank_fluid_donor_first/summary.json)
+returns an optimal feasible state with maximum original constraint
+violation `7.66e-16`. It retains the 515-time grid, four spatial positions,
+shared phase, causal work-wave populations, the warm-fluid floor `0.01`,
+both declared fluid and hot-bank turnover comparisons at 10, the original
+separate bank capacities, and the 0.2% density reserve. The actual fluid
+donor constraint therefore fits this finite-pair model through joint
+redistribution of the existing components.
+
+Its [independent donor audit](data/virtual_cell_bank_fluid_donor_first_rate10_audit/summary.json)
+passes the hot, fluid, and photon endpoint comparisons at turnover 10.
+The required photon turnover peaks at `3.10159`; the minimum necessary
+fluid-cooling duty is zero throughout this selected finite history.
+The chosen allocation retains hot-donor margin `0.000302443` and separate
+bank-capacity margin `0.000410371`. The earlier comparison at photon
+turnover 1000 is archived separately; the measured requirement supports
+the original comparison value 10.
+
+The [curved replay](data/virtual_cell_bank_fluid_donor_first_replay/summary.json)
+also passes, with eight spatial positions and 1,029 time nodes. It retains
+minimum full density margin `0.000134321`, counterstream margin
+`0.0000527220`, and the original reserved density budget. It requires no
+additional initial fluid, receiver, or radiation inventory. The reconstructed
+bank branches remain nonnegative, and the actual fluid temperature parameter
+stays above `0.02618`. Aggregate energy residual is `4.42e-15`, and the
+Gauss-4/Gauss-8 panel difference is `2.00e-14`. Thus the first location now
+supplies a counted curved allocation with actual fluid donor and bank
+direction checks, followed by a separate finite-photon donor comparison.
+
+At the second location, an otherwise unchanged
+[zero-objective comparison](data/virtual_cell_bank_zero_objective_second/summary.json)
+returns a native infeasibility status for the gate with hot turnover 10
+and the full physical budget. It supplies no independently checked
+infeasibility certificate. This is stronger numerical information than
+the preceding unfinished solves, while the status alone leaves a
+certificate and the dependence on the chosen rate comparison to further
+checks.
+
+Increasing the hot-bank turnover to 100 in an otherwise matched
+[second-location comparison](data/virtual_cell_bank_zero_objective_second_rate100/summary.json)
+also returns native infeasibility. A shared-phase local relaxation can
+isolate whether the remaining conflict already occurs in coordinated
+inventories or requires the explicit work-wave and guide constraints.
+
+For comparison, applying the actual-fluid reconstruction to the older
+first-location history still
+[fails](data/virtual_cell_bank_transport_n4_actual_fluid_replay/summary.json):
+the required preparation produces density shortfall `0.00224457`, and
+the integrated bank-direction deficit is `0.0000726735`. Its positive-part
+quadratures differ by `4.94e-9`, above the declared numerical-integrity
+tolerance. The successful joint allocation above changes the history
+itself, while retaining the original component budgets.
+
 ## Verification record
 
-The focused suite contains 145 transport, thermal, native-solver,
+The focused suite contains 164 transport, thermal, native-solver,
 contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.

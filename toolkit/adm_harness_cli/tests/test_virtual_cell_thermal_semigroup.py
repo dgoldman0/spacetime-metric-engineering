@@ -243,11 +243,13 @@ def test_explicit_midpoint_capacity_rejects_a_dip_missed_by_endpoint_averaging()
 
 
 @pytest.mark.parametrize('presolve',[True,False])
-def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypatch,presolve):
+@pytest.mark.parametrize('zero_objective',[True,False])
+def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypatch,presolve,zero_objective):
     import adm_harness.highs_feasible as native
     original=native.linprog_feasible
     def unfinished_but_verified(*args,**kwargs):
         assert kwargs['options']['presolve'] is presolve
+        assert bool(np.any(args[0])) is not zero_objective
         result=original(*args,**kwargs)
         assert result.verified_feasible
         result.optimality_certified=False
@@ -260,12 +262,15 @@ def test_feasible_native_inventory_is_separate_from_an_optimized_bound(monkeypat
     args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
     options=dict(matched_pair=True,thermal_eos=1/3,thermal_particle_number=np.ones(4)/3,
                  minimum_thermal_floor=.03,solver_method='highs-ipm',solver_crossover=False,
-                 solver_presolve=presolve,retain_feasible_interior=True)
+                 solver_presolve=presolve,retain_feasible_interior=True,zero_objective=zero_objective)
     result=solve_pair(*args,target_budget_only=True,**options)
     assert result['success'] and result['verified_feasible']
     assert abs(result['minimum_added_density'])<=2e-7 and result['status']==4
     assert result['feasibility_only_success'] and not result['inventory_minimization_success']
     assert result['solver_presolve'] is presolve
+    assert result['inventory_minimization_requested'] is not zero_objective
+    assert result['zero_objective'] is zero_objective
+    assert result['original_constraints_verified']
     assert result['backend_run_ok'] and result['backend_run_status']==0
     with pytest.raises(ValueError,match='fixed direct budget'):
         solve_pair(*args,**dict(options,minimum_thermal_floor=None))
@@ -358,7 +363,8 @@ def test_bank_routing_weighted_split_preserves_original_fluid_power(monkeypatch)
         assert result[key]<1e-9
 
 
-def test_counter_supplied_cold_bank_does_not_require_fluid_donor_inventory(monkeypatch):
+@pytest.mark.parametrize('bank_fluid_donor',[False,True])
+def test_counter_supplied_cold_bank_does_not_require_fluid_donor_inventory(monkeypatch,bank_fluid_donor):
     t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
     nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
     progress=t[:,None]*one
@@ -372,7 +378,7 @@ def test_counter_supplied_cold_bank_does_not_require_fluid_donor_inventory(monke
     # The entire cold receipt comes from photons; the fluid remains empty.
     ordinary=solve_pair(*args,**options)
     assert not ordinary['success']
-    routed=solve_pair(*args,bank_counter_relaxation=True,**options)
+    routed=solve_pair(*args,bank_counter_relaxation=True,bank_fluid_donor=bank_fluid_donor,**options)
     assert routed['success'] and routed['receiver_cold_donor_bounds_omitted']
     assert_allclose(routed['thermal_inventory'],0.,atol=1e-12)
     assert_allclose(routed['bank_counter_to_cold_panel_heat'],.2*duration,atol=1e-10)
@@ -382,6 +388,123 @@ def test_counter_supplied_cold_bank_does_not_require_fluid_donor_inventory(monke
     assert routed['receiver_split_donor_violation']<1e-10
     assert routed['receiver_donor_energy_violation']<1e-10
     assert not routed['cold_photon_donor_law_supplied']
+
+
+def test_zero_objective_changes_only_cost_and_keeps_one_original_budget_solve(monkeypatch):
+    import adm_harness.virtual_cell_semigroup as module
+    original=module.linprog;calls=[]
+    def recorded(cost,**kwargs):
+        calls.append((cost.copy(),{key:value.copy() if hasattr(value,'copy') else value
+                                  for key,value in kwargs.items()}))
+        return original(cost,**kwargs)
+    monkeypatch.setattr(module,'linprog',recorded)
+    t=np.linspace(0,1,4);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4))
+    args=(t,edges,np.array([one,one/3,one/3]),nodes,mids,waves)
+    options=dict(matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+                 thermal_particle_number=np.ones(4)/3,minimum_thermal_floor=.03)
+    regular=solve_pair(*args,**options)
+    feasible=solve_pair(*args,zero_objective=True,**options)
+    assert regular['success'] and feasible['success'] and len(calls)==2
+    assert np.any(calls[0][0]) and not np.any(calls[1][0])
+    for key in ('A_eq','A_ub'):
+        assert_allclose(calls[0][1][key].toarray(),calls[1][1][key].toarray(),atol=0,rtol=0)
+    for key in ('b_eq','b_ub'):
+        assert_allclose(calls[0][1][key],calls[1][1][key],atol=0,rtol=0)
+    for key in ('bounds','method','options'):
+        assert calls[0][1][key]==calls[1][1][key]
+    assert regular['inventory_minimization_success']
+    assert not feasible['inventory_minimization_success']
+    assert feasible['solver_objective']=='zero_feasibility'
+    assert feasible['second_optimization_success'] is None
+    assert feasible['original_constraints_verified'] and feasible['minimum_added_density']==0
+    for flag in (False,True):
+        impossible=solve_pair(*args,zero_objective=flag,
+                             **dict(options,minimum_thermal_floor=1.01))
+        assert not impossible['success']
+
+
+def test_original_bounds_reject_a_forged_zero_objective_success(monkeypatch):
+    import adm_harness.virtual_cell_semigroup as module
+    original=module.linprog
+    def forged(cost,**kwargs):
+        result=original(cost,**kwargs)
+        assert result.success
+        result.x[-1]=-.001  # Fixed-zero added density: rows alone can miss it.
+        return result
+    monkeypatch.setattr(module,'linprog',forged)
+    t=np.linspace(0,1,3);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    result=solve_pair(t,edges,np.array([10*one,zero,zero]),nodes,mids,waves,
+                      thermal_eos=1/3,target_budget_only=True,zero_objective=True)
+    assert not result['success'] and not result['original_constraints_verified']
+    assert result['original_bounds_violation']>=.001
+
+
+@pytest.mark.parametrize('volume',[1.,18.])
+def test_remaining_fluid_donor_rejects_excess_cooling_with_correct_volume_weight(monkeypatch,volume):
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    if volume!=1:
+        for c in (nodes,mids):
+            for key,value in dict(b=2.,ell=2.,radius=3.,D=volume).items():c[key][:]=value
+        for wave in waves.values():wave['faces']*=.5
+    progress=t[:,None]*one
+    _pin_bank_histories(monkeypatch,radiation=one,thermal=volume**(1/3)*(.1-.08*progress),
+                        receiver=.08*progress,hot=zero)
+    duration=np.diff(t)[:,None]*one[:-1]
+    args=(t,edges,np.array([10*one,zero,zero]),nodes,mids,waves)
+    options=dict(matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_reference_density=.1*one/volume,receiver_reference=(zero,np.ones(4)),
+        receiver_contact=(duration*0,duration,1.),split_receiver=True,bank_counter_relaxation=True)
+    relaxed=solve_pair(*args,**options)
+    assert relaxed['success'] and not relaxed['bank_fluid_donor_enforced']
+    assert relaxed['bank_fluid_donor_energy_violation']>.01
+    rejected=solve_pair(*args,bank_fluid_donor=True,**options)
+    assert not rejected['success'] and rejected['bank_fluid_donor']
+    accepted=solve_pair(*args,bank_fluid_donor=True,
+                       **dict(options,receiver_contact=(duration*0,duration,10.)))
+    assert accepted['success'] and accepted['bank_fluid_donor_enforced']
+    assert accepted['bank_fluid_donor_energy_violation']<1e-10
+    assert_allclose(accepted['bank_fluid_minimum_cooling_panel_heat'],.08*duration,atol=1e-10)
+
+
+def test_remaining_fluid_donor_allows_counted_photon_circulation(monkeypatch):
+    t=np.linspace(0,1,5);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    progress=t[:,None]*one
+    _pin_bank_histories(monkeypatch,radiation=one,thermal=.001*one,
+                        receiver=.4*one,hot=.3-.1*progress)
+    duration=np.diff(t)[:,None]*one[:-1]
+    result=solve_pair(t,edges,np.array([10*one,zero,zero]),nodes,mids,waves,
+        matched_pair=True,thermal_eos=1/3,target_budget_only=True,
+        thermal_reference_density=.001*one,receiver_reference=(.4*one,.5*np.ones(4)),
+        receiver_contact=(duration*0,duration,1.),split_receiver=True,
+        bank_counter_relaxation=True,bank_fluid_donor=True,zero_objective=True)
+    assert result['success'] and result['original_constraints_verified']
+    assert_allclose(result['counter_panel_energy'],0.,atol=1e-10)
+    assert_allclose(result['bank_counter_absorption_panel_lower'],.099*duration,atol=1e-10)
+    assert_allclose(result['bank_counter_absorption_panel_upper'],.1*duration,atol=1e-10)
+    assert_allclose(result['bank_hot_to_counter_panel_heat'],.099*duration,atol=1e-10)
+    assert_allclose(result['bank_counter_to_cold_panel_heat'],.099*duration,atol=1e-10)
+    assert_allclose(result['bank_fluid_to_cold_panel_heat'],.001*duration,atol=1e-10)
+    assert result['bank_fluid_donor_energy_violation']<1e-10
+    assert not result['bank_counter_branch_constitutively_selected']
+
+
+def test_zero_objective_and_remaining_fluid_donor_require_their_contracts():
+    t=np.linspace(0,1,3);edges=np.linspace(-.01,.01,5)
+    nodes,mids,waves=flat_problem(t,edges);one=np.ones((len(t),4));zero=one*0
+    args=(t,edges,np.array([one,zero,zero]),nodes,mids,waves)
+    for flag in ('zero_objective','bank_fluid_donor'):
+        for bad in (None,1,'yes'):
+            with pytest.raises(ValueError,match=flag+' requires a boolean'):
+                solve_pair(*args,**{flag:bad})
+    for options in ({},{'target_budget_only':True,'maximize_thermal_floor':True}):
+        with pytest.raises(ValueError,match='fixed direct budget'):
+            solve_pair(*args,zero_objective=True,**options)
+    with pytest.raises(ValueError,match='bank_fluid_donor requires bank_counter_relaxation'):
+        solve_pair(*args,bank_fluid_donor=True)
 
 
 def test_bank_counter_relaxation_requires_boolean_distributed_split_receiver():

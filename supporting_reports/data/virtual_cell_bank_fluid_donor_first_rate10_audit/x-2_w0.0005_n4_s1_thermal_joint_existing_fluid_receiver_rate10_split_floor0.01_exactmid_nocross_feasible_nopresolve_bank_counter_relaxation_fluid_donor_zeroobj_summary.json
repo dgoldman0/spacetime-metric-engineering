@@ -1,0 +1,166 @@
+{
+  "label": "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj",
+  "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_states.npz",
+  "time_nodes": 515,
+  "spatial_samples": 4,
+  "parent_primal_and_target_pass": true,
+  "parent_solver_status": 0,
+  "parent_inventory_optimality_certified": false,
+  "independent_state_and_power_checks_pass": true,
+  "fluid_turnover": 10.0,
+  "photon_turnover": 10.0,
+  "hot_turnover": 10.0,
+  "unbounded_photon_rate_interval_passes": true,
+  "configured_donor_interval_passes": true,
+  "finite_active_photon_donor_possible": true,
+  "fixed_history_bank_donor_comparison_passes": true,
+  "candidate_branch_split_supplied": true,
+  "failing_intervals_without_photon_rate": 0,
+  "failing_intervals_with_configured_rate": 0,
+  "minimum_unbounded_photon_interval_margin": 5.1604407612216565e-05,
+  "minimum_configured_interval_margin": 5.1604407612216565e-05,
+  "minimum_fluid_donor_margin": 0.0032983045273566776,
+  "minimum_hot_donor_margin": 0.00030244338697398037,
+  "minimum_capacity_margin": 0.00041037100705931806,
+  "minimum_counter_density": 5.775804934465698e-05,
+  "maximum_directional_violation": 0.0,
+  "maximum_negative_stored_inventory": 0.0,
+  "raw_net_routing_violation": 0.0,
+  "active_required_absorption_samples": 1414,
+  "active_empty_counter_donor_samples": 0,
+  "active_nonrepresentable_photon_rate_samples": 0,
+  "maximum_required_finite_photon_turnover": 3.101593610661275,
+  "maximum_minimum_required_finite_fluid_turnover": null,
+  "archive_reconstruction_errors": {
+    "counter_panel": 1.3904892862126594e-17,
+    "counter_density": 0.0,
+    "hot_heat": 0.0,
+    "cold_heat": 0.0,
+    "receiver_total": 1.3877787807814457e-17,
+    "original_support": 0.0,
+    "fluid_power": 0.0
+  },
+  "power_identity_residuals": {
+    "weighted_energy": 7.78733631398576e-15,
+    "original_power": 1.3904892862126594e-17,
+    "minimum_fluid": 0.0,
+    "exported_split": 1.3904892862126594e-17
+  },
+  "worst_interval_witness": {
+    "time_start": 0.04517578125,
+    "time_end": 0.047685546875,
+    "x": -1.9998125,
+    "counter_energy": -0.00022049460699615137,
+    "hot_heat": 0.001997163580216284,
+    "cold_heat": 0.00027209901460836794,
+    "proper_duration": 0.014433998122570846,
+    "fluid_energy_endpoints": [
+      0.03328795228673946,
+      0.0352473340561263
+    ],
+    "counter_density_endpoints": [
+      5.775804934465698e-05,
+      0.0003279394420492717
+    ],
+    "counter_label_energy_endpoints": [
+      0.004925229066867892,
+      0.027942332709674257
+    ],
+    "current_endpoints": [
+      -7.085547160292607e-09,
+      2.3759322804305195e-05
+    ],
+    "absorption_lower": 0.00022049460699615137,
+    "bank_upper": 0.00027209901460836794,
+    "configured_upper": 0.00027209901460836794,
+    "interval_margin": 5.1604407612216565e-05,
+    "minimum_fluid_heat": 0.0,
+    "fluid_donor_allowance": 0.004804782408110253,
+    "minimum_required_fluid_turnover": 0.0,
+    "required_photon_turnover": 3.101593610661275
+  },
+  "worst_fluid_donor_witness": {
+    "time_start": 0.5,
+    "time_end": 0.5009765625,
+    "x": -1.9999375,
+    "counter_energy": -0.00026938490395648167,
+    "hot_heat": 0.00017932780538106133,
+    "cold_heat": 0.00036766775557818543,
+    "proper_duration": 0.004386785546619609,
+    "fluid_energy_endpoints": [
+      0.07518727533645454,
+      0.07529169325485553
+    ],
+    "counter_density_endpoints": [
+      0.04755843563056976,
+      0.047987569549834276
+    ],
+    "counter_label_energy_endpoints": [
+      3.077449168188887,
+      3.102484391942786
+    ],
+    "current_endpoints": [
+      0.00032495856193230643,
+      3.1463722883348396e-05
+    ],
+    "absorption_lower": 0.00026938490395648167,
+    "bank_upper": 0.00036766775557818543,
+    "configured_upper": 0.00036766775557818543,
+    "interval_margin": 9.828285162170376e-05,
+    "minimum_fluid_heat": 0.0,
+    "fluid_donor_allowance": 0.0032983045273566776,
+    "minimum_required_fluid_turnover": 0.0,
+    "required_photon_turnover": 0.019954275432252574
+  },
+  "worst_photon_rate_witness": {
+    "time_start": 0.04517578125,
+    "time_end": 0.047685546875,
+    "x": -1.9998125,
+    "counter_energy": -0.00022049460699615137,
+    "hot_heat": 0.001997163580216284,
+    "cold_heat": 0.00027209901460836794,
+    "proper_duration": 0.014433998122570846,
+    "fluid_energy_endpoints": [
+      0.03328795228673946,
+      0.0352473340561263
+    ],
+    "counter_density_endpoints": [
+      5.775804934465698e-05,
+      0.0003279394420492717
+    ],
+    "counter_label_energy_endpoints": [
+      0.004925229066867892,
+      0.027942332709674257
+    ],
+    "current_endpoints": [
+      -7.085547160292607e-09,
+      2.3759322804305195e-05
+    ],
+    "absorption_lower": 0.00022049460699615137,
+    "bank_upper": 0.00027209901460836794,
+    "configured_upper": 0.00027209901460836794,
+    "interval_margin": 5.1604407612216565e-05,
+    "minimum_fluid_heat": 0.0,
+    "fluid_donor_allowance": 0.004804782408110253,
+    "minimum_required_fluid_turnover": 0.0,
+    "required_photon_turnover": 3.101593610661275
+  },
+  "energy_tolerance": 2e-07,
+  "relative_tolerance": 1e-08,
+  "population_tolerance": 1e-10,
+  "activity_tolerance": 1e-10,
+  "scope": "fixed frozen-panel histories with positive simultaneous photon circulation; donor comparisons use both endpoint inventories and stored proper durations",
+  "optimal_circulation_for_all_physics_constructed": false,
+  "temperature_order_supplied": false,
+  "opacity_supplied": false,
+  "force_supplied": false,
+  "entropy_closure_supplied": false,
+  "full_source_construction_supplied": false,
+  "inventories_or_original_power_duties_changed": false,
+  "photon_turnover_condition": "required rate uses the least absorption compatible with fluid and bank duties; finite endpoint comparison, without a continuum maximum-rate claim",
+  "candidate_power_identity_residual": 0.0,
+  "candidate_hot_identity_residual": 1.0842021724855044e-19,
+  "candidate_cold_identity_residual": 0.0,
+  "candidate_fluid_identity_residual": 1.3931997916438732e-17,
+  "candidate_minimum_branch_heat": 0.0
+}
