@@ -1,13 +1,14 @@
 # Passive photon exchange in the radial-cell assembly
 
-The first tested location admits a refined curved-space allocation with
-counted hot-bank, actual fluid, and photon donor comparisons within the
-original stress budget. Joint bank temperatures add a large required
-contrast between the hot and cold stores. At the second location, selective
-cost comparisons isolate an observed solver restriction at electromagnetic
-guide comparison `0.5` in the hot-bank routing gate. That gate passes at
-guide comparison `0.8`. Earlier sampled
-allocations at both locations remain useful energy and tensor histories.
+Both tested locations now admit sampled curved-space allocations within
+the original full stress budget, with counted hot-bank and actual fluid
+donor comparisons. The first also fits photon turnover 10. The second
+requires gross photon withdrawal turnover `23.4187` in its selected
+history, with a net-absorption lower bound `21.9028`. Joint bank temperatures
+add a large required contrast between the hot and cold stores. The second
+allocation uses electromagnetic guide comparison `0.8`, refined spatial
+controls, and a larger numerical reserve to address the measured interface
+variation. Its quadrature check passes narrowly at the finest tested level.
 The phase, balanced radiation, existing pressure-link fluid, and separated
 receiver banks retain distinct duties throughout these comparisons.
 
@@ -617,7 +618,45 @@ the original physical stress budget. The complete 515-time history,
 original interface allowance, bank ratings, and actual remaining-fluid
 donor rows are retained. The finite solve passes with maximum original
 constraint violation `7.56e-16`. Its independent curved replay remains
-the next acceptance check.
+the next acceptance check in that finite-solve archive.
+
+The [recovered curved replay](data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_recovery/summary.json)
+preserves the full stress budget at both factors two and four, with density
+margins `0.000190115` and `0.000159306`. It uses 16/32 spatial positions
+and 1,029/2,057 time nodes. Bank directions, ratings, hot-bank and actual
+fluid donor checks pass, and added preparation inventories remain zero.
+Some of the 0.5% numerical reserve is consumed. The factor-two overall
+gate fails solely on quadrature difference `1.39737e-9`; factor four
+passes with difference `9.76284e-10` against tolerance `1e-9`. This is a
+narrow numerical-integrity margin, with sign-changing heat partitions
+remaining a reason for an integration refinement. The computer interruption
+left the original replay directory empty; the recovery directory contains
+the completed replay and its manifest.
+
+The [second-location contact audit](data/virtual_cell_bank_guide08_second_n8_joint_temperature/summary.json)
+passes the five-point temperature-order comparison. Its limits are
+`L_f=0.0249089`, `U_f=1.27719e-5`, `L_g=1036.875`, and
+`U_g=1.57529e-5`. The cold/hot volume-contrast infimum is `6.58211e7`
+under the stated common bank caloric normalization, and the illustrative
+strict selection uses `2.63284e8`. Physical bank packing and a material
+realization of the fitted transfer coefficients remain construction
+requirements.
+
+The same audit separately measures gross photon-cold turnover `23.4187`,
+hot-bank turnover `5.95834`, and actual fluid-cold turnover `0.433778`.
+Thus the declared turnover-10 comparison passes for the hot and fluid
+donors and fails for photons. At `t=0.04517578125` through
+`0.04580322265625`, `x=-1.9747578125`, gross cold photon heat is
+`0.000234808212` and gross hot photon heat is `0.0000151991672`.
+Their net absorption, `0.000219609044`, divided by the same proper
+duration and minimum endpoint photon inventory gives `21.9027843`.
+This is the maximum net-absorption bound across the archived panels.
+Changing the circulation split alone therefore leaves the chosen history
+above comparison 10. A faster physical photon contact or a jointly changed
+inventory and heat history would address this remaining requirement.
+The comparison value 10 is a declared model test, not a universal physical
+speed limit. Full source construction also requires material opacity,
+mode selection, momentum exchange, entropy evolution, and bank packing.
 
 ## Verification record
 
@@ -625,6 +664,9 @@ The focused suite contains 196 transport, thermal, native-solver,
 contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.
+The completed session audit covers 73 manifests and 5,829 references,
+with zero errors, five matched execution snapshots, and 48 historical
+source versions.
 Three intermediate execution versions were recovered with exact matches
 to their original recorded SHA-256 values. Their snapshots preserve the
 original numerical products and input identities. Snapshot acceptance
