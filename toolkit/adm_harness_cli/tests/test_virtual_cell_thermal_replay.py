@@ -46,6 +46,113 @@ def test_quadrature_splits_unaligned_reference_knots():
     assert_allclose(integral[:, 0], np.diff(primitive), atol=1e-15)
 
 
+def test_adaptive_contacts_integrate_unaligned_heating_cooling_crossings():
+    times = np.array([0., .2, .8, 1.])
+    roots = np.array([.3719, .6137])
+    def evaluator(at):
+        net = at[:, None]-roots
+        return np.array([net, np.maximum(net, 0.), np.maximum(-net, 0.),
+                         np.broadcast_to(1+at[:, None]**2, net.shape)])
+    raw = replay.integrate_panels(times, [.13, .55], evaluator)
+    panels, comparison, info = replay.integrate_contact_panels(times, [.13, .55], evaluator,
+                                                              contact_components=(1, 2))
+    hot = np.diff(np.maximum(times[:, None]-roots, 0.)**2/2, axis=0)
+    cold = -np.diff(np.maximum(roots-times[:, None], 0.)**2/2, axis=0)
+    assert panels.shape == comparison.shape == (4, 3, 2)
+    assert np.max(abs(raw[1]-hot)) > 1e-7
+    assert_allclose(panels[1], hot, atol=1e-11, rtol=0.)
+    assert_allclose(panels[2], cold, atol=1e-11, rtol=0.)
+    assert_allclose(panels[1]-panels[2], panels[0], atol=1e-15, rtol=0.)
+    assert_allclose(panels[3], np.broadcast_to(np.diff(times+times**3/3)[:, None], (3, 2)), atol=1e-15)
+    assert_allclose(panels, comparison, atol=1e-11, rtol=0.)
+    assert info['adaptive_contact_converged']
+    assert info['adaptive_contact_bisections'] > 0
+    assert info['adaptive_contact_absolute_panel_error_estimate'] <= 1e-11
+    assert info['adaptive_contact_unresolved_panel_count'] == 0
+
+
+def test_adaptive_contacts_resolve_multiple_crossings_and_common_bank_partition():
+    times = np.array([0., .19, .58, 1.])
+    a, b = np.array([.27, .37]), np.array([.73, .81])
+    def primitive(at):
+        at = np.asarray(at)
+        return at**3/3-(a+b)*at**2/2+a*b*at
+    def evaluator(at):
+        tt = at[:, None]
+        net = (tt-a)*(tt-b)
+        hot, cold = np.maximum(net, 0.), np.maximum(-net, 0.)
+        bank_hot, bank_cold = 1+net, np.ones_like(net)
+        # The same sampled partition identity involves smooth bank controls
+        # and both nonsmooth fluid directions.
+        return np.array([net, hot, cold, bank_hot-hot, bank_cold-cold])
+    panels, comparison, info = replay.integrate_contact_panels(times, [.11, .43, .85], evaluator,
+                                                              contact_components=(1, 2))
+    tt = times[:, None]
+    hot_primitive = primitive(np.minimum(tt, a))+np.where(tt > b, primitive(tt)-primitive(b), 0.)
+    expected_hot = np.diff(hot_primitive, axis=0)
+    expected_cold = expected_hot-np.diff(primitive(tt), axis=0)
+    assert_allclose(panels[1], expected_hot, atol=1e-11, rtol=0.)
+    assert_allclose(panels[2], expected_cold, atol=1e-11, rtol=0.)
+    assert_allclose(panels[3]-panels[4], 0., atol=1e-15, rtol=0.)
+    assert_allclose(panels, comparison, atol=1e-11, rtol=0.)
+    assert info['adaptive_contact_converged']
+
+
+def test_contact_crossing_outside_both_gauss_rules_still_refines():
+    root = 1e-4
+    def evaluator(at):
+        net = at[:, None]-root
+        return np.array([np.maximum(net, 0.), np.maximum(-net, 0.)])
+    coarse = replay.integrate_panels([0., 1.], [], evaluator, order=8)
+    low = replay.integrate_panels([0., 1.], [], evaluator, order=4)
+    assert_allclose(coarse, low, atol=1e-15, rtol=0.)
+    assert coarse[1, 0, 0] == 0.
+    panels, unused, info = replay.integrate_contact_panels([0., 1.], [], evaluator,
+                                                         contact_components=(0, 1))
+    assert_allclose(panels[:, 0, 0], [(1-root)**2/2, root**2/2], atol=1e-11, rtol=0.)
+    assert info['adaptive_contact_converged']
+    assert info['adaptive_contact_bisections'] > 0
+
+
+def test_adaptive_depth_exhaustion_is_explicit_and_fails_integrity():
+    def evaluator(at):
+        return np.maximum(at[:, None]-.3719, 0.)
+    panels, comparison, info = replay.integrate_contact_panels([0., 1.], [], evaluator, max_depth=0)
+    assert not info['adaptive_contact_converged']
+    assert info['adaptive_contact_bisections'] == 0
+    assert info['adaptive_contact_unresolved_panel_count'] == 1
+    assert info['adaptive_contact_unresolved_error_estimate'] > 1e-9
+    assert_allclose(panels, replay.integrate_panels([0., 1.], [], evaluator, order=8), atol=0., rtol=0.)
+    assert_allclose(comparison, replay.integrate_panels([0., 1.], [], evaluator, order=4), atol=0., rtol=0.)
+    # An exhausted requested refinement fails even if signed panel differences
+    # or every preexisting integrity field happen to be small.
+    fields = replay.replay_integrity({})['numerical_integrity_checked_fields']
+    metrics = dict.fromkeys(fields, 0.)
+    metrics.update(info, adaptive_contact_absolute_panel_error_estimate=5e-10)
+    checked = replay.replay_integrity(metrics)
+    assert checked['numerical_integrity_absolute_tolerance'] == 1e-9
+    assert not checked['numerical_integrity_checks_pass']
+
+
+def test_adaptive_smooth_panels_reproduce_default_without_bisection():
+    def evaluator(at):
+        return np.array([at[:, None]**2, 1+at[:, None]**3])
+    times, breaks = [0., .2, .8, 1.], [.13, .55]
+    panels, comparison, info = replay.integrate_contact_panels(times, breaks, evaluator)
+    assert info['adaptive_contact_bisections'] == 0
+    assert_allclose(panels, replay.integrate_panels(times, breaks, evaluator, order=8), atol=0., rtol=0.)
+    assert_allclose(comparison, replay.integrate_panels(times, breaks, evaluator, order=4), atol=0., rtol=0.)
+
+
+def test_adaptive_estimate_retains_opposite_subinterval_errors():
+    def evaluator(at):
+        return np.where(at[:, None] < .5, abs(at[:, None]-.17), -abs(at[:, None]-.83))
+    panels, comparison, info = replay.integrate_contact_panels([0., 1.], [.5], evaluator, max_depth=0)
+    assert_allclose(panels, comparison, atol=1e-15, rtol=0.)
+    assert info['adaptive_contact_absolute_panel_error_estimate'] > 1e-5
+    assert info['adaptive_contact_unresolved_panel_count'] == 1
+
+
 def test_curved_baseline_credits_cancel_actual_thermal_and_receiver_power():
     times = np.array([0., .3, .6, 1.])
     a, b = .23, .17
@@ -323,15 +430,25 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
     (source/'bank_summary.json').write_text(json.dumps(bank_meta))
     bank=replay.audit((str(source),'bank',4,str(output),False,False,True))
     assert bank['full_sampled_gate_passes']
+    assert not bank['adaptive_contacts_requested']
     assert bank['bank_counter_contact_reconstruction']
     assert bank['bank_counter_panel_power_identity_residual']<1e-14
     assert not bank['bank_photon_donor_law_supplied']
     with np.load(output/'bank_factor4_states.npz') as replayed:
+        default_arrays = {key: replayed[key].copy() for key in replayed.files}
         assert_allclose(replayed['bank_fluid_cold_panel_heat'],0.,atol=1e-14)
         assert_allclose(replayed['bank_fluid_hot_panel_heat'],0.,atol=1e-14)
         assert_allclose(replayed['bank_photon_cold_panel_heat'],.025,atol=1e-14)
         assert_allclose(replayed['additional_prepared_thermal_inventory'],0.,atol=1e-14)
         assert_allclose(replayed['balanced_radiation_inventory']+replayed['receiver_thermal_energy'],2.5,atol=1e-14)
+    adaptive_bank=replay.audit((str(source),'bank',4,str(output),False,False,True,True))
+    assert adaptive_bank['full_sampled_gate_passes']
+    assert adaptive_bank['adaptive_contact_converged']
+    assert adaptive_bank['adaptive_contact_bisections'] == 0
+    with np.load(output/'bank_factor4_states.npz') as replayed:
+        assert set(replayed.files) == set(default_arrays)
+        for key, values in default_arrays.items():
+            assert_allclose(replayed[key], values, atol=0., rtol=0.)
     # Requiring fluid heat with no hot-bank withdrawal has a positive routing
     # deficit, even though aggregate energy and the loose tensor still fit.
     arrays['thermal_inventory']=.001*one+.1*t[:,None]

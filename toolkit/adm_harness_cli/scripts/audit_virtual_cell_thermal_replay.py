@@ -71,6 +71,106 @@ def integrate_panels(times, breaks, evaluator, *, order=8, batch=64):
     return result
 
 
+def integrate_contact_panels(times, breaks, evaluator, *, tolerance=1e-11,
+                             max_depth=20, batch=64, contact_components=None):
+    """Bisect disagreeing Gauss4/8 intervals with common cuts for every field.
+
+    The error estimate sums absolute subinterval discrepancies within each
+    original panel, taking the maximum over all components and material labels
+    before summing. A supplied hot/cold pair also checks one-sided endpoint
+    signs, so a crossing outside both Gauss rules' nodes still triggers cuts.
+    Depth-limited unresolved panels remain explicit. This is
+    a quadrature agreement estimate, not a rigorous bound on integration error.
+    """
+    times, breaks = np.asarray(times), np.asarray(breaks)
+    if (times.ndim != 1 or len(times) < 2 or np.any(np.diff(times) <= 0)
+            or not np.isfinite(times).all() or not np.isfinite(breaks).all()
+            or not np.isfinite(tolerance) or tolerance <= 0
+            or not isinstance(max_depth, int) or max_depth < 0 or batch < 1):
+        raise ValueError('finite ordered times, positive tolerance/batch and nonnegative depth required')
+    cuts = np.unique(np.r_[times, breaks])
+    cuts = cuts[(cuts >= times[0]) & (cuts <= times[-1])]
+    left, right = cuts[:-1], cuts[1:]
+    owner = np.searchsorted(times, left, side='right')-1
+    depth = np.zeros(len(left), dtype=int)
+    initial_intervals = len(left)
+
+    def quadrature(a, b, order):
+        z, w = leggauss(order)
+        at = (a[:, None]+(b-a)[:, None]*(z+1)/2).ravel()
+        values = np.concatenate([evaluator(at[i:i+batch])
+                                 for i in range(0, len(at), batch)], axis=-2)
+        if not np.isfinite(values).all():
+            raise ValueError('finite contact quadrature values required')
+        shape = values.shape[:-2]+(len(a), order, values.shape[-1])
+        return np.sum(values.reshape(shape)*(b-a)[:, None, None]
+                      *w[None, :, None]/2, axis=-2)
+
+    def crossing_estimate(a, b):
+        if contact_components is None:
+            return np.zeros(len(a))
+        at = np.column_stack([np.nextafter(a, b), np.nextafter(b, a)]).ravel()
+        values = np.concatenate([evaluator(at[i:i+batch])
+                                 for i in range(0, len(at), batch)], axis=-2)
+        if not np.isfinite(values).all():
+            raise ValueError('finite contact endpoint values required')
+        hot, cold = contact_components
+        net = (values[hot]-values[cold]).reshape(len(a), 2, -1)
+        start, end = net[:, 0], net[:, 1]
+        crosses = ((start < 0) & (end > 0)) | ((start > 0) & (end < 0))
+        # For an affine crossing this scale exceeds the smaller signed heat
+        # triangle. The Gauss disagreement also monitors curvature and every
+        # other component; neither estimate certifies arbitrary hidden roots.
+        return (b-a)*np.max(np.where(crosses, np.minimum(abs(start), abs(end)), 0.), axis=1)
+
+    high, low = quadrature(left, right, 8), quadrature(left, right, 4)
+    crossing_error = crossing_estimate(left, right)
+    while True:
+        # A single mesh serves the energy equation, both fluid heat directions,
+        # and both bank deficits; every component can trigger refinement.
+        axes = tuple(i for i in range(high.ndim) if i != high.ndim-2)
+        error = np.maximum(np.max(abs(high-low), axis=axes), crossing_error)
+        panel_error = np.bincount(owner, weights=error, minlength=len(times)-1)
+        counts = np.bincount(owner, minlength=len(times)-1)
+        midpoint = left+(right-left)/2
+        refine = ((panel_error[owner] > tolerance) & (error > tolerance/counts[owner])
+                  & (depth < max_depth) & (midpoint > left) & (midpoint < right))
+        if not np.any(refine):
+            break
+        child_left = np.column_stack([left[refine], midpoint[refine]]).ravel()
+        child_right = np.column_stack([midpoint[refine], right[refine]]).ravel()
+        child_high, child_low = quadrature(child_left, child_right, 8), quadrature(child_left, child_right, 4)
+        child_crossing = crossing_estimate(child_left, child_right)
+        left = np.r_[left[~refine], child_left]
+        right = np.r_[right[~refine], child_right]
+        owner = np.r_[owner[~refine], np.repeat(owner[refine], 2)]
+        depth = np.r_[depth[~refine], np.repeat(depth[refine]+1, 2)]
+        order = np.argsort(left)
+        left, right, owner, depth = (a[order] for a in (left, right, owner, depth))
+        high = np.concatenate([high[..., ~refine, :], child_high], axis=-2)[..., order, :]
+        low = np.concatenate([low[..., ~refine, :], child_low], axis=-2)[..., order, :]
+        crossing_error = np.r_[crossing_error[~refine], child_crossing][order]
+
+    panels = np.zeros(high.shape[:-2]+(len(times)-1, high.shape[-1]))
+    comparison = np.zeros_like(panels)
+    for i, parent in enumerate(owner):
+        panels[..., parent, :] += high[..., i, :]
+        comparison[..., parent, :] += low[..., i, :]
+    unresolved = panel_error > tolerance
+    metadata = dict(adaptive_contacts_requested=True,
+        adaptive_contact_method='common Gauss4/8 bisections across every component; one-sided net-contact endpoint crossing scale; sum of maximum absolute leaf estimates per original panel',
+        adaptive_contact_sign_components=contact_components,
+        adaptive_contact_panel_tolerance=tolerance, adaptive_contact_maximum_depth=max_depth,
+        adaptive_contact_depth_reached=int(depth.max()),
+        adaptive_contact_initial_intervals=initial_intervals, adaptive_contact_final_intervals=len(left),
+        adaptive_contact_bisections=len(left)-initial_intervals,
+        adaptive_contact_absolute_panel_error_estimate=float(panel_error.max()),
+        adaptive_contact_unresolved_panel_count=int(unresolved.sum()),
+        adaptive_contact_unresolved_error_estimate=float(panel_error[unresolved].max()) if unresolved.any() else 0.,
+        adaptive_contact_converged=bool(not unresolved.any()))
+    return panels, comparison, metadata
+
+
 def reconstruct_inventory(initial, phase, thermal, receiver, baseline):
     """V_t=-ell² A_t-psi K_t-ell Z_t+N M(P_fluid0+P_Z0)."""
     change = -phase-thermal-receiver+baseline
@@ -240,6 +340,9 @@ def replay_integrity(metrics):
     if metrics.get('bank_counter_contact_reconstruction'):
         keys += ['bank_counter_panel_power_identity_residual',
                  'bank_hot_partition_identity_residual', 'bank_cold_partition_identity_residual']
+    if metrics.get('adaptive_contacts_requested'):
+        keys += ['adaptive_contact_absolute_panel_error_estimate',
+                 'adaptive_contact_unresolved_panel_count']
     values = np.asarray([metrics.get(key, np.nan) for key in keys], dtype=float)
     return dict(numerical_integrity_checks_pass=bool(np.isfinite(values).all()
         and np.all(values >= 0) and np.max(values) <= 1e-9),
@@ -248,11 +351,14 @@ def replay_integrity(metrics):
 
 def audit(spec):
     source, label, factor, output, *options = spec
-    if len(options) > 3:
-        raise ValueError('at most preparation, conversion-repair and contact-reconstruction options are accepted')
+    if len(options) > 4:
+        raise ValueError('at most preparation, conversion-repair, contact-reconstruction and adaptive-contact options are accepted')
     prepare_radiation = bool(options[0]) if options else False
     repair_conversion = bool(options[1]) if len(options) > 1 else False
     reconstruct_contacts = bool(options[2]) if len(options) > 2 else False
+    adaptive_contacts = bool(options[3]) if len(options) > 3 else False
+    if adaptive_contacts and not reconstruct_contacts:
+        raise ValueError('adaptive contacts require continuous contact reconstruction')
     started = time.monotonic()
     source, output = Path(source), Path(output)
     meta = json.loads((source/(label+'_summary.json')).read_text())
@@ -375,8 +481,13 @@ def audit(spec):
         return np.array([c['ell']**2*At, c['M']/c['D']**(4/3)*Kt,
             c['ell']*Zt, c['ell']*(U0t+U0*c['logD_t']/3+Z0t), loss, c['lapse'], *extra])
 
-    panels = integrate_panels(t, knots, integrand, order=8)
-    comparison = integrate_panels(t, knots, integrand, order=4)
+    quadrature_metadata = dict(adaptive_contacts_requested=adaptive_contacts)
+    if adaptive_contacts:
+        panels, comparison, quadrature_metadata = integrate_contact_panels(t, knots, integrand,
+            contact_components=(9, 10) if bank_mode else None)
+    else:
+        panels = integrate_panels(t, knots, integrand, order=8)
+        comparison = integrate_panels(t, knots, integrand, order=4)
     V = reconstruct_inventory(initial, *panels[:4])
     V4 = reconstruct_inventory(initial, *comparison[:4])
     if reconstruct_contacts:
@@ -560,7 +671,7 @@ def audit(spec):
         maximum_reserved_density_shortfall=positive_max(reserved_deficit),
         maximum_wave_floor_violation=positive_max(floor), minimum_counterstream_margin=float((counter-abs(current)).min()),
         inventory_positivity_violation=negative, common_phase_spread=coherence,
-        **conversion_metadata,
+        **conversion_metadata, **quadrature_metadata,
         gauss4_8_panel_difference=float(abs(panels-comparison).max()),
         gauss4_8_radiation_density_difference=float((abs(V-V4)/g['M']).max()),
         aggregate_panel_balance_residual=float(abs(np.diff(V, axis=0)+panels[0]+panels[1]+panels[2]-panels[3]).max()),
@@ -620,9 +731,13 @@ def main():
                         help='preserve phase and positive overlap while repairing increments by at most 1e-8')
     parser.add_argument('--reconstruct-contacts', action='store_true',
                         help='reconstruct positive proper-time heat rates and count required prepared donor inventory')
+    parser.add_argument('--adaptive-contacts', action='store_true',
+                        help='bisect Gauss4/8 disagreements and contact crossings on common cuts to 1e-11 per panel, at most 20 levels; requires --reconstruct-contacts')
     args = parser.parse_args()
     if not 1 <= args.workers <= 2 or any(f < 1 for f in args.factors):
         parser.error('one or two workers and positive refinement factors required')
+    if args.adaptive_contacts and not args.reconstruct_contacts:
+        parser.error('--adaptive-contacts requires --reconstruct-contacts')
     source, output = BASE/args.source, BASE/args.output_name
     if output.exists():
         raise RuntimeError('preserve completed thermal replay')
@@ -647,7 +762,7 @@ def main():
         hashes[str(path.relative_to(ROOT))] = sha256_file(path)
     output.mkdir()
     specs = [(str(source), label, factor, str(output), args.prepare_radiation,
-              args.repair_conversion_roundoff, args.reconstruct_contacts)
+              args.repair_conversion_roundoff, args.reconstruct_contacts, args.adaptive_contacts)
              for label in labels for factor in args.factors]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
             mp_context=multiprocessing.get_context('spawn')) as pool:
