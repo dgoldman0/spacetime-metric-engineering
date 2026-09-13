@@ -2,8 +2,8 @@
 
 Both tested locations admit a sampled curved-space allocation of the phase,
 balanced radiation, existing pressure-link fluid, and separated receiver
-banks within the original full stress budget. A physical photon contact is
-the remaining local construction issue. The resolved histories distinguish
+banks within the original full stress budget. Coupled photon and fluid
+contacts remain the local construction issue. The resolved histories distinguish
 the required energy redistribution from the much smaller converter-loss
 heat flow, allowing the next test to address their interaction directly.
 
@@ -280,6 +280,47 @@ decide the bank route. Independently, the finite-pair history still has
 a true remaining-fluid rate deficit even after allowing additional
 hot-to-photon-to-cold circulation. This identifies a specific missing
 donor constraint for the next joint allocation.
+
+## Separating fluid cooling from photon absorption
+
+The banks may supply photon emission and absorb photons simultaneously.
+For a given counter-photon panel energy `E`, choose absorbed heat `a` and
+emitted heat `e=E+a`. The remaining fluid contacts are
+
+```
+fluid heating = Q_hot - E - a,
+fluid cooling = Q_cold - a.
+```
+
+All four branches are nonnegative precisely when
+`max(0,-E)<=a<=min(Q_cold,Q_hot-E)`. A fluid donor allowance
+`d_f=kappa_f Delta_tau min(U_start,U_end)` and an optional photon
+allowance `d_gamma=kappa_gamma Delta_tau min(D_start c_start,D_end c_end)`
+give the complete endpoint comparison
+
+```
+max(0, -E, Q_cold-d_f) <= a <= min(Q_cold, Q_hot-E, d_gamma).
+```
+
+Here the photon allowance is omitted when its rate remains unspecified.
+Every transfer retains its original bank inventory and its opposite
+component power. Extra photon circulation reallocates existing bank
+traffic; its absorption and emission still require a physical optical
+law.
+
+Define the fluid's required net heat after the retained support as
+`X=(psi DeltaK-F)/chi+L`. The minimum possible fluid cooling is
+`max(-X,0)`. Consequently, the exact necessary fluid-donor rows are
+
+```
+-psi DeltaK - chi kappa_f Delta_tau K_endpoint/D_endpoint^(1/3)
+    <= chi L - F.
+```
+
+These two endpoint rows allow photon-supplied cold receipts while
+retaining the fluid's own cooling limit. The declared comparison
+`kappa_f=10` is measured in the project's proper-time unit; its physical
+realization depends on the eventual scale and contact geometry.
 
 ## Verification record
 

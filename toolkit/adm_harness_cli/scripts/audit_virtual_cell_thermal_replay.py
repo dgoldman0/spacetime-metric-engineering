@@ -196,7 +196,8 @@ def nonnegative_contact_totals(hot, cold):
 
 
 def contact_preparation(hot, cold, thermal_inventory, D, hot_panel, cold_panel,
-                        duration, number, *, turnover, temperature_floor=0.):
+                        duration, number, *, turnover, temperature_floor=0.,
+                        fluid_cold_panel=None):
     """Minimal nonnegative constant label inventories for sampled donor bounds."""
     hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number = map(np.asarray,
         (hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number))
@@ -210,8 +211,12 @@ def contact_preparation(hot, cold, thermal_inventory, D, hot_panel, cold_panel,
             or not all(np.isfinite(a).all() for a in
                        (hot, cold, thermal_inventory, D, hot_panel, cold_panel, duration, number))):
         raise ValueError('finite physical states, nonnegative heats, and positive donor scales required')
+    fluid_cold = cold_panel if fluid_cold_panel is None else np.asarray(fluid_cold_panel)
+    if (fluid_cold.shape != cold_panel.shape or not np.isfinite(fluid_cold).all()
+            or np.any(fluid_cold < 0)):
+        raise ValueError('finite nonnegative actual fluid cold heat required')
     required_hot = hot_panel/(turnover*duration)
-    required_fluid = cold_panel/(turnover*duration)
+    required_fluid = fluid_cold/(turnover*duration)
     dh = np.maximum.reduce([np.zeros(hot.shape[1]), np.max(-hot, axis=0),
         np.max(required_hot-hot[:-1], axis=0), np.max(required_hot-hot[1:], axis=0)])
     dc = np.maximum(0., np.max(-cold, axis=0))
@@ -232,6 +237,9 @@ def replay_integrity(metrics):
                  'cold_contact_subtraction_identity']
     if metrics.get('continuous_contact_reconstruction_applied'):
         keys += ['hot_parent_heat_reconstruction_residual', 'cold_parent_heat_reconstruction_residual']
+    if metrics.get('bank_counter_contact_reconstruction'):
+        keys += ['bank_counter_panel_power_identity_residual',
+                 'bank_hot_partition_identity_residual', 'bank_cold_partition_identity_residual']
     values = np.asarray([metrics.get(key, np.nan) for key in keys], dtype=float)
     return dict(numerical_integrity_checks_pass=bool(np.isfinite(values).all()
         and np.all(values >= 0) and np.max(values) <= 1e-9),
@@ -248,6 +256,9 @@ def audit(spec):
     started = time.monotonic()
     source, output = Path(source), Path(output)
     meta = json.loads((source/(label+'_summary.json')).read_text())
+    bank_mode = bool(meta.get('bank_counter_relaxation'))
+    if bank_mode and not reconstruct_contacts:
+        raise ValueError('bank-counter controls require continuous contact reconstruction')
     with np.load(source/(label+'_states.npz')) as f:
         s = {key: f[key] for key in f.files}
     stem = label+f'_factor{factor}'
@@ -301,6 +312,7 @@ def audit(spec):
     number = np.interp(x, baseline['x'], baseline['number'])
     turnover = meta.get('receiver_donor_turnover')
     reconstruction = dict(continuous_contact_reconstruction_requested=reconstruct_contacts,
+                          bank_counter_contact_reconstruction=bank_mode,
                           continuous_contact_reconstruction_applied=False)
     reconstruction_output = {}
     linear_receiver = Z.copy()
@@ -352,6 +364,14 @@ def audit(spec):
             revised_Zt = loss-hot_source+cold_source
             extra = [c['ell']*(revised_Zt-Zt), hot_source, cold_source]
             Zt = revised_Zt
+            if bank_mode:
+                original_source = U0t+U0*c['logD_t']/3+Z0t
+                fluid_net = Kt/c['D']**(1/3)-(original_source-loss)
+                fluid_hot, fluid_cold = np.maximum(fluid_net, 0.), np.maximum(-fluid_net, 0.)
+                extra += [fluid_hot, fluid_cold,
+                    np.maximum(fluid_hot-hot_source, 0.),
+                    np.maximum(fluid_cold-cold_source, 0.),
+                    original_source-Kt/c['D']**(1/3)-Zt]
         return np.array([c['ell']**2*At, c['M']/c['D']**(4/3)*Kt,
             c['ell']*Zt, c['ell']*(U0t+U0*c['logD_t']/3+Z0t), loss, c['lapse'], *extra])
 
@@ -363,8 +383,10 @@ def audit(spec):
         qhot, qcold = panels[7:9]
         H = np.vstack([initial_hot, initial_hot+np.cumsum(panels[4]-qhot, axis=0)])
         cold = np.vstack([initial_cold, initial_cold+np.cumsum(qcold, axis=0)])
+        actual_fluid_cold = panels[10] if bank_mode else None
         dh, dc, dk = contact_preparation(H, cold, K, g['D'], qhot, qcold, panels[5], number,
-            turnover=turnover, temperature_floor=meta.get('retained_uniform_fluid_temperature', 0.))
+            turnover=turnover, temperature_floor=meta.get('retained_uniform_fluid_temperature', 0.),
+            fluid_cold_panel=actual_fluid_cold)
         H, cold, K = H+dh, cold+dc, K+dk
         Z = H+cold
         reconstruction.update(continuous_contact_reconstruction_applied=True,
@@ -379,6 +401,22 @@ def audit(spec):
             cold_parent_heat_reconstruction_residual=float(abs(qcold.reshape(len(oldt)-1,factor,nx).sum(axis=1)-parent_cold).max()),
             maximum_receiver_energy_source_panel_change=float(abs(panels[6]).max()),
             maximum_receiver_source_change_cumulative=float(abs(np.cumsum(panels[6], axis=0)).max()))
+        if bank_mode:
+            fluid_hot, fluid_cold = panels[9:11]
+            photon_hot, photon_cold = qhot-fluid_hot, qcold-fluid_cold
+            reconstruction.update(
+                continuous_contact_method='parent bank rates constant in proper time; actual fluid nonadiabatic heat after retained support is split into positive and negative parts; remaining counted bank traffic supplies photons; prepared H,C,K offsets cover actual donor and temperature bounds',
+                bank_fluid_partition='minimum fluid circulation at each quadrature sample; symmetric residual bank traffic passes through photons',
+                bank_photon_donor_law_supplied=False,
+                bank_hot_partition_identity_residual=float(abs(photon_hot+fluid_hot-qhot).max()),
+                bank_cold_partition_identity_residual=float(abs(photon_cold+fluid_cold-qcold).max()),
+                bank_counter_panel_power_identity_residual=float(abs(photon_hot-photon_cold-panels[13]).max()),
+                bank_integrated_direction_violation=float(np.max(np.sum(panels[11]+panels[12], axis=0))),
+                bank_panel_direction_violation=max(positive_max(-photon_hot),positive_max(-photon_cold)))
+            reconstruction_output.update(bank_fluid_hot_panel_heat=fluid_hot,
+                bank_fluid_cold_panel_heat=fluid_cold,bank_photon_hot_panel_heat=photon_hot,
+                bank_photon_cold_panel_heat=photon_cold,bank_counter_panel_energy=panels[13],
+                bank_hot_direction_deficit_panel=panels[11],bank_cold_direction_deficit_panel=panels[12])
         reconstruction_output.update(additional_prepared_hot_inventory=dh,
             additional_prepared_cold_inventory=dc, additional_prepared_thermal_inventory=dk,
             receiver_history_change=Z-linear_receiver, hot_history_change=H-linear_hot,
@@ -490,14 +528,16 @@ def audit(spec):
             receiver_hot_contact_panel_heat=qhot, receiver_cold_contact_panel_heat=qcold)
         if turnover is not None:
             rate = turnover*duration
+            fluid_cold = panels[10] if bank_mode else qcold
             diagnostics['split_donor_violation'] = max(positive_max(qhot-rate*H[:-1]),
-                positive_max(qhot-rate*H[1:]), positive_max(qcold-rate*fluid_energy[:-1]),
-                positive_max(qcold-rate*fluid_energy[1:]))
+                positive_max(qhot-rate*H[1:]), positive_max(fluid_cold-rate*fluid_energy[:-1]),
+                positive_max(fluid_cold-rate*fluid_energy[1:]))
     if turnover is not None:
         rate = turnover*duration
         diagnostics['receiver_donor_violation'] = max(positive_max(contact-rate*Z[:-1]),
-            positive_max(contact-rate*Z[1:]), positive_max(-contact-rate*fluid_energy[:-1]),
-            positive_max(-contact-rate*fluid_energy[1:]))
+            positive_max(contact-rate*Z[1:]),
+            0. if bank_mode else positive_max(-contact-rate*fluid_energy[:-1]),
+            0. if bank_mode else positive_max(-contact-rate*fluid_energy[1:]))
     i, j = np.unravel_index(np.argmax(deficit), deficit.shape)
     negative = max(positive_max(-core), positive_max(-B), positive_max(-Z/g['D']), positive_max(-W))
     tolerance = 2e-7
@@ -505,6 +545,9 @@ def audit(spec):
     floor_pass = thermal_floor_error <= tolerance
     contact_pass = bool(max(value for key, value in diagnostics.items()
                            if key.endswith('violation')) <= tolerance)
+    if bank_mode:
+        contact_pass = bool(contact_pass and max(reconstruction['bank_integrated_direction_violation'],
+            reconstruction['bank_panel_direction_violation']) <= tolerance)
     full_pass = bool(max(float(deficit.max()), float(floor.max()), negative) <= tolerance)
     reserve_pass = bool(max(float(reserved_deficit.max()), float(floor.max()), negative) <= tolerance)
     result = dict(label=label, factor=factor, success=True, time_samples=len(t), spatial_samples=nx,
@@ -527,7 +570,8 @@ def audit(spec):
         minimum_fluid_temperature=float(fluid_temperature.min()),
         archived_uniform_fluid_temperature_floor=meta.get('retained_uniform_fluid_temperature'),
         uniform_fluid_temperature_floor_violation=thermal_floor_error,
-        receiver_donor_scope='endpoint donor-energy comparison on each replay panel',
+        receiver_donor_scope=('hot-bank and actual minimum fluid-cold endpoint comparisons; photon donor law remains separate'
+                              if bank_mode else 'endpoint donor-energy comparison on each replay panel'),
         baseline_power_and_full_stress_credits_retained=True, full_balanced_radiation_inventory_retained=True,
         aggregate_energy_integrated=True, beam_transport_independently_replayed=True,
         counterstream_opacity_and_force_supplied=False, thermal_constitutive_law_supplied=False,

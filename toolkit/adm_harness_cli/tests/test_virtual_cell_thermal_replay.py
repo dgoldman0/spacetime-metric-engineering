@@ -310,3 +310,35 @@ def test_complete_adapter_preserves_prepared_inventory_and_split_receiver(tmp_pa
                         2.5,atol=1e-14)
         assert np.all(np.diff(replayed['receiver_hot_energy'],axis=0)>=0)
         assert_allclose(replayed['additional_prepared_thermal_inventory'],0.)
+    # A cold receiver can absorb photons while the fluid remains adiabatic.
+    # Its preparation therefore charges no part of this heat to fluid storage.
+    old['flux_energy']=np.ones((5,4))
+    arrays['thermal_inventory']=.001*one
+    arrays['receiver_hot_energy']=.4*one
+    arrays['receiver_thermal_energy']=.5*one+.2*t[:,None]
+    arrays['receiver_hot_contact_panel_heat']=zero[:-1].copy()
+    arrays['receiver_cold_contact_panel_heat']=.2*np.diff(t)[:,None]*np.ones((2,4))
+    bank_meta=dict(meta,bank_counter_relaxation=True)
+    np.savez_compressed(source/'bank_states.npz',**arrays)
+    (source/'bank_summary.json').write_text(json.dumps(bank_meta))
+    bank=replay.audit((str(source),'bank',4,str(output),False,False,True))
+    assert bank['full_sampled_gate_passes']
+    assert bank['bank_counter_contact_reconstruction']
+    assert bank['bank_counter_panel_power_identity_residual']<1e-14
+    assert not bank['bank_photon_donor_law_supplied']
+    with np.load(output/'bank_factor4_states.npz') as replayed:
+        assert_allclose(replayed['bank_fluid_cold_panel_heat'],0.,atol=1e-14)
+        assert_allclose(replayed['bank_fluid_hot_panel_heat'],0.,atol=1e-14)
+        assert_allclose(replayed['bank_photon_cold_panel_heat'],.025,atol=1e-14)
+        assert_allclose(replayed['additional_prepared_thermal_inventory'],0.,atol=1e-14)
+        assert_allclose(replayed['balanced_radiation_inventory']+replayed['receiver_thermal_energy'],2.5,atol=1e-14)
+    # Requiring fluid heat with no hot-bank withdrawal has a positive routing
+    # deficit, even though aggregate energy and the loose tensor still fit.
+    arrays['thermal_inventory']=.001*one+.1*t[:,None]
+    np.savez_compressed(source/'bank_unfed_states.npz',**arrays)
+    (source/'bank_unfed_summary.json').write_text(json.dumps(bank_meta))
+    unfed=replay.audit((str(source),'bank_unfed',4,str(output),False,False,True))
+    assert unfed['full_density_budget_passes']
+    assert not unfed['receiver_contact_checks_pass']
+    assert not unfed['full_sampled_gate_passes']
+    assert_allclose(unfed['bank_integrated_direction_violation'],.1,atol=1e-14)
