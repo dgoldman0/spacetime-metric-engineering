@@ -609,6 +609,16 @@ an unresolved spatial margin. Separately, a guide-facet deficit
 quadrature discrepancy belongs to the fluid-heating split elsewhere;
 radiation-density quadrature disagreement is only `3.21e-16`.
 
+The [refined second-location allocation](data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded/summary.json)
+uses eight spatial control points, guide comparison `0.8`, and a 0.5%
+numerical density reserve. The spatial refinement addresses the measured
+edge variation; the larger reserve covers the observed mismatch within
+the original physical stress budget. The complete 515-time history,
+original interface allowance, bank ratings, and actual remaining-fluid
+donor rows are retained. The finite solve passes with maximum original
+constraint violation `7.56e-16`. Its independent curved replay remains
+the next acceptance check.
+
 ## Verification record
 
 The focused suite contains 196 transport, thermal, native-solver,
