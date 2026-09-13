@@ -1,11 +1,14 @@
 # Passive photon exchange in the radial-cell assembly
 
-Both tested locations admit a sampled curved-space allocation of the phase,
-balanced radiation, existing pressure-link fluid, and separated receiver
-banks within the original full stress budget. Coupled photon and fluid
-contacts remain the local construction issue. The resolved histories distinguish
-the required energy redistribution from the much smaller converter-loss
-heat flow, allowing the next test to address their interaction directly.
+The first tested location admits a refined curved-space allocation with
+counted hot-bank, actual fluid, and photon donor comparisons within the
+original stress budget. Joint bank temperatures add a large required
+contrast between the hot and cold stores. At the second location, selective
+cost comparisons identify the prescribed electromagnetic guide requirement
+as an obstruction to the stronger bank-contact gate. Earlier sampled
+allocations at both locations remain useful energy and tensor histories.
+The phase, balanced radiation, existing pressure-link fluid, and separated
+receiver banks retain distinct duties throughout these comparisons.
 
 This analysis continues the
 [joint pressure-link allocation](VIRTUAL_RADIAL_CELL_PRESSURE_LINK_REALLOCATION.md).
@@ -453,13 +456,35 @@ The [coarser comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperat
 gives volume-ratio infimum `1.53248e6`. The near doubling arises mainly
 from a smaller cold-photon temperature upper bound near `t=0.0449`,
 where the complementary photon population becomes small while absorption
-continues. This temperature requirement has yet to show refinement
-convergence. The finite-midpoint selections therefore leave a continuous
-contact construction open even though the full stress replay passes.
+continues. Both midpoint-only coefficient selections fail the tighter
+temperature bound at a known time knot. The endpoint-aware comparisons
+below correct the selection while preserving these original diagnostics.
 The archived [single-fluid grey comparison](data/virtual_cell_bank_fluid_donor_first_guided/summary.json)
 also fails its common-coefficient interval. The
 [separate fluid/bank comparison](data/virtual_cell_bank_fluid_donor_first_temperatures/summary.json)
 omits the tighter joint photon temperature requirement.
+
+The corrected audit imposes each active panel's temperature order at both
+one-sided endpoints, its midpoint, and its quarter points. The
+[factor-two comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperature_endpoints_coarse/summary.json)
+and [factor-four comparison](data/virtual_cell_bank_fluid_donor_first_joint_temperature_endpoints/summary.json)
+both pass this sampled shape test. Their volume-contrast infima are
+`7.20040e6` and `7.95009e6`, a change of approximately 10.4%. The limiting
+knot is `t=0.04517578125`, where the finer history retains complementary
+density `5.02059e-5` and cold-bank energy `0.00386679`. The additional
+quarter samples give looser bounds. This identifies a positive minimum
+missed by the earlier midpoint-only audit; a continuous-time temperature
+certificate remains a further requirement.
+
+The corrected audits also check the actual reconstructed gross heat
+branches against endpoint donor energies. At factor four the photon-cold
+turnover requirement peaks at `4.40113`, and total hot-bank withdrawal
+peaks at `6.09050`; both fit the declared comparison value 10. Fluid-cold
+withdrawal remains zero. The selected grey contact coefficients divide
+heat by a temperature-dependent population gap, while these donor bounds
+divide heat by the full available donor inventory. Consequently the
+declared donor comparison and a microscopic opacity bound represent
+different requirements.
 
 ## Isolating the second-location mechanical burden
 
@@ -483,9 +508,48 @@ obstruction in the mechanical costs of carrying and attaching the waves.
 The successful relaxation supplies a diagnostic history whose missing
 mechanical costs still require a counted construction.
 
+Selective reoptimization distinguishes those two costs. With the original
+interface allowance retained and the guide charge removed, the
+[second cell passes](data/virtual_cell_bank_interface_only_second/summary.json)
+with maximum original constraint violation `8.72e-16`. With the guide
+comparison `0.5` retained and only the interface cost removed, the
+[solver reports infeasibility](data/virtual_cell_bank_guide_only_second/summary.json).
+As in the full-cost case, the latter status has no independently checked
+infeasibility certificate. The selective outcomes identify the prescribed
+guide requirement as the relevant finite-model restriction; the interface
+allowance can coexist with the other retained duties in a relaxed guide
+construction.
+
+The [electromagnetic guide comparison](POYNTING_WORK_DELIVERY.md) uses
+`g(v_d)=(v_d^(-2)-1)/2`, with required guide energy at least `g` times
+the explicit travelling-wave energy. In the current decomposition its
+stress constraint is
+
+```
+s/2 + rho_f + z + 3 g(v_d) (u_abs + u_rec) <= rho - p_r + p_t.
+```
+
+Here `s=A/R^2`, `rho_f` is the actual reopened thermal fluid density,
+`z` is stored receiver energy density, and the right side is the credited
+target. The existing core and auxiliary radial fields supply the guide
+allowance. Raising the electromagnetic drift comparison from `0.5` to
+`0.6` changes `g` from `1.5` to `0.888889`; comparison `0.8` gives
+`g=0.28125`. These choices permit weaker magnetic guidance and a larger
+local `E/B` drift. They leave prescribed rail bulk motion and causal wave
+propagation fixed. Current-carrier inertia and a complete material guide
+remain construction duties.
+
+The [guide-0.6 comparison](data/virtual_cell_bank_guide06_second/summary.json)
+returns native infeasibility. The otherwise matched
+[guide-0.8 comparison](data/virtual_cell_bank_guide08_second/summary.json)
+passes while retaining the original interface allowance. This brackets a
+useful guide sensitivity inside the tested finite model. The successful
+necessary routing gate still requires actual fluid and photon donor checks,
+the restored numerical reserve, and an independent curved replay.
+
 ## Verification record
 
-The focused suite contains 179 transport, thermal, native-solver,
+The focused suite contains 196 transport, thermal, native-solver,
 contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.

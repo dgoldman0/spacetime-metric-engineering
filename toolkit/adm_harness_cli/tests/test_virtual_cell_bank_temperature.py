@@ -74,3 +74,35 @@ def test_invalid_or_degenerate_bounds_do_not_claim_finite_coefficient_selection(
     assert not bank.choose_joint_coefficients(np.inf,1.,1.,1.)['selection_possible']
     unforced=bank.choose_joint_coefficients(0.,np.inf,0.,np.inf)
     assert unforced['selection_possible'] and unforced['contrast_infimum']==0
+
+
+def test_endpoint_minimum_tightens_midpoint_only_selection():
+    one=np.ones((1,1));zero=one*0
+    midpoint=bank.joint_temperature_bounds(zero,zero,one,one,one,one,one,one,one)
+    endpoint=bank.joint_temperature_bounds(zero,zero,one,one,one,one,one,.1*one,one)
+    midpoint_selection=bank.choose_joint_coefficients(**limits(midpoint))
+    combined=bank.combine_sample_bounds([midpoint,endpoint])
+    selected=bank.choose_joint_coefficients(**limits(combined))
+    assert combined['Ug_sample_witness'][0]==1
+    assert_allclose(combined['Ug'],.01)
+    assert midpoint_selection['selected_cold_channel_product']>.01
+    assert selected['selected_cold_channel_product']<.01
+    assert_allclose(selected['contrast_infimum'],100.)
+
+
+def test_active_panel_zero_endpoint_donor_invalidates_sampled_shape_comparison():
+    one=np.ones((1,1));zero=one*0
+    midpoint=bank.joint_temperature_bounds(zero,zero,zero,one,one,one,one,one,one)
+    endpoint=bank.joint_temperature_bounds(zero,zero,zero,one,one,one,one,zero,one)
+    assert midpoint['state_valid'][0]
+    assert not bank.combine_sample_bounds([midpoint,endpoint])['state_valid'][0]
+
+
+def test_actual_endpoint_donor_turnover_uses_gross_branch_heat_without_flooring():
+    heat=np.array([[.2,.2,.2]])
+    energy=np.array([[.01,0.,1e-20],[.02,.1,2e-20]])
+    result=bank.endpoint_turnover(heat,np.ones_like(heat),energy)
+    assert_allclose(result['rate'][0,0],20.)
+    assert np.isinf(result['rate'][0,1]) and result['empty_active_donor'][0,1]
+    assert_allclose(result['rate'][0,2],2e19)
+    assert not result['empty_active_donor'][0,2]

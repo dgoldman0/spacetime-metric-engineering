@@ -1,0 +1,213 @@
+{
+  "cases": [
+    {
+      "label": "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4",
+      "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz",
+      "parent_full_sampled_gate_passes": true,
+      "independent_state_and_contact_checks_pass": true,
+      "joint_bank_temperature_selection_passes": true,
+      "time_samples": 2056,
+      "spatial_samples": 16,
+      "limits": {
+        "Lf": 0.029834794524364126,
+        "Uf": null,
+        "Lg": 357.3031493148497,
+        "Ug": 4.4943282276537275e-05
+      },
+      "fluid_cold_upper_unbounded": true,
+      "photon_cold_upper_unbounded": false,
+      "selection_possible": true,
+      "contrast_infimum": 7950090.229644408,
+      "fluid_contrast_infimum": 0.0,
+      "photon_contrast_infimum": 7950090.229644408,
+      "selected_hot_coefficient": 1.9999999999999998,
+      "selected_cold_coefficient": 6.289236795522055e-08,
+      "selected_channel_coefficient": 18.902464106958377,
+      "selected_cold_to_hot_volume_ratio": 31800360.918577634,
+      "selected_hot_channel_product": 714.6062986296994,
+      "selected_cold_channel_product": 2.2471641138268637e-05,
+      "hot_safety_factor": 2.0,
+      "cold_safety_factor": 0.5,
+      "strict_contrast_infimum_attained": false,
+      "positive_active_temperature_gaps": true,
+      "finite_grey_contact_coefficients": true,
+      "contact_partition_residuals": {
+        "hot_partition": 2.710505431213761e-20,
+        "cold_partition": 0.0,
+        "counter_power": 1.0164395367051604e-19,
+        "total_bank_heat": 5.421010862427522e-20
+      },
+      "active_grey_counter_power_identity_residual": 5.421010862427522e-20,
+      "full_grey_counter_power_identity_residual": 5.421010862427522e-20,
+      "fluid_particle_normalization_error": 0.0,
+      "maximum_directional_population_violation": 0.0,
+      "active_fluid_hot_samples": 32896,
+      "active_fluid_cold_samples": 0,
+      "active_photon_hot_samples": 32896,
+      "active_photon_cold_samples": 32896,
+      "invalid_state_or_donor_samples": 0,
+      "first_invalid_witness": null,
+      "limit_witnesses": {
+        "Lf": {
+          "time": 1.285,
+          "sampling_location": "right_endpoint",
+          "panel_start": 1.28437255859375,
+          "panel_end": 1.285,
+          "x": -2.000234375,
+          "fluid_temperature": 0.14843708107943915,
+          "hot_energy": 0.016272211162123823,
+          "cold_energy": 0.09798887909786048,
+          "counter_density": 0.2732557996026309,
+          "counter_current": -0.00010949571824680788,
+          "radius": 2.8636531287308133,
+          "fluid_hot_heat": 3.2816013344762916e-05,
+          "fluid_cold_heat": 0.0,
+          "photon_hot_heat": 7.565127888887454e-05,
+          "photon_cold_heat": 3.750370251002056e-05,
+          "threshold": 0.029834794524364126
+        },
+        "Uf": null,
+        "Lg": {
+          "time": 1.285,
+          "sampling_location": "right_endpoint",
+          "panel_start": 1.28437255859375,
+          "panel_end": 1.285,
+          "x": -1.9999531249999998,
+          "fluid_temperature": 0.11142161633710032,
+          "hot_energy": 0.014076975221101934,
+          "cold_energy": 0.11462312904407956,
+          "counter_density": 0.2735156518790462,
+          "counter_current": 0.0007126520568855912,
+          "radius": 2.8634885816519704,
+          "fluid_hot_heat": 1.2210076609426016e-05,
+          "fluid_cold_heat": 0.0,
+          "photon_hot_heat": 8.027874536212261e-05,
+          "photon_cold_heat": 6.334309385104423e-05,
+          "threshold": 357.3031493148497
+        },
+        "Ug": {
+          "time": 0.04517578125,
+          "sampling_location": "left_endpoint",
+          "panel_start": 0.04517578125,
+          "panel_end": 0.045803222656249996,
+          "x": -1.9997656249999998,
+          "fluid_temperature": 0.027737737949833436,
+          "hot_energy": 0.1623923518693471,
+          "cold_energy": 0.0038667907298086663,
+          "counter_density": 5.0205886446912176e-05,
+          "counter_current": -1.9795927131643638e-09,
+          "radius": 2.881552549772254,
+          "fluid_hot_heat": 0.0004862725065955372,
+          "fluid_cold_heat": 0.0,
+          "photon_hot_heat": 1.315372991273449e-05,
+          "photon_cold_heat": 6.80431929410358e-05,
+          "threshold": 4.4943282276537275e-05
+        }
+      },
+      "sampling_locations": [
+        "midpoint",
+        "left_endpoint",
+        "right_endpoint",
+        "quarter",
+        "three_quarter"
+      ],
+      "sample_location_limits": {
+        "midpoint": {
+          "Lf": 0.02970492283793588,
+          "Uf": null,
+          "Lg": 354.50745456680113,
+          "Ug": 0.00011554036313246715
+        },
+        "left_endpoint": {
+          "Lf": 0.02957594057185657,
+          "Uf": null,
+          "Lg": 351.73441734316634,
+          "Ug": 4.4943282276537275e-05
+        },
+        "right_endpoint": {
+          "Lf": 0.029834794524364126,
+          "Uf": null,
+          "Lg": 357.3031493148497,
+          "Ug": 4.4943282276537275e-05
+        },
+        "quarter": {
+          "Lf": 0.02964032108101371,
+          "Uf": null,
+          "Lg": 353.11811797365056,
+          "Ug": 8.034428740377743e-05
+        },
+        "three_quarter": {
+          "Lf": 0.02976974694810659,
+          "Uf": null,
+          "Lg": 355.902455494438,
+          "Ug": 7.610322424075169e-05
+        }
+      },
+      "reconstructed_branch_donor_turnover": {
+        "photon_cold": {
+          "active_samples": 32896,
+          "empty_active_donor_samples": 0,
+          "nonrepresentable_active_rate_samples": 0,
+          "maximum_finite_required_turnover": 4.401132471588272,
+          "turnover10_endpoint_comparison_passes": true,
+          "witness": {
+            "panel_start": 0.04517578125,
+            "panel_end": 0.045803222656249996,
+            "x": -1.9997656249999998,
+            "required_turnover": 4.401132471588272,
+            "minimum_endpoint_inventory": 0.004282259051305888
+          }
+        },
+        "hot_total": {
+          "active_samples": 32896,
+          "empty_active_donor_samples": 0,
+          "nonrepresentable_active_rate_samples": 0,
+          "maximum_finite_required_turnover": 6.090495544076514,
+          "turnover10_endpoint_comparison_passes": true,
+          "witness": {
+            "panel_start": 1.28437255859375,
+            "panel_end": 1.285,
+            "x": -1.999796875,
+            "required_turnover": 6.090495544076514,
+            "minimum_endpoint_inventory": 0.01540202682331776
+          }
+        },
+        "fluid_cold": {
+          "active_samples": 0,
+          "empty_active_donor_samples": 0,
+          "nonrepresentable_active_rate_samples": 0,
+          "maximum_finite_required_turnover": null,
+          "turnover10_endpoint_comparison_passes": true,
+          "witness": null
+        }
+      },
+      "heat_activity_tolerance": 1e-10,
+      "heat_validation_tolerance": 1e-10,
+      "population_tolerance": 1e-10,
+      "inactive_heat_maximum": 0.0,
+      "bank_negative_roundoff_mapped_to_zero_for_temperature": false,
+      "equilibrium_law": "c_eq=a2*Theta**2/R**2 for fixed bidirectional gapless photon channels",
+      "bank_caloric_law": "Theta_hot**4=ah*H, Theta_cold**4=ac*C",
+      "fluid_caloric_law": "Theta_fluid=K/(3*N_mass*D**(1/3))",
+      "volume_contrast_interpretation": "ah/ac equals cold/hot proper volume only for equal bank caloric normalization",
+      "midpoint_scope": "exact registered midpoint geometry and stored particle normalization; linear interpolation of replay H,C,K,V and explicit beam densities; actual integrated branch heat divided by midpoint D and proper panel duration",
+      "coefficient_bound_scope": "both one-sided endpoints, midpoint and quarter points of each replay panel; each active integrated branch imposes its temperature ordering at all five samples, a conservative shape comparison",
+      "continuous_time_temperature_order_certified": false,
+      "donor_turnover_scope": "actual reconstructed gross branch heat divided by proper panel duration and the minimum endpoint donor energy; exact positive signs retained, no denominator floor",
+      "temporal_grey_coefficients_selected": true,
+      "local_dynamical_opacity_law_supplied": false,
+      "spectrum_or_mode_selectivity_supplied": false,
+      "force_closure_supplied": false,
+      "complete_entropy_evolution_supplied": false,
+      "material_packing_supplied": false,
+      "full_source_construction_supplied": false,
+      "inventories_and_heat_branches_modified": false,
+      "maximum_coefficients": {
+        "hot_photon_grey_coefficient": 0.023772770305236855,
+        "cold_photon_grey_coefficient": 4.538526103035358,
+        "hot_fluid_heat_coefficient": 1.0879798364075899,
+        "cold_fluid_heat_coefficient": 0.0
+      }
+    }
+  ]
+}

@@ -12,10 +12,10 @@ import run_virtual_cell_thermal_transport as runner
 import audit_virtual_cell_receiver_contact as contact
 
 
-def specification(output,omit=False,*,budget=True,zero=True):
+def specification(output,omit=False,*,budget=True,zero=True,omit_guide=False,omit_interface=False,guide_drift=.5):
     return (-1.975,.0005,4,1,0.,str(output),60.,'highs-ipm',
             True,True,10.,budget,True,False,.01,True,True,False,True,True,
-            True,False,zero,omit)
+            True,False,zero,omit,omit_guide,omit_interface,guide_drift)
 
 
 class FlatHistory:
@@ -50,7 +50,11 @@ def assert_same(left,right):
     else:assert left==right
 
 
-def test_omission_forwards_only_guide_interface_changes_and_records_scope(monkeypatch,tmp_path):
+@pytest.mark.parametrize('omission,sigma,drift,suffix',[
+    ({'omit':True},0.,None,'_omit_guide_interface_costs'),
+    ({'omit_guide':True},1e-7,None,'_omit_guide_costs'),
+    ({'omit_interface':True},0.,.5,'_omit_interface_costs')])
+def test_omission_forwards_only_guide_interface_changes_and_records_scope(monkeypatch,tmp_path,omission,sigma,drift,suffix):
     monkeypatch.setattr(runner,'DenseHistory',FlatHistory)
     monkeypatch.setattr(contact,'integrated_loss',lambda h,t,x,order:
         (np.zeros((len(t)-1,len(x))),np.diff(t)[:,None]*np.ones((1,len(x)))))
@@ -60,30 +64,34 @@ def test_omission_forwards_only_guide_interface_changes_and_records_scope(monkey
         return dict(success=False,status=1,message='manufactured interception; no solve')
     monkeypatch.setattr(runner,'solve_pair',inspect_only)
     regular=runner.evaluate(specification(tmp_path))
-    relaxed=runner.evaluate(specification(tmp_path,True))
+    relaxed=runner.evaluate(specification(tmp_path,**omission))
     assert len(calls)==2
     assert_same(calls[0][0],calls[1][0])
     for key,value in calls[0][1].items():
         if key not in ('interface_sigma','guide_drift'):assert_same(value,calls[1][1][key])
     assert calls[0][1]['interface_sigma']==1e-7 and calls[0][1]['guide_drift']==.5
-    assert calls[1][1]['interface_sigma']==0 and calls[1][1]['guide_drift'] is None
+    assert calls[1][1]['interface_sigma']==sigma and calls[1][1]['guide_drift']==drift
     for key in ('coherent_cells','return_heat','wave_envelope','matched_pair','split_receiver',
                 'bank_counter_relaxation','target_budget_only','zero_objective'):
         assert calls[1][1][key] is True
     assert calls[1][1]['receiver_contact'][2]==10.
     assert not regular['guide_interface_costs_omitted']
-    assert relaxed['guide_interface_costs_omitted'] and relaxed['favorable_transport_only_relaxation']
-    assert relaxed['guide_drift'] is None and relaxed['interface_sigma']==0
-    assert relaxed['label'].endswith('_omit_guide_interface_costs')
-    assert 'transport-only necessity relaxation' in relaxed['scope']
+    assert relaxed['favorable_cost_omission_relaxation']
+    assert relaxed['favorable_transport_only_relaxation']==omission.get('omit',False)
+    assert relaxed['guide_costs_omitted']==(drift is None)
+    assert relaxed['interface_costs_omitted']==(sigma==0.)
+    assert relaxed['guide_drift']==drift and relaxed['interface_sigma']==sigma
+    assert relaxed['label'].endswith(suffix)
+    assert 'necessity relaxation' in relaxed['scope']
     assert not relaxed['full_source_construction_supplied']
     assert not relaxed['independent_curved_geometry_replay_supplied']
     assert not relaxed['guide_material_clearance_supplied']
 
 
 @pytest.mark.parametrize('flags',[[],['--target-budget-only']])
-def test_omission_cli_requires_fixed_budget_and_zero_objective(monkeypatch,flags):
-    monkeypatch.setattr(sys,'argv',['runner','--omit-guide-interface-costs']+flags)
+@pytest.mark.parametrize('omission',['--omit-guide-interface-costs','--omit-guide-costs','--omit-interface-costs'])
+def test_omission_cli_requires_fixed_budget_and_zero_objective(monkeypatch,flags,omission):
+    monkeypatch.setattr(sys,'argv',['runner',omission]+flags)
     with pytest.raises(SystemExit) as error:runner.main()
     assert error.value.code==2
 
@@ -92,3 +100,38 @@ def test_omission_cli_requires_fixed_budget_and_zero_objective(monkeypatch,flags
 def test_programmatic_omission_requires_same_contract(tmp_path,budget,zero):
     with pytest.raises(ValueError,match='fixed budget and zero objective'):
         runner.evaluate(specification(tmp_path,True,budget=budget,zero=zero))
+
+
+def test_selective_omissions_are_explicitly_separate_comparisons(monkeypatch,tmp_path):
+    monkeypatch.setattr(sys,'argv',['runner','--omit-guide-costs','--omit-interface-costs'])
+    with pytest.raises(SystemExit) as error:runner.main()
+    assert error.value.code==2
+    with pytest.raises(ValueError,match='select one'):
+        runner.evaluate(specification(tmp_path,omit_guide=True,omit_interface=True))
+
+
+@pytest.mark.parametrize('omit_guide',[False,True])
+def test_requested_guide_comparison_is_forwarded_unless_explicitly_omitted(monkeypatch,tmp_path,omit_guide):
+    monkeypatch.setattr(runner,'DenseHistory',FlatHistory)
+    monkeypatch.setattr(contact,'integrated_loss',lambda h,t,x,order:
+        (np.zeros((len(t)-1,len(x))),np.diff(t)[:,None]*np.ones((1,len(x)))))
+    calls=[]
+    def inspect_only(*args,**kwargs):
+        calls.append(kwargs)
+        return dict(success=False,status=1,message='manufactured interception; no solve')
+    monkeypatch.setattr(runner,'solve_pair',inspect_only)
+    summary=runner.evaluate(specification(tmp_path,omit_guide=omit_guide,guide_drift=.7))
+    expected=None if omit_guide else .7
+    assert calls[0]['guide_drift']==expected and calls[0]['interface_sigma']==1e-7
+    assert summary['guide_drift']==expected and summary['requested_guide_drift']==.7
+    assert ('_guidedrift0.7' in summary['label']) is not omit_guide
+    assert summary['guide_costs_omitted'] is omit_guide
+
+
+@pytest.mark.parametrize('drift',[0.,1.,-.5,float('nan'),float('inf')])
+def test_guide_drift_requires_a_subluminal_positive_comparison(monkeypatch,tmp_path,drift):
+    monkeypatch.setattr(sys,'argv',['runner','--guide-drift',str(drift)])
+    with pytest.raises(SystemExit) as error:runner.main()
+    assert error.value.code==2
+    with pytest.raises(ValueError,match='strictly between zero and one'):
+        runner.evaluate(specification(tmp_path,guide_drift=drift))

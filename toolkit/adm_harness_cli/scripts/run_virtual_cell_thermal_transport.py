@@ -22,11 +22,20 @@ def evaluate(spec):
     (center, width, intervals, stride, reserve, output, deadline, solver_method,
      reallocate_fluid, reallocate_receiver, turnover, budget_only, split_receiver, warm_fluid,
      minimum_temperature, exact_midpoint, no_crossover, solver_log, retain_interior, no_presolve,
-     bank_counter_relaxation, bank_fluid_donor, zero_objective, omit_guide_interface_costs)=spec
-    if omit_guide_interface_costs and (not budget_only or not zero_objective):
+     bank_counter_relaxation, bank_fluid_donor, zero_objective, omit_guide_interface_costs,
+     omit_guide_costs, omit_interface_costs, requested_guide_drift)=spec
+    if (isinstance(requested_guide_drift,(bool,np.bool_)) or
+            not np.isfinite(requested_guide_drift) or not 0<requested_guide_drift<1):
+        raise ValueError('guide drift comparison must lie strictly between zero and one')
+    if sum(map(bool,(omit_guide_interface_costs,omit_guide_costs,omit_interface_costs)))>1:
+        raise ValueError('select one guide/interface cost omission comparison')
+    omit_any_cost=omit_guide_interface_costs or omit_guide_costs or omit_interface_costs
+    if omit_any_cost and (not budget_only or not zero_objective):
         raise ValueError('omitting guide/interface costs requires a fixed budget and zero objective')
-    interface_sigma=0. if omit_guide_interface_costs else 1e-7
-    guide_drift=None if omit_guide_interface_costs else .5
+    guide_omitted=omit_guide_interface_costs or omit_guide_costs
+    interface_omitted=omit_guide_interface_costs or omit_interface_costs
+    interface_sigma=0. if interface_omitted else 1e-7
+    guide_drift=None if guide_omitted else float(requested_guide_drift)
     output = Path(output)
     started = time.monotonic()
     path = BASE/'joint_refined_response/members_fraction0.99_states.npz'
@@ -105,11 +114,17 @@ def evaluate(spec):
     if bank_fluid_donor:label+='_fluid_donor'
     if zero_objective:label+='_zeroobj'
     if omit_guide_interface_costs:label+='_omit_guide_interface_costs'
+    if omit_guide_costs:label+='_omit_guide_costs'
+    if omit_interface_costs:label+='_omit_interface_costs'
+    if guide_drift is not None and guide_drift!=.5:label+=f'_guidedrift{guide_drift:g}'
     summary = {key: value for key, value in result.items() if not isinstance(value, np.ndarray)}
     summary.update(label=label, input=str(path.relative_to(ROOT)), center=center,
         width=width, intervals=intervals, time_nodes=len(t), temporal_stride=stride,
         efficiency=.98, interface_sigma=interface_sigma, guide_drift=guide_drift,
+        requested_guide_drift=float(requested_guide_drift),
         guide_interface_costs_omitted=bool(omit_guide_interface_costs),
+        guide_costs_omitted=bool(guide_omitted),interface_costs_omitted=bool(interface_omitted),
+        favorable_cost_omission_relaxation=bool(omit_any_cost),
         favorable_transport_only_relaxation=bool(omit_guide_interface_costs),
         work_wave_transport_preserved=True,wave_population_floors_preserved=True,
         wave_envelope_preserved=True,
@@ -136,9 +151,14 @@ def evaluate(spec):
         changed_fluid_contact_force_and_entropy_supplied=False,
         full_source_construction_supplied=False,
         elapsed_seconds=time.monotonic()-started)
-    if omit_guide_interface_costs:
+    if omit_any_cost:
+        comparison=('transport-only necessity relaxation with zero guide/interface cost'
+                    if omit_guide_interface_costs else
+                    'guide-cost necessity relaxation with prescribed interface cost retained'
+                    if omit_guide_costs else
+                    'interface-cost necessity relaxation with prescribed guide cost retained')
         summary.update(retained_source_gate_scope=summary['scope'],
-            scope='favorable transport-only necessity relaxation with zero guide/interface cost; work-wave transport, population floors, envelope, shared phase and configured receiver constraints retained',
+            scope='favorable '+comparison+'; work-wave transport, population floors, envelope, shared phase and configured receiver constraints retained',
             guide_material_clearance_supplied=False,interface_material_construction_supplied=False)
     if result['success']:
         summary['target_budget_passes'] = bool(max(result['minimum_added_density'],
@@ -181,8 +201,15 @@ def main():
                         help='bound minimum remaining-fluid withdrawal using the registered donor turnover')
     parser.add_argument('--zero-objective',action='store_true',
                         help='solve fixed target-budget feasibility without inventory minimization')
-    parser.add_argument('--omit-guide-interface-costs',action='store_true',
-                        help='test favorable transport-only necessity with zero guide/interface cost')
+    parser.add_argument('--guide-drift',type=float,default=.5,
+                        help='subluminal drift fraction in the prescribed guide-stress comparison (default: .5)')
+    omission=parser.add_mutually_exclusive_group()
+    omission.add_argument('--omit-guide-interface-costs',action='store_true',
+                          help='test favorable transport-only necessity with zero guide/interface cost')
+    omission.add_argument('--omit-guide-costs',action='store_true',
+                          help='omit only the guide cost, retaining the prescribed interface cost')
+    omission.add_argument('--omit-interface-costs',action='store_true',
+                          help='omit only the interface cost, retaining the prescribed guide cost')
     parser.add_argument('--warm-fluid',action='store_true')
     parser.add_argument('--minimum-fluid-temperature',type=float)
     parser.add_argument('--exact-midpoint-target',action='store_true')
@@ -197,6 +224,8 @@ def main():
         parser.error('one or two workers and an even spatial count >=4 required')
     if args.stride < 1 or args.width <= 0 or not 0 <= args.reserve < 1 or args.deadline <= 0:
         parser.error('positive scales and reserve in [0,1) required')
+    if not np.isfinite(args.guide_drift) or not 0<args.guide_drift<1:
+        parser.error('guide-drift must lie strictly between zero and one')
     if args.reallocate_receiver and not args.reallocate_fluid:
         parser.error('receiver exchange requires the reallocated pressure-link fluid')
     if args.turnover is not None and (not args.reallocate_receiver or args.turnover<=0):
@@ -209,8 +238,9 @@ def main():
         parser.error('bank-fluid-donor requires bank-counter-relaxation')
     if args.zero_objective and (not args.target_budget_only or args.warm_fluid):
         parser.error('zero-objective requires target-budget-only without warm-fluid maximization')
-    if args.omit_guide_interface_costs and (not args.target_budget_only or not args.zero_objective):
-        parser.error('omit-guide-interface-costs requires target-budget-only and zero-objective')
+    if ((args.omit_guide_interface_costs or args.omit_guide_costs or args.omit_interface_costs)
+            and (not args.target_budget_only or not args.zero_objective)):
+        parser.error('guide/interface cost omission requires target-budget-only and zero-objective')
     if args.warm_fluid and (not args.target_budget_only or not args.reallocate_fluid):
         parser.error('warm fluid optimization requires a reallocated fluid and direct target budget')
     if args.minimum_fluid_temperature is not None and (
@@ -252,7 +282,8 @@ def main():
               args.reallocate_receiver,args.turnover,args.target_budget_only,args.split_receiver,args.warm_fluid,
               args.minimum_fluid_temperature,args.exact_midpoint_target,args.no_crossover,args.solver_log,
               args.retain_feasible_interior,args.no_presolve,args.bank_counter_relaxation,
-              args.bank_fluid_donor,args.zero_objective,args.omit_guide_interface_costs)
+              args.bank_fluid_donor,args.zero_objective,args.omit_guide_interface_costs,
+              args.omit_guide_costs,args.omit_interface_costs,args.guide_drift)
              for center in args.centers]
     with ProcessPoolExecutor(max_workers=min(args.workers, len(specs)),
                              mp_context=multiprocessing.get_context('spawn')) as pool:

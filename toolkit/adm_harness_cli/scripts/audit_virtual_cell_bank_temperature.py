@@ -108,6 +108,32 @@ def choose_joint_coefficients(Lf,Uf,Lg,Ug):
         strict_contrast_infimum_attained=False)
 
 
+def combine_sample_bounds(samples):
+    """Combine strict bounds across endpoint and interior sampling locations."""
+    result={}
+    for key in ('Lf','Uf','Lg','Ug'):
+        table=np.array([sample[key] for sample in samples])
+        arg=np.argmax(table,axis=0) if key.startswith('L') else np.argmin(table,axis=0)
+        result[key]=np.take_along_axis(table,arg[None,:],axis=0)[0]
+        result[key+'_sample_witness']=arg
+    result['state_valid']=np.logical_and.reduce([sample['state_valid'] for sample in samples])
+    return result
+
+
+def endpoint_turnover(heat,duration,energy):
+    """Actual branch heat divided by each endpoint's available donor energy."""
+    heat,duration,energy=map(lambda a:np.asarray(a,float),(heat,duration,energy))
+    if (energy.shape!=(heat.shape[0]+1,)+heat.shape[1:] or duration.shape!=heat.shape
+            or np.any(duration<=0) or not all(np.isfinite(a).all() for a in (heat,duration,energy))):
+        raise ValueError('finite matching endpoint energy and positive panel durations required')
+    inventory=np.minimum(energy[:-1],energy[1:]);active=heat>HEAT_ACTIVITY_TOLERANCE
+    with np.errstate(divide='ignore',over='ignore',invalid='ignore'):
+        rate=np.divide(heat,duration*inventory,out=np.where(heat>0,np.inf,0.),where=inventory>0)
+    return dict(rate=rate,minimum_endpoint_inventory=inventory,active=active,
+        empty_active_donor=active&(inventory<=0),
+        nonrepresentable_active_rate=active&(inventory>0)&~np.isfinite(rate))
+
+
 def evaluate(spec):
     path,output=map(Path,spec);label=path.stem.removesuffix('_states')
     meta=json.loads(path.with_name(label+'_summary.json').read_text())
@@ -139,16 +165,38 @@ def evaluate(spec):
     if tau.shape!=H.shape or not np.isfinite(tau).all() or np.any(tau<=0):
         raise ValueError('positive matching proper panel durations required')
     bounds=joint_temperature_bounds(fh,fc,ph,pc,Tf,H,C,counter,g['radius'])
-    limits={key:float(bounds[key].max() if key.startswith('L') else bounds[key].min())
+    sample_states=[dict(location='midpoint',time=tm,H=H,C=C,T=Tf,c=counter,j=current,R=g['radius'])]
+    gn=geometry(h.h.reference.h.model,t,x)
+    node_counter=s['balanced_radiation_inventory']/gn['M']-s['absorption_rest']-s['work_return_rest']-s['heat_return_rest']
+    node_current=-direction*(s['absorption_rest']-s['work_return_rest']-s['heat_return_rest'])
+    node_fluid=s['thermal_inventory']/gn['D']**(1/3)
+    node_temperature=node_fluid/(3*number)
+    for location,sl in (('left_endpoint',slice(None,-1)),('right_endpoint',slice(1,None))):
+        sample_states.append(dict(location=location,time=t[sl],H=s['receiver_hot_energy'][sl],
+            C=s['receiver_cold_energy'][sl],T=node_temperature[sl],c=node_counter[sl],
+            j=node_current[sl],R=gn['radius'][sl]))
+    # These inexpensive interior samples test whether the interpolated state
+    # has a stricter bound away from its endpoints and midpoint.
+    for location,fraction in (('quarter',.25),('three_quarter',.75)):
+        at=t[:-1]+fraction*np.diff(t);geometry_at=geometry(h.h.reference.h.model,at,x)
+        value=lambda key:linear_history(t,s[key],at)[0]
+        a=value('absorption_rest');r=value('work_return_rest')+value('heat_return_rest')
+        sample_states.append(dict(location=location,time=at,H=value('receiver_hot_energy'),
+            C=value('receiver_cold_energy'),T=value('thermal_inventory')/(3*number*geometry_at['D']**(1/3)),
+            c=value('balanced_radiation_inventory')/geometry_at['M']-a-r,j=-direction*(a-r),R=geometry_at['radius']))
+    sample_bounds=[joint_temperature_bounds(fh,fc,ph,pc,v['T'],v['H'],v['C'],v['c'],v['R'])
+                   for v in sample_states]
+    combined=combine_sample_bounds(sample_bounds)
+    limits={key:float(combined[key].max() if key.startswith('L') else combined[key].min())
             for key in ('Lf','Uf','Lg','Ug')}
     selection=choose_joint_coefficients(**limits)
     identities=dict(hot_partition=float(abs(ph+fh-s['receiver_hot_contact_panel_heat']).max()),
         cold_partition=float(abs(pc+fc-s['receiver_cold_contact_panel_heat']).max()),
         counter_power=float(abs(ph-pc-s['bank_counter_panel_energy']).max()),
         total_bank_heat=float(abs(ph+fh-pc-fc-s['receiver_total_contact_panel_heat']).max()))
-    direction_violation=max(0.,float((abs(current)-counter).max()))
+    direction_violation=max(0.,max(float((abs(v['j'])-v['c']).max()) for v in sample_states))
     parent_ok=bool(meta.get('success') and meta.get('full_sampled_gate_passes'))
-    state_ok=bool(bounds['state_valid'].all() and direction_violation<=POPULATION_TOLERANCE
+    state_ok=bool(combined['state_valid'].all() and direction_violation<=POPULATION_TOLERANCE
                   and max(identities.values())<=1e-9)
     coefficient_arrays={};finite_contact=False;positive_gaps=False;grey_identity=None;full_grey_identity=None
     if selection['selection_possible'] and state_ok:
@@ -163,6 +211,14 @@ def evaluate(spec):
         afhot,afcold=bounds['fluid_hot_active'],bounds['fluid_cold_active']
         positive_gaps=bool(np.all(hot_gap[ahot]>0) and np.all(cold_gap[acold]>0)
             and np.all(fluid_hot_gap[afhot]>0) and np.all(fluid_cold_gap[afcold]>0))
+        for v,b in zip(sample_states,sample_bounds):
+            hot4=ah*np.maximum(v['H'],0.);cold4=ac*np.maximum(v['C'],0.)
+            v['hot_photon_gap']=a2*np.sqrt(hot4)/v['R']**2-v['c']
+            v['cold_photon_gap']=v['c']-a2*np.sqrt(cold4)/v['R']**2
+            v['hot_fluid_gap']=hot4-v['T']**4;v['cold_fluid_gap']=v['T']**4-cold4
+            positive_gaps=bool(positive_gaps and all(np.all(v[key][b[active]]>0) for key,active in
+                (('hot_photon_gap','photon_hot_active'),('cold_photon_gap','photon_cold_active'),
+                 ('hot_fluid_gap','fluid_hot_active'),('cold_fluid_gap','fluid_cold_active'))))
         with np.errstate(over='ignore',divide='ignore',invalid='ignore'):
             kh=np.divide(ph,g['D']*tau*hot_gap,out=np.zeros_like(ph),where=ahot&(hot_gap>0))
             kc=np.divide(pc,g['D']*tau*cold_gap,out=np.zeros_like(pc),where=acold&(cold_gap>0))
@@ -181,21 +237,39 @@ def evaluate(spec):
     passed=bool(parent_ok and state_ok and selection['selection_possible'] and finite_contact
                 and positive_gaps and full_grey_identity is not None and full_grey_identity<=1e-9)
 
-    def witness(i,j,key=None):
-        return dict(time=float(tm[i]),x=float(x[j]),fluid_temperature=float(Tf[i,j]),
-            hot_energy=float(H[i,j]),cold_energy=float(C[i,j]),counter_density=float(counter[i,j]),
-            counter_current=float(current[i,j]),radius=float(g['radius'][i,j]),
+    def witness(i,j,key=None,sample=0):
+        v=sample_states[sample];b=sample_bounds[sample]
+        return dict(time=float(v['time'][i]),sampling_location=v['location'],
+            panel_start=float(t[i]),panel_end=float(t[i+1]),x=float(x[j]),fluid_temperature=float(v['T'][i,j]),
+            hot_energy=float(v['H'][i,j]),cold_energy=float(v['C'][i,j]),counter_density=float(v['c'][i,j]),
+            counter_current=float(v['j'][i,j]),radius=float(v['R'][i,j]),
             fluid_hot_heat=float(fh[i,j]),fluid_cold_heat=float(fc[i,j]),
             photon_hot_heat=float(ph[i,j]),photon_cold_heat=float(pc[i,j]),
-            threshold=finite(bounds[{'Lf':'fluid_hot_threshold','Uf':'fluid_cold_threshold',
+            threshold=finite(b[{'Lf':'fluid_hot_threshold','Uf':'fluid_cold_threshold',
                 'Lg':'photon_hot_threshold','Ug':'photon_cold_threshold'}[key]][i,j]) if key else None)
 
     limit_witness={}
     for key in limits:
-        j=int(np.argmax(bounds[key]) if key.startswith('L') else np.argmin(bounds[key]))
-        i=int(bounds[key+'_witness'][j]);limit_witness[key]=witness(i,j,key) if i>=0 else None
-    invalid=np.argwhere(bounds['negative_state_or_heat']|bounds['forbidden_hot_emission']|
-                        bounds['forbidden_fluid_cold']|bounds['forbidden_photon_cold'])
+        j=int(np.argmax(combined[key]) if key.startswith('L') else np.argmin(combined[key]))
+        k=int(combined[key+'_sample_witness'][j]);i=int(sample_bounds[k][key+'_witness'][j])
+        limit_witness[key]=witness(i,j,key,k) if i>=0 else None
+    invalid=[(k,int(i),int(j)) for k,b in enumerate(sample_bounds) for i,j in
+        np.argwhere(b['negative_state_or_heat']|b['forbidden_hot_emission']|
+                    b['forbidden_fluid_cold']|b['forbidden_photon_cold'])]
+    donors={key:endpoint_turnover(heat,tau,energy) for key,heat,energy in
+        (('photon_cold',pc,gn['D']*node_counter),
+         ('hot_total',ph+fh,s['receiver_hot_energy']),('fluid_cold',fc,node_fluid))}
+    donor_summary={}
+    for key,data in donors.items():
+        active=data['active'];rate=data['rate'];finite_active=active&np.isfinite(rate)
+        idx=np.unravel_index(np.argmax(np.where(active,rate,-1.)),rate.shape)
+        donor_summary[key]=dict(active_samples=int(active.sum()),
+            empty_active_donor_samples=int(data['empty_active_donor'].sum()),
+            nonrepresentable_active_rate_samples=int(data['nonrepresentable_active_rate'].sum()),
+            maximum_finite_required_turnover=float(rate[finite_active].max()) if finite_active.any() else None,
+            turnover10_endpoint_comparison_passes=bool(np.all((~active)|(rate<=10.+1e-8))),
+            witness=dict(panel_start=float(t[idx[0]]),panel_end=float(t[idx[0]+1]),x=float(x[idx[1]]),
+                required_turnover=finite(rate[idx]),minimum_endpoint_inventory=float(data['minimum_endpoint_inventory'][idx])) if active.any() else None)
     summary=dict(label=label,input=str(path.relative_to(ROOT)),parent_full_sampled_gate_passes=parent_ok,
         independent_state_and_contact_checks_pass=state_ok,
         joint_bank_temperature_selection_passes=passed,
@@ -210,8 +284,13 @@ def evaluate(spec):
         active_fluid_cold_samples=int(bounds['fluid_cold_active'].sum()),
         active_photon_hot_samples=int(bounds['photon_hot_active'].sum()),
         active_photon_cold_samples=int(bounds['photon_cold_active'].sum()),
-        invalid_state_or_donor_samples=len(invalid),first_invalid_witness=witness(*invalid[0]) if len(invalid) else None,
+        invalid_state_or_donor_samples=len(invalid),
+        first_invalid_witness=witness(invalid[0][1],invalid[0][2],sample=invalid[0][0]) if invalid else None,
         limit_witnesses=limit_witness,
+        sampling_locations=[v['location'] for v in sample_states],
+        sample_location_limits={v['location']:{key:finite(float(b[key].max() if key.startswith('L') else b[key].min()))
+            for key in limits} for v,b in zip(sample_states,sample_bounds)},
+        reconstructed_branch_donor_turnover=donor_summary,
         heat_activity_tolerance=HEAT_ACTIVITY_TOLERANCE,heat_validation_tolerance=HEAT_VALIDATION_TOLERANCE,
         population_tolerance=POPULATION_TOLERANCE,
         inactive_heat_maximum=float(max(np.max(abs(a[~bounds[key]]),initial=0.) for a,key in
@@ -222,6 +301,9 @@ def evaluate(spec):
         fluid_caloric_law='Theta_fluid=K/(3*N_mass*D**(1/3))',
         volume_contrast_interpretation='ah/ac equals cold/hot proper volume only for equal bank caloric normalization',
         midpoint_scope='exact registered midpoint geometry and stored particle normalization; linear interpolation of replay H,C,K,V and explicit beam densities; actual integrated branch heat divided by midpoint D and proper panel duration',
+        coefficient_bound_scope='both one-sided endpoints, midpoint and quarter points of each replay panel; each active integrated branch imposes its temperature ordering at all five samples, a conservative shape comparison',
+        continuous_time_temperature_order_certified=False,
+        donor_turnover_scope='actual reconstructed gross branch heat divided by proper panel duration and the minimum endpoint donor energy; exact positive signs retained, no denominator floor',
         temporal_grey_coefficients_selected=bool(selection['selection_possible'] and state_ok
                                                and finite_contact and positive_gaps),
         local_dynamical_opacity_law_supplied=False,
@@ -238,6 +320,12 @@ def evaluate(spec):
         counter_density=counter,counter_current=current,fluid_temperature=Tf,fluid_particle_number=number,
         fluid_hot_panel_heat=fh,fluid_cold_panel_heat=fc,photon_hot_panel_heat=ph,photon_cold_panel_heat=pc,
         **bounds,**coefficient_arrays)
+    arrays.update({'combined_'+key:value for key,value in combined.items()})
+    for v,b in zip(sample_states,sample_bounds):
+        prefix=v['location']+'_'
+        arrays.update({prefix+key:value for key,value in v.items() if key!='location'})
+        arrays.update({prefix+key:value for key,value in b.items()})
+    for key,data in donors.items():arrays.update({key+'_donor_'+name:value for name,value in data.items()})
     np.savez_compressed(output/(label+'_temperature.npz'),**arrays)
     write_json(output/(label+'_summary.json'),summary)
     print(label+': '+json.dumps({key:summary.get(key) for key in
