@@ -1,0 +1,192 @@
+{
+  "label": "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8",
+  "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_joint_temperature_endpoints_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_temperature.npz",
+  "parent_temperature_selection_passes": true,
+  "passive_capacity_comparison_passes": true,
+  "physical_coordinate_cell_width": 0.00024999999999997247,
+  "maximum_total_transmission_budget": 0.03958065959771851,
+  "samples": [
+    {
+      "location": "midpoint",
+      "passive_capacity_comparison_passes": true,
+      "maximum_total_transmission_budget": 0.01811079287626415,
+      "maximum_hot_coefficient": 0.02386582266981582,
+      "maximum_cold_coefficient": 7.052333430392539,
+      "maximum_absolute_material_recoil_force_density": 7.982956250287284e-05,
+      "maximum_photon_power_residual": 2.710505431213761e-20,
+      "star_unitarity_residual": 8.881784197001252e-16,
+      "maximum_direct_bank_transmission": 1.0260126417718062e-09,
+      "maximum_accumulated_frozen_bypass_heat": 6.859577106606965e-07,
+      "maximum_directional_fraction": 0.3946946604837366,
+      "witness": {
+        "time": 0.0453326416015625,
+        "panel_start": 0.04517578125,
+        "panel_end": 0.045489501953125,
+        "x": -1.9997578125,
+        "proper_cell_length": 0.0025680447767770734,
+        "hot_coefficient": 3.303924254529791e-05,
+        "cold_coefficient": 7.052333430392539,
+        "hot_budget": 8.484625424712317e-08,
+        "cold_budget": 0.0181107080300099,
+        "counter_density": 6.601701401655514e-05,
+        "counter_current": 1.6807084602835246e-06
+      },
+      "recoil_witness": {
+        "time": 0.04564636230468749,
+        "x": -2.0000078125,
+        "force_density": -7.982956250287284e-05
+      }
+    },
+    {
+      "location": "left_endpoint",
+      "passive_capacity_comparison_passes": true,
+      "maximum_total_transmission_budget": 0.03958065959771851,
+      "maximum_hot_coefficient": 0.023697885676697138,
+      "maximum_cold_coefficient": 15.411967846337445,
+      "maximum_absolute_material_recoil_force_density": 8.377263255517814e-05,
+      "maximum_photon_power_residual": 2.710505431213761e-20,
+      "star_unitarity_residual": 8.881784197001252e-16,
+      "maximum_direct_bank_transmission": 8.562635799018539e-10,
+      "maximum_accumulated_frozen_bypass_heat": 6.845984709917918e-07,
+      "maximum_directional_fraction": 0.4061608384885582,
+      "witness": {
+        "time": 0.04517578125,
+        "panel_start": 0.04517578125,
+        "panel_end": 0.045489501953125,
+        "x": -1.9997578125,
+        "proper_cell_length": 0.0025681713834214666,
+        "hot_coefficient": 3.302448717428308e-05,
+        "cold_coefficient": 15.411967846337445,
+        "hot_budget": 8.481254291316306e-08,
+        "cold_budget": 0.0395805747851756,
+        "counter_density": 4.894598960191985e-05,
+        "counter_current": -9.938781666045082e-10
+      },
+      "recoil_witness": {
+        "time": 0.045803222656249996,
+        "x": -2.0000078125,
+        "force_density": -8.377263255517814e-05
+      }
+    },
+    {
+      "location": "right_endpoint",
+      "passive_capacity_comparison_passes": true,
+      "maximum_total_transmission_budget": 0.026291884923369927,
+      "maximum_hot_coefficient": 0.02403614996736768,
+      "maximum_cold_coefficient": 10.237473960748172,
+      "maximum_absolute_material_recoil_force_density": 8.377263626531256e-05,
+      "maximum_photon_power_residual": 2.710505431213761e-20,
+      "star_unitarity_residual": 8.881784197001252e-16,
+      "maximum_direct_bank_transmission": 1.979967023439946e-09,
+      "maximum_accumulated_frozen_bypass_heat": 7.166169162005745e-07,
+      "maximum_directional_fraction": 0.4061608384885582,
+      "witness": {
+        "time": 0.04517578125,
+        "panel_start": 0.044862060546875,
+        "panel_end": 0.04517578125,
+        "x": -1.9997578125,
+        "proper_cell_length": 0.0025681713834214666,
+        "hot_coefficient": 0.00011574728072067544,
+        "cold_coefficient": 10.237473960748172,
+        "hot_budget": 2.972588540556899e-07,
+        "cold_budget": 0.026291587664515875,
+        "counter_density": 4.894598960191985e-05,
+        "counter_current": -9.938781666045082e-10
+      },
+      "recoil_witness": {
+        "time": 0.045803222656249996,
+        "x": -2.0000078125,
+        "force_density": -8.377263626531256e-05
+      }
+    },
+    {
+      "location": "quarter",
+      "passive_capacity_comparison_passes": true,
+      "maximum_total_transmission_budget": 0.024851236634907653,
+      "maximum_hot_coefficient": 0.023781558548610672,
+      "maximum_cold_coefficient": 9.676832496131249,
+      "maximum_absolute_material_recoil_force_density": 7.748103971887417e-05,
+      "maximum_photon_power_residual": 2.710505431213761e-20,
+      "star_unitarity_residual": 8.881784197001252e-16,
+      "maximum_direct_bank_transmission": 8.835779051466769e-10,
+      "maximum_accumulated_frozen_bypass_heat": 6.845149847240294e-07,
+      "maximum_directional_fraction": 0.39848406165859596,
+      "witness": {
+        "time": 0.045254211425781246,
+        "panel_start": 0.04517578125,
+        "panel_end": 0.045489501953125,
+        "x": -1.9997578125,
+        "proper_cell_length": 0.0025681080886177775,
+        "hot_coefficient": 3.303186264283738e-05,
+        "cold_coefficient": 9.676832496131249,
+        "hot_budget": 8.482939363518207e-08,
+        "cold_budget": 0.02485115180551402,
+        "counter_density": 5.748103861859701e-05,
+        "counter_current": 8.398572910584228e-07
+      },
+      "recoil_witness": {
+        "time": 0.045567932128906245,
+        "x": -2.0000078125,
+        "force_density": -7.748103971887417e-05
+      }
+    },
+    {
+      "location": "three_quarter",
+      "passive_capacity_comparison_passes": true,
+      "maximum_total_transmission_budget": 0.017229814367843817,
+      "maximum_hot_coefficient": 0.02395068434463481,
+      "maximum_cold_coefficient": 6.708700483971499,
+      "maximum_absolute_material_recoil_force_density": 8.191259880373621e-05,
+      "maximum_photon_power_residual": 2.710505431213761e-20,
+      "star_unitarity_residual": 8.881784197001252e-16,
+      "maximum_direct_bank_transmission": 1.2915336536897557e-09,
+      "maximum_accumulated_frozen_bypass_heat": 6.889127395734387e-07,
+      "maximum_directional_fraction": 0.39207424570716454,
+      "witness": {
+        "time": 0.04509735107421875,
+        "panel_start": 0.044862060546875,
+        "panel_end": 0.04517578125,
+        "x": -1.9997578125,
+        "proper_cell_length": 0.0025682346611882855,
+        "hot_coefficient": 0.00011574229648166343,
+        "cold_coefficient": 6.708700483971499,
+        "hot_budget": 2.9725337758973897e-07,
+        "cold_budget": 0.017229517114466228,
+        "counter_density": 5.646085262083069e-05,
+        "counter_current": -7.344171270469361e-07
+      },
+      "recoil_witness": {
+        "time": 0.04572479248046875,
+        "x": -2.0000078125,
+        "force_density": -8.191259880373621e-05
+      }
+    }
+  ],
+  "midpoint_bypass_estimate": {
+    "maximum_total_heat": 6.859577106606965e-07,
+    "minimum_original_rating_margin": 0.00041070756237956974,
+    "minimum_projected_rating_margin": 0.00041014933969533984,
+    "minimum_projected_hot_energy": 0.014076058003445923,
+    "projected_bank_total_energy_change": 2.7755575615628914e-17,
+    "bank_histories_self_consistently_evolved": false,
+    "scope": "frozen sampled temperatures and average photon branch powers; transfer H->C cumulatively; temperature and coupling feedback remain open"
+  },
+  "source_channel_multiplicity_unchanged": true,
+  "physical_cell_length_scope": "local material proper length ell*physical half-cell width; never refined grid-bin width",
+  "capacity_model": "symmetric access at both ends; each bank receives a share of the existing bidirectional channel flux; tau_hot+tau_cold<=1",
+  "coefficient_scope": "archived panel branch heats divided by proper duration and sampled D*(c_eq-c) or D*(c-c_eq)",
+  "recoil_law": "force on material=(kappa_hot+kappa_cold)*counter_current for isotropic grey emission in the common material frame",
+  "recoil_reaction_supplied": false,
+  "reflection_and_termination_force_supplied": false,
+  "recoil_scope": "grey absorption/emission contribution; reflective junction and termination loads require separate accounting",
+  "full_curved_transit_solution_supplied": false,
+  "instantaneous_passive_scattering_matrix_supplied": true,
+  "material_scattering_network_supplied": false,
+  "direct_bank_bypass_heat_evaluated": true,
+  "bank_bypass_reallocation_closed": false,
+  "work_channel_isolation_supplied": false,
+  "switching_work_and_bandwidth_supplied": false,
+  "microscopic_material_response_supplied": false,
+  "bank_mass_and_packing_supplied": false,
+  "full_source_construction_supplied": false
+}

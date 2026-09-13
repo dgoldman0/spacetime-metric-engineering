@@ -48,7 +48,7 @@ def passive_port_capacity(hot_heat,cold_heat,duration,volume,length,
         total_transmission_budget=total,material_recoil_force_density=recoil,
         photon_power_residual=residual,
         state_and_gap_valid=valid&finite,
-        capacity_pass=valid&finite&(total<=1.+1e-10))
+        capacity_pass=valid&finite&(total<=1.))
 
 
 def finite(v):
@@ -63,9 +63,10 @@ def reciprocal_star(hot,cold):
     transmissions from the cell line to the two bank lines.
     """
     hot,cold=np.broadcast_arrays(np.asarray(hot,float),np.asarray(cold,float))
-    valid=np.isfinite(hot)&np.isfinite(cold)&(hot>=0)&(cold>=0)&(hot+cold<=1)
+    total=hot+cold
+    valid=np.isfinite(hot)&np.isfinite(cold)&(hot>=0)&(cold>=0)&(total<=1)
     with np.errstate(invalid='ignore',divide='ignore'):
-        p0=(1+np.sqrt(1-hot-cold))/2
+        p0=(1+np.sqrt(1-total))/2
         p=np.stack((p0,hot/(4*p0),cold/(4*p0)),axis=-1)
         v=np.sqrt(p)
         matrix=2*v[..., :,None]*v[...,None,:]-np.eye(3)
@@ -105,7 +106,7 @@ def evaluate(spec):
         i,j=np.unravel_index(np.argmax(r['total_transmission_budget']),ph.shape)
         q=np.unravel_index(np.argmax(abs(r['material_recoil_force_density'])),ph.shape)
         summaries.append(dict(location=location,
-            passive_capacity_comparison_passes=bool(r['capacity_pass'].all()),
+            passive_capacity_comparison_passes=bool(r['capacity_pass'].all() and star['valid'].all()),
             maximum_total_transmission_budget=finite(r['total_transmission_budget'][i,j]),
             maximum_hot_coefficient=finite(r['hot_coefficient'].max()),
             maximum_cold_coefficient=finite(r['cold_coefficient'].max()),
@@ -155,7 +156,10 @@ def evaluate(spec):
         capacity_model='symmetric access at both ends; each bank receives a share of the existing bidirectional channel flux; tau_hot+tau_cold<=1',
         coefficient_scope='archived panel branch heats divided by proper duration and sampled D*(c_eq-c) or D*(c-c_eq)',
         recoil_law='force on material=(kappa_hot+kappa_cold)*counter_current for isotropic grey emission in the common material frame',
-        recoil_reaction_supplied=False,full_curved_transit_solution_supplied=False,
+        recoil_reaction_supplied=False,
+        reflection_and_termination_force_supplied=False,
+        recoil_scope='grey absorption/emission contribution; reflective junction and termination loads require separate accounting',
+        full_curved_transit_solution_supplied=False,
         instantaneous_passive_scattering_matrix_supplied=True,
         material_scattering_network_supplied=False,direct_bank_bypass_heat_evaluated=True,
         bank_bypass_reallocation_closed=False,

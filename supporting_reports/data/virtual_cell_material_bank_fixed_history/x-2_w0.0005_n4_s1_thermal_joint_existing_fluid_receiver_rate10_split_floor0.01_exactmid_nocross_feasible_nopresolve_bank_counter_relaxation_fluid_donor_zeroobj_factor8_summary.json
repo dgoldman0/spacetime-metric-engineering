@@ -1,0 +1,117 @@
+{
+  "label": "x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8",
+  "temperature_input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_joint_temperature_endpoints_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_temperature.npz",
+  "replay_input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz",
+  "full_sampled_parent_gate_passes": true,
+  "independent_input_consistency_passes": true,
+  "diagnostic_finite": true,
+  "comparison": "optimistic additive rest inventory on fixed counted histories; existing containment retained",
+  "additional_pressure_containment_hot_rest_and_preparation_offsets_counted": false,
+  "full_material_construction_supplied": false,
+  "continuous_time_bound_certified": false,
+  "temperature_normalization_modified": false,
+  "existing_fluid_inventory_reallocated": false,
+  "bank_heat_and_inventory_histories_modified": false,
+  "specific_energy_unit": "u_specific/c_light**2; no length or particle-mass normalization required",
+  "general_material_bound": "M_rest >= cold_heat_receipts / Delta(u_specific/c_light**2)",
+  "constant_capacity_law": "E=B*Theta, b=1/B, epsilon=beta*Theta, M_rest=B/beta",
+  "constant_capacity_limits": {
+    "Lf": 9.19711047096379,
+    "Uf": null,
+    "Lg": 106.38764753375021,
+    "Ug": 5.105377708603574
+  },
+  "constant_capacity_ratio_infimum_adjustable_a2": 20.838349992100667,
+  "constant_capacity_ratio_infimum_archived_a2": 20.83834999210067,
+  "constant_capacity_ratio_scope": "common capacities across sampled labels; cold/hot volume only for equal volumetric heat capacity",
+  "strict_ratio_infimum_attained": false,
+  "archived_channel_coefficient": 18.903798067544905,
+  "registered_beta3_scope": "conditional existing U=3*M_rest*Theta caloric comparison with archived normalization; added mass only",
+  "limit_witnesses": {
+    "Lf": {
+      "x": -1.9998046875,
+      "sample": "right_endpoint",
+      "panel_index": 4111,
+      "threshold": 9.19711047096379,
+      "time": 1.285,
+      "H": 0.015401969847357672,
+      "C": 0.09902707453979992,
+      "T": 0.1416536181566018,
+      "c": 0.27263341320409024,
+      "R": 2.8634017483432017
+    },
+    "Bf": {
+      "x": -2.0002421874999996,
+      "sample": "midpoint",
+      "panel_index": 0,
+      "threshold": 0.0,
+      "time": 0.0001568603515625,
+      "H": 0.16961180856377434,
+      "C": 0.0002647178762858073,
+      "T": 0.03638715690189564,
+      "c": 0.016850996978768913,
+      "R": 2.881881546805495
+    },
+    "Lg": {
+      "x": -1.9999453125,
+      "sample": "right_endpoint",
+      "panel_index": 4111,
+      "threshold": 106.38764753375021,
+      "time": 1.285,
+      "H": 0.014077032240261633,
+      "C": 0.1146231290440792,
+      "T": 0.11142095576207,
+      "c": 0.2735363812289545,
+      "R": 2.8634840112883877
+    },
+    "Bg": {
+      "x": -2.0001953125,
+      "sample": "left_endpoint",
+      "panel_index": 144,
+      "threshold": 0.19587189373174127,
+      "time": 0.04517578125,
+      "H": 0.1625122924227619,
+      "C": 0.004410932747139577,
+      "T": 0.03809540297350571,
+      "c": 6.106427196291972e-05,
+      "R": 2.8818058737119587
+    }
+  },
+  "maximum_cold_panel_conservation_residual": 1.6761087960268095e-17,
+  "added_dust_rest_allowance": {
+    "minimum": 0.011326708748094045,
+    "maximum": 0.014378589951575793
+  },
+  "cold_heat_receipts": {
+    "minimum": 0.09775262847023201,
+    "maximum": 0.11439593559267987
+  },
+  "cold_initial_energy": {
+    "minimum": 0.00020024292344239525,
+    "maximum": 0.00023625062762824833
+  },
+  "cold_final_energy": {
+    "minimum": 0.09798887909786026,
+    "maximum": 0.11462312904407936
+  },
+  "required_specific_energy_increase": {
+    "minimum": 7.136048495977901,
+    "maximum": 9.348130291390206
+  },
+  "required_specific_energy_from_zero": {
+    "minimum": 7.153295049470566,
+    "maximum": 9.366992957871627
+  },
+  "cold_rest_lower_bound_registered_beta3_fixed_a2": {
+    "minimum": 0.15306431567433973,
+    "maximum": 0.28387385937865445
+  },
+  "cold_rest_lower_bound_registered_beta3_fluid_only": {
+    "minimum": 0.0,
+    "maximum": 0.0
+  },
+  "cold_rest_to_added_allowance_registered_beta3_fixed_a2": {
+    "minimum": 10.645454078878176,
+    "maximum": 24.48371854485645
+  }
+}

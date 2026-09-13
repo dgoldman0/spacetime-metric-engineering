@@ -8,7 +8,12 @@ history, with a net-absorption lower bound `21.9028`. Joint bank temperatures
 add a large required contrast between the hot and cold stores. The second
 allocation uses electromagnetic guide comparison `0.8`, refined spatial
 controls, and a larger numerical reserve to address the measured interface
-variation. Its quadrature check passes narrowly at the finest tested level.
+variation. Adaptive integration of contact sign changes now clears the
+quadrature check at both tested refinement levels. The
+[passive contact and material-storage comparison](VIRTUAL_RADIAL_CELL_PHOTON_CONTACT_DESIGN.md)
+fits the required heat flow within a favorable shared photon-flux budget,
+while identifying added thermal-bank rest mass and coupled mechanical
+response as remaining construction requirements.
 The phase, balanced radiation, existing pressure-link fluid, and separated
 receiver banks retain distinct duties throughout these comparisons.
 
@@ -658,14 +663,28 @@ The comparison value 10 is a declared model test, not a universal physical
 speed limit. Full source construction also requires material opacity,
 mode selection, momentum exchange, entropy evolution, and bank packing.
 
+The subsequent
+[adaptive contact replay](data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/summary.json)
+reduces the factor-two and factor-four Gauss 4/8 panel differences to
+`3.43158e-13` and `1.04829e-13`, respectively. Both pass the full sampled
+and numerical integrity gates with the original tolerance unchanged.
+Common adaptive intervals resolve the actual-fluid heat sign changes,
+with 20/39 bisections and zero unresolved panels. Controls and full
+density margins remain unchanged. The
+[refreshed temperature audit](data/virtual_cell_bank_guide08_second_n8_joint_temperature_adaptive/summary.json)
+retains the second-location temperature-order pass and volume-contrast
+infimum `6.58211e7`. The
+[contact design report](VIRTUAL_RADIAL_CELL_PHOTON_CONTACT_DESIGN.md)
+records the subsequent passive-junction and material-bank comparisons.
+
 ## Verification record
 
-The focused suite contains 196 transport, thermal, native-solver,
+The focused suite contains 217 transport, thermal, native-solver,
 contact, capacity, and local-relaxation tests at this stage. The independent source audit
 checks every archived numerical product and input hash against current
 files, recorded git versions, or separately hashed execution snapshots.
-The completed session audit covers 73 manifests and 5,829 references,
-with zero errors, five matched execution snapshots, and 48 historical
+The completed session audit covers 79 manifests and 6,507 references,
+with zero errors, five matched execution snapshots, and 52 historical
 source versions.
 Three intermediate execution versions were recovered with exact matches
 to their original recorded SHA-256 values. Their snapshots preserve the

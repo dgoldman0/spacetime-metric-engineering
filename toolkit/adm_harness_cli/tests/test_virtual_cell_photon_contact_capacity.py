@@ -61,3 +61,14 @@ def test_reciprocal_star_is_unitary_and_has_required_bank_bypass():
 
 def test_star_rejects_transmissions_exceeding_one():
     assert not reciprocal_star(.6,.6)['valid']
+
+
+def test_port_budget_and_junction_agree_at_and_immediately_above_unity():
+    a=np.ones((1,1))
+    for total,expected in ((1.,True),(np.nextafter(1.,2.),False),(1.+5e-11,False)):
+        r=passive_port_capacity(0*a,total*a,a,a,a,a,a,0*a,a)
+        star=reciprocal_star(r['hot_transmission_budget'],r['cold_transmission_budget'])
+        assert bool(r['capacity_pass'].all()) is expected
+        assert bool(star['valid'].all()) is expected
+        if expected:
+            assert np.isfinite(star['scattering_matrix']).all()
