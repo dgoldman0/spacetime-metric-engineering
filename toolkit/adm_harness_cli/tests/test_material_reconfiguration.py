@@ -6,9 +6,9 @@ from scipy.optimize import linprog
 from adm_harness.containment_ensemble import required_exchange
 from adm_harness.finite_containment import annular_factor
 from adm_harness.material_reconfiguration import (
-    MATERIAL_DIMENSIONS, configuration_coordinates, elastic_replay,
+    MATERIAL_DIMENSIONS, configuration_coordinates, configuration_rate_bound, elastic_replay,
     elastic_state_from_strain, elastic_state_from_tension, finite_ideal_allocation,
-    isometric_pool_bounds, isometric_pool_program, reciprocal_routes,
+    inventory_for_minimum_stretch, isometric_pool_bounds, isometric_pool_program, reciprocal_routes,
 )
 
 
@@ -122,3 +122,41 @@ def test_zero_inventory_and_compressive_strain_are_rejected():
         elastic_state_from_tension(1., 0.)
     with pytest.raises(ValueError):
         elastic_state_from_strain(.9, 1.)
+
+
+def test_configuration_rate_bound_covers_the_whole_constitutive_panel():
+    rng = np.random.default_rng(830)
+    T = rng.uniform(0, .4, (6, 2, 3))
+    M = rng.uniform(.001, .01, (6, 3))
+    lr = np.exp(rng.uniform(-.2, .2, (2, 3)))
+    lt = np.exp(rng.uniform(-.2, .2, (2, 3)))
+    dt = np.full((1, 3), .07)
+    bound = configuration_rate_bound(T, M, lr, lt, dt)
+    sampled = np.zeros_like(bound)
+    for u in np.linspace(0, 1, 1001):
+        Tu = (1-u)*T[:, :1]+u*T[:, 1:]
+        eps = np.where(MATERIAL_DIMENSIONS == 2, .1, 0.)[:, None, None]
+        dlogJ = np.diff(T, axis=1)/(dt*np.hypot(Tu, (1-eps)*M[:, None]))
+        dz, da = np.diff(np.log(lr), axis=0)/dt, np.diff(np.log(lt), axis=0)/dt
+        for i, dim in enumerate(MATERIAL_DIMENSIONS):
+            norm = abs(dlogJ[i]-da) if dim == 1 else np.hypot(.5*dlogJ[i]-(dz if i in (0, 2) else da), .5*dlogJ[i]-da)
+            sampled[i] = np.maximum(sampled[i], norm)
+    assert_allclose(bound, sampled, rtol=1e-14)
+
+
+def test_initial_inventory_allocation_minimizes_the_worst_linear_stretch():
+    peaks = np.array([[.02, .04], [.003, .005], [.1, .2], [0., 0.], [.07, .09], [1., .5]])
+    budget = np.array([.001, .003])
+    result = inventory_for_minimum_stretch(peaks, budget)
+    M, cap = result["inventory"], result["linear_stretch_cap"]
+    dims = MATERIAL_DIMENSIONS[:, None]
+    eps = np.where(dims == 2, .1, 0.)
+    state = elastic_state_from_tension(peaks, M, shear_fraction=eps)
+    linear = state["strain"]**(1/dims)
+    equal = elastic_state_from_tension(peaks, budget/6, shear_fraction=eps)["strain"]**(1/dims)
+    assert_allclose(M.sum(axis=0), budget, atol=1e-16)
+    assert_allclose(linear.max(axis=0), cap, rtol=1e-13)
+    assert np.all(linear.max(axis=0) < equal.max(axis=0))
+    # A lower stretch cap cannot fit the same six peak duties and rest budget.
+    required = np.maximum(1e-6*budget, 2*peaks/((1-eps)*((.999*cap)**dims-(.999*cap)**(-dims))))
+    assert np.all(required.sum(axis=0) > budget)

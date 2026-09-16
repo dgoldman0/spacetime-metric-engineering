@@ -139,8 +139,46 @@ def elastic_state_from_strain(strain, relaxed_energy, *, shear_fraction=0.):
     return dict(energy=E, tension=T)
 
 
+def inventory_for_minimum_stretch(peak_tension, total_inventory, *, sheet_shear_fraction=.1,
+                                  minimum_fraction=1e-6):
+    """Minimize the largest proper linear stretch over the whole ensemble.
+
+    At a common linear-stretch cap L, a d-dimensional constituent needs
+    M>=2*Tmax/((1-epsilon)*(L**d-L**(-d))). The required inventory decreases
+    monotonically with L; bisection gives the optimal cap for a fixed total.
+    A small positive floor also prepares unloaded roles. Allocation is made
+    once before the replay, and each resulting inventory stays conserved.
+    """
+    peak, total = np.asarray(peak_tension, float), np.asarray(total_inventory, float)
+    if (peak.shape != (6,)+total.shape or not np.isfinite(peak).all()
+            or not np.isfinite(total).all() or np.min(peak) < 0 or np.min(total) <= 0
+            or not 0 < minimum_fraction < 1/6 or not 0 < sheet_shear_fraction < 1):
+        raise ValueError("six nonnegative peak duties, positive budget and valid inventory floor required")
+    dims = MATERIAL_DIMENSIONS.reshape((6,)+(1,)*total.ndim)
+    eps = np.where(dims == 2, sheet_shear_fraction, 0.)
+    def required(stretch):
+        denominator = (1-eps)*2*np.sinh(dims*np.log(stretch))
+        amount = np.divide(2*peak, denominator, out=np.full_like(peak, np.inf), where=denominator > 0)
+        amount = np.where(peak == 0, 0., amount)
+        return np.maximum(minimum_fraction*total, amount)
+    low, high = np.ones_like(total), np.full_like(total, 2.)
+    for _ in range(100):
+        insufficient = required(high).sum(axis=0) > total
+        if not insufficient.any():
+            break
+        high = np.where(insufficient, 2*high, high)
+    else:
+        raise ValueError("Unable to bracket the material stretch")
+    for _ in range(72):
+        middle = .5*(low+high)
+        insufficient = required(middle).sum(axis=0) > total
+        low = np.where(insufficient, middle, low)
+        high = np.where(insufficient, high, middle)
+    return dict(inventory=required(high), linear_stretch_cap=high)
+
+
 def elastic_replay(target, floor, inner_hoop, outer_hoop, *, eta=1.01,
-                   reserve_fraction=.25, sheet_shear_fraction=.1):
+                   reserve_fraction=.25, sheet_shear_fraction=.1, inventory_policy="balanced_stretch"):
     """Count six fixed relaxed inventories and construct their strain states.
 
     A quarter (by default) of each label's minimum ideal reserve is prepared
@@ -160,7 +198,13 @@ def elastic_replay(target, floor, inner_hoop, outer_hoop, *, eta=1.01,
     if np.min(tension) < -1e-12:
         raise ValueError("negative material duty")
     tension = np.maximum(tension, 0.)
-    inventory = np.broadcast_to(reserve_fraction*minimum/6, (6,)+minimum.shape).copy()
+    if inventory_policy == "balanced_stretch":
+        inventory = inventory_for_minimum_stretch(tension.max(axis=1), reserve_fraction*minimum,
+            sheet_shear_fraction=sheet_shear_fraction)["inventory"]
+    elif inventory_policy == "equal":
+        inventory = np.broadcast_to(reserve_fraction*minimum/6, (6,)+minimum.shape).copy()
+    else:
+        raise ValueError("unknown initial material allocation policy")
     eps = np.where(MATERIAL_DIMENSIONS == 2, sheet_shear_fraction, 0.)[:, None, None]
     law = elastic_state_from_tension(tension, inventory[:, None], shear_fraction=eps)
     surcharge = (law["energy"]-tension).sum(axis=0)
@@ -195,6 +239,42 @@ def configuration_coordinates(log_strain, lr, lt):
             q[i, 0] = .5*logJ[i]-np.log(lr if i in (0, 2) else lt)
             q[i, 1] = .5*logJ[i]-np.log(lt)
     return q
+
+
+def configuration_rate_bound(tension, inventory, lr, lt, proper_duration, *, sheet_shear_fraction=.1):
+    """Maximum internal logarithmic strain rate on each replay panel.
+
+    T varies linearly in panel proper time, while macro stretches vary
+    log-linearly. Then d(log J)/dt=dot(T)/hypot(T,(1-epsilon)M).
+    Every anchor-rate vector is affine in this monotone scalar, so its
+    norm reaches its maximum at an endpoint. A rectangular patch with
+    current side lengths <=d has a corner control-speed bound d*rate/2.
+    This is local kinematics; the moving-body tensor and spatial joining
+    of those patches require a subsequent embedding calculation.
+    """
+    T, M, dt = np.asarray(tension), np.asarray(inventory), np.asarray(proper_duration)
+    if (T.shape != (6,)+np.asarray(lr).shape or np.asarray(lt).shape != np.asarray(lr).shape
+            or M.shape != (6, T.shape[-1]) or dt.shape != (T.shape[1]-1, T.shape[2])
+            or not all(np.isfinite(x).all() for x in (T, M, dt, lr, lt))
+            or np.min(dt) <= 0 or np.min(M) <= 0 or np.min(T) < 0
+            or np.min(lr) <= 0 or np.min(lt) <= 0 or not 0 < sheet_shear_fraction < 1):
+        raise ValueError("compatible material, inventory, geometry and positive proper-time panels required")
+    eps = np.where(MATERIAL_DIMENSIONS == 2, sheet_shear_fraction, 0.)[:, None, None]
+    dT = np.diff(T, axis=1)/dt
+    macro_z = np.diff(np.log(lr), axis=0)/dt
+    macro_t = np.diff(np.log(lt), axis=0)/dt
+    result = np.zeros_like(dT)
+    for endpoint in (T[:, :-1], T[:, 1:]):
+        dlogJ = dT/np.hypot(endpoint, (1-eps)*M[:, None])
+        for i, dim in enumerate(MATERIAL_DIMENSIONS):
+            if dim == 1:
+                norm = abs(dlogJ[i]-macro_t)
+            else:
+                first = .5*dlogJ[i]-(macro_z if i in (0, 2) else macro_t)
+                second = .5*dlogJ[i]-macro_t
+                norm = np.hypot(first, second)
+            result[i] = np.maximum(result[i], norm)
+    return result
 
 
 def reciprocal_routes(component_exchange):
