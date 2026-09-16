@@ -1,0 +1,3464 @@
+{
+  "cases": [
+    {
+      "label": "first_n32_t4113",
+      "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz",
+      "time_samples": 4113,
+      "spatial_samples": 32,
+      "cases": [
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 40.22362430996287,
+          "angle": 0.7020346812940843,
+          "best_shortfall": -0.0003358524589929444,
+          "minimax_lower_bound": -0.0003358524589953768,
+          "zero_allowance_cosine_squared_lower": 0.3109827067201187,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.22609996249637296,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 40.14904890994658,
+          "angle": 0.7007330950228081,
+          "best_shortfall": -0.0003358524589929446,
+          "minimax_lower_bound": -0.000335852458995377,
+          "zero_allowance_cosine_squared_lower": 0.3080595469072379,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.22609996249637312,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 39.92512127203478,
+          "angle": 0.6968248204550336,
+          "best_shortfall": -0.0003358524589929446,
+          "minimax_lower_bound": -0.00033585245899537695,
+          "zero_allowance_cosine_squared_lower": 0.2992900674685968,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.22609996249637299,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 39.55120375085565,
+          "angle": 0.6902987285795621,
+          "best_shortfall": -0.0003358524589929445,
+          "minimax_lower_bound": -0.00033585245899537684,
+          "zero_allowance_cosine_squared_lower": 0.28467426840419474,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.22609996249637312,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 38.80047071253988,
+          "angle": 0.6771959652574512,
+          "best_shortfall": -0.00033585245899294455,
+          "minimax_lower_bound": -0.0003358524589953769,
+          "zero_allowance_cosine_squared_lower": 0.2554426702753903,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.22609996249637299,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 37.28533897411537,
+          "angle": 0.650751927820478,
+          "best_shortfall": -0.00033585245899294455,
+          "minimax_lower_bound": -0.00033585245899537695,
+          "zero_allowance_cosine_squared_lower": 0.19697947401778126,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.0003358524589929454,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.021707343090144725,
+          "maximum_field_energy": 0.2260999624963731,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.000559845752852104,
+          "angle": 9.77115169057565e-06,
+          "best_shortfall": -0.00046778470689654646,
+          "minimax_lower_bound": -0.0004677847069015465,
+          "zero_allowance_cosine_squared_lower": 0.3109827067201187,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004677847068965471,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.039811415300125955,
+          "maximum_field_energy": 0.0416809623012615,
+          "maximum_core_field_overlap": 0.0013970119074260777,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0005641583534400525,
+          "angle": 9.846420770158794e-06,
+          "best_shortfall": -0.00046738592760930963,
+          "minimax_lower_bound": -0.00046738592761430965,
+          "zero_allowance_cosine_squared_lower": 0.3080595469072379,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004673859276093095,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.03977747667925348,
+          "maximum_field_energy": 0.04504842298159552,
+          "maximum_core_field_overlap": 0.0013970030246115675,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0005769033879208838,
+          "angle": 1.0068863585129506e-05,
+          "best_shortfall": -0.00046625928409138926,
+          "minimax_lower_bound": -0.00046625928409638927,
+          "zero_allowance_cosine_squared_lower": 0.2992900674685968,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004662592840913894,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.039681592242832534,
+          "maximum_field_energy": 0.054562276556184924,
+          "maximum_core_field_overlap": 0.0013941145970779122,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0005975384808148953,
+          "angle": 1.0429013897584892e-05,
+          "best_shortfall": -0.00046458547525534495,
+          "minimax_lower_bound": -0.00046458547526034497,
+          "zero_allowance_cosine_squared_lower": 0.28467426840419474,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004645854752553455,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.0395391406027461,
+          "maximum_field_energy": 0.06869662510981905,
+          "maximum_core_field_overlap": 0.0013557550672741558,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 0.0006368081232933332,
+          "angle": 1.111439845491466e-05,
+          "best_shortfall": -0.00046183806172305603,
+          "minimax_lower_bound": -0.0004618380617280561,
+          "zero_allowance_cosine_squared_lower": 0.2554426702753903,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.00046183806172305636,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.038350425528454156,
+          "maximum_field_energy": 0.09189694503292137,
+          "maximum_core_field_overlap": 0.0012845089467663623,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 0.0007088491368267482,
+          "angle": 1.2371751337546544e-05,
+          "best_shortfall": -0.00045793344947331663,
+          "minimax_lower_bound": -0.00045793344947831665,
+          "zero_allowance_cosine_squared_lower": 0.19697947401778126,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000710495874946801,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.00045793344947331685,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.03442856851479247,
+          "maximum_field_energy": 0.12486913953694558,
+          "maximum_core_field_overlap": 0.0012092317572799337,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 38.59283998973616,
+          "angle": 0.6735721255162307,
+          "best_shortfall": -0.0002546422396730223,
+          "minimax_lower_bound": -0.00025464223967545295,
+          "zero_allowance_cosine_squared_lower": 0.4164455682557812,
+          "zero_allowance_cosine_squared_upper": 0.9567825324837851,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.27573388105161817,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 38.49202659763746,
+          "angle": 0.6718125998940043,
+          "best_shortfall": -0.0002546422396730224,
+          "minimax_lower_bound": -0.00025464223967545306,
+          "zero_allowance_cosine_squared_lower": 0.4151533957099542,
+          "zero_allowance_cosine_squared_upper": 0.9638466921646943,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.2757338810516182,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 38.1890881350976,
+          "angle": 0.6665253262917542,
+          "best_shortfall": -0.00025464223967302233,
+          "minimax_lower_bound": -0.000254642239675453,
+          "zero_allowance_cosine_squared_lower": 0.4112768780724739,
+          "zero_allowance_cosine_squared_upper": 0.9850391712074226,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.27573388105161817,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 37.68244116916771,
+          "angle": 0.6576826685910381,
+          "best_shortfall": -0.00025464223967302233,
+          "minimax_lower_bound": -0.000254642239675453,
+          "zero_allowance_cosine_squared_lower": 0.40481601534333955,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.27573388105161817,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 36.661898108579265,
+          "angle": 0.6398708320253897,
+          "best_shortfall": -0.0002546422396730222,
+          "minimax_lower_bound": -0.00025464223967545284,
+          "zero_allowance_cosine_squared_lower": 0.3918942898850714,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.27573388105161817,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 34.586017411060254,
+          "angle": 0.6036398789750865,
+          "best_shortfall": -0.00025464223967302233,
+          "minimax_lower_bound": -0.000254642239675453,
+          "zero_allowance_cosine_squared_lower": 0.3660508389685344,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0001953125,
+            "value": -0.00025464223967302385,
+            "time_index": 1600,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.016458436774289924,
+          "maximum_field_energy": 0.27573388105161817,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0005591226657086965,
+          "angle": 9.758531439144348e-06,
+          "best_shortfall": -0.0004675150039948706,
+          "minimax_lower_bound": -0.00046751500399987064,
+          "zero_allowance_cosine_squared_lower": 0.4164455682557812,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004675150039948721,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.03978846189000387,
+          "maximum_field_energy": 0.05376680554804068,
+          "maximum_core_field_overlap": 0.0013971007357501148,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0005634285104780453,
+          "angle": 9.833682607449261e-06,
+          "best_shortfall": -0.0004671151912337103,
+          "minimax_lower_bound": -0.00046711519123871035,
+          "zero_allowance_cosine_squared_lower": 0.4151533957099542,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.00046711519123371,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.0397544353140123,
+          "maximum_field_energy": 0.05811069766555013,
+          "maximum_core_field_overlap": 0.0013971007357501148,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0005761567957831273,
+          "angle": 1.0055833094156153e-05,
+          "best_shortfall": -0.00046598562791344783,
+          "minimax_lower_bound": -0.00046598562791844785,
+          "zero_allowance_cosine_squared_lower": 0.4112768780724739,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.000465985627913449,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.03893294078946282,
+          "maximum_field_energy": 0.07038319539392753,
+          "maximum_core_field_overlap": 0.0013971007357501148,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0005967651820065414,
+          "angle": 1.0415517287277369e-05,
+          "best_shortfall": -0.00046430748124482205,
+          "minimax_lower_bound": -0.00046430748124982207,
+          "zero_allowance_cosine_squared_lower": 0.40481601534333955,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004643074812448224,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.03714789486249501,
+          "maximum_field_energy": 0.08861595030828473,
+          "maximum_core_field_overlap": 0.0013971007357501148,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 0.0006359834333535323,
+          "angle": 1.1100004900157061e-05,
+          "best_shortfall": -0.00046155294753269033,
+          "minimax_lower_bound": -0.0004615529475376904,
+          "zero_allowance_cosine_squared_lower": 0.3918942898850714,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004615529475326882,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.034217895193536546,
+          "maximum_field_energy": 0.11854345248409898,
+          "maximum_core_field_overlap": 0.0013971007357501148,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 0.000707933333286767,
+          "angle": 1.2355767550472454e-05,
+          "best_shortfall": -0.00045763821611410075,
+          "minimax_lower_bound": -0.00045763821611910076,
+          "zero_allowance_cosine_squared_lower": 0.3660508389685344,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006710302345088945,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0001953125,
+            "value": -0.0004576382161141021,
+            "time_index": 144,
+            "position_index": 3
+          },
+          "minimum_added_rest_allowance": 0.030053792314704605,
+          "maximum_field_energy": 0.16107628936010943,
+          "maximum_core_field_overlap": 0.0013970385558894304,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "hot",
+          "aspect": 0.01,
+          "angle_degrees": 9.307307587846709e-05,
+          "angle": 1.6244316190377644e-06,
+          "best_shortfall": 0.001141887347850394,
+          "minimax_lower_bound": 0.0011418873478453936,
+          "zero_allowance_cosine_squared_lower": 1.6026101324535031,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.001080095447449289
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "both",
+          "aspect": 0.01,
+          "angle_degrees": 9.170816685319311e-05,
+          "angle": 1.600609462556547e-06,
+          "best_shortfall": 0.000805701272856263,
+          "minimax_lower_bound": 0.0008057012728512629,
+          "zero_allowance_cosine_squared_lower": 1.4128346581596216,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0015878212100613326
+        }
+      ],
+      "original_margin_reconstruction_error": 0.0,
+      "cold_final_reference_energy": {
+        "minimum": 0.09798887909786026,
+        "maximum": 0.11462312904407936
+      },
+      "cold_final_evolved_energy": {
+        "minimum": 0.13039066533603597,
+        "maximum": 0.14785933794169084
+      },
+      "maximum_compression_energy": 0.03380067264311147,
+      "compression_work_per_label": {
+        "minimum": 0.032401786238175447,
+        "maximum": 0.033800672643111755
+      },
+      "minimum_entropy_proxy_increment": 1.4370779014588608e-05,
+      "radiation_energy_quadrature_difference": 5.551115123125783e-17,
+      "radiation_balance_residual": 5.456247433033301e-17,
+      "selected": {
+        "aspect": 0.01,
+        "angle_degrees": 0.0,
+        "angle": 0.0,
+        "best_shortfall": -0.0004671151912337103,
+        "minimax_lower_bound": -0.00046711519123871035,
+        "zero_allowance_cosine_squared_lower": 0.4151533957099542,
+        "zero_allowance_cosine_squared_upper": 1.0,
+        "zero_allowance_pitch_exists": true,
+        "unavoidable_fixed_facet": -0.0006710302345088945,
+        "fill_fraction": 0.1,
+        "tube_to_bend_radius_ratio": 0.1,
+        "whole_loop_radial_span_fraction": 0.5,
+        "maximum_angular_span_over_curvature_radius": 1.9436306980325676e-05,
+        "beta_limit": 1.0,
+        "maximum_current_drift": 0.7071067811865476,
+        "current_coefficient_unit": "m/abs(q), c=mu0=1, same normalized Maxwell tensor as archived stresses",
+        "maximum_current_coefficient": 5.0882931818904334e-08,
+        "maximum_current_coefficient_with_conserved_straight_sleeve": 5.088292878604526e-08,
+        "tested_current_coefficient": 2.544146439302263e-08,
+        "current_inventory_rule": "each of sheet/bend families retains sqrt(2)*max_t integral|J| times m/abs(q)",
+        "counted_current_rest_inventory": {
+          "minimum": 0.014637125715574939,
+          "maximum": 0.015574539512725328
+        },
+        "straight_sleeve_conserved_energy": {
+          "minimum": 0.25626409990765264,
+          "maximum": 0.2775116970470828
+        },
+        "straight_sleeve_minimum_stress_fraction": {
+          "zero_current_cost": 0.7385970356464386,
+          "counted_currents": 0.776676922440529
+        },
+        "straight_sleeve_comparisons": [
+          {
+            "stress_fraction": 1.0,
+            "adjustable_energy_maximum_shortfall": -0.0007625174247204737,
+            "conserved_energy_lower": {
+              "minimum": 0.1685587898879483,
+              "maximum": 0.19114091497926167
+            },
+            "conserved_energy_upper": {
+              "minimum": 1.8836542541607348,
+              "maximum": 1.9247714560715177
+            },
+            "conserved_energy_minimum_gap": 1.6943556166942424,
+            "feasible_labels": 32
+          },
+          {
+            "stress_fraction": 0.99,
+            "adjustable_energy_maximum_shortfall": -0.000752559573938597,
+            "conserved_energy_lower": {
+              "minimum": 0.17026140392722053,
+              "maximum": 0.1930716312921835
+            },
+            "conserved_energy_upper": {
+              "minimum": 1.8836542541607348,
+              "maximum": 1.9247714560715177
+            },
+            "conserved_energy_minimum_gap": 1.692443509245086,
+            "feasible_labels": 32
+          },
+          {
+            "stress_fraction": 0.9,
+            "adjustable_energy_maximum_shortfall": -0.0006529810661198298,
+            "conserved_energy_lower": {
+              "minimum": 0.18728754431994257,
+              "maximum": 0.21237879442140184
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.4937116576547633,
+              "maximum": 0.8346657927666236
+            },
+            "conserved_energy_minimum_gap": 0.30292959127591573,
+            "feasible_labels": 32
+          },
+          {
+            "stress_fraction": 0.75,
+            "adjustable_energy_maximum_shortfall": -0.00043390834891854206,
+            "conserved_energy_lower": {
+              "minimum": 0.2247450531839311,
+              "maximum": 0.25485455330568224
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19748466306190524,
+              "maximum": 0.3338663171066493
+            },
+            "conserved_energy_minimum_gap": -0.031453816592711875,
+            "feasible_labels": 19
+          },
+          {
+            "stress_fraction": 0.5,
+            "adjustable_energy_maximum_shortfall": 0.0009167529712844277,
+            "conserved_energy_lower": {
+              "minimum": 0.3371175797758966,
+              "maximum": 0.38228182995852333
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.09874233153095265,
+              "maximum": 0.16693315855332466
+            },
+            "conserved_energy_minimum_gap": -0.2649220603971847,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.25,
+            "adjustable_energy_maximum_shortfall": 0.011510827025027998,
+            "conserved_energy_lower": {
+              "minimum": 0.6742351595517933,
+              "maximum": 0.7645636599170467
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.054501335262597095,
+              "maximum": 0.0700060048492471
+            },
+            "conserved_energy_minimum_gap": -0.6951710562603379,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.1,
+            "adjustable_energy_maximum_shortfall": 0.049257706894090404,
+            "conserved_energy_lower": {
+              "minimum": 1.685587898879483,
+              "maximum": 1.9114091497926167
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.034063334539123184,
+              "maximum": 0.04375375303077944
+            },
+            "conserved_energy_minimum_gap": -1.8679994818043195,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.01,
+            "adjustable_energy_maximum_shortfall": 0.772664922448118,
+            "conserved_energy_lower": {
+              "minimum": 16.85587898879483,
+              "maximum": 19.114091497926168
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.027806803705406682,
+              "maximum": 0.03571734941288117
+            },
+            "conserved_energy_minimum_gap": -19.078430960921143,
+            "feasible_labels": 0
+          }
+        ],
+        "straight_sleeve_axial_interval_violation": -0.000762517424720474,
+        "straight_sleeve_work_input_to_hold_fixed_energy": {
+          "minimum": 0.0011967607558716828,
+          "maximum": 0.0013305219022473945
+        },
+        "straight_sleeve_work_output_to_hold_fixed_energy": {
+          "minimum": 0.03214190508230036,
+          "maximum": 0.03910783749446707
+        },
+        "current_quadrature_orders": [
+          32,
+          64
+        ],
+        "current_tensor_relative_quadrature_difference": 6.3196177614757e-08,
+        "current_coefficient_relative_quadrature_difference": 6.827994607936279e-09,
+        "complete_loop_initial_energy": {
+          "minimum": 6.674764114746508e-05,
+          "maximum": 7.875020920941612e-05
+        },
+        "complete_loop_final_energy": {
+          "minimum": 0.05123084956746592,
+          "maximum": 0.058110697611226295
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.07933695070773249,
+          "maximum": 0.08676649448385024
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "complete_loop_mechanical_work": {
+          "minimum": -0.029440139718894587,
+          "maximum": -0.028184851349476073
+        },
+        "complete_loop_work_identity_error": 0.0,
+        "remaining_support_radial_pressure": {
+          "minimum": -0.013772691758480005,
+          "maximum": 0.09420857758184169
+        },
+        "remaining_support_angular_pressure": {
+          "minimum": -0.007951314812150067,
+          "maximum": 0.010416836172266825
+        },
+        "remaining_support_mechanical_work": {
+          "minimum": 0.7784644643497339,
+          "maximum": 0.8123545897894057
+        },
+        "tensor_reconstruction_error": 2.7755575615628914e-17,
+        "worst_density_with_currents": {
+          "time": 0.04517578125,
+          "position": -2.0001953125,
+          "value": -0.00028660900334396763,
+          "time_index": 144,
+          "position_index": 3
+        },
+        "minimum_added_rest_allowance_with_currents": 0.02019047598980164,
+        "tensor_and_current_budget_passes": true,
+        "worst_density_with_conserved_straight_sleeve": {
+          "time": 0.5,
+          "position": -1.9998046875,
+          "value": -0.0003812587123602322,
+          "time_index": 1600,
+          "position_index": 28
+        },
+        "straight_sleeve_necessary_gate_passes": true,
+        "cold_caloric_coefficient_factor_upper_bound": 0.20469450256975846
+      },
+      "scope": {
+        "shared_core_overlap_granted": true,
+        "exterior_loop_field_assumed_zero": true,
+        "full_return_and_bend_field_energy_counted": true,
+        "cold_compression_work_counted": true,
+        "current_kinetic_energy_and_pressure_counted": true,
+        "straight_section_boundary_pressure_counted": true,
+        "bend_mechanical_containment_supplied": false,
+        "straight_sleeve_constitutive_law_supplied": false,
+        "sleeve_mechanical_transfer_routed": false,
+        "fixed_heat_receipts_retained": true,
+        "old_cold_enclosure_credit_reallocated": true,
+        "current_host_constitutive_law_supplied": false,
+        "material_species_selected": false,
+        "full_spatial_force_equations_solved": false,
+        "field_induction_tensor_supplied": false,
+        "new_electrical_port_routed": false,
+        "changed_contact_network_replayed": false,
+        "full_thermal_material_or_device_validated": false,
+        "microscopic_field_sharing_with_phase_demonstrated": false,
+        "continuous_time_bound_certified": false
+      },
+      "elapsed_seconds": 37.62082836963236
+    },
+    {
+      "label": "second_n32_t2057",
+      "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz",
+      "time_samples": 2057,
+      "spatial_samples": 32,
+      "cases": [
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008473491605987436,
+          "angle": 1.4789032766458282e-05,
+          "best_shortfall": -0.00046917501312927025,
+          "minimax_lower_bound": -0.00046917501313427026,
+          "zero_allowance_cosine_squared_lower": 0.8954972691848311,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046917501312927073,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04548025595233728,
+          "maximum_field_energy": 0.04017875556822132,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008538752392789746,
+          "angle": 1.4902934326672519e-05,
+          "best_shortfall": -0.00046900093415097556,
+          "minimax_lower_bound": -0.00046900093415597557,
+          "zero_allowance_cosine_squared_lower": 0.9016136498784918,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.000469000934150976,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.045463381318635115,
+          "maximum_field_energy": 0.043925583896951,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 0.0008731633699883374,
+          "angle": 1.523957571410593e-05,
+          "best_shortfall": -0.0004685091208628258,
+          "minimax_lower_bound": -0.0004685091208678258,
+          "zero_allowance_cosine_squared_lower": 0.9199627919594737,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046850912086282646,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04541570658404809,
+          "maximum_field_energy": 0.05451123862985882,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 0.0009043981961135143,
+          "angle": 1.5784726271278208e-05,
+          "best_shortfall": -0.0004677784536958869,
+          "minimax_lower_bound": -0.00046777845370088694,
+          "zero_allowance_cosine_squared_lower": 0.950544695427777,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.0004677784536958867,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.045344878153636275,
+          "maximum_field_energy": 0.07023791893771837,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 1.9784719072079928e-05,
+          "angle": 3.4530848938991207e-07,
+          "best_shortfall": 0.0004820805680273779,
+          "minimax_lower_bound": 0.0004820805680223784,
+          "zero_allowance_cosine_squared_lower": 1.0117085023643835,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.0004820805680273814,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.012205731678945907,
+          "maximum_field_energy": 0.09605191464934904,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 2.2033315828455735e-05,
+          "angle": 3.845539063383347e-07,
+          "best_shortfall": 0.004526727915923269,
+          "minimax_lower_bound": 0.004526727915918263,
+          "zero_allowance_cosine_squared_lower": 1.134036116237596,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.004526727915923269,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.11461160227104447,
+          "maximum_field_energy": 0.1327386540519948,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008473491605987436,
+          "angle": 1.4789032766458282e-05,
+          "best_shortfall": -0.00046917501312927025,
+          "minimax_lower_bound": -0.00046917501313427026,
+          "zero_allowance_cosine_squared_lower": 0.8954972691848311,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046917501312927073,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04548025595233728,
+          "maximum_field_energy": 0.04017875556822132,
+          "maximum_core_field_overlap": 0.0014214441231144115,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008538752392789746,
+          "angle": 1.4902934326672519e-05,
+          "best_shortfall": -0.00046900093415097556,
+          "minimax_lower_bound": -0.00046900093415597557,
+          "zero_allowance_cosine_squared_lower": 0.9016136498784918,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.000469000934150976,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.045463381318635115,
+          "maximum_field_energy": 0.043925583896951,
+          "maximum_core_field_overlap": 0.0014107045201868806,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0008731633699883374,
+          "angle": 1.523957571410593e-05,
+          "best_shortfall": -0.0004685091208628258,
+          "minimax_lower_bound": -0.0004685091208678258,
+          "zero_allowance_cosine_squared_lower": 0.9199627919594737,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046850912086282646,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04541570658404809,
+          "maximum_field_energy": 0.05451123862985882,
+          "maximum_core_field_overlap": 0.0013803626633989258,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0009043981961135143,
+          "angle": 1.5784726271278208e-05,
+          "best_shortfall": -0.0004677784536958869,
+          "minimax_lower_bound": -0.00046777845370088694,
+          "zero_allowance_cosine_squared_lower": 0.950544695427777,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.0004677784536958867,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.045344878153636275,
+          "maximum_field_energy": 0.07023791893771837,
+          "maximum_core_field_overlap": 0.0013352849904829924,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 1.9784719072079928e-05,
+          "angle": 3.4530848938991207e-07,
+          "best_shortfall": 0.0004820805680273779,
+          "minimax_lower_bound": 0.0004820805680223784,
+          "zero_allowance_cosine_squared_lower": 1.0117085023643835,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.0004820805680273814,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.012205731678945907,
+          "maximum_field_energy": 0.09605191464934904,
+          "maximum_core_field_overlap": 0.0012612938599606371,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 2.2033315828455735e-05,
+          "angle": 3.845539063383347e-07,
+          "best_shortfall": 0.004526727915923269,
+          "minimax_lower_bound": 0.004526727915918263,
+          "zero_allowance_cosine_squared_lower": 1.134036116237596,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.004526727915923269,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.11461160227104447,
+          "maximum_field_energy": 0.1327386540519948,
+          "maximum_core_field_overlap": 0.0011575831634995217,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 11.297879096992977,
+          "angle": 0.19718518873477123,
+          "best_shortfall": -0.0003416486581472311,
+          "minimax_lower_bound": -0.0003416486581518373,
+          "zero_allowance_cosine_squared_lower": 0.9568562411530018,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748515625,
+            "value": -0.00034164865814722764,
+            "time_index": 2048,
+            "position_index": 25
+          },
+          "minimum_added_rest_allowance": 0.008650155445283114,
+          "maximum_field_energy": 0.08136866471854545,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 10.180701768214488,
+          "angle": 0.17768676601895142,
+          "best_shortfall": -0.000341648658147232,
+          "minimax_lower_bound": -0.0003416486581518381,
+          "zero_allowance_cosine_squared_lower": 0.9639215407413554,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748515625,
+            "value": -0.0003416486581472311,
+            "time_index": 2048,
+            "position_index": 25
+          },
+          "minimum_added_rest_allowance": 0.00865015544528285,
+          "maximum_field_energy": 0.08136866471854554,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 5.688512664137449,
+          "angle": 0.09928327553059285,
+          "best_shortfall": -0.0003416486581472311,
+          "minimax_lower_bound": -0.0003416486581518373,
+          "zero_allowance_cosine_squared_lower": 0.9851174395064165,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748515625,
+            "value": -0.0003416486581472311,
+            "time_index": 2048,
+            "position_index": 25
+          },
+          "minimum_added_rest_allowance": 0.00865015544528285,
+          "maximum_field_energy": 0.08136866471854554,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 1.6131578029909146e-05,
+          "angle": 2.815491501642949e-07,
+          "best_shortfall": 0.0012872442094572223,
+          "minimax_lower_bound": 0.0012872442094522191,
+          "zero_allowance_cosine_squared_lower": 1.0204439374481848,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.0012872442094572223,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.03259155931176072,
+          "maximum_field_energy": 0.09676241924429999,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 1.7203062292734435e-05,
+          "angle": 3.002500784339005e-07,
+          "best_shortfall": 0.005050279432008101,
+          "minimax_lower_bound": 0.005050279432003101,
+          "zero_allowance_cosine_squared_lower": 1.0910969333317215,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.005050279432008104,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.1278673311870332,
+          "maximum_field_energy": 0.13232475832597543,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 1.9148146328926346e-05,
+          "angle": 3.3419819909342984e-07,
+          "best_shortfall": 0.010398288842856394,
+          "minimax_lower_bound": 0.010398288842851393,
+          "zero_allowance_cosine_squared_lower": 1.232402925098795,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.010398288842856398,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.2632728468094432,
+          "maximum_field_energy": 0.1828658010833839,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008463760928249806,
+          "angle": 1.4772049529961065e-05,
+          "best_shortfall": -0.0004690706034087098,
+          "minimax_lower_bound": -0.0004690706034137098,
+          "zero_allowance_cosine_squared_lower": 0.9568562411530018,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046907060340870953,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04547013482337229,
+          "maximum_field_energy": 0.055351776586447056,
+          "maximum_core_field_overlap": 0.0019516221685446716,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008528950880331541,
+          "angle": 1.4885827460265428e-05,
+          "best_shortfall": -0.0004688961237532575,
+          "minimax_lower_bound": -0.0004688961237582575,
+          "zero_allowance_cosine_squared_lower": 0.9639215407413554,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.00046889612375325754,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.04545322134936713,
+          "maximum_field_energy": 0.060513549310063516,
+          "maximum_core_field_overlap": 0.0019368768494611441,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.000872160599377318,
+          "angle": 1.5222074065301405e-05,
+          "best_shortfall": -0.00046840317845966794,
+          "minimax_lower_bound": -0.00046840317846466795,
+          "zero_allowance_cosine_squared_lower": 0.9851174395064165,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.9749921875,
+            "value": -0.0004684031784596681,
+            "time_index": 72,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": 0.025428971877837953,
+          "maximum_field_energy": 0.0750967485036246,
+          "maximum_core_field_overlap": 0.0018952179200813482,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 1.6131578029909146e-05,
+          "angle": 2.815491501642949e-07,
+          "best_shortfall": 0.0012872442094572223,
+          "minimax_lower_bound": 0.0012872442094522191,
+          "zero_allowance_cosine_squared_lower": 1.0204439374481848,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.0012872442094572223,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.03259155931176072,
+          "maximum_field_energy": 0.09676241924429999,
+          "maximum_core_field_overlap": 0.0018333269292656828,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 1.7203062292734435e-05,
+          "angle": 3.002500784339005e-07,
+          "best_shortfall": 0.005050279432008101,
+          "minimax_lower_bound": 0.005050279432003101,
+          "zero_allowance_cosine_squared_lower": 1.0910969333317215,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.005050279432008104,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.1278673311870332,
+          "maximum_field_energy": 0.13232475832597543,
+          "maximum_core_field_overlap": 0.0017317381795873541,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 1.9148146328926346e-05,
+          "angle": 3.3419819909342984e-07,
+          "best_shortfall": 0.010398288842856394,
+          "minimax_lower_bound": 0.010398288842851393,
+          "zero_allowance_cosine_squared_lower": 1.232402925098795,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007305139991480277,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9749921875,
+            "value": 0.010398288842856398,
+            "time_index": 2048,
+            "position_index": 16
+          },
+          "minimum_added_rest_allowance": -0.2632728468094432,
+          "maximum_field_energy": 0.1828658010833839,
+          "maximum_core_field_overlap": 0.0015897638945908685,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "hot",
+          "aspect": 0.01,
+          "angle_degrees": 0.00010679339868702197,
+          "angle": 1.8638964264835226e-06,
+          "best_shortfall": 0.0006840631103886355,
+          "minimax_lower_bound": 0.0006840631103836354,
+          "zero_allowance_cosine_squared_lower": 1.4765847747940977,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0016539337594058045
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "both",
+          "aspect": 0.01,
+          "angle_degrees": 0.00010556109290127667,
+          "angle": 1.8423886331308912e-06,
+          "best_shortfall": 0.00036280770857316253,
+          "minimax_lower_bound": 0.0003628077085681623,
+          "zero_allowance_cosine_squared_lower": 1.2462968946702726,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.002111262821211746
+        }
+      ],
+      "original_margin_reconstruction_error": 0.0,
+      "cold_final_reference_energy": {
+        "minimum": 0.0892560421468116,
+        "maximum": 0.10894265114506488
+      },
+      "cold_final_evolved_energy": {
+        "minimum": 0.11796892960661187,
+        "maximum": 0.15008352552669396
+      },
+      "maximum_compression_energy": 0.04114087438162918,
+      "compression_work_per_label": {
+        "minimum": 0.027687417119017173,
+        "maximum": 0.041140874381628965
+      },
+      "minimum_entropy_proxy_increment": 7.88705289342384e-06,
+      "radiation_energy_quadrature_difference": 5.551115123125783e-17,
+      "radiation_balance_residual": 5.284130338151227e-17,
+      "selected": {
+        "aspect": 0.01,
+        "angle_degrees": 0.0,
+        "angle": 0.0,
+        "best_shortfall": -0.0004688961237532575,
+        "minimax_lower_bound": -0.0004688961237582575,
+        "zero_allowance_cosine_squared_lower": 0.9639215407413554,
+        "zero_allowance_cosine_squared_upper": 1.0,
+        "zero_allowance_pitch_exists": true,
+        "unavoidable_fixed_facet": -0.0007305139991480277,
+        "fill_fraction": 0.1,
+        "tube_to_bend_radius_ratio": 0.1,
+        "whole_loop_radial_span_fraction": 0.5,
+        "maximum_angular_span_over_curvature_radius": 2.24746022979696e-05,
+        "beta_limit": 1.0,
+        "maximum_current_drift": 0.7071067811865476,
+        "current_coefficient_unit": "m/abs(q), c=mu0=1, same normalized Maxwell tensor as archived stresses",
+        "maximum_current_coefficient": 4.8217746619090664e-08,
+        "maximum_current_coefficient_with_conserved_straight_sleeve": 2.4000279156856214e-08,
+        "tested_current_coefficient": 1.2000139578428107e-08,
+        "current_inventory_rule": "each of sheet/bend families retains sqrt(2)*max_t integral|J| times m/abs(q)",
+        "counted_current_rest_inventory": {
+          "minimum": 0.005985849570205422,
+          "maximum": 0.006740296915270524
+        },
+        "straight_sleeve_conserved_energy": {
+          "minimum": 0.15473230991677556,
+          "maximum": 0.19669213546458028
+        },
+        "straight_sleeve_minimum_stress_fraction": {
+          "zero_current_cost": 0.9504991958737371,
+          "counted_currents": 0.9746214870810508
+        },
+        "straight_sleeve_comparisons": [
+          {
+            "stress_fraction": 1.0,
+            "adjustable_energy_maximum_shortfall": -0.00015165848930694288,
+            "conserved_energy_lower": {
+              "minimum": 0.15250094757643312,
+              "maximum": 0.19401616963683807
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19164586571269387,
+              "maximum": 0.2475354861916821
+            },
+            "conserved_energy_minimum_gap": 0.02612884990205963,
+            "feasible_labels": 32
+          },
+          {
+            "stress_fraction": 0.99,
+            "adjustable_energy_maximum_shortfall": -0.00010139260725193326,
+            "conserved_energy_lower": {
+              "minimum": 0.1540413611883163,
+              "maximum": 0.19597592892609905
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19164586571269387,
+              "maximum": 0.2475354861916821
+            },
+            "conserved_energy_minimum_gap": 0.024456960853467352,
+            "feasible_labels": 32
+          },
+          {
+            "stress_fraction": 0.9,
+            "adjustable_energy_maximum_shortfall": 0.00040126621329815166,
+            "conserved_energy_lower": {
+              "minimum": 0.16944549730714792,
+              "maximum": 0.21557352181870895
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.04698029818812076,
+              "maximum": 0.2475354861916821
+            },
+            "conserved_energy_minimum_gap": -0.15348652930573597,
+            "feasible_labels": 11
+          },
+          {
+            "stress_fraction": 0.75,
+            "adjustable_energy_maximum_shortfall": 0.0015733488534190425,
+            "conserved_energy_lower": {
+              "minimum": 0.20333459676857749,
+              "maximum": 0.25868822618245074
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.01879211927524829,
+              "maximum": 0.12020482001690594
+            },
+            "conserved_energy_minimum_gap": -0.22651212737627488,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.5,
+            "adjustable_energy_maximum_shortfall": 0.005800825728321676,
+            "conserved_energy_lower": {
+              "minimum": 0.30500189515286624,
+              "maximum": 0.38803233927367614
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.009396059637624143,
+              "maximum": 0.06010241000845297
+            },
+            "conserved_energy_minimum_gap": -0.3648225091373613,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.25,
+            "adjustable_energy_maximum_shortfall": 0.02090858721008758,
+            "conserved_energy_lower": {
+              "minimum": 0.6100037903057325,
+              "maximum": 0.7760646785473523
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.006264039758416095,
+              "maximum": 0.040068273338968646
+            },
+            "conserved_energy_minimum_gap": -0.7509220728044781,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.1,
+            "adjustable_energy_maximum_shortfall": 0.06648870862226634,
+            "conserved_energy_lower": {
+              "minimum": 1.525009475764331,
+              "maximum": 1.9401616963683805
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.005220033132013413,
+              "maximum": 0.03339022778247387
+            },
+            "conserved_energy_minimum_gap": -1.9129800914139339,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.01,
+            "adjustable_energy_maximum_shortfall": 0.7565538413314208,
+            "conserved_energy_lower": {
+              "minimum": 15.250094757643312,
+              "maximum": 19.401616963683807
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.004745484665466739,
+              "maximum": 0.030354752529521703
+            },
+            "conserved_energy_minimum_gap": -19.37653998525612,
+            "feasible_labels": 0
+          }
+        ],
+        "straight_sleeve_axial_interval_violation": -0.00015165848930694201,
+        "straight_sleeve_work_input_to_hold_fixed_energy": {
+          "minimum": 0.002161325659195719,
+          "maximum": 0.004040301727415895
+        },
+        "straight_sleeve_work_output_to_hold_fixed_energy": {
+          "minimum": 0.024742933224475093,
+          "maximum": 0.05509135986360792
+        },
+        "current_quadrature_orders": [
+          32,
+          64
+        ],
+        "current_tensor_relative_quadrature_difference": 1.3529844747358902e-07,
+        "current_coefficient_relative_quadrature_difference": 2.42938833243891e-07,
+        "complete_loop_initial_energy": {
+          "minimum": 3.79104357783692e-05,
+          "maximum": 6.128586933467257e-05
+        },
+        "complete_loop_final_energy": {
+          "minimum": 0.04754001633997505,
+          "maximum": 0.060513549162144506
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.07178905618901472,
+          "maximum": 0.09597955337862989
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "complete_loop_mechanical_work": {
+          "minimum": -0.035527290085820104,
+          "maximum": -0.023832997284122966
+        },
+        "complete_loop_work_identity_error": 0.0,
+        "remaining_support_radial_pressure": {
+          "minimum": -0.004397150729664372,
+          "maximum": 0.005406534093952687
+        },
+        "remaining_support_angular_pressure": {
+          "minimum": -0.01823856446536271,
+          "maximum": 0.0094406336934141
+        },
+        "remaining_support_mechanical_work": {
+          "minimum": 0.029694139906115663,
+          "maximum": 0.06174660544333716
+        },
+        "tensor_reconstruction_error": 6.938893903907228e-18,
+        "worst_density_with_currents": {
+          "time": 0.04517578125,
+          "position": -1.9749921875,
+          "value": -0.00040297677281379493,
+          "time_index": 72,
+          "position_index": 16
+        },
+        "minimum_added_rest_allowance_with_currents": 0.03519427984029658,
+        "tensor_and_current_budget_passes": true,
+        "worst_density_with_conserved_straight_sleeve": {
+          "time": 1.1519824218749999,
+          "position": -1.9748984375,
+          "value": -7.582924465347057e-05,
+          "time_index": 1844,
+          "position_index": 22
+        },
+        "straight_sleeve_necessary_gate_passes": true,
+        "cold_caloric_coefficient_factor_upper_bound": 0.18538786901896226
+      },
+      "scope": {
+        "shared_core_overlap_granted": true,
+        "exterior_loop_field_assumed_zero": true,
+        "full_return_and_bend_field_energy_counted": true,
+        "cold_compression_work_counted": true,
+        "current_kinetic_energy_and_pressure_counted": true,
+        "straight_section_boundary_pressure_counted": true,
+        "bend_mechanical_containment_supplied": false,
+        "straight_sleeve_constitutive_law_supplied": false,
+        "sleeve_mechanical_transfer_routed": false,
+        "fixed_heat_receipts_retained": true,
+        "old_cold_enclosure_credit_reallocated": true,
+        "current_host_constitutive_law_supplied": false,
+        "material_species_selected": false,
+        "full_spatial_force_equations_solved": false,
+        "field_induction_tensor_supplied": false,
+        "new_electrical_port_routed": false,
+        "changed_contact_network_replayed": false,
+        "full_thermal_material_or_device_validated": false,
+        "microscopic_field_sharing_with_phase_demonstrated": false,
+        "continuous_time_bound_certified": false
+      },
+      "elapsed_seconds": 27.277108228765428
+    },
+    {
+      "label": "first_n16_t2057",
+      "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz",
+      "time_samples": 2057,
+      "spatial_samples": 16,
+      "cases": [
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 40.321509513366266,
+          "angle": 0.7037431003824579,
+          "best_shortfall": -0.00033966129161156004,
+          "minimax_lower_bound": -0.00033966129161399234,
+          "zero_allowance_cosine_squared_lower": 0.30621983379732004,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838803,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 40.248490902804974,
+          "angle": 0.7024686852129318,
+          "best_shortfall": -0.00033966129161156004,
+          "minimax_lower_bound": -0.00033966129161399245,
+          "zero_allowance_cosine_squared_lower": 0.3032230159689203,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838803,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 40.02924599939053,
+          "angle": 0.6986421397801329,
+          "best_shortfall": -0.0003396612916115601,
+          "minimax_lower_bound": -0.00033966129161399245,
+          "zero_allowance_cosine_squared_lower": 0.29423256248372187,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838803,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 39.663176417825845,
+          "angle": 0.6922530202904311,
+          "best_shortfall": -0.00033966129161156004,
+          "minimax_lower_bound": -0.0003396612916139924,
+          "zero_allowance_cosine_squared_lower": 0.2792484733417243,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838798,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 38.928318671910645,
+          "angle": 0.679427333090427,
+          "best_shortfall": -0.00033966129161156004,
+          "minimax_lower_bound": -0.0003396612916139924,
+          "zero_allowance_cosine_squared_lower": 0.2492802950577292,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838803,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 37.44579467055895,
+          "angle": 0.6535524080269991,
+          "best_shortfall": -0.0003396612916115601,
+          "minimax_lower_bound": -0.00033966129161399245,
+          "zero_allowance_cosine_squared_lower": 0.18934393848973924,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00033966129161155934,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0219527477601979,
+          "maximum_field_energy": 0.22683599877838798,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0005598359876293711,
+          "angle": 9.77098125528677e-06,
+          "best_shortfall": -0.0004719247439605891,
+          "minimax_lower_bound": -0.0004719247439655891,
+          "zero_allowance_cosine_squared_lower": 0.30621983379732004,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004719247439605896,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.04016215005184623,
+          "maximum_field_energy": 0.04168079270253133,
+          "maximum_core_field_overlap": 0.0013970074660184055,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0005641480168228605,
+          "angle": 9.846240362155276e-06,
+          "best_shortfall": -0.00047152594888458515,
+          "minimax_lower_bound": -0.00047152594888958516,
+          "zero_allowance_cosine_squared_lower": 0.3032230159689203,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004715259488845859,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.04012821144640677,
+          "maximum_field_energy": 0.04504808894995098,
+          "maximum_core_field_overlap": 0.0013970074660184055,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.00057689138434826,
+          "angle": 1.0068654083265219e-05,
+          "best_shortfall": -0.0004703992607597539,
+          "minimax_lower_bound": -0.0004703992607647539,
+          "zero_allowance_cosine_squared_lower": 0.29423256248372187,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004703992607597539,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.040032327053587315,
+          "maximum_field_energy": 0.054561477963608745,
+          "maximum_core_field_overlap": 0.0013940881276784678,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0005975268917757853,
+          "angle": 1.042881163069528e-05,
+          "best_shortfall": -0.00046872538565302104,
+          "minimax_lower_bound": -0.0004687253856580211,
+          "zero_allowance_cosine_squared_lower": 0.2792484733417243,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004687253856530231,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.039889875478278124,
+          "maximum_field_energy": 0.06869513633780347,
+          "maximum_core_field_overlap": 0.0013547038600237927,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 0.0006367949595554906,
+          "angle": 1.1114168704347437e-05,
+          "best_shortfall": -0.00046597786334308535,
+          "minimax_lower_bound": -0.0004659778633480854,
+          "zero_allowance_cosine_squared_lower": 0.2492802950577292,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.00046597786334308736,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0391248438126143,
+          "maximum_field_energy": 0.09189432339059739,
+          "maximum_core_field_overlap": 0.0012835141408818942,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 0.0007088362826097784,
+          "angle": 1.2371526989137657e-05,
+          "best_shortfall": -0.00046207309649902396,
+          "minimax_lower_bound": -0.000462073096504024,
+          "zero_allowance_cosine_squared_lower": 0.18934393848973924,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.000713249292070714,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004620730964990244,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.035203025785557104,
+          "maximum_field_energy": 0.12486490786423102,
+          "maximum_core_field_overlap": 0.0012092202046730081,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 38.68617819235834,
+          "angle": 0.6752011844698812,
+          "best_shortfall": -0.00025845014276628807,
+          "minimax_lower_bound": -0.0002584501427687187,
+          "zero_allowance_cosine_squared_lower": 0.4119534979217829,
+          "zero_allowance_cosine_squared_upper": 0.9592046695680758,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053702996,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 38.58688364638034,
+          "angle": 0.6734681677132923,
+          "best_shortfall": -0.00025845014276628807,
+          "minimax_lower_bound": -0.0002584501427687187,
+          "zero_allowance_cosine_squared_lower": 0.4105918553330349,
+          "zero_allowance_cosine_squared_upper": 0.9663062876934655,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053703007,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 38.28852394731505,
+          "angle": 0.6682608086093434,
+          "best_shortfall": -0.00025845014276628796,
+          "minimax_lower_bound": -0.0002584501427687186,
+          "zero_allowance_cosine_squared_lower": 0.40650692756679124,
+          "zero_allowance_cosine_squared_upper": 0.9876111420696334,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053702996,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 37.78958667622996,
+          "angle": 0.6595527104679931,
+          "best_shortfall": -0.000258450142766288,
+          "minimax_lower_bound": -0.00025845014276871863,
+          "zero_allowance_cosine_squared_lower": 0.3996987146230518,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053703,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 36.78479147335405,
+          "angle": 0.6420157258695641,
+          "best_shortfall": -0.000258450142766288,
+          "minimax_lower_bound": -0.00025845014276871863,
+          "zero_allowance_cosine_squared_lower": 0.38608228873557265,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053703,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 34.74202258649987,
+          "angle": 0.6063626829366592,
+          "best_shortfall": -0.00025845014276628807,
+          "minimax_lower_bound": -0.0002584501427687187,
+          "zero_allowance_cosine_squared_lower": 0.35884943696061467,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "value": -0.00025845014276628525,
+            "time_index": 800,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.01670396637136944,
+          "maximum_field_energy": 0.27662801053703,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.000559111584130337,
+          "angle": 9.758338029115658e-06,
+          "best_shortfall": -0.0004716550350396456,
+          "minimax_lower_bound": -0.0004716550350446456,
+          "zero_allowance_cosine_squared_lower": 0.4119534979217829,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004716550350396462,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.0401391970486569,
+          "maximum_field_energy": 0.05376634073985722,
+          "maximum_core_field_overlap": 0.0013970962943263656,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0005634181604709632,
+          "angle": 9.833501965748073e-06,
+          "best_shortfall": -0.0004712552064671211,
+          "minimax_lower_bound": -0.0004712552064721211,
+          "zero_allowance_cosine_squared_lower": 0.4105918553330349,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.00047125520646712146,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.04010517048969755,
+          "maximum_field_energy": 0.058110000868957526,
+          "maximum_core_field_overlap": 0.0013970962943263656,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0005761441440631845,
+          "angle": 1.005561227998711e-05,
+          "best_shortfall": -0.00047012559847610564,
+          "minimax_lower_bound": -0.00047012559848110566,
+          "zero_allowance_cosine_squared_lower": 0.40650692756679124,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.00047012559847610727,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.039707386024132645,
+          "maximum_field_energy": 0.0703818431765393,
+          "maximum_core_field_overlap": 0.0013970962943263656,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0005967547994401358,
+          "angle": 1.0415336077308784e-05,
+          "best_shortfall": -0.0004684473854419439,
+          "minimax_lower_bound": -0.00046844738544694393,
+          "zero_allowance_cosine_squared_lower": 0.3996987146230518,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.00046844738544194256,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.03792235972341398,
+          "maximum_field_energy": 0.08861362435865539,
+          "maximum_core_field_overlap": 0.0013970962943263656,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 0.0006359719717970013,
+          "angle": 1.1099804858258191e-05,
+          "best_shortfall": -0.0004656927427964814,
+          "minimax_lower_bound": -0.00046569274280148143,
+          "zero_allowance_cosine_squared_lower": 0.38608228873557265,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.00046569274279648076,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.03499239226925913,
+          "maximum_field_energy": 0.11853952823657554,
+          "maximum_core_field_overlap": 0.0013970962943263656,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 0.0007079194327631206,
+          "angle": 1.2355524940567073e-05,
+          "best_shortfall": -0.00046177785656231237,
+          "minimax_lower_bound": -0.0004617778565673124,
+          "zero_allowance_cosine_squared_lower": 0.35884943696061467,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0006737829759439554,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -2.0002031249999996,
+            "value": -0.0004617778565623107,
+            "time_index": 72,
+            "position_index": 1
+          },
+          "minimum_added_rest_allowance": 0.030828335173966465,
+          "maximum_field_energy": 0.16107009361851976,
+          "maximum_core_field_overlap": 0.0013970429973028519,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "hot",
+          "aspect": 0.01,
+          "angle_degrees": 9.307307587846709e-05,
+          "angle": 1.6244316190377644e-06,
+          "best_shortfall": 0.0011413366408186834,
+          "minimax_lower_bound": 0.001141336640813683,
+          "zero_allowance_cosine_squared_lower": 1.6023433512890404,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0010828618919739574
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "both",
+          "aspect": 0.01,
+          "angle_degrees": 9.17041925875479e-05,
+          "angle": 1.600540098535689e-06,
+          "best_shortfall": 0.0008016135058323372,
+          "minimax_lower_bound": 0.0008016135058273373,
+          "zero_allowance_cosine_squared_lower": 1.4117206608926849,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0015906038147963722
+        }
+      ],
+      "original_margin_reconstruction_error": 0.0,
+      "cold_final_reference_energy": {
+        "minimum": 0.09798887909786044,
+        "maximum": 0.11462312904407956
+      },
+      "cold_final_evolved_energy": {
+        "minimum": 0.13039133027012398,
+        "maximum": 0.1478586613467758
+      },
+      "maximum_compression_energy": 0.033799975869901494,
+      "compression_work_per_label": {
+        "minimum": 0.032402451172263404,
+        "maximum": 0.03379997586990171
+      },
+      "minimum_entropy_proxy_increment": 2.8749360856672457e-05,
+      "radiation_energy_quadrature_difference": 5.551115123125783e-17,
+      "radiation_balance_residual": 4.141652298894627e-17,
+      "selected": {
+        "aspect": 0.01,
+        "angle_degrees": 0.0,
+        "angle": 0.0,
+        "best_shortfall": -0.0004712552064671211,
+        "minimax_lower_bound": -0.0004712552064721211,
+        "zero_allowance_cosine_squared_lower": 0.4105918553330349,
+        "zero_allowance_cosine_squared_upper": 1.0,
+        "zero_allowance_pitch_exists": true,
+        "unavoidable_fixed_facet": -0.0006737829759439554,
+        "fill_fraction": 0.1,
+        "tube_to_bend_radius_ratio": 0.1,
+        "whole_loop_radial_span_fraction": 0.5,
+        "maximum_angular_span_over_curvature_radius": 1.9435430798457175e-05,
+        "beta_limit": 1.0,
+        "maximum_current_drift": 0.7071067811865476,
+        "current_coefficient_unit": "m/abs(q), c=mu0=1, same normalized Maxwell tensor as archived stresses",
+        "maximum_current_coefficient": 5.108858224772428e-08,
+        "maximum_current_coefficient_with_conserved_straight_sleeve": 5.1088579202607485e-08,
+        "tested_current_coefficient": 2.5544289601303742e-08,
+        "current_inventory_rule": "each of sheet/bend families retains sqrt(2)*max_t integral|J| times m/abs(q)",
+        "counted_current_rest_inventory": {
+          "minimum": 0.014696674485005798,
+          "maximum": 0.015637066075265292
+        },
+        "straight_sleeve_conserved_energy": {
+          "minimum": 0.25627851986485906,
+          "maximum": 0.27749868574230857
+        },
+        "straight_sleeve_minimum_stress_fraction": {
+          "zero_current_cost": 0.7383540323376655,
+          "counted_currents": 0.7765686695575715
+        },
+        "straight_sleeve_comparisons": [
+          {
+            "stress_fraction": 1.0,
+            "adjustable_energy_maximum_shortfall": -0.000762970432759811,
+            "conserved_energy_lower": {
+              "minimum": 0.16855964946240434,
+              "maximum": 0.1911400403306062
+            },
+            "conserved_energy_upper": {
+              "minimum": 1.883900168740097,
+              "maximum": 1.9243413613413558
+            },
+            "conserved_energy_minimum_gap": 1.6946023945465951,
+            "feasible_labels": 16
+          },
+          {
+            "stress_fraction": 0.99,
+            "adjustable_energy_maximum_shortfall": -0.000753012922731221,
+            "conserved_energy_lower": {
+              "minimum": 0.1702622721842468,
+              "maximum": 0.19307074780869313
+            },
+            "conserved_energy_upper": {
+              "minimum": 1.883900168740097,
+              "maximum": 1.9243413613413558
+            },
+            "conserved_energy_minimum_gap": 1.6926902958173677,
+            "feasible_labels": 16
+          },
+          {
+            "stress_fraction": 0.9,
+            "adjustable_energy_maximum_shortfall": -0.0006534378224453202,
+            "conserved_energy_lower": {
+              "minimum": 0.18728849940267148,
+              "maximum": 0.21237782258956242
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.49402238629676615,
+              "maximum": 0.8142044200981114
+            },
+            "conserved_energy_minimum_gap": 0.30323932156585864,
+            "feasible_labels": 16
+          },
+          {
+            "stress_fraction": 0.75,
+            "adjustable_energy_maximum_shortfall": -0.000434372601816338,
+            "conserved_energy_lower": {
+              "minimum": 0.2247461992832058,
+              "maximum": 0.2548533871074749
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19760895451870644,
+              "maximum": 0.32568176803924453
+            },
+            "conserved_energy_minimum_gap": -0.03133072315838259,
+            "feasible_labels": 8
+          },
+          {
+            "stress_fraction": 0.5,
+            "adjustable_energy_maximum_shortfall": 0.0009179614055392412,
+            "conserved_energy_lower": {
+              "minimum": 0.3371192989248087,
+              "maximum": 0.3822800806612124
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.09880447725935322,
+              "maximum": 0.16284088401962232
+            },
+            "conserved_energy_minimum_gap": -0.2648511840300167,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.25,
+            "adjustable_energy_maximum_shortfall": 0.011511717986597381,
+            "conserved_energy_lower": {
+              "minimum": 0.6742385978496174,
+              "maximum": 0.7645601613224248
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.054995481520091344,
+              "maximum": 0.06967816595859162
+            },
+            "conserved_energy_minimum_gap": -0.6952167084195742,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.1,
+            "adjustable_energy_maximum_shortfall": 0.04926765785713788,
+            "conserved_energy_lower": {
+              "minimum": 1.6855964946240434,
+              "maximum": 1.9114004033060619
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.034372175950057086,
+              "maximum": 0.04354885372411977
+            },
+            "conserved_energy_minimum_gap": -1.868034551441826,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.01,
+            "adjustable_energy_maximum_shortfall": 0.7726510713631958,
+            "conserved_energy_lower": {
+              "minimum": 16.855964946240434,
+              "maximum": 19.11400403306062
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.028058919142903746,
+              "maximum": 0.03555008467275083
+            },
+            "conserved_energy_minimum_gap": -19.07845394838787,
+            "feasible_labels": 0
+          }
+        ],
+        "straight_sleeve_axial_interval_violation": -0.000762970432759811,
+        "straight_sleeve_work_input_to_hold_fixed_energy": {
+          "minimum": 0.0012060605375031357,
+          "maximum": 0.0013391190014352995
+        },
+        "straight_sleeve_work_output_to_hold_fixed_energy": {
+          "minimum": 0.032187860585203246,
+          "maximum": 0.03911317127424505
+        },
+        "current_quadrature_orders": [
+          32,
+          64
+        ],
+        "current_tensor_relative_quadrature_difference": 6.318643463456203e-08,
+        "current_coefficient_relative_quadrature_difference": 6.826598716399344e-09,
+        "complete_loop_initial_energy": {
+          "minimum": 6.674764114746508e-05,
+          "maximum": 7.875020920941611e-05
+        },
+        "complete_loop_final_energy": {
+          "minimum": 0.05123149010856743,
+          "maximum": 0.05811000081463858
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.07933807936404408,
+          "maximum": 0.08676530828223282
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "complete_loop_mechanical_work": {
+          "minimum": -0.029439623241238378,
+          "maximum": -0.028185339464686127
+        },
+        "complete_loop_work_identity_error": 0.0,
+        "remaining_support_radial_pressure": {
+          "minimum": -0.013772730389860719,
+          "maximum": 0.09420335074161781
+        },
+        "remaining_support_angular_pressure": {
+          "minimum": -0.007951986788431533,
+          "maximum": 0.010415179232193268
+        },
+        "remaining_support_mechanical_work": {
+          "minimum": 0.7787097969292135,
+          "maximum": 0.812191491995959
+        },
+        "tensor_reconstruction_error": 2.7755575615628914e-17,
+        "worst_density_with_currents": {
+          "time": 0.04517578125,
+          "position": -2.0002031249999996,
+          "value": -0.0002900074592295729,
+          "time_index": 72,
+          "position_index": 1
+        },
+        "minimum_added_rest_allowance_with_currents": 0.020883784790068114,
+        "tensor_and_current_budget_passes": true,
+        "worst_density_with_conserved_straight_sleeve": {
+          "time": 0.5,
+          "position": -1.999796875,
+          "value": -0.0003814852163799079,
+          "time_index": 800,
+          "position_index": 14
+        },
+        "straight_sleeve_necessary_gate_passes": true,
+        "cold_caloric_coefficient_factor_upper_bound": 0.20470018144085386
+      },
+      "scope": {
+        "shared_core_overlap_granted": true,
+        "exterior_loop_field_assumed_zero": true,
+        "full_return_and_bend_field_energy_counted": true,
+        "cold_compression_work_counted": true,
+        "current_kinetic_energy_and_pressure_counted": true,
+        "straight_section_boundary_pressure_counted": true,
+        "bend_mechanical_containment_supplied": false,
+        "straight_sleeve_constitutive_law_supplied": false,
+        "sleeve_mechanical_transfer_routed": false,
+        "fixed_heat_receipts_retained": true,
+        "old_cold_enclosure_credit_reallocated": true,
+        "current_host_constitutive_law_supplied": false,
+        "material_species_selected": false,
+        "full_spatial_force_equations_solved": false,
+        "field_induction_tensor_supplied": false,
+        "new_electrical_port_routed": false,
+        "changed_contact_network_replayed": false,
+        "full_thermal_material_or_device_validated": false,
+        "microscopic_field_sharing_with_phase_demonstrated": false,
+        "continuous_time_bound_certified": false
+      },
+      "elapsed_seconds": 23.339354407042265
+    },
+    {
+      "label": "second_n16_t1029",
+      "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz",
+      "time_samples": 1029,
+      "spatial_samples": 16,
+      "cases": [
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008473698062714238,
+          "angle": 1.478939310142284e-05,
+          "best_shortfall": -0.0004999714151950281,
+          "minimax_lower_bound": -0.0004999714152000282,
+          "zero_allowance_cosine_squared_lower": 0.8951512885908207,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004999714151950278,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.048467524706041015,
+          "maximum_field_energy": 0.040178566557682455,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008538961539884345,
+          "angle": 1.4903299357214691e-05,
+          "best_shortfall": -0.0004997973432068034,
+          "minimax_lower_bound": -0.0004997973432118036,
+          "zero_allowance_cosine_squared_lower": 0.9012623186811005,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.000499797343206803,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04845065006454451,
+          "maximum_field_energy": 0.04392521163295059,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 0.0008731821531124809,
+          "angle": 1.5239903541466045e-05,
+          "best_shortfall": -0.0004993055496672148,
+          "minimax_lower_bound": -0.0004993055496722149,
+          "zero_allowance_cosine_squared_lower": 0.9195954089519401,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004993055496672148,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.048402975307936746,
+          "maximum_field_energy": 0.054510348632536954,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 0.0009044159275624781,
+          "angle": 1.5785035743443777e-05,
+          "best_shortfall": -0.0004985749118399164,
+          "minimax_lower_bound": -0.0004985749118449165,
+          "zero_allowance_cosine_squared_lower": 0.9501505594033394,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.000498574911839916,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04833214684480959,
+          "maximum_field_energy": 0.07023625976488204,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 2.0383566426149207e-05,
+          "angle": 3.5576034743527725e-07,
+          "best_shortfall": 0.00044502180768869054,
+          "minimax_lower_bound": 0.0004450218076836841,
+          "zero_allowance_cosine_squared_lower": 1.0112608603061382,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9750156250000002,
+            "value": 0.00044502180768868013,
+            "time_index": 1024,
+            "position_index": 7
+          },
+          "minimum_added_rest_allowance": -0.011266828305631844,
+          "maximum_field_energy": 0.09604899294093269,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 2.2016768086107555e-05,
+          "angle": 3.8426509375058726e-07,
+          "best_shortfall": 0.00441707299395689,
+          "minimax_lower_bound": 0.004417072993951891,
+          "zero_allowance_cosine_squared_lower": 1.1334814621117353,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.004417072993956897,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.11183730816311332,
+          "maximum_field_energy": 0.1327339380334551,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008473698062714238,
+          "angle": 1.478939310142284e-05,
+          "best_shortfall": -0.0004999714151950281,
+          "minimax_lower_bound": -0.0004999714152000282,
+          "zero_allowance_cosine_squared_lower": 0.8951512885908207,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004999714151950278,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.048467524706041015,
+          "maximum_field_energy": 0.040178566557682455,
+          "maximum_core_field_overlap": 0.0014196432884457243,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008538961539884345,
+          "angle": 1.4903299357214691e-05,
+          "best_shortfall": -0.0004997973432068034,
+          "minimax_lower_bound": -0.0004997973432118036,
+          "zero_allowance_cosine_squared_lower": 0.9012623186811005,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.000499797343206803,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04845065006454451,
+          "maximum_field_energy": 0.04392521163295059,
+          "maximum_core_field_overlap": 0.0014089172915748543,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0008731821531124809,
+          "angle": 1.5239903541466045e-05,
+          "best_shortfall": -0.0004993055496672148,
+          "minimax_lower_bound": -0.0004993055496722149,
+          "zero_allowance_cosine_squared_lower": 0.9195954089519401,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004993055496672148,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.048402975307936746,
+          "maximum_field_energy": 0.054510348632536954,
+          "maximum_core_field_overlap": 0.0013786138750370158,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 0.0009044159275624781,
+          "angle": 1.5785035743443777e-05,
+          "best_shortfall": -0.0004985749118399164,
+          "minimax_lower_bound": -0.0004985749118449165,
+          "zero_allowance_cosine_squared_lower": 0.9501505594033394,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.000498574911839916,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04833214684480959,
+          "maximum_field_energy": 0.07023625976488204,
+          "maximum_core_field_overlap": 0.0013335933112503485,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 2.0383566426149207e-05,
+          "angle": 3.5576034743527725e-07,
+          "best_shortfall": 0.00044502180768869054,
+          "minimax_lower_bound": 0.0004450218076836841,
+          "zero_allowance_cosine_squared_lower": 1.0112608603061382,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9750156250000002,
+            "value": 0.00044502180768868013,
+            "time_index": 1024,
+            "position_index": 7
+          },
+          "minimum_added_rest_allowance": -0.011266828305631844,
+          "maximum_field_energy": 0.09604899294093269,
+          "maximum_core_field_overlap": 0.0012596959204613095,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 2.2016768086107555e-05,
+          "angle": 3.8426509375058726e-07,
+          "best_shortfall": 0.00441707299395689,
+          "minimax_lower_bound": 0.004417072993951891,
+          "zero_allowance_cosine_squared_lower": 1.1334814621117353,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.004417072993956897,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.11183730816311332,
+          "maximum_field_energy": 0.1327339380334551,
+          "maximum_core_field_overlap": 0.0011575620448541824,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.005,
+          "angle_degrees": 11.472389253562506,
+          "angle": 0.20023096554508032,
+          "best_shortfall": -0.00036692393300016574,
+          "minimax_lower_bound": -0.0003669239330047754,
+          "zero_allowance_cosine_squared_lower": 0.9553252021286552,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748593749999999,
+            "value": -0.00036692393300016835,
+            "time_index": 1024,
+            "position_index": 12
+          },
+          "minimum_added_rest_allowance": 0.009290266434494475,
+          "maximum_field_energy": 0.08216572658603029,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.01,
+          "angle_degrees": 10.37602991265404,
+          "angle": 0.18109588526123266,
+          "best_shortfall": -0.0003669239330001675,
+          "minimax_lower_bound": -0.00036692393300477707,
+          "zero_allowance_cosine_squared_lower": 0.9623668241387815,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748593749999999,
+            "value": -0.0003669239330001718,
+            "time_index": 1024,
+            "position_index": 12
+          },
+          "minimum_added_rest_allowance": 0.009290266434494212,
+          "maximum_field_energy": 0.08216572658603036,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.025,
+          "angle_degrees": 6.041299429531844,
+          "angle": 0.10544056614418583,
+          "best_shortfall": -0.00036692393300016574,
+          "minimax_lower_bound": -0.0003669239330047754,
+          "zero_allowance_cosine_squared_lower": 0.9834916901691613,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.9748593749999999,
+            "value": -0.00036692393300016835,
+            "time_index": 1024,
+            "position_index": 12
+          },
+          "minimum_added_rest_allowance": 0.009290266434494652,
+          "maximum_field_energy": 0.0821657265860302,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.05,
+          "angle_degrees": 1.6131578029909146e-05,
+          "angle": 2.815491501642949e-07,
+          "best_shortfall": 0.001177462832008938,
+          "minimax_lower_bound": 0.001177462832003935,
+          "zero_allowance_cosine_squared_lower": 1.0186998002197938,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.0011774628320089277,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.029812564513684733,
+          "maximum_field_energy": 0.09675960232031697,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.1,
+          "angle_degrees": 1.7203062292734435e-05,
+          "angle": 3.002500784339005e-07,
+          "best_shortfall": 0.00494061794884397,
+          "minimax_lower_bound": 0.00494061794883897,
+          "zero_allowance_cosine_squared_lower": 1.0891160203210588,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.0049406179488439735,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.12509311320347724,
+          "maximum_field_energy": 0.13232000686791234,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": false,
+          "aspect": 0.2,
+          "angle_degrees": 1.9148146328926346e-05,
+          "angle": 3.3419819909342984e-07,
+          "best_shortfall": 0.010288797752931254,
+          "minimax_lower_bound": 0.010288797752926253,
+          "zero_allowance_cosine_squared_lower": 1.2299484605235889,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.010288797752931247,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.2605054176140582,
+          "maximum_field_energy": 0.18285830027383884,
+          "maximum_core_field_overlap": 0.0,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.005,
+          "angle_degrees": 0.0008463954704099247,
+          "angle": 1.4772387732619425e-05,
+          "best_shortfall": -0.0004998670080818048,
+          "minimax_lower_bound": -0.000499867008086805,
+          "zero_allowance_cosine_squared_lower": 0.9553252021286552,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004998670080818054,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04621060122432603,
+          "maximum_field_energy": 0.05535121233486441,
+          "maximum_core_field_overlap": 0.0019515970348335614,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.01,
+          "angle_degrees": 0.0008529151721447554,
+          "angle": 1.4886177994140207e-05,
+          "best_shortfall": -0.000499692535426244,
+          "minimax_lower_bound": -0.0004996925354312441,
+          "zero_allowance_cosine_squared_lower": 0.9623668241387815,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004996925354262436,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.04729448158650212,
+          "maximum_field_energy": 0.06051270426634234,
+          "maximum_core_field_overlap": 0.001936851905645699,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.025,
+          "angle_degrees": 0.0008721785683402695,
+          "angle": 1.5222387682868078e-05,
+          "best_shortfall": -0.0004991996099089633,
+          "minimax_lower_bound": -0.0004991996099139634,
+          "zero_allowance_cosine_squared_lower": 0.9834916901691613,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": true,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 0.04517578125,
+            "position": -1.974984375,
+            "value": -0.0004991996099089633,
+            "time_index": 36,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": 0.028214491596714915,
+          "maximum_field_energy": 0.07509511015730874,
+          "maximum_core_field_overlap": 0.0018951935127649838,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.05,
+          "angle_degrees": 1.6131578029909146e-05,
+          "angle": 2.815491501642949e-07,
+          "best_shortfall": 0.001177462832008938,
+          "minimax_lower_bound": 0.001177462832003935,
+          "zero_allowance_cosine_squared_lower": 1.0186998002197938,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.0011774628320089277,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.029812564513684733,
+          "maximum_field_energy": 0.09675960232031697,
+          "maximum_core_field_overlap": 0.0018333033190043738,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.1,
+          "angle_degrees": 1.7203062292734435e-05,
+          "angle": 3.002500784339005e-07,
+          "best_shortfall": 0.00494061794884397,
+          "minimax_lower_bound": 0.00494061794883897,
+          "zero_allowance_cosine_squared_lower": 1.0891160203210588,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.0049406179488439735,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.12509311320347724,
+          "maximum_field_energy": 0.13232000686791234,
+          "maximum_core_field_overlap": 0.0017317158776234839,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "compression_evolved",
+          "share_core_field": true,
+          "aspect": 0.2,
+          "angle_degrees": 1.9148146328926346e-05,
+          "angle": 3.3419819909342984e-07,
+          "best_shortfall": 0.010288797752931254,
+          "minimax_lower_bound": 0.010288797752926253,
+          "zero_allowance_cosine_squared_lower": 1.2299484605235889,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0007326941321783029,
+          "worst_density": {
+            "time": 1.2799804687499998,
+            "position": -1.974984375,
+            "value": 0.010288797752931247,
+            "time_index": 1024,
+            "position_index": 8
+          },
+          "minimum_added_rest_allowance": -0.2605054176140582,
+          "maximum_field_energy": 0.18285830027383884,
+          "maximum_core_field_overlap": 0.0015873402445512237,
+          "carrier_energy_included": false
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "hot",
+          "aspect": 0.01,
+          "angle_degrees": 0.0001069843448907883,
+          "angle": 1.867229066433429e-06,
+          "best_shortfall": 0.0006803290530214053,
+          "minimax_lower_bound": 0.0006803290530164052,
+          "zero_allowance_cosine_squared_lower": 1.474394062711626,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0016984073706001555
+        },
+        {
+          "mode": "frozen_energy",
+          "reopened": "both",
+          "aspect": 0.01,
+          "angle_degrees": 0.00010556109290127667,
+          "angle": 1.8423886331308912e-06,
+          "best_shortfall": 0.00036149787990037035,
+          "minimax_lower_bound": 0.00036149787989537034,
+          "zero_allowance_cosine_squared_lower": 1.245417548987328,
+          "zero_allowance_cosine_squared_upper": 1.0,
+          "zero_allowance_pitch_exists": false,
+          "unavoidable_fixed_facet": -0.0021556859503574725
+        }
+      ],
+      "original_margin_reconstruction_error": 0.0,
+      "cold_final_reference_energy": {
+        "minimum": 0.08925604214681171,
+        "maximum": 0.10894265114506499
+      },
+      "cold_final_evolved_energy": {
+        "minimum": 0.11796949771209175,
+        "maximum": 0.15008270161240142
+      },
+      "maximum_compression_energy": 0.04114005046733643,
+      "compression_work_per_label": {
+        "minimum": 0.027687963438307008,
+        "maximum": 0.041140050467336445
+      },
+      "minimum_entropy_proxy_increment": 1.5782886998508272e-05,
+      "radiation_energy_quadrature_difference": 8.326672684688674e-17,
+      "radiation_balance_residual": 4.8734887653223424e-17,
+      "selected": {
+        "aspect": 0.01,
+        "angle_degrees": 0.0,
+        "angle": 0.0,
+        "best_shortfall": -0.000499692535426244,
+        "minimax_lower_bound": -0.0004996925354312441,
+        "zero_allowance_cosine_squared_lower": 0.9623668241387815,
+        "zero_allowance_cosine_squared_upper": 1.0,
+        "zero_allowance_pitch_exists": true,
+        "unavoidable_fixed_facet": -0.0007326941321783029,
+        "fill_fraction": 0.1,
+        "tube_to_bend_radius_ratio": 0.1,
+        "whole_loop_radial_span_fraction": 0.5,
+        "maximum_angular_span_over_curvature_radius": 2.2473575948098214e-05,
+        "beta_limit": 1.0,
+        "maximum_current_drift": 0.7071067811865476,
+        "current_coefficient_unit": "m/abs(q), c=mu0=1, same normalized Maxwell tensor as archived stresses",
+        "maximum_current_coefficient": 4.872842227187821e-08,
+        "maximum_current_coefficient_with_conserved_straight_sleeve": 2.4642534936565337e-08,
+        "tested_current_coefficient": 1.2321267468282669e-08,
+        "current_inventory_rule": "each of sheet/bend families retains sqrt(2)*max_t integral|J| times m/abs(q)",
+        "counted_current_rest_inventory": {
+          "minimum": 0.006146194911257268,
+          "maximum": 0.006920489250058608
+        },
+        "straight_sleeve_conserved_energy": {
+          "minimum": 0.15473079224852593,
+          "maximum": 0.19652638025736396
+        },
+        "straight_sleeve_minimum_stress_fraction": {
+          "zero_current_cost": 0.9495160477161408,
+          "counted_currents": 0.9741043979525564
+        },
+        "straight_sleeve_comparisons": [
+          {
+            "stress_fraction": 1.0,
+            "adjustable_energy_maximum_shortfall": -0.00015600795747780852,
+            "conserved_energy_lower": {
+              "minimum": 0.15250168197848535,
+              "maximum": 0.19401510454528598
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19390348726920165,
+              "maximum": 0.2442406187868459
+            },
+            "conserved_energy_minimum_gap": 0.028803557478306346,
+            "feasible_labels": 16
+          },
+          {
+            "stress_fraction": 0.99,
+            "adjustable_energy_maximum_shortfall": -0.00010515240437221785,
+            "conserved_energy_lower": {
+              "minimum": 0.15404210300857107,
+              "maximum": 0.19597485307604645
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.19390348726920165,
+              "maximum": 0.2442406187868459
+            },
+            "conserved_energy_minimum_gap": 0.02713166035574005,
+            "feasible_labels": 16
+          },
+          {
+            "stress_fraction": 0.9,
+            "adjustable_energy_maximum_shortfall": 0.00040340312668369054,
+            "conserved_energy_lower": {
+              "minimum": 0.16944631330942816,
+              "maximum": 0.21557233838365109
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.04832870993083425,
+              "maximum": 0.2442406187868459
+            },
+            "conserved_energy_minimum_gap": -0.15366670192505869,
+            "feasible_labels": 6
+          },
+          {
+            "stress_fraction": 0.75,
+            "adjustable_energy_maximum_shortfall": 0.0015664109529840778,
+            "conserved_energy_lower": {
+              "minimum": 0.2033355759713138,
+              "maximum": 0.2586868060603813
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.019331483972333686,
+              "maximum": 0.10882153171985062
+            },
+            "conserved_energy_minimum_gap": -0.22622949511334606,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.5,
+            "adjustable_energy_maximum_shortfall": 0.005810432410946519,
+            "conserved_energy_lower": {
+              "minimum": 0.3050033639569707,
+              "maximum": 0.38803020909057195
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.009665741986166838,
+              "maximum": 0.0544107658599253
+            },
+            "conserved_energy_minimum_gap": -0.3628467433175877,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.25,
+            "adjustable_energy_maximum_shortfall": 0.02088506812369498,
+            "conserved_energy_lower": {
+              "minimum": 0.6100067279139414,
+              "maximum": 0.7760604181811439
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.006443827990777892,
+              "maximum": 0.036273843906616865
+            },
+            "conserved_energy_minimum_gap": -0.7505110816525996,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.1,
+            "adjustable_energy_maximum_shortfall": 0.06638315532175022,
+            "conserved_energy_lower": {
+              "minimum": 1.5250168197848535,
+              "maximum": 1.9401510454528597
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.005369856658981577,
+              "maximum": 0.030228203255514056
+            },
+            "conserved_energy_minimum_gap": -1.9103048104958573,
+            "feasible_labels": 0
+          },
+          {
+            "stress_fraction": 0.01,
+            "adjustable_energy_maximum_shortfall": 0.756438885324277,
+            "conserved_energy_lower": {
+              "minimum": 15.250168197848534,
+              "maximum": 19.401510454528598
+            },
+            "conserved_energy_upper": {
+              "minimum": 0.004881687871801433,
+              "maximum": 0.02748018477774005
+            },
+            "conserved_energy_minimum_gap": -19.374030269750858,
+            "feasible_labels": 0
+          }
+        ],
+        "straight_sleeve_axial_interval_violation": -0.00015600795747780852,
+        "straight_sleeve_work_input_to_hold_fixed_energy": {
+          "minimum": 0.002172400630405668,
+          "maximum": 0.004031571608758816
+        },
+        "straight_sleeve_work_output_to_hold_fixed_energy": {
+          "minimum": 0.024879677802112816,
+          "maximum": 0.05474067183403623
+        },
+        "current_quadrature_orders": [
+          32,
+          64
+        ],
+        "current_tensor_relative_quadrature_difference": 1.3527944850119828e-07,
+        "current_coefficient_relative_quadrature_difference": 2.430036772695086e-07,
+        "complete_loop_initial_energy": {
+          "minimum": 3.791043577836921e-05,
+          "maximum": 6.128586933467257e-05
+        },
+        "complete_loop_final_energy": {
+          "minimum": 0.0475406471812459,
+          "maximum": 0.060512704118424424
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.07179005968580068,
+          "maximum": 0.09597811538415138
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "complete_loop_mechanical_work": {
+          "minimum": -0.03552669713506156,
+          "maximum": -0.023833374366528142
+        },
+        "complete_loop_work_identity_error": 0.0,
+        "remaining_support_radial_pressure": {
+          "minimum": -0.004362939298442305,
+          "maximum": 0.005396835205247842
+        },
+        "remaining_support_angular_pressure": {
+          "minimum": -0.01824011144010795,
+          "maximum": 0.009433291511724121
+        },
+        "remaining_support_mechanical_work": {
+          "minimum": 0.030599720024822617,
+          "maximum": 0.06155496985024003
+        },
+        "tensor_reconstruction_error": 6.938893903907228e-18,
+        "worst_density_with_currents": {
+          "time": 0.04517578125,
+          "position": -1.974984375,
+          "value": -0.00043201368368155947,
+          "time_index": 36,
+          "position_index": 8
+        },
+        "minimum_added_rest_allowance_with_currents": 0.03542181230086443,
+        "tensor_and_current_budget_passes": true,
+        "worst_density_with_conserved_straight_sleeve": {
+          "time": 1.1519824218749999,
+          "position": -1.974890625,
+          "value": -7.800397873890252e-05,
+          "time_index": 922,
+          "position_index": 11
+        },
+        "straight_sleeve_necessary_gate_passes": true,
+        "cold_caloric_coefficient_factor_upper_bound": 0.1853930970528807
+      },
+      "scope": {
+        "shared_core_overlap_granted": true,
+        "exterior_loop_field_assumed_zero": true,
+        "full_return_and_bend_field_energy_counted": true,
+        "cold_compression_work_counted": true,
+        "current_kinetic_energy_and_pressure_counted": true,
+        "straight_section_boundary_pressure_counted": true,
+        "bend_mechanical_containment_supplied": false,
+        "straight_sleeve_constitutive_law_supplied": false,
+        "sleeve_mechanical_transfer_routed": false,
+        "fixed_heat_receipts_retained": true,
+        "old_cold_enclosure_credit_reallocated": true,
+        "current_host_constitutive_law_supplied": false,
+        "material_species_selected": false,
+        "full_spatial_force_equations_solved": false,
+        "field_induction_tensor_supplied": false,
+        "new_electrical_port_routed": false,
+        "changed_contact_network_replayed": false,
+        "full_thermal_material_or_device_validated": false,
+        "microscopic_field_sharing_with_phase_demonstrated": false,
+        "continuous_time_bound_certified": false
+      },
+      "elapsed_seconds": 20.404925194568932
+    }
+  ]
+}
