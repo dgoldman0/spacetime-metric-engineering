@@ -237,3 +237,47 @@ def joint_transport_envelope(tension, reception_capacity, attachment_fraction):
     return dict(energy_ceiling=overhead, axial_joint_tension=axial,
                 transverse_joint_tension=transverse,
                 separate_package_ceiling=2*C+2*joint)
+
+
+def joint_work_capacity(replay, power_bounds, lr, lt, proper_duration, maximum_delay,
+                       attachment_fraction):
+    """Include work of additional neutral ideal joint/photon pairs.
+
+    Axial and transverse ties have energies Jz and Jt and negative stresses.
+    Equal photon energies give the opposite stresses. Each of the four
+    populations has power dot(J) +/- J*dot(log(lambda)); the remaining
+    inventory pays their total changing energy 2*(Jz+Jt). These expressions
+    are affine on each replay panel, so endpoints give exact power bounds.
+
+    The reaction populations have ideal variable energies; their conserved
+    constitutive inventories remain a separate requirement. Optical-guide
+    reaction dynamics and conversion losses are also separate. The output
+    pays 2*C for transport and its ideal stress-compensation allowance,
+    plus 2*(Jz+Jt) for the joints; it grants no stress reuse between them.
+    """
+    T, zeta, dt = replay["material_tension"], np.asarray(attachment_fraction), np.asarray(proper_duration)
+    if not np.isfinite(zeta).all() or np.any(zeta < 0):
+        raise ValueError("nonnegative attachment fraction required")
+    Jz = zeta*(T[0]+T[2])
+    Jt = zeta*(T[0]+T[1]+T[2]+T[3]+2*T[4]+2*T[5])
+    derivatives = np.stack([np.diff(Jz, axis=0)/dt, np.diff(Jt, axis=0)/dt])
+    macro = np.stack([np.diff(np.log(lr), axis=0)/dt, np.diff(np.log(lt), axis=0)/dt])
+    powers = []
+    for endpoint in (slice(None, -1), slice(1, None)):
+        work = np.stack([Jz[endpoint], Jt[endpoint]])*macro
+        powers.append(np.concatenate([derivatives-work, derivatives+work]))
+    lower, upper = np.minimum(*powers), np.maximum(*powers)
+    # Keep the rail node last and put the four explicit joint roles before it.
+    old_lower, old_upper = power_bounds["lower"].copy(), power_bounds["upper"].copy()
+    joint_energy_derivative = 2*derivatives.sum(axis=0)
+    old_lower[-2] -= joint_energy_derivative
+    old_upper[-2] -= joint_energy_derivative
+    expanded_lower = np.concatenate([old_lower[:-1], lower, old_lower[-1:]])
+    expanded_upper = np.concatenate([old_upper[:-1], upper, old_upper[-1:]])
+    transport = transport_capacity(expanded_upper, maximum_delay)
+    joint_energy = 2*(Jz+Jt)
+    cost = joint_energy+2*transport["total_capacity"]
+    return dict(**transport, joint_energy=joint_energy, total_energy_allowance=cost,
+                expanded_power_lower=expanded_lower, expanded_power_upper=expanded_upper,
+                joint_endpoint_power=powers,
+                dust_power_correction=-joint_energy_derivative)

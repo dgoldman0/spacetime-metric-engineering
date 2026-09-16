@@ -6,7 +6,7 @@ from scipy.optimize import linprog
 
 from adm_harness.containment_ensemble import required_exchange
 from adm_harness.distributed_reconfiguration import (
-    exchange_power_bounds, instantaneous_exchange_power, joint_transport_envelope,
+    exchange_power_bounds, instantaneous_exchange_power, joint_transport_envelope, joint_work_capacity,
     lipschitz_interval_path, scheduled_replay, transport_capacity,
 )
 from adm_harness.finite_containment import annular_factor
@@ -147,3 +147,24 @@ def test_invalid_histories_are_rejected():
         transport_capacity(np.ones((2, 3, 1)), np.array([-.1]))
     with pytest.raises(ValueError):
         joint_transport_envelope(np.ones((6, 3, 1)), np.ones(1), -.1)
+
+
+def test_joint_work_changes_the_dust_exchange_and_retains_reciprocity():
+    result, _, _, lr, lt, dt = example()
+    power = exchange_power_bounds(result, lr, lt, dt)
+    delay = np.array([.002])
+    expanded = joint_work_capacity(result, power, lr, lt, dt, delay, .02)
+    assert_allclose(expanded["dust_power_correction"], -np.diff(expanded["joint_energy"], axis=0)/dt)
+    for i, u in enumerate((0., 1.)):
+        old = instantaneous_exchange_power(result, lr, lt, dt, u)
+        old[-2] += expanded["dust_power_correction"]
+        rates = np.concatenate([old[:-1], expanded["joint_endpoint_power"][i], old[-1:]])
+        assert_allclose(rates.sum(axis=0), 0., atol=1e-13)
+        assert np.max(rates-expanded["expanded_power_upper"]) < 1e-13
+        assert np.max(expanded["expanded_power_lower"]-rates) < 1e-13
+    # Their exact panel power integrals equal changing energy plus opposing
+    # pressure work; the two pressure works cancel in the total package.
+    integrated = .5*sum(expanded["joint_endpoint_power"])*dt
+    assert_allclose(integrated.sum(axis=0), np.diff(expanded["joint_energy"], axis=0), atol=1e-13)
+    zero = joint_work_capacity(result, power, lr, lt, dt, delay, 0.)
+    assert_allclose(zero["total_capacity"], transport_capacity(power["upper"], delay)["total_capacity"])
