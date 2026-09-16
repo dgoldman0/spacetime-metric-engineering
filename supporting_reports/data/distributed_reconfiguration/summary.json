@@ -1,0 +1,626 @@
+{
+  "created_utc": "2026-09-16T23:17:54.365757+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "base_commit": "679fe15aaaa57f858b42f84115fdeb4d3905016c",
+  "scope": "Scheduled constitutive replay and conditional causal transport/ideal joint tensor allowance",
+  "parameters": {
+    "reference_inventory_fraction": 0.25,
+    "auxiliary_bias_fraction": 0.5,
+    "guaranteed_reserve_fraction": 0.1,
+    "field_fraction_floor": 0.001,
+    "outer_sheet_fraction": 1.0,
+    "selected_joint_attachment_fraction": 0.0001,
+    "sheet_shear_fraction": 0.1
+  },
+  "exact_sources_archived": true,
+  "current_hosts_solved": false,
+  "finite_joint_embedding_solved": false,
+  "joint_constitutive_inventories_solved": false,
+  "actuator_kinetic_tensor_counted": false,
+  "joint_operating_power_counted": true,
+  "optical_guide_reaction_dynamics_closed": false,
+  "photon_conversion_and_optics_supplied": false,
+  "physical_material_identified": false,
+  "full_containment_established": false,
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d",
+        "supporting_reports/data/material_reconfiguration/summary.json": "c84749cd0c24bfc1229aa61054930078f535ac97e899e9e121891820f7996281",
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_summary.json": "6837a730e8a59bfb1ddcc0f202c623e9dcd266c1395df45fc75af2872c4eb962",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz": "d2168378f56d0ca3d2f0e1b1e81793712a164d35c8dce88ba785856b721f451a"
+      },
+      "scheduled_materials": {
+        "minimum_reserve": 0.0017625109649270776,
+        "minimum_interior_reserve": 0.005612972206864009,
+        "minimum_guaranteed_reserve": 0.0002508387305388719,
+        "maximum_linear_stretch": 78.10869430307716,
+        "previous_maximum_linear_stretch": 78.1380380685425,
+        "maximum_gap_patch_control_speed": 0.0003927516489720841,
+        "previous_maximum_gap_patch_control_speed": 0.018128258654309393,
+        "control_speed_peak_reduction_factor": 46.15705294110149,
+        "maximum_field_slew": 0.7126079303804405,
+        "conserved_reference_inventory": {
+          "minimum": 0.0006270968263471792,
+          "maximum": 0.006217774498679495
+        },
+        "independent_field_programs": [
+          {
+            "label_index": 0,
+            "envelope_rate": 0.3437105370815601,
+            "optimum": 0.3437105370781167,
+            "dual_lower_bound": 0.3437105370781157,
+            "maximum_constraint_error": 1.8431436932253575e-18
+          },
+          {
+            "label_index": 8,
+            "envelope_rate": 0.45558012610918247,
+            "optimum": 0.45558012610461557,
+            "dual_lower_bound": 0.45558012610461557,
+            "maximum_constraint_error": 1.6263032587282567e-18
+          },
+          {
+            "label_index": 15,
+            "envelope_rate": 0.7126079303804405,
+            "optimum": 0.7126079303733004,
+            "dual_lower_bound": 0.7126079303733003,
+            "maximum_constraint_error": 3.3610267347050637e-18
+          }
+        ]
+      },
+      "work_transfer": {
+        "maximum_instantaneous_component_power": 738.1208938870402,
+        "reception_inventory": {
+          "minimum": 3.731789557914736e-05,
+          "maximum": 3.749641698096227e-05
+        },
+        "maximum_delay": {
+          "minimum": 2.5390071113940997e-08,
+          "maximum": 2.545638917719458e-08
+        },
+        "maximum_fraction_of_minimum_reserve_for_original_traffic": 0.042376878231130455,
+        "maximum_fraction_of_minimum_reserve_with_joint_traffic": 0.042383998772759265,
+        "joint_traffic_capacity_multiplier": {
+          "minimum": 1.0001677232769166,
+          "maximum": 1.0001681862221194
+        },
+        "maximum_supported_delay_over_gap": {
+          "minimum": 23.59777411034942,
+          "maximum": 218.25339740789096
+        },
+        "leg_delay_transport_fraction": {
+          "minimum": 458.1830165654246,
+          "maximum": 4237.68782311304
+        },
+        "fixed_inventory_includes_transit_energy": true,
+        "ideal_reaction_energy_counted": true,
+        "additional_joint_operating_power_counted": true,
+        "optical_guide_reaction_operating_power_closed": false
+      },
+      "ideal_joints": {
+        "guaranteed_uniform_attachment_fraction": 0.000354204825581753,
+        "per_label_guaranteed_fraction": {
+          "minimum": 0.000354204825581753,
+          "maximum": 0.0036176801093039668
+        },
+        "uniform_necessary_ceiling": 0.00036982051413700167,
+        "chosen_attachment_fraction": 0.0001,
+        "minimum_reserve_after_allowance": 0.0012166151744087024,
+        "minimum_interior_reserve_after_allowance": 0.005528680234252278,
+        "sensitivities": [
+          {
+            "attachment_fraction": 0.0001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.0012166151744087026
+          },
+          {
+            "attachment_fraction": 0.001,
+            "envelope_exceedances": 4,
+            "ideal_neutral_joint_floor_exceedances": 4,
+            "minimum_reserve_after_envelope": -0.0030907525337455716
+          },
+          {
+            "attachment_fraction": 0.01,
+            "envelope_exceedances": 55,
+            "ideal_neutral_joint_floor_exceedances": 55,
+            "minimum_reserve_after_envelope": -0.046164429615288306
+          }
+        ],
+        "shared_stress_allowance_comparison_minimum_reserve": 0.0012539663056959243,
+        "transport_power_multiplier_sensitivity": [
+          {
+            "multiplier": 1.0,
+            "minimum_reserve": 0.0012166151744087024
+          },
+          {
+            "multiplier": 2.0,
+            "minimum_reserve": 0.0011419129118342584
+          },
+          {
+            "multiplier": 4.0,
+            "minimum_reserve": 0.0009925083866853704
+          },
+          {
+            "multiplier": 8.0,
+            "minimum_reserve": 0.0006936993363875944
+          },
+          {
+            "multiplier": 16.0,
+            "minimum_reserve": 9.608123579204239e-05
+          }
+        ],
+        "scope": "Additional ideal strings and photon reactions with counted joint work; fixed scheduled material duties; unit strength; joint constitutive inventories and embedding pending"
+      },
+      "verification": {
+        "maximum_tensor_error": 8.881784197001252e-16,
+        "maximum_exchange_error": 1.0421351281930669e-15,
+        "maximum_power_balance_error": 1.8298557113993752e-13,
+        "maximum_power_bound_error": 1.6940658945086007e-21,
+        "maximum_joint_power_balance_error": 2.7755575615628914e-17,
+        "independently_integrated_panels": 24,
+        "maximum_power_integral_error": 5.2562121322097255e-16
+      },
+      "inherited_current_host_rejections": 4
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f",
+        "supporting_reports/data/material_reconfiguration/summary.json": "c84749cd0c24bfc1229aa61054930078f535ac97e899e9e121891820f7996281",
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_summary.json": "63c6934878bf33831dee0738e1b40abcb214c7902d0ae5ed3181b3577656104a",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz": "ae7938721aaa156390eb9026dfc1a8728ef8b8bccfb9830403794079b527ccad"
+      },
+      "scheduled_materials": {
+        "minimum_reserve": 0.001640460042075631,
+        "minimum_interior_reserve": 0.005320188704508715,
+        "minimum_guaranteed_reserve": 0.00023330344591413095,
+        "maximum_linear_stretch": 81.46614850647677,
+        "previous_maximum_linear_stretch": 81.50603761317231,
+        "maximum_gap_patch_control_speed": 0.00043933248624736823,
+        "previous_maximum_gap_patch_control_speed": 0.03941616641071604,
+        "control_speed_peak_reduction_factor": 89.71830594044116,
+        "maximum_field_slew": 0.7174036905977845,
+        "conserved_reference_inventory": {
+          "minimum": 0.0005832586147853272,
+          "maximum": 0.006287982347206898
+        },
+        "independent_field_programs": [
+          {
+            "label_index": 0,
+            "envelope_rate": 0.334808111461259,
+            "optimum": 0.33480811145789663,
+            "dual_lower_bound": 0.33480811145789646,
+            "maximum_constraint_error": 2.4936649967166602e-18
+          },
+          {
+            "label_index": 16,
+            "envelope_rate": 0.4507867841749153,
+            "optimum": 0.45078678417038465,
+            "dual_lower_bound": 0.4507867841703846,
+            "maximum_constraint_error": 1.5720931501039814e-18
+          },
+          {
+            "label_index": 31,
+            "envelope_rate": 0.7174036905977845,
+            "optimum": 0.7174036905905942,
+            "dual_lower_bound": 0.7174036905905938,
+            "maximum_constraint_error": 2.168404344971009e-18
+          }
+        ]
+      },
+      "work_transfer": {
+        "maximum_instantaneous_component_power": 738.1560488420957,
+        "reception_inventory": {
+          "minimum": 3.740520438246738e-05,
+          "maximum": 3.7863294048327184e-05
+        },
+        "maximum_delay": {
+          "minimum": 2.5388967439230234e-08,
+          "maximum": 2.5457496106087664e-08
+        },
+        "maximum_fraction_of_minimum_reserve_for_original_traffic": 0.04582816034338438,
+        "maximum_fraction_of_minimum_reserve_with_joint_traffic": 0.0458358120655076,
+        "joint_traffic_capacity_multiplier": {
+          "minimum": 1.0001661114839524,
+          "maximum": 1.0001678328412464
+        },
+        "maximum_supported_delay_over_gap": {
+          "minimum": 21.82064461036907,
+          "maximum": 220.29618651750008
+        },
+        "leg_delay_transport_fraction": {
+          "minimum": 453.9343217003714,
+          "maximum": 4582.816034338433
+        },
+        "fixed_inventory_includes_transit_energy": true,
+        "ideal_reaction_energy_counted": true,
+        "additional_joint_operating_power_counted": true,
+        "optical_guide_reaction_operating_power_closed": false
+      },
+      "ideal_joints": {
+        "guaranteed_uniform_attachment_fraction": 0.000328358836258541,
+        "per_label_guaranteed_fraction": {
+          "minimum": 0.000328358836258541,
+          "maximum": 0.003854043791135515
+        },
+        "uniform_necessary_ceiling": 0.0003440759733895025,
+        "chosen_attachment_fraction": 0.0001,
+        "minimum_reserve_after_allowance": 0.001092928835773355,
+        "minimum_interior_reserve_after_allowance": 0.005223169470890739,
+        "sensitivities": [
+          {
+            "attachment_fraction": 0.0001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.001092928835773355
+          },
+          {
+            "attachment_fraction": 0.001,
+            "envelope_exceedances": 9,
+            "ideal_neutral_joint_floor_exceedances": 9,
+            "minimum_reserve_after_envelope": -0.0032144847432763147
+          },
+          {
+            "attachment_fraction": 0.01,
+            "envelope_exceedances": 142,
+            "ideal_neutral_joint_floor_exceedances": 141,
+            "minimum_reserve_after_envelope": -0.046288620533773014
+          }
+        ],
+        "shared_stress_allowance_comparison_minimum_reserve": 0.0011305247448681315,
+        "transport_power_multiplier_sensitivity": [
+          {
+            "multiplier": 1.0,
+            "minimum_reserve": 0.001092928835773355
+          },
+          {
+            "multiplier": 2.0,
+            "minimum_reserve": 0.0010177370175838017
+          },
+          {
+            "multiplier": 4.0,
+            "minimum_reserve": 0.0008673533812046949
+          },
+          {
+            "multiplier": 8.0,
+            "minimum_reserve": 0.0005665861084464817
+          },
+          {
+            "multiplier": 16.0,
+            "minimum_reserve": -3.494843706994483e-05
+          }
+        ],
+        "scope": "Additional ideal strings and photon reactions with counted joint work; fixed scheduled material duties; unit strength; joint constitutive inventories and embedding pending"
+      },
+      "verification": {
+        "maximum_tensor_error": 8.881784197001252e-16,
+        "maximum_exchange_error": 1.0859368959614812e-15,
+        "maximum_power_balance_error": 2.1961946150561573e-13,
+        "maximum_power_bound_error": 5.421010862427522e-20,
+        "maximum_joint_power_balance_error": 2.7755575615628914e-17,
+        "independently_integrated_panels": 24,
+        "maximum_power_integral_error": 3.170207152347615e-16
+      },
+      "inherited_current_host_rejections": 10
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278",
+        "supporting_reports/data/material_reconfiguration/summary.json": "c84749cd0c24bfc1229aa61054930078f535ac97e899e9e121891820f7996281",
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_summary.json": "00ae7ad3d2096e35b8458638c3cb0b937d0ca6e8b7770693cc2518ed3f0538e7",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz": "8379aceb2e2794587b1f3b81a8ff7e9a42f8ddbaa390767550db81ed5ba810bf"
+      },
+      "scheduled_materials": {
+        "minimum_reserve": 0.003264307935402333,
+        "minimum_interior_reserve": 0.008115408185827368,
+        "minimum_guaranteed_reserve": 0.0014279873959898383,
+        "maximum_linear_stretch": 19.87384417553935,
+        "previous_maximum_linear_stretch": 20.110185706858232,
+        "maximum_gap_patch_control_speed": 0.00012882997266240907,
+        "previous_maximum_gap_patch_control_speed": 0.000778841299744795,
+        "control_speed_peak_reduction_factor": 6.045497671459577,
+        "maximum_field_slew": 0.012623940202966132,
+        "conserved_reference_inventory": {
+          "minimum": 0.0035699684899745936,
+          "maximum": 0.009524503469897631
+        },
+        "independent_field_programs": [
+          {
+            "label_index": 0,
+            "envelope_rate": 0.007282551440338456,
+            "optimum": 0.007282551440255634,
+            "dual_lower_bound": 0.007282551440255632,
+            "maximum_constraint_error": 9.690056916589196e-18
+          },
+          {
+            "label_index": 8,
+            "envelope_rate": 0.00894545275279979,
+            "optimum": 0.008945452752700325,
+            "dual_lower_bound": 0.008945452752700332,
+            "maximum_constraint_error": 8.578749689791554e-18
+          },
+          {
+            "label_index": 12,
+            "envelope_rate": 0.012623940202966132,
+            "optimum": 0.012623940202829902,
+            "dual_lower_bound": 0.012623940202829906,
+            "maximum_constraint_error": 1.185168499798217e-17
+          },
+          {
+            "label_index": 15,
+            "envelope_rate": 0.010941432889156328,
+            "optimum": 0.010941432889036932,
+            "dual_lower_bound": 0.010941432889036914,
+            "maximum_constraint_error": 2.6169929938368863e-17
+          }
+        ]
+      },
+      "work_transfer": {
+        "maximum_instantaneous_component_power": 180.5853343467285,
+        "reception_inventory": {
+          "minimum": 4.884258765307609e-06,
+          "maximum": 1.0075290191588776e-05
+        },
+        "maximum_delay": {
+          "minimum": 2.9207938406718972e-08,
+          "maximum": 2.928525176517737e-08
+        },
+        "maximum_fraction_of_minimum_reserve_for_original_traffic": 0.005660964434122162,
+        "maximum_fraction_of_minimum_reserve_with_joint_traffic": 0.005661513302804624,
+        "joint_traffic_capacity_multiplier": {
+          "minimum": 1.0000923420413583,
+          "maximum": 1.0000981739695387
+        },
+        "maximum_supported_delay_over_gap": {
+          "minimum": 176.64834528413155,
+          "maximum": 874.0256790654726
+        },
+        "leg_delay_transport_fraction": {
+          "minimum": 114.41311439146973,
+          "maximum": 566.0964434122156
+        },
+        "fixed_inventory_includes_transit_energy": true,
+        "ideal_reaction_energy_counted": true,
+        "additional_joint_operating_power_counted": true,
+        "optical_guide_reaction_operating_power_closed": false
+      },
+      "ideal_joints": {
+        "guaranteed_uniform_attachment_fraction": 0.0055274046291387754,
+        "per_label_guaranteed_fraction": {
+          "minimum": 0.0055274046291387754,
+          "maximum": 0.03087551531485073
+        },
+        "uniform_necessary_ceiling": 0.005536286419866741,
+        "chosen_attachment_fraction": 0.0001,
+        "minimum_reserve_after_allowance": 0.003230089750223114,
+        "minimum_interior_reserve_after_allowance": 0.011487708735358489,
+        "sensitivities": [
+          {
+            "attachment_fraction": 0.0001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.003230089750223114
+          },
+          {
+            "attachment_fraction": 0.001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.003049024792213707
+          },
+          {
+            "attachment_fraction": 0.01,
+            "envelope_exceedances": 7,
+            "ideal_neutral_joint_floor_exceedances": 7,
+            "minimum_reserve_after_envelope": -0.010200688842871255
+          }
+        ],
+        "shared_stress_allowance_comparison_minimum_reserve": 0.003237140364992998,
+        "transport_power_multiplier_sensitivity": [
+          {
+            "multiplier": 1.0,
+            "minimum_reserve": 0.0032300897502231143
+          },
+          {
+            "multiplier": 2.0,
+            "minimum_reserve": 0.0032159885206833458
+          },
+          {
+            "multiplier": 4.0,
+            "minimum_reserve": 0.003187786061603809
+          },
+          {
+            "multiplier": 8.0,
+            "minimum_reserve": 0.003131381143444736
+          },
+          {
+            "multiplier": 16.0,
+            "minimum_reserve": 0.003018571307126589
+          }
+        ],
+        "scope": "Additional ideal strings and photon reactions with counted joint work; fixed scheduled material duties; unit strength; joint constitutive inventories and embedding pending"
+      },
+      "verification": {
+        "maximum_tensor_error": 1.1102230246251565e-16,
+        "maximum_exchange_error": 1.842059491052872e-16,
+        "maximum_power_balance_error": 4.0045224081186603e-14,
+        "maximum_power_bound_error": 3.469446951953614e-18,
+        "maximum_joint_power_balance_error": 3.469446951953614e-18,
+        "independently_integrated_panels": 24,
+        "maximum_power_integral_error": 1.1102230246251565e-16
+      },
+      "inherited_current_host_rejections": 0
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254",
+        "supporting_reports/data/material_reconfiguration/summary.json": "c84749cd0c24bfc1229aa61054930078f535ac97e899e9e121891820f7996281",
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_summary.json": "b2d558523a9fe5abbab1d4049f383dd12a2b31819a866a34eda452b34f14e118",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz": "ce01339f399650daff69f7833f79557b03f147afb345305e714440421d1b8c08"
+      },
+      "scheduled_materials": {
+        "minimum_reserve": 0.002959996753172822,
+        "minimum_interior_reserve": 0.00537548937630619,
+        "minimum_guaranteed_reserve": 0.0012939642832493381,
+        "maximum_linear_stretch": 20.765163153433942,
+        "previous_maximum_linear_stretch": 20.90881556814256,
+        "maximum_gap_patch_control_speed": 0.00020016314045720395,
+        "previous_maximum_gap_patch_control_speed": 0.0016962820896240668,
+        "control_speed_peak_reduction_factor": 8.474497780907578,
+        "maximum_field_slew": 0.012779875821350374,
+        "conserved_reference_inventory": {
+          "minimum": 0.0032349107081233435,
+          "maximum": 0.010204025844777205
+        },
+        "independent_field_programs": [
+          {
+            "label_index": 0,
+            "envelope_rate": 0.007270542263071897,
+            "optimum": 0.0072705422629891865,
+            "dual_lower_bound": 0.007270542262989191,
+            "maximum_constraint_error": 5.807257886375483e-18
+          },
+          {
+            "label_index": 16,
+            "envelope_rate": 0.009264485089483543,
+            "optimum": 0.00926448508938093,
+            "dual_lower_bound": 0.009264485089380915,
+            "maximum_constraint_error": 2.0704873362684117e-17
+          },
+          {
+            "label_index": 25,
+            "envelope_rate": 0.012779875821350374,
+            "optimum": 0.012779875821212571,
+            "dual_lower_bound": 0.012779875821212566,
+            "maximum_constraint_error": 1.4023477474742196e-17
+          },
+          {
+            "label_index": 31,
+            "envelope_rate": 0.010703407899628793,
+            "optimum": 0.010703407899511757,
+            "dual_lower_bound": 0.010703407899511755,
+            "maximum_constraint_error": 2.4706257005513432e-17
+          }
+        ]
+      },
+      "work_transfer": {
+        "maximum_instantaneous_component_power": 300.787069766574,
+        "reception_inventory": {
+          "minimum": 5.19682120510818e-06,
+          "maximum": 1.6656990025147205e-05
+        },
+        "maximum_delay": {
+          "minimum": 2.9206651720366035e-08,
+          "maximum": 2.92865421924217e-08
+        },
+        "maximum_fraction_of_minimum_reserve_for_original_traffic": 0.011253635112990297,
+        "maximum_fraction_of_minimum_reserve_with_joint_traffic": 0.0112547353352956,
+        "joint_traffic_capacity_multiplier": {
+          "minimum": 1.0000801795729801,
+          "maximum": 1.0001625675899701
+        },
+        "maximum_supported_delay_over_gap": {
+          "minimum": 88.86017628612109,
+          "maximum": 879.0406710545352
+        },
+        "leg_delay_transport_fraction": {
+          "minimum": 113.76037911879048,
+          "maximum": 1125.363511299029
+        },
+        "fixed_inventory_includes_transit_energy": true,
+        "ideal_reaction_energy_counted": true,
+        "additional_joint_operating_power_counted": true,
+        "optical_guide_reaction_operating_power_closed": false
+      },
+      "ideal_joints": {
+        "guaranteed_uniform_attachment_fraction": 0.004304898292052962,
+        "per_label_guaranteed_fraction": {
+          "minimum": 0.004304898292052962,
+          "maximum": 0.03204177671422699
+        },
+        "uniform_necessary_ceiling": 0.004319566670605569,
+        "chosen_attachment_fraction": 0.0001,
+        "minimum_reserve_after_allowance": 0.0029101587175752184,
+        "minimum_interior_reserve_after_allowance": 0.007741146673900907,
+        "sensitivities": [
+          {
+            "attachment_fraction": 0.0001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.0029101587175752184
+          },
+          {
+            "attachment_fraction": 0.001,
+            "envelope_exceedances": 0,
+            "ideal_neutral_joint_floor_exceedances": 0,
+            "minimum_reserve_after_envelope": 0.0027614129077593685
+          },
+          {
+            "attachment_fraction": 0.01,
+            "envelope_exceedances": 25,
+            "ideal_neutral_joint_floor_exceedances": 25,
+            "minimum_reserve_after_envelope": -0.012987741359119051
+          }
+        ],
+        "shared_stress_allowance_comparison_minimum_reserve": 0.0029266827731225277,
+        "transport_power_multiplier_sensitivity": [
+          {
+            "multiplier": 1.0,
+            "minimum_reserve": 0.002910158717575218
+          },
+          {
+            "multiplier": 2.0,
+            "minimum_reserve": 0.0028768447375249234
+          },
+          {
+            "multiplier": 4.0,
+            "minimum_reserve": 0.002810216777424335
+          },
+          {
+            "multiplier": 8.0,
+            "minimum_reserve": 0.002676960857223157
+          },
+          {
+            "multiplier": 16.0,
+            "minimum_reserve": 0.002410449016820802
+          }
+        ],
+        "scope": "Additional ideal strings and photon reactions with counted joint work; fixed scheduled material duties; unit strength; joint constitutive inventories and embedding pending"
+      },
+      "verification": {
+        "maximum_tensor_error": 1.1102230246251565e-16,
+        "maximum_exchange_error": 2.1022002498136128e-16,
+        "maximum_power_balance_error": 8.483491686916977e-14,
+        "maximum_power_bound_error": 3.469446951953614e-18,
+        "maximum_joint_power_balance_error": 6.938893903907228e-18,
+        "independently_integrated_panels": 24,
+        "maximum_power_integral_error": 1.6653345369377348e-16
+      },
+      "inherited_current_host_rejections": 0
+    }
+  ]
+}
