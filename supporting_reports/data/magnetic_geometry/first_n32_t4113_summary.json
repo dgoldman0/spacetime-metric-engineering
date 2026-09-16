@@ -1,0 +1,2153 @@
+{
+  "label": "first_n32_t4113",
+  "input": "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz",
+  "time_samples": 4113,
+  "spatial_samples": 32,
+  "current_coefficient": 2.544146439302263e-08,
+  "current_reference_reconstruction_error": 0.0,
+  "original_threshold_without_carrier_hoop": 0.7766768741421402,
+  "archived_original_threshold": 0.776676922440529,
+  "geometry": {
+    "aspect": 0.01,
+    "radial_pitch": 0.0,
+    "core_fill_fraction": 0.1,
+    "inner_tube_to_bend_radius": 0.1,
+    "whole_outer_span_fraction": 0.5
+  },
+  "current_quadrature_orders": [
+    32,
+    64
+  ],
+  "absolute_pointwise_strength_lower_bound": {
+    "time": 1.285,
+    "position": -1.9999453125,
+    "value": 0.03226953743043755,
+    "time_index": 4112,
+    "position_index": 19
+  },
+  "cases": [
+    {
+      "key": "original_b1_e0_eta1",
+      "family": "original",
+      "inner_pressure": 1.0,
+      "outer_pressure": 0.0,
+      "radius_ratio": 1.0,
+      "field_energy_factor": 1.0,
+      "outer_volume_fraction": 0.1,
+      "inner_interface_pressure_ratio": 2.0,
+      "outer_interface_pressure_ratio": 0.0,
+      "inner_interface_pressure_ratio_minimum": 2.0,
+      "inner_interface_pressure_ratio_maximum": 13.769914619626718,
+      "minimum_stress_fraction_zero_currents": 0.7385970132891089,
+      "minimum_stress_fraction_counted_currents": 0.8114747351501137,
+      "current_rest_inventory": {
+        "minimum": 0.014637125715574939,
+        "maximum": 0.015574539512725328
+      },
+      "current_sheet_factor": 1.0,
+      "current_bend_factor": 1.0,
+      "maximum_field_energy": 0.058110697611226295,
+      "maximum_magnetic_hoop_inventory": 0.19114091497926167,
+      "maximum_carrier_hoop_inventory": 0.009467667630516338,
+      "current_tensor_relative_quadrature_difference": 6.3196177614757e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2795701531495084,
+        "0.1": -1.9621472736593493,
+        "0.01": -20.0221253625957,
+        "1e-10": -2005799915.5809093
+      }
+    },
+    {
+      "key": "zero_field_wall_control_b0_e0_eta1",
+      "family": "zero_field_wall_control",
+      "inner_pressure": 0.0,
+      "outer_pressure": 0.0,
+      "radius_ratio": 1.0,
+      "field_energy_factor": 0.0,
+      "outer_volume_fraction": 0.1,
+      "inner_interface_pressure_ratio": 1.0,
+      "outer_interface_pressure_ratio": 0.0,
+      "inner_interface_pressure_ratio_minimum": 1.0,
+      "inner_interface_pressure_ratio_maximum": 1.0,
+      "minimum_stress_fraction_zero_currents": 0.593825088813901,
+      "minimum_stress_fraction_counted_currents": 0.593825088813901,
+      "current_rest_inventory": {
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "current_sheet_factor": 0.0,
+      "current_bend_factor": 0.0,
+      "maximum_field_energy": 0.0,
+      "maximum_magnetic_hoop_inventory": 0.09557045748963083,
+      "maximum_carrier_hoop_inventory": 0.0,
+      "current_tensor_relative_quadrature_difference": 0.0,
+      "passing_labels_at_strength": {
+        "0.5": 3,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.05620963809401258,
+        "0.1": -0.8934139023208847,
+        "0.01": -9.505955665006487,
+        "1e-10": -955704574.8462378
+      }
+    },
+    {
+      "key": "partial_external_b1_e0.5_eta1.1",
+      "family": "partial_external",
+      "inner_pressure": 1.0,
+      "outer_pressure": 0.5,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 1.105,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 1.5,
+      "outer_interface_pressure_ratio": 0.5,
+      "inner_interface_pressure_ratio_minimum": 1.5,
+      "inner_interface_pressure_ratio_maximum": 7.384957309813359,
+      "minimum_stress_fraction_zero_currents": 0.7588857926893979,
+      "minimum_stress_fraction_counted_currents": 0.83620969299227,
+      "current_rest_inventory": {
+        "minimum": 0.015685727904527012,
+        "maximum": 0.016690308510589027
+      },
+      "current_sheet_factor": 1.0709202105409874,
+      "current_bend_factor": 1.1487171779482064,
+      "maximum_field_energy": 0.06421232086040506,
+      "maximum_magnetic_hoop_inventory": 0.2011758130156729,
+      "maximum_carrier_hoop_inventory": 0.010139116612204645,
+      "current_tensor_relative_quadrature_difference": 6.315369665645528e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.3060399198545864,
+        "0.1": -2.070487649667508,
+        "0.01": -21.093617223725026,
+        "1e-10": -2112843108.9313846
+      }
+    },
+    {
+      "key": "partial_external_b1_e1_eta1.1",
+      "family": "partial_external",
+      "inner_pressure": 1.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 1.2100000000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 1.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": 1.0,
+      "inner_interface_pressure_ratio_maximum": 1.0,
+      "minimum_stress_fraction_zero_currents": 0.7782319700345397,
+      "minimum_stress_fraction_counted_currents": 0.8567551686428487,
+      "current_rest_inventory": {
+        "minimum": 0.016118886676015576,
+        "maximum": 0.017151212699064954
+      },
+      "current_sheet_factor": 1.100215264187867,
+      "current_bend_factor": 1.2102367906066538,
+      "maximum_field_energy": 0.07031394410958383,
+      "maximum_magnetic_hoop_inventory": 0.21121071105208414,
+      "maximum_carrier_hoop_inventory": 0.010416472443351473,
+      "current_tensor_relative_quadrature_difference": 6.313771474270923e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.33240508033908495,
+        "0.1": -2.174067737188433,
+        "0.01": -22.12514093154384,
+        "1e-10": -2215957271.8444395
+      }
+    },
+    {
+      "key": "partial_external_b1_e1.5_eta1.1",
+      "family": "partial_external",
+      "inner_pressure": 1.0,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 1.3150000000000004,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.5,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -5.384957309813359,
+      "inner_interface_pressure_ratio_maximum": 0.5,
+      "minimum_stress_fraction_zero_currents": 0.7966997427865863,
+      "minimum_stress_fraction_counted_currents": 0.9094103998504579,
+      "current_rest_inventory": {
+        "minimum": 0.02297091111035127,
+        "maximum": 0.02444200746575134
+      },
+      "current_sheet_factor": 1.572271855016255,
+      "current_bend_factor": 1.2574424496894927,
+      "maximum_field_energy": 0.0764155673587626,
+      "maximum_magnetic_hoop_inventory": 0.22124560908849542,
+      "maximum_carrier_hoop_inventory": 0.01488574734810927,
+      "current_tensor_relative_quadrature_difference": 6.331356878740358e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.38321249384129624,
+        "0.1": -2.328112505030878,
+        "0.01": -23.581662131157586,
+        "1e-10": -2360864035.3361545
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.020100000000000007,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.5974222405347973,
+      "minimum_stress_fraction_counted_currents": 0.831185910385102,
+      "current_rest_inventory": {
+        "minimum": 0.029151749393345916,
+        "maximum": 0.031018460888290016
+      },
+      "current_sheet_factor": 2.0100393346379644,
+      "current_bend_factor": 0.020100393346379652,
+      "maximum_field_energy": 0.0011680250219856488,
+      "maximum_magnetic_hoop_inventory": 0.09749142368517241,
+      "maximum_carrier_hoop_inventory": 0.019030384344616447,
+      "current_tensor_relative_quadrature_difference": 6.378085525526431e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.1683286351868522,
+        "0.1": -1.1417145828289623,
+        "0.01": -11.62780884146572,
+        "1e-10": -1164653444.2453418
+      },
+      "witness": {
+        "stress_fraction": 0.85,
+        "total_sleeve_inventory": {
+          "minimum": 0.12344736352304525,
+          "maximum": 0.14885076486450013
+        },
+        "inner_sleeve_inventory": {
+          "minimum": 0.010911829393516379,
+          "maximum": 0.012095642200005516
+        },
+        "outer_sleeve_inventory": {
+          "minimum": 0.11253553412952888,
+          "maximum": 0.13675512266449463
+        },
+        "minimum_individual_hoop_margin": 1.8446043799085106e-06,
+        "tensor_reconstruction_error": 2.7755575615628914e-17,
+        "worst_density": {
+          "time": 0.5,
+          "position": -2.0001953125,
+          "value": -2.038157970400689e-05,
+          "time_index": 1600,
+          "position_index": 3
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.0015946727092254268,
+          "maximum": 0.0017440065391253915
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_carrier_control_input": {
+          "minimum": 0.011610187087828265,
+          "maximum": 0.01240735233097414
+        },
+        "current_carrier_control_output": {
+          "minimum": 0.0,
+          "maximum": 8.641680753983518e-05
+        },
+        "sleeve_control_input": {
+          "minimum": 0.0005910562356879695,
+          "maximum": 0.0006697857951006128
+        },
+        "sleeve_control_output": {
+          "minimum": 0.0016752057988691069,
+          "maximum": 0.004454128155679041
+        }
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.022650250000000004,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.5978715729434043,
+      "minimum_stress_fraction_counted_currents": 0.8249589903280139,
+      "current_rest_inventory": {
+        "minimum": 0.028469836559145905,
+        "maximum": 0.030292889183384332
+      },
+      "current_sheet_factor": 1.9625493369493179,
+      "current_bend_factor": 0.0701264816278102,
+      "maximum_field_energy": 0.0013162218285686785,
+      "maximum_magnetic_hoop_inventory": 0.09773515224438534,
+      "maximum_carrier_hoop_inventory": 0.018580764830726366,
+      "current_tensor_relative_quadrature_difference": 6.376552077851932e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.16620369783537914,
+        "0.1": -1.1387449502140123,
+        "0.01": -11.606592400549578,
+        "1e-10": -1162607176.9106188
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.03030100000000001,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.599210217827931,
+      "minimum_stress_fraction_counted_currents": 0.8195965457707644,
+      "current_rest_inventory": {
+        "minimum": 0.027860486004998117,
+        "maximum": 0.02964452623241636
+      },
+      "current_sheet_factor": 1.9200625737200507,
+      "current_bend_factor": 0.12020260225383454,
+      "maximum_field_energy": 0.0017608122483177685,
+      "maximum_magnetic_hoop_inventory": 0.09846633792202414,
+      "maximum_carrier_hoop_inventory": 0.018178514277775223,
+      "current_tensor_relative_quadrature_difference": 6.374951620312245e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.165208211639337,
+        "0.1": -1.1412143944309032,
+        "0.01": -11.63891917978718,
+        "1e-10": -1165907697.8298802
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.060904000000000014,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.604428329039365,
+      "minimum_stress_fraction_counted_currents": 0.8115492565557361,
+      "current_rest_inventory": {
+        "minimum": 0.02685574870416117,
+        "maximum": 0.02857546515785027
+      },
+      "current_sheet_factor": 1.849842044187283,
+      "current_bend_factor": 0.2205023734751409,
+      "maximum_field_energy": 0.003539173927314127,
+      "maximum_magnetic_hoop_inventory": 0.1013910806325793,
+      "maximum_carrier_hoop_inventory": 0.017513689643320122,
+      "current_tensor_relative_quadrature_difference": 6.371583266141311e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.16659170597628514,
+        "0.1": -1.1624412527404413,
+        "0.01": -11.863955942362704,
+        "1e-10": -1188524869.0150328
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.12211000000000001,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6142512084916234,
+      "minimum_stress_fraction_counted_currents": 0.8065478322096169,
+      "current_rest_inventory": {
+        "minimum": 0.026031496305920287,
+        "maximum": 0.027698448457670895
+      },
+      "current_sheet_factor": 1.7919130849112097,
+      "current_bend_factor": 0.3373154248205152,
+      "maximum_field_energy": 0.007095897285306844,
+      "maximum_magnetic_hoop_inventory": 0.10724056605368965,
+      "maximum_carrier_hoop_inventory": 0.016965237510712536,
+      "current_tensor_relative_quadrature_difference": 6.36747901700915e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.17379766812317637,
+        "0.1": -1.2142848259610304,
+        "0.01": -12.393234462019205,
+        "1e-10": -1241549101.3126326
+      },
+      "witness": {
+        "stress_fraction": 0.85,
+        "total_sleeve_inventory": {
+          "minimum": 0.1325953879400733,
+          "maximum": 0.15904596776547414
+        },
+        "inner_sleeve_inventory": {
+          "minimum": 0.00807641594069546,
+          "maximum": 0.00888224241967495
+        },
+        "outer_sleeve_inventory": {
+          "minimum": 0.12451897199937785,
+          "maximum": 0.15016372534579916
+        },
+        "minimum_individual_hoop_margin": 3.1908070840724e-06,
+        "tensor_reconstruction_error": 2.7755575615628914e-17,
+        "worst_density": {
+          "time": 0.5,
+          "position": -2.0001953125,
+          "value": -5.157215912651031e-05,
+          "time_index": 1600,
+          "position_index": 3
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.009687835050921231,
+          "maximum": 0.010595056641422943
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_carrier_control_input": {
+          "minimum": 0.010366646803531821,
+          "maximum": 0.011079932839322173
+        },
+        "current_carrier_control_output": {
+          "minimum": 0.0,
+          "maximum": 7.002176234336146e-05
+        },
+        "sleeve_control_input": {
+          "minimum": 0.0006206105802885832,
+          "maximum": 0.000706891581939145
+        },
+        "sleeve_control_output": {
+          "minimum": 0.0027146942358476094,
+          "maximum": 0.0059065225596334325
+        }
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.275125,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6357412748038769,
+      "minimum_stress_fraction_counted_currents": 0.8066181177273393,
+      "current_rest_inventory": {
+        "minimum": 0.025409348907664036,
+        "maximum": 0.02703648777094047
+      },
+      "current_sheet_factor": 1.7472825101136562,
+      "current_bend_factor": 0.5224827076843067,
+      "maximum_field_energy": 0.015987705680288636,
+      "maximum_magnetic_hoop_inventory": 0.12186427960646551,
+      "maximum_carrier_hoop_inventory": 0.016542690062370392,
+      "current_tensor_relative_quadrature_difference": 6.360904605986755e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.19730903606756045,
+        "0.1": -1.355294639043828,
+        "0.01": -13.812606116690205,
+        "1e-10": -1383570130.281319
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 0.53015,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6676594335585833,
+      "minimum_stress_fraction_counted_currents": 0.8142596746329218,
+      "current_rest_inventory": {
+        "minimum": 0.02554473846717929,
+        "maximum": 0.027180575616069045
+      },
+      "current_sheet_factor": 1.7546647475005714,
+      "current_bend_factor": 0.7317384725565693,
+      "maximum_field_energy": 0.03080738633859162,
+      "maximum_magnetic_hoop_inventory": 0.1462371355277586,
+      "maximum_carrier_hoop_inventory": 0.016612582632319295,
+      "current_tensor_relative_quadrature_difference": 6.35391684661441e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.24099207775289738,
+        "0.1": -1.599613059555741,
+        "0.01": -16.256712442819055,
+        "1e-10": -1627995504.534611
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta1.01",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 1.01,
+      "field_energy_factor": 1.0402,
+      "outer_volume_fraction": 0.10201,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7464804218616337,
+      "minimum_stress_fraction_counted_currents": 0.8849015715532005,
+      "current_rest_inventory": {
+        "minimum": 0.02686020386773979,
+        "maximum": 0.028580316510405077
+      },
+      "current_sheet_factor": 1.8426053184767774,
+      "current_bend_factor": 1.028445818351108,
+      "maximum_field_energy": 0.06044674765519759,
+      "maximum_magnetic_hoop_inventory": 0.19498284737034483,
+      "maximum_carrier_hoop_inventory": 0.017445174729559827,
+      "current_tensor_relative_quadrature_difference": 6.345579851079291e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.3337882659233538,
+        "0.1": -2.096568753545242,
+        "0.01": -21.215161280436348,
+        "1e-10": -2123753400.802836
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.10250000000000004,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6111888887826353,
+      "minimum_stress_fraction_counted_currents": 0.837763283168897,
+      "current_rest_inventory": {
+        "minimum": 0.029745315365517423,
+        "maximum": 0.03165004669060226
+      },
+      "current_sheet_factor": 2.050200587084148,
+      "current_bend_factor": 0.10251002935420746,
+      "maximum_field_energy": 0.005956346505150698,
+      "maximum_magnetic_hoop_inventory": 0.10536642938231801,
+      "maximum_carrier_hoop_inventory": 0.019410617734402193,
+      "current_tensor_relative_quadrature_difference": 6.375702197788318e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.18443929829686517,
+        "0.1": -1.224963717654949,
+        "0.01": -12.453782995290139,
+        "1e-10": -1247192929.0111473
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.10525625000000004,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6116240022238344,
+      "minimum_stress_fraction_counted_currents": 0.8318725936114788,
+      "current_rest_inventory": {
+        "minimum": 0.02906408779740175,
+        "maximum": 0.03092520414691022
+      },
+      "current_sheet_factor": 2.002756845729915,
+      "current_bend_factor": 0.15264297927279716,
+      "maximum_field_energy": 0.00611651411544164,
+      "maximum_magnetic_hoop_inventory": 0.1056298454557738,
+      "maximum_carrier_hoop_inventory": 0.018961436160112127,
+      "current_tensor_relative_quadrature_difference": 6.374141124921742e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.18233551971399953,
+        "0.1": -1.222196018176739,
+        "0.01": -12.434579490478217,
+        "1e-10": -1245347898.4400632
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.11352500000000003,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6129200791474432,
+      "minimum_stress_fraction_counted_currents": 0.8267914648167789,
+      "current_rest_inventory": {
+        "minimum": 0.02845689996785104,
+        "maximum": 0.030279142451689455
+      },
+      "current_sheet_factor": 1.9604163051186598,
+      "current_bend_factor": 0.20303108922853577,
+      "maximum_field_energy": 0.006597016946314467,
+      "maximum_magnetic_hoop_inventory": 0.10642009367614119,
+      "maximum_carrier_hoop_inventory": 0.01856056999430838,
+      "current_tensor_relative_quadrature_difference": 6.37251346004332e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.18144413817242577,
+        "0.1": -1.2252721098381283,
+        "0.01": -12.472952232749321,
+        "1e-10": -1249252833.339019
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.14660000000000004,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.617969298036769,
+      "minimum_stress_fraction_counted_currents": 0.8191436498891562,
+      "current_rest_inventory": {
+        "minimum": 0.02746084468615778,
+        "maximum": 0.029219319511035315
+      },
+      "current_sheet_factor": 1.8907829905926674,
+      "current_bend_factor": 0.3045596974748389,
+      "maximum_field_energy": 0.008519028269805776,
+      "maximum_magnetic_hoop_inventory": 0.10958108655761073,
+      "maximum_carrier_hoop_inventory": 0.01790130491636508,
+      "current_tensor_relative_quadrature_difference": 6.369093363106777e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.18328429321854486,
+        "0.1": -1.2489258194336221,
+        "0.01": -12.722175076357493,
+        "1e-10": -1274287879.900093
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.21275000000000005,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6274614813737571,
+      "minimum_stress_fraction_counted_currents": 0.8143480434082448,
+      "current_rest_inventory": {
+        "minimum": 0.026653677930916036,
+        "maximum": 0.028360482848572795
+      },
+      "current_sheet_factor": 1.8340098081891871,
+      "current_bend_factor": 0.423772133881182,
+      "maximum_field_energy": 0.012363050916788397,
+      "maximum_magnetic_hoop_inventory": 0.11590307232054982,
+      "maximum_carrier_hoop_inventory": 0.017363795295042242,
+      "current_tensor_relative_quadrature_difference": 6.364936271252016e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.19143573711728243,
+        "0.1": -1.3056209585707672,
+        "0.01": -13.299807841187318,
+        "1e-10": -1332146101.9239974
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.37812500000000004,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6491453989874572,
+      "minimum_stress_fraction_counted_currents": 0.8142644034232944,
+      "current_rest_inventory": {
+        "minimum": 0.02607241355675511,
+        "maximum": 0.0277420238824509
+      },
+      "current_sheet_factor": 1.7921450164360062,
+      "current_bend_factor": 0.614658620684814,
+      "maximum_field_energy": 0.021973107534244946,
+      "maximum_magnetic_hoop_inventory": 0.1317080367278975,
+      "maximum_carrier_hoop_inventory": 0.01696743336130236,
+      "current_tensor_relative_quadrature_difference": 6.358300273862263e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2172364401120197,
+        "0.1": -1.4587455410337837,
+        "0.01": -14.83994634632535,
+        "1e-10": -1486242307.824789
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 0.65375,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6808150268625468,
+      "minimum_stress_fraction_counted_currents": 0.8212407652754337,
+      "current_rest_inventory": {
+        "minimum": 0.026270910160086623,
+        "maximum": 0.02795326098937098
+      },
+      "current_sheet_factor": 1.8037966846383393,
+      "current_bend_factor": 0.8327246024347631,
+      "maximum_field_energy": 0.03798986856333919,
+      "maximum_magnetic_hoop_inventory": 0.158049644073477,
+      "maximum_carrier_hoop_inventory": 0.017077747483183095,
+      "current_tensor_relative_quadrature_difference": 6.351278113356028e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.26464584988935524,
+        "0.1": -1.7232163357713142,
+        "0.01": -17.485004027406934,
+        "1e-10": -1750758191.1652925
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta1.05",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 1.05,
+      "field_energy_factor": 1.205,
+      "outer_volume_fraction": 0.11025000000000001,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7773311270866543,
+      "minimum_stress_fraction_counted_currents": 0.9172921199351549,
+      "current_rest_inventory": {
+        "minimum": 0.027698508351023818,
+        "maximum": 0.0294723171532643
+      },
+      "current_sheet_factor": 1.8993236284815636,
+      "current_bend_factor": 1.1450689211501055,
+      "maximum_field_energy": 0.0700233906215277,
+      "maximum_magnetic_hoop_inventory": 0.21073285876463602,
+      "maximum_carrier_hoop_inventory": 0.017982164837249744,
+      "current_tensor_relative_quadrature_difference": 6.34294161451805e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.3757674098468135,
+        "0.1": -2.260367852919588,
+        "0.01": -22.84444082761455,
+        "1e-10": -2286607199.46407
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.2100000000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6270820326171815,
+      "minimum_stress_fraction_counted_currents": 0.8450188608840108,
+      "current_rest_inventory": {
+        "minimum": 0.0304880124378764,
+        "maximum": 0.032440316531108376
+      },
+      "current_sheet_factor": 2.1004109589041096,
+      "current_bend_factor": 0.21004109589041114,
+      "maximum_field_energy": 0.012203246498357533,
+      "maximum_magnetic_hoop_inventory": 0.11564025356245332,
+      "maximum_carrier_hoop_inventory": 0.019885992846398245,
+      "current_tensor_relative_quadrature_difference": 6.372725578213932e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.20542525217492097,
+        "0.1": -1.3333225203148638,
+        "0.01": -13.52926126334093,
+        "1e-10": -1354668669.0742807
+      },
+      "witness": {
+        "stress_fraction": 0.85,
+        "total_sleeve_inventory": {
+          "minimum": 0.14257564182781368,
+          "maximum": 0.1701150721751495
+        },
+        "inner_sleeve_inventory": {
+          "minimum": 0.010853306608901533,
+          "maximum": 0.01188725576590354
+        },
+        "outer_sleeve_inventory": {
+          "minimum": 0.13172233521891216,
+          "maximum": 0.15822781640924596
+        },
+        "minimum_individual_hoop_margin": 4.86466761114631e-07,
+        "tensor_reconstruction_error": 2.7755575615628914e-17,
+        "worst_density": {
+          "time": 0.5,
+          "position": -2.0001953125,
+          "value": -6.164396801733307e-06,
+          "time_index": 1600,
+          "position_index": 3
+        },
+        "complete_loop_electrical_input": {
+          "minimum": 0.016660759648623878,
+          "maximum": 0.01822096384160861
+        },
+        "complete_loop_electrical_output": {
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "current_carrier_control_input": {
+          "minimum": 0.01214183073348278,
+          "maximum": 0.012976437612330818
+        },
+        "current_carrier_control_output": {
+          "minimum": 0.0,
+          "maximum": 8.609049201960388e-05
+        },
+        "sleeve_control_input": {
+          "minimum": 0.0006861297793912104,
+          "maximum": 0.0007795586445306691
+        },
+        "sleeve_control_output": {
+          "minimum": 0.004523882206415899,
+          "maximum": 0.008407283353230346
+        }
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.2130250000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6274993566330522,
+      "minimum_stress_fraction_counted_currents": 0.8395167568232864,
+      "current_rest_inventory": {
+        "minimum": 0.029807642376298002,
+        "maximum": 0.03171638642280338
+      },
+      "current_sheet_factor": 2.0530250489688493,
+      "current_bend_factor": 0.2603132681062785,
+      "maximum_field_energy": 0.012379031358631493,
+      "maximum_magnetic_hoop_inventory": 0.11592935419635945,
+      "maximum_carrier_hoop_inventory": 0.0194373588007616,
+      "current_tensor_relative_quadrature_difference": 6.371131576910887e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2033702114990793,
+        "0.1": -1.3308179784427223,
+        "0.01": -13.51268144369144,
+        "1e-10": -1353085936.8781228
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.2221000000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6287422147579491,
+      "minimum_stress_fraction_counted_currents": 0.8347603748552501,
+      "current_rest_inventory": {
+        "minimum": 0.02920316071739837,
+        "maximum": 0.03107320424153876
+      },
+      "current_sheet_factor": 2.010867319550932,
+      "current_bend_factor": 0.31110825837388006,
+      "maximum_field_energy": 0.01290638593945337,
+      "maximum_magnetic_hoop_inventory": 0.11679665609807786,
+      "maximum_carrier_hoop_inventory": 0.019038223430575506,
+      "current_tensor_relative_quadrature_difference": 6.369471577155412e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2026255482706647,
+        "0.1": -1.334684602948213,
+        "0.01": -13.55893418476591,
+        "1e-10": -1357778646.5050826
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.2584000000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6335808327421546,
+      "minimum_stress_fraction_counted_currents": 0.8275716514326632,
+      "current_rest_inventory": {
+        "minimum": 0.0282179689179061,
+        "maximum": 0.030024940637440958
+      },
+      "current_sheet_factor": 1.9419681542599894,
+      "current_bend_factor": 0.4142398682635725,
+      "maximum_field_energy": 0.015015804262740885,
+      "maximum_magnetic_hoop_inventory": 0.12026586370495146,
+      "maximum_carrier_hoop_inventory": 0.018385909033580866,
+      "current_tensor_relative_quadrature_difference": 6.365990297687303e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.20505272769216065,
+        "0.1": -1.3615007705558098,
+        "0.01": -13.839679808461108,
+        "1e-10": -1385965066.185677
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.33100000000000024,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6427934090606868,
+      "minimum_stress_fraction_counted_currents": 0.8230075715109706,
+      "current_rest_inventory": {
+        "minimum": 0.02743218066867817,
+        "maximum": 0.029188851866060333
+      },
+      "current_sheet_factor": 1.8866399483724063,
+      "current_bend_factor": 0.5365826099689951,
+      "maximum_field_energy": 0.01923464090931592,
+      "maximum_magnetic_hoop_inventory": 0.12720427891869868,
+      "maximum_carrier_hoop_inventory": 0.017862079969644444,
+      "current_tensor_relative_quadrature_difference": 6.361771107915421e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.21437692726503058,
+        "0.1": -1.424518153756115,
+        "0.01": -14.48033573162502,
+        "1e-10": -1450124178.7262223
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.5125000000000002,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6656511330511421,
+      "minimum_stress_fraction_counted_currents": 0.8227324916515499,
+      "current_rest_inventory": {
+        "minimum": 0.026902071274044946,
+        "maximum": 0.02862482457156254
+      },
+      "current_sheet_factor": 1.848232995039432,
+      "current_bend_factor": 0.7349309315978769,
+      "maximum_field_energy": 0.029781732525753488,
+      "maximum_magnetic_hoop_inventory": 0.14455031695306664,
+      "maximum_carrier_hoop_inventory": 0.017498455700787098,
+      "current_tensor_relative_quadrature_difference": 6.3550637440858e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.24310098781627715,
+        "0.1": -1.5934306586335862,
+        "0.01": -16.17788364953551,
+        "1e-10": -1619959297.3311236
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 0.8150000000000003,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7003370539750904,
+      "minimum_stress_fraction_counted_currents": 0.8448530172463506,
+      "current_rest_inventory": {
+        "minimum": 0.02717953060627799,
+        "maximum": 0.02892008229989162
+      },
+      "current_sheet_factor": 1.8652223914850525,
+      "current_bend_factor": 0.9644919132206952,
+      "maximum_field_energy": 0.047360218553149445,
+      "maximum_magnetic_hoop_inventory": 0.17346038034368,
+      "maximum_carrier_hoop_inventory": 0.017659305659577306,
+      "current_tensor_relative_quadrature_difference": 6.34800298224368e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.29535920586448533,
+        "0.1": -1.8841660065412666,
+        "0.01": -19.08488186143581,
+        "1e-10": -1910663573.3786683
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta1.1",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 1.1,
+      "field_energy_factor": 1.4200000000000004,
+      "outer_volume_fraction": 0.12100000000000002,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.8143476082477719,
+      "minimum_stress_fraction_counted_currents": 0.9558766181580722,
+      "current_rest_inventory": {
+        "minimum": 0.02874743491758359,
+        "maximum": 0.030588431773926162
+      },
+      "current_sheet_factor": 1.9702339699230271,
+      "current_bend_factor": 1.29723866118017,
+      "maximum_field_energy": 0.08251719060794135,
+      "maximum_magnetic_hoop_inventory": 0.23128050712490664,
+      "maximum_carrier_hoop_inventory": 0.018653520381583966,
+      "current_tensor_relative_quadrature_difference": 6.339669496397025e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.4303635610298266,
+        "0.1": -2.4737104298434844,
+        "0.01": -24.967060156938476,
+        "1e-10": -2498776964.50118
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.5625,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6712525633629411,
+      "minimum_stress_fraction_counted_currents": 0.8616280532442033,
+      "current_rest_inventory": {
+        "minimum": 0.03272103627711946,
+        "maximum": 0.03481637866870374
+      },
+      "current_sheet_factor": 2.251100782778865,
+      "current_bend_factor": 0.5627751956947162,
+      "maximum_field_energy": 0.03268726740631479,
+      "maximum_magnetic_hoop_inventory": 0.1493288398275482,
+      "maximum_carrier_hoop_inventory": 0.021312674014145452,
+      "current_tensor_relative_quadrature_difference": 6.363812393409412e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2734792786905135,
+        "0.1": -1.6870481583526946,
+        "0.01": -17.04243324137009,
+        "1e-10": -1705771783.302858
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.5664062499999999,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6716789416968822,
+      "minimum_stress_fraction_counted_currents": 0.8571077848318964,
+      "current_rest_inventory": {
+        "minimum": 0.03204324489708176,
+        "maximum": 0.03409519242823151
+      },
+      "current_sheet_factor": 2.2038884404402332,
+      "current_bend_factor": 0.6135026874094713,
+      "maximum_field_energy": 0.032914262318858634,
+      "maximum_magnetic_hoop_inventory": 0.14970216192711705,
+      "maximum_carrier_hoop_inventory": 0.020865683248825144,
+      "current_tensor_relative_quadrature_difference": 6.3621292485261e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2715831771362106,
+        "0.1": -1.6854046972028787,
+        "0.01": -17.034441244091507,
+        "1e-10": -1705048336.9377925
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.578125,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6729486114345491,
+      "minimum_stress_fraction_counted_currents": 0.8531709986273199,
+      "current_rest_inventory": {
+        "minimum": 0.031446900189965904,
+        "maximum": 0.033460668424912667
+      },
+      "current_sheet_factor": 2.162279364074486,
+      "current_bend_factor": 0.6656309956174472,
+      "maximum_field_energy": 0.0335952470564902,
+      "maximum_magnetic_hoop_inventory": 0.15082212822582367,
+      "maximum_carrier_hoop_inventory": 0.020471742343381467,
+      "current_tensor_relative_quadrature_difference": 6.360382270785881e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.27131684493682967,
+        "0.1": -1.6918577438400377,
+        "0.01": -17.106484281660407,
+        "1e-10": -1712320487.3408346
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.625,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6778894308954477,
+      "minimum_stress_fraction_counted_currents": 0.8471341037657112,
+      "current_rest_inventory": {
+        "minimum": 0.0304943719204867,
+        "maximum": 0.032447160655032725
+      },
+      "current_sheet_factor": 2.0955835163325642,
+      "current_bend_factor": 0.7740181882807927,
+      "maximum_field_energy": 0.03631918600701643,
+      "maximum_magnetic_hoop_inventory": 0.15530199342065013,
+      "maximum_carrier_hoop_inventory": 0.019840288224625427,
+      "current_tensor_relative_quadrature_difference": 6.356737840317807e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.27565780019809294,
+        "0.1": -1.7290205782193335,
+        "0.01": -17.490399437622273,
+        "1e-10": -1750823667.142425
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.71875,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.6871541000436991,
+      "minimum_stress_fraction_counted_currents": 0.8431335126515478,
+      "current_rest_inventory": {
+        "minimum": 0.02977286225973704,
+        "maximum": 0.031679467908740586
+      },
+      "current_sheet_factor": 2.0445919428270436,
+      "current_bend_factor": 0.9066260810494917,
+      "maximum_field_energy": 0.0417670639080689,
+      "maximum_magnetic_hoop_inventory": 0.16426172381030302,
+      "maximum_carrier_hoop_inventory": 0.019357516954718112,
+      "current_tensor_relative_quadrature_difference": 6.352355461763413e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.2888056646866028,
+        "0.1": -1.8127232714659338,
+        "0.01": -18.33732718163143,
+        "1e-10": -1835607837.3643627
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 0.953125,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7292168533895165,
+      "minimum_stress_fraction_counted_currents": 0.8837483066599816,
+      "current_rest_inventory": {
+        "minimum": 0.029396559265149832,
+        "maximum": 0.03127909924220144
+      },
+      "current_sheet_factor": 2.0165625688529616,
+      "current_bend_factor": 1.1294464152073695,
+      "maximum_field_energy": 0.055386758660700065,
+      "maximum_magnetic_hoop_inventory": 0.18666104978443523,
+      "maximum_carrier_hoop_inventory": 0.019092144158040086,
+      "current_tensor_relative_quadrature_difference": 6.345465554037059e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.32706325318756063,
+        "0.1": -2.033295948357269,
+        "0.01": -20.550109002594052,
+        "1e-10": -2056955383.030105
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 1.34375,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.8016110679600388,
+      "minimum_stress_fraction_counted_currents": 0.9508894493337721,
+      "current_rest_inventory": {
+        "minimum": 0.02991143314855255,
+        "maximum": 0.03182697934605532
+      },
+      "current_sheet_factor": 2.049571414855215,
+      "current_bend_factor": 1.3967087585122928,
+      "maximum_field_energy": 0.07808624991508534,
+      "maximum_magnetic_hoop_inventory": 0.22399325974132225,
+      "maximum_carrier_hoop_inventory": 0.01940466094085631,
+      "current_tensor_relative_quadrature_difference": 6.338312654620063e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.41692065480058754,
+        "0.1": -2.4099855253008444,
+        "0.01": -24.314604388023966,
+        "1e-10": -2433393212.8522854
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta1.25",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 1.25,
+      "field_energy_factor": 2.125,
+      "outer_volume_fraction": 0.15625,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.9151812405325472,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.03190119039842829,
+        "maximum": 0.03394420395680583
+      },
+      "current_sheet_factor": 2.183048020483955,
+      "current_bend_factor": 1.7963735511092471,
+      "maximum_field_energy": 0.12348523242385588,
+      "maximum_magnetic_hoop_inventory": 0.2986576796550964,
+      "maximum_carrier_hoop_inventory": 0.0206683730793987,
+      "current_tensor_relative_quadrature_difference": 6.329999632652891e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.6237887685275072,
+        "0.1": -3.1844110548162123,
+        "0.01": -31.918864938438407,
+        "1e-10": -3192636371.026385
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.25,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7853675945661962,
+      "minimum_stress_fraction_counted_currents": 0.9733706547413021,
+      "current_rest_inventory": {
+        "minimum": 0.03645919667392447,
+        "maximum": 0.03879400365144256
+      },
+      "current_sheet_factor": 2.502446183953033,
+      "current_bend_factor": 1.2512230919765166,
+      "maximum_field_energy": 0.07263837201403286,
+      "maximum_magnetic_hoop_inventory": 0.21503352935166936,
+      "maximum_carrier_hoop_inventory": 0.02369232873292128,
+      "current_tensor_relative_quadrature_difference": 6.34901233986165e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.42031362381587456,
+        "0.1": -2.3720883378294046,
+        "0.01": -23.853510463976736,
+        "1e-10": -2386543105.2401695
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.2556249999999998,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7863610142376274,
+      "minimum_stress_fraction_counted_currents": 0.9703622858505696,
+      "current_rest_inventory": {
+        "minimum": 0.035785723651113543,
+        "maximum": 0.0380774124121285
+      },
+      "current_sheet_factor": 2.455523365407816,
+      "current_bend_factor": 1.3028350682224992,
+      "maximum_field_energy": 0.07296524468809601,
+      "maximum_magnetic_hoop_inventory": 0.21557111317504854,
+      "maximum_carrier_hoop_inventory": 0.023248079082648133,
+      "current_tensor_relative_quadrature_difference": 6.347207103792902e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.41901029719036664,
+        "0.1": -2.372118704250385,
+        "0.01": -23.86222072694454,
+        "1e-10": -2387489862.6961513
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.2725,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.7893266410101205,
+      "minimum_stress_fraction_counted_currents": 0.9695771783590317,
+      "current_rest_inventory": {
+        "minimum": 0.03520300204098238,
+        "maximum": 0.03745738420645336
+      },
+      "current_sheet_factor": 2.4148294423695376,
+      "current_bend_factor": 1.357561492221951,
+      "maximum_field_energy": 0.07394586271028546,
+      "maximum_magnetic_hoop_inventory": 0.21718386464518608,
+      "maximum_carrier_hoop_inventory": 0.0228628025447399,
+      "current_tensor_relative_quadrature_difference": 6.345342116032711e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.420704109547027,
+        "0.1": -2.383598533164253,
+        "0.01": -23.984415259000432,
+        "1e-10": -2399776246.836939
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.34,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.8009739043191075,
+      "minimum_stress_fraction_counted_currents": 0.9744924763217568,
+      "current_rest_inventory": {
+        "minimum": 0.03430515677623129,
+        "maximum": 0.03650206243026431
+      },
+      "current_sheet_factor": 2.351808690022221,
+      "current_bend_factor": 1.4761978870854744,
+      "maximum_field_energy": 0.07786833479904325,
+      "maximum_magnetic_hoop_inventory": 0.22363487052573613,
+      "maximum_carrier_hoop_inventory": 0.022266143007690403,
+      "current_tensor_relative_quadrature_difference": 6.341479784196911e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.43306532760602456,
+        "0.1": -2.4408701215163933,
+        "0.01": -24.568950275617492,
+        "1e-10": -2458337728.564577
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.475,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.823282630648464,
+      "minimum_stress_fraction_counted_currents": 0.9902137408498675,
+      "current_rest_inventory": {
+        "minimum": 0.03369125534359515,
+        "maximum": 0.03584887126695329
+      },
+      "current_sheet_factor": 2.3080505132680407,
+      "current_bend_factor": 1.6288310364313177,
+      "maximum_field_energy": 0.0857132789765588,
+      "maximum_magnetic_hoop_inventory": 0.2365368822868363,
+      "maximum_carrier_hoop_inventory": 0.021851855134064475,
+      "current_tensor_relative_quadrature_difference": 6.336885349944292e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.46239566766214196,
+        "0.1": -2.564776924823669,
+        "0.01": -25.817005540888232,
+        "1e-10": -2583227478.359931
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 1.8125,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.8739101351238787,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.033572435379413894,
+        "maximum": 0.03572247990311341
+      },
+      "current_sheet_factor": 2.297330651886356,
+      "current_bend_factor": 1.899399181129088,
+      "maximum_field_energy": 0.10532563942034766,
+      "maximum_magnetic_hoop_inventory": 0.2687919116895867,
+      "maximum_carrier_hoop_inventory": 0.021750363049457457,
+      "current_tensor_relative_quadrature_difference": 6.329770052406067e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.5412488313446259,
+        "0.1": -2.8857712387395456,
+        "0.01": -29.031908957332796,
+        "1e-10": -2904765916.4616685
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 2.375,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": 0.9449313327204436,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.03448475600208941,
+        "maximum": 0.03669326702571048
+      },
+      "current_sheet_factor": 2.357059463238895,
+      "current_bend_factor": 2.2402277313560006,
+      "maximum_field_energy": 0.13801290682666245,
+      "maximum_magnetic_hoop_inventory": 0.322550294027504,
+      "maximum_carrier_hoop_inventory": 0.022315855583309112,
+      "current_tensor_relative_quadrature_difference": 6.322519601819347e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.7210919305740264,
+        "0.1": -3.465444235794767,
+        "0.01": -34.495727221435324,
+        "1e-10": -3447987588.11726
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta1.5",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 1.5,
+      "field_energy_factor": 3.5,
+      "outer_volume_fraction": 0.22500000000000003,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.03718071900039045,
+        "maximum": 0.03956193662484762
+      },
+      "current_sheet_factor": 2.5380148588739635,
+      "current_bend_factor": 2.7704751398088017,
+      "maximum_field_energy": 0.20338744163929204,
+      "maximum_magnetic_hoop_inventory": 0.4300670587033387,
+      "maximum_carrier_hoop_inventory": 0.02402908112513054,
+      "current_tensor_relative_quadrature_difference": 6.314262659937954e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -1.1227483347899532,
+        "0.1": -4.659458101052211,
+        "0.01": -45.51074148490014,
+        "1e-10": -4540235753.341094
+      }
+    },
+    {
+      "key": "balanced_jacket_b0_e1_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0,
+      "outer_pressure": 1.0,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 3.0,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04399730939163034,
+        "maximum": 0.04681505419089256
+      },
+      "current_sheet_factor": 3.0058708414872797,
+      "current_bend_factor": 3.0058708414872797,
+      "maximum_field_energy": 0.1743320928336789,
+      "maximum_magnetic_hoop_inventory": 0.38228182995852333,
+      "maximum_carrier_hoop_inventory": 0.028458586067462023,
+      "current_tensor_relative_quadrature_difference": 6.319617752626464e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.9769857395706362,
+        "0.1": -4.19298760672342,
+        "0.01": -41.14401643725404,
+        "1e-10": -4106544750.3573756
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.0025_e1.0025_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.0025,
+      "outer_pressure": 1.0025,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 3.01,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.0025,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.0433325502749634,
+        "maximum": 0.046107735153269776
+      },
+      "current_sheet_factor": 2.9595279872752647,
+      "current_bend_factor": 3.0597236819915072,
+      "maximum_field_energy": 0.17491319980979114,
+      "maximum_magnetic_hoop_inventory": 0.3832375345334196,
+      "maximum_carrier_hoop_inventory": 0.028019827326733242,
+      "current_tensor_relative_quadrature_difference": 6.317637246657972e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.9777146599906898,
+        "0.1": -4.197998427778933,
+        "0.01": -41.195688450784274,
+        "1e-10": -4111727458.606668
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.01_e1.01_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.01,
+      "outer_pressure": 1.01,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 3.04,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.01,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04277730585817065,
+        "maximum": 0.045516944527956765
+      },
+      "current_sheet_factor": 2.920667114293872,
+      "current_bend_factor": 3.121058503726357,
+      "maximum_field_energy": 0.17665652073812793,
+      "maximum_magnetic_hoop_inventory": 0.3861046482581086,
+      "maximum_carrier_hoop_inventory": 0.027651905497513646,
+      "current_tensor_relative_quadrature_difference": 6.315605359291882e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -0.9858374788724173,
+        "0.1": -4.224734689713222,
+        "0.01": -41.44729596507143,
+        "1e-10": -4136730488.293838
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.04_e1.04_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.04,
+      "outer_pressure": 1.04,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 3.16,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.04,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04198974213306995,
+        "maximum": 0.04467896966286561
+      },
+      "current_sheet_factor": 2.865007425784156,
+      "current_bend_factor": 3.265790204649126,
+      "maximum_field_energy": 0.1836298044514751,
+      "maximum_magnetic_hoop_inventory": 0.3975731031568643,
+      "maximum_carrier_hoop_inventory": 0.027124938066285596,
+      "current_tensor_relative_quadrature_difference": 6.31144248067455e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -1.024241866937302,
+        "0.1": -4.343338573536441,
+        "0.01": -42.54994721653939,
+        "1e-10": -4246161276.665729
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.1_e1.1_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.1,
+      "outer_pressure": 1.1,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 3.4000000000000004,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.1,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04159284942804858,
+        "maximum": 0.04425669020757557
+      },
+      "current_sheet_factor": 2.8357373279622933,
+      "current_bend_factor": 3.4694305420547433,
+      "maximum_field_energy": 0.19757637187816943,
+      "maximum_magnetic_hoop_inventory": 0.4205100129543757,
+      "maximum_carrier_hoop_inventory": 0.02684781850859554,
+      "current_tensor_relative_quadrature_difference": 6.306568166824184e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -1.1059120328214078,
+        "0.1": -4.590132620351435,
+        "0.01": -44.834369172093204,
+        "1e-10": -4472767547.709886
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.25_e1.25_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.25,
+      "outer_pressure": 1.25,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 4.0,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.25,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04199327307931143,
+        "maximum": 0.04468280850311767
+      },
+      "current_sheet_factor": 2.8596872929938133,
+      "current_bend_factor": 3.86164424015624,
+      "maximum_field_energy": 0.23244279044490518,
+      "maximum_magnetic_hoop_inventory": 0.47785228744815417,
+      "maximum_carrier_hoop_inventory": 0.027074568817276403,
+      "current_tensor_relative_quadrature_difference": 6.299181325847852e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -1.3158381867116942,
+        "0.1": -5.218477577448219,
+        "0.01": -50.63907914388761,
+        "1e-10": -5048450948.235838
+      }
+    },
+    {
+      "key": "balanced_jacket_b0.5_e1.5_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 0.5,
+      "outer_pressure": 1.5,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 5.0,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 1.5,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04370708105129294,
+        "maximum": 0.04650643130052803
+      },
+      "current_sheet_factor": 2.9729343453815424,
+      "current_bend_factor": 4.389915448972588,
+      "maximum_field_energy": 0.29055348805613146,
+      "maximum_magnetic_hoop_inventory": 0.573422744937785,
+      "maximum_carrier_hoop_inventory": 0.028146754269419125,
+      "current_tensor_relative_quadrature_difference": 6.291849528392346e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -1.6700475093214757,
+        "0.1": -6.27428160515393,
+        "0.01": -60.384301449969456,
+        "1e-10": -6014844999.21474
+      }
+    },
+    {
+      "key": "balanced_jacket_b1_e2_eta2",
+      "family": "balanced_jacket",
+      "inner_pressure": 1.0,
+      "outer_pressure": 2.0,
+      "radius_ratio": 2.0,
+      "field_energy_factor": 7.0,
+      "outer_volume_fraction": 0.4,
+      "inner_interface_pressure_ratio": 0.0,
+      "outer_interface_pressure_ratio": 2.0,
+      "inner_interface_pressure_ratio_minimum": -11.769914619626718,
+      "inner_interface_pressure_ratio_maximum": 0.0,
+      "minimum_stress_fraction_zero_currents": null,
+      "minimum_stress_fraction_counted_currents": null,
+      "current_rest_inventory": {
+        "minimum": 0.04782716318141628,
+        "maximum": 0.05089045802505482
+      },
+      "current_sheet_factor": 3.2489863636107126,
+      "current_bend_factor": 5.252900257935566,
+      "maximum_field_energy": 0.4067748832785841,
+      "maximum_magnetic_hoop_inventory": 0.7645636599170467,
+      "maximum_carrier_hoop_inventory": 0.03076032302674619,
+      "current_tensor_relative_quadrature_difference": 6.283730550016842e-08,
+      "passing_labels_at_strength": {
+        "0.5": 0,
+        "0.1": 0,
+        "0.01": 0,
+        "1e-10": 0
+      },
+      "fixed_inventory_gaps_at_strength": {
+        "0.5": -2.3843113734381487,
+        "0.1": -8.393338238738194,
+        "0.01": -79.92404303686767,
+        "1e-10": -7952310910.578549
+      }
+    }
+  ],
+  "scope": {
+    "full_closed_loop_field_energy": true,
+    "inner_outer_and_bend_currents": true,
+    "outer_reaction_hoop_counted": true,
+    "straight_current_carrier_hoop_counted": true,
+    "separate_boundary_inventories_conserved": true,
+    "cold_compression_retained": true,
+    "phase_field_overlap_granted": true,
+    "bend_mechanical_equilibrium_supplied": false,
+    "current_host_constitutive_law_supplied": false,
+    "induction_field_supplied": false,
+    "exterior_field_beyond_outer_sleeve_assumed_zero": true,
+    "mechanical_and_electrical_transfers_routed": false,
+    "field_exclusion_and_opacity_supplied": false,
+    "stability_supplied": false,
+    "full_material_storage_solution_supplied": false
+  },
+  "elapsed_seconds": 12.882775613106787
+}
