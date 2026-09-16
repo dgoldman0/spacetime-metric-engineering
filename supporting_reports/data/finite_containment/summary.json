@@ -1,0 +1,1441 @@
+{
+  "created_utc": "2026-09-16T21:52:37.973625+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "scope": "Finite static coaxial interfaces, particle-host necessary tests, and fixed-material history programs",
+  "physical_containment_established": false,
+  "retained_inputs": [
+    "heat and geometry histories",
+    "original magnetic fields",
+    "original carrier tensors",
+    "original carrier hoop reactions",
+    "existing support field floor"
+  ],
+  "explicit_relaxations": [
+    "ideal zero-thickness surfaces",
+    "free bending and shear hardware in host bound",
+    "pointwise search permits population changes",
+    "history LP grants free added current hosts",
+    "lossless, unlimited-rate control exchanges"
+  ],
+  "open_alternatives": [
+    "shared helical current populations",
+    "different current coefficient or coil dimensions",
+    "material rearrangement or a different constitutive law",
+    "explicit shared axial/shear reaction paths"
+  ],
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_summary.json": "6837a730e8a59bfb1ddcc0f202c623e9dcd266c1395df45fc75af2872c4eb962",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz": "d2168378f56d0ca3d2f0e1b1e81793712a164d35c8dce88ba785856b721f451a",
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_states.npz": "e8939e474a64615d5221a2688659240fd3dad59d0adba37dcbbaf89031aa3499",
+        "supporting_reports/data/containment_ensemble/first_n16_t2057_states.npz": "a799f044eacbad7954db549a334575d87e91663481644faa257572b6b34fe9e0"
+      },
+      "current_coefficient": 2.544146439302263e-08,
+      "finite_annular_factor": 1.0100166666116617,
+      "previous_witness_current_demand": {
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.062077426317400944
+        },
+        "minimum_new_particle_energy": {
+          "minimum": 0.0,
+          "maximum": 0.32688489246677527
+        },
+        "outer_overcompression_samples": 22439,
+        "maximum_return_to_axial_current_ratio": 3.573421313709249e-05
+      },
+      "zero_added_field": {
+        "maximum_shortfall": 0.01824640680150491,
+        "violating_samples": 6,
+        "worst": {
+          "value": 0.01824640680150491,
+          "time_index": 800,
+          "label_index": 14,
+          "time": 0.5,
+          "position": -1.999796875
+        }
+      },
+      "continuous_current_bound": {
+        "certified_rejected_samples": 4,
+        "necessary_coefficient_upper": 1.3615717440594048e-08,
+        "worst_product_excess": {
+          "value": 0.013918682346105233,
+          "time_index": 800,
+          "label_index": 1,
+          "time": 0.5,
+          "position": -2.0002031249999996
+        },
+        "scope": "Independent new axial particle hosts; all speeds; free return, end and shear hardware"
+      },
+      "pointwise_current_search": {
+        "maximum_shortfall": 0.006623879945879641,
+        "violating_samples": 4,
+        "worst": {
+          "value": 0.006623879945879641,
+          "time_index": 800,
+          "label_index": 14,
+          "time": 0.5,
+          "position": -1.999796875
+        },
+        "passing_samples": 32908,
+        "unresolved_search_failures": 0,
+        "positive_field_drift_speeds": {
+          "minimum": 0.9978407995664417,
+          "maximum": 0.9980194701116033
+        },
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.021070342125282353
+        },
+        "full_support_end_capacity_failures_on_passing_samples": 2,
+        "above_floor_end_capacity_failures_on_passing_samples": 2,
+        "maximum_end_force": 11.036801563571737,
+        "maximum_end_torque": 7.303241260470803e-06,
+        "maximum_static_rate_parameter": 1.7390450743254904
+      },
+      "self_closed_axial_ends": {
+        "necessary_failure_samples": 6,
+        "worst_gap": {
+          "value": 0.018029940552825828,
+          "time_index": 800,
+          "label_index": 14,
+          "time": 0.5,
+          "position": -1.999796875
+        }
+      },
+      "conserved_particle_replays": {
+        "peak_speed_0.707107": {
+          "maximum_shortfall": 0.1873074835478723,
+          "violating_samples": 1050,
+          "worst": {
+            "value": 0.1873074835478723,
+            "time_index": 72,
+            "label_index": 14,
+            "time": 0.04517578125,
+            "position": -1.999796875
+          },
+          "peak_speed": 0.7071067811865475,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.2062586582569939
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.980000": {
+          "maximum_shortfall": 0.12987218848675486,
+          "violating_samples": 826,
+          "worst": {
+            "value": 0.12987218848675486,
+            "time_index": 72,
+            "label_index": 14,
+            "time": 0.04517578125,
+            "position": -1.999796875
+          },
+          "peak_speed": 0.98,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.14882336319587663
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.999000": {
+          "maximum_shortfall": 3.117632670672447,
+          "violating_samples": 817,
+          "worst": {
+            "value": 3.117632670672447,
+            "time_index": 800,
+            "label_index": 15,
+            "time": 0.5,
+            "position": -1.9997656249999998
+          },
+          "peak_speed": 0.999,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.14599288882077988
+          },
+          "maximum_charge_balance_error": 0.0
+        }
+      },
+      "passive_transverse_population": {
+        "required_initial_energy": {
+          "minimum": 0.0,
+          "maximum": 0.018262462801415174
+        },
+        "allowed_initial_energy": {
+          "minimum": 8.883072485632008e-05,
+          "maximum": 0.00010500624192983445
+        },
+        "rejected_labels": 6,
+        "maximum_inventory_gap": 0.018173630791869868
+      },
+      "controlled_material_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.15228491355856205,
+          "maximum": 0.1707820399236605
+        },
+        "rejected_labels": 16,
+        "currents_and_end_hardware_cost": "zero in this optimistic test",
+        "initial_populations": [
+          [
+            2.6738144675388606e-05,
+            2.6736035251008282e-05,
+            2.6425541243534046e-05,
+            2.5824990909963487e-05,
+            2.5247448893279665e-05,
+            2.4691345463591617e-05,
+            2.4419933551481634e-05,
+            2.44180333382971e-05,
+            2.4128743230146823e-05,
+            2.412686469083135e-05,
+            2.3919841881749368e-05,
+            2.350268978058504e-05,
+            2.307862236424957e-05,
+            2.264729451737595e-05,
+            2.2427903872130344e-05,
+            2.242612695988836e-05
+          ],
+          [
+            0.006749495314968298,
+            0.006748676276669772,
+            0.006713735148973762,
+            0.0066827172889519495,
+            0.006779524489508386,
+            0.006874915983745994,
+            0.006921652005930991,
+            0.006920757748516615,
+            0.0069534404686127475,
+            0.006952542281473113,
+            0.0069072989894575195,
+            0.006816865836966558,
+            0.00676137977510878,
+            0.006862452061293724,
+            0.006938878069155598,
+            0.0069380634475482
+          ],
+          [
+            0.0002100124838596689,
+            0.0002100094336760939,
+            0.00020888397108450224,
+            0.00020666259836152177,
+            0.00020447449518397383,
+            0.0002023173917552373,
+            0.000201248441056876,
+            0.00020124569338831843,
+            0.00019967028495735748,
+            0.00019966756862876156,
+            0.00019692485701082265,
+            0.0001914349418653794,
+            0.00018593502731868218,
+            0.00018042461434124275,
+            0.00017766401909061137,
+            0.00017766144971264017
+          ],
+          [
+            0.003731660814887435,
+            0.003731606866049792,
+            0.0035738588941683974,
+            0.0032603630044658978,
+            0.002949294456400831,
+            0.004085086358044273,
+            0.006945697188179958,
+            0.008085823287819557,
+            0.006085934773425289,
+            0.00722689605159793,
+            0.006603332272649039,
+            0.00425175068752469,
+            0.0029163761270625263,
+            0.0031509604015208022,
+            0.003268874234925051,
+            0.0032688272351025192
+          ],
+          [
+            0.050743170414986986,
+            0.05074356810226185,
+            0.05159551840325993,
+            0.05329720541591155,
+            0.05499659595892896,
+            0.05596692284802989,
+            0.05529822574331656,
+            0.05472486477996042,
+            0.05627752805253621,
+            0.05570375686152601,
+            0.05529508649979244,
+            0.055032543674157594,
+            0.05425783170402905,
+            0.05269227761473595,
+            0.05190905622196268,
+            0.051909490615766954
+          ]
+        ],
+        "minimum_component_energy": -2.7755575615628914e-17,
+        "maximum_primal_violation": 2.0816681711721685e-17,
+        "maximum_dual_stationarity_error": 5.551115123125783e-16,
+        "maximum_primal_dual_gap": 5.551115123125783e-17,
+        "maximum_positive_dual_multiplier": -0.0,
+        "minimum_dual_bound_slack": 0.0,
+        "maximum_fixed_population_error": 6.938893903907228e-18,
+        "maximum_exchange_sum_error": 7.292614862680624e-17,
+        "maximum_passive_panel_exchange": 4.8079126656859966e-15,
+        "maximum_reciprocal_bus_error": 6.938893903907228e-18,
+        "closed_control_store_capacity_gap": {
+          "minimum": 0.15650134440574165,
+          "maximum": 0.1932679552914125
+        },
+        "net_component_exchange": {
+          "inner_longitudinal_sheet": {
+            "minimum": 6.291919238187602e-13,
+            "maximum": 7.484876176980365e-13
+          },
+          "inner_hoop_strings": {
+            "minimum": 2.020019403075084e-16,
+            "maximum": 2.1086800725396235e-16
+          },
+          "outer_longitudinal_sheet": {
+            "minimum": 4.984182497844871e-12,
+            "maximum": 5.879310797184988e-12
+          },
+          "outer_hoop_strings": {
+            "minimum": 8.81557461143254e-17,
+            "maximum": 2.4464784745376697e-16
+          },
+          "transverse_sheet": {
+            "minimum": 1.2231989675523559e-14,
+            "maximum": 1.3570155701720013e-14
+          },
+          "inner_hoop_photons": {
+            "minimum": -0.006958873255406317,
+            "maximum": -0.006539302968392096
+          },
+          "outer_hoop_photons": {
+            "minimum": -0.008086031495408614,
+            "maximum": -0.002916397169128373
+          },
+          "transverse_photons": {
+            "minimum": -0.1127693697395807,
+            "maximum": -0.10164638879047466
+          },
+          "hoop_field": {
+            "minimum": 0.011503662529009627,
+            "maximum": 0.01910115647417095
+          }
+        }
+      },
+      "all_current_hosts_free_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.09870177039681657,
+          "maximum": 0.11339644655966147
+        },
+        "rejected_labels": 16,
+        "maximum_primal_dual_gap": 2.7755575615628914e-17,
+        "scope": "Original and added current hosts and centrifugal reactions free; same fixed material and photon-control laws"
+      }
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_summary.json": "63c6934878bf33831dee0738e1b40abcb214c7902d0ae5ed3181b3577656104a",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz": "ae7938721aaa156390eb9026dfc1a8728ef8b8bccfb9830403794079b527ccad",
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_states.npz": "887224db15d7e63994674b5a641e8f72c1d46a7ec5720c1096d54e1c126de4b9",
+        "supporting_reports/data/containment_ensemble/first_n32_t4113_states.npz": "1278aa1c4108beba1f9783e1590db21481f806e943ea3a75831af358851c7e8c"
+      },
+      "current_coefficient": 2.544146439302263e-08,
+      "finite_annular_factor": 1.0100166666116617,
+      "previous_witness_current_demand": {
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.0620774550667222
+        },
+        "minimum_new_particle_energy": {
+          "minimum": 0.0,
+          "maximum": 0.3269092913596537
+        },
+        "outer_overcompression_samples": 89697,
+        "maximum_return_to_axial_current_ratio": 3.5735017307434934e-05
+      },
+      "zero_added_field": {
+        "maximum_shortfall": 0.01836535473196088,
+        "violating_samples": 12,
+        "worst": {
+          "value": 0.01836535473196088,
+          "time_index": 1600,
+          "label_index": 28,
+          "time": 0.5,
+          "position": -1.9998046875
+        }
+      },
+      "continuous_current_bound": {
+        "certified_rejected_samples": 10,
+        "necessary_coefficient_upper": 1.3130452030597483e-08,
+        "worst_product_excess": {
+          "value": 0.014309017798343596,
+          "time_index": 1600,
+          "label_index": 3,
+          "time": 0.5,
+          "position": -2.0001953125
+        },
+        "scope": "Independent new axial particle hosts; all speeds; free return, end and shear hardware"
+      },
+      "pointwise_current_search": {
+        "maximum_shortfall": 0.006743024967154405,
+        "violating_samples": 10,
+        "worst": {
+          "value": 0.006743024967154405,
+          "time_index": 1600,
+          "label_index": 28,
+          "time": 0.5,
+          "position": -1.9998046875
+        },
+        "passing_samples": 131606,
+        "unresolved_search_failures": 0,
+        "positive_field_drift_speeds": {
+          "minimum": 0.9978407995664417,
+          "maximum": 0.9981833424731908
+        },
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.021070409105198813
+        },
+        "full_support_end_capacity_failures_on_passing_samples": 2,
+        "above_floor_end_capacity_failures_on_passing_samples": 2,
+        "maximum_end_force": 11.037261121918982,
+        "maximum_end_torque": 7.303270121675465e-06,
+        "maximum_static_rate_parameter": 3.4781282894862455
+      },
+      "self_closed_axial_ends": {
+        "necessary_failure_samples": 12,
+        "worst_gap": {
+          "value": 0.01814888779516275,
+          "time_index": 1600,
+          "label_index": 28,
+          "time": 0.5,
+          "position": -1.9998046875
+        }
+      },
+      "conserved_particle_replays": {
+        "peak_speed_0.707107": {
+          "maximum_shortfall": 0.18735690405184569,
+          "violating_samples": 4205,
+          "worst": {
+            "value": 0.18735690405184569,
+            "time_index": 144,
+            "label_index": 28,
+            "time": 0.04517578125,
+            "position": -1.9998046875
+          },
+          "peak_speed": 0.7071067811865475,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.20626431796606698
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.980000": {
+          "maximum_shortfall": 0.12992003297417054,
+          "violating_samples": 3248,
+          "worst": {
+            "value": 0.12992003297417054,
+            "time_index": 144,
+            "label_index": 28,
+            "time": 0.04517578125,
+            "position": -1.9998046875
+          },
+          "peak_speed": 0.98,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.14882744688839203
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.999000": {
+          "maximum_shortfall": 3.1177273297835555,
+          "violating_samples": 3212,
+          "worst": {
+            "value": 3.1177273297835555,
+            "time_index": 1600,
+            "label_index": 31,
+            "time": 0.5,
+            "position": -1.9997578125
+          },
+          "peak_speed": 0.999,
+          "rest_energy": {
+            "minimum": 0.0,
+            "maximum": 0.14599689484546965
+          },
+          "maximum_charge_balance_error": 0.0
+        }
+      },
+      "passive_transverse_population": {
+        "required_initial_energy": {
+          "minimum": 0.0,
+          "maximum": 0.01838151527801339
+        },
+        "allowed_initial_energy": {
+          "minimum": 8.883040363672198e-05,
+          "maximum": 0.00010500662314319932
+        },
+        "rejected_labels": 12,
+        "maximum_inventory_gap": 0.018292682947343184
+      },
+      "controlled_material_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.15193513195399633,
+          "maximum": 0.17127218571411795
+        },
+        "rejected_labels": 32,
+        "currents_and_end_hardware_cost": "zero in this optimistic test",
+        "initial_populations": [
+          [
+            2.6738671949073095e-05,
+            2.6737617226376815e-05,
+            2.6736562514183392e-05,
+            2.6735507812493692e-05,
+            2.6579473470033326e-05,
+            2.6273154566935478e-05,
+            2.597290652024694e-05,
+            2.567851231320929e-05,
+            2.5389765795952893e-05,
+            2.51064709922384e-05,
+            2.4828441459757988e-05,
+            2.45554996990356e-05,
+            2.442040851346433e-05,
+            2.441945839820475e-05,
+            2.4418508291608475e-05,
+            2.441755819367692e-05,
+            2.4129212775296082e-05,
+            2.412827349704356e-05,
+            2.4127334227382097e-05,
+            2.4126394966312378e-05,
+            2.4023087252287677e-05,
+            2.381618419508007e-05,
+            2.3607613133709812e-05,
+            2.3397334173009858e-05,
+            2.3185305855283394e-05,
+            2.2971485075241304e-05,
+            2.2755826989010063e-05,
+            2.2538284916697423e-05,
+            2.242834803470358e-05,
+            2.2427459569503188e-05,
+            2.242657111337939e-05,
+            2.2425682666333588e-05
+          ],
+          [
+            0.006749700092691696,
+            0.006749290560848723,
+            0.00674888104169969,
+            0.00674847153524498,
+            0.006729781096459087,
+            0.006699169135005294,
+            0.0066784641723546066,
+            0.006707055174152466,
+            0.006755457799906037,
+            0.006803502769170463,
+            0.006851197608981702,
+            0.0068985495841161135,
+            0.006921875613128993,
+            0.006921428459726747,
+            0.006920981331019966,
+            0.0069205342270081864,
+            0.006953665058282699,
+            0.006953215939911994,
+            0.006952766846342606,
+            0.006952317777574004,
+            0.00692973075807928,
+            0.006884797349274948,
+            0.006839581477427145,
+            0.0067940775004931165,
+            0.006748279587831385,
+            0.006780468400968364,
+            0.00683021460547924,
+            0.00689897413259291,
+            0.006939081737674359,
+            0.006938674416117803,
+            0.006938267105314185,
+            0.006937859805264056
+          ],
+          [
+            0.00021001324628639863,
+            0.00021001172117941956,
+            0.00021001019608762734,
+            0.00021000867101102325,
+            0.00020944480123990606,
+            0.00020832537576197875,
+            0.00020721472861558174,
+            0.00020611254599897693,
+            0.00020501852982382092,
+            0.00020393239671252664,
+            0.0002028538770733725,
+            0.00020178271424590584,
+            0.00020124912784197813,
+            0.0002012477539951666,
+            0.00020124638016088195,
+            0.00020124500633912634,
+            0.00019967096390983156,
+            0.00019966960573310574,
+            0.00019966824756880244,
+            0.0001996668894169226,
+            0.00019829582814016321,
+            0.00019555328968089196,
+            0.0001928083393224967,
+            0.00019006091937733913,
+            0.00018731096989849623,
+            0.00018455842855658044,
+            0.00018180323050828766,
+            0.00017904530825548924,
+            0.000177664661340411,
+            0.00017766337663829675,
+            0.00017766209194930706,
+            0.00017766080727344395
+          ],
+          [
+            0.0037316743021177496,
+            0.0037316473274477875,
+            0.0037316203530290346,
+            0.003731593378861528,
+            0.003652635510779728,
+            0.0034952466132805913,
+            0.003338501850606548,
+            0.0031823757579197455,
+            0.0030268443176224456,
+            0.0028718848537093496,
+            0.002942739861963681,
+            0.005229457240209874,
+            0.006660721494192385,
+            0.007230695367503856,
+            0.007800758415788603,
+            0.008370910651412223,
+            0.005800751534560268,
+            0.006371141003278712,
+            0.006941621640847877,
+            0.007512193459504951,
+            0.007199010963725384,
+            0.006010615012615422,
+            0.004834661365475886,
+            0.003672454942796036,
+            0.002857987746658173,
+            0.0029748657348935242,
+            0.003092155975417561,
+            0.0032098736456628077,
+            0.0032688859850475934,
+            0.003268862484906313,
+            0.0032688389849951124,
+            0.0032688154853140285
+          ],
+          [
+            0.05074307134119214,
+            0.05074327016205089,
+            0.05074346900571641,
+            0.050743667872187335,
+            0.0511697207560927,
+            0.052021163824345844,
+            0.052872004979665946,
+            0.053722263145771665,
+            0.05457195629575564,
+            0.05542110151671494,
+            0.05615636633228588,
+            0.05577639990054142,
+            0.05544153835222099,
+            0.05515490271675221,
+            0.054868222235880816,
+            0.054581496903407516,
+            0.05642094259141982,
+            0.056134102845162064,
+            0.05584721725045493,
+            0.055560285801162956,
+            0.05535668010285979,
+            0.05523195367436884,
+            0.05510076470472675,
+            0.05496245247693311,
+            0.05464895402045223,
+            0.05386660500108647,
+            0.053083829482151366,
+            0.0523006151324604,
+            0.0519089479621645,
+            0.05190916513576374,
+            0.051909382332693474,
+            0.0519095995529515
+          ]
+        ],
+        "minimum_component_energy": -2.7755575615628914e-17,
+        "maximum_primal_violation": 2.6020852139652106e-17,
+        "maximum_dual_stationarity_error": 4.727268582015429e-16,
+        "maximum_primal_dual_gap": 5.551115123125783e-17,
+        "maximum_positive_dual_multiplier": -0.0,
+        "minimum_dual_bound_slack": 0.0,
+        "maximum_fixed_population_error": 6.938893903907228e-18,
+        "maximum_exchange_sum_error": 7.318364664277155e-17,
+        "maximum_passive_panel_exchange": 6.010202811547326e-16,
+        "maximum_reciprocal_bus_error": 6.938893903907228e-18,
+        "closed_control_store_capacity_gap": {
+          "minimum": 0.1561515856979767,
+          "maximum": 0.19367938205974522
+        },
+        "net_component_exchange": {
+          "inner_longitudinal_sheet": {
+            "minimum": 1.5729478739077375e-13,
+            "maximum": 1.8712573749612925e-13
+          },
+          "inner_hoop_strings": {
+            "minimum": 5.0430784098427605e-17,
+            "maximum": 5.305114183552169e-17
+          },
+          "outer_longitudinal_sheet": {
+            "minimum": 1.2460001558178087e-12,
+            "maximum": 1.4698814641170038e-12
+          },
+          "outer_hoop_strings": {
+            "minimum": 2.159143597894262e-17,
+            "maximum": 6.305286220894739e-17
+          },
+          "transverse_sheet": {
+            "minimum": 3.0577480785201253e-15,
+            "maximum": 3.3954691209329244e-15
+          },
+          "inner_hoop_photons": {
+            "minimum": -0.006959098068575722,
+            "maximum": -0.006539093695827136
+          },
+          "outer_hoop_photons": {
+            "minimum": -0.008371134632597,
+            "maximum": -0.00285800832890589
+          },
+          "transverse_photons": {
+            "minimum": -0.11305621379760993,
+            "maximum": -0.10164618935905227
+          },
+          "hoop_field": {
+            "minimum": 0.01150310451859345,
+            "maximum": 0.019134442223694852
+          }
+        }
+      },
+      "all_current_hosts_free_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.09835042709206221,
+          "maximum": 0.11388829467579202
+        },
+        "rejected_labels": 32,
+        "maximum_primal_dual_gap": 5.551115123125783e-17,
+        "scope": "Original and added current hosts and centrifugal reactions free; same fixed material and photon-control laws"
+      }
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_summary.json": "00ae7ad3d2096e35b8458638c3cb0b937d0ca6e8b7770693cc2518ed3f0538e7",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz": "8379aceb2e2794587b1f3b81a8ff7e9a42f8ddbaa390767550db81ed5ba810bf",
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_states.npz": "437283468da706de49f37f402f898500e332e83d836e5a0b259322b396947d59",
+        "supporting_reports/data/containment_ensemble/second_n16_t1029_states.npz": "c780e5826db96693575cef17eb1a01b26a3b395c13ef1b4a588c3d7a64752174"
+      },
+      "current_coefficient": 1.2000139578428107e-08,
+      "finite_annular_factor": 1.0100166666116617,
+      "previous_witness_current_demand": {
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.05801885949556771
+        },
+        "minimum_new_particle_energy": {
+          "minimum": 0.0,
+          "maximum": 0.1412226595431384
+        },
+        "outer_overcompression_samples": 15384,
+        "maximum_return_to_axial_current_ratio": 3.842122965338438e-05
+      },
+      "zero_added_field": {
+        "maximum_shortfall": 0.03190826303053973,
+        "violating_samples": 52,
+        "worst": {
+          "value": 0.03190826303053973,
+          "time_index": 922,
+          "label_index": 12,
+          "time": 1.1519824218749999,
+          "position": -1.9748593749999999
+        }
+      },
+      "continuous_current_bound": {
+        "certified_rejected_samples": 0,
+        "necessary_coefficient_upper": 1.3573730704046367e-08,
+        "worst_product_excess": {
+          "value": -0.001037078286435773,
+          "time_index": 922,
+          "label_index": 11,
+          "time": 1.1519824218749999,
+          "position": -1.974890625
+        },
+        "scope": "Independent new axial particle hosts; all speeds; free return, end and shear hardware"
+      },
+      "pointwise_current_search": {
+        "maximum_shortfall": -4.918256244934582e-06,
+        "violating_samples": 0,
+        "worst": {
+          "value": -4.918256244934582e-06,
+          "time_index": 912,
+          "label_index": 3,
+          "time": 1.13943359375,
+          "position": -1.9751406250000003
+        },
+        "passing_samples": 16464,
+        "unresolved_search_failures": 0,
+        "positive_field_drift_speeds": {
+          "minimum": 0.973308827188477,
+          "maximum": 0.9867062564487314
+        },
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.04938842179224659
+        },
+        "full_support_end_capacity_failures_on_passing_samples": 52,
+        "above_floor_end_capacity_failures_on_passing_samples": 52,
+        "maximum_end_force": 53.12923655544395,
+        "maximum_end_torque": 4.3099778462254526e-05,
+        "maximum_static_rate_parameter": 0.30081775100270136
+      },
+      "self_closed_axial_ends": {
+        "necessary_failure_samples": 52,
+        "worst_gap": {
+          "value": 0.03143321104734709,
+          "time_index": 922,
+          "label_index": 12,
+          "time": 1.1519824218749999,
+          "position": -1.9748593749999999
+        }
+      },
+      "conserved_particle_replays": {
+        "peak_speed_0.707107": {
+          "maximum_shortfall": 0.08713778199282562,
+          "violating_samples": 393,
+          "worst": {
+            "value": 0.08713778199282562,
+            "time_index": 918,
+            "label_index": 12,
+            "time": 1.1469628906249998,
+            "position": -1.9748593749999999
+          },
+          "peak_speed": 0.7071067811865475,
+          "rest_energy": {
+            "minimum": 0.0728649974681609,
+            "maximum": 0.09047174195651211
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.980000": {
+          "maximum_shortfall": 0.0625172703545448,
+          "violating_samples": 220,
+          "worst": {
+            "value": 0.0625172703545448,
+            "time_index": 918,
+            "label_index": 12,
+            "time": 1.1469628906249998,
+            "position": -1.9748593749999999
+          },
+          "peak_speed": 0.98,
+          "rest_energy": {
+            "minimum": 0.05257483042946651,
+            "maximum": 0.06527875739102978
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.999000": {
+          "maximum_shortfall": 3.3221322960054938,
+          "violating_samples": 263,
+          "worst": {
+            "value": 3.3221322960054938,
+            "time_index": 912,
+            "label_index": 15,
+            "time": 1.13943359375,
+            "position": -1.9747656249999999
+          },
+          "peak_speed": 0.999,
+          "rest_energy": {
+            "minimum": 0.05157490872960678,
+            "maximum": 0.06403721946267187
+          },
+          "maximum_charge_balance_error": 0.0
+        }
+      },
+      "passive_transverse_population": {
+        "required_initial_energy": {
+          "minimum": 0.005984208311039633,
+          "maximum": 0.032163591329482585
+        },
+        "allowed_initial_energy": {
+          "minimum": 4.5580670625908634e-05,
+          "maximum": 7.291691431394747e-05
+        },
+        "rejected_labels": 16,
+        "maximum_inventory_gap": 0.03209382333468458
+      },
+      "controlled_material_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.09706812970415137,
+          "maximum": 0.12751342583157704
+        },
+        "rejected_labels": 16,
+        "currents_and_end_hardware_cost": "zero in this optimistic test",
+        "initial_populations": [
+          [
+            7.2344098415169046e-06,
+            7.073418644947713e-06,
+            6.753450739754783e-06,
+            6.473167553470139e-06,
+            6.232083544788057e-06,
+            6.08373312816133e-06,
+            6.027006365417609e-06,
+            5.99830080207064e-06,
+            6.47255931961405e-06,
+            6.823563137351371e-06,
+            7.507462245382478e-06,
+            8.02825004120196e-06,
+            8.396483443835386e-06,
+            8.591454913063717e-06,
+            8.619881476825393e-06,
+            8.633705950715513e-06
+          ],
+          [
+            0.0026242504774254788,
+            0.0026275722206671676,
+            0.00263454109134848,
+            0.002641004477715085,
+            0.0026469664089874135,
+            0.0026460510947760355,
+            0.0026382567061675835,
+            0.0026341797381428697,
+            0.002731159005782188,
+            0.002758465172366114,
+            0.0028380720944301647,
+            0.00300668799735736,
+            0.003103934128538902,
+            0.0031643551934143342,
+            0.003188952260103976,
+            0.0032010232926211486
+          ],
+          [
+            0.00010942269734053986,
+            0.00010713105458337383,
+            0.00010255068197653598,
+            9.8532265848812e-05,
+            9.507510411757943e-05,
+            9.280095330418695e-05,
+            9.170820846125089e-05,
+            9.116134125181727e-05,
+            0.0001016651851863538,
+            0.0001081717174560268,
+            0.00012115859744320918,
+            0.000131608266461786,
+            0.00013953598959600856,
+            0.0001440798438255537,
+            0.00014524954183260118,
+            0.00014583382862789495
+          ],
+          [
+            0.0013588941795604848,
+            0.0013658205017514206,
+            0.0013796799649053709,
+            0.0013799644452777643,
+            0.0013666843119778396,
+            0.001402621430853421,
+            0.0014878142283229513,
+            0.00153042767642785,
+            0.0016529151563349914,
+            0.0016570151286953126,
+            0.0016653343913653168,
+            0.001729161541316672,
+            0.0018482359734125727,
+            0.0019348248872052564,
+            0.0019890559532289,
+            0.0020161514695154576
+          ],
+          [
+            0.044535794333709466,
+            0.0446554467452737,
+            0.04489415286391912,
+            0.04512352644105415,
+            0.0453435624667906,
+            0.04530566404529379,
+            0.045009795131251855,
+            0.04486211116124597,
+            0.04816408764156221,
+            0.04914204859428935,
+            0.05109679086819256,
+            0.05284070507259156,
+            0.054374083652781624,
+            0.055413725396147535,
+            0.0559598237942456,
+            0.056233329757669724
+          ]
+        ],
+        "minimum_component_energy": -2.7755575615628914e-17,
+        "maximum_primal_violation": 2.0816681711721685e-17,
+        "maximum_dual_stationarity_error": 5.551115123125783e-16,
+        "maximum_primal_dual_gap": 4.163336342344337e-17,
+        "maximum_positive_dual_multiplier": -0.0,
+        "minimum_dual_bound_slack": 0.0,
+        "maximum_fixed_population_error": 6.938893903907228e-18,
+        "maximum_exchange_sum_error": 5.5321415851072864e-17,
+        "maximum_passive_panel_exchange": 3.0055160336953e-14,
+        "maximum_reciprocal_bus_error": 6.938893903907228e-18,
+        "closed_control_store_capacity_gap": {
+          "minimum": 0.09852129754554423,
+          "maximum": 0.15898422960900516
+        },
+        "net_component_exchange": {
+          "inner_longitudinal_sheet": {
+            "minimum": 7.616622243286378e-13,
+            "maximum": 1.0976319232076583e-12
+          },
+          "inner_hoop_strings": {
+            "minimum": 3.236331993262571e-16,
+            "maximum": 3.947219783941039e-16
+          },
+          "outer_longitudinal_sheet": {
+            "minimum": 1.1575636542970778e-11,
+            "maximum": 1.8540342549587457e-11
+          },
+          "outer_hoop_strings": {
+            "minimum": 1.6761824657661392e-16,
+            "maximum": 2.4875297805357664e-16
+          },
+          "transverse_sheet": {
+            "minimum": 4.371747155904689e-14,
+            "maximum": 5.521725215305528e-14
+          },
+          "inner_hoop_photons": {
+            "minimum": -0.0029564946721040235,
+            "maximum": -0.0026264323958035576
+          },
+          "outer_hoop_photons": {
+            "minimum": -0.0020161657939985335,
+            "maximum": -0.0013589044352811707
+          },
+          "transverse_photons": {
+            "minimum": -0.1126370870819322,
+            "maximum": -0.0892484150409064
+          },
+          "hoop_field": {
+            "minimum": 0.00984875537227674,
+            "maximum": 0.01352749150595758
+          }
+        }
+      },
+      "all_current_hosts_free_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.07549981627076992,
+          "maximum": 0.10281476377285526
+        },
+        "rejected_labels": 16,
+        "maximum_primal_dual_gap": 2.7755575615628914e-17,
+        "scope": "Original and added current hosts and centrifugal reactions free; same fixed material and photon-control laws"
+      }
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_summary.json": "b2d558523a9fe5abbab1d4049f383dd12a2b31819a866a34eda452b34f14e118",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz": "ce01339f399650daff69f7833f79557b03f147afb345305e714440421d1b8c08",
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_states.npz": "4b285b10fd71b59069784b03403a8b906c8dba6fa4c62da3967016f35dea90cd",
+        "supporting_reports/data/containment_ensemble/second_n32_t2057_states.npz": "6f2eccc042c6c3e4dfd30a8540a5ed8d4b3c78d8f612e78f38f570f34ff83290"
+      },
+      "current_coefficient": 1.2000139578428107e-08,
+      "finite_annular_factor": 1.0100166666116617,
+      "previous_witness_current_demand": {
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.05801904233919047
+        },
+        "minimum_new_particle_energy": {
+          "minimum": 0.0,
+          "maximum": 0.14122670735639115
+        },
+        "outer_overcompression_samples": 61532,
+        "maximum_return_to_axial_current_ratio": 3.842210560900753e-05
+      },
+      "zero_added_field": {
+        "maximum_shortfall": 0.032006555614007004,
+        "violating_samples": 176,
+        "worst": {
+          "value": 0.032006555614007004,
+          "time_index": 1844,
+          "label_index": 25,
+          "time": 1.1519824218749999,
+          "position": -1.9748515625
+        }
+      },
+      "continuous_current_bound": {
+        "certified_rejected_samples": 0,
+        "necessary_coefficient_upper": 1.3417064543598461e-08,
+        "worst_product_excess": {
+          "value": -0.0009174653461039195,
+          "time_index": 1844,
+          "label_index": 22,
+          "time": 1.1519824218749999,
+          "position": -1.9748984375
+        },
+        "scope": "Independent new axial particle hosts; all speeds; free return, end and shear hardware"
+      },
+      "pointwise_current_search": {
+        "maximum_shortfall": -5.640355227654048e-06,
+        "violating_samples": 0,
+        "worst": {
+          "value": -5.640355227654048e-06,
+          "time_index": 1843,
+          "label_index": 29,
+          "time": 1.15135498046875,
+          "position": -1.9747890625
+        },
+        "passing_samples": 65824,
+        "unresolved_search_failures": 0,
+        "positive_field_drift_speeds": {
+          "minimum": 0.973308827188477,
+          "maximum": 0.9867062564487314
+        },
+        "field_energy": {
+          "minimum": 0.0,
+          "maximum": 0.0493840210215341
+        },
+        "full_support_end_capacity_failures_on_passing_samples": 176,
+        "above_floor_end_capacity_failures_on_passing_samples": 176,
+        "maximum_end_force": 53.117916217248585,
+        "maximum_end_torque": 4.3100772911285305e-05,
+        "maximum_static_rate_parameter": 0.60163659869951
+      },
+      "self_closed_axial_ends": {
+        "necessary_failure_samples": 172,
+        "worst_gap": {
+          "value": 0.03152627029933821,
+          "time_index": 1844,
+          "label_index": 25,
+          "time": 1.1519824218749999,
+          "position": -1.9748515625
+        }
+      },
+      "conserved_particle_replays": {
+        "peak_speed_0.707107": {
+          "maximum_shortfall": 0.09033459094312668,
+          "violating_samples": 1539,
+          "worst": {
+            "value": 0.09033459094312668,
+            "time_index": 1843,
+            "label_index": 29,
+            "time": 1.15135498046875,
+            "position": -1.9747890625
+          },
+          "peak_speed": 0.7071067811865475,
+          "rest_energy": {
+            "minimum": 0.07286268784169424,
+            "maximum": 0.09047460170588711
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.980000": {
+          "maximum_shortfall": 0.06517822716010657,
+          "violating_samples": 879,
+          "worst": {
+            "value": 0.06517822716010657,
+            "time_index": 1843,
+            "label_index": 29,
+            "time": 1.15135498046875,
+            "position": -1.9747890625
+          },
+          "peak_speed": 0.98,
+          "rest_energy": {
+            "minimum": 0.05257316394728633,
+            "maximum": 0.06528082080753546
+          },
+          "maximum_charge_balance_error": 0.0
+        },
+        "peak_speed_0.999000": {
+          "maximum_shortfall": 3.344243246084867,
+          "violating_samples": 1007,
+          "worst": {
+            "value": 3.344243246084867,
+            "time_index": 1832,
+            "label_index": 31,
+            "time": 1.1444531249999998,
+            "position": -1.9747578125
+          },
+          "peak_speed": 0.999,
+          "rest_energy": {
+            "minimum": 0.051573273942282886,
+            "maximum": 0.06403924363501977
+          },
+          "maximum_charge_balance_error": 0.0
+        }
+      },
+      "passive_transverse_population": {
+        "required_initial_energy": {
+          "minimum": 0.00584745367364258,
+          "maximum": 0.0322626679467868
+        },
+        "allowed_initial_energy": {
+          "minimum": 4.558058204939331e-05,
+          "maximum": 7.291704430707985e-05
+        },
+        "rejected_labels": 32,
+        "maximum_inventory_gap": 0.03219191001233159
+      },
+      "controlled_material_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.0969402700264316,
+          "maximum": 0.12781810361914742
+        },
+        "rejected_labels": 32,
+        "currents_and_end_hardware_cost": "zero in this optimistic test",
+        "initial_populations": [
+          [
+            7.234558125769876e-06,
+            7.234261335078144e-06,
+            7.1537062213902664e-06,
+            6.9932495073734665e-06,
+            6.8332659286170766e-06,
+            6.673752511437215e-06,
+            6.533630669278904e-06,
+            6.412781329669069e-06,
+            6.2922395347047426e-06,
+            6.1720036212423885e-06,
+            6.097874448253015e-06,
+            6.069575553252656e-06,
+            6.0412122209916305e-06,
+            6.012784057248754e-06,
+            5.998423121507019e-06,
+            5.998178287830867e-06,
+            6.472692097525849e-06,
+            6.47242634177788e-06,
+            6.648733023014177e-06,
+            6.996818042800067e-06,
+            7.338735729225287e-06,
+            7.674741093017768e-06,
+            7.934728055319432e-06,
+            8.121177200519099e-06,
+            8.305284922890082e-06,
+            8.487123054003582e-06,
+            8.584336088778811e-06,
+            8.59856868095912e-06,
+            8.612781963931901e-06,
+            8.626975929302364e-06,
+            8.633885750177407e-06,
+            8.633525922360429e-06
+          ],
+          [
+            0.0026243361012666163,
+            0.002624164936953938,
+            0.0026258265178808688,
+            0.002629316591626095,
+            0.0026328010243322447,
+            0.0026362798385817393,
+            0.0026395113679529977,
+            0.002642496601182475,
+            0.002645477565212764,
+            0.00264845427465232,
+            0.0026479966932313453,
+            0.0026441043672478766,
+            0.002640207175867066,
+            0.0026363050973763585,
+            0.002634265998592717,
+            0.0026340935660376075,
+            0.0027312481132525045,
+            0.002731069985563074,
+            0.0027447582864099755,
+            0.0027721027529990848,
+            0.002799173718199465,
+            0.0028977873959154395,
+            0.0029821586867262956,
+            0.0030311203924647616,
+            0.0030797521537325795,
+            0.0031280188366359795,
+            0.003158186301384432,
+            0.003170513939255964,
+            0.0031828071386513844,
+            0.0031950873750690094,
+            0.003201119615953179,
+            0.003200929361158465
+          ],
+          [
+            0.00010942291175647107,
+            0.0001094224826033326,
+            0.00010827657516672014,
+            0.0001059857052601562,
+            0.00010369551949733243,
+            0.00010140601357828347,
+            9.939683407390141e-05,
+            9.766780880791866e-05,
+            9.593922824508694e-05,
+            9.421108998049515e-05,
+            9.307408113991545e-05,
+            9.252780196437298e-05,
+            9.198142961393832e-05,
+            9.14349635184954e-05,
+            9.116151812316627e-05,
+            9.116116409878662e-05,
+            0.00010166537718043971,
+            0.00010166499290318142,
+            0.00010491942272199458,
+            0.00011142173447092215,
+            0.00011791512838468386,
+            0.00012439997320336298,
+            0.00012962421929227556,
+            0.0001335914535245125,
+            0.0001375553021081854,
+            0.0001415158689104063,
+            0.00014378740170695043,
+            0.00014437227863276368,
+            0.00014495712763784626,
+            0.00014554194871009958,
+            0.0001458340886141597,
+            0.00014583356831065537
+          ],
+          [
+            0.001358896768867283,
+            0.0013588915937352796,
+            0.0013623549026897774,
+            0.0013692858094531187,
+            0.0013762155402022966,
+            0.001383144101636824,
+            0.0013832859090409935,
+            0.001376643558216219,
+            0.001370003493258012,
+            0.0013633657005583404,
+            0.001381332670259117,
+            0.0014239139544892615,
+            0.00146651033783636,
+            0.0015091219439093057,
+            0.0015304305864496661,
+            0.0015304247703971598,
+            0.0016529182117338353,
+            0.0016529121056351663,
+            0.001654957433745264,
+            0.0016590819039584833,
+            0.0016632417555628553,
+            0.0016674352260908022,
+            0.0016993596612695184,
+            0.001758949911345912,
+            0.0018184869268089948,
+            0.0018779723135421888,
+            0.001921261621335511,
+            0.0019483859465467173,
+            0.001975501468037173,
+            0.00200260827839713,
+            0.002016154959064987,
+            0.002016147986396443
+          ],
+          [
+            0.04453564892829744,
+            0.04453594246576727,
+            0.04459576916257763,
+            0.04471512609953829,
+            0.044834479165568444,
+            0.04495382837369366,
+            0.04506851538297188,
+            0.04517853892569629,
+            0.045288556945628146,
+            0.045398569460184744,
+            0.045379621752282405,
+            0.04523170484067767,
+            0.04508377039861957,
+            0.04493581834796367,
+            0.0448619741534078,
+            0.044862251078315575,
+            0.048163926354410094,
+            0.04816425190251465,
+            0.04865325511572917,
+            0.04963080041374856,
+            0.05060817071137006,
+            0.051585372615617874,
+            0.05245731838249931,
+            0.0532240770249835,
+            0.05399076610074042,
+            0.0547573874117779,
+            0.05527720041835731,
+            0.0555502525820111,
+            0.0558233017774001,
+            0.05609634807011426,
+            0.056233100697803684,
+            0.0562335618066935
+          ]
+        ],
+        "minimum_component_energy": -2.7755575615628914e-17,
+        "maximum_primal_violation": 2.0816681711721685e-17,
+        "maximum_dual_stationarity_error": 4.440892098500626e-16,
+        "maximum_primal_dual_gap": 5.551115123125783e-17,
+        "maximum_positive_dual_multiplier": -0.0,
+        "minimum_dual_bound_slack": 0.0,
+        "maximum_fixed_population_error": 6.938893903907228e-18,
+        "maximum_exchange_sum_error": 5.74356100874196e-17,
+        "maximum_passive_panel_exchange": 3.757023670358738e-15,
+        "maximum_reciprocal_bus_error": 6.938893903907228e-18,
+        "closed_control_store_capacity_gap": {
+          "minimum": 0.09839343348009703,
+          "maximum": 0.16177230980990318
+        },
+        "net_component_exchange": {
+          "inner_longitudinal_sheet": {
+            "minimum": 1.9041226613505478e-13,
+            "maximum": 2.744126661526682e-13
+          },
+          "inner_hoop_strings": {
+            "minimum": 8.070193713879001e-17,
+            "maximum": 9.885003968903065e-17
+          },
+          "outer_longitudinal_sheet": {
+            "minimum": 2.8938057351436073e-12,
+            "maximum": 4.635253160110594e-12
+          },
+          "outer_hoop_strings": {
+            "minimum": 4.194711365017019e-17,
+            "maximum": 6.2269814628905e-17
+          },
+          "transverse_sheet": {
+            "minimum": 1.0929854951904367e-14,
+            "maximum": 1.3804944350779126e-14
+          },
+          "inner_hoop_photons": {
+            "minimum": -0.002956590174579462,
+            "maximum": -0.002626346738781578
+          },
+          "outer_hoop_photons": {
+            "minimum": -0.0020161692832074154,
+            "maximum": -0.0013589018493360189
+          },
+          "transverse_photons": {
+            "minimum": -0.11263755189652566,
+            "maximum": -0.08924812393566948
+          },
+          "hoop_field": {
+            "minimum": 0.00984814881867404,
+            "maximum": 0.013527905131861806
+          }
+        }
+      },
+      "all_current_hosts_free_evolution": {
+        "uniform_energy_deficit": {
+          "minimum": 0.0753725971481326,
+          "maximum": 0.10308444932914768
+        },
+        "rejected_labels": 32,
+        "maximum_primal_dual_gap": 4.163336342344337e-17,
+        "scope": "Original and added current hosts and centrifugal reactions free; same fixed material and photon-control laws"
+      }
+    }
+  ]
+}
