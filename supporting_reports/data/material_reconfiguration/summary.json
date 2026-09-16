@@ -1,0 +1,1332 @@
+{
+  "created_utc": "2026-09-16T22:43:55.005318+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "base_commit": "ef64956cbe1a10075b5e6b48e49920b64fe72a46",
+  "executed_sources": "Exact source snapshots and SHA-256 hashes in manifest.json",
+  "scope": "Inverse driven strain replay with fixed relaxed inventories; constitutive and sampled tensor budget gate",
+  "membrane_law_source": "https://arxiv.org/html/2409.10602v2",
+  "sheet_shear_fraction": 0.1,
+  "initial_relaxed_inventory_fraction_of_minimum_reserve": 0.25,
+  "initial_inventory_policy": "balanced maximum linear stretch; each role has a 1e-6 fraction inventory floor",
+  "continuous_interpolation": {
+    "tensile_duties": "linear per panel",
+    "macro_stretches": "log-linear per panel",
+    "material_energy": "fixed constitutive law evaluated along tensile trajectory",
+    "remaining_inventory": "target energy minus every counted component"
+  },
+  "original_fields_and_current_costs_retained": true,
+  "added_field_hosts_and_actuator_hardware_supplied": false,
+  "material_identified_in_nature": false,
+  "full_physical_containment_established": false,
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/finite_containment/first_n16_t2057_states.npz": "2dad04d1d96d6c792a8d43598297a211580a4fcdf93a011ae58f7f9191073160",
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_summary.json": "6837a730e8a59bfb1ddcc0f202c623e9dcd266c1395df45fc75af2872c4eb962",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz": "d2168378f56d0ca3d2f0e1b1e81793712a164d35c8dce88ba785856b721f451a"
+      },
+      "fixed_area_and_length_pool": {
+        "rejected_labels": 16,
+        "independent_two_time_lp_status": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "inventory_gap": {
+          "minimum": 0.757523401121188,
+          "maximum": 0.7626023619406147
+        },
+        "relaxed_all_sheet_area_ratio_lower_bound": {
+          "minimum": 20.36000048115855,
+          "maximum": 23.498456574660498
+        },
+        "worst_pair": {
+          "position": -1.9997656249999998,
+          "required_energy": 0.7975220656487209,
+          "required_time": 0.49693359374999996,
+          "allowed_energy": 0.034919703708106126,
+          "allowed_time": 0.5
+        }
+      },
+      "elastic_material_replay": {
+        "violating_samples": 0,
+        "initial_inventory_policy": "minimize the maximum linear stretch across all constituents",
+        "equal_inventory_control": {
+          "maximum_linear_stretch": 154.52686792977636,
+          "minimum_remaining_reserve": 0.0021721287317080016
+        },
+        "maximum_linear_stretch": 78.1380380685425,
+        "minimum_ideal_reserve": 0.0025083873053887186,
+        "minimum_remaining_reserve": 0.00242910023651834,
+        "conserved_relaxed_energy": {
+          "minimum": 0.0006270968263471792,
+          "maximum": 0.006217774498679496
+        },
+        "maximum_material_surcharge": 0.005875063547167167,
+        "minimum_interior_reserve": 0.024755394573811006,
+        "maximum_tensor_error": 8.881784197001252e-16,
+        "maximum_forward_constitutive_error": 1.1102230246251565e-15,
+        "maximum_configuration_reconstruction_error": 1.7763568394002505e-15,
+        "maximum_constitutive_work_integral_error": 5.551115123125783e-17,
+        "independent_work_integrals": 37,
+        "maximum_component_exchange_sum_error": 9.526816726994347e-16,
+        "maximum_retained_port_error": 9.526816726994347e-16,
+        "maximum_unmatched_routed_exchange": 1.6653345369377348e-16,
+        "maximum_interpolation_convexity_error": 2.7755575615628914e-17,
+        "maximum_gap_patch_control_speed": 0.018128258654309393,
+        "maximum_leg_patch_control_speed": 1358.9308873972332,
+        "maximum_retained_port_mean_power": 0.013264825304411696,
+        "additional_net_exchange_beyond_retained_target": 0.0,
+        "components": {
+          "inner_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 2.4168767096298272e-06,
+              "maximum": 2.664308907860704e-05
+            },
+            "energy": {
+              "minimum": 2.4168767096298272e-06,
+              "maximum": 0.006903060252498806
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.006902685407379745
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6105.552993200997
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "largest_strain_ratio": 6105.552993200997,
+            "net_shape_work": {
+              "minimum": 0.0018773936956375608,
+              "maximum": 0.002436238580027103
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.011309975684303674,
+              "maximum": 0.015350226377850993
+            },
+            "maximum_panel_mean_shape_power": 4.984823188741348,
+            "maximum_gap_patch_speed": 0.018128258654309393,
+            "maximum_leg_patch_speed": 1358.9308873972332,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.400203882686453e-07,
+              "maximum": 2.4036484117550237e-06
+            }
+          },
+          "inner_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 0.00017264718048155714,
+              "maximum": 0.0006138569753141541
+            },
+            "energy": {
+              "minimum": 0.00017264718048155714,
+              "maximum": 0.006942439762593861
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.006935766478739349
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "largest_strain_ratio": 78.1380380685425,
+            "net_shape_work": {
+              "minimum": 0.006152645359630982,
+              "maximum": 0.006424666166801456
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.011263057866043454,
+              "maximum": 0.01711507434345845
+            },
+            "maximum_panel_mean_shape_power": 4.7877806767391435,
+            "maximum_gap_patch_speed": 0.00032253637050887754,
+            "maximum_leg_patch_speed": 24.177977849478626,
+            "span_limit_for_point_one_c": {
+              "minimum": 7.86989018139573e-06,
+              "maximum": 4.375078621735309e-05
+            }
+          },
+          "outer_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 2.4352519098935962e-05,
+              "maximum": 0.00029326793320987927
+            },
+            "energy": {
+              "minimum": 2.4352519098935962e-05,
+              "maximum": 0.06966803082611729
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.06966418220090691
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6105.552993200997
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "largest_strain_ratio": 6105.552993200997,
+            "net_shape_work": {
+              "minimum": 0.018545974432163267,
+              "maximum": 0.021502179164035254
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.11517473447441562,
+              "maximum": 0.13892731902126515
+            },
+            "maximum_panel_mean_shape_power": 40.09706049091707,
+            "maximum_gap_patch_speed": 0.01470125416043258,
+            "maximum_leg_patch_speed": 1102.0357080650879,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.7266049465647365e-07,
+              "maximum": 2.844267315098386e-06
+            }
+          },
+          "outer_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 6.270968263471796e-10,
+              "maximum": 6.217774498679495e-09
+            },
+            "energy": {
+              "minimum": 6.270968263471796e-10,
+              "maximum": 6.217774498679495e-09
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 5.0306980803327406e-17
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 1.0000000532916355
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 1.0000000532916355
+            },
+            "largest_strain_ratio": 1.0000000532916355,
+            "net_shape_work": {
+              "minimum": 1.083099153160491e-21,
+              "maximum": 1.8038081458012287e-21
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.083099153160491e-21,
+              "maximum": 1.8038081458012287e-21
+            },
+            "maximum_panel_mean_shape_power": 7.163738522922736e-20,
+            "maximum_gap_patch_speed": 1.321258817501905e-10,
+            "maximum_leg_patch_speed": 3.7008053596496957e-06,
+            "span_limit_for_point_one_c": {
+              "minimum": 19.135932922643338,
+              "maximum": 19.145186678443995
+            }
+          },
+          "annular_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 1.8921531730278532e-05,
+              "maximum": 0.00025561453361822023
+            },
+            "energy": {
+              "minimum": 1.8921531730278532e-05,
+              "maximum": 0.05864570230635108
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.05861968943285664
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6105.552993200997
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "largest_strain_ratio": 6105.552993200997,
+            "net_shape_work": {
+              "minimum": 0.05240584366383209,
+              "maximum": 0.05891337327203417
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.08577265149136934,
+              "maximum": 0.09676418355291412
+            },
+            "maximum_panel_mean_shape_power": 20.01619605855839,
+            "maximum_gap_patch_speed": 0.009447699062942867,
+            "maximum_leg_patch_speed": 708.2186058954408,
+            "span_limit_for_point_one_c": {
+              "minimum": 2.686713239382295e-07,
+              "maximum": 4.975512762237282e-06
+            }
+          },
+          "auxiliary_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0004087580912299514,
+              "maximum": 0.00502838987933033
+            },
+            "energy": {
+              "minimum": 0.0004087580912299514,
+              "maximum": 1.1554424335715348
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 1.1550493183292896
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6105.552993200997
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 78.1380380685425
+            },
+            "largest_strain_ratio": 6105.552993200997,
+            "net_shape_work": {
+              "minimum": -0.5394976467066535,
+              "maximum": -0.5321510731477135
+            },
+            "gross_positive_shape_work": {
+              "minimum": 4.383659023261144,
+              "maximum": 4.837098481919988
+            },
+            "maximum_panel_mean_shape_power": 373.89730641000943,
+            "maximum_gap_patch_speed": 0.0005348192151995049,
+            "maximum_leg_patch_speed": 14.99899582157659,
+            "span_limit_for_point_one_c": {
+              "minimum": 4.718273145218219e-06,
+              "maximum": 3.771654305114625e-05
+            }
+          }
+        }
+      },
+      "inherited_open_gates": {
+        "current_coefficient": 2.544146439302263e-08,
+        "independent_new_current_hosts_certified_rejections": 4,
+        "current_hosts_reoptimized_in_this_replay": false,
+        "finite_junctions_and_end_torques_closed": false,
+        "coupled_reconfiguration_embedding_solved": false,
+        "kinetic_actuator_stress_counted": false,
+        "new_hardware_energy_counted": false,
+        "physical_containment_established": false
+      }
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/finite_containment/first_n32_t4113_states.npz": "d37b6b04ded0736a3b5b806130bd197dc864a7507e5089872eabdcb9f088c077",
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_summary.json": "63c6934878bf33831dee0738e1b40abcb214c7902d0ae5ed3181b3577656104a",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz": "ae7938721aaa156390eb9026dfc1a8728ef8b8bccfb9830403794079b527ccad"
+      },
+      "fixed_area_and_length_pool": {
+        "rejected_labels": 32,
+        "independent_two_time_lp_status": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "inventory_gap": {
+          "minimum": 0.7573353457339695,
+          "maximum": 0.7626830047344557
+        },
+        "relaxed_all_sheet_area_ratio_lower_bound": {
+          "minimum": 20.34935843447593,
+          "maximum": 23.528272398744015
+        },
+        "worst_pair": {
+          "position": -1.9997578125,
+          "required_energy": 0.7976285455528819,
+          "required_time": 0.49693359374999996,
+          "allowed_energy": 0.03494554081842615,
+          "allowed_time": 0.5
+        }
+      },
+      "elastic_material_replay": {
+        "violating_samples": 0,
+        "initial_inventory_policy": "minimize the maximum linear stretch across all constituents",
+        "equal_inventory_control": {
+          "maximum_linear_stretch": 160.24512476299154,
+          "minimum_remaining_reserve": 0.0020204008419433934
+        },
+        "maximum_linear_stretch": 81.50603761317231,
+        "minimum_ideal_reserve": 0.0023330344591413095,
+        "minimum_remaining_reserve": 0.0022606506575488508,
+        "conserved_relaxed_energy": {
+          "minimum": 0.0005832586147853274,
+          "maximum": 0.006287982347206896
+        },
+        "maximum_material_surcharge": 0.005827531737861309,
+        "minimum_interior_reserve": 0.021662305133498212,
+        "maximum_tensor_error": 8.881784197001252e-16,
+        "maximum_forward_constitutive_error": 1.1102230246251565e-15,
+        "maximum_configuration_reconstruction_error": 1.7763568394002505e-15,
+        "maximum_constitutive_work_integral_error": 1.3877787807814457e-16,
+        "independent_work_integrals": 37,
+        "maximum_component_exchange_sum_error": 1.1163487668996996e-15,
+        "maximum_retained_port_error": 1.1163487668996996e-15,
+        "maximum_unmatched_routed_exchange": 8.326672684688674e-17,
+        "maximum_interpolation_convexity_error": 2.7755575615628914e-17,
+        "maximum_gap_patch_control_speed": 0.03941616641071604,
+        "maximum_leg_patch_control_speed": 2954.70056021372,
+        "maximum_retained_port_mean_power": 0.013266825427670083,
+        "additional_net_exchange_beyond_retained_target": 0.0,
+        "components": {
+          "inner_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 2.2213895601167146e-06,
+              "maximum": 2.6941807263210554e-05
+            },
+            "energy": {
+              "minimum": 2.2213895601167146e-06,
+              "maximum": 0.006903545914128706
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.006903185174706032
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6643.23416739986
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "largest_strain_ratio": 6643.23416739986,
+            "net_shape_work": {
+              "minimum": 0.001878669569550527,
+              "maximum": 0.0024374790424311252
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.011311510889835216,
+              "maximum": 0.015355967164505527
+            },
+            "maximum_panel_mean_shape_power": 9.963534714896072,
+            "maximum_gap_patch_speed": 0.03941616641071604,
+            "maximum_leg_patch_speed": 2954.70056021372,
+            "span_limit_for_point_one_c": {
+              "minimum": 6.440088885727846e-08,
+              "maximum": 1.2218026047943801e-06
+            }
+          },
+          "inner_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 0.0001655058313726703,
+              "maximum": 0.0006150329576695457
+            },
+            "energy": {
+              "minimum": 0.0001655058313726703,
+              "maximum": 0.0069429695100266375
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.006935969928842091
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "largest_strain_ratio": 81.50603761317231,
+            "net_shape_work": {
+              "minimum": 0.006134622596403037,
+              "maximum": 0.006426433470733105
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.011251853845732232,
+              "maximum": 0.017127398848206986
+            },
+            "maximum_panel_mean_shape_power": 9.5828499808387,
+            "maximum_gap_patch_speed": 0.0006728654983064343,
+            "maximum_leg_patch_speed": 50.43910267879319,
+            "span_limit_for_point_one_c": {
+              "minimum": 3.7725758841635086e-06,
+              "maximum": 2.2040052937132175e-05
+            }
+          },
+          "outer_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 2.2389810054714955e-05,
+              "maximum": 0.0002942343672903168
+            },
+            "energy": {
+              "minimum": 2.2389810054714955e-05,
+              "maximum": 0.06966804831334732
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.06966430959839233
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6643.23416739986
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "largest_strain_ratio": 6643.23416739986,
+            "net_shape_work": {
+              "minimum": 0.018551918075916718,
+              "maximum": 0.021506338291786532
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.11526649477611862,
+              "maximum": 0.13896468159748043
+            },
+            "maximum_panel_mean_shape_power": 80.14694871744025,
+            "maximum_gap_patch_speed": 0.031957057175776224,
+            "maximum_leg_patch_speed": 2395.5534832118287,
+            "span_limit_for_point_one_c": {
+              "minimum": 7.943272555523907e-08,
+              "maximum": 1.4463289851721919e-06
+            }
+          },
+          "outer_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 5.832586147853273e-10,
+              "maximum": 6.2879823472069e-09
+            },
+            "energy": {
+              "minimum": 5.832586147853273e-10,
+              "maximum": 6.2879823472069e-09
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 7.719519468096792e-17
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 1.0000000825264692
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 1.0000000825264692
+            },
+            "largest_strain_ratio": 1.0000000825264692,
+            "net_shape_work": {
+              "minimum": 1.0220382011335777e-21,
+              "maximum": 2.0093740436299353e-21
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.0220382011335777e-21,
+              "maximum": 2.0093740436299353e-21
+            },
+            "maximum_panel_mean_shape_power": 9.310678209667847e-20,
+            "maximum_gap_patch_speed": 1.3220993494454925e-10,
+            "maximum_leg_patch_speed": 3.7014030721345397e-06,
+            "span_limit_for_point_one_c": {
+              "minimum": 19.12417011089569,
+              "maximum": 19.138528908978834
+            }
+          },
+          "annular_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 1.739011663167969e-05,
+              "maximum": 0.00025646773627200915
+            },
+            "energy": {
+              "minimum": 1.739011663167969e-05,
+              "maximum": 0.05864583163794449
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.0586197733165637
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6643.23416739986
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "largest_strain_ratio": 6643.23416739986,
+            "net_shape_work": {
+              "minimum": 0.05240433944567058,
+              "maximum": 0.05891440330447963
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.0857625377483258,
+              "maximum": 0.09676712656498566
+            },
+            "maximum_panel_mean_shape_power": 40.03371555074185,
+            "maximum_gap_patch_speed": 0.020558509633836774,
+            "maximum_leg_patch_speed": 1541.0996416876858,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.2347374383688605e-07,
+              "maximum": 2.5251048369692792e-06
+            }
+          },
+          "auxiliary_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0003757508839075309,
+              "maximum": 0.00509541136751682
+            },
+            "energy": {
+              "minimum": 0.0003757508839075309,
+              "maximum": 1.1556671480744964
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 1.15527779825862
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 6643.23416739986
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 81.50603761317231
+            },
+            "largest_strain_ratio": 6643.23416739986,
+            "net_shape_work": {
+              "minimum": -0.5395329102088758,
+              "maximum": -0.5321413252217297
+            },
+            "gross_positive_shape_work": {
+              "minimum": 4.3835075717286776,
+              "maximum": 4.8600298157833475
+            },
+            "maximum_panel_mean_shape_power": 373.9715600792263,
+            "maximum_gap_patch_speed": 0.0006065277135141546,
+            "maximum_leg_patch_speed": 17.00199866096099,
+            "span_limit_for_point_one_c": {
+              "minimum": 4.160595244069827e-06,
+              "maximum": 3.171398659667523e-05
+            }
+          }
+        }
+      },
+      "inherited_open_gates": {
+        "current_coefficient": 2.544146439302263e-08,
+        "independent_new_current_hosts_certified_rejections": 10,
+        "current_hosts_reoptimized_in_this_replay": false,
+        "finite_junctions_and_end_torques_closed": false,
+        "coupled_reconfiguration_embedding_solved": false,
+        "kinetic_actuator_stress_counted": false,
+        "new_hardware_energy_counted": false,
+        "physical_containment_established": false
+      }
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/finite_containment/second_n16_t1029_states.npz": "f584d4252b0748e9b6549e8230b1eb06df3c73d764ca05e6add25941491b1501",
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_summary.json": "00ae7ad3d2096e35b8458638c3cb0b937d0ca6e8b7770693cc2518ed3f0538e7",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz": "8379aceb2e2794587b1f3b81a8ff7e9a42f8ddbaa390767550db81ed5ba810bf"
+      },
+      "fixed_area_and_length_pool": {
+        "rejected_labels": 16,
+        "independent_two_time_lp_status": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "inventory_gap": {
+          "minimum": 0.5038152040631462,
+          "maximum": 0.5194478973705867
+        },
+        "relaxed_all_sheet_area_ratio_lower_bound": {
+          "minimum": 9.899687487021588,
+          "maximum": 26.66912580578188
+        },
+        "worst_pair": {
+          "position": -1.974984375,
+          "required_energy": 0.5460892650117476,
+          "required_time": 1.2799804687499998,
+          "allowed_energy": 0.02664136764116091,
+          "allowed_time": 0.037646484375
+        }
+      },
+      "elastic_material_replay": {
+        "violating_samples": 0,
+        "initial_inventory_policy": "minimize the maximum linear stretch across all constituents",
+        "equal_inventory_control": {
+          "maximum_linear_stretch": 43.03624837197077,
+          "minimum_remaining_reserve": 0.011775119010482905
+        },
+        "maximum_linear_stretch": 20.110185706858232,
+        "minimum_ideal_reserve": 0.014279873959898381,
+        "minimum_remaining_reserve": 0.011255332269863336,
+        "conserved_relaxed_energy": {
+          "minimum": 0.0035699684899745945,
+          "maximum": 0.009524503469897633
+        },
+        "maximum_material_surcharge": 0.008938588233933608,
+        "minimum_interior_reserve": 0.01921606164531025,
+        "maximum_tensor_error": 2.220446049250313e-16,
+        "maximum_forward_constitutive_error": 3.3306690738754696e-16,
+        "maximum_configuration_reconstruction_error": 8.881784197001252e-16,
+        "maximum_constitutive_work_integral_error": 2.7755575615628914e-17,
+        "independent_work_integrals": 37,
+        "maximum_component_exchange_sum_error": 2.622414004699314e-16,
+        "maximum_retained_port_error": 2.622414004699314e-16,
+        "maximum_unmatched_routed_exchange": 5.551115123125783e-17,
+        "maximum_interpolation_convexity_error": 4.336808689942018e-19,
+        "maximum_gap_patch_control_speed": 0.000778841299744795,
+        "maximum_leg_patch_control_speed": 57.483641972685746,
+        "maximum_retained_port_mean_power": 0.010181749950036689,
+        "additional_net_exchange_beyond_retained_target": 0.0,
+        "components": {
+          "inner_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 1.566663976563734e-05,
+              "maximum": 4.403190821464136e-05
+            },
+            "energy": {
+              "minimum": 1.566663976563734e-05,
+              "maximum": 0.002986482989859998
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.0029818164753370514
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 404.41956916432514
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "largest_strain_ratio": 404.41956916432514,
+            "net_shape_work": {
+              "minimum": 0.00020801359653250953,
+              "maximum": 0.0002534272353179527
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.009083962884758512,
+              "maximum": 0.011793424573590828
+            },
+            "maximum_panel_mean_shape_power": 1.1170885717216334,
+            "maximum_gap_patch_speed": 0.000778841299744795,
+            "maximum_leg_patch_speed": 57.483641972685746,
+            "span_limit_for_point_one_c": {
+              "minimum": 3.755759945277194e-06,
+              "maximum": 9.89389562471816e-06
+            }
+          },
+          "inner_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 0.000287613049654619,
+              "maximum": 0.0005252075963020535
+            },
+            "energy": {
+              "minimum": 0.000287613049654619,
+              "maximum": 0.0032429277807033024
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.003200115243494188
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "largest_strain_ratio": 20.110185706858232,
+            "net_shape_work": {
+              "minimum": 0.002288631659147921,
+              "maximum": 0.0025943278514199163
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.00971190844726466,
+              "maximum": 0.012715109159781763
+            },
+            "maximum_panel_mean_shape_power": 0.973445557314302,
+            "maximum_gap_patch_speed": 5.182775727357198e-05,
+            "maximum_leg_patch_speed": 3.817102852796183,
+            "span_limit_for_point_one_c": {
+              "minimum": 5.610534518247563e-05,
+              "maximum": 9.290154925351359e-05
+            }
+          },
+          "outer_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.00023815980137409433,
+              "maximum": 0.0006980542362724447
+            },
+            "energy": {
+              "minimum": 0.00023815980137409433,
+              "maximum": 0.04814750826768466
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.04809327382360033
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 404.41956916432514
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "largest_strain_ratio": 404.41956916432514,
+            "net_shape_work": {
+              "minimum": 0.0015927642388476812,
+              "maximum": 0.0032742322661286783
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.15558667431168957,
+              "maximum": 0.20009885826462978
+            },
+            "maximum_panel_mean_shape_power": 11.965814867355991,
+            "maximum_gap_patch_speed": 0.0005510675073585192,
+            "maximum_leg_patch_speed": 39.700050050843366,
+            "span_limit_for_point_one_c": {
+              "minimum": 5.277764017788862e-06,
+              "maximum": 1.4646785336123408e-05
+            }
+          },
+          "outer_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 3.569968489974595e-09,
+              "maximum": 9.524503469897638e-09
+            },
+            "energy": {
+              "minimum": 3.569968489974595e-09,
+              "maximum": 9.524503469897638e-09
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 2.42861286636753e-17
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 1.0000000054270275
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 1.0000000054270275
+            },
+            "largest_strain_ratio": 1.0000000054270275,
+            "net_shape_work": {
+              "minimum": 1.3783652661394825e-21,
+              "maximum": 4.550723716171985e-21
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.3783652661394825e-21,
+              "maximum": 4.550723716171985e-21
+            },
+            "maximum_panel_mean_shape_power": 1.0363475249134934e-19,
+            "maximum_gap_patch_speed": 1.4778725068713593e-10,
+            "maximum_leg_patch_speed": 3.853867970497154e-06,
+            "span_limit_for_point_one_c": {
+              "minimum": 19.681647217892237,
+              "maximum": 19.691984304730305
+            }
+          },
+          "annular_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0002915338274584489,
+              "maximum": 0.000835066025633496
+            },
+            "energy": {
+              "minimum": 0.00029153382745844894,
+              "maximum": 0.05663871001927555
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.05655020947741299
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 404.41956916432514
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "largest_strain_ratio": 404.41956916432514,
+            "net_shape_work": {
+              "minimum": 0.044671407024561786,
+              "maximum": 0.056328527611572275
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.11896145666410726,
+              "maximum": 0.1471492357797176
+            },
+            "maximum_panel_mean_shape_power": 5.923263035564297,
+            "maximum_gap_patch_speed": 0.00021970732301169639,
+            "maximum_leg_patch_speed": 16.246883159388428,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.3313856741672627e-05,
+              "maximum": 3.4977485208151734e-05
+            }
+          },
+          "auxiliary_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0027249109214243636,
+              "maximum": 0.007422134178971528
+            },
+            "energy": {
+              "minimum": 0.0027249109214243636,
+              "maximum": 0.5034094222286368
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.5026228222755166
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 404.41956916432514
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.110185706858232
+            },
+            "largest_strain_ratio": 404.41956916432514,
+            "net_shape_work": {
+              "minimum": 0.24219773345475878,
+              "maximum": 0.2643063947436166
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.298041654567388,
+              "maximum": 1.458082292805666
+            },
+            "maximum_panel_mean_shape_power": 43.22119497396595,
+            "maximum_gap_patch_speed": 0.00016875513452774447,
+            "maximum_leg_patch_speed": 12.46176592907836,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.7324495365217513e-05,
+              "maximum": 0.00015069498946007333
+            }
+          }
+        }
+      },
+      "inherited_open_gates": {
+        "current_coefficient": 1.2000139578428107e-08,
+        "independent_new_current_hosts_certified_rejections": 0,
+        "current_hosts_reoptimized_in_this_replay": false,
+        "finite_junctions_and_end_torques_closed": false,
+        "coupled_reconfiguration_embedding_solved": false,
+        "kinetic_actuator_stress_counted": false,
+        "new_hardware_energy_counted": false,
+        "physical_containment_established": false
+      }
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/finite_containment/second_n32_t2057_states.npz": "548a6c9ae0222bcded339b890c960b3702d58998011509926b39e93462d3e2c5",
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_summary.json": "b2d558523a9fe5abbab1d4049f383dd12a2b31819a866a34eda452b34f14e118",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz": "ce01339f399650daff69f7833f79557b03f147afb345305e714440421d1b8c08"
+      },
+      "fixed_area_and_length_pool": {
+        "rejected_labels": 32,
+        "independent_two_time_lp_status": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "inventory_gap": {
+          "minimum": 0.5026704144378848,
+          "maximum": 0.5205479879192587
+        },
+        "relaxed_all_sheet_area_ratio_lower_bound": {
+          "minimum": 9.705612503078164,
+          "maximum": 26.765583028631156
+        },
+        "worst_pair": {
+          "position": -1.9749921875,
+          "required_energy": 0.5460588032109929,
+          "required_time": 1.2799804687499998,
+          "allowed_energy": 0.02551081529173412,
+          "allowed_time": 0.037646484375
+        }
+      },
+      "elastic_material_replay": {
+        "violating_samples": 0,
+        "initial_inventory_policy": "minimize the maximum linear stretch across all constituents",
+        "equal_inventory_control": {
+          "maximum_linear_stretch": 44.78969439693852,
+          "minimum_remaining_reserve": 0.010663644017015677
+        },
+        "maximum_linear_stretch": 20.90881556814256,
+        "minimum_ideal_reserve": 0.012939642832493381,
+        "minimum_remaining_reserve": 0.01017115982143349,
+        "conserved_relaxed_energy": {
+          "minimum": 0.0032349107081233426,
+          "maximum": 0.010204025844777209
+        },
+        "maximum_material_surcharge": 0.00960169427746546,
+        "minimum_interior_reserve": 0.014997310502055996,
+        "maximum_tensor_error": 2.220446049250313e-16,
+        "maximum_forward_constitutive_error": 3.3306690738754696e-16,
+        "maximum_configuration_reconstruction_error": 8.881784197001252e-16,
+        "maximum_constitutive_work_integral_error": 1.805196617188365e-17,
+        "independent_work_integrals": 37,
+        "maximum_component_exchange_sum_error": 2.767968146355493e-16,
+        "maximum_retained_port_error": 2.767968146355493e-16,
+        "maximum_unmatched_routed_exchange": 8.326672684688674e-17,
+        "maximum_interpolation_convexity_error": 5.551115123125783e-17,
+        "maximum_gap_patch_control_speed": 0.0016962820896240668,
+        "maximum_leg_patch_control_speed": 117.97859170443333,
+        "maximum_retained_port_mean_power": 0.01025092130946695,
+        "additional_net_exchange_beyond_retained_target": 0.0,
+        "components": {
+          "inner_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 1.3765205578202429e-05,
+              "maximum": 4.725891639324104e-05
+            },
+            "energy": {
+              "minimum": 1.3765205578202429e-05,
+              "maximum": 0.0029867475911394634
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.0029819146694865066
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 437.17856846260077
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "largest_strain_ratio": 437.17856846260077,
+            "net_shape_work": {
+              "minimum": 0.00021042242969267254,
+              "maximum": 0.00025266379720664854
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.009093534230732303,
+              "maximum": 0.01181300266249145
+            },
+            "maximum_panel_mean_shape_power": 2.2290087879153138,
+            "maximum_gap_patch_speed": 0.0016962820896240668,
+            "maximum_leg_patch_speed": 117.97859170443333,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.7135479041736177e-06,
+              "maximum": 5.31555578276747e-06
+            }
+          },
+          "inner_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 0.0002603682484764629,
+              "maximum": 0.0005443711289383599
+            },
+            "energy": {
+              "minimum": 0.0002603682484764629,
+              "maximum": 0.0032459937193785138
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.003200211001773113
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "largest_strain_ratio": 20.90881556814256,
+            "net_shape_work": {
+              "minimum": 0.0022878344728580356,
+              "maximum": 0.0025989713580348724
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.009713486098279659,
+              "maximum": 0.012778032682804908
+            },
+            "maximum_panel_mean_shape_power": 1.9511614985236285,
+            "maximum_gap_patch_speed": 0.0001142004274178489,
+            "maximum_leg_patch_speed": 7.756577795336843,
+            "span_limit_for_point_one_c": {
+              "minimum": 2.545227443788244e-05,
+              "maximum": 4.815347699994647e-05
+            }
+          },
+          "outer_longitudinal_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.00022921963548905327,
+              "maximum": 0.0007499658411408592
+            },
+            "energy": {
+              "minimum": 0.00022921963548905327,
+              "maximum": 0.04820053087845158
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.04814654641449244
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 437.17856846260077
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "largest_strain_ratio": 437.17856846260077,
+            "net_shape_work": {
+              "minimum": 0.0015870581657521417,
+              "maximum": 0.003275821297850751
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.15546083036982633,
+              "maximum": 0.20028717316309547
+            },
+            "maximum_panel_mean_shape_power": 20.303529687627556,
+            "maximum_gap_patch_speed": 0.0009540470130160508,
+            "maximum_leg_patch_speed": 58.2974935716637,
+            "span_limit_for_point_one_c": {
+              "minimum": 3.04991248321209e-06,
+              "maximum": 1.1192840176590955e-05
+            }
+          },
+          "outer_hoop_string": {
+            "relaxed_inventory": {
+              "minimum": 3.234910708123345e-09,
+              "maximum": 1.0204025844777212e-08
+            },
+            "energy": {
+              "minimum": 3.234910708123345e-09,
+              "maximum": 1.0204025844777212e-08
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 3.469446951953614e-17
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 1.0000000085622969
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 1.0000000085622969
+            },
+            "largest_strain_ratio": 1.0000000085622969,
+            "net_shape_work": {
+              "minimum": 1.6948642292205783e-21,
+              "maximum": 3.3489896581622454e-21
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.6948642292205783e-21,
+              "maximum": 3.3489896581622454e-21
+            },
+            "maximum_panel_mean_shape_power": 1.6561312690661988e-19,
+            "maximum_gap_patch_speed": 1.479741458294101e-10,
+            "maximum_leg_patch_speed": 3.85496324882722e-06,
+            "span_limit_for_point_one_c": {
+              "minimum": 19.657058631569644,
+              "maximum": 19.667716465793852
+            }
+          },
+          "annular_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0002460006778808955,
+              "maximum": 0.0008962994432207785
+            },
+            "energy": {
+              "minimum": 0.0002460006778808955,
+              "maximum": 0.05664582278408248
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.05655043972285018
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 437.17856846260077
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "largest_strain_ratio": 437.17856846260077,
+            "net_shape_work": {
+              "minimum": 0.04466914780313732,
+              "maximum": 0.056382894353437976
+            },
+            "gross_positive_shape_work": {
+              "minimum": 0.11895246505713744,
+              "maximum": 0.14736606564116567
+            },
+            "maximum_panel_mean_shape_power": 10.264005882383444,
+            "maximum_gap_patch_speed": 0.0003852585653177417,
+            "maximum_leg_patch_speed": 28.42162722066623,
+            "span_limit_for_point_one_c": {
+              "minimum": 7.5923281523576975e-06,
+              "maximum": 3.028175312332049e-05
+            }
+          },
+          "auxiliary_transverse_sheet": {
+            "relaxed_inventory": {
+              "minimum": 0.0024740618149093094,
+              "maximum": 0.007966120311058126
+            },
+            "energy": {
+              "minimum": 0.00247406181490931,
+              "maximum": 0.5034561193024487
+            },
+            "tensile_duty": {
+              "minimum": 0.0,
+              "maximum": 0.5026373045510784
+            },
+            "strain": {
+              "minimum": 1.0,
+              "maximum": 437.17856846260077
+            },
+            "linear_stretch": {
+              "minimum": 1.0,
+              "maximum": 20.90881556814256
+            },
+            "largest_strain_ratio": 437.17856846260077,
+            "net_shape_work": {
+              "minimum": 0.24186126923914514,
+              "maximum": 0.26442088542883124
+            },
+            "gross_positive_shape_work": {
+              "minimum": 1.3144316042942177,
+              "maximum": 1.4750770299646105
+            },
+            "maximum_panel_mean_shape_power": 83.26951964475909,
+            "maximum_gap_patch_speed": 0.0002618837470325043,
+            "maximum_leg_patch_speed": 19.34598341672789,
+            "span_limit_for_point_one_c": {
+              "minimum": 1.116323881622216e-05,
+              "maximum": 9.871958478738277e-05
+            }
+          }
+        }
+      },
+      "inherited_open_gates": {
+        "current_coefficient": 1.2000139578428107e-08,
+        "independent_new_current_hosts_certified_rejections": 0,
+        "current_hosts_reoptimized_in_this_replay": false,
+        "finite_junctions_and_end_torques_closed": false,
+        "coupled_reconfiguration_embedding_solved": false,
+        "kinetic_actuator_stress_counted": false,
+        "new_hardware_energy_counted": false,
+        "physical_containment_established": false
+      }
+    }
+  ]
+}

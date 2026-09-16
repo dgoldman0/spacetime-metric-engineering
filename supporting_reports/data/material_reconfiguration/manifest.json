@@ -1,0 +1,24 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_material_reconfiguration.py": "bb41d38f83ee2a5129f17c41466647b1bcf35bed6d0f94d179d4d657bb82ea5a",
+    "toolkit/adm_harness_cli/adm_harness/material_reconfiguration.py": "75d0f5e858056fd6f358d1824863658f3cf21571cd9dc03805747cdd5487a659",
+    "toolkit/adm_harness_cli/adm_harness/finite_containment.py": "52fe82e4ee99710b03a59b3454748b849b69fbc3f47334d5312d36a5b049f295",
+    "toolkit/adm_harness_cli/adm_harness/containment_ensemble.py": "fea5ab437080a02ceb0ef29eb0b321d621b1f74cf54a4d7cf9f7e55d74ae91b7",
+    "toolkit/adm_harness_cli/adm_harness/magnetic_load_balance.py": "611554ed15f4393b0f59cfdf1a1b12c247de0776430c12e46b561a4871ed1512",
+    "toolkit/adm_harness_cli/tests/test_material_reconfiguration.py": "82b980d337368c06375c55decc34790a11a7b6c2fd44a78d0ce6de99653f49ac"
+  },
+  "parent_manifest_sha256": "08bf5e50b7a0c555b624b04380a451b229c2f85244367c3c9a80d80c2f246922",
+  "output_sha256": {
+    "execution_material_reconfiguration.py": "75d0f5e858056fd6f358d1824863658f3cf21571cd9dc03805747cdd5487a659",
+    "first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f",
+    "first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d",
+    "execution_test_material_reconfiguration.py": "82b980d337368c06375c55decc34790a11a7b6c2fd44a78d0ce6de99653f49ac",
+    "execution_containment_ensemble.py": "fea5ab437080a02ceb0ef29eb0b321d621b1f74cf54a4d7cf9f7e55d74ae91b7",
+    "second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254",
+    "summary.json": "c84749cd0c24bfc1229aa61054930078f535ac97e899e9e121891820f7996281",
+    "execution_finite_containment.py": "52fe82e4ee99710b03a59b3454748b849b69fbc3f47334d5312d36a5b049f295",
+    "execution_audit_material_reconfiguration.py": "bb41d38f83ee2a5129f17c41466647b1bcf35bed6d0f94d179d4d657bb82ea5a",
+    "second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278",
+    "execution_magnetic_load_balance.py": "611554ed15f4393b0f59cfdf1a1b12c247de0776430c12e46b561a4871ed1512"
+  }
+}
