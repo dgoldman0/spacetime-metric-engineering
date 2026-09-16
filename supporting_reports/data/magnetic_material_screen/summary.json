@@ -1,0 +1,345 @@
+{
+  "created_utc": "2026-09-16T20:19:34.694998+00:00",
+  "workers": 4,
+  "scope": "Fixed saved common jacket; constitutive rejection and unit conversions",
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_magnetic_material_candidates.py": "2ebaed2145a8f13cd00516d4a7ef900497bd259c4f2e7e03a3d097991f3b03b8",
+    "toolkit/adm_harness_cli/adm_harness/magnetic_load_balance.py": "611554ed15f4393b0f59cfdf1a1b12c247de0776430c12e46b561a4871ed1512",
+    "supporting_reports/data/magnetic_geometry/manifest.json": "cbbb46837ebd7778efb1deade9f700ce14d329c6def26073d72ba692e93089a4"
+  },
+  "speed_of_light_m_per_s": 299792458.0,
+  "literature_specific_strength_conversions": {
+    "graphene_intrinsic_sheet": {
+      "specific_strength_J_per_kg": 55263157.89473684,
+      "strength_over_rest_energy_density": 6.148855572927891e-10
+    },
+    "carbon_plate_nanolattice_2020": {
+      "specific_strength_J_per_kg": 3750000.0,
+      "strength_over_rest_energy_density": 4.172437710201069e-11
+    },
+    "optimized_carbon_nanolattice_2025": {
+      "specific_strength_J_per_kg": 2030000.0,
+      "strength_over_rest_energy_density": 2.2586796137888454e-11
+    },
+    "continuous_carbon_fiber_lattice_2026": {
+      "specific_strength_J_per_kg": 782000.0,
+      "strength_over_rest_energy_density": 8.700923438339296e-12
+    }
+  },
+  "rigid_membrane_algebraic_example": {
+    "source": "https://arxiv.org/html/2409.10602v1#S3.SS1",
+    "epsilon": 0.8,
+    "inverse_axial_stretch_squared": 6.0,
+    "inverse_hoop_stretch_squared": 0.16666666666666666,
+    "density_over_reference": 2.666666666666667,
+    "axial_pressure_over_density": 0.875,
+    "hoop_pressure_over_density": -0.875,
+    "full_containment_pass": false
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "time_samples": 2057,
+      "spatial_samples": 16,
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_summary.json": "6837a730e8a59bfb1ddcc0f202c623e9dcd266c1395df45fc75af2872c4eb962",
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_states.npz": "e8939e474a64615d5221a2688659240fd3dad59d0adba37dcbbaf89031aa3499",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz": "d2168378f56d0ca3d2f0e1b1e81793712a164d35c8dce88ba785856b721f451a"
+      },
+      "current_coefficient": 2.544146439302263e-08,
+      "minimum_stress_fraction": 0.8055179151706398,
+      "closed_jacket_energy_only_lower_bound": {
+        "time": 1.285,
+        "position": -1.9999531249999998,
+        "value": 0.032268174564877315,
+        "time_index": 2056,
+        "position_index": 9
+      },
+      "saved_witness_strength_fraction": 0.85,
+      "saved_witness_boundaries": {
+        "inner": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6473560661310297,
+            "maximum": 0.8242437837278043
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.002672091862422043,
+            "maximum": 0.834636642925357
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.458753696989945
+        },
+        "outer": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6473560661310298,
+            "maximum": 0.8242437837278042
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0013167594962297815,
+            "maximum": 0.8346366429253571
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.153202865429975
+        }
+      },
+      "tensor_reconstruction_error": 2.7755575615628914e-17,
+      "saved_witness_maximum_support_shortfall": -5.286391433987486e-05,
+      "additive_class_rejection": {
+        "law": "axial_pressure + hoop_tension <= sleeve_energy_density",
+        "integrated_gap": {
+          "minimum": -3.2060313299943375,
+          "maximum": 0.018246406801505417
+        },
+        "positive_gap_tolerance": 1e-12,
+        "violating_samples": 6,
+        "violating_labels": 6,
+        "worst_sample": {
+          "time_index": 800,
+          "position_index": 14,
+          "time": 0.5,
+          "position": -1.999796875,
+          "integrated_gap": 0.018246406801505417,
+          "original_facets": [
+            -0.0016131178813440158,
+            -9.717896680925403e-05,
+            -0.103769101301638
+          ],
+          "hoop": 0.0007579546158665614,
+          "residual_target": [
+            0.03515979938326375,
+            0.03455730744494291,
+            -0.0005053129715115874
+          ],
+          "radial_field_floor": 0.0,
+          "independent_lp_status": 2
+        }
+      }
+    },
+    {
+      "label": "first_n32_t4113",
+      "time_samples": 4113,
+      "spatial_samples": 32,
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_summary.json": "63c6934878bf33831dee0738e1b40abcb214c7902d0ae5ed3181b3577656104a",
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_states.npz": "887224db15d7e63994674b5a641e8f72c1d46a7ec5720c1096d54e1c126de4b9",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz": "ae7938721aaa156390eb9026dfc1a8728ef8b8bccfb9830403794079b527ccad"
+      },
+      "current_coefficient": 2.544146439302263e-08,
+      "minimum_stress_fraction": 0.8065478322096169,
+      "closed_jacket_energy_only_lower_bound": {
+        "time": 1.285,
+        "position": -1.9999453125,
+        "value": 0.03226953743043755,
+        "time_index": 4112,
+        "position_index": 19
+      },
+      "saved_witness_strength_fraction": 0.85,
+      "saved_witness_boundaries": {
+        "inner": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6474283768834418,
+            "maximum": 0.8248611715807325
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0026713421414517077,
+            "maximum": 0.8350049093639456
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.459339792994929
+        },
+        "outer": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6474283768834417,
+            "maximum": 0.8248611715807326
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0013105067982191645,
+            "maximum": 0.8350049093639456
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.153706439572952
+        }
+      },
+      "tensor_reconstruction_error": 2.7755575615628914e-17,
+      "saved_witness_maximum_support_shortfall": -5.157215912651031e-05,
+      "additive_class_rejection": {
+        "law": "axial_pressure + hoop_tension <= sleeve_energy_density",
+        "integrated_gap": {
+          "minimum": -3.217449099995998,
+          "maximum": 0.018365354731960798
+        },
+        "positive_gap_tolerance": 1e-12,
+        "violating_samples": 12,
+        "violating_labels": 12,
+        "worst_sample": {
+          "time_index": 1600,
+          "position_index": 28,
+          "time": 0.5,
+          "position": -1.9998046875,
+          "integrated_gap": 0.018365354731960798,
+          "original_facets": [
+            -0.0016119784894814207,
+            -9.534730176489342e-05,
+            -0.10377836260087184
+          ],
+          "hoop": 0.0007579853602769269,
+          "residual_target": [
+            0.03516189613070605,
+            0.034561005099702315,
+            -0.0005055437292388418
+          ],
+          "radial_field_floor": 0.0,
+          "independent_lp_status": 2
+        }
+      }
+    },
+    {
+      "label": "second_n16_t1029",
+      "time_samples": 1029,
+      "spatial_samples": 16,
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_summary.json": "00ae7ad3d2096e35b8458638c3cb0b937d0ca6e8b7770693cc2518ed3f0538e7",
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_states.npz": "437283468da706de49f37f402f898500e332e83d836e5a0b259322b396947d59",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz": "8379aceb2e2794587b1f3b81a8ff7e9a42f8ddbaa390767550db81ed5ba810bf"
+      },
+      "current_coefficient": 1.2000139578428107e-08,
+      "minimum_stress_fraction": 0.6427257473114878,
+      "closed_jacket_energy_only_lower_bound": {
+        "time": 1.285,
+        "position": -1.974796875,
+        "value": 0.1331876603027725,
+        "time_index": 1028,
+        "position_index": 14
+      },
+      "saved_witness_strength_fraction": 0.85,
+      "saved_witness_boundaries": {
+        "inner": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.5952655593015663,
+            "maximum": 0.6931631876192138
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0018994389374635528,
+            "maximum": 0.8341350506104636
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.4652918664657113
+        },
+        "outer": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.5952655593015662,
+            "maximum": 0.6931631876192138
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0008387444871548958,
+            "maximum": 0.8341350506104634
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.4066492420017298
+        }
+      },
+      "tensor_reconstruction_error": 6.938893903907228e-18,
+      "saved_witness_maximum_support_shortfall": -0.00021929325370932066,
+      "additive_class_rejection": {
+        "law": "axial_pressure + hoop_tension <= sleeve_energy_density",
+        "integrated_gap": {
+          "minimum": -0.8272383321200244,
+          "maximum": 0.03190826303053964
+        },
+        "positive_gap_tolerance": 1e-12,
+        "violating_samples": 52,
+        "violating_labels": 16,
+        "worst_sample": {
+          "time_index": 922,
+          "position_index": 12,
+          "time": 1.1519824218749999,
+          "position": -1.9748593749999999,
+          "integrated_gap": 0.03190826303053964,
+          "original_facets": [
+            -0.005343518017353742,
+            -0.020951809220131106,
+            -0.036368644909148234
+          ],
+          "hoop": 0.0031867232622465316,
+          "residual_target": [
+            0.021847133309567182,
+            0.004179802635649558,
+            0.006161906328281941
+          ],
+          "radial_field_floor": 0.0009591425940228194,
+          "independent_lp_status": 2
+        }
+      }
+    },
+    {
+      "label": "second_n32_t2057",
+      "time_samples": 2057,
+      "spatial_samples": 32,
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_summary.json": "b2d558523a9fe5abbab1d4049f383dd12a2b31819a866a34eda452b34f14e118",
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_states.npz": "4b285b10fd71b59069784b03403a8b906c8dba6fa4c62da3967016f35dea90cd",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz": "ce01339f399650daff69f7833f79557b03f147afb345305e714440421d1b8c08"
+      },
+      "current_coefficient": 1.2000139578428107e-08,
+      "minimum_stress_fraction": 0.654205065453425,
+      "closed_jacket_energy_only_lower_bound": {
+        "time": 1.285,
+        "position": -1.9747890625,
+        "value": 0.1332027687642967,
+        "time_index": 2056,
+        "position_index": 29
+      },
+      "saved_witness_strength_fraction": 0.85,
+      "saved_witness_boundaries": {
+        "inner": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6014348144505433,
+            "maximum": 0.7042748973333197
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0018991881219446699,
+            "maximum": 0.8351740625041225
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.4662718842192735
+        },
+        "outer": {
+          "axial_pressure_over_energy": {
+            "minimum": -0.6014348144505433,
+            "maximum": 0.7042748973333196
+          },
+          "hoop_tension_over_energy": {
+            "minimum": 0.0008386482350690923,
+            "maximum": 0.8351740625041224
+          },
+          "maximum_axial_plus_hoop_over_energy": 1.407386315939797
+        }
+      },
+      "tensor_reconstruction_error": 6.938893903907228e-18,
+      "saved_witness_maximum_support_shortfall": -0.00021822068117341355,
+      "additive_class_rejection": {
+        "law": "axial_pressure + hoop_tension <= sleeve_energy_density",
+        "integrated_gap": {
+          "minimum": -0.8306001713700132,
+          "maximum": 0.03200655561400696
+        },
+        "positive_gap_tolerance": 1e-12,
+        "violating_samples": 176,
+        "violating_labels": 32,
+        "worst_sample": {
+          "time_index": 1844,
+          "position_index": 25,
+          "time": 1.1519824218749999,
+          "position": -1.9748515625,
+          "integrated_gap": 0.03200655561400696,
+          "original_facets": [
+            -0.005410093472354861,
+            -0.021179233352585623,
+            -0.03653229798305947
+          ],
+          "hoop": 0.00322158613370513,
+          "residual_target": [
+            0.02192654433868689,
+            0.004231685474137714,
+            0.006142382696097157
+          ],
+          "radial_field_floor": 0.0008860027360202365,
+          "independent_lp_status": 2
+        }
+      }
+    }
+  ]
+}
