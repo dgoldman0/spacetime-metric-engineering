@@ -2,6 +2,9 @@
 
 Use informative commit messages.
 
+Commit completed, validated milestones as work proceeds. Keep implementation,
+supporting reports, and reproducibility evidence in coherent commits.
+
 Avoid using scripted auto-generation for reports. VERY IMPORTANT. You should write manual reports when narratively important reasonable milestones are reached. 
 
 Make sure code can do independent computations in parralel. And remember, at 16 cores for this laptop, 4 - 6 workers should be viable. 
