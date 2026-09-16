@@ -1,0 +1,813 @@
+{
+  "created_utc": "2026-09-16T20:54:48.947752+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "action_source": "https://arxiv.org/abs/hep-ph/9503408",
+  "scope": "Global scalar-wall profiles; necessary fixed-jacket stress tests with native-carrier credit",
+  "benchmark_units": "c=hbar=vacuum=wall_quartic=carrier_quartic=1; no SI or rail scale assignment",
+  "screening_assumptions": {
+    "freely_changing_wall_energy": true,
+    "extra_bend_current_cost": 0.0,
+    "extra_control_and_thermal_cost": 0.0,
+    "old_carriers_fully_replaced": true
+  },
+  "convergence_comparison": {
+    "spacelike": {
+      "energy": 1.2776224522781376e-11,
+      "hoop_pressure": 3.845568308236125e-11,
+      "current_magnitude": 1.4934470327077065e-10,
+      "center_condensate": 1.0100728586870389e-10,
+      "current_mode_speed_squared": 0.0015047688871590026
+    },
+    "timelike": {
+      "energy": 9.991374394502373e-11,
+      "hoop_pressure": 2.582239977400036e-11,
+      "current_magnitude": 3.381800395274581e-10,
+      "center_condensate": 1.2818845984696736e-10,
+      "current_mode_speed_squared": 0.00021596869633067062
+    }
+  },
+  "branches": [
+    {
+      "kind": "branch",
+      "label": "f0.35",
+      "parameters": {
+        "coupling": 0.35,
+        "mass_squared": 0.09999999999999998,
+        "vacuum": 1.0,
+        "wall_quartic": 1.0,
+        "carrier_quartic": 1.0
+      },
+      "extent": 52.91502622129182,
+      "tolerance": 1e-08,
+      "integration_nodes": 8193,
+      "timelike_minimum_w": -0.029999999999999992,
+      "stationary_vacuum_window": 0.1071067811865476,
+      "linear_quench_w": 0.2883937700856755,
+      "bare_tension": 0.6666666666666666,
+      "bare_carrier_eigenvalue_checks": [
+        {
+          "intervals": 2000,
+          "value": -0.28840516286488266,
+          "error": -1.1392779207142212e-05
+        },
+        {
+          "intervals": 4000,
+          "value": -0.28839661802506983,
+          "error": -2.847939394312604e-06
+        }
+      ],
+      "peak_sample": {
+        "w": 0.06849352039534794,
+        "energy": 0.5665339047231603,
+        "axial_pressure": -0.5665339047231603,
+        "hoop_pressure": -0.41997650094997346,
+        "normal_pressure_integral": -5.803402582562918e-11,
+        "condensate_integral": 2.1397265453323238,
+        "current_magnitude": 0.5599935421667608,
+        "center_condensate": 0.6324389248536086,
+        "max_normal_pressure": 2.472604065939521e-11,
+        "minimum_potential": 1.1471874765713675e-54,
+        "max_bvp_residual": 9.971321693434157e-09,
+        "outer_tail_derivative": 4.524622485641995e-10,
+        "nodes": 632,
+        "current_mode_speed_squared": -0.01968601418618343,
+        "axial_transverse_speed_squared": 1.0,
+        "hoop_transverse_speed_squared": 0.7413086797606528,
+        "envelope_derivative_error": 0.00010748265490390096
+      },
+      "current_mode_zero_bracket": [
+        0.06506884437558054,
+        0.06849352039534794
+      ],
+      "sampled_stable_hoop_tension_over_energy": {
+        "minimum": 0.7462420955608908,
+        "maximum": 1.0
+      },
+      "maximum_normal_pressure_error": 4.7881990039577715e-11,
+      "maximum_bvp_residual": 9.999138522375347e-09
+    },
+    {
+      "kind": "branch",
+      "label": "f0.40",
+      "parameters": {
+        "coupling": 0.4,
+        "mass_squared": 0.20000000000000007,
+        "vacuum": 1.0,
+        "wall_quartic": 1.0,
+        "carrier_quartic": 1.0
+      },
+      "extent": 40.0,
+      "tolerance": 1e-08,
+      "integration_nodes": 8193,
+      "timelike_minimum_w": -0.06000000000000002,
+      "stationary_vacuum_window": 0.1071067811865476,
+      "linear_quench_w": 0.2606456094748322,
+      "bare_tension": 0.6666666666666666,
+      "bare_carrier_eigenvalue_checks": [
+        {
+          "intervals": 2000,
+          "value": -0.2606535352501885,
+          "error": -7.925775356298903e-06
+        },
+        {
+          "intervals": 4000,
+          "value": -0.2606475908117636,
+          "error": -1.981336931411448e-06
+        }
+      ],
+      "peak_sample": {
+        "w": 0.06499849886278627,
+        "energy": 0.5908754514496324,
+        "axial_pressure": -0.5908754514496324,
+        "hoop_pressure": -0.4758611021306505,
+        "normal_pressure_integral": -8.482172257734705e-11,
+        "condensate_integral": 1.7694923933825077,
+        "current_magnitude": 0.45112860278392575,
+        "center_condensate": 0.6126639954132153,
+        "max_normal_pressure": 2.6658474039376046e-11,
+        "minimum_potential": 6.162975822039155e-33,
+        "max_bvp_residual": 9.814220952036627e-09,
+        "outer_tail_derivative": 2.0811315377347995e-09,
+        "nodes": 587,
+        "current_mode_speed_squared": 0.0018804622020742734,
+        "axial_transverse_speed_squared": 1.0,
+        "hoop_transverse_speed_squared": 0.8053492507823606,
+        "envelope_derivative_error": 6.532954755245068e-05
+      },
+      "current_mode_zero_bracket": [
+        0.06499849886278627,
+        0.06809366547529991
+      ],
+      "sampled_stable_hoop_tension_over_energy": {
+        "minimum": 0.8053492507823606,
+        "maximum": 1.0
+      },
+      "maximum_normal_pressure_error": 5.251456908217378e-11,
+      "maximum_bvp_residual": 9.99744125370811e-09
+    },
+    {
+      "kind": "branch",
+      "label": "f0.45",
+      "parameters": {
+        "coupling": 0.45,
+        "mass_squared": 0.30000000000000004,
+        "vacuum": 1.0,
+        "wall_quartic": 1.0,
+        "carrier_quartic": 1.0
+      },
+      "extent": 40.0,
+      "tolerance": 1e-08,
+      "integration_nodes": 8193,
+      "timelike_minimum_w": -0.0803300858899107,
+      "stationary_vacuum_window": 0.1071067811865476,
+      "linear_quench_w": 0.23446457824128542,
+      "bare_tension": 0.6666666666666666,
+      "bare_carrier_eigenvalue_checks": [
+        {
+          "intervals": 2000,
+          "value": -0.23447397548064602,
+          "error": -9.397239360608989e-06
+        },
+        {
+          "intervals": 4000,
+          "value": -0.23446692741858838,
+          "error": -2.3491773029626906e-06
+        }
+      ],
+      "peak_sample": {
+        "w": 0.06125387106553581,
+        "energy": 0.6086114370904693,
+        "axial_pressure": -0.6086114370904693,
+        "hoop_pressure": -0.5165517254244177,
+        "normal_pressure_integral": -8.76167630519028e-11,
+        "condensate_integral": 1.502920714472987,
+        "current_magnitude": 0.37196565383287605,
+        "center_condensate": 0.5923312156899242,
+        "max_normal_pressure": 2.979630431276803e-11,
+        "minimum_potential": 1.5921298329704953e-55,
+        "max_bvp_residual": 9.874828120827781e-09,
+        "outer_tail_derivative": 8.555152332787088e-11,
+        "nodes": 591,
+        "current_mode_speed_squared": -0.004858913294173872,
+        "axial_transverse_speed_squared": 1.0,
+        "hoop_transverse_speed_squared": 0.8487381175316838,
+        "envelope_derivative_error": 4.504704041874419e-05
+      },
+      "current_mode_zero_bracket": [
+        0.05846960419892054,
+        0.06125387106553581
+      ],
+      "sampled_stable_hoop_tension_over_energy": {
+        "minimum": 0.8517748246912346,
+        "maximum": 1.0
+      },
+      "maximum_normal_pressure_error": 4.39465408508255e-11,
+      "maximum_bvp_residual": 9.997337897834792e-09
+    },
+    {
+      "kind": "branch",
+      "label": "f0.50",
+      "parameters": {
+        "coupling": 0.5,
+        "mass_squared": 0.4,
+        "vacuum": 1.0,
+        "wall_quartic": 1.0,
+        "carrier_quartic": 1.0
+      },
+      "extent": 40.0,
+      "tolerance": 1e-08,
+      "integration_nodes": 8193,
+      "timelike_minimum_w": -0.0803300858899107,
+      "stationary_vacuum_window": 0.1071067811865476,
+      "linear_quench_w": 0.2096117967977924,
+      "bare_tension": 0.6666666666666666,
+      "bare_carrier_eigenvalue_checks": [
+        {
+          "intervals": 2000,
+          "value": -0.20962271318792552,
+          "error": -1.0916390133119958e-05
+        },
+        {
+          "intervals": 4000,
+          "value": -0.20961452573606593,
+          "error": -2.7289382735218304e-06
+        }
+      ],
+      "peak_sample": {
+        "w": 0.05725022200039704,
+        "energy": 0.622102487211585,
+        "axial_pressure": -0.622102487211585,
+        "hoop_pressure": -0.5480521931103158,
+        "normal_pressure_integral": -8.233608920199017e-11,
+        "condensate_integral": 1.2934499031419586,
+        "current_magnitude": 0.3094839991549162,
+        "center_condensate": 0.5713390370982979,
+        "max_normal_pressure": 3.7498282257075743e-11,
+        "minimum_potential": 5.23044434104229e-59,
+        "max_bvp_residual": 9.996360703800888e-09,
+        "outer_tail_derivative": 5.100880889272064e-12,
+        "nodes": 601,
+        "current_mode_speed_squared": -0.02358829393770545,
+        "axial_transverse_speed_squared": 1.0,
+        "hoop_transverse_speed_squared": 0.8809676932282,
+        "envelope_derivative_error": 3.27905019562591e-05
+      },
+      "current_mode_zero_bracket": [
+        0.05476108191342326,
+        0.05725022200039704
+      ],
+      "sampled_stable_hoop_tension_over_energy": {
+        "minimum": 0.8832867655801834,
+        "maximum": 1.0
+      },
+      "maximum_normal_pressure_error": 4.364472672158115e-11,
+      "maximum_bvp_residual": 9.997800839754691e-09
+    },
+    {
+      "kind": "branch",
+      "label": "f0.40_refined",
+      "parameters": {
+        "coupling": 0.4,
+        "mass_squared": 0.20000000000000007,
+        "vacuum": 1.0,
+        "wall_quartic": 1.0,
+        "carrier_quartic": 1.0
+      },
+      "extent": 60.0,
+      "tolerance": 2.5e-10,
+      "integration_nodes": 16385,
+      "timelike_minimum_w": -0.06000000000000002,
+      "stationary_vacuum_window": 0.1071067811865476,
+      "linear_quench_w": 0.2606456094748322,
+      "bare_tension": 0.6666666666666666,
+      "bare_carrier_eigenvalue_checks": [
+        {
+          "intervals": 2000,
+          "value": -0.26066344406652164,
+          "error": -1.7834591689469548e-05
+        },
+        {
+          "intervals": 4000,
+          "value": -0.2606500675834706,
+          "error": -4.458108638416558e-06
+        }
+      ],
+      "peak_sample": {
+        "w": 0.06499849886278627,
+        "energy": 0.5908754514432544,
+        "axial_pressure": -0.5908754514432544,
+        "hoop_pressure": -0.47586110215816624,
+        "normal_pressure_integral": -7.359533730732999e-13,
+        "condensate_integral": 1.7694923928610506,
+        "current_magnitude": 0.45112860265098126,
+        "center_condensate": 0.6126639953641261,
+        "max_normal_pressure": 2.914335439641036e-13,
+        "minimum_potential": 3.8590580791751943e-63,
+        "max_bvp_residual": 2.498746858602851e-10,
+        "outer_tail_derivative": 7.03034869984618e-14,
+        "nodes": 1513,
+        "current_mode_speed_squared": 0.0019692475972241663,
+        "axial_transverse_speed_squared": 1.0,
+        "hoop_transverse_speed_squared": 0.8053492508376214,
+        "envelope_derivative_error": 1.6331103340427866e-05
+      },
+      "current_mode_zero_bracket": [
+        0.06499849886278627,
+        0.06654608216904309
+      ],
+      "sampled_stable_hoop_tension_over_energy": {
+        "minimum": 0.8053492508376214,
+        "maximum": 1.0
+      },
+      "maximum_normal_pressure_error": 3.738120923912902e-13,
+      "maximum_bvp_residual": 2.4999923975811666e-10
+    }
+  ],
+  "histories": [
+    {
+      "kind": "history",
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_summary.json": "6837a730e8a59bfb1ddcc0f202c623e9dcd266c1395df45fc75af2872c4eb962",
+        "supporting_reports/data/magnetic_geometry/first_n16_t2057_states.npz": "e8939e474a64615d5221a2688659240fd3dad59d0adba37dcbbaf89031aa3499",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_refined/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor4_states.npz": "d2168378f56d0ca3d2f0e1b1e81793712a164d35c8dce88ba785856b721f451a"
+      },
+      "time_samples": 2057,
+      "spatial_samples": 16,
+      "parent_reconstruction_error": 2.7755575615628914e-17,
+      "released_old_carrier_energy": {
+        "minimum": 0.026065944252925362,
+        "maximum": 0.039170458360090935
+      },
+      "tests": {
+        "canonical_joint_stress": {
+          "integrated_gap": {
+            "minimum": -3.248914513957085,
+            "maximum": -0.027526456480983032
+          },
+          "violating_samples": 0,
+          "violating_labels": 0,
+          "worst_sample": {
+            "time_index": 800,
+            "position_index": 1,
+            "time": 0.5,
+            "position": -2.0002031249999996,
+            "integrated_target": [
+              2.313688209543771,
+              2.2440625341687706,
+              -0.026078211824374194
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.03204201413928719,
+            "integrated_gap": -0.027526456480983032,
+            "independent_lp_status": 0,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.03204201413928719,
+              -0.02752645648098273,
+              0.0,
+              0.0,
+              2.2715889906497533,
+              0.0,
+              0.010057204754730601,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_plane_stress": {
+          "integrated_gap": {
+            "minimum": -1.6095215894285353,
+            "maximum": 0.0033533670553500677
+          },
+          "violating_samples": 4,
+          "violating_labels": 4,
+          "worst_sample": {
+            "time_index": 800,
+            "position_index": 14,
+            "time": 0.5,
+            "position": -1.999796875,
+            "integrated_target": [
+              2.3106203352994297,
+              2.2377206946704282,
+              -0.02588816084239761
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.035812142598202513,
+            "integrated_gap": 0.0033533670553500677,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.035812142598202513,
+              -0.029105408487502427,
+              0.0,
+              0.0,
+              2.2668261031579306,
+              0.0,
+              0.007982089543296354,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_normal_compression": {
+          "integrated_gap": {
+            "minimum": -3.2190431788570706,
+            "maximum": 0.0067067341107001355
+          },
+          "violating_samples": 4,
+          "violating_labels": 4,
+          "worst_sample": {
+            "time_index": 800,
+            "position_index": 14,
+            "time": 0.5,
+            "position": -1.999796875,
+            "integrated_target": [
+              2.3106203352994297,
+              2.2377206946704282,
+              -0.02588816084239761
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.035812142598202513,
+            "integrated_gap": 0.0067067341107001355,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.035812142598202513,
+              -0.029105408487502427,
+              0.0,
+              0.0,
+              2.2668261031579306,
+              0.0,
+              0.007982089543296354,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "history",
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_summary.json": "63c6934878bf33831dee0738e1b40abcb214c7902d0ae5ed3181b3577656104a",
+        "supporting_reports/data/magnetic_geometry/first_n32_t4113_states.npz": "887224db15d7e63994674b5a641e8f72c1d46a7ec5720c1096d54e1c126de4b9",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_first_replay_factor8/x-2_w0.0005_n4_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_factor8_states.npz": "ae7938721aaa156390eb9026dfc1a8728ef8b8bccfb9830403794079b527ccad"
+      },
+      "time_samples": 4113,
+      "spatial_samples": 32,
+      "parent_reconstruction_error": 2.7755575615628914e-17,
+      "released_old_carrier_energy": {
+        "minimum": 0.026065244225764395,
+        "maximum": 0.03917152146553032
+      },
+      "tests": {
+        "canonical_joint_stress": {
+          "integrated_gap": {
+            "minimum": -3.2589277732498,
+            "maximum": -0.027350055142625396
+          },
+          "violating_samples": 0,
+          "violating_labels": 0,
+          "worst_sample": {
+            "time_index": 1600,
+            "position_index": 3,
+            "time": 0.5,
+            "position": -2.0001953125,
+            "integrated_target": [
+              2.313339932458925,
+              2.2438682951122755,
+              -0.026100558367439932
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.03204204767316874,
+            "integrated_gap": -0.027350055142625396,
+            "independent_lp_status": 0,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.03204204767316874,
+              -0.02735005514262534,
+              0.0,
+              0.0,
+              2.271218350254901,
+              0.0,
+              0.010079534530855562,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_plane_stress": {
+          "integrated_gap": {
+            "minimum": -1.6155034126460537,
+            "maximum": 0.0034122370180946723
+          },
+          "violating_samples": 10,
+          "violating_labels": 10,
+          "worst_sample": {
+            "time_index": 1600,
+            "position_index": 28,
+            "time": 0.5,
+            "position": -1.9998046875,
+            "integrated_target": [
+              2.3106767053605526,
+              2.237881225003563,
+              -0.025901796129879834
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.035812105508866224,
+            "integrated_gap": 0.0034122370180946723,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.035812105508866224,
+              -0.02898763147267669,
+              0.0,
+              0.0,
+              2.26686885647624,
+              0.0,
+              0.007995743375446722,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_normal_compression": {
+          "integrated_gap": {
+            "minimum": -3.2310068252921074,
+            "maximum": 0.006824474036189345
+          },
+          "violating_samples": 10,
+          "violating_labels": 10,
+          "worst_sample": {
+            "time_index": 1600,
+            "position_index": 28,
+            "time": 0.5,
+            "position": -1.9998046875,
+            "integrated_target": [
+              2.3106767053605526,
+              2.237881225003563,
+              -0.025901796129879834
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.035812105508866224,
+            "integrated_gap": 0.006824474036189345,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.035812105508866224,
+              -0.02898763147267669,
+              0.0,
+              0.0,
+              2.26686885647624,
+              0.0,
+              0.007995743375446722,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "history",
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_summary.json": "00ae7ad3d2096e35b8458638c3cb0b937d0ca6e8b7770693cc2518ed3f0538e7",
+        "supporting_reports/data/magnetic_geometry/second_n16_t1029_states.npz": "437283468da706de49f37f402f898500e332e83d836e5a0b259322b396947d59",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor2_states.npz": "8379aceb2e2794587b1f3b81a8ff7e9a42f8ddbaa390767550db81ed5ba810bf"
+      },
+      "time_samples": 1029,
+      "spatial_samples": 16,
+      "parent_reconstruction_error": 6.938893903907228e-18,
+      "released_old_carrier_energy": {
+        "minimum": 0.010645053066486112,
+        "maximum": 0.016936067231343433
+      },
+      "tests": {
+        "canonical_joint_stress": {
+          "integrated_gap": {
+            "minimum": -0.8396788633621491,
+            "maximum": 0.009379358118207698
+          },
+          "violating_samples": 9,
+          "violating_labels": 5,
+          "worst_sample": {
+            "time_index": 922,
+            "position_index": 11,
+            "time": 1.1519824218749999,
+            "position": -1.974890625,
+            "integrated_target": [
+              0.6830638735339783,
+              0.12320294873327761,
+              0.19711421540633664
+            ],
+            "integrated_field_floor": 0.03805698447576465,
+            "integrated_hoop": 0.08750592605311755,
+            "integrated_gap": 0.009379358118207698,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.3901123164778097,
+              0.3901123164778097,
+              0.0,
+              0.266909367744532,
+              0.0,
+              0.0,
+              0.0260421893116366,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_plane_stress": {
+          "integrated_gap": {
+            "minimum": -0.4188518331052096,
+            "maximum": 0.05037865540939969
+          },
+          "violating_samples": 246,
+          "violating_labels": 16,
+          "worst_sample": {
+            "time_index": 922,
+            "position_index": 12,
+            "time": 1.1519824218749999,
+            "position": -1.9748593749999999,
+            "integrated_target": [
+              0.6933203069138218,
+              0.12964778431469576,
+              0.1948568474329764
+            ],
+            "integrated_field_floor": 0.029715241360664904,
+            "integrated_hoop": 0.09157204618399091,
+            "integrated_gap": 0.05037865540939969,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.3977529153560617,
+              0.3977529153560617,
+              0.0,
+              0.268105131041366,
+              0.0,
+              0.0,
+              0.027462260516394166,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_normal_compression": {
+          "integrated_gap": {
+            "minimum": -1.0326576452849645,
+            "maximum": 0.010325591852568048
+          },
+          "violating_samples": 10,
+          "violating_labels": 6,
+          "worst_sample": {
+            "time_index": 1024,
+            "position_index": 13,
+            "time": 1.2799804687499998,
+            "position": -1.9748281250000002,
+            "integrated_target": [
+              0.7155922227803031,
+              0.013553466808986432,
+              -0.5522554003219963
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.10673929833459227,
+            "integrated_gap": 0.010325591852568048,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.21670647162560297,
+              0.013553466808986432,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.49888575115470013,
+              0.0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "history",
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_summary.json": "b2d558523a9fe5abbab1d4049f383dd12a2b31819a866a34eda452b34f14e118",
+        "supporting_reports/data/magnetic_geometry/second_n32_t2057_states.npz": "4b285b10fd71b59069784b03403a8b906c8dba6fa4c62da3967016f35dea90cd",
+        "supporting_reports/data/virtual_cell_bank_fluid_donor_guide08_second_n8_guarded_replay_adaptive_contacts/x-1.975_w0.0005_n8_s1_thermal_joint_existing_fluid_receiver_rate10_split_floor0.01_exactmid_nocross_feasible_nopresolve_bank_counter_relaxation_fluid_donor_zeroobj_guidedrift0.8_factor4_states.npz": "ce01339f399650daff69f7833f79557b03f147afb345305e714440421d1b8c08"
+      },
+      "time_samples": 2057,
+      "spatial_samples": 32,
+      "parent_reconstruction_error": 6.938893903907228e-18,
+      "released_old_carrier_energy": {
+        "minimum": 0.010644769354996458,
+        "maximum": 0.01693651384112508
+      },
+      "tests": {
+        "canonical_joint_stress": {
+          "integrated_gap": {
+            "minimum": -0.8430403774009874,
+            "maximum": 0.009427804701251532
+          },
+          "violating_samples": 18,
+          "violating_labels": 10,
+          "worst_sample": {
+            "time_index": 1844,
+            "position_index": 22,
+            "time": 1.1519824218749999,
+            "position": -1.9748984375,
+            "integrated_target": [
+              0.6805001462788892,
+              0.12159216367103086,
+              0.19767847402304872
+            ],
+            "integrated_field_floor": 0.040116263820041825,
+            "integrated_hoop": 0.0864894196315062,
+            "integrated_gap": 0.009427804701251532,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.38820255248658425,
+              0.38820255248658425,
+              0.0,
+              0.26661038881555343,
+              0.0,
+              0.0,
+              0.025687204976751615,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_plane_stress": {
+          "integrated_gap": {
+            "minimum": -0.4205325900751225,
+            "maximum": 0.050862632430647696
+          },
+          "violating_samples": 966,
+          "violating_labels": 32,
+          "worst_sample": {
+            "time_index": 1844,
+            "position_index": 25,
+            "time": 1.1519824218749999,
+            "position": -1.9748515625,
+            "integrated_target": [
+              0.6958847961302254,
+              0.13125941698855415,
+              0.1942924220044676
+            ],
+            "integrated_field_floor": 0.027449886669170608,
+            "integrated_hoop": 0.09258859999801046,
+            "integrated_gap": 0.050862632430647696,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.39966345070360215,
+              0.39966345070360215,
+              0.0,
+              0.26840403371504806,
+              0.0,
+              0.0,
+              0.027817311711575227,
+              0.0
+            ]
+          }
+        },
+        "hoop_current_normal_compression": {
+          "integrated_gap": {
+            "minimum": -1.0354988538305216,
+            "maximum": 0.010841296490221941
+          },
+          "violating_samples": 36,
+          "violating_labels": 11,
+          "worst_sample": {
+            "time_index": 2048,
+            "position_index": 26,
+            "time": 1.2799804687499998,
+            "position": -1.9748359375,
+            "integrated_target": [
+              0.713819938726802,
+              0.01338972673956175,
+              -0.551579794777815
+            ],
+            "integrated_field_floor": 0.0,
+            "integrated_hoop": 0.10646114246643144,
+            "integrated_gap": 0.010841296490221941,
+            "independent_lp_status": 2,
+            "free_axial_control_status": 0,
+            "free_axial_control_components": [
+              0.21547071518220273,
+              0.01338972673956175,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.4983492235445993,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

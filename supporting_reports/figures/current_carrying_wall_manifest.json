@@ -1,0 +1,15 @@
+{
+  "source_sha256": "6e1da4b2145cde7a81ac1d437656515fec77a3f873a1cfab8e72789bab1af4f3",
+  "input_sha256": {
+    "supporting_reports/data/current_carrying_wall/summary.json": "8346918562cba4eb3dcae54d2fdded1ab186e9f63bd227b61ee05bc98f5f91b9",
+    "supporting_reports/data/current_carrying_wall/f0.35_spacelike.csv": "0341442ae6dfd764884090ee590ccd8a8abdeb7bdb02fa0d85fe3c7633964431",
+    "supporting_reports/data/current_carrying_wall/f0.40_spacelike.csv": "12e3b45391009a1eea23c2225f1a09fd9552feb701d400643acd6d7efbca10db",
+    "supporting_reports/data/current_carrying_wall/f0.45_spacelike.csv": "d39353efd0b931163d2f3f0ba5b1d656f926c99a2794a8c63a25188b72aa36f5",
+    "supporting_reports/data/current_carrying_wall/f0.50_spacelike.csv": "7a037c2e207a8d739c702a7d6f963f80651be2e05c77713a1805f547b1549354",
+    "supporting_reports/data/current_carrying_wall/f0.40_refined_spacelike.csv": "4068700b1971bb5f9640b4bc65695cb3ed712cb438ed009432304745c0a4b22c"
+  },
+  "output_sha256": {
+    "supporting_reports/figures/current_carrying_wall.png": "3297ce6d76001cdf812f642abe525957b77adbc355faa384cdfc1c1ab9932258",
+    "supporting_reports/figures/current_carrying_wall.pdf": "4b275a9804fe648a186cace78947869cf64dc95e82b71fff3fe9a203217b57e7"
+  }
+}
