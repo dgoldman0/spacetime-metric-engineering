@@ -1,0 +1,43 @@
+{
+  "verified_hashes": 92,
+  "cases": 68,
+  "cases_with_all_static_support_lps_solved": 58,
+  "numerically_unresolved_support_lps": [
+    {
+      "label": "center0_width0p5",
+      "component": 0,
+      "cells_per_coordinate_unit": 128,
+      "message": "The HiGHS status code was not recognized. (HiGHS Status 15: model_status is Unknown; primal_status is Infeasible)"
+    },
+    {
+      "label": "center1p5_width0p5",
+      "component": 1,
+      "cells_per_coordinate_unit": 256,
+      "message": "The HiGHS status code was not recognized. (HiGHS Status 15: model_status is Unknown; primal_status is Infeasible)"
+    }
+  ],
+  "worst_identity_errors": {
+    "duality_gap": 1.7011653933742743e-15,
+    "weighted_equilibrium": 5.280552470982025e-15,
+    "dual_stationarity": 1.1368683772161603e-13,
+    "maxwell_partition": 6.938893903907228e-18,
+    "lorentz_partition": 4.1764018255557346e-19,
+    "net_module_charge": 1.7763568394002505e-15
+  },
+  "leading_case": "center0p75_width0p5",
+  "leading_cells_per_coordinate_unit": 256,
+  "last_refinement_support_energy_relative_change": 9.453484419930103e-05,
+  "leading_independent_force_residual_relative_to_peak_load": 2.590333724692259e-07,
+  "leading_offgrid_density_relative_excess": 0.0,
+  "leading_offgrid_gradient_relative_excess": 0.0,
+  "leading_offgrid_dec_absolute_error": 4.159705588082591e-10,
+  "broad_c1_case": "center1p5_width2",
+  "broad_c1_support_energy": 8.862800433080292,
+  "broad_c1_last_refinement_energy_relative_change": 0.00038377453044113885,
+  "broad_c1_overlap_fraction_of_shorter_module": 0.9833701621618454,
+  "pair_added_support_proper_energy": 2.3906813877694995,
+  "pair_support_energy_ratio": 1.7707637528476474,
+  "pair_total_field_and_support_energy_ratio": 1.0247743069367121,
+  "numerical_screen_verified": true,
+  "complete_physical_assembly_certified": false
+}

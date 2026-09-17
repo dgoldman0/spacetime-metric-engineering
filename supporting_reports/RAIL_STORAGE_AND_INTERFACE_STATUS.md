@@ -147,5 +147,10 @@ one shared geometry, material state and energy/stress exchange law.
 The status discussion retains the distinction between the positive continuum
 assembly result, the finite hardware requirements, and the hypothetical
 microscopic material. The topology recognition above supplies an additional
-architectural preference. Numerical work remains paused before extending
-electrical/fixture coupling, carrier occupation dynamics or module overlap.
+architectural preference. The subsequent
+[C1 finite-module screen](C1_FINITE_MODULE_PAIR_SCREEN.md) compares a finite
+electric source pair and its separate static supports. It defines overlap
+and boundary requirements for continuing assembly work. Electrical/fixture
+coupling and carrier occupation dynamics retain their open physical duties;
+their local capacities and the new source proper-volume integrals preserve
+their respective measures.

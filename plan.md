@@ -2,9 +2,32 @@
 
 ## Current handoff, 2026-09-17
 
+The [first C1 finite-module screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md)
+and [module specification](component_design/C1_FINITE_MODULE_PAIR.md) carry the
+current architecture work. The numerical screen includes 68 comparisons,
+four-worker execution, 21 passing focused tests and 92 verified source/input/
+artifact hashes. It constructs finite neutral Maxwell populations and counts
+their cross stress while comparing separate zero-end-traction material supports.
+
+Retain the broad overlap `[0.5,2.5]` as the C1 construction bracket and
+`[0.5,1.0]` as the lower-energy, narrower comparison. The fine bounded support
+energies are 8.862800 and 5.492386 in the common static proper-volume measure.
+The broad bracket overlaps 98.34% of its shorter module; the narrow case
+overlaps 8.57%. Their sizes are asymmetric and a repeating chain remains open.
+
+The current gates are charged-material constitutive response, angular packing
+and separation, a supplied signed source with its complete finite boundaries,
+and then coupled preparation/handoff/reset with module motion. The retained
+longitudinal quantum law remains excluded under its original assumptions.
+Two support LPs in other placements have explicit unresolved numerical outcomes;
+both retained brackets pass their stated numerical checks. The bounded tensor
+envelopes and zero carrier mass-per-charge control remain construction
+assumptions. Physical C1 feasibility and a service-cycle replay remain open.
+
 The [rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md)
-records the validated milestone committed as `4c576e0`. Numerical work is
-paused for discussion.
+retains the preceding local milestone committed as `4c576e0`. Apply its
+conditional storage/interface evidence within the specified C1 boundaries,
+preserving its distinct cell normalization and outstanding material duties.
 
 The [build-topology decision](supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
 preserves the subsequent recognition: continuity of the transport geometry

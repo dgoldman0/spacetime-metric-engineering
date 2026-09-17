@@ -16,6 +16,14 @@ Continuity of the rail geometry and source support is distinct from
 route-length mechanical continuity. Full topology selection and finite-module
 source matching remain open.
 
+The [first C1 finite-module screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md)
+constructs overlapping finite electric sources and compares separate static
+supports with a connected finite control. Offset overlaps reduce the sampled
+support burden; a broad overlap and a narrower cost reference are retained.
+Their shared-field interaction, charge inventories and remaining signed-source
+requirements are counted. The [module specification](component_design/C1_FINITE_MODULE_PAIR.md)
+defines the boundaries and the material, source, motion and service gates.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -53,6 +61,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [C1 finite-module and overlap screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md):
+  first topology-specific source construction, finite support envelopes,
+  placement comparison and unresolved physical completion.
 - [Rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md):
   current subsystem results, shared allocation, physical normalization,
   and remaining material/interface requirements.

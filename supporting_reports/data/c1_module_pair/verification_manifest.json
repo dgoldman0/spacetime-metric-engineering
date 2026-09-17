@@ -1,0 +1,10 @@
+{
+  "parent_manifest_sha256": "a5a3c3b340ad6945d7f0e7efadca4b9f8a47ce9c3eca47395efaeeaea31a0a20",
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_module_pair.py": "d9a3a8019b0885d6958b44440fe8da58b96e6382a1660ba2595e92ea433606b6"
+  },
+  "output_sha256": {
+    "verification.json": "119f34ebf245c280d69da042002ddda37ef0b76c7e504e332e5c9ffe62961155",
+    "execution_audit_c1_module_pair.py": "d9a3a8019b0885d6958b44440fe8da58b96e6382a1660ba2595e92ea433606b6"
+  }
+}

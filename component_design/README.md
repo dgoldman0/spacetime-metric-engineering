@@ -3,7 +3,7 @@
 Status: local component-design overview with physical construction hypotheses.
 
 This folder treats the active rail as a nested physical service plant. The
-current controlling article is the sealed beta075 `V=5` operating embodiment
+current operating comparison is the archived beta075 `V=5` service reference
 described in [`../README.md`](../README.md) and
 [`../active_rail_technical_disclosure.tex`](../active_rail_technical_disclosure.tex).
 The cards translate the current mathematical component split into construction
@@ -15,6 +15,12 @@ multicomponent assemblies with adjustable source overlap and scheduled handoff.
 The cards describe roles within that possible assembly as well as other
 layouts. Global mechanical connectivity, module size and physical overlap
 remain explicit construction choices.
+
+The [C1 finite-module pair](C1_FINITE_MODULE_PAIR.md) defines the first
+topology-specific boundaries, shared electric source and separate internal
+supports. Its [standing screen](../supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md)
+retains a broad overlap and a narrower cost comparison, together with the
+material, signed-source, angular-packing and coupled-motion requirements.
 
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective

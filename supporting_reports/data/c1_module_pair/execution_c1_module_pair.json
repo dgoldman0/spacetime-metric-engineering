@@ -1,0 +1,26 @@
+{
+  "reference": "supporting_reports/data/archived_geometry_opening/reference_metric.npz",
+  "parent_summary": "supporting_reports/data/archived_geometry_opening/summary.json",
+  "geometry_scope": "Static zero-shift surrogate using the archived phase-0.745 lapse and spatial metric",
+  "throat_maxwell_tension_fraction": 0.95,
+  "field_plateau_coordinate": 1.0,
+  "field_extent_coordinate": 3.0,
+  "host_mass_per_charge": 0.0,
+  "support_envelopes": [
+    {"label": "relaxed", "density_multiple": null, "proper_gradient_length": null},
+    {"label": "bounded", "density_multiple": 4.0, "proper_gradient_length": 1.0}
+  ],
+  "cells_per_coordinate_unit": [32, 64, 128],
+  "cases": [
+    {"label": "connected_control", "connected": true, "overlap": [-0.5, 0.5]},
+    {"label": "center0_width0p5", "connected": false, "overlap": [-0.25, 0.25]},
+    {"label": "center0_width1", "connected": false, "overlap": [-0.5, 0.5]},
+    {"label": "center0_width2", "connected": false, "overlap": [-1.0, 1.0]},
+    {"label": "center0p75_width0p5", "connected": false, "overlap": [0.5, 1.0]},
+    {"label": "center0p75_width1", "connected": false, "overlap": [0.25, 1.25]},
+    {"label": "center0p75_width2", "connected": false, "overlap": [-0.25, 1.75]},
+    {"label": "center1p5_width0p5", "connected": false, "overlap": [1.25, 1.75]},
+    {"label": "center1p5_width1", "connected": false, "overlap": [1.0, 2.0]},
+    {"label": "center1p5_width2", "connected": false, "overlap": [0.5, 2.5]}
+  ]
+}

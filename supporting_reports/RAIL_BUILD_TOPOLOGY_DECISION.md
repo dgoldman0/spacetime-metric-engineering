@@ -115,8 +115,14 @@ tradeoff with bulk length determines useful module size and spacing.
 
 A longer chain additionally requires collective stability, causal service
 scheduling, readiness propagation and chronology checks. Pairwise handoff
-evidence would be one input to that system calculation. The current
-discussion records these questions; numerical construction remains paused.
+evidence would be one input to that system calculation.
+
+The subsequent [finite-module source screen](C1_FINITE_MODULE_PAIR_SCREEN.md)
+constructs a common electrostatic field from two finite charge populations and
+compares their separate static support requirements. A broad offset overlap
+and narrower cost reference are retained. The source, constitutive, spatial
+embedding and motion gates remain explicit in the
+[module specification](../component_design/C1_FINITE_MODULE_PAIR.md).
 
 Future architecture work starts from this recognition and the provisional C1
 preference. A change of preference should identify the source, boundary,
