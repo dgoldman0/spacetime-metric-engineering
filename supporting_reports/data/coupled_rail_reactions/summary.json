@@ -1,0 +1,459 @@
+{
+  "created_utc": "2026-09-17T10:49:50.326258+00:00",
+  "workers": 4,
+  "base_commit": "ea0398dcd4f3391cc5cbfb87b3ce4586a1a8cbcc",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "contexts": [
+    {
+      "name": "first_low",
+      "history": "first_n32_t4113",
+      "sample_index": 0,
+      "label_index": 9,
+      "coordinate_time": 0.0,
+      "material_label": -2.0001015625000003,
+      "capacity": 3.775656375646333e-05,
+      "baseline_gain": 0.17011295167638585,
+      "tension": [
+        0.005401248152305769,
+        14255.359854327853
+      ],
+      "core_inventory": [
+        9.560754451651723,
+        128.44286208408377
+      ],
+      "joint_inventory": [
+        0.02655230152448275,
+        0.3567138576741663
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884"
+      }
+    },
+    {
+      "name": "first_high",
+      "history": "first_n32_t4113",
+      "sample_index": 4096,
+      "label_index": 3,
+      "coordinate_time": 1.2799804687499998,
+      "material_label": -2.0001953125,
+      "capacity": 3.758965312505528e-05,
+      "baseline_gain": 0.4999997592206961,
+      "tension": [
+        1377.2812446128999,
+        5924.771912649151
+      ],
+      "core_inventory": [
+        0.4630835657481894,
+        10.416691714283468
+      ],
+      "joint_inventory": [
+        0.004527076041797988,
+        0.10183292818508469
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884"
+      }
+    },
+    {
+      "name": "second_low",
+      "history": "second_n32_t2057",
+      "sample_index": 1184,
+      "label_index": 14,
+      "coordinate_time": 0.7378710937499999,
+      "material_label": -1.9750234375,
+      "capacity": 1.5087675750121315e-05,
+      "baseline_gain": 0.1384411608459134,
+      "tension": [
+        2.867644925605486,
+        221.17442092455755
+      ],
+      "core_inventory": [
+        23.198641561182807,
+        372.4405548938416
+      ],
+      "joint_inventory": [
+        0.03942331204631685,
+        0.6329181032242602
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72"
+      }
+    },
+    {
+      "name": "second_high",
+      "history": "second_n32_t2057",
+      "sample_index": 2048,
+      "label_index": 16,
+      "coordinate_time": 1.2799804687499998,
+      "material_label": -1.9749921875,
+      "capacity": 1.665543102868472e-05,
+      "baseline_gain": 0.4999955227683052,
+      "tension": [
+        1730.8053304977343,
+        30685.895319566254
+      ],
+      "core_inventory": [
+        9.145909322179076,
+        158.14589585993667
+      ],
+      "joint_inventory": [
+        0.02278983333633309,
+        0.3940689200507337
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72"
+      }
+    }
+  ],
+  "trials": [
+    {
+      "name": "first_low_up",
+      "context": "first_low",
+      "left": 0.0,
+      "right": 1.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.49848984723714274,
+      "maximum_thermal_energy": 0.0007768800301377256,
+      "maximum_absolute_trace": 0.021291467227453068,
+      "maximum_absolute_rotor_power": 1.0800813587331741,
+      "maximum_absolute_reaction_power": 0.14544650017674157,
+      "minimum_converter_incident_margin": 0.0009999999999998224,
+      "sampled_minimum_spin": 0.49849436440772515,
+      "maximum_spin": 0.8306623742532222,
+      "minimum_proper_stretch": 1.2878218661491752,
+      "minimum_work_denominator": 1.1699062835231908,
+      "initial_reaction_energy": 0.29352760324293425,
+      "maximum_reaction_energy_excursion": 0.0035480953678561633,
+      "final_rotor_input_l2": 1.0524356482010566,
+      "final_reaction_work_throughput": 0.02895039560973344,
+      "final_rotor_reflective_exposure": 5.602438912973576,
+      "maximum_complete_ledger_error": 5.178413253759118e-12,
+      "maximum_coupled_energy_error": 5.3512749786932545e-12,
+      "maximum_reciprocal_power_error": 2.220446049250313e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "first_low_down",
+      "context": "first_low",
+      "left": 1.0,
+      "right": 0.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.4990225507018901,
+      "maximum_thermal_energy": 0.000701383329857731,
+      "maximum_absolute_trace": 0.021275044056038094,
+      "maximum_absolute_rotor_power": 1.0813855549217801,
+      "maximum_absolute_reaction_power": 0.1453816458112345,
+      "minimum_converter_incident_margin": 0.0009999999998837902,
+      "sampled_minimum_spin": 0.4990225507018901,
+      "maximum_spin": 0.8306043719235657,
+      "minimum_proper_stretch": 1.2896508436364027,
+      "minimum_work_denominator": 1.1697891354947627,
+      "initial_reaction_energy": 0.29352760324293425,
+      "maximum_reaction_energy_excursion": 0.0035447636021253004,
+      "final_rotor_input_l2": 1.0522601607114113,
+      "final_reaction_work_throughput": 0.028692180589596612,
+      "final_rotor_reflective_exposure": 5.597033424362248,
+      "maximum_complete_ledger_error": 5.459077634384357e-12,
+      "maximum_coupled_energy_error": 5.271783010130093e-12,
+      "maximum_reciprocal_power_error": 2.220446049250313e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "first_high_up",
+      "context": "first_high",
+      "left": 0.0,
+      "right": 1.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.4977621082767772,
+      "maximum_thermal_energy": 0.0007916755345570559,
+      "maximum_absolute_trace": 0.019404783124440293,
+      "maximum_absolute_rotor_power": 1.1958041714118335,
+      "maximum_absolute_reaction_power": 0.33333322636215823,
+      "minimum_converter_incident_margin": 0.0009999999999998224,
+      "sampled_minimum_spin": 0.49779357296128857,
+      "maximum_spin": 0.8306623742532222,
+      "minimum_proper_stretch": 1.2869396437503744,
+      "minimum_work_denominator": 1.4998172423875076,
+      "initial_reaction_energy": 0.3768031891713054,
+      "maximum_reaction_energy_excursion": 0.009562008622651774,
+      "final_rotor_input_l2": 1.0617474733278585,
+      "final_reaction_work_throughput": 0.0848675637645746,
+      "final_rotor_reflective_exposure": 5.658226290121987,
+      "maximum_complete_ledger_error": 3.6688541094065386e-11,
+      "maximum_coupled_energy_error": 3.661382308450811e-11,
+      "maximum_reciprocal_power_error": 3.3306690738754696e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "first_high_down",
+      "context": "first_high",
+      "left": 1.0,
+      "right": 0.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.49902255070189366,
+      "maximum_thermal_energy": 0.000715367536609476,
+      "maximum_absolute_trace": 0.019327487892751738,
+      "maximum_absolute_rotor_power": 1.1979842397411204,
+      "maximum_absolute_reaction_power": 0.33333321404630895,
+      "minimum_converter_incident_margin": 0.0009999999997745363,
+      "sampled_minimum_spin": 0.49902255070189383,
+      "maximum_spin": 0.8306032744328747,
+      "minimum_proper_stretch": 1.2896508436364156,
+      "minimum_work_denominator": 1.4994869787853327,
+      "initial_reaction_energy": 0.3768031891713054,
+      "maximum_reaction_energy_excursion": 0.009538832928683405,
+      "final_rotor_input_l2": 1.0614068109204304,
+      "final_reaction_work_throughput": 0.08389633249782955,
+      "final_rotor_reflective_exposure": 5.642258885511466,
+      "maximum_complete_ledger_error": 3.8870018315151356e-12,
+      "maximum_coupled_energy_error": 3.691602579181108e-12,
+      "maximum_reciprocal_power_error": 4.440892098500626e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "second_low_up",
+      "context": "second_low",
+      "left": 0.0,
+      "right": 1.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.4985679721732522,
+      "maximum_thermal_energy": 0.0007753859825601996,
+      "maximum_absolute_trace": 0.021505841304900297,
+      "maximum_absolute_rotor_power": 1.0665050315592506,
+      "maximum_absolute_reaction_power": 0.12160589902953585,
+      "minimum_converter_incident_margin": 0.0009999999999873827,
+      "sampled_minimum_spin": 0.4985707498584649,
+      "maximum_spin": 0.8306623742532222,
+      "minimum_proper_stretch": 1.2879156826915816,
+      "minimum_work_denominator": 1.1383654990008694,
+      "initial_reaction_energy": 0.28581430316029033,
+      "maximum_reaction_energy_excursion": 0.0029283915680125006,
+      "final_rotor_input_l2": 1.051901033018875,
+      "final_reaction_work_throughput": 0.02355669271447125,
+      "final_rotor_reflective_exposure": 5.5970285634464,
+      "maximum_complete_ledger_error": 2.5213275911539768e-11,
+      "maximum_coupled_energy_error": 2.5131008385415043e-11,
+      "maximum_reciprocal_power_error": 2.220446049250313e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "second_low_down",
+      "context": "second_low",
+      "left": 1.0,
+      "right": 0.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.49902255070190066,
+      "maximum_thermal_energy": 0.00069997123756638,
+      "maximum_absolute_trace": 0.021477107255075338,
+      "maximum_absolute_rotor_power": 1.0675876322378934,
+      "maximum_absolute_reaction_power": 0.12160589557559869,
+      "minimum_converter_incident_margin": 0.0009999999999041023,
+      "sampled_minimum_spin": 0.49902255070190066,
+      "maximum_spin": 0.8306044827159577,
+      "minimum_proper_stretch": 1.2896508436364178,
+      "minimum_work_denominator": 1.1382747223581373,
+      "initial_reaction_energy": 0.28581430316029033,
+      "maximum_reaction_energy_excursion": 0.0029238645387046347,
+      "final_rotor_input_l2": 1.0517365657968005,
+      "final_reaction_work_throughput": 0.02335347071360606,
+      "final_rotor_reflective_exposure": 5.59265942731181,
+      "maximum_complete_ledger_error": 3.0265789874306392e-12,
+      "maximum_coupled_energy_error": 1.5554779686510756e-12,
+      "maximum_reciprocal_power_error": 2.220446049250313e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "second_high_up",
+      "context": "second_high",
+      "left": 0.0,
+      "right": 1.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.49776211657812647,
+      "maximum_thermal_energy": 0.0007916753555831211,
+      "maximum_absolute_trace": 0.019404803921948134,
+      "maximum_absolute_rotor_power": 1.1958029306287714,
+      "maximum_absolute_reaction_power": 0.33333134348852406,
+      "minimum_converter_incident_margin": 0.0009999999999998224,
+      "sampled_minimum_spin": 0.49779358170061644,
+      "maximum_spin": 0.8306623742532222,
+      "minimum_proper_stretch": 1.286939653495825,
+      "minimum_work_denominator": 1.4998130076707346,
+      "initial_reaction_energy": 0.37680212490061427,
+      "maximum_reaction_energy_excursion": 0.009561933941540701,
+      "final_rotor_input_l2": 1.0617473203033858,
+      "final_reaction_work_throughput": 0.08486696705850698,
+      "final_rotor_reflective_exposure": 5.658225358258889,
+      "maximum_complete_ledger_error": 4.1584180543452476e-11,
+      "maximum_coupled_energy_error": 4.144018461715859e-11,
+      "maximum_reciprocal_power_error": 4.440892098500626e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "second_high_down",
+      "context": "second_high",
+      "left": 1.0,
+      "right": 0.0,
+      "refined": false,
+      "options": {
+        "output_step": 0.02
+      },
+      "complete": true,
+      "minimum_spin": 0.4990225507018869,
+      "maximum_thermal_energy": 0.0007153673678046164,
+      "maximum_absolute_trace": 0.0193275132876405,
+      "maximum_absolute_rotor_power": 1.1979829938949356,
+      "maximum_absolute_reaction_power": 0.33333133117213837,
+      "minimum_converter_incident_margin": 0.000999999999780286,
+      "sampled_minimum_spin": 0.49902255070188706,
+      "maximum_spin": 0.8306032744461118,
+      "minimum_proper_stretch": 1.289650843636404,
+      "minimum_work_denominator": 1.4994827469115868,
+      "initial_reaction_energy": 0.37680212490061427,
+      "maximum_reaction_energy_excursion": 0.009538760908981203,
+      "final_rotor_input_l2": 1.0614066608433887,
+      "final_reaction_work_throughput": 0.08389562513595082,
+      "final_rotor_reflective_exposure": 5.6422583510477065,
+      "maximum_complete_ledger_error": 6.910361172174362e-12,
+      "maximum_coupled_energy_error": 6.715739075957572e-12,
+      "maximum_reciprocal_power_error": 2.220446049250313e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "first_high_up_refined",
+      "context": "first_high",
+      "left": 0.0,
+      "right": 1.0,
+      "refined": true,
+      "options": {
+        "maximum_step": 0.06,
+        "output_step": 0.01,
+        "rtol": 5e-10,
+        "atol": 5e-12
+      },
+      "complete": true,
+      "minimum_spin": 0.4977621082511602,
+      "maximum_thermal_energy": 0.0007916755360563522,
+      "maximum_absolute_trace": 0.019404783118452874,
+      "maximum_absolute_rotor_power": 1.1958041722214676,
+      "maximum_absolute_reaction_power": 0.3333332263625475,
+      "minimum_converter_incident_margin": 0.0009999999999998224,
+      "sampled_minimum_spin": 0.49776299873270813,
+      "maximum_spin": 0.8306623742532222,
+      "minimum_proper_stretch": 1.286939643691465,
+      "minimum_work_denominator": 1.4998172423842326,
+      "initial_reaction_energy": 0.3768031891713054,
+      "maximum_reaction_energy_excursion": 0.009662010033707702,
+      "final_rotor_input_l2": 1.0617474737769539,
+      "final_reaction_work_throughput": 0.08486778768361632,
+      "final_rotor_reflective_exposure": 5.658226295602796,
+      "maximum_complete_ledger_error": 8.77842243340865e-12,
+      "maximum_coupled_energy_error": 8.573586285365309e-12,
+      "maximum_reciprocal_power_error": 3.3306690738754696e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    },
+    {
+      "name": "first_high_down_refined",
+      "context": "first_high",
+      "left": 1.0,
+      "right": 0.0,
+      "refined": true,
+      "options": {
+        "maximum_step": 0.06,
+        "output_step": 0.01,
+        "rtol": 5e-10,
+        "atol": 5e-12
+      },
+      "complete": true,
+      "minimum_spin": 0.49902255070193324,
+      "maximum_thermal_energy": 0.0007153675368076691,
+      "maximum_absolute_trace": 0.019327487918975515,
+      "maximum_absolute_rotor_power": 1.197984239696086,
+      "maximum_absolute_reaction_power": 0.33333321404366195,
+      "minimum_converter_incident_margin": 0.0009999999998916535,
+      "sampled_minimum_spin": 0.49902255070193324,
+      "maximum_spin": 0.8306032744328606,
+      "minimum_proper_stretch": 1.289650843636474,
+      "minimum_work_denominator": 1.4994869787833411,
+      "initial_reaction_energy": 0.3768031891713054,
+      "maximum_reaction_energy_excursion": 0.009615144865620096,
+      "final_rotor_input_l2": 1.061406811028076,
+      "final_reaction_work_throughput": 0.08389631315621768,
+      "final_rotor_reflective_exposure": 5.642258914071901,
+      "maximum_complete_ledger_error": 6.557976384158337e-12,
+      "maximum_coupled_energy_error": 2.1670998329170743e-12,
+      "maximum_reciprocal_power_error": 4.440892098500626e-16,
+      "maximum_output_port_balance_error": 1.7763568394002505e-15
+    }
+  ],
+  "refinements": [
+    {
+      "name": "first_high_up_refined",
+      "absolute_metric_changes": {
+        "minimum_spin": 2.5617008514444706e-11,
+        "maximum_thermal_energy": 1.4992963467963527e-12,
+        "final_rotor_input_l2": 4.4909542751270237e-10,
+        "final_reaction_work_throughput": 2.2391904171137345e-07,
+        "maximum_absolute_trace": 5.9874188940156614e-12,
+        "maximum_absolute_rotor_power": 8.096341375107841e-10
+      }
+    },
+    {
+      "name": "first_high_down_refined",
+      "absolute_metric_changes": {
+        "minimum_spin": 3.957945082788683e-14,
+        "maximum_thermal_energy": 1.9819313291230545e-13,
+        "final_rotor_input_l2": 1.076456701554207e-10,
+        "final_reaction_work_throughput": 1.934161186767369e-08,
+        "maximum_absolute_trace": 2.622377662242492e-11,
+        "maximum_absolute_rotor_power": 4.5034420637080075e-11
+      }
+    }
+  ],
+  "extrema_method": "Dense-output local optimization seeded by eight strongest grid samples; one-sided forcing joins retained",
+  "exact_support_state_energy_used": true,
+  "guide_reaction_work_included": true,
+  "frozen_macro_support": true,
+  "ideal_bidirectional_reaction_branch": true,
+  "reaction_branch_flight_time": 0.0,
+  "full_history_coupled_heat_certificate": false,
+  "moving_macro_work_included": false,
+  "field_hosts_and_holding_losses_included": false,
+  "finite_actuator_slew_included": false,
+  "spatial_joint_reactions_constructed": false
+}

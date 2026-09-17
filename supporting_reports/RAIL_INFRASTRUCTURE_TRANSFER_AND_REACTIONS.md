@@ -9,6 +9,12 @@ of 0.3. A common quadratic inequality covers the changing rotor energy,
 guide transitions, useful-flight delays and converter circulation. The
 guide's positive input power also has a uniform analytic bound.
 
+An integrated reaction allocation uses the existing longitudinal and
+transverse sheets, inline joints and positive-pressure field populations.
+Its additional state energy fits all four inherited histories. Coupled
+local trials then include the reciprocal work of these changing support
+states, with guide/store/path energy balance and feasible optical ports.
+
 These results apply to the lossless, axisymmetric holding and transfer
 model. Optical absorption, rotational drag, finite actuator response and
 spatial reaction paths retain their own state and interface requirements.
@@ -175,7 +181,7 @@ reflected/bypass ramp admission remains the previous numerical check;
 finite-slew dispatch and spatially matched reflection remain separate
 interface constructions.
 
-## Reaction tensor and next coupled construction
+## Reaction tensor
 
 The rotor's integrated pressure trace simplifies exactly to
 
@@ -188,6 +194,13 @@ holding package, throughout the histories. Three equally populated ring
 planes make the summed spatial stress isotropic in the local averaging
 frame; opposite spins cancel angular momentum. This specifies a finite
 reaction demand for the surrounding component ensemble.
+
+The guide population uses the same three-plane averaging, partitioning
+its total inventory and flux equally among the planes. The inverse guide
+equations scale linearly with inventory and flux. This preserves their
+summed energy and power while supplying an isotropic summed guide stress;
+the corresponding spatial splitting and mounting interfaces remain part
+of the guide construction.
 
 The guide contributes at most another \(0.000010101C\) in trace.
 Consequently the complete holding/guide demand obeys
@@ -266,6 +279,80 @@ recompute the rotor input and its thermal certificate. Spatially resolved
 traction paths and finite propagation through the same members remain
 additional interface equations.
 
+## Coupled local reaction work
+
+Freeze the macro support duties during one local scheduled transition,
+and keep the positive-pressure bias constant. The rotor and guide still
+evolve dynamically. Write their combined trace rate as
+
+\[
+\dot\Pi=F_\Pi+a_q q,\qquad a_q=1-kxv,
+\]
+
+where \(F_\Pi\) includes the exact prescribed guide-trace derivative.
+If \(N\) is the net guide, receipt and converter-loop power, an ideal
+bidirectional branch exchanging energy with the reaction assembly gives
+
+\[
+q+P_{\rm reaction}=N,\qquad
+P_{\rm reaction}=c\dot\Pi,\qquad
+q=\frac{N-cF_\Pi}{1+ca_q}.
+\]
+
+Here \(c=\partial\Delta E/\partial\Pi\) is recomputed from the
+exact core/joint constitutive states at every evaluation. The denominator
+stays positive in the tested states. A scalar root inversion reproduces
+the original two-direction series law without interpolating its energy.
+
+Four frozen contexts are selected from the first-fine and second-fine
+histories: the sampled minimum and maximum derivatives at zero reaction
+trace. Each receives a complete upward and downward scheduled transition,
+including finite converter-loop preparation and drainage. All inventory
+and support duties are normalized by the summed capacity at that material
+label. These are local aggregate response trials, with the two selected
+support states held fixed through each transition.
+
+| Frozen support context | Zero-trace derivative | Minimum spin across both transitions | Peak rotor power / \(P_*\) | Peak reaction-branch power / \(P_*\) |
+| --- | ---: | ---: | ---: | ---: |
+| First, low derivative | 0.170113 | 0.498490 | 1.081386 | 0.145447 |
+| First, high derivative | 0.500000 | 0.497762 | 1.197984 | 0.333333 |
+| Second, low derivative | 0.138441 | 0.498568 | 1.067588 | 0.121606 |
+| Second, high derivative | 0.499996 | 0.497762 | 1.197983 | 0.333331 |
+
+The ideal branch sends positive reaction work into the support assembly
+and returns negative work to the local router. Counting both directions
+leaves at least \(0.001P_*\) incident-light margin in these numerical
+trials. The full energy account is
+
+\[
+H_{\rm rotor}+\Delta E_{\rm reaction}+H_{\rm guide}
+ +E_{\rm feed}+E_{\rm return}+E_{\rm useful}+E_{\rm converter}.
+\]
+
+The initial reaction energy is explicitly prepared. The largest residual
+in this complete ledger is \(4.16\times10^{-11}C\). Maximum local
+thermal energy is \(0.000791676C\), and the largest trace magnitude
+is \(0.021506C\), within the charged reaction envelope. The absolute
+energy exchanged through the new branch reaches \(0.084868C\) during
+one transition, despite its smaller instantaneous stored-energy excursion.
+
+Two additional first-high trials halve the maximum integration step and
+output spacing and tighten solver tolerances. Narrow extrema are located
+on the solver's continuous interpolant, with both one-sided limits at
+forcing joins. Between these refinements, minimum spin changes by less
+than \(2.6\times10^{-11}\), peak rotor power by less than
+\(8.1\times10^{-10}P_*\), and integrated absolute reaction work by
+\(2.24\times10^{-7}C\). These are numerical local response checks.
+
+The added reciprocal work raises peak rotor forcing to about
+\(1.20P_*\). Consequently its whole-history input bound, radial
+invariant and thermal certificate require recomputation for the coupled
+system. Moving macro duties contribute the additional terms displayed
+in the preceding section. The ideal reaction branch also requires a
+physical transducer, finite propagation inventory, actuation, mounting
+tractions and emission/absorption recoil. The field bias and the original
+standing pressure populations retain their own holding-loss accounts.
+
 ## Reproducibility
 
 The [certificate archive](data/nonlinear_holding_certificate/summary.json)
@@ -281,6 +368,12 @@ envelopes. Four further tests verify both field representations, the
 constitutive energy derivative and an independently differentiated rotor
 trace. Both audits run the independent histories with four workers.
 
+The [coupled-reaction archive](data/coupled_rail_reactions/summary.json)
+contains eight local transitions and two refinements. Five tests check
+the scalar constitutive inversion and its numerical domain, shared-state
+energy, the exact guide trace rate, and an independently differentiated
+coupled energy identity. The trial audit also uses four workers.
+
 ```sh
 env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
   python toolkit/adm_harness_cli/scripts/audit_nonlinear_holding_certificate.py \
@@ -295,4 +388,11 @@ env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 
 
 env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
   python -m pytest -q toolkit/adm_harness_cli/tests/test_shared_rail_reactions.py
+
+env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python toolkit/adm_harness_cli/scripts/audit_coupled_rail_reactions.py \
+  --workers 4 --output /tmp/coupled_rail_reactions_replay
+
+env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python -m pytest -q toolkit/adm_harness_cli/tests/test_coupled_rail_reactions.py
 ```
