@@ -2,20 +2,42 @@
 
 17 September 2026.
 
-Finite reflecting radial conformal channels fail the full standing tensor
-requirement with ordinary, pressure-bounded material in all 80 registered
-comparisons. A local energy–pressure identity gives a stronger exclusion of
-this bulk source family across arbitrary positive channel counts and cavity
-lengths. The retained C1 geometry therefore requires additional quantum tensor
-structure alongside any such radial channels.
+The multicomponent comparison retains separate radial and angular signed-source
+roles, the Maxwell field and ordinary supporting material. With the angular
+contribution granted as a target, thirty-two reflecting radial compartments
+per module satisfy the sampled bulk inequalities in both retained overlap
+brackets. Varying the channel count between compartments substantially reduces
+the required inventory and reflector forces. Physical laws for the angular
+component, reflectors and their material reactions remain open.
 
-Granting an independent angular quantum target changes the necessary bulk
-comparison. Thirty-two reflecting compartments per module satisfy its sampled
-inequalities in both retained overlap brackets. Varying the channel count
-between compartments substantially reduces the required inventory and end
-forces. The angular field, physical reflectors, their material reactions and
-the exterior signed source remain construction requirements. These results
-advance source selection while leaving complete signed-source closure open.
+A restricted comparison sets the angular quantum contribution to zero and
+asks the radial channels and ordinary material to supply the complete tensor.
+All 80 such comparisons fail. Its length-independent energy–pressure identity
+quantifies the contribution required from the existing signed angular/transition
+role. This restricted exclusion leaves the radial channels eligible as a
+component of the conditional multicomponent allocation above.
+
+## Component assignments and new quantitative requirements
+
+The [component ledger](RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
+already assigns distinct radial and angular signed stress, finite-boundary
+response and exterior quantum matching. This screen adds a trial radial
+implementation and measures requirements within those assignments:
+
+| Existing role | Treatment here | New quantitative result |
+|---|---|---|
+| Radial signed source | Reflecting conformal channels with adjustable compartment counts and mode populations | Conditional bulk contribution, mode inventory and spatial stress profile |
+| Signed angular/transition source | Separate target \((-2v,2v,-2v)\), distinct from ordinary angular support | Required \(v(x)\) accompanying each radial-channel allocation |
+| Finite boundary material and reaction paths | Reflectors proposed as trial subcomponents; their momentum jumps are retained | End and internal reflector forces for the specified layouts |
+| Finite transition and quantum environment | Exterior field/state completion remains assigned to this existing role and any participating neighboring assemblies | Residual coverage beyond the trial endpoints on the unchanged metric |
+
+The exterior measurement identifies stress omitted by the compact trial. It
+leaves the capabilities of the existing exterior-component candidates open;
+their tensors were outside this calculation. Hardware implementing that role
+may share an assembly, extend its fields beyond the material ends or belong
+to a neighboring assembly. Component identity and placement follow from the
+eventual field and material construction. The common source solve sums their
+separately supplied tensors and reciprocal interface exchanges.
 
 ## Geometry, source placement and overlap record
 
@@ -99,7 +121,7 @@ confinement and preparation remain physical source terms to be supplied.
 The listed forces are scalar radial load integrals in the spherical average;
 angular-resolved module motion requires the corresponding spatial embedding.
 
-## A length-independent tensor obstruction
+## Restricted radial-only comparison and the angular-source requirement
 
 Subtracting the two radial components eliminates the state-dependent Casimir
 term:
@@ -135,8 +157,17 @@ four-dimensional curvature evaluation confirms the negative geometric
 difference at both transition witnesses.
 
 This is an exclusion of radial conformal channels as the entire signed sector
-under the ordinary-material bound. The architecture retains its distinct
-angular-source responsibility throughout the comparison.
+under the ordinary-material bound. Within the multicomponent allocation,
+the same identity gives the existing angular target the necessary lower bound
+
+\[
+v\geq\max\!\left[0,\frac{(\rho_Q-p_{r,Q})
+-(\rho-p_r)_{\rm after\ Maxwell}}4\right].
+\]
+
+Its physical realization remains the assigned signed angular/transition task.
+The radial-only exclusion supplies this compatibility condition between source
+components; the following comparison evaluates their combined allocation.
 
 ## Preserving the separate angular-source role
 
@@ -213,31 +244,35 @@ the geometric requirements are approximately:
 
 Together those intervals contain about 22.7% of the negative radial-null
 requirement within the cached \([-8,8]\) geometry. The compact reflecting
-channel trial has zero quantum stress outside its declared endpoints. A
-complete source for this geometry therefore needs an exterior field/state
-construction as well as the interior compartments. Field support can extend
-beyond the material boundaries, consistently with C1. An exterior geometry
-change supplies another design variable and would require an explicit new
-matching calculation. This screen retains the original exterior geometry.
+channel trial has zero quantum stress outside its declared endpoints. This
+quantifies the coverage still assigned to the existing transition and quantum
+environment components, including any participating neighboring source
+assemblies. Their exterior tensors remain to be evaluated on this geometry.
+Field support can extend beyond material boundaries, consistently with C1.
+An exterior geometry change supplies another design variable and would require
+an explicit new matching calculation. This screen retains the original
+exterior geometry and the existing exterior-component responsibility.
 
 ## Source-selection consequence
 
 Finite compartmenting can relieve the inherited long-path quantum sign
 problem, and spatially varying mode counts substantially improve the conditional
-bulk allocation. Full source selection now needs a quantum model supplying
-the additional tensor structure together with its finite material boundaries
-and exterior state. Increasing the count of the same radial conformal channels
-preserves the transition obstruction derived above.
+multicomponent bulk allocation. The continuation supplies physical laws for
+the existing signed angular component and boundary material, couples them to
+the radial channel tensor, and supplies the transition/exterior field state.
+Each component retains its own mechanism, tensor and interfaces. The radial-only
+identity constrains their allocation while the component roles remain intact.
 
 The [earlier source shortlist](SOURCE_CONSTRUCTION_RESTART_SHORTLIST.md)
 retains the absolute vacuum of a counted confined fermion/material system as
 a distinct uncomputed mechanism. Its full radial and angular stress differs
-from the evaluated occupied-state contribution. A useful continuation would
-specify that vacuum and its material renormalization, or another explicit
-mechanism changing the measured tensor constraint. The earlier scalar-mirror
-proximity and local magnetic-return constructions retain their existing
-counted deficits. Detailed fixture optimization and a physical handoff cycle
-remain downstream of this joint signed-source and boundary construction.
+from the evaluated occupied-state contribution. Evaluating that vacuum would
+require its material renormalization and a declared component assignment,
+with the other source roles retained in the combined construction. The earlier
+scalar-mirror proximity and local magnetic-return constructions retain their
+existing counted deficits. Detailed fixture optimization and a physical
+handoff cycle remain downstream of this joint signed-source and boundary
+construction.
 
 ## Verification and reproducibility
 

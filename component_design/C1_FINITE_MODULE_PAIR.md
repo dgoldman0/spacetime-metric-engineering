@@ -124,7 +124,7 @@ inventories are recorded for subsequent physical normalization.
 | Responsibility | Location and interface in C1 | Current input |
 |---|---|---|
 | Bulk radial and angular source | Each module's fields, charged material and internal support; summed once in the overlap | Finite electrostatic field plus bounded static support comparison |
-| Signed radial and angular source | Actual quantum state and its material boundaries through the occupied and overlap regions | Finite radial conformal-channel exclusion; conditional bulk allocation with a separately required angular quantum source and counted reflector force requirements |
+| Signed radial and angular source | Separately specified quantum components and their material boundaries through the occupied and overlap regions | Conditional radial-channel plus angular-target bulk allocation; reflector force requirements and a compatibility bound from the radial-only control |
 | Endpoint current and support exchange | Medium and receiver within the finite assembly, with specified transfers to its stores | Archived fitted tensor and effective response evidence |
 | Holding, conversion and heat | Finite stores, work routes, receiver and heat destination carried by each assembly or separately identified vehicles | Conditional local storage/interface results |
 | Entry, handoff and release | Common geometric history supported by the overlapping source states | Service reference and causal preparation requirements |

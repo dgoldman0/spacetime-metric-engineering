@@ -25,12 +25,13 @@ requirements are counted. The [module specification](component_design/C1_FINITE_
 defines the boundaries and the material, source, motion and service gates.
 
 The [C1 signed-source screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
-tests finite reflecting quantum channels on that same geometry. A transition
-tensor constraint excludes these radial channels as the complete signed sector.
-Short compartments with an independently granted angular quantum target pass
-a necessary bulk screen; physical reflectors, the angular field and exterior
-source remain open. The electric overlaps retain their original boundaries;
-the trial quantum overlaps are inset and recorded explicitly in the report.
+tests finite reflecting radial channels alongside the established separate
+angular quantum role on that same geometry. Short compartments with the angular
+contribution granted as a target pass a necessary bulk screen. Physical
+reflectors, the angular field and transition/exterior completion remain open.
+A radial-only control supplies a compatibility bound between source components.
+The electric overlaps retain their original boundaries; the trial quantum
+overlaps are inset and recorded explicitly in the report.
 
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk

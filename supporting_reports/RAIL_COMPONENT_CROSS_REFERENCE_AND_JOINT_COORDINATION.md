@@ -20,6 +20,17 @@ material continuity and field overlap each require an explicit extent and
 boundary law. Route-length mechanical connectivity remains a topology choice;
 finite-module closure and intermodule source matching remain open.
 
+The [C1 reflecting-channel screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md) preserves
+this component split in its radial-channel plus angular-target comparison.
+Its radial-only control quantifies the existing angular signed-source duty;
+the multicomponent comparison retains conditional bulk allocations. Reflectors
+are trial subcomponents of the radial implementation, with calculated reaction
+loads and an open material law. Stress beyond the trial endpoints remains
+assigned to the finite-transition and quantum-environment role, including any
+participating neighboring assemblies. Its measured coverage is a requirement
+for that existing assignment; the exterior candidates themselves were outside
+the compact-channel calculation.
+
 The recent condensate-plus-neutral-scalar calculation restricted the allocation
 too far. Its classical material supplies 0.612% of the demanded throat tension,
 leaving the quantum remainder responsible for 99.388%. Restoring bulk support

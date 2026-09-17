@@ -24,10 +24,10 @@ material, signed-source, angular-packing and coupled-motion requirements.
 
 The [finite signed-channel screen](../supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
 keeps that geometry and electric layout while testing inset quantum channels.
-Its radial-only tensor obstruction and conditional angular-source allocation
-make the supplied transverse quantum stress, finite reflectors and exterior
-state the next joint source requirements. The report records both trial
-quantum overlaps and all retained architectural boundaries.
+Its conditional multicomponent allocation retains the separate signed angular
+source, finite-boundary material and transition/exterior roles. The radial-only
+control gives a compatibility bound between those source components. The report
+records both trial quantum overlaps and all retained architectural boundaries.
 
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective

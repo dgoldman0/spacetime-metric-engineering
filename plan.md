@@ -5,10 +5,12 @@
 The [C1 signed-source channel screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
 is the current source milestone. It evaluates 80 comparisons with four workers,
 31 passing focused tests and 140 independently verified pointwise exclusions.
-Radial reflecting conformal channels fail the complete bulk tensor requirement
-with ordinary DEC material. A separate angular quantum target permits a
-conditional bulk allocation at 32 compartments per module; its physical field,
-reflectors, material reactions and exterior signed source remain open.
+The multicomponent gate retains a radial conformal-channel candidate and a
+separate angular quantum target. It permits conditional bulk allocations at
+32 compartments per module. The radial-only control omits that existing signed
+angular role; its failure supplies a compatibility bound for the allocation.
+Physical angular stress, reflector materials and exterior component tensors
+remain open.
 
 Geometry, electric-source placement and material module domains remain
 unchanged. Electric overlaps stay at `[0.5,2.5]` and `[0.5,1]`. The **trial
@@ -19,15 +21,18 @@ trial variables. The necessary gate relaxes the old material profiles and
 density limits to arbitrary aggregate DEC stress. No physical quantum layout
 is promoted.
 
-Continue with a supplied quantum model carrying the needed radial and angular
-tensor structure, its resolved boundary material and exterior state. The
-absolute vacuum of the counted confined-fermion/material model remains a
-distinct uncomputed candidate in the
-[source shortlist](supporting_reports/SOURCE_CONSTRUCTION_RESTART_SHORTLIST.md).
-The radial conformal transition obstruction survives additional channel count
-or shorter optical paths under the tested law. Clearly record any subsequent
-geometry, source-placement or overlap change. Detailed fixture optimization
-and a physical preparation/handoff/reset cycle follow joint source closure.
+Continue the separately assigned components: supply the signed angular tensor
+and reflector/material response, couple them to the radial candidate, and
+evaluate coverage from the existing transition/quantum-environment role and
+any participating neighboring assemblies. The measured exterior residual is
+coverage omitted by this compact trial; the exterior candidates themselves
+were outside that calculation. The radial-only control leaves the radial
+candidate's role in the multicomponent construction open. Alternative quantum
+models in the [source shortlist](supporting_reports/SOURCE_CONSTRUCTION_RESTART_SHORTLIST.md)
+should be evaluated for declared component duties, with the other source roles
+retained. Clearly record any subsequent geometry, source-placement or overlap
+change. Detailed fixture optimization and a physical preparation/handoff/reset
+cycle follow joint component closure.
 
 The [first C1 finite-module screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md)
 and [module specification](component_design/C1_FINITE_MODULE_PAIR.md) carry the

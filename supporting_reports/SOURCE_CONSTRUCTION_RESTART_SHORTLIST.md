@@ -3,14 +3,15 @@
 Date: 9 September 2026.
 
 The subsequent [C1 signed-source screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
-adds a finite reflecting-channel comparison on the retained geometry. Radial
-conformal bulk sources have a fixed energy–pressure difference that excludes
-their completion by ordinary DEC material across the transition. Short
-compartments with a separately granted angular quantum target pass a necessary
-bulk screen. A supplied transverse quantum tensor, resolved boundary material
-and exterior state remain the joint selection requirements. The geometry and
-electric overlaps are retained; inset trial quantum overlaps are recorded in
-that report.
+adds finite reflecting radial channels alongside the established separate
+angular signed-source role on the retained geometry. Short compartments with
+that angular contribution granted as a target pass a necessary bulk screen.
+The radial-only control omits the angular component and gives a quantitative
+lower bound on its required contribution. Physical angular stress, resolved
+boundary material and the existing exterior quantum-state completion retain
+their separate duties. The measured exterior residual identifies coverage
+omitted by the compact trial. The geometry and electric overlaps are retained;
+inset trial quantum overlaps are recorded in that report.
 
 The [material-confined fermion evaluation](CONFINED_FERMION_EVALUATION.md)
 now supplies a bounded test of the first deferred direction. A counted scalar
