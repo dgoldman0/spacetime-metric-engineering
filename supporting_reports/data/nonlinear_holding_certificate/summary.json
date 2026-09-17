@@ -1,0 +1,244 @@
+{
+  "created_utc": "2026-09-17T10:16:35.108193+00:00",
+  "workers": 4,
+  "base_commit": "4969f6bdd7d4697a5fe2271131ca91a9679841c0",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "guide_input_certificate": {
+    "input_power_lower_bound": 0.0009609550948377879,
+    "falling_work_correction": 2.811779285846512e-05,
+    "acceleration_derivative_correction": 5.900636159914112e-07,
+    "rotor_energy_lower_bound": 1.1170011031235956,
+    "rotor_energy_upper_bound": 1.300092603707409,
+    "net_power_upper_bound": 1.048961991113215,
+    "reduced_input_upper_bound": 0.0015458100555665276
+  },
+  "rational_certificate": {
+    "coefficient_domain_verified": true,
+    "vertices": [
+      {
+        "omega": ".7691",
+        "epsilon": "-.00981",
+        "damping": ".39318",
+        "invariant_principal_minors": [
+          "9037/625000",
+          "6070228351/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "227787/625000",
+          "658436578119/25000000000000",
+          "256595788023/125000000000000"
+        ]
+      },
+      {
+        "omega": ".7691",
+        "epsilon": "-.00981",
+        "damping": ".40682",
+        "invariant_principal_minors": [
+          "9037/625000",
+          "8445907151/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "227787/625000",
+          "917906860839/25000000000000",
+          "344938194263/125000000000000"
+        ]
+      },
+      {
+        "omega": ".7691",
+        "epsilon": ".00981",
+        "damping": ".39318",
+        "invariant_principal_minors": [
+          "14923/625000",
+          "7483574671/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "233673/625000",
+          "578135057319/25000000000000",
+          "248075214423/125000000000000"
+        ]
+      },
+      {
+        "omega": ".7691",
+        "epsilon": ".00981",
+        "damping": ".40682",
+        "invariant_principal_minors": [
+          "14923/625000",
+          "10662103871/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "233673/625000",
+          "841137881799/25000000000000",
+          "396470830583/125000000000000"
+        ]
+      },
+      {
+        "omega": ".8953",
+        "epsilon": "-.00981",
+        "damping": ".39318",
+        "invariant_principal_minors": [
+          "46897/625000",
+          "3100792831/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "265647/625000",
+          "153221834439/25000000000000",
+          "393917945463/125000000000000"
+        ]
+      },
+      {
+        "omega": ".8953",
+        "epsilon": "-.00981",
+        "damping": ".40682",
+        "invariant_principal_minors": [
+          "46897/625000",
+          "15804679631/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "265647/625000",
+          "458136232359/25000000000000",
+          "1254810310103/125000000000000"
+        ]
+      },
+      {
+        "omega": ".8953",
+        "epsilon": ".00981",
+        "damping": ".39318",
+        "invariant_principal_minors": [
+          "52783/625000",
+          "948635791/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "271533/625000",
+          "58658300199/25000000000000",
+          "142943143383/125000000000000"
+        ]
+      },
+      {
+        "omega": ".8953",
+        "epsilon": ".00981",
+        "damping": ".40682",
+        "invariant_principal_minors": [
+          "52783/625000",
+          "14455372991/6250000000000"
+        ],
+        "thermal_principal_minors": [
+          "271533/625000",
+          "367105239879/25000000000000",
+          "1063888717943/125000000000000"
+        ]
+      }
+    ],
+    "invariant_level": "961/12250000",
+    "maximum_radius_error": 0.00913,
+    "maximum_radial_speed": 0.00818,
+    "gain": 3.4,
+    "invariant_matrix": [
+      [
+        1.0,
+        0.24
+      ],
+      [
+        0.24,
+        1.0
+      ]
+    ],
+    "thermal_matrix": [
+      [
+        1.1,
+        0.24
+      ],
+      [
+        0.24,
+        1.1
+      ]
+    ]
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758"
+      },
+      "maximum_input_l2": 140.3443474950576,
+      "maximum_thermal_action": 0.03906589918316526,
+      "nonlinear_thermal_action_ceiling": 0.07874586828277638,
+      "maximum_thermal_energy_over_C": 0.6347402806232035,
+      "minimum_spin": 0.411533641637257,
+      "maximum_spin": 0.8308188791788497,
+      "minimum_radius": 1.10787,
+      "rotor_trace_bound_over_C": 0.25119206632440094,
+      "worst_node_index": 8,
+      "worst_material_label_index": 1,
+      "worst_material_label": -2.0002031249999996,
+      "all_nodes_certified": true
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d"
+      },
+      "maximum_input_l2": 260.0067519663295,
+      "maximum_thermal_action": 0.07237481625679683,
+      "nonlinear_thermal_action_ceiling": 0.07874586828277638,
+      "maximum_thermal_energy_over_C": 1.1759414768747645,
+      "minimum_spin": 0.32053409187161214,
+      "maximum_spin": 0.8308188791788497,
+      "minimum_radius": 1.10787,
+      "rotor_trace_bound_over_C": 0.25119206632440094,
+      "worst_node_index": 17,
+      "worst_material_label_index": 4,
+      "worst_material_label": -2.0001796875,
+      "all_nodes_certified": true
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397"
+      },
+      "maximum_input_l2": 51.74275346556786,
+      "maximum_thermal_action": 0.014402988880135515,
+      "nonlinear_thermal_action_ceiling": 0.07874586828277638,
+      "maximum_thermal_energy_over_C": 0.23401886030386684,
+      "minimum_spin": 0.46763849157793,
+      "maximum_spin": 0.8308188791788497,
+      "minimum_radius": 1.10787,
+      "rotor_trace_bound_over_C": 0.25119206632440094,
+      "worst_node_index": 8,
+      "worst_material_label_index": 8,
+      "worst_material_label": -1.974984375,
+      "all_nodes_certified": true
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7"
+      },
+      "maximum_input_l2": 82.89398588367591,
+      "maximum_thermal_action": 0.023074165277942992,
+      "nonlinear_thermal_action_ceiling": 0.07874586828277638,
+      "maximum_thermal_energy_over_C": 0.37490759076087476,
+      "minimum_spin": 0.44871305531449246,
+      "maximum_spin": 0.8308188791788497,
+      "minimum_radius": 1.10787,
+      "rotor_trace_bound_over_C": 0.25119206632440094,
+      "worst_node_index": 17,
+      "worst_material_label_index": 21,
+      "worst_material_label": -1.9749140625000001,
+      "all_nodes_certified": true
+    }
+  ],
+  "initial_radial_error": [
+    0.0,
+    0.0
+  ],
+  "initial_thermal_action": 1e-08,
+  "nonlinear_axisymmetric_rotor_certificate": true,
+  "absorption_and_rotational_drag_included": false,
+  "finite_actuator_slew_closed": false,
+  "spatial_route_constitutive_evolution_closed": false,
+  "full_rail_tensor_and_macro_work_closed": false,
+  "physical_material_realization_identified": false
+}

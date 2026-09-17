@@ -1,0 +1,20 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_nonlinear_holding_certificate.py": "6fb3ca2e744a773cac2cde903e08b297c86458a7a018900f7e3819e7c65c4338",
+    "toolkit/adm_harness_cli/adm_harness/nonlinear_holding_certificate.py": "8b8939acf2f17e05011e1967614ff017558359ce313f103de17a483c942e334e",
+    "toolkit/adm_harness_cli/tests/test_nonlinear_holding_certificate.py": "7965435d2daf0ca192042bc233ba7de1edd88f8b255698ef68dc43163702a4a1"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699"
+  },
+  "output_sha256": {
+    "execution_audit_nonlinear_holding_certificate.py": "6fb3ca2e744a773cac2cde903e08b297c86458a7a018900f7e3819e7c65c4338",
+    "execution_nonlinear_holding_certificate.py": "8b8939acf2f17e05011e1967614ff017558359ce313f103de17a483c942e334e",
+    "execution_test_nonlinear_holding_certificate.py": "7965435d2daf0ca192042bc233ba7de1edd88f8b255698ef68dc43163702a4a1",
+    "first_n16_t2057_certificate.npz": "7db4cb84ac5ceb2464ffead2c838d09548092b85c4703a060a0fc715595cc422",
+    "first_n32_t4113_certificate.npz": "472f66048f1d62e1f85425b204cdb69d31753470b28e656204e3e3b80e8793fe",
+    "second_n16_t1029_certificate.npz": "1c7f711f735203174586f92f40ca34dd5baa218bffc73ffa1ba29726abf36dbc",
+    "second_n32_t2057_certificate.npz": "9f695378774ce66584a3eedd091e9aaf4123923cbcfa8ae38a2810fd8936f1ea",
+    "summary.json": "104c4c9b82cb625fb5d96abedf0336f97f29924fc6c1a80ab4160e66dded1048"
+  }
+}
