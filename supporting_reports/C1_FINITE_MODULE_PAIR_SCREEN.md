@@ -183,9 +183,11 @@ angular-resolved forces, field momentum, material locations and a declared
 motion model. The current spherical source average leaves those directional
 degrees of freedom open.
 
-The next construction retains the broad C1 bracket and the narrow cost
-reference, supplies their separate charged-material and source interfaces,
-and screens an explicit signed source on that same geometry. Finite carrier
+The subsequent [signed-source channel screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+retains the broad C1 bracket, narrow cost reference and common geometry while
+testing inset finite reflecting quantum channels. Its radial conformal tensor
+obstruction and conditional angular-source allocation leave a joint quantum
+and boundary construction open. Finite carrier
 binding, angular packing, current preparation, recoil and recovery then enter
 the coupled evolution. A physical packet handoff/reset calculation follows
 source and constitutive closure. Existing local storage and fixture results

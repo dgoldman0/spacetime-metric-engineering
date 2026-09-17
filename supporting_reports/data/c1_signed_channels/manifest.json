@@ -1,0 +1,45 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/screen_c1_signed_channels.py": "1551e98b8d6da87816bad97d719fc28e2bb123ee7d6efb84095eefd13851b8ee",
+    "toolkit/adm_harness_cli/specs/c1_signed_channels.json": "3010671e9e1539eaeaf0d801586b4a2b61c5d32a0735c421aa116f1aaecbe5c7",
+    "toolkit/adm_harness_cli/adm_harness/c1_signed_channels.py": "8109087ee860db29405e136d1504d1574d7311fb7529309c7a47ff1583e226a9",
+    "toolkit/adm_harness_cli/adm_harness/c1_module_overlap.py": "266f687f67ab606e46e6a559dc1784f7e941003eb6f3ef83f4d7d5998758a274",
+    "toolkit/adm_harness_cli/adm_harness/geometry_opening.py": "64aef9f4006abb07d5c13a385a6a9ac7b40eead516ddd75291f6bafa14b9d0d5",
+    "toolkit/adm_harness_cli/tests/test_c1_signed_channels.py": "3367dcd1aacc397987ed6819c14bb0c138f803eb2de71b05ac98ed61bb661c2c"
+  },
+  "input_sha256": {
+    "supporting_reports/data/c1_module_pair/manifest.json": "a5a3c3b340ad6945d7f0e7efadca4b9f8a47ce9c3eca47395efaeeaea31a0a20",
+    "supporting_reports/data/archived_geometry_opening/reference_metric.npz": "75eff30a809bbbe895e83ea2202efafa369dca72addcf287c92c15bf207c5511",
+    "toolkit/adm_harness_cli/specs/c1_module_pair.json": "c47cf3ee6879461d2966ce36afcdac73eb334252ac33c774e891fa78908076d1"
+  },
+  "output_sha256": {
+    "broad_independent_per_compartment_n32_s2049_g1_q8.npz": "177bf361a4fd173d7756da0dfaa6d1efc6c1b03e4d44aabbd882c00ede1198e0",
+    "broad_independent_per_compartment_n32_s4097_g1_q8.npz": "f8753fb6fbfa80f9efd8b0bb0ee24066a669d6aedd41b8b66254d462323ab966",
+    "broad_independent_per_compartment_n32_s8193_g1_q16.npz": "40fe04e6ebe55f4b2ba0a903d90d50ef51b0a3c65e07eb8d4b833d39452992df",
+    "broad_independent_per_compartment_n32_s8193_g1_q8.npz": "9d815ba8da46bdfa69e29854597c91f8365628ed6b77da7f3610b12830fc5392",
+    "broad_independent_per_compartment_n32_s8193_g2_q8.npz": "5e2b65eb2d7af9c5df19668705d68a8c426c82dd4d95acdb17a79b5a2e7696c3",
+    "broad_uniform_per_module_n32_s2049_g1_q8.npz": "43cecf8cdb072ec75578ea611ffa99f76935f759c4c1429b08fd05eb222f0921",
+    "broad_uniform_per_module_n32_s4097_g1_q8.npz": "225b0705937c9f9bd8a844a63edf89af2c5a2dbcfad1236455ade66c179c5646",
+    "broad_uniform_per_module_n32_s8193_g1_q16.npz": "523ff762f85bd12c044e5cc6f1f01c8471a1dc9e0c6b6b9ea505b3d65297e9d2",
+    "broad_uniform_per_module_n32_s8193_g1_q8.npz": "8c30ecd40d2c4d9d5299884477f37b961b521064be0d8192f8780f86e8232e78",
+    "broad_uniform_per_module_n32_s8193_g2_q8.npz": "ac14a3bf29dcb55df96d11d4350cb022740a943453edef639670790fcec95633",
+    "comparison.csv": "03891482078fabed28261f303309a17dba630a17e5c9b7cfb43efb8edc9d338a",
+    "execution_c1_module_overlap.py": "266f687f67ab606e46e6a559dc1784f7e941003eb6f3ef83f4d7d5998758a274",
+    "execution_c1_signed_channels.json": "3010671e9e1539eaeaf0d801586b4a2b61c5d32a0735c421aa116f1aaecbe5c7",
+    "execution_c1_signed_channels.py": "8109087ee860db29405e136d1504d1574d7311fb7529309c7a47ff1583e226a9",
+    "execution_geometry_opening.py": "64aef9f4006abb07d5c13a385a6a9ac7b40eead516ddd75291f6bafa14b9d0d5",
+    "execution_screen_c1_signed_channels.py": "1551e98b8d6da87816bad97d719fc28e2bb123ee7d6efb84095eefd13851b8ee",
+    "execution_test_c1_signed_channels.py": "3367dcd1aacc397987ed6819c14bb0c138f803eb2de71b05ac98ed61bb661c2c",
+    "narrow_independent_per_compartment_n32_s2049_g1_q8.npz": "b96a56c992ab43d65582048a39997931d0f623dc45815d0f22f70b970a73f643",
+    "narrow_independent_per_compartment_n32_s4097_g1_q8.npz": "612dc799aed69b6b7df9bb0953ddfed4ca92d15bb831895c9c370c7f5332fbbd",
+    "narrow_independent_per_compartment_n32_s8193_g1_q16.npz": "3ea8e6002d49c5ca84f079f5e1fa7e02eebcec6d24422f045bc6c10784fa4122",
+    "narrow_independent_per_compartment_n32_s8193_g1_q8.npz": "d31e984b009586d3bfefa218b453bd9b49826f94336d8afc038c857b0495745d",
+    "narrow_independent_per_compartment_n32_s8193_g2_q8.npz": "b84913fa799f49d9225c29d66b0f54b7e2405069d2ab6ff4a9d7e398fbb2221f",
+    "narrow_uniform_per_module_n32_s2049_g1_q8.npz": "44e202034819ce1fb1ce5b96e2cfea5cb1abbe228d6de7b8d1505d7e2c73db3f",
+    "narrow_uniform_per_module_n32_s4097_g1_q8.npz": "2c44d91969b788c146057d6d9728321f905af3f374335a619741da1653fe93e6",
+    "narrow_uniform_per_module_n32_s8193_g1_q16.npz": "8bd0c37253dee54aed1c3287f5d4f95aff3b6495a7aa75f68900f031aefb6cd1",
+    "narrow_uniform_per_module_n32_s8193_g1_q8.npz": "237333716f596dbe9ed96d044aaa5da39c119c795b2dd8ce2637fd270be87f36",
+    "narrow_uniform_per_module_n32_s8193_g2_q8.npz": "8dd8a95db49311af1017a83dd10e05842754d9a68d81dcbd8a05238dab3641c4",
+    "summary.json": "11f59571e814fe58e3d9408daee7d702fab4878bcce1786983d21ebd87090ba8"
+  }
+}

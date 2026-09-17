@@ -31,6 +31,14 @@ zero defines the same static surrogate used for that source comparison.
 The archived active metric retains its own shift, time dependence and service
 checks. A source-derived C1 trajectory will require those additional equations.
 
+The [signed-source channel screen](../supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+retains this geometry, electric-source placement and both material-domain
+brackets. Its added trial quantum channels have outer reflecting ends inset
+by 0.05 coordinate units, giving quantum overlaps \([0.55,2.45]\) and
+\([0.55,0.95]\). Internal optical compartments and their mode counts vary in
+that source comparison. The physical quantum layout remains a construction
+choice, with its radial and angular tensor and finite boundaries supplied jointly.
+
 For an overlap interval \([a,b]\), module L occupies radial labels
 \([-3,b]\), and module R occupies \([a,3]\). Source flux tapers smoothly to
 zero at each module end. Each material support has zero density and radial
@@ -116,7 +124,7 @@ inventories are recorded for subsequent physical normalization.
 | Responsibility | Location and interface in C1 | Current input |
 |---|---|---|
 | Bulk radial and angular source | Each module's fields, charged material and internal support; summed once in the overlap | Finite electrostatic field plus bounded static support comparison |
-| Signed radial and angular source | Actual quantum state and its material boundaries through the occupied and overlap regions | Required residual and inherited source-family exclusions |
+| Signed radial and angular source | Actual quantum state and its material boundaries through the occupied and overlap regions | Finite radial conformal-channel exclusion; conditional bulk allocation with a separately required angular quantum source and counted reflector force requirements |
 | Endpoint current and support exchange | Medium and receiver within the finite assembly, with specified transfers to its stores | Archived fitted tensor and effective response evidence |
 | Holding, conversion and heat | Finite stores, work routes, receiver and heat destination carried by each assembly or separately identified vehicles | Conditional local storage/interface results |
 | Entry, handoff and release | Common geometric history supported by the overlapping source states | Service reference and causal preparation requirements |

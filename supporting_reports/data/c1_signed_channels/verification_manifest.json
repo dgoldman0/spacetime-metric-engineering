@@ -1,0 +1,18 @@
+{
+  "parent_manifest_sha256": "8e229ed92f84f16468ddba708ce01d41fe4421921e767b26a89bd2dceec4ac33",
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_signed_channels.py": "cdadfbe14036710ca05b4ba72598a84cdf9e6e7cd6611bc42ef37100175c9635",
+    "toolkit/adm_harness_cli/adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+    "toolkit/adm_harness_cli/adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+    "toolkit/adm_harness_cli/adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+    "toolkit/adm_harness_cli/adm_harness/receiver_regularity.py": "20245a1bac76895cacb760bd5c9001a8eeb2b3db2b7ea44afb5338c9655ca94f"
+  },
+  "input_sha256": {
+    "supporting_reports/data/le_coupled_reset_source/manifest.json": "084a813c950bd3919761e714064c009e42b687c48891e903c0943ebeba668f54",
+    "toolkit/adm_harness_cli/specs/archived_geometry_opening.json": "1e83e6d9e49dc6967463f31b4b22f2a681a76ecada24469053a580a1b86b1795"
+  },
+  "output_sha256": {
+    "verification.json": "c5f749e74ae33c98f0dc5960878f953bdfe203a79f2076d810363312399fa4f9",
+    "execution_audit_c1_signed_channels.py": "cdadfbe14036710ca05b4ba72598a84cdf9e6e7cd6611bc42ef37100175c9635"
+  }
+}

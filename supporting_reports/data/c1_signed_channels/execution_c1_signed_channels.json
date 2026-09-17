@@ -1,0 +1,32 @@
+{
+  "reference": "supporting_reports/data/archived_geometry_opening/reference_metric.npz",
+  "parent_manifest": "supporting_reports/data/c1_module_pair/manifest.json",
+  "parent_specification": "toolkit/adm_harness_cli/specs/c1_module_pair.json",
+  "eta": 0.000024127904527582454,
+  "reference_central_charge": 64997.0,
+  "material_domain_inset_coordinate": 0.05,
+  "compartments_per_module": [1, 2, 4, 8, 16, 32],
+  "channel_strength_patterns": ["uniform_per_module", "independent_per_compartment"],
+  "bulk_comparison_domain": [-2.9, 2.9],
+  "bulk_samples": [2049, 4097, 8193],
+  "quantum_law": "Independent reflecting 1+1 conformal strip ground states with Weyl anomaly, spherical radial average",
+  "cases": [
+    {"label": "broad", "overlap": [0.5, 2.5]},
+    {"label": "narrow", "overlap": [0.5, 1.0]}
+  ],
+  "change_record": {
+    "geometry_altered": false,
+    "existing_electric_source_placement_altered": false,
+    "material_module_domains_altered": false,
+    "existing_electric_overlap_brackets_altered": false,
+    "trial_quantum_overlap_differs_from_electric_overlap": true,
+    "trial_quantum_overlaps": {"broad": [0.55, 2.45], "narrow": [0.55, 0.95]},
+    "trial_quantum_source_placement": "Add radial reflecting channels inset inside each existing module; vary internal equal-optical-length partitions",
+    "ordinary_tensor_allocation": "Relax prior optimized supports to arbitrary aggregate DEC material for a necessary bulk gate",
+    "promoted_quantum_layout": null
+  },
+  "primary_references": [
+    "https://arxiv.org/abs/hep-th/0411189",
+    "https://arxiv.org/html/1807.04726v3#A6"
+  ]
+}

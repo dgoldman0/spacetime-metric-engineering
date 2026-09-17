@@ -2,6 +2,16 @@
 
 Date: 9 September 2026.
 
+The subsequent [C1 signed-source screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+adds a finite reflecting-channel comparison on the retained geometry. Radial
+conformal bulk sources have a fixed energy–pressure difference that excludes
+their completion by ordinary DEC material across the transition. Short
+compartments with a separately granted angular quantum target pass a necessary
+bulk screen. A supplied transverse quantum tensor, resolved boundary material
+and exterior state remain the joint selection requirements. The geometry and
+electric overlaps are retained; inset trial quantum overlaps are recorded in
+that report.
+
 The [material-confined fermion evaluation](CONFINED_FERMION_EVALUATION.md)
 now supplies a bounded test of the first deferred direction. A counted scalar
 mass well produces 74, 302 and 1,222 resolved positive-frequency multiplets

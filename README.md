@@ -24,6 +24,14 @@ Their shared-field interaction, charge inventories and remaining signed-source
 requirements are counted. The [module specification](component_design/C1_FINITE_MODULE_PAIR.md)
 defines the boundaries and the material, source, motion and service gates.
 
+The [C1 signed-source screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+tests finite reflecting quantum channels on that same geometry. A transition
+tensor constraint excludes these radial channels as the complete signed sector.
+Short compartments with an independently granted angular quantum target pass
+a necessary bulk screen; physical reflectors, the angular field and exterior
+source remain open. The electric overlaps retain their original boundaries;
+the trial quantum overlaps are inset and recorded explicitly in the report.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -61,6 +69,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [C1 signed-source and finite-boundary screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md):
+  explicit channel law, tensor exclusion, conditional angular-source comparison
+  and geometry/source-placement change record.
 - [C1 finite-module and overlap screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md):
   first topology-specific source construction, finite support envelopes,
   placement comparison and unresolved physical completion.

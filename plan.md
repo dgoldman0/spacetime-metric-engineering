@@ -2,9 +2,36 @@
 
 ## Current handoff, 2026-09-17
 
+The [C1 signed-source channel screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+is the current source milestone. It evaluates 80 comparisons with four workers,
+31 passing focused tests and 140 independently verified pointwise exclusions.
+Radial reflecting conformal channels fail the complete bulk tensor requirement
+with ordinary DEC material. A separate angular quantum target permits a
+conditional bulk allocation at 32 compartments per module; its physical field,
+reflectors, material reactions and exterior signed source remain open.
+
+Geometry, electric-source placement and material module domains remain
+unchanged. Electric overlaps stay at `[0.5,2.5]` and `[0.5,1]`. The **trial
+quantum-source placement changes**: outer reflectors sit 0.05 coordinate units
+inside each module, giving quantum overlaps `[0.55,2.45]` and `[0.55,0.95]`.
+Equal-optical compartment boundaries and per-compartment channel counts are
+trial variables. The necessary gate relaxes the old material profiles and
+density limits to arbitrary aggregate DEC stress. No physical quantum layout
+is promoted.
+
+Continue with a supplied quantum model carrying the needed radial and angular
+tensor structure, its resolved boundary material and exterior state. The
+absolute vacuum of the counted confined-fermion/material model remains a
+distinct uncomputed candidate in the
+[source shortlist](supporting_reports/SOURCE_CONSTRUCTION_RESTART_SHORTLIST.md).
+The radial conformal transition obstruction survives additional channel count
+or shorter optical paths under the tested law. Clearly record any subsequent
+geometry, source-placement or overlap change. Detailed fixture optimization
+and a physical preparation/handoff/reset cycle follow joint source closure.
+
 The [first C1 finite-module screen](supporting_reports/C1_FINITE_MODULE_PAIR_SCREEN.md)
 and [module specification](component_design/C1_FINITE_MODULE_PAIR.md) carry the
-current architecture work. The numerical screen includes 68 comparisons,
+standing ordinary-source baseline. That numerical screen includes 68 comparisons,
 four-worker execution, 21 passing focused tests and 92 verified source/input/
 artifact hashes. It constructs finite neutral Maxwell populations and counts
 their cross stress while comparing separate zero-end-traction material supports.

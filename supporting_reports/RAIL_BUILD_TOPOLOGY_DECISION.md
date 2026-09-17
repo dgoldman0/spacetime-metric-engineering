@@ -124,6 +124,13 @@ and narrower cost reference are retained. The source, constitutive, spatial
 embedding and motion gates remain explicit in the
 [module specification](../component_design/C1_FINITE_MODULE_PAIR.md).
 
+The [signed-source channel screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md) retains
+the geometry and electric overlaps while adding inset reflecting quantum
+channels as a trial. A transition tensor constraint requires signed-source
+structure beyond the radial conformal law. The angular-source and finite
+boundary construction remains joint with the exterior source requirement;
+the provisional C1 preference and both electric-overlap brackets are retained.
+
 Future architecture work starts from this recognition and the provisional C1
 preference. A change of preference should identify the source, boundary,
 inventory or control evidence that motivates it.

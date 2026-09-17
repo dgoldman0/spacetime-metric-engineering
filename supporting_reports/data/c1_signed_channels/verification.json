@@ -1,0 +1,101 @@
+{
+  "verified_hashes": 37,
+  "verified_parent_hashes": 92,
+  "cases": 80,
+  "pointwise_exclusions_verified": 140,
+  "radial_only_bulk_passes": 0,
+  "angular_target_bulk_passes": 20,
+  "maximum_identity_errors": {
+    "tensor_error": 3.1086244689504383e-15,
+    "weak_ward_error": 3.2343629230511834e-16,
+    "boundary_force_error": 7.614566504108018e-16,
+    "bulk_reconstruction_error": 3.327199626923516e-15,
+    "dual_gap": 4.384220308069932e-16
+  },
+  "refinement_controls": [
+    {
+      "label": "broad",
+      "pattern": "independent_per_compartment",
+      "maximum_inventory_control_relative_change": 1.6412753129912971e-06,
+      "offgrid_violation_over_peak_geometric_stress": 6.313525753374551e-07
+    },
+    {
+      "label": "broad",
+      "pattern": "uniform_per_module",
+      "maximum_inventory_control_relative_change": 4.982626800209555e-05,
+      "offgrid_violation_over_peak_geometric_stress": 2.7684456284863138e-06
+    },
+    {
+      "label": "narrow",
+      "pattern": "independent_per_compartment",
+      "maximum_inventory_control_relative_change": 2.2457201709236152e-05,
+      "offgrid_violation_over_peak_geometric_stress": 2.363218113092309e-06
+    },
+    {
+      "label": "narrow",
+      "pattern": "uniform_per_module",
+      "maximum_inventory_control_relative_change": 3.845564477389374e-05,
+      "offgrid_violation_over_peak_geometric_stress": 2.363218113092309e-06
+    }
+  ],
+  "independent_curvature_witnesses": [
+    {
+      "coordinate": -2.5,
+      "stencil_step": 0.0005,
+      "four_dimensional_rho_minus_pr": -0.0010046188703110963,
+      "relative_difference": 5.228955571541222e-05
+    },
+    {
+      "coordinate": -2.5,
+      "stencil_step": 0.00025,
+      "four_dimensional_rho_minus_pr": -0.0010046577013804146,
+      "relative_difference": 1.3639038582522662e-05
+    },
+    {
+      "coordinate": -2.5,
+      "stencil_step": 0.000125,
+      "four_dimensional_rho_minus_pr": -0.001004667448821793,
+      "relative_difference": 3.9369197223049595e-06
+    },
+    {
+      "coordinate": 2.5,
+      "stencil_step": 0.0005,
+      "four_dimensional_rho_minus_pr": -0.0010046193976102676,
+      "relative_difference": 5.228952889985957e-05
+    },
+    {
+      "coordinate": 2.5,
+      "stencil_step": 0.00025,
+      "four_dimensional_rho_minus_pr": -0.001004658228682679,
+      "relative_difference": 1.3639028973978157e-05
+    },
+    {
+      "coordinate": 2.5,
+      "stencil_step": 0.000125,
+      "four_dimensional_rho_minus_pr": -0.0010046679761316103,
+      "relative_difference": 3.936907688032635e-06
+    }
+  ],
+  "numerical_screen_verified": true,
+  "complete_physical_source_supplied": false,
+  "change_record": {
+    "geometry_altered": false,
+    "existing_electric_source_placement_altered": false,
+    "material_module_domains_altered": false,
+    "existing_electric_overlap_brackets_altered": false,
+    "trial_quantum_overlap_differs_from_electric_overlap": true,
+    "trial_quantum_overlaps": {
+      "broad": [
+        0.55,
+        2.45
+      ],
+      "narrow": [
+        0.55,
+        0.95
+      ]
+    },
+    "trial_quantum_source_placement": "Add radial reflecting channels inset inside each existing module; vary internal equal-optical-length partitions",
+    "ordinary_tensor_allocation": "Relax prior optimized supports to arbitrary aggregate DEC material for a necessary bulk gate",
+    "promoted_quantum_layout": null
+  }
+}

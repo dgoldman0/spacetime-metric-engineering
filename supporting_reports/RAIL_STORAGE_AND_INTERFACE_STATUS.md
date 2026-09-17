@@ -154,3 +154,10 @@ and boundary requirements for continuing assembly work. Electrical/fixture
 coupling and carrier occupation dynamics retain their open physical duties;
 their local capacities and the new source proper-volume integrals preserve
 their respective measures.
+
+The [C1 signed-source screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md) subsequently
+tests finite reflecting quantum channels with the geometry and electric
+overlaps held fixed. Its tensor exclusion, conditional angular-source
+allocation and exterior coverage requirement place the joint quantum and
+boundary construction ahead of further local fixture optimization. The trial
+quantum-source placement and its inset overlaps are recorded explicitly.

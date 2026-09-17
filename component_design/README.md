@@ -22,6 +22,13 @@ supports. Its [standing screen](../supporting_reports/C1_FINITE_MODULE_PAIR_SCRE
 retains a broad overlap and a narrower cost comparison, together with the
 material, signed-source, angular-packing and coupled-motion requirements.
 
+The [finite signed-channel screen](../supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
+keeps that geometry and electric layout while testing inset quantum channels.
+Its radial-only tensor obstruction and conditional angular-source allocation
+make the supplied transverse quantum stress, finite reflectors and exterior
+state the next joint source requirements. The report records both trial
+quantum overlaps and all retained architectural boundaries.
+
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective
 geometry literature together with engineering-facing sources on programmable
