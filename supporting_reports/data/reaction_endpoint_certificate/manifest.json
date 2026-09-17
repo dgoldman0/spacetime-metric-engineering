@@ -1,0 +1,25 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_reaction_endpoint_certificate.py": "79bd555f4acd96f7bc8971bbfbb37be99526e807e74a3e6bab335a0fbb393edf",
+    "toolkit/adm_harness_cli/adm_harness/reaction_endpoint_certificate.py": "54b8a8b52102a80eecd8de3368d850af6b889643730bc5090933d965ffe58293",
+    "toolkit/adm_harness_cli/tests/test_reaction_endpoint_certificate.py": "d1b2a51bb58986dde1db3db076c2d249ee43c72300206d9502792a02d38dcd51"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020",
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b",
+    "supporting_reports/data/constitutive_joints_and_optics/manifest.json": "249e70994dfd67fa96b2f2119765a43a2a545e4cc1185badedbc81f603211ae5"
+  },
+  "output_sha256": {
+    "down_event.npz": "a4f50bfee6613416442f344e8d706d0899030fce47377b90fd7462d6a13d2558",
+    "execution_audit_reaction_endpoint_certificate.py": "79bd555f4acd96f7bc8971bbfbb37be99526e807e74a3e6bab335a0fbb393edf",
+    "execution_reaction_endpoint_certificate.py": "54b8a8b52102a80eecd8de3368d850af6b889643730bc5090933d965ffe58293",
+    "execution_test_reaction_endpoint_certificate.py": "d1b2a51bb58986dde1db3db076c2d249ee43c72300206d9502792a02d38dcd51",
+    "first_n16_t2057_endpoints.npz": "ed77d00aec7a77647a21978a13ce958584a528cb16804a7a7d155d5a84576a6c",
+    "first_n32_t4113_endpoints.npz": "9eb2ad7a57a761f80f631e6846d67f76ee8fc7548b76d73d7620ed8f590b7038",
+    "second_n16_t1029_endpoints.npz": "f4b98de4e04070d5f631d9bf0dd7d2640218798ea9f8c3b84e94307be56b07af",
+    "second_n32_t2057_endpoints.npz": "64b2cea901dfb85c79797da9c07102f75698e396769e84370c114185d0ada51d",
+    "summary.json": "583a3c9c9e55dfaccf3f6fe78c8a1a26e3ae171acb9f28618dd879e008a31f84",
+    "up_event.npz": "238c99455460623471ee27d1c7a6ffb5187a39c2263bd84f5e98bd07ffdeb7b5"
+  }
+}

@@ -1,0 +1,446 @@
+{
+  "created_utc": "2026-09-17T12:56:20.377353+00:00",
+  "workers": 4,
+  "base_commit": "d4ade6455a6f8be40f6439fb235f28628c547eca",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/reaction_endpoint_certificate/first_n16_t2057_endpoints.npz": "ed77d00aec7a77647a21978a13ce958584a528cb16804a7a7d155d5a84576a6c",
+        "supporting_reports/data/finite_thermal_budget/first_n16_t2057_thermal_budget.npz": "ad7f70b90fc3997153a12bc770fb8ce353f675cb7b74c7a18e627137f18f8226",
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/coupled_holding_certificate/first_n16_t2057_certificate.npz": "2bfb047369e47fb3c967b1b565b72f800e606589c2f4b9f60a6def52ece6216f"
+      },
+      "maximum_extra_pilot_exposure": 44.34811010896968,
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.41587192253445765,
+          "minimum_energy_floor": 1.109519595572755,
+          "maximum_energy_ceiling": 1.3162850275634455,
+          "minimum_prepared_state_margin": 0.18097927921621482,
+          "minimum_energy_reserve": 0.0002624602822121987,
+          "maximum_extra_pilot_loss": 2.7495990221263195e-05,
+          "minimum_emitted_margin": 0.0006717898710309747,
+          "minimum_incident_margin": 0.0009446695419488518,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723938843209846,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.440965929810226e-06,
+            "tracking_comparison_increment": 3.053766325218066e-05,
+            "support_power_increment": 1.0676696218849935e-05,
+            "command_increment": 2.8168248231602003e-05,
+            "emitted_margin_debit": 2.8168248231602003e-05,
+            "incident_margin_debit": 5.13010900391102e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999805881569984,
+              "maximum_rotor_energy": 1.2999999999996137,
+              "minimum_spin": 0.8306319940774105
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.1436253363176898,
+              "maximum_rotor_energy": 1.1436447481603051,
+              "minimum_spin": 0.5548683536369228
+            }
+          ]
+        },
+        {
+          "inventory": 20.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.4468019379823876,
+          "minimum_energy_floor": 1.118794228874568,
+          "maximum_energy_ceiling": 1.3154707761852733,
+          "minimum_prepared_state_margin": 0.18596701212866673,
+          "minimum_energy_reserve": 0.0002137256579209245,
+          "maximum_extra_pilot_loss": 2.7495990221263195e-05,
+          "minimum_emitted_margin": 0.000670307331650364,
+          "minimum_incident_margin": 0.0009419694836976997,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723944462523645,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.674700978747605e-06,
+            "tracking_comparison_increment": 3.2144908686505946e-05,
+            "support_power_increment": 1.1238627598789401e-05,
+            "command_increment": 2.9650787612212624e-05,
+            "emitted_margin_debit": 2.9650787612212624e-05,
+            "incident_margin_debit": 5.400114740958966e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999815587491486,
+              "maximum_rotor_energy": 1.299999999999633,
+              "minimum_spin": 0.8306335131018168
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.1514440695018053,
+              "maximum_rotor_energy": 1.15146251075229,
+              "minimum_spin": 0.5708094473560142
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/reaction_endpoint_certificate/first_n32_t4113_endpoints.npz": "9eb2ad7a57a761f80f631e6846d67f76ee8fc7548b76d73d7620ed8f590b7038",
+        "supporting_reports/data/finite_thermal_budget/first_n32_t4113_thermal_budget.npz": "1b8129ff755f3a29d816e536dba5a59d31d115041139c21a7bb8db6ddb4fab00",
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/coupled_holding_certificate/first_n32_t4113_certificate.npz": "af19dfb21b1f29faf1385fd6390d10a7917fa9eec7e6a7ed0982b170ce998790"
+      },
+      "maximum_extra_pilot_exposure": 52.740186162057505,
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.3250482488988976,
+          "minimum_energy_floor": 1.1064631903721969,
+          "maximum_energy_ceiling": 1.3163057729250196,
+          "minimum_prepared_state_margin": 0.1805590277469279,
+          "minimum_energy_reserve": 0.00010577024441822115,
+          "maximum_extra_pilot_loss": 3.269910802098043e-05,
+          "minimum_emitted_margin": 0.0006717898710309747,
+          "minimum_incident_margin": 0.0009446695419488518,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723938843209846,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.440965929810226e-06,
+            "tracking_comparison_increment": 3.053766325218066e-05,
+            "support_power_increment": 1.0676696218849935e-05,
+            "command_increment": 2.8168248231602003e-05,
+            "emitted_margin_debit": 2.8168248231602003e-05,
+            "incident_margin_debit": 5.13010900391102e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999798738286685,
+              "maximum_rotor_energy": 1.2999999999996295,
+              "minimum_spin": 0.8306308761174249
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.14362462198936,
+              "maximum_rotor_energy": 1.1436447481603211,
+              "minimum_spin": 0.5548668813511098
+            }
+          ]
+        },
+        {
+          "inventory": 20.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.3715772412774765,
+          "minimum_energy_floor": 1.1158906439340377,
+          "maximum_energy_ceiling": 1.3154904842787687,
+          "minimum_prepared_state_margin": 0.1855467606593798,
+          "minimum_energy_reserve": 5.6716207999653556e-05,
+          "maximum_extra_pilot_loss": 3.269910802098043e-05,
+          "minimum_emitted_margin": 0.000670307331650364,
+          "minimum_incident_margin": 0.0009419694836976997,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723944462523645,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.674700978747605e-06,
+            "tracking_comparison_increment": 3.2144908686505946e-05,
+            "support_power_increment": 1.1238627598789401e-05,
+            "command_increment": 2.9650787612212624e-05,
+            "emitted_margin_debit": 2.9650787612212624e-05,
+            "incident_margin_debit": 5.400114740958966e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999808801372352,
+              "maximum_rotor_energy": 1.299999999999648,
+              "minimum_spin": 0.8306324510410009
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.151443390889892,
+              "maximum_rotor_energy": 1.151462510752305,
+              "minimum_spin": 0.5708080784502026
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/reaction_endpoint_certificate/second_n16_t1029_endpoints.npz": "f4b98de4e04070d5f631d9bf0dd7d2640218798ea9f8c3b84e94307be56b07af",
+        "supporting_reports/data/finite_thermal_budget/second_n16_t1029_thermal_budget.npz": "16243135c215218c9b3628afd624d88e93b2a0ee2f76ca3df59c6e1ee3db5146",
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/coupled_holding_certificate/second_n16_t1029_certificate.npz": "13ab8d706fe77cc990311aede293208a8424bfed072988e5e60eb2c53de74a66"
+      },
+      "maximum_extra_pilot_exposure": 0.34707150007671217,
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.4426389273123203,
+          "minimum_energy_floor": 1.1054811403895464,
+          "maximum_energy_ceiling": 1.3120391477258355,
+          "minimum_prepared_state_margin": 0.26202580958581856,
+          "minimum_energy_reserve": 0.0029540429537444875,
+          "maximum_extra_pilot_loss": 2.1518559750888419e-07,
+          "minimum_emitted_margin": 0.0006717898710309747,
+          "minimum_incident_margin": 0.0009446695419488518,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723938843209846,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.440965929810226e-06,
+            "tracking_comparison_increment": 3.053766325218066e-05,
+            "support_power_increment": 1.0676696218849935e-05,
+            "command_increment": 2.8168248231602003e-05,
+            "emitted_margin_debit": 2.8168248231602003e-05,
+            "incident_margin_debit": 5.13010900391102e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999947066311137,
+              "maximum_rotor_energy": 1.2999999999997893,
+              "minimum_spin": 0.8306540900211805
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.1436394547918052,
+              "maximum_rotor_energy": 1.1436447481604808,
+              "minimum_spin": 0.5548974522887066
+            }
+          ]
+        },
+        {
+          "inventory": 20.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.46841090940206076,
+          "minimum_energy_floor": 1.11495769645052,
+          "maximum_energy_ceiling": 1.3114371903395439,
+          "minimum_prepared_state_margin": 0.2670135424982705,
+          "minimum_energy_reserve": 0.002944842875852734,
+          "maximum_extra_pilot_loss": 2.1518559750888419e-07,
+          "minimum_emitted_margin": 0.000670307331650364,
+          "minimum_incident_margin": 0.0009419694836976997,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723944462523645,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.674700978747605e-06,
+            "tracking_comparison_increment": 3.2144908686505946e-05,
+            "support_power_increment": 1.1238627598789401e-05,
+            "command_increment": 2.9650787612212624e-05,
+            "emitted_margin_debit": 2.9650787612212624e-05,
+            "incident_margin_debit": 5.400114740958966e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.299994971299558,
+              "maximum_rotor_energy": 1.2999999999997998,
+              "minimum_spin": 0.8306545042339436
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.151457482052215,
+              "maximum_rotor_energy": 1.1514625107524568,
+              "minimum_spin": 0.570836502839497
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/reaction_endpoint_certificate/second_n32_t2057_endpoints.npz": "64b2cea901dfb85c79797da9c07102f75698e396769e84370c114185d0ada51d",
+        "supporting_reports/data/finite_thermal_budget/second_n32_t2057_thermal_budget.npz": "82afe8c62a20bde23bd39ad02ee9c61028569dab9d73a31684237e7ecd87738a",
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/coupled_holding_certificate/second_n32_t2057_certificate.npz": "ff265acb26c6bad10d4d7493de1a0306418ba43c6f69fe9f98c6325ce98ae358"
+      },
+      "maximum_extra_pilot_exposure": 6.857388491400654,
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.4287916956603603,
+          "minimum_energy_floor": 1.1054922605308368,
+          "maximum_energy_ceiling": 1.3120606031827646,
+          "minimum_prepared_state_margin": 0.2616157495267284,
+          "minimum_energy_reserve": 0.002252990790595638,
+          "maximum_extra_pilot_loss": 4.2516059069858685e-06,
+          "minimum_emitted_margin": 0.0006717898710309747,
+          "minimum_incident_margin": 0.0009446695419488518,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723938843209846,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.440965929810226e-06,
+            "tracking_comparison_increment": 3.053766325218066e-05,
+            "support_power_increment": 1.0676696218849935e-05,
+            "command_increment": 2.8168248231602003e-05,
+            "emitted_margin_debit": 2.8168248231602003e-05,
+            "incident_margin_debit": 5.13010900391102e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999945355050744,
+              "maximum_rotor_energy": 1.299999999999898,
+              "minimum_spin": 0.8306538222045656
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.143639283665766,
+              "maximum_rotor_energy": 1.1436447481605894,
+              "minimum_spin": 0.5548970995991477
+            }
+          ]
+        },
+        {
+          "inventory": 20.0,
+          "conditional_combined_screen_passed": true,
+          "checks": {
+            "parent_endpoints": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "parent_forcing_domain": true,
+            "prepared_state_counted": true,
+            "reaction_photon_capacity": true,
+            "thermal_endpoint_perturbation": true,
+            "rotor_absorption_incident_allowance": true,
+            "energy_allowance": true
+          },
+          "minimum_spin_lower": 0.4567386429421952,
+          "minimum_energy_floor": 1.114968260584746,
+          "maximum_energy_ceiling": 1.3114575730236264,
+          "minimum_prepared_state_margin": 0.2666034824391803,
+          "minimum_energy_reserve": 0.0022312556573255878,
+          "maximum_extra_pilot_loss": 4.2516059069858685e-06,
+          "minimum_emitted_margin": 0.000670307331650364,
+          "minimum_incident_margin": 0.0009419694836976997,
+          "maximum_event_rotor_power_with_thermal_perturbation": 1.5723944462523645,
+          "rotor_absorption_extra_encounter_fraction": 9.403345965161414e-07,
+          "thermal_endpoint_perturbation": {
+            "thermal_flight_derivative_peak": 4.674700978747605e-06,
+            "tracking_comparison_increment": 3.2144908686505946e-05,
+            "support_power_increment": 1.1238627598789401e-05,
+            "command_increment": 2.9650787612212624e-05,
+            "emitted_margin_debit": 2.9650787612212624e-05,
+            "incident_margin_debit": 5.400114740958966e-05
+          },
+          "cold_preparation_envelopes": [
+            {
+              "plateau": 0.0,
+              "minimum_rotor_energy": 1.2999948087298208,
+              "maximum_rotor_energy": 1.299999999999903,
+              "minimum_spin": 0.830654249808236
+            },
+            {
+              "plateau": 1.0,
+              "minimum_rotor_energy": 1.1514573194824778,
+              "maximum_rotor_energy": 1.15146251075256,
+              "minimum_spin": 0.5708361749134097
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "main_converter_initial_pilot_paid_from_existing_rotor_energy": true,
+  "reaction_initial_pilot_within_counted_state_ceiling": true,
+  "finite_thermal_forcing_in_endpoint_comparison": true,
+  "maximum_reaction_flight_inventory_unchanged": true,
+  "assigned_loss_coefficient": 6.2e-07,
+  "guide_work_and_variable_thermal_delay_included": false,
+  "electrical_lead_and_converter_host_inventories_included": false,
+  "other_component_loss_replacement_waveforms_constructed": false,
+  "lossless_work_route_endpoint_theorem": true,
+  "prescribed_feedforward_commands": true,
+  "complete_physical_rail_feasibility_established": false
+}

@@ -1,0 +1,400 @@
+{
+  "created_utc": "2026-09-17T12:44:29.415522+00:00",
+  "workers": 4,
+  "base_commit": "50bfd4a37e6fd66585d5b39ecdd30bafc8830600",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "tracking_coefficients": {
+    "exact_integer_interval_arithmetic": true,
+    "boxes": 16384,
+    "measured_upper": [
+      0.3480270603486138,
+      0.02427670161554475,
+      1.9498630683409541,
+      0.010049163937093653,
+      0.3348050380730097,
+      0.00428121898284719
+    ],
+    "declared_upper": [
+      0.349,
+      0.0243,
+      1.95,
+      0.0101,
+      0.334806,
+      0.00429
+    ],
+    "input_norm_squared_upper": 1.017,
+    "input_norm_numerator_upper": "2482877413/2441406250",
+    "inherited_contraction_rate": 0.22
+  },
+  "guide_derivative_bounds": {
+    "measured_upper": [
+      0.046291703027277586,
+      0.05056657846206827,
+      6.632863725033994e-07
+    ],
+    "declared_upper": [
+      0.046292,
+      0.050567,
+      1e-06
+    ],
+    "fourth_septic_derivative_bound": 3.129243850708008e-06,
+    "floating_guard": 1e-09
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "passed": true,
+      "checks": {
+        "receipt_rate": true,
+        "baseline_power": true,
+        "quiet_support_power": true,
+        "pilot": true,
+        "endpoint_quiet": true,
+        "revised_energy_domain": true
+      },
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n16_t2057_certificate.npz": "2bfb047369e47fb3c967b1b565b72f800e606589c2f4b9f60a6def52ece6216f",
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c"
+      },
+      "maximum_receipt_derivative": 0.005058171662127192,
+      "maximum_baseline_power": 0.00010719700891760421,
+      "maximum_quiet_support_power": 0.0011805579894508345,
+      "maximum_quiet_command": 0.0031146573637583688,
+      "maximum_proposed_pilot": 0.010382191316349808,
+      "maximum_capacity_weighted_pilot": 0.002482041264178593,
+      "maximum_extra_pilot_exposure": 44.34811010896968,
+      "current_pilot_closes_this_sufficient_bound": false,
+      "failed_upper_bound_proves_physical_failure": false,
+      "energy_variants": [
+        {
+          "inventory": 18.0,
+          "revised_energy_floor": 1.09921445293816,
+          "revised_energy_ceiling": 1.3171897513169704,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 19.0,
+          "revised_energy_floor": 1.1095196010512856,
+          "revised_energy_ceiling": 1.3162850275634455,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 20.0,
+          "revised_energy_floor": 1.1187942343530985,
+          "revised_energy_ceiling": 1.3154707761852733,
+          "energy_domain_passed": true
+        }
+      ],
+      "separation": {
+        "minimum_panel_over_delay": 43067.652607458804,
+        "certified_separation": 784.0,
+        "forcing_gap_lower": 11.875,
+        "remote_command_upper": 1.2407709188295415e-24,
+        "allocated_remote_command": 1e-12
+      }
+    },
+    {
+      "label": "first_n32_t4113",
+      "passed": true,
+      "checks": {
+        "receipt_rate": true,
+        "baseline_power": true,
+        "quiet_support_power": true,
+        "pilot": true,
+        "endpoint_quiet": true,
+        "revised_energy_domain": true
+      },
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n32_t4113_certificate.npz": "af19dfb21b1f29faf1385fd6390d10a7917fa9eec7e6a7ed0982b170ce998790",
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884"
+      },
+      "maximum_receipt_derivative": 0.0052443052154925495,
+      "maximum_baseline_power": 0.00011877523747276931,
+      "maximum_quiet_support_power": 0.0012438464346659019,
+      "maximum_quiet_command": 0.003281630798093114,
+      "maximum_proposed_pilot": 0.01093876943636474,
+      "maximum_capacity_weighted_pilot": 0.002751034166121064,
+      "maximum_extra_pilot_exposure": 52.740186162057505,
+      "current_pilot_closes_this_sufficient_bound": false,
+      "failed_upper_bound_proves_physical_failure": false,
+      "energy_variants": [
+        {
+          "inventory": 18.0,
+          "revised_energy_floor": 1.095988247448682,
+          "revised_energy_ceiling": 1.317211649198632,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 19.0,
+          "revised_energy_floor": 1.1064631958507274,
+          "revised_energy_ceiling": 1.3163057729250196,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 20.0,
+          "revised_energy_floor": 1.1158906494125682,
+          "revised_energy_ceiling": 1.3154904842787687,
+          "energy_domain_passed": true
+        }
+      ],
+      "separation": {
+        "minimum_panel_over_delay": 21532.5766994189,
+        "certified_separation": 784.0,
+        "forcing_gap_lower": 11.875,
+        "remote_command_upper": 1.2407709188295415e-24,
+        "allocated_remote_command": 1e-12
+      }
+    },
+    {
+      "label": "second_n16_t1029",
+      "passed": true,
+      "checks": {
+        "receipt_rate": true,
+        "baseline_power": true,
+        "quiet_support_power": true,
+        "pilot": true,
+        "endpoint_quiet": true,
+        "revised_energy_domain": true
+      },
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n16_t1029_certificate.npz": "13ab8d706fe77cc990311aede293208a8424bfed072988e5e60eb2c53de74a66",
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01"
+      },
+      "maximum_receipt_derivative": 0.0013793006926862649,
+      "maximum_baseline_power": 4.001267838036675e-05,
+      "maximum_quiet_support_power": 0.0003332883018384449,
+      "maximum_quiet_command": 0.0008793120480752684,
+      "maximum_proposed_pilot": 0.002931040189561296,
+      "maximum_capacity_weighted_pilot": 0.0010445558615124518,
+      "maximum_extra_pilot_exposure": 0.34707150007671217,
+      "current_pilot_closes_this_sufficient_bound": false,
+      "failed_upper_bound_proves_physical_failure": false,
+      "energy_variants": [
+        {
+          "inventory": 18.0,
+          "revised_energy_floor": 1.0949516391336622,
+          "revised_energy_ceiling": 1.3127079892661602,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 19.0,
+          "revised_energy_floor": 1.1054811458680769,
+          "revised_energy_ceiling": 1.3120391477258355,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 20.0,
+          "revised_energy_floor": 1.1149577019290504,
+          "revised_energy_ceiling": 1.3114371903395439,
+          "energy_domain_passed": true
+        }
+      ],
+      "separation": {
+        "minimum_panel_over_delay": 83604.22502478106,
+        "certified_separation": 784.0,
+        "forcing_gap_lower": 11.875,
+        "remote_command_upper": 1.2407709188295415e-24,
+        "allocated_remote_command": 1e-12
+      }
+    },
+    {
+      "label": "second_n32_t2057",
+      "passed": true,
+      "checks": {
+        "receipt_rate": true,
+        "baseline_power": true,
+        "quiet_support_power": true,
+        "pilot": true,
+        "endpoint_quiet": true,
+        "revised_energy_domain": true
+      },
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n32_t2057_certificate.npz": "ff265acb26c6bad10d4d7493de1a0306418ba43c6f69fe9f98c6325ce98ae358",
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72"
+      },
+      "maximum_receipt_derivative": 0.001423891249144729,
+      "maximum_baseline_power": 6.185251000659834e-05,
+      "maximum_quiet_support_power": 0.00041468232617633836,
+      "maximum_quiet_command": 0.0010940532971585736,
+      "maximum_proposed_pilot": 0.0036468443603303547,
+      "maximum_capacity_weighted_pilot": 0.0015324783537253462,
+      "maximum_extra_pilot_exposure": 6.857388491400654,
+      "current_pilot_closes_this_sufficient_bound": false,
+      "failed_upper_bound_proves_physical_failure": false,
+      "energy_variants": [
+        {
+          "inventory": 18.0,
+          "revised_energy_floor": 1.09496337706058,
+          "revised_energy_ceiling": 1.3127306366929186,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 19.0,
+          "revised_energy_floor": 1.1054922660093673,
+          "revised_energy_ceiling": 1.3120606031827646,
+          "energy_domain_passed": true
+        },
+        {
+          "inventory": 20.0,
+          "revised_energy_floor": 1.1149682660632765,
+          "revised_energy_ceiling": 1.3114575730236264,
+          "energy_domain_passed": true
+        }
+      ],
+      "separation": {
+        "minimum_panel_over_delay": 41797.382455164094,
+        "certified_separation": 784.0,
+        "forcing_gap_lower": 11.875,
+        "remote_command_upper": 1.2407709188295415e-24,
+        "allocated_remote_command": 1e-12
+      }
+    }
+  ],
+  "events": [
+    {
+      "upward": true,
+      "bins": 168208,
+      "samples_per_delay": 4,
+      "bin_width": 0.00390625,
+      "start": -387.0625,
+      "finish": 270.0,
+      "event_begin": -386.0625,
+      "event_end": 2.0,
+      "maximum_event_support_power": 0.5188316765161326,
+      "maximum_event_command": 0.8955126068728412,
+      "minimum_emitted_margin": 0.0006999581192625767,
+      "minimum_incident_margin": 0.00099997064872074,
+      "minimum_incident_margin_after_allowance": 0.00099597064872074,
+      "additional_incident_allowance": 4e-06,
+      "maximum_event_rotor_power": 1.5663736765161336,
+      "allowed_extra_encounter_fraction": 1.5322014382532176e-06,
+      "inverse_tail_upper": 1.2967221050786683e-14,
+      "comparison_decay_upper": 0.9681271478152467,
+      "maximum_comparison_state": 1.4866237149459374,
+      "final_comparison_state": 2.746102618110744e-53,
+      "fixed_bin_outward_rounding": true,
+      "complete_bin_enclosures": true,
+      "unmodeled_float_guard": 1e-10
+    },
+    {
+      "upward": false,
+      "bins": 167952,
+      "samples_per_delay": 4,
+      "bin_width": 0.00390625,
+      "start": -259.0625,
+      "finish": 397.0,
+      "event_begin": -258.0625,
+      "event_end": 129.0,
+      "maximum_event_support_power": 0.5248412076247647,
+      "maximum_event_command": 0.9113675913431856,
+      "minimum_emitted_margin": 0.0006999581192625767,
+      "minimum_incident_margin": 0.00099997064872074,
+      "minimum_incident_margin_after_allowance": 0.00099597064872074,
+      "additional_incident_allowance": 4e-06,
+      "maximum_event_rotor_power": 1.5723832076247657,
+      "allowed_extra_encounter_fraction": 1.5263454788641683e-06,
+      "inverse_tail_upper": 1.2967221050786683e-14,
+      "comparison_decay_upper": 0.9681271478152467,
+      "maximum_comparison_state": 1.5025023599391527,
+      "final_comparison_state": 2.746102618110744e-53,
+      "fixed_bin_outward_rounding": true,
+      "complete_bin_enclosures": true,
+      "unmodeled_float_guard": 1e-10
+    },
+    {
+      "upward": true,
+      "bins": 336416,
+      "samples_per_delay": 8,
+      "bin_width": 0.001953125,
+      "start": -387.0625,
+      "finish": 270.0,
+      "event_begin": -386.0625,
+      "event_end": 2.0,
+      "maximum_event_support_power": 0.5183576636558744,
+      "maximum_event_command": 0.8944557686320818,
+      "minimum_emitted_margin": 0.0006999594298161746,
+      "minimum_incident_margin": 0.0009999715845542588,
+      "minimum_incident_margin_after_allowance": 0.0009959715845542587,
+      "additional_incident_allowance": 4e-06,
+      "maximum_event_rotor_power": 1.5658996636558753,
+      "allowed_extra_encounter_fraction": 1.5326652503371556e-06,
+      "inverse_tail_upper": 1.2967221050786683e-14,
+      "comparison_decay_upper": 0.9839323728913117,
+      "maximum_comparison_state": 1.4852655119079485,
+      "final_comparison_state": 2.6647737777294345e-53,
+      "fixed_bin_outward_rounding": true,
+      "complete_bin_enclosures": true,
+      "unmodeled_float_guard": 1e-10
+    },
+    {
+      "upward": false,
+      "bins": 335904,
+      "samples_per_delay": 8,
+      "bin_width": 0.001953125,
+      "start": -259.0625,
+      "finish": 397.0,
+      "event_begin": -258.0625,
+      "event_end": 129.0,
+      "maximum_event_support_power": 0.5243219457078817,
+      "maximum_event_command": 0.9101913720322168,
+      "minimum_emitted_margin": 0.0006999594298161746,
+      "minimum_incident_margin": 0.0009999715845542588,
+      "minimum_incident_margin_after_allowance": 0.0009959715845542587,
+      "additional_incident_allowance": 4e-06,
+      "maximum_event_rotor_power": 1.5718639457078827,
+      "allowed_extra_encounter_fraction": 1.52684970385218e-06,
+      "inverse_tail_upper": 1.2967221050786683e-14,
+      "comparison_decay_upper": 0.9839323728913117,
+      "maximum_comparison_state": 1.5010145034437858,
+      "final_comparison_state": 2.6647737777294345e-53,
+      "fixed_bin_outward_rounding": true,
+      "complete_bin_enclosures": true,
+      "unmodeled_float_guard": 1e-10
+    }
+  ],
+  "minimum_separation": {
+    "minimum_panel_over_delay": 784.0,
+    "certified_separation": 784.0,
+    "forcing_gap_lower": 11.875,
+    "remote_command_upper": 1.2407709188295415e-24,
+    "allocated_remote_command": 1e-12
+  },
+  "inverse_l1_upper": 2.638292563,
+  "impulse_prefix_taps": 96,
+  "finite_line_peak": 1.2,
+  "short_delay": 0.015625,
+  "guide_network_ceiling": 0.046292,
+  "inherited_spin_floor": 0.3,
+  "independent_fixed_capacity_cells": true,
+  "equal_axis_and_opposed_wave_population_partition_required": true,
+  "baseline_constitutive_work_included": true,
+  "revised_per_cell_pilots_required": true,
+  "maximum_flight_inventory_unchanged": true,
+  "pilot_preparation_from_counted_inventory_required": true,
+  "nonlinear_parent_domain_and_spin_floor_required": true,
+  "all_interval_endpoints_and_interiors_covered": true,
+  "finite_line_endpoint_power_positivity_certified_conditionally_over_histories": true,
+  "rotor_incident_and_bypass_power_certified_conditionally_over_histories": true,
+  "prescribed_feedforward_commands": true,
+  "distributed_feedback_controller_constructed": false,
+  "finite_line_delay_propagation_model": "lossless",
+  "assigned_route_loss_replacement_waveforms_included": false,
+  "physical_electrical_transducer_dynamics_certified": false,
+  "capacitor_gap_field_energy_time_evolution_included": false,
+  "updated_total_loss_and_heat_accounting_owned_by_separate_audit": true,
+  "electrical_holding_losses_included": false,
+  "spatial_partition_and_charge_returns_constructed": false,
+  "added_geometric_macro_traction_work_closed": false,
+  "full_history_physical_transfer_closed": false
+}

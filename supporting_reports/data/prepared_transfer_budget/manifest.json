@@ -1,0 +1,23 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_prepared_transfer_budget.py": "92e86fce1fb23645a776122e4a8a15cc5cd07153718c43e00526c6a027de720a",
+    "toolkit/adm_harness_cli/adm_harness/prepared_transfer_budget.py": "fc345aa609908c09d41f10758b651903a8e26b6f8db988b9fa3992566494af6c",
+    "toolkit/adm_harness_cli/tests/test_prepared_transfer_budget.py": "4e3a23bae00dd276140fc959cf8bef3b055da117d5cd42dcca7e8b1acc0d5294"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/reaction_endpoint_certificate/manifest.json": "47877010e0690bfb0b7e487755a344989562234ddca128ed622fe8532041b53e",
+    "supporting_reports/data/finite_thermal_budget/manifest.json": "98102d8a8331745ed86f8ad6d93c44bafe0caf4f853c4c3151c8e2b3782b509d",
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020"
+  },
+  "output_sha256": {
+    "execution_audit_prepared_transfer_budget.py": "92e86fce1fb23645a776122e4a8a15cc5cd07153718c43e00526c6a027de720a",
+    "execution_prepared_transfer_budget.py": "fc345aa609908c09d41f10758b651903a8e26b6f8db988b9fa3992566494af6c",
+    "execution_test_prepared_transfer_budget.py": "4e3a23bae00dd276140fc959cf8bef3b055da117d5cd42dcca7e8b1acc0d5294",
+    "first_n16_t2057_prepared_budget.npz": "5a3f86d67b434c853d487105ab16dad7a1c8e2d1e500a39ddeefcd7d2dcc7be8",
+    "first_n32_t4113_prepared_budget.npz": "85e3f3d48317960f8d9f065fd94a0075466e7b305a8c360cd64285ced1445ea7",
+    "second_n16_t1029_prepared_budget.npz": "a1188f4b0855aaecbc46fafda930f85c35e401121903ec6201bcbefbd90dd555",
+    "second_n32_t2057_prepared_budget.npz": "02f0f440490cb9f426519e24d7667691872b549b6b83ceea5e9cde7f8899bc17",
+    "summary.json": "ee235e46c1338d1b77fd76f8639160ecdcf369d17f71cfff5175e9131b3e328d"
+  }
+}
