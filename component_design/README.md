@@ -41,6 +41,13 @@ finite-domain spectra retain positive lowest squared frequencies. The field's
 renormalized tensor and response of shared reflectors remain physical inputs;
 the existing radial placement, populations and overlap are preserved.
 
+The [normalized angular response](../supporting_reports/C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+quantifies the stress and original-end load changes when that field couples
+to internal radial reflectors. The resulting construction preference is
+angular transparency through the short radial compartments, with the absolute
+angular state, material response and exterior treated jointly. Existing
+radial channels retain their own compartment pattern and populations.
+
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective
 geometry literature together with engineering-facing sources on programmable

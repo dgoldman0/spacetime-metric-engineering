@@ -16,6 +16,12 @@ The native transition, however, has substantial radius and lapse derivatives.
 The next source calculation therefore uses the full curved mode operator and
 retains the angular field's finite boundaries and material exchange.
 
+The subsequent [normalized response investigation](C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+computes finite vacuum-stress differences and original-end load changes on
+this geometry. Its useful throat response accompanies substantial confinement
+burdens, motivating angular transparency through short radial compartments
+and a joint absolute-state, material and exterior calculation.
+
 ## Component assignment and placement record
 
 The [component ledger](RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)

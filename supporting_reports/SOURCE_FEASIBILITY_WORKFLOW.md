@@ -73,6 +73,13 @@ source comparison therefore records:
 4. The uncertainty that determines whether the candidate advances, requires
    a specific revision or reaches its stopping condition.
 
+The first [normalized contribution and boundary comparison](C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+supplies finite stress and original-end traction differences. Its useful
+throat response comes with substantial confinement burdens elsewhere.
+The next comparison prioritizes a whole-module or shared angular state and
+field-selective transparency through the retained short radial compartments,
+with the absolute state, material and exterior terms accounted.
+
 An algebraic allocation identifies a target. A positive mode spectrum
 supports state construction. A supplied source contribution addresses the
 required stress and its physical costs. Complete finite closure and coupled

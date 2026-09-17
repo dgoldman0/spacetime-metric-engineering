@@ -1,0 +1,29 @@
+{
+  "reference": "supporting_reports/data/archived_geometry_opening/reference_metric.npz",
+  "parent_summary": "supporting_reports/data/c1_signed_channels/summary.json",
+  "parent_manifest": "supporting_reports/data/c1_angular_scalar/manifest.json",
+  "parent_specification": "toolkit/adm_harness_cli/specs/c1_signed_channels.json",
+  "angular_compartment_counts": [8, 32],
+  "resolutions": [{"name": "base", "nodes": 4097, "frequency_nodes": 80}, {"name": "fine", "nodes": 8193, "frequency_nodes": 120}],
+  "throat_nodes": {"base": 32769, "fine": 65537},
+  "angular_attenuation_cut": 16.0,
+  "minimum_angular_max": 24,
+  "cylinder_reference_logs": [0.5, 1.0, 2.0, 4.0],
+  "cylinder_length_over_radius": [0.1, 0.25, 0.5, 1.0, 2.0, 4.0, 8.0],
+  "change_record": {
+    "retained_geometry_altered": false,
+    "existing_source_placement_altered": false,
+    "existing_radial_populations_altered": false,
+    "material_module_domains_altered": false,
+    "electric_and_radial_overlaps_altered": false,
+    "trial_angular_field_domains_altered": false,
+    "angular_trial": "Change this scalar's coupling to existing internal reflector locations from one to eight or thirty-two compartments per inherited quantum module",
+    "pair_field_assignment": "Independent angular scalar populations in the two overlapping module domains; each population is transparent to the other module's reflectors. Multiplicity N counts real fields per module and is common when comparing pair loads",
+    "exterior_comparison": "The two compared states have identical original Dirichlet module ends and the same unspecified exterior; the exterior contribution cancels in this internal-reflection difference",
+    "cylinder_comparison_geometry": "Separate exact constant-radius, constant-lapse product cylinders for normalization and finite-interaction controls; the retained rail geometry is unchanged",
+    "absolute_angular_stress_supplied": false,
+    "internal_reflector_material_stress_supplied": false,
+    "promoted_physical_layout": null
+  },
+  "primary_references": ["https://arxiv.org/pdf/1405.1283", "https://arxiv.org/pdf/0712.3811", "https://arxiv.org/pdf/1401.0784"]
+}

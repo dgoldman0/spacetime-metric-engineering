@@ -47,6 +47,14 @@ a bulk benchmark; the full curved tensor, material reflection and exterior
 state remain the construction tasks. Existing geometry, radial populations
 and overlaps are retained, with trial angular reflection at recorded boundaries.
 
+The [normalized angular response](supporting_reports/C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+now supplies a finite stress difference and original-end force increments on
+that geometry. Internal reflection helps the throat's angular duty while
+adding substantial transition and boundary burdens. The next construction
+prioritizes angular transparency through short radial compartments, together
+with the absolute angular state, finite materials and exterior. The retained
+radial channels keep their separate role; full assembly benefit remains open.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -84,6 +92,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [Angular normalization and boundary response](supporting_reports/C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md):
+  normalized stress differences, retained-source pair accounting, finite end
+  loads and the resulting preference for field-selective coupling.
 - [C1 angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md):
   separate field action, finite spectra, cylindrical applicability and the
   next full-tensor construction.

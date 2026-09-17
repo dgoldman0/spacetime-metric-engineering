@@ -17,6 +17,15 @@ detailed component optimization follows the relevant combined feasibility
 and dynamical evidence. Microscopic inputs enter early when they determine
 source sign, normalization, confinement or material cost.
 
+The [angular scalar contribution test](C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+prioritizes a whole-module or shared angular state with transparency through
+short radial compartments. Its calculated internal-reflection response adds
+helpful throat stress together with substantial overlap and end burdens.
+Retain the radial channels' independent reflection pattern and evaluate the
+absolute angular state, physical material response and exterior together.
+Angular populations, their coupling and their extent remain design variables;
+any placement or geometry revision carries an explicit change record.
+
 ## Default source choices
 
 The source and structure search prioritizes electromagnetic fields, material

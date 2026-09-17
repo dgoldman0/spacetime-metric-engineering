@@ -11,13 +11,33 @@ changes follow measured source burdens and retain a declared change record
 and the applicable service checks. Detailed implementation optimization is
 downstream of credible combined source and dynamical feasibility.
 
+The [angular normalization and boundary response](supporting_reports/C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
+is the current source milestone. The finite vacuum-stress difference from
+coupling the angular scalar to internal radial reflectors has a useful
+negative angular-null contribution at the throat, positive angular-null
+increments in the sampled pair overlap, and large additional original-end
+loads. The cylinder benchmark needs about 58 million real fields in the throat
+module at fixed logarithm 1. At that illustrative population, the broad throat
+module's left-end increment is about 1.51 million for 32 compartments, against
+9.03 from its retained radial source. The actual curved multiplicity and full
+assembly benefit require the absolute angular reference and material law.
+
+Prioritize angular transparency through short radial compartments and a
+specified whole-module or shared angular state with finite end/exterior
+accounting. The independent radial population retains its own 32-compartment
+construction. Keep module-specific angular populations as design variables;
+the common-population pair ledger is an illustrative comparison. Geometry,
+existing hardware coordinates and overlap widths remain unchanged. The
+explicit trial adds independent angular sectors per module and field-selective
+coupling to their own reflector locations.
+
 The [C1 angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md)
-is the current source milestone. A separate real massless four-dimensional
+supplies the preceding spectral milestone. A separate real massless four-dimensional
 scalar with curvature coupling `1/6` has positive lowest squared frequencies
 in all 574 finite-domain comparisons. An independent scalar-variable solve
 checks 44 selected spectra; 28 focused tests pass. The full curved operator
-is implemented. Its renormalized angular tensor, material forces and global
-exterior state remain open.
+is implemented. The absolute angular tensor, complete material forces and
+global exterior state remain open.
 
 Geometry, electric sources, radial quantum populations and both existing
 overlap brackets remain unchanged. The new angular-field trials grant
