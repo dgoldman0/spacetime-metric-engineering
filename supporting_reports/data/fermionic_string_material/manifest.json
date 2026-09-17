@@ -1,0 +1,43 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_fermionic_string_material.py": "dadc17b4a601367c86a65c17e6ba1d99ee65ff7e5118ac2df3f730c49e48ed67",
+    "toolkit/adm_harness_cli/adm_harness/fermionic_string_material.py": "9f37a6746f257a6b1adb00a1ef9f054fd726fefe8a6d25b30a1df18dcfecb559",
+    "toolkit/adm_harness_cli/tests/test_fermionic_string_material.py": "bf1aa4a5a374effed0e86011f0b9533169fbabaa1854a0e11b83b63a9284d6db"
+  },
+  "output_sha256": {
+    "beta_00_profiles.npz": "61ed41ee22bd550b5189ead8f79c1b456430b01eb96c7bb0be867f9a8701b6a1",
+    "beta_01_profiles.npz": "5a5add73da53bf53c6725d9f59bcd03a18f6ddec71fe663e0acc2d9b63f60f12",
+    "beta_02_profiles.npz": "29158b6aac5f952e5e47081b1b60b4bd01b4dd1a304427e54f4dd1dbea315eca",
+    "beta_03_profiles.npz": "e747552d975251e264a1aaee8f1ba20cb2e49af10914f5b5805dd30604ac576e",
+    "beta_04_profiles.npz": "3e7511ca2d9cd767edcb3948a65554526152394a30c9b3e5bc75793119c7be94",
+    "beta_05_profiles.npz": "f9cbb0899a2d80dbb05f9c836020ce6953413d6e5f01e3cf18ac47a988c1bfa5",
+    "beta_06_profiles.npz": "21f6aa2b28b8dfdec0e2f11ef83fae57dc0ad9257bcf078e2d6573ae39ed728d",
+    "beta_07_profiles.npz": "001831b06c61894a1dc740ebe25d347a27c1f3895924d8f86c06e7aab0b2fdb3",
+    "beta_08_profiles.npz": "1c917771abee8c89b5935d6707f44b3a0ad9913e846becafc6159b84d1625f55",
+    "beta_09_profiles.npz": "7b2246be8bf25aba24f8c6ea8585425b4568a6b110e447236e487a6bfb16c12a",
+    "beta_10_profiles.npz": "ead87670a2a23e6ab70be004b129b849f77d13077ce27d9839ed3479fa7545b1",
+    "beta_11_profiles.npz": "f6c2e308327ad56f73c125f8eead648be6deece5be9f354935a2289ce6e278b4",
+    "beta_12_profiles.npz": "89cc26a30f5ffebe6ba0673d3fb73b64737a1b552d2fe05c9cf85149b1124334",
+    "beta_13_profiles.npz": "0ec43480a85b777e68a57da038710dc954cff6a8e7cb3bb7914741711a1d1607",
+    "beta_14_profiles.npz": "d3187f49079087ed1b07230ed0e2c756dfd7b7bcd180fd697252d865ec6ef901",
+    "beta_15_profiles.npz": "ee14083801f324b8f7d9b4703dbf1b2d92ee3b8b28a582344f1cd0fa094145d5",
+    "beta_16_profiles.npz": "bc2ef7ba65c330639a8621e34f95a98bcc99615edd74d0f3c87def4a4a8d3fe2",
+    "beta_17_profiles.npz": "b3c01f0b126e3587d62e406d3f74a73101a16d80367a464f8bb7acdd9e20996a",
+    "beta_18_profiles.npz": "c5753df27bfcfd7fd89c77bd810332509d15ce563441b7ad82f303256a41be04",
+    "beta_19_profiles.npz": "c036e65e95395d750b8bd2f803561aa552991905820079bb7ad7548b87f52c42",
+    "beta_20_profiles.npz": "3aad4c512ffd298eac1d448c08e888cb9b0e19a40c61b8631e97dbcf00655fff",
+    "beta_21_profiles.npz": "7f938ce2b04096c43d8ccb754c9d0ada8615d36c7ad3f9e5ab3ddefee70a9029",
+    "beta_22_profiles.npz": "aad6948e23f41dcca7fbd19c244200ce7046705aa31136f69a49244d704f65bd",
+    "beta_23_profiles.npz": "8fa2ef26876b7b339006da35f482071e2382febe6990eb540f86633d6a154428",
+    "beta_24_profiles.npz": "e4483883c54d73cbed399ddc24997ace4eed4d352f81e49ae8716bac0b825ef7",
+    "carrier_diagnostics.csv": "8672ce2906a3dda4350e4bff5588d78e8caff0630e96b6f330b16a309a015830",
+    "execution_audit_fermionic_string_material.py": "dadc17b4a601367c86a65c17e6ba1d99ee65ff7e5118ac2df3f730c49e48ed67",
+    "execution_fermionic_string_material.py": "9f37a6746f257a6b1adb00a1ef9f054fd726fefe8a6d25b30a1df18dcfecb559",
+    "execution_test_fermionic_string_material.py": "bf1aa4a5a374effed0e86011f0b9533169fbabaa1854a0e11b83b63a9284d6db",
+    "minimum_beta_stronger_profile.npz": "35a994a43a2b91334bf69fdd12efdfad50186790c88f5fd2eae49e4e57f2ec27",
+    "summary.json": "e5551189e5b00a402328ca197162a740d5d041edeb8c783b3ab3bd075d55b1cf",
+    "threshold_reference_profile.npz": "09e2d16cf8786a4623aa85809e45fe402fd83bae16906d49d45a49841e163777",
+    "threshold_stronger_profile.npz": "06032a8113299f9259d1d9e8e23b8cbf74f5b99222ff2ed742a3db0797f968a1",
+    "vortex_tension_and_widths.csv": "834bc5a36cc65b4176fc75ad420a3f86635ccda03c068dd23fb02220ae7b2ddb"
+  }
+}
