@@ -16,7 +16,10 @@ their requested transfers. An aggressive feedback control reaches the
 tensile boundary after the flight delays are included, while the selected
 gains shorten the reference recovery time from approximately 194 to 78
 guide-time units. Physical stores, splitters, routing reactions and thermal
-behavior remain assembly requirements.
+behavior remain assembly requirements. The follow-up
+[store, splitter, routing and loss investigation](OPTICAL_STORE_SPLITTER_ROUTING_AND_LOSSES.md)
+constructs a constitutive receiving-store model, static routing reactions
+and hardware loss requirements for this arrangement.
 
 ## The receiving store separates useful demand from guide loading
 
