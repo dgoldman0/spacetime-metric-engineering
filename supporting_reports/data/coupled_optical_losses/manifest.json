@@ -1,0 +1,24 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_coupled_optical_losses.py": "6536632b8f32f45f9a6c6e034366e83a88643a9bc70cd8c0d4835a4add970cf7",
+    "toolkit/adm_harness_cli/adm_harness/coupled_optical_losses.py": "980160fc75e5e6293e3ecab2289952da3e5bdf77d7bb4d8b519986eb29b531c3",
+    "toolkit/adm_harness_cli/tests/test_coupled_optical_losses.py": "066872c78a3c5ce2887cd1cfbcd2e9269d34a6e36bb0de0f8867193a1aeeb2ea"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020",
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b",
+    "supporting_reports/data/constitutive_joints_and_optics/manifest.json": "249e70994dfd67fa96b2f2119765a43a2a545e4cc1185badedbc81f603211ae5",
+    "supporting_reports/data/material_reconfiguration/manifest.json": "006810a9bd7544b6eb282988947efb29091c975337f42c829f22bce383883d8e"
+  },
+  "output_sha256": {
+    "execution_audit_coupled_optical_losses.py": "6536632b8f32f45f9a6c6e034366e83a88643a9bc70cd8c0d4835a4add970cf7",
+    "execution_coupled_optical_losses.py": "980160fc75e5e6293e3ecab2289952da3e5bdf77d7bb4d8b519986eb29b531c3",
+    "execution_test_coupled_optical_losses.py": "066872c78a3c5ce2887cd1cfbcd2e9269d34a6e36bb0de0f8867193a1aeeb2ea",
+    "first_n16_t2057_losses.npz": "6fa4c9066fa4c2b8b093141c550d931d503813554373cc81fe9caabcb100c6f7",
+    "first_n32_t4113_losses.npz": "6ef353d0acafa39793632d360a4b428728659ff1db67e86704d5e40f2015fead",
+    "second_n16_t1029_losses.npz": "9867288d788edcefce8d085d14195c794d38f6861b0770fa5f8320ee71eed448",
+    "second_n32_t2057_losses.npz": "d55d739faa99e431c506e7c636254be337d043764073fa3defd789e2756c1313",
+    "summary.json": "e12f26df2a06b70133e932dc7b95425fbfd108309b52256c57533a687c195887"
+  }
+}

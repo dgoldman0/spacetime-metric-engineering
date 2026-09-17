@@ -1,0 +1,349 @@
+{
+  "created_utc": "2026-09-17T12:20:48.116151+00:00",
+  "workers": 4,
+  "base_commit": "66beb985ce4bf6ed68b2927e0c480b25ee587a43",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "rest_frame_rotor_absorption_fraction": 6.2e-07,
+  "assigned_common_encounter_loss": 6.2e-07,
+  "rotor_l1_gain": 2.85,
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n16_t2057_certificate.npz": "2bfb047369e47fb3c967b1b565b72f800e606589c2f4b9f60a6def52ece6216f",
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d"
+      },
+      "final_exposure_range": [
+        337.52914920517406,
+        364.7529450871154
+      ],
+      "legacy_final_exposure_range": [
+        587.1059919543976,
+        623.7779248083855
+      ],
+      "maximum_final_exposure_ratio": 0.5861792873842753,
+      "maximum_final_rotor_exposure": 0.32496384037079107,
+      "maximum_final_effective_l1": 28257.055768354243,
+      "maximum_replacement_energy_allowance": 0.0002261481579679145,
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.005601318023424003,
+          "maximum_combined_thermal_action_bound": 0.04071518496368712,
+          "minimum_spin_squared_lower": 0.14415930648694084,
+          "minimum_spin_lower": 0.37968316592514456,
+          "minimum_rest_frame_absorption_ceiling": 3.6173755018853407e-06,
+          "minimum_reserve_after_replacement_allowance": 0.0003253689553902395
+        },
+        {
+          "inventory": 19.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0053065118116648454,
+          "maximum_combined_thermal_action_bound": 0.03682145158630543,
+          "minimum_spin_squared_lower": 0.1739347575029922,
+          "minimum_spin_lower": 0.41705486150264715,
+          "minimum_rest_frame_absorption_ceiling": 5.5233083061672775e-06,
+          "minimum_reserve_after_replacement_allowance": 0.00027663433130356075
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.005041186221081602,
+          "maximum_combined_thermal_action_bound": 0.03348342034269473,
+          "minimum_spin_squared_lower": 0.2005671132863551,
+          "minimum_spin_lower": 0.44784719859161237,
+          "minimum_rest_frame_absorption_ceiling": 7.419045432131021e-06,
+          "minimum_reserve_after_replacement_allowance": 0.00022789970721688168
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n32_t4113_certificate.npz": "af19dfb21b1f29faf1385fd6390d10a7917fa9eec7e6a7ed0982b170ce998790",
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f"
+      },
+      "final_exposure_range": [
+        447.17694284296033,
+        500.29862543181883
+      ],
+      "legacy_final_exposure_range": [
+        698.3681936772645,
+        760.874447524307
+      ],
+      "maximum_final_exposure_ratio": 0.6582747631786222,
+      "maximum_final_rotor_exposure": 0.5919051569470454,
+      "maximum_final_effective_l1": 30307.457342192105,
+      "maximum_replacement_energy_allowance": 0.00031018697477072703,
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": false,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": false,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": false,
+          "maximum_absorption_action_bound": 0.006007763457263477,
+          "maximum_combined_thermal_action_bound": 0.06606905933699231,
+          "minimum_spin_squared_lower": 0.06932233053139028,
+          "minimum_spin_lower": 0.26329134154276757,
+          "minimum_rest_frame_absorption_ceiling": 0.0,
+          "minimum_reserve_after_replacement_allowance": 0.0001716770800864648
+        },
+        {
+          "inventory": 19.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0056915653805654,
+          "maximum_combined_thermal_action_bound": 0.059335408487117,
+          "minimum_spin_squared_lower": 0.10580481779661047,
+          "minimum_spin_lower": 0.3252765251237944,
+          "minimum_rest_frame_absorption_ceiling": 4.228262455407701e-06,
+          "minimum_reserve_after_replacement_allowance": 0.00012262304387383356
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.00540698711153713,
+          "maximum_combined_thermal_action_bound": 0.053584474306282416,
+          "minimum_spin_squared_lower": 0.1382105226403312,
+          "minimum_spin_lower": 0.3717667583853231,
+          "minimum_rest_frame_absorption_ceiling": 6.041967122293639e-06,
+          "minimum_reserve_after_replacement_allowance": 7.356900766120202e-05
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n16_t1029_certificate.npz": "13ab8d706fe77cc990311aede293208a8424bfed072988e5e60eb2c53de74a66",
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278"
+      },
+      "final_exposure_range": [
+        59.48521412458001,
+        83.24204896926983
+      ],
+      "legacy_final_exposure_range": [
+        130.11431344809665,
+        163.24734170993025
+      ],
+      "maximum_final_exposure_ratio": 0.5099136567698624,
+      "maximum_final_rotor_exposure": 0.04995947157832894,
+      "maximum_final_effective_l1": 18561.318068033448,
+      "maximum_replacement_energy_allowance": 5.161037434633804e-05,
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0036793587515022512,
+          "maximum_combined_thermal_action_bound": 0.016015895195513722,
+          "minimum_spin_squared_lower": 0.17048961587281178,
+          "minimum_spin_lower": 0.4129038821236872,
+          "minimum_rest_frame_absorption_ceiling": 8.605107491960003e-06,
+          "minimum_reserve_after_replacement_allowance": 0.0029632430367879234
+        },
+        {
+          "inventory": 19.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0034857082908968696,
+          "maximum_combined_thermal_action_bound": 0.014522133926713435,
+          "minimum_spin_squared_lower": 0.19647772781804718,
+          "minimum_spin_lower": 0.44325808263137984,
+          "minimum_rest_frame_absorption_ceiling": 1.1292153013175757e-05,
+          "minimum_reserve_after_replacement_allowance": 0.002954042958934793
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0033114228763520257,
+          "maximum_combined_thermal_action_bound": 0.013239576679351633,
+          "minimum_spin_squared_lower": 0.21992962410247305,
+          "minimum_spin_lower": 0.4689665490229266,
+          "minimum_rest_frame_absorption_ceiling": 1.3985110517630455e-05,
+          "minimum_reserve_after_replacement_allowance": 0.0029448428810816625
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n32_t2057_certificate.npz": "ff265acb26c6bad10d4d7493de1a0306418ba43c6f69fe9f98c6325ce98ae358",
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254"
+      },
+      "final_exposure_range": [
+        71.08773596135688,
+        136.50526272914067
+      ],
+      "legacy_final_exposure_range": [
+        143.591587847573,
+        217.4243483561479
+      ],
+      "maximum_final_exposure_ratio": 0.627828777049113,
+      "maximum_final_rotor_exposure": 0.13819137020897723,
+      "maximum_final_effective_l1": 19217.93742850685,
+      "maximum_replacement_energy_allowance": 8.463376138539051e-05,
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.003809518591525918,
+          "maximum_combined_thermal_action_bound": 0.022059717822005435,
+          "minimum_spin_squared_lower": 0.15641664132181346,
+          "minimum_spin_lower": 0.3954954378015168,
+          "minimum_rest_frame_absorption_ceiling": 6.9747527227636975e-06,
+          "minimum_reserve_after_replacement_allowance": 0.002278750985237783
+        },
+        {
+          "inventory": 19.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0036090176130245543,
+          "maximum_combined_thermal_action_bound": 0.01996901035328564,
+          "minimum_spin_squared_lower": 0.18393218360731506,
+          "minimum_spin_lower": 0.4288731556151714,
+          "minimum_rest_frame_absorption_ceiling": 9.92583682951956e-06,
+          "minimum_reserve_after_replacement_allowance": 0.00225701585205898
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true,
+            "thermal_spin_with_rotor_absorption": true,
+            "revised_energy_allowance": true
+          },
+          "conditional_absorption_and_energy_screen_passed": true,
+          "maximum_absorption_action_bound": 0.0034285667323733257,
+          "maximum_combined_thermal_action_bound": 0.018175692301856172,
+          "minimum_spin_squared_lower": 0.2086764689529336,
+          "minimum_spin_lower": 0.45681119617729776,
+          "minimum_rest_frame_absorption_ceiling": 1.2877715286922163e-05,
+          "minimum_reserve_after_replacement_allowance": 0.002235280718880177
+        }
+      ]
+    }
+  ],
+  "rotor_heat_retained_in_existing_thermal_state": true,
+  "transfer_to_zero_angular_momentum_bath_assumed": true,
+  "physical_facet_to_bath_interface_constructed": false,
+  "rotor_net_power_prescribed_in_absorbing_port_law": true,
+  "rotor_energy_and_radial_dynamics_preserved_by_absorption_torque_split": true,
+  "new_rotor_encounter_envelope_included": true,
+  "other_component_loss_replacement_is_energy_allowance": true,
+  "other_component_heat_hosts_and_routing_constructed": false,
+  "finite_line_and_converter_endpoint_history_positivity_closed": false,
+  "physical_mirror_material_and_absorption_spectrum_identified": false,
+  "complete_physical_rail_feasibility_established": false
+}
