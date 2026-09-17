@@ -1,0 +1,33 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_finite_electrical_leads.py": "995070630ac930abc03bacb7009d1fc82deb60f9beb5103ea6b9ff2cdc232ff8",
+    "toolkit/adm_harness_cli/adm_harness/finite_electrical_leads.py": "4d39639ce23d2d10cd0074bf8470c2207ef9c1a877625dca51690302f377cb3f",
+    "toolkit/adm_harness_cli/tests/test_finite_electrical_leads.py": "bd3c4ad3f5eba53c78d97f465bbdf801d0a28f785b1f2e2633c1b82cf089d75e"
+  },
+  "normalization_source_sha256": {
+    "active_rail_technical_disclosure.tex": "5585a8c61231d457f2d18dd610077df6e96b61a51b084419e640df43c598db34",
+    "toolkit/adm_harness_cli/scripts/audit_finite_containment.py": "cb287267172b20c6d2fe34a5b3dc1642f37c2402f3c542ffd724d15fbb2bcf95",
+    "toolkit/adm_harness_cli/scripts/audit_virtual_cell_thermal_replay.py": "d02a4e89d94072099fea33f0400e57945aa06a7685a67df9027209824144c110"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/hosted_reaction_dynamics/manifest.json": "a9ff9b066d34bc3caacd5a9fd8a79eb2c14fb1b1724de08671d458e712bc7671",
+    "supporting_reports/data/prepared_transfer_budget/manifest.json": "13be0587809ac3ea73556db7451e3d89608f21ad95dc16ca8c6a4adbe35a1261",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b"
+  },
+  "output_sha256": {
+    "execution_audit_finite_electrical_leads.py": "995070630ac930abc03bacb7009d1fc82deb60f9beb5103ea6b9ff2cdc232ff8",
+    "execution_finite_electrical_leads.py": "4d39639ce23d2d10cd0074bf8470c2207ef9c1a877625dca51690302f377cb3f",
+    "execution_test_finite_electrical_leads.py": "bd3c4ad3f5eba53c78d97f465bbdf801d0a28f785b1f2e2633c1b82cf089d75e",
+    "first_high_down_leads.npz": "34238885e9afe57a62bad9a3585e58565de8ce0232ef9eecc51a3b5b15c08540",
+    "first_high_down_refined_leads.npz": "7783b1e8d1a6c8323657c4a84dea32b631581b4bc29db85b099e2407901e0515",
+    "first_high_up_leads.npz": "8068f227b623e98851ca8feb6b37fed94cc53ec10eeac643d159928db3d75b9b",
+    "first_high_up_refined_leads.npz": "37e4a9f5c60b33d6a6423286954fd0df8cddfd6761dc176480d0cd954b84a522",
+    "first_n16_t2057_energy_projection.npz": "edd4545977b41a8fae1de07f02a382f13e1b315656ce75236aa0e44efcfbda9b",
+    "first_n32_t4113_energy_projection.npz": "7de70d42088ecb9bda0ffd6e49c535da3e28576f364702b911050c2aa5d246dd",
+    "second_low_down_leads.npz": "3de6936d6fb110bcb31790096333c8746eb41729eef942992820516d4714fb46",
+    "second_low_up_leads.npz": "12498391f10f23b1e3899b938fd41afebe5328354dc4e362034a77a8d299c911",
+    "second_n16_t1029_energy_projection.npz": "8793ab490c204ee3a45d5ca40507cd35057e74d20b42c699d454f0f2a02d3b09",
+    "second_n32_t2057_energy_projection.npz": "21a50f859e684d3e1c51f4edfab571073204674ff3032eceeacb6475802314ee",
+    "summary.json": "77853d55f785176b6467f4888840661471fb41534a5733694902971968f9aa9c"
+  }
+}

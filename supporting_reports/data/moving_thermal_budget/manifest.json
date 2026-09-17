@@ -1,0 +1,25 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_moving_thermal_budget.py": "de2e566fe88a28f49ad2a916af5446ea95194739e37d66be59938232d15526d2",
+    "toolkit/adm_harness_cli/adm_harness/moving_thermal_budget.py": "d6f7bfcdfe0d2904d9d8d454decfc9c2da0aa18ce61526e33be2e56ba8efd085",
+    "toolkit/adm_harness_cli/tests/test_moving_thermal_budget.py": "92900989bf03026eed3551a570d599def52b93d5d5e4d1dcd0a183f3d24a8313"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020",
+    "supporting_reports/data/coupled_optical_losses/manifest.json": "5ad850859afb099191e8ddb14bf6a7416f97e1a7e7bde5e05432e1a1e1c0c788",
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/reaction_endpoint_certificate/manifest.json": "47877010e0690bfb0b7e487755a344989562234ddca128ed622fe8532041b53e",
+    "supporting_reports/data/prepared_transfer_budget/manifest.json": "13be0587809ac3ea73556db7451e3d89608f21ad95dc16ca8c6a4adbe35a1261",
+    "supporting_reports/data/moving_thermal_relay/manifest.json": "fca833d7e716b35bba4f1baf1aaf75af20283d4d8f8557a651d9fbeba10227e9"
+  },
+  "output_sha256": {
+    "execution_audit_moving_thermal_budget.py": "de2e566fe88a28f49ad2a916af5446ea95194739e37d66be59938232d15526d2",
+    "execution_moving_thermal_budget.py": "d6f7bfcdfe0d2904d9d8d454decfc9c2da0aa18ce61526e33be2e56ba8efd085",
+    "execution_test_moving_thermal_budget.py": "92900989bf03026eed3551a570d599def52b93d5d5e4d1dcd0a183f3d24a8313",
+    "first_n16_t2057_moving_budget.npz": "ac26c939d8bf86891a0a811dbe38baf8e785f18fc92890eaf4d96328bb23806f",
+    "first_n32_t4113_moving_budget.npz": "a2ad902fab7007c685069f3958056ba76c492bb9d18fd451e2f3bf400ae6dbf6",
+    "second_n16_t1029_moving_budget.npz": "c9de13108d5a18bf388af1e86bb67a1c53c7734665e9eb14ced299d15f93963a",
+    "second_n32_t2057_moving_budget.npz": "7c1b09e74c7d131af8f86a6231655e13bf38f72715922dca26567455a3ef9210",
+    "summary.json": "6d54c950db26dc404a8a4308c091f66760a1d3e2fedc8d4cb48d3ac77188b0bf"
+  }
+}

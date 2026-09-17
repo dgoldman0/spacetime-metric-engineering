@@ -1,0 +1,585 @@
+{
+  "created_utc": "2026-09-17T13:35:30.865537+00:00",
+  "workers": 4,
+  "base_commit": "9f515426fe0ec6409564cb8ababc22bf6293932c",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "input_sha256": {
+    "supporting_reports/data/fermionic_string_material/summary.json": "e5551189e5b00a402328ca197162a740d5d041edeb8c783b3ab3bd075d55b1cf"
+  },
+  "profile_cases": [
+    {
+      "beta": 0.1,
+      "mass_ratio": 0.3,
+      "archive": "beta0.1_ratio0.3.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_22_profiles.npz": "aad6948e23f41dcca7fbd19c244200ce7046705aa31136f69a49244d704f65bd"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 61.13141814446889,
+          "inner_probability_fraction": 1.0278160556214873e-11,
+          "exterior_probability_fraction": 1.314304677299367e-16,
+          "probability_radius_rho": {
+            "0.5": 2.8043445830348244,
+            "0.9": 5.9509109595156175,
+            "0.99": 9.929594033804122
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 61.1314183387852,
+          "inner_probability_fraction": 1.0278160523544056e-13,
+          "exterior_probability_fraction": 7.560275593870103e-25,
+          "probability_radius_rho": {
+            "0.5": 2.804344587319597,
+            "0.9": 5.950910965780931,
+            "0.99": 9.929594039506377
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.5279051357453e-09
+    },
+    {
+      "beta": 0.1,
+      "mass_ratio": 0.5,
+      "archive": "beta0.1_ratio0.5.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_22_profiles.npz": "aad6948e23f41dcca7fbd19c244200ce7046705aa31136f69a49244d704f65bd"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 38.53238158938743,
+          "inner_probability_fraction": 1.630624697464871e-11,
+          "exterior_probability_fraction": 3.879724127598e-27,
+          "probability_radius_rho": {
+            "0.5": 2.1592397456500567,
+            "0.9": 4.335169422268347,
+            "0.99": 6.882393128511769
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 38.532381706485815,
+          "inner_probability_fraction": 1.6306246925094692e-13,
+          "exterior_probability_fraction": 7.164790042367707e-41,
+          "probability_radius_rho": {
+            "0.5": 2.1592397490298545,
+            "0.9": 4.335169427868633,
+            "0.99": 6.882393134909404
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.5652721341297138e-09
+    },
+    {
+      "beta": 0.1,
+      "mass_ratio": 1.0,
+      "archive": "beta0.1_ratio1.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_22_profiles.npz": "aad6948e23f41dcca7fbd19c244200ce7046705aa31136f69a49244d704f65bd"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 20.286885959845872,
+          "inner_probability_fraction": 3.097165981815042e-11,
+          "exterior_probability_fraction": 1.9731887169478153e-53,
+          "probability_radius_rho": {
+            "0.5": 1.5309170003390713,
+            "0.9": 2.9348270028051986,
+            "0.99": 4.430818898698123
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 20.2868860165221,
+          "inner_probability_fraction": 3.0971659731623787e-13,
+          "exterior_probability_fraction": 6.729361646351465e-81,
+          "probability_radius_rho": {
+            "0.5": 1.5309170026830525,
+            "0.9": 2.934827006987191,
+            "0.99": 4.4308189042140445
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.53109624978498e-09
+    },
+    {
+      "beta": 0.1,
+      "mass_ratio": 2.0,
+      "archive": "beta0.1_ratio2.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_22_profiles.npz": "aad6948e23f41dcca7fbd19c244200ce7046705aa31136f69a49244d704f65bd"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 10.485958405266864,
+          "inner_probability_fraction": 5.99199907566263e-11,
+          "exterior_probability_fraction": 5.474198011873369e-106,
+          "probability_radius_rho": {
+            "0.5": 1.0880032117933958,
+            "0.9": 2.0350030812933553,
+            "0.99": 2.9804978661376964
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 10.485958431634591,
+          "inner_probability_fraction": 5.991999060595308e-13,
+          "exterior_probability_fraction": 6.366943452133687e-161,
+          "probability_radius_rho": {
+            "0.5": 1.0880032132832869,
+            "0.9": 2.035003084262308,
+            "0.99": 2.980497870214496
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.4589425223476837e-09
+    },
+    {
+      "beta": 0.31622776601683794,
+      "mass_ratio": 0.3,
+      "archive": "beta0.31622777_ratio0.3.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_23_profiles.npz": "8fa2ef26876b7b339006da35f482071e2382febe6990eb540f86633d6a154428"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 45.7811804669953,
+          "inner_probability_fraction": 1.3724384655632187e-11,
+          "exterior_probability_fraction": 1.3882984849290422e-09,
+          "probability_radius_rho": {
+            "0.5": 2.4605345185670093,
+            "0.9": 5.3775028793837585,
+            "0.99": 9.246023448529504
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 45.78118039061094,
+          "inner_probability_fraction": 1.3724384678530882e-13,
+          "exterior_probability_fraction": 3.226273929381034e-14,
+          "probability_radius_rho": {
+            "0.5": 2.460534517613203,
+            "0.9": 5.377502875405625,
+            "0.99": 9.246023444577633
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 7.397733536862461e-10
+    },
+    {
+      "beta": 0.31622776601683794,
+      "mass_ratio": 0.5,
+      "archive": "beta0.31622777_ratio0.5.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_23_profiles.npz": "8fa2ef26876b7b339006da35f482071e2382febe6990eb540f86633d6a154428"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 28.30459707401284,
+          "inner_probability_fraction": 2.219846228776856e-11,
+          "exterior_probability_fraction": 1.8319883378245846e-15,
+          "probability_radius_rho": {
+            "0.5": 1.8659548785845155,
+            "0.9": 3.8192162791697473,
+            "0.99": 6.213766118970407
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 28.304597036482157,
+          "inner_probability_fraction": 2.21984623172028e-13,
+          "exterior_probability_fraction": 3.466996100429761e-23,
+          "probability_radius_rho": {
+            "0.5": 1.865954878744882,
+            "0.9": 3.8192162768336524,
+            "0.99": 6.213766114906458
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 6.540235020224827e-10
+    },
+    {
+      "beta": 0.31622776601683794,
+      "mass_ratio": 1.0,
+      "archive": "beta0.31622777_ratio1.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_23_profiles.npz": "8fa2ef26876b7b339006da35f482071e2382febe6990eb540f86633d6a154428"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 14.626578788144435,
+          "inner_probability_fraction": 4.2957313519361173e-11,
+          "exterior_probability_fraction": 3.8216720663403685e-30,
+          "probability_radius_rho": {
+            "0.5": 1.3052808961161528,
+            "0.9": 2.5271276126057245,
+            "0.99": 3.869896733581921
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 14.626578772476366,
+          "inner_probability_fraction": 4.295731356537734e-13,
+          "exterior_probability_fraction": 1.3687203216766638e-45,
+          "probability_radius_rho": {
+            "0.5": 1.305280896649327,
+            "0.9": 2.5271276127059528,
+            "0.99": 3.869896732023315
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 4.084746985100196e-10
+    },
+    {
+      "beta": 0.31622776601683794,
+      "mass_ratio": 2.0,
+      "archive": "beta0.31622777_ratio2.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_23_profiles.npz": "8fa2ef26876b7b339006da35f482071e2382febe6990eb540f86633d6a154428"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 7.474913465568102,
+          "inner_probability_fraction": 8.40569638180026e-11,
+          "exterior_probability_fraction": 1.7380128442713063e-59,
+          "probability_radius_rho": {
+            "0.5": 0.9205033454195054,
+            "0.9": 1.7302103763708059,
+            "0.99": 2.552533969224149
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 7.474913455585426,
+          "inner_probability_fraction": 8.405696393025999e-13,
+          "exterior_probability_fraction": 2.229336246391246e-90,
+          "probability_radius_rho": {
+            "0.5": 0.9205033455721322,
+            "0.9": 1.7302103775803002,
+            "0.99": 2.5525339697448635
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 6.990445999832673e-10
+    },
+    {
+      "beta": 1.0,
+      "mass_ratio": 0.3,
+      "archive": "beta1_ratio0.3.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_24_profiles.npz": "e4483883c54d73cbed399ddc24997ace4eed4d352f81e49ae8716bac0b825ef7"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 34.7163478369073,
+          "inner_probability_fraction": 1.8098635653430874e-11,
+          "exterior_probability_fraction": 3.063916680362982e-08,
+          "probability_radius_rho": {
+            "0.5": 2.195465232044679,
+            "0.9": 4.996836741390819,
+            "0.99": 8.840207909572378
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 34.716347867527105,
+          "inner_probability_fraction": 1.8098635637467914e-13,
+          "exterior_probability_fraction": 3.781173568986001e-12,
+          "probability_radius_rho": {
+            "0.5": 2.1954652323139827,
+            "0.9": 4.996836740210048,
+            "0.99": 8.840207908434456
+          },
+          "mass_ratio": 0.3,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 2.3630364331950204e-10
+    },
+    {
+      "beta": 1.0,
+      "mass_ratio": 0.5,
+      "archive": "beta1_ratio0.5.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_24_profiles.npz": "e4483883c54d73cbed399ddc24997ace4eed4d352f81e49ae8716bac0b825ef7"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 20.829808694456656,
+          "inner_probability_fraction": 3.0164392766851e-11,
+          "exterior_probability_fraction": 3.0000483335567953e-13,
+          "probability_radius_rho": {
+            "0.5": 1.6261472911011405,
+            "0.9": 3.435707596233032,
+            "0.99": 5.767649811910642
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 20.829808720518752,
+          "inner_probability_fraction": 3.0164392729109583e-13,
+          "exterior_probability_fraction": 9.177217453576624e-20,
+          "probability_radius_rho": {
+            "0.5": 1.626147292347216,
+            "0.9": 3.435707594757017,
+            "0.99": 5.767649810853397
+          },
+          "mass_ratio": 0.5,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 7.66274710350956e-10
+    },
+    {
+      "beta": 1.0,
+      "mass_ratio": 1.0,
+      "archive": "beta1_ratio1.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_24_profiles.npz": "e4483883c54d73cbed399ddc24997ace4eed4d352f81e49ae8716bac0b825ef7"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 10.414904341115633,
+          "inner_probability_fraction": 6.032878556911005e-11,
+          "exterior_probability_fraction": 9.000290001050467e-26,
+          "probability_radius_rho": {
+            "0.5": 1.110656666075386,
+            "0.9": 2.1908836944743637,
+            "0.99": 3.4357075961583226
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 10.414904360262963,
+          "inner_probability_fraction": 6.03287854581984e-13,
+          "exterior_probability_fraction": 8.422132019021539e-39,
+          "probability_radius_rho": {
+            "0.5": 1.1106566678078735,
+            "0.9": 2.1908836953802067,
+            "0.99": 3.4357075947569893
+          },
+          "mass_ratio": 1.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.5598766722746404e-09
+    },
+    {
+      "beta": 1.0,
+      "mass_ratio": 2.0,
+      "archive": "beta1_ratio2.npz",
+      "input_sha256": {
+        "supporting_reports/data/fermionic_string_material/beta_24_profiles.npz": "e4483883c54d73cbed399ddc24997ace4eed4d352f81e49ae8716bac0b825ef7"
+      },
+      "diagnostics": {
+        "coarse": {
+          "unnormalized_probability": 5.207452169930411,
+          "inner_probability_fraction": 1.2065757115275718e-10,
+          "exterior_probability_fraction": 8.100521981527766e-51,
+          "probability_radius_rho": {
+            "0.5": 0.7716001938384163,
+            "0.9": 1.4647426595085153,
+            "0.99": 2.190883693555607
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        },
+        "extended": {
+          "unnormalized_probability": 5.207452180135788,
+          "inner_probability_fraction": 1.20657570916297e-12,
+          "exterior_probability_fraction": 7.093230774580959e-77,
+          "probability_radius_rho": {
+            "0.5": 0.7716001952116472,
+            "0.9": 1.4647426620914945,
+            "0.99": 2.190883695380122
+          },
+          "mass_ratio": 2.0,
+          "quadrature_order": 16
+        }
+      },
+      "maximum_probability_radius_relative_change": 1.779718261651908e-09
+    }
+  ],
+  "candidate_count": 360,
+  "representative_flavor_cases": [
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 0.5,
+      "gauge_coupling": 0.5,
+      "pair_flavors": 64,
+      "dirac_species": 128,
+      "proper_stretch": 1.120197176521042,
+      "proper_fermi_over_bulk_mass": 0.9915403804079327,
+      "opposite_branch_open_pair_fraction": 0.0,
+      "two_bulk_equal_mass_channel_kinematically_closed": true,
+      "unit_coefficient_collective_yukawa_loop": 0.20264236728467555,
+      "unit_coefficient_collective_quartic_over_tree": 0.20264236728467555,
+      "homogeneous_MS_fermion_CW_log_coefficient_over_tree": 1.6211389382774044,
+      "unit_coefficient_charge_weighted_gauge_loop": 0.10132118364233778,
+      "mean_field_local_gauge_and_scalar_source_zero": true,
+      "quantum_corrected_potential_control_established": false,
+      "transition_rate_or_material_lifetime_computed": false,
+      "all_unit_coefficient_loop_diagnostics_below_point3": true
+    },
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 0.5,
+      "gauge_coupling": 0.5,
+      "pair_flavors": 70,
+      "dirac_species": 140,
+      "proper_stretch": 1.120197176521042,
+      "proper_fermi_over_bulk_mass": 0.9480939439790954,
+      "opposite_branch_open_pair_fraction": 0.0,
+      "two_bulk_equal_mass_channel_kinematically_closed": true,
+      "unit_coefficient_collective_yukawa_loop": 0.22164008921761388,
+      "unit_coefficient_collective_quartic_over_tree": 0.22164008921761388,
+      "homogeneous_MS_fermion_CW_log_coefficient_over_tree": 1.773120713740911,
+      "unit_coefficient_charge_weighted_gauge_loop": 0.11082004460880694,
+      "mean_field_local_gauge_and_scalar_source_zero": true,
+      "quantum_corrected_potential_control_established": false,
+      "transition_rate_or_material_lifetime_computed": false,
+      "all_unit_coefficient_loop_diagnostics_below_point3": true
+    },
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 1.0,
+      "gauge_coupling": 1.0,
+      "pair_flavors": 1,
+      "dirac_species": 2,
+      "proper_stretch": 1.120197176521042,
+      "proper_fermi_over_bulk_mass": 3.9661615216317307,
+      "opposite_branch_open_pair_fraction": 0.7612528208712016,
+      "two_bulk_equal_mass_channel_kinematically_closed": false,
+      "unit_coefficient_collective_yukawa_loop": 0.012665147955292222,
+      "unit_coefficient_collective_quartic_over_tree": 0.012665147955292222,
+      "homogeneous_MS_fermion_CW_log_coefficient_over_tree": 0.10132118364233778,
+      "unit_coefficient_charge_weighted_gauge_loop": 0.006332573977646111,
+      "mean_field_local_gauge_and_scalar_source_zero": true,
+      "quantum_corrected_potential_control_established": false,
+      "transition_rate_or_material_lifetime_computed": false,
+      "all_unit_coefficient_loop_diagnostics_below_point3": true
+    }
+  ],
+  "representative_loop_geometry": [
+    {
+      "pair_flavors": 64,
+      "beta": 1.0,
+      "yukawa": 0.5,
+      "gauge_coupling": 0.5,
+      "required_radius_sqrt_mu": 1621.1630398570917,
+      "scalar_core_radius_sqrt_mu": 16.211630398570918,
+      "core_over_loop_radius": 0.01,
+      "fermi_momentum_over_sqrt_mu": 0.4457259902512471,
+      "bulk_mass_over_sqrt_mu": 0.28209479177388463,
+      "fermi_over_bulk_mass": 1.5800574957389584,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 722.5649095450308,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 148.79221400889028,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.0015831434944115277,
+      "minimum_node_action_for_six_rotors": 344706533.182567
+    },
+    {
+      "pair_flavors": 70,
+      "beta": 1.0,
+      "yukawa": 0.5,
+      "gauge_coupling": 0.5,
+      "required_radius_sqrt_mu": 1621.1630398570917,
+      "scalar_core_radius_sqrt_mu": 16.211630398570918,
+      "core_over_loop_radius": 0.01,
+      "fermi_momentum_over_sqrt_mu": 0.42619556437775485,
+      "bulk_mass_over_sqrt_mu": 0.28209479177388463,
+      "fermi_over_bulk_mass": 1.510823938640368,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 690.9042015914713,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 169.55770209998568,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.0015831434944115277,
+      "minimum_node_action_for_six_rotors": 344706533.182567
+    },
+    {
+      "pair_flavors": 1,
+      "beta": 1.0,
+      "yukawa": 1.0,
+      "gauge_coupling": 1.0,
+      "required_radius_sqrt_mu": 11803.36079650874,
+      "scalar_core_radius_sqrt_mu": 8.105815199285459,
+      "core_over_loop_radius": 0.000686737899402604,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 0.5641895835477693,
+      "fermi_over_bulk_mass": 6.3202299829558335,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 42086.79382184049,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 99.99999999999443,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.006332573977646111,
+      "minimum_node_action_for_six_rotors": 18272900603.4582
+    }
+  ],
+  "proper_rotor_stretch_lower": 1.120197176521042,
+  "maximum_four_component_dirac_residual": 2.237726045655905e-16,
+  "maximum_local_source_bilinear": 0.0,
+  "scalar_and_gauge_field_classical_mean_sources_cancel_per_species": true,
+  "half_integer_carriers_retain_residual_Z2_gauge_charge": true,
+  "gauge_and_gravitational_anomalies_cancel_per_pair": true,
+  "independent_conserved_flavor_numbers_assumed": true,
+  "changing_spin_requires_additional_branch_occupation_interface": true,
+  "torque_driven_branch_conversion_constructed": false,
+  "massive_final_pair_fraction_is_kinematic_only": true,
+  "multi_flavor_unit_loop_diagnostics_include_all_species": true,
+  "massive_mode_transition_matrix_elements_or_decay_rates_calculated": false,
+  "quantum_corrected_vortex_or_finite_curvature_spectrum_solved": false,
+  "two_dimensional_material_network_or_junction_law_constructed": false,
+  "optical_reflection_or_work_transducer_supplied_by_carrier_model": false,
+  "empirical_material_realization_identified": false,
+  "primary_model_source": "https://arxiv.org/pdf/hep-ph/0007015",
+  "occupied_massive_mode_source": "https://arxiv.org/abs/hep-ph/0106179",
+  "homogeneous_one_loop_potential_source": "https://arxiv.org/pdf/hep-ph/0111209",
+  "full_material_feasibility_established": false
+}

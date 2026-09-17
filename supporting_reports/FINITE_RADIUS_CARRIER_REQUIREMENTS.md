@@ -94,9 +94,12 @@ Taking \(R_{\min}=x_{\min}R_0\) gives
 \quad N_{\rm copy}=6,\ M=19,\ r_0=\frac1{12\pi},\ x_{\min}=1.068.
 \]
 
-Natural units use \(c=1\). A ledger expressed per reference volume also
-requires a cell volume to convert its \(C\) into physical energy. The
-audit retains this scale as a parameter.
+Natural units use \(c=1\). The inherited capacities already contain
+\(D=\ell R^2\) and are energies per radial material label and solid angle.
+A physical cell uses the corresponding label and solid-angle measure.
+The [physical normalization](RAIL_STORAGE_AND_INTERFACE_STATUS.md#physical-normalization)
+relates that cell energy and proper delay to one metric length scale.
+The audit's action requirement is applied through this common conversion.
 
 ## Candidate comparison
 
@@ -122,9 +125,10 @@ of \(1.98883\times10^{-23}\). Applying this independent-cell layout
 to every active node requires a common energy-time unit of
 \(9.18775\times10^{32}\hbar\) for \(\beta=1,\ g=1\), or
 \(3.03628\times10^{32}\hbar\) for \(\beta=0.1,\ g=1\).
-These are dimensional conversion requirements, with cell energy and time
-scale still free. Shared microscopic hosts need a corresponding revision
-of the cell construction.
+These are dimensional conversion requirements. For a homothetic rail,
+the cell measure and metric length determine the energy and time units
+together. Shared microscopic hosts need a corresponding revision of the
+cell construction.
 
 ## Material conditions and evidence
 
@@ -136,6 +140,11 @@ the occupied stress tensor. For example,
 finds that massive occupations change the zero-mode equation of state.
 A favorable escape exponent therefore leaves the rigid law as an independent
 material calculation.
+
+The subsequent [charge-symmetric host calculation](NEUTRAL_FERMIONIC_HOSTS_AND_OCCUPATION.md)
+supplies explicit carrier profiles and evaluates opposite-branch escape,
+counted flavor multiplicity and the full homogeneous fermion-loop
+coefficient for its specified tree normalization.
 
 Six tests compare the action with direct quadrature, recover its
 high-energy limit, check finite width, verify six-copy dimensional scaling,

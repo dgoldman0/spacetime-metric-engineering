@@ -1,0 +1,33 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_moving_thermal_relay.py": "7f8f92ca3649a61da1385237418340c4eb060c03775c488c623415c735c673e6",
+    "toolkit/adm_harness_cli/adm_harness/moving_thermal_relay.py": "59dd2244da941035f00718f8a0f0e84c516d032e7809b79eecb38adf2fd5bab6",
+    "toolkit/adm_harness_cli/tests/test_moving_thermal_relay.py": "32e4b1b1c5874b6cca487796462519ae376662b4dce6de97d11f0c5a831dc10d",
+    "toolkit/adm_harness_cli/adm_harness/thermal_exchange_interfaces.py": "f06253d1a71e85aa36d7bc8a12a732e8b72cc74074b396576532b537c9bc6d25"
+  },
+  "input_sha256": {
+    "supporting_reports/data/hosted_reaction_dynamics/summary.json": "989e981bc80e637b74ce7b90eeaf5018e58bfd0a44f05a07890b90c75703c835"
+  },
+  "output_sha256": {
+    "execution_audit_moving_thermal_relay.py": "7f8f92ca3649a61da1385237418340c4eb060c03775c488c623415c735c673e6",
+    "execution_moving_thermal_relay.py": "59dd2244da941035f00718f8a0f0e84c516d032e7809b79eecb38adf2fd5bab6",
+    "execution_test_moving_thermal_relay.py": "32e4b1b1c5874b6cca487796462519ae376662b4dce6de97d11f0c5a831dc10d",
+    "fast_reversal_thermal.npz": "27c1ebcc6f8a7a8e18c6ee4103ad867b80f0659d95e95f4b376f59b2d9d976fc",
+    "fast_reversal_work_stage_0.npz": "4044cb7d41e8bcfbc0f41450b433f2de81e8d1260af2cb5fd27141f378f20fa1",
+    "fast_reversal_work_stage_1.npz": "8484802815e246f98484da28e6a48e496caf12f83d477f950626be013fa8c1f6",
+    "fast_reversal_work_stage_2.npz": "211b46ad2dbd367372d2063ceb70e42cdee4545a7a848ae74c2ab9a47b5ce880",
+    "slow_reversal_thermal.npz": "910e089eea07857aa9d2951a217069bba9bb685a072131f729c5d31c67a11864",
+    "slow_reversal_work_stage_0.npz": "5a6b5889cd57f8b034281320831f44c78a55559025d112ce11b2859e73c21065",
+    "slow_reversal_work_stage_1.npz": "04192f9899f5bcc3a1f8b8027531f4b7f2b878eeb32caf17bdf488984eb1ef7f",
+    "slow_reversal_work_stage_2.npz": "9c1e472161ebd7588df7121481de3b9023c18a8de1007fd081ffecadf524f77d",
+    "stationary_thermal.npz": "343243ae3e304190dcf49c3279a0b9155e69d6c66765fd8234cce58d023367be",
+    "stationary_work_stage_0.npz": "8923cef9f4c42d84d9397e5bda537b96fa4216d9c67862d5ad63dde02750cc2b",
+    "stationary_work_stage_1.npz": "8923cef9f4c42d84d9397e5bda537b96fa4216d9c67862d5ad63dde02750cc2b",
+    "stationary_work_stage_2.npz": "8923cef9f4c42d84d9397e5bda537b96fa4216d9c67862d5ad63dde02750cc2b",
+    "summary.json": "e40b6fb84c27bf978dd78f187b3008845293bef0f388b33f965484d7c1b3ec34",
+    "uniform_thermal.npz": "9bdab2cce5b052b19c8cff2f79d566299f60a74800b30fdd4ccd5682438811a2",
+    "uniform_work_stage_0.npz": "1f86ab593688468b97ab2254dc74dd8abf2f0ea39dfbfc82d8ff17d61b7e2142",
+    "uniform_work_stage_1.npz": "f70a11e2ce67d2714bdae9e4ae92b15468dbf9096b2236c68585d4fdad86479c",
+    "uniform_work_stage_2.npz": "2a3f284d7973a6eac597e539247336ad084686f1174be8dac86e2ad749752402"
+  }
+}

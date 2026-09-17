@@ -1,0 +1,282 @@
+{
+  "created_utc": "2026-09-17T13:11:14.370833+00:00",
+  "workers": 4,
+  "base_commit": "9f515426fe0ec6409564cb8ababc22bf6293932c",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "geometry": {
+    "axial_half_separation": 0.0078125,
+    "radial_reference": 0.03183098861837907,
+    "assigned_rotor_radius_factor_range": [
+      1.068,
+      1.332
+    ],
+    "radial_work_half_gap": 0.0038515496228238677,
+    "assigned_work_gap_ceiling": 0.007352958370845566,
+    "rotor_copies": 6,
+    "axis_pairs": 3
+  },
+  "uniform_bounds": {
+    "maximum_radial_speed": 0.00905,
+    "axial_half_separation": 0.0078125,
+    "maximum_single_leg_delay": 0.007812819951294367,
+    "maximum_total_delay": 0.015625639902588733,
+    "minimum_total_delay": 0.015625,
+    "single_turn_energy_factor": 1.000163818417138,
+    "single_leg_arrival_jacobian_upper": 1.000163818417138,
+    "total_guide_work_l1_per_emitted_energy": 0.0004915357652314184,
+    "guide_work_peak_per_emitted_power": 0.0004916163010335319,
+    "bath_energy_per_emitted_energy": 1.0004915357652315,
+    "bath_power_per_emitted_peak": 1.0008193604943945,
+    "flight_energy_per_emitted_peak": 0.015630760066819915,
+    "flight_rate_l1_per_emitted_energy": 2.0006553273414993,
+    "flight_rate_peak_per_emitted_peak": 1.0008193067994624,
+    "radial_guide_force_peak_per_emitted_power": 0.05432224320812508,
+    "radial_guide_impulse_l1_per_emitted_energy": 0.054313344224466126,
+    "guide_impulse_l1_per_emitted_energy": 6.001474499941009
+  },
+  "selected_route_bounds": {
+    "maximum_radial_speed": 0.00905,
+    "axial_half_separation": 0.0078125,
+    "maximum_single_leg_delay": 0.007812819951294367,
+    "maximum_total_delay": 0.015625639902588733,
+    "minimum_total_delay": 0.015625,
+    "single_turn_energy_factor": 1.000163818417138,
+    "single_leg_arrival_jacobian_upper": 1.000163818417138,
+    "total_guide_work_l1_per_emitted_energy": 0.0004915357652314184,
+    "guide_work_peak_per_emitted_power": 0.0004916163010335319,
+    "bath_energy_per_emitted_energy": 1.0004915357652315,
+    "bath_power_per_emitted_peak": 1.0008193604943945,
+    "flight_energy_per_emitted_peak": 0.015630760066819915,
+    "flight_rate_l1_per_emitted_energy": 2.0006553273414993,
+    "flight_rate_peak_per_emitted_peak": 1.0008193067994624,
+    "radial_guide_force_peak_per_emitted_power": 0.05432224320812508,
+    "radial_guide_impulse_l1_per_emitted_energy": 0.054313344224466126,
+    "guide_impulse_l1_per_emitted_energy": 6.001474499941009,
+    "maximum_actuator_gap": 0.007352958370845566,
+    "remote_power_peak_per_emitted_peak": 0.027657227664947076,
+    "remote_power_l1_per_emitted_energy": 0.054313344224466126,
+    "actuator_energy_per_emitted_peak": 0.0004030440271162206,
+    "complete_flight_energy_per_emitted_peak": 0.016033804093936135,
+    "complete_flight_rate_peak_per_emitted_peak": 1.0284765881593416,
+    "complete_flight_rate_l1_per_emitted_energy": 2.054804879989698
+  },
+  "cases": [
+    {
+      "name": "stationary",
+      "source_samples": 1153,
+      "observed_samples": 289,
+      "checked_interpolated_speed": 0.0,
+      "errors": {
+        "four_momentum_balance_error": 1.3877787807814457e-17,
+        "source_guide_work_error": 0.0,
+        "central_guide_work_error": 1.3877787807814457e-17,
+        "destination_guide_work_error": 0.0,
+        "energy_balance_error": 6.938893903907228e-17,
+        "single_leg_null_error": 0.0,
+        "combined_energy_balance": 5.551115123125783e-17,
+        "exact_drive_matches_thermal_recoil": 2.7755575615628914e-17,
+        "local_bath_counterstream_balance": 0.0,
+        "work_lead_four_momentum_balance": 0.0,
+        "six_rotor_isotropic_stress": 4.336808689942018e-19,
+        "six_rotor_spatial_momentum": 2.5423457089612842e-20,
+        "thermal_inventory_quadrature_refinement": 1.734723475976807e-18,
+        "actuator_inventory_quadrature_refinement": 0.0
+      },
+      "pair_maxima": {
+        "heat_flight": 0.005206459979391887,
+        "heat_arrival": 0.3333333333333333,
+        "summed_absolute_guide_work": 2.7755575615628914e-17,
+        "summed_radial_guide_force": 0.0
+      },
+      "pair_ceilings": {
+        "heat_flight": 0.005210253355606638,
+        "heat_arrival": 0.33360645349813145,
+        "summed_absolute_guide_work": 0.00016387210034451063,
+        "summed_radial_guide_force": 0.01810741440270836
+      },
+      "delay_range": [
+        0.015625,
+        0.015625
+      ],
+      "signed_guide_work_range": [
+        -2.7755575615628914e-17,
+        2.7755575615628914e-17
+      ],
+      "pair_work_photon_energy_maximum": 0.0,
+      "six_rotor_total_flight_energy_maximum": 0.015619379938175661,
+      "six_rotor_initial_flight_energy": 0.0,
+      "six_rotor_final_flight_energy": 0.0
+    },
+    {
+      "name": "uniform",
+      "source_samples": 1153,
+      "observed_samples": 289,
+      "checked_interpolated_speed": 0.0045000000000002555,
+      "errors": {
+        "four_momentum_balance_error": 1.3877787807814457e-17,
+        "source_guide_work_error": 1.3766792610406252e-17,
+        "central_guide_work_error": 4.137356147786153e-17,
+        "destination_guide_work_error": 1.3792528859475627e-17,
+        "energy_balance_error": 5.551115123125783e-17,
+        "single_leg_null_error": 1.9081958235744878e-17,
+        "combined_energy_balance": 1.5673023727735578e-16,
+        "exact_drive_matches_thermal_recoil": 1.2385771119664818e-16,
+        "local_bath_counterstream_balance": 0.0,
+        "work_lead_four_momentum_balance": 4.930380657631324e-32,
+        "six_rotor_isotropic_stress": 3.469446951953614e-18,
+        "six_rotor_spatial_momentum": 2.725700328083311e-20,
+        "thermal_inventory_quadrature_refinement": 1.734723475976807e-18,
+        "actuator_inventory_quadrature_refinement": 2.7072273317909417e-19
+      },
+      "pair_maxima": {
+        "heat_flight": 0.005206512658111572,
+        "heat_arrival": 0.33333333242973534,
+        "summed_absolute_guide_work": 1.249000902703301e-16,
+        "summed_radial_guide_force": 1.133967052202589e-15
+      },
+      "pair_ceilings": {
+        "heat_flight": 0.005210253355606638,
+        "heat_arrival": 0.33360645349813145,
+        "summed_absolute_guide_work": 0.00016387210034451063,
+        "summed_radial_guide_force": 0.01810741440270836
+      },
+      "delay_range": [
+        0.015625158205527734,
+        0.01562515820552779
+      ],
+      "signed_guide_work_range": [
+        -1.249000902703301e-16,
+        1.249000902703301e-16
+      ],
+      "pair_work_photon_energy_maximum": 3.4769607548255395e-18,
+      "six_rotor_total_flight_energy_maximum": 0.015619537974334722,
+      "six_rotor_initial_flight_energy": 0.0,
+      "six_rotor_final_flight_energy": 0.0
+    },
+    {
+      "name": "slow_reversal",
+      "source_samples": 1153,
+      "observed_samples": 289,
+      "checked_interpolated_speed": 0.008899999994755117,
+      "errors": {
+        "four_momentum_balance_error": 1.3877787807814457e-17,
+        "source_guide_work_error": 2.0673215506280488e-17,
+        "central_guide_work_error": 4.4411129081612926e-17,
+        "destination_guide_work_error": 1.6871334592309163e-17,
+        "energy_balance_error": 6.938893903907228e-17,
+        "single_leg_null_error": 1.0928757898653885e-16,
+        "combined_energy_balance": 1.4923704091084067e-16,
+        "exact_drive_matches_thermal_recoil": 1.2621468540446878e-16,
+        "local_bath_counterstream_balance": 0.0,
+        "work_lead_four_momentum_balance": 1.3552527156068805e-20,
+        "six_rotor_isotropic_stress": 2.6020852139652106e-18,
+        "six_rotor_spatial_momentum": 2.8144970038858646e-20,
+        "thermal_inventory_quadrature_refinement": 1.734723475976807e-18,
+        "actuator_inventory_quadrature_refinement": 2.870912295600044e-19
+      },
+      "pair_maxima": {
+        "heat_flight": 0.00520655072161481,
+        "heat_arrival": 0.3333333313258128,
+        "summed_absolute_guide_work": 1.2351512955061095e-06,
+        "summed_radial_guide_force": 0.00024349123698961302
+      },
+      "pair_ceilings": {
+        "heat_flight": 0.005210253355606638,
+        "heat_arrival": 0.33360645349813145,
+        "summed_absolute_guide_work": 0.00016387210034451063,
+        "summed_radial_guide_force": 0.01810741440270836
+      },
+      "delay_range": [
+        0.01562500033995301,
+        0.01562561841168972
+      ],
+      "signed_guide_work_range": [
+        -4.5036072369303293e-07,
+        1.2351512955061095e-06
+      ],
+      "pair_work_photon_energy_maximum": 6.068671498063656e-07,
+      "six_rotor_total_flight_energy_maximum": 0.015621361985027601,
+      "six_rotor_initial_flight_energy": 0.0,
+      "six_rotor_final_flight_energy": 0.0
+    },
+    {
+      "name": "fast_reversal",
+      "source_samples": 1153,
+      "observed_samples": 289,
+      "checked_interpolated_speed": 0.008899983332913438,
+      "errors": {
+        "four_momentum_balance_error": 2.7755575615628914e-17,
+        "source_guide_work_error": 1.6603275134282778e-17,
+        "central_guide_work_error": 4.072253830734898e-17,
+        "destination_guide_work_error": 1.8484588249693783e-17,
+        "energy_balance_error": 5.551115123125783e-17,
+        "single_leg_null_error": 7.45931094670027e-17,
+        "combined_energy_balance": 1.3753104557978624e-16,
+        "exact_drive_matches_thermal_recoil": 1.5059568175823657e-16,
+        "local_bath_counterstream_balance": 0.0,
+        "work_lead_four_momentum_balance": 4.336808689942018e-19,
+        "six_rotor_isotropic_stress": 2.6020852139652106e-18,
+        "six_rotor_spatial_momentum": 2.4689250631697458e-20,
+        "thermal_inventory_quadrature_refinement": 1.734723475976807e-18,
+        "actuator_inventory_quadrature_refinement": 4.1307968601678874e-13
+      },
+      "pair_maxima": {
+        "heat_flight": 0.005206501279351548,
+        "heat_arrival": 0.3333321052950513,
+        "summed_absolute_guide_work": 1.8506054270603367e-05,
+        "summed_radial_guide_force": 0.0042022025036769165
+      },
+      "pair_ceilings": {
+        "heat_flight": 0.005210253355606638,
+        "heat_arrival": 0.33360645349813145,
+        "summed_absolute_guide_work": 0.00016387210034451063,
+        "summed_radial_guide_force": 0.01810741440270836
+      },
+      "delay_range": [
+        0.015625079156312505,
+        0.01562551114842061
+      ],
+      "signed_guide_work_range": [
+        -1.8504072918465453e-05,
+        1.8506054270603367e-05
+      ],
+      "pair_work_photon_energy_maximum": 1.5509288629817024e-05,
+      "six_rotor_total_flight_energy_maximum": 0.015660700084605163,
+      "six_rotor_initial_flight_energy": 0.0,
+      "six_rotor_final_flight_energy": 0.0
+    }
+  ],
+  "conditional_M19_optical_peak_comparison": {
+    "optical_power_peak": 4.297704,
+    "passive_heat_gain": 1.033334721446309e-06,
+    "maximum_additional_guide_work": 2.183251654365637e-09,
+    "maximum_additional_inverse_command": 5.760056602870307e-09,
+    "required_additional_emitted_half_channel_margin": 2.8800283014351533e-09,
+    "rotor_seed_power_allowance": 4.730378584458881e-09,
+    "guide_work_l1_per_optical_l1": 5.07920973046306e-10,
+    "maximum_summed_radial_guide_force": 2.4124327672548476e-07,
+    "finite_reflector_remote_net_power_peak": 1.228248288913923e-07,
+    "finite_reflector_inverse_command_peak": 3.2404783261590785e-07,
+    "finite_reflector_half_channel_margin": 1.6202391630795392e-07,
+    "added_reflector_exposure_l1_per_optical_l1": 5.61238644250062e-08,
+    "actuator_photon_energy_ceiling": 1.7899051295364965e-09
+  },
+  "published_local_emitted_half_channel_margin": 0.0004999999980155361,
+  "local_margin_after_added_work_lead_inverse": 0.0004998379740992282,
+  "input_sha256": {
+    "supporting_reports/data/hosted_reaction_dynamics/summary.json": "989e981bc80e637b74ce7b90eeaf5018e58bfd0a44f05a07890b90c75703c835"
+  },
+  "moving_null_paths_and_clock_jacobians_included": true,
+  "local_counterstream_balance_preserved": true,
+  "source_mixer_collector_recoil_retained": true,
+  "selected_guide_drive": "radial reflector with finite stationary-port leads",
+  "thermal_and_work_photon_inventory_and_stress_counted": true,
+  "capacitor_drive_is_an_alternative_not_added_to_selected_inventory": true,
+  "full_coupled_history_recomputed": false,
+  "guide_rest_mass_inertia_torsion_and_axial_support_material_closed": false,
+  "added_optical_absorption_and_scatter_included": false,
+  "finite_aperture_aiming_and_thermal_material_interfaces_constructed": false
+}

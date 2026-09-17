@@ -1,0 +1,31 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_neutral_fermionic_hosts.py": "fc921b6bf6fac87e69f116b2cce32f95774072e06aaaf62475393c927bf3f851",
+    "toolkit/adm_harness_cli/adm_harness/neutral_fermionic_hosts.py": "5a45afea691e14ede851960f536d673a28e084b858e29519845587bc1f91377b",
+    "toolkit/adm_harness_cli/tests/test_neutral_fermionic_hosts.py": "eebecb5a66797316349afd5f4f136ceff40090ff2f59dc22ee69ead87865c38d"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/fermionic_string_material/manifest.json": "64b9ac5e81528d980786c548a2a3611dfecb8577bb6230b2267b383c806bf5bd",
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020",
+    "supporting_reports/data/fermionic_loop_screen/manifest.json": "b353d5d317f12f904501f12465c2b16d88a73612eb91abc5d563b5ca44fe11fe"
+  },
+  "output_sha256": {
+    "beta0.1_ratio0.3.npz": "f4bc853ab31b572681098385441fdd025a332cbf9142e968e855be3125bd52da",
+    "beta0.1_ratio0.5.npz": "f0d29aeaea6aa019eefc7c3171a25eb63baa9c24488afd414e111cffe5cd2f19",
+    "beta0.1_ratio1.npz": "5331afe79886bfed7a4a21e850071d809a69a6e3a8efa213947ddfd00431a8a2",
+    "beta0.1_ratio2.npz": "7ad6733b6d3a8886a0841285347796e15e881e400627981286000a4c1e814a38",
+    "beta0.31622777_ratio0.3.npz": "50a24717453e557e7cc02c5588b994f5aec8868420f87e927c471484a8797ae8",
+    "beta0.31622777_ratio0.5.npz": "ae14a4fd0fc4102773b4d3eea4f75037325f6537fa3ceb0c1c5e287edd1346be",
+    "beta0.31622777_ratio1.npz": "9f769f96b80976dd70eed765891980d7f56b09ac55d7b0f07d97fe7a1d542437",
+    "beta0.31622777_ratio2.npz": "b35efb9cab9d7bcdb637dea0de0f3c3cb49f6b4dd50434e2dae4a29ce578cd6c",
+    "beta1_ratio0.3.npz": "0b3d404d99e569e9ceb585a17091560621f9454ddee09abf6a5f8bccb9f4b178",
+    "beta1_ratio0.5.npz": "d3dc7c92338f8fc14375ae8d0c3170ea5e09886b9319d2883f073d8b34da7f39",
+    "beta1_ratio1.npz": "ff29c046b35b16b3e21fb6b8fd035182ac59fe4fd1a01ee6705d32998b6c6fdb",
+    "beta1_ratio2.npz": "2ae52346fb4e73deaea74b2ba6132d89ad880b59b5d11cf654bf736af0331c8f",
+    "execution_audit_neutral_fermionic_hosts.py": "fc921b6bf6fac87e69f116b2cce32f95774072e06aaaf62475393c927bf3f851",
+    "execution_neutral_fermionic_hosts.py": "5a45afea691e14ede851960f536d673a28e084b858e29519845587bc1f91377b",
+    "execution_test_neutral_fermionic_hosts.py": "eebecb5a66797316349afd5f4f136ceff40090ff2f59dc22ee69ead87865c38d",
+    "flavor_requirements.csv": "ea7b7cdc7a37b542b33786aec93e757e22f6baf48e711b1fcd5c03f35ab908bc",
+    "summary.json": "76d0828c75e7fd0e3d9300c2f09b0bc6101ac7efdffbb68212678c09ab91b90f"
+  }
+}

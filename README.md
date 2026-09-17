@@ -1,14 +1,16 @@
 # Active Rail Refined Design Base
 
-Current status, 2026-09-09: the beta075 `V=5` package is the archived
-prescribed-metric service reference. Its packet/carrier, source-role,
-effective fixed-background transport, and energy-estimate results supply
-constraints for the physical construction. The September boundary tests,
-independent current evolution, and counted material/quantum trials specify
-the remaining tensor, interface, and coupled-response requirements.
+Current status, 2026-09-17: the beta075 `V=5` package is the archived
+prescribed-metric service reference. The
+[rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md)
+connects the current multicomponent containment, mechanical holding,
+finite transfer, thermal routing, electrical leads, and microscopic material
+results. The moving thermal routes preserve the conditional history bounds.
+Physical materials, their joint interfaces, and complete source assembly
+remain open.
 
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
-is the entry point for the current source construction. It preserves bulk
+provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
 and reservoir exchange as explicit responsibilities. Complete source assembly
 and a coupled active-rail solution remain open. The support-exchange fit,
@@ -44,6 +46,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [Rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md):
+  current subsystem results, shared allocation, physical normalization,
+  and remaining material/interface requirements.
 - `supporting_reports/ARCHIVED_GEOMETRY_SOURCE_REASSESSMENT.md`: measured
   opening ratios, source-demand tradeoffs, and the geometry-comparison stop.
 - `supporting_reports/GEOMETRY_DESIGN_HISTORY_CROSS_REFERENCE.md`: established
@@ -79,7 +84,7 @@ Repository map:
   historical reduced/refreeze artifacts and archived session bundles. Treat
   them as provenance, not as the current claim.
 
-Verification used for the current cleanup review:
+General harness and disclosure build commands:
 
 ```bash
 PYTHONPATH=toolkit/adm_harness_cli python -m pytest toolkit/adm_harness_cli/tests

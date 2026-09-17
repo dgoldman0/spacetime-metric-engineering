@@ -1,0 +1,669 @@
+{
+  "created_utc": "2026-09-17T13:33:04.047491+00:00",
+  "workers": 4,
+  "base_commit": "9f515426fe0ec6409564cb8ababc22bf6293932c",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "host_coefficient": 0.0005,
+  "carrier_and_electrode_charge_fraction": 0.01,
+  "fixture_energy_to_stress_allocation": 2.0,
+  "extra_energy_projection_over_C": 2.4127653488463334,
+  "trials": [
+    {
+      "name": "first_high_up",
+      "context": "first_high",
+      "refinement": 1,
+      "evaluated_points": 3230,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/first_high_up_states.npz": "1b919012b4a6e0709dad4638952217ed28096871ea3e1ad21aa7116bc8adc38b",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.412763590763456,
+        "line_and_source_state_over_C": 0.08590981997874508,
+        "added_lead_carrier_rest_over_C": 0.007535974228649396,
+        "added_electrode_rest_over_C": 0.8831301896124046,
+        "allocated_fixture_energy_over_C": 1.4361876069436565,
+        "allocated_line_and_source_fixture_energy_over_C": 0.48927415753413483,
+        "allocated_complementary_fixture_energy_over_C": 0.9469134494095217,
+        "necessary_complementary_plate_duty_over_C": 0.47345672470476086,
+        "necessary_axial_duty_over_C": 0.07936363626734112,
+        "necessary_hoop_duty_over_C": 0.15872725878832233,
+        "maximum_normalized_surface_pressure": 3382304192.8530183,
+        "maximum_drift": 4.391947259769933e-05,
+        "maximum_charge_fraction": 0.009900811774535941,
+        "maximum_line_field": 82247.23945048753,
+        "maximum_load_gap_field": 1593611.4088236038,
+        "maximum_source_capacitor_charge": 0.056064761984524605,
+        "maximum_load_electrode_charge": 5.6064789655535066,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.08525155066747192,
+        "maximum_added_trace_rate": 0.026592315750044008,
+        "maximum_pump_power_correction": 0.02659231575004126,
+        "maximum_pump_current": 0.061326506045471824,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 5.551115123125783e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 2.3478392754266997e-10,
+        "pump_work_identity": 6.245004513516506e-17,
+        "trace_reconstruction": 0.00721986002935384,
+        "trace_rate_reconstruction": 0.6671911813963214
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.1026165852427429,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.10270050990812633,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.56194196071477,
+      "peak_bounded_piecewise_current_acceleration": 3.431386641172912,
+      "maximum_lead_kinetic_fraction": 2.496575935557885e-07,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.002652582715983569,
+      "prepared_line_and_source_energy": 0.07971985720358778,
+      "necessary_load_electrode_energy_at_chi_point01": 17.488304160941645,
+      "normalization": {
+        "capacity_per_label": 3.7589653125055275e-05,
+        "delay": 2.539559028668186e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 1.7405208196015463e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    },
+    {
+      "name": "first_high_down",
+      "context": "first_high",
+      "refinement": 1,
+      "evaluated_points": 3226,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/first_high_down_states.npz": "d176ddbd7ecb66ff5bfa52889cc71d90bb938f2f7a9c2efec47b4680824d964c",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.4127167384358,
+        "line_and_source_state_over_C": 0.08590746483710601,
+        "added_lead_carrier_rest_over_C": 0.007535859138492664,
+        "added_electrode_rest_over_C": 0.8831294965765003,
+        "allocated_fixture_energy_over_C": 1.436143917883701,
+        "allocated_line_and_source_fixture_energy_over_C": 0.48926046320206185,
+        "allocated_complementary_fixture_energy_over_C": 0.9468834546816391,
+        "necessary_complementary_plate_duty_over_C": 0.4734417273408196,
+        "necessary_axial_duty_over_C": 0.07936139009904791,
+        "necessary_hoop_duty_over_C": 0.15872276676392488,
+        "maximum_normalized_surface_pressure": 3382197055.1333647,
+        "maximum_drift": 4.393428808190965e-05,
+        "maximum_charge_fraction": 0.009900811713281676,
+        "maximum_line_field": 82245.93680882116,
+        "maximum_load_gap_field": 1593611.408487442,
+        "maximum_source_capacitor_charge": 0.05606476198452459,
+        "maximum_load_electrode_charge": 5.606478964370858,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.08524947014548159,
+        "maximum_added_trace_rate": 0.026601854275903336,
+        "maximum_pump_power_correction": 0.026601854275900588,
+        "maximum_pump_current": 0.061346236331448874,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 2.7755575615628914e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 2.0535171342098274e-10,
+        "pump_work_identity": 5.551115123125783e-17,
+        "trace_reconstruction": 0.007208759292751159,
+        "trace_rate_reconstruction": 0.6666667488252205
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.10261658545433248,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.10252496593931276,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.561941960714783,
+      "peak_bounded_piecewise_current_acceleration": 3.432494631369426,
+      "maximum_lead_kinetic_fraction": 2.4965759201120887e-07,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.0026525827159835673,
+      "prepared_line_and_source_energy": 0.07971985720358778,
+      "necessary_load_electrode_energy_at_chi_point01": 17.488283664623047,
+      "normalization": {
+        "capacity_per_label": 3.7589653125055275e-05,
+        "delay": 2.539559028668186e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 1.7405208196015463e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    },
+    {
+      "name": "second_low_up",
+      "context": "second_low",
+      "refinement": 1,
+      "evaluated_points": 3230,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/second_low_up_states.npz": "6f4a26596a700b86af98c9a522e2bdda53e80f89d5a3d077c0e5c97cca7c26d3",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.044805077149236,
+        "line_and_source_state_over_C": 0.10473232637441765,
+        "added_lead_carrier_rest_over_C": 0.008723453267259498,
+        "added_electrode_rest_over_C": 0.17085416271256001,
+        "allocated_fixture_energy_over_C": 1.7604951347949989,
+        "allocated_line_and_source_fixture_energy_over_C": 0.6032142692091526,
+        "allocated_complementary_fixture_energy_over_C": 1.1572808655858464,
+        "necessary_complementary_plate_duty_over_C": 0.5786404327929232,
+        "necessary_axial_duty_over_C": 0.09843740510437313,
+        "necessary_hoop_duty_over_C": 0.1968748082301586,
+        "maximum_normalized_surface_pressure": 4275101942.643138,
+        "maximum_drift": 2.4218634697509208e-05,
+        "maximum_charge_fraction": 0.009900579764058273,
+        "maximum_line_field": 92467.31252490707,
+        "maximum_load_gap_field": 307987.17349742376,
+        "maximum_source_capacitor_charge": 0.010835081227759792,
+        "maximum_load_electrode_charge": 1.0835286446325356,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.10432955879750677,
+        "maximum_added_trace_rate": 0.005740771467201156,
+        "maximum_pump_power_correction": 0.005740771467201641,
+        "maximum_pump_current": 0.020430976532409433,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 1.3877787807814457e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 4.374261519289672e-12,
+        "pump_work_identity": 1.9949319973733282e-17,
+        "trace_reconstruction": 0.00982131343077225,
+        "trace_rate_reconstruction": 0.8776579077775315
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.04242089005270365,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.042467536293681225,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.561943870100556,
+      "peak_bounded_piecewise_current_acceleration": 1.1449885374926752,
+      "maximum_lead_kinetic_fraction": 8.758385282389459e-08,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.0026525825010266127,
+      "prepared_line_and_source_energy": 0.10323057908404085,
+      "necessary_load_electrode_energy_at_chi_point01": 3.3836895040977226,
+      "normalization": {
+        "capacity_per_label": 1.5087675750121315e-05,
+        "delay": 2.924270209840257e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 4.993262371960324e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    },
+    {
+      "name": "second_low_down",
+      "context": "second_low",
+      "refinement": 1,
+      "evaluated_points": 3226,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/second_low_down_states.npz": "4d9abeaa9ca11974057ec22be6fe597f012c0c7c1110915d07ed7e30b7bef456",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.0447955639056485,
+        "line_and_source_state_over_C": 0.10473184259546417,
+        "added_lead_carrier_rest_over_C": 0.008723426695362413,
+        "added_electrode_rest_over_C": 0.170854020026205,
+        "allocated_fixture_energy_over_C": 1.760486274588617,
+        "allocated_line_and_source_fixture_energy_over_C": 0.6032114952544881,
+        "allocated_complementary_fixture_energy_over_C": 1.1572747793341287,
+        "necessary_complementary_plate_duty_over_C": 0.5786373896670644,
+        "necessary_axial_duty_over_C": 0.09843695350966282,
+        "necessary_hoop_duty_over_C": 0.19687390503177993,
+        "maximum_normalized_surface_pressure": 4275090827.1688323,
+        "maximum_drift": 2.405336278722842e-05,
+        "maximum_charge_fraction": 0.00990058256510871,
+        "maximum_line_field": 92467.19231503812,
+        "maximum_load_gap_field": 307987.17166125495,
+        "maximum_source_capacitor_charge": 0.01083508122777154,
+        "maximum_load_electrode_charge": 1.0835286381727163,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.10432918780711087,
+        "maximum_added_trace_rate": 0.005701807039320373,
+        "maximum_pump_power_correction": 0.005701807039320852,
+        "maximum_pump_current": 0.02029147352708297,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 1.3877787807814457e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 4.049605127719581e-12,
+        "pump_work_identity": 1.734723475976807e-17,
+        "trace_reconstruction": 0.009803712137337328,
+        "trace_rate_reconstruction": 0.8766900073683012
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.04242089004016833,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.042371997101118455,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.5619438701002,
+      "peak_bounded_piecewise_current_acceleration": 1.1371772136052074,
+      "maximum_lead_kinetic_fraction": 8.758388297368211e-08,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.0026525825010266526,
+      "prepared_line_and_source_energy": 0.10323057908404082,
+      "necessary_load_electrode_energy_at_chi_point01": 3.3836831214681937,
+      "normalization": {
+        "capacity_per_label": 1.5087675750121315e-05,
+        "delay": 2.924270209840257e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 4.993262371960324e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    },
+    {
+      "name": "first_high_up_refined",
+      "context": "first_high",
+      "refinement": 2,
+      "evaluated_points": 6456,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/first_high_up_states.npz": "1b919012b4a6e0709dad4638952217ed28096871ea3e1ad21aa7116bc8adc38b",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.4127653488463334,
+        "line_and_source_state_over_C": 0.08590985057612655,
+        "added_lead_carrier_rest_over_C": 0.0075360410617116205,
+        "added_electrode_rest_over_C": 0.8831302228829349,
+        "allocated_fixture_energy_over_C": 1.4361892343255602,
+        "allocated_line_and_source_fixture_energy_over_C": 0.48927433586058844,
+        "allocated_complementary_fixture_energy_over_C": 0.9469148984649718,
+        "necessary_complementary_plate_duty_over_C": 0.4734574492324859,
+        "necessary_axial_duty_over_C": 0.0793636661793809,
+        "necessary_hoop_duty_over_C": 0.15872731735416767,
+        "maximum_normalized_surface_pressure": 3382309374.4800897,
+        "maximum_drift": 4.392143146281591e-05,
+        "maximum_charge_fraction": 0.00990081008155712,
+        "maximum_line_field": 82247.30238105186,
+        "maximum_load_gap_field": 1593611.4088398435,
+        "maximum_source_capacitor_charge": 0.05606476198452464,
+        "maximum_load_electrode_charge": 5.60647896561064,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.08525155066739559,
+        "maximum_added_trace_rate": 0.026596624359992098,
+        "maximum_pump_power_correction": 0.026596624359993833,
+        "maximum_pump_current": 0.06132999554129202,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 5.551115123125783e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 2.347831182941684e-10,
+        "pump_work_identity": 6.245004513516506e-17,
+        "trace_reconstruction": 0.00721986002935384,
+        "trace_rate_reconstruction": 0.6671911813963214
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.1026165852427429,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.10270050990812633,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.56194196071527,
+      "peak_bounded_piecewise_current_acceleration": 3.486047929174776,
+      "maximum_lead_kinetic_fraction": 2.4965755086585257e-07,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.0026525827159835126,
+      "prepared_line_and_source_energy": 0.07971985720358775,
+      "necessary_load_electrode_energy_at_chi_point01": 17.488304160941645,
+      "normalization": {
+        "capacity_per_label": 3.7589653125055275e-05,
+        "delay": 2.539559028668186e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 1.7405208196015463e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    },
+    {
+      "name": "first_high_down_refined",
+      "context": "first_high",
+      "refinement": 2,
+      "evaluated_points": 6448,
+      "parent_input_sha256": {
+        "supporting_reports/data/hosted_reaction_dynamics/first_high_down_states.npz": "d176ddbd7ecb66ff5bfa52889cc71d90bb938f2f7a9c2efec47b4680824d964c",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "energy_and_host_screen": {
+        "added_energy_over_C": 2.4127186267649,
+        "line_and_source_state_over_C": 0.08590751750424538,
+        "added_lead_carrier_rest_over_C": 0.007535925935964171,
+        "added_electrode_rest_over_C": 0.8831295296313931,
+        "allocated_fixture_energy_over_C": 1.436145653693297,
+        "allocated_line_and_source_fixture_energy_over_C": 0.48926076425404763,
+        "allocated_complementary_fixture_energy_over_C": 0.9468848894392493,
+        "necessary_complementary_plate_duty_over_C": 0.47344244471962466,
+        "necessary_axial_duty_over_C": 0.07936143964292709,
+        "necessary_hoop_duty_over_C": 0.1587228646227784,
+        "maximum_normalized_surface_pressure": 3382202185.57652,
+        "maximum_drift": 4.3936246557628807e-05,
+        "maximum_charge_fraction": 0.009900810019721339,
+        "maximum_line_field": 82245.99911942854,
+        "maximum_load_gap_field": 1593611.4085035217,
+        "maximum_source_capacitor_charge": 0.05606476198452461,
+        "maximum_load_electrode_charge": 5.606478964427428,
+        "electrode_charge_fraction": 0.01,
+        "maximum_added_trace_over_C": 0.0852494701455151,
+        "maximum_added_trace_rate": 0.026606164514929552,
+        "maximum_pump_power_correction": 0.026606164514931294,
+        "maximum_pump_current": 0.06134972525810276,
+        "source_capacitance_fraction": 0.01,
+        "fixture_stress_energy_factor": 2.0,
+        "fixture_constitutive_law_constructed": false,
+        "fixture_evolving_work_included": false,
+        "fixture_trace_cancellation_claimed": false,
+        "electrode_rest_counted_separately_from_original_sheets": true,
+        "optical_electrical_pump_physical_law_constructed": false,
+        "effective_line_model": true,
+        "full_maxwell_matter_completion": false
+      },
+      "errors": {
+        "terminal_power": 5.551115123125783e-17,
+        "fixed_bias_energy": 1.1102230246251565e-16,
+        "quadrature_effective_energy_theorem": 2.2173223591823122e-10,
+        "pump_work_identity": 5.898059818321144e-17,
+        "trace_reconstruction": 0.007208759292751159,
+        "trace_rate_reconstruction": 0.6666667488252205
+      },
+      "ideal_step_controls": [
+        {
+          "time": 0.0,
+          "archived_adjacent_current_jump": 0.10261658545433248,
+          "archived_sample_separation": 0.00390625
+        },
+        {
+          "time": 1.0,
+          "archived_adjacent_current_jump": 0.10252496593931276,
+          "archived_sample_separation": 0.00390625
+        }
+      ],
+      "fixed_reconstruction_step": 0.0625,
+      "minimum_current_rise_to_transit_ratio": 23.561941960715284,
+      "peak_bounded_piecewise_current_acceleration": 3.4871735758712847,
+      "maximum_lead_kinetic_fraction": 2.496575493066096e-07,
+      "lead_length": 0.0026525823848649226,
+      "lead_inner_radius": 2.6525823848649227e-05,
+      "lead_outer_radius": 7.210466495268876e-05,
+      "finite_preview": 0.002652582715983511,
+      "prepared_line_and_source_energy": 0.07971985720358775,
+      "necessary_load_electrode_energy_at_chi_point01": 17.488283664623047,
+      "normalization": {
+        "capacity_per_label": 3.7589653125055275e-05,
+        "delay": 2.539559028668186e-08,
+        "desired_energy_per_time_watt": 9.347318041150301e+21,
+        "required_label_solid_angle_measure": 1.7405208196015463e-34,
+        "cell_measure_and_spatial_packing_selected": false,
+        "global_metric_homothety_changes_energy_per_time": false
+      },
+      "fixture_trace_and_evolving_work_closed": false,
+      "physical_converter_law_constructed": false,
+      "coupled_rotor_replay": false,
+      "local_frozen_macro_support": true
+    }
+  ],
+  "mesh_refinement": [
+    {
+      "name": "first_high_up_refined",
+      "absolute_changes": {
+        "added_energy_over_C": 1.7580828775010104e-06,
+        "maximum_added_trace_over_C": 7.632783294297951e-14,
+        "maximum_added_trace_rate": 4.308609948090042e-06,
+        "maximum_pump_power_correction": 4.308609952572567e-06
+      },
+      "continuous_extrema_enclosure": false
+    },
+    {
+      "name": "first_high_down_refined",
+      "absolute_changes": {
+        "added_energy_over_C": 1.8883290997528945e-06,
+        "maximum_added_trace_over_C": 3.35009797680641e-14,
+        "maximum_added_trace_rate": 4.310239026215912e-06,
+        "maximum_pump_power_correction": 4.310239030705376e-06
+      },
+      "continuous_extrema_enclosure": false
+    }
+  ],
+  "inherited_budget_projections": [
+    {
+      "label": "first_n16_t2057",
+      "inherited_input_sha256": {
+        "supporting_reports/data/prepared_transfer_budget/first_n16_t2057_prepared_budget.npz": "5a3f86d67b434c853d487105ab16dad7a1c8e2d1e500a39ddeefcd7d2dcc7be8"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19,
+          "uniform_extra_energy_allowance_over_C": 7.028010476791193,
+          "minimum_projected_reserve": 0.00017235582427758983,
+          "conditional_energy_projection_passed": true
+        },
+        {
+          "inventory": 20,
+          "uniform_extra_energy_allowance_over_C": 5.723022738400205,
+          "minimum_projected_reserve": 0.00012362119998631562,
+          "conditional_energy_projection_passed": true
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "inherited_input_sha256": {
+        "supporting_reports/data/prepared_transfer_budget/first_n32_t4113_prepared_budget.npz": "85e3f3d48317960f8d9f065fd94a0075466e7b305a8c360cd64285ced1445ea7"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19,
+          "uniform_extra_energy_allowance_over_C": 2.81381272836807,
+          "minimum_projected_reserve": 1.5075231882934472e-05,
+          "conditional_energy_projection_passed": true
+        },
+        {
+          "inventory": 20,
+          "uniform_extra_energy_allowance_over_C": 1.508824989977083,
+          "minimum_projected_reserve": -3.397880453563312e-05,
+          "conditional_energy_projection_passed": false
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "inherited_input_sha256": {
+        "supporting_reports/data/prepared_transfer_budget/second_n16_t1029_prepared_budget.npz": "a1188f4b0855aaecbc46fafda930f85c35e401121903ec6201bcbefbd90dd555"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19,
+          "uniform_extra_energy_allowance_over_C": 310.53305188306945,
+          "minimum_projected_reserve": 0.0029370331164173726,
+          "conditional_energy_projection_passed": true
+        },
+        {
+          "inventory": 20,
+          "uniform_extra_energy_allowance_over_C": 309.2280641446785,
+          "minimum_projected_reserve": 0.0029278330385256192,
+          "conditional_energy_projection_passed": true
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "inherited_input_sha256": {
+        "supporting_reports/data/prepared_transfer_budget/second_n32_t2057_prepared_budget.npz": "02f0f440490cb9f426519e24d7667691872b549b6b83ceea5e9cde7f8899bc17"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19,
+          "uniform_extra_energy_allowance_over_C": 135.27063855119914,
+          "minimum_projected_reserve": 0.002212805143739527,
+          "conditional_energy_projection_passed": true
+        },
+        {
+          "inventory": 20,
+          "uniform_extra_energy_allowance_over_C": 133.96565081280818,
+          "minimum_projected_reserve": 0.002191070010469477,
+          "conditional_energy_projection_passed": true
+        }
+      ]
+    }
+  ],
+  "finite_effective_line_energy_identity": true,
+  "carrier_kinetic_and_rest_inventory_counted": true,
+  "complementary_field_terminal_work_counted": true,
+  "complementary_fixed_fixture_allocation_counted": true,
+  "load_field_bias_counted_once": true,
+  "source_capacitor_states_counted": true,
+  "passive_matched_load_sink_introduced": false,
+  "fixed_rise_reconstruction_distinct_from_coupled_replay": true,
+  "ideal_step_requires_unbounded_bandwidth": true,
+  "reconstruction_strictly_bandlimited": false,
+  "added_trace_unbalanced_until_fixture_law": true,
+  "fixture_constitutive_law_constructed": false,
+  "fixture_work_and_optical_electrical_transducer_closed": false,
+  "full_history_hardware_envelope_established": false,
+  "complete_physical_rail_feasibility_established": false,
+  "inherited_matched_zero_work_thermal_relay_condition": true,
+  "moving_thermal_relay_corrections_in_this_inherited_projection": false,
+  "normalization": {
+    "source_stress": "G_mu_nu/(8*pi), geometric units",
+    "inherited_capacity": "D-weighted energy per radial label and solid angle; D=ell*R^2, ell=gamma*b",
+    "physical_energy": "(c^4/G)*Lg*C_hat*Delta_x_hat*Delta_Omega",
+    "physical_delay": "Lg*delta_hat/c",
+    "physical_energy_per_time": "(c^5/G)*(C_hat/delta_hat)*Delta_x_hat*Delta_Omega",
+    "extra_proper_volume_factor_required": false,
+    "label_measure_and_packing_required": true,
+    "independent_absolute_energy_and_delay_for_same_homothetic_rail": false
+  },
+  "primary_sources": [
+    {
+      "title": "Haus and Melcher, Electromagnetic Fields and Energy, section 14.2",
+      "url": "https://web.mit.edu/6.013_book/www/chapter14/14.2.html",
+      "supports": "Coax fields and ideal-line Poynting energy theorem"
+    },
+    {
+      "title": "Boaventura et al., IEEE Transactions on Applied Superconductivity 30, 1500507 (2020)",
+      "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=928652",
+      "supports": "Separate positive carrier kinetic inductance in effective superconducting line models; supplies no rail material endorsement"
+    }
+  ]
+}
