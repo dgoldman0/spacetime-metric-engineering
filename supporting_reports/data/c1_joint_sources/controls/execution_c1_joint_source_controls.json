@@ -1,0 +1,14 @@
+{
+  "base_specification": "toolkit/adm_harness_cli/specs/c1_joint_sources.json",
+  "transition_mass_cut_pairs": [[16.0, 8.0], [24.0, 8.0], [24.0, 16.0], [32.0, 8.0], [32.0, 16.0]],
+  "transition_numerical_control": {"mass": 16.0, "cut": 16.0, "phase_step": 0.02, "proper_spacing": 0.005, "frequency_order": 32},
+  "additional_angular_compartment_counts": [4],
+  "changes": {
+    "geometry": "unchanged archived static slice",
+    "radial_and_maxwell_placement": "unchanged",
+    "electric_and_outer_quantum_overlap": "unchanged",
+    "angular_internal_boundaries": "add the four-compartment state, with three interior walls per module; these are every eighth existing radial partition",
+    "independent_angular_populations": "confined populations may occupy distinct angular cells; their domains and unsupplied exterior/material obligations are recorded separately",
+    "normalization": "same absolute calibration and one global physical curvature coupling per case"
+  }
+}

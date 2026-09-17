@@ -1,0 +1,42 @@
+{
+  "source": "shared_right",
+  "module": 1,
+  "compartment_count": 4,
+  "domain": [
+    0.55,
+    2.95
+  ],
+  "compartment_domain": [
+    0.55,
+    1.5016076942842547
+  ],
+  "walls": [
+    1.5016076942842547
+  ],
+  "probe_name": "overlap",
+  "coordinate": 0.75,
+  "angular_max": 24,
+  "frequency_scale": 1.7550004374542594,
+  "minimum_angular_distance": 8.220647132193974,
+  "minimum_optical_distance": 0.5698004277711544,
+  "name": "fine",
+  "nodes": 8193,
+  "frequency_nodes": 120,
+  "geometry_stride": 1,
+  "id": 25,
+  "tensor_per_real_field": [
+    -2.8548978576435203e-13,
+    -7.416810723737234e-13,
+    2.280956433046858e-13
+  ],
+  "dec_projections_per_real_field": [
+    -1.0271708581380755e-12,
+    4.561912866093714e-13,
+    -5.739414245966624e-14,
+    -5.135854290690378e-13
+  ],
+  "trace_difference": 2.0194839173657902e-28,
+  "angular_tail_last_quarter_relative": 1.2905590339403441e-125,
+  "ward_residual_times_radius_over_tensor": 2.380018234968842e-05,
+  "artifact": "response_025.npz"
+}

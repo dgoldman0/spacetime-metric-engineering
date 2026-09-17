@@ -1,0 +1,42 @@
+{
+  "source": "shared_right",
+  "module": 1,
+  "compartment_count": 4,
+  "domain": [
+    0.55,
+    2.95
+  ],
+  "compartment_domain": [
+    0.55,
+    1.5016076942842547
+  ],
+  "walls": [
+    1.5016076942842547
+  ],
+  "probe_name": "outer_left",
+  "coordinate": 0.55,
+  "angular_max": 24,
+  "frequency_scale": 1.4575922466417186,
+  "minimum_angular_distance": 8.72284549435625,
+  "minimum_optical_distance": 0.6860629248707877,
+  "name": "fine",
+  "nodes": 8193,
+  "frequency_nodes": 120,
+  "geometry_stride": 1,
+  "id": 21,
+  "tensor_per_real_field": [
+    -2.1745341034123074e-13,
+    -6.523602310236922e-13,
+    2.1745341034123074e-13
+  ],
+  "dec_projections_per_real_field": [
+    -8.698136413649229e-13,
+    4.349068206824614e-13,
+    0.0,
+    -4.3490682068246147e-13
+  ],
+  "trace_difference": 5.048709793414476e-29,
+  "angular_tail_last_quarter_relative": 6.124185981020937e-133,
+  "force_increment_per_real_field": 3.7145263338446274e-11,
+  "artifact": "response_021.npz"
+}

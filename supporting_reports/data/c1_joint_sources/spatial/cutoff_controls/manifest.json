@@ -1,0 +1,26 @@
+{
+  "workers": 4,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/specs/c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "toolkit/adm_harness_cli/scripts/check_c1_joint_source_spatial.py": "3ef20cd586c311976eb04dbda94a6efbb3fda3f400fab536e280bec516e68e39",
+    "supporting_reports/data/c1_joint_sources/transitions.json": "253cc72db0a93c07c8fab6d452ee0b3da2df947f9a37a73176527f7a4b05df33",
+    "supporting_reports/data/c1_joint_sources/transition_manifest.json": "c5d7c18014e9dd9acb10276ede6fae5967f15f15eebf373c1dc1006b950b627b",
+    "toolkit/adm_harness_cli/scripts/screen_c1_angular_absolute.py": "8a1a65a6ef120c5170eff4911c24e809555c165935f035e9bbf6794dbb5685e6",
+    "toolkit/adm_harness_cli/adm_harness/c1_angular_absolute.py": "19c2ad9896de3c8bf5fa9dca7c9cc04984537148ecb523b237f094e925c0b472",
+    "toolkit/adm_harness_cli/adm_harness/c1_angular_absolute_kernel.c": "2a119a26c9183d556dda39f46e748b5d98475f7118ed71e34ed968124e296241",
+    "supporting_reports/data/archived_geometry_opening/reference_metric.npz": "75eff30a809bbbe895e83ea2202efafa369dca72addcf287c92c15bf207c5511"
+  },
+  "output_sha256": {
+    "absolute_100.npz": "0bd785d6c5e9fe64be856aa86d2404a44cd32f5010634f3e90a1d66ec320a458",
+    "absolute_101.npz": "22018ad9217e4c1e47fec685ead1c9954b0cf6fa3d962e774f60ac3879ccf086",
+    "absolute_102.npz": "e19e6e31da9eaa902dd321d5cd0c71c89aae8a5cc5c195247811b0283b9c1a0a",
+    "absolute_103.npz": "fe3fe4e1738697d5270a120aa4347318127cd90bc94869bd0ea91042920d8745",
+    "case_100.json": "2b26a6e59d71738d0a58cdce30e1f5ebe2ba7fa067f3ecd457ade7168c725f90",
+    "case_101.json": "c8a896c5deceb818d9333f19ba3b377d4a61e763e7e85f4fef3c82726a354684",
+    "case_102.json": "83b1f14f85f182e0ff55f6edd68c9d371828b11d6e3b34d01f03ba214650366e",
+    "case_103.json": "a0d79b5e4e3be8484ee969e3a33037b7f788ac0713c0d1ec425d5570c9b0bf86",
+    "execution_c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "execution_check_c1_joint_source_spatial.py": "3ef20cd586c311976eb04dbda94a6efbb3fda3f400fab536e280bec516e68e39",
+    "tensors.json": "76916d65f32725e026ec8e9eef4c3f73626c867cbac981e42e90b5c450d51f65"
+  }
+}

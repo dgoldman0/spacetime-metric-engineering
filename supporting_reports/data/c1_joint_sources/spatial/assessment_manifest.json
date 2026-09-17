@@ -1,0 +1,17 @@
+{
+  "input_sha256": {
+    "toolkit/adm_harness_cli/specs/c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "toolkit/adm_harness_cli/scripts/check_c1_joint_source_spatial.py": "3ef20cd586c311976eb04dbda94a6efbb3fda3f400fab536e280bec516e68e39",
+    "supporting_reports/data/c1_joint_sources/spatial/tensors.json": "34dbc488092459415063a5e188030fb3bb624324df0bf639039d10241b6a3602",
+    "supporting_reports/data/c1_joint_sources/spatial/manifest.json": "a8d3fbf8dbe26473aad1c66b86e9ae40f1859dfd3aa4b6849fe7153730805ce7",
+    "supporting_reports/data/c1_joint_sources/assessment.json": "35a2866b6fe80f6b59425ab2244f973227dbe6005812c2a675fd5f89096b812b",
+    "supporting_reports/data/c1_joint_sources/assessment_manifest.json": "50cdc0e16eae5aa739eecb2cbb5bb1e210bc141320e776635f06faa14e9c741c",
+    "toolkit/adm_harness_cli/scripts/assess_c1_joint_sources.py": "6d9e094952ed80850e4a40f2973567c3fcc315d9dc1bbc6f5e70280c727f3d54",
+    "toolkit/adm_harness_cli/adm_harness/c1_joint_sources.py": "225e5df0c612fb1942e98ee825c4f04cbd444be3df84a72e585836487be112ad",
+    "supporting_reports/data/c1_joint_sources/spatial/cutoff_controls/tensors.json": "76916d65f32725e026ec8e9eef4c3f73626c867cbac981e42e90b5c450d51f65",
+    "supporting_reports/data/c1_joint_sources/spatial/cutoff_controls/manifest.json": "92de273190ec6189f438e1dec231d413acd33ff9f0114776af8cd53ee8feccdb"
+  },
+  "output_sha256": {
+    "assessment.json": "1dae7010a613f34b3ddb97afbebf5a6dc2ed6f0b5a4624fa7209360e5a50d082"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "workers": 2,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/specs/c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "supporting_reports/data/c1_joint_sources/transitions.json": "253cc72db0a93c07c8fab6d452ee0b3da2df947f9a37a73176527f7a4b05df33",
+    "supporting_reports/data/c1_joint_sources/transition_manifest.json": "c5d7c18014e9dd9acb10276ede6fae5967f15f15eebf373c1dc1006b950b627b",
+    "toolkit/adm_harness_cli/scripts/screen_c1_angular_absolute.py": "8a1a65a6ef120c5170eff4911c24e809555c165935f035e9bbf6794dbb5685e6",
+    "toolkit/adm_harness_cli/adm_harness/c1_angular_absolute.py": "19c2ad9896de3c8bf5fa9dca7c9cc04984537148ecb523b237f094e925c0b472",
+    "toolkit/adm_harness_cli/adm_harness/c1_angular_absolute_kernel.c": "2a119a26c9183d556dda39f46e748b5d98475f7118ed71e34ed968124e296241",
+    "supporting_reports/data/archived_geometry_opening/reference_metric.npz": "75eff30a809bbbe895e83ea2202efafa369dca72addcf287c92c15bf207c5511",
+    "supporting_reports/data/c1_joint_sources/spatial/execution_check_c1_joint_source_spatial.py": "4c7c834de3fc650b20e24247606ae150f45d270db3a8b449711d5e469d5f275b"
+  },
+  "output_sha256": {
+    "absolute_000.npz": "996e42785a470c074e222aefa1f788c2e9b1289b11b9f86818f253c5ed15e2d7",
+    "absolute_001.npz": "441431a611545eb9de6f4eb92e123a97e7c2b4cd871dfb7ef8efd84e19be907b",
+    "absolute_002.npz": "fdf9fe1ede480762ab87d5c58c235bf84280c3873fe00485bff3a4610a4fb433",
+    "absolute_003.npz": "255b50a91146616aa49a02ba683463a6b03b58ab3a0ccb67d968247894dc1e2a",
+    "absolute_004.npz": "3babae17e84f351ddc148a715539d4a4f30e6a1f88f3ea2c8b8f0536c533810b",
+    "absolute_005.npz": "fba1e6775359df7b0e3fe9de914479b2b1cab445a8397a6cad7db2990f68a919",
+    "absolute_006.npz": "93f7c5f59f3ba5795bbd8631efc3e8440cf0c73485aff9a8a04c8f4b941d5bdd",
+    "absolute_007.npz": "609365ea4e0464fc12c6dd3c1a34fdadffd39b3b548ff42911d52fc49981fff4",
+    "case_000.json": "3fc54002a540b268e7a4b5057b318e7958da3d1cf140b06fa6d90c6a921e2135",
+    "case_001.json": "0827912a3482824ad640eca91d4330ad6458a5ac59d53623394db57f66261ed2",
+    "case_002.json": "eeec17a9f88ce42e1b9ae7b68b180993679dd6281967a4588b24c775701631f4",
+    "case_003.json": "e21cff4b68856c30e42a774ee628293990196999c4d990f76b598f676ebc71c8",
+    "case_004.json": "33ddffbd6355424a7b9bff79d26d2f976204cf458c48e7f0ee203f134689a4a3",
+    "case_005.json": "1d7829366e30aa6e6bdd71c5b535c0542211bacdaf33c730438979c973112437",
+    "case_006.json": "cb191e466659a08611341c3ab37d60869aa7a9a7cef3758154fb7c6157651a59",
+    "case_007.json": "5fede65db485d510c1e8ca7993e530add0299d2980dba6790a0db30a78c613bd",
+    "execution_c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "execution_check_c1_joint_source_spatial.py": "4c7c834de3fc650b20e24247606ae150f45d270db3a8b449711d5e469d5f275b",
+    "tensors.json": "34dbc488092459415063a5e188030fb3bb624324df0bf639039d10241b6a3602",
+    "initial_manifest.json": "50111dd60b53e2ae6e4c3ff4f9f0e738a5ab824330bed2fd6c6f0729359bba71"
+  },
+  "execution_source_pinning": "The executed script is preserved byte-for-byte in its existing snapshot; its original manifest is retained. Later assessment revisions use the canonical driver."
+}

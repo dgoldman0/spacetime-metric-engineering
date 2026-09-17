@@ -1,0 +1,42 @@
+{
+  "source": "shared_right",
+  "module": 1,
+  "compartment_count": 4,
+  "domain": [
+    0.55,
+    2.95
+  ],
+  "compartment_domain": [
+    2.3244630762385112,
+    2.95
+  ],
+  "walls": [
+    2.3244630762385112
+  ],
+  "probe_name": "transition_cell_center",
+  "coordinate": 2.502670792297784,
+  "angular_max": 177,
+  "frequency_scale": 4.664295189253497,
+  "minimum_angular_distance": 0.09064873581036181,
+  "minimum_optical_distance": 0.21439466402212126,
+  "name": "base",
+  "nodes": 4097,
+  "frequency_nodes": 80,
+  "geometry_stride": 1,
+  "id": 26,
+  "tensor_per_real_field": [
+    -9.836646305467003e-08,
+    -1.3148234852486474e-06,
+    6.082285110969869e-07
+  ],
+  "dec_projections_per_real_field": [
+    -1.4131899483033175e-06,
+    1.2164570221939774e-06,
+    5.098620480423169e-07,
+    -7.065949741516569e-07
+  ],
+  "trace_difference": -3.5998900258307764e-21,
+  "angular_tail_last_quarter_relative": 1.891450838421617e-07,
+  "ward_residual_times_radius_over_tensor": 0.11961107715954832,
+  "artifact": "response_026.npz"
+}

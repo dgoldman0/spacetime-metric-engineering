@@ -39,6 +39,14 @@ The radial channels retain their state and populations. Field-selective
 reflection at existing compartment boundaries is a new trial material-response
 assumption; geometry, existing source placement and overlaps are retained.
 
+The [joint source-mesh comparison](C1_JOINT_SOURCE_MESH_SCREEN.md) combines
+the normalized scalar and radial-channel laws with independent population
+patterns. It preserves the separate component duties while allowing
+different field states, cavity meshes and occupied intervals. Source
+overlap follows actual populations as well as hardware boundaries.
+Sampled tensor allocation, interface tractions, microscopic inventory and
+full spatial/material/exterior completion retain distinct evidence.
+
 The recent condensate-plus-neutral-scalar calculation restricted the allocation
 too far. Its classical material supplies 0.612% of the demanded throat tension,
 leaving the quantum remainder responsible for 99.388%. Restoring bulk support

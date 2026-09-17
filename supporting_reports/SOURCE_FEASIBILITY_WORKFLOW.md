@@ -46,6 +46,31 @@ are specified separately. Permitted field and packet exchanges contribute to
 the module motion and the external budgets. The combined source is evaluated
 on one shared geometry.
 
+### C1 source placement and independent populations
+
+The joint comparison uses C1's independent assemblies as source-design
+variables. Neighboring modules may carry different field populations,
+states, source mixtures and internal arrangements. Radial channels,
+angular fields, electromagnetic sources and transition environments may
+have different boundaries and overlap widths. A repeating sequence of
+several module types is an available system arrangement once its finite
+pair and handoff requirements are established.
+
+Each spatial profile follows from a declared field solution, confined
+population or material distribution. Changing a cavity boundary requires
+the corresponding state and traction calculation. Populations that share
+the same field retain their interference and interaction terms; independent
+sectors retain their exchanged momentum, recoil and material demands.
+Finite boundaries and the external quantum state enter the same ledger.
+
+A source mismatch therefore motivates comparisons in population allocation,
+sector extent and overlap as well as source law. Fixed-placement controls
+identify the effect of one change. Their result applies to that arrangement.
+Placement and overlap are examined before adding a mechanism solely to
+repair a spatial mismatch. Mechanism count, independent populations,
+interface count, microscopic inventory and holding demands provide separate
+measures of the resulting construction's complexity.
+
 Geometry remains a design variable. A fixed reference supports interpretable
 comparisons; a measured source or boundary burden can motivate a bounded
 change to the lapse, radius, transition or placement. Such a change carries
@@ -55,9 +80,23 @@ source laws and geometry families under which they were established.
 
 ## Current decision
 
-**Does the angular field make a useful, physically normalized contribution
-when combined with the retained radial source and accounted boundary/material
-demands?**
+**Can a small set of physically coherent source sectors jointly track the
+spatially varying tensor demand, with their material and exchange costs
+included?**
+
+The angular field's useful normalized contribution is one input to this
+joint question. Throat, overlap, transition and exterior duties may have
+different source proportions and field extents. Each participating sector
+retains a specified law, state, normalization and complete tensor. Its
+spatial variation follows from that construction. Exchange between sectors
+is permitted and counted in the complete conservation equation.
+
+Complexity is measured separately as mechanism families, independently
+configured populations, adjustable spatial parameters and microscopic
+inventory. A small number of laws can still require many independently
+adjusted components or an excessive field count. The comparison starts
+with the existing component roles, evaluates joint residuals and adds a
+mechanism when its required independent response is identified.
 
 The [angular scalar spectral result](C1_ANGULAR_SCALAR_INVESTIGATION.md) provides
 a specified field action and positive finite-domain mode evidence. The current
@@ -84,16 +123,21 @@ with the radial populations retained. The logarithm-1 case fails the overlap
 budget. Independent module populations matter: the logarithm-2 witness uses
 25.1 million left and 5 million right real fields.
 
-Continue the surviving parameter cases by placing physical multiplicity,
-finite curvature-squared couplings and exterior populations in one source
-accounting. A change of subtraction convention alone leaves the total
-semiclassical balance invariant; the favorable cases require their physical
-effective-action couplings. This selects the cases for the full spatial bulk
-profile and finite end/material/exterior construction. The two
-sampled bulk witnesses retain the constitutive, boundary, transition and
-motion requirements of the complete assembly. Geometry, source placement
-and overlap remain available for explicitly recorded revisions motivated
-by those measured burdens.
+The [joint source-mesh comparison](C1_JOINT_SOURCE_MESH_SCREEN.md) extends
+that question to transition stresses and independent population patterns.
+Radial redistribution admits additional sampled allocations at logarithm 1,
+while finite angular cavities change both useful stresses and boundary
+loads. Five radial population groups provide a small set of adjustable
+settings with a larger inventory burden. Active radial-source overlap can
+change even when hardware envelopes and electric overlap stay fixed.
+
+Continue with the normalized source profile across the population-group
+boundary near coordinate 0.518 and the nearby overlap. Compare sector
+extents and population patterns with their changed interface tractions.
+Physical multiplicity, finite curvature couplings, material and exterior
+populations belong in the same source accounting. A subtraction-convention
+change preserves the complete semiclassical balance. Geometry revisions
+remain available when these measured source and interface costs justify them.
 
 An algebraic allocation identifies a target. A positive mode spectrum
 supports state construction. A supplied source contribution addresses the

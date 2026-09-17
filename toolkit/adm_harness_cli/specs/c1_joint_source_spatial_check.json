@@ -1,0 +1,18 @@
+{
+  "base_specification": "toolkit/adm_harness_cli/specs/c1_joint_sources.json",
+  "coordinates": [0.01, 0.05],
+  "mass_cut_pairs": [[2.0, 16.0], [4.0, 16.0], [8.0, 16.0], [4.0, 32.0]],
+  "frequency_order": 24,
+  "phase_step": 0.02,
+  "proper_spacing": 0.01,
+  "radial_zones_module_lower_upper_cell_indices": [[0,0,8],[0,8,22],[0,22,32],[1,0,8],[1,24,32]],
+  "zone_population_law": "One uniform central charge per radial zone; individual cavities retain their computed optical lengths. Retain the old population profile in right-module cells 8 through 23.",
+  "scope": "Independent nearby tests of four-probe whole-module angular witnesses, followed by a six-probe reallocation using the same laws.",
+  "changes": {
+    "geometry": "unchanged",
+    "radial_walls_maxwell_and_overlap": "unchanged",
+    "radial_population_pattern": "add a five-zone comparison using existing cavity boundaries; source strengths change across declared zone interfaces",
+    "angular_state": "retain the one-compartment module vacuum for this spatial check",
+    "exterior_material_and_dynamics": "remain separate unclosed demands"
+  }
+}

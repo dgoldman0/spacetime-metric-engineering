@@ -39,6 +39,14 @@ by 0.05 coordinate units, giving quantum overlaps \([0.55,2.45]\) and
 that source comparison. The physical quantum layout remains a construction
 choice, with its radial and angular tensor and finite boundaries supplied jointly.
 
+The [joint source-mesh comparison](../supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md)
+combines normalized radial and angular tensors at declared bulk probes.
+Different sectors may have different occupied intervals and internal
+boundaries. Population changes can alter active radial-source overlap
+within the retained hardware and electric envelopes; each allocation
+records those intervals and its known boundary tractions. Full material,
+exterior and dynamical completion remain assembly requirements.
+
 For an overlap interval \([a,b]\), module L occupies radial labels
 \([-3,b]\), and module R occupies \([a,3]\). Source flux tapers smoothly to
 zero at each module end. Each material support has zero density and radial
@@ -124,7 +132,7 @@ inventories are recorded for subsequent physical normalization.
 | Responsibility | Location and interface in C1 | Current input |
 |---|---|---|
 | Bulk radial and angular source | Each module's fields, charged material and internal support; summed once in the overlap | Finite electrostatic field plus bounded static support comparison |
-| Signed radial and angular source | Separately specified quantum components and their material boundaries through the occupied and overlap regions | Conditional radial-channel plus angular-target bulk allocation; reflector force requirements; a separate [angular scalar](../supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md) with positive finite-domain mode evidence and its renormalized tensor still to supply |
+| Signed radial and angular source | Separately specified quantum components and their material boundaries through the occupied and overlap regions | [Normalized joint source allocations](../supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md) at declared probes, radial reflector forces and finite angular end-force increments; complete spatial, material and exterior tensors remain to supply |
 | Endpoint current and support exchange | Medium and receiver within the finite assembly, with specified transfers to its stores | Archived fitted tensor and effective response evidence |
 | Holding, conversion and heat | Finite stores, work routes, receiver and heat destination carried by each assembly or separately identified vehicles | Conditional local storage/interface results |
 | Entry, handoff and release | Common geometric history supported by the overlapping source states | Service reference and causal preparation requirements |

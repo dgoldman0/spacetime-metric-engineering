@@ -1,0 +1,29 @@
+{
+  "reference": "supporting_reports/data/archived_geometry_opening/reference_metric.npz",
+  "parent_specification": "toolkit/adm_harness_cli/specs/c1_signed_channels.json",
+  "parent_summary": "supporting_reports/data/c1_signed_channels/summary.json",
+  "parent_manifest": "supporting_reports/data/c1_signed_channels/manifest.json",
+  "absolute_data": "supporting_reports/data/c1_angular_absolute",
+  "response_data": "supporting_reports/data/c1_angular_response",
+  "reference_logs": [1.0, 2.0, 4.0],
+  "radial_modes": ["fixed", "module_scales", "compartments"],
+  "angular_compartment_states": [1, 8, 32],
+  "transition_regulator_masses": [4.0, 8.0, 16.0],
+  "transition_cutoffs": [16.0, 32.0],
+  "ring_carrier_ratios_at_throat": [0.0, 0.1, 0.25, 0.5, 1.0, 2.0, 4.0],
+  "ring_taper_coordinate": 0.15,
+  "bulk_domain": [-2.9, 2.9],
+  "bulk_samples": [2049, 8193],
+  "charge_unit": 1000000.0,
+  "changes": {
+    "geometry": "unchanged",
+    "maxwell_sources": "unchanged",
+    "existing_radial_placement": "unchanged",
+    "overlap": "unchanged broad bracket",
+    "radial_populations": "fixed control, then module scaling or independent compartment redistribution",
+    "angular_scalar": "independent populations in existing one-, eight- and thirty-two-compartment states; one global physical coupling per case",
+    "angular_rings": "additional candidate population of closed tangential channels inside the original inset module domains, with a fixed C2 density taper and counted positive-tension carrier",
+    "exterior": "uncomputed populations and material outside the assigned interior ledger remain separate duties; compact support is not an exterior vacuum model"
+  },
+  "primary_references": ["https://arxiv.org/html/1807.04726v3", "https://arxiv.org/html/1908.03273v2"]
+}

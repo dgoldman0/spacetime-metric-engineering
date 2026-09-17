@@ -1,0 +1,5704 @@
+{
+  "verified_input_hashes": 121,
+  "cases": [
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 0,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.06793415589763223,
+          0.06793415579763222,
+          0.0679341557976322
+        ],
+        [
+          0.009052600760356156,
+          0.008581408525168938,
+          -0.009052600660356156
+        ],
+        [
+          0.007966284281192606,
+          0.006576681152746065,
+          0.007966284181192605
+        ],
+        [
+          0.07233316107935674,
+          0.07233316097935674,
+          0.07233316097935674
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.13586831169526445,
+          1.000000082740371e-10,
+          0.13586831169526442,
+          1.0000002215182491e-10
+        ],
+        [
+          0.017634009285525096,
+          0.0004711922351872174,
+          9.999999960041972e-11,
+          0.018105201420712314
+        ],
+        [
+          0.014542965433938671,
+          0.0013896031284465413,
+          0.01593256846238521,
+          1.000000013351432e-10
+        ],
+        [
+          0.1446663220587135,
+          9.999999439624929e-11,
+          0.1446663220587135,
+          9.999999439624929e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.13586831169526445,
+          1.000000082740371e-10,
+          0.13586831169526442,
+          1.0000002215182491e-10
+        ],
+        [
+          0.017634009285525096,
+          0.0004711922351872174,
+          9.999999960041972e-11,
+          0.018105201420712314
+        ],
+        [
+          0.014542965433938671,
+          0.0013896031284465413,
+          0.01593256846238521,
+          1.000000013351432e-10
+        ],
+        [
+          0.1446663220587135,
+          9.999999439624929e-11,
+          0.1446663220587135,
+          9.999999439624929e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -4.3317128876896316e-09
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 1,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.06798296651963075,
+          0.06794511545256891,
+          0.0679451154525689
+        ],
+        [
+          0.009052568957749484,
+          0.008581243890744324,
+          -0.009052568814652686
+        ],
+        [
+          0.007969766267931586,
+          0.0065837672486259765,
+          0.007965608958689622
+        ],
+        [
+          0.07234871009140978,
+          0.07233707670950629,
+          0.07233707670950626
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.13592808197219966,
+          3.785106706183372e-05,
+          0.13592808197219963,
+          3.78510670618476e-05
+        ],
+        [
+          0.01763381284849381,
+          0.00047132506700515997,
+          1.430967982996023e-10,
+          0.01810513777240217
+        ],
+        [
+          0.014553533516557563,
+          0.0013859990193056098,
+          0.01593537522662121,
+          4.157309241964793e-06
+        ],
+        [
+          0.14468578680091607,
+          1.1633381903491946e-05,
+          0.14468578680091604,
+          1.1633381903519702e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.13589023100513783,
+          1.0000000357131018e-10,
+          0.1358902310051378,
+          1.0000001744909798e-10
+        ],
+        [
+          0.01763381280539701,
+          0.0004713250239083632,
+          1.0000000157785864e-10,
+          0.018105137729305373
+        ],
+        [
+          0.014549376307315598,
+          0.0013818418100636446,
+          0.015931218017379244,
+          9.999999950385796e-11
+        ],
+        [
+          0.14467415351901253,
+          9.999996561745788e-11,
+          0.1446741535190125,
+          9.999999337303349e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 1.9050361114991698e-10,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_001_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5550781250000001,
+              "residual_before_angular": -0.0022746261995658153
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5720703125000002,
+              "residual_before_angular": -0.02365184557325378
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_001_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5550781250000001,
+              "residual_before_angular": -0.0022746261995658153
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5727783203125001,
+              "residual_before_angular": -0.023653596538976054
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 2,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9963681127130248,
+          0.0,
+          0.0036318872869751497
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.586419053118903e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 3,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.9964384543983792,
+          0.0,
+          0.0035615456016208627
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.5422104415446835e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 4,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.0679308529758808,
+          0.06793085287588081,
+          0.06793085287588081
+        ],
+        [
+          0.009052589468562543,
+          0.008581350133229875,
+          -0.009052589368562545
+        ],
+        [
+          0.007966203456594588,
+          0.006577386933240984,
+          0.007966203356594587
+        ],
+        [
+          0.07233316107935674,
+          0.07233316097935674,
+          0.07233316097935674
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.1358617058517616,
+          9.999999439624929e-11,
+          0.1358617058517616,
+          9.999999439624929e-11
+        ],
+        [
+          0.017633939601792416,
+          0.0004712393353326679,
+          9.999999786569624e-11,
+          0.018105178837125088
+        ],
+        [
+          0.014543590389835572,
+          0.0013888165233536046,
+          0.015932406813189175,
+          1.000000013351432e-10
+        ],
+        [
+          0.1446663220587135,
+          9.999999439624929e-11,
+          0.1446663220587135,
+          9.999999439624929e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.1358617058517616,
+          9.999999439624929e-11,
+          0.1358617058517616,
+          9.999999439624929e-11
+        ],
+        [
+          0.017633939601792416,
+          0.0004712393353326679,
+          9.999999786569624e-11,
+          0.018105178837125088
+        ],
+        [
+          0.014543590389835572,
+          0.0013888165233536046,
+          0.015932406813189175,
+          1.000000013351432e-10
+        ],
+        [
+          0.1446663220587135,
+          9.999999439624929e-11,
+          0.1446663220587135,
+          9.999999439624929e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -3.773609995663674e-09
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 5,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.06797998471275427,
+          0.06794182707173743,
+          0.06794182707173743
+        ],
+        [
+          0.009052557154608523,
+          0.008581182853101143,
+          -0.0090525570111634
+        ],
+        [
+          0.007969683456796153,
+          0.006584510451175529,
+          0.007965522637862824
+        ],
+        [
+          0.07234871009140978,
+          0.07233707670950629,
+          0.07233707670950626
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.1359218117844917,
+          3.815764101683383e-05,
+          0.1359218117844917,
+          3.815764101683383e-05
+        ],
+        [
+          0.017633740007709668,
+          0.0004713743015073799,
+          1.4344512383468455e-10,
+          0.018105114165771923
+        ],
+        [
+          0.014554193907971682,
+          0.0013851730056206237,
+          0.015935206094658975,
+          4.1608189333287166e-06
+        ],
+        [
+          0.14468578680091607,
+          1.1633381903491946e-05,
+          0.14468578680091604,
+          1.1633381903519702e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.13588365424347487,
+          1.000000053534675e-10,
+          0.13588365424347487,
+          1.000000053534675e-10
+        ],
+        [
+          0.017633739964264542,
+          0.0004713742580622551,
+          9.999999899056658e-11,
+          0.018105114122326797
+        ],
+        [
+          0.014550033189038353,
+          0.0013810122866872946,
+          0.015931045375725646,
+          9.999999952926895e-11
+        ],
+        [
+          0.14467415351901253,
+          9.999996561745788e-11,
+          0.1446741535190125,
+          9.999999337303349e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 2.479197021287849e-10,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_005_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5550781250000001,
+              "residual_before_angular": -0.0022746261995658153
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5720703125000002,
+              "residual_before_angular": -0.02365184557325378
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_005_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5550781250000001,
+              "residual_before_angular": -0.0022746261995658153
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5727783203125001,
+              "residual_before_angular": -0.023653596538976054
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 6,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.03414084121320841,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 7,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.033952202415089255,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 8,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.03414084121320841,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 9,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.033952202415089255,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 10,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.010083610667061956,
+          0.0,
+          0.0,
+          0.0,
+          0.7106057362957519,
+          0.0,
+          0.0,
+          0.0,
+          0.2793106530371862,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.42602880666171344,
+        "minimum_source_projection": 1.734723475976807e-18,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 11,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.7128668806425046,
+          0.0,
+          0.0,
+          0.0,
+          0.28713311935749536,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.4257337612850092,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 12,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.7160848806163802,
+          0.0,
+          0.2839151193836199,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.0008954255226385024,
+        "minimum_source_projection": -2.4919537438791876e-18,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 13,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.7184075888860406,
+          0.0,
+          0.28159241111395933,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.0008933663908794866,
+        "minimum_source_projection": -2.803529485858521e-19,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 14,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.7160848806163802,
+          0.0,
+          0.2839151193836199,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.0008954255226385024,
+        "minimum_source_projection": -2.4919537438791876e-18,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 15,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.7184075888860406,
+          0.0,
+          0.28159241111395933,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.0008933663908794866,
+        "minimum_source_projection": -2.803529485858521e-19,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 16,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0033033390513590795,
+          0.0,
+          0.0,
+          0.0,
+          0.23280995668883236,
+          0.0,
+          0.0,
+          0.7381042634530691,
+          0.02578244080673945,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.22752324126727996,
+        "minimum_source_projection": -8.673617379884035e-19,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 17,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.008066674248539024,
+          0.0,
+          0.0,
+          0.0,
+          0.23207393846292182,
+          0.0,
+          0.0,
+          0.7343536300346695,
+          0.025505757253869703,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.2268408613479099,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 18,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.07365280552895564,
+          0.05335785988341334,
+          0.07365280542895566
+        ],
+        [
+          0.009035983957960488,
+          0.008495479987350311,
+          -0.00903598385796049
+        ],
+        [
+          0.007729218649544648,
+          0.007729218549544648,
+          0.007729218549544647
+        ],
+        [
+          0.07233316107935675,
+          0.07233316097935674,
+          0.07233316097935674
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.127010665412369,
+          0.020294945645542302,
+          0.1473056109579113,
+          9.999998051846148e-11
+        ],
+        [
+          0.0175314639453108,
+          0.0005405039706101768,
+          9.999999786569624e-11,
+          0.018071967815920978
+        ],
+        [
+          0.015458437199089296,
+          9.999999960041972e-11,
+          0.015458437199089296,
+          1.0000000046778146e-10
+        ],
+        [
+          0.1446663220587135,
+          1.000000082740371e-10,
+          0.1446663220587135,
+          1.000000082740371e-10
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.127010665412369,
+          0.020294945645542302,
+          0.1473056109579113,
+          9.999998051846148e-11
+        ],
+        [
+          0.0175314639453108,
+          0.0005405039706101768,
+          9.999999786569624e-11,
+          0.018071967815920978
+        ],
+        [
+          0.015458437199089296,
+          9.999999960041972e-11,
+          0.015458437199089296,
+          1.0000000046778146e-10
+        ],
+        [
+          0.1446663220587135,
+          1.000000082740371e-10,
+          0.1446663220587135,
+          1.000000082740371e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -6.439360839688435e-09
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 19,
+      "reconstruction_error": 6.938893903907228e-18,
+      "material": [
+        [
+          0.07407546715898335,
+          0.053942002550778904,
+          0.07361091360106524
+        ],
+        [
+          0.009036106212876392,
+          0.00849611001389827,
+          -0.009036105583939686
+        ],
+        [
+          0.007739749984486314,
+          0.007730734276123648,
+          0.007730734276123648
+        ],
+        [
+          0.07234871009140978,
+          0.07233707670950625,
+          0.07233707670950626
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.12801746970976224,
+          0.020133464608204442,
+          0.14768638076004859,
+          0.00046455355791810704
+        ],
+        [
+          0.017532216226774665,
+          0.0005399961989781214,
+          6.289367065342999e-10,
+          0.018072211796816076
+        ],
+        [
+          0.015470484260609962,
+          9.015708362666505e-06,
+          0.015470484260609962,
+          9.015708362666505e-06
+        ],
+        [
+          0.14468578680091604,
+          1.163338190353358e-05,
+          0.14468578680091604,
+          1.1633381903519702e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.12755291625184415,
+          0.019668911150286336,
+          0.1472218273021305,
+          1.0000000106409265e-10
+        ],
+        [
+          0.017532215697837954,
+          0.0005399956700414126,
+          9.999999774227666e-11,
+          0.018072211267879366
+        ],
+        [
+          0.015461468652247293,
+          9.999999837730414e-11,
+          0.015461468652247293,
+          9.999999837730414e-11
+        ],
+        [
+          0.1446741535190125,
+          1.0000000712037823e-10,
+          0.1446741535190125,
+          9.999999324259042e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 6.32986940640734e-10,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_019_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.0022714370737419174
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.33259688431690515
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 1.20078125,
+              "residual_before_angular": -0.004411792135246541
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.022414830098818964
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_019_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.0022714370737419174
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.33259688431690515
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 1.2021972656249997,
+              "residual_before_angular": -0.004412892675320216
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.022414830098818964
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 20,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9963681127130246,
+          0.0,
+          0.0036318872869753366
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.586419053118954e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 21,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.996438454398379,
+          0.0,
+          0.003561545601621046
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.542210441544734e-07,
+        "minimum_source_projection": -4.791601529170746e-23,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 22,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.07357073182787617,
+          0.05341995689562329,
+          0.07357073172787618
+        ],
+        [
+          0.009035960294677316,
+          0.008495357620166994,
+          -0.009035960194677317
+        ],
+        [
+          0.007729888409634423,
+          0.007729888309634424,
+          0.007729888309634425
+        ],
+        [
+          0.07233316107935675,
+          0.07233316097935674,
+          0.07233316097935674
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.12699068872349945,
+          0.020150774932252882,
+          0.14714146355575236,
+          9.999999439624929e-11
+        ],
+        [
+          0.01753131791484431,
+          0.000540602674510322,
+          9.999999960041972e-11,
+          0.01807192048935463
+        ],
+        [
+          0.015459776719268847,
+          9.999999873305798e-11,
+          0.015459776719268847,
+          9.999999786569624e-11
+        ],
+        [
+          0.1446663220587135,
+          1.000000082740371e-10,
+          0.1446663220587135,
+          1.000000082740371e-10
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.12699068872349945,
+          0.020150774932252882,
+          0.14714146355575236,
+          9.999999439624929e-11
+        ],
+        [
+          0.01753131791484431,
+          0.000540602674510322,
+          9.999999960041972e-11,
+          0.01807192048935463
+        ],
+        [
+          0.015459776719268847,
+          9.999999873305798e-11,
+          0.015459776719268847,
+          9.999999786569624e-11
+        ],
+        [
+          0.1446663220587135,
+          1.000000082740371e-10,
+          0.1446663220587135,
+          1.000000082740371e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -4.963520613618377e-09
+    },
+    {
+      "reference_log": 1.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 23,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.07399453107438288,
+          0.05400439135381255,
+          0.0735293628200752
+        ],
+        [
+          0.009036082800464256,
+          0.00849598894117261,
+          -0.009036082170836613
+        ],
+        [
+          0.00774042374488196,
+          0.007731400805211601,
+          0.007731400805211601
+        ],
+        [
+          0.07234871009140978,
+          0.07233707670950625,
+          0.07233707670950626
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.12799892242819544,
+          0.01999013972057033,
+          0.14752389389445808,
+          0.00046516825430767406
+        ],
+        [
+          0.017532071741636866,
+          0.0005400938592916467,
+          6.296276434253345e-10,
+          0.018072164971300868
+        ],
+        [
+          0.01547182455009356,
+          9.022939670358908e-06,
+          0.01547182455009356,
+          9.022939670358908e-06
+        ],
+        [
+          0.14468578680091604,
+          1.163338190353358e-05,
+          0.14468578680091604,
+          1.1633381903519702e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.12753375427388774,
+          0.019524971566262633,
+          0.1470587257401504,
+          9.999997856689757e-11
+        ],
+        [
+          0.017532071212009222,
+          0.000540093329664003,
+          9.999999974428773e-11,
+          0.018072164441673224
+        ],
+        [
+          0.015462801710423201,
+          9.999999964954763e-11,
+          0.015462801710423201,
+          9.999999964954763e-11
+        ],
+        [
+          0.1446741535190125,
+          1.0000000712037823e-10,
+          0.1446741535190125,
+          9.999999324259042e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 7.407686269944591e-10,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_023_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.0022714370737419174
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.3325941302723554
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 1.20078125,
+              "residual_before_angular": -0.00441172864569731
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.022414830098818964
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_023_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.0022714370737419174
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.3325941302723554
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 1.2021972656249997,
+              "residual_before_angular": -0.004412830082237099
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 0.5499999990000001,
+              "residual_before_angular": -0.022414830098818964
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 24,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21622956816173194,
+          -0.09923548481228016,
+          -0.09174249028836719
+        ],
+        [
+          0.005378360090185267,
+          -0.005378359990185266,
+          -0.005378359990185266
+        ],
+        [
+          0.06037437473743988,
+          0.018285121098837207,
+          0.06037437463743989
+        ],
+        [
+          0.07198620677560015,
+          0.07198620667560016,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627709,
+          0.04208925363860268,
+          0.12074874937487977,
+          9.999999439624929e-11
+        ],
+        [
+          0.14397241345120032,
+          9.999999439624929e-11,
+          0.14397241345120032,
+          9.999998051846148e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627709,
+          0.04208925363860268,
+          0.12074874937487977,
+          9.999999439624929e-11
+        ],
+        [
+          0.14397241345120032,
+          9.999999439624929e-11,
+          0.14397241345120032,
+          9.999998051846148e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -5.565303357046858e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 25,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21623006002623615,
+          -0.09923567550333962,
+          -0.09174283516037109
+        ],
+        [
+          0.005378388284630752,
+          -0.0053783520269018465,
+          -0.0053783520269018465
+        ],
+        [
+          0.060746107006234715,
+          0.018674670312347166,
+          0.060374999045660335
+        ],
+        [
+          0.07201851347790911,
+          0.07198875904454709,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699438452289654,
+          0.3154657355295758,
+          0.12448722486586507,
+          0.30797289518660725
+        ],
+        [
+          3.625772890519102e-08,
+          0.010756740311532599,
+          3.625772890519102e-08,
+          0.010756740311532599
+        ],
+        [
+          0.07942077731858188,
+          0.04207143669388755,
+          0.12112110605189505,
+          0.00037110796057437945
+        ],
+        [
+          0.1440072725224562,
+          2.9754433362019772e-05,
+          0.1440072725224562,
+          2.9754433361992016e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.08523784784326724,
+          0.2837091988499465,
+          0.09273068818623575,
+          0.27621635850697795
+        ],
+        [
+          9.999999874212388e-11,
+          0.010756704153803693,
+          9.999999874212388e-11,
+          0.010756704153803693
+        ],
+        [
+          0.07904966945800751,
+          0.04170032883331318,
+          0.12074999819132068,
+          1.0000000664773384e-10
+        ],
+        [
+          0.14397751818909418,
+          9.999999165863881e-11,
+          0.14397751818909418,
+          9.999996390306319e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.625773049593245e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_025_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5120117187499997,
+              "residual_before_angular": -0.08345594610058366
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_025_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.510595703125,
+              "residual_before_angular": -0.08345703432537947
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 26,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9963682236432209,
+          0.0,
+          0.00363177635677917
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.586319808978808e-07,
+        "minimum_source_projection": -7.341209161144318e-23,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 27,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9964385627519078,
+          0.0,
+          0.003561437248092254
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.542113101397084e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 28,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21622956816173194,
+          -0.09923548481228016,
+          -0.09174249028836719
+        ],
+        [
+          0.005378360090185267,
+          -0.005378359990185266,
+          -0.005378359990185266
+        ],
+        [
+          0.06037437473743988,
+          0.018285121098837207,
+          0.06037437463743989
+        ],
+        [
+          0.07198620677560015,
+          0.07198620667560016,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627709,
+          0.04208925363860268,
+          0.12074874937487977,
+          9.999999439624929e-11
+        ],
+        [
+          0.14397241345120032,
+          9.999999439624929e-11,
+          0.14397241345120032,
+          9.999998051846148e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627709,
+          0.04208925363860268,
+          0.12074874937487977,
+          9.999999439624929e-11
+        ],
+        [
+          0.14397241345120032,
+          9.999999439624929e-11,
+          0.14397241345120032,
+          9.999998051846148e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -5.565303357046858e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 29,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21623006002623615,
+          -0.09923567550333962,
+          -0.09174283516037109
+        ],
+        [
+          0.005378388284630752,
+          -0.0053783520269018465,
+          -0.0053783520269018465
+        ],
+        [
+          0.060746107006234715,
+          0.018674670312347166,
+          0.060374999045660335
+        ],
+        [
+          0.07201851347790911,
+          0.07198875904454709,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699438452289654,
+          0.3154657355295758,
+          0.12448722486586507,
+          0.30797289518660725
+        ],
+        [
+          3.625772890519102e-08,
+          0.010756740311532599,
+          3.625772890519102e-08,
+          0.010756740311532599
+        ],
+        [
+          0.07942077731858188,
+          0.04207143669388755,
+          0.12112110605189505,
+          0.00037110796057437945
+        ],
+        [
+          0.1440072725224562,
+          2.9754433362019772e-05,
+          0.1440072725224562,
+          2.9754433361992016e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.08523784784326724,
+          0.2837091988499465,
+          0.09273068818623575,
+          0.27621635850697795
+        ],
+        [
+          9.999999874212388e-11,
+          0.010756704153803693,
+          9.999999874212388e-11,
+          0.010756704153803693
+        ],
+        [
+          0.07904966945800751,
+          0.04170032883331318,
+          0.12074999819132068,
+          1.0000000664773384e-10
+        ],
+        [
+          0.14397751818909418,
+          9.999999165863881e-11,
+          0.14397751818909418,
+          9.999996390306319e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.625773049593245e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_029_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5120117187499997,
+              "residual_before_angular": -0.08345594610058366
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_029_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5178507071509362,
+              "residual_before_angular": -0.03899323505676443
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.510595703125,
+              "residual_before_angular": -0.08345703432537947
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 30,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.2947108636381485,
+          -0.01858576774052613,
+          -0.09174043109503437
+        ],
+        [
+          0.005378407638086929,
+          -0.005378179313168279,
+          -0.005378407538086928
+        ],
+        [
+          0.12599335500143732,
+          0.11564483481210773,
+          0.06037396299767191
+        ],
+        [
+          0.076233889440358,
+          0.07623388934035799,
+          0.07198753222201833
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.2761250958976224,
+          0.31329663137867464,
+          0.20297043254311414,
+          0.3864512947331829
+        ],
+        [
+          2.283249186498318e-07,
+          0.010756586951255209,
+          1.0000000046778146e-10,
+          0.010756815176173856
+        ],
+        [
+          0.24163818981354507,
+          0.010348520189329594,
+          0.18636731799910922,
+          0.06561939200376542
+        ],
+        [
+          0.152467778780716,
+          1.000000082740371e-10,
+          0.14822142166237634,
+          0.004246357218339672
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.2761250958976224,
+          0.31329663137867464,
+          0.20297043254311414,
+          0.3864512947331829
+        ],
+        [
+          2.283249186498318e-07,
+          0.010756586951255209,
+          1.0000000046778146e-10,
+          0.010756815176173856
+        ],
+        [
+          0.24163818981354507,
+          0.010348520189329594,
+          0.18636731799910922,
+          0.06561939200376542
+        ],
+        [
+          0.152467778780716,
+          1.000000082740371e-10,
+          0.14822142166237634,
+          0.004246357218339672
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 2.668385651327654e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 31,
+      "reconstruction_error": 5.551115123125783e-17,
+      "material": [
+        [
+          0.29471182077362124,
+          -0.018586138812591246,
+          -0.09174110219291938
+        ],
+        [
+          0.005378428299404548,
+          -0.005378199973897467,
+          -0.005378392042069273
+        ],
+        [
+          0.12599259949803981,
+          0.11564472587989383,
+          0.06037470012384985
+        ],
+        [
+          0.07626265847856918,
+          0.07623257197051936,
+          0.07199011186030997
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.27612568196103,
+          0.3132979595862125,
+          0.20297071858070187,
+          0.3864529229665406
+        ],
+        [
+          2.2832550708104526e-07,
+          0.010756628273302015,
+          3.625733527561764e-08,
+          0.010756820341473822
+        ],
+        [
+          0.24163732537793364,
+          0.010347873618145986,
+          0.18636729962188966,
+          0.06561789937418996
+        ],
+        [
+          0.15249523044908853,
+          3.0086508049823046e-05,
+          0.14825277033887915,
+          0.00427254661825921
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.24436949099814156,
+          0.28154176862332403,
+          0.17121452761781344,
+          0.35469673200365215
+        ],
+        [
+          1.9216817180480615e-07,
+          0.010756592115966739,
+          9.999999937853018e-11,
+          0.010756784184138545
+        ],
+        [
+          0.24126611508725349,
+          0.009976663327465829,
+          0.1859960893312095,
+          0.0652466890835098
+        ],
+        [
+          0.1524651440410387,
+          9.999999855009887e-11,
+          0.14822268393082932,
+          0.0042424602102093855
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.632243513167904e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_031_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": 0.0
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5692382812500001,
+              "residual_before_angular": -0.07186811560797018
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 2.324463075238511,
+              "residual_before_angular": -1.3877787807814457e-17
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_031_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": 0.0
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5699462890625,
+              "residual_before_angular": -0.07186981502363607
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 2.324463075238511,
+              "residual_before_angular": -1.3877787807814457e-17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 32,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.6397058667543535e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 33,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.594660218296325e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 34,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.3066978758044286,
+          0.005636203018868677,
+          -0.09785791038751356
+        ],
+        [
+          0.005378407638097243,
+          -0.00537817931310578,
+          -0.005378407538097244
+        ],
+        [
+          0.12600870412831192,
+          0.1155235700405545,
+          0.06044226994647395
+        ],
+        [
+          0.076233889440358,
+          0.07623388934035799,
+          0.07198753222201833
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.3123340788232973,
+          0.3010616727855599,
+          0.20883996541691502,
+          0.40455578619194216
+        ],
+        [
+          2.2832499146311497e-07,
+          0.010756586951203025,
+          9.999999960041972e-11,
+          0.010756815176194487
+        ],
+        [
+          0.2415322741688664,
+          0.01048513408775742,
+          0.18645097407478586,
+          0.06556643418183797
+        ],
+        [
+          0.152467778780716,
+          1.000000082740371e-10,
+          0.14822142166237634,
+          0.004246357218339672
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.3123340788232973,
+          0.3010616727855599,
+          0.20883996541691502,
+          0.40455578619194216
+        ],
+        [
+          2.2832499146311497e-07,
+          0.010756586951203025,
+          9.999999960041972e-11,
+          0.010756815176194487
+        ],
+        [
+          0.2415322741688664,
+          0.01048513408775742,
+          0.18645097407478586,
+          0.06556643418183797
+        ],
+        [
+          0.152467778780716,
+          1.000000082740371e-10,
+          0.14822142166237634,
+          0.004246357218339672
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 2.6694900196605476e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 35,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.30669888347582963,
+          0.005635934063974793,
+          -0.09785860727602018
+        ],
+        [
+          0.005378428299414866,
+          -0.005378199973834971,
+          -0.005378392042079586
+        ],
+        [
+          0.12600794868962467,
+          0.11552346059710163,
+          0.06044300736062652
+        ],
+        [
+          0.07626265847856918,
+          0.07623257197051936,
+          0.07199011186030997
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.3123348175398044,
+          0.30106294941185485,
+          0.20884027619980944,
+          0.4045574907518498
+        ],
+        [
+          2.283255798951958e-07,
+          0.010756628273249837,
+          3.625733527995445e-08,
+          0.010756820341494453
+        ],
+        [
+          0.24153140928672628,
+          0.010484488092523045,
+          0.1864509560502512,
+          0.06556494132899815
+        ],
+        [
+          0.15249523044908853,
+          3.0086508049823046e-05,
+          0.14825277033887915,
+          0.00427254661825921
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.28057808973839404,
+          0.2693062216104445,
+          0.17708354839839904,
+          0.3728007629504394
+        ],
+        [
+          1.9216824461605732e-07,
+          0.010756592115914558,
+          1.000000008159517e-10,
+          0.010756784184159174
+        ],
+        [
+          0.24116017701609888,
+          0.010113255821895645,
+          0.18607972377962378,
+          0.06519370905837076
+        ],
+        [
+          0.1524651440410387,
+          9.999999855009887e-11,
+          0.14822268393082932,
+          0.0042424602102093855
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.632254556764497e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_035_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": 0.0
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5692382812500001,
+              "residual_before_angular": -0.07186811560797018
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 2.324463075238511,
+              "residual_before_angular": -1.3877787807814457e-17
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_035_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": 0.0
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5699462890625,
+              "residual_before_angular": -0.07186981502363607
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008642607621873414
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": 2.324463075238511,
+              "residual_before_angular": -1.3877787807814457e-17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 36,
+      "reconstruction_error": 5.551115123125783e-17,
+      "material": [
+        [
+          0.28238365084623374,
+          -0.03125708240688539,
+          -0.09174249028836719
+        ],
+        [
+          0.005378360090185267,
+          -0.005378359990185266,
+          -0.005378359990185266
+        ],
+        [
+          0.11395180837250113,
+          0.0985363667764585,
+          0.06037437463743989
+        ],
+        [
+          0.07198620677560018,
+          0.07198620667560017,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.25112656843934833,
+          0.31364073325311914,
+          0.19064116055786656,
+          0.3741261411346009
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.21248817514895962,
+          0.015415441596042634,
+          0.17432618300994102,
+          0.05357743373506124
+        ],
+        [
+          0.14397241345120035,
+          1.000000082740371e-10,
+          0.14397241345120035,
+          1.000000082740371e-10
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.25112656843934833,
+          0.31364073325311914,
+          0.19064116055786656,
+          0.3741261411346009
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.21248817514895962,
+          0.015415441596042634,
+          0.17432618300994102,
+          0.05357743373506124
+        ],
+        [
+          0.14397241345120035,
+          1.000000082740371e-10,
+          0.14397241345120035,
+          1.000000082740371e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 1.0000220963812811e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 37,
+      "reconstruction_error": 5.551115123125783e-17,
+      "material": [
+        [
+          0.2843375795043662,
+          -0.02924996671499537,
+          -0.09174283516037109
+        ],
+        [
+          0.005378388284630752,
+          -0.0053783520269018465,
+          -0.0053783520269018465
+        ],
+        [
+          0.11585885529645476,
+          0.1012467255316768,
+          0.060374999045660335
+        ],
+        [
+          0.07201851347790915,
+          0.0719887590445471,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.25508761278937087,
+          0.3135875462193616,
+          0.19259474434399515,
+          0.3760804146647373
+        ],
+        [
+          3.625772890519102e-08,
+          0.010756740311532599,
+          3.625772890519102e-08,
+          0.010756740311532599
+        ],
+        [
+          0.21710558082813156,
+          0.014612129764777965,
+          0.17623385434211508,
+          0.055483856250794425
+        ],
+        [
+          0.14400727252245626,
+          2.9754433362047528e-05,
+          0.14400727252245626,
+          2.975443336203365e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.22333107610974157,
+          0.2818310095397323,
+          0.16083820766436585,
+          0.344323877985108
+        ],
+        [
+          9.999999874212388e-11,
+          0.010756704153803693,
+          9.999999874212388e-11,
+          0.010756704153803693
+        ],
+        [
+          0.21673447296755718,
+          0.014241021904203592,
+          0.1758627464815407,
+          0.055112748390220054
+        ],
+        [
+          0.14397751818909424,
+          1.0000001910589443e-10,
+          0.14397751818909424,
+          1.0000000522810662e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.625773049593245e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_037_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": -0.0006008951495427559
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5692382812500001,
+              "residual_before_angular": -0.062161337033987164
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.00864312524113413
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5249986991858817,
+              "residual_before_angular": -0.011014824477153205
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_037_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": -0.0006008951495427559
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5699462890625,
+              "residual_before_angular": -0.062162861829318905
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.00864312524113413
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5249986991858817,
+              "residual_before_angular": -0.011014824477153205
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 38,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9963682236432206,
+          0.0,
+          0.003631776356779344
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.5863198089788553e-07,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 39,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9964385627519076,
+          0.0,
+          0.0035614372480924253
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.542113101397132e-07,
+        "minimum_source_projection": -4.181167740433134e-24,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 40,
+      "reconstruction_error": 2.7755575615628914e-17,
+      "material": [
+        [
+          0.2943708141438064,
+          -0.007034802354308103,
+          -0.0978600487173404
+        ],
+        [
+          0.005378360090180412,
+          -0.005378359990180413,
+          -0.005378359990180413
+        ],
+        [
+          0.11396715385597381,
+          0.09841509497781886,
+          0.06044268247007803
+        ],
+        [
+          0.07198620677560018,
+          0.07198620667560017,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.2873360117894983,
+          0.3014056164981145,
+          0.196510765426466,
+          0.3922308628611468
+        ],
+        [
+          9.999999960041972e-11,
+          0.010756720080360825,
+          9.999999960041972e-11,
+          0.010756720080360825
+        ],
+        [
+          0.21238224883379267,
+          0.015552058878154945,
+          0.17440983632605184,
+          0.05352447138589578
+        ],
+        [
+          0.14397241345120035,
+          1.000000082740371e-10,
+          0.14397241345120035,
+          1.000000082740371e-10
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.2873360117894983,
+          0.3014056164981145,
+          0.196510765426466,
+          0.3922308628611468
+        ],
+        [
+          9.999999960041972e-11,
+          0.010756720080360825,
+          9.999999960041972e-11,
+          0.010756720080360825
+        ],
+        [
+          0.21238224883379267,
+          0.015552058878154945,
+          0.17440983632605184,
+          0.05352447138589578
+        ],
+        [
+          0.14397241345120035,
+          1.000000082740371e-10,
+          0.14397241345120035,
+          1.000000082740371e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 1.0000220963812811e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 41,
+      "reconstruction_error": 5.551115123125783e-17,
+      "material": [
+        [
+          0.296324768772117,
+          -0.005027634185034421,
+          -0.0978604068429449
+        ],
+        [
+          0.0053783882846259005,
+          -0.005378352026896991,
+          -0.005378352026896991
+        ],
+        [
+          0.11587420081333408,
+          0.10112545347053215,
+          0.060443307026286405
+        ],
+        [
+          0.07201851347790915,
+          0.0719887590445471,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.29129713458708256,
+          0.30135240295715143,
+          0.1984643619291721,
+          0.3941851756150619
+        ],
+        [
+          3.625772890952783e-08,
+          0.010756740311522892,
+          3.625772890952783e-08,
+          0.010756740311522892
+        ],
+        [
+          0.21699965428386622,
+          0.014748747342801932,
+          0.17631750783962047,
+          0.05543089378704767
+        ],
+        [
+          0.14400727252245626,
+          2.9754433362047528e-05,
+          0.14400727252245626,
+          2.975443336203365e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.2595400610629559,
+          0.2695953294330248,
+          0.16670728840504542,
+          0.36242810209093523
+        ],
+        [
+          1.0000000003030218e-10,
+          0.010756704153793982,
+          1.0000000003030218e-10,
+          0.010756704153793982
+        ],
+        [
+          0.21662852444310382,
+          0.014377617502039539,
+          0.17594637799885807,
+          0.05505976394628528
+        ],
+        [
+          0.14397751818909424,
+          1.0000001910589443e-10,
+          0.14397751818909424,
+          1.0000000522810662e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.62577304994019e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_041_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": -0.0006008953773369279
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5692382812500001,
+              "residual_before_angular": -0.06216133335423108
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008643125241330355
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5249986991858817,
+              "residual_before_angular": -0.011014828652778232
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_041_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.0299572361258273,
+              "residual_before_angular": -0.0006008953773369279
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 0.5699462890625,
+              "residual_before_angular": -0.06216285814949662
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.21297418631105103,
+              "residual_before_angular": -0.008643125241330355
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5249986991858817,
+              "residual_before_angular": -0.011014828652778232
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 42,
+      "reconstruction_error": 0.0,
+      "material": [
+        [
+          0.21622956816173194,
+          -0.09923548481228016,
+          -0.09174249028836719
+        ],
+        [
+          0.005378360090185267,
+          -0.005378359990185266,
+          -0.005378359990185266
+        ],
+        [
+          0.060374374737439875,
+          0.018285121098837204,
+          0.06037437463743989
+        ],
+        [
+          0.07198620677560016,
+          0.07198620667560016,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627707,
+          0.04208925363860267,
+          0.12074874937487975,
+          9.999998745735539e-11
+        ],
+        [
+          0.14397241345120032,
+          1.000000082740371e-10,
+          0.14397241345120032,
+          9.999999439624929e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627707,
+          0.04208925363860267,
+          0.12074874937487975,
+          9.999998745735539e-11
+        ],
+        [
+          0.14397241345120032,
+          1.000000082740371e-10,
+          0.14397241345120032,
+          9.999999439624929e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -5.565303426435797e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 43,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21623006002623615,
+          -0.09923567550333962,
+          -0.09174283516037109
+        ],
+        [
+          0.005378388284630752,
+          -0.0053783520269018465,
+          -0.0053783520269018465
+        ],
+        [
+          0.060746107006234715,
+          0.018674670312347166,
+          0.060374999045660335
+        ],
+        [
+          0.07201851347790915,
+          0.0719887590445471,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699438452289654,
+          0.3154657355295758,
+          0.12448722486586507,
+          0.30797289518660725
+        ],
+        [
+          3.625772890519102e-08,
+          0.010756740311532599,
+          3.625772890519102e-08,
+          0.010756740311532599
+        ],
+        [
+          0.07942077731858188,
+          0.04207143669388755,
+          0.12112110605189505,
+          0.00037110796057437945
+        ],
+        [
+          0.14400727252245626,
+          2.9754433362047528e-05,
+          0.14400727252245626,
+          2.975443336203365e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.08523784784326724,
+          0.2837091988499465,
+          0.09273068818623575,
+          0.27621635850697795
+        ],
+        [
+          9.999999874212388e-11,
+          0.010756704153803693,
+          9.999999874212388e-11,
+          0.010756704153803693
+        ],
+        [
+          0.07904966945800751,
+          0.04170032883331318,
+          0.12074999819132068,
+          1.0000000653931362e-10
+        ],
+        [
+          0.14397751818909424,
+          1.0000001908217751e-10,
+          0.14397751818909424,
+          1.000000052043897e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.625773049593245e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_043_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 2.80087890625,
+              "residual_before_angular": -0.0033693601736431295
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.2775390624999998,
+              "residual_before_angular": -0.009040686531527186
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5120117187499997,
+              "residual_before_angular": -0.08345594610058366
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_043_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 2.80087890625,
+              "residual_before_angular": -0.0033693601736431295
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.2768310546874999,
+              "residual_before_angular": -0.00904072951723073
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.510595703125,
+              "residual_before_angular": -0.08345703432537947
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 44,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9963682236432206,
+          0.0,
+          0.003631776356779357
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.586319808978859e-07,
+        "minimum_source_projection": -1.6623866858379481e-22,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 45,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.9964385627519076,
+          0.0,
+          0.0035614372480924387
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -4.5421131013971356e-07,
+        "minimum_source_projection": -1.182822313830848e-22,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 46,
+      "reconstruction_error": 0.0,
+      "material": [
+        [
+          0.21622956816173194,
+          -0.09923548481228016,
+          -0.09174249028836719
+        ],
+        [
+          0.005378360090185267,
+          -0.005378359990185266,
+          -0.005378359990185266
+        ],
+        [
+          0.060374374737439875,
+          0.018285121098837204,
+          0.06037437463743989
+        ],
+        [
+          0.07198620677560016,
+          0.07198620667560016,
+          0.07198620667560017
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627707,
+          0.04208925363860267,
+          0.12074874937487975,
+          9.999998745735539e-11
+        ],
+        [
+          0.14397241345120032,
+          1.000000082740371e-10,
+          0.14397241345120032,
+          9.999999439624929e-11
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.11699408334945179,
+          0.3154650529740121,
+          0.12448707787336476,
+          0.3079720584500991
+        ],
+        [
+          1.0000000046778146e-10,
+          0.010756720080370534,
+          1.0000000046778146e-10,
+          0.010756720080370534
+        ],
+        [
+          0.07865949583627707,
+          0.04208925363860267,
+          0.12074874937487975,
+          9.999998745735539e-11
+        ],
+        [
+          0.14397241345120032,
+          1.000000082740371e-10,
+          0.14397241345120032,
+          9.999999439624929e-11
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": -5.565303426435797e-10
+    },
+    {
+      "reference_log": 2.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 47,
+      "reconstruction_error": 1.3877787807814457e-17,
+      "material": [
+        [
+          0.21623006002623615,
+          -0.09923567550333962,
+          -0.09174283516037109
+        ],
+        [
+          0.005378388284630752,
+          -0.0053783520269018465,
+          -0.0053783520269018465
+        ],
+        [
+          0.060746107006234715,
+          0.018674670312347166,
+          0.060374999045660335
+        ],
+        [
+          0.07201851347790915,
+          0.0719887590445471,
+          0.07198875904454712
+        ]
+      ],
+      "dec_margins": [
+        [
+          0.11699438452289654,
+          0.3154657355295758,
+          0.12448722486586507,
+          0.30797289518660725
+        ],
+        [
+          3.625772890519102e-08,
+          0.010756740311532599,
+          3.625772890519102e-08,
+          0.010756740311532599
+        ],
+        [
+          0.07942077731858188,
+          0.04207143669388755,
+          0.12112110605189505,
+          0.00037110796057437945
+        ],
+        [
+          0.14400727252245626,
+          2.9754433362047528e-05,
+          0.14400727252245626,
+          2.975443336203365e-05
+        ]
+      ],
+      "margins_after_empirical_envelope": [
+        [
+          0.08523784784326724,
+          0.2837091988499465,
+          0.09273068818623575,
+          0.27621635850697795
+        ],
+        [
+          9.999999874212388e-11,
+          0.010756704153803693,
+          9.999999874212388e-11,
+          0.010756704153803693
+        ],
+        [
+          0.07904966945800751,
+          0.04170032883331318,
+          0.12074999819132068,
+          1.0000000653931362e-10
+        ],
+        [
+          0.14397751818909424,
+          1.0000001908217751e-10,
+          0.14397751818909424,
+          1.000000052043897e-10
+        ]
+      ],
+      "minimum_nominal_margin_with_integer_scalar_fields": 3.625773049593245e-08,
+      "dense_residual_duty_controls": [
+        {
+          "samples": 2049,
+          "actual_points": 2180,
+          "artifact": "residual_047_2049.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 2.80087890625,
+              "residual_before_angular": -0.0033693601736431295
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.2775390624999998,
+              "residual_before_angular": -0.009040686531527186
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.5120117187499997,
+              "residual_before_angular": -0.08345594610058366
+            }
+          ]
+        },
+        {
+          "samples": 8193,
+          "actual_points": 8324,
+          "artifact": "residual_047_8193.npz",
+          "extrema": [
+            {
+              "projection": "rho_plus_pr",
+              "coordinate": -2.4638671875,
+              "residual_before_angular": -0.022219994992214276
+            },
+            {
+              "projection": "rho_minus_pr",
+              "coordinate": 2.80087890625,
+              "residual_before_angular": -0.0033693601736431295
+            },
+            {
+              "projection": "rho_plus_pt",
+              "coordinate": 0.2768310546874999,
+              "residual_before_angular": -0.00904072951723073
+            },
+            {
+              "projection": "rho_minus_pt",
+              "coordinate": -2.510595703125,
+              "residual_before_angular": -0.08345703432537947
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 48,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072271,
+          0.0,
+          0.026613756092772965,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914611044e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 49,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801242,
+          0.0,
+          0.02621015701987569,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.4904580702887126e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 50,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072271,
+          0.0,
+          0.026613756092772965,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914611044e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 51,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801242,
+          0.0,
+          0.02621015701987569,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.4904580702887126e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 52,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072271,
+          0.0,
+          0.026613756092772965,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914611044e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "compartments",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 53,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801242,
+          0.0,
+          0.02621015701987569,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.4904580702887126e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 54,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.625996286089952e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 55,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.597883075245432e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 56,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.625996286089952e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 57,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.597883075245432e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 58,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.24400303555373856,
+          0.0,
+          0.0,
+          0.0,
+          0.7559969644462613,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.6806651260458039,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "fixed",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 59,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.0,
+          0.3728703992559653,
+          0.0,
+          0.0,
+          0.0,
+          0.6271296007440347,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          -0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.565314521826959,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 60,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072273,
+          0.0,
+          0.026613756092772826,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914611021e-05,
+        "minimum_source_projection": -2.3986833769221806e-21,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 61,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801244,
+          0.0,
+          0.026210157019875543,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.490458070288688e-05,
+        "minimum_source_projection": -1.319631193693943e-21,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 62,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072273,
+          0.0,
+          0.026613756092772826,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914611021e-05,
+        "minimum_source_projection": -2.3986833769221806e-21,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 63,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801244,
+          0.0,
+          0.026210157019875543,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.490458070288688e-05,
+        "minimum_source_projection": -1.319631193693943e-21,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 64,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9800136078590036,
+          0.00023583108107807236,
+          0.0,
+          0.0,
+          0.0,
+          0.01975056105991842,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.019711661290840118,
+        "minimum_source_projection": 0.0,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "module_scales",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 65,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9796683044249516,
+          0.0004353652328385115,
+          0.0,
+          0.0,
+          0.0,
+          0.019896330342209924,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -0.01985776394216307,
+        "minimum_source_projection": -5.929230630780102e-21,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": false,
+      "assessment_case": 66,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072275,
+          0.0,
+          0.026613756092772622,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914610987e-05,
+        "minimum_source_projection": -3.793225658075654e-21,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells",
+      "empirical_sensitivity": true,
+      "assessment_case": 67,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801246,
+          0.0,
+          0.026210157019875346,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.490458070288656e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": false,
+      "assessment_case": 68,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072275,
+          0.0,
+          0.026613756092772622,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914610987e-05,
+        "minimum_source_projection": -3.793225658075654e-21,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "independent_cells_only",
+      "empirical_sensitivity": true,
+      "assessment_case": 69,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801246,
+          0.0,
+          0.026210157019875346,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.490458070288656e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": false,
+      "assessment_case": 70,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9733862439072275,
+          0.0,
+          0.026613756092772622,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.516273914610987e-05,
+        "minimum_source_projection": -3.793225658075654e-21,
+        "scope": "nominal source library"
+      }
+    },
+    {
+      "reference_log": 4.0,
+      "radial_mode": "zones",
+      "angular_mesh": "module",
+      "empirical_sensitivity": true,
+      "assessment_case": 71,
+      "infeasibility_certificate": {
+        "weights": [
+          0.0,
+          0.9737898429801246,
+          0.0,
+          0.026210157019875346,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "coordinates": [
+          -2.428213605482301,
+          0.0,
+          0.75,
+          2.502670792297784
+        ],
+        "projection_order": [
+          "rho_plus_pr",
+          "rho_minus_pr",
+          "rho_plus_pt",
+          "rho_minus_pt"
+        ],
+        "negative_target": -3.490458070288656e-05,
+        "minimum_source_projection": 0.0,
+        "scope": "chosen empirical error box"
+      }
+    }
+  ],
+  "spatial_checks": {
+    "verified_input_hashes": 11,
+    "cases": [
+      {
+        "reference_log": 1.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": false,
+        "spatial_case": 0,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -1.0,
+          "minimum_source_projection": 0.13065729302218682
+        }
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": true,
+        "spatial_case": 1,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -1.0,
+          "minimum_source_projection": 0.1311348180303294
+        }
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": false,
+        "spatial_case": 2,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.7944710341032775,
+            0.0,
+            0.0,
+            0.10279718891082162,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.1027317769859009,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.886886339232521,
+          "minimum_source_projection": -1.0408340855860843e-17
+        }
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": true,
+        "spatial_case": 3,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.7962622229672518,
+            0.0,
+            0.0,
+            0.10190166821664648,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.10183610881610176,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.8878717612465503,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": false,
+        "spatial_case": 4,
+        "reconstruction_error": 1.3877787807814457e-17,
+        "minimum_margin_after_envelope": 9.999996664067368e-11,
+        "material": [
+          [
+            0.07365280552895566,
+            0.05335785988341336,
+            0.07365280542895566
+          ],
+          [
+            0.009250348420382477,
+            0.008722088136119537,
+            -0.00903598385796049
+          ],
+          [
+            0.007729218649544647,
+            0.007729218549544645,
+            0.007729218549544648
+          ],
+          [
+            0.07233316107935671,
+            0.07233316097935671,
+            0.07233316097935674
+          ],
+          [
+            0.009030894293209817,
+            0.008572999977966407,
+            -0.009030894193209816
+          ],
+          [
+            0.009004242432768468,
+            0.008850865496436187,
+            -0.009004242332768466
+          ]
+        ]
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": true,
+        "spatial_case": 5,
+        "reconstruction_error": 1.3877787807814457e-17,
+        "minimum_margin_after_envelope": 9.999997949185755e-11,
+        "material": [
+          [
+            0.07407546715898333,
+            0.053942002550778925,
+            0.07361091360106524
+          ],
+          [
+            0.00925048002811961,
+            0.008722728049686454,
+            -0.009036105583939686
+          ],
+          [
+            0.007739749984486318,
+            0.0077307342761236495,
+            0.007730734276123649
+          ],
+          [
+            0.07234871009140977,
+            0.07233707670950626,
+            0.07233707670950626
+          ],
+          [
+            0.009031016518921318,
+            0.008573633491327446,
+            -0.009031015889984612
+          ],
+          [
+            0.009004364642714598,
+            0.008851511852629553,
+            -0.00900436373817808
+          ]
+        ]
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": false,
+        "spatial_case": 6,
+        "reconstruction_error": 1.3877787807814457e-17,
+        "minimum_margin_after_envelope": 9.999998051846148e-11,
+        "material": [
+          [
+            0.07365280552895564,
+            0.05335785988341334,
+            0.07365280542895566
+          ],
+          [
+            0.01042400244933377,
+            0.009962776838860928,
+            -0.00903598385796049
+          ],
+          [
+            0.007729218649544648,
+            0.007729218549544648,
+            0.007729218549544647
+          ],
+          [
+            0.07233316107935675,
+            0.07233316097935674,
+            0.07233316097935674
+          ],
+          [
+            0.010175038255748208,
+            0.009793694956687858,
+            -0.009030894193209816
+          ],
+          [
+            0.009004242432768468,
+            0.008850865496436187,
+            -0.009004242332768466
+          ]
+        ]
+      },
+      {
+        "reference_log": 1.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": true,
+        "spatial_case": 7,
+        "reconstruction_error": 6.938893903907228e-18,
+        "minimum_margin_after_envelope": 9.999999324259042e-11,
+        "material": [
+          [
+            0.07407546715898335,
+            0.053942002550778904,
+            0.07361091360106524
+          ],
+          [
+            0.01042418541634855,
+            0.00996347104515295,
+            -0.009036105583939686
+          ],
+          [
+            0.007739749984486314,
+            0.007730734276123648,
+            0.007730734276123648
+          ],
+          [
+            0.07234871009140978,
+            0.07233707670950625,
+            0.07233707670950626
+          ],
+          [
+            0.010175210549372395,
+            0.009794381887845618,
+            -0.009031015889984612
+          ],
+          [
+            0.009004364642714598,
+            0.008851511852629553,
+            -0.009004363738178079
+          ]
+        ],
+        "dense_residual_duty_controls": [
+          {
+            "samples": 2049,
+            "artifact": "six_probe_residual_007_2049.npz",
+            "extrema": [
+              {
+                "projection": "rho_plus_pr",
+                "coordinate": 0.5499999990000001,
+                "residual_before_angular": -0.0022714370737419174
+              },
+              {
+                "projection": "rho_minus_pr",
+                "coordinate": 0.5178507071509362,
+                "residual_before_angular": -0.38702450379478315
+              },
+              {
+                "projection": "rho_plus_pt",
+                "coordinate": 1.20078125,
+                "residual_before_angular": -0.004411792135246541
+              },
+              {
+                "projection": "rho_minus_pt",
+                "coordinate": 0.5499999990000001,
+                "residual_before_angular": -0.022414830098818964
+              }
+            ]
+          },
+          {
+            "samples": 8193,
+            "artifact": "six_probe_residual_007_8193.npz",
+            "extrema": [
+              {
+                "projection": "rho_plus_pr",
+                "coordinate": 0.5499999990000001,
+                "residual_before_angular": -0.0022714370737419174
+              },
+              {
+                "projection": "rho_minus_pr",
+                "coordinate": 0.5178507071509362,
+                "residual_before_angular": -0.38702450379478315
+              },
+              {
+                "projection": "rho_plus_pt",
+                "coordinate": 1.2021972656249997,
+                "residual_before_angular": -0.004412892675320216
+              },
+              {
+                "projection": "rho_minus_pt",
+                "coordinate": 0.5499999990000001,
+                "residual_before_angular": -0.022414830098818964
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": false,
+        "spatial_case": 8,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.8977951009250879,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.10220489907491219,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.7955902018501757,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": true,
+        "spatial_case": 9,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.9039495031529893,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.09605049684701072,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.8078990063059786,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": false,
+        "spatial_case": 10,
+        "reconstruction_error": 2.7755575615628914e-17,
+        "minimum_margin_after_envelope": 9.999999960041972e-11,
+        "material": [
+          [
+            0.31946844715833644,
+            0.0068628990796596595,
+            -0.09173629547640084
+          ],
+          [
+            0.005378503131785827,
+            -0.005377816447173041,
+            -0.0053785030317858255
+          ],
+          [
+            0.15017870026617758,
+            0.15000515969178774,
+            0.06037233787461066
+          ],
+          [
+            0.07198620677560018,
+            0.07198620667560017,
+            0.07198620667560017
+          ],
+          [
+            0.0053778193774564895,
+            -0.00537781927745649,
+            -0.005373985760225792
+          ],
+          [
+            0.00537510106547898,
+            -0.005374823140587442,
+            -0.005354890271900556
+          ]
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": true,
+        "spatial_case": 11,
+        "reconstruction_error": 5.551115123125783e-17,
+        "minimum_margin_after_envelope": 9.999999149939661e-11,
+        "material": [
+          [
+            0.33078955002655175,
+            0.0068341735452508295,
+            -0.09751390465144834
+          ],
+          [
+            0.005556408061922714,
+            -0.005555659284247145,
+            -0.005245094872136362
+          ],
+          [
+            0.15495074054737354,
+            0.15456652404692311,
+            0.062272441597284844
+          ],
+          [
+            0.07201851347790914,
+            0.07198875904454712,
+            0.07198875904454712
+          ],
+          [
+            0.005555690803858626,
+            -0.005555653235275732,
+            -0.005240598533498335
+          ],
+          [
+            0.0055526378116894665,
+            -0.00555234629562876,
+            -0.005221778881619657
+          ]
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": false,
+        "spatial_case": 12,
+        "reconstruction_error": 2.7755575615628914e-17,
+        "minimum_margin_after_envelope": 9.999998051846148e-11,
+        "material": [
+          [
+            0.21622073297626612,
+            -0.09923205949725433,
+            -0.09173629547640084
+          ],
+          [
+            0.005378503131785827,
+            -0.005377816447173041,
+            -0.0053785030317858255
+          ],
+          [
+            0.06037233797461067,
+            0.018284661660706227,
+            0.06037233787461066
+          ],
+          [
+            0.07198620677560015,
+            0.07198620667560016,
+            0.07198620667560017
+          ],
+          [
+            0.0053778193774564895,
+            -0.00537781927745649,
+            -0.005373985760225792
+          ],
+          [
+            0.005374969048736485,
+            -0.005374968948736484,
+            -0.005354890271900556
+          ]
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": true,
+        "spatial_case": 13,
+        "reconstruction_error": 1.3877787807814457e-17,
+        "minimum_margin_after_envelope": 9.999996390306319e-11,
+        "material": [
+          [
+            0.2162212150640239,
+            -0.09923224639796478,
+            -0.091736633493415
+          ],
+          [
+            0.005378531483108117,
+            -0.0053778078839106435,
+            -0.005378495226787872
+          ],
+          [
+            0.0607440539029771,
+            0.0186741956328468,
+            0.06037296002901159
+          ],
+          [
+            0.07201851347790911,
+            0.07198875904454709,
+            0.07198875904454712
+          ],
+          [
+            0.005377847275662889,
+            -0.005377811019342644,
+            -0.005373977956452511
+          ],
+          [
+            0.005375005567775378,
+            -0.0053749504723865,
+            -0.005354882484264991
+          ]
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": false,
+        "spatial_case": 14,
+        "reconstruction_error": 2.7755575615628914e-17,
+        "minimum_margin_after_envelope": 9.999999439624929e-11,
+        "material": [
+          [
+            0.21614476752794246,
+            -0.09920260843563344,
+            -0.09168303211592889
+          ],
+          [
+            0.005379733011945944,
+            -0.005373143032136493,
+            -0.005379732911945944
+          ],
+          [
+            0.06035482576707994,
+            0.018280711384423734,
+            0.06035482566707995
+          ],
+          [
+            0.07198620677560016,
+            0.07198620667560016,
+            0.07198620667560017
+          ],
+          [
+            0.005378977404598767,
+            -0.005373194835554455,
+            -0.005375215447406818
+          ],
+          [
+            0.005373332409871519,
+            -0.005373332309871519,
+            -0.005356117416165362
+          ]
+        ]
+      },
+      {
+        "reference_log": 2.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": true,
+        "spatial_case": 15,
+        "reconstruction_error": 1.3877787807814457e-17,
+        "minimum_margin_after_envelope": 9.999999892945713e-11,
+        "material": [
+          [
+            0.2161449165075603,
+            -0.09920266619357473,
+            -0.09168313657335346
+          ],
+          [
+            0.005379766744135641,
+            -0.005373113988816205,
+            -0.00537973049996681
+          ],
+          [
+            0.060726343390363535,
+            0.018670100944843424,
+            0.060355371030531735
+          ],
+          [
+            0.07201851347790915,
+            0.0719887590445471,
+            0.07198875904454712
+          ],
+          [
+            0.005379010368902956,
+            -0.005373166311922683,
+            -0.005375213035806145
+          ],
+          [
+            0.005373361743473879,
+            -0.005373306666567846,
+            -0.005356115009551729
+          ]
+        ],
+        "dense_residual_duty_controls": [
+          {
+            "samples": 2049,
+            "artifact": "six_probe_residual_015_2049.npz",
+            "extrema": [
+              {
+                "projection": "rho_plus_pr",
+                "coordinate": -2.4638671875,
+                "residual_before_angular": -0.022219994992214276
+              },
+              {
+                "projection": "rho_minus_pr",
+                "coordinate": 2.80087890625,
+                "residual_before_angular": -0.0033693601736431295
+              },
+              {
+                "projection": "rho_plus_pt",
+                "coordinate": 0.2775390624999998,
+                "residual_before_angular": -0.009029811232330945
+              },
+              {
+                "projection": "rho_minus_pt",
+                "coordinate": -2.5120117187499997,
+                "residual_before_angular": -0.08345594610058366
+              }
+            ]
+          },
+          {
+            "samples": 8193,
+            "artifact": "six_probe_residual_015_8193.npz",
+            "extrema": [
+              {
+                "projection": "rho_plus_pr",
+                "coordinate": -2.4638671875,
+                "residual_before_angular": -0.022219994992214276
+              },
+              {
+                "projection": "rho_minus_pr",
+                "coordinate": 2.80087890625,
+                "residual_before_angular": -0.0033693601736431295
+              },
+              {
+                "projection": "rho_plus_pt",
+                "coordinate": 0.2768310546874999,
+                "residual_before_angular": -0.009029954474921591
+              },
+              {
+                "projection": "rho_minus_pt",
+                "coordinate": -2.510595703125,
+                "residual_before_angular": -0.08345703432537947
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": false,
+        "spatial_case": 16,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.07901727632185344,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.9209827236781466,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.922703696188133,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "fixed",
+        "empirical_sensitivity": true,
+        "spatial_case": 17,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.07901713314699091,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.9209828668530091,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.9226770474941314,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": false,
+        "spatial_case": 18,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.07859144727460642,
+            0.0,
+            0.002039701829990599,
+            0.0,
+            0.0,
+            0.9193688508954029,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.9209986713762508,
+          "minimum_source_projection": -2.710505431213761e-20
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "module_scales",
+        "empirical_sensitivity": true,
+        "spatial_case": 19,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.07856827719693515,
+            0.0,
+            0.0020061547692149374,
+            0.0,
+            0.0,
+            0.9194255680338499,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.9210283443115939,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": false,
+        "spatial_case": 20,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.9057398674949884,
+            0.0,
+            0.09426013250501175,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.019652848272354917,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "compartments",
+        "empirical_sensitivity": true,
+        "spatial_case": 21,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.9070707770211726,
+            0.0,
+            0.09292922297882746,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          "negative_target": -0.01937535913365738,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": false,
+        "spatial_case": 22,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.9057398674949895,
+            0.0,
+            0.0942601325050106,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "negative_target": -0.01965284827235461,
+          "minimum_source_projection": 0.0
+        }
+      },
+      {
+        "reference_log": 4.0,
+        "radial_mode": "zones",
+        "empirical_sensitivity": true,
+        "spatial_case": 23,
+        "infeasibility_certificate": {
+          "weights": [
+            0.0,
+            0.9070707770211737,
+            0.0,
+            0.09292922297882633,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0,
+            -0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "negative_target": -0.01937535913365708,
+          "minimum_source_projection": 0.0
+        }
+      }
+    ]
+  },
+  "completed_full_spatial_source": false,
+  "dense_array_scope": "required residual after supplied Maxwell and radial tensors; angular stress between probes remains to compute"
+}

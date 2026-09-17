@@ -1,0 +1,43 @@
+{
+  "source": "broad_left",
+  "module": 0,
+  "compartment_count": 4,
+  "domain": [
+    -2.95,
+    2.45
+  ],
+  "compartment_domain": [
+    -0.5032312166214433,
+    1.2966128286036718
+  ],
+  "walls": [
+    -0.5032312166214433,
+    1.2966128286036718
+  ],
+  "probe_name": "throat",
+  "coordinate": 0.0,
+  "angular_max": 24,
+  "frequency_scale": 1.1760324777234663,
+  "minimum_angular_distance": 22.161342380618166,
+  "minimum_optical_distance": 0.8503166527643646,
+  "name": "fine",
+  "nodes": 65537,
+  "frequency_nodes": 120,
+  "geometry_stride": 1,
+  "id": 7,
+  "tensor_per_real_field": [
+    -2.9397294600237296e-21,
+    2.429501045597954e-23,
+    -1.4820122352398546e-21
+  ],
+  "dec_projections_per_real_field": [
+    -2.91543444956775e-21,
+    -2.9640244704797093e-21,
+    -4.421741695263584e-21,
+    -1.457717224783875e-21
+  ],
+  "trace_difference": 0.0,
+  "angular_tail_last_quarter_relative": 0.0,
+  "ward_residual_times_radius_over_tensor": 9.638458379321094e-06,
+  "artifact": "response_007.npz"
+}

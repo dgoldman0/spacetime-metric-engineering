@@ -12,8 +12,10 @@ remain open.
 The [agreed research direction](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md)
 prioritizes physically normalized source contributions, finite C1 pair
 accounting and coupled dynamics before detailed component optimization.
-The current decision is whether the separate angular field contributes
-usefully alongside the retained radial source and counted boundary materials.
+The current decision is whether a small set of physically coherent source
+sectors can jointly track the spatial demand with their material and exchange
+costs included. C1 comparisons allow independent populations, states and
+spatial meshes for different source sectors.
 
 The [build-topology decision](supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
 records C1 as the leading provisional architecture: mechanically independent,
@@ -67,6 +69,14 @@ the total source balance. Physical multiplicity, the complete spatial
 profile, end materials and exterior remain required. Geometry, endpoint
 placement and overlap widths are unchanged.
 
+The [joint source-mesh comparison](supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md)
+adds transition stresses, independent angular cavity populations and grouped
+radial population controls. The existing two quantum source laws admit
+additional sampled allocations when their contributions are redistributed.
+Their inventory, boundary loads and spatial coverage remain separate costs.
+Hardware and electric overlap are retained; changes in occupied radial
+intervals and active-source overlap are recorded explicitly.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -104,6 +114,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [Joint C1 source populations and meshes](supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md):
+  complete-tensor allocation, transition controls, distinct angular and
+  radial source meshes, population-group costs and spatial residual duties.
 - [Absolute angular source and pair budget](supporting_reports/C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md):
   covariant normalization, whole-module bulk stress, fixed global parameter
   cases and independently populated overlap witnesses.

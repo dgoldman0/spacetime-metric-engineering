@@ -1,0 +1,49 @@
+{
+  "base_commit": "247b988c12df27542bacb016894f7b4abdfd8768",
+  "python": "3.13.7",
+  "numpy": "2.3.3",
+  "scipy": "1.16.2",
+  "verified_hash_entries_by_manifest": {
+    "transition_manifest.json": 36,
+    "controls/manifest.json": 72,
+    "assessment_manifest.json": 13,
+    "spatial/manifest.json": 28,
+    "spatial/cutoff_controls/manifest.json": 19,
+    "spatial/assessment_manifest.json": 11,
+    "audit_manifest.json": 42
+  },
+  "verified_hash_entries_total": 221,
+  "four_probe_cases": 72,
+  "six_probe_cases": 24,
+  "dense_residual_artifacts": 28,
+  "c1_tests": {
+    "command": "PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python -m pytest -q toolkit/adm_harness_cli/tests/test_c1_*.py",
+    "passed": 58,
+    "failed": 0
+  },
+  "validation": "source reconstruction and dual certificates checked; complete spatial, material and exterior solution remains open",
+  "input_sha256": {
+    "supporting_reports/data/c1_joint_sources/transition_manifest.json": "c5d7c18014e9dd9acb10276ede6fae5967f15f15eebf373c1dc1006b950b627b",
+    "supporting_reports/data/c1_joint_sources/controls/manifest.json": "a23415caceee8b28a051a218e2441048c0411cf777f354fe0042d49982bdd787",
+    "supporting_reports/data/c1_joint_sources/assessment_manifest.json": "50cdc0e16eae5aa739eecb2cbb5bb1e210bc141320e776635f06faa14e9c741c",
+    "supporting_reports/data/c1_joint_sources/spatial/manifest.json": "a8d3fbf8dbe26473aad1c66b86e9ae40f1859dfd3aa4b6849fe7153730805ce7",
+    "supporting_reports/data/c1_joint_sources/spatial/cutoff_controls/manifest.json": "92de273190ec6189f438e1dec231d413acd33ff9f0114776af8cd53ee8feccdb",
+    "supporting_reports/data/c1_joint_sources/spatial/assessment_manifest.json": "bccb7f578222ad52e79f5f89949c6c5dcbd767a97415300917ac2177c9978bd9",
+    "supporting_reports/data/c1_joint_sources/audit_manifest.json": "ef9dd80819141bde2be86798068e8718811b664fa0e7a6bfcc7929703eb622d0",
+    "toolkit/adm_harness_cli/adm_harness/c1_joint_sources.py": "225e5df0c612fb1942e98ee825c4f04cbd444be3df84a72e585836487be112ad",
+    "toolkit/adm_harness_cli/tests/test_c1_joint_sources.py": "b1deac42f3ae8b2e7ef9f5fbdf29d719db98cec64d1366ae1e820f2daae27f20",
+    "toolkit/adm_harness_cli/scripts/assess_c1_joint_sources.py": "6d9e094952ed80850e4a40f2973567c3fcc315d9dc1bbc6f5e70280c727f3d54",
+    "toolkit/adm_harness_cli/scripts/audit_c1_joint_sources.py": "c48e7b59fea44c30f863d1b34f077ad52e71cd8632adb68b8ec9e2271759ea3c",
+    "toolkit/adm_harness_cli/scripts/check_c1_joint_source_spatial.py": "3ef20cd586c311976eb04dbda94a6efbb3fda3f400fab536e280bec516e68e39",
+    "toolkit/adm_harness_cli/scripts/control_c1_joint_sources.py": "9d5d1e794f8ffb7105bbded7d6d3fd74262701aa1c908547aeb4025eba09a9d4",
+    "toolkit/adm_harness_cli/scripts/screen_c1_joint_sources.py": "6b49f4795964d389610d41f4c7ee34961c5f6f307e3c66d334657258a5e6f6bb",
+    "toolkit/adm_harness_cli/specs/c1_joint_source_controls.json": "3fd921e161bab4864efa3e873dbce1fe91a7826dd4999c05a8d0d3780b449028",
+    "toolkit/adm_harness_cli/specs/c1_joint_source_spatial_check.json": "f92ed55d942abf1411308da98b230e8575c0ef6d8a6488ded0c81146d2bbcbd1",
+    "toolkit/adm_harness_cli/specs/c1_joint_sources.json": "e966560c834e203811c3fc8e6460057fd7b49df69b53b93d3002bd8db23d2680",
+    "README.md": "d1db49d5fe89eaf56440c13954e35f2690327e839087b3d9f97e6f2a5fb06b56",
+    "supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md": "885680e2d9fb7eb29243d50c94eb684c22829c76ebae0cc56f97445602c64656",
+    "supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md": "0b15a9c416ace503dc054662aa38ae2a37083143ad09c425af81c9b6d92788d0",
+    "component_design/C1_FINITE_MODULE_PAIR.md": "d02a565b1e11571a19145e6c713d81690159c2272d345111411eb62f411fcfa5",
+    "supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md": "71818a12a57f7d7a3669c7019dd2f4e066808e3fdac3b4e510b588fd78ba2365"
+  }
+}
