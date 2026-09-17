@@ -1,0 +1,23 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_coupled_holding_certificate.py": "908726cef378ef357cc9810d7df1b1f969f66236150eeac960e55d5562a3ef6f",
+    "toolkit/adm_harness_cli/adm_harness/coupled_holding_certificate.py": "82f6c7d123d416c10674c8db599f04bf6be133456d7505c23ffcd7ca0893dad3",
+    "toolkit/adm_harness_cli/tests/test_coupled_holding_certificate.py": "6e1fc1b4a206cbd66d33ae4930d2a6796fb149935efaac3aa431dba44c483f8e"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/constitutive_joints_and_optics/manifest.json": "249e70994dfd67fa96b2f2119765a43a2a545e4cc1185badedbc81f603211ae5",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b",
+    "supporting_reports/data/nonlinear_holding_certificate/manifest.json": "b651cb5d07fc2e58e91cf7288c1b6660453090aeca101435e0ebb28fb6f425e5"
+  },
+  "output_sha256": {
+    "execution_audit_coupled_holding_certificate.py": "908726cef378ef357cc9810d7df1b1f969f66236150eeac960e55d5562a3ef6f",
+    "execution_coupled_holding_certificate.py": "82f6c7d123d416c10674c8db599f04bf6be133456d7505c23ffcd7ca0893dad3",
+    "execution_test_coupled_holding_certificate.py": "6e1fc1b4a206cbd66d33ae4930d2a6796fb149935efaac3aa431dba44c483f8e",
+    "first_n16_t2057_certificate.npz": "2bfb047369e47fb3c967b1b565b72f800e606589c2f4b9f60a6def52ece6216f",
+    "first_n32_t4113_certificate.npz": "af19dfb21b1f29faf1385fd6390d10a7917fa9eec7e6a7ed0982b170ce998790",
+    "second_n16_t1029_certificate.npz": "13ab8d706fe77cc990311aede293208a8424bfed072988e5e60eb2c53de74a66",
+    "second_n32_t2057_certificate.npz": "ff265acb26c6bad10d4d7493de1a0306418ba43c6f69fe9f98c6325ce98ae358",
+    "summary.json": "733416e42314fab6b22dfd81b301c235dc4242aeabd350e62c672d2c8140f19b"
+  }
+}

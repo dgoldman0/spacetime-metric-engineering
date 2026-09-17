@@ -51,13 +51,17 @@ At the inherited 0.62 ppm optical-loss benchmark, every material label
 exceeds this optimistic allowance by more than 600,000 times somewhere
 in its history. The fine first history reaches a factor of 31.9 million.
 Longer permitted response spans relax these ceilings proportionally.
+Here exposure means incident plus departing energy. A coefficient charged
+only to incident light has approximately twice the stated ceiling for
+slowly moving facets.
 The test applies to direct reflectors carrying the full sheet load;
 separate mechanical transmissions and static-field interfaces have
 different force and loss accounts.
 
 ## Short-gap electric cells
 
-A vacuum capacitor has force \(F=Q^2/(2\epsilon_0 A_e)\), gap
+A vacuum capacitor with fixed effective electrode area has force
+\(F=Q^2/(2\epsilon_0 A_e)\), gap
 energy \(U=Fg\), and voltage \(V_e=Qg/(\epsilon_0 A_e)\), where
 \(A_e\) is electrode area. A periodic row of equal support cells can
 use the facing material boundaries of adjacent cells as return
@@ -84,6 +88,12 @@ The gap covers half the full local extension range plus 10% clearance.
 A slower positioning stage follows the baseline rail configuration;
 local pitch is fixed during the fast reaction replay. Its macro work and
 finite electromagnetic leads require coupled evolution.
+
+The electrode pads in this construction translate with fixed effective
+overlap area. If an implementation changes that area with the supporting
+facet, its terminal power acquires \(U_e\,d\log A_e/dt\), accompanied
+by the same transverse mechanical work. That area port belongs in the
+interface's complete work balance.
 
 ## Maxwell stress and the rail allocation
 

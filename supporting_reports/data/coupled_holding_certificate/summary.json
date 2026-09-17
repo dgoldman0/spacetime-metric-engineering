@@ -1,0 +1,621 @@
+{
+  "created_utc": "2026-09-17T12:03:12.704075+00:00",
+  "workers": 4,
+  "base_commit": "e12e41c87908297c4cf8778f9cfbee21ec7bd7aa",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "matrix_certificate": {
+    "exact_integer_interval_arithmetic": true,
+    "denominator": 1000000000000000000,
+    "state_domain": {
+      "h": [
+        1.08,
+        1.32
+      ],
+      "c": [
+        0.0,
+        0.5001
+      ],
+      "abs_w": 0.012,
+      "abs_v": 0.012,
+      "abs_u": 0.006,
+      "abs_c_prime": 0.006
+    },
+    "damping": 0.8,
+    "heat_gain": 2.7,
+    "heat_coefficient": 0.809,
+    "matrices": {
+      "heat": {
+        "accepted_boxes": 504,
+        "maximum_refinement_depth": 7,
+        "minimum_negative_diagonal_and_determinant": [
+          "37921814409074073/1000000000000000000",
+          "4333638358487501/500000000000000000",
+          "4427896480803/1000000000000000000"
+        ],
+        "maximum_input_quadratic_form": 2.4861066750440317
+      },
+      "invariant": {
+        "accepted_boxes": 320,
+        "maximum_refinement_depth": 3,
+        "minimum_negative_diagonal_and_determinant": [
+          "165238920353131/1953125000000000",
+          "17444315389298291/250000000000000000",
+          "1804621393453/200000000000000000"
+        ],
+        "maximum_input_quadratic_form": 1.1506568752168245
+      }
+    },
+    "invariant_level_upper": 7.7117355371902e-05,
+    "radius_error_upper": 0.011392914976503908,
+    "radial_speed_upper": 0.009037654260244525,
+    "phi_upper": 0.00976066660106409,
+    "reduced_input_upper": 0.005838508705686644,
+    "constitutive_rate_upper": 0.005659817134506062,
+    "free_trace_linear_form_upper": 0.013839252858072392,
+    "external_trace_rate_assumption": 0.001,
+    "reduced_network_input_assumption": 0.0018,
+    "inventory_domain": [
+      18.0,
+      20.0
+    ],
+    "constitutive_curvature_assumption": 0.018,
+    "baseline_constitutive_rate_assumption": 3.4e-06
+  },
+  "input_l1_certificate": {
+    "exact_integer_interval_arithmetic": true,
+    "interval_boxes": 4096,
+    "trace_dual_norm_squared_upper": "1274000184289011051/1000000000000000000",
+    "trace_dual_norm_upper": 1.13,
+    "maximum_feedback_coefficient": 0.3348050380730097,
+    "rotor_to_effective_network_l1_gain": 2.85,
+    "initial_radial_error": [
+      0.0,
+      0.0
+    ],
+    "whole_history_effective_network_l1_evaluated": false
+  },
+  "inherited_guide_input_positive_bound": 0.0009609550948377879,
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820"
+      },
+      "maximum_constitutive_gain_bound": 0.500000047904737,
+      "maximum_trace_curvature_bound": 0.01614736821509486,
+      "maximum_baseline_constitutive_rate_bound": 2.9619676839415868e-06,
+      "maximum_baseline_power_bound": 0.00010719700891760421,
+      "maximum_baseline_power_l2_bound": 0.0005776752769838348,
+      "maximum_external_trace_rate_bound": 1.2756655929459795e-05,
+      "maximum_inherited_network_l2": 140.34434748102314,
+      "maximum_finite_line_l2": 0.24293740286691543,
+      "maximum_combined_power_l2": 158.85134640393636,
+      "maximum_final_additional_line_exposure": 106.53461114401422,
+      "maximum_final_additional_line_loss": 6.605159541591935e-05,
+      "initial_support_energy_range": [
+        0.7840202901554684,
+        0.9275304111605344
+      ],
+      "minimum_constitutive_force_margin": 0.24991476305470484,
+      "minimum_panel_over_delay": 43067.652607458804,
+      "rate_checks": {
+        "gain": true,
+        "curvature": true,
+        "baseline_rate": true,
+        "external_trace_rate": true
+      },
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0015470301767978893,
+          "energy_floor": 1.0992144529381314,
+          "energy_ceiling": 1.3171776265496609,
+          "maximum_thermal_action_bound": 0.03511386694026312,
+          "minimum_thermal_action_capacity": 0.058999255607943,
+          "minimum_spin_squared_lower": 0.15020811616941374,
+          "minimum_spin_lower": 0.38756691831142365,
+          "maximum_thermal_energy_over_C": 0.5768231898865117,
+          "support_and_line_energy_ceiling": 1.104226868493824,
+          "dynamic_trace_upper": 0.17953258047155354,
+          "added_outer_duty_upper": 0.2852608601571845,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.00026939777831830856,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.00024635362317888007,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -2.0002031249999996,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 19.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0014656075359137898,
+          "energy_floor": 1.1095196010512585,
+          "energy_ceiling": 1.3162735409417838,
+          "maximum_thermal_action_bound": 0.03151493977464059,
+          "minimum_thermal_action_capacity": 0.0703799213923772,
+          "minimum_spin_squared_lower": 0.17889256097019202,
+          "minimum_spin_lower": 0.42295692566760507,
+          "maximum_thermal_energy_over_C": 0.5415783014257978,
+          "support_and_line_energy_ceiling": 1.1092146014062758,
+          "dynamic_trace_upper": 0.18950605160223133,
+          "added_outer_duty_upper": 0.28858535053407713,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.0002206631542316298,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.00019761899909220135,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -2.0002031249999996,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 20.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0013923271591181003,
+          "energy_floor": 1.1187942343530728,
+          "energy_ceiling": 1.3154598638946946,
+          "maximum_thermal_action_bound": 0.028442234121613126,
+          "minimum_thermal_action_capacity": 0.08071331824474454,
+          "minimum_spin_squared_lower": 0.20461641270184652,
+          "minimum_spin_lower": 0.4523454572578866,
+          "maximum_thermal_energy_over_C": 0.5103924484422482,
+          "support_and_line_energy_ceiling": 1.1142023343187277,
+          "dynamic_trace_upper": 0.19947952273290911,
+          "added_outer_duty_upper": 0.2919098409109697,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.00017192853014495076,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.0001488843750055223,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -2.0002031249999996,
+          "failed_upper_bound_proves_physical_failure": false
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "maximum_constitutive_gain_bound": 0.4999997948626839,
+      "maximum_trace_curvature_bound": 0.017680602862715417,
+      "maximum_baseline_constitutive_rate_bound": 3.2818864872058685e-06,
+      "maximum_baseline_power_bound": 0.00011877523747276931,
+      "maximum_baseline_power_l2_bound": 0.0003497967398165443,
+      "maximum_external_trace_rate_bound": 1.2756655929459795e-05,
+      "maximum_inherited_network_l2": 260.00675194032874,
+      "maximum_finite_line_l2": 0.4857567029614114,
+      "maximum_combined_power_l2": 295.444425806714,
+      "maximum_final_additional_line_exposure": 172.2782458459041,
+      "maximum_final_additional_line_loss": 0.00010681273317077577,
+      "initial_support_energy_range": [
+        0.7259485913449052,
+        0.9279113581724853
+      ],
+      "minimum_constitutive_force_margin": 0.24991406491149082,
+      "minimum_panel_over_delay": 21532.5766994189,
+      "rate_checks": {
+        "gain": true,
+        "curvature": true,
+        "baseline_rate": true,
+        "external_trace_rate": true
+      },
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "conditional_history_bound_passed": false,
+          "conditional_bound_and_known_loss_budget_passed": false,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": false,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [
+            "thermal_spin"
+          ],
+          "maximum_reduced_input_bound": 0.00154704723913408,
+          "energy_floor": 1.0959882474486558,
+          "energy_ceiling": 1.3171987902725468,
+          "maximum_thermal_action_bound": 0.06530756663345175,
+          "minimum_thermal_action_capacity": 0.055458168106693295,
+          "minimum_spin_squared_lower": 0.07083753132486978,
+          "minimum_spin_lower": 0.26615321024716154,
+          "maximum_thermal_energy_over_C": 1.0794485296173484,
+          "support_and_line_energy_ceiling": 1.104226868493824,
+          "dynamic_trace_upper": 0.17953258047155354,
+          "added_outer_duty_upper": 0.2852608601571845,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.00012679423224500213,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 9.245885875610097e-05,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -2.0001953125,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 19.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0014656237002322863,
+          "energy_floor": 1.1064631958507025,
+          "energy_ceiling": 1.316293590784518,
+          "maximum_thermal_action_bound": 0.05861399434692068,
+          "minimum_thermal_action_capacity": 0.06699345071998036,
+          "minimum_spin_squared_lower": 0.10724027117990684,
+          "minimum_spin_lower": 0.32747560394616704,
+          "maximum_thermal_energy_over_C": 1.0128533341340178,
+          "support_and_line_energy_ceiling": 1.1092146014062758,
+          "dynamic_trace_upper": 0.18950605160223133,
+          "added_outer_duty_upper": 0.28858535053407713,
+          "minimum_reserve_with_old_loss_and_extra_state": 7.774019603237089e-05,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 4.3404822543469724e-05,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -2.0001953125,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 20.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": false,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0013923425152206719,
+          "energy_floor": 1.1158906494125447,
+          "energy_ceiling": 1.315478911245292,
+          "maximum_thermal_action_bound": 0.05289913087309592,
+          "minimum_thermal_action_capacity": 0.07746901955708069,
+          "minimum_spin_squared_lower": 0.13957420335446274,
+          "minimum_spin_lower": 0.37359631068101135,
+          "maximum_thermal_energy_over_C": 0.9539976717918118,
+          "support_and_line_energy_ceiling": 1.1142023343187277,
+          "dynamic_trace_upper": 0.19947952273290911,
+          "added_outer_duty_upper": 0.2919098409109697,
+          "minimum_reserve_with_old_loss_and_extra_state": 2.8686159819739355e-05,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": -5.649213669161811e-06,
+          "known_loss_and_state_reserve_passed": false,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -2.0001953125,
+          "failed_upper_bound_proves_physical_failure": false
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004"
+      },
+      "maximum_constitutive_gain_bound": 0.49999536041075243,
+      "maximum_trace_curvature_bound": 0.0059151039409244275,
+      "maximum_baseline_constitutive_rate_bound": 1.1055929785038933e-06,
+      "maximum_baseline_power_bound": 4.001267838036675e-05,
+      "maximum_baseline_power_l2_bound": 0.0003239183417130537,
+      "maximum_external_trace_rate_bound": 1.2756655929459795e-05,
+      "maximum_inherited_network_l2": 51.74275346039357,
+      "maximum_finite_line_l2": 0.12152775281966746,
+      "maximum_combined_power_l2": 59.04837003686058,
+      "maximum_final_additional_line_exposure": 18.320067819308633,
+      "maximum_final_additional_line_loss": 1.1358465522133432e-05,
+      "initial_support_energy_range": [
+        0.7072896416745306,
+        0.847053070351932
+      ],
+      "minimum_constitutive_force_margin": 0.24995660719791024,
+      "minimum_panel_over_delay": 83604.22502478106,
+      "rate_checks": {
+        "gain": true,
+        "curvature": true,
+        "baseline_rate": true,
+        "external_trace_rate": true
+      },
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0015469311701468331,
+          "energy_floor": 1.094951639133635,
+          "energy_ceiling": 1.3127066631714053,
+          "maximum_thermal_action_bound": 0.013052565517896839,
+          "minimum_thermal_action_capacity": 0.054322594854622264,
+          "minimum_spin_squared_lower": 0.17641627522804554,
+          "minimum_spin_lower": 0.4200193748245973,
+          "maximum_thermal_energy_over_C": 0.21648522735267728,
+          "support_and_line_energy_ceiling": 1.104226868493824,
+          "dynamic_trace_upper": 0.17953258047155354,
+          "added_outer_duty_upper": 0.2852608601571845,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.0029379629197547243,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.002930753064849034,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -1.974984375,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 19.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.001465513740139105,
+          "energy_floor": 1.1054811458680511,
+          "energy_ceiling": 1.3120378914255415,
+          "maximum_thermal_action_bound": 0.011714768968971124,
+          "minimum_thermal_action_capacity": 0.06590733076877503,
+          "minimum_spin_squared_lower": 0.2020924577335318,
+          "minimum_spin_lower": 0.449546947196321,
+          "maximum_thermal_energy_over_C": 0.2031379150692387,
+          "support_and_line_energy_ceiling": 1.1092146014062758,
+          "dynamic_trace_upper": 0.18950605160223133,
+          "added_outer_duty_upper": 0.28858535053407713,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.002928762841901594,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.002921552986995904,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -1.974984375,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 20.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0013922380531321498,
+          "energy_floor": 1.114957701929026,
+          "energy_ceiling": 1.3114359968542646,
+          "maximum_thermal_action_bound": 0.01057257996949644,
+          "minimum_thermal_action_capacity": 0.07642838737933272,
+          "minimum_spin_squared_lower": 0.22526361752218343,
+          "minimum_spin_lower": 0.47461944494740566,
+          "maximum_thermal_energy_over_C": 0.19134087128042868,
+          "support_and_line_energy_ceiling": 1.1142023343187277,
+          "dynamic_trace_upper": 0.19947952273290911,
+          "added_outer_duty_upper": 0.2919098409109697,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.0029195627640484635,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.002912352909142773,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 8,
+          "worst_heat_material_label": -1.974984375,
+          "failed_upper_bound_proves_physical_failure": false
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085"
+      },
+      "maximum_constitutive_gain_bound": 0.49999606890059023,
+      "maximum_trace_curvature_bound": 0.011236404693226697,
+      "maximum_baseline_constitutive_rate_bound": 1.7090508187138696e-06,
+      "maximum_baseline_power_bound": 6.185251000659834e-05,
+      "maximum_baseline_power_l2_bound": 0.0003699393752963808,
+      "maximum_external_trace_rate_bound": 1.2756655929459795e-05,
+      "maximum_inherited_network_l2": 82.89398587538649,
+      "maximum_finite_line_l2": 0.24293740286691543,
+      "maximum_combined_power_l2": 97.1721570767789,
+      "maximum_final_additional_line_exposure": 44.79873119183031,
+      "maximum_final_additional_line_loss": 2.777527074116099e-05,
+      "initial_support_energy_range": [
+        0.7075009243589915,
+        0.8474597613608282
+      ],
+      "minimum_constitutive_force_margin": 0.24993380925481623,
+      "minimum_panel_over_delay": 41797.382455164094,
+      "rate_checks": {
+        "gain": true,
+        "curvature": true,
+        "baseline_rate": true,
+        "external_trace_rate": true
+      },
+      "inventory_variants": [
+        {
+          "inventory": 18.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0015469633545650103,
+          "energy_floor": 1.0949633770605494,
+          "energy_ceiling": 1.3127292571163438,
+          "maximum_thermal_action_bound": 0.021479772680099252,
+          "minimum_thermal_action_capacity": 0.054335447385826685,
+          "minimum_spin_squared_lower": 0.15713499089523325,
+          "minimum_spin_lower": 0.3964025616658314,
+          "maximum_thermal_energy_over_C": 0.3546685052686131,
+          "support_and_line_energy_ceiling": 1.104226868493824,
+          "dynamic_trace_upper": 0.17953258047155354,
+          "added_outer_duty_upper": 0.2852608601571845,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.002268887452237742,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.0022437132556427514,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -1.9749140625000001,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 19.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.001465544230640536,
+          "energy_floor": 1.1054922660093385,
+          "energy_ceiling": 1.3120592962154833,
+          "maximum_thermal_action_bound": 0.019278245757208195,
+          "minimum_thermal_action_capacity": 0.0659196239371363,
+          "minimum_spin_squared_lower": 0.1846127253084496,
+          "minimum_spin_lower": 0.429665829812483,
+          "maximum_thermal_energy_over_C": 0.33289299751962786,
+          "support_and_line_energy_ceiling": 1.1092146014062758,
+          "dynamic_trace_upper": 0.18950605160223133,
+          "added_outer_duty_upper": 0.28858535053407713,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.002247152319058939,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.0022219781224639486,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -1.9749140625000001,
+          "failed_upper_bound_proves_physical_failure": false
+        },
+        {
+          "inventory": 20.0,
+          "conditional_history_bound_passed": true,
+          "conditional_bound_and_known_loss_budget_passed": true,
+          "checks": {
+            "constitutive_rate": true,
+            "input": true,
+            "energy_domain": true,
+            "thermal_spin": true,
+            "support_allocation": true
+          },
+          "open_or_exceeded_sufficient_bounds": [],
+          "maximum_reduced_input_bound": 0.0013922670191085092,
+          "energy_floor": 1.114968266063249,
+          "energy_ceiling": 1.3114563314047092,
+          "maximum_thermal_action_bound": 0.017398617770880396,
+          "minimum_thermal_action_capacity": 0.07644016599794928,
+          "minimum_spin_squared_lower": 0.20932273441870256,
+          "minimum_spin_lower": 0.4575180154034402,
+          "maximum_thermal_energy_over_C": 0.31363671310306435,
+          "support_and_line_energy_ceiling": 1.1142023343187277,
+          "dynamic_trace_upper": 0.19947952273290911,
+          "added_outer_duty_upper": 0.2919098409109697,
+          "minimum_reserve_with_old_loss_and_extra_state": 0.002225417185880136,
+          "existing_loss_and_state_reserve_passed": true,
+          "minimum_reserve_with_known_loss_and_extra_state": 0.0022002429892851454,
+          "known_loss_and_state_reserve_passed": true,
+          "worst_heat_node": 17,
+          "worst_heat_material_label": -1.9749140625000001,
+          "failed_upper_bound_proves_physical_failure": false
+        }
+      ]
+    }
+  ],
+  "field_bias_energy_over_C": 0.62,
+  "added_duty_enclosure": [
+    0.32,
+    0.16
+  ],
+  "finite_line": {
+    "short_delay": 0.015625,
+    "peak": 1.2,
+    "pilot": 0.001
+  },
+  "constitutive_history_float_guard": 1e-09,
+  "initial_radial_error": [
+    0.0,
+    0.0
+  ],
+  "initial_thermal_action": 1e-08,
+  "cold_prepared_initial_state_assumed": true,
+  "fixed_capacity_partition_of_original_supports": true,
+  "constitutive_inventory_and_baseline_tensor_partition_exact": true,
+  "changing_baseline_constitutive_power_included": true,
+  "independent_scalar_cell_nonlinear_certificate": true,
+  "finite_line_endpoint_power_positivity_certified_over_histories": false,
+  "physical_electrical_transducer_dynamics_certified": false,
+  "capacitor_gap_field_energy_time_evolution_included": false,
+  "inherited_loss_fraction": 6.2e-07,
+  "new_line_endpoint_encounter_losses_priced": true,
+  "coupled_rotor_reflective_loss_envelope_recomputed": false,
+  "assigned_loss_replacement_and_absorption_heat_in_dynamics": false,
+  "electrical_holding_losses_included": false,
+  "spatial_partition_and_charge_returns_constructed": false,
+  "added_geometric_macro_traction_work_closed": false,
+  "full_history_physical_transfer_closed": false
+}

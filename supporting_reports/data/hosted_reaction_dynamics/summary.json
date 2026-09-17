@@ -1,0 +1,405 @@
+{
+  "created_utc": "2026-09-17T12:06:52.675707+00:00",
+  "workers": 4,
+  "base_commit": "e12e41c87908297c4cf8778f9cfbee21ec7bd7aa",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "default_inventory": 19.0,
+  "damping": 0.8,
+  "field_bias_over_C": 0.62,
+  "contexts": [
+    {
+      "name": "first_high",
+      "history": "first_n32_t4113",
+      "sample_index": 4096,
+      "label_index": 3,
+      "coordinate_time": 1.2799804687499998,
+      "material_label": -2.0001953125,
+      "capacity": 3.758965312505528e-05,
+      "baseline_gain": 0.4999997592206961,
+      "tension": [
+        1377.2812446128999,
+        5924.771912649151
+      ],
+      "core_inventory": [
+        0.4630835657481894,
+        10.416691714283468
+      ],
+      "joint_inventory": [
+        0.004527076041797988,
+        0.10183292818508469
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884"
+      }
+    },
+    {
+      "name": "second_low",
+      "history": "second_n32_t2057",
+      "sample_index": 1184,
+      "label_index": 14,
+      "coordinate_time": 0.7378710937499999,
+      "material_label": -1.9750234375,
+      "capacity": 1.5087675750121315e-05,
+      "baseline_gain": 0.1384411608459134,
+      "tension": [
+        2.867644925605486,
+        221.17442092455755
+      ],
+      "core_inventory": [
+        23.198641561182807,
+        372.4405548938416
+      ],
+      "joint_inventory": [
+        0.03942331204631685,
+        0.6329181032242602
+      ],
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72"
+      }
+    }
+  ],
+  "trials": [
+    {
+      "name": "first_high_up",
+      "context": "first_high",
+      "direction": "up",
+      "options": {},
+      "evaluated_points": 167185,
+      "archived_points": 18333,
+      "final_state": [
+        1.1436447481606988,
+        -1.6993730113443516e-15,
+        0.5547570034896262,
+        8.398853737944159e-05
+      ],
+      "minimum_spin": 0.5094346586166267,
+      "peak_thermal_energy": 0.001420067832395796,
+      "peak_rotor_power": 1.125874792040688,
+      "peak_support_power": 0.33359543014514653,
+      "peak_electric_terminal_power": 8.741577460036192e-06,
+      "peak_complementary_field_power": 0.3335866885676865,
+      "peak_dynamic_trace": 0.01558816899411656,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.2780042771069603,
+      "maximum_facet_speed": 1.0706099209248879e-07,
+      "final_rotor_input_l2": 1.0571081753585208,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 8.97759821940746e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 8.326672684688674e-17,
+        "terminal_work_error": 5.551115123125783e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999990199999,
+        "incident_margin": 0.0019999999998420626,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0888003391679862e-08
+      }
+    },
+    {
+      "name": "first_high_down",
+      "context": "first_high",
+      "direction": "down",
+      "options": {},
+      "evaluated_points": 166929,
+      "archived_points": 18308,
+      "final_state": [
+        1.2999999999999587,
+        -9.470658605682522e-16,
+        0.8305615325642564,
+        8.377031220320333e-05
+      ],
+      "minimum_spin": 0.5104806567900713,
+      "peak_thermal_energy": 0.0012817706478725653,
+      "peak_rotor_power": 1.1293035298279381,
+      "peak_support_power": 0.33333321398578636,
+      "peak_electric_terminal_power": 8.735910490707153e-06,
+      "peak_complementary_field_power": 0.3333244780752957,
+      "peak_dynamic_trace": 0.015538213041684967,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.277777683292593,
+      "maximum_facet_speed": 1.0697683944267365e-07,
+      "final_rotor_input_l2": 1.056853052135207,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 7.393087918662437e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 1.1102230246251565e-16,
+        "terminal_work_error": 2.7755575615628914e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999988682338,
+        "incident_margin": 0.001999999998339018,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0889671324398886e-08
+      }
+    },
+    {
+      "name": "second_low_up",
+      "context": "second_low",
+      "direction": "up",
+      "options": {},
+      "evaluated_points": 167185,
+      "archived_points": 18333,
+      "final_state": [
+        1.1436447481607124,
+        2.3842790754758127e-17,
+        0.5547584406971923,
+        8.319123539937558e-05
+      ],
+      "minimum_spin": 0.5123852451819007,
+      "peak_thermal_energy": 0.0014053573161049394,
+      "peak_rotor_power": 1.0414274011280071,
+      "peak_support_power": 0.12344629432632269,
+      "peak_electric_terminal_power": 0.0013285981913089566,
+      "peak_complementary_field_power": 0.12211769613501379,
+      "peak_dynamic_trace": 0.016886547968789394,
+      "peak_capacitor_energy": 0.0510024337569115,
+      "maximum_modulation_ratio": 0.10287191249735982,
+      "maximum_facet_speed": 9.171890899980267e-06,
+      "final_rotor_input_l2": 1.0519092074574055,
+      "initial_support_energy": 0.7060297764233273,
+      "errors": {
+        "complete_ledger_error": 6.164067479640274e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 4.163336342344337e-17,
+        "terminal_work_error": 1.3877787807814457e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999984862269,
+        "incident_margin": 0.001999999999789897,
+        "complementary_field_energy": 0.19784161019449525,
+        "capacitor_gap": 1.598771438519192e-07
+      }
+    },
+    {
+      "name": "second_low_down",
+      "context": "second_low",
+      "direction": "down",
+      "options": {},
+      "evaluated_points": 166929,
+      "archived_points": 18308,
+      "final_state": [
+        1.2999999999999654,
+        -6.375276356014177e-16,
+        0.8305624832351919,
+        8.298072105094239e-05
+      ],
+      "minimum_spin": 0.5128152973884382,
+      "peak_thermal_energy": 0.0012678831796568474,
+      "peak_rotor_power": 1.0427436696772012,
+      "peak_support_power": 0.1233099640623092,
+      "peak_electric_terminal_power": 0.0013273149124863742,
+      "peak_complementary_field_power": 0.12198264914982279,
+      "peak_dynamic_trace": 0.016835316427528394,
+      "peak_capacitor_energy": 0.051002433757023624,
+      "maximum_modulation_ratio": 0.10275830478956097,
+      "maximum_facet_speed": 9.16177379397275e-06,
+      "final_rotor_input_l2": 1.0517530161220754,
+      "initial_support_energy": 0.7060297764233273,
+      "errors": {
+        "complete_ledger_error": 6.2171396909794716e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 2.7755575615628914e-17,
+        "terminal_work_error": 1.3877787807814457e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999994669166,
+        "incident_margin": 0.0019999999991396735,
+        "complementary_field_energy": 0.19784161019447535,
+        "capacitor_gap": 1.5990429569215717e-07
+      }
+    },
+    {
+      "name": "first_high_up_refined",
+      "context": "first_high",
+      "direction": "up",
+      "options": {
+        "samples_per_delay": 8,
+        "maximum_step": 0.06,
+        "rtol": 5e-10,
+        "atol": 5e-12
+      },
+      "evaluated_points": 334369,
+      "archived_points": 20125,
+      "final_state": [
+        1.1436447481607273,
+        -4.232743864124444e-112,
+        0.5547570034896866,
+        8.398853737859785e-05
+      ],
+      "minimum_spin": 0.5094346586169753,
+      "peak_thermal_energy": 0.001420067919115458,
+      "peak_rotor_power": 1.1258747927938548,
+      "peak_support_power": 0.33359543015723964,
+      "peak_electric_terminal_power": 8.741577460353083e-06,
+      "peak_complementary_field_power": 0.3335866885797792,
+      "peak_dynamic_trace": 0.015604902773479371,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.27800427708807557,
+      "maximum_facet_speed": 1.0706099209636978e-07,
+      "final_rotor_input_l2": 1.0571081753568785,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 5.9471334513906335e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 8.326672684688674e-17,
+        "terminal_work_error": 5.551115123125783e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999991868889,
+        "incident_margin": 0.0019999999998112695,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0888003392980905e-08
+      }
+    },
+    {
+      "name": "first_high_down_refined",
+      "context": "first_high",
+      "direction": "down",
+      "options": {
+        "samples_per_delay": 8,
+        "maximum_step": 0.06,
+        "rtol": 5e-10,
+        "atol": 5e-12
+      },
+      "evaluated_points": 333857,
+      "archived_points": 20100,
+      "final_state": [
+        1.2999999999999883,
+        -6.327679717684615e-113,
+        0.8305615325643011,
+        8.377031220441281e-05
+      ],
+      "minimum_spin": 0.5104806567901403,
+      "peak_thermal_energy": 0.0012817706649032269,
+      "peak_rotor_power": 1.1293035257564612,
+      "peak_support_power": 0.33333321398659205,
+      "peak_electric_terminal_power": 8.735910490728268e-06,
+      "peak_complementary_field_power": 0.3333244780761013,
+      "peak_dynamic_trace": 0.015555923501236277,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.277777683291912,
+      "maximum_facet_speed": 1.0697683944293222e-07,
+      "final_rotor_input_l2": 1.0568530521317112,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 7.915336829446111e-12,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 1.1102230246251565e-16,
+        "terminal_work_error": 5.551115123125783e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999988099292,
+        "incident_margin": 0.0019999999986434628,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0889671324398886e-08
+      }
+    },
+    {
+      "name": "first_high_up_inventory18",
+      "context": "first_high",
+      "direction": "up",
+      "options": {
+        "inventory": 18.0
+      },
+      "evaluated_points": 167185,
+      "archived_points": 18333,
+      "final_state": [
+        1.1349583452807301,
+        8.038560398448395e-16,
+        0.5366058554513999,
+        9.230070882265833e-05
+      ],
+      "minimum_spin": 0.4872951433587965,
+      "peak_thermal_energy": 0.0014915621443666242,
+      "peak_rotor_power": 1.1264847883153781,
+      "peak_support_power": 0.3336086577073179,
+      "peak_electric_terminal_power": 8.741875342157021e-06,
+      "peak_complementary_field_power": 0.3335999158319757,
+      "peak_dynamic_trace": 0.015536926487646154,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.27801562337373914,
+      "maximum_facet_speed": 1.070652372001996e-07,
+      "final_rotor_input_l2": 1.057111065831819,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 1.1858849012914667e-11,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 1.6653345369377348e-16,
+        "terminal_work_error": 5.551115123125783e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999980155361,
+        "incident_margin": 0.0019999999998996363,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0891008752830778e-08
+      }
+    },
+    {
+      "name": "first_high_down_inventory18",
+      "context": "first_high",
+      "direction": "down",
+      "options": {
+        "inventory": 18.0
+      },
+      "evaluated_points": 166929,
+      "archived_points": 18308,
+      "final_state": [
+        1.2999999999999654,
+        6.099648268678402e-102,
+        0.8305515639229506,
+        9.204983252552428e-05
+      ],
+      "minimum_spin": 0.48844302291446196,
+      "peak_thermal_energy": 0.001341660000707031,
+      "peak_rotor_power": 1.1301267523304377,
+      "peak_support_power": 0.33333321394885446,
+      "peak_electric_terminal_power": 8.735910490629441e-06,
+      "peak_complementary_field_power": 0.33332447803836385,
+      "peak_dynamic_trace": 0.015484795825037336,
+      "peak_capacitor_energy": 0.18163319173681838,
+      "maximum_modulation_ratio": 0.27777768327315555,
+      "maximum_facet_speed": 1.0697683943082136e-07,
+      "final_rotor_input_l2": 1.056849461482356,
+      "initial_support_energy": 0.9300232882165983,
+      "errors": {
+        "complete_ledger_error": 2.1298627751330408e-11,
+        "output_balance_error": 2.6645352591003757e-15,
+        "endpoint_mechanical_error": 1.6653345369377348e-16,
+        "terminal_work_error": 5.551115123125783e-17
+      },
+      "floors": {
+        "minimum_emitted_power": 0.0004999999988273355,
+        "incident_margin": 0.0019999999983331238,
+        "complementary_field_energy": 0.14612249679702813,
+        "capacitor_gap": 1.0892731162805841e-08
+      }
+    }
+  ],
+  "refinements": [
+    {
+      "name": "first_high_up_refined",
+      "final_state_error": 6.039613253960852e-14,
+      "input_l2_error": 1.6422418980255316e-12
+    },
+    {
+      "name": "first_high_down_refined",
+      "final_state_error": 4.474198789239381e-14,
+      "input_l2_error": 3.495870259939693e-12
+    }
+  ],
+  "finite_work_paths_and_photon_stress_included": true,
+  "periodic_capacitor_and_complementary_field_ports_included": true,
+  "frozen_macro_support": true,
+  "prescribed_synchronized_endpoint_commands": true,
+  "finite_electrical_leads_and_elastic_propagation_included": false,
+  "electrode_material_and_holding_loss_law_identified": false
+}
