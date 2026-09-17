@@ -1,0 +1,17 @@
+{
+  "parent_data": "supporting_reports/data/c1_population_boundary",
+  "base_specification": "toolkit/adm_harness_cli/specs/c1_joint_sources.json",
+  "left_cells_to_subdivide": [21, 22],
+  "subdivisions_per_old_cell": [2, 4, 8],
+  "population_patterns": ["pair_uniform", "cell_uniform"],
+  "reference_logs": [1.0, 2.0],
+  "physical_changes": {
+    "geometry": "unchanged",
+    "radial_reflectors": "insert equal-optical-length subdivisions in each of two existing left-module cells adjoining coordinate 0.5178507081509361",
+    "radial_populations": "independent throat, transition-pair and outer groups; compare one population across the pair with one population per original cell",
+    "angular_states": "reuse the calculated whole module and single-wall states at 0.10 and 0.30; radial walls remain transparent to the scalar sector",
+    "material_and_electric_envelopes": "unchanged",
+    "occupied_source_overlap": "derived separately for each allocation",
+    "material_and_exterior_closure": "open"
+  }
+}

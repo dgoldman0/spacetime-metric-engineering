@@ -1,0 +1,167 @@
+{
+  "verified_input_hashes": 139,
+  "cases": [
+    {
+      "coordinate": 0.2768310546875,
+      "division": 0.3,
+      "level": 0,
+      "proper_spacing": 0.005,
+      "phase_step": 0.01,
+      "local_frequency_max": 11.226694882245747,
+      "frequency_order": 32,
+      "angular_max": 26,
+      "tensor_per_real_field": [
+        -4.154685027382058e-10,
+        -3.099807460667465e-11,
+        -1.922352140657563e-10
+      ],
+      "trace_difference": 1.8559864994158558e-23,
+      "tail_last_quarter": [
+        9.996259051835547e-16,
+        2.954315982376189e-19,
+        4.996652410507416e-16
+      ],
+      "artifact": "shooting_0.276831054688_0.npz",
+      "finite_volume_reference": [
+        -4.245841535688054e-10,
+        -5.832199104260769e-11,
+        -1.8313108126297921e-10
+      ]
+    },
+    {
+      "coordinate": 0.2768310546875,
+      "division": 0.3,
+      "level": 1,
+      "proper_spacing": 0.0025,
+      "phase_step": 0.005,
+      "local_frequency_max": 16.84004232336862,
+      "frequency_order": 48,
+      "angular_max": 26,
+      "tensor_per_real_field": [
+        -4.1560057857479856e-10,
+        -3.0998086876664557e-11,
+        -1.923012458490729e-10
+      ],
+      "trace_difference": -1.1787323728880644e-23,
+      "tail_last_quarter": [
+        -2.6813395823180573e-14,
+        -9.14273178281253e-19,
+        -1.3406240779353394e-14
+      ],
+      "artifact": "shooting_0.276831054688_1.npz",
+      "finite_volume_reference": [
+        -4.245841535688054e-10,
+        -5.832199104260769e-11,
+        -1.8313108126297921e-10
+      ]
+    },
+    {
+      "coordinate": 0.4,
+      "division": 0.3,
+      "level": 0,
+      "proper_spacing": 0.005,
+      "phase_step": 0.01,
+      "local_frequency_max": 8.38626285217477,
+      "frequency_order": 32,
+      "angular_max": 24,
+      "tensor_per_real_field": [
+        1.2355474586135956e-10,
+        2.0569814242836458e-11,
+        5.1492465809265415e-11
+      ],
+      "trace_difference": 7.728968848542352e-24,
+      "tail_last_quarter": [
+        -2.3326352400897677e-15,
+        1.273193529593258e-16,
+        -1.229977291913763e-15
+      ],
+      "artifact": "shooting_0.400000000000_0.npz",
+      "finite_volume_reference": [
+        1.2354254710723176e-10,
+        2.058070199574207e-11,
+        5.148092255574774e-11
+      ]
+    },
+    {
+      "coordinate": 0.4,
+      "division": 0.3,
+      "level": 1,
+      "proper_spacing": 0.0025,
+      "phase_step": 0.005,
+      "local_frequency_max": 12.579394278262155,
+      "frequency_order": 48,
+      "angular_max": 24,
+      "tensor_per_real_field": [
+        1.2322243523970718e-10,
+        2.0569478649781344e-11,
+        5.132647829496193e-11
+      ],
+      "trace_difference": -1.9645539548134407e-24,
+      "tail_last_quarter": [
+        -5.0851601205847234e-14,
+        1.3917305077984224e-17,
+        -2.5432759256018152e-14
+      ],
+      "artifact": "shooting_0.400000000000_1.npz",
+      "finite_volume_reference": [
+        1.2354254710723176e-10,
+        2.058070199574207e-11,
+        5.148092255574774e-11
+      ]
+    },
+    {
+      "coordinate": 0.5178507081509361,
+      "division": 0.3,
+      "level": 0,
+      "proper_spacing": 0.005,
+      "phase_step": 0.01,
+      "local_frequency_max": 8.58745505015975,
+      "frequency_order": 32,
+      "angular_max": 24,
+      "tensor_per_real_field": [
+        -2.42331659974701e-10,
+        9.275395540094324e-11,
+        -1.675428076878264e-10
+      ],
+      "trace_difference": -8.530300066953098e-24,
+      "tail_last_quarter": [
+        7.754671072379607e-14,
+        -1.7285322138799766e-15,
+        3.9637621468370677e-14
+      ],
+      "artifact": "shooting_0.517850708151_0.npz",
+      "finite_volume_reference": [
+        -2.4243293758362953e-10,
+        9.275626044671792e-11,
+        -1.675945990151743e-10
+      ]
+    },
+    {
+      "coordinate": 0.5178507081509361,
+      "division": 0.3,
+      "level": 1,
+      "proper_spacing": 0.0025,
+      "phase_step": 0.005,
+      "local_frequency_max": 12.881182575239626,
+      "frequency_order": 48,
+      "angular_max": 24,
+      "tensor_per_real_field": [
+        -2.429306176386317e-10,
+        9.275531449731548e-11,
+        -1.6784296606796608e-10
+      ],
+      "trace_difference": 1.504434739080819e-23,
+      "tail_last_quarter": [
+        -5.1229818740174973e-14,
+        -2.447839445811157e-16,
+        -2.5492517390873417e-14
+      ],
+      "artifact": "shooting_0.517850708151_1.npz",
+      "finite_volume_reference": [
+        -2.4243293758362953e-10,
+        9.275626044671792e-11,
+        -1.675945990151743e-10
+      ]
+    }
+  ]
+}

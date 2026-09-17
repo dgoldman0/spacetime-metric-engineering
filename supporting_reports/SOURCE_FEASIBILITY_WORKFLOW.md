@@ -131,9 +131,21 @@ loads. Five radial population groups provide a small set of adjustable
 settings with a larger inventory burden. Active radial-source overlap can
 change even when hardware envelopes and electric overlap stay fixed.
 
-Continue with the normalized source profile across the population-group
-boundary near coordinate 0.518 and the nearby overlap. Compare sector
-extents and population patterns with their changed interface tractions.
+The [population-boundary comparison](C1_POPULATION_BOUNDARY_AND_REFINEMENT.md)
+supplies the normalized scalar tensor near coordinate 0.518. A local tensor
+constraint motivates shorter radial cavities on both sides of that boundary.
+Combining four subdivisions per adjacent cavity with an angular boundary
+at 0.30 admits nine-coordinate bulk allocations using the existing two
+quantum laws. Geometry and electric overlap remain fixed; occupied radial
+and angular extents change explicitly. The comparison accounts for radial
+bulk energy, net reflector forces and individual face loads.
+
+Continue with the finite neighborhood of the angular division/end at 0.30,
+its material and exterior state, and useful overlapping interiors or a
+populated suffix. The logarithm-2 allocation leaves a resolved angular
+null-stress duty immediately beyond that endpoint. This coverage requirement
+and the logarithm-1 suffix profile determine the next source construction;
+the sampled allocation remains a controlled placement comparison.
 Physical multiplicity, finite curvature couplings, material and exterior
 populations belong in the same source accounting. A subtraction-convention
 change preserves the complete semiclassical balance. Geometry revisions

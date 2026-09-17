@@ -1,0 +1,26 @@
+{
+  "workers": 4,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_population_boundary.py": "88511c980673f1831627fd0ec6dc864da995daed9b7b85a0647d99934897aad1",
+    "supporting_reports/data/c1_population_boundary/refinement/assessment.json": "f37133e9cefc547565b4d6384a57935326b06b9c652074f9f9d7aab1958e55d0",
+    "supporting_reports/data/c1_population_boundary/assessment_manifest.json": "b201c921550ac89344d2b0be0aec284fcc580a6f02d479c9f8df28077929eec2",
+    "supporting_reports/data/c1_population_boundary/manifest.json": "5005726d53dd6b9e572eac599e3fe7d78af176337fcf2e62345106e930604621",
+    "supporting_reports/data/c1_population_boundary/response_controls/manifest.json": "fb86b615d07fea179115e8766bed682663b62ad803c702cfc9e2e379fbf825dc",
+    "toolkit/adm_harness_cli/scripts/audit_c1_angular_absolute.py": "7b4e3fe31073890a197fe9117882c7f15e4b84d01d587735bd03f57fbabdc4d1",
+    "toolkit/adm_harness_cli/scripts/screen_c1_signed_channels.py": "1551e98b8d6da87816bad97d719fc28e2bb123ee7d6efb84095eefd13851b8ee",
+    "supporting_reports/data/c1_population_boundary/refinement/manifest.json": "2bc4a1dae4a85256fe3bb8669f9342e478bfba73241fe221555f20920707493b",
+    "supporting_reports/data/c1_population_boundary/audit.json": "259a8c921bb0115d904a2c8b729ae5fa2de537f1f3706e17e3fcc26e728b4f1e"
+  },
+  "output_sha256": {
+    "audit.json": "17bd5e44ea5c236b41e1eda1912fbd2f05e817c976278b76d45a30ddc9ffb182",
+    "execution_audit_c1_population_boundary.py": "88511c980673f1831627fd0ec6dc864da995daed9b7b85a0647d99934897aad1",
+    "angular_gap_035_1025.npz": "4de716b90ee962d4fdb05483f66860f312b92825ab8137a838c23a8e782f5389",
+    "angular_gap_035_4097.npz": "05dc161b3551b7d32b18e74968e955d4ea2856ae7aff499f00648e9491ed3664",
+    "angular_gap_047_1025.npz": "cba37c90fcc1a3908984ba67500669de6b31d24ccc44f33db554d939835c8028",
+    "angular_gap_047_4097.npz": "955dc0ce3bc6ee2e718e63a1b57a23ef822e5741e88b9e4be2e01bd9d2c98e68",
+    "angular_gap_059_1025.npz": "04ec7f12244190f1d9f0e63a669e552c713b0261f71d0ac741acd6ea04943bb7",
+    "angular_gap_059_4097.npz": "010ddd8ec7da7fb47ce5a0c48a08310cc0525df8be2a34e9e06fa99d7b55ea96",
+    "angular_gap_071_1025.npz": "8eb52782a7776c48d6ee23a43b06b61fe755238378d8c3567bfd078aacc71bb9",
+    "angular_gap_071_4097.npz": "420422e95da7280e029de3bc70abc05825d5155028d105559f33a475c1d2687f"
+  }
+}

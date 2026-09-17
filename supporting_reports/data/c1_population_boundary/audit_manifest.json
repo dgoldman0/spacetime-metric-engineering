@@ -1,0 +1,16 @@
+{
+  "workers": 2,
+  "input_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_population_boundary.py": "88511c980673f1831627fd0ec6dc864da995daed9b7b85a0647d99934897aad1",
+    "supporting_reports/data/c1_population_boundary/assessment.json": "cfc5b93f6368186e5a993c923585c5c702404d318fa2d0af62b9a82c1d9c072c",
+    "supporting_reports/data/c1_population_boundary/assessment_manifest.json": "b201c921550ac89344d2b0be0aec284fcc580a6f02d479c9f8df28077929eec2",
+    "supporting_reports/data/c1_population_boundary/manifest.json": "5005726d53dd6b9e572eac599e3fe7d78af176337fcf2e62345106e930604621",
+    "supporting_reports/data/c1_population_boundary/response_controls/manifest.json": "fb86b615d07fea179115e8766bed682663b62ad803c702cfc9e2e379fbf825dc",
+    "toolkit/adm_harness_cli/scripts/audit_c1_angular_absolute.py": "7b4e3fe31073890a197fe9117882c7f15e4b84d01d587735bd03f57fbabdc4d1",
+    "toolkit/adm_harness_cli/scripts/screen_c1_signed_channels.py": "1551e98b8d6da87816bad97d719fc28e2bb123ee7d6efb84095eefd13851b8ee"
+  },
+  "output_sha256": {
+    "audit.json": "259a8c921bb0115d904a2c8b729ae5fa2de537f1f3706e17e3fcc26e728b4f1e",
+    "execution_audit_c1_population_boundary.py": "88511c980673f1831627fd0ec6dc864da995daed9b7b85a0647d99934897aad1"
+  }
+}

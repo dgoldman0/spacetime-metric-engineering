@@ -1,0 +1,27 @@
+{
+  "base_specification": "toolkit/adm_harness_cli/specs/c1_joint_sources.json",
+  "parent_data": "supporting_reports/data/c1_joint_sources",
+  "absolute_coordinates": [0.2768310546875, 0.4, 0.5178507081509361],
+  "regulator_masses": [8.0, 16.0, 24.0],
+  "cutoff_multipliers": [16.0, 32.0],
+  "frequency_order": 24,
+  "phase_step": 0.04,
+  "proper_spacing": 0.01,
+  "angular_divisions": [0.1, 0.3],
+  "response_resolutions": [
+    {"name": "base", "nodes": 4097, "throat_nodes": 32769, "frequency_nodes": 80},
+    {"name": "fine", "nodes": 8193, "throat_nodes": 65537, "frequency_nodes": 120}
+  ],
+  "radial_group_upper_cells": [21, 22],
+  "radial_added_walls": [0.35, 0.4],
+  "reference_logs": [1.0, 2.0],
+  "changes": {
+    "geometry": "unchanged archived static geometry",
+    "maxwell_and_material_envelopes": "unchanged",
+    "angular_trial": "one additional reflecting wall in the left angular population at 0.10 or 0.30; independent populations in the two resulting cavities",
+    "angular_outer_envelopes": "unchanged",
+    "radial_population_trials": "vary the end of the high-population group; compare additional radial walls within the existing long central compartment",
+    "active_source_overlap": "determined from occupied intervals of each solved allocation",
+    "exterior_and_scalar_wall_material": "separate unclosed contributions; cavity-interior zeros do not supply an exterior vacuum state"
+  }
+}

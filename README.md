@@ -77,6 +77,15 @@ Their inventory, boundary loads and spatial coverage remain separate costs.
 Hardware and electric overlap are retained; changes in occupied radial
 intervals and active-source overlap are recorded explicitly.
 
+The [population-boundary and refinement comparison](supporting_reports/C1_POPULATION_BOUNDARY_AND_REFINEMENT.md)
+calculates the angular tensor near coordinate 0.518 and checks both radial
+wall limits. Shorter radial cavities on both sides of that boundary, combined
+with an angular division at 0.30, admit nine-coordinate bulk allocations
+using the same two quantum source laws. Their altered occupied extents,
+reflector face loads and field energy are accounted. A remaining spatial
+demand beyond the angular endpoint focuses the finite boundary and exterior
+construction. The reference geometry and electric overlap remain unchanged.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -117,6 +126,9 @@ Primary entry points:
 - [Joint C1 source populations and meshes](supporting_reports/C1_JOINT_SOURCE_MESH_SCREEN.md):
   complete-tensor allocation, transition controls, distinct angular and
   radial source meshes, population-group costs and spatial residual duties.
+- [C1 population boundaries and radial refinement](supporting_reports/C1_POPULATION_BOUNDARY_AND_REFINEMENT.md):
+  normalized boundary-region tensors, explicit placement and overlap changes,
+  nine-coordinate allocations, reflector face loads and remaining angular-end coverage.
 - [Absolute angular source and pair budget](supporting_reports/C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md):
   covariant normalization, whole-module bulk stress, fixed global parameter
   cases and independently populated overlap witnesses.
