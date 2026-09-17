@@ -1,0 +1,649 @@
+{
+  "created_utc": "2026-09-17T00:07:22.149697+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2"
+  },
+  "base_commit": "ee826c1676509cbda0ebb2b9090dd195b0ca148c",
+  "scope": "Conserved force-matched local series joints; axisymmetric optical dynamics; conditional energy sizing",
+  "parameters": {
+    "joint_reference_fraction": 0.0001,
+    "maximum_prepared_joint_stretch": 2.0,
+    "optical_bias_fraction": 0.25,
+    "optical_peak_fraction": 0.4,
+    "optical_escape_depth": 1.0,
+    "optical_radius_envelope": 1.5,
+    "optical_energy_envelope": 1.3
+  },
+  "optical_envelope_is_empirical": true,
+  "full_history_optical_dynamics_integrated": false,
+  "optical_transient_pressure_target_rematched": false,
+  "external_optical_port_reactions_supplied": false,
+  "microscopic_reflectors_supplied": false,
+  "spatial_joint_embedding_solved": false,
+  "current_hosts_solved": false,
+  "physical_material_identified": false,
+  "full_containment_established": false,
+  "optical_trials": [
+    {
+      "name": "optical_steps",
+      "bias_fraction": 0.25,
+      "peak_fraction": 0.4,
+      "escape_depth": 1.0,
+      "near_resonance": false,
+      "switching_interval": 500.0,
+      "requested_segments": 4,
+      "completed_time": 2000.0,
+      "sample_spacing_bound": 0.25,
+      "refined": false,
+      "tensile_boundary_crossing_time": null,
+      "radius": {
+        "minimum": 1.1495799563423477,
+        "maximum": 1.2931361999896323
+      },
+      "maximum_radial_speed": 0.020112917445965918,
+      "energy": {
+        "minimum": 1.1545993933003929,
+        "maximum": 1.2910302226601853
+      },
+      "maximum_kinetic_energy": 0.00025355352903000394,
+      "pressure_trace": {
+        "minimum": -0.013276449367260794,
+        "maximum": 0.014537347866024217
+      },
+      "maximum_energy_balance_error": 1.6514567491299204e-15,
+      "steady_bias_eigenvalues": [
+        [
+          -0.016984731536363592,
+          0.8638190532036198
+        ],
+        [
+          -0.016984731536363592,
+          -0.8638190532036198
+        ],
+        [
+          -0.10386276078272073,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": true
+    },
+    {
+      "name": "optical_steps_refined",
+      "bias_fraction": 0.25,
+      "peak_fraction": 0.4,
+      "escape_depth": 1.0,
+      "near_resonance": false,
+      "switching_interval": 500.0,
+      "requested_segments": 4,
+      "completed_time": 2000.0,
+      "sample_spacing_bound": 0.125,
+      "refined": true,
+      "tensile_boundary_crossing_time": null,
+      "radius": {
+        "minimum": 1.1495799563423188,
+        "maximum": 1.2931444671348882
+      },
+      "maximum_radial_speed": 0.020112917445996508,
+      "energy": {
+        "minimum": 1.1545993933003929,
+        "maximum": 1.2910302226601853
+      },
+      "maximum_kinetic_energy": 0.0002535535290306701,
+      "pressure_trace": {
+        "minimum": -0.013323186784099966,
+        "maximum": 0.014537347866082071
+      },
+      "maximum_energy_balance_error": 2.1259074314578397e-15,
+      "steady_bias_eigenvalues": [
+        [
+          -0.016984731536363592,
+          0.8638190532036198
+        ],
+        [
+          -0.016984731536363592,
+          -0.8638190532036198
+        ],
+        [
+          -0.10386276078272073,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": true
+    },
+    {
+      "name": "optical_half_escape",
+      "bias_fraction": 0.25,
+      "peak_fraction": 0.4,
+      "escape_depth": 0.5,
+      "near_resonance": false,
+      "switching_interval": 500.0,
+      "requested_segments": 4,
+      "completed_time": 2000.0,
+      "sample_spacing_bound": 0.25,
+      "refined": false,
+      "tensile_boundary_crossing_time": null,
+      "radius": {
+        "minimum": 1.1525202551614415,
+        "maximum": 1.2917431538287905
+      },
+      "maximum_radial_speed": 0.010908959424352608,
+      "energy": {
+        "minimum": 1.1546814915387476,
+        "maximum": 1.2909987686654092
+      },
+      "maximum_kinetic_energy": 7.552532396992717e-05,
+      "pressure_trace": {
+        "minimum": -0.007120664422146263,
+        "maximum": 0.00748286781155174
+      },
+      "maximum_energy_balance_error": 1.5320555967531652e-15,
+      "steady_bias_eigenvalues": [
+        [
+          -0.008583865071626043,
+          0.8654697655069213
+        ],
+        [
+          -0.008583865071626043,
+          -0.8654697655069213
+        ],
+        [
+          -0.0517483817844719,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": true
+    },
+    {
+      "name": "optical_resonant",
+      "bias_fraction": 0.25,
+      "peak_fraction": 0.4,
+      "escape_depth": 1.0,
+      "near_resonance": true,
+      "switching_interval": 3.8238248063636506,
+      "requested_segments": 160,
+      "completed_time": 611.8119690181826,
+      "sample_spacing_bound": 0.25,
+      "refined": false,
+      "tensile_boundary_crossing_time": null,
+      "radius": {
+        "minimum": 1.062150710627099,
+        "maximum": 1.3944296875246605
+      },
+      "maximum_radial_speed": 0.13715582481347122,
+      "energy": {
+        "minimum": 1.1547005383792517,
+        "maximum": 1.2316938599871445
+      },
+      "maximum_kinetic_energy": 0.01161279633797574,
+      "pressure_trace": {
+        "minimum": -0.1680291546173774,
+        "maximum": 0.16808582115868623
+      },
+      "maximum_energy_balance_error": 1.7096879467715098e-12,
+      "steady_bias_eigenvalues": [
+        [
+          -0.016984731536363592,
+          0.8638190532036198
+        ],
+        [
+          -0.016984731536363592,
+          -0.8638190532036198
+        ],
+        [
+          -0.10386276078272073,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": true
+    },
+    {
+      "name": "optical_resonant_refined",
+      "bias_fraction": 0.25,
+      "peak_fraction": 0.4,
+      "escape_depth": 1.0,
+      "near_resonance": true,
+      "switching_interval": 3.8238248063636506,
+      "requested_segments": 160,
+      "completed_time": 611.8119690181826,
+      "sample_spacing_bound": 0.125,
+      "refined": true,
+      "tensile_boundary_crossing_time": null,
+      "radius": {
+        "minimum": 1.0619939362573372,
+        "maximum": 1.3946827788880665
+      },
+      "maximum_radial_speed": 0.1371558248143384,
+      "energy": {
+        "minimum": 1.1547005383792517,
+        "maximum": 1.2316938599869607
+      },
+      "maximum_kinetic_energy": 0.011612796338125175,
+      "pressure_trace": {
+        "minimum": -0.16832750891052936,
+        "maximum": 0.16813339851562653
+      },
+      "maximum_energy_balance_error": 6.869504964868156e-15,
+      "steady_bias_eigenvalues": [
+        [
+          -0.016984731536363592,
+          0.8638190532036198
+        ],
+        [
+          -0.016984731536363592,
+          -0.8638190532036198
+        ],
+        [
+          -0.10386276078272073,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": true
+    },
+    {
+      "name": "optical_low_bias_resonant",
+      "bias_fraction": 0.1,
+      "peak_fraction": 0.4,
+      "escape_depth": 1.0,
+      "near_resonance": true,
+      "switching_interval": 3.6275987284684357,
+      "requested_segments": 160,
+      "completed_time": 23.060338384930972,
+      "sample_spacing_bound": 0.25,
+      "refined": false,
+      "tensile_boundary_crossing_time": 23.060338384930972,
+      "radius": {
+        "minimum": 1.0,
+        "maximum": 1.2868132260053282
+      },
+      "maximum_radial_speed": 0.12479132382901521,
+      "energy": {
+        "minimum": 1.0540925533894596,
+        "maximum": 1.1649365418204012
+      },
+      "maximum_kinetic_energy": 0.008898755065297248,
+      "pressure_trace": {
+        "minimum": -0.13411408130516614,
+        "maximum": 0.15026370125176264
+      },
+      "maximum_energy_balance_error": 2.193384363025075e-13,
+      "steady_bias_eigenvalues": [
+        [
+          -0.00739693313599122,
+          0.947591923223869
+        ],
+        [
+          -0.00739693313599122,
+          -0.947591923223869
+        ],
+        [
+          -0.1361937700414788,
+          0.0
+        ]
+      ],
+      "within_selected_radius_and_energy_caps": false
+    }
+  ],
+  "refinement_checks": [
+    {
+      "name": "optical_steps",
+      "maximum_state_differences": {
+        "radius": 8.548717289613705e-14,
+        "radial_momentum": 8.042552084377985e-14,
+        "photon_action": 4.9404924595819466e-15,
+        "energy": 3.9968028886505635e-15,
+        "pressure_trace": 8.600932466240607e-14
+      }
+    },
+    {
+      "name": "optical_resonant",
+      "maximum_state_differences": {
+        "radius": 5.417222226355989e-12,
+        "radial_momentum": 7.307071614448546e-12,
+        "photon_action": 4.108380302625392e-13,
+        "energy": 7.185363415374013e-13,
+        "pressure_trace": 5.161761643113216e-12
+      }
+    }
+  ],
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/distributed_reconfiguration/first_n16_t2057_states.npz": "2b3f467600c38b032951c4c82692392084651af2c961d083794ea7b8e453f0e4",
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d",
+        "supporting_reports/data/distributed_reconfiguration/summary.json": "ca2484b29a6f9b8e6133e813779a22f9cb5e7d54e38ac8c8062580dc8575e0ee"
+      },
+      "series_joints": {
+        "reference_length_fraction": 0.0001,
+        "total_joint_reference_inventory": {
+          "minimum": 8.54093711304796e-06,
+          "maximum": 3.0168953832692693e-05
+        },
+        "maximum_joint_stretch": 1.9999999974822442,
+        "maximum_core_stretch": 78.10859430333859,
+        "actual_joint_to_core_span_ratio": {
+          "minimum": 2.4946737932364723e-06,
+          "maximum": 0.0001
+        },
+        "minimum_reserve": 0.0017541513005769893,
+        "all_panel_minimum_reserve_bound": 0.0017541513005769893,
+        "minimum_checked_interior_reserve": 0.0017541513005769893
+      },
+      "optical_sizing_projection": {
+        "reception_capacity": {
+          "minimum": 3.731169925627707e-05,
+          "maximum": 3.7490246398262954e-05
+        },
+        "summed_useful_peak_power": {
+          "minimum": 1466.220530810065,
+          "maximum": 1475.181173828496
+        },
+        "guide_reference_inventory": {
+          "minimum": 0.00033165954894468505,
+          "maximum": 0.0003332466346512261
+        },
+        "guide_reference_radius": {
+          "minimum": 2.6939702154923033e-09,
+          "maximum": 2.701006780547696e-09
+        },
+        "buffer_precharge": {
+          "minimum": 8.550165315932004e-05,
+          "maximum": 8.591080300001233e-05
+        },
+        "prepared_total_energy": {
+          "minimum": 0.00046846911288436766,
+          "maximum": 0.00047071087144485687
+        },
+        "minimum_remaining_reserve": 0.001285265452252726,
+        "all_panel_remaining_reserve_bound": 0.001285265452252726,
+        "maximum_fraction_of_label_minimum_reserve": 0.26730068732955575,
+        "recycled_bias_power": {
+          "minimum": 2443.7008846834415,
+          "maximum": 2458.6352897141596
+        },
+        "sampled_retained_loss_fraction_ceiling": {
+          "minimum": 2.000551355495476e-07,
+          "maximum": 2.4602392218071526e-06
+        },
+        "sufficient_retained_loss_fraction": {
+          "minimum": 1.9997154120463928e-07,
+          "maximum": 2.4592113122823966e-06
+        },
+        "minimum_macro_panel_over_optical_reference_time": 405903.0631168541,
+        "energy_cap_is_tested_envelope": true,
+        "arbitrary_drive_cap_certified": false,
+        "external_path_and_port_reactions_counted": false,
+        "transient_pressure_target_rematched": false
+      },
+      "verification": {
+        "maximum_tensor_error": 5.273559366969494e-16,
+        "maximum_force_error": 1.3877787807814457e-17,
+        "maximum_virtual_work_error": 6.661338147750939e-16,
+        "maximum_power_balance_error": 2.0764293062747186e-13,
+        "maximum_power_bound_error": 3.877409121342317e-26,
+        "independently_integrated_panels": 17,
+        "maximum_power_integral_error": 3.8003827244458693e-16
+      },
+      "inherited_current_host_rejections": 4
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/distributed_reconfiguration/first_n32_t4113_states.npz": "c2d3cfbebba0f5155365db0bfcbc21fbf7d00c295c13e5da3215c39506be1dd9",
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f",
+        "supporting_reports/data/distributed_reconfiguration/summary.json": "ca2484b29a6f9b8e6133e813779a22f9cb5e7d54e38ac8c8062580dc8575e0ee"
+      },
+      "series_joints": {
+        "reference_length_fraction": 0.0001,
+        "total_joint_reference_inventory": {
+          "minimum": 8.188317649468873e-06,
+          "maximum": 3.0443025595406484e-05
+        },
+        "maximum_joint_stretch": 1.9999999977808542,
+        "maximum_core_stretch": 81.46604850672679,
+        "actual_joint_to_core_span_ratio": {
+          "minimum": 2.39186112065051e-06,
+          "maximum": 0.0001
+        },
+        "minimum_reserve": 0.0016324454759106821,
+        "all_panel_minimum_reserve_bound": 0.0016324454759106821,
+        "minimum_checked_interior_reserve": 0.0016324454759106821
+      },
+      "optical_sizing_projection": {
+        "reception_capacity": {
+          "minimum": 3.739899224137379e-05,
+          "maximum": 3.7857078289534795e-05
+        },
+        "summed_useful_peak_power": {
+          "minimum": 1471.1212279265858,
+          "maximum": 1489.6584462501764
+        },
+        "guide_reference_inventory": {
+          "minimum": 0.00033243548658998923,
+          "maximum": 0.00033650736257364255
+        },
+        "guide_reference_radius": {
+          "minimum": 2.6938531119684477e-09,
+          "maximum": 2.7011242293510196e-09
+        },
+        "buffer_precharge": {
+          "minimum": 8.570168946653074e-05,
+          "maximum": 8.675141690290302e-05
+        },
+        "prepared_total_energy": {
+          "minimum": 0.00046956512480835985,
+          "maximum": 0.0004753166496352701
+        },
+        "minimum_remaining_reserve": 0.001160486497784988,
+        "all_panel_remaining_reserve_bound": 0.001160486497784988,
+        "maximum_fraction_of_label_minimum_reserve": 0.28911163349110036,
+        "recycled_bias_power": {
+          "minimum": 2451.8687132109762,
+          "maximum": 2482.7640770836274
+        },
+        "sampled_retained_loss_fraction_ceiling": {
+          "minimum": 1.7945783294298107e-07,
+          "maximum": 2.483975569228899e-06
+        },
+        "sufficient_retained_loss_fraction": {
+          "minimum": 1.7942032961778708e-07,
+          "maximum": 2.483456516779536e-06
+        },
+        "minimum_macro_panel_over_optical_reference_time": 202939.75431522302,
+        "energy_cap_is_tested_envelope": true,
+        "arbitrary_drive_cap_certified": false,
+        "external_path_and_port_reactions_counted": false,
+        "transient_pressure_target_rematched": false
+      },
+      "verification": {
+        "maximum_tensor_error": 6.245004513516506e-16,
+        "maximum_force_error": 1.3877787807814457e-17,
+        "maximum_virtual_work_error": 6.661338147750939e-16,
+        "maximum_power_balance_error": 2.483664315877654e-13,
+        "maximum_power_bound_error": 0.0,
+        "independently_integrated_panels": 17,
+        "maximum_power_integral_error": 3.3306690738754696e-16
+      },
+      "inherited_current_host_rejections": 10
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/distributed_reconfiguration/second_n16_t1029_states.npz": "002fde7a15e60863b311ad68fbd8b88dd4b3baa3548dddd847de184d6b30b1b9",
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278",
+        "supporting_reports/data/distributed_reconfiguration/summary.json": "ca2484b29a6f9b8e6133e813779a22f9cb5e7d54e38ac8c8062580dc8575e0ee"
+      },
+      "series_joints": {
+        "reference_length_fraction": 0.0001,
+        "total_joint_reference_inventory": {
+          "minimum": 1.5621419947378966e-05,
+          "maximum": 2.5941134760667375e-05
+        },
+        "maximum_joint_stretch": 1.9999998475091312,
+        "maximum_core_stretch": 19.873744177827728,
+        "actual_joint_to_core_span_ratio": {
+          "minimum": 9.80459502930841e-06,
+          "maximum": 0.0001
+        },
+        "minimum_reserve": 0.003248961533773964,
+        "all_panel_minimum_reserve_bound": 0.003248961533773964,
+        "minimum_checked_interior_reserve": 0.003248961533773964
+      },
+      "optical_sizing_projection": {
+        "reception_capacity": {
+          "minimum": 4.883797051163642e-06,
+          "maximum": 1.0074369442636428e-05
+        },
+        "summed_useful_peak_power": {
+          "minimum": 166.76643555343745,
+          "maximum": 344.4329582297248
+        },
+        "guide_reference_inventory": {
+          "minimum": 4.3411529343676803e-05,
+          "maximum": 8.954995060121269e-05
+        },
+        "guide_reference_radius": {
+          "minimum": 3.099058516635295e-09,
+          "maximum": 3.1072617187457544e-09
+        },
+        "buffer_precharge": {
+          "minimum": 1.11914688929332e-05,
+          "maximum": 2.308592905315724e-05
+        },
+        "prepared_total_energy": {
+          "minimum": 6.131878519794349e-05,
+          "maximum": 0.00012648930522421293
+        },
+        "minimum_remaining_reserve": 0.003160445691297334,
+        "all_panel_remaining_reserve_bound": 0.003160445691297334,
+        "maximum_fraction_of_label_minimum_reserve": 0.0357001723178402,
+        "recycled_bias_power": {
+          "minimum": 277.94405925572903,
+          "maximum": 574.0549303828747
+        },
+        "sampled_retained_loss_fraction_ceiling": {
+          "minimum": 1.1122446626306475e-06,
+          "maximum": 5.676291709502895e-06
+        },
+        "sufficient_retained_loss_fraction": {
+          "minimum": 1.1116033598057237e-06,
+          "maximum": 5.673020189944858e-06
+        },
+        "minimum_macro_panel_over_optical_reference_time": 787951.2574407223,
+        "energy_cap_is_tested_envelope": true,
+        "arbitrary_drive_cap_certified": false,
+        "external_path_and_port_reactions_counted": false,
+        "transient_pressure_target_rematched": false
+      },
+      "verification": {
+        "maximum_tensor_error": 2.7755575615628914e-16,
+        "maximum_force_error": 6.938893903907228e-18,
+        "maximum_virtual_work_error": 6.661338147750939e-16,
+        "maximum_power_balance_error": 4.0045224081186603e-14,
+        "maximum_power_bound_error": 0.0,
+        "independently_integrated_panels": 17,
+        "maximum_power_integral_error": 1.1709383462843448e-16
+      },
+      "inherited_current_host_rejections": 0
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/distributed_reconfiguration/second_n32_t2057_states.npz": "df5b4fcc851976cdd6eb79cdd77471adbe76953d30214c5ddb05da19650f38d5",
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254",
+        "supporting_reports/data/distributed_reconfiguration/summary.json": "ca2484b29a6f9b8e6133e813779a22f9cb5e7d54e38ac8c8062580dc8575e0ee"
+      },
+      "series_joints": {
+        "reference_length_fraction": 0.0001,
+        "total_joint_reference_inventory": {
+          "minimum": 1.4849793094957627e-05,
+          "maximum": 2.686653020771593e-05
+        },
+        "maximum_joint_stretch": 1.999999866286482,
+        "maximum_core_stretch": 20.765063155472777,
+        "actual_joint_to_core_span_ratio": {
+          "minimum": 9.38374929601744e-06,
+          "maximum": 0.0001
+        },
+        "minimum_reserve": 0.0029453855456181843,
+        "all_panel_minimum_reserve_bound": 0.0029453855456181843,
+        "minimum_checked_interior_reserve": 0.0029453855456181843
+      },
+      "optical_sizing_projection": {
+        "reception_capacity": {
+          "minimum": 5.195973014455296e-06,
+          "maximum": 1.6655431028684725e-05
+        },
+        "summed_useful_peak_power": {
+          "minimum": 177.41845316924528,
+          "maximum": 569.4919543730206
+        },
+        "guide_reference_inventory": {
+          "minimum": 4.618642679515817e-05,
+          "maximum": 0.00014804827581053087
+        },
+        "guide_reference_radius": {
+          "minimum": 3.098921994973109e-09,
+          "maximum": 3.107398637328845e-09
+        },
+        "buffer_precharge": {
+          "minimum": 1.1906835961977885e-05,
+          "maximum": 3.816676579783492e-05
+        },
+        "prepared_total_energy": {
+          "minimum": 6.523832784816092e-05,
+          "maximum": 0.00020911818958237486
+        },
+        "minimum_remaining_reserve": 0.0027362673560358095,
+        "all_panel_remaining_reserve_bound": 0.0027362673560358095,
+        "maximum_fraction_of_label_minimum_reserve": 0.07099857941975629,
+        "recycled_bias_power": {
+          "minimum": 295.6974219487421,
+          "maximum": 949.1532572883675
+        },
+        "sampled_retained_loss_fraction_ceiling": {
+          "minimum": 5.387917800755438e-07,
+          "maximum": 5.709716241431963e-06
+        },
+        "sufficient_retained_loss_fraction": {
+          "minimum": 5.386363450455592e-07,
+          "maximum": 5.708069779119919e-06
+        },
+        "minimum_macro_panel_over_optical_reference_time": 393931.04898126016,
+        "energy_cap_is_tested_envelope": true,
+        "arbitrary_drive_cap_certified": false,
+        "external_path_and_port_reactions_counted": false,
+        "transient_pressure_target_rematched": false
+      },
+      "verification": {
+        "maximum_tensor_error": 3.3306690738754696e-16,
+        "maximum_force_error": 6.938893903907228e-18,
+        "maximum_virtual_work_error": 6.661338147750939e-16,
+        "maximum_power_balance_error": 8.298309955856453e-14,
+        "maximum_power_bound_error": 0.0,
+        "independently_integrated_panels": 17,
+        "maximum_power_integral_error": 6.728829732988162e-17
+      },
+      "inherited_current_host_rejections": 0
+    }
+  ]
+}
