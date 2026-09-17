@@ -1,0 +1,23 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_standing_field_losses.py": "9a93b4a6fdea155f7c1433e3d61e3b0861c819698c2e6418d95e7cb052d7403c",
+    "toolkit/adm_harness_cli/adm_harness/standing_field_losses.py": "9f1f05994806494cf022a1568579565afd743297fe7e835b3c5e46c1174f50a7",
+    "toolkit/adm_harness_cli/tests/test_standing_field_losses.py": "3f845768677ec8c2518deda5a503aafd747599d64d0675a6cf76ec388dd88ab8"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/constitutive_joints_and_optics/manifest.json": "249e70994dfd67fa96b2f2119765a43a2a545e4cc1185badedbc81f603211ae5",
+    "supporting_reports/data/shared_rail_reactions/manifest.json": "2047315335ad54ff11b648d76bc4e7ae1a21385564fb1d799f87eb10cc590101",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b"
+  },
+  "output_sha256": {
+    "execution_audit_standing_field_losses.py": "9a93b4a6fdea155f7c1433e3d61e3b0861c819698c2e6418d95e7cb052d7403c",
+    "execution_standing_field_losses.py": "9f1f05994806494cf022a1568579565afd743297fe7e835b3c5e46c1174f50a7",
+    "execution_test_standing_field_losses.py": "3f845768677ec8c2518deda5a503aafd747599d64d0675a6cf76ec388dd88ab8",
+    "first_n16_t2057_loss_requirements.npz": "2b5d1aa02f28d9c9b0e7d72127740ca9cd69520e8721f7fb2ee000c864f22f58",
+    "first_n32_t4113_loss_requirements.npz": "3f28e83e2abb4454a6c74e9718b5fc256ce35d98290c9280f129f8a684724240",
+    "second_n16_t1029_loss_requirements.npz": "71e06f1244e22eac641e166dc23472fcfbd5ffeb5dfc72cd7b28c49f8bafaf11",
+    "second_n32_t2057_loss_requirements.npz": "a527711456a7468b3d2b71b858a4639ce32abcd0875f0321a2844671562c1f22",
+    "summary.json": "5b433609bb94997a767ab4521a3d3120d7618cf79baba43f74c9f7954d03b34a"
+  }
+}

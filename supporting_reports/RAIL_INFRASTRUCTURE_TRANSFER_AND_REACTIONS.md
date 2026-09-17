@@ -352,6 +352,9 @@ in the preceding section. The ideal reaction branch also requires a
 physical transducer, finite propagation inventory, actuation, mounting
 tractions and emission/absorption recoil. The field bias and the original
 standing pressure populations retain their own holding-loss accounts.
+The [standing-field study](STANDING_FIELD_HOLDING_AND_SOURCE_REQUIREMENTS.md)
+quantifies those residence-loss requirements and the equal-tensor
+Maxwell/photon alternatives within the larger rail ensemble.
 
 ## Reproducibility
 

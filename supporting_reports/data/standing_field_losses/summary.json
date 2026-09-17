@@ -1,0 +1,461 @@
+{
+  "created_utc": "2026-09-17T10:44:43.360478+00:00",
+  "workers": 4,
+  "base_commit": "ea0398dcd4f3391cc5cbfb87b3ce4586a1a8cbcc",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/shared_rail_reactions/first_n16_t2057_reactions.npz": "d156e9ba953a6548364ad327537378eb5db8e5955648ef0e9aa0b07c4a4b264b",
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820"
+      },
+      "service_duration": [
+        5.086340947564531,
+        5.09616834108788
+      ],
+      "inherited_transfer_delay": [
+        2.5390071113940997e-08,
+        2.545638917719458e-08
+      ],
+      "maximum_original_photon_fraction_of_total_local_energy": 0.9756479591868455,
+      "minimum_energy_margin_before_standing_losses": 0.0002824916576378748,
+      "variants": [
+        {
+          "bias_family": "maxwell",
+          "common_photon_decay_rate_ceiling": [
+            0.000164571106286259,
+            0.008676028145872115
+          ],
+          "raw_decay_rate_ceiling": [
+            0.00016457144640058156,
+            0.008676046076367338
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            22.634487712115906,
+            1194.4970300200093
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2810.1355101802837,
+            148353.84364465484
+          ],
+          "allowed_loss_per_transfer_delay": [
+            4.179198711452612e-12,
+            2.206299980501325e-10
+          ],
+          "weakest_rate_label": -2.0002031249999996,
+          "weakest_rate_panel": 800,
+          "weakest_rate_panel_end_proper_time": 2.6223106096117292,
+          "original_photon_energy_time_integral_final": [
+            3.4108836526202024,
+            3.4830517011086046
+          ]
+        },
+        {
+          "bias_family": "photon",
+          "common_photon_decay_rate_ceiling": [
+            0.00016456874779143454,
+            0.008675902812789795
+          ],
+          "raw_decay_rate_ceiling": [
+            0.00016456908790088285,
+            0.008675920743025995
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            22.634814692508947,
+            1194.5141487931721
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2810.1761057186186,
+            148355.96975776638
+          ],
+          "allowed_loss_per_transfer_delay": [
+            4.1791388186879964e-12,
+            2.206268108500405e-10
+          ],
+          "weakest_rate_label": -2.0002031249999996,
+          "weakest_rate_panel": 800,
+          "weakest_rate_panel_end_proper_time": 2.6223106096117292,
+          "original_photon_energy_time_integral_final": [
+            3.4108836526202024,
+            3.4830517011086046
+          ]
+        }
+      ],
+      "substitutions": [
+        {
+          "photon_fraction_replaced": 0.5,
+          "maximum_energy_identity_error": 8.881784197001252e-16,
+          "maximum_stress_identity_error": 2.220446049250313e-16,
+          "maximum_added_maxwell_energy": 1.1823979689430935,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.00027610810101373845,
+            0.0141371318988058
+          ],
+          "isolated_photon_decay_rate_ceiling": [
+            0.000329142212572518,
+            0.01735205629174423
+          ],
+          "all_standing_photon_energy_replaced": false
+        },
+        {
+          "photon_fraction_replaced": 1.0,
+          "maximum_energy_identity_error": 8.881784197001252e-16,
+          "maximum_stress_identity_error": 4.440892098500626e-16,
+          "maximum_added_maxwell_energy": 2.364786549208245,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.00015015082063878462,
+            0.007790239209326732
+          ],
+          "isolated_photon_decay_rate_ceiling": null,
+          "all_standing_photon_energy_replaced": true
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/shared_rail_reactions/first_n32_t4113_reactions.npz": "fde5bffe38dc4a49e01c7c2c7bc5a36e770978f0f195f99767b8bb9f94339d5d",
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a"
+      },
+      "service_duration": [
+        5.0861773940073265,
+        5.096332367494961
+      ],
+      "inherited_transfer_delay": [
+        2.5388967439230234e-08,
+        2.5457496106087664e-08
+      ],
+      "maximum_original_photon_fraction_of_total_local_energy": 0.975690374407933,
+      "minimum_energy_margin_before_standing_losses": 0.00013997393030040162,
+      "variants": [
+        {
+          "bias_family": "maxwell",
+          "common_photon_decay_rate_ceiling": [
+            8.161787664575663e-05,
+            0.008717726567531827
+          ],
+          "raw_decay_rate_ceiling": [
+            8.161804532305028e-05,
+            0.008717744584203968
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            22.52839716509623,
+            2408.4597985941878
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2797.0589364055254,
+            299121.9064902353
+          ],
+          "allowed_loss_per_transfer_delay": [
+            2.0727341553624275e-12,
+            2.2166146878839844e-10
+          ],
+          "weakest_rate_label": -2.0001953125,
+          "weakest_rate_panel": 1600,
+          "weakest_rate_panel_end_proper_time": 2.621861134599071,
+          "original_photon_energy_time_integral_final": [
+            3.411032282639288,
+            3.4858241221350412
+          ]
+        },
+        {
+          "bias_family": "photon",
+          "common_photon_decay_rate_ceiling": [
+            8.161669844461402e-05,
+            0.008717601225783694
+          ],
+          "raw_decay_rate_ceiling": [
+            8.161686711947274e-05,
+            0.008717619242196793
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            22.528721078591488,
+            2408.4945666029494
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2797.0991525438462,
+            299126.2245498815
+          ],
+          "allowed_loss_per_transfer_delay": [
+            2.0727042342489345e-12,
+            2.216582817836474e-10
+          ],
+          "weakest_rate_label": -2.0001953125,
+          "weakest_rate_panel": 1600,
+          "weakest_rate_panel_end_proper_time": 2.621861134599071,
+          "original_photon_energy_time_integral_final": [
+            3.411032282639288,
+            3.4858241221350412
+          ]
+        }
+      ],
+      "substitutions": [
+        {
+          "photon_fraction_replaced": 0.5,
+          "maximum_energy_identity_error": 8.881784197001252e-16,
+          "maximum_stress_identity_error": 3.3306690738754696e-16,
+          "maximum_added_maxwell_energy": 1.1856368684282497,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.00013692976709643692,
+            0.01425911827939121
+          ],
+          "isolated_photon_decay_rate_ceiling": [
+            0.00016323575329151325,
+            0.017435453135063655
+          ],
+          "all_standing_photon_energy_replaced": false
+        },
+        {
+          "photon_fraction_replaced": 1.0,
+          "maximum_energy_identity_error": 8.881784197001252e-16,
+          "maximum_stress_identity_error": 6.661338147750939e-16,
+          "maximum_added_maxwell_energy": 2.3712642523258864,
+          "isolated_maxwell_decay_rate_ceiling": [
+            7.446502733268497e-05,
+            0.007842747476946426
+          ],
+          "isolated_photon_decay_rate_ceiling": null,
+          "all_standing_photon_energy_replaced": true
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/shared_rail_reactions/second_n16_t1029_reactions.npz": "42d31b690b636f6dd830732e5df90396dd770bab79dbdf2ee2922dd239d6864a",
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004"
+      },
+      "service_duration": [
+        5.647876052615444,
+        5.6591654283261095
+      ],
+      "inherited_transfer_delay": [
+        2.9207938406718972e-08,
+        2.928525176517737e-08
+      ],
+      "maximum_original_photon_fraction_of_total_local_energy": 0.9074779431027594,
+      "minimum_energy_margin_before_standing_losses": 0.002940434770341388,
+      "variants": [
+        {
+          "bias_family": "maxwell",
+          "common_photon_decay_rate_ceiling": [
+            0.002377229515055062,
+            0.006809631641023281
+          ],
+          "raw_decay_rate_ceiling": [
+            0.002377234428006213,
+            0.006809645714291091
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            25.94920103896235,
+            74.37171717988379
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            3108.989406356347,
+            8912.05629145127
+          ],
+          "allowed_loss_per_transfer_delay": [
+            6.956870242990241e-11,
+            1.994217770156002e-10
+          ],
+          "weakest_rate_label": -1.974890625,
+          "weakest_rate_panel": 922,
+          "weakest_rate_panel_end_proper_time": 5.356366046617935,
+          "original_photon_energy_time_integral_final": [
+            1.255771502536569,
+            1.3642601572636415
+          ]
+        },
+        {
+          "bias_family": "photon",
+          "common_photon_decay_rate_ceiling": [
+            0.0023772112842038364,
+            0.006809594836800047
+          ],
+          "raw_decay_rate_ceiling": [
+            0.0023772161971173105,
+            0.006809608909991794
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            25.949341288156422,
+            74.37228753714244
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            3109.006209696764,
+            8912.124638078029
+          ],
+          "allowed_loss_per_transfer_delay": [
+            6.956816891109159e-11,
+            1.9942069919465697e-10
+          ],
+          "weakest_rate_label": -1.974890625,
+          "weakest_rate_panel": 922,
+          "weakest_rate_panel_end_proper_time": 5.356366046617935,
+          "original_photon_energy_time_integral_final": [
+            1.255771502536569,
+            1.3642601572636415
+          ]
+        }
+      ],
+      "substitutions": [
+        {
+          "photon_fraction_replaced": 0.5,
+          "maximum_energy_identity_error": 1.1102230246251565e-16,
+          "maximum_stress_identity_error": 5.204170427930421e-17,
+          "maximum_added_maxwell_energy": 0.2859874333177627,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.003618504807348878,
+            0.010216954990438783
+          ],
+          "isolated_photon_decay_rate_ceiling": [
+            0.004754459030110124,
+            0.013619263282046563
+          ],
+          "all_standing_photon_energy_replaced": false
+        },
+        {
+          "photon_fraction_replaced": 1.0,
+          "maximum_energy_identity_error": 1.1102230246251565e-16,
+          "maximum_stress_identity_error": 9.71445146547012e-17,
+          "maximum_added_maxwell_energy": 0.5719736398151258,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.002054712428092584,
+            0.00583764581969054
+          ],
+          "isolated_photon_decay_rate_ceiling": null,
+          "all_standing_photon_energy_replaced": true
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/shared_rail_reactions/second_n32_t2057_reactions.npz": "ffaa559d2e29a998d7a89782315b6defa398f8a9ea2abcc85eaac83322882db8",
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085"
+      },
+      "service_duration": [
+        5.647688217385356,
+        5.659353905739965
+      ],
+      "inherited_transfer_delay": [
+        2.9206651720366035e-08,
+        2.92865421924217e-08
+      ],
+      "maximum_original_photon_fraction_of_total_local_energy": 0.9077665239518228,
+      "minimum_energy_margin_before_standing_losses": 0.0022747271856135808,
+      "variants": [
+        {
+          "bias_family": "maxwell",
+          "common_photon_decay_rate_ceiling": [
+            0.0018320845988166721,
+            0.00728460267410594
+          ],
+          "raw_decay_rate_ceiling": [
+            0.001832088385132668,
+            0.0072846177289825785
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            24.256452060035638,
+            96.54311502922371
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2906.1488646404146,
+            11570.50363951506
+          ],
+          "allowed_loss_per_transfer_delay": [
+            5.358454666278066e-11,
+            2.133408235474744e-10
+          ],
+          "weakest_rate_label": -1.9749921875,
+          "weakest_rate_panel": 1844,
+          "weakest_rate_panel_end_proper_time": 5.3524458926924385,
+          "original_photon_energy_time_integral_final": [
+            1.2544836612350876,
+            1.3653451705418926
+          ]
+        },
+        {
+          "bias_family": "photon",
+          "common_photon_decay_rate_ceiling": [
+            0.001832051555294224,
+            0.007284560813560085
+          ],
+          "raw_decay_rate_ceiling": [
+            0.0018320553415419297,
+            0.007284575868350212
+          ],
+          "required_photon_energy_lifetime_over_service_duration": [
+            24.256591449128504,
+            96.54485631460375
+          ],
+          "required_0_62_ppm_circuit_period_over_transfer_delay": [
+            2906.1655647519137,
+            11570.712329164457
+          ],
+          "allowed_loss_per_transfer_delay": [
+            5.358358021059192e-11,
+            2.1333959759683227e-10
+          ],
+          "weakest_rate_label": -1.9749921875,
+          "weakest_rate_panel": 1844,
+          "weakest_rate_panel_end_proper_time": 5.3524458926924385,
+          "original_photon_energy_time_integral_final": [
+            1.2544836612350876,
+            1.3653451705418926
+          ]
+        }
+      ],
+      "substitutions": [
+        {
+          "photon_fraction_replaced": 0.5,
+          "maximum_energy_identity_error": 1.1102230246251565e-16,
+          "maximum_stress_identity_error": 5.204170427930421e-17,
+          "maximum_added_maxwell_energy": 0.28839829593347655,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.0028114607729640487,
+            0.010940664997455862
+          ],
+          "isolated_photon_decay_rate_ceiling": [
+            0.0036641691976333443,
+            0.01456920534821188
+          ],
+          "all_standing_photon_energy_replaced": false
+        },
+        {
+          "photon_fraction_replaced": 1.0,
+          "maximum_energy_identity_error": 1.1102230246251565e-16,
+          "maximum_stress_identity_error": 1.1102230246251565e-16,
+          "maximum_added_maxwell_energy": 0.5767952866272751,
+          "isolated_maxwell_decay_rate_ceiling": [
+            0.0015908364145919434,
+            0.006248436108613874
+          ],
+          "isolated_photon_decay_rate_ceiling": null,
+          "all_standing_photon_energy_replaced": true
+        }
+      ]
+    }
+  ],
+  "assigned_transfer_and_candidate_circuit_loss": 6.2e-07,
+  "conditional_old_converter_replacement_factor": 1.0000020666709377,
+  "exact_piecewise_linear_residence_integrals": true,
+  "continuous_panel_energy_screen": true,
+  "original_photon_holding_losses_present_in_prior_transfer_screen": false,
+  "decay_rate_bounds_share_one_remaining_budget": true,
+  "new_coupled_reaction_work_included": false,
+  "photon_confinement_geometry_constructed": false,
+  "substituted_maxwell_hosts_priced": false,
+  "full_source_realization_or_dynamical_loss_admission": false
+}
