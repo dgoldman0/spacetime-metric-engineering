@@ -1,0 +1,684 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-09-17T02:37:15.792336+00:00",
+  "git_head": "7896587d85c2c790dd95341db18d906eb3e0ee04",
+  "method": "SHA-256 and byte comparison, followed by atomic replacement of redundant regular files with hard links",
+  "scope": "Untracked point_ledger.csv outputs whose run_metadata.json explicitly enables whole-run overwrite",
+  "workers": 6,
+  "before": {
+    "project_allocated_bytes": 21427847168,
+    "runs_allocated_bytes": 15546384384,
+    "filesystem_available_bytes": 804503552
+  },
+  "after_before_evidence_files": {
+    "project_allocated_bytes": 20051611648,
+    "runs_allocated_bytes": 14179586048,
+    "filesystem_available_bytes": 2183737344
+  },
+  "duplicate_groups": 36,
+  "redundant_copies_consolidated": 66,
+  "ledger_paths_verified": 102,
+  "ledger_allocated_bytes_released": 1366798336,
+  "cache_allocated_bytes_removed": 9437184,
+  "verification": {
+    "affected_file_hashes_preserved": true,
+    "run_paths_and_logical_sizes_preserved": true,
+    "run_configurations_preserved": true,
+    "representative_harness_regeneration_created_independent_inode": true,
+    "representative_harness_regeneration_preserved_original_hash": true
+  },
+  "groups": [
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p002/point_ledger.csv",
+      "sha256": "c71d6f1c352498e816c9066de1e2b838d2b240112bdb059d36b91569ab8fec66",
+      "logical_bytes": 20840919,
+      "released_allocated_bytes": 62545920,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_0p25/point_ledger.csv",
+          "original_inode": 11565474,
+          "original_mtime_ns": 1778995382761157677
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_0p5/point_ledger.csv",
+          "original_inode": 11578480,
+          "original_mtime_ns": 1778995415219569641
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_service_carrying_flow_localizer/point_ledger.csv",
+          "original_inode": 11563968,
+          "original_mtime_ns": 1778992909361939754
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_service_flow_off/point_ledger.csv",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "logical_bytes": 18366227,
+      "released_allocated_bytes": 146964480,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_screen/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11564348,
+          "original_mtime_ns": 1778995356264637742
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11581717,
+          "original_mtime_ns": 1779016264463713255
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11672246,
+          "original_mtime_ns": 1779019371677439822
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11670155,
+          "original_mtime_ns": 1779018985690292171
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11672270,
+          "original_mtime_ns": 1779019420595482489
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11676543,
+          "original_mtime_ns": 1779020341588161707
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11673795,
+          "original_mtime_ns": 1779020158755537019
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_service_flow_off/point_ledger.csv",
+          "original_inode": 11669966,
+          "original_mtime_ns": 1779019229125270345
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_2p5em06/point_ledger.csv",
+      "sha256": "b1212cf1f1506410e05d4a399b4ec045c4a9df3c17abd3845bcfad3cf79e081e",
+      "logical_bytes": 21110537,
+      "released_allocated_bytes": 21114880,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+          "original_inode": 11667879,
+          "original_mtime_ns": 1779016327167636630
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_0p5/point_ledger.csv",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "logical_bytes": 21109037,
+      "released_allocated_bytes": 105574400,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_1em07/point_ledger.csv",
+          "original_inode": 11581198,
+          "original_mtime_ns": 1778997072854653272
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_0p75/point_ledger.csv",
+          "original_inode": 11581401,
+          "original_mtime_ns": 1778997098652187532
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/v10_support_shell_window_target/point_ledger.csv",
+          "original_inode": 11581036,
+          "original_mtime_ns": 1778997055131973215
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a1em07/point_ledger.csv",
+          "original_inode": 11667815,
+          "original_mtime_ns": 1779016320531750641
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_window_pos_target/point_ledger.csv",
+          "original_inode": 11667780,
+          "original_mtime_ns": 1779016317084809857
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_0p5/point_ledger.csv",
+      "sha256": "d4eafaecd8835285f8680e378656501ffe72c7f97c80a058bf8b105e4d2d1b89",
+      "logical_bytes": 21105174,
+      "released_allocated_bytes": 63332352,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_1em07/point_ledger.csv",
+          "original_inode": 11581070,
+          "original_mtime_ns": 1778997059354896981
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_0p75/point_ledger.csv",
+          "original_inode": 11581317,
+          "original_mtime_ns": 1778997088055378846
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_window_neg_target/point_ledger.csv",
+          "original_inode": 11667798,
+          "original_mtime_ns": 1779016318834779794
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_2p5em07/point_ledger.csv",
+      "sha256": "e5b7530a2175525d85872cd9fb171c07991f8139f436720c9be16319d4e8e73b",
+      "logical_bytes": 21111090,
+      "released_allocated_bytes": 21118976,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+          "original_inode": 11667831,
+          "original_mtime_ns": 1779016322155722741
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_5em07/point_ledger.csv",
+      "sha256": "cf84eea20e620f8d0797ae7aa23379512ca9fef66ae10bba8bdbe11ab7e29a7e",
+      "logical_bytes": 21110136,
+      "released_allocated_bytes": 21114880,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a5em07/point_ledger.csv",
+          "original_inode": 11667847,
+          "original_mtime_ns": 1779016323777694875
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_service_flow_off/point_ledger.csv",
+      "sha256": "923ad6a86f25c5b7bdbc6621b980d131900f20929f8dc48009a97b64703fc9aa",
+      "logical_bytes": 19122410,
+      "released_allocated_bytes": 19128320,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/v10_service_flow_off/point_ledger.csv",
+          "original_inode": 11581022,
+          "original_mtime_ns": 1778997053083010204
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_1em06/point_ledger.csv",
+      "sha256": "9429bd11432e3b34d481794778e694676a5b88cee28c7791feed75639137dc44",
+      "logical_bytes": 21108887,
+      "released_allocated_bytes": 21114880,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a1em06/point_ledger.csv",
+          "original_inode": 11667863,
+          "original_mtime_ns": 1779016325416666715
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "sha256": "509ff709593da916d089b924589cc803ed1049d697286e98c6304e956ed01d37",
+      "logical_bytes": 21078774,
+      "released_allocated_bytes": 63258624,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+          "original_inode": 11676644,
+          "original_mtime_ns": 1779020346225076309
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+          "original_inode": 11675159,
+          "original_mtime_ns": 1779020204742686403
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_window_pos_target/point_ledger.csv",
+          "original_inode": 11676564,
+          "original_mtime_ns": 1779020343138133160
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em07_lead0p5/point_ledger.csv",
+      "sha256": "c71251833109dfd8c4e33958ec239c086e09f5e0e9466f0013a71a31e2ec8f29",
+      "logical_bytes": 21079622,
+      "released_allocated_bytes": 21086208,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p5_sm1/point_ledger.csv",
+          "original_inode": 11672633,
+          "original_mtime_ns": 1779019437428154515
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "sha256": "f60c1aa139716d6c07724af9db3b9864b9705cde6e94e04cd1c6dbc19697c1ba",
+      "logical_bytes": 21074644,
+      "released_allocated_bytes": 42164224,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+          "original_inode": 11675208,
+          "original_mtime_ns": 1779020206602652025
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_window_neg_target/point_ledger.csv",
+          "original_inode": 11676610,
+          "original_mtime_ns": 1779020344646105388
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em07_lead0p75/point_ledger.csv",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "logical_bytes": 21083159,
+      "released_allocated_bytes": 105451520,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+          "original_inode": 11583734,
+          "original_mtime_ns": 1779016269257631000
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_window_pos_target/point_ledger.csv",
+          "original_inode": 11582332,
+          "original_mtime_ns": 1779016266064685786
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p5_sm1/point_ledger.csv",
+          "original_inode": 11673130,
+          "original_mtime_ns": 1779019466308593411
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+          "original_inode": 11671825,
+          "original_mtime_ns": 1779019233849175449
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_window_pos_target/point_ledger.csv",
+          "original_inode": 11671789,
+          "original_mtime_ns": 1779019230695238798
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em07_lead0p5/point_ledger.csv",
+      "sha256": "00e11e4b71e87c1492a3612e5a604b21dc1c7a7a27b66be9d0b3e76da2401731",
+      "logical_bytes": 21083713,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p5_sm1/point_ledger.csv",
+          "original_inode": 11672611,
+          "original_mtime_ns": 1779019435749187197
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em07_lead0p75/point_ledger.csv",
+      "sha256": "6576997644aac39304a57286999cdb24cce510ac33f5972d2f72667c7eadeb9b",
+      "logical_bytes": 21079306,
+      "released_allocated_bytes": 63258624,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_window_neg_target/point_ledger.csv",
+          "original_inode": 11583711,
+          "original_mtime_ns": 1779016267654658505
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p5_sm1/point_ledger.csv",
+          "original_inode": 11673159,
+          "original_mtime_ns": 1779019468040559824
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_window_neg_target/point_ledger.csv",
+          "original_inode": 11671806,
+          "original_mtime_ns": 1779019232278206998
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+      "sha256": "2f75fc14e97e89a091e78c1e3684da03d8e5d2ef089383de23152963cf61d606",
+      "logical_bytes": 21080971,
+      "released_allocated_bytes": 21086208,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1_tw0p35_sm1/point_ledger.csv",
+          "original_inode": 11676248,
+          "original_mtime_ns": 1779020235888110979
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p001/point_ledger.csv",
+      "sha256": "a96be367b974b4a5f984541789cadf58f646bdaaa6a8bc9956a8024e41f30f00",
+      "logical_bytes": 21082981,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p001/point_ledger.csv",
+          "original_inode": 11672078,
+          "original_mtime_ns": 1779019253606779427
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em05_lead0p75/point_ledger.csv",
+      "sha256": "60ae1ca33eeebe1fe01974f90879c1c361fc1ca9fc80f5fb1217240c3fd56ee5",
+      "logical_bytes": 21082284,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em05/point_ledger.csv",
+          "original_inode": 11585413,
+          "original_mtime_ns": 1779016279643452765
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em05/point_ledger.csv",
+          "original_inode": 11671939,
+          "original_mtime_ns": 1779019243792975959
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em05/point_ledger.csv",
+      "sha256": "e36bea403edb8b7be2df2eb630f9a31c2f7051008c0733b47552234bd81b8d6d",
+      "logical_bytes": 21083814,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em05/point_ledger.csv",
+          "original_inode": 11671983,
+          "original_mtime_ns": 1779019247030911078
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em06_lead0p75/point_ledger.csv",
+      "sha256": "f344e8510a1b7cddda37c78bca8ebd7930691bd4be12128d6bd3b90502b46458",
+      "logical_bytes": 21083102,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em06/point_ledger.csv",
+          "original_inode": 11584847,
+          "original_mtime_ns": 1779016274565539914
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em06/point_ledger.csv",
+          "original_inode": 11671885,
+          "original_mtime_ns": 1779019238664078809
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em07_lead0p75/point_ledger.csv",
+      "sha256": "2304c461da03a770ce06faf624b385625efe73ba4adf84206b980df510a7678f",
+      "logical_bytes": 21085280,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+          "original_inode": 11583774,
+          "original_mtime_ns": 1779016270985601349
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+          "original_inode": 11671848,
+          "original_mtime_ns": 1779019235444143427
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+      "sha256": "a768f687d1edc1293f34329e2e85e807a3c250d0cd28947770bdaa399917b440",
+      "logical_bytes": 21082639,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+          "original_inode": 11672001,
+          "original_mtime_ns": 1779019248679878051
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+      "sha256": "4eb4e715c51babb8aa4714e171a30112353ef6fb46069fabe52f32a5399fe90c",
+      "logical_bytes": 21084482,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+          "original_inode": 11672059,
+          "original_mtime_ns": 1779019251992811725
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em06_lead0p75/point_ledger.csv",
+      "sha256": "160969d4896b0970af3b53680a6ce0f1630d1a480aef86429f032dbd5a1a3656",
+      "logical_bytes": 21084780,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+          "original_inode": 11584913,
+          "original_mtime_ns": 1779016276252510963
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+          "original_inode": 11671904,
+          "original_mtime_ns": 1779019240466042664
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+      "sha256": "d3713c4cf516626f3c8f523cb7bb5841b33d99400bda5d682bc3c174c6388b6d",
+      "logical_bytes": 21082754,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+          "original_inode": 11672137,
+          "original_mtime_ns": 1779019258670678150
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+      "sha256": "248d72cac8aa0df9cf77e9cc1d865bfe2996a20880dfd766cc14ee74e56da7fd",
+      "logical_bytes": 21085130,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+          "original_inode": 11671963,
+          "original_mtime_ns": 1779019245410943535
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+      "sha256": "597c9993710ede8ebd4349ee7f9d6a23d062cf2e9635d90b21217e6e6e86ce22",
+      "logical_bytes": 21084372,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+          "original_inode": 11672098,
+          "original_mtime_ns": 1779019255332744898
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em07_lead0p75/point_ledger.csv",
+      "sha256": "a7bb518d431a69cee132b38b935c7f1c50031551e3fbeb9153079f2f4177d81d",
+      "logical_bytes": 21084389,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em07/point_ledger.csv",
+          "original_inode": 11584810,
+          "original_mtime_ns": 1779016272789570392
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em07/point_ledger.csv",
+          "original_inode": 11671866,
+          "original_mtime_ns": 1779019237033111535
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p01/point_ledger.csv",
+      "sha256": "5654201038426125130714c48ba46acafb6b796ea543d07285b550bf69cc02cf",
+      "logical_bytes": 21081910,
+      "released_allocated_bytes": 21086208,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p01/point_ledger.csv",
+          "original_inode": 11672157,
+          "original_mtime_ns": 1779019260376644051
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+      "sha256": "6c32f454ea5ff14869490af14aa02bcf3437ea4dbec374e45d213ce8bf95990e",
+      "logical_bytes": 21085501,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+          "original_inode": 11672040,
+          "original_mtime_ns": 1779019250336844873
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p005/point_ledger.csv",
+      "sha256": "69e9850fe7d4c96a6a97535d908a0471e0f75a30020806d1478fdfb1023430e2",
+      "logical_bytes": 21083450,
+      "released_allocated_bytes": 21090304,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p005/point_ledger.csv",
+          "original_inode": 11672116,
+          "original_mtime_ns": 1779019256991711719
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em06_lead0p75/point_ledger.csv",
+      "sha256": "b0738dd7cf3224ba8876f9242fc10837a4cd3082e6fa8d0a547e95f22951dec2",
+      "logical_bytes": 21083622,
+      "released_allocated_bytes": 42180608,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em06/point_ledger.csv",
+          "original_inode": 11584942,
+          "original_mtime_ns": 1779016277886482920
+        },
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em06/point_ledger.csv",
+          "original_inode": 11670043,
+          "original_mtime_ns": 1779019242153008835
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p5_gain2p0/point_ledger.csv",
+      "sha256": "ecb6c7178cba3b3068fae37d5e5bfce6a3146f8c15606cae7641cd58feafe373",
+      "logical_bytes": 20848347,
+      "released_allocated_bytes": 20852736,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p5_gain5p0/point_ledger.csv",
+          "original_inode": 11671136,
+          "original_mtime_ns": 1779019087780151650
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p75_gain2p0/point_ledger.csv",
+      "sha256": "ec767cd8a14721831ae582cd8c1ffe7c76fb4080c3c8208917060d4c9485532f",
+      "logical_bytes": 20848336,
+      "released_allocated_bytes": 20852736,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p75_gain5p0/point_ledger.csv",
+          "original_inode": 11670852,
+          "original_mtime_ns": 1779019081032291444
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p5_gain2p0/point_ledger.csv",
+      "sha256": "d7d12236f851fe5bf8fa7c8b1fd97d1f39922db8f829e7e633f2bcabca4d569a",
+      "logical_bytes": 20848151,
+      "released_allocated_bytes": 20852736,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p5_gain5p0/point_ledger.csv",
+          "original_inode": 11671010,
+          "original_mtime_ns": 1779019073609445484
+        }
+      ]
+    },
+    {
+      "retained_path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p75_gain2p0/point_ledger.csv",
+      "sha256": "7f60a63b18dc26039edb2c0943fc6630f079c815fa4a21a6330b2c579d554039",
+      "logical_bytes": 20848221,
+      "released_allocated_bytes": 20852736,
+      "linked_paths": [
+        {
+          "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p75_gain5p0/point_ledger.csv",
+          "original_inode": 11671201,
+          "original_mtime_ns": 1779019094410014517
+        }
+      ]
+    }
+  ],
+  "removed_caches": [
+    {
+      "path": ".pytest_cache",
+      "allocated_bytes": 32768
+    },
+    {
+      "path": "white_casimir_intersection/experiments/white_casimir_source_function_audit/.pytest_cache",
+      "allocated_bytes": 28672
+    },
+    {
+      "path": "white_casimir_intersection/experiments/white_casimir_source_function_audit/tests/__pycache__",
+      "allocated_bytes": 98304
+    },
+    {
+      "path": "white_casimir_intersection/experiments/white_casimir_source_function_audit/white_casimir_audit/__pycache__",
+      "allocated_bytes": 372736
+    },
+    {
+      "path": "toolkit/adm_harness_cli/.pytest_cache",
+      "allocated_bytes": 139264
+    },
+    {
+      "path": "toolkit/adm_harness_cli/scripts/__pycache__",
+      "allocated_bytes": 2662400
+    },
+    {
+      "path": "toolkit/adm_harness_cli/tests/__pycache__",
+      "allocated_bytes": 2699264
+    },
+    {
+      "path": "toolkit/adm_harness_cli/adm_harness/__pycache__",
+      "allocated_bytes": 3403776
+    }
+  ]
+}
