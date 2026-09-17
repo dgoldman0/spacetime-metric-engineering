@@ -1,0 +1,49 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_optical_assembly.py": "59a1f3f5ee32d1826d542b64605311bae643dd4ae8b7ed1427c67248d0946854",
+    "toolkit/adm_harness_cli/tests/test_optical_assembly.py": "25787270e010fbf8095792baef8b75a54612911bdf13271274f95dbd412b53a6",
+    "toolkit/adm_harness_cli/adm_harness/optical_assembly.py": "ca7311abd3c59c2c5e1b86de918b613dfd64ee4ac0d8f337477f3ff2ad5065aa",
+    "toolkit/adm_harness_cli/adm_harness/constitutive_joints_and_optics.py": "6b66b080b56ccb35a447f5d1842cf4228333d33e5a06fc80f024364c77f30267",
+    "toolkit/adm_harness_cli/adm_harness/controlled_optical_transfer.py": "a9729567cf323b2960a98e5a37850906f661a3406e1ff7da1376f38ce6b0f5b2",
+    "toolkit/adm_harness_cli/adm_harness/material_reconfiguration.py": "75d0f5e858056fd6f358d1824863658f3cf21571cd9dc03805747cdd5487a659",
+    "toolkit/adm_harness_cli/adm_harness/finite_containment.py": "52fe82e4ee99710b03a59b3454748b849b69fbc3f47334d5312d36a5b049f295",
+    "toolkit/adm_harness_cli/adm_harness/containment_ensemble.py": "fea5ab437080a02ceb0ef29eb0b321d621b1f74cf54a4d7cf9f7e55d74ae91b7",
+    "toolkit/adm_harness_cli/adm_harness/magnetic_load_balance.py": "611554ed15f4393b0f59cfdf1a1b12c247de0776430c12e46b561a4871ed1512"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b",
+    "supporting_reports/data/constitutive_joints_and_optics/manifest.json": "249e70994dfd67fa96b2f2119765a43a2a545e4cc1185badedbc81f603211ae5",
+    "supporting_reports/data/material_reconfiguration/manifest.json": "006810a9bd7544b6eb282988947efb29091c975337f42c829f22bce383883d8e"
+  },
+  "output_sha256": {
+    "damped_original_extended_refined_states.npz": "45e66e3cac0c0a14985ee3713c7f9b3fe65e27c93ff618b6cf5111e76429ced0",
+    "damped_original_extended_states.npz": "1fce3ec6e02639ee432f355a490805a3b4b548516d45a3e7881eacbb7dad23f5",
+    "damped_original_states.npz": "3ffdc81200ca06c0fb6a96f24ab2f03d916cbf51468fe70cfcc24fb72526d63d",
+    "damped_smaller_resonance_extended_refined_states.npz": "931f0ae33a9645dd1557475c591ce53e1db57010125d84657f3a0156b6b2d9ce",
+    "damped_smaller_resonance_extended_states.npz": "abde7dc00e85ee9a91ebd5603491fa6a91da5cc24edce8da6eae8782ec67b3ae",
+    "damped_smaller_resonance_states.npz": "172067c306b67b6a3053f5653b4a874031860744d9edb6a063cffda4df76a7a2",
+    "execution_audit_optical_assembly.py": "59a1f3f5ee32d1826d542b64605311bae643dd4ae8b7ed1427c67248d0946854",
+    "execution_constitutive_joints_and_optics.py": "6b66b080b56ccb35a447f5d1842cf4228333d33e5a06fc80f024364c77f30267",
+    "execution_containment_ensemble.py": "fea5ab437080a02ceb0ef29eb0b321d621b1f74cf54a4d7cf9f7e55d74ae91b7",
+    "execution_controlled_optical_transfer.py": "a9729567cf323b2960a98e5a37850906f661a3406e1ff7da1376f38ce6b0f5b2",
+    "execution_finite_containment.py": "52fe82e4ee99710b03a59b3454748b849b69fbc3f47334d5312d36a5b049f295",
+    "execution_magnetic_load_balance.py": "611554ed15f4393b0f59cfdf1a1b12c247de0776430c12e46b561a4871ed1512",
+    "execution_material_reconfiguration.py": "75d0f5e858056fd6f358d1824863658f3cf21571cd9dc03805747cdd5487a659",
+    "execution_optical_assembly.py": "ca7311abd3c59c2c5e1b86de918b613dfd64ee4ac0d8f337477f3ff2ad5065aa",
+    "execution_test_optical_assembly.py": "25787270e010fbf8095792baef8b75a54612911bdf13271274f95dbd412b53a6",
+    "first_n16_t2057_states.npz": "31eeb8b919ba15d159a064372846dce5fe33432c9c82adeb5dc873a6afce4643",
+    "first_n32_t4113_states.npz": "ae29aea3dc6fada6a64c2f6e03b2a548974622403a55f70ccfa4623eab7c8fe1",
+    "original_store_refined_states.npz": "4fd08d06f3f85276a3e8d0eea1f26cf536b47420df39ce2f1795b477ed2376bc",
+    "original_store_states.npz": "c3aa3aa67965e195490d729f58385c9c20cd9aabb5d4b15956a1bb3da699414a",
+    "polygon_reactions.npz": "5a8df5cd9ff681ada9e8b34423ec744009bf3e676da950c1a30c0b18bb613d8e",
+    "second_n16_t1029_states.npz": "165ed885aa9b4ff76cca435d474856c0bc188e1ab5c1b93a4deaf40bc2856aae",
+    "second_n32_t2057_states.npz": "33c2f4189c7c9409d7d8fc042ad40438c965986982e6bc65740f14932b4aa11c",
+    "smaller_finite_phase_states.npz": "c9f5b0993bd580d53414ba623dee457466d7ff9fca598dc81d9954262d9e8a52",
+    "smaller_nearby_resonance_refined_states.npz": "85e1b1f54400febe273968dcc38090776481ac855b231622c3e039f838bb6518",
+    "smaller_nearby_resonance_states.npz": "f1186700baf96a5c44a9d1a3f60075f517afc1bc3c22406294750aa2ebaf7e6e",
+    "smaller_store_refined_states.npz": "3fed6ca33cc5267fc28068f8f2ba1eabdcc3f39a61827b05b984eed0031d2ff8",
+    "smaller_store_states.npz": "ff3d888b683f36698408f17494cff36b2fe1bb8ce34bcb0db6ef269f70fb0112",
+    "store_reaction_and_heat.png": "56a897ddf1499377933dfddce6b37b96dc26b54c4d45101db7e7efeb327abc87",
+    "summary.json": "57ed31492943715bd1c884fe1748ec75edbcf9e49e1c84055e971541ca437cb4"
+  }
+}

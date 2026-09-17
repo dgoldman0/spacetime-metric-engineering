@@ -1,0 +1,2165 @@
+{
+  "created_utc": "2026-09-17T01:25:58.837579+00:00",
+  "workers": 4,
+  "base_commit": "a5514595c175672457da830afb94dedd0fcd78b8",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.6"
+  },
+  "parameters": {
+    "store_reference_inventory_over_C": 8.0,
+    "store_reference_radius_over_delay": 0.026525823848649224,
+    "initial_store_radius": 1.2909944487358056,
+    "baseline_half_period_over_delay": 0.4057204129667897,
+    "hydrogen_specific_energy_fraction": 1.3351800672643421e-09
+  },
+  "store_trials": [
+    {
+      "name": "original_store",
+      "parameters": {},
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 5.3413131958779365,
+      "radius": {
+        "minimum": 1.0000000000000002,
+        "maximum": 1.4703772825838781
+      },
+      "peak_speed": 0.2080589173074413,
+      "peak_pressure_trace": 1.9726747604809851,
+      "maximum_hoop_stress_energy_ratio": 0.20193750699114943,
+      "extraction_depth": {
+        "minimum": 0.36009038781334185,
+        "maximum": 0.8405704881573779
+      },
+      "circulating_power": {
+        "minimum": 1.1896682242462604,
+        "maximum": 2.7770805160130094
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.20806662075357713,
+      "maximum_energy_identity_error": 2.140509991477302e-12,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_store",
+      "parameters": {
+        "reference_radius": 0.026525823848649224
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 33.45763303734317,
+      "radius": {
+        "minimum": 1.2127184000589821,
+        "maximum": 1.2942443488953184
+      },
+      "peak_speed": 0.008054384176614702,
+      "peak_pressure_trace": 0.04725127729068947,
+      "maximum_hoop_stress_energy_ratio": 0.004817783460328257,
+      "extraction_depth": {
+        "minimum": 0.10364424308996574,
+        "maximum": 0.12924023328588885
+      },
+      "circulating_power": {
+        "minimum": 7.737528589784628,
+        "maximum": 9.648389241764017
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24018281389151838,
+      "maximum_energy_identity_error": 1.850963826655061e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.2877323806917276,
+        "radius_maximum": 1.2942565167757163,
+        "maximum_extraction_depth": 0.10469541681157171,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_resonance",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1025
+      },
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 7.969646034933914,
+      "radius": {
+        "minimum": 1.0,
+        "maximum": 1.4546642524248727
+      },
+      "peak_speed": 0.18520885037341214,
+      "peak_pressure_trace": 1.817560140056457,
+      "maximum_hoop_stress_energy_ratio": 0.1847444032385722,
+      "extraction_depth": {
+        "minimum": 0.09193508058408274,
+        "maximum": 0.19074932163894268
+      },
+      "circulating_power": {
+        "minimum": 5.242482601814106,
+        "maximum": 10.877240696878617
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.22660918118497117,
+      "maximum_energy_identity_error": 1.7172858690628345e-09,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_original",
+      "parameters": {
+        "damping": 0.2
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 33.45763303734317,
+      "radius": {
+        "minimum": 1.1733797578175336,
+        "maximum": 1.328080435809794
+      },
+      "peak_speed": 0.04521521959860936,
+      "peak_pressure_trace": 0.45259633108583336,
+      "maximum_hoop_stress_energy_ratio": 0.04613153799105266,
+      "extraction_depth": {
+        "minimum": 0.4166666666666667,
+        "maximum": 0.8939877019690681
+      },
+      "circulating_power": {
+        "minimum": 1.1185836201073378,
+        "maximum": 2.4
+      },
+      "final_thermal_energy": 0.5489682607796353,
+      "maximum_thermal_energy": 0.6010301956854563,
+      "minimum_coherent_action": 0.15101648651084928,
+      "maximum_energy_identity_error": 2.6645352591003757e-14,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_original_extended",
+      "parameters": {
+        "damping": 0.2,
+        "intervals": 400
+      },
+      "complete": false,
+      "boundary": "extraction",
+      "end_time": 37.509643044961244,
+      "radius": {
+        "minimum": 1.1733797578175336,
+        "maximum": 1.2909944487358056
+      },
+      "peak_speed": 0.04521521959860936,
+      "peak_pressure_trace": 0.45259633108583336,
+      "maximum_hoop_stress_energy_ratio": 0.04613153799105266,
+      "extraction_depth": {
+        "minimum": 0.4166666666666667,
+        "maximum": 0.9999999999999973
+      },
+      "circulating_power": {
+        "minimum": 1.0000000000000027,
+        "maximum": 2.4
+      },
+      "final_thermal_energy": 0.6506626400585137,
+      "maximum_thermal_energy": 0.697832211394264,
+      "minimum_coherent_action": 0.13527854919525412,
+      "maximum_energy_identity_error": 3.019806626980426e-14,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_smaller_resonance",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1025,
+        "damping": 0.2
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.2,
+      "radius": {
+        "minimum": 1.2170100758536002,
+        "maximum": 1.3008505860528647
+      },
+      "peak_speed": 0.009886030145684982,
+      "peak_pressure_trace": 0.08152332388012855,
+      "maximum_hoop_stress_energy_ratio": 0.008194305285302331,
+      "extraction_depth": {
+        "minimum": 0.10394349039597967,
+        "maximum": 0.12696171890947988
+      },
+      "circulating_power": {
+        "minimum": 7.876389896020326,
+        "maximum": 9.620612086340696
+      },
+      "final_thermal_energy": 0.014982445209772204,
+      "maximum_thermal_energy": 0.014982445209772204,
+      "minimum_coherent_action": 0.2506312195716316,
+      "maximum_energy_identity_error": 1.8845369709197257e-11,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_smaller_resonance_extended",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1025,
+        "damping": 0.2,
+        "intervals": 400
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 42.0,
+      "radius": {
+        "minimum": 1.2170100758536002,
+        "maximum": 1.3008505860515758
+      },
+      "peak_speed": 0.009886030145684982,
+      "peak_pressure_trace": 0.08152332388047294,
+      "maximum_hoop_stress_energy_ratio": 0.008194305285302331,
+      "extraction_depth": {
+        "minimum": 0.10416666666666667,
+        "maximum": 0.13099788299688403
+      },
+      "circulating_power": {
+        "minimum": 7.633711149544199,
+        "maximum": 9.6
+      },
+      "final_thermal_energy": 0.06263571936593679,
+      "maximum_thermal_energy": 0.06391348167836022,
+      "minimum_coherent_action": 0.2429090434223445,
+      "maximum_energy_identity_error": 2.9254820788082725e-11,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_finite_phase",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "transition": 0.10143010324169742
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 33.45763303734317,
+      "radius": {
+        "minimum": 1.2135584443562266,
+        "maximum": 1.2931837397923402
+      },
+      "peak_speed": 0.007033201503189782,
+      "peak_pressure_trace": 0.03724729557746232,
+      "maximum_hoop_stress_energy_ratio": 0.0038143817569797813,
+      "extraction_depth": {
+        "minimum": 0.10381413939258614,
+        "maximum": 0.12909530250608273
+      },
+      "circulating_power": {
+        "minimum": 7.746215242439839,
+        "maximum": 9.632599237935933
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2401856844441814,
+      "maximum_energy_identity_error": 1.382716163789155e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.2887942729232258,
+        "radius_maximum": 1.2931946245455757,
+        "maximum_extraction_depth": 0.10452278001683817,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_0.1",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 0.1
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.0,
+      "radius": {
+        "minimum": 1.2183554826713876,
+        "maximum": 1.2932311731268744
+      },
+      "peak_speed": 0.014284956042887056,
+      "peak_pressure_trace": 0.09954380485457384,
+      "maximum_hoop_stress_energy_ratio": 0.00989302056683812,
+      "extraction_depth": {
+        "minimum": 0.4114259779511733,
+        "maximum": 0.5022667349820763
+      },
+      "circulating_power": {
+        "minimum": 1.9909739792655903,
+        "maximum": 2.4305708768800125
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25454790549758566,
+      "maximum_energy_identity_error": 5.329070518200751e-15,
+      "retained_orbit": {
+        "radius_minimum": 1.2758012398736671,
+        "radius_maximum": 1.3061876575979436,
+        "maximum_extraction_depth": 0.4266792870862646,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_0.15",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 0.15
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 13.0,
+      "radius": {
+        "minimum": 1.2163108942117238,
+        "maximum": 1.2909944487358056
+      },
+      "peak_speed": 0.017076186003538402,
+      "peak_pressure_trace": 0.15116001929662176,
+      "maximum_hoop_stress_energy_ratio": 0.015051599801095664,
+      "extraction_depth": {
+        "minimum": 0.4048426730849411,
+        "maximum": 0.5197762346113772
+      },
+      "circulating_power": {
+        "minimum": 1.9239048140545965,
+        "maximum": 2.4700953394559457
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24677125045526693,
+      "maximum_energy_identity_error": 5.329070518200751e-15,
+      "retained_orbit": {
+        "radius_minimum": 1.2701442787609674,
+        "radius_maximum": 1.311844618710643,
+        "maximum_extraction_depth": 0.4305148122004094,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_0.3",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 0.3
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 25.0,
+      "radius": {
+        "minimum": 1.190201515498893,
+        "maximum": 1.316268586873126
+      },
+      "peak_speed": 0.049386847736718316,
+      "peak_pressure_trace": 0.4817612894909232,
+      "maximum_hoop_stress_energy_ratio": 0.047903338343503035,
+      "extraction_depth": {
+        "minimum": 0.39368665948522863,
+        "maximum": 0.5616071541942115
+      },
+      "circulating_power": {
+        "minimum": 1.7806040976005555,
+        "maximum": 2.5400911509360418
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.23804029131296492,
+      "maximum_energy_identity_error": 2.6645352591003757e-14,
+      "retained_orbit": {
+        "radius_minimum": 1.2535478392245933,
+        "radius_maximum": 1.3284410582470165,
+        "maximum_extraction_depth": 0.4421188520972443,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_0.5",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 41.0,
+      "radius": {
+        "minimum": 1.1965726593637296,
+        "maximum": 1.3231340293761547
+      },
+      "peak_speed": 0.03924702493228192,
+      "peak_pressure_trace": 0.2634887160823237,
+      "maximum_hoop_stress_energy_ratio": 0.026527201081849222,
+      "extraction_depth": {
+        "minimum": 0.39678748704467176,
+        "maximum": 0.5210260554731914
+      },
+      "circulating_power": {
+        "minimum": 1.9192898118920532,
+        "maximum": 2.5202407652724603
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25408980471912346,
+      "maximum_energy_identity_error": 3.552713678800501e-15,
+      "retained_orbit": {
+        "radius_minimum": 1.258825887370905,
+        "radius_maximum": 1.3231630101007053,
+        "maximum_extraction_depth": 0.43837053731736547,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_1",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 81.0,
+      "radius": {
+        "minimum": 1.1620509778933625,
+        "maximum": 1.3083468213131222
+      },
+      "peak_speed": 0.041034157724479325,
+      "peak_pressure_trace": 0.2749244608656916,
+      "maximum_hoop_stress_energy_ratio": 0.02834963467844265,
+      "extraction_depth": {
+        "minimum": 0.40089687743605523,
+        "maximum": 0.6614848585651463
+      },
+      "circulating_power": {
+        "minimum": 1.51175040071082,
+        "maximum": 2.49440705648675
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.1793979938244677,
+      "maximum_energy_identity_error": 8.881784197001252e-15,
+      "retained_orbit": {
+        "radius_minimum": 1.2736358855296688,
+        "radius_maximum": 1.308353011941941,
+        "maximum_extraction_depth": 0.42814041168564754,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_1_half_2",
+      "parameters": {
+        "reference_radius": 0.1061032953945969,
+        "half_period": 2.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 161.0,
+      "radius": {
+        "minimum": 1.0426518614463771,
+        "maximum": 1.4174848364522923
+      },
+      "peak_speed": 0.12450298456567678,
+      "peak_pressure_trace": 1.0911189488709736,
+      "maximum_hoop_stress_energy_ratio": 0.11366729131805262,
+      "extraction_depth": {
+        "minimum": 0.3474670676607574,
+        "maximum": 0.8044959913877816
+      },
+      "circulating_power": {
+        "minimum": 1.243014273166194,
+        "maximum": 2.8779705850464374
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.17216224526868368,
+      "maximum_energy_identity_error": 5.382361223382759e-13,
+      "retained_orbit": {
+        "radius_minimum": 1.1883929405395024,
+        "radius_maximum": 1.3935959569319742,
+        "maximum_extraction_depth": 0.49331719944889635,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_0.1",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 0.1
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.0,
+      "radius": {
+        "minimum": 1.2178676219198317,
+        "maximum": 1.2970908731105235
+      },
+      "peak_speed": 0.017532176207676217,
+      "peak_pressure_trace": 0.1565439986543406,
+      "maximum_hoop_stress_energy_ratio": 0.015116852913239314,
+      "extraction_depth": {
+        "minimum": 0.2022102344640103,
+        "maximum": 0.2513364539531845
+      },
+      "circulating_power": {
+        "minimum": 3.9787304398997616,
+        "maximum": 4.945348105899069
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2545428405153864,
+      "maximum_energy_identity_error": 3.836930773104541e-13,
+      "retained_orbit": {
+        "radius_minimum": 1.2697975398367654,
+        "radius_maximum": 1.3121913576348307,
+        "maximum_extraction_depth": 0.21537592537676836,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_0.15",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 0.15
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 13.0,
+      "radius": {
+        "minimum": 1.2030254122124173,
+        "maximum": 1.3045202738914787
+      },
+      "peak_speed": 0.025352820513861344,
+      "peak_pressure_trace": 0.25375699436162213,
+      "maximum_hoop_stress_energy_ratio": 0.025926422429976014,
+      "extraction_depth": {
+        "minimum": 0.20051173283121435,
+        "maximum": 0.26584614422984626
+      },
+      "circulating_power": {
+        "minimum": 3.7615742101394414,
+        "maximum": 4.987239329489883
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24643707264026019,
+      "maximum_energy_identity_error": 1.6857626405908377e-12,
+      "retained_orbit": {
+        "radius_minimum": 1.2657251592400443,
+        "radius_maximum": 1.3162637382314502,
+        "maximum_extraction_depth": 0.21677640820625257,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_0.3",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 0.3
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 25.0,
+      "radius": {
+        "minimum": 1.1904819883505258,
+        "maximum": 1.316994536472682
+      },
+      "peak_speed": 0.02448514293419775,
+      "peak_pressure_trace": 0.20800062579691994,
+      "maximum_hoop_stress_energy_ratio": 0.02098072361368172,
+      "extraction_depth": {
+        "minimum": 0.2003071005533962,
+        "maximum": 0.25934188346302994
+      },
+      "circulating_power": {
+        "minimum": 3.8559140029634023,
+        "maximum": 4.992334256934782
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.23899578626103854,
+      "maximum_energy_identity_error": 1.0302869668521453e-12,
+      "retained_orbit": {
+        "radius_minimum": 1.2649938886815695,
+        "radius_maximum": 1.3169950087899254,
+        "maximum_extraction_depth": 0.2170295591010447,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_0.5",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 41.0,
+      "radius": {
+        "minimum": 1.2190555127726492,
+        "maximum": 1.3080434700372552
+      },
+      "peak_speed": 0.01491143443452858,
+      "peak_pressure_trace": 0.13639162511943276,
+      "maximum_hoop_stress_energy_ratio": 0.013206167911658746,
+      "extraction_depth": {
+        "minimum": 0.20295979737985273,
+        "maximum": 0.25084304485717845
+      },
+      "circulating_power": {
+        "minimum": 3.9865566157888344,
+        "maximum": 4.927084146267813
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25455475852878634,
+      "maximum_energy_identity_error": 2.0605739337042905e-13,
+      "retained_orbit": {
+        "radius_minimum": 1.2739402668530202,
+        "radius_maximum": 1.308048630618539,
+        "maximum_extraction_depth": 0.2139672495033383,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_1",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 81.0,
+      "radius": {
+        "minimum": 1.0964872069327805,
+        "maximum": 1.3824074679407699
+      },
+      "peak_speed": 0.08364849403598593,
+      "peak_pressure_trace": 0.7398502174452003,
+      "maximum_hoop_stress_energy_ratio": 0.07878039703321305,
+      "extraction_depth": {
+        "minimum": 0.1822041278159611,
+        "maximum": 0.37552687799246864
+      },
+      "circulating_power": {
+        "minimum": 2.662925235460923,
+        "maximum": 5.488349863347058
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.1755523303951628,
+      "maximum_energy_identity_error": 6.860467749447707e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.1995734857957907,
+        "radius_maximum": 1.3824154116587568,
+        "maximum_extraction_depth": 0.24191688295866262,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.5_half_2",
+      "parameters": {
+        "reference_radius": 0.05305164769729845,
+        "half_period": 2.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 161.0,
+      "radius": {
+        "minimum": 1.1476388965261812,
+        "maximum": 1.2936125243865668
+      },
+      "peak_speed": 0.015714985058448358,
+      "peak_pressure_trace": 0.14684442472015471,
+      "maximum_hoop_stress_energy_ratio": 0.015742400273590026,
+      "extraction_depth": {
+        "minimum": 0.2074903414605548,
+        "maximum": 0.32537465742220606
+      },
+      "circulating_power": {
+        "minimum": 3.0733801087108032,
+        "maximum": 4.8195014426254925
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.17960306306584128,
+      "maximum_energy_identity_error": 1.8189894035458565e-12,
+      "retained_orbit": {
+        "radius_minimum": 1.2885061412233074,
+        "radius_maximum": 1.2934827562478495,
+        "maximum_extraction_depth": 0.20913914747121984,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_0.1",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.0,
+      "radius": {
+        "minimum": 1.190495735968681,
+        "maximum": 1.2927015846447971
+      },
+      "peak_speed": 0.030931934091679218,
+      "peak_pressure_trace": 0.303989975595573,
+      "maximum_hoop_stress_energy_ratio": 0.03093109504663472,
+      "extraction_depth": {
+        "minimum": 0.1040162534239387,
+        "maximum": 0.13162533798199544
+      },
+      "circulating_power": {
+        "minimum": 7.597321422542417,
+        "maximum": 9.613882129788921
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2538773121757833,
+      "maximum_energy_identity_error": 2.9878854945764033e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2892534864384249,
+        "radius_maximum": 1.292735410981962,
+        "maximum_extraction_depth": 0.10444827755198224,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_0.15",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.15
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 13.0,
+      "radius": {
+        "minimum": 1.2119539446960086,
+        "maximum": 1.2995754850768697
+      },
+      "peak_speed": 0.011403704771994828,
+      "peak_pressure_trace": 0.08274777229083245,
+      "maximum_hoop_stress_energy_ratio": 0.008418926251170663,
+      "extraction_depth": {
+        "minimum": 0.10281355674447494,
+        "maximum": 0.1260327076999302
+      },
+      "circulating_power": {
+        "minimum": 7.934448273387003,
+        "maximum": 9.726343798078346
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2468855085770041,
+      "maximum_energy_identity_error": 2.9196201012382517e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.282280772149929,
+        "radius_maximum": 1.2997081253171898,
+        "maximum_extraction_depth": 0.10558960152556458,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_0.3",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.3
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 25.0,
+      "radius": {
+        "minimum": 1.2005760341826883,
+        "maximum": 1.302626766013578
+      },
+      "peak_speed": 0.014818520133048916,
+      "peak_pressure_trace": 0.12380577349837286,
+      "maximum_hoop_stress_energy_ratio": 0.0126795307603731,
+      "extraction_depth": {
+        "minimum": 0.10232215221152094,
+        "maximum": 0.13147000551604732
+      },
+      "circulating_power": {
+        "minimum": 7.60629769562107,
+        "maximum": 9.773054792014092
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.23920217247379832,
+      "maximum_energy_identity_error": 1.3874412729819596e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.279341613624622,
+        "radius_maximum": 1.3026472838199659,
+        "maximum_extraction_depth": 0.10607722774520346,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_0.5",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 41.0,
+      "radius": {
+        "minimum": 1.220708403214374,
+        "maximum": 1.3035129625624764
+      },
+      "peak_speed": 0.012016929151296553,
+      "peak_pressure_trace": 0.1001442243978563,
+      "maximum_hoop_stress_energy_ratio": 0.0096971754122878,
+      "extraction_depth": {
+        "minimum": 0.1021901026181987,
+        "maximum": 0.12507983521675342
+      },
+      "circulating_power": {
+        "minimum": 7.99489380735975,
+        "maximum": 9.785683489683796
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25456899389723825,
+      "maximum_energy_identity_error": 9.524825372864143e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.278425936943173,
+        "radius_maximum": 1.3035629605073733,
+        "maximum_extraction_depth": 0.10622994582135917,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_1",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 81.0,
+      "radius": {
+        "minimum": 1.1630126872247573,
+        "maximum": 1.2928173478005456
+      },
+      "peak_speed": 0.007806159101605684,
+      "peak_pressure_trace": 0.04232161930076053,
+      "maximum_hoop_stress_energy_ratio": 0.004431698577177662,
+      "extraction_depth": {
+        "minimum": 0.10411174788875886,
+        "maximum": 0.15724136471670078
+      },
+      "circulating_power": {
+        "minimum": 6.359649713049005,
+        "maximum": 9.605063984407199
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.17976708124091817,
+      "maximum_energy_identity_error": 6.9523053980447e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.290653944282356,
+        "radius_maximum": 1.291334953172431,
+        "maximum_extraction_depth": 0.1042216407093962,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "radius_0.25_half_2",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 2.0
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 161.0,
+      "radius": {
+        "minimum": 1.1623971563718105,
+        "maximum": 1.2924156512870137
+      },
+      "peak_speed": 0.006950936192099071,
+      "peak_pressure_trace": 0.035029853602592136,
+      "maximum_hoop_stress_energy_ratio": 0.0037108776866650924,
+      "extraction_depth": {
+        "minimum": 0.10393756081919746,
+        "maximum": 0.15853711260818892
+      },
+      "circulating_power": {
+        "minimum": 6.3076713303806375,
+        "maximum": 9.621160936608184
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.17976501415055704,
+      "maximum_energy_identity_error": 7.87601095453283e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.2901419982871802,
+        "radius_maximum": 1.2918468991651006,
+        "maximum_extraction_depth": 0.10430438937663965,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.085",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.085
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 7.800000000000001,
+      "radius": {
+        "minimum": 1.2152057116849497,
+        "maximum": 1.2939825527703108
+      },
+      "peak_speed": 0.011547758296995354,
+      "peak_pressure_trace": 0.11631019589401483,
+      "maximum_hoop_stress_energy_ratio": 0.011840800437558516,
+      "extraction_depth": {
+        "minimum": 0.1034951141260602,
+        "maximum": 0.12699758175379622
+      },
+      "circulating_power": {
+        "minimum": 7.874165682450941,
+        "maximum": 9.662291871884594
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2529587975622404,
+      "maximum_energy_identity_error": 5.504396938249556e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.286775862496879,
+        "radius_maximum": 1.295213034969197,
+        "maximum_extraction_depth": 0.10485134934906958,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.0875",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.08750000000000001
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 8.0,
+      "radius": {
+        "minimum": 1.207956103284971,
+        "maximum": 1.2923866678466427
+      },
+      "peak_speed": 0.01780439328648511,
+      "peak_pressure_trace": 0.19024278547276646,
+      "maximum_hoop_stress_energy_ratio": 0.01940669910717907,
+      "extraction_depth": {
+        "minimum": 0.10384715664866244,
+        "maximum": 0.12978085972728481
+      },
+      "circulating_power": {
+        "minimum": 7.705296467455612,
+        "maximum": 9.629536640884814
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25048237297009185,
+      "maximum_energy_identity_error": 1.1210410377771041e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2889530345301905,
+        "radius_maximum": 1.2930358629303633,
+        "maximum_extraction_depth": 0.10449701214561564,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.09",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.09000000000000001
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 8.200000000000001,
+      "radius": {
+        "minimum": 1.2006586127168122,
+        "maximum": 1.2920559008932626
+      },
+      "peak_speed": 0.023973115607882536,
+      "peak_pressure_trace": 0.26273067722068205,
+      "maximum_hoop_stress_energy_ratio": 0.026839094994058937,
+      "extraction_depth": {
+        "minimum": 0.10405288963033979,
+        "maximum": 0.13263065271767877
+      },
+      "circulating_power": {
+        "minimum": 7.539735193256021,
+        "maximum": 9.610497157288167
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24792300217017843,
+      "maximum_energy_identity_error": 3.033733264601324e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2899151671623679,
+        "radius_maximum": 1.2920737302853278,
+        "maximum_extraction_depth": 0.10434109009804542,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.0925",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.0925
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 8.4,
+      "radius": {
+        "minimum": 1.1951500952720668,
+        "maximum": 1.2954537107123318
+      },
+      "peak_speed": 0.029483625401559375,
+      "peak_pressure_trace": 0.30441640606692466,
+      "maximum_hoop_stress_energy_ratio": 0.03109410091389445,
+      "extraction_depth": {
+        "minimum": 0.103718248485074,
+        "maximum": 0.13370090408190302
+      },
+      "circulating_power": {
+        "minimum": 7.479380987486937,
+        "maximum": 9.641504890471701
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2480952758850951,
+      "maximum_energy_identity_error": 2.3029400608720607e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2865181812179678,
+        "radius_maximum": 1.2954707162181776,
+        "maximum_extraction_depth": 0.10489342616314645,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.095",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.095
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 8.6,
+      "radius": {
+        "minimum": 1.1912357710567953,
+        "maximum": 1.29807050241354
+      },
+      "peak_speed": 0.031938221316632195,
+      "peak_pressure_trace": 0.32524277323440576,
+      "maximum_hoop_stress_energy_ratio": 0.033199829702676945,
+      "extraction_depth": {
+        "minimum": 0.10349481217397975,
+        "maximum": 0.13361342828503506
+      },
+      "circulating_power": {
+        "minimum": 7.484277687020488,
+        "maximum": 9.662320062178111
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24991897748483896,
+      "maximum_energy_identity_error": 2.262066089997461e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2839181892180724,
+        "radius_maximum": 1.2980707082250753,
+        "maximum_extraction_depth": 0.10531963330366297,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.0975",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.0975
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 8.8,
+      "radius": {
+        "minimum": 1.1890452299617875,
+        "maximum": 1.2983873454729162
+      },
+      "peak_speed": 0.033093710194702225,
+      "peak_pressure_trace": 0.32809518090739903,
+      "maximum_hoop_stress_energy_ratio": 0.033341171696765814,
+      "extraction_depth": {
+        "minimum": 0.1034973234553457,
+        "maximum": 0.13296478387643418
+      },
+      "circulating_power": {
+        "minimum": 7.5207883685150225,
+        "maximum": 9.662085613561338
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25184271254121626,
+      "maximum_energy_identity_error": 1.8035528626114683e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.283562625725077,
+        "radius_maximum": 1.298426271723192,
+        "maximum_extraction_depth": 0.10537815431681156,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.105",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.10500000000000001
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.4,
+      "radius": {
+        "minimum": 1.1152654402320163,
+        "maximum": 1.3420460950867013
+      },
+      "peak_speed": 0.09224736291583813,
+      "peak_pressure_trace": 0.8821793625782818,
+      "maximum_hoop_stress_energy_ratio": 0.08978494956537911,
+      "extraction_depth": {
+        "minimum": 0.10258495627696251,
+        "maximum": 0.14881439381348216
+      },
+      "circulating_power": {
+        "minimum": 6.719780085610259,
+        "maximum": 9.748017996909454
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24437628021015648,
+      "maximum_energy_identity_error": 9.214993212935951e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2690208496824564,
+        "radius_maximum": 1.312968047690087,
+        "maximum_extraction_depth": 0.1078209086297835,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.1075",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1075
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.6,
+      "radius": {
+        "minimum": 1.1502368340124416,
+        "maximum": 1.3067708271649823
+      },
+      "peak_speed": 0.06168451889942133,
+      "peak_pressure_trace": 0.5887025494934855,
+      "maximum_hoop_stress_energy_ratio": 0.06011402175305443,
+      "extraction_depth": {
+        "minimum": 0.1032823812098554,
+        "maximum": 0.13807364990369456
+      },
+      "circulating_power": {
+        "minimum": 7.2425115197395975,
+        "maximum": 9.682193499858794
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24614280302313812,
+      "maximum_energy_identity_error": 5.88880055829577e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.278139657942156,
+        "radius_maximum": 1.3038492394030199,
+        "maximum_extraction_depth": 0.10627777037728936,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.11",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.11
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 9.8,
+      "radius": {
+        "minimum": 1.167171500455048,
+        "maximum": 1.2977963902586778
+      },
+      "peak_speed": 0.04811490961707553,
+      "peak_pressure_trace": 0.44069985638232173,
+      "maximum_hoop_stress_energy_ratio": 0.045046974337612775,
+      "extraction_depth": {
+        "minimum": 0.10372092777232059,
+        "maximum": 0.13291166189885864
+      },
+      "circulating_power": {
+        "minimum": 7.523794268413909,
+        "maximum": 9.641255834069625
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24540184058370895,
+      "maximum_energy_identity_error": 4.0448000504511583e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2841186503509667,
+        "radius_maximum": 1.2978702470438832,
+        "maximum_extraction_depth": 0.10528666504454116,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.1125",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1125
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 10.0,
+      "radius": {
+        "minimum": 1.1789494689802253,
+        "maximum": 1.292800414475084
+      },
+      "peak_speed": 0.038549163043715154,
+      "peak_pressure_trace": 0.3464286356774729,
+      "maximum_hoop_stress_energy_ratio": 0.035415485025216006,
+      "extraction_depth": {
+        "minimum": 0.10405432581304348,
+        "maximum": 0.1303303851707812
+      },
+      "circulating_power": {
+        "minimum": 7.672807831340548,
+        "maximum": 9.610364510906738
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2459871108924766,
+      "maximum_energy_identity_error": 2.2893686946190428e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2891388185719541,
+        "radius_maximum": 1.292850078853375,
+        "maximum_extraction_depth": 0.10446687248489095,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.115",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.115
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 10.200000000000001,
+      "radius": {
+        "minimum": 1.1884356483222231,
+        "maximum": 1.292033393466518
+      },
+      "peak_speed": 0.030508125498282263,
+      "peak_pressure_trace": 0.28146780418826606,
+      "maximum_hoop_stress_energy_ratio": 0.028653030077797494,
+      "extraction_depth": {
+        "minimum": 0.10379577302658491,
+        "maximum": 0.12890275001104443
+      },
+      "circulating_power": {
+        "minimum": 7.757786392565865,
+        "maximum": 9.63430369889796
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24785235424313493,
+      "maximum_energy_identity_error": 4.077964632642761e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2886190019074248,
+        "radius_maximum": 1.2933698955348898,
+        "maximum_extraction_depth": 0.10455124035756257,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.1175",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1175
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 10.399999999999999,
+      "radius": {
+        "minimum": 1.1977235501836094,
+        "maximum": 1.295183993784699
+      },
+      "peak_speed": 0.024248871429024568,
+      "peak_pressure_trace": 0.21621368380100278,
+      "maximum_hoop_stress_energy_ratio": 0.022057733451176214,
+      "extraction_depth": {
+        "minimum": 0.10325668039797783,
+        "maximum": 0.12763307273033547
+      },
+      "circulating_power": {
+        "minimum": 7.83495984706731,
+        "maximum": 9.684603418836849
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24961855726887425,
+      "maximum_energy_identity_error": 1.368842816873439e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.285228276648826,
+        "radius_maximum": 1.2967606208036102,
+        "maximum_extraction_depth": 0.10510449862137644,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.12",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.12
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 10.6,
+      "radius": {
+        "minimum": 1.205361176820843,
+        "maximum": 1.2976647072632888
+      },
+      "peak_speed": 0.022315029317101748,
+      "peak_pressure_trace": 0.1904576942771924,
+      "maximum_hoop_stress_energy_ratio": 0.01909936997002918,
+      "extraction_depth": {
+        "minimum": 0.10284822450082136,
+        "maximum": 0.12679362197001784
+      },
+      "circulating_power": {
+        "minimum": 7.886832038258708,
+        "maximum": 9.723065272672878
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.2513138135401599,
+      "maximum_energy_identity_error": 1.6116175061142712e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.282693545349249,
+        "radius_maximum": 1.29929535210912,
+        "maximum_extraction_depth": 0.10552143218441856,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.1225",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1225
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 10.8,
+      "radius": {
+        "minimum": 1.2124672127479255,
+        "maximum": 1.299687185471408
+      },
+      "peak_speed": 0.021043763601708437,
+      "peak_pressure_trace": 0.17876097229326582,
+      "maximum_hoop_stress_energy_ratio": 0.0178844265163799,
+      "extraction_depth": {
+        "minimum": 0.10261294240113629,
+        "maximum": 0.12621840462662282
+      },
+      "circulating_power": {
+        "minimum": 7.92277483587424,
+        "maximum": 9.745359372804872
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25295459603149667,
+      "maximum_energy_identity_error": 1.0824408036569366e-10,
+      "retained_orbit": {
+        "radius_minimum": 1.2809611307420603,
+        "radius_maximum": 1.3010277667189953,
+        "maximum_extraction_depth": 0.10580805525684625,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_0.125",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.125
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 11.0,
+      "radius": {
+        "minimum": 1.2188185032628578,
+        "maximum": 1.3010265525508737
+      },
+      "peak_speed": 0.019562083312380532,
+      "peak_pressure_trace": 0.16733589827963677,
+      "maximum_hoop_stress_energy_ratio": 0.016611812229744942,
+      "extraction_depth": {
+        "minimum": 0.1024458329667669,
+        "maximum": 0.125470680610977
+      },
+      "circulating_power": {
+        "minimum": 7.969989443992172,
+        "maximum": 9.76125598319257
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.25455249308875644,
+      "maximum_energy_identity_error": 8.949996299634222e-11,
+      "retained_orbit": {
+        "radius_minimum": 1.2799218307828564,
+        "radius_maximum": 1.3020670666802736,
+        "maximum_extraction_depth": 0.10598065568362318,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "original_store_refined",
+      "parameters": {
+        "maximum_step": 0.01,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 5.341313195877488,
+      "radius": {
+        "minimum": 0.9999999999999991,
+        "maximum": 1.470377282584082
+      },
+      "peak_speed": 0.20805891730729398,
+      "peak_pressure_trace": 1.9726747604824346,
+      "maximum_hoop_stress_energy_ratio": 0.20193750699126117,
+      "extraction_depth": {
+        "minimum": 0.36009038781400343,
+        "maximum": 0.8405704881575056
+      },
+      "circulating_power": {
+        "minimum": 1.1896682242460797,
+        "maximum": 2.777080516007907
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.20806662075355434,
+      "maximum_energy_identity_error": 7.105427357601002e-15,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_store_refined",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "maximum_step": 0.01,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 33.45763303734317,
+      "radius": {
+        "minimum": 1.2127183998361888,
+        "maximum": 1.2942443496881646
+      },
+      "peak_speed": 0.008054384116457123,
+      "peak_pressure_trace": 0.047251278870133986,
+      "maximum_hoop_stress_energy_ratio": 0.004817783443940543,
+      "extraction_depth": {
+        "minimum": 0.10364424299988167,
+        "maximum": 0.12924023333610088
+      },
+      "circulating_power": {
+        "minimum": 7.737528586778467,
+        "maximum": 9.64838925015007
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.24018281389228546,
+      "maximum_energy_identity_error": 5.3290705182007514e-14,
+      "retained_orbit": {
+        "radius_minimum": 1.2877323800263252,
+        "radius_maximum": 1.2942565174452763,
+        "maximum_extraction_depth": 0.10469541691973719,
+        "admissible": true
+      },
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "smaller_nearby_resonance_refined",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1025,
+        "maximum_step": 0.01,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 7.969646034752229,
+      "radius": {
+        "minimum": 1.0,
+        "maximum": 1.4546642526574298
+      },
+      "peak_speed": 0.18520885063642747,
+      "peak_pressure_trace": 1.8175601406782762,
+      "maximum_hoop_stress_energy_ratio": 0.18474440322287042,
+      "extraction_depth": {
+        "minimum": 0.09193508059366715,
+        "maximum": 0.19074932171829734
+      },
+      "circulating_power": {
+        "minimum": 5.242482599633153,
+        "maximum": 10.877240695744645
+      },
+      "final_thermal_energy": 0.0,
+      "maximum_thermal_energy": 0.0,
+      "minimum_coherent_action": 0.22660918116134673,
+      "maximum_energy_identity_error": 2.5730528818712628e-11,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_original_extended_refined",
+      "parameters": {
+        "damping": 0.2,
+        "intervals": 400,
+        "maximum_step": 0.01,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": false,
+      "boundary": "extraction",
+      "end_time": 37.509643044961294,
+      "radius": {
+        "minimum": 1.1733797578175353,
+        "maximum": 1.2909944487358056
+      },
+      "peak_speed": 0.045215219598612535,
+      "peak_pressure_trace": 0.4525963310857891,
+      "maximum_hoop_stress_energy_ratio": 0.04613153799104659,
+      "extraction_depth": {
+        "minimum": 0.4166666666666667,
+        "maximum": 1.0000000000000029
+      },
+      "circulating_power": {
+        "minimum": 0.9999999999999971,
+        "maximum": 2.4
+      },
+      "final_thermal_energy": 0.650662640058496,
+      "maximum_thermal_energy": 0.6978322113942321,
+      "minimum_coherent_action": 0.13527854919524862,
+      "maximum_energy_identity_error": 1.0658141036401503e-14,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    },
+    {
+      "name": "damped_smaller_resonance_extended_refined",
+      "parameters": {
+        "reference_radius": 0.026525823848649224,
+        "half_period": 0.1025,
+        "damping": 0.2,
+        "intervals": 400,
+        "maximum_step": 0.01,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "end_time": 42.0,
+      "radius": {
+        "minimum": 1.217010075889272,
+        "maximum": 1.300850585952801
+      },
+      "peak_speed": 0.009886030125652038,
+      "peak_pressure_trace": 0.08152332341130503,
+      "maximum_hoop_stress_energy_ratio": 0.008194305397127632,
+      "extraction_depth": {
+        "minimum": 0.10416666666666667,
+        "maximum": 0.1309978829815087
+      },
+      "circulating_power": {
+        "minimum": 7.633711150440174,
+        "maximum": 9.6
+      },
+      "final_thermal_energy": 0.06263571927871674,
+      "maximum_thermal_energy": 0.0639134815874826,
+      "minimum_coherent_action": 0.2429090434378398,
+      "maximum_energy_identity_error": 3.197442310920451e-13,
+      "retained_orbit": null,
+      "initial_energy": 10.327955589886443,
+      "quasistatic_energy_floor": 9.327955589886443
+    }
+  ],
+  "refinement_checks": [
+    {
+      "name": "original_store",
+      "shared_samples": 274,
+      "maximum_state_error": 2.218655814623105e-12,
+      "event_time_error": 4.4853010194856324e-13
+    },
+    {
+      "name": "smaller_store",
+      "shared_samples": 1733,
+      "maximum_state_error": 1.6606531705321004e-09,
+      "event_time_error": 0.0
+    },
+    {
+      "name": "smaller_nearby_resonance",
+      "shared_samples": 463,
+      "maximum_state_error": 1.6343411346486647e-09,
+      "event_time_error": 1.8168577753385762e-10
+    },
+    {
+      "name": "damped_original_extended",
+      "shared_samples": 1933,
+      "maximum_state_error": 5.81756864903582e-14,
+      "event_time_error": 4.973799150320701e-14
+    },
+    {
+      "name": "damped_smaller_resonance_extended",
+      "shared_samples": 2459,
+      "maximum_state_error": 2.003770482872369e-10,
+      "event_time_error": 0.0
+    }
+  ],
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d"
+      },
+      "candidate_preparation": {
+        "minimum": 0.0008500079105498652,
+        "maximum": 0.0008540754412739861
+      },
+      "minimum_remaining_reserve": 0.00090338724963115,
+      "all_panel_reserve_bound": 0.00090338724963115,
+      "required_chemical_specific_fraction": {
+        "minimum": 0.002295066304450732,
+        "maximum": 0.02128943527403542
+      },
+      "worst_hydrogen_reference_mass_to_available_ratio": 15944991.837434677,
+      "sufficient_effective_retained_loss_fraction": {
+        "minimum": 2.3425996071696982e-07,
+        "maximum": 3.999640665796492e-06
+      },
+      "sampled_effective_retained_loss_ceiling": {
+        "minimum": 2.3435788869130266e-07,
+        "maximum": 4.001312449231873e-06
+      },
+      "sufficient_round_trip_loss_fraction_with_quasistatic_circulation": {
+        "minimum": 2.2099996294053752e-08,
+        "maximum": 3.773245911128766e-07
+      },
+      "quasistatic_circulation_multiple": [
+        7.347009959804749,
+        10.600000000000001
+      ],
+      "useful_to_nominal_throughput_lower": {
+        "minimum": 0.005007746384386414,
+        "maximum": 0.005196592768402155
+      },
+      "useful_to_nominal_throughput_upper": {
+        "minimum": 0.005010834977671019,
+        "maximum": 0.005201943531170357
+      },
+      "maximum_prescribed_receipt_jump_over_node_peak": 1.0,
+      "zero_optical_loss_drive_energy_per_cycle_ceiling": {
+        "minimum": 2.613851263040865e-13,
+        "maximum": 4.476576045460606e-12
+      },
+      "retained_loss_comparisons": [
+        {
+          "label": "0.62 ppm absorption, one encounter per guide circuit",
+          "effective_fraction": 6.2e-07,
+          "final_replacement_energy": {
+            "minimum": 0.004631513620562272,
+            "maximum": 0.004655023611772013
+          },
+          "minimum_final_reserve_after_replacement": 0.4499961722775351,
+          "minimum_sampled_reserve_after_replacement": -0.0014865476396913916,
+          "labels_with_sampled_negative_reserve": 4,
+          "worst_ratio_to_sufficient_allowance": 2.6466323912223175
+        },
+        {
+          "label": "0.62 ppm absorption, guide plus quasistatic store lower circulation",
+          "effective_fraction": 4.5551461750789444e-06,
+          "final_replacement_energy": {
+            "minimum": 0.03402777669924237,
+            "maximum": 0.03420050483881525
+          },
+          "minimum_final_reserve_after_replacement": 0.4204506910504918,
+          "minimum_sampled_reserve_after_replacement": -0.02709790866290949,
+          "labels_with_sampled_negative_reserve": 16,
+          "worst_ratio_to_sufficient_allowance": 19.444834538252227
+        },
+        {
+          "label": "0.74 ppm A+S, guide plus quasistatic store lower circulation",
+          "effective_fraction": 5.436787370255514e-06,
+          "final_replacement_energy": {
+            "minimum": 0.04061379799586992,
+            "maximum": 0.04081995738826336
+          },
+          "minimum_final_reserve_after_replacement": 0.4138312385010437,
+          "minimum_sampled_reserve_after_replacement": -0.03325297599719918,
+          "labels_with_sampled_negative_reserve": 16,
+          "worst_ratio_to_sufficient_allowance": 23.20835090049459
+        },
+        {
+          "label": "0.4 dB splitter deficit, entirely unrecovered",
+          "effective_fraction": 0.08798916064409024,
+          "final_replacement_energy": {
+            "minimum": 657.2951548144287,
+            "maximum": 660.6316457713561
+          },
+          "minimum_final_reserve_after_replacement": -660.1769945754669,
+          "minimum_sampled_reserve_after_replacement": -660.1769945754669,
+          "labels_with_sampled_negative_reserve": 16,
+          "worst_ratio_to_sufficient_allowance": 375604.7784469567
+        }
+      ],
+      "candidate_screen_is_energy_only": true,
+      "actual_full_history_store_dynamics_integrated": false,
+      "routing_target_tensor_matched": false,
+      "prior_perturbed_controller_certificate_carried_over": false
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f"
+      },
+      "candidate_preparation": {
+        "minimum": 0.000851996555649036,
+        "maximum": 0.0008624323377873657
+      },
+      "minimum_remaining_reserve": 0.0007761054231121715,
+      "all_panel_reserve_bound": 0.0007761054231121715,
+      "required_chemical_specific_fraction": {
+        "minimum": 0.0022737216669659745,
+        "maximum": 0.023026590278052244
+      },
+      "worst_hydrogen_reference_mass_to_available_ratio": 17246056.05087526,
+      "sufficient_effective_retained_loss_fraction": {
+        "minimum": 1.9998665947244484e-07,
+        "maximum": 4.040030420445805e-06
+      },
+      "sampled_effective_retained_loss_ceiling": {
+        "minimum": 2.0002846167368165e-07,
+        "maximum": 4.04087480313222e-06
+      },
+      "sufficient_round_trip_loss_fraction_with_quasistatic_circulation": {
+        "minimum": 1.8866665987966493e-08,
+        "maximum": 3.811349453250759e-07
+      },
+      "quasistatic_circulation_multiple": [
+        7.347009959804749,
+        10.600000000000001
+      ],
+      "useful_to_nominal_throughput_lower": {
+        "minimum": 0.004997359293863499,
+        "maximum": 0.005223101058955321
+      },
+      "useful_to_nominal_throughput_upper": {
+        "minimum": 0.00499889493825878,
+        "maximum": 0.005226347655474187
+      },
+      "maximum_prescribed_receipt_jump_over_node_peak": 1.0,
+      "zero_optical_loss_drive_energy_per_cycle_ceiling": {
+        "minimum": 2.2456007387248648e-13,
+        "maximum": 4.521772817081585e-12
+      },
+      "retained_loss_comparisons": [
+        {
+          "label": "0.62 ppm absorption, one encounter per guide circuit",
+          "effective_fraction": 6.2e-07,
+          "final_replacement_energy": {
+            "minimum": 0.004643556429339996,
+            "maximum": 0.004700858751867424
+          },
+          "minimum_final_reserve_after_replacement": 0.44859724321952643,
+          "minimum_sampled_reserve_after_replacement": -0.0016294790537335919,
+          "labels_with_sampled_negative_reserve": 8,
+          "worst_ratio_to_sufficient_allowance": 3.100206791970675
+        },
+        {
+          "label": "0.62 ppm absorption, guide plus quasistatic store lower circulation",
+          "effective_fraction": 4.5551461750789444e-06,
+          "final_replacement_energy": {
+            "minimum": 0.03411625533527633,
+            "maximum": 0.03453725606960529
+          },
+          "minimum_final_reserve_after_replacement": 0.4187608459017886,
+          "minimum_sampled_reserve_after_replacement": -0.02761290495932406,
+          "labels_with_sampled_negative_reserve": 32,
+          "worst_ratio_to_sufficient_allowance": 22.77725017806288
+        },
+        {
+          "label": "0.74 ppm A+S, guide plus quasistatic store lower circulation",
+          "effective_fraction": 5.436787370255514e-06,
+          "final_replacement_energy": {
+            "minimum": 0.040719401529200776,
+            "maximum": 0.041221886276625666
+          },
+          "minimum_final_reserve_after_replacement": 0.4120762156947682,
+          "minimum_sampled_reserve_after_replacement": -0.033812334309688205,
+          "labels_with_sampled_negative_reserve": 32,
+          "worst_ratio_to_sufficient_allowance": 27.18575021252666
+        },
+        {
+          "label": "0.4 dB splitter deficit, entirely unrecovered",
+          "effective_fraction": 0.08798916064409024,
+          "final_replacement_energy": {
+            "minimum": 659.0042461630565,
+            "maximum": 667.1364772310328
+          },
+          "minimum_final_reserve_after_replacement": -666.6831791290614,
+          "minimum_sampled_reserve_after_replacement": -666.6831791290614,
+          "labels_with_sampled_negative_reserve": 32,
+          "worst_ratio_to_sufficient_allowance": 439975.15072356025
+        }
+      ],
+      "candidate_screen_is_energy_only": true,
+      "actual_full_history_store_dynamics_integrated": false,
+      "routing_target_tensor_matched": false,
+      "prior_perturbed_controller_certificate_carried_over": false
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278"
+      },
+      "candidate_preparation": {
+        "minimum": 0.00011125910129410199,
+        "maximum": 0.0002295069345736692
+      },
+      "minimum_remaining_reserve": 0.0030883550727612554,
+      "all_panel_reserve_bound": 0.0030883550727612554,
+      "required_chemical_specific_fraction": {
+        "minimum": 0.0005737706499133167,
+        "maximum": 0.0028433765562881582
+      },
+      "worst_hydrogen_reference_mass_to_available_ratio": 2129582.8375523672,
+      "sufficient_effective_retained_loss_fraction": {
+        "minimum": 1.7968105123226182e-06,
+        "maximum": 9.39915639378474e-06
+      },
+      "sampled_effective_retained_loss_ceiling": {
+        "minimum": 1.7978471227711574e-06,
+        "maximum": 9.404576703063e-06
+      },
+      "sufficient_round_trip_loss_fraction_with_quasistatic_circulation": {
+        "minimum": 1.6951042569081301e-07,
+        "maximum": 8.86712867338183e-07
+      },
+      "quasistatic_circulation_multiple": [
+        7.347009959804749,
+        10.600000000000001
+      ],
+      "useful_to_nominal_throughput_lower": {
+        "minimum": 0.006059171393455945,
+        "maximum": 0.011134377245980081
+      },
+      "useful_to_nominal_throughput_upper": {
+        "minimum": 0.006165243920842312,
+        "maximum": 0.011263795569371496
+      },
+      "maximum_prescribed_receipt_jump_over_node_peak": 1.0,
+      "zero_optical_loss_drive_energy_per_cycle_ceiling": {
+        "minimum": 9.261423784278676e-13,
+        "maximum": 2.5195935188768102e-12
+      },
+      "retained_loss_comparisons": [
+        {
+          "label": "0.62 ppm absorption, one encounter per guide circuit",
+          "effective_fraction": 6.2e-07,
+          "final_replacement_energy": {
+            "minimum": 0.0005851304849472962,
+            "maximum": 0.0012073800852496189
+          },
+          "minimum_final_reserve_after_replacement": 0.16583943745315427,
+          "minimum_sampled_reserve_after_replacement": 0.002170878059171713,
+          "labels_with_sampled_negative_reserve": 0,
+          "worst_ratio_to_sufficient_allowance": 0.3450558618997431
+        },
+        {
+          "label": "0.62 ppm absorption, guide plus quasistatic store lower circulation",
+          "effective_fraction": 4.5551461750789444e-06,
+          "final_replacement_energy": {
+            "minimum": 0.004298959500693168,
+            "maximum": 0.008870633511598856
+          },
+          "minimum_final_reserve_after_replacement": 0.16202755181981982,
+          "minimum_sampled_reserve_after_replacement": -0.005081949855382802,
+          "labels_with_sampled_negative_reserve": 10,
+          "worst_ratio_to_sufficient_allowance": 2.5351288540664245
+        },
+        {
+          "label": "0.74 ppm A+S, guide plus quasistatic store lower circulation",
+          "effective_fraction": 5.436787370255514e-06,
+          "final_replacement_energy": {
+            "minimum": 0.005131016178246684,
+            "maximum": 0.01058753032029541
+          },
+          "minimum_final_reserve_after_replacement": 0.1611735262624129,
+          "minimum_sampled_reserve_after_replacement": -0.006706893780336122,
+          "labels_with_sampled_negative_reserve": 14,
+          "worst_ratio_to_sufficient_allowance": 3.0257989548534745
+        },
+        {
+          "label": "0.4 dB splitter deficit, entirely unrecovered",
+          "effective_fraction": 0.08798916064409024,
+          "final_replacement_energy": {
+            "minimum": 83.04054877061624,
+            "maximum": 171.34896819274852
+          },
+          "minimum_final_reserve_after_replacement": -171.17630623792698,
+          "minimum_sampled_reserve_after_replacement": -171.17630623792698,
+          "labels_with_sampled_negative_reserve": 16,
+          "worst_ratio_to_sufficient_allowance": 48969.638167550824
+        }
+      ],
+      "candidate_screen_is_energy_only": true,
+      "actual_full_history_store_dynamics_integrated": false,
+      "routing_target_tensor_matched": false,
+      "prior_perturbed_controller_certificate_carried_over": false
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254"
+      },
+      "candidate_preparation": {
+        "minimum": 0.00011837086633216282,
+        "maximum": 0.00037943187820956654
+      },
+      "minimum_remaining_reserve": 0.0025659536674086177,
+      "all_panel_reserve_bound": 0.0025659536674086177,
+      "required_chemical_specific_fraction": {
+        "minimum": 0.0005704414609541038,
+        "maximum": 0.005654754113077934
+      },
+      "worst_hydrogen_reference_mass_to_available_ratio": 4235199.619676761,
+      "sufficient_effective_retained_loss_fraction": {
+        "minimum": 8.418499395538955e-07,
+        "maximum": 9.457555722571555e-06
+      },
+      "sampled_effective_retained_loss_ceiling": {
+        "minimum": 8.420928733473549e-07,
+        "maximum": 9.460283704124657e-06
+      },
+      "sufficient_round_trip_loss_fraction_with_quasistatic_circulation": {
+        "minimum": 7.941980561829202e-08,
+        "maximum": 8.922222379784484e-07
+      },
+      "quasistatic_circulation_multiple": [
+        7.347009959804749,
+        10.600000000000001
+      ],
+      "useful_to_nominal_throughput_lower": {
+        "minimum": 0.0037130542153016727,
+        "maximum": 0.010704362661703366
+      },
+      "useful_to_nominal_throughput_upper": {
+        "minimum": 0.003766164815543151,
+        "maximum": 0.010836171238912512
+      },
+      "maximum_prescribed_receipt_jump_over_node_peak": 1.0,
+      "zero_optical_loss_drive_energy_per_cycle_ceiling": {
+        "minimum": 7.693757566892668e-13,
+        "maximum": 2.6965287335690835e-12
+      },
+      "retained_loss_comparisons": [
+        {
+          "label": "0.62 ppm absorption, one encounter per guide circuit",
+          "effective_fraction": 6.2e-07,
+          "final_replacement_energy": {
+            "minimum": 0.000622525765854101,
+            "maximum": 0.001996120236395041
+          },
+          "minimum_final_reserve_after_replacement": 0.16559341065222488,
+          "minimum_sampled_reserve_after_replacement": 0.0006767424840037723,
+          "labels_with_sampled_negative_reserve": 0,
+          "worst_ratio_to_sufficient_allowance": 0.736473296331819
+        },
+        {
+          "label": "0.62 ppm absorption, guide plus quasistatic store lower circulation",
+          "effective_fraction": 4.5551461750789444e-06,
+          "final_replacement_energy": {
+            "minimum": 0.00457370300196516,
+            "maximum": 0.014665515257762175
+          },
+          "minimum_final_reserve_after_replacement": 0.15489125933066225,
+          "minimum_sampled_reserve_after_replacement": -0.011314099713241299,
+          "labels_with_sampled_negative_reserve": 27,
+          "worst_ratio_to_sufficient_allowance": 5.410876643280108
+        },
+        {
+          "label": "0.74 ppm A+S, guide plus quasistatic store lower circulation",
+          "effective_fraction": 5.436787370255514e-06,
+          "final_replacement_energy": {
+            "minimum": 0.005458935841055191,
+            "maximum": 0.017504002081845174
+          },
+          "minimum_final_reserve_after_replacement": 0.15205277250657923,
+          "minimum_sampled_reserve_after_replacement": -0.014000561657883218,
+          "labels_with_sampled_negative_reserve": 28,
+          "worst_ratio_to_sufficient_allowance": 6.458143090366581
+        },
+        {
+          "label": "0.4 dB splitter deficit, entirely unrecovered",
+          "effective_fraction": 0.08798916064409024,
+          "final_replacement_energy": {
+            "minimum": 88.34761228519646,
+            "maximum": 283.28539378239134
+          },
+          "minimum_final_reserve_after_replacement": -283.1158370078029,
+          "minimum_sampled_reserve_after_replacement": -283.1158370078029,
+          "labels_with_sampled_negative_reserve": 32,
+          "worst_ratio_to_sufficient_allowance": 104518.81803390822
+        }
+      ],
+      "candidate_screen_is_energy_only": true,
+      "actual_full_history_store_dynamics_integrated": false,
+      "routing_target_tensor_matched": false,
+      "prior_perturbed_controller_certificate_carried_over": false
+    }
+  ],
+  "idle_absorption": {
+    "initial_extraction_depth": 0.10416666666666667,
+    "lifetime_times_absorption_depth_over_delay": 0.48665393408085983,
+    "lifetime_at_0_62_ppm_over_delay": 784925.7001304191,
+    "assumptions": "Quasistatic idle store; coherent absorption becomes trapped heat; no loss-replacement source"
+  },
+  "finite_splitter": {
+    "phase_ramp_time_over_delay": 0.10143010324169742,
+    "maximum_delivery_energy_lag_over_C": 0.05071505162084871,
+    "exact_prescribed_receipts_recovered": false,
+    "reference_capacitance_F": 1e-12,
+    "reference_halfwave_voltage_V": 1.5,
+    "estimated_electrical_cycle_energy_J": 2.25e-12,
+    "dimensional_energy_mapping_assigned": false
+  },
+  "physical_store_material_identified": false,
+  "physical_splitter_fits_assembly_budget": false,
+  "all_frequency_store_stability_established": false,
+  "variable_load_route_material_evolution_closed": false,
+  "actual_target_tensor_and_macro_work_rematched": false,
+  "heat_export_and_replacement_supply_closed": false,
+  "physical_current_hosts_resolved": false,
+  "full_containment_established": false
+}
