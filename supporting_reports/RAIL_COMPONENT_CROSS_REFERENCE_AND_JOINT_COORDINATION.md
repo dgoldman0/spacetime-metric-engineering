@@ -13,6 +13,13 @@ changes the material force and energy budget. A coupled construction must
 preserve these responsibilities while deriving their stresses from specified
 fields and constitutive laws.
 
+The [17 September build-topology decision](RAIL_BUILD_TOPOLOGY_DECISION.md)
+preserves these source roles within a provisional C1 arrangement of
+mechanically independent multicomponent assemblies. Local load paths,
+material continuity and field overlap each require an explicit extent and
+boundary law. Route-length mechanical connectivity remains a topology choice;
+finite-module closure and intermodule source matching remain open.
+
 The recent condensate-plus-neutral-scalar calculation restricted the allocation
 too far. Its classical material supplies 0.612% of the demanded throat tension,
 leaving the quantum remainder responsible for 99.388%. Restoring bulk support
@@ -44,7 +51,7 @@ in the static source calculations.
 
 | Existing component or role | Physical responsibility to retain | Cross-reference to the later tests |
 | --- | --- | --- |
-| Standing substrate and \(S_0\) | Pre-existing energy, dominant radial tension, radial direction, and continuous load paths | Ideal radial tension carries bulk load with zero radial null stress. Its finite termination needs angular stress or an exchange partner. The latest condensate branch leaves this bulk role largely unfilled. |
+| Standing substrate and \(S_0\) | Pre-existing energy, dominant radial tension, radial direction, and load paths with specified extent and end reactions | Ideal radial tension carries bulk load with zero radial null stress. Its finite termination needs angular stress or an exchange partner. The latest condensate branch leaves this bulk role largely unfilled. |
 | Angular jacket and G | Broad throat/angular support and response to radial deformation | Angular pressure sets part of the clock curvature. The tested rail also needs negative angular null stress in some regions; ordinary angular support and that signed contribution have separate budgets. |
 | Endpoint J | Support-edge shoulder, reset cap, radial trim, internal angular response, and current handling | The early angular startup mismatch and the later current/enthalpy mismatch require a responding initial state and coordinated evolution. The regulated medium provides an explicit fitted tensor. |
 | Live handoff \(C_{\rm live}\) | Entry/catch angular and current response, radial-pressure trim, and radial-null trim around the packet | Retain the separate C/E/F outputs and packet-exclusion rules for hard infrastructure. Static support tests leave these active duties to the service evolution. |

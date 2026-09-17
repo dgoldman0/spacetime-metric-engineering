@@ -19,6 +19,14 @@ infrastructure. The archived beta075 V5 service reference continues to use
 a prescribed metric; a complete material source and coupled metric evolution
 remain separate system requirements.
 
+The [build-topology decision](RAIL_BUILD_TOPOLOGY_DECISION.md) records the
+subsequent architectural recognition: C1, comprising mechanically independent
+multicomponent assemblies with adjustable source overlap, is the leading
+provisional preference. The physical source must supply each overlap region,
+and module motion must account for recoil and boundary exchange. Full topology
+selection and finite-module closure remain open. The numerical results below
+retain their existing scope.
+
 ## Component responsibilities
 
 | Part of the assembly | Current construction | Physical requirement still exposed |
@@ -136,7 +144,8 @@ history bound, local electrical reconstruction and static microscopic
 host each have their stated domain. Combining them physically requires
 one shared geometry, material state and energy/stress exchange law.
 
-The status discussion can now address the distinction between the positive
-continuum assembly result, the finite hardware requirements, and the
-hypothetical microscopic material. Work is paused at this milestone before
-extending the electrical/fixture coupling or the carrier occupation dynamics.
+The status discussion retains the distinction between the positive continuum
+assembly result, the finite hardware requirements, and the hypothetical
+microscopic material. The topology recognition above supplies an additional
+architectural preference. Numerical work remains paused before extending
+electrical/fixture coupling, carrier occupation dynamics or module overlap.

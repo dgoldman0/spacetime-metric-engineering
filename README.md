@@ -9,6 +9,13 @@ results. The moving thermal routes preserve the conditional history bounds.
 Physical materials, their joint interfaces, and complete source assembly
 remain open.
 
+The [build-topology decision](supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
+records C1 as the leading provisional architecture: mechanically independent,
+multicomponent source assemblies with adjustable overlap and scheduled handoff.
+Continuity of the rail geometry and source support is distinct from
+route-length mechanical continuity. Full topology selection and finite-module
+source matching remain open.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,

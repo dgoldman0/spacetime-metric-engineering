@@ -1,6 +1,23 @@
 # Active-Rail Codex Handoff Plan
 
-## Current operating plan, 2026-05-23
+## Current handoff, 2026-09-17
+
+The [rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md)
+records the validated milestone committed as `4c576e0`. Numerical work is
+paused for discussion.
+
+The [build-topology decision](supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
+preserves the subsequent recognition: continuity of the transport geometry
+and source support is distinct from route-length mechanical continuity.
+C1 is the leading provisional architecture, with mechanically independent,
+multicomponent assemblies, adjustable source overlap, and explicitly accounted
+recoil and boundary exchange. Full topology selection, finite-module closure
+and overlap feasibility remain open. Module size and internal composition
+remain design variables; lightly connected modules remain a comparison.
+
+The dated operating plan below retains the earlier investigation history.
+
+## Historical operating plan, 2026-05-23
 
 The project is back on the higher-rung feasibility track. The active test
 article is now:

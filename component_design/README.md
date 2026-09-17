@@ -9,6 +9,13 @@ described in [`../README.md`](../README.md) and
 The cards translate the current mathematical component split into construction
 hypotheses, hardware analogs, source burdens, and measurement targets.
 
+The [build-topology decision](../supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
+sets C1 as the leading provisional arrangement: mechanically independent,
+multicomponent assemblies with adjustable source overlap and scheduled handoff.
+The cards describe roles within that possible assembly as well as other
+layouts. Global mechanical connectivity, module size and physical overlap
+remain explicit construction choices.
+
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective
 geometry literature together with engineering-facing sources on programmable
