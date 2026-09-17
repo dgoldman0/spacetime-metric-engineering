@@ -1,0 +1,19 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_thermal_exchange_interfaces.py": "d00600ee147a135dbcff5a87e9898fbc7851c871bb1c2ea4d9fb7ecbdf616fa7",
+    "toolkit/adm_harness_cli/adm_harness/thermal_exchange_interfaces.py": "f06253d1a71e85aa36d7bc8a12a732e8b72cc74074b396576532b537c9bc6d25",
+    "toolkit/adm_harness_cli/tests/test_thermal_exchange_interfaces.py": "a41aa648e0d3e930aec4d664a9aa82d5c2d35de6a9f9c39da650b6abe3d61fb3"
+  },
+  "output_sha256": {
+    "execution_audit_thermal_exchange_interfaces.py": "d00600ee147a135dbcff5a87e9898fbc7851c871bb1c2ea4d9fb7ecbdf616fa7",
+    "execution_test_thermal_exchange_interfaces.py": "a41aa648e0d3e930aec4d664a9aa82d5c2d35de6a9f9c39da650b6abe3d61fb3",
+    "execution_thermal_exchange_interfaces.py": "f06253d1a71e85aa36d7bc8a12a732e8b72cc74074b396576532b537c9bc6d25",
+    "moving_collector_four_vectors.npz": "116943a2f14d53a2cee7c4d0f9d23856e78b4a74585970bf7f9ce662a7870b0f",
+    "paired_port_four_vectors.npz": "2e0154c8d3c30de7cda8f5575ab5b6e3ff4f45ca77ae9ff5bb76913200ffc791",
+    "relay_delay_0.01.npz": "5955ba48f89bbf49397c88eed2404327ab9268e9b54a2062752dbb1fc9ae0bde",
+    "relay_delay_0.1.npz": "cb83340595cf13bbfb2702dd13b6d283cdc885dda118c5af8bf7f34ad6d33213",
+    "relay_delay_1.npz": "fd7a6389c8fcdc9a93c8b6234262d2fb15c6c652a1267735bb5830ec65bd871d",
+    "relay_delay_4.npz": "b49f59dda0b73979f6467a1ddf3c2dd27edadd9c8bcf16fd497e0e32624f95ad",
+    "summary.json": "63223b12f5b22c313fb48db4f9b2eef2c96632965f8effc201f528e30b9c3024"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_finite_thermal_budget.py": "1608672a2baae37603bf759e906a0286fe8bc0cdad72eb48d9c471bd762d0f50",
+    "toolkit/adm_harness_cli/adm_harness/finite_thermal_budget.py": "622e3976b4a05568b303bee0ab8f9cc3f1ce6f3d6fd581cd6ec208df076aeb7d",
+    "toolkit/adm_harness_cli/tests/test_finite_thermal_budget.py": "04051544c7226b854c978b3fed724068cc71f8b1897cd14fd8a3de22b8fd4d1c"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/coupled_holding_certificate/manifest.json": "57d510d97cbc8d852684c857b48a4f0c742afdaaf6804ff16f857b8b56347020",
+    "supporting_reports/data/coupled_optical_losses/manifest.json": "5ad850859afb099191e8ddb14bf6a7416f97e1a7e7bde5e05432e1a1e1c0c788",
+    "supporting_reports/data/scheduled_optical_transfer/manifest.json": "bc22c6efe1b6232fc7757d65f0134b8a4ed776ec47b3d85cc408db0e862ac699",
+    "supporting_reports/data/thermal_exchange_interfaces/manifest.json": "878a4f944e37ff6c27e39790e726f4b5d8efc07b11f02e3fa07b175acd751be9"
+  },
+  "output_sha256": {
+    "execution_audit_finite_thermal_budget.py": "1608672a2baae37603bf759e906a0286fe8bc0cdad72eb48d9c471bd762d0f50",
+    "execution_finite_thermal_budget.py": "622e3976b4a05568b303bee0ab8f9cc3f1ce6f3d6fd581cd6ec208df076aeb7d",
+    "execution_test_finite_thermal_budget.py": "04051544c7226b854c978b3fed724068cc71f8b1897cd14fd8a3de22b8fd4d1c",
+    "first_n16_t2057_thermal_budget.npz": "ad7f70b90fc3997153a12bc770fb8ce353f675cb7b74c7a18e627137f18f8226",
+    "first_n32_t4113_thermal_budget.npz": "1b8129ff755f3a29d816e536dba5a59d31d115041139c21a7bb8db6ddb4fab00",
+    "second_n16_t1029_thermal_budget.npz": "16243135c215218c9b3628afd624d88e93b2a0ee2f76ca3df59c6e1ee3db5146",
+    "second_n32_t2057_thermal_budget.npz": "82afe8c62a20bde23bd39ad02ee9c61028569dab9d73a31684237e7ecd87738a",
+    "summary.json": "7333204b3cd515e51ffcd0f0084c303e7532536973a59426dc87adf629ab9d94"
+  }
+}

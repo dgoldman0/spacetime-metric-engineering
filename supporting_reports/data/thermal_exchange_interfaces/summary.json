@@ -1,0 +1,96 @@
+{
+  "created_utc": "2026-09-17T12:34:42.918439+00:00",
+  "workers": 4,
+  "base_commit": "50bfd4a37e6fd66585d5b39ecdd30bafc8830600",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "four_vector_coordinates": [
+    "energy",
+    "radial",
+    "tangential",
+    "axial"
+  ],
+  "ports": {
+    "cases": 180,
+    "maximum_cold_force_orthogonality_error": 2.220446049250313e-16,
+    "maximum_optical_energy_error": 2.220446049250313e-16,
+    "maximum_pair_tangential_momentum": 0.0,
+    "passive_gain_at_0_62_ppm_floor_0_3": 1.033334721446309e-06,
+    "passive_over_directed_worst_gain_ratio": 1.0989010989010988
+  },
+  "moving_collectors": {
+    "assigned_radial_speed_bound": 0.00905,
+    "cases": 882,
+    "maximum_rest_frame_work_error": 2.4570731733952744e-16,
+    "axial_incidence_energy_gain": 1.0000819092085689,
+    "axial_incidence_extra_work_over_incident_energy": 8.190920856895482e-05,
+    "inherited_radial_cosine_extra_work_bound": 0.00016381841713790965,
+    "arbitrary_incoming_direction_extra_work_bound": 0.009132650486906504
+  },
+  "frozen_relays": [
+    {
+      "name": "relay_delay_0.01",
+      "delay": 0.01,
+      "maximum_four_momentum_balance_error": 5.551115123125783e-17,
+      "maximum_local_bath_counterstream_imbalance": 0.0,
+      "maximum_three_axis_stress_error": 0.0,
+      "maximum_flight_energy": 0.009999996915751375,
+      "flight_energy_ceiling": 0.01,
+      "final_flight_energy": 0.0,
+      "maximum_source_guide_force": 0.32892441349146123,
+      "maximum_central_guide_force": 0.18060549000225112,
+      "maximum_destination_guide_force": 0.25
+    },
+    {
+      "name": "relay_delay_0.1",
+      "delay": 0.1,
+      "maximum_four_momentum_balance_error": 5.551115123125783e-17,
+      "maximum_local_bath_counterstream_imbalance": 0.0,
+      "maximum_three_axis_stress_error": 0.0,
+      "maximum_flight_energy": 0.09999947567895973,
+      "flight_energy_ceiling": 0.1,
+      "final_flight_energy": 0.0,
+      "maximum_source_guide_force": 0.32892441349146123,
+      "maximum_central_guide_force": 0.18060552523451262,
+      "maximum_destination_guide_force": 0.25
+    },
+    {
+      "name": "relay_delay_1",
+      "delay": 1.0,
+      "maximum_four_momentum_balance_error": 5.551115123125783e-17,
+      "maximum_local_bath_counterstream_imbalance": 0.0,
+      "maximum_three_axis_stress_error": 0.0,
+      "maximum_flight_energy": 0.9994860139215525,
+      "flight_energy_ceiling": 1.0,
+      "final_flight_energy": 0.0,
+      "maximum_source_guide_force": 0.32892441349146123,
+      "maximum_central_guide_force": 0.18060552523451262,
+      "maximum_destination_guide_force": 0.25
+    },
+    {
+      "name": "relay_delay_4",
+      "delay": 4.0,
+      "maximum_four_momentum_balance_error": 5.551115123125783e-17,
+      "maximum_local_bath_counterstream_imbalance": 0.0,
+      "maximum_three_axis_stress_error": 0.0,
+      "maximum_flight_energy": 3.967262881664623,
+      "flight_energy_ceiling": 4.0,
+      "final_flight_energy": 0.0,
+      "maximum_source_guide_force": 0.32892441349146123,
+      "maximum_central_guide_force": 0.18060552523451262,
+      "maximum_destination_guide_force": 0.25
+    }
+  ],
+  "paired_source_and_cold_recoil_verified": true,
+  "matched_frozen_routes_and_each_local_bath_verified": true,
+  "photon_flight_energy_and_tensor_included": true,
+  "source_central_and_destination_guide_impulses_included": true,
+  "instantaneous_moving_collector_work_included": true,
+  "constant_delay_moving_geometry_constructed": false,
+  "moving_guide_work_closed_into_rotor_history": false,
+  "guide_host_inventory_and_stress_constitutive_law_constructed": false,
+  "finite_temperature_reciprocal_heat_fluxes_constructed": false,
+  "physical_thermal_material_interface_constructed": false
+}

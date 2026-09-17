@@ -1,0 +1,286 @@
+{
+  "created_utc": "2026-09-17T12:40:17.885899+00:00",
+  "workers": 4,
+  "base_commit": "50bfd4a37e6fd66585d5b39ecdd30bafc8830600",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n16_t2057_certificate.npz": "2bfb047369e47fb3c967b1b565b72f800e606589c2f4b9f60a6def52ece6216f",
+        "supporting_reports/data/coupled_optical_losses/first_n16_t2057_losses.npz": "6fa4c9066fa4c2b8b093141c550d931d503813554373cc81fe9caabcb100c6f7",
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.4157788817743085,
+          "maximum_absorption_action_bound": 0.005831395236617326,
+          "maximum_damping_action_bound": 0.03152138971651977,
+          "maximum_combined_action_bound": 0.0373527849531371,
+          "minimum_energy_floor": 1.109519595572728,
+          "maximum_reduced_input_bound": 0.0014656168365558943,
+          "maximum_final_thermal_route_exposure": 8.059194352530864e-07,
+          "minimum_reserve_after_replacement_allowance": 0.0002766343266412748,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.297703191076767,
+          "heat_power_peak": 4.440965929810226e-06,
+          "flight_energy_ceiling": 6.939009265328478e-08,
+          "additional_state_energy_ceiling": 1.0409207798919249e-07,
+          "additional_effective_power_peak": 6.661892991308319e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.4467190144116488,
+          "maximum_absorption_action_bound": 0.005539825474786459,
+          "maximum_damping_action_bound": 0.028448206423968784,
+          "maximum_combined_action_bound": 0.033988031898755246,
+          "minimum_energy_floor": 1.1187942288745423,
+          "maximum_reduced_input_bound": 0.0013923364597602048,
+          "maximum_final_thermal_route_exposure": 8.059194352530864e-07,
+          "minimum_reserve_after_replacement_allowance": 0.00022789970235000058,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.523898095870281,
+          "heat_power_peak": 4.674700978747605e-06,
+          "flight_energy_ceiling": 7.304220279293133e-08,
+          "additional_state_energy_ceiling": 1.0957060840967629e-07,
+          "additional_effective_power_peak": 7.0125189382192825e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/first_n32_t4113_certificate.npz": "af19dfb21b1f29faf1385fd6390d10a7917fa9eec7e6a7ed0982b170ce998790",
+        "supporting_reports/data/coupled_optical_losses/first_n32_t4113_losses.npz": "6ef353d0acafa39793632d360a4b428728659ff1db67e86704d5e40f2015fead",
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.32504824889881295,
+          "maximum_absorption_action_bound": 0.006254535639808991,
+          "maximum_damping_action_bound": 0.05861723751754041,
+          "maximum_combined_action_bound": 0.0594100089519734,
+          "minimum_energy_floor": 1.106463190372172,
+          "maximum_reduced_input_bound": 0.0014656330008743909,
+          "maximum_final_thermal_route_exposure": 1.4679413846963796e-06,
+          "minimum_reserve_after_replacement_allowance": 0.00012262303857502196,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.297703191076767,
+          "heat_power_peak": 4.440965929810226e-06,
+          "flight_energy_ceiling": 6.939009265328478e-08,
+          "additional_state_energy_ceiling": 1.0409207798919249e-07,
+          "additional_effective_power_peak": 6.661892991308319e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.3715772412774058,
+          "maximum_absorption_action_bound": 0.005941808857818541,
+          "maximum_damping_action_bound": 0.052902133873295315,
+          "maximum_combined_action_bound": 0.05365526673600666,
+          "minimum_energy_floor": 1.1158906439340142,
+          "maximum_reduced_input_bound": 0.0013923518158627764,
+          "maximum_final_thermal_route_exposure": 1.4679413846963796e-06,
+          "minimum_reserve_after_replacement_allowance": 7.356900215645436e-05,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.523898095870281,
+          "heat_power_peak": 4.674700978747605e-06,
+          "flight_energy_ceiling": 7.304220279293133e-08,
+          "additional_state_energy_ceiling": 1.0957060840967629e-07,
+          "additional_effective_power_peak": 7.0125189382192825e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n16_t1029_certificate.npz": "13ab8d706fe77cc990311aede293208a8424bfed072988e5e60eb2c53de74a66",
+        "supporting_reports/data/coupled_optical_losses/second_n16_t1029_losses.npz": "9867288d788edcefce8d085d14195c794d38f6861b0770fa5f8320ee71eed448",
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.4426246997574038,
+          "maximum_absorption_action_bound": 0.0038304904323573623,
+          "maximum_damping_action_bound": 0.011717629281350235,
+          "maximum_combined_action_bound": 0.014802679352479498,
+          "minimum_energy_floor": 1.1054811403895206,
+          "maximum_reduced_input_bound": 0.0014655230407812096,
+          "maximum_final_thermal_route_exposure": 1.2390089024676755e-07,
+          "minimum_reserve_after_replacement_allowance": 0.0029540429579482043,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.297703191076767,
+          "heat_power_peak": 4.440965929810226e-06,
+          "flight_energy_ceiling": 6.939009265328478e-08,
+          "additional_state_energy_ceiling": 1.0409207798919249e-07,
+          "additional_effective_power_peak": 6.661892991308319e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.4683980285590449,
+          "maximum_absorption_action_bound": 0.0036389659107394948,
+          "maximum_damping_action_bound": 0.01057522846696525,
+          "maximum_combined_action_bound": 0.01350602603453805,
+          "minimum_energy_floor": 1.1149576964504955,
+          "maximum_reduced_input_bound": 0.0013922473537742544,
+          "maximum_final_thermal_route_exposure": 1.2390089024676755e-07,
+          "minimum_reserve_after_replacement_allowance": 0.002944842880056451,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.523898095870281,
+          "heat_power_peak": 4.674700978747605e-06,
+          "flight_energy_ceiling": 7.304220279293133e-08,
+          "additional_state_energy_ceiling": 1.0957060840967629e-07,
+          "additional_effective_power_peak": 7.0125189382192825e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/coupled_holding_certificate/second_n32_t2057_certificate.npz": "ff265acb26c6bad10d4d7493de1a0306418ba43c6f69fe9f98c6325ce98ae358",
+        "supporting_reports/data/coupled_optical_losses/second_n32_t2057_losses.npz": "d55d739faa99e431c506e7c636254be337d043764073fa3defd789e2756c1313",
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7"
+      },
+      "inventory_variants": [
+        {
+          "inventory": 19.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.42879169566029274,
+          "maximum_absorption_action_bound": 0.003965996659273739,
+          "maximum_damping_action_bound": 0.019279536168738443,
+          "maximum_combined_action_bound": 0.020292657563497633,
+          "minimum_energy_floor": 1.105492260530808,
+          "maximum_reduced_input_bound": 0.0014655535312826406,
+          "maximum_final_thermal_route_exposure": 3.4271847264173196e-07,
+          "minimum_reserve_after_replacement_allowance": 0.002257015849311827,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.297703191076767,
+          "heat_power_peak": 4.440965929810226e-06,
+          "flight_energy_ceiling": 6.939009265328478e-08,
+          "additional_state_energy_ceiling": 1.0409207798919249e-07,
+          "additional_effective_power_peak": 6.661892991308319e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        },
+        {
+          "inventory": 20.0,
+          "checks": {
+            "radial_domain": true,
+            "spin": true,
+            "energy_allowance": true
+          },
+          "conditional_finite_thermal_screen_passed": true,
+          "minimum_spin_lower": 0.45673864294213495,
+          "maximum_absorption_action_bound": 0.003767696826310052,
+          "maximum_damping_action_bound": 0.017399812622101333,
+          "maximum_combined_action_bound": 0.018483068883933033,
+          "minimum_energy_floor": 1.1149682605847184,
+          "maximum_reduced_input_bound": 0.0013922763197506138,
+          "maximum_final_thermal_route_exposure": 3.4271847264173196e-07,
+          "minimum_reserve_after_replacement_allowance": 0.0022352807160417767,
+          "absorption": 6.2e-07,
+          "flight_delay": 0.015625,
+          "passive_heat_gain": 1.0333347214463093e-06,
+          "feedback_denominator": 0.9999890977296879,
+          "port_l1_gain": 2.8500310718091426,
+          "port_power_peak": 4.523898095870281,
+          "heat_power_peak": 4.674700978747605e-06,
+          "flight_energy_ceiling": 7.304220279293133e-08,
+          "additional_state_energy_ceiling": 1.0957060840967629e-07,
+          "additional_effective_power_peak": 7.0125189382192825e-06,
+          "port_exposure_per_power": 3.3333364677819883
+        }
+      ]
+    }
+  ],
+  "thermal_route_encounters_per_transferred_energy": 8,
+  "matched_equal_delay_ports_assumed": true,
+  "additional_flight_energy_and_pressure_allocated": true,
+  "zero_additional_collector_work_assumed": true,
+  "three_axis_isotropic_route_partition_assumed": true,
+  "passive_opposed_emitter_heat_factor_included": true,
+  "radial_damping_response_to_thermal_flight_included": true,
+  "moving_collector_work_and_variable_delay_constructed": false,
+  "thermal_bath_host_and_holding_loss_law_identified": false,
+  "other_component_replacement_is_energy_allowance": true,
+  "complete_physical_rail_feasibility_established": false
+}
