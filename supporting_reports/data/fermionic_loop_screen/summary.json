@@ -1,0 +1,345 @@
+{
+  "created_utc": "2026-09-17T12:50:09.141406+00:00",
+  "workers": 4,
+  "base_commit": "50bfd4a37e6fd66585d5b39ecdd30bafc8830600",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "input_sha256": {
+    "supporting_reports/data/fermionic_string_material/summary.json": "e5551189e5b00a402328ca197162a740d5d041edeb8c783b3ab3bd075d55b1cf",
+    "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820",
+    "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a",
+    "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004",
+    "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085"
+  },
+  "candidate_count": 300,
+  "representative_candidates": [
+    {
+      "beta": 0.1,
+      "tension_factor_B": 0.6390095367773007,
+      "yukawa": 1.0,
+      "gauge_coupling": 1.0,
+      "role": "rotor_forward_branch",
+      "required_radius_sqrt_mu": 6785.341249134583,
+      "scalar_core_radius_sqrt_mu": 17.69586405482299,
+      "core_over_loop_radius": 0.002607954914143774,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 0.705783325606466,
+      "fermi_over_bulk_mass": 5.052269999359856,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 24194.232734766967,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 99.99999999999854,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.006332573977646111,
+      "quartic_loop_to_tree_diagnostic": 0.06332573977646111,
+      "minimum_node_action_for_six_rotors": 6038645222.850779,
+      "geometric_and_exponent_diagnostics_met": true,
+      "local_string_decay_rate_proved": false
+    },
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 0.3,
+      "gauge_coupling": 1.0,
+      "role": "rotor_forward_branch",
+      "required_radius_sqrt_mu": 439814.5518894677,
+      "scalar_core_radius_sqrt_mu": 8.105815199285459,
+      "core_over_loop_radius": 1.8430075049728183e-05,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 0.16925687506433076,
+      "fermi_over_bulk_mass": 21.06743327651945,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 1568229.9884192555,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 100.00000000000063,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.0005699316579881499,
+      "quartic_loop_to_tree_diagnostic": 5.1293849218933494e-05,
+      "minimum_node_action_for_six_rotors": 25370867420077.793,
+      "geometric_and_exponent_diagnostics_met": true,
+      "local_string_decay_rate_proved": false
+    },
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 1.0,
+      "gauge_coupling": 1.0,
+      "role": "rotor_forward_branch",
+      "required_radius_sqrt_mu": 11803.36079650874,
+      "scalar_core_radius_sqrt_mu": 8.105815199285459,
+      "core_over_loop_radius": 0.000686737899402604,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 0.5641895835477693,
+      "fermi_over_bulk_mass": 6.3202299829558335,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 42086.79382184049,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 99.99999999999443,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.006332573977646111,
+      "quartic_loop_to_tree_diagnostic": 0.006332573977646111,
+      "minimum_node_action_for_six_rotors": 18272900603.4582,
+      "geometric_and_exponent_diagnostics_met": true,
+      "local_string_decay_rate_proved": false
+    },
+    {
+      "beta": 1.0,
+      "tension_factor_B": 0.999999999999954,
+      "yukawa": 2.0,
+      "gauge_coupling": 1.0,
+      "role": "rotor_forward_branch",
+      "required_radius_sqrt_mu": 1514.9590150223137,
+      "scalar_core_radius_sqrt_mu": 8.105815199285459,
+      "core_over_loop_radius": 0.005350517815273088,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 1.1283791670955385,
+      "fermi_over_bulk_mass": 3.1601149914779167,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 5401.831631940106,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": true,
+      "exterior_wkb_exponent": 100.00000000000117,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.025330295910584444,
+      "quartic_loop_to_tree_diagnostic": 0.10132118364233778,
+      "minimum_node_action_for_six_rotors": 301021762.62108094,
+      "geometric_and_exponent_diagnostics_met": true,
+      "local_string_decay_rate_proved": false
+    },
+    {
+      "beta": 5.837005563881314e-11,
+      "tension_factor_B": 0.09856079999999971,
+      "yukawa": 3.97383530631844,
+      "gauge_coupling": 1.0,
+      "role": "rotor_forward_branch",
+      "required_radius_sqrt_mu": 15472748.98677533,
+      "scalar_core_radius_sqrt_mu": 154727.4898677533,
+      "core_over_loop_radius": 0.01,
+      "fermi_momentum_over_sqrt_mu": 3.5658079220099768,
+      "bulk_mass_over_sqrt_mu": 7.141391095814827,
+      "fermi_over_bulk_mass": 0.49931559190193336,
+      "exterior_mass_fraction": 0.99,
+      "semiclassical_mode_number": 55170591.46883993,
+      "radial_speed_bound": 0.00905,
+      "radial_lorentz_factor": 1.000040953765679,
+      "exterior_channel_energetically_open": false,
+      "exterior_wkb_exponent": null,
+      "target_exponent": 100.0,
+      "minimum_mode_number": 100.0,
+      "yukawa_loop_size": 0.09999999999999999,
+      "quartic_loop_to_tree_diagnostic": 27053883826.08035,
+      "minimum_node_action_for_six_rotors": 3.140010403236043e+16,
+      "geometric_and_exponent_diagnostics_met": true,
+      "local_string_decay_rate_proved": false,
+      "comparison": "earlier illustrative kF/m=.3 threshold"
+    }
+  ],
+  "history_action_scales": [
+    {
+      "label": "first_n16_t2057",
+      "active_node_labels": 224,
+      "normalized_C_times_delta_range": [
+        2.0087501483236076e-23,
+        3.119021322991772e-13
+      ],
+      "six_rotor_common_action_unit_requirements": [
+        {
+          "beta": 0.1,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 3.0061703930129387e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 0.3,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.263017575443662e+36
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 9.096651775586803e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 2.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.498552534631035e+31
+        },
+        {
+          "beta": 5.837005563881314e-11,
+          "yukawa": 3.97383530631844,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.5631662334195834e+39
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "active_node_labels": 448,
+      "normalized_C_times_delta_range": [
+        1.98883315219229e-23,
+        3.1195324235650753e-13
+      ],
+      "six_rotor_common_action_unit_requirements": [
+        {
+          "beta": 0.1,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 3.0362754242075972e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 0.3,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.2756659547891937e+36
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 9.187749401359278e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 2.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.5135596582813635e+31
+        },
+        {
+          "beta": 5.837005563881314e-11,
+          "yukawa": 3.97383530631844,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.5788204253206513e+39
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "active_node_labels": 224,
+      "normalized_C_times_delta_range": [
+        3.736463950640118e-23,
+        1.5449405510499038e-13
+      ],
+      "six_rotor_common_action_unit_requirements": [
+        {
+          "beta": 0.1,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.6161390294736441e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 0.3,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 6.790074186512984e+35
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 4.8904260404620654e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 2.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 8.056327228033631e+30
+        },
+        {
+          "beta": 5.837005563881314e-11,
+          "yukawa": 3.97383530631844,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 8.403695163974773e+38
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "active_node_labels": 448,
+      "normalized_C_times_delta_range": [
+        3.5680475712131305e-23,
+        2.5730507980747e-13
+      ],
+      "six_rotor_common_action_unit_requirements": [
+        {
+          "beta": 0.1,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 1.6924228453595558e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 0.3,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 7.110574316544703e+35
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 1.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 5.1212603640386555e+32
+        },
+        {
+          "beta": 1.0,
+          "yukawa": 2.0,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 8.436596110705273e+30
+        },
+        {
+          "beta": 5.837005563881314e-11,
+          "yukawa": 3.97383530631844,
+          "gauge_coupling": 1.0,
+          "minimum_energy_time_unit_over_hbar": 8.80036025463765e+38
+        }
+      ]
+    }
+  ],
+  "rotor_lab_energy_bound": {
+    "fermi_energy_over_sqrt_mu": 3.5658079220099768,
+    "spin": 0.8615509503215699,
+    "radius": 1.3086,
+    "proper_stretch": 2.5776530590129574,
+    "maximum_energy": 1.32,
+    "radius_error": 0.0114
+  },
+  "primary_source": {
+    "url": "https://arxiv.org/html/2412.12259v1",
+    "publication": "JHEP 03 (2025) 063",
+    "sections": [
+      "2.2",
+      "4.2",
+      "5.2"
+    ],
+    "distinction": "large-loop quasi-bound modes and energy-dependent escape"
+  },
+  "exterior_action_derived_by_direct_radial_integration": true,
+  "exponent_target": 100.0,
+  "scalar_amplitude_at_exterior": 0.99,
+  "maximum_core_to_curvature_radius": 0.01,
+  "counted_rotor_copies": 6,
+  "minimum_normalized_rotor_radius": 1.068,
+  "exponent_is_a_semiclassical_diagnostic": true,
+  "independent_lab_energy_and_radial_speed_envelope": true,
+  "moving_background_transition_rate_calculated": false,
+  "tunneling_prefactor_or_operating_lifetime_calculated": false,
+  "applicability_to_two_branch_local_string_numerically_established": false,
+  "curved_higgs_dirac_solution_or_massive_mode_occupancy_solved": false,
+  "quantum_corrected_potential_solved": false,
+  "absolute_energy_length_or_cell_volume_assigned": false,
+  "full_material_feasibility_established": false
+}

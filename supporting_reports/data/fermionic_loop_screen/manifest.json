@@ -1,0 +1,18 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_fermionic_loop_screen.py": "cf62f1cbd02b2637268c260bb9e4317a6112b9a72616742cebfeff1f7ff9f6bf",
+    "toolkit/adm_harness_cli/adm_harness/fermionic_loop_screen.py": "5650c82d1327f50ddf6caf1a7fc80fa522e32e2fafa434b83e5f40b4b34e561b",
+    "toolkit/adm_harness_cli/tests/test_fermionic_loop_screen.py": "a5337cc932190201a592ea960f6a01222d9ee5b0bba2f698f9b9cf2eeb1b2117"
+  },
+  "parent_manifest_sha256": {
+    "supporting_reports/data/fermionic_string_material/manifest.json": "64b9ac5e81528d980786c548a2a3611dfecb8577bb6230b2267b383c806bf5bd",
+    "supporting_reports/data/controlled_optical_transfer/manifest.json": "5f9f3fa7fd5b25abf447c4707daceeac44b2f3569a2cdb590572838b883b1d7b"
+  },
+  "output_sha256": {
+    "candidate_geometry.csv": "2d727e3915e5fabf09e5de5838c7aeb6002cdd1135e2c6fcb2871d9f7a07e9e2",
+    "execution_audit_fermionic_loop_screen.py": "cf62f1cbd02b2637268c260bb9e4317a6112b9a72616742cebfeff1f7ff9f6bf",
+    "execution_fermionic_loop_screen.py": "5650c82d1327f50ddf6caf1a7fc80fa522e32e2fafa434b83e5f40b4b34e561b",
+    "execution_test_fermionic_loop_screen.py": "a5337cc932190201a592ea960f6a01222d9ee5b0bba2f698f9b9cf2eeb1b2117",
+    "summary.json": "8be90cc8a5e1e5aa6604d4c020e66b72a5209f91d813aad3855422e786e193ff"
+  }
+}

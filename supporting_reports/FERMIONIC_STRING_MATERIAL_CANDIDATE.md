@@ -9,6 +9,11 @@ carrier backreaction and the quantum-corrected potential therefore remain
 separate material requirements. The calculation concerns a microscopic
 field theory; realization as an available material remains open.
 
+The [finite-radius carrier comparison](FINITE_RADIUS_CARRIER_REQUIREMENTS.md)
+retains this conservative threshold and also examines longer-lived loop
+modes above the bulk mass, including the rotor's forward energy shift and
+the geometry required by all six rotor copies.
+
 ## Field and occupation normalization
 
 The bosonic action follows [Ringeval, Eqs. (2), (3), (10)](https://arxiv.org/pdf/hep-ph/0007015):
