@@ -1,0 +1,2415 @@
+{
+  "created_utc": "2026-09-17T00:43:50.218572+00:00",
+  "workers": 4,
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.6"
+  },
+  "base_commit": "445e6536adcf669dba0b34d0f63a920f7167682b",
+  "scope": "Steady optical guide loading with exact nominal dispatch; counted flight paths and store; delayed bounded feedback trials",
+  "parameters": {
+    "operating_fraction": 0.4,
+    "escape_depth": 1.0,
+    "radius_cap": 1.5,
+    "energy_cap": 1.4,
+    "input_peak_multiple": 1.5,
+    "output_peak_multiple": 2.0,
+    "receiver_floor_fraction": 0.25,
+    "feed_delay_over_external_delay": 0.5,
+    "output_delay_over_external_delay": 0.5
+  },
+  "control": {
+    "sample_period": 0.47123889803846897,
+    "total_signal_and_power_delay": 9.42477796076938,
+    "actuator_time": 0.25,
+    "selected_gains": {
+      "action_gain": 0.02,
+      "momentum_gain": -0.05
+    },
+    "gain_grid": [
+      {
+        "action_gain": 0.0,
+        "momentum_gain": -0.2,
+        "spectral_radius": 0.9909893585126927,
+        "asymptotic_exponent": -0.01920784315123743
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": -0.1,
+        "spectral_radius": 0.9711607954192649,
+        "asymptotic_exponent": -0.06209849562139289
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": -0.05,
+        "spectral_radius": 0.9690268163660866,
+        "asymptotic_exponent": -0.066766545242453
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": -0.02,
+        "spectral_radius": 0.9822862162937288,
+        "asymptotic_exponent": -0.0379267300474106
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": 0.0,
+        "spectral_radius": 0.988553334524609,
+        "asymptotic_exponent": -0.024430671720255447
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": 0.02,
+        "spectral_radius": 0.993567026291824,
+        "asymptotic_exponent": -0.013695292302202065
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": 0.05,
+        "spectral_radius": 0.99963988336902,
+        "asymptotic_exponent": -0.0007643288574957348
+      },
+      {
+        "action_gain": 0.0,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.0074681436794632,
+        "asymptotic_exponent": 0.01578900891472139
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": -0.2,
+        "spectral_radius": 0.9916057651809501,
+        "asymptotic_exponent": -0.017888304327983454
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": -0.1,
+        "spectral_radius": 0.972784372888007,
+        "asymptotic_exponent": -0.05855380799078135
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": -0.05,
+        "spectral_radius": 0.9684962022401873,
+        "asymptotic_exponent": -0.06792885213032351
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": -0.02,
+        "spectral_radius": 0.9818519528938529,
+        "asymptotic_exponent": -0.03886509129449044
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": 0.0,
+        "spectral_radius": 0.9883288163664632,
+        "asymptotic_exponent": -0.024912685613635674
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": 0.02,
+        "spectral_radius": 0.9934604005266603,
+        "asymptotic_exponent": -0.013923036417175174
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": 0.05,
+        "spectral_radius": 0.9996305341980707,
+        "asymptotic_exponent": -0.0007841756543716222
+      },
+      {
+        "action_gain": 0.01,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.007534045726623,
+        "asymptotic_exponent": 0.015927816195748973
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": -0.2,
+        "spectral_radius": 0.9922031162196377,
+        "asymptotic_exponent": -0.01661034018089363
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": -0.1,
+        "spectral_radius": 0.9742769056420384,
+        "asymptotic_exponent": -0.05530043992369896
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": -0.05,
+        "spectral_radius": 0.9683429907270931,
+        "asymptotic_exponent": -0.06826457946431434
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": -0.02,
+        "spectral_radius": 0.9813936707767558,
+        "asymptotic_exponent": -0.03985580265819024
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": 0.0,
+        "spectral_radius": 0.9880940451101208,
+        "asymptotic_exponent": -0.025416828822349836
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": 0.02,
+        "spectral_radius": 0.9933499160543239,
+        "asymptotic_exponent": -0.014159048209928166
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": 0.05,
+        "spectral_radius": 0.9996208344875401,
+        "asymptotic_exponent": -0.0008047667869884285
+      },
+      {
+        "action_gain": 0.02,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.0076009322447788,
+        "asymptotic_exponent": 0.016068687751728573
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": -0.2,
+        "spectral_radius": 0.993889560865338,
+        "asymptotic_exponent": -0.013006532977342554
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": -0.1,
+        "spectral_radius": 0.9781423139589086,
+        "asymptotic_exponent": -0.04689787776481827
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": -0.05,
+        "spectral_radius": 0.9702082791716993,
+        "asymptotic_exponent": -0.06418084301666449
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": -0.02,
+        "spectral_radius": 0.9798755292323694,
+        "asymptotic_exponent": -0.04314101924968106
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": 0.0,
+        "spectral_radius": 0.9873207557919432,
+        "asymptotic_exponent": -0.027078222654280355
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": 0.02,
+        "spectral_radius": 0.992992978308853,
+        "asymptotic_exponent": -0.014921701456963987
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": 0.05,
+        "spectral_radius": 0.9995894523396643,
+        "asymptotic_exponent": -0.0008713880789734732
+      },
+      {
+        "action_gain": 0.05,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.0078076909148264,
+        "asymptotic_exponent": 0.016504088812700986
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": -0.2,
+        "spectral_radius": 0.9963954863530995,
+        "asymptotic_exponent": -0.007662834231512771
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": -0.1,
+        "spectral_radius": 0.9879679704177877,
+        "asymptotic_exponent": -0.02568760859009865
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": -0.05,
+        "spectral_radius": 0.9859696654832661,
+        "asymptotic_exponent": -0.029984133613606682
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": -0.02,
+        "spectral_radius": 0.9847070242123188,
+        "asymptotic_exponent": -0.03270341108375784
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": 0.0,
+        "spectral_radius": 0.9857542496361884,
+        "asymptotic_exponent": -0.03044781579894388
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": 0.02,
+        "spectral_radius": 0.9922960612645272,
+        "asymptotic_exponent": -0.016411564073098395
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": 0.05,
+        "spectral_radius": 0.9995282739758886,
+        "asymptotic_exponent": -0.0010012698947371504
+      },
+      {
+        "action_gain": 0.1,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.008173843848706,
+        "asymptotic_exponent": 0.01727492986774624
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": -0.2,
+        "spectral_radius": 1.0101026455785032,
+        "asymptotic_exponent": 0.021330910959918698
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": -0.1,
+        "spectral_radius": 1.0089275018591768,
+        "asymptotic_exponent": 0.018860682659052917
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": -0.05,
+        "spectral_radius": 1.0083779977331828,
+        "asymptotic_exponent": 0.017704601935439976
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": -0.02,
+        "spectral_radius": 1.0080668437387292,
+        "asymptotic_exponent": 0.01704969754589755
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": 0.0,
+        "spectral_radius": 1.0078690116492481,
+        "asymptotic_exponent": 0.016633203407157494
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": 0.02,
+        "spectral_radius": 1.0076800733212057,
+        "asymptotic_exponent": 0.01623535689595406
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": 0.05,
+        "spectral_radius": 1.007415889427495,
+        "asymptotic_exponent": 0.01567894107473934
+      },
+      {
+        "action_gain": 0.2,
+        "momentum_gain": 0.1,
+        "spectral_radius": 1.0089973207341603,
+        "asymptotic_exponent": 0.01900752683553568
+      }
+    ],
+    "sensitivity_grid": [
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 16,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9935274076062933
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 16,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9924155037138406
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 16,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9900288634833689
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 18,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9832803494295995
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 18,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9814290007944954
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 18,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9777142186038847
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 20,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9606118233080977
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 20,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9620334019488082
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 20,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9701816859604956
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 22,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9811645056910138
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 22,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9831068001978868
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 22,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9861441868246191
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 24,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9926078196523668
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 24,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9935158198855683
+      },
+      {
+        "operating_fraction": 0.35,
+        "delay_samples": 24,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9947824873131547
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 16,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9950024004147948
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 16,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9941014437968656
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 16,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9920897256942882
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 18,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9869811758011354
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 18,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9855077317567036
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 18,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9823990688022096
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 20,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9716948764100473
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 20,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9683429907270931
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 20,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.960529736465863
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 22,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9720636997638942
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 22,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9749227766178208
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 22,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9793530863234159
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 24,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9874748409398468
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 24,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9887171407683952
+      },
+      {
+        "operating_fraction": 0.4,
+        "delay_samples": 24,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9905895459312145
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 16,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9962149356805716
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 16,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9955144272293995
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 16,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9938787438507451
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 18,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9901373294282617
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 18,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9889879872844529
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 18,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.986489161360113
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 20,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9793797586120769
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 20,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9773169368185566
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 20,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9726918337770639
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 22,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9552992076412153
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 22,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.9613259889267047
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 22,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.9693802349254006
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 24,
+        "actuator_time": 0.125,
+        "spectral_radius": 0.9806171460681361
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 24,
+        "actuator_time": 0.25,
+        "spectral_radius": 0.982356919876481
+      },
+      {
+        "operating_fraction": 0.45,
+        "delay_samples": 24,
+        "actuator_time": 0.5,
+        "spectral_radius": 0.985084434443711
+      }
+    ],
+    "nominal_modes": [
+      {
+        "mode": "constant",
+        "spectral_radius": 0.988553334524609,
+        "asymptotic_exponent": -0.024430671720255447,
+        "eigenvalues": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9238784930241429,
+            0.35169052493230807
+          ],
+          [
+            0.9238784930241429,
+            -0.35169052493230807
+          ],
+          [
+            0.96553842048114,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.15183580198064894,
+            0.0
+          ]
+        ]
+      },
+      {
+        "mode": "feedback",
+        "spectral_radius": 0.9683429907270931,
+        "asymptotic_exponent": -0.06826457946431434,
+        "eigenvalues": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.9460838522622004,
+            0.04474751161160254
+          ],
+          [
+            0.9460838522622004,
+            -0.04474751161160254
+          ],
+          [
+            0.9100652076689404,
+            0.3308617014415226
+          ],
+          [
+            0.9100652076689404,
+            -0.3308617014415226
+          ],
+          [
+            0.8577820463791042,
+            0.34776727019366366
+          ],
+          [
+            0.8577820463791042,
+            -0.34776727019366366
+          ],
+          [
+            0.6496184397380395,
+            0.5428045677355006
+          ],
+          [
+            0.6496184397380395,
+            -0.5428045677355006
+          ],
+          [
+            0.44833349596171157,
+            0.6838718678781037
+          ],
+          [
+            0.44833349596171157,
+            -0.6838718678781037
+          ],
+          [
+            0.22357562725955982,
+            0.7664548717064477
+          ],
+          [
+            0.22357562725955982,
+            -0.7664548717064477
+          ],
+          [
+            -0.011785142623794594,
+            0.7828161575156417
+          ],
+          [
+            -0.011785142623794594,
+            -0.7828161575156417
+          ],
+          [
+            -0.724217683981493,
+            0.0
+          ],
+          [
+            -0.23929919615582695,
+            0.7310377914149205
+          ],
+          [
+            -0.23929919615582695,
+            -0.7310377914149205
+          ],
+          [
+            -0.43965830890983815,
+            0.6153037064493955
+          ],
+          [
+            -0.43965830890983815,
+            -0.6153037064493955
+          ],
+          [
+            -0.595224080032499,
+            0.44528217200394926
+          ],
+          [
+            -0.595224080032499,
+            -0.44528217200394926
+          ],
+          [
+            -0.692201905431395,
+            0.23466835496374736
+          ],
+          [
+            -0.692201905431395,
+            -0.23466835496374736
+          ],
+          [
+            -0.42523117974050095,
+            0.0
+          ],
+          [
+            0.12317077440856211,
+            0.019767952436368516
+          ],
+          [
+            0.12317077440856211,
+            -0.019767952436368516
+          ],
+          [
+            0.1106617351730351,
+            0.057300993012131346
+          ],
+          [
+            0.1106617351730351,
+            -0.057300993012131346
+          ],
+          [
+            0.08679847080845199,
+            0.08883352104838774
+          ],
+          [
+            0.08679847080845199,
+            -0.08883352104838774
+          ],
+          [
+            0.054264745027917116,
+            0.11068253625907042
+          ],
+          [
+            0.054264745027917116,
+            -0.11068253625907042
+          ],
+          [
+            0.017478908355085136,
+            0.12058241276662117
+          ],
+          [
+            0.017478908355085136,
+            -0.12058241276662117
+          ],
+          [
+            -0.08549240913913919,
+            0.089123294228469
+          ],
+          [
+            -0.08549240913913919,
+            -0.089123294228469
+          ],
+          [
+            -0.1104753035389861,
+            0.05844384783482206
+          ],
+          [
+            -0.1104753035389861,
+            -0.05844384783482206
+          ],
+          [
+            -0.12407165640338472,
+            0.020351375647156954
+          ],
+          [
+            -0.12407165640338472,
+            -0.020351375647156954
+          ],
+          [
+            -0.05346483015601036,
+            0.10928948528844672
+          ],
+          [
+            -0.05346483015601036,
+            -0.10928948528844672
+          ],
+          [
+            -0.01887043453569761,
+            0.11937329394320416
+          ],
+          [
+            -0.01887043453569761,
+            -0.11937329394320416
+          ]
+        ]
+      },
+      {
+        "mode": "aggressive",
+        "spectral_radius": 1.0774772305594562,
+        "asymptotic_exponent": 0.15835367443506917,
+        "eigenvalues": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            1.0016658804289476,
+            0.3970171864775843
+          ],
+          [
+            1.0016658804289476,
+            -0.3970171864775843
+          ],
+          [
+            1.0609188280727209,
+            0.13254957409960813
+          ],
+          [
+            1.0609188280727209,
+            -0.13254957409960813
+          ],
+          [
+            0.8113268384521388,
+            0.5929667412568673
+          ],
+          [
+            0.8113268384521388,
+            -0.5929667412568673
+          ],
+          [
+            0.568617748354254,
+            0.7790305563424188
+          ],
+          [
+            0.568617748354254,
+            -0.7790305563424188
+          ],
+          [
+            0.2988365254144976,
+            0.8928831171532929
+          ],
+          [
+            0.2988365254144976,
+            -0.8928831171532929
+          ],
+          [
+            0.015577448862234333,
+            0.9234513607798294
+          ],
+          [
+            0.015577448862234333,
+            -0.9234513607798294
+          ],
+          [
+            -0.25860298576750274,
+            0.8696094524258332
+          ],
+          [
+            -0.25860298576750274,
+            -0.8696094524258332
+          ],
+          [
+            -0.4998156469697299,
+            0.7374031208344699
+          ],
+          [
+            -0.4998156469697299,
+            -0.7374031208344699
+          ],
+          [
+            -0.6857264559199239,
+            0.5394045239360495
+          ],
+          [
+            -0.6857264559199239,
+            -0.5394045239360495
+          ],
+          [
+            -0.8169216265378362,
+            0.0
+          ],
+          [
+            0.7110646950077779,
+            0.13829313806717036
+          ],
+          [
+            0.7110646950077779,
+            -0.13829313806717036
+          ],
+          [
+            -0.7964201997199154,
+            0.2925155976551635
+          ],
+          [
+            -0.7964201997199154,
+            -0.2925155976551635
+          ],
+          [
+            -0.6728325173831967,
+            0.0
+          ],
+          [
+            0.15587652622179882,
+            0.025703749666759368
+          ],
+          [
+            0.15587652622179882,
+            -0.025703749666759368
+          ],
+          [
+            0.13892159277245006,
+            0.07403002543638373
+          ],
+          [
+            0.13892159277245006,
+            -0.07403002543638373
+          ],
+          [
+            0.10736370938006544,
+            0.1137261860920052
+          ],
+          [
+            0.10736370938006544,
+            -0.1137261860920052
+          ],
+          [
+            0.11082285696450209,
+            0.019137689935098588
+          ],
+          [
+            0.11082285696450209,
+            -0.019137689935098588
+          ],
+          [
+            0.09879787525825333,
+            0.055420220641337316
+          ],
+          [
+            0.09879787525825333,
+            -0.055420220641337316
+          ],
+          [
+            0.06520380834070715,
+            0.1406814980813731
+          ],
+          [
+            0.06520380834070715,
+            -0.1406814980813731
+          ],
+          [
+            0.07564102794094796,
+            0.08582905805833613
+          ],
+          [
+            0.07564102794094796,
+            -0.08582905805833613
+          ],
+          [
+            0.04360195122282125,
+            0.10684799048535891
+          ],
+          [
+            0.04360195122282125,
+            -0.10684799048535891
+          ],
+          [
+            0.017355592591024604,
+            0.152475994660919
+          ],
+          [
+            0.017355592591024604,
+            -0.152475994660919
+          ],
+          [
+            0.006308934116036566,
+            0.11593605608536196
+          ],
+          [
+            0.006308934116036566,
+            -0.11593605608536196
+          ],
+          [
+            -0.030917629410151182,
+            0.1484362608538829
+          ],
+          [
+            -0.030917629410151182,
+            -0.1484362608538829
+          ],
+          [
+            -0.031900997925896714,
+            0.11207919858682623
+          ],
+          [
+            -0.031900997925896714,
+            -0.11207919858682623
+          ],
+          [
+            -0.07451880158647328,
+            0.1296082068672816
+          ],
+          [
+            -0.07451880158647328,
+            -0.1296082068672816
+          ],
+          [
+            -0.06672086576756725,
+            0.09571912634767879
+          ],
+          [
+            -0.06672086576756725,
+            -0.09571912634767879
+          ],
+          [
+            -0.10897201775665671,
+            0.09864773909968691
+          ],
+          [
+            -0.10897201775665671,
+            -0.09864773909968691
+          ],
+          [
+            -0.0940495014135682,
+            0.06843224616447965
+          ],
+          [
+            -0.0940495014135682,
+            -0.06843224616447965
+          ],
+          [
+            -0.1308914215064304,
+            0.05984163522785277
+          ],
+          [
+            -0.1308914215064304,
+            -0.05984163522785277
+          ],
+          [
+            -0.13942586306738305,
+            0.019281233251441467
+          ],
+          [
+            -0.13942586306738305,
+            -0.019281233251441467
+          ],
+          [
+            -0.11123647453589257,
+            0.0
+          ],
+          [
+            -0.1093739691988034,
+            0.03338032586008066
+          ],
+          [
+            -0.1093739691988034,
+            -0.03338032586008066
+          ],
+          [
+            0.04499086018465934,
+            0.0
+          ]
+        ]
+      }
+    ]
+  },
+  "optical_trials": [
+    {
+      "name": "nominal_resonant_demand",
+      "parameters": {
+        "mode": "constant",
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2909944487358056,
+        "maximum": 1.2909944487358056
+      },
+      "maximum_speed": 0.0,
+      "pressure_trace": {
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "maximum_guide_energy": 1.2909944487358054,
+      "minimum_buffer": 0.5307216751542203,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "maximum_bypass_over_useful_peak": 0.0,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 0.0,
+      "final_state_error": 0.0,
+      "maximum_ledger_error": 1.2434497875801753e-14,
+      "maximum_ring_energy_error": 0.0,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "passive_reference",
+      "parameters": {
+        "mode": "constant",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2593482514531105,
+        "maximum": 1.3184346188285478
+      },
+      "maximum_speed": 0.023008860379497897,
+      "pressure_trace": {
+        "minimum": -0.0315355833135923,
+        "maximum": 0.028506215311474865
+      },
+      "maximum_guide_energy": 1.2916612348016903,
+      "minimum_buffer": 0.5300935232136603,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 1.0,
+        "maximum": 1.0
+      },
+      "maximum_bypass_over_useful_peak": 0.01956607676802097,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 193.56137736930202,
+      "final_state_error": 1.4615878221398866e-05,
+      "maximum_ledger_error": 2.1538326677728037e-13,
+      "maximum_ring_energy_error": 2.184918912462308e-13,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_reference",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2593482514531105,
+        "maximum": 1.3184346188285478
+      },
+      "maximum_speed": 0.023008860379497897,
+      "pressure_trace": {
+        "minimum": -0.0315355833135923,
+        "maximum": 0.028506215311474865
+      },
+      "maximum_guide_energy": 1.292517143741138,
+      "minimum_buffer": 0.530048971171039,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9560135871120375,
+        "maximum": 1.0461416273555364
+      },
+      "maximum_bypass_over_useful_peak": 0.019566076768020642,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 77.75441817634739,
+      "final_state_error": 2.5830079483162736e-11,
+      "maximum_ledger_error": 3.9745984281580604e-13,
+      "maximum_ring_energy_error": 1.7763568394002505e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_reference_refined",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05,
+        "maximum_step": 0.0625,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "refined": true,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2593482514531116,
+        "maximum": 1.3184346188285476
+      },
+      "maximum_speed": 0.023008860379497353,
+      "pressure_trace": {
+        "minimum": -0.03153558331359205,
+        "maximum": 0.028506215311473865
+      },
+      "maximum_guide_energy": 1.2925171437411467,
+      "minimum_buffer": 0.5300489711710465,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9560135871114694,
+        "maximum": 1.0461416273557822
+      },
+      "maximum_bypass_over_useful_peak": 0.019566076768020642,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 77.75441817634739,
+      "final_state_error": 2.5829842347050824e-11,
+      "maximum_ledger_error": 3.419486915845482e-14,
+      "maximum_ring_energy_error": 2.4868995751603507e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "aggressive_reference",
+      "parameters": {
+        "mode": "aggressive",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 35.19304669328656,
+      "radius": {
+        "minimum": 1.0,
+        "maximum": 1.4913134428191652
+      },
+      "maximum_speed": 0.21943507439788376,
+      "pressure_trace": {
+        "minimum": -0.24889079957629587,
+        "maximum": 0.24972164364373392
+      },
+      "maximum_guide_energy": 1.3327468964102958,
+      "minimum_buffer": 0.4815461442322713,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 7.763091309336128e-07,
+        "maximum": 1.4999999419368177
+      },
+      "maximum_bypass_over_useful_peak": 0.33161023003932477,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 0.6085806194501845,
+      "observed_one_percent_settling_time": null,
+      "final_state_error": 0.3439398676860295,
+      "maximum_ledger_error": 2.1406876271612418e-11,
+      "maximum_ring_energy_error": 5.6066262743570405e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "aggressive_reference_refined",
+      "parameters": {
+        "mode": "aggressive",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05,
+        "maximum_step": 0.0625,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "refined": true,
+      "complete": false,
+      "boundary": "tensile",
+      "end_time": 35.19304669323291,
+      "radius": {
+        "minimum": 1.0,
+        "maximum": 1.4913134428200436
+      },
+      "maximum_speed": 0.2194350743990487,
+      "pressure_trace": {
+        "minimum": -0.24889079957732008,
+        "maximum": 0.24972164364298835
+      },
+      "maximum_guide_energy": 1.3327468964097071,
+      "minimum_buffer": 0.48154614422656816,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 7.76309128437307e-07,
+        "maximum": 1.499999941936818
+      },
+      "maximum_bypass_over_useful_peak": 0.33161023003683293,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 0.6085806194501845,
+      "observed_one_percent_settling_time": null,
+      "final_state_error": 0.3439398676888978,
+      "maximum_ledger_error": 9.681144774731365e-14,
+      "maximum_ring_energy_error": 8.881784197001252e-16,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_mmm",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": -0.02,
+        "initial_momentum": -0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2629256577703136,
+        "maximum": 1.3079340373557178
+      },
+      "maximum_speed": 0.01724390717898434,
+      "pressure_trace": {
+        "minimum": -0.020677780109132574,
+        "maximum": 0.022707098035978004
+      },
+      "maximum_guide_energy": 1.2930305646274103,
+      "minimum_buffer": 0.528459163504524,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9720054157016437,
+        "maximum": 1.038822533912909
+      },
+      "maximum_bypass_over_useful_peak": 0.040847237964500634,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 73.27764864498198,
+      "final_state_error": 1.8905954755177267e-11,
+      "maximum_ledger_error": 2.8466118351389014e-13,
+      "maximum_ring_energy_error": 2.5757174171303632e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_mmp",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": -0.02,
+        "initial_momentum": -0.01,
+        "initial_action_fraction": 0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2636619970290324,
+        "maximum": 1.324003450093499
+      },
+      "maximum_speed": 0.02341536213033668,
+      "pressure_trace": {
+        "minimum": -0.02909205144347809,
+        "maximum": 0.03220989599034392
+      },
+      "maximum_guide_energy": 1.2971171058795454,
+      "minimum_buffer": 0.5227521830029647,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9526638381412181,
+        "maximum": 1.0451176611202382
+      },
+      "maximum_bypass_over_useful_peak": 0.03622330521514636,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 78.10784734987624,
+      "final_state_error": 2.7171772875051403e-11,
+      "maximum_ledger_error": 3.894662370385049e-13,
+      "maximum_ring_energy_error": 1.9539925233402755e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_mpm",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": -0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2651745597610895,
+        "maximum": 1.3092679055938874
+      },
+      "maximum_speed": 0.017774307683156413,
+      "pressure_trace": {
+        "minimum": -0.02138778961276509,
+        "maximum": 0.02089112170968153
+      },
+      "maximum_guide_energy": 1.293382202405333,
+      "minimum_buffer": 0.5281715465856518,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.970193314289891,
+        "maximum": 1.0397009263850643
+      },
+      "maximum_bypass_over_useful_peak": 0.04051098480937836,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 72.57079029792428,
+      "final_state_error": 1.6930982617396747e-11,
+      "maximum_ledger_error": 3.752553823233029e-13,
+      "maximum_ring_energy_error": 2.4868995751603507e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_mpp",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": -0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": 0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2651745597610895,
+        "maximum": 1.3266086845870007
+      },
+      "maximum_speed": 0.02442967715708042,
+      "pressure_trace": {
+        "minimum": -0.030459670020652172,
+        "maximum": 0.03142891661648818
+      },
+      "maximum_guide_energy": 1.2980704031966424,
+      "minimum_buffer": 0.5212251222226444,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9497334415069156,
+        "maximum": 1.0454748897197876
+      },
+      "maximum_bypass_over_useful_peak": 0.035650202492474206,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 77.75441817634739,
+      "final_state_error": 2.6129196063594278e-11,
+      "maximum_ledger_error": 3.9612757518625585e-13,
+      "maximum_ring_energy_error": 2.6645352591003757e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_pmm",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": -0.01,
+        "initial_action_fraction": -0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2567787699567774,
+        "maximum": 1.3168143377105217
+      },
+      "maximum_speed": 0.02407591396190621,
+      "pressure_trace": {
+        "minimum": -0.030550803437910275,
+        "maximum": 0.02991305823588386
+      },
+      "maximum_guide_energy": 1.2925614728406383,
+      "minimum_buffer": 0.5302884483840722,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9553174232406563,
+        "maximum": 1.0494252517019171
+      },
+      "maximum_bypass_over_useful_peak": 0.042926368486950396,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 77.28317927830892,
+      "final_state_error": 2.435493458298514e-11,
+      "maximum_ledger_error": 4.0945025148175773e-13,
+      "maximum_ring_energy_error": 2.1316282072803006e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_pmp",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": -0.01,
+        "initial_action_fraction": 0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.27341600306816,
+        "maximum": 1.3168143377105217
+      },
+      "maximum_speed": 0.017406491724362292,
+      "pressure_trace": {
+        "minimum": -0.020426279692767186,
+        "maximum": 0.021093918452347423
+      },
+      "maximum_guide_energy": 1.2966781004839347,
+      "minimum_buffer": 0.5301443216340278,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9607527769830224,
+        "maximum": 1.02920913307264
+      },
+      "maximum_bypass_over_useful_peak": 0.019207944159002656,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 72.45298057341466,
+      "final_state_error": 1.6694492166087735e-11,
+      "maximum_ledger_error": 3.7481129311345285e-13,
+      "maximum_ring_energy_error": 2.6645352591003757e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    },
+    {
+      "name": "feedback_corner_ppp",
+      "parameters": {
+        "mode": "feedback",
+        "initial_radius_fraction": 0.02,
+        "initial_momentum": 0.01,
+        "initial_action_fraction": 0.02,
+        "action_gain": 0.02,
+        "momentum_gain": -0.05
+      },
+      "refined": false,
+      "complete": true,
+      "boundary": null,
+      "end_time": 315.33076246986144,
+      "radius": {
+        "minimum": 1.2747686100915778,
+        "maximum": 1.319174090342578
+      },
+      "maximum_speed": 0.01685304357203439,
+      "pressure_trace": {
+        "minimum": -0.022428224694791547,
+        "maximum": 0.020360207925832662
+      },
+      "maximum_guide_energy": 1.297385549218448,
+      "minimum_buffer": 0.52972686233099,
+      "guaranteed_buffer_floor": 0.075,
+      "prepared_total_energy": 2.3,
+      "emitter_power_over_useful_peak": {
+        "minimum": 0.9612679841237332,
+        "maximum": 1.0272618262530653
+      },
+      "maximum_bypass_over_useful_peak": 0.00806114822611874,
+      "requested_useful_energy": 4.868644955601476,
+      "delivered_useful_energy": 4.868644955601476,
+      "observed_one_percent_settling_time": 73.15983892047235,
+      "final_state_error": 1.8786491144897316e-11,
+      "maximum_ledger_error": 2.7355895326763857e-13,
+      "maximum_ring_energy_error": 1.7763568394002505e-14,
+      "maximum_path_bound_excess": 0.0,
+      "maximum_power_bound_excess": 0.0
+    }
+  ],
+  "refinement_checks": [
+    {
+      "name": "feedback_reference",
+      "event_time_error": 0.0,
+      "maximum_state_differences": {
+        "radius": 2.6867397195928788e-14,
+        "momentum": 2.0023913083200284e-14,
+        "photon_action": 5.867528685143952e-14,
+        "guide_energy": 4.463096558993129e-14,
+        "buffer_energy": 3.488320743372242e-13,
+        "pressure_trace": 5.366193600586655e-14
+      }
+    },
+    {
+      "name": "aggressive_reference",
+      "event_time_error": 5.3653081977245165e-11,
+      "maximum_state_differences": {
+        "radius": 8.873790591223951e-12,
+        "momentum": 6.998516349776551e-12,
+        "photon_action": 3.5264013931168847e-12,
+        "guide_energy": 2.7686741788102154e-12,
+        "buffer_energy": 2.1454393817066375e-11,
+        "pressure_trace": 9.305813064575119e-12
+      }
+    }
+  ],
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d",
+        "supporting_reports/data/constitutive_joints_and_optics/summary.json": "a70de0f091534217da790dfea9eec13ef9f38db389bd18fbc2f3757e6060247c"
+      },
+      "reception_capacity": {
+        "minimum": 3.731169925627707e-05,
+        "maximum": 3.749024639826295e-05
+      },
+      "prepared_total_energy": {
+        "minimum": 0.00028605636096479085,
+        "maximum": 0.0002874252223866826
+      },
+      "guide_reference_inventory": {
+        "minimum": 0.00012437233085425687,
+        "maximum": 0.0001249674879942098
+      },
+      "nominal_minimum_preparation": {
+        "minimum": 0.00023518738722173272,
+        "maximum": 0.00023631282606950915
+      },
+      "minimum_remaining_reserve": 0.0014678404728391647,
+      "all_panel_remaining_reserve_bound": 0.0014678404728391647,
+      "maximum_fraction_of_label_minimum_reserve": 0.16321900376760487,
+      "minimum_nominal_receiver_energy": 5.0868973743058104e-05,
+      "sampled_throughput_loss_fraction_ceiling": {
+        "minimum": 3.807890738890593e-07,
+        "maximum": 4.147771594943258e-06
+      },
+      "sufficient_throughput_loss_fraction": {
+        "minimum": 3.8062995868767963e-07,
+        "maximum": 4.146038619592258e-06
+      },
+      "nominal_guide_solution_exact": true,
+      "positive_receipts_bounded_for_continuous_interpolation": true,
+      "nominal_external_and_internal_flight_energy_counted": true,
+      "dynamic_envelope_is_conditional": true,
+      "physical_store_and_splitter_supplied": false,
+      "external_path_and_splitter_stresses_matched": false,
+      "verification": {
+        "maximum_peak_power_excess": 0.0,
+        "maximum_power_balance_error": 2.0764293062747186e-13,
+        "maximum_routing_error": 1.1368683772161603e-13,
+        "maximum_sampled_receipt_fraction": 1.0,
+        "checked_routing_matrices": 9
+      },
+      "inherited_current_host_rejections": 4
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f",
+        "supporting_reports/data/constitutive_joints_and_optics/summary.json": "a70de0f091534217da790dfea9eec13ef9f38db389bd18fbc2f3757e6060247c"
+      },
+      "reception_capacity": {
+        "minimum": 3.73989922413738e-05,
+        "maximum": 3.7857078289534795e-05
+      },
+      "prepared_total_energy": {
+        "minimum": 0.0002867256071838658,
+        "maximum": 0.0002902376002197668
+      },
+      "guide_reference_inventory": {
+        "minimum": 0.00012466330747124598,
+        "maximum": 0.00012619026096511598
+      },
+      "nominal_minimum_preparation": {
+        "minimum": 0.000235737622389171,
+        "maximum": 0.00023862508296955694
+      },
+      "minimum_remaining_reserve": 0.0013442581352852583,
+      "all_panel_remaining_reserve_bound": 0.0013442581352852583,
+      "maximum_fraction_of_label_minimum_reserve": 0.1765371921317338,
+      "minimum_nominal_receiver_energy": 5.09879847946947e-05,
+      "sampled_throughput_loss_fraction_ceiling": {
+        "minimum": 3.464605179734442e-07,
+        "maximum": 4.187331325421381e-06
+      },
+      "sufficient_throughput_loss_fraction": {
+        "minimum": 3.463881142156402e-07,
+        "maximum": 4.1864563391261535e-06
+      },
+      "nominal_guide_solution_exact": true,
+      "positive_receipts_bounded_for_continuous_interpolation": true,
+      "nominal_external_and_internal_flight_energy_counted": true,
+      "dynamic_envelope_is_conditional": true,
+      "physical_store_and_splitter_supplied": false,
+      "external_path_and_splitter_stresses_matched": false,
+      "verification": {
+        "maximum_peak_power_excess": 0.0,
+        "maximum_power_balance_error": 2.483664315877654e-13,
+        "maximum_routing_error": 5.684341886080802e-14,
+        "maximum_sampled_receipt_fraction": 1.0,
+        "checked_routing_matrices": 9
+      },
+      "inherited_current_host_rejections": 10
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278",
+        "supporting_reports/data/constitutive_joints_and_optics/summary.json": "a70de0f091534217da790dfea9eec13ef9f38db389bd18fbc2f3757e6060247c"
+      },
+      "reception_capacity": {
+        "minimum": 4.883797051163641e-06,
+        "maximum": 1.007436944263643e-05
+      },
+      "prepared_total_energy": {
+        "minimum": 3.7442444058921244e-05,
+        "maximum": 7.723683239354595e-05
+      },
+      "guide_reference_inventory": {
+        "minimum": 1.6279323503878807e-05,
+        "maximum": 3.358123147545476e-05
+      },
+      "nominal_minimum_preparation": {
+        "minimum": 3.078411037500914e-05,
+        "maximum": 6.350192230179706e-05
+      },
+      "minimum_remaining_reserve": 0.0031949120370404465,
+      "all_panel_remaining_reserve_bound": 0.0031949120370404465,
+      "maximum_fraction_of_label_minimum_reserve": 0.021799220264875876,
+      "minimum_nominal_receiver_energy": 6.658333683912108e-06,
+      "sampled_throughput_loss_fraction_ceiling": {
+        "minimum": 1.8804638782260255e-06,
+        "maximum": 9.487216365819798e-06
+      },
+      "sufficient_throughput_loss_fraction": {
+        "minimum": 1.879379632252283e-06,
+        "maximum": 9.481748427334511e-06
+      },
+      "nominal_guide_solution_exact": true,
+      "positive_receipts_bounded_for_continuous_interpolation": true,
+      "nominal_external_and_internal_flight_energy_counted": true,
+      "dynamic_envelope_is_conditional": true,
+      "physical_store_and_splitter_supplied": false,
+      "external_path_and_splitter_stresses_matched": false,
+      "verification": {
+        "maximum_peak_power_excess": 0.0,
+        "maximum_power_balance_error": 4.0045224081186603e-14,
+        "maximum_routing_error": 5.684341886080802e-14,
+        "maximum_sampled_receipt_fraction": 1.0,
+        "checked_routing_matrices": 9
+      },
+      "inherited_current_host_rejections": 0
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254",
+        "supporting_reports/data/constitutive_joints_and_optics/summary.json": "a70de0f091534217da790dfea9eec13ef9f38db389bd18fbc2f3757e6060247c"
+      },
+      "reception_capacity": {
+        "minimum": 5.195973014455296e-06,
+        "maximum": 1.665543102868472e-05
+      },
+      "prepared_total_energy": {
+        "minimum": 3.983579311082393e-05,
+        "maximum": 0.0001276916378865829
+      },
+      "guide_reference_inventory": {
+        "minimum": 1.7319910048184317e-05,
+        "maximum": 5.551810342894908e-05
+      },
+      "nominal_minimum_preparation": {
+        "minimum": 3.275185375372005e-05,
+        "maximum": 0.00010498442538848301
+      },
+      "minimum_remaining_reserve": 0.0028176939077316013,
+      "all_panel_remaining_reserve_bound": 0.0028176939077316013,
+      "maximum_fraction_of_label_minimum_reserve": 0.04335311486693083,
+      "minimum_nominal_receiver_energy": 7.083939357103882e-06,
+      "sampled_throughput_loss_fraction_ceiling": {
+        "minimum": 9.247088087024248e-07,
+        "maximum": 9.542924183018108e-06
+      },
+      "sufficient_throughput_loss_fraction": {
+        "minimum": 9.244420411927433e-07,
+        "maximum": 9.540172371132955e-06
+      },
+      "nominal_guide_solution_exact": true,
+      "positive_receipts_bounded_for_continuous_interpolation": true,
+      "nominal_external_and_internal_flight_energy_counted": true,
+      "dynamic_envelope_is_conditional": true,
+      "physical_store_and_splitter_supplied": false,
+      "external_path_and_splitter_stresses_matched": false,
+      "verification": {
+        "maximum_peak_power_excess": 0.0,
+        "maximum_power_balance_error": 8.298309955856453e-14,
+        "maximum_routing_error": 1.1368683772161603e-13,
+        "maximum_sampled_receipt_fraction": 1.0,
+        "checked_routing_matrices": 9
+      },
+      "inherited_current_host_rejections": 0
+    }
+  ],
+  "nominal_continuous_transfer_construction": true,
+  "nonlinear_global_controller_certificate": false,
+  "physical_receiver_and_splitter_supplied": false,
+  "routing_reactions_matched": false,
+  "thermal_losses_closed": false,
+  "current_hosts_solved": false,
+  "physical_material_identified": false,
+  "full_containment_established": false
+}
