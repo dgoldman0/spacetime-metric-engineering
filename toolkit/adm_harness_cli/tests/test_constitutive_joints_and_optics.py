@@ -4,8 +4,8 @@ from numpy.testing import assert_allclose
 from scipy.integrate import solve_ivp
 
 from adm_harness.constitutive_joints_and_optics import (
-    prepare_series_joints, ring_equilibrium, ring_rhs, ring_state,
-    series_power_bounds, series_state,
+    panel_reserve_lower_bound, prepare_series_joints, ring_equilibrium, ring_rhs, ring_state,
+    series_panel_state, series_power_bounds, series_state,
 )
 from adm_harness.distributed_reconfiguration import scheduled_replay
 from adm_harness.material_reconfiguration import MATERIAL_DIMENSIONS, PRESSURE_BASIS, elastic_state_from_tension
@@ -74,6 +74,21 @@ def test_series_power_intervals_cover_independently_evaluated_panel_states():
         material = np.concatenate([core, joint])
         assert np.max(material-bound["upper"][:12]) < 1e-12
         assert np.max(bound["lower"][:12]-material) < 1e-12
+        actual = series_panel_state(T, M, m, fields, target, lr, lt, dt, u)["power"]
+        assert np.max(actual-bound["upper"]) < 1e-12
+        assert np.max(bound["lower"]-actual) < 1e-12
+        assert_allclose(actual.sum(axis=0), 0, atol=2e-14)
+
+
+def test_derivative_envelope_covers_interior_minimum_and_exact_affine_reserves():
+    # r(t)=(t-.5)^2+.1 has equal endpoints and a lower interior reserve.
+    r = np.array([[.35], [.35]])
+    bound = panel_reserve_lower_bound(r, np.ones((1, 1)), np.array([[-1.]]), np.array([[1.]]))
+    assert_allclose(bound, -.15)
+    for rate in (-.2, 0., .2):
+        endpoints = np.array([[1.], [1+rate]])
+        exact = panel_reserve_lower_bound(endpoints, np.ones((1, 1)), np.full((1, 1), rate), np.full((1, 1), rate))
+        assert_allclose(exact, endpoints.min())
 
 
 def test_optical_ring_open_ports_obey_energy_balance_with_radial_momentum():

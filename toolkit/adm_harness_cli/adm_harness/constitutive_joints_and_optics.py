@@ -157,6 +157,53 @@ def series_power_bounds(tension, core_inventory, joint_inventory, fields, target
     return dict(lower=lower, upper=upper)
 
 
+def series_panel_state(tension, core_inventory, joint_inventory, fields, target,
+                       lr, lt, proper_duration, fraction, *, reference_fraction=1e-4):
+    """Evaluate the nonlinear materials and all reciprocal work ports."""
+    u = float(fraction)
+    if not np.isfinite(u) or not 0 <= u <= 1:
+        raise ValueError("panel fraction must lie in [0, 1]")
+    interpolate = lambda a: (1-u)*a[..., :-1, :]+u*a[..., 1:, :]
+    state = series_state(interpolate(tension), core_inventory[:, None], joint_inventory[:, None],
+                         dimension=MATERIAL_DIMENSIONS[:, None, None], reference_fraction=reference_fraction)
+    dt = np.asarray(proper_duration)
+    dz, da = np.diff(np.log(lr), axis=0)/dt, np.diff(np.log(lt), axis=0)/dt
+    material_work = PRESSURE_BASIS[0, :6, None, None]*dz+PRESSURE_BASIS[1, :6, None, None]*da
+    field_work = PRESSURE_BASIS[0, 6:10, None, None]*dz+PRESSURE_BASIS[1, 6:10, None, None]*da
+    dT = np.diff(tension, axis=1)/dt
+    core_rate = state["core_energy_derivative"]*dT
+    joint_rate = state["joint_energy_derivative"]*dT
+    field_rate = np.diff(fields, axis=1)/dt
+    now_fields, now_target = interpolate(fields), interpolate(target)
+    dust_rate = np.diff(target[0], axis=0)/dt-core_rate.sum(axis=0)-joint_rate.sum(axis=0)-field_rate.sum(axis=0)
+    rail = -np.diff(target[0], axis=0)/dt-now_target[1]*dz-2*now_target[2]*da
+    power = np.concatenate([core_rate+state["core_tension"]*material_work,
+        joint_rate+state["joint_tension"]*material_work, field_rate+now_fields*field_work,
+        dust_rate[None], rail[None]])
+    energies = np.concatenate([state["core_energy"],
+        MATERIAL_DIMENSIONS[:, None, None]*state["joint_energy_per_direction"], now_fields])
+    reserve = now_target[0]-energies.sum(axis=0)
+    return dict(state=state, power=power, component_energy=np.concatenate([energies, reserve[None]]),
+                remaining_reserve=reserve)
+
+
+def panel_reserve_lower_bound(reserve, duration, derivative_lower, derivative_upper):
+    """Bound every interior reserve from both endpoints and derivative bounds.
+
+    The intersection of the two affine lower bounds supplies the only
+    possible interior minimum of their upper envelope. This uses no
+    assumption about convexity of the implicit series energy law.
+    """
+    a, b = np.asarray(reserve)[:-1], np.asarray(reserve)[1:]
+    L, U, dt = map(np.asarray, (derivative_lower, derivative_upper, duration))
+    if np.any(dt <= 0) or np.any(U < L):
+        raise ValueError("positive durations and ordered derivative bounds required")
+    fraction = np.divide(a-b+dt*U, dt*(U-L), out=np.zeros_like(a), where=U > L)
+    fraction = np.clip(fraction, 0, 1)
+    middle = np.maximum(a+fraction*dt*L, b-(1-fraction)*dt*U)
+    return np.minimum(np.minimum(a, b), middle)
+
+
 def ring_state(radius, momentum, photon_action):
     """Dimensionless homogeneous ring: R/Rref, p/M, K/(M*Rref).
 
