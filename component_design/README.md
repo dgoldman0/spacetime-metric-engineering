@@ -29,6 +29,12 @@ source, finite-boundary material and transition/exterior roles. The radial-only
 control gives a compatibility bound between those source components. The report
 records both trial quantum overlaps and all retained architectural boundaries.
 
+The [angular scalar investigation](../supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md)
+adds a separate conformal-field candidate to that angular role. Its curved
+finite-domain spectra retain positive lowest squared frequencies. The field's
+renormalized tensor and response of shared reflectors remain physical inputs;
+the existing radial placement, populations and overlap are preserved.
+
 The local source library is
 [`sources/SOURCES.md`](sources/SOURCES.md). It includes the older effective
 geometry literature together with engineering-facing sources on programmable

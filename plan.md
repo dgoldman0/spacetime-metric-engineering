@@ -2,9 +2,35 @@
 
 ## Current handoff, 2026-09-17
 
+The [C1 angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md)
+is the current source milestone. A separate real massless four-dimensional
+scalar with curvature coupling `1/6` has positive lowest squared frequencies
+in all 574 finite-domain comparisons. An independent scalar-variable solve
+checks 44 selected spectra; 28 focused tests pass. The full curved operator
+is implemented. Its renormalized angular tensor, material forces and global
+exterior state remain open.
+
+Geometry, electric sources, radial quantum populations and both existing
+overlap brackets remain unchanged. The new angular-field trials grant
+reflection at the inherited 1-, 8- or 32-compartment boundaries; unused radial
+reflectors are transparent to this field in the first two cases. This adds a
+field-selective material-response assumption. Auxiliary spectral cuts through
+`[-8,8]` remain numerical boundary comparisons, with physical exterior matching
+assigned to the existing transition/quantum environment.
+
+Continue with the scalar's renormalized four-dimensional stress on the retained
+geometry and its reciprocal boundary/material force, using a fixed common
+renormalization prescription. Sum it with the separate radial candidate and
+the Maxwell/material components. The cylindrical formula is a limiting
+benchmark; the transition indicator reaches about 17.4, and the full native
+tensor requires the curved mode sum. Use the original geometry
+evaluator for any higher derivatives required by renormalization and explicitly
+record any geometric smoothing or source/overlap revision. Detailed fixture
+and handoff work follows the combined physical source construction.
+
 The [C1 signed-source channel screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
-is the current source milestone. It evaluates 80 comparisons with four workers,
-31 passing focused tests and 140 independently verified pointwise exclusions.
+supplies the preceding allocation milestone. It evaluates 80 comparisons with
+four workers, 31 passing focused tests and 140 independently verified pointwise exclusions.
 The multicomponent gate retains a radial conformal-channel candidate and a
 separate angular quantum target. It permits conditional bulk allocations at
 32 compartments per module. The radial-only control omits that existing signed
@@ -13,17 +39,17 @@ Physical angular stress, reflector materials and exterior component tensors
 remain open.
 
 Geometry, electric-source placement and material module domains remain
-unchanged. Electric overlaps stay at `[0.5,2.5]` and `[0.5,1]`. The **trial
-quantum-source placement changes**: outer reflectors sit 0.05 coordinate units
+unchanged. Electric overlaps stay at `[0.5,2.5]` and `[0.5,1]`. That screen's **trial
+quantum-source placement change** puts outer reflectors 0.05 coordinate units
 inside each module, giving quantum overlaps `[0.55,2.45]` and `[0.55,0.95]`.
 Equal-optical compartment boundaries and per-compartment channel counts are
 trial variables. The necessary gate relaxes the old material profiles and
 density limits to arbitrary aggregate DEC stress. No physical quantum layout
 is promoted.
 
-Continue the separately assigned components: supply the signed angular tensor
-and reflector/material response, couple them to the radial candidate, and
-evaluate coverage from the existing transition/quantum-environment role and
+The separately assigned components retain their duties: supply the signed
+angular tensor and reflector/material response, couple them to the radial
+candidate, and evaluate coverage from the existing transition/quantum-environment role and
 any participating neighboring assemblies. The measured exterior residual is
 coverage omitted by this compact trial; the exterior candidates themselves
 were outside that calculation. The radial-only control leaves the radial

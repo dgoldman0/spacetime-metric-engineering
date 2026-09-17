@@ -1,0 +1,52 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/screen_c1_angular_scalar.py": "18ad6b540a15942ca29a0252d77c1245b98137f15eeec9a35e6124e04d41aa5a",
+    "toolkit/adm_harness_cli/specs/c1_angular_scalar.json": "24d43441c82d4baf9a71221108e30f7c94b514bc8037f16cbba6d38947205fc8",
+    "toolkit/adm_harness_cli/adm_harness/c1_angular_scalar.py": "4238c8b7d64a25b665506c17cf0757b91c85578b129affb47b127759c141c4c7",
+    "toolkit/adm_harness_cli/tests/test_c1_angular_scalar.py": "c0cfe196227a86c8a55b4ba7c00b6841691d538dec71051e599e357a1024ec56",
+    "toolkit/adm_harness_cli/adm_harness/c1_signed_channels.py": "8109087ee860db29405e136d1504d1574d7311fb7529309c7a47ff1583e226a9",
+    "toolkit/adm_harness_cli/adm_harness/c1_module_overlap.py": "266f687f67ab606e46e6a559dc1784f7e941003eb6f3ef83f4d7d5998758a274",
+    "toolkit/adm_harness_cli/adm_harness/geometry_opening.py": "64aef9f4006abb07d5c13a385a6a9ac7b40eead516ddd75291f6bafa14b9d0d5"
+  },
+  "input_sha256": {
+    "supporting_reports/data/archived_geometry_opening/reference_metric.npz": "75eff30a809bbbe895e83ea2202efafa369dca72addcf287c92c15bf207c5511",
+    "supporting_reports/data/c1_signed_channels/manifest.json": "8e229ed92f84f16468ddba708ce01d41fe4421921e767b26a89bd2dceec4ac33",
+    "toolkit/adm_harness_cli/specs/c1_signed_channels.json": "3010671e9e1539eaeaf0d801586b4a2b61c5d32a0735c421aa116f1aaecbe5c7",
+    "toolkit/adm_harness_cli/specs/c1_module_pair.json": "c47cf3ee6879461d2966ce36afcdac73eb334252ac33c774e891fa78908076d1",
+    "supporting_reports/data/c1_signed_channels/summary.json": "11f59571e814fe58e3d9408daee7d702fab4878bcce1786983d21ebd87090ba8",
+    "supporting_reports/data/c1_signed_channels/broad_independent_per_compartment_n32_s8193_g1_q16.npz": "40fe04e6ebe55f4b2ba0a903d90d50ef51b0a3c65e07eb8d4b833d39452992df",
+    "supporting_reports/data/c1_signed_channels/narrow_independent_per_compartment_n32_s8193_g1_q16.npz": "3ea8e6002d49c5ca84f079f5e1fa7e02eebcec6d24422f045bc6c10784fa4122"
+  },
+  "output_sha256": {
+    "cylindrical_indicators_broad.npz": "c41c4570226d68f9cd69127379ececcff234517df28f063f15126b9e595811f8",
+    "cylindrical_indicators_narrow.npz": "c41c4570226d68f9cd69127379ececcff234517df28f063f15126b9e595811f8",
+    "execution_c1_angular_scalar.json": "24d43441c82d4baf9a71221108e30f7c94b514bc8037f16cbba6d38947205fc8",
+    "execution_c1_angular_scalar.py": "4238c8b7d64a25b665506c17cf0757b91c85578b129affb47b127759c141c4c7",
+    "execution_screen_c1_angular_scalar.py": "18ad6b540a15942ca29a0252d77c1245b98137f15eeec9a35e6124e04d41aa5a",
+    "execution_test_c1_angular_scalar.py": "c0cfe196227a86c8a55b4ba7c00b6841691d538dec71051e599e357a1024ec56",
+    "modes_0002.npz": "05afd7049d09386ab0ea2458c58da684cbe74a969016646196688ddb263ee079",
+    "modes_0039.npz": "56ddae5456d6df048d601070bc43b5bc8cbd4f1c1a989dc10098b71bf151cd9e",
+    "modes_0089.npz": "3bb81c90864a8c1809f1c1b46e5a513a2b34234160e79b506f68115b3c637a9a",
+    "modes_0136.npz": "d95595988c31cebf3c8c633882fa6343d67af4026683ef7b5c8553e6082b016d",
+    "modes_0141.npz": "2f58c5c27046ad4d8ba79b5c8046d4859020e26a7abcc84bfdabf2e47c833870",
+    "modes_0178.npz": "9a469e352566c38efab7206a96b5fd354622aa8c6a133469c36185cd3ff21f88",
+    "modes_0228.npz": "e7696d2042421e6fab13b6fe7fa807e87488c3379e3617c416094eacaaeffd24",
+    "modes_0275.npz": "ca1329786c3814f8a199bb3c2bce03185427c1298d7438b869171e3913e57f5b",
+    "modes_0280.npz": "6ad5c914ce68f265f45c2987accde58a253a9e061443c8bd40a7ac1b24ee04ca",
+    "modes_0317.npz": "1a0620ab49bc03bafde63338c64cb4a380d91e8b0c50d8c5b7578a11600a3160",
+    "modes_0367.npz": "24bc3df1ca6ce189fc985bd312d57ac70c6ecb4fdaa804d4d8bade4943758ea6",
+    "modes_0414.npz": "b20fdbac6049346d62889bcea974e06dd7942541bc41ec10be33e1f9e508c336",
+    "modes_0419.npz": "2f58c5c27046ad4d8ba79b5c8046d4859020e26a7abcc84bfdabf2e47c833870",
+    "modes_0456.npz": "9a469e352566c38efab7206a96b5fd354622aa8c6a133469c36185cd3ff21f88",
+    "modes_0506.npz": "e7696d2042421e6fab13b6fe7fa807e87488c3379e3617c416094eacaaeffd24",
+    "modes_0553.npz": "ca1329786c3814f8a199bb3c2bce03185427c1298d7438b869171e3913e57f5b",
+    "modes_0558.npz": "a59c87d30364e0dc96173204d9d441cdced533807aac74dc27f4a409a8e1f1a2",
+    "modes_0561.npz": "897da9092bc2a37aad5763e2b9c59c012229880b2dcc1b5a119a80e99031dc58",
+    "modes_0564.npz": "90657505e2f138dbe4d457d4cf7d7bbce5312cc4127eb6e17bfce566a7de3584",
+    "modes_0567.npz": "831c550fe059b92cff3a969fd3d8bb7682fc95d0cf86819cbdbb2f4f72588dcb",
+    "modes_0570.npz": "338b7f3925e88e6e051c6804c6e25a4d0baf661fca96dff778be1126e8a231ab",
+    "modes_0573.npz": "9639880050015389d6d2f99c0024f6cb9189ba9be0525c9cbdfceab6e34dd48d",
+    "spectra.csv": "fa659434d23a9b024cafdba24c06a90b21a8acc2cb024c984dc094f1c6746cd7",
+    "summary.json": "0bb5640e41768b61b5f713dafba1692303efee560a5e5be8dfe63176013b6491"
+  }
+}

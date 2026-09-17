@@ -2,6 +2,12 @@
 
 Date: 9 September 2026.
 
+The [C1 angular scalar investigation](C1_ANGULAR_SCALAR_INVESTIGATION.md)
+develops the conformal scalar specifically for the existing angular signed
+role alongside the radial channels. Its curved finite-domain spectra retain
+positive lowest squared frequencies. The absolute curved tensor and the
+reflecting/transition material response are the next construction inputs.
+
 The subsequent [C1 signed-source screen](C1_SIGNED_SOURCE_CHANNEL_SCREEN.md)
 adds finite reflecting radial channels alongside the established separate
 angular signed-source role on the retained geometry. Short compartments with
@@ -47,7 +53,7 @@ radial-null stress, its spectrum or global path, or the geometric assumptions.
 | Spatially resolved quantum stress around finite material | [Curved boundaries](CURVED_QUANTUM_BOUNDARY_SEARCH.md) gave useful response signs; smooth material exposed holding and shape costs. The neutral spectator had a large absolute opening deficit. The [finite curved cavity evaluation](NARROW_CURVED_CAVITY_EVALUATION.md) computes a proximity enhancement and counts canonical scalar mirrors. | All nine curved cavities fail at the registered portal couplings because mirror gradients exceed useful interaction stress. Other material actions and isolated-layer absolute vacua retain separate source questions. A renewed candidate requires a specified mechanism that improves this counted balance. |
 | Magnetic constructions with many quantum channels, including the Randall–Sundrum extension | Literature benchmarks were compared with the rail's clock and stress requirements. The [short-circuit adaptation](SHORT_MAGNETIC_CIRCUIT_EVALUATION.md) grants ideal Landau channels and counts each full path, including turns and local field spreading. | Helpful quantum signs occur on 303 of 440 paths; all 23,760 source combinations fail for each field prescription. Further adaptation requires a different global return arrangement or mode-to-confinement relation. Published global and strongly coupled large-channel constructions retain distinct theory and service-matching requirements. |
 | Barceló–Visser curvature-coupled scalar | The [reduced profile and localized-basis searches](STAGE2_PROMOTED_PAIR_SCALAR_KILL_SCREEN_PROGRESS.md) failed the radial-null target itself, with severe placement/timing mismatch. | Broader coupled profiles exceed that numerical screen's scope. Independent scalar–tensor existence constraints give a stronger reason to keep this family below the fermion/material audit. |
-| Butcher long-throat conformal vacuum | Retained as a cylindrical benchmark. | Its leading longitudinal null projection is zero. It remains relevant to other stress channels and limiting checks, while the missing opening contribution requires another mechanism. |
+| Butcher long-throat conformal vacuum | Cylindrical angular-source benchmark; the [C1 angular scalar](C1_ANGULAR_SCALAR_INVESTIGATION.md) now has a curved spectral implementation with positive finite-domain mode evidence. | Its leading longitudinal null projection is zero, consistent with its separate angular assignment. The radial candidate remains explicit; full curved stress, renormalization and material/exterior matching determine this field's contribution. |
 
 ## Fermion literature qualification
 

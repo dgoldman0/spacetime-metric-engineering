@@ -1,0 +1,13 @@
+{
+  "runtime_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_angular_scalar.py": "0bc6b0de41350edc84c6c6f40250dc47df9cecb9f387b519acc607ed37fd188d"
+  },
+  "input_sha256": {
+    "summary.json": "0bb5640e41768b61b5f713dafba1692303efee560a5e5be8dfe63176013b6491",
+    "manifest.json": "d2c95929d28978b1780169d4135ea16bd5ebd1900ddbf66182a3706d3d71690c"
+  },
+  "output_sha256": {
+    "verification.json": "d3ebc9184e7d6562c6cebef084a48188218dcb10f6225bfec5ed2150643ee8ff",
+    "execution_audit_c1_angular_scalar.py": "0bc6b0de41350edc84c6c6f40250dc47df9cecb9f387b519acc607ed37fd188d"
+  }
+}

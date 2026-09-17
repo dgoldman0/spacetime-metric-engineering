@@ -31,6 +31,14 @@ participating neighboring assemblies. Its measured coverage is a requirement
 for that existing assignment; the exterior candidates themselves were outside
 the compact-channel calculation.
 
+The [angular scalar investigation](C1_ANGULAR_SCALAR_INVESTIGATION.md) supplies
+a candidate field action and curved spectral operator for the signed angular
+role. Its finite-domain spectra support continuing to a stationary quantum
+state, with the absolute tensor and material reflection law still to supply.
+The radial channels retain their state and populations. Field-selective
+reflection at existing compartment boundaries is a new trial material-response
+assumption; geometry, existing source placement and overlaps are retained.
+
 The recent condensate-plus-neutral-scalar calculation restricted the allocation
 too far. Its classical material supplies 0.612% of the demanded throat tension,
 leaving the quantum remainder responsible for 99.388%. Restoring bulk support

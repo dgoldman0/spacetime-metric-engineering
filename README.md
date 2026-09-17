@@ -33,6 +33,14 @@ A radial-only control supplies a compatibility bound between source components.
 The electric overlaps retain their original boundaries; the trial quantum
 overlaps are inset and recorded explicitly in the report.
 
+The [angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md)
+supplies a curved spectral operator for a separate four-dimensional conformal
+field in the existing angular role. All 574 finite-domain comparisons retain
+positive lowest squared frequencies. The cylindrical stress formula provides
+a bulk benchmark; the full curved tensor, material reflection and exterior
+state remain the construction tasks. Existing geometry, radial populations
+and overlaps are retained, with trial angular reflection at recorded boundaries.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -70,6 +78,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [C1 angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md):
+  separate field action, finite spectra, cylindrical applicability and the
+  next full-tensor construction.
 - [C1 signed-source and finite-boundary screen](supporting_reports/C1_SIGNED_SOURCE_CHANNEL_SCREEN.md):
   explicit channel law, tensor exclusion, conditional angular-source comparison
   and geometry/source-placement change record.
