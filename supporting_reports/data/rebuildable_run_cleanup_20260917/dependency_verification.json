@@ -1,0 +1,9 @@
+{
+  "offline_install_exit_code": 0,
+  "network_used": false,
+  "original_npm_cache_modified": false,
+  "lockfile_sha256": "08dd4325d3f994f556b4d18140dbc230d6055a57dee1e692c868afd63f063f37",
+  "fresh_dependency_build_exit_code": 0,
+  "built_file_count": 83,
+  "elapsed_seconds": 8.85967
+}

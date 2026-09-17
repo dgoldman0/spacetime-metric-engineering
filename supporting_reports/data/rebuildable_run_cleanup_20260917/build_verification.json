@@ -1,0 +1,23 @@
+{
+  "quiz_build": {
+    "exit_code": 0,
+    "output_file_count": 83
+  },
+  "latex": [
+    {
+      "source": "active_rail_technical_disclosure.tex",
+      "exit_code": 0,
+      "pdf_exists": true
+    },
+    {
+      "source": "white_casimir_intersection/white_casimir_physical_readout_paths_paper.tex",
+      "exit_code": 0,
+      "pdf_exists": true
+    },
+    {
+      "source": "white_casimir_intersection/white_casimir_fidelity_probe_paper.tex",
+      "exit_code": 0,
+      "pdf_exists": true
+    }
+  ]
+}

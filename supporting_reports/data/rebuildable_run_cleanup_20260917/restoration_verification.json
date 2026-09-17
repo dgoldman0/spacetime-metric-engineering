@@ -1,0 +1,22 @@
+{
+  "manifest": "supporting_reports/data/rebuildable_run_cleanup_20260917/manifest.json",
+  "manifest_sha256": "c2c0f5c783ae12603567eaba500c794dbc139441e8b8ce3fbee16f33fcf6bba9",
+  "mode": "restore",
+  "workers": 2,
+  "elapsed_seconds": 3.569767,
+  "results": [
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+      "status": "restored",
+      "sha256": "b1212cf1f1506410e05d4a399b4ec045c4a9df3c17abd3845bcfad3cf79e081e",
+      "seconds": 3.529549
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p008/point_ledger.csv",
+      "status": "restored",
+      "sha256": "5254ed977ed46b94f40baf14236cf1e3f813ba6851437475aafa1159c14d8c54",
+      "seconds": 3.485165
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,2032 @@
+{
+  "manifest": "supporting_reports/data/rebuildable_run_cleanup_20260917/manifest.json",
+  "manifest_sha256": "c2c0f5c783ae12603567eaba500c794dbc139441e8b8ce3fbee16f33fcf6bba9",
+  "mode": "verify_only",
+  "workers": 6,
+  "elapsed_seconds": 189.734121,
+  "results": [
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fb0bd870286c5791bfe87a7cc50e931ee949cb25742d9c207008a530d69d8320",
+      "seconds": 4.032317
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d4eafaecd8835285f8680e378656501ffe72c7f97c80a058bf8b105e4d2d1b89",
+      "seconds": 4.054948
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6e0cd1f586694a53f68a12c75ac4eab6fb333bb442750e7b3e77228e8c461f23",
+      "seconds": 4.029195
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "29d299fe8ce5cf435d36629a19d2b9c7ad0e5ecc4eed33255a17fab311a7df16",
+      "seconds": 3.925039
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e948e68b25ac712d2233226327ba302f7674ccfa0527053d5c6ef995ca3531d1",
+      "seconds": 4.103438
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_neg_5em08/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7e8a723d2cad9b685cea21ab7b2a28af532a9ed004ee4199c7c6fb594a601775",
+      "seconds": 4.037328
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9429bd11432e3b34d481794778e694676a5b88cee28c7791feed75639137dc44",
+      "seconds": 3.39464
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.426117
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b1212cf1f1506410e05d4a399b4ec045c4a9df3c17abd3845bcfad3cf79e081e",
+      "seconds": 3.484354
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e5b7530a2175525d85872cd9fb171c07991f8139f436720c9be16319d4e8e73b",
+      "seconds": 3.385851
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cf84eea20e620f8d0797ae7aa23379512ca9fef66ae10bba8bdbe11ab7e29a7e",
+      "seconds": 3.455705
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/amp_pos_5em08/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d54871ca2c0d3793ce1f6613b826b77c23cb85538665c401ecd6e1e4f6796bf4",
+      "seconds": 3.433328
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_0p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "05b2f9aa22016c52633e7235dad892af46a1301a873d385d18f6f6117930cd2f",
+      "seconds": 3.217227
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6912a4219f634466fa7205f323533777c03728786c11ebcae257a16837c03a31",
+      "seconds": 3.172851
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d4eafaecd8835285f8680e378656501ffe72c7f97c80a058bf8b105e4d2d1b89",
+      "seconds": 3.159509
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "034f423b169162edf1d5ffaaac4da2f6f850adab0b55aa8d2184d03cc31f4bab",
+      "seconds": 3.179397
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_neg_1p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4f5ea43987162d65bedb2d8fe509baeacadc34ab2e6a56db23fedf18b110da6d",
+      "seconds": 3.18739
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_0p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e7a383ae8b1c5ade04064d98049507e1a8baee83d4a9868ace3f7e50f795d7ea",
+      "seconds": 3.156388
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c9a8a17c5dea05c6a9c60aad9f16d9155bce6315f6af23c74c748d29fc3cd21a",
+      "seconds": 3.286092
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.315051
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fe46bc69ef5f8e3baa7d23f8c12dcee57cf5de80df80d398647ba73739405db6",
+      "seconds": 3.359853
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/lead_pos_1p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "faff57a889c4feaf00aeb6fd6c25d95fb97c224fc34196220f44450b159e6979",
+      "seconds": 3.502917
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_0p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d758e00a78516234c0616d893934d76a514ffd9051f666e3d619943a8a1e1eae",
+      "seconds": 3.528429
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1369a749ddcbfbf92266b70ed29ab9df539ce97b06bf7ba18e53e87e8e09925f",
+      "seconds": 3.50924
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d4eafaecd8835285f8680e378656501ffe72c7f97c80a058bf8b105e4d2d1b89",
+      "seconds": 3.533966
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "52329bbb9c459674a67fd9f8da134bf53e06e089b274c1771a74311771a253a6",
+      "seconds": 3.552912
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_neg_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3d8cb1ebec8f5d090c03658170b81f5b6bf1e67eec830db8f0388f084e990c00",
+      "seconds": 3.414464
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_0p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f1ff34c907999b91310c41f4b38fc539eab8ff7d6e17b557d65774f53196bb08",
+      "seconds": 3.499716
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4fc59ff567b845066034aacc684311f2b82f1af50e75b1907a50e4af4044a0b7",
+      "seconds": 3.415449
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.546407
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d2c9128d42521966aae4234c252fd47d0aba2cfcb70080966bd2ba4811dc5a1e",
+      "seconds": 3.406878
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/tw_pos_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a9550abbc951977d14f5927d2329dd5f7a7600c411eda1ddc9d298fcb22f7e29",
+      "seconds": 3.556266
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/v10_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "923ad6a86f25c5b7bdbc6621b980d131900f20929f8dc48009a97b64703fc9aa",
+      "seconds": 2.880264
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_support_shell_edge/v10_support_shell_window_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.374604
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "923ad6a86f25c5b7bdbc6621b980d131900f20929f8dc48009a97b64703fc9aa",
+      "seconds": 2.941669
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "605861091b57b7145c1bb01915b381fef34d73fb1eb6daab4fcdc8239eb09d15",
+      "seconds": 3.546957
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "8be15103d73d81a40a5252845f3aa270d0d45336447cf4bfd3660ca675f4f2c0",
+      "seconds": 3.138711
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "64d8db46edc4d3286ecbb8504776f48442d5f936486dfd379e8f7a7e6379927c",
+      "seconds": 3.103421
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2db52461f8e9cd54464fc0cb916f072ebe9c381e2e63afd637db0fc421e871b4",
+      "seconds": 3.213543
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1efe2790c4a59231c91ddfe4451c0c31588672bd41557a5cde7c7c4b61a17e2a",
+      "seconds": 3.243403
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "330be09b8924dc784025926cb4970276331e501344cd634ba105bc2b1d08378f",
+      "seconds": 3.140429
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a37851b21670aa65814b10111be67c638b871778bd3943a82c941f6f3980671c",
+      "seconds": 3.238837
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a0p01/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ceef95c180a4a00da996a024d13edfd408e1d3b2239e5f9a674ef37e9d0ddb5f",
+      "seconds": 3.08065
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a1em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "96c3dd6e5c24482c51e38651eddedaedc88d2682c2da9e5af96655f9c802162b",
+      "seconds": 3.110471
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9429bd11432e3b34d481794778e694676a5b88cee28c7791feed75639137dc44",
+      "seconds": 3.230578
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.220988
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "40ecc999eaa055f4e10c084a4aa96a747a421b465aa6c5eb05a1e569f2a3238d",
+      "seconds": 3.387483
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b1212cf1f1506410e05d4a399b4ec045c4a9df3c17abd3845bcfad3cf79e081e",
+      "seconds": 3.08352
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e5b7530a2175525d85872cd9fb171c07991f8139f436720c9be16319d4e8e73b",
+      "seconds": 3.323423
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5f5bc52c4fac9a2a953ede63d649ec66de4ec32477d54e965b1fc6a6f1f2ed88",
+      "seconds": 3.285745
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b3a5bbb3be0777245d9448e83981361c08e4cb5e8f6ee6c61e03be827ca48d0f",
+      "seconds": 3.357746
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cf84eea20e620f8d0797ae7aa23379512ca9fef66ae10bba8bdbe11ab7e29a7e",
+      "seconds": 3.325934
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_window_neg_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d4eafaecd8835285f8680e378656501ffe72c7f97c80a058bf8b105e4d2d1b89",
+      "seconds": 3.442039
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_window_pos_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9ef2bcbbeebbaa58c30cd5801e94e14b34d57ddfd0d67688bcb55f08bfb1dfdf",
+      "seconds": 3.373631
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c7bea4c654407ee5ca6c815815c0db363d9a9bdfe9a6a7a1da77d40e0ca9f513",
+      "seconds": 3.294815
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "41d2c165add4377a7f63a63bcc688ff5e85c56bd2360630c9f597459912de9e4",
+      "seconds": 3.226726
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1172dbb5b062da979488c82e4a752c1b5f98f70b4e02c496c7a2e7c5bd73dd57",
+      "seconds": 3.133845
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "eb6630c955636f6e34d49225422184bb9eaf9c284ea234f8ddf02722bb4695d3",
+      "seconds": 3.452702
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c71251833109dfd8c4e33958ec239c086e09f5e0e9466f0013a71a31e2ec8f29",
+      "seconds": 3.198443
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3cb7ab87fae07b635bc93ccfe721bd1389169a6be4ea155412cfa90f19441ff4",
+      "seconds": 3.147547
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "eab2e4a6f95bfa7e2c731be62d385f0dd44afb0f5c049ec78b319d1d6fa54404",
+      "seconds": 3.269518
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2723d2df04d732cec7c81b19a5ca7b8cbd8acd2c8712ab037694cbfb0dc770e0",
+      "seconds": 3.332821
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p5_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "8fd1d740e0de7eba6f1861f2a96469a66202c2d10cd6b6c11e9e466d60ba12db",
+      "seconds": 3.426303
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "26d26e5983eb3607d4dab78c3c7813b216a01f08bd7913220ac4319d99076d3a",
+      "seconds": 3.434414
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "85ee8c982c888cd4f242f84b41812886da01a6f1a19dad6c047ccde8428b04c4",
+      "seconds": 3.250317
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "10f4240be8d587f74681f6c593505c86e44f4e07573ef0693c2835078c175384",
+      "seconds": 3.353165
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "819ffa2eeea27df32466eb6eaa1450efa1be35e76fe6203c6b999688db5cf00c",
+      "seconds": 3.08307
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6576997644aac39304a57286999cdb24cce510ac33f5972d2f72667c7eadeb9b",
+      "seconds": 3.230699
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3bdb800fd4ebe976e79fb707b90b61a2034fdf005c6d1c02ccca5780073e1dea",
+      "seconds": 3.0756
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b727dfb77d877b0af091bfaed9ec57cf96e6d2af2bfe4da35d271a0e0d77d4c4",
+      "seconds": 3.196787
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "101a2e99e85a0ed91815c62a87de4f2f89259988ef6701bf3e69fd6777dfeaf3",
+      "seconds": 3.19933
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead0p75_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e6b4288de562593d33e290b7826aecf48620957e77f56117b0109520eff88f53",
+      "seconds": 3.427046
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "0da263a2508079a34986ae0ed84fd72140ef420505fe62022c9c5e13a2bb3035",
+      "seconds": 2.874341
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f60c1aa139716d6c07724af9db3b9864b9705cde6e94e04cd1c6dbc19697c1ba",
+      "seconds": 3.122803
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "04502dcbefba977d6c1ded7d552dd21080fd5bc696627a206dd39e11b3aa1731",
+      "seconds": 2.905077
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "05f03ef497f12a66ec21bfcdad120e49cf27af3620f354bded80ca600100c276",
+      "seconds": 2.877805
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7738888e6b7a7148643955721dce2bbe8d2fa9e4c8f00824a3d6d0d71542f84f",
+      "seconds": 3.018869
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e84e619b2d1a084cf559a242939649663724ba7263cd5cafd438cb5870ff10cc",
+      "seconds": 2.943677
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b75d31e3e726b2a959a04aff9c563c62c997399e534409158484db45396889aa",
+      "seconds": 3.344897
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "db051beb53de0dc014e61e87294da5dd033de8f76508a3ea2c7411e30e27a0c9",
+      "seconds": 3.217052
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_neg_a1em07_lead1_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "379bbd11961ee5005a23e09eb41096cdbf013284fd8740a291292ecc7229ecdc",
+      "seconds": 3.23981
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6db0320edd32387c9cac9cc0a2b7609d4b3d110b16e062afb9c3117b7ea98955",
+      "seconds": 3.126691
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a2b1e256931bf1e02c0f52069a4a13915bcc33df7c51fd92437f53cc1a6e40ef",
+      "seconds": 3.096008
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ec812f09710b3297fd74a8368ee749cce509daccecf06f5e899190a3e8bddab3",
+      "seconds": 3.42722
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "08bed5ec95132073d2f09c4bdf2a9dc1f5f36cf54f9d17c0d9c1fc1b6bb02c5a",
+      "seconds": 3.110533
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "00e11e4b71e87c1492a3612e5a604b21dc1c7a7a27b66be9d0b3e76da2401731",
+      "seconds": 3.529793
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3fbe6a026e681d967443eea0072b014f951d528d8ab2ae4bec3754a0d9ecaaee",
+      "seconds": 3.261422
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "345c140cb82062c3b4a62cd685f7b5ac3d7b5ad5e5b1b1490a28ff99887263ba",
+      "seconds": 3.666619
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a41e90b47eb98969c99bdc12209c3765b7716921d50e44dd9fa0e9fcac1762e7",
+      "seconds": 3.292699
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p5_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "8860980eb1845111f2f676151706c202b0286fe33b2802589036e3b93c0ab198",
+      "seconds": 3.352844
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b655fcb556013be491e69e434c7bbc954ba17d240275d6edf34bc67debb37c9d",
+      "seconds": 3.319318
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fc678872900629f80b6f8b51a5494c8fce099727829a93ca3c76ac0376781d41",
+      "seconds": 3.232545
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e6b7bf03a702969e1d15ba8ae3af84b3bf4a12a84f132801132fe24c72ffdc7b",
+      "seconds": 3.338007
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "23fcc5f60e95160d5550c55f280b40ab6a0cff82722cc444bf139ddd4e817e88",
+      "seconds": 3.210822
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.265979
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "80b10f4678189020c0d1caea25ad1d4c6f754736ef2ced9e0579d05f96c495d9",
+      "seconds": 3.303159
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e22d38fcb3daaafa1770636edb442248cbb7783ab6c77d3cbc2d5b8315ac0cd5",
+      "seconds": 3.829689
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "800b6fa2209df963c984747955a06cbf74137831d6cfd52e024fe97f5296f6cd",
+      "seconds": 4.016684
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead0p75_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "224b8f3416ebaca1b0ce6655d7f91b1a9306014d435927fc3e733d982c33a7b5",
+      "seconds": 4.428142
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p35_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3261994de0b6f586f1bcb36a4715c4079ad5249605028b59f6d6f41570e102c1",
+      "seconds": 3.973046
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "509ff709593da916d089b924589cc803ed1049d697286e98c6304e956ed01d37",
+      "seconds": 4.364477
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p35_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a764e612449f6045e87f741bde7ee91c734f6012aaa9eb43d9fec1f36a9646a9",
+      "seconds": 4.091079
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p5_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f556bc3836d0a0ad56e6da599ec1315e8d230b2f797b9f58fb9d1b290bf61d90",
+      "seconds": 3.322511
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p5_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "af1e7bd927ffa7da3296c17ad23166b72d16fff10b0bc1486790700727df6dfd",
+      "seconds": 3.259094
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p5_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "dbaefe076d2f0a5d582cb683c86acf31f713930c61a4f222cd94c58c45db1b6a",
+      "seconds": 3.178734
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p75_sm0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "0a4fe165b39a3b2971745599216e2f29052687449e2506c1a3663ddb01ebbb46",
+      "seconds": 3.297086
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p75_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "db5b83867a94536a46a6f4cf088d040cd842139d4c0f19c0ea494baff9265d5b",
+      "seconds": 3.195407
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/direct_pos_a1em07_lead1_tw0p75_sm2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "dee2d0ee37f6a2e91d1cb5c5fed4c677444a548770f74cd13e65dddb42f8ff62",
+      "seconds": 3.159384
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_direct_window_refine2/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.584469
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "acf2d8b567153fa402c86247a107f868805e70821b8ad9b04aef51d716a31c9c",
+      "seconds": 3.212504
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p002/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c71d6f1c352498e816c9066de1e2b838d2b240112bdb059d36b91569ab8fec66",
+      "seconds": 3.272106
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p004/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cbabf0317f25d0732bb2850c16b0bf7d7305889c421299ac6be7f9a42917e7e4",
+      "seconds": 3.285955
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p008/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5254ed977ed46b94f40baf14236cf1e3f813ba6851437475aafa1159c14d8c54",
+      "seconds": 3.334513
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/amp_0p012/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9659ad02ab8c57391179ebe1e6d5bb967e0831138884d26af90a3e0da53cdc0e",
+      "seconds": 3.207024
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/catch_lead_0p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "40ac1535ae8b0b890a8cf42610bc6806e976c74ff6fe6c043b5513afc5e536b6",
+      "seconds": 3.214356
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/catch_lead_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b00e0f1b92f8a33d9ab617eba36a6aa18cc951066408fb9a098c07285896c05c",
+      "seconds": 3.245779
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/catch_lead_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "aa6bdce7f71dfa57a9e7f8a58adb78e879faf614aeac8c5bd41d5404438f2f09",
+      "seconds": 3.402779
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/catch_lead_m0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9a89c31b17c909335b0fe38b365624aa6c4ecbecfa97ebcab8b0a6d88823a78d",
+      "seconds": 3.414832
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/catch_lead_m0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f54e2caba03d98a8a17d00d9d5189d469cbcc555f02b474ecd014b1edc57f522",
+      "seconds": 3.362249
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_0p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "55c33008e0fb2092e0ad2c77f5aa87995e899cdae292449d54e533bc3bf25d66",
+      "seconds": 3.351901
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_0p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c71d6f1c352498e816c9066de1e2b838d2b240112bdb059d36b91569ab8fec66",
+      "seconds": 3.189178
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3e8f4246bf9d8e2e20f3b5fda57847e4619375309fb57ca7383655086b4417bd",
+      "seconds": 3.121501
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "3b0b388dbc956f6862955fba36cc3d51324b6f728417b02e5f2f526eed62f16b",
+      "seconds": 3.26861
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/edge_bias_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bf1679f2ecc22c64997947c050c6672e67a553cb01e684f35b62a66481b5d3e1",
+      "seconds": 3.277532
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/packet_exclusion_0p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d5873e4f552c80006877ceb77112e53264bf8fbd9171374b3c681e76ff7050c5",
+      "seconds": 3.275659
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/packet_exclusion_0p2/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7aa7717e04e1f226693d3b09fb2d7dfd46faf3b6ce3b75a055265a1d6c5615b5",
+      "seconds": 3.269221
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/packet_exclusion_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "27f721b3e744754b76cffada3d5ab42caeb6d91ce5bdcedee1a200a5b83ad8c0",
+      "seconds": 3.229236
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/packet_exclusion_0p8/point_ledger.csv",
+      "status": "verified",
+      "sha256": "0227d8065884c618dfcf3f337fe5a803e009aebf5cfcf22e294c9c36f2d078bc",
+      "seconds": 3.187461
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/packet_exclusion_0p95/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9fdb30b2ba26eaa6ba3a9f35884fac9f0c040970f2cba56262f427c274dfd5cc",
+      "seconds": 3.225741
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/radial_width_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7d6e1feac02cb9cfde3300b78c11e4ec67641fc451a922963dbc3f9f46792b45",
+      "seconds": 3.393182
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/radial_width_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "16cc26e7ef4c90485be1bf23acad94ca141ba209a3e9ab550b7850145ca71dc7",
+      "seconds": 3.330117
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/radial_width_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d515f98d9a92d5be16fd71981701c8127bbd9fd268e10beb2f9491894cf5b04b",
+      "seconds": 3.30443
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/radial_width_1p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ad4dd07b66b5467b170e25ee9eec907df8902c6fbe9f4329bf81f1f080827359",
+      "seconds": 3.483432
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/radial_width_2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2650a5faa3bd7150172ac88202ba8257e73a59484b7d31085e5d4cc9f7f95939",
+      "seconds": 3.101238
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_0p25/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f5e3bb99bd92f670b783be0c323c7d7bc2c5ec668b81b704375517509d4fbc5a",
+      "seconds": 3.230358
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c71d6f1c352498e816c9066de1e2b838d2b240112bdb059d36b91569ab8fec66",
+      "seconds": 3.283393
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1f4a0b05e9c5584fd075f9b67d71c02bebacbe666943214e846f7a908b95ddd8",
+      "seconds": 3.343559
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d5e5213ec86e38c634dd6ba74d8fcfac333f0a9d75141de93b0145c3270b2adf",
+      "seconds": 3.406279
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/support_gain_3p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b8095244ba7032679c81c05425e934181d72d9f02320810ba0f1f31a398a51cb",
+      "seconds": 3.32986
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/temporal_width_0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "81a9e6c6be8b31e6d78f60b75ce66335b9d9323200dfc858d1f6ebcc76c4b9bb",
+      "seconds": 3.29541
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/temporal_width_0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "52c6a8f10dcdf4d2fac837cdfdf671a9b0704e4af7740e867ff8fcb50eb752a7",
+      "seconds": 3.446201
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/temporal_width_1p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1cd1974211bd77d6ed54aefcddf4ac528aa3ef56c22722c893c69fa0301a0427",
+      "seconds": 3.367238
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/temporal_width_1p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "81d90248069043cc9414fc11d52dc071ded10dcbdbc4e343c0b255e77a1382fa",
+      "seconds": 3.348611
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/temporal_width_2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5ce94335ac5040c3ca417492f0b3e8d1ee6bad186e7b407986f1133f58c5fa7e",
+      "seconds": 3.391761
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_screen/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.672208
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "950a334ee33433e12c5cb04be87d5e27fc7972035800a770c63cc951487b6f09",
+      "seconds": 3.291251
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "9f8ea02ffe4cf85ac4fbbca193f0d42069e04c5e438e272ad0106a46a7e13828",
+      "seconds": 3.207243
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bd67ad3f6f3f54fec7ef7ae4c81d8742e65263359e9b7e4be882194f8079b5e8",
+      "seconds": 3.372978
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f60c1aa139716d6c07724af9db3b9864b9705cde6e94e04cd1c6dbc19697c1ba",
+      "seconds": 3.302327
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "61d72fb8e6f27faa1377e0d81bbc72eea916aa90f965398f1a201a31ff29251d",
+      "seconds": 3.376633
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2279c7ad5976753d8c648ee113f999ca9d74038f44594ea03b6093e4f8e8d833",
+      "seconds": 3.362864
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "62ce077d6543ed4ae0248a34c5ca9bed30f980c925f5fe6adca7c0f318c982e9",
+      "seconds": 3.31465
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "914a1c4807568291258dbaac16c70c4ff7ca2d979ab15d8c41631a0b71c3331f",
+      "seconds": 3.251409
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a1em07_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "59d1cf25a4ba971268ea951e96a9e25446cfc29c27e099323e1d84143589403f",
+      "seconds": 3.200422
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ee4ea32636a8ddec7f1f0d24538d32d5254b9bb4e4e760bbbc9bd024fca83719",
+      "seconds": 3.207758
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "058fd9db4d2d25becd0e56b738dd2d1c4bbbf32f49a4131b3c2d22cb6aceb33a",
+      "seconds": 3.164153
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "77be9078be70786740e85d0c4e679c343c960e67554c152a34e56974c4d796e2",
+      "seconds": 3.176904
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5d354757ed8cbd3738563077766fc3e8b0f0aa755add4cc489b70a08a89982f0",
+      "seconds": 3.08347
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4162e71e6e60d5dc3377c3927bdc851d3e6d280eb44779ead18885844e8ab7cf",
+      "seconds": 3.192148
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cce15c966a33454a6572099eb47926d795c1ad0612e6e503a3d968427f24e5db",
+      "seconds": 3.271795
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fbcd32ab96601a515dc995b930179c5f0d67a04dfbe3f4474c5819d7c320791b",
+      "seconds": 3.32675
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "302a9f75266ab2affc0b0e040c4828ae88c067a72e60a8d4975207712ef737c7",
+      "seconds": 3.352349
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a2p5em07_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "86c9cc51ee80d495de48a9c05091f88eeec4a2f6edbdd5e790d64dabb9471b66",
+      "seconds": 3.319433
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "46788c6e2bc3a9196477fa5fcb7546b24cc61a5d052f4b4ca651464fe9ed196a",
+      "seconds": 3.261859
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "24a23cdc2f32a3bcf755650105dc9778e7f2e72ff0ecf498970836d1e4f496a6",
+      "seconds": 3.334989
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "09b3bd6b561eab116a87d84ace02ed09e79a907351193f061c9f231ea495ffc0",
+      "seconds": 3.443282
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "de880cd55bf2934028ed009addf1b64352f57e72ff0937c73effa425e8ed49d2",
+      "seconds": 3.426805
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "343ee61fe08d9dbf7291fbc48bc71f44c350d981bd1e72c6a65a978e51635795",
+      "seconds": 3.360165
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c38cee058abce19be5d94a3eea9668b2bc7fb55c47e906b4a2ba213df1d7e370",
+      "seconds": 3.381877
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b8c00f0be0e41cb9a98ad582593f7b4e8cc04e0c8bd2f212d31ee6d5e0401260",
+      "seconds": 3.228634
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "60a77a9010a62a59081a05f7451696ce9caeb8fe784f807c91e80d8808c63dea",
+      "seconds": 3.177353
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_neg_a5em08_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "40110a87c4dfbb524eaa5415866baa0d321f8a1b6ceffe9994e94ffa865c37c3",
+      "seconds": 3.117692
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "597cb0020731592f8ceaef30f9e1eb5fb379700f0c73512b48d3e881d429b583",
+      "seconds": 3.126781
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "af1808e31496dcd16caf5b8ffc58030f6bd3a242c7d967e1a9359a6a3f0a4ffa",
+      "seconds": 3.081318
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1e25a3070ce316ae03ca8835bd44e6e00a771e6b6eaf8a519a564140b0b067e1",
+      "seconds": 3.042808
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "509ff709593da916d089b924589cc803ed1049d697286e98c6304e956ed01d37",
+      "seconds": 3.22404
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ada4f339c481bf5a0e448f7f986efd42943cc9db71d02cdc789289b4daae164c",
+      "seconds": 3.424525
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d8500f0b1eeeddb0544939c86d21230fd694787575607fe2640e8ba054777011",
+      "seconds": 3.750545
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "0a58cc0e5e2a38293bd1b12db22444fd6a91d56f98c95bd3dcc12084433bcc2d",
+      "seconds": 3.629644
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "057de55a1a90579a63497a5fb4e5ac00469721e18229592419da178426524975",
+      "seconds": 3.581666
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a1em07_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "71de42e3d45d32d1f300931b74da01a5012c7e4e24f34e671bc4fec1b157b9ef",
+      "seconds": 3.599522
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b8f95f340e8e4ce42ee5687497d5a9357d881334b57f7b877809eed5ce29a41d",
+      "seconds": 3.382039
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f94e7b28c9dbeae234ce4ef36ea0cd4ce227a47888386ab65e7fb7a8e8145dc3",
+      "seconds": 3.388229
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "8cc4a1c5863ab32cd3953ae65397686166bd5b3e1bfeceb70313a48660ddeaf7",
+      "seconds": 3.443712
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2f75fc14e97e89a091e78c1e3684da03d8e5d2ef089383de23152963cf61d606",
+      "seconds": 3.489416
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e4bdab26f85dc949bea16d11f1eed8cea8051defe7720bd3c3cc92c222e99ce8",
+      "seconds": 3.513314
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a57de14e03574a80a6a8d3534ea24a97f24b246fd849247e7c338253b8173874",
+      "seconds": 3.46272
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "65a621f6e42e839afa3bcbbf9d09a863882206d8a82992e1a83bb92ae144363a",
+      "seconds": 3.401214
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fa1996e2143947eb4940005ea9e5d228cfdfd6f3189e8dba0ba3863cf779e5ef",
+      "seconds": 3.344873
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a2p5em07_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "97967a137bd64a62cb927751112e004d2a142c8ffacba9fee8888522044a90f5",
+      "seconds": 3.493359
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead0p85_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bfd3d9782793ec78c0593274184d366a25805a1f43de2fbdb393924d25fb2ee8",
+      "seconds": 3.481559
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead0p85_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "efd3f421f37b79109d9ba26497ea617e9dfad3acb3e30f9c0e10ff4398b9ec32",
+      "seconds": 3.543822
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead0p85_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1161299603e5fa1d31b50f0b0ab42077ccb3b361a1a346877f6cd69aeae5ed37",
+      "seconds": 3.517441
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a7d1f4c288bf1f0b11c75b2cba0aeaca981e0e3dcdb886c4ef54c43522645d62",
+      "seconds": 3.308701
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "920e34c822a1121ac486669870fe7ccd3d639fa0b637a36fdc1fa3323ca1ad6e",
+      "seconds": 3.057175
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7427dd3dda924cbc9897400fc0483ab6553816460c250a344340f74a9aa6b0de",
+      "seconds": 3.160647
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1p15_tw0p35_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bdaf5c4f007c5e8631e9cf36373dbf8c437a6c057114afdd64de5fed9b44b4dc",
+      "seconds": 3.263318
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1p15_tw0p3_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "23150321dc6d3eb0f8bce1da564dfbb20bccf63bb1ee9c00947f808213f84b62",
+      "seconds": 3.24791
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/final_pos_a5em08_lead1p15_tw0p4_sm1/point_ledger.csv",
+      "status": "verified",
+      "sha256": "28f6bdee9dfd5eed6511479c40638f12c745455f74ca6a13175f2947bac9a489",
+      "seconds": 3.266609
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_final_sweep/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.507319
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p0_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "03465a8627487fe2a6e932ec04010eb92386eae6d42c0b44905badd916ba31a7",
+      "seconds": 3.126605
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p0_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "65d6e6aa94213b70d0b2bfb1130b36464b40ef17b221014d77f2d8ac712c9769",
+      "seconds": 3.431553
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p0_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cd4c6ba6c5552aea6c375817748468dc0c59d298d82298400c196f569059e145",
+      "seconds": 3.337307
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p5_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b690f69313c63303f1fe9d1125782a353dfc57fe1566388eb4c822fdd3106179",
+      "seconds": 3.381784
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p5_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "663bc043f534563aad814a1bf5154ad753f3f3b60161d62d9c75789950666014",
+      "seconds": 3.46604
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p5_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "94b76204da3a60c311da84569e07b3856ab114619d4e19075f3d51dfd451ba85",
+      "seconds": 3.417754
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p75_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d81901eb00a305972a5c9afce67fd1623b0c6eb2d1a645cc1975925ebc44e4e3",
+      "seconds": 3.153872
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p75_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "651f75974523a7c190c9aea3514114ab6988ca2c1fabf4520e77bc00fc042598",
+      "seconds": 3.4813
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p0005_lead0p75_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1de6c85d6e3c668995bb6c11cb8d4f41ab4d7611b364c1817a2fcc9c5ab343f2",
+      "seconds": 3.424139
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p0_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c8cd80a3c193274b49603a981c3beeecd0d5df8c2491af6368b4c5f7c0a481e8",
+      "seconds": 3.364869
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p0_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bd4eab8388764ce730e5b7d7c0b669eb88cb0224ec0962b9fa78cfcee770812b",
+      "seconds": 3.298692
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p0_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "99e543d698231c11a2d958ed17b335718d6739eaf5e082e7ea68c280e9dcf06f",
+      "seconds": 3.249958
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p5_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a935b25457346d81cd3196387af9dee272dd8b2a60061be81b92b2dcc9ee2018",
+      "seconds": 3.181028
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p5_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bf7a2c3aad1960e3ed694eaff18f0b0c06d70c8fe4ccf80caf49cd92a38dccc6",
+      "seconds": 3.35811
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p5_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6762313c74396f22932b6862e34f285cb4ce80d36bd3752d33c03dfc2f425932",
+      "seconds": 3.40321
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p75_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b822368acadced5290b5b1c6bb609a9f50ad13c3cf500ae5d678ef7490522bc2",
+      "seconds": 3.323467
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p75_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1e05ab3172eca79bcc4c7be8cef661ec07cf017d9ee71ed111b3fdc5304707f4",
+      "seconds": 3.30816
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p001_lead0p75_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4051f28ffd925617c263d15ed07d2be343e0d47482abf0434ca7ce8b9dd64880",
+      "seconds": 3.365012
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p0_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "bef759228cc206ec866ca25ba642ae008b1467a04ac0197add0460f15fba91fa",
+      "seconds": 3.320008
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p0_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a6aa115d2473413a11dbedd099e3d8f04b59b25cb524c43938fec87650668ea8",
+      "seconds": 3.292796
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p0_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "56815126e96adde1a4e5f68bcba5f0140ba2f6070d826092d3662a5ed8a24640",
+      "seconds": 3.276126
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p5_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d5eaa6da60364ee58c84fc4310121ab30f0d77dad1a6976afd44866270a72031",
+      "seconds": 3.386654
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p5_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "cdb8d90fa21bd51d27777a0a147fce9d94942afc3a280267ea9602046e654565",
+      "seconds": 3.31241
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p5_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1eaaa306dce0d0e00a26cb1b53d92daa2a18cf62b34720c972af6fa836154dd8",
+      "seconds": 3.30899
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p75_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ed1adb18a9df11199ee2e2016a5d1d92de50c6da9c27b6042827aa9e24311eb4",
+      "seconds": 3.146443
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p75_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "88826c7792d448af0aa480dc0c70ecd51eeaca5f60c922372f9a5bafb1852b39",
+      "seconds": 3.161683
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p002_lead0p75_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "743cd78f3b50ae5b508c8777ae041e40dd0afc25ec9320f311b775a6e2318491",
+      "seconds": 3.12549
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p0_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7c6853f21398603b91a6e8cb6c5ca5197eb51719a3148c789bae43d0cee74dde",
+      "seconds": 3.139889
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p0_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7a0c8ee25b62e7f073c39d5032f32ae06f832eb4ae39117234668e80b6ff6c4f",
+      "seconds": 3.142757
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p0_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5faeb86fd964627af643546b8723a9de44c66d99154d9d6b14d0f93af37a37ce",
+      "seconds": 3.177363
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p5_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "13e3d8d7ef5a5368df5d224a017a5be222269359c908bb3659a7e5ffe8936f4d",
+      "seconds": 3.317427
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p5_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "982d6ed768152e00984ad8c855998280c118a6c49ad7d52afdc89a03a9032f30",
+      "seconds": 3.349238
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p5_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "66e42290563cc5d152f79275efa60f6443b0beec42a07ca7c034d0c076fe4adb",
+      "seconds": 3.447785
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p75_tw0p35/point_ledger.csv",
+      "status": "verified",
+      "sha256": "61209f6595f7505632ec979d67751ae6c571cfa463249b5088ee055ffde510a8",
+      "seconds": 3.292762
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p75_tw0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c147dd0dd801323fd212b097943075af5155cc77a199324ab3850d4da772d1ca",
+      "seconds": 3.362527
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/compact_a0p004_lead0p75_tw0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c1d6d07d182767abab5075788c9f5c6395d668288a352fc5748b5a9ba3703f6f",
+      "seconds": 3.279297
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p5_gain10p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d43579dadd5d43c60940b52442a035b63745aa92bab6d254c6db4d2cd9535e1a",
+      "seconds": 3.261455
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p5_gain2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d7d12236f851fe5bf8fa7c8b1fd97d1f39922db8f829e7e633f2bcabca4d569a",
+      "seconds": 3.523022
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p5_gain5p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d7d12236f851fe5bf8fa7c8b1fd97d1f39922db8f829e7e633f2bcabca4d569a",
+      "seconds": 3.463659
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p75_gain10p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ab2352b4e0019909ad477925a5ea2bc2738ffb1473d08af7a12cee74cf7b98f6",
+      "seconds": 3.490433
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p75_gain2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ec767cd8a14721831ae582cd8c1ffe7c76fb4080c3c8208917060d4c9485532f",
+      "seconds": 3.543906
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p001_lead0p75_gain5p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ec767cd8a14721831ae582cd8c1ffe7c76fb4080c3c8208917060d4c9485532f",
+      "seconds": 3.524414
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p5_gain10p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a93ff495ae864b138fa39e276504daf32ab035b39b3149bca56bb205c97bb84c",
+      "seconds": 3.36269
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p5_gain2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ecb6c7178cba3b3068fae37d5e5bfce6a3146f8c15606cae7641cd58feafe373",
+      "seconds": 3.306824
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p5_gain5p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ecb6c7178cba3b3068fae37d5e5bfce6a3146f8c15606cae7641cd58feafe373",
+      "seconds": 3.311045
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p75_gain10p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b1d8b352344444f370448ce038d1ef53dd58236ed2b3abdf863b4658eb8b8a6b",
+      "seconds": 3.261743
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p75_gain2p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7f60a63b18dc26039edb2c0943fc6630f079c815fa4a21a6330b2c579d554039",
+      "seconds": 3.283822
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/mixed_a0p002_lead0p75_gain5p0/point_ledger.csv",
+      "status": "verified",
+      "sha256": "7f60a63b18dc26039edb2c0943fc6630f079c815fa4a21a6330b2c579d554039",
+      "seconds": 3.340932
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.608396
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em05_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "50ac7317d2901fc9a285af1b8282e0e6d281b97f95efd89346eb84d5f6bddb4d",
+      "seconds": 3.194558
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em05_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d62d72d02747cf4ca056c8e3a4e64572399eafca9e4eae35a8620e2a2f26a69d",
+      "seconds": 3.241579
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "05da6784afa275119ffe7f24c4b81bce1f4e71f321e116ba365b1bbbab370a49",
+      "seconds": 3.221975
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ad37734ca2b0672577ca04345025859acd18424aa2c83ae2d9f1e00b00d10806",
+      "seconds": 3.167346
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c71251833109dfd8c4e33958ec239c086e09f5e0e9466f0013a71a31e2ec8f29",
+      "seconds": 3.249744
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a1em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6576997644aac39304a57286999cdb24cce510ac33f5972d2f72667c7eadeb9b",
+      "seconds": 3.207695
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a2p5em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b4d4fcf5451da3cae2e5839afafb834745279d2ad02857e1f2342a56d05db628",
+      "seconds": 3.769558
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a2p5em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "26bb38d2c4fd95bd1e0bff8e58eac0b4a5453bb60e01c3168341cf6a0d7f3533",
+      "seconds": 3.678706
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a2p5em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "38889feb3ed6a3e8f00e982a22012e8a4c485f8ed0cda0313accf0376eafe5f7",
+      "seconds": 3.646167
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a2p5em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "1c45f41b21de3b31d4731d0c5b0a3398247eabca6d591672e7b7bce9cb1166ae",
+      "seconds": 3.600527
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a5em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "da8880786d14748452a7cd0dc632d6806cde4d0fa3368099bae22812b8f985f5",
+      "seconds": 3.57759
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a5em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4c6caa04fa220c101a148dadbc7fb0800d9fdd900523f0f1eede2bc965e8a8c5",
+      "seconds": 3.554826
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a5em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "51c563a98f3c01c02cb140b0a5808f3bf53cb7f4716c7cb8121f7a19aa882bf0",
+      "seconds": 3.251154
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_neg_a5em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e1ce7895438fa537ab1f60fd7bad19529452cff4a3d9a616b1360868df754075",
+      "seconds": 3.26901
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em05_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "fcdf258b32909e55d9e5068a0a4ad547493a96d6611c2dc7fc24972fc577126a",
+      "seconds": 3.271367
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em05_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "60ae1ca33eeebe1fe01974f90879c1c361fc1ca9fc80f5fb1217240c3fd56ee5",
+      "seconds": 3.215462
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "14033de3e379703e6e7e5673c00f54ee7806e76635115a7465b2b4f30b4afbb0",
+      "seconds": 3.261457
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f344e8510a1b7cddda37c78bca8ebd7930691bd4be12128d6bd3b90502b46458",
+      "seconds": 3.285649
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "00e11e4b71e87c1492a3612e5a604b21dc1c7a7a27b66be9d0b3e76da2401731",
+      "seconds": 3.437227
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a1em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.391753
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "36eed75021a3c73a805f06e3f9dfc32c4a5e614361f50dd654a463a63d701a66",
+      "seconds": 3.480288
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "160969d4896b0970af3b53680a6ce0f1630d1a480aef86429f032dbd5a1a3656",
+      "seconds": 3.494842
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "0821a61e401e6a5d291db7f65712dca78b03a52ca352b252f992655ed021398e",
+      "seconds": 3.401192
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a2p5em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2304c461da03a770ce06faf624b385625efe73ba4adf84206b980df510a7678f",
+      "seconds": 3.472764
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em06_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d9f37420108fe68d05a618faa0d4019eb6a497d3467a8f9f754637abc7d5477a",
+      "seconds": 3.512505
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em06_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b0738dd7cf3224ba8876f9242fc10837a4cd3082e6fa8d0a547e95f22951dec2",
+      "seconds": 3.395542
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em07_lead0p5/point_ledger.csv",
+      "status": "verified",
+      "sha256": "152b53d7f045f63e256baa2d631547fc142860c275ea3de0f5269c91fcc28da5",
+      "seconds": 3.515319
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_support_shell_screen/window_pos_a5em07_lead0p75/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a7bb518d431a69cee132b38b935c7f1c50031551e3fbeb9153079f2f4177d81d",
+      "seconds": 3.469416
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.653196
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a768f687d1edc1293f34329e2e85e807a3c250d0cd28947770bdaa399917b440",
+      "seconds": 3.371708
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6c32f454ea5ff14869490af14aa02bcf3437ea4dbec374e45d213ce8bf95990e",
+      "seconds": 3.398902
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4eb4e715c51babb8aa4714e171a30112353ef6fb46069fabe52f32a5399fe90c",
+      "seconds": 3.536375
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a96be367b974b4a5f984541789cadf58f646bdaaa6a8bc9956a8024e41f30f00",
+      "seconds": 3.456847
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "597c9993710ede8ebd4349ee7f9d6a23d062cf2e9635d90b21217e6e6e86ce22",
+      "seconds": 3.479595
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "69e9850fe7d4c96a6a97535d908a0471e0f75a30020806d1478fdfb1023430e2",
+      "seconds": 3.527001
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d3713c4cf516626f3c8f523cb7bb5841b33d99400bda5d682bc3c174c6388b6d",
+      "seconds": 3.483842
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a0p01/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5654201038426125130714c48ba46acafb6b796ea543d07285b550bf69cc02cf",
+      "seconds": 3.586315
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "60ae1ca33eeebe1fe01974f90879c1c361fc1ca9fc80f5fb1217240c3fd56ee5",
+      "seconds": 3.258233
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f344e8510a1b7cddda37c78bca8ebd7930691bd4be12128d6bd3b90502b46458",
+      "seconds": 3.295342
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.24344
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "248d72cac8aa0df9cf77e9cc1d865bfe2996a20880dfd766cc14ee74e56da7fd",
+      "seconds": 3.295954
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "160969d4896b0970af3b53680a6ce0f1630d1a480aef86429f032dbd5a1a3656",
+      "seconds": 3.285865
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2304c461da03a770ce06faf624b385625efe73ba4adf84206b980df510a7678f",
+      "seconds": 3.307422
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e36bea403edb8b7be2df2eb630f9a31c2f7051008c0733b47552234bd81b8d6d",
+      "seconds": 3.285878
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b0738dd7cf3224ba8876f9242fc10837a4cd3082e6fa8d0a547e95f22951dec2",
+      "seconds": 3.257336
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_ramp_pos_a5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a7bb518d431a69cee132b38b935c7f1c50031551e3fbeb9153079f2f4177d81d",
+      "seconds": 3.242176
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_window_neg_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6576997644aac39304a57286999cdb24cce510ac33f5972d2f72667c7eadeb9b",
+      "seconds": 3.223358
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder/v5_support_shell_window_pos_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.296479
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.64458
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a768f687d1edc1293f34329e2e85e807a3c250d0cd28947770bdaa399917b440",
+      "seconds": 3.552774
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6c32f454ea5ff14869490af14aa02bcf3437ea4dbec374e45d213ce8bf95990e",
+      "seconds": 3.594911
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4eb4e715c51babb8aa4714e171a30112353ef6fb46069fabe52f32a5399fe90c",
+      "seconds": 3.57403
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a96be367b974b4a5f984541789cadf58f646bdaaa6a8bc9956a8024e41f30f00",
+      "seconds": 3.673077
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "597c9993710ede8ebd4349ee7f9d6a23d062cf2e9635d90b21217e6e6e86ce22",
+      "seconds": 3.507336
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "69e9850fe7d4c96a6a97535d908a0471e0f75a30020806d1478fdfb1023430e2",
+      "seconds": 2.963158
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d3713c4cf516626f3c8f523cb7bb5841b33d99400bda5d682bc3c174c6388b6d",
+      "seconds": 3.064711
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a0p01/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5654201038426125130714c48ba46acafb6b796ea543d07285b550bf69cc02cf",
+      "seconds": 3.078686
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "60ae1ca33eeebe1fe01974f90879c1c361fc1ca9fc80f5fb1217240c3fd56ee5",
+      "seconds": 3.052466
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f344e8510a1b7cddda37c78bca8ebd7930691bd4be12128d6bd3b90502b46458",
+      "seconds": 3.146374
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.085111
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "248d72cac8aa0df9cf77e9cc1d865bfe2996a20880dfd766cc14ee74e56da7fd",
+      "seconds": 3.108503
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "160969d4896b0970af3b53680a6ce0f1630d1a480aef86429f032dbd5a1a3656",
+      "seconds": 3.338195
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2304c461da03a770ce06faf624b385625efe73ba4adf84206b980df510a7678f",
+      "seconds": 3.294573
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "e36bea403edb8b7be2df2eb630f9a31c2f7051008c0733b47552234bd81b8d6d",
+      "seconds": 3.316331
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "b0738dd7cf3224ba8876f9242fc10837a4cd3082e6fa8d0a547e95f22951dec2",
+      "seconds": 3.283574
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_ramp_pos_a5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "a7bb518d431a69cee132b38b935c7f1c50031551e3fbeb9153079f2f4177d81d",
+      "seconds": 3.278603
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_window_neg_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "6576997644aac39304a57286999cdb24cce510ac33f5972d2f72667c7eadeb9b",
+      "seconds": 3.112846
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_current/v5_support_shell_window_pos_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "5969ca3e77db3b160c2b7ae07ac1e691ffa99e04228278992853d52d43465b70",
+      "seconds": 3.40625
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_service_flow_off/point_ledger.csv",
+      "status": "verified",
+      "sha256": "57d12e37068cd5ca2d51d43fa6093722b08a0bcf667f9b9517135704ffb9756f",
+      "seconds": 2.722298
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p0001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "430c95d45446f7628e22a27161c4178b9843370d9cb71bea32358b2818c79b7a",
+      "seconds": 3.637962
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p00025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "8f7211a5a58ee8a207c736d7d7c5cd7f3b2e0fef5a459ee07577a7662b0fcbf9",
+      "seconds": 3.752367
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p0005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "ab1fbcb79dff304b2a246a1d4dc7cf95794258b1ac02181bec771b58257c4a81",
+      "seconds": 3.636207
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p001/point_ledger.csv",
+      "status": "verified",
+      "sha256": "627dcb9be146c29677e3a9ceac168eba25d151387a0a8013f70a2b19dba2f11f",
+      "seconds": 3.880381
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p0025/point_ledger.csv",
+      "status": "verified",
+      "sha256": "eb979e5f671e30c6f7484c7655182079148d36cc9e0faa0308e8bcdb37e02f99",
+      "seconds": 3.868834
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p005/point_ledger.csv",
+      "status": "verified",
+      "sha256": "d724db2024873990a7eca964f8424c3cf63b9a2473849326ee4e33ecfcd6cb05",
+      "seconds": 3.935506
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p0075/point_ledger.csv",
+      "status": "verified",
+      "sha256": "413ba12c2a2a98f37baacdeb9bcc188d7dcc906771dfa9fb6dbfb8d4dd0e1a54",
+      "seconds": 3.835728
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a0p01/point_ledger.csv",
+      "status": "verified",
+      "sha256": "4b9bc4f7458411e1d57c983de8e3feeff0c795eb71d991c6131ac73e257e053f",
+      "seconds": 3.920832
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a1em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c4d0545e013f970276304f33dd1eda3fa19b6914994e727cacee2a8da2b4b136",
+      "seconds": 3.825962
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a1em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "11d64d31c4e85c0bd0734bddfb8523d1b01f5c261b0bddfe258b2c78895bbfce",
+      "seconds": 3.474681
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a1em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "509ff709593da916d089b924589cc803ed1049d697286e98c6304e956ed01d37",
+      "seconds": 3.551071
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a2p5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "c1df30965286686dddd7c75fc14200d4bb76baa879ce1bbcdd947f7a353fa5a7",
+      "seconds": 3.92364
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "910b03e0459faf129c0b76a398de4abcc07622df5165881a53b25708031cbb74",
+      "seconds": 3.880503
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a2p5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "2f75fc14e97e89a091e78c1e3684da03d8e5d2ef089383de23152963cf61d606",
+      "seconds": 3.827596
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a5em05/point_ledger.csv",
+      "status": "verified",
+      "sha256": "298029c1648b034d9ee5e28df35e65cd4945ddee864dcdd1b7d59b3323f6a5e5",
+      "seconds": 3.731177
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a5em06/point_ledger.csv",
+      "status": "verified",
+      "sha256": "df7351fca3d9af6c9580f2480846bbc72b7137ee355095091481b350abb02cb7",
+      "seconds": 3.666162
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_ramp_pos_a5em07/point_ledger.csv",
+      "status": "verified",
+      "sha256": "db929f403b31c592fe213a032f1f5a77b63bd3ba7a20ad88f19be3577b66d6e2",
+      "seconds": 3.336224
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_window_neg_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "f60c1aa139716d6c07724af9db3b9864b9705cde6e94e04cd1c6dbc19697c1ba",
+      "seconds": 3.03338
+    },
+    {
+      "path": "toolkit/adm_harness_cli/runs/v5_validation_ladder_frozen/v5_support_shell_window_pos_target/point_ledger.csv",
+      "status": "verified",
+      "sha256": "509ff709593da916d089b924589cc803ed1049d697286e98c6304e956ed01d37",
+      "seconds": 2.948342
+    }
+  ],
+  "errors": []
+}

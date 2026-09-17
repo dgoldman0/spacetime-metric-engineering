@@ -1,0 +1,47 @@
+{
+  "completed_utc": "2026-09-17T09:51:35.908469+00:00",
+  "manifest_sha256": "c2c0f5c783ae12603567eaba500c794dbc139441e8b8ce3fbee16f33fcf6bba9",
+  "verification_sha256": "3b1afc9936def31020f4f0555b214bd2f4541b1947fd8fa7cf7f41d9a0948d05",
+  "removed_csv_paths": 337,
+  "released_csv_allocated_bytes": 5716488192,
+  "before": {
+    "project_allocated_bytes": 20052791296,
+    "runs_allocated_bytes": 14179586048,
+    "filesystem_available_bytes": 706355200
+  },
+  "after_csv_removal": {
+    "project_allocated_bytes": 14336303104,
+    "runs_allocated_bytes": 8463097856,
+    "filesystem_available_bytes": 6422724608
+  },
+  "preserved_other_run_paths_and_signatures": true,
+  "preserved_original_run_metadata_hashes": true,
+  "extra_directories_removed": [
+    {
+      "path": "toolkit/active_rail_quiz_system/node_modules",
+      "allocated_bytes": 196345856
+    },
+    {
+      "path": "toolkit/active_rail_quiz_system/dist",
+      "allocated_bytes": 3321856
+    },
+    {
+      "path": "build",
+      "allocated_bytes": 700416
+    },
+    {
+      "path": "white_casimir_intersection/build",
+      "allocated_bytes": 479232
+    }
+  ],
+  "restoration_test_paths_removed_again": [
+    "toolkit/adm_harness_cli/runs/v10_validation_ladder/v10_support_shell_ramp_pos_a2p5em06/point_ledger.csv",
+    "toolkit/adm_harness_cli/runs/v5_screen/amp_0p008/point_ledger.csv"
+  ],
+  "released_extra_allocated_bytes": 200847360,
+  "released_total_allocated_bytes": 5917335552,
+  "after_full_cleanup_before_final_report": {
+    "project_allocated_bytes": 14135468032,
+    "filesystem_available_bytes": 6581817344
+  }
+}

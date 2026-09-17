@@ -71,6 +71,28 @@ python scripts/run_validation_ladder.py \
 
 The old `scripts/run_v5_validation_ladder.py` entry point remains as a compatibility wrapper.
 
+### Restore archived run ledgers
+
+Historical V=5 and V=10 sweep and validation ledgers have portable reconstruction
+configurations and SHA-256 checksums in
+[`rebuildable_run_cleanup_20260917/manifest.json`](../../supporting_reports/data/rebuildable_run_cleanup_20260917/manifest.json).
+The restoration command checks each reconstructed CSV against its recorded hash
+and preserves the run's existing metadata, summaries, and reports.
+
+Restore a selected run family from this harness directory:
+
+```bash
+python -B scripts/restore_cleaned_run_ledgers.py --case v5_screen --workers 4
+```
+
+Omit `--case` to restore all 337 archived CSVs. Full restoration writes about
+6.58 GiB of CSVs and uses temporary working space for up to four concurrent
+runs. `--verify-only` checks reconstruction in temporary storage. The manifest
+records the verified Python and package versions, source revision, and five
+retained input hashes. See the
+[cleanup and recovery record](../../supporting_reports/REBUILDABLE_RUN_CLEANUP_20260917.md)
+for validation details.
+
 ### Generate arbitrary service-factor inputs
 
 For an intermediate or exploratory `V` value, the ladder can generate reduced ADM exact-field, substrate-subtraction, point-ledger, and config inputs before it runs:
