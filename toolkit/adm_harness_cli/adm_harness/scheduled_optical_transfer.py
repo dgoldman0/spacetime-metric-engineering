@@ -24,6 +24,7 @@ INITIAL_ROTOR_ENERGY = 1.3
 SPIN_FLOOR = .3
 CONVERTER_DELAY = 1/16
 CONVERTER_NET_POWER = 1.5
+CONVERTER_RAMP = 256.
 
 
 def smooth_step(time, duration):
@@ -260,7 +261,9 @@ def schedule_exposure(panel_peaks, node_peaks, duration, delay):
     base = np.cumsum((P+PILOT_POWER*peak[:, None])*dt, axis=1)
     def edge_prefix(array):
         return np.cumsum(array, axis=1)[:, 1:]
-    guide = base+edge_prefix(edge_guide)+2*(RAMP_TIME+1)*PILOT_POWER*C[:, None]
+    # The pilot also runs while the longer converter loop fills and drains.
+    endpoint_pilot = 2*(RAMP_TIME+CONVERTER_RAMP+16)*PILOT_POWER*C[:, None]
+    guide = base+edge_prefix(edge_guide)+endpoint_pilot
     converter_net = 2*useful+3*edge_prefix(edge_Hvar)+edge_prefix(edge_Qvar)
     boot_per_change = 2*preparation()["converter_photon_capacity"]/SPIN_FLOOR
     bootstrap = boot_per_change*C[:, None]*edge_prefix(changes.astype(float))
@@ -359,6 +362,43 @@ def guide_drive_l2_bound(panel_peaks, node_peak):
     return np.cumsum(edge, axis=1)[:, 1:]
 
 
+def finite_loop_bounds(panel_peaks, node_peak, duration, delay, derivative_bound, left_power, right_power):
+    """Price a finite-loop envelope and its additional radial forcing.
+
+    A small constant loop level covers the bounded receipt derivative
+    between panel interfaces. A full loop plateau covers each guide change
+    or receipt jump, with slow fill/drain ramps outside that event. All
+    upcoming edge costs are prepaid. The local splitter is instantaneous;
+    finite actuator slew and spatial path construction remain separate.
+    """
+    P, peak = np.asarray(panel_peaks), np.asarray(node_peak)[:, None]
+    normalize = lambda a: np.divide(a, peak, out=np.zeros_like(a), where=peak > 0)
+    rate = normalize(derivative_bound)*np.asarray(delay)
+    base = (1-SPIN_FLOOR)/(2*SPIN_FLOOR)*rate.max(axis=1)
+    maximum = CONVERTER_NET_POWER/SPIN_FLOOR
+    if np.max(base) >= maximum or np.min(duration/delay) <= 2*(CONVERTER_RAMP+RAMP_TIME+8):
+        raise ValueError("loop baseline or separated-event domain exceeded")
+    zero = np.zeros_like(P[:, :1])
+    steps = np.diff(np.concatenate([zero, P, zero], axis=1), axis=1)
+    jump = (np.concatenate([np.maximum(left_power, 0), zero], axis=1)
+            -np.concatenate([zero, np.maximum(right_power, 0)], axis=1))
+    events = (steps != 0) | (jump != 0)
+    events[:, 0] |= node_peak > 0
+    events[:, -1] |= node_peak > 0
+    count = np.cumsum(events, axis=1)[:, 1:]
+    C = np.asarray(node_peak)*np.asarray(delay)
+    # Two half-area septic ramps plus the event's full-power plateau.
+    per_event_area = maximum*(CONVERTER_RAMP+RAMP_TIME+4+CONVERTER_DELAY)
+    loop = np.cumsum(base[:, None]*peak*np.asarray(duration), axis=1)+C[:, None]*count*per_event_area
+    # TV(W)<=2*ell*Bmax for each complete fill/drain excursion.
+    restart = 2*CONVERTER_DELAY*maximum/SPIN_FLOOR*C[:, None]*count
+    # The shifted B difference lives on two intervals of T+ell.
+    l2_edge = 2*(CONVERTER_DELAY*maximum*2.1875/CONVERTER_RAMP)**2*(CONVERTER_RAMP+CONVERTER_DELAY)
+    return dict(loop_exposure_upper=loop.sum(axis=0), restart_exposure_upper=restart.sum(axis=0),
+        loop_drive_l2_upper=l2_edge*count, baseline_loop_power_over_peak=base,
+        converter_events=events.sum(axis=1), loop_l2_per_event=l2_edge)
+
+
 def frozen_thermal_gain(equilibrium_radius, *, inventory=ROTOR_MASS, damping=ROTOR_DAMPING):
     """Heat/C per normalized integral q^2 for a fixed linear equilibrium.
 
@@ -378,14 +418,17 @@ def frozen_thermal_gain(equilibrium_radius, *, inventory=ROTOR_MASS, damping=ROT
 
 
 def simulate_transition(left, right, *, initial_heat=1e-8, damping=ROTOR_DAMPING,
-                        inventory=ROTOR_MASS,
+                        inventory=ROTOR_MASS, finite_converter_loop=False,
                         maximum_step=.08, output_step=.08, rtol=2e-9, atol=2e-11):
     """One isolated scheduled step with both local flights and useful delay.
 
     Receipt and panel envelope coincide on each plateau. Guide preview
     ensures exact receipt despite its smooth radial transition. All retained
     guide/path energy and rotor heat enter the integrated energy identity.
-    Converter seed/recycle flight is screened separately, not hidden here.
+    The optional finite converter loop includes seed from the counted guide
+    pilot, a commanded recirculation waveform, its flight energy, and the
+    local incident-light feasibility condition. Reflections, bypass and
+    direction matching retain the ideal optical-port specialization.
     """
     if (not np.isfinite([left, right, initial_heat, damping]).all() or min(left, right, damping) < 0
             or initial_heat <= 0 or max(left, right) > 1):
@@ -401,8 +444,21 @@ def simulate_transition(left, right, *, initial_heat=1e-8, damping=ROTOR_DAMPING
         raise ValueError("initial heat leaves insufficient usable spin")
     state = np.array([initial_h, 0., np.sqrt(j2), initial_heat])
     start, end = -RAMP_TIME-2., RAMP_TIME+8.
+    loop_ramp = CONVERTER_RAMP
+    loop_begin = min(onset-.5, 0.)-loop_ramp-CONVERTER_DELAY-1
+    loop_end = max(onset+RAMP_TIME+.5, 1.)+1
+    def loop_out(t):
+        if not finite_converter_loop:
+            return np.zeros_like(np.asarray(t, float))
+        return CONVERTER_NET_POWER/SPIN_FLOOR*(smooth_step(t-loop_begin, loop_ramp)[0]
+                                               -smooth_step(t-loop_end, loop_ramp)[0])
+    loop_cuts = []
+    if finite_converter_loop:
+        start, end = min(start, loop_begin-1), max(end, loop_end+loop_ramp+8)
+        loop_cuts = [s+shift for s in (loop_begin, loop_begin+loop_ramp, loop_end, loop_end+loop_ramp)
+                     for shift in (0., CONVERTER_DELAY)]
     cuts = sorted(set([start, end, 0., 1., onset, onset-.5, onset+.5,
-                       onset+RAMP_TIME, onset+RAMP_TIME-.5, onset+RAMP_TIME+.5]))
+                       onset+RAMP_TIME, onset+RAMP_TIME-.5, onset+RAMP_TIME+.5, *loop_cuts]))
     cuts = [t for t in cuts if start <= t <= end]
     def spin(t, y):
         return y[2]-SPIN_FLOOR
@@ -419,7 +475,8 @@ def simulate_transition(left, right, *, initial_heat=1e-8, damping=ROTOR_DAMPING
         m = (a+b)/2
         delayed_difference = (left if m < 1 else right)-(left if m < 0 else right)
         def rhs(t, y):
-            q = delayed_difference+guide(t-.5)["output_power"]-guide(t+.5)["input_power"]
+            q = (delayed_difference+guide(t-.5)["output_power"]-guide(t+.5)["input_power"]
+                 +loop_out(t-CONVERTER_DELAY)-loop_out(t))
             return np.r_[rotor_rhs(y[:4], q, damping=damping, inventory=inventory), q]
         y0 = np.r_[state, 0.] if not records else np.r_[state, net_integral]
         solution = solve_ivp(rhs, (a, b), y0, method="DOP853", dense_output=True,
@@ -440,15 +497,21 @@ def simulate_transition(left, right, *, initial_heat=1e-8, damping=ROTOR_DAMPING
     time, values = np.concatenate(times), np.concatenate(records, axis=1)
     s = rotor_state(values[:4])
     q = (np.where(time < 1, left, right)-np.where(time < 0, left, right)
-         +guide(time-.5)["output_power"]-guide(time+.5)["input_power"])
+         +guide(time-.5)["output_power"]-guide(time+.5)["input_power"]
+         +loop_out(time-CONVERTER_DELAY)-loop_out(time))
     # Gauss-Legendre integrates finite paths independently of rotor power.
     nodes, weights = np.polynomial.legendre.leggauss(20)
     F = .25*np.sum(weights[:, None]*guide(time[None]+.25*(nodes[:, None]+1))["input_power"], axis=0)
     G = .25*np.sum(weights[:, None]*guide(time[None]-.25*(nodes[:, None]+1))["output_power"], axis=0)
     O = left+(right-left)*np.clip(time, 0, 1)
+    W = CONVERTER_DELAY/2*np.sum(weights[:, None]*loop_out(
+        time[None]-CONVERTER_DELAY/2*(nodes[:, None]+1)), axis=0)
     Hguide = guide(time)["energy"]
     rotor_energy = inventory*s["energy"]
-    ledger = rotor_energy+Hguide+F+G+O
+    ledger = rotor_energy+Hguide+F+G+O+W
+    ports = rotor_optical_ports(q, values[2])
+    available = (np.where(time < 1, left, right)+guide(time-.5)["output_power"]
+                 -np.where(time < 0, left, right)+loop_out(time-CONVERTER_DELAY))
     return dict(time=time, state=values[:4], net_power=q, rotor_energy=rotor_energy,
         guide_energy=Hguide, guide_output=guide(time-.5)["output_power"],
         required_receipt=np.where(time < 0, left, right), feed_energy=F, output_energy=G, useful_inflight=O,
@@ -457,4 +520,6 @@ def simulate_transition(left, right, *, initial_heat=1e-8, damping=ROTOR_DAMPING
         proper_stretch=s["proper_stretch"], radial_speed=s["radial_speed"],
         rotor_energy_balance_error=rotor_energy-inventory*initial_h-values[4],
         complete_ledger_error=ledger-prep["initial_dynamic_energy"],
-        ports=rotor_optical_ports(q, values[2]), complete=boundary is None, boundary=boundary)
+        converter_photon_energy=W, converter_loop_outgoing=loop_out(time),
+        converter_incident_margin=available-ports["incoming"],
+        ports=ports, complete=boundary is None, boundary=boundary)

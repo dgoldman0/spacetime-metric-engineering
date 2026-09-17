@@ -125,6 +125,16 @@ def test_scheduled_step_preserves_receipt_timing_and_counts_both_flight_paths():
     assert r["proper_stretch"].min() > 1
 
 
+def test_finite_recycle_loop_fills_from_pilot_and_retains_exact_delivery_ledger():
+    r = simulate_transition(0., 1., finite_converter_loop=True, maximum_step=.1, output_step=.04)
+    assert r["complete"]
+    assert r["converter_incident_margin"].min() > 0
+    assert r["converter_photon_energy"].max() <= preparation()["converter_photon_capacity"]*(1+1e-13)
+    assert r["converter_photon_energy"][0] == 0
+    assert r["converter_photon_energy"][-1] == 0
+    assert abs(r["complete_ledger_error"]).max() < 2e-7
+
+
 def test_joint_power_derivative_enclosure_covers_independent_finite_differences():
     time = np.linspace(0, 1, 8)[:, None]
     target = np.stack([5+time, .3*np.sin(7*time), .2*np.cos(5*time)])
