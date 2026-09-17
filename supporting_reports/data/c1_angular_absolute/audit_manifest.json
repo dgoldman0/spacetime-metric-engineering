@@ -1,0 +1,27 @@
+{
+  "input_sha256": {
+    "supporting_reports/data/c1_angular_absolute/manifest.json": "56110f4e1ab074b456e4cfa7059780ed364368698a65dd58cba1e2697ea4a738",
+    "supporting_reports/data/c1_angular_absolute/execution_audit_c1_angular_absolute.py": "470165f6f50b3e42867d01cc50901f4584f8291daf351ea483cf45c5d92ab392"
+  },
+  "output_sha256": {
+    "audit.json": "b37be2930c039e29ab961d3cc1a2bf2c39eaf9f50a2bcba21b7096f29b685c7a",
+    "execution_audit_c1_angular_absolute.py": "470165f6f50b3e42867d01cc50901f4584f8291daf351ea483cf45c5d92ab392",
+    "absolute_200.npz": "80639b0bfbc8475728d41cc776bb75f29e1d797a8b4e1fff4c54eaa2e6c9bcee",
+    "case_101.json": "6cc866a61a5415b69f95c502165203722969c6095c5060ef6ac3bad1939fa05b",
+    "case_202.json": "716088ef5fbeea4283727b9de5eeffb831b6258764d981dcfddcb28d013cdcc4",
+    "case_103.json": "97dd87c3971bbf138b7e3eebdd13f6cb9911c68793bc0ca878516e141643d35e",
+    "absolute_102.npz": "db0cf26aca0741c2bc33d138cab82d6ebed16b44110b819c1d756e9c3eb705f5",
+    "absolute_101.npz": "c3cd7c1fe94a6dc488f0d9273b7c671958aef6b65c0892fe61cfc466a889788e",
+    "case_100.json": "f96a5d3874e30de41cdd19ec56e810272d1b765a27a1773a471e6014cd89ecf0",
+    "case_102.json": "6e0073c482824693741884634916b6300e0801d66d00f68c7909a958bb2dc0e3",
+    "absolute_203.npz": "f5c751ea8852322521a28cce850df43b74d534f30e11cb6c58d33d1e85b7aac9",
+    "case_201.json": "534114d2b0d7c7a16299974862153609e23bc7bbea6ae8740957cdf06416da96",
+    "case_200.json": "51a26cea7f1348d3f8b09eb07f4dbb5e564bfab7ab560c0bf4967eade18b921f",
+    "absolute_202.npz": "3af1afba288fad3bbd539850a79f747930edbfa988572e646d2a678e309aa48d",
+    "case_203.json": "03c541735e43cc9440c742d8f383de0d95b81f02abbe564fddb7fe1848b999ab",
+    "absolute_100.npz": "f0ef73ed9565567f3ee4e3673712a8c9da1bbc4ab484419942b3dad30eaf541e",
+    "absolute_201.npz": "5e9bd0a8f0a41d2c8fb8748b31f9cac03ba9b6d0685782a41667e687efadbbfe",
+    "absolute_103.npz": "0326be804c404808e241d31c581f16844fd1e8ea1dd14315b76afb59383469ae"
+  },
+  "driver_maintenance": "After the completed calculation, the current driver gained absolute-path handling for reproduction directories outside the repository. The executed source is preserved in the immutable snapshot."
+}

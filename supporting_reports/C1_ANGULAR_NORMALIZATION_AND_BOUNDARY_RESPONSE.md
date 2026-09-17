@@ -17,6 +17,12 @@ explicit terms in the source equation. This advances the
 [agreed source-feasibility investigation](SOURCE_FEASIBILITY_WORKFLOW.md) from
 spectra to normalized stress and a measured boundary burden.
 
+The subsequent [absolute whole-module calculation](C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md)
+supplies bulk reference tensors at the throat and a broad-overlap witness.
+It preserves angular transparency through the internal radial walls and
+identifies fixed global curvature-coupling cases that help both sampled
+source budgets. Its finite end/material/exterior construction remains open.
+
 ## Components and change record
 
 The [C1 topology decision](RAIL_BUILD_TOPOLOGY_DECISION.md) and the separate

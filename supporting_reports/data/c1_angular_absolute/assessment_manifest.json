@@ -1,0 +1,11 @@
+{
+  "input_sha256": {
+    "supporting_reports/data/c1_angular_absolute/audit.json": "b37be2930c039e29ab961d3cc1a2bf2c39eaf9f50a2bcba21b7096f29b685c7a",
+    "supporting_reports/data/c1_angular_absolute/audit_manifest.json": "83140137bc6d2b88a55c497f0a43d1b4243cbd828cf8f2ec71cd6e44cdf84f30",
+    "toolkit/adm_harness_cli/scripts/assess_c1_angular_absolute.py": "42344e6456b633382f2b56bfdcacabd2f337dcaf444d1a08b63ba2667c3a4389"
+  },
+  "output_sha256": {
+    "assessment.json": "49ae9c6c8c86c9d9501d7dab75b1e72dc3035d6b186444801dbe86f66a2390eb",
+    "execution_assess_c1_angular_absolute.py": "42344e6456b633382f2b56bfdcacabd2f337dcaf444d1a08b63ba2667c3a4389"
+  }
+}

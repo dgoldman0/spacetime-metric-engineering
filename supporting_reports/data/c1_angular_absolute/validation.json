@@ -1,0 +1,47 @@
+{
+  "focused_tests": {
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "toolkit/adm_harness_cli/tests/test_c1_angular_absolute.py",
+      "toolkit/adm_harness_cli/tests/test_c1_angular_response.py",
+      "toolkit/adm_harness_cli/tests/test_c1_angular_scalar.py",
+      "toolkit/adm_harness_cli/tests/test_c1_signed_channels.py",
+      "toolkit/adm_harness_cli/tests/test_c1_module_overlap.py"
+    ],
+    "result": "51 passed in 7.38s",
+    "exit_code": 0,
+    "environment": {
+      "PYTHONPATH": "toolkit/adm_harness_cli",
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1"
+    }
+  },
+  "source_compilation": {
+    "python": "screen, audit, assessment and absolute-source modules compiled successfully",
+    "c": "runtime kernel compiled during the focused tests and production"
+  },
+  "wheel": {
+    "command": "python -m pip wheel --no-deps --no-build-isolation --wheel-dir /tmp/c1-angular-absolute-wheel ./toolkit/adm_harness_cli",
+    "exit_code": 0,
+    "contains_c_source": true
+  },
+  "verified_manifest_entries": {
+    "production": 61,
+    "audit": 20,
+    "assessment": 5
+  },
+  "test_sha256": {
+    "toolkit/adm_harness_cli/tests/test_c1_angular_absolute.py": "329616fa7da4fed23839adb5b33a2a4ee2028eb0150540a7a676f5680e6f0eda",
+    "toolkit/adm_harness_cli/tests/test_c1_angular_response.py": "8896bc9dab0ebd6edbe9df43329f9151d4851144bedcdfed6fc1be9c2cdb4eb3",
+    "toolkit/adm_harness_cli/tests/test_c1_angular_scalar.py": "c0cfe196227a86c8a55b4ba7c00b6841691d538dec71051e599e357a1024ec56",
+    "toolkit/adm_harness_cli/tests/test_c1_signed_channels.py": "3367dcd1aacc397987ed6819c14bb0c138f803eb2de71b05ac98ed61bb661c2c",
+    "toolkit/adm_harness_cli/tests/test_c1_module_overlap.py": "02d629c9f8be02f64d9583b53d1559788caab013d8487741b4bf8a56ce4402f2"
+  },
+  "current_driver_sha256": {
+    "toolkit/adm_harness_cli/scripts/audit_c1_angular_absolute.py": "7b4e3fe31073890a197fe9117882c7f15e4b84d01d587735bd03f57fbabdc4d1",
+    "toolkit/adm_harness_cli/pyproject.toml": "08e8806a2b2856f759166f27d8031d2c06cd041a2880f1ffab184c0daca100c5"
+  }
+}

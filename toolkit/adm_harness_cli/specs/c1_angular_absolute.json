@@ -1,0 +1,21 @@
+{
+  "reference": "supporting_reports/data/archived_geometry_opening/reference_metric.npz",
+  "parent_specification": "toolkit/adm_harness_cli/specs/c1_signed_channels.json",
+  "parent_summary": "supporting_reports/data/c1_signed_channels/summary.json",
+  "parent_manifest": "supporting_reports/data/c1_signed_channels/manifest.json",
+  "reference_log": 1.0,
+  "throat_masses": [1.0, 2.0, 4.0, 8.0],
+  "throat_cutoffs": [16.0, 32.0],
+  "overlap_masses": [2.0, 4.0, 8.0],
+  "frequency_order": 24,
+  "proper_spacing": 0.01,
+  "attenuation": 40.0,
+  "throat_phase_step": 0.02,
+  "overlap_phase_step": 0.04,
+  "geometry_change": "none; higher-order interpolation of the retained samples is a numerical control",
+  "source_placement_change": "none; original inset module endpoints retained",
+  "overlap_change": "none; retained broad and narrow electric layouts",
+  "angular_coupling_change": "one Dirichlet angular compartment per module; internal radial walls transparent",
+  "state": "static ground state of each independent massless conformal scalar population inside its module",
+  "exterior": "interior Dirichlet state is specified; exterior vacuum, interface self stress and end material action remain to be supplied"
+}

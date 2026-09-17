@@ -55,6 +55,18 @@ prioritizes angular transparency through short radial compartments, together
 with the absolute angular state, finite materials and exterior. The retained
 radial channels keep their separate role; full assembly benefit remains open.
 
+The [absolute angular-source comparison](supporting_reports/C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md)
+calculates whole-module bulk stress with those internal walls transparent.
+Fixed global curvature-coupling cases with reference logarithms 2 and 4
+admit ordinary-material remainders at the throat and one broad-overlap
+witness alongside the retained radial sources. Logarithm 1 helps the throat
+but fails in the overlap. The logarithm-2 witness uses 25.1 million left and
+5 million right real fields. These cases depend on physical finite
+curvature-squared couplings; changing subtraction convention alone preserves
+the total source balance. Physical multiplicity, the complete spatial
+profile, end materials and exterior remain required. Geometry, endpoint
+placement and overlap widths are unchanged.
+
 The [component cross-reference and joint-coordination review](supporting_reports/RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 provides the broader source-construction map. It preserves bulk
 radial support, angular response, directional quantum support, handoff currents,
@@ -92,6 +104,9 @@ service-rating ladder makes `V=5` the active engineered scope:
 
 Primary entry points:
 
+- [Absolute angular source and pair budget](supporting_reports/C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md):
+  covariant normalization, whole-module bulk stress, fixed global parameter
+  cases and independently populated overlap witnesses.
 - [Angular normalization and boundary response](supporting_reports/C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md):
   normalized stress differences, retained-source pair accounting, finite end
   loads and the resulting preference for field-selective coupling.

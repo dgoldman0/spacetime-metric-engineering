@@ -76,9 +76,24 @@ source comparison therefore records:
 The first [normalized contribution and boundary comparison](C1_ANGULAR_NORMALIZATION_AND_BOUNDARY_RESPONSE.md)
 supplies finite stress and original-end traction differences. Its useful
 throat response comes with substantial confinement burdens elsewhere.
-The next comparison prioritizes a whole-module or shared angular state and
-field-selective transparency through the retained short radial compartments,
-with the absolute state, material and exterior terms accounted.
+The [absolute whole-module comparison](C1_ANGULAR_ABSOLUTE_SOURCE_AND_PAIR_BUDGET.md)
+retains angular transparency through the short radial compartments. Fixed
+global curvature-coupling cases with reference logarithms 2 and 4 supply
+useful absolute bulk stress at the throat and one broad-overlap witness,
+with the radial populations retained. The logarithm-1 case fails the overlap
+budget. Independent module populations matter: the logarithm-2 witness uses
+25.1 million left and 5 million right real fields.
+
+Continue the surviving parameter cases by placing physical multiplicity,
+finite curvature-squared couplings and exterior populations in one source
+accounting. A change of subtraction convention alone leaves the total
+semiclassical balance invariant; the favorable cases require their physical
+effective-action couplings. This selects the cases for the full spatial bulk
+profile and finite end/material/exterior construction. The two
+sampled bulk witnesses retain the constitutive, boundary, transition and
+motion requirements of the complete assembly. Geometry, source placement
+and overlap remain available for explicitly recorded revisions motivated
+by those measured burdens.
 
 An algebraic allocation identifies a target. A positive mode spectrum
 supports state construction. A supplied source contribution addresses the
