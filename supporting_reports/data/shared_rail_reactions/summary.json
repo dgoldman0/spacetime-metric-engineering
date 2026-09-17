@@ -1,0 +1,105 @@
+{
+  "created_utc": "2026-09-17T10:31:16.965275+00:00",
+  "workers": 4,
+  "base_commit": "4cbc8f1510965e9361518d674b41dffb5ada3fbf",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3"
+  },
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n16_t2057_states.npz": "501a9686b867c8832f15caa7e688e58096952232fca1a95096ffcfd64dd22758",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c"
+      },
+      "maximum_trace_demand": 9.41763111575381e-06,
+      "continuous_energy_ceiling_maximum": 2.8252893347261434e-05,
+      "sampled_additional_energy_maximum": 1.8834917591448817e-05,
+      "sampled_energy_trace_derivative_range": [
+        0.2612196762843813,
+        0.4999997174535549
+      ],
+      "sampled_maximum_joint_stretch": 2.0001766284551934,
+      "sampled_maximum_core_stretch": 78.11329243279089,
+      "sampled_minimum_joint_force_margin": 0.24995584873506504,
+      "maximum_tensor_identity_error": 4.235164736271502e-22,
+      "minimum_reserve_with_old_transfer_loss_and_reaction_state": 0.0002824916576378748,
+      "state_energy_screen_passed": true
+    },
+    {
+      "label": "first_n32_t4113",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/first_n32_t4113_states.npz": "bdec451db1d39779bcd2410fea676cb285b33ff01852c469798f1c09f28bb90d",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884"
+      },
+      "maximum_trace_demand": 9.50978008156196e-06,
+      "continuous_energy_ceiling_maximum": 2.8529340244685878e-05,
+      "sampled_additional_energy_maximum": 1.9018906195498523e-05,
+      "sampled_energy_trace_derivative_range": [
+        0.1668700185461138,
+        0.49999975930289775
+      ],
+      "sampled_maximum_joint_stretch": 2.000178017449478,
+      "sampled_maximum_core_stretch": 81.4709806888266,
+      "sampled_minimum_joint_force_margin": 0.24995550157884028,
+      "maximum_tensor_identity_error": 4.235164736271502e-22,
+      "minimum_reserve_with_old_transfer_loss_and_reaction_state": 0.00013997393030040162,
+      "state_energy_screen_passed": true
+    },
+    {
+      "label": "second_n16_t1029",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n16_t1029_states.npz": "52a3d299005e5591c8e3cd03d26f92b27bda6b0de761e39dfbc188c7ec154397",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01"
+      },
+      "maximum_trace_demand": 2.5307034295450295e-06,
+      "continuous_energy_ceiling_maximum": 7.592110288635088e-06,
+      "sampled_additional_energy_maximum": 5.0613710489879855e-06,
+      "sampled_energy_trace_derivative_range": [
+        0.13754756499183363,
+        0.49999447901638816
+      ],
+      "sampled_maximum_joint_stretch": 2.0000836477711035,
+      "sampled_maximum_core_stretch": 19.874398260826677,
+      "sampled_minimum_joint_force_margin": 0.24997908936907898,
+      "maximum_tensor_identity_error": 1.0587911840678754e-22,
+      "minimum_reserve_with_old_transfer_loss_and_reaction_state": 0.002940434770341388,
+      "state_energy_screen_passed": true
+    },
+    {
+      "label": "second_n32_t2057",
+      "input_sha256": {
+        "supporting_reports/data/scheduled_optical_transfer/second_n32_t2057_states.npz": "35f98ab9651f15732d70b5630ca8b7b3f65adfaa89c5e759be4eba40391ac5e7",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72"
+      },
+      "maximum_trace_demand": 4.183880357460131e-06,
+      "continuous_energy_ceiling_maximum": 1.2551641072380392e-05,
+      "sampled_additional_energy_maximum": 8.367723250609123e-06,
+      "sampled_energy_trace_derivative_range": [
+        0.13713044337357322,
+        0.49999552336099057
+      ],
+      "sampled_maximum_joint_stretch": 2.000131491519059,
+      "sampled_maximum_core_stretch": 20.76604289731166,
+      "sampled_minimum_joint_force_margin": 0.24996713036182983,
+      "maximum_tensor_identity_error": 2.117582368135751e-22,
+      "minimum_reserve_with_old_transfer_loss_and_reaction_state": 0.0022747271856135808,
+      "state_energy_screen_passed": true
+    }
+  ],
+  "guide_trace_bound_over_C": 1.0100119353417134e-05,
+  "total_trace_bound_over_C": 0.25120216644375437,
+  "continuous_reaction_energy_ceiling_over_C": 0.7536064993312631,
+  "inherited_transfer_loss_fraction": 6.2e-07,
+  "field_bias_families": [
+    "maxwell",
+    "photon"
+  ],
+  "integrated_stress_allocation_closed": true,
+  "fixed_original_support_inventories": true,
+  "reciprocal_work_inherited_history_recomputed": false,
+  "field_bias_hosts_and_holding_losses_included": false,
+  "spatial_interfaces_constructed": false,
+  "physical_material_realization_identified": false
+}

@@ -189,13 +189,82 @@ planes make the summed spatial stress isotropic in the local averaging
 frame; opposite spins cancel angular momentum. This specifies a finite
 reaction demand for the surrounding component ensemble.
 
-The next allocation connects that demand to the existing longitudinal
-support, transverse jacket, photon populations and their inline joints.
-Their fixed inventories and force laws remain in the ledger, with the
-additional state energy charged to reserve. A successful integrated
-allocation must also supply its spatial traction paths and reciprocal
-operating work. The rotor has its own containment duty; the rail's other
-materials retain the support and response roles listed above.
+The guide contributes at most another \(0.000010101C\) in trace.
+Consequently the complete holding/guide demand obeys
+\(|\Pi|\le\Pi_*=0.251202167C\). Summing this bound over the eighteen
+nodes gives the demand at each material label.
+
+## Shared support and field allocation
+
+The outer longitudinal sheet and auxiliary transverse sheet provide two
+existing support channels with fixed core and joint inventories. Set
+\(B=\Pi_*/3\) and \(a=B+\Pi/3\). Increase their effective tensile
+duties by \(a\) and \(a/2\), respectively. Since \(a\ge0\), both
+members continue along their tensile constitutive branches.
+
+An isotropic positive-pressure population of energy \(3B\) completes
+the allocation. The existing tensor basis supplies two representations:
+
+| Field family | Added populations | Added radial and angular pressures |
+| --- | --- | --- |
+| Maxwell | Hoop-field energy \(2B\), radial-field energy \(B\) | \((p,q)=(B,B)\) |
+| Photon | Radial-photon energy \(B\), angular-photon energy \(2B\) | \((p,q)=(B,B)\) |
+
+Together the sheets and positive-pressure bias supply exactly
+\((\Delta p,\Delta q)=(-\Pi/3,-\Pi/3)\). Thus both independent
+stress channels cancel the isotropic guide/holding reaction. The two field
+representations have different current-host, optical-holding and spatial
+interface requirements, while their integrated tensor and energy agree.
+
+Each sheet retains its original force-matched inline joints. If \(T\)
+is its effective tensile duty, its core plus both joint directions obey
+\(0\le dE/dT\le2\). In the series law, write
+\(X=\alpha f j'\) and \(Y=\alpha f'j\); then
+\(dE/dT=(t/\sqrt{t^2+[(1-\epsilon)M]^2}+2X)/(1+Y+X)\).
+Positivity of \(X,Y\) establishes the stated bound. Therefore the
+additional state energy satisfies the continuous envelope
+
+\[
+\Delta E\le 2a+2(a/2)+3B\le9B
+ =3\Pi_*=0.753606499C.
+\]
+
+This envelope holds at every intermediate baseline and reaction amplitude.
+The audit separately evaluates five reaction amplitudes at every inherited
+sample to measure actual joint stretches, forces and energy derivatives.
+
+| History | Maximum continuous additional-energy charge | Minimum reserve after this charge and inherited 0.62 ppm transfer loss | Sampled range of \(\partial\Delta E/\partial\Pi\) |
+| --- | ---: | ---: | ---: |
+| First, 16 labels | 0.000028253 | 0.000282492 | 0.26122–0.50000 |
+| First, 32 labels | 0.000028529 | 0.000139974 | 0.16687–0.50000 |
+| Second, 16 labels | 0.000007592 | 0.002940435 | 0.13755–0.49999 |
+| Second, 32 labels | 0.000012552 | 0.002274727 | 0.13713–0.50000 |
+
+Energy entries use the inherited rail normalization. The maximum joint
+stretch becomes 2.000178, slightly above the original preparation target
+of 2; the minimum constitutive force margin remains 0.249956. Core stretch
+reaches 81.471 in the inherited first-fine family. These remain demands on
+the stated relativistic continuum constituents and their physical realization.
+
+The reserve column is a state-energy screen with the previous transfer
+loss model. The positive-pressure bias needs its own physical hosts and
+holding-loss allocation. Moreover, its changing companion sheet states
+create a reciprocal operating port. With baseline duties \(T_i\),
+\(c=\partial\Delta E/\partial\Pi\) and principal macro rates
+\(D_z,D_a\), the reaction assembly requires
+
+\[
+P_{\rm reaction}=
+\sum_i(E'_{i,\rm after}-E'_{i,\rm before})\dot T_i
++c\dot\Pi-\frac\Pi3(D_z+2D_a).
+\]
+
+The last term cancels the isotropic assembly's macro pressure work when
+the combined tensor is formed. The state-energy derivative remains an
+exchange with the transfer network. Accordingly, coupled evolution must
+recompute the rotor input and its thermal certificate. Spatially resolved
+traction paths and finite propagation through the same members remain
+additional interface equations.
 
 ## Reproducibility
 
@@ -206,6 +275,12 @@ retain the complete forcing provenance. Four new tests compare the exact
 reduction against the original equations, verify the rational inequalities,
 check guide admission and exercise the initial-state and heat limits.
 
+The [shared-reaction archive](data/shared_rail_reactions/summary.json)
+records the four conserved-inventory state allocations and their energy
+envelopes. Four further tests verify both field representations, the
+constitutive energy derivative and an independently differentiated rotor
+trace. Both audits run the independent histories with four workers.
+
 ```sh
 env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
   python toolkit/adm_harness_cli/scripts/audit_nonlinear_holding_certificate.py \
@@ -213,4 +288,11 @@ env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 
 
 env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
   python -m pytest -q toolkit/adm_harness_cli/tests/test_nonlinear_holding_certificate.py
+
+env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python toolkit/adm_harness_cli/scripts/audit_shared_rail_reactions.py \
+  --workers 4 --output /tmp/shared_rail_reactions_replay
+
+env PYTHONPATH=toolkit/adm_harness_cli OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  python -m pytest -q toolkit/adm_harness_cli/tests/test_shared_rail_reactions.py
 ```
