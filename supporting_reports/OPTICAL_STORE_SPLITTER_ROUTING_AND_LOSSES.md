@@ -349,8 +349,9 @@ times agree within \(1.9\times10^{-10}\delta\). The manifest stores
 executed sources and verifies the linked optical, joint and macro inputs.
 The focused optical, material, joint and containment suites pass 81 tests.
 
-The next assembly gate combines a low-loss holding mode with scheduled
-transfer, finite port response and evolving route supports. It must preserve
+The [scheduled-transfer and mechanical-holding construction](SCHEDULED_TRANSFER_AND_MECHANICAL_HOLDING.md)
+develops the low-loss holding mode, scheduled guide operation and counted
+converter circulation. The coupled assembly must preserve
 the complete donor/receiver timing, count heat and replacement energy, and
 rematch the target tensor. The existing separate-current-host obstruction
 and the material realization of the relativistic elastic law continue to

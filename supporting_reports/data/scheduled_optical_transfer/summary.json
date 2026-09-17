@@ -1,0 +1,1639 @@
+{
+  "created_utc": "2026-09-17T02:30:51.658701+00:00",
+  "workers": 4,
+  "base_commit": "f857a92b5e1d114f72c179566ac160b62c8e429e",
+  "runtime": {
+    "python": "3.13.7",
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.6"
+  },
+  "preparation": {
+    "radius_minimum": 1.000200060020007,
+    "radius_maximum": 1.2914249955040653,
+    "maximum_speed": 0.0005280748962196345,
+    "maximum_acceleration_parameter": 2.067405463376949e-06,
+    "output_correction_bound": 1.0337048687755678e-05,
+    "output_envelope_margin": 0.0009896629513122444,
+    "maximum_output_power": 1.0010103370486876,
+    "maximum_input_power": 1.0224313808054433,
+    "maximum_energy": 4.304759484914909,
+    "initial_energy": 3.33400020006669,
+    "guide_energy_variation_per_radius_change": 9.415037199020365,
+    "output_power_variation_per_radius_change": 10.931221879525742,
+    "maximum_nominal_store_net_power": 1.0462917030272776,
+    "candidate_preparation": 34.69750020006669,
+    "initial_dynamic_energy": 26.735000200066693,
+    "route_wall_energy": 7.9625,
+    "converter_photon_capacity": 0.3125,
+    "quasistatic_rotor_energy_floor": 1.1170011031235956,
+    "quasistatic_heat_action_capacity": 0.07884573218966466,
+    "quasistatic_heat_energy_capacity": 1.2705656023483152,
+    "initial_reference_inventory": 21.333333333333332
+  },
+  "rotor_reference_inventory": 18.0,
+  "rotor_reference_radius": 0.026525823848649224,
+  "rotor_damping": 0.4,
+  "spin_floor": 0.3,
+  "ramp_time": 128.0,
+  "guide_pilot": 0.001,
+  "converter_flight_time": 0.0625,
+  "converter_envelope_ramp_time": 256.0,
+  "histories": [
+    {
+      "label": "first_n16_t2057",
+      "samples": [
+        2057,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/first_n16_t2057_states.npz": "e39c4498303b68c1416cc2f33be2096a7c32a653ba1a8d330a05c43858248820",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n16_t2057_states.npz": "91d609aabb7c6d104833f2f7626ada5e1897336f7bd76e0f39ccda53aef6995c",
+        "supporting_reports/data/material_reconfiguration/first_n16_t2057_states.npz": "c2a89b1cf11d82975ff6578406f3dd02f2fc024d17b49ac9bcf9b687e9dd3a1d",
+        "supporting_reports/data/optical_assembly/first_n16_t2057_states.npz": "31eeb8b919ba15d159a064372846dce5fe33432c9c82adeb5dc873a6afce4643"
+      },
+      "preparation": {
+        "minimum": 0.001294622692409502,
+        "maximum": 0.0013008178319042782
+      },
+      "minimum_remaining_reserve": 0.0004583769523968462,
+      "all_panel_reserve_bound": 0.0004583769523968462,
+      "sufficient_common_loss_fraction": {
+        "minimum": 1.923573433334452e-06,
+        "maximum": 5.959840891837299e-05
+      },
+      "final_guide_over_old_nominal": {
+        "minimum": 0.006014699605456554,
+        "maximum": 0.00620650247758289
+      },
+      "final_total_exposure_over_old_nominal": {
+        "minimum": 0.06564958768017044,
+        "maximum": 0.06918000156666466
+      },
+      "maximum_final_useful_upper": 38.88843132590696,
+      "maximum_final_guide_upper": 46.410612108021695,
+      "maximum_final_converter_upper": 259.3498387546899,
+      "maximum_final_bootstrap_upper": 0.08547078234710935,
+      "maximum_final_loop_exposure_upper": 79.77310245275835,
+      "maximum_loop_baseline_over_peak": 0.0059012002724817235,
+      "maximum_converter_events": 2057,
+      "minimum_panel_over_delay": 43067.652607459284,
+      "maximum_changed_plateaus_per_node": 2057,
+      "maximum_receipt_l2_upper": 40.83030173514059,
+      "maximum_guide_l2_upper": 4.003223803000291,
+      "maximum_frozen_linear_heat_over_C": 0.4872051733228144,
+      "maximum_ideal_port_frozen_heat_over_C": 0.28937839163858,
+      "maximum_frozen_heat_to_capacity_ratio": 0.3834553465183855,
+      "frozen_linear_heat_diagnostic_is_nonlinear_certificate": false,
+      "inventory_and_damping_sweep": [
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.2,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 1.2630585441292548,
+          "maximum_frozen_heat_to_capacity_ratio": 4.404312391261661,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0005048284408790262
+        },
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.4,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 0.6540268367161682,
+          "maximum_frozen_heat_to_capacity_ratio": 2.2806056889093083,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0005048284408790262
+        },
+        {
+          "rotor_reference_inventory": 16.0,
+          "damping": 0.4,
+          "preparation": 32.09750020006669,
+          "quasistatic_heat_capacity": 0.783180055539122,
+          "maximum_frozen_linear_heat_over_C": 0.5583760197404211,
+          "maximum_frozen_heat_to_capacity_ratio": 0.7129599583023711,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0004077317253853291
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.2,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.937476623565906,
+          "maximum_frozen_heat_to_capacity_ratio": 0.737841967257118,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.00031063500989163197
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.4,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.4872051733228144,
+          "maximum_frozen_heat_to_capacity_ratio": 0.3834553465183855,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.00031063500989163197
+        },
+        {
+          "rotor_reference_inventory": 20.0,
+          "damping": 0.4,
+          "preparation": 37.29750020006669,
+          "quasistatic_heat_capacity": 1.7520318007089948,
+          "maximum_frozen_linear_heat_over_C": 0.4321666619457932,
+          "maximum_frozen_heat_to_capacity_ratio": 0.24666599189061994,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.00021353829439793484
+        }
+      ],
+      "retained_loss_comparisons": [
+        {
+          "assigned_loss_per_exposure": 6.2e-07,
+          "minimum_continuous_reserve_after_loss": 0.00031063500989163197,
+          "minimum_final_reserve_after_loss": 0.4538881278460389,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0003044814294184739,
+            "maximum": 0.0003206915172343791
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 3.442371642827012e-09,
+            "maximum": 1.6426556864416474e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 7.4e-07,
+          "minimum_continuous_reserve_after_loss": 0.00028203972467816653,
+          "minimum_final_reserve_after_loss": 0.45382689711894,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00036341346434902607,
+            "maximum": 0.0003827609962554255
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 3.125485315922819e-09,
+            "maximum": 1.6393134687387958e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 1e-06,
+          "minimum_continuous_reserve_after_loss": 0.0002200831949038916,
+          "minimum_final_reserve_after_loss": 0.45369423037551415,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0004910997017681238,
+            "maximum": 0.0005172450378144974
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 2.4388982742970696e-09,
+            "maximum": 1.6320719970492842e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 3e-06,
+          "minimum_continuous_reserve_after_loss": -0.0002565090860048268,
+          "minimum_final_reserve_after_loss": 0.45267370927660155,
+          "labels_with_negative_continuous_bound": 1,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0014733089273966278,
+            "maximum": 0.0015517454584476984
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -2.842540507439467e-09,
+            "maximum": 1.5763683686684268e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 0.08798916064409024,
+          "minimum_continuous_reserve_after_loss": -64.01563598157644,
+          "minimum_final_reserve_after_loss": -63.90922254695937,
+          "labels_with_negative_continuous_bound": 16,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 61.144948971828,
+            "maximum": 64.40020494663537
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -0.0005640422860503317,
+            "maximum": -0.0005294558045831407
+          }
+        }
+      ]
+    },
+    {
+      "label": "first_n32_t4113",
+      "samples": [
+        4113,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/first_n32_t4113_states.npz": "af2faa08f10d2e872f9b7750098dc32771ab8c29d22878861207916fbf9e772a",
+        "supporting_reports/data/constitutive_joints_and_optics/first_n32_t4113_states.npz": "10b6d9c642c554e8e7156c5a374baa8362d8e8a13f9e99623d326cd5dc728884",
+        "supporting_reports/data/material_reconfiguration/first_n32_t4113_states.npz": "7ec41701a8f71ce9c7ea62120dc5cc75b2fbc71c7b7fb5b00b3c0e789909013f",
+        "supporting_reports/data/optical_assembly/first_n32_t4113_states.npz": "ae29aea3dc6fada6a64c2f6e03b2a548974622403a55f70ccfa4623eab7c8fe1"
+      },
+      "preparation": {
+        "minimum": 0.00129765154077736,
+        "maximum": 0.001313545981525074
+      },
+      "minimum_remaining_reserve": 0.000328178479083639,
+      "all_panel_reserve_bound": 0.000328178479083639,
+      "sufficient_common_loss_fraction": {
+        "minimum": 1.2726692574173038e-06,
+        "maximum": 5.474807734975878e-05
+      },
+      "final_guide_over_old_nominal": {
+        "minimum": 0.00600277582496586,
+        "maximum": 0.0062313458437817
+      },
+      "final_total_exposure_over_old_nominal": {
+        "minimum": 0.07276571612581428,
+        "maximum": 0.07857487749689115
+      },
+      "maximum_final_useful_upper": 39.14997643027403,
+      "maximum_final_guide_upper": 46.678840966523495,
+      "maximum_final_converter_upper": 261.1676223748904,
+      "maximum_final_bootstrap_upper": 0.15891958608112491,
+      "maximum_final_loop_exposure_upper": 148.24197509912312,
+      "maximum_loop_baseline_over_peak": 0.006118356084741307,
+      "maximum_converter_events": 4113,
+      "minimum_panel_over_delay": 21532.576699415025,
+      "maximum_changed_plateaus_per_node": 4113,
+      "maximum_receipt_l2_upper": 74.09130580506313,
+      "maximum_guide_l2_upper": 3.911556160943891,
+      "maximum_frozen_linear_heat_over_C": 0.9026130151862272,
+      "maximum_ideal_port_frozen_heat_over_C": 0.5208775296745912,
+      "maximum_frozen_heat_to_capacity_ratio": 0.7104025274397309,
+      "frozen_linear_heat_diagnostic_is_nonlinear_certificate": false,
+      "inventory_and_damping_sweep": [
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.2,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 2.3399855816347253,
+          "maximum_frozen_heat_to_capacity_ratio": 8.15958020352284,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0003637679334533386
+        },
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.4,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 1.2116725507550092,
+          "maximum_frozen_heat_to_capacity_ratio": 4.225128323818847,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0003637679334533386
+        },
+        {
+          "rotor_reference_inventory": 16.0,
+          "damping": 0.4,
+          "preparation": 32.09750020006669,
+          "quasistatic_heat_capacity": 0.783180055539122,
+          "maximum_frozen_linear_heat_over_C": 1.0344665664123502,
+          "maximum_frozen_heat_to_capacity_ratio": 1.3208540732057443,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0002660348353281947
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.2,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 1.7368013481719775,
+          "maximum_frozen_heat_to_capacity_ratio": 1.3669513364457095,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.000168301737203051
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.4,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.9026130151862272,
+          "maximum_frozen_heat_to_capacity_ratio": 0.7104025274397309,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.000168301737203051
+        },
+        {
+          "rotor_reference_inventory": 20.0,
+          "damping": 0.4,
+          "preparation": 37.29750020006669,
+          "quasistatic_heat_capacity": 1.7520318007089948,
+          "maximum_frozen_linear_heat_over_C": 0.80064678119376,
+          "maximum_frozen_heat_to_capacity_ratio": 0.45698187719524397,
+          "minimum_continuous_reserve_after_0_62_ppm": 7.056863907790712e-05
+        }
+      ],
+      "retained_loss_comparisons": [
+        {
+          "assigned_loss_per_exposure": 6.2e-07,
+          "minimum_continuous_reserve_after_loss": 0.000168301737203051,
+          "minimum_final_reserve_after_loss": 0.4524856288619833,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00034052852224827505,
+            "maximum": 0.00036493039923010147
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 1.8533274226595932e-09,
+            "maximum": 1.6581237072523506e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 7.4e-07,
+          "minimum_continuous_reserve_after_loss": 0.00013735777534933666,
+          "minimum_final_reserve_after_loss": 0.4524156881477197,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0004064374310651851,
+            "maximum": 0.00043556226362893505
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 1.5125739886780176e-09,
+            "maximum": 1.6544363664174605e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 1e-06,
+          "minimum_continuous_reserve_after_loss": 7.031243974202166e-05,
+          "minimum_final_reserve_after_loss": 0.45226414974153295,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0005492402477190984,
+            "maximum": 0.0005885981636722817
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 7.742748817179374e-10,
+            "maximum": 1.6464471279418655e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 3e-06,
+          "minimum_continuous_reserve_after_loss": -0.0004454247963135736,
+          "minimum_final_reserve_after_loss": 0.4510984609123982,
+          "labels_with_negative_continuous_bound": 2,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.0016477317280720989,
+            "maximum": 0.0017658062630978395
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -4.904949017974988e-09,
+            "maximum": 1.5849914473603641e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 0.08798916064409024,
+          "minimum_continuous_reserve_after_loss": -72.87742113838252,
+          "minimum_final_reserve_after_loss": -72.79299774737987,
+          "labels_with_negative_continuous_bound": 32,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 68.38380638218148,
+            "maximum": 73.284110238874
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -0.0005877463092385084,
+            "maximum": -0.0005443783814217683
+          }
+        }
+      ]
+    },
+    {
+      "label": "second_n16_t1029",
+      "samples": [
+        1029,
+        16
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/second_n16_t1029_states.npz": "b554084a16af76b8b05b69044a727fdd1d817043ade64e2cecf4f24cf4891004",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n16_t1029_states.npz": "3fb4ac3990c674f2deca03fb361a2360910f755449997b748f4d264bf425ff01",
+        "supporting_reports/data/material_reconfiguration/second_n16_t1029_states.npz": "296a48dfc6b89eeae9d43d9f2317972d8f6d6be804b3ecb79c7fd5e15fde2278",
+        "supporting_reports/data/optical_assembly/second_n16_t1029_states.npz": "165ed885aa9b4ff76cca435d474856c0bc188e1ab5c1b93a4deaf40bc2856aae"
+      },
+      "preparation": {
+        "minimum": 0.00016945554915983555,
+        "maximum": 0.00034955543575142326
+      },
+      "minimum_remaining_reserve": 0.00300434643502726,
+      "all_panel_reserve_bound": 0.00300434643502726,
+      "sufficient_common_loss_fraction": {
+        "minimum": 3.047520752863417e-05,
+        "maximum": 9.45490479135495e-05
+      },
+      "final_guide_over_old_nominal": {
+        "minimum": 0.007171428930056481,
+        "maximum": 0.01227316863673747
+      },
+      "final_total_exposure_over_old_nominal": {
+        "minimum": 0.07442139464608481,
+        "maximum": 0.12875526660761283
+      },
+      "maximum_final_useful_upper": 12.00840241318078,
+      "maximum_final_guide_upper": 13.96554914989222,
+      "maximum_final_converter_upper": 80.07040023858303,
+      "maximum_final_bootstrap_upper": 0.011611284792724478,
+      "maximum_final_loop_exposure_upper": 10.969256921075107,
+      "maximum_loop_baseline_over_peak": 0.001609184141467309,
+      "maximum_converter_events": 1029,
+      "minimum_panel_over_delay": 83604.22502477703,
+      "maximum_changed_plateaus_per_node": 1029,
+      "maximum_receipt_l2_upper": 14.593967174041731,
+      "maximum_guide_l2_upper": 2.447866383658919,
+      "maximum_frozen_linear_heat_over_C": 0.1796248842247061,
+      "maximum_ideal_port_frozen_heat_over_C": 0.10272500177410245,
+      "maximum_frozen_heat_to_capacity_ratio": 0.14137395494787164,
+      "frozen_linear_heat_diagnostic_is_nonlinear_certificate": false,
+      "inventory_and_damping_sweep": [
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.2,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 0.46566981875604657,
+          "maximum_frozen_heat_to_capacity_ratio": 1.6238007038682,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.002982407305346378
+        },
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.4,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 0.24112940760411927,
+          "maximum_frozen_heat_to_capacity_ratio": 0.8408234461851881,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.002982407305346378
+        },
+        {
+          "rotor_reference_inventory": 16.0,
+          "damping": 0.4,
+          "preparation": 32.09750020006669,
+          "quasistatic_heat_capacity": 0.783180055539122,
+          "maximum_frozen_linear_heat_over_C": 0.20586445586297036,
+          "maximum_frozen_heat_to_capacity_ratio": 0.26285712258244154,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0029640774760193588
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.2,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.34563288567508493,
+          "maximum_frozen_heat_to_capacity_ratio": 0.27203072791855143,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0029457476466923397
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.4,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.1796248842247061,
+          "maximum_frozen_heat_to_capacity_ratio": 0.14137395494787164,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0029457476466923397
+        },
+        {
+          "rotor_reference_inventory": 20.0,
+          "damping": 0.4,
+          "preparation": 37.29750020006669,
+          "quasistatic_heat_capacity": 1.7520318007089948,
+          "maximum_frozen_linear_heat_over_C": 0.15933305077275073,
+          "maximum_frozen_heat_to_capacity_ratio": 0.09094187143650784,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0029274178173653207
+        }
+      ],
+      "retained_loss_comparisons": [
+        {
+          "assigned_loss_per_exposure": 6.2e-07,
+          "minimum_continuous_reserve_after_loss": 0.0029457476466923397,
+          "minimum_final_reserve_after_loss": 0.16630535204662264,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 7.497075072148497e-05,
+            "maximum": 8.985509551271612e-05
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 7.249927383759825e-08,
+            "maximum": 3.962749600512914e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 7.4e-07,
+          "minimum_continuous_reserve_after_loss": 0.0029344059177480258,
+          "minimum_final_reserve_after_loss": 0.1662908415429485,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 8.948125439563844e-05,
+            "maximum": 0.00010724644722029648
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 7.220787030767242e-08,
+            "maximum": 3.9576869498992384e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 1e-06,
+          "minimum_continuous_reserve_after_loss": 0.0029098321405751637,
+          "minimum_final_reserve_after_loss": 0.16625940207849776,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00012092071884637488,
+            "maximum": 0.0001449277569831449
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 7.157649599283315e-08,
+            "maximum": 3.946717873569607e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 3e-06,
+          "minimum_continuous_reserve_after_loss": 0.0027208016613661785,
+          "minimum_final_reserve_after_loss": 0.16601755822236644,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00036276457497768597,
+            "maximum": 0.00043478616953356014
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 6.671977049406956e-08,
+            "maximum": 3.8623403633416706e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 0.08798916064409024,
+          "minimum_continuous_reserve_after_loss": -17.931917323011113,
+          "minimum_final_reserve_after_loss": -17.871859817873617,
+          "labels_with_negative_continuous_bound": 16,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 15.05537705862696,
+            "maximum": 18.044401724193982
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -0.0017775660883172022,
+            "maximum": -0.0008909092463589152
+          }
+        }
+      ]
+    },
+    {
+      "label": "second_n32_t2057",
+      "samples": [
+        2057,
+        32
+      ],
+      "input_sha256": {
+        "supporting_reports/data/controlled_optical_transfer/second_n32_t2057_states.npz": "ca3846421cf6c3831bb7512644ca468e9b6cad63d9a2e87864404749a1f1f085",
+        "supporting_reports/data/constitutive_joints_and_optics/second_n32_t2057_states.npz": "e3c07cb3ac92a324370a0c288ebcea1e1ec80fed22df050649919e522b11ba72",
+        "supporting_reports/data/material_reconfiguration/second_n32_t2057_states.npz": "089ca837d7300899a2915ecef9b29f665af453fb9989469f462eba17d1859254",
+        "supporting_reports/data/optical_assembly/second_n32_t2057_states.npz": "33c2f4189c7c9409d7d8fc042ad40438c965986982e6bc65740f14932b4aa11c"
+      },
+      "preparation": {
+        "minimum": 0.00018028727470860377,
+        "maximum": 0.0005779018214499851
+      },
+      "minimum_remaining_reserve": 0.0023674837241681995,
+      "all_panel_reserve_bound": 0.0023674837241681995,
+      "sufficient_common_loss_fraction": {
+        "minimum": 1.8300047128684606e-05,
+        "maximum": 9.348222399539578e-05
+      },
+      "final_guide_over_old_nominal": {
+        "minimum": 0.004771166799303783,
+        "maximum": 0.011846010578948307
+      },
+      "final_total_exposure_over_old_nominal": {
+        "minimum": 0.05349434889034644,
+        "maximum": 0.12902691152758788
+      },
+      "maximum_final_useful_upper": 12.152707647035328,
+      "maximum_final_guide_upper": 15.388376527197494,
+      "maximum_final_converter_upper": 81.05725587634073,
+      "maximum_final_bootstrap_upper": 0.035375954800598505,
+      "maximum_final_loop_exposure_upper": 33.25050293847357,
+      "maximum_loop_baseline_over_peak": 0.001661206457335517,
+      "maximum_converter_events": 2057,
+      "minimum_panel_over_delay": 41797.382455162064,
+      "maximum_changed_plateaus_per_node": 2057,
+      "maximum_receipt_l2_upper": 19.90396528072307,
+      "maximum_guide_l2_upper": 2.3066681679324668,
+      "maximum_frozen_linear_heat_over_C": 0.2877663367332803,
+      "maximum_ideal_port_frozen_heat_over_C": 0.14085842618797348,
+      "maximum_frozen_heat_to_capacity_ratio": 0.2264867994233575,
+      "frozen_linear_heat_diagnostic_is_nonlinear_certificate": false,
+      "inventory_and_damping_sweep": [
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.2,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 0.7460219025279505,
+          "maximum_frozen_heat_to_capacity_ratio": 2.6013944679987926,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0023738870680351217
+        },
+        {
+          "rotor_reference_inventory": 14.0,
+          "damping": 0.4,
+          "preparation": 29.49750020006669,
+          "quasistatic_heat_capacity": 0.2867776923896714,
+          "maximum_frozen_linear_heat_over_C": 0.3862990732291837,
+          "maximum_frozen_heat_to_capacity_ratio": 1.347033201955902,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0023738870680351217
+        },
+        {
+          "rotor_reference_inventory": 16.0,
+          "damping": 0.4,
+          "preparation": 32.09750020006669,
+          "quasistatic_heat_capacity": 0.783180055539122,
+          "maximum_frozen_linear_heat_over_C": 0.32980319282025683,
+          "maximum_frozen_heat_to_capacity_ratio": 0.42110775228210884,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0023305829473605415
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.2,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.5537178759756253,
+          "maximum_frozen_heat_to_capacity_ratio": 0.4358042394286604,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0022872788266859612
+        },
+        {
+          "rotor_reference_inventory": 18.0,
+          "damping": 0.4,
+          "preparation": 34.69750020006669,
+          "quasistatic_heat_capacity": 1.2705656023483152,
+          "maximum_frozen_linear_heat_over_C": 0.2877663367332803,
+          "maximum_frozen_heat_to_capacity_ratio": 0.2264867994233575,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0022872788266859612
+        },
+        {
+          "rotor_reference_inventory": 20.0,
+          "damping": 0.4,
+          "preparation": 37.29750020006669,
+          "quasistatic_heat_capacity": 1.7520318007089948,
+          "maximum_frozen_linear_heat_over_C": 0.25525799801799287,
+          "maximum_frozen_heat_to_capacity_ratio": 0.14569255986945992,
+          "minimum_continuous_reserve_after_0_62_ppm": 0.0022439747060113806
+        }
+      ],
+      "retained_loss_comparisons": [
+        {
+          "assigned_loss_per_exposure": 6.2e-07,
+          "minimum_continuous_reserve_after_loss": 0.0022872788266859612,
+          "minimum_final_reserve_after_loss": 0.16613704339824445,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 7.950929644080708e-05,
+            "maximum": 0.00010702810383329149
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 3.2069207643108214e-08,
+            "maximum": 3.98723431341776e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 7.4e-07,
+          "minimum_continuous_reserve_after_loss": 0.0022717552598495467,
+          "minimum_final_reserve_after_loss": 0.1661216436339629,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 9.489823048549524e-05,
+            "maximum": 0.00012774327180166544
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 3.185154391805346e-08,
+            "maximum": 3.9820818617853946e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 1e-06,
+          "minimum_continuous_reserve_after_loss": 0.0022381208224336075,
+          "minimum_final_reserve_after_loss": 0.1660882774357556,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00012824096314986822,
+            "maximum": 0.0001726261925849595
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 3.137993918043485e-08,
+            "maximum": 3.9709182165819373e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 3e-06,
+          "minimum_continuous_reserve_after_loss": 0.0019793924316805155,
+          "minimum_final_reserve_after_loss": 0.16583161243907482,
+          "labels_with_negative_continuous_bound": 0,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 0.00038472545429451605,
+            "maximum": 0.0005178820303132559
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": 2.7752210429522384e-08,
+            "maximum": 3.885044022709185e-07
+          }
+        },
+        {
+          "assigned_loss_per_exposure": 0.08798916064409024,
+          "minimum_continuous_reserve_after_loss": -21.36636046668634,
+          "minimum_final_reserve_after_loss": -21.323669890660106,
+          "labels_with_negative_continuous_bound": 32,
+          "final_loss_replacement_cost_upper": {
+            "minimum": 15.966792730000648,
+            "maximum": 21.49302819530529
+          },
+          "energy_only_holding_drag_fraction_per_delay_ceiling": {
+            "minimum": -0.0016875450212317168,
+            "maximum": -0.0005659895303787711
+          }
+        }
+      ]
+    }
+  ],
+  "transition_trials": [
+    {
+      "name": "up",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5366862779570453,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.1341613082128974,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.3441404142347164,
+      "maximum_radial_speed": 0.001926654506149442,
+      "maximum_reaction_trace": 0.012670234145922802,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007793855190237473,
+      "final_thermal_energy": 0.0007793776560505245,
+      "final_heat_action_increase": 4.913228749221544e-05,
+      "maximum_energy_identity_error": 3.2578384434600594e-12,
+      "maximum_rotor_identity_error": 4.409805853811122e-13,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.4153021546132443,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.8326043092264894
+    },
+    {
+      "name": "down",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367778176511889,
+        "maximum": 0.8306033096586198
+      },
+      "radius": {
+        "minimum": 1.134958345280725,
+        "maximum": 1.3000000000000922
+      },
+      "minimum_proper_stretch": 1.345177847851806,
+      "maximum_radial_speed": 0.0020060168895308025,
+      "maximum_reaction_trace": 0.011190461426045049,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007039564102185246,
+      "final_thermal_energy": 0.0006794445056388851,
+      "final_heat_action_increase": 4.9060992073919544e-05,
+      "maximum_energy_identity_error": 3.2436275887448573e-12,
+      "maximum_rotor_identity_error": 1.662558979376172e-13,
+      "maximum_net_power": 1.0000047285015803,
+      "minimum_converter_incident_margin": 0.000996897525759032,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.8629693613301075
+    },
+    {
+      "name": "warm_up",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "initial_heat": 0.02
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.4980282933201585,
+        "maximum": 0.806225774829855
+      },
+      "radius": {
+        "minimum": 1.134161308213193,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.3079019875628763,
+      "maximum_radial_speed": 0.0019266545061024521,
+      "maximum_reaction_trace": 0.012670234146963978,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.3181864145241859,
+      "final_thermal_energy": 0.31797147681714366,
+      "final_heat_action_increase": 4.9132287491971544e-05,
+      "maximum_energy_identity_error": 3.2720492981752614e-12,
+      "maximum_rotor_identity_error": 4.2588155224621005e-13,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.4838370968424486,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.9696741936848978
+    },
+    {
+      "name": "warm_down",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0,
+        "initial_heat": 0.02
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.49812693715796275,
+        "maximum": 0.8061649198618446
+      },
+      "radius": {
+        "minimum": 1.1349583452807301,
+        "maximum": 1.3000000000000902
+      },
+      "minimum_proper_stretch": 1.3089066461999395,
+      "maximum_radial_speed": 0.0020060168714041253,
+      "maximum_reaction_trace": 0.011190461455709986,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.3171922577572259,
+      "final_thermal_energy": 0.27760238296714496,
+      "final_heat_action_increase": 4.906099207156733e-05,
+      "maximum_energy_identity_error": 3.247180302423658e-12,
+      "maximum_rotor_identity_error": 2.0876356199295287e-13,
+      "maximum_net_power": 1.0000047285015803,
+      "minimum_converter_incident_margin": 0.0009963406165020235,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 2.007521672049473
+    },
+    {
+      "name": "elastic_up",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "damping": 0.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367752383962324,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.1332943280560976,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.343203005331948,
+      "maximum_radial_speed": 0.0029319902076734906,
+      "maximum_reaction_trace": 0.031623594806585616,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 1.5882899573779408e-07,
+      "final_thermal_energy": 1.5858652519940695e-07,
+      "final_heat_action_increase": 0.0,
+      "maximum_energy_identity_error": 1.1233325380999304e-10,
+      "maximum_rotor_identity_error": 1.1232836882868469e-10,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.41516975344260104,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.8323395068852029
+    },
+    {
+      "name": "small_store_up",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "inventory": 14.0,
+        "damping": 0.2
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.4280602244391973,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.0868978313948567,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.2026529210385157,
+      "maximum_radial_speed": 0.002927210105878726,
+      "maximum_reaction_trace": 0.016731897836495077,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0005218048167014215,
+      "final_thermal_energy": 0.0005217980553372267,
+      "final_heat_action_increase": 4.0533842583972984e-05,
+      "maximum_energy_identity_error": 3.2436275887448573e-12,
+      "maximum_rotor_identity_error": 1.6626700016786344e-12,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.6306252664335007,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 2.2632505328670023
+    },
+    {
+      "name": "loop_up",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "finite_converter_loop": true
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.4989269406336026,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.1167700510549174,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.2886144572999296,
+      "maximum_radial_speed": 0.0019553750780017224,
+      "maximum_reaction_trace": 0.0119875213891648,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007689530150714705,
+      "final_thermal_energy": 0.0007575934705984877,
+      "final_heat_action_increase": 4.7758723988108945e-05,
+      "maximum_energy_identity_error": 3.5278446830488974e-12,
+      "maximum_rotor_identity_error": 3.0331293032759277e-13,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": 0.0009999999999364877,
+      "maximum_converter_photon_energy": 0.3125,
+      "maximum_total_port_exposure": 1.9668250028193082
+    },
+    {
+      "name": "loop_down",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0,
+        "finite_converter_loop": true
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.4990225507019224,
+        "maximum": 0.8306049597281261
+      },
+      "radius": {
+        "minimum": 1.1175972341696132,
+        "maximum": 1.3000000000000047
+      },
+      "minimum_proper_stretch": 1.2896508436364562,
+      "maximum_radial_speed": 0.0020338627794265606,
+      "maximum_reaction_trace": 0.010491007909419125,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0006938905653901928,
+      "final_thermal_energy": 0.000660467596431294,
+      "final_heat_action_increase": 4.7690437520037926e-05,
+      "maximum_energy_identity_error": 3.318234575999668e-12,
+      "maximum_rotor_identity_error": 2.5779378631796135e-13,
+      "maximum_net_power": 1.0000047285015805,
+      "minimum_converter_incident_margin": 0.0009999999999364812,
+      "maximum_converter_photon_energy": 0.3125,
+      "maximum_total_port_exposure": 2.003918703134343
+    },
+    {
+      "name": "loop_warm_down",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0,
+        "initial_heat": 0.06,
+        "finite_converter_loop": true
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.3591984494803048,
+        "maximum": 0.7549202733567106
+      },
+      "radius": {
+        "minimum": 1.1175972341696145,
+        "maximum": 1.3000000000000067
+      },
+      "minimum_proper_stretch": 1.1975181546404106,
+      "maximum_radial_speed": 0.0020338627791280698,
+      "maximum_reaction_trace": 0.01049100795297257,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.9663592861637096,
+      "final_thermal_energy": 0.8314295599041027,
+      "final_heat_action_increase": 4.7690437518684015e-05,
+      "maximum_energy_identity_error": 3.296918293926865e-12,
+      "maximum_rotor_identity_error": 2.3581137043038325e-13,
+      "maximum_net_power": 1.0000047285015805,
+      "minimum_converter_incident_margin": 0.0009999999992359105,
+      "maximum_converter_photon_energy": 0.3125,
+      "maximum_total_port_exposure": 2.7839779997555247
+    },
+    {
+      "name": "step_0_0.25",
+      "parameters": {
+        "left": 0.0,
+        "right": 0.25
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7701548273799877,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.261942519336144,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.9784097936570666,
+      "maximum_radial_speed": 0.00044555056539330413,
+      "maximum_reaction_trace": 0.003965710445655139,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 5.1312799247651046e-05,
+      "final_thermal_energy": 5.131274586303896e-05,
+      "final_heat_action_increase": 3.5881601709271423e-06,
+      "maximum_energy_identity_error": 4.014566457044566e-13,
+      "maximum_rotor_identity_error": 8.926193117986259e-14,
+      "maximum_net_power": 0.25,
+      "minimum_converter_incident_margin": -0.03593705596563014,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.3238741119312612
+    },
+    {
+      "name": "step_0_0.5",
+      "parameters": {
+        "left": 0.0,
+        "right": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7033163093492973,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.2220897993549977,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.7191296482476501,
+      "maximum_radial_speed": 0.0009126579857313592,
+      "maximum_reaction_trace": 0.007470550555431346,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.00020173347669743234,
+      "final_thermal_energy": 0.0002017330760597148,
+      "final_heat_action_increase": 1.3691840153825838e-05,
+      "maximum_energy_identity_error": 9.769962616701378e-13,
+      "maximum_rotor_identity_error": 1.4210854715202004e-13,
+      "maximum_net_power": 0.5,
+      "minimum_converter_incident_margin": -0.10259407472302513,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.7071881494460516
+    },
+    {
+      "name": "step_0.25_0",
+      "parameters": {
+        "left": 0.25,
+        "right": 0.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7701594863773651,
+        "maximum": 0.8306580562420639
+      },
+      "radius": {
+        "minimum": 1.262198738098342,
+        "maximum": 1.300000000000014
+      },
+      "minimum_proper_stretch": 1.9788289321054129,
+      "maximum_radial_speed": 0.00045054985935245883,
+      "maximum_reaction_trace": 0.0038531821998108273,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 4.9822786570492196e-05,
+      "final_thermal_energy": 4.980184718526641e-05,
+      "final_heat_action_increase": 3.586800074491456e-06,
+      "maximum_energy_identity_error": 4.156675004196586e-13,
+      "maximum_rotor_identity_error": 1.0685896612017132e-13,
+      "maximum_net_power": 0.25000104087217073,
+      "minimum_converter_incident_margin": 0.0009994235956411607,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.32460826164044015
+    },
+    {
+      "name": "step_0.25_0.5",
+      "parameters": {
+        "left": 0.25,
+        "right": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7033309563785047,
+        "maximum": 0.7701594863773651
+      },
+      "radius": {
+        "minimum": 1.2223307796500202,
+        "maximum": 1.262198738098342
+      },
+      "minimum_proper_stretch": 1.719503691218167,
+      "maximum_radial_speed": 0.00046169124753938956,
+      "maximum_reaction_trace": 0.0036142391175877286,
+      "minimum_receipt_envelope_margin": 0.001000000000000445,
+      "maximum_thermal_energy": 5.0061959140717235e-05,
+      "final_thermal_energy": 5.006192867002866e-05,
+      "final_heat_action_increase": 3.3902383636182694e-06,
+      "maximum_energy_identity_error": 5.435651928564766e-13,
+      "maximum_rotor_identity_error": 8.01581023779363e-14,
+      "maximum_net_power": 0.25,
+      "minimum_converter_incident_margin": 0.19874199475410306,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.3545160104917952
+    },
+    {
+      "name": "step_0.25_1",
+      "parameters": {
+        "left": 0.25,
+        "right": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367268072585508,
+        "maximum": 0.7701594863773651
+      },
+      "radius": {
+        "minimum": 1.1343606042650134,
+        "maximum": 1.262198738098342
+      },
+      "minimum_proper_stretch": 1.3444176838853295,
+      "maximum_radial_speed": 0.0014611492521435117,
+      "maximum_reaction_trace": 0.00910908892161869,
+      "minimum_receipt_envelope_margin": 0.001000000000000334,
+      "maximum_thermal_energy": 0.0004343970177955739,
+      "final_thermal_energy": 0.00043439394385856985,
+      "final_heat_action_increase": 2.737994620676069e-05,
+      "maximum_energy_identity_error": 2.639666263348772e-12,
+      "maximum_rotor_identity_error": 2.1938006966593093e-13,
+      "maximum_net_power": 0.75,
+      "minimum_converter_incident_margin": -0.06400426903490325,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.380008538069807
+    },
+    {
+      "name": "step_0.5_0",
+      "parameters": {
+        "left": 0.5,
+        "right": 0.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7033357766223984,
+        "maximum": 0.8306459033983117
+      },
+      "radius": {
+        "minimum": 1.2225715662802863,
+        "maximum": 1.3000000000000342
+      },
+      "minimum_proper_stretch": 1.7198539543841938,
+      "maximum_radial_speed": 0.0009327870718790327,
+      "maximum_reaction_trace": 0.007000383227187276,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.00019001236543200934,
+      "final_thermal_energy": 0.00018957577566979187,
+      "final_heat_action_increase": 1.3681583798373845e-05,
+      "maximum_energy_identity_error": 9.876544027065393e-13,
+      "maximum_rotor_identity_error": 1.0796918914479647e-13,
+      "maximum_net_power": 0.5000021436938331,
+      "minimum_converter_incident_margin": 0.0009987420850591274,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.7108983987286875
+    },
+    {
+      "name": "step_0.5_0.25",
+      "parameters": {
+        "left": 0.5,
+        "right": 0.25
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.7033357766223984,
+        "maximum": 0.7701550860088087
+      },
+      "radius": {
+        "minimum": 1.2225715662802863,
+        "maximum": 1.2621987380983604
+      },
+      "minimum_proper_stretch": 1.7198539543841938,
+      "maximum_radial_speed": 0.0004667273669995682,
+      "maximum_reaction_trace": 0.0034956216484178337,
+      "minimum_receipt_envelope_margin": 0.001000000000000445,
+      "maximum_thermal_energy": 4.8493397233688215e-05,
+      "final_thermal_energy": 4.84722131487933e-05,
+      "final_heat_action_increase": 3.3889759038467047e-06,
+      "maximum_energy_identity_error": 5.364597654988756e-13,
+      "maximum_rotor_identity_error": 1.0755285551056204e-13,
+      "maximum_net_power": 0.2500011613228008,
+      "minimum_converter_incident_margin": 0.2509986515812615,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.3554492177655964
+    },
+    {
+      "name": "step_0.5_1",
+      "parameters": {
+        "left": 0.5,
+        "right": 1.0
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367553421712583,
+        "maximum": 0.7033357766223984
+      },
+      "radius": {
+        "minimum": 1.134559868894848,
+        "maximum": 1.2225715662802863
+      },
+      "minimum_proper_stretch": 1.3446827765778266,
+      "maximum_radial_speed": 0.0009848197377957785,
+      "maximum_reaction_trace": 0.005805943106425884,
+      "minimum_receipt_envelope_margin": 0.001000000000000334,
+      "maximum_thermal_energy": 0.00019149111677556194,
+      "final_thermal_energy": 0.0001914903377433012,
+      "final_heat_action_increase": 1.2064086492354721e-05,
+      "maximum_energy_identity_error": 1.907807245515869e-12,
+      "maximum_rotor_identity_error": 7.172040739078511e-14,
+      "maximum_net_power": 0.5,
+      "minimum_converter_incident_margin": 0.28911504300019486,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.923769913999611
+    },
+    {
+      "name": "step_1_0.25",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.25
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367778176511889,
+        "maximum": 0.7701239733159073
+      },
+      "radius": {
+        "minimum": 1.134958345280725,
+        "maximum": 1.262198738098413
+      },
+      "minimum_proper_stretch": 1.345177847851806,
+      "maximum_radial_speed": 0.0015056406101518237,
+      "maximum_reaction_trace": 0.007973376625891466,
+      "minimum_receipt_envelope_margin": 0.001000000000000334,
+      "maximum_thermal_energy": 0.0003960498332431537,
+      "final_thermal_energy": 0.0003901775652347411,
+      "final_heat_action_increase": 2.73500905818652e-05,
+      "maximum_energy_identity_error": 2.6432189770275727e-12,
+      "maximum_rotor_identity_error": 8.076178614757623e-14,
+      "maximum_net_power": 0.7500038496663255,
+      "minimum_converter_incident_margin": 0.25099500247741446,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.3972271109889804
+    },
+    {
+      "name": "step_1_0.5",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.5
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367778176511889,
+        "maximum": 0.7033186362428355
+      },
+      "radius": {
+        "minimum": 1.134958345280725,
+        "maximum": 1.2225715662803383
+      },
+      "minimum_proper_stretch": 1.345177847851806,
+      "maximum_radial_speed": 0.0010045134865744548,
+      "maximum_reaction_trace": 0.005280931955731307,
+      "minimum_receipt_envelope_margin": 0.001000000000000334,
+      "maximum_thermal_energy": 0.00017805802702261473,
+      "final_thermal_energy": 0.00017763812029345777,
+      "final_heat_action_increase": 1.2055295275458808e-05,
+      "maximum_energy_identity_error": 1.929123527588672e-12,
+      "maximum_rotor_identity_error": 1.3367085216486885e-13,
+      "maximum_net_power": 0.5000028107396586,
+      "minimum_converter_incident_margin": 0.5009924231126286,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 0.9314848129682571
+    },
+    {
+      "name": "up_refined",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "maximum_step": 0.02,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5366862779570339,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.1341613082389228,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.3441404142655489,
+      "maximum_radial_speed": 0.0019266544839915412,
+      "maximum_reaction_trace": 0.012670234427754482,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007793855191403579,
+      "final_thermal_energy": 0.0007793776561464027,
+      "final_heat_action_increase": 4.913228749826079e-05,
+      "maximum_energy_identity_error": 3.2365221613872563e-12,
+      "maximum_rotor_identity_error": 2.6055546609171643e-14,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.415302154613199,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.8326043092263988
+    },
+    {
+      "name": "down_refined",
+      "parameters": {
+        "left": 1.0,
+        "right": 0.0,
+        "maximum_step": 0.02,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.5367778176511889,
+        "maximum": 0.8306033096586177
+      },
+      "radius": {
+        "minimum": 1.1349583452807301,
+        "maximum": 1.3000000000000924
+      },
+      "minimum_proper_stretch": 1.345177847851812,
+      "maximum_radial_speed": 0.002006016886151276,
+      "maximum_reaction_trace": 0.011190461844184306,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007039564102175332,
+      "final_thermal_energy": 0.0006794445056665604,
+      "final_heat_action_increase": 4.9060992075918264e-05,
+      "maximum_energy_identity_error": 3.2436275887448573e-12,
+      "maximum_rotor_identity_error": 2.6645352591003757e-14,
+      "maximum_net_power": 1.0000047285015803,
+      "minimum_converter_incident_margin": 0.000996897525759032,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.8629693613301066
+    },
+    {
+      "name": "warm_up_refined",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "initial_heat": 0.02,
+        "maximum_step": 0.02,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.4980282933201376,
+        "maximum": 0.806225774829855
+      },
+      "radius": {
+        "minimum": 1.1341613082389195,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.3079019875925257,
+      "maximum_radial_speed": 0.001926654483990855,
+      "maximum_reaction_trace": 0.0126702344277586,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.31818641451749563,
+      "final_thermal_energy": 0.3179714768172443,
+      "final_heat_action_increase": 4.913228749825471e-05,
+      "maximum_energy_identity_error": 3.1796787425264483e-12,
+      "maximum_rotor_identity_error": 7.194245199571014e-14,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": -0.48383709684239856,
+      "maximum_converter_photon_energy": 0.0,
+      "maximum_total_port_exposure": 1.969674193684798
+    },
+    {
+      "name": "loop_up_refined",
+      "parameters": {
+        "left": 0.0,
+        "right": 1.0,
+        "finite_converter_loop": true,
+        "maximum_step": 0.02,
+        "rtol": 2e-11,
+        "atol": 2e-13
+      },
+      "complete": true,
+      "boundary": null,
+      "spin": {
+        "minimum": 0.498926940633531,
+        "maximum": 0.8306623742532222
+      },
+      "radius": {
+        "minimum": 1.1167700510647014,
+        "maximum": 1.3
+      },
+      "minimum_proper_stretch": 1.288614457311158,
+      "maximum_radial_speed": 0.001955375050137277,
+      "maximum_reaction_trace": 0.01198752178981264,
+      "minimum_receipt_envelope_margin": 0.0009999999999998224,
+      "maximum_thermal_energy": 0.0007689530151673682,
+      "final_thermal_energy": 0.0007575934707144551,
+      "final_heat_action_increase": 4.775872399541957e-05,
+      "maximum_energy_identity_error": 3.0517810500896303e-12,
+      "maximum_rotor_identity_error": 5.639932965095795e-14,
+      "maximum_net_power": 1.0,
+      "minimum_converter_incident_margin": 0.0009999999999364877,
+      "maximum_converter_photon_energy": 0.3125,
+      "maximum_total_port_exposure": 1.966825002819407
+    }
+  ],
+  "refinement_checks": [
+    {
+      "name": "up",
+      "shared_samples": 3331,
+      "maximum_state_difference": 9.280692533919499e-11
+    },
+    {
+      "name": "down",
+      "shared_samples": 3330,
+      "maximum_state_difference": 7.744147445197232e-11
+    },
+    {
+      "name": "warm_up",
+      "shared_samples": 3331,
+      "maximum_state_difference": 9.316652245690282e-11
+    },
+    {
+      "name": "loop_up",
+      "shared_samples": 8173,
+      "maximum_state_difference": 9.761369490490779e-11
+    }
+  ],
+  "finite_seed_trials": [
+    {
+      "name": "seed_h1.3",
+      "nominal_preseed_equilibrium_radius": 1.3,
+      "actual_initial_radius": 1.2999965277777779,
+      "seed_energy": 6.25e-05,
+      "reflections": [
+        {
+          "time": 0.0625,
+          "incident_energy": 6.25e-05,
+          "outgoing_energy": 0.0006755304268039409,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 10.808486828863053,
+          "packet_energy": 0.0006755304268039409,
+          "spin": 0.8306036381038553
+        },
+        {
+          "time": 0.125,
+          "incident_energy": 0.0006755304268039409,
+          "outgoing_energy": 0.007286692406809896,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 10.786623544530158,
+          "packet_energy": 0.007286692406809896,
+          "spin": 0.8300286044643492
+        },
+        {
+          "time": 0.1875,
+          "incident_energy": 0.007286692406809896,
+          "outgoing_energy": 0.07694657657436825,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 10.559877140203776,
+          "packet_energy": 0.07694657657436825,
+          "spin": 0.8239469567387616
+        },
+        {
+          "time": 0.25,
+          "incident_energy": 0.026996587310953273,
+          "outgoing_energy": 0.26255001073658507,
+          "reflected_fraction": 0.35084845243064566,
+          "single_pass_gain": 9.725303710149364,
+          "packet_energy": 0.31250000000000006,
+          "spin": 0.8031032314797037
+        }
+      ],
+      "latency": 0.25,
+      "maximum_photon_energy": 0.31250000000000006,
+      "final_thermal_energy": 6.542538277920528e-05,
+      "maximum_energy_identity_error": 7.105427357601002e-15,
+      "minimum_spin": 0.8031032314797037,
+      "complete_converter_controller_constructed": false,
+      "spatial_redirection_and_splitter_ideal": true
+    },
+    {
+      "name": "seed_h1.12",
+      "nominal_preseed_equilibrium_radius": 1.12,
+      "actual_initial_radius": 1.119996527777778,
+      "seed_energy": 6.25e-05,
+      "reflections": [
+        {
+          "time": 0.0625,
+          "incident_energy": 6.25e-05,
+          "outgoing_energy": 0.0001897018391603977,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.0352294265663633,
+          "packet_energy": 0.0001897018391603977,
+          "spin": 0.5043573859091856
+        },
+        {
+          "time": 0.125,
+          "incident_energy": 0.0001897018391603977,
+          "outgoing_energy": 0.0005757397102570385,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.034971684013227,
+          "packet_energy": 0.0005757397102570385,
+          "spin": 0.5043097589314551
+        },
+        {
+          "time": 0.1875,
+          "incident_energy": 0.0005757397102570385,
+          "outgoing_energy": 0.001746903538532771,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.034189769110884,
+          "packet_energy": 0.001746903538532771,
+          "spin": 0.5041652437500423
+        },
+        {
+          "time": 0.25,
+          "incident_energy": 0.001746903538532771,
+          "outgoing_energy": 0.0052962975858302985,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.0318202860122847,
+          "packet_energy": 0.0052962975858302985,
+          "spin": 0.5037270440393414
+        },
+        {
+          "time": 0.3125,
+          "incident_energy": 0.0052962975858302985,
+          "outgoing_energy": 0.0160195197888244,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.0246638390718426,
+          "packet_energy": 0.0160195197888244,
+          "spin": 0.5024011296561616
+        },
+        {
+          "time": 0.375,
+          "incident_energy": 0.0160195197888244,
+          "outgoing_energy": 0.04811086385009871,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 3.0032650469124547,
+          "packet_energy": 0.04811086385009871,
+          "spin": 0.4984144663321613
+        },
+        {
+          "time": 0.4375,
+          "incident_energy": 0.04811086385009871,
+          "outgoing_energy": 0.14150046598784868,
+          "reflected_fraction": 1.0,
+          "single_pass_gain": 2.9411333462797167,
+          "packet_energy": 0.14150046598784868,
+          "spin": 0.4866490551100017
+        },
+        {
+          "time": 0.5,
+          "incident_energy": 0.09429030473875599,
+          "outgoing_energy": 0.26528983875090734,
+          "reflected_fraction": 0.6663603832008097,
+          "single_pass_gain": 2.8135431260502193,
+          "packet_energy": 0.3125,
+          "spin": 0.4644576014068479
+        }
+      ],
+      "latency": 0.5,
+      "maximum_photon_energy": 0.3125,
+      "final_thermal_energy": 0.00014938534244321772,
+      "maximum_energy_identity_error": 3.552713678800501e-15,
+      "minimum_spin": 0.4644576014068479,
+      "complete_converter_controller_constructed": false,
+      "spatial_redirection_and_splitter_ideal": true
+    }
+  ],
+  "ramp_grid_admission": {
+    "endpoint_power_values": 101,
+    "phase_samples": 1001,
+    "minimum_input_power": 0.000999091345426318,
+    "maximum_input_power": 1.0010083042201536,
+    "minimum_photon_action": 0.00020008003201276952,
+    "maximum_guide_reaction_trace": 7.760143736970226e-06,
+    "loop_phase_samples": 100001,
+    "minimum_worst_spin_loop_fill_margin": 0.000999999888729098,
+    "minimum_worst_spin_loop_drain_margin": 0.0009999998887478074,
+    "input_positivity_is_grid_admission": true
+  },
+  "physical_stiff_material_identified": false,
+  "finite_loop_step_power_allocation_tested": true,
+  "full_history_converter_port_feasibility_certified": false,
+  "finite_slew_converter_controller_constructed": false,
+  "optical_spectral_losses_qualified": false,
+  "full_history_nonlinear_thermal_evolution_integrated": false,
+  "variable_load_route_material_evolution_closed": false,
+  "actual_target_tensor_and_macro_work_rematched": false,
+  "physical_current_hosts_resolved": false,
+  "full_containment_established": false
+}
