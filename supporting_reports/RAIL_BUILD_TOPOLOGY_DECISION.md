@@ -9,6 +9,12 @@ Module size, internal arrangement, separation and overlap width remain design
 variables. A lightly connected architecture remains a comparison candidate.
 Finite-module closure and intermodule source matching remain to be established.
 
+The agreed [research workflow](SOURCE_FEASIBILITY_WORKFLOW.md) evaluates
+physically normalized component sources and a finite overlapping pair before
+detailed implementation optimization. Source and boundary costs can motivate
+bounded geometry revisions, with service requirements and placement changes
+recorded explicitly.
+
 ## Recognition retained
 
 Continuity of the required rail geometry and source history is distinct from

@@ -9,6 +9,12 @@ described in [`../README.md`](../README.md) and
 The cards translate the current mathematical component split into construction
 hypotheses, hardware analogs, source burdens, and measurement targets.
 
+The [agreed source-feasibility workflow](../supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md)
+sets the active research order. Component work now supplies the physical
+normalization, confinement and exchange information needed by the combined
+source comparison. Detailed optimization follows credible finite C1 source
+accounting and the applicable operating checks.
+
 The [build-topology decision](../supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
 sets C1 as the leading provisional arrangement: mechanically independent,
 multicomponent assemblies with adjustable source overlap and scheduled handoff.

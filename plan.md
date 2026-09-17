@@ -2,6 +2,15 @@
 
 ## Current handoff, 2026-09-17
 
+Apply the agreed [source-feasibility workflow](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md).
+The immediate decision is: **Does the angular field make a useful, physically
+normalized contribution when combined with the retained radial source and
+accounted boundary/material demands?** Keep the separate component roles,
+finite C1 pair/overlap accounting and explicit exterior duties. Geometry
+changes follow measured source burdens and retain a declared change record
+and the applicable service checks. Detailed implementation optimization is
+downstream of credible combined source and dynamical feasibility.
+
 The [C1 angular scalar investigation](supporting_reports/C1_ANGULAR_SCALAR_INVESTIGATION.md)
 is the current source milestone. A separate real massless four-dimensional
 scalar with curvature coupling `1/6` has positive lowest squared frequencies

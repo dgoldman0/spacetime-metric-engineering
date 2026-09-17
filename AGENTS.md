@@ -20,6 +20,14 @@ are distinct from route-length mechanical or material continuity. Preserve
 specialized components, explicitly accounted recoil and boundary exchange,
 and the open finite-module/overlap feasibility requirements.
 
+For research order and source-selection decisions, apply the agreed
+[source-feasibility workflow](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md).
+Prioritize physically normalized component contributions and finite C1 pair
+accounting before detailed implementation optimization. Preserve independent
+component duties; use measured source burdens to motivate explicit geometry
+or placement revisions. Spectral checks, algebraic targets, supplied stress,
+finite closure and coupled dynamics retain their distinct claim scopes.
+
 # General Paper Writing
 
 Avoid mansplaining language. There should be no reason to tell the reader how the information in the paper should be interpreted. The information and implication should be clear enough from the paper. If it needs to be mansplained to the reader, it means that the underlying content presented is insufficient for an intelligent reader to infer what is obvious. Use positive and informative language. Avoid "not" and "rather than" and similar and avoid bringing up what is not the case, unless we are specifically arguing against a well held belief explicitly. In document writing/papers use proper transition words and phrases to ensure that the document flows rather than feeling like a list of sentences. 

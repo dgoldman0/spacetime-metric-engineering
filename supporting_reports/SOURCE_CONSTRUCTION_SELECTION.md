@@ -10,6 +10,13 @@ requirements remain useful comparison results. Further selection prioritizes
 assemblies with an independently supplied complete source and physically
 specified component responses.
 
+The [17 September research direction](SOURCE_FEASIBILITY_WORKFLOW.md)
+prioritizes physically normalized source contributions and finite C1 pair
+accounting. Geometry, source physics and finite architecture develop together;
+detailed component optimization follows the relevant combined feasibility
+and dynamical evidence. Microscopic inputs enter early when they determine
+source sign, normalization, confinement or material cost.
+
 ## Default source choices
 
 The source and structure search prioritizes electromagnetic fields, material

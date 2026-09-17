@@ -9,6 +9,12 @@ results. The moving thermal routes preserve the conditional history bounds.
 Physical materials, their joint interfaces, and complete source assembly
 remain open.
 
+The [agreed research direction](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md)
+prioritizes physically normalized source contributions, finite C1 pair
+accounting and coupled dynamics before detailed component optimization.
+The current decision is whether the separate angular field contributes
+usefully alongside the retained radial source and counted boundary materials.
+
 The [build-topology decision](supporting_reports/RAIL_BUILD_TOPOLOGY_DECISION.md)
 records C1 as the leading provisional architecture: mechanically independent,
 multicomponent source assemblies with adjustable overlap and scheduled handoff.
