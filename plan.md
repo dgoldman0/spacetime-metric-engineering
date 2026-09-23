@@ -57,25 +57,32 @@ decisions now have test results:
   packet windows advance at unit speed while the shift carries the packet at
   `U_packet/B`, and aligning those two readings belongs to the next service
   revision.
-- **Track termination.** Option (4), the track within one space, is modelled
-  exactly as the [axial track](supporting_reports/AXIAL_TRACK.md). Its
-  service region is a Type I product of the service metric with a flat plane,
-  its exterior is exactly Minkowski, and the end transitions disappear. With
-  the transplanted service, the transverse boundary layer carries
-  refinement-stable Type IV stress at 20% of its non-vacuum points and at
-  every live sample. The carry shift's transverse shear and the decompressing
-  stretch set it, while the lapse alone stays Type I. A passing one-space
-  boundary layer needs a standing stretch, a strong lapse envelope around
-  every shift gradient and a reset acting through the lapse and the shift.
-  The two-ended track remains the
-  gate-passing geometry, with end transitions reaching −0.058 minimum null
-  energy and −0.042 radial ANEC per end.
+- **Track termination: one space (decided).** A rail runs through ordinary
+  space, and a two-ended geometry is a wormhole whose ends would require a
+  change of spatial topology. The [axial track](supporting_reports/AXIAL_TRACK.md)
+  models the track exactly in one flat space: a Type I service region, an
+  exactly Minkowski exterior and no end transitions. The transplanted service
+  leaves Type IV stress in the transverse boundary layer, from the carry
+  shift's transverse shear and the decompressing stretch.
+- **One-space revision.** The [one-space revision](supporting_reports/ONE_SPACE_REVISION.md)
+  passes the gate at every evaluated point, 4.4 million boundary-layer points
+  in the wide stack and 8.9 million refined. It holds the support
+  compressed, puts an enlarged packet lapse window on the live schedule, and
+  stages the boundary layer with a conformal pre-sheath and a lapse sheath.
+  The service keeps packet safety, escape, reachability, bundles and both
+  service-time advantages (2.569 and 1.195). Root-finding resolves residual
+  Type IV bands at most \(8\times10^{-6}\) wide on the packet path, set by
+  the moving carve. They narrow exponentially with the sheath lapse, and a
+  support without the carve has none. The permanent boundary layer reaches
+  −2.65 minimum null energy and carries 490 units of negative-null content
+  per unit σ, against 3.8 for the two end transitions.
 
-Next: confirm the reset schedule and choose the termination path, either a
-one-space service revision or the two-ended track. Then specify component
-tensors for the string cloud, the angular stress and the end-transition or
-boundary-layer source, classify the layer-by-layer stack, and resume the C1
-module work on the chosen geometry.
+Next: revise the choreography for the held support, tying the packet windows
+and carve to the packet path through the support exit, which also removes the
+window-versus-velocity mismatch. Settle the band tolerance, or move the speed
+advantage from the carve to the lapse and shift. Then update the technical
+disclosure to the one-space geometry and specify the source roles: the
+service region's transverse pressure and the boundary-layer stack.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

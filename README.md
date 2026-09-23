@@ -11,14 +11,16 @@ it: with the areal radius constant wherever the service metric evolves, the
 radial block is an exact string cloud with zero current, the complete
 demanded tensor is certified Type I at every evaluated point, and the beta075
 service audits are reproduced. The [reset comparison](supporting_reports/RESET_SCHEDULE_OPTIONS.md)
-favours a decompression front trailing the packet at half rate. The
-[axial track](supporting_reports/AXIAL_TRACK.md) models the track within one
-flat space. Its service region is a Type I product and its exterior exactly
-Minkowski, while its transverse boundary layer carries Type IV stress from the
-carry shift's transverse shear and the decompressing stretch. The termination
-choice therefore sets a one-space service revision against the two-ended track
-with its end transitions. The C1 and source-population results below retain their recorded
-scope on the static phase-0.745 surrogate.
+favours a decompression front trailing the packet at half rate. The rail
+runs in one flat space. The [axial track](supporting_reports/AXIAL_TRACK.md)
+models it exactly, and the [one-space revision](supporting_reports/ONE_SPACE_REVISION.md)
+passes the gate at every evaluated point. It holds the support compressed,
+envelops the carried shift in the packet lapse window, and stages the
+transverse boundary layer with a conformal pre-sheath and a lapse sheath. The
+service keeps its safety and service-time advantages. The permanent boundary
+layer and the choreography of the held support are the next construction. The
+C1 and source-population results below retain their recorded scope on the
+static phase-0.745 surrogate.
 
 Status recorded 2026-09-17: the beta075 `V=5` package is the archived
 prescribed-metric service reference. The

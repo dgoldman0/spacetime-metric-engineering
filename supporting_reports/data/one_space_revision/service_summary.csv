@@ -1,0 +1,3 @@
+service,live_packet_points,max_live_packet_norm,centerline_probes,centerline_escaped,centerline_at_time_limit,max_centerline_packet_norm,velocity_reading_l_at_live_end,velocity_reading_reaches_l_1p75,velocity_reading_reaches_l_5
+one_space,238,-194.01396970455627,24,2,22,-0.7500000000000158,0.757,14.498,23.394
+static_one_space,238,-1715.7585969733445,24,2,22,-0.7500000000000169,-0.32,30.95,39.844

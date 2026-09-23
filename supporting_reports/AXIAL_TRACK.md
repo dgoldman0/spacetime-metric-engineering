@@ -291,9 +291,10 @@ end transitions carry an opening requirement of −0.058 minimum null energy
 and −0.042 radial ANEC per end. The axial track removes the ends. In
 exchange its transverse boundary layer carries a refinement-stable Type IV
 layer, set by the carry shift and the decompressing stretch, along with 12
-times the static negative-null content. A passing one-space track requires a
-service revision with a standing stretch, lapse envelopes around every shear
-layer, and a reset that acts through the lapse and the shift.
+times the static negative-null content. The
+[one-space revision](ONE_SPACE_REVISION.md) makes those changes: it holds the
+support, extends the packet lapse window over the carried shift, and stages
+the boundary layer with a conformal pre-sheath and a lapse sheath.
 
 ## Reproduction
 
