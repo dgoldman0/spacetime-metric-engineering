@@ -1,0 +1,8 @@
+control,points,type_iv,certified_fraction,imaginary_integral
+repaired_beta075,3645,842,1.0,0.03372330055946471
+decompression_removed,3645,252,1.0,0.0006691888399937338
+decompression_and_jacket_decay_removed,3645,206,1.0,0.000658710634880535
+static_support_packet_windows_zero_shift,3645,236,1.0,0.0008057368768954324
+static_support_carrying_flow_only,3645,19,1.0,2.0076208806222845e-07
+static_support_without_shell_and_receiver,3645,203,1.0,0.0006585174514436141
+decompression_alone,3645,874,1.0,0.03581334592702987

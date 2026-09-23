@@ -1,0 +1,41 @@
+{
+ "completed_utc": "2026-09-23T17:43:38+00:00",
+ "elapsed_seconds": 366.7,
+ "workers": 3,
+ "step": 0.1,
+ "design": {
+  "track_radius": 1.75,
+  "service_inner": 4.0,
+  "track_half_length": 5.0,
+  "transition_width": 1.5,
+  "smooth_service": true,
+  "abs_width": 0.02,
+  "cap_width": 0.25,
+  "join_fraction": 0.1
+ },
+ "cases": {
+  "current_schedule": {},
+  "decompression_removed": {
+   "q_t0": 1000.0
+  },
+  "after_service_rate_1": {
+   "q_t0": 2.045
+  },
+  "after_service_rate_1_2": {
+   "q_t0": 2.045,
+   "q_Tr": 6.0
+  },
+  "after_service_rate_1_4": {
+   "q_t0": 2.045,
+   "q_Tr": 12.0
+  }
+ },
+ "live_packet_end": 1.645,
+ "software_sha256": {
+  "adm_harness/constant_radius_track.py": "34bb2f1380888b0eec9aeda9a9bbae18166c9a9c0eeb04b65d5fcc76de76d977",
+  "adm_harness/warped_product.py": "b09c75c812c7d00d9042bbe0d7c50870f5f3bb45f730312f3514c57a17735ec8",
+  "adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+  "adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "scripts/run_track_null_energy_budget.py": "df503c1c621dca1ddd812a79bcc9a20e138cdc46189650a541a58ca3c9dcb794"
+ }
+}

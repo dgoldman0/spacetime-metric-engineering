@@ -35,6 +35,30 @@ material description:
    placement) run on candidates that pass the gate.
 4. The technical disclosure is updated once a candidate passes both.
 
+**Gate result (2026-09-23).** The [constant-radius track](supporting_reports/CONSTANT_RADIUS_TRACK.md)
+passes the geometry-demand gate. Holding the areal radius constant wherever
+the service metric evolves makes both radial null energies vanish identically
+along the track: the radial block is an exact string cloud with zero current,
+and the service dynamics enter the angular pressure alone. Static end
+transitions join the track to a flat exterior. The C∞ candidate is certified
+Type I at all 141,661 map points, where the repaired beta075 geometry has
+13,587 Type IV points, and it reproduces the beta075 packet, escape,
+reachability, dense-bundle and service-time audits. Two design decisions are
+open:
+
+- **Reset schedule.** Decompression of the standing support dominates the
+  remaining angular null deficit. A reset after the live window at a quarter
+  of the rate lowers the integrated deficit by 98% and moves the
+  packet-coordinate service proxy from 1.2368 to 1.1989.
+- **Track termination.** The static end transitions carry the radial opening
+  deficit, one per end, because the two-ended spherical model widens the track
+  into asymptotic ends. A continued or closed track, or a reduction suited to a
+  track within one space, changes that requirement.
+
+Next: settle those two decisions, specify component tensors for the string
+cloud, the angular stress and any end-transition source, classify the
+layer-by-layer stack, then resume the C1 module work on this geometry.
+
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it
 leaves the current-driven Type IV demand untested; its allocations re-enter

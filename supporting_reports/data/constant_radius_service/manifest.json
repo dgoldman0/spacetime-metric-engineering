@@ -1,0 +1,493 @@
+{
+ "completed_utc": "2026-09-23T17:37:31+00:00",
+ "elapsed_seconds": 721.9,
+ "workers": 3,
+ "reference_ledger": "toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+ "reference_sha256": "4c63e7bf43faced91caba846af14aff24fd62762e3df9627197447700219b473",
+ "reference_manifest_sha256": "663634ed645d74ab38a5d27ae9502928d13f89c1a94896c08f5adbfe51c0e7ac",
+ "seeds": "toolkit/adm_harness_cli/runs/scheduled_adm_confidence_beta075_s15_189x121/scheduled_adm_probe/scheduled_adm_probe_seeds.csv",
+ "seeds_sha256": "72122e9c6582145a3a12dedecc75592577d0cd4b2468ea8e4db0f513ab0c46a5",
+ "ledgers": {
+  "beta075_rematch_w6_t1p5": {
+   "path": "toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+   "sha256": "4c63e7bf43faced91caba846af14aff24fd62762e3df9627197447700219b473"
+  },
+  "constant_radius_repaired_service": {
+   "path": "toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+   "sha256": "f04eb52633aa94beb3a78fc62fe6556d24b62ee49b36dc160400c096aee02bff"
+  },
+  "constant_radius_smooth": {
+   "path": "toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+   "sha256": "bc7bbd1a3e4a502c87cb6c30315a2ad81a7c59270a30e7c2ddf9ce725f1db2cc"
+  }
+ },
+ "audit_outputs": {
+  "beta075_rematch_w6_t1p5": "toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5",
+  "constant_radius_repaired_service": "toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service",
+  "constant_radius_smooth": "toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth"
+ },
+ "designs": {
+  "constant_radius_repaired_service": {
+   "track_radius": 1.75,
+   "service_inner": 4.0,
+   "track_half_length": 5.0,
+   "transition_width": 1.5,
+   "smooth_service": false,
+   "abs_width": 0.02,
+   "cap_width": 0.25,
+   "join_fraction": 0.1
+  },
+  "constant_radius_smooth": {
+   "track_radius": 1.75,
+   "service_inner": 4.0,
+   "track_half_length": 5.0,
+   "transition_width": 1.5,
+   "smooth_service": true,
+   "abs_width": 0.02,
+   "cap_width": 0.25,
+   "join_fraction": 0.1
+  }
+ },
+ "packet_safety": {
+  "beta075_rematch_w6_t1p5": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -9.93512860272052
+  },
+  "constant_radius_repaired_service": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -9.93512860272053
+  },
+  "constant_radius_smooth": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -9.93512860272053
+  }
+ },
+ "audit_log": [
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--label",
+    "beta075_rematch_w6_t1p5",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 20.53,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--label",
+    "beta075_rematch_w6_t1p5",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 4.34,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--label",
+    "beta075_rematch_w6_t1p5",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 12.11,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/scheduled_adm_confidence_beta075_s15_189x121/scheduled_adm_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/trace_expansion",
+    "--label",
+    "beta075_rematch_w6_t1p5"
+   ],
+   "returncode": 0,
+   "seconds": 11.08,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/dense_bundles",
+    "--label",
+    "beta075_rematch_w6_t1p5"
+   ],
+   "returncode": 0,
+   "seconds": 9.9,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/dense_bundles_all_centers",
+    "--label",
+    "beta075_rematch_w6_t1p5",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.25,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_point_ledger.csv",
+    "--label",
+    "beta075_rematch_w6_t1p5",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 2.31,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_repaired_service",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 16.29,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_repaired_service",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 3.03,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_repaired_service",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 9.6,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/scheduled_adm_confidence_beta075_s15_189x121/scheduled_adm_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/trace_expansion",
+    "--label",
+    "constant_radius_repaired_service"
+   ],
+   "returncode": 0,
+   "seconds": 9.26,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/dense_bundles",
+    "--label",
+    "constant_radius_repaired_service"
+   ],
+   "returncode": 1,
+   "seconds": 0.72,
+   "stderr_tail": "Traceback (most recent call last):\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 628, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 623, in main\n    run(args)\n    ~~~^^^^^^\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 489, in run\n    centers = _select_centers(\n        prior_traces,\n    ...<2 lines>...\n        require_both_shrinking=bool(args.require_both_shrinking),\n    )\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 71, in _select_centers\n    raise ValueError(\"no minus-branch branch-band centers were available for dense congruence audit\")\nValueError: no minus-branch branch-band centers were available for dense congruence audit\n",
+   "recorded_outcome": "no minus-branch branch-band centers were available"
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/dense_bundles_all_centers",
+    "--label",
+    "constant_radius_repaired_service",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 7.0,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/dense_bundles_reference_centers",
+    "--label",
+    "constant_radius_repaired_service"
+   ],
+   "returncode": 0,
+   "seconds": 6.58,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_repaired_service",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_repaired_service/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.91,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_smooth",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 17.35,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_smooth",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 2.06,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_smooth",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 5.94,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/scheduled_adm_confidence_beta075_s15_189x121/scheduled_adm_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/trace_expansion",
+    "--label",
+    "constant_radius_smooth"
+   ],
+   "returncode": 0,
+   "seconds": 5.19,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/dense_bundles",
+    "--label",
+    "constant_radius_smooth"
+   ],
+   "returncode": 1,
+   "seconds": 0.6,
+   "stderr_tail": "Traceback (most recent call last):\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 628, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 623, in main\n    run(args)\n    ~~~^^^^^^\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 489, in run\n    centers = _select_centers(\n        prior_traces,\n    ...<2 lines>...\n        require_both_shrinking=bool(args.require_both_shrinking),\n    )\n  File \"/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/scripts/run_dense_congruence_caustic_audit.py\", line 71, in _select_centers\n    raise ValueError(\"no minus-branch branch-band centers were available for dense congruence audit\")\nValueError: no minus-branch branch-band centers were available for dense congruence audit\n",
+   "recorded_outcome": "no minus-branch branch-band centers were available"
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/dense_bundles_all_centers",
+    "--label",
+    "constant_radius_smooth",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 4.49,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/beta075_rematch_w6_t1p5/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/dense_bundles_reference_centers",
+    "--label",
+    "constant_radius_smooth"
+   ],
+   "returncode": 0,
+   "seconds": 4.35,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/source_ledger_point_ledger.csv",
+    "--label",
+    "constant_radius_smooth",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/beta_collar_generator_beta075_p003_mid_s15/ledgers/rematch_w6_t1p5/source_ledger_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/constant_radius_service/constant_radius_smooth/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.61,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  }
+ ],
+ "software_sha256": {
+  "adm_harness/constant_radius_track.py": "34bb2f1380888b0eec9aeda9a9bbae18166c9a9c0eeb04b65d5fcc76de76d977",
+  "adm_harness/warped_product.py": "b09c75c812c7d00d9042bbe0d7c50870f5f3bb45f730312f3514c57a17735ec8",
+  "scripts/run_constant_radius_service_checks.py": "255dd5443f846f84574111299ea8ab7f9708347510d0dceb7c42bae0d2ac2f69",
+  "scripts/run_horizon_escape_ladder.py": "202e85bfc6fb5ebe5bd5fbca5aed90ada91eb39782be2065f584559b9dbbbf46",
+  "scripts/run_entry_packet_reachability.py": "6a597e55bd9eff9c72619a6b9be637122360f827d6518fbc13f930562c2d8533",
+  "scripts/run_scheduled_adm_probe_evolution.py": "1a3207eefba8e0f11db7ceb91f0544acfad5e45fb1d955b39993c628873a8ff7",
+  "scripts/run_trace_expansion_audit.py": "e5ffb0af9b2d14d48b7f9d760802d3f60631bf9252a4e2c3b94d01b4b37d55ec",
+  "scripts/run_dense_congruence_caustic_audit.py": "bfb2da66d64200201aa0e35abdbd5f3ad01fa97de1a3fbe952feb5636ed8c8d0",
+  "scripts/run_service_time_advantage_ledger.py": "0f1df68057ca57c3b3d4e80e9356ccf27fb90282df23840a9162961c9e64f6f6"
+ }
+}

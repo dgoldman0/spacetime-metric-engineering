@@ -1,0 +1,127 @@
+{
+ "completed_utc": "2026-09-23T16:41:16+00:00",
+ "elapsed_seconds": 391.7,
+ "workers": 4,
+ "step": 0.1,
+ "controls": {
+  "repaired_beta075": {
+   "overrides": {},
+   "shift_removed": false
+  },
+  "decompression_removed": {
+   "overrides": {
+    "q_t0": 1000.0
+   },
+   "shift_removed": false
+  },
+  "decompression_and_jacket_decay_removed": {
+   "overrides": {
+    "q_t0": 1000.0,
+    "xOmega": 1000.0
+   },
+   "shift_removed": false
+  },
+  "static_support_packet_windows_zero_shift": {
+   "overrides": {
+    "q_t0": 1000.0,
+    "xOmega": 1000.0
+   },
+   "shift_removed": true
+  },
+  "static_support_carrying_flow_only": {
+   "overrides": {
+    "q_t0": 1000.0,
+    "xOmega": 1000.0,
+    "standing_support_packet_exclusion_shoulder": 0.0,
+    "standing_support_packet_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_enabled": false,
+    "standing_support_packet_radial_log_gain": 0.0,
+    "standing_support_packet_radial_shoulder_log_gain": 0.0,
+    "standing_support_packet_radial_skirt_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_gain": 0.0
+   },
+   "shift_removed": false
+  },
+  "static_support_without_shell_and_receiver": {
+   "overrides": {
+    "q_t0": 1000.0,
+    "xOmega": 1000.0,
+    "support_shell_overlay_enabled": false,
+    "support_edge_receiver_enabled": false
+   },
+   "shift_removed": false
+  },
+  "decompression_alone": {
+   "overrides": {
+    "standing_support_packet_exclusion_shoulder": 0.0,
+    "standing_support_packet_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_enabled": false,
+    "standing_support_packet_radial_log_gain": 0.0,
+    "standing_support_packet_radial_shoulder_log_gain": 0.0,
+    "standing_support_packet_radial_skirt_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_gain": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_edge_receiver_enabled": false
+   },
+   "shift_removed": true
+  }
+ },
+ "software_sha256": {
+  "adm_harness/geometry_boundary.py": "a6b169b8bc019462f305fa0ac695bb005d2c61defb27acd89e216c75490f7c29",
+  "adm_harness/metric_regularity.py": "3b935f13c9f0c0898eea9bc8f17849b30f5c390be1397ba496414a675547697d",
+  "adm_harness/radial_stress.py": "abfd06691c5e6ac1c8d39a947840bbb79ce4e43b48a1ebb6e3f0b35dc429c75d",
+  "adm_harness/source_ledger.py": "c222300ddcbca1c6a2e8f938028485c08a56dff66f1f88c2cec006dd2b600fff",
+  "scripts/run_type_iv_attribution.py": "f6aebcf036beb798cffa96f5aab28e3817fc9e23efa4e5c77891bbdeba39f20c"
+ },
+ "summary": [
+  {
+   "control": "repaired_beta075",
+   "points": 3645,
+   "type_iv": 842,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.03372330055946471
+  },
+  {
+   "control": "decompression_removed",
+   "points": 3645,
+   "type_iv": 252,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.0006691888399937338
+  },
+  {
+   "control": "decompression_and_jacket_decay_removed",
+   "points": 3645,
+   "type_iv": 206,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.000658710634880535
+  },
+  {
+   "control": "static_support_packet_windows_zero_shift",
+   "points": 3645,
+   "type_iv": 236,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.0008057368768954324
+  },
+  {
+   "control": "static_support_carrying_flow_only",
+   "points": 3645,
+   "type_iv": 19,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 2.0076208806222845e-07
+  },
+  {
+   "control": "static_support_without_shell_and_receiver",
+   "points": 3645,
+   "type_iv": 203,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.0006585174514436141
+  },
+  {
+   "control": "decompression_alone",
+   "points": 3645,
+   "type_iv": 874,
+   "certified_fraction": 1.0,
+   "imaginary_integral": 0.03581334592702987
+  }
+ ]
+}
