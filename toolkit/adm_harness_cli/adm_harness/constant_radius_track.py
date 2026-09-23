@@ -47,6 +47,7 @@ class ConstantRadiusTrackDesign:
     reset_front_duration: float = 3.
     reset_front_ramp: float = .25
     standing_support: bool = False
+    hold_support: bool = False
 
     def __post_init__(self):
         values = (self.track_radius, self.service_inner, self.track_half_length, self.transition_width,
@@ -64,8 +65,8 @@ class ConstantRadiusTrackDesign:
                      self.reset_front_duration, self.reset_front_ramp)
             if not all(math.isfinite(x) for x in front) or min(front[1], front[3], front[4]) <= 0:
                 raise ValueError("a reset front needs finite values and positive speed, duration and ramp")
-            if self.standing_support:
-                raise ValueError("a standing support has no decompression front")
+            if self.standing_support or self.hold_support:
+                raise ValueError("a standing or held support has no decompression front")
 
     @property
     def reset_front(self):
@@ -192,7 +193,7 @@ def _check_supported(params: SourceParams) -> None:
 def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool = True,
                    abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1,
                    reset_front: tuple[float, float, float, float, float] | None = None,
-                   standing: bool = False) -> dict[str, float]:
+                   standing: bool = False, hold: bool = False) -> dict[str, float]:
     """Rebuild beta075's alpha, beta and gamma_ll with selectable primitives.
 
     Legacy primitives follow source_ledger.scalars operation by operation.
@@ -207,7 +208,7 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     A standing support holds the spatial metric static: the decompression,
     the packet carve of the support weight and the packet windows on
     gamma_ll are removed, while the lapse windows and every shift window
-    keep their schedules.
+    keep their schedules. A held support removes the decompression alone.
     """
     _check_supported(params)
     prim = _Primitives(smooth, abs_width, cap_width, join_fraction)
@@ -273,7 +274,7 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     u_beta = params.v_exit+(params.V-params.v_exit)*c_beta
     u_packet = params.v_exit+(params.V-params.v_exit)*c_packet
     e_release = 1.0-prim.step5((s-start)/max(end-start, 1.0e-12))
-    if standing:
+    if standing or hold:
         q = 1.0
     elif reset_front is None:
         q = 1.0-prim.step5((s-params.q_t0)/max(params.q_Tr, 1.0e-12))
@@ -462,7 +463,8 @@ def track_scalars(s: float, ell: float, params: SourceParams, design: ConstantRa
         if design.smooth_service:
             service = service_fields(s, ell, params, smooth=True, abs_width=design.abs_width,
                                      cap_width=design.cap_width, join_fraction=design.join_fraction,
-                                     reset_front=design.reset_front, standing=design.standing_support)
+                                     reset_front=design.reset_front, standing=design.standing_support,
+                                     hold=design.hold_support)
         else:
             service = regularized_scalars(s, ell, params)
         alpha = 1.+cutoff*(service["alpha"]-1.)

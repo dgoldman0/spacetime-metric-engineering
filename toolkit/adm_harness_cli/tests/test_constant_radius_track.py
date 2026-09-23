@@ -179,3 +179,16 @@ def test_standing_support_holds_the_spatial_metric_static(params):
 def test_standing_support_excludes_a_decompression_front():
     with pytest.raises(ValueError):
         ConstantRadiusTrackDesign(standing_support=True, reset_front_start=-.4)
+
+
+def test_held_support_keeps_the_carve_and_windows_without_decompression(params):
+    far = replace(params, q_t0=1e6)
+    for s, ell in ((-1.2, -1.1), (0., .3), (1.4, 1.2), (3., .5), (9., -.4)):
+        held = service_fields(s, ell, params, hold=True)
+        reference = service_fields(s, ell, far)
+        assert held["q"] == 1.
+        assert held == pytest.approx(reference, rel=1e-13, abs=1e-15)
+    design = ConstantRadiusTrackDesign(hold_support=True)
+    assert track_scalars(0., .3, params, design)["gamma_ll"] == service_fields(0., .3, params, hold=True)["gamma_ll"]
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(hold_support=True, reset_front_start=-.4)
