@@ -1,0 +1,3 @@
+case,live_packet_points,spacelike_live_points,max_live_packet_norm,max_live_packet_norm_field,centerline_probes,centerline_escaped,centerline_max_packet_norm,centerline_latest_exit,probes_in_transit_at_window_end,in_transit_min_null_speed
+lane_2p1__static,175,0,-30.21803398670575,-29.999749137917078,21,21,-0.0955978666447677,4.775265957446828,16,0.5414451750637818
+lane_1p8__static,196,0,-34.63748989670373,-34.40379721763214,24,24,-0.0969125557942557,5.038563829787255,18,0.5414366985430138

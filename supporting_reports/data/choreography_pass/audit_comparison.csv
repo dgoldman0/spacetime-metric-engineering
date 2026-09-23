@@ -1,0 +1,3 @@
+case,packet_safety_live_points,packet_safety_positive_live_packet_norm,packet_safety_max_live_packet_norm,escape_traces,escape_expected,escape_escaped,escape_stalled,reachable_packet_hits,service_stage_hits,carry_stage_hits,probe_traces,probe_escaped,traces_entering_both_shrinking,traces_sustained_to_end,bundle_crossings,bundle_caustic_like,bundle_max_initial_radius_width,bundle_min_l_width_ratio
+lane_2p1__static,175,0,-30.21803398670575,1792,1430,1430,0,0,0,0,225,209,0,0,0,0,0.0,0.1555042450012356
+lane_1p8__static,196,0,-34.63748989670373,1720,1358,1358,0,0,0,0,228,210,0,0,0,0,0.0,0.1810658214659378

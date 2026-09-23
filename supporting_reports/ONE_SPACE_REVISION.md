@@ -185,6 +185,8 @@ pointwise minimum fourfold at a similar content.
    would supply these two roles in place of the string cloud and the end
    transitions.
 
+The [choreography pass](CHOREOGRAPHY_PASS.md) takes up items 1 and 2.
+
 ## Reproduction
 
 ```bash

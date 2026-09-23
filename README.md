@@ -17,8 +17,12 @@ models it exactly, and the [one-space revision](supporting_reports/ONE_SPACE_REV
 passes the gate at every evaluated point. It holds the support compressed,
 envelops the carried shift in the packet lapse window, and stages the
 transverse boundary layer with a conformal pre-sheath and a lapse sheath. The
-service keeps its safety and service-time advantages. The permanent boundary
-layer and the choreography of the held support are the next construction. The
+[choreography pass](supporting_reports/CHOREOGRAPHY_PASS.md) puts the packet
+on a prescribed path over a static support: the 2.1c lane reaches the track
+end 1.66 ahead of light through flat space, the packet stays timelike, and
+the gate passes with no residual bands. The standing lapse sheath is itself
+a superluminal signal channel along the track. The disclosure update and the
+source roles are the next construction. The
 C1 and source-population results below retain their recorded scope on the
 static phase-0.745 surrogate.
 

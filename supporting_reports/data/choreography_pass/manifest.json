@@ -1,0 +1,301 @@
+{
+ "completed_utc": "2026-09-23T22:42:30+00:00",
+ "elapsed_seconds": 570.0,
+ "workers": 6,
+ "step": 0.1,
+ "sigma_range": [
+  -1.5,
+  10.0
+ ],
+ "entry": [
+  -1.4,
+  -1.4
+ ],
+ "release_at": 2.6,
+ "track_end": 5.0,
+ "lanes": {
+  "lane_1p5": 1.5,
+  "lane_1p8": 1.8,
+  "lane_2p1": 2.1
+ },
+ "timing": {
+  "t_accel": 0.3,
+  "t_decel": 0.4,
+  "v_out": 0.95,
+  "l_exit": 2.4
+ },
+ "wide_stack": {
+  "conformal_log_scale": 8.0,
+  "conformal_rise": [
+   1.75,
+   2.0
+  ],
+  "conformal_fall": [
+   9.25,
+   2.0
+  ],
+  "sheath_log_lapse": 8.0,
+  "sheath_rise": [
+   3.75,
+   5.0
+  ],
+  "sheath_fall": [
+   9.25,
+   4.0
+  ],
+  "shift_layer": [
+   4.25,
+   2.0
+  ],
+  "stretch_layer": [
+   9.25,
+   2.0
+  ],
+  "lapse_layer": [
+   9.25,
+   4.0
+  ]
+ },
+ "cases": {
+  "lane_1p5__static": [
+   "lane_1p5",
+   "static",
+   0.0025,
+   12
+  ],
+  "lane_1p8__static": [
+   "lane_1p8",
+   "static",
+   0.0025,
+   12
+  ],
+  "lane_2p1__static": [
+   "lane_2p1",
+   "static",
+   0.0025,
+   12
+  ],
+  "lane_2p1__static__refined": [
+   "lane_2p1",
+   "static",
+   0.00125,
+   24
+  ],
+  "lane_2p1__held_carve": [
+   "lane_2p1",
+   "held",
+   0.0025,
+   12
+  ]
+ },
+ "envelope_params_changed": {
+  "standing_support_packet_lapse_log_gain": 3.0,
+  "standing_support_packet_lapse_radius_multiplier": 2.5,
+  "standing_support_packet_lapse_schedule": "live_only"
+ },
+ "bundle_step_scale": 0.1,
+ "standing_snapshot": 9.0,
+ "noise_floor": 1e-08,
+ "resolved_samples_per_case": 60,
+ "audit_log": [
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_2p1__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 7.75,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_2p1__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 1.42,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_2p1__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 4.3,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/trace_expansion",
+    "--label",
+    "lane_2p1__static"
+   ],
+   "returncode": 0,
+   "seconds": 4.62,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_2p1__static/dense_bundles_all_centers",
+    "--label",
+    "lane_2p1__static",
+    "--no-require-both-shrinking",
+    "--trace-step-scale",
+    "0.1",
+    "--max-steps",
+    "60000"
+   ],
+   "returncode": 0,
+   "seconds": 34.24,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_1p8__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 6.74,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_1p8__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 1.27,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/source_ledger_point_ledger.csv",
+    "--label",
+    "lane_1p8__static",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 3.53,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/trace_expansion",
+    "--label",
+    "lane_1p8__static"
+   ],
+   "returncode": 0,
+   "seconds": 3.22,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/choreography_pass/lane_1p8__static/dense_bundles_all_centers",
+    "--label",
+    "lane_1p8__static",
+    "--no-require-both-shrinking",
+    "--trace-step-scale",
+    "0.1",
+    "--max-steps",
+    "60000"
+   ],
+   "returncode": 0,
+   "seconds": 17.71,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  }
+ ],
+ "reference_ledger_sha256": "4c63e7bf43faced91caba846af14aff24fd62762e3df9627197447700219b473",
+ "software_sha256": {
+  "adm_harness/axial_track.py": "5a9edf1307f7e3ee89e4edf4ef462b93950d535789b02214687c953caa380d74",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "01cf049a580d7a5e98ed339eed7a55b899561682552ae783f8f0e84c1b0c97a0",
+  "scripts/run_choreography_pass.py": "15c434195312759df672dc34c8cedc1714acf4f1dbd7483a0dec01606b00c5ed"
+ }
+}

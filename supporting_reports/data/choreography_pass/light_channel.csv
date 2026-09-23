@@ -1,0 +1,2 @@
+case,snapshot_sigma,max_abs_shift,lattice_step,max_along_track_light_speed,along_track_light_speed_at_max_radius,min_axis_light_speed,light_transit,light_arrival,flat_light_arrival,route_max_radius
+lane_2p1__static,9.0,0.0,0.05,19147.708786410036,10.5,0.5397200781145706,2.2547242892241988,0.8547242892241989,5.0,10.55

@@ -77,12 +77,27 @@ decisions now have test results:
   −2.65 minimum null energy and carries 490 units of negative-null content
   per unit σ, against 3.8 for the two end transitions.
 
-Next: revise the choreography for the held support, tying the packet windows
-and carve to the packet path through the support exit, which also removes the
-window-versus-velocity mismatch. Settle the band tolerance, or move the speed
-advantage from the carve to the lapse and shift. Then update the technical
-disclosure to the one-space geometry and specify the source roles: the
-service region's transverse pressure and the boundary-layer stack.
+- **Choreography.** The [choreography pass](supporting_reports/CHOREOGRAPHY_PASS.md)
+  puts the packet windows, carve and carry speed on one prescribed path:
+  entry at 0.9c, a lane of up to 2.1c through the support, a catch to 0.95c
+  across the support edge and release at \(\ell=2.6\). On the static support
+  the path-matched shift carries the lane speed by itself. The 2.1c lane
+  reaches \(\ell=5\) at \(\sigma=3.34\), 1.66 ahead of light through flat space
+  (1.35c end to end), with the packet timelike throughout (worst −0.95 of
+  \(\alpha^2\)). The gate passes at 2.37 million points per lane and 4.79
+  million refined, with no resolved bands; the held carve leaves bands up to
+  \(3.2\times10^{-5}\), so the design takes the static support. Escape,
+  reachability, trace expansion and bundles are clean. The standing lapse
+  sheath carries light along the track at \(\alpha/A\ge e^{8}\), and light
+  through the standing structure reaches \(\ell=5\) at \(\sigma=0.85\). The
+  service-region minimum null energy rises to −1.16 to −1.30 on the leading
+  flank of the packet lapse window.
+
+Next: update the technical disclosure to the one-space geometry with the
+static support, the staged boundary layer and the path choreography. Decide
+the sheath's along-track extent, which sets the standing signal channel, and
+specify the source roles: the service region's transverse pressure, the
+standing support and the boundary-layer stack.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it
