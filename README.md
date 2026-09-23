@@ -10,9 +10,15 @@ Type IV layer in every operating phase
 it: with the areal radius constant wherever the service metric evolves, the
 radial block is an exact string cloud with zero current, the complete
 demanded tensor is certified Type I at every evaluated point, and the beta075
-service audits are reproduced. The reset schedule and the track termination
-are the open design decisions. The C1 and source-population results below
-retain their recorded scope on the static phase-0.745 surrogate.
+service audits are reproduced. The [reset comparison](supporting_reports/RESET_SCHEDULE_OPTIONS.md)
+favours a decompression front trailing the packet at half rate. The
+[axial track](supporting_reports/AXIAL_TRACK.md) models the track within one
+flat space. Its product core is Type I and its exterior exactly Minkowski,
+while its tube wall carries a Type IV layer from the carry shift's transverse
+shear and the decompressing stretch. The termination choice therefore sets a
+one-space service revision against the two-ended track with its end
+transitions. The C1 and source-population results below retain their recorded
+scope on the static phase-0.745 surrogate.
 
 Status recorded 2026-09-17: the beta075 `V=5` package is the archived
 prescribed-metric service reference. The

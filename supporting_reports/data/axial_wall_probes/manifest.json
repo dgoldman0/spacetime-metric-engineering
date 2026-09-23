@@ -1,0 +1,18 @@
+{
+ "completed_utc": "2026-09-23T19:30:50+00:00",
+ "log_alpha_core": 6.754604099487962,
+ "log_a_core": 6.684611727667927,
+ "default_wall": [
+  1.75,
+  2.0
+ ],
+ "lapse_envelope": [
+  1.75,
+  4.0
+ ],
+ "software_sha256": {
+  "adm_harness/axial_track.py": "e57abd81382db8e729312b4019fada99e5a582ea15c8e99ec9a8857984a660db",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "scripts/run_axial_wall_probes.py": "fb577d42701e162f0c33df00457d201259a781f2ae05deab48101bfdb4add142"
+ }
+}

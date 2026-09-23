@@ -43,21 +43,38 @@ and the service dynamics enter the angular pressure alone. Static end
 transitions join the track to a flat exterior. The C∞ candidate is certified
 Type I at all 141,661 map points, where the repaired beta075 geometry has
 13,587 Type IV points, and it reproduces the beta075 packet, escape,
-reachability, dense-bundle and service-time audits. Two design decisions are
-open:
+reachability, dense-bundle and service-time audits. Both open design
+decisions now have test results:
 
-- **Reset schedule.** Decompression of the standing support dominates the
-  remaining angular null deficit. A reset after the live window at a quarter
-  of the rate lowers the integrated deficit by 98% and moves the
-  packet-coordinate service proxy from 1.2368 to 1.1989.
-- **Track termination.** The static end transitions carry the radial opening
-  deficit, one per end, because the two-ended spherical model widens the track
-  into asymptotic ends. A continued or closed track, or a reduction suited to a
-  track within one space, changes that requirement.
+- **Reset schedule.** The [reset comparison](supporting_reports/RESET_SCHEDULE_OPTIONS.md)
+  keeps every schedule Type I with zero radial current. A decompression front
+  trailing the packet at half the current local rate lowers the integrated
+  angular deficit by 80% and lifts the minimum to the −0.052 catch floor, for
+  a 4.1-unit velocity-reading delay. The quarter-rate resets reach 97–98% for
+  about 7 units. Extending the carry deepens the local minimum to between
+  −0.25 and −0.81 and turns live packet points spacelike at a shift of 2.2.
+  The half-rate front is the recommended schedule, awaiting confirmation. The
+  packet windows advance at unit speed while the shift carries the packet at
+  `U_packet/B`, and aligning those two readings belongs to the next service
+  revision.
+- **Track termination.** Option (4), the track within one space, is modelled
+  exactly as the [axial track](supporting_reports/AXIAL_TRACK.md). Its core
+  is a Type I product of the service metric with a flat plane, its exterior
+  is exactly Minkowski, and the end transitions disappear. With the
+  transplanted service, the tube wall carries a refinement-stable Type IV
+  layer covering 20% of non-vacuum wall points and every live sample. The
+  carry shift's transverse shear and the decompressing stretch set it, while
+  the lapse alone stays Type I. A passing one-space wall needs a standing
+  stretch, a strong lapse envelope around every shift gradient and a reset
+  acting through the lapse and the shift. The two-ended track remains the
+  gate-passing geometry, with end transitions reaching −0.058 minimum null
+  energy and −0.042 radial ANEC per end.
 
-Next: settle those two decisions, specify component tensors for the string
-cloud, the angular stress and any end-transition source, classify the
-layer-by-layer stack, then resume the C1 module work on this geometry.
+Next: confirm the reset schedule and choose the termination path, either a
+one-space service revision or the two-ended track. Then specify component
+tensors for the string cloud, the angular stress and the end-transition or
+wall source, classify the layer-by-layer stack, and resume the C1 module work
+on the chosen geometry.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

@@ -313,7 +313,9 @@ support, reset the plant." The service metric runs independently of that
 timing. Moving the reset after the live window keeps the schedule-factor
 advantage at 2.568966 and changes the packet-coordinate proxy from 1.2368 to
 1.1989 (both evaluated along \(\ell=\sigma\) over the scheduled service window).
-The reset schedule is recorded here as an open design decision.
+The [reset comparison](RESET_SCHEDULE_OPTIONS.md) extends this table with
+decompression fronts trailing the packet and with extended carries, and it
+favours a front at half the current local rate.
 
 ### At the end transitions
 
@@ -333,7 +335,10 @@ none, and a closing cap decreases \(R'/A\) with non-negative \(\rho+p_\ell\). Th
 end transitions follow from the reduced model's two asymptotic ends. How the
 track terminates, whether by widening into asymptotic regions, continuing,
 closing, or through a reduction suited to a track within one space, decides
-this requirement.
+this requirement. The [axial track](AXIAL_TRACK.md) realizes the one-space
+reduction exactly. Its exterior is Minkowski with no end transitions, and
+under the transplanted service its tube wall carries a Type IV layer from the
+carry shift's transverse shear and the decompressing stretch.
 
 ### Source structure
 
@@ -357,10 +362,12 @@ this requirement.
 
 ### Next construction
 
-1. Choose the reset schedule, weighing the angular budget above against the
-   packet-coordinate proxy.
-2. Choose the track termination, which fixes whether the static end-transition
-   deficit is required.
+1. Confirm the reset schedule. The reset comparison favours the half-rate
+   trailing front: an 80% lower angular deficit and the −0.052 catch floor for
+   a 4.1-unit velocity-reading delay.
+2. Choose the termination path. The two-ended track keeps its static
+   end-transition deficit. A one-space track needs a service revision with a
+   standing stretch and lapse envelopes around every shear layer.
 3. Specify component tensors for the string-cloud radial block, the angular
    stress sector and any end-transition source, and classify the
    layer-by-layer stack.

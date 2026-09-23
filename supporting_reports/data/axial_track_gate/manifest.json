@@ -1,0 +1,256 @@
+{
+ "completed_utc": "2026-09-23T19:59:15+00:00",
+ "elapsed_seconds": 695.5,
+ "workers": 6,
+ "step": 0.1,
+ "s_range": [
+  -1.5,
+  20.0
+ ],
+ "z_range": [
+  -4.9,
+  4.9
+ ],
+ "wall_nodes": 96,
+ "reference_points": {
+  "static_support": [
+   -1.5,
+   0.0
+  ],
+  "catch": [
+   0.0,
+   0.0
+  ],
+  "reset": [
+   1.6,
+   1.0
+  ]
+ },
+ "noise_floor": 1e-08,
+ "cases": {
+  "current__base": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__wall_0p5": {
+   "schedule": "current",
+   "wall": "wall_0p5",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 0.5,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__wall_2": {
+   "schedule": "current",
+   "wall": "wall_2",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 2.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__wall_4": {
+   "schedule": "current",
+   "wall": "wall_4",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 4.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__wall_4_log": {
+   "schedule": "current",
+   "wall": "wall_4_log",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 4.0,
+    "wall_spacing": "logarithmic",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__wall_16_log": {
+   "schedule": "current",
+   "wall": "wall_16_log",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 16.0,
+    "wall_spacing": "logarithmic",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__core_1": {
+   "schedule": "current",
+   "wall": "core_1",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.0,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__core_3": {
+   "schedule": "current",
+   "wall": "core_3",
+   "fields": "all",
+   "design": {
+    "core_radius": 3.0,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__string_core": {
+   "schedule": "current",
+   "wall": "string_core",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.32653061224489793,
+    "jet_step": 0.0025
+   }
+  },
+  "trailing_front__base": {
+   "schedule": "trailing_front",
+   "wall": "base",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "trailing_front_quarter_rate__base": {
+   "schedule": "trailing_front_quarter_rate",
+   "wall": "base",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "after_live_window_quarter_rate__base": {
+   "schedule": "after_live_window_quarter_rate",
+   "wall": "base",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "trailing_front_quarter_rate__string_core": {
+   "schedule": "trailing_front_quarter_rate",
+   "wall": "string_core",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.32653061224489793,
+    "jet_step": 0.0025
+   }
+  },
+  "current__base__half_jet_step": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "all",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.00125
+   }
+  },
+  "current__base__lapse_only": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "lapse_only",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__base__stretch_only": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "stretch_only",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__base__shift_only": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "shift_only",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  },
+  "current__base__lapse_and_stretch": {
+   "schedule": "current",
+   "wall": "base",
+   "fields": "lapse_and_stretch",
+   "design": {
+    "core_radius": 1.75,
+    "wall_width": 1.0,
+    "wall_spacing": "linear",
+    "string_curvature": 0.0,
+    "jet_step": 0.0025
+   }
+  }
+ },
+ "software_sha256": {
+  "adm_harness/axial_track.py": "e57abd81382db8e729312b4019fada99e5a582ea15c8e99ec9a8857984a660db",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "a1ee798a2bba4e5b4f084b9bfd147f2ea3b78cf5afe0b88d686eb96fd2b23598",
+  "scripts/run_axial_track_gate.py": "7bcd5f267288ce5e12f9f8e804e59dde57d737911401fa070f7aedc4d2f6a7ab",
+  "scripts/derive_axial_track_einstein.py": "f8955813612115981a7a02d97662c975c5409790e7504597d1f548703fe4381e",
+  "scripts/run_reset_schedule_options.py": "ec64ec9509504821c8c0504bb3c07fac91965d15ced601d019e3912a9ee12f07"
+ }
+}
