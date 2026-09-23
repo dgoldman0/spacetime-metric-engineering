@@ -1,0 +1,1240 @@
+{
+ "completed_utc": "2026-09-23T19:44:26+00:00",
+ "elapsed_seconds": 1601.5,
+ "workers": 5,
+ "step": 0.1,
+ "carry_shifts": [
+  0.4,
+  0.8,
+  1.2,
+  2.2
+ ],
+ "variants": {
+  "current": {
+   "params_changed": {},
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "after_live_window_quarter_rate": {
+   "params_changed": {
+    "q_t0": 2.045,
+    "q_Tr": 12.0
+   },
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "trailing_front": {
+   "params_changed": {},
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": -0.4,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "trailing_front_half_rate": {
+   "params_changed": {},
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": -0.4,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 6.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "trailing_front_quarter_rate": {
+   "params_changed": {},
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": -0.4,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 12.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "extended_carry_0p4": {
+   "params_changed": {
+    "x_catch_beta": 0.35000000000000003,
+    "x_catch_packet": 0.4,
+    "x_beta": 1.1,
+    "q_t0": 2.445,
+    "q_Tr": 12.0
+   },
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "extended_carry_0p8": {
+   "params_changed": {
+    "x_catch_beta": 0.75,
+    "x_catch_packet": 0.8,
+    "x_beta": 1.5,
+    "q_t0": 2.8449999999999998,
+    "q_Tr": 12.0
+   },
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "extended_carry_1p2": {
+   "params_changed": {
+    "x_catch_beta": 1.15,
+    "x_catch_packet": 1.2,
+    "x_beta": 1.9,
+    "q_t0": 3.2449999999999997,
+    "q_Tr": 12.0
+   },
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  },
+  "extended_carry_2p2": {
+   "params_changed": {
+    "x_catch_beta": 2.1500000000000004,
+    "x_catch_packet": 2.2,
+    "x_beta": 2.9000000000000004,
+    "q_t0": 4.245,
+    "q_Tr": 12.0
+   },
+   "design": {
+    "track_radius": 1.75,
+    "service_inner": 4.0,
+    "track_half_length": 5.0,
+    "transition_width": 1.5,
+    "smooth_service": true,
+    "abs_width": 0.02,
+    "cap_width": 0.25,
+    "join_fraction": 0.1,
+    "reset_front_start": null,
+    "reset_front_speed": 1.0,
+    "reset_front_origin": -1.4,
+    "reset_front_duration": 3.0,
+    "reset_front_ramp": 0.25
+   }
+  }
+ },
+ "reference_ledger_sha256": "4c63e7bf43faced91caba846af14aff24fd62762e3df9627197447700219b473",
+ "audit_log": [
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--label",
+    "current",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 18.39,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--label",
+    "current",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 3.44,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--label",
+    "current",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 11.03,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/trace_expansion",
+    "--label",
+    "current"
+   ],
+   "returncode": 0,
+   "seconds": 9.68,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/dense_bundles_all_centers",
+    "--label",
+    "current",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.37,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/source_ledger_point_ledger.csv",
+    "--label",
+    "current",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/current/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.89,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "after_live_window_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 24.15,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "after_live_window_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 5.07,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "after_live_window_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 13.54,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/trace_expansion",
+    "--label",
+    "after_live_window_quarter_rate"
+   ],
+   "returncode": 0,
+   "seconds": 11.23,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/dense_bundles_all_centers",
+    "--label",
+    "after_live_window_quarter_rate",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.76,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "after_live_window_quarter_rate",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/after_live_window_quarter_rate/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.92,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 21.83,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 4.97,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 12.04,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/trace_expansion",
+    "--label",
+    "trailing_front"
+   ],
+   "returncode": 0,
+   "seconds": 13.16,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/dense_bundles_all_centers",
+    "--label",
+    "trailing_front",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 10.41,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 1.19,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_half_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 15.71,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_half_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 2.71,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_half_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 9.56,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/trace_expansion",
+    "--label",
+    "trailing_front_half_rate"
+   ],
+   "returncode": 0,
+   "seconds": 8.84,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/dense_bundles_all_centers",
+    "--label",
+    "trailing_front_half_rate",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.52,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_half_rate",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_half_rate/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.98,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 15.51,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 3.3,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_quarter_rate",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 9.23,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/trace_expansion",
+    "--label",
+    "trailing_front_quarter_rate"
+   ],
+   "returncode": 0,
+   "seconds": 8.34,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/dense_bundles_all_centers",
+    "--label",
+    "trailing_front_quarter_rate",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 12.12,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/source_ledger_point_ledger.csv",
+    "--label",
+    "trailing_front_quarter_rate",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/trailing_front_quarter_rate/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 1.22,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p4",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 23.77,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p4",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 3.64,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p4",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 11.08,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/trace_expansion",
+    "--label",
+    "extended_carry_0p4"
+   ],
+   "returncode": 0,
+   "seconds": 9.73,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/dense_bundles_all_centers",
+    "--label",
+    "extended_carry_0p4",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.12,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p4",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p4/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 1.15,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p8",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 18.56,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p8",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 2.97,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p8",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 8.99,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/trace_expansion",
+    "--label",
+    "extended_carry_0p8"
+   ],
+   "returncode": 0,
+   "seconds": 9.04,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/dense_bundles_all_centers",
+    "--label",
+    "extended_carry_0p8",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 7.86,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_0p8",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_0p8/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.64,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_1p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 7.91,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_1p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 1.32,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_1p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 4.08,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/trace_expansion",
+    "--label",
+    "extended_carry_1p2"
+   ],
+   "returncode": 0,
+   "seconds": 3.64,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/dense_bundles_all_centers",
+    "--label",
+    "extended_carry_1p2",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 4.44,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_1p2",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_1p2/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 0.44,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_horizon_escape_ladder.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_2p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/escape_seed120",
+    "--seeds-per-scope",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 12.63,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_entry_packet_reachability.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_2p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/entry_reachability",
+    "--entry-side",
+    "lower",
+    "--entry-side",
+    "upper"
+   ],
+   "returncode": 0,
+   "seconds": 2.33,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_scheduled_adm_probe_evolution.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_2p2",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/scheduled_probe",
+    "--red-tag-seeds",
+    "120",
+    "--max-steps",
+    "12000"
+   ],
+   "returncode": 0,
+   "seconds": 7.56,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_trace_expansion_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--seeds",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/scheduled_probe/scheduled_adm_probe_seeds.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/trace_expansion",
+    "--label",
+    "extended_carry_2p2"
+   ],
+   "returncode": 0,
+   "seconds": 6.94,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_dense_congruence_caustic_audit.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--trace-traces",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/trace_expansion/trace_expansion_audit_traces.csv",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/dense_bundles_all_centers",
+    "--label",
+    "extended_carry_2p2",
+    "--no-require-both-shrinking"
+   ],
+   "returncode": 0,
+   "seconds": 8.94,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  },
+  {
+   "script": "run_service_time_advantage_ledger.py",
+   "arguments": [
+    "--point-ledger",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/source_ledger_point_ledger.csv",
+    "--label",
+    "extended_carry_2p2",
+    "--manifest",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/schedule_manifest.json",
+    "--outdir",
+    "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/reset_schedule_options/extended_carry_2p2/service_time"
+   ],
+   "returncode": 0,
+   "seconds": 1.01,
+   "stderr_tail": "",
+   "recorded_outcome": null
+  }
+ ],
+ "packet_safety": {
+  "current": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -9.93512860272053
+  },
+  "after_live_window_quarter_rate": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -11.922196787947192
+  },
+  "trailing_front": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -11.922196787947192
+  },
+  "trailing_front_half_rate": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -11.922196787947192
+  },
+  "trailing_front_quarter_rate": {
+   "live_points": 238,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -11.922196787947192
+  },
+  "extended_carry_0p4": {
+   "live_points": 273,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -8.484848064228956
+  },
+  "extended_carry_0p8": {
+   "live_points": 301,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -5.880803277281639
+  },
+  "extended_carry_1p2": {
+   "live_points": 336,
+   "positive_live_packet_norm": 0,
+   "max_live_packet_norm": -4.094823590966669
+  },
+  "extended_carry_2p2": {
+   "live_points": 413,
+   "positive_live_packet_norm": 3,
+   "max_live_packet_norm": 6.816125913732176
+  }
+ },
+ "software_sha256": {
+  "adm_harness/constant_radius_track.py": "a1ee798a2bba4e5b4f084b9bfd147f2ea3b78cf5afe0b88d686eb96fd2b23598",
+  "adm_harness/warped_product.py": "b09c75c812c7d00d9042bbe0d7c50870f5f3bb45f730312f3514c57a17735ec8",
+  "scripts/run_reset_schedule_options.py": "ec64ec9509504821c8c0504bb3c07fac91965d15ced601d019e3912a9ee12f07",
+  "scripts/run_constant_radius_service_checks.py": "255dd5443f846f84574111299ea8ab7f9708347510d0dceb7c42bae0d2ac2f69"
+ }
+}

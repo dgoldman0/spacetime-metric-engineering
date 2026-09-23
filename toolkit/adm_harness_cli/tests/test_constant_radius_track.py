@@ -133,3 +133,27 @@ def test_exterior_is_flat_space(params):
         result = evaluate_spherical_demand(sigma, ell, params, .0025, .0025,
                                            scalar_evaluator=lambda s, l, p: track_scalars(s, l, p, design))
         assert np.max(np.abs(result["tensor_orthonormal"])) < 1e-9
+
+
+def test_reset_front_relaxes_the_support_behind_a_moving_front(params):
+    front = (-.4, 1., -1.4, 3., .25)
+    for ell in (-3., 0., 2.):
+        onset = -.4+(ell+1.4-.125)/1. if ell > -1.4+.25 else -.4
+        ahead = service_fields(onset-.05, ell, params, reset_front=front)
+        assert ahead["q"] == 1.
+        behind = service_fields(onset+3.05, ell, params, reset_front=front)
+        assert behind["q"] == 0.
+    q = [service_fields(1., x, params, reset_front=front)["q"] for x in np.linspace(-1.6, -1.0, 61)]
+    assert np.all(np.diff(q) >= -1e-15) and q[-1] > q[0]
+    jets = derivatives(lambda x: service_fields(-.2, x, params, reset_front=front)["q"], -1.4, step=5e-3)
+    assert np.all(np.isfinite(jets))
+
+
+def test_default_design_keeps_the_uniform_reset(params):
+    design = ConstantRadiusTrackDesign()
+    assert design.reset_front is None
+    fields = track_scalars(1.1, .3, params, design)
+    uniform = service_fields(1.1, .3, params)
+    assert fields["alpha"] == uniform["alpha"] and fields["beta"] == uniform["beta"]
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(reset_front_start=0., reset_front_speed=0.)

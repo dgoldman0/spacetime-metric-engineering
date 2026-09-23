@@ -41,6 +41,11 @@ class ConstantRadiusTrackDesign:
     abs_width: float = .02
     cap_width: float = .25
     join_fraction: float = .1
+    reset_front_start: float | None = None
+    reset_front_speed: float = 1.
+    reset_front_origin: float = -1.4
+    reset_front_duration: float = 3.
+    reset_front_ramp: float = .25
 
     def __post_init__(self):
         values = (self.track_radius, self.service_inner, self.track_half_length, self.transition_width,
@@ -53,6 +58,18 @@ class ConstantRadiusTrackDesign:
             raise ValueError("the service cutoff must end before the end transition begins")
         if not 0 < self.cap_width < .5 or not 0 < self.join_fraction < .5:
             raise ValueError("cap width and join fraction must lie in (0, 0.5)")
+        if self.reset_front_start is not None:
+            front = (self.reset_front_start, self.reset_front_speed, self.reset_front_origin,
+                     self.reset_front_duration, self.reset_front_ramp)
+            if not all(math.isfinite(x) for x in front) or min(front[1], front[3], front[4]) <= 0:
+                raise ValueError("a reset front needs finite values and positive speed, duration and ramp")
+
+    @property
+    def reset_front(self):
+        if self.reset_front_start is None:
+            return None
+        return (self.reset_front_start, self.reset_front_speed, self.reset_front_origin,
+                self.reset_front_duration, self.reset_front_ramp)
 
 
 def smooth_step(t: float) -> float:
@@ -170,7 +187,8 @@ def _check_supported(params: SourceParams) -> None:
 
 
 def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool = True,
-                   abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1) -> dict[str, float]:
+                   abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1,
+                   reset_front: tuple[float, float, float, float, float] | None = None) -> dict[str, float]:
     """Rebuild beta075's alpha, beta and gamma_ll with selectable primitives.
 
     Legacy primitives follow source_ledger.scalars operation by operation.
@@ -178,6 +196,10 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     joins within join_fraction of each end, replace |l| by smooth_abs and the
     shell Gaussian clip by smooth_cap. Annular differences and the additive carve are required to
     stay inside their unclipped ranges, so every remaining clip is inactive.
+    A reset front (start, speed, origin, duration, ramp) replaces the uniform
+    decompression: the support at ell begins to relax once a front leaving
+    origin at time start with the given speed has passed it, with a C-infinity
+    onset ramp, and completes over the given local duration.
     """
     _check_supported(params)
     prim = _Primitives(smooth, abs_width, cap_width, join_fraction)
@@ -243,7 +265,12 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     u_beta = params.v_exit+(params.V-params.v_exit)*c_beta
     u_packet = params.v_exit+(params.V-params.v_exit)*c_packet
     e_release = 1.0-prim.step5((s-start)/max(end-start, 1.0e-12))
-    q = 1.0-prim.step5((s-params.q_t0)/max(params.q_Tr, 1.0e-12))
+    if reset_front is None:
+        q = 1.0-prim.step5((s-params.q_t0)/max(params.q_Tr, 1.0e-12))
+    else:
+        start, speed, origin, duration, ramp = reset_front
+        onset = start+ramp*transition_integral((ell-origin)/ramp)/speed
+        q = 1.0-prim.step5((s-onset)/duration)
     w_raw = float(bump_sq(ell*ell, params.Rth, params.w_th))
     s_packet = float(bump_sq((ell-s)**2+params.eps*params.eps, params.Rpass, params.w_pass))
 
@@ -423,7 +450,8 @@ def track_scalars(s: float, ell: float, params: SourceParams, design: ConstantRa
     if cutoff > 0.:
         if design.smooth_service:
             service = service_fields(s, ell, params, smooth=True, abs_width=design.abs_width,
-                                     cap_width=design.cap_width, join_fraction=design.join_fraction)
+                                     cap_width=design.cap_width, join_fraction=design.join_fraction,
+                                     reset_front=design.reset_front)
         else:
             service = regularized_scalars(s, ell, params)
         alpha = 1.+cutoff*(service["alpha"]-1.)
