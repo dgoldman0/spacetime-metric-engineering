@@ -15,11 +15,27 @@ The [topology decision](RAIL_BUILD_TOPOLOGY_DECISION.md) and
 [component assignments](RAIL_COMPONENT_CROSS_REFERENCE_AND_JOINT_COORDINATION.md)
 remain the architectural basis.
 
+## Standing geometry gate
+
+Added 23 September 2026. A geometry enters source construction after its
+active demanded tensor passes the
+[Le boundary classification](../active_rail_test1_le_boundary_gate_handoff.md):
+a certified Hawking–Ellis type at every sampled point, stable under
+derivative refinement, through the outermost source boundary into the
+exterior. Static-slice, zero-shift and holding evaluations serve as controls
+within that gate. A source allocation obtained on a static surrogate becomes
+a construction input after the same allocation is evaluated on the gate-passing
+active geometry. The frozen beta075 reference fails this gate through a
+current-driven Type IV layer ([diagnostic](LE_GEOMETRY_BOUNDARY_DIAGNOSTIC.md));
+the current research order redesigns the geometry under a C∞ design rule and
+uses the gate as the first filter on each candidate.
+
 ## Investigation order
 
 | Stage | Decision required | Appropriate evidence |
 |---|---|---|
 | Transport target | Identify useful geometry and service constraints. | Packet motion, timing, causal structure and demanded tensor. |
+| Geometry gate | Establish an admissible algebraic source class on the active metric. | Certified Hawking–Ellis classification of the complete demanded tensor, derivative refinement, static controls and the outermost boundary. |
 | Physical source contribution | Determine whether specified fields and materials can contribute the required signs, scale and spatial distribution. | Normalized tensors or decisive bounds, fixed physical parameters, state and confinement assumptions. |
 | Finite C1 construction | Combine components across a finite assembly and one neighboring overlap. | Shared geometry; material and field tensors counted once; traction, current, momentum, angular momentum and exterior exchanges accounted. |
 | Coupled dynamics | Establish admissible preparation, handoff and recovery. | Field/material response, module recoil, stability, causal timing and finite storage/heat budgets. |

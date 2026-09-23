@@ -1,6 +1,17 @@
 # Active Rail Refined Design Base
 
-Current status, 2026-09-17: the beta075 `V=5` package is the archived
+Current status, 2026-09-23: every geometry used for source construction
+first passes the Le boundary classification on its active metric
+([current handoff](plan.md), [workflow](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md)).
+The frozen beta075 `V=5` geometry fails that gate through a refinement-stable
+Type IV layer in every operating phase
+([diagnostic](supporting_reports/LE_GEOMETRY_BOUNDARY_DIAGNOSTIC.md)), so the
+geometry is being redesigned under a C∞ design rule, with the gate as the
+first filter and the service checks applied to passing candidates. The
+C1 and source-population results below retain their recorded scope on the
+static phase-0.745 surrogate.
+
+Status recorded 2026-09-17: the beta075 `V=5` package is the archived
 prescribed-metric service reference. The
 [rail storage and interface status](supporting_reports/RAIL_STORAGE_AND_INTERFACE_STATUS.md)
 connects the current multicomponent containment, mechanical holding,

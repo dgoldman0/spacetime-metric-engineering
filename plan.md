@@ -1,6 +1,50 @@
 # Active-Rail Codex Handoff Plan
 
-## Current handoff, 2026-09-17
+## Current handoff, 2026-09-23
+
+**Standing geometry gate.** Every geometry used for source construction
+first passes the [Le boundary classification](active_rail_test1_le_boundary_gate_handoff.md)
+on its active metric: the certified Hawking–Ellis type of the complete
+demanded tensor, stable under refinement, through the outermost boundary
+into the exterior. Static-slice and holding controls remain diagnostics of
+that gate; the active-service classification requires the full scheduled
+metric and its derivatives.
+
+**Status of beta075.** The frozen beta075 `V=5` geometry is an **INTERNAL
+CLOSURE FAILURE** ([diagnostic](supporting_reports/LE_GEOMETRY_BOUNDARY_DIAGNOSTIC.md)).
+Its demanded tensor has a refinement-stable Type IV layer in all seven
+operating phases: 3,843 dense-grid points, with the principal witness
+discriminant `-0.0020645` converged to 0.001%. Every matched static control is
+Type I. The receiver's square-root cusp gives an unbounded absolute stress
+integral, and the throat lapse has a first-derivative kink. The C2 repairs
+remove both singularities and leave the Type IV layer unchanged
+([repair and slowdown study](supporting_reports/LE_BOUNDED_METRIC_REPAIR.md)).
+At static enthalpy zeros the discriminant scales as
+`kappa^2 (kappa^2 h2^2 - 4 j1^2)`, so uniform slowing retains Type IV
+(`kappa_c ≈ 1.29`). The exterior is an unterminated negative-energy
+`|l|^-4` throat tail.
+
+**Agreed direction (2026-09-23).** The throat source family remains open, so
+the geometry is redesigned to pass the gate for an ordinary rest-frame
+material description:
+
+1. Candidates follow a C∞ design rule: smooth joins throughout, with no
+   clipped powers and no polynomial C2/C3 joins.
+2. The Le gate is the first filter on each candidate.
+3. Service checks (packet safety, carrier escape and bundles, source
+   placement) run on candidates that pass the gate.
+4. The technical disclosure is updated once a candidate passes both.
+
+The C1 finite-module and source-population work pauses at `42e6688`. Its
+static phase-0.745 slice carries zero shift and zero time dependence, so it
+leaves the current-driven Type IV demand untested; its allocations re-enter
+source selection after re-evaluation on a gate-passing active geometry. Its
+normalization, `eta = 2.41e-5`, places the throat near 415 Planck lengths, and
+the [semiclassical opening comparison](supporting_reports/SEMICLASSICAL_JOINT_INVESTIGATION.md)
+supplies about `5e-6` of the required opening balance. The physical scale
+targeted by the project is an open decision recorded alongside these numbers.
+
+## Previous handoff, 2026-09-17 (paused)
 
 Apply the agreed [source-feasibility workflow](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md).
 The immediate decision is: **Does the angular field make a useful, physically
