@@ -20,7 +20,7 @@ transverse boundary layer with a conformal pre-sheath and a lapse sheath. The
 [choreography pass](supporting_reports/CHOREOGRAPHY_PASS.md) puts the packet
 on a prescribed path over a static support: the 2.1c lane reaches the track
 end 1.66 ahead of light through flat space, the packet stays timelike, and
-the gate passes with no residual bands. The standing lapse sheath is itself
+the gate passes with no residual bands. The lapse sheath of the geometry is itself
 a superluminal signal channel along the track. The disclosure update and the
 source roles are the next construction. The
 C1 and source-population results below retain their recorded scope on the

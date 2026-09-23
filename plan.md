@@ -89,7 +89,7 @@ decisions now have test results:
   \(3.2\times10^{-5}\), so the design takes the static support. Escape,
   reachability, trace expansion and bundles are clean. The standing lapse
   sheath carries light along the track at \(\alpha/A\ge e^{8}\), and light
-  through the standing structure reaches \(\ell=5\) at \(\sigma=0.85\). The
+  through the standing geometry reaches \(\ell=5\) at \(\sigma=0.85\). The
   service-region minimum null energy rises to −1.16 to −1.30 on the leading
   flank of the packet lapse window.
 

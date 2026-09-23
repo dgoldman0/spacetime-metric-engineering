@@ -53,7 +53,7 @@ v(\sigma)=v_{in}+(v_{lane}-v_{in})\,\psi\!\left(\frac{\sigma-a}{\tau_a}\right)
 \]
 
 with \(\psi\) the rail's smooth step. The position integrates this speed in
-closed form. Every packet-centred structure is centred on \(\ell_p(\sigma)\):
+closed form. Every packet-centred field is centred on \(\ell_p(\sigma)\):
 the packet windows, the carve, the shell exclusion and the rematch. The
 carry field is \(U=v\,B\) at the centre, so the packet's coordinate speed
 equals the path speed. The packet lapse window takes the rematch schedule.
@@ -172,7 +172,7 @@ lattice shortest path at spacing 0.05 bounds from above.
 |---|---:|---:|
 | light through flat space | 5.00 | 0 |
 | packet, 2.1c lane | 3.34 | 1.66 |
-| light through the standing structure | 0.85 | 4.15 |
+| light through the standing geometry | 0.85 | 4.15 |
 
 The light route runs out to \(r\approx10.5\), along the track and back. Its
 transit time of 2.25 comes almost entirely from the radial crossing of the
