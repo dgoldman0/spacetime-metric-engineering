@@ -58,23 +58,24 @@ decisions now have test results:
   `U_packet/B`, and aligning those two readings belongs to the next service
   revision.
 - **Track termination.** Option (4), the track within one space, is modelled
-  exactly as the [axial track](supporting_reports/AXIAL_TRACK.md). Its core
-  is a Type I product of the service metric with a flat plane, its exterior
-  is exactly Minkowski, and the end transitions disappear. With the
-  transplanted service, the tube wall carries a refinement-stable Type IV
-  layer covering 20% of non-vacuum wall points and every live sample. The
-  carry shift's transverse shear and the decompressing stretch set it, while
-  the lapse alone stays Type I. A passing one-space wall needs a standing
-  stretch, a strong lapse envelope around every shift gradient and a reset
-  acting through the lapse and the shift. The two-ended track remains the
+  exactly as the [axial track](supporting_reports/AXIAL_TRACK.md). Its
+  service region is a Type I product of the service metric with a flat plane,
+  its exterior is exactly Minkowski, and the end transitions disappear. With
+  the transplanted service, the transverse boundary layer carries
+  refinement-stable Type IV stress at 20% of its non-vacuum points and at
+  every live sample. The carry shift's transverse shear and the decompressing
+  stretch set it, while the lapse alone stays Type I. A passing one-space
+  boundary layer needs a standing stretch, a strong lapse envelope around
+  every shift gradient and a reset acting through the lapse and the shift.
+  The two-ended track remains the
   gate-passing geometry, with end transitions reaching −0.058 minimum null
   energy and −0.042 radial ANEC per end.
 
 Next: confirm the reset schedule and choose the termination path, either a
 one-space service revision or the two-ended track. Then specify component
 tensors for the string cloud, the angular stress and the end-transition or
-wall source, classify the layer-by-layer stack, and resume the C1 module work
-on the chosen geometry.
+boundary-layer source, classify the layer-by-layer stack, and resume the C1
+module work on the chosen geometry.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

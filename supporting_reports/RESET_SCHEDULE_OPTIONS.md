@@ -143,7 +143,7 @@ unflagged minima, and record no crossings.
 Under extended carry 1.2, two null-branch probes seeded at (−0.36, −0.7)
 cross points where the packet velocity field is spacelike (norm up to
 \(1.7\times10^4\)). There the carry speed \(U_{packet}=5\) persists outside the
-packet windows. The centerline and tube-edge probes along the same schedule
+packet windows. The centerline and packet-edge probes along the same schedule
 stay at norm −0.75.
 
 The service-time ratios follow the carry distance. The schedule-factor ratio

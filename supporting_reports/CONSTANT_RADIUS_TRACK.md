@@ -337,8 +337,9 @@ track terminates, whether by widening into asymptotic regions, continuing,
 closing, or through a reduction suited to a track within one space, decides
 this requirement. The [axial track](AXIAL_TRACK.md) realizes the one-space
 reduction exactly. Its exterior is Minkowski with no end transitions, and
-under the transplanted service its tube wall carries a Type IV layer from the
-carry shift's transverse shear and the decompressing stretch.
+under the transplanted service its transverse boundary layer carries Type IV
+stress from the carry shift's transverse shear and the decompressing
+stretch.
 
 ### Source structure
 
