@@ -48,6 +48,7 @@ class ConstantRadiusTrackDesign:
     reset_front_ramp: float = .25
     standing_support: bool = False
     hold_support: bool = False
+    packet_path: tuple[float, ...] | None = None
 
     def __post_init__(self):
         values = (self.track_radius, self.service_inner, self.track_half_length, self.transition_width,
@@ -67,6 +68,8 @@ class ConstantRadiusTrackDesign:
                 raise ValueError("a reset front needs finite values and positive speed, duration and ramp")
             if self.standing_support or self.hold_support:
                 raise ValueError("a standing or held support has no decompression front")
+        if self.packet_path is not None:
+            check_packet_path(self.packet_path)
 
     @property
     def reset_front(self):
@@ -142,6 +145,33 @@ def areal_radius(ell: float, design: ConstantRadiusTrackDesign) -> float:
     return design.track_radius+design.transition_width*transition_integral(excess/design.transition_width)
 
 
+PATH_FIELDS = ("s0", "l0", "v_in", "v_lane", "v_out", "accel_start", "accel_duration", "decel_start",
+               "decel_duration")
+
+
+def check_packet_path(path) -> None:
+    if len(path) != len(PATH_FIELDS) or not all(math.isfinite(x) for x in path):
+        raise ValueError("a packet path has nine finite values: "+", ".join(PATH_FIELDS))
+    s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
+    if min(v_in, v_lane, v_out, ta, td) <= 0:
+        raise ValueError("packet speeds and ramp durations must be positive")
+
+
+def packet_velocity(s: float, path) -> float:
+    """C-infinity coordinate speed: v_in, a ramp to v_lane, then a ramp down to v_out."""
+    s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
+    return v_in+(v_lane-v_in)*smooth_step((s-a)/ta)-(v_lane-v_out)*smooth_step((s-d)/td)
+
+
+def packet_position(s: float, path) -> float:
+    """Exact integral of packet_velocity from (s0, l0)."""
+    s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
+
+    def ramp(x, start, duration):
+        return duration*(transition_integral((x-start)/duration)-transition_integral((s0-start)/duration))
+    return l0+v_in*(s-s0)+(v_lane-v_in)*ramp(s, a, ta)-(v_lane-v_out)*ramp(s, d, td)
+
+
 def service_cutoff(ell: float, design: ConstantRadiusTrackDesign) -> float:
     span = design.track_half_length-design.service_inner
     return 1.-smooth_step((abs(ell)-design.service_inner)/span)
@@ -193,7 +223,8 @@ def _check_supported(params: SourceParams) -> None:
 def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool = True,
                    abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1,
                    reset_front: tuple[float, float, float, float, float] | None = None,
-                   standing: bool = False, hold: bool = False) -> dict[str, float]:
+                   standing: bool = False, hold: bool = False,
+                   packet_path: tuple[float, ...] | None = None) -> dict[str, float]:
     """Rebuild beta075's alpha, beta and gamma_ll with selectable primitives.
 
     Legacy primitives follow source_ledger.scalars operation by operation.
@@ -209,11 +240,18 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     the packet carve of the support weight and the packet windows on
     gamma_ll are removed, while the lapse windows and every shift window
     keep their schedules. A held support removes the decompression alone.
+    A packet path centres every packet window and the carve on
+    packet_position(s) and sets both carry speeds to the path speed times the
+    support factor B at the path centre, so the packet's coordinate speed there
+    equals packet_velocity(s). The packet lapse window then follows the
+    schedule of the carried rematch shift, so the lapse envelope lasts as long
+    as the shift it covers.
     """
     _check_supported(params)
     prim = _Primitives(smooth, abs_width, cap_width, join_fraction)
     s, ell = float(s), float(ell)
     live_end = live_packet_end(params)
+    centre = s if packet_path is None else packet_position(s, packet_path)
 
     def rise(x, w, profile):
         if profile == "tanh":
@@ -244,8 +282,8 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
             raise ValueError(f"unsupported packet schedule {name}")
         return float(np.clip(value, 0.0, 1.0))
 
-    def packet_bump(radius, width, profile):
-        x2 = (ell-s)**2+params.eps*params.eps
+    def packet_bump(radius, width, profile, at=None):
+        x2 = ((ell if at is None else at)-centre)**2+params.eps*params.eps
         if profile == "tanh":
             return float(bump_sq(x2, radius, width))
         z = (x2-radius*radius)/max(2.0*radius*width, 1.0e-12)
@@ -256,10 +294,11 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
         return 1.0-prim.step7(0.5*(z+1.0))
 
     def window(radius_multiplier, width_multiplier, schedule_name, temporal_multiplier=1.0,
-               temporal_profile="tanh", radial_profile="tanh"):
+               temporal_profile="tanh", radial_profile="tanh", at=None):
         radius = max(float(params.Rpass)*float(radius_multiplier), 1.0e-12)
         width = max(float(params.w_pass)*float(width_multiplier), 1.0e-12)
-        value = packet_bump(radius, width, radial_profile)*schedule(schedule_name, temporal_multiplier, temporal_profile)
+        value = packet_bump(radius, width, radial_profile, at)*schedule(schedule_name, temporal_multiplier,
+                                                                         temporal_profile)
         return float(np.clip(value, 0.0, 1.0))
 
     def annulus(outer, inner):
@@ -283,71 +322,80 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
         onset = start+ramp*transition_integral((ell-origin)/ramp)/speed
         q = 1.0-prim.step5((s-onset)/duration)
     w_raw = float(bump_sq(ell*ell, params.Rth, params.w_th))
-    s_packet = float(bump_sq((ell-s)**2+params.eps*params.eps, params.Rpass, params.w_pass))
+    s_packet = float(bump_sq((ell-centre)**2+params.eps*params.eps, params.Rpass, params.w_pass))
 
     lag = float(params.release_carve_lag_widths)
     if lag or params.release_lapse_lag_widths:
         raise ValueError("release lag widths are outside the beta075 reconstruction")
-    shoulder_strength = float(params.standing_support_packet_exclusion_shoulder)
-    carve_shoulder = 0.0
-    if shoulder_strength > 0.0:
-        outer = window(params.standing_support_packet_exclusion_shoulder_radius_multiplier,
-                       params.standing_support_packet_exclusion_shoulder_width_multiplier,
-                       params.standing_support_packet_exclusion_shoulder_schedule,
-                       temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile)
-        inner = window(params.standing_support_packet_exclusion_radius_multiplier,
-                       params.standing_support_packet_exclusion_width_multiplier,
-                       params.standing_support_packet_exclusion_shoulder_schedule,
-                       temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile)
-        carve_shoulder = annulus(outer, inner)
-    carve_main = 0.0
-    if params.standing_support_packet_exclusion > 0.0:
-        carve_main = window(params.standing_support_packet_exclusion_radius_multiplier,
-                            params.standing_support_packet_exclusion_width_multiplier,
-                            params.standing_support_packet_exclusion_schedule,
-                            temporal_profile=params.standing_support_packet_exclusion_temporal_profile)
-    carve_catch = 0.0
-    if params.standing_support_packet_exclusion_catch > 0.0:
-        carve_catch = window(params.standing_support_packet_exclusion_catch_radius_multiplier,
-                             params.standing_support_packet_exclusion_catch_width_multiplier,
-                             params.standing_support_packet_exclusion_catch_schedule,
-                             temporal_profile=params.standing_support_packet_exclusion_catch_temporal_profile)
-    legacy_carve = float(np.clip(
-        float(params.standing_support_packet_exclusion)*carve_main
-        + float(params.standing_support_packet_exclusion_catch)*carve_catch
-        + shoulder_strength*carve_shoulder, 0.0, 1.0))
+    def carve_at(at):
+        """Carve factor and edge window of the packet exclusion evaluated at rail position at."""
+        window_at = lambda *args, **kwargs: window(*args, at=at, **kwargs)
+        shoulder_strength = float(params.standing_support_packet_exclusion_shoulder)
+        carve_shoulder = 0.0
+        if shoulder_strength > 0.0:
+            outer = window_at(params.standing_support_packet_exclusion_shoulder_radius_multiplier,
+                              params.standing_support_packet_exclusion_shoulder_width_multiplier,
+                              params.standing_support_packet_exclusion_shoulder_schedule,
+                              temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile)
+            inner = window_at(params.standing_support_packet_exclusion_radius_multiplier,
+                              params.standing_support_packet_exclusion_width_multiplier,
+                              params.standing_support_packet_exclusion_shoulder_schedule,
+                              temporal_profile=params.standing_support_packet_exclusion_shoulder_temporal_profile)
+            carve_shoulder = annulus(outer, inner)
+        carve_main = 0.0
+        if params.standing_support_packet_exclusion > 0.0:
+            carve_main = window_at(params.standing_support_packet_exclusion_radius_multiplier,
+                                   params.standing_support_packet_exclusion_width_multiplier,
+                                   params.standing_support_packet_exclusion_schedule,
+                                   temporal_profile=params.standing_support_packet_exclusion_temporal_profile)
+        carve_catch = 0.0
+        if params.standing_support_packet_exclusion_catch > 0.0:
+            carve_catch = window_at(params.standing_support_packet_exclusion_catch_radius_multiplier,
+                                    params.standing_support_packet_exclusion_catch_width_multiplier,
+                                    params.standing_support_packet_exclusion_catch_schedule,
+                                    temporal_profile=params.standing_support_packet_exclusion_catch_temporal_profile)
+        legacy_carve = float(np.clip(
+            float(params.standing_support_packet_exclusion)*carve_main
+            + float(params.standing_support_packet_exclusion_catch)*carve_catch
+            + shoulder_strength*carve_shoulder, 0.0, 1.0))
 
-    split = params.standing_support_packet_smooth_split_enabled
-    split_kwargs = dict(temporal_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
-                        temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
-                        radial_profile=params.standing_support_packet_smooth_split_radial_profile)
-    entry = catch = edge = 0.0
-    if split:
-        entry = window(params.standing_support_packet_smooth_split_entry_radius_multiplier,
-                       params.standing_support_packet_smooth_split_entry_width_multiplier,
-                       params.standing_support_packet_smooth_split_entry_schedule, **split_kwargs)
-        catch = window(params.standing_support_packet_smooth_split_catch_radius_multiplier,
-                       params.standing_support_packet_smooth_split_catch_width_multiplier,
-                       params.standing_support_packet_smooth_split_catch_schedule, **split_kwargs)
-        edge = annulus(
-            window(params.standing_support_packet_smooth_split_edge_outer_radius_multiplier,
-                   params.standing_support_packet_smooth_split_edge_width_multiplier,
-                   params.standing_support_packet_smooth_split_edge_schedule, **split_kwargs),
-            window(params.standing_support_packet_smooth_split_edge_inner_radius_multiplier,
-                   params.standing_support_packet_smooth_split_edge_width_multiplier,
-                   params.standing_support_packet_smooth_split_edge_schedule, **split_kwargs))
-    split_sum = sum(float(v) for v in (float(params.standing_support_packet_smooth_split_entry_carve)*entry,
-                                        float(params.standing_support_packet_smooth_split_catch_carve)*catch,
-                                        float(params.standing_support_packet_smooth_split_edge_carve)*edge))
-    if split_sum > 1.0:
-        raise ArithmeticError("additive carve would activate its cap")
-    split_containment = float(np.clip(split_sum, 0.0, 1.0))
-    raw_carve = float(np.clip(sum(float(v) for v in (legacy_carve, 0.0, split_containment)), 0.0, 1.0))
-    if raw_carve >= 1.0:
-        raise ArithmeticError("total carve would activate its cap")
-    carve_factor = 1.0 if standing else float(np.clip(1.0-raw_carve, 0.0, 1.0))
+        split = params.standing_support_packet_smooth_split_enabled
+        split_kwargs = dict(temporal_multiplier=params.standing_support_packet_smooth_split_temporal_width_multiplier,
+                               temporal_profile=params.standing_support_packet_smooth_split_temporal_profile,
+                            radial_profile=params.standing_support_packet_smooth_split_radial_profile)
+        entry = catch = edge = 0.0
+        if split:
+            entry = window_at(params.standing_support_packet_smooth_split_entry_radius_multiplier,
+                              params.standing_support_packet_smooth_split_entry_width_multiplier,
+                              params.standing_support_packet_smooth_split_entry_schedule, **split_kwargs)
+            catch = window_at(params.standing_support_packet_smooth_split_catch_radius_multiplier,
+                              params.standing_support_packet_smooth_split_catch_width_multiplier,
+                              params.standing_support_packet_smooth_split_catch_schedule, **split_kwargs)
+            edge = annulus(
+                window_at(params.standing_support_packet_smooth_split_edge_outer_radius_multiplier,
+                          params.standing_support_packet_smooth_split_edge_width_multiplier,
+                          params.standing_support_packet_smooth_split_edge_schedule, **split_kwargs),
+                window_at(params.standing_support_packet_smooth_split_edge_inner_radius_multiplier,
+                          params.standing_support_packet_smooth_split_edge_width_multiplier,
+                          params.standing_support_packet_smooth_split_edge_schedule, **split_kwargs))
+        split_sum = sum(float(v) for v in (float(params.standing_support_packet_smooth_split_entry_carve)*entry,
+                                            float(params.standing_support_packet_smooth_split_catch_carve)*catch,
+                                            float(params.standing_support_packet_smooth_split_edge_carve)*edge))
+        if split_sum > 1.0:
+            raise ArithmeticError("additive carve would activate its cap")
+        split_containment = float(np.clip(split_sum, 0.0, 1.0))
+        raw_carve = float(np.clip(sum(float(v) for v in (legacy_carve, 0.0, split_containment)), 0.0, 1.0))
+        if raw_carve >= 1.0:
+            raise ArithmeticError("total carve would activate its cap")
+        return (1.0 if standing else float(np.clip(1.0-raw_carve, 0.0, 1.0))), edge
+
+    carve_factor, edge = carve_at(ell)
+
     w_support = w_raw*carve_factor
 
+    if packet_path is not None:
+        centre_weight = float(bump_sq(centre*centre, params.Rth, params.w_th))*carve_at(centre)[0]
+        u_packet = u_beta = packet_velocity(s, packet_path)*(1.0+(params.B0-1.0)*centre_weight*q)
     a_spatial = float(np.exp(q*w_support*math.log(params.C0)))
     t_lapse = float(np.exp(q*w_support*math.log(params.lam*params.C0)))
     b_angular = 1.0+(params.B0-1.0)*w_support*q
@@ -373,7 +421,7 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
         temporal = float(np.exp(-0.5*((s-center)/scale)**2))
         norm = math.exp(-0.5*((closest-center)/scale)**2)
         temporal = prim.cap(temporal/max(norm, 1.0e-12))
-        packet = float(bump_sq((ell-s)**2+params.eps*params.eps, params.Rpass, params.w_pass))
+        packet = float(bump_sq((ell-centre)**2+params.eps*params.eps, params.Rpass, params.w_pass))
         live = float(falloff(s-live_end, params.w_beta))
         exclusion = float(np.clip(1.0-params.support_shell_packet_exclusion*packet*live, 0.0, 1.0))
         shell = support*catch_box*temporal*exclusion
@@ -386,7 +434,13 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     beta_pre = beta_base+delta_shell
     alpha_base = n_cushion*t_lapse
     lapse_window = 0.0
-    if params.standing_support_packet_lapse_log_gain != 0.0:
+    if params.standing_support_packet_lapse_log_gain != 0.0 and packet_path is not None:
+        lapse_window = window(params.standing_support_packet_lapse_radius_multiplier,
+                              params.standing_support_packet_lapse_width_multiplier,
+                              params.standing_support_packet_beta_rematch_schedule,
+                              params.standing_support_packet_beta_rematch_temporal_width_multiplier,
+                              params.standing_support_packet_beta_rematch_temporal_profile)
+    elif params.standing_support_packet_lapse_log_gain != 0.0:
         lapse_window = window(params.standing_support_packet_lapse_radius_multiplier,
                               params.standing_support_packet_lapse_width_multiplier,
                               params.standing_support_packet_lapse_schedule,
@@ -447,7 +501,7 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
                    schedule_name, multiplier, profile),
             window(params.standing_support_packet_beta_rematch_inner_radius_multiplier, edge_width,
                    schedule_name, multiplier, profile))
-        trailing = float(falloff(ell-s, max(float(params.w_pass)*float(edge_width), 1.0e-12)))
+        trailing = float(falloff(ell-centre, max(float(params.w_pass)*float(edge_width), 1.0e-12)))
         value = ring*trailing
         rematch = float(np.clip(value+floor*(1.0-value), 0.0, 1.0))
     beta = beta_pre+(-float(params.standing_support_packet_beta_rematch_gain)*rematch*(vcoord+beta_pre))
@@ -464,7 +518,7 @@ def track_scalars(s: float, ell: float, params: SourceParams, design: ConstantRa
             service = service_fields(s, ell, params, smooth=True, abs_width=design.abs_width,
                                      cap_width=design.cap_width, join_fraction=design.join_fraction,
                                      reset_front=design.reset_front, standing=design.standing_support,
-                                     hold=design.hold_support)
+                                     hold=design.hold_support, packet_path=design.packet_path)
         else:
             service = regularized_scalars(s, ell, params)
         alpha = 1.+cutoff*(service["alpha"]-1.)

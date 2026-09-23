@@ -9,6 +9,7 @@ import pytest
 from adm_harness.constant_radius_track import (
     ConstantRadiusTrackDesign, areal_radius, transition_integral, track_scalars, flattened_step, service_cutoff,
     service_fields, smooth_abs, smooth_cap, smooth_step,
+    packet_position, packet_velocity,
 )
 from adm_harness.radial_stress import TYPE_I
 from adm_harness.source_ledger import SourceParams, scalars, smoothstep_minjerk
@@ -192,3 +193,43 @@ def test_held_support_keeps_the_carve_and_windows_without_decompression(params):
     assert track_scalars(0., .3, params, design)["gamma_ll"] == service_fields(0., .3, params, hold=True)["gamma_ll"]
     with pytest.raises(ValueError):
         ConstantRadiusTrackDesign(hold_support=True, reset_front_start=-.4)
+
+
+PATH = (-1.4, -1.4, .9, 1.8, .9, -1.4, .5, .3, .6)
+
+
+def test_packet_path_position_integrates_its_velocity():
+    h = 1e-5
+    for s in (-2., -1.2, -.5, .45, .7, 3.):
+        slope = (packet_position(s+h, PATH)-packet_position(s-h, PATH))/(2*h)
+        assert slope == pytest.approx(packet_velocity(s, PATH), abs=1e-8)
+    assert packet_position(-1.4, PATH) == pytest.approx(-1.4, abs=1e-15)
+    assert packet_velocity(-3., PATH) == pytest.approx(.9) and packet_velocity(5., PATH) == pytest.approx(.9)
+    assert packet_velocity(-.2, PATH) == pytest.approx(1.8)
+
+
+def test_packet_path_sets_the_coordinate_speed_at_its_centre(params):
+    for s in (-1.2, -.5, .4, .7, 2.):
+        centre = packet_position(s, PATH)
+        fields = service_fields(s, centre, params, hold=True, packet_path=PATH)
+        assert fields["U_packet"]/fields["B"] == pytest.approx(packet_velocity(s, PATH), rel=1e-12)
+        assert fields["U_beta"] == fields["U_packet"]
+
+
+def test_unit_speed_path_keeps_the_lapse_and_stretch_of_the_window_track(params):
+    unit = (0., 0., 1., 1., 1., -1., 1., 1., 1.)
+    params = replace(params, standing_support_packet_lapse_schedule=params.standing_support_packet_beta_rematch_schedule,
+                     standing_support_packet_beta_rematch_temporal_width_multiplier=1.,
+                     standing_support_packet_lapse_temporal_profile=params.standing_support_packet_beta_rematch_temporal_profile)
+    for s, ell in ((-1.2, -1.1), (0., .3), (.6, .8), (1.4, 1.2)):
+        legacy = service_fields(s, ell, params, hold=True)
+        path = service_fields(s, ell, params, hold=True, packet_path=unit)
+        assert path["alpha"] == pytest.approx(legacy["alpha"], rel=1e-12)
+        assert path["gamma_ll"] == pytest.approx(legacy["gamma_ll"], rel=1e-12)
+
+
+def test_packet_path_validation():
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=(0., 0., 1.))
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=(0., 0., 1., 1., 1., 0., 0., 1., 1.))
