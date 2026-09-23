@@ -51,19 +51,63 @@ class AxialTrackDesign:
     wall_spacing: str = "linear"
     string_curvature: float = 0.
     jet_step: float = .0025
+    lapse_layer: tuple[float, float] | None = None
+    stretch_layer: tuple[float, float] | None = None
+    shift_layer: tuple[float, float] | None = None
+    sheath_log_lapse: float = 0.
+    sheath_rise: tuple[float, float] = (1.75, 1.)
+    sheath_fall: tuple[float, float] = (4.75, 2.)
+    sheath_length: tuple[float, float] = (5.5, 1.)
+    conformal_log_scale: float = 0.
+    conformal_rise: tuple[float, float] = (1.75, 1.)
+    conformal_fall: tuple[float, float] = (5.25, 1.)
 
     def __post_init__(self):
-        values = (self.core_radius, self.wall_width, self.string_curvature, self.jet_step)
+        values = (self.core_radius, self.wall_width, self.string_curvature, self.jet_step, self.sheath_log_lapse,
+                  *self.sheath_rise, *self.sheath_fall, *self.sheath_length, self.conformal_log_scale,
+                  *self.conformal_rise, *self.conformal_fall,
+                  *(x for layer in (self.lapse_layer, self.stretch_layer, self.shift_layer) if layer for x in layer))
         if not all(math.isfinite(x) for x in values):
             raise ValueError("axial design values must be finite")
         if min(self.core_radius, self.wall_width, self.jet_step) <= 0 or self.string_curvature < 0:
             raise ValueError("core radius, wall width and jet step must be positive; string curvature nonnegative")
         if self.wall_spacing not in {"linear", "logarithmic"}:
             raise ValueError("wall spacing is linear or logarithmic")
+        if self.staged:
+            if self.wall_spacing != "linear" or self.string_curvature != 0:
+                raise ValueError("staged boundary layers use linear spacing and a flat transverse profile")
+            spans = list(self.layers.values())
+            if self.sheath_log_lapse:
+                spans += [self.sheath_rise, self.sheath_fall]
+            if self.conformal_log_scale:
+                spans += [self.conformal_rise, self.conformal_fall]
+            if any(start < self.core_radius or width <= 0 for start, width in spans):
+                raise ValueError("every layer starts at or beyond the service-region radius with positive width")
+            if min(self.sheath_length) <= 0:
+                raise ValueError("the sheath length and its taper must be positive")
+
+    @property
+    def staged(self) -> bool:
+        return any(layer is not None for layer in (self.lapse_layer, self.stretch_layer, self.shift_layer)) or \
+            self.sheath_log_lapse != 0 or self.conformal_log_scale != 0
+
+    @property
+    def layers(self) -> dict[str, tuple[float, float]]:
+        """Radial transition (start, width) of log alpha, log A and beta; the service-region wall by default."""
+        default = (self.core_radius, self.wall_width)
+        return {"alpha": self.lapse_layer or default, "A": self.stretch_layer or default,
+                "beta": self.shift_layer or default}
 
     @property
     def outer_radius(self) -> float:
-        return self.core_radius+self.wall_width
+        if not self.staged:
+            return self.core_radius+self.wall_width
+        ends = [start+width for start, width in self.layers.values()]
+        if self.sheath_log_lapse:
+            ends.append(self.sheath_fall[0]+self.sheath_fall[1])
+        if self.conformal_log_scale:
+            ends.append(self.conformal_fall[0]+self.conformal_fall[1])
+        return max(ends)
 
 
 def step_jet(t, fraction):
@@ -113,6 +157,44 @@ def wall_blend(r, design: AxialTrackDesign):
         du, ddu = 1/(safe*span), -1/(safe*safe*span)
     value, first, second = step_jet(u, design.track.join_fraction)
     return 1-value, -first*du, -(second*du*du+first*ddu)
+
+
+def layer_blend(r, layer, fraction):
+    """1 - step((r - start)/width) with its first two r-derivatives for one field's transition layer."""
+    start, width = layer
+    value, first, second = step_jet((np.asarray(r, dtype=float)-start)/width, fraction)
+    return 1-value, -first/width, -second/(width*width)
+
+
+def sheath_terms(r, z, design: AxialTrackDesign, rise=None, fall=None, amplitude=None):
+    """Log sheath amplitude h(z) E(r): its r-profile E and z-profile h, each with two derivatives.
+
+    E rises across rise and falls across fall (the lapse sheath's by default);
+    h equals the amplitude along the track and tapers to zero past
+    |z| = sheath_length[0] over sheath_length[1].
+    """
+    fraction = design.track.join_fraction
+    rise = rise or design.sheath_rise
+    fall = fall or design.sheath_fall
+    amplitude = design.sheath_log_lapse if amplitude is None else amplitude
+    up, up1, up2 = step_jet((np.asarray(r, dtype=float)-rise[0])/rise[1], fraction)
+    down, down1, down2 = step_jet((np.asarray(r, dtype=float)-fall[0])/fall[1], fraction)
+    up1, up2 = up1/rise[1], up2/rise[1]**2
+    down1, down2 = down1/fall[1], down2/fall[1]**2
+    e = up*(1-down)
+    e1 = up1*(1-down)-up*down1
+    e2 = up2*(1-down)-2*up1*down1-up*down2
+    length, taper = design.sheath_length
+    taper_value, taper1, taper2 = (float(x[0]) for x in step_jet(np.array([(abs(z)-length)/taper]), fraction))
+    h = amplitude*(1-taper_value)
+    h1 = -amplitude*math.copysign(1., z)*taper1/taper
+    h2 = -amplitude*taper2/taper**2
+    return (e, e1, e2), (h, h1, h2)
+
+
+def conformal_terms(r, z, design: AxialTrackDesign):
+    """The conformal sheath, added equally to log alpha and log A."""
+    return sheath_terms(r, z, design, design.conformal_rise, design.conformal_fall, design.conformal_log_scale)
 
 
 @lru_cache(maxsize=64)
@@ -197,26 +279,43 @@ def service_jet(s: float, z: float, params: SourceParams, design: AxialTrackDesi
     return stencil_jet(lambda a, b: core_fields(a, b, params, design), s, z, design.jet_step)
 
 
-def radial_jets(jet, chi, d1, d2):
-    """Full jets of alpha = exp(chi a), A = exp(chi b) and beta = chi beta_s over arrays of r."""
+def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
+    """Full jets of alpha = exp(chi_a a + s0 h E), A = exp(chi_b b) and beta = chi_s beta_s over arrays of r.
+
+    Without blends, one blend (chi, d1, d2) serves all three fields. blends
+    gives one (chi, chi', chi'') per field in the order alpha, A, beta. sheath
+    is ((E, E', E''), (h, h', h'')) for the log-lapse sheath, and conformal has
+    the same form for a sheath added equally to log alpha and log A.
+    """
+    blends = blends or ((chi, d1, d2),)*3
     out = {}
     for index, name in enumerate(("alpha", "A")):
         f = {key: jet[key][index] for key in jet}
-        value = np.exp(chi*f["v"])
+        c, c1, c2 = blends[index]
+        g = {"v": c*f["v"], "s": c*f["s"], "z": c*f["z"], "r": c1*f["v"], "ss": c*f["ss"], "sz": c*f["sz"],
+             "zz": c*f["zz"], "sr": c1*f["s"], "zr": c1*f["z"], "rr": c2*f["v"]}
+        for term in ((sheath,) if index == 0 else ())+(conformal,):
+            if term is None:
+                continue
+            (e, e1, e2), (h, h1, h2) = term
+            g["v"] = g["v"]+h*e
+            g["z"] = g["z"]+h1*e
+            g["r"] = g["r"]+h*e1
+            g["zz"] = g["zz"]+h2*e
+            g["zr"] = g["zr"]+h1*e1
+            g["rr"] = g["rr"]+h*e2
+        value = np.exp(g["v"])
         out[name] = value
-        out[f"{name}_s"], out[f"{name}_z"] = value*chi*f["s"], value*chi*f["z"]
-        out[f"{name}_r"] = value*d1*f["v"]
-        out[f"{name}_ss"] = value*(chi*f["ss"]+(chi*f["s"])**2)
-        out[f"{name}_sz"] = value*(chi*f["sz"]+chi*chi*f["s"]*f["z"])
-        out[f"{name}_zz"] = value*(chi*f["zz"]+(chi*f["z"])**2)
-        out[f"{name}_sr"] = value*d1*f["s"]*(1+chi*f["v"])
-        out[f"{name}_zr"] = value*d1*f["z"]*(1+chi*f["v"])
-        out[f"{name}_rr"] = value*(d2*f["v"]+(d1*f["v"])**2)
+        for key in ("s", "z", "r"):
+            out[f"{name}_{key}"] = value*g[key]
+        for key in ("ss", "sz", "zz", "sr", "zr", "rr"):
+            out[f"{name}_{key}"] = value*(g[key]+g[key[0]]*g[key[1]])
     b = {key: jet[key][2] for key in jet}
-    out["beta"] = chi*b["v"]
+    c, c1, c2 = blends[2]
+    out["beta"] = c*b["v"]
     for key in ("s", "z", "ss", "sz", "zz"):
-        out[f"beta_{key}"] = chi*b[key]
-    out["beta_r"], out["beta_sr"], out["beta_zr"], out["beta_rr"] = d1*b["v"], d1*b["s"], d1*b["z"], d2*b["v"]
+        out[f"beta_{key}"] = c*b[key]
+    out["beta_r"], out["beta_sr"], out["beta_zr"], out["beta_rr"] = c1*b["v"], c1*b["s"], c1*b["z"], c2*b["v"]
     return out
 
 
@@ -228,12 +327,22 @@ def service_curvature(jet) -> float:
     return float(-generated.product_rr(fields)[0])
 
 
-def frame_tensor(jet, r, design: AxialTrackDesign) -> np.ndarray:
-    """Orthonormal stress tensors T_ab = G_ab/(8 pi) at radii r for one (sigma, z) jet; shape (len(r), 4, 4)."""
+def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0.) -> np.ndarray:
+    """Orthonormal stress tensors T_ab = G_ab/(8 pi) at radii r for one (sigma, z) jet; shape (len(r), 4, 4).
+
+    The rail coordinate z enters through the sheath's taper along the track.
+    """
     r = np.atleast_1d(np.asarray(r, dtype=float))
-    chi, d1, d2 = wall_blend(r, design)
     value, slope, curvature = transverse_profile(r, design)
-    fields = radial_jets(jet, chi, d1, d2)
+    if design.staged:
+        fraction = design.track.join_fraction
+        blends = tuple(layer_blend(r, design.layers[name], fraction) for name in ("alpha", "A", "beta"))
+        sheath = sheath_terms(r, z, design) if design.sheath_log_lapse else None
+        conformal = conformal_terms(r, z, design) if design.conformal_log_scale else None
+        fields = radial_jets(jet, None, None, None, blends=blends, sheath=sheath, conformal=conformal)
+    else:
+        chi, d1, d2 = wall_blend(r, design)
+        fields = radial_jets(jet, chi, d1, d2)
     fields.update(C=value, C_r=slope, C_rr=-curvature*value)
     wall = r > design.core_radius
     tensor = np.zeros((len(r), 4, 4))
@@ -383,9 +492,26 @@ def _resolve_degenerate(matrix, null_tolerance):
     return None
 
 
-def wall_nodes(design: AxialTrackDesign):
-    """Composite Gauss-Legendre radii and weights over the wall, split at the flattened joins."""
+def wall_nodes(design: AxialTrackDesign, per_panel: int = 24):
+    """Composite Gauss-Legendre radii and weights over the boundary layer, split at the flattened joins.
+
+    Staged designs split at every layer's joins and use per_panel nodes on each panel.
+    """
     fraction = design.track.join_fraction
+    if design.staged:
+        nodes, node_weights = np.polynomial.legendre.leggauss(per_panel)
+        spans = list(design.layers.values())
+        if design.sheath_log_lapse:
+            spans += [design.sheath_rise, design.sheath_fall]
+        if design.conformal_log_scale:
+            spans += [design.conformal_rise, design.conformal_fall]
+        cuts = {design.core_radius, design.outer_radius}
+        for start, width in spans:
+            cuts.update(start+width*u for u in (0., fraction, .5, 1-fraction, 1.))
+        cuts = np.array(sorted(c for c in cuts if design.core_radius <= c <= design.outer_radius))
+        radius = np.concatenate([lo+(hi-lo)*(nodes+1)/2 for lo, hi in zip(cuts[:-1], cuts[1:])])
+        weights = np.concatenate([(hi-lo)/2*node_weights for lo, hi in zip(cuts[:-1], cuts[1:])])
+        return radius, weights
     edges = (0., fraction, .5, 1-fraction, 1.)
     u_nodes, u_weights = [], []
     for lo, hi in zip(edges[:-1], edges[1:]):

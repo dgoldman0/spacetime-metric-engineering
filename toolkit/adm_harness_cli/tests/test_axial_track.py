@@ -320,3 +320,107 @@ def test_shift_free_wall_with_static_spatial_metric_carries_no_energy_flux():
     assert np.max(np.abs(tensor[:, 0, 1:])) < 1e-12
     kinds = ax.classify(tensor, floor=1e-12)
     assert np.all(kinds["type"] == ax.TYPE_I)
+
+
+STAGED = ax.AxialTrackDesign(lapse_layer=(2.2, 2.5), stretch_layer=(1.75, .8), shift_layer=(2.6, .9),
+                             sheath_log_lapse=3., sheath_rise=(1.75, 1.2), sheath_fall=(3.2, 1.5), sheath_length=(.5, .6))
+
+
+def staged_metric(fields, design):
+    """Four-dimensional metric with separate field layers and the log-lapse sheath, built directly."""
+    fraction = design.track.join_fraction
+
+    def metric(x):
+        s, z, r, _ = x
+        radius = np.array([r])
+        chi = {name: ax.layer_blend(radius, design.layers[name], fraction)[0][0] for name in ("alpha", "A", "beta")}
+        (e, _, _), (h, _, _) = ax.sheath_terms(radius, z, design)
+        (ec, _, _), (hc, _, _) = ax.conformal_terms(radius, z, design)
+        log_alpha, log_a, beta = fields(s, z)
+        alpha = math.exp(chi["alpha"]*log_alpha+h*e[0]+hc*ec[0])
+        a, shift = math.exp(chi["A"]*log_a+hc*ec[0]), chi["beta"]*beta
+        g = np.zeros((4, 4))
+        g[0, 0] = -alpha*alpha+a*a*shift*shift
+        g[0, 1] = g[1, 0] = a*a*shift
+        g[1, 1] = a*a
+        g[2, 2] = 1.
+        g[3, 3] = r*r
+        return g
+    return metric
+
+
+def test_equal_staged_layers_reproduce_the_single_blend_exactly():
+    staged = ax.AxialTrackDesign(lapse_layer=(1.75, 1.), stretch_layer=(1.75, 1.), shift_layer=(1.75, 1.))
+    jet = ax.stencil_jet(analytic_fields, .4, -.3, 1e-4)
+    r = np.linspace(1.6, 2.9, 27)
+    assert np.allclose(ax.frame_tensor(jet, r, staged), ax.frame_tensor(jet, r, ax.AxialTrackDesign()),
+                       rtol=1e-12, atol=1e-14)
+
+
+@pytest.mark.parametrize("s,z,r", [(.3, .2, 2.0), (-.5, .7, 2.4), (.8, .9, 2.9), (.1, -.8, 3.6)])
+def test_staged_tensor_with_sheath_matches_brute_force_kernel(s, z, r):
+    jet = ax.stencil_jet(analytic_fields, s, z, 1e-4)
+    generated = ax.frame_tensor(jet, [r], STAGED, z=z)[0]
+    metric = staged_metric(analytic_fields, STAGED)
+    einstein = einstein_fd(metric, [s, z, r, 0.], 5e-4, varying=3)
+    g = metric([s, z, r, 0.])
+    alpha = math.sqrt(-(g[0, 0]-g[0, 1]**2/g[1, 1]))
+    frame = np.zeros((4, 4))
+    frame[0, :2] = (1/alpha, -(g[0, 1]/g[1, 1])/alpha)
+    frame[1, 1] = 1/math.sqrt(g[1, 1])
+    frame[2, 2] = 1.
+    frame[3, 3] = 1/r
+    reference = frame@einstein@frame.T/ax.EIGHT_PI
+    assert np.max(np.abs(generated-reference)) < 5e-5*max(np.max(np.abs(reference)), 1.)
+
+
+def test_lapse_sheath_alone_carries_no_energy_flux_and_is_type_i():
+    jet = {key: np.zeros(3) for key in ("v", "s", "z", "ss", "sz", "zz")}
+    r = np.linspace(1.76, 4.69, 120)
+    for z in (0., .4, .8):
+        tensor = ax.frame_tensor(jet, r, STAGED, z=z)
+        assert np.max(np.abs(tensor[:, 0, 1:])) == 0.
+        kinds = ax.classify(tensor, floor=1e-12)["type"]
+        assert np.all(np.isin(kinds, [ax.TYPE_I, ax.VACUUM]))
+
+
+def test_staged_boundary_nodes_integrate_the_layer_area():
+    radius, weights = ax.wall_nodes(STAGED)
+    assert radius.min() >= STAGED.core_radius and radius.max() <= STAGED.outer_radius
+    assert np.sum(weights*2*math.pi*radius) == pytest.approx(math.pi*(STAGED.outer_radius**2-1.75**2), rel=1e-12)
+
+
+def test_staged_design_validation():
+    with pytest.raises(ValueError):
+        ax.AxialTrackDesign(stretch_layer=(1.5, 1.))
+    with pytest.raises(ValueError):
+        ax.AxialTrackDesign(shift_layer=(2., 1.), string_curvature=.1)
+
+
+CONFORMAL = replace(STAGED, conformal_log_scale=2.5, conformal_rise=(1.75, .7), conformal_fall=(3.4, 1.))
+
+
+@pytest.mark.parametrize("s,z,r", [(.3, .2, 2.1), (-.4, .6, 2.9), (.7, -.9, 3.9)])
+def test_conformal_sheath_matches_brute_force_kernel(s, z, r):
+    jet = ax.stencil_jet(analytic_fields, s, z, 1e-4)
+    generated = ax.frame_tensor(jet, [r], CONFORMAL, z=z)[0]
+    metric = staged_metric(analytic_fields, CONFORMAL)
+    einstein = einstein_fd(metric, [s, z, r, 0.], 5e-4, varying=3)
+    g = metric([s, z, r, 0.])
+    alpha = math.sqrt(-(g[0, 0]-g[0, 1]**2/g[1, 1]))
+    frame = np.zeros((4, 4))
+    frame[0, :2] = (1/alpha, -(g[0, 1]/g[1, 1])/alpha)
+    frame[1, 1] = 1/math.sqrt(g[1, 1])
+    frame[2, 2] = 1.
+    frame[3, 3] = 1/r
+    reference = frame@einstein@frame.T/ax.EIGHT_PI
+    assert np.max(np.abs(generated-reference)) < 5e-5*max(np.max(np.abs(reference)), 1.)
+
+
+def test_conformal_rise_carries_no_flux_under_a_moving_shift():
+    design = ax.AxialTrackDesign(lapse_layer=(4., 1.), stretch_layer=(4., 1.), shift_layer=(4., 1.),
+                                 conformal_log_scale=3., conformal_rise=(1.75, 1.5), conformal_fall=(3.5, .4))
+    jet = ax.stencil_jet(analytic_fields, .3, .2, 1e-4)
+    r = np.linspace(1.76, 3.24, 60)
+    tensor = ax.frame_tensor(jet, r, design, z=.2)
+    assert np.max(np.abs(tensor[:, 0, 1:])) < 1e-9*np.max(np.abs(tensor))

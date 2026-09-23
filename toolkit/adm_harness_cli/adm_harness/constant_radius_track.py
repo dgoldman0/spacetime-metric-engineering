@@ -46,6 +46,7 @@ class ConstantRadiusTrackDesign:
     reset_front_origin: float = -1.4
     reset_front_duration: float = 3.
     reset_front_ramp: float = .25
+    standing_support: bool = False
 
     def __post_init__(self):
         values = (self.track_radius, self.service_inner, self.track_half_length, self.transition_width,
@@ -63,6 +64,8 @@ class ConstantRadiusTrackDesign:
                      self.reset_front_duration, self.reset_front_ramp)
             if not all(math.isfinite(x) for x in front) or min(front[1], front[3], front[4]) <= 0:
                 raise ValueError("a reset front needs finite values and positive speed, duration and ramp")
+            if self.standing_support:
+                raise ValueError("a standing support has no decompression front")
 
     @property
     def reset_front(self):
@@ -188,7 +191,8 @@ def _check_supported(params: SourceParams) -> None:
 
 def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool = True,
                    abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1,
-                   reset_front: tuple[float, float, float, float, float] | None = None) -> dict[str, float]:
+                   reset_front: tuple[float, float, float, float, float] | None = None,
+                   standing: bool = False) -> dict[str, float]:
     """Rebuild beta075's alpha, beta and gamma_ll with selectable primitives.
 
     Legacy primitives follow source_ledger.scalars operation by operation.
@@ -200,6 +204,10 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     decompression: the support at ell begins to relax once a front leaving
     origin at time start with the given speed has passed it, with a C-infinity
     onset ramp, and completes over the given local duration.
+    A standing support holds the spatial metric static: the decompression,
+    the packet carve of the support weight and the packet windows on
+    gamma_ll are removed, while the lapse windows and every shift window
+    keep their schedules.
     """
     _check_supported(params)
     prim = _Primitives(smooth, abs_width, cap_width, join_fraction)
@@ -265,7 +273,9 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     u_beta = params.v_exit+(params.V-params.v_exit)*c_beta
     u_packet = params.v_exit+(params.V-params.v_exit)*c_packet
     e_release = 1.0-prim.step5((s-start)/max(end-start, 1.0e-12))
-    if reset_front is None:
+    if standing:
+        q = 1.0
+    elif reset_front is None:
         q = 1.0-prim.step5((s-params.q_t0)/max(params.q_Tr, 1.0e-12))
     else:
         start, speed, origin, duration, ramp = reset_front
@@ -334,7 +344,7 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     raw_carve = float(np.clip(sum(float(v) for v in (legacy_carve, 0.0, split_containment)), 0.0, 1.0))
     if raw_carve >= 1.0:
         raise ArithmeticError("total carve would activate its cap")
-    carve_factor = float(np.clip(1.0-raw_carve, 0.0, 1.0))
+    carve_factor = 1.0 if standing else float(np.clip(1.0-raw_carve, 0.0, 1.0))
     w_support = w_raw*carve_factor
 
     a_spatial = float(np.exp(q*w_support*math.log(params.C0)))
@@ -414,10 +424,11 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
                    params.standing_support_packet_radial_skirt_schedule,
                    temporal_profile=params.standing_support_packet_radial_skirt_temporal_profile))
     sqrt_radial = b_angular*a_spatial
-    radial = sqrt_radial*sqrt_radial*math.exp(
-        float(params.standing_support_packet_radial_log_gain)*radial_window
-        + float(params.standing_support_packet_radial_shoulder_log_gain)*shoulder_window
-        + float(params.standing_support_packet_radial_skirt_log_gain)*skirt_window)
+    radial = sqrt_radial*sqrt_radial
+    if not standing:
+        radial *= math.exp(float(params.standing_support_packet_radial_log_gain)*radial_window
+                           + float(params.standing_support_packet_radial_shoulder_log_gain)*shoulder_window
+                           + float(params.standing_support_packet_radial_skirt_log_gain)*skirt_window)
 
     vcoord = u_packet/b_angular
     rematch = 0.0
@@ -451,7 +462,7 @@ def track_scalars(s: float, ell: float, params: SourceParams, design: ConstantRa
         if design.smooth_service:
             service = service_fields(s, ell, params, smooth=True, abs_width=design.abs_width,
                                      cap_width=design.cap_width, join_fraction=design.join_fraction,
-                                     reset_front=design.reset_front)
+                                     reset_front=design.reset_front, standing=design.standing_support)
         else:
             service = regularized_scalars(s, ell, params)
         alpha = 1.+cutoff*(service["alpha"]-1.)

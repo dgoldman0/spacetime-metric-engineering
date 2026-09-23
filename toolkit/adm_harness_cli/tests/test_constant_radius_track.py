@@ -157,3 +157,25 @@ def test_default_design_keeps_the_uniform_reset(params):
     assert fields["alpha"] == uniform["alpha"] and fields["beta"] == uniform["beta"]
     with pytest.raises(ValueError):
         ConstantRadiusTrackDesign(reset_front_start=0., reset_front_speed=0.)
+
+
+def test_standing_support_holds_the_spatial_metric_static(params):
+    sigmas = np.linspace(-2., 20., 89)
+    for ell in (-2.2, -1., 0., .4, 1.7):
+        standing = [service_fields(s, ell, params, standing=True) for s in sigmas]
+        radial = np.array([f["gamma_ll"] for f in standing])
+        assert np.all(radial == radial[0])
+        assert all(f["q"] == 1. for f in standing)
+        lapse = np.array([f["alpha"] for f in standing])
+        shift = np.array([f["beta"] for f in standing])
+        assert np.ptp(lapse) > 0 or np.ptp(shift) > 0 or abs(ell) > 1.5
+    carved = service_fields(0., .3, params)
+    standing = service_fields(0., .3, params, standing=True)
+    assert standing["W"] > carved["W"]
+    assert track_scalars(0., .3, params, ConstantRadiusTrackDesign(standing_support=True))["gamma_ll"] == \
+        standing["gamma_ll"]
+
+
+def test_standing_support_excludes_a_decompression_front():
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(standing_support=True, reset_front_start=-.4)
