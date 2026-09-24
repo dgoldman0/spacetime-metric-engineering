@@ -1,0 +1,223 @@
+{
+ "completed_utc": "2026-09-24T02:10:30+00:00",
+ "elapsed_seconds": 3062.8,
+ "workers": 6,
+ "step": 0.1,
+ "sigma_range": [
+  -8.0,
+  10.0
+ ],
+ "screen_sigma_end": 3.0,
+ "z_max": 8.0,
+ "lane": "lane_2p1",
+ "amplitudes": {
+  "flat_lapse_1": {
+   "C0": 1.0,
+   "B0": 1.0,
+   "lam": 1.0
+  },
+  "flat_lapse_6": {
+   "C0": 1.0,
+   "B0": 1.0,
+   "lam": 6.0
+  },
+  "flat_lapse_60": {
+   "C0": 1.0,
+   "B0": 1.0,
+   "lam": 60.0
+  },
+  "flat_lapse_600": {
+   "C0": 1.0,
+   "B0": 1.0,
+   "lam": 600.0
+  }
+ },
+ "presheath_scales": [
+  3.0,
+  4.0,
+  5.0,
+  6.0,
+  6.5,
+  7.0,
+  8.0
+ ],
+ "selection": {
+  "amplitude": "flat_lapse_6",
+  "support": {
+   "C0": 1.0,
+   "B0": 1.0,
+   "lam": 6.0
+  },
+  "presheath": 7.0,
+  "rule": "least standing energy, then least coordinate content, among designs with no Type IV or unresolved node over the transit, no band at the 60 widest-estimate samples, and a timelike packet"
+ },
+ "wide_stack": {
+  "conformal_log_scale": 8.0,
+  "conformal_rise": [
+   1.75,
+   2.0
+  ],
+  "conformal_fall": [
+   9.25,
+   2.0
+  ],
+  "sheath_log_lapse": 8.0,
+  "sheath_rise": [
+   3.75,
+   5.0
+  ],
+  "sheath_fall": [
+   9.25,
+   4.0
+  ],
+  "shift_layer": [
+   4.25,
+   2.0
+  ],
+  "stretch_layer": [
+   9.25,
+   2.0
+  ],
+  "lapse_layer": [
+   9.25,
+   4.0
+  ]
+ },
+ "per_panel": 12,
+ "noise_floor": 1e-08,
+ "checks": {
+  "gate_samples": 29141,
+  "gate_type_i": 5050361,
+  "gate_type_iv": 0,
+  "gate_other": 0,
+  "refined_type_i": 10167888,
+  "refined_type_iv": 0,
+  "refined_other": 0,
+  "envelope_violations": 15,
+  "worst_envelope_ratio": 1.5856684246352286,
+  "resolved_crossings": 60,
+  "samples_with_band": 0,
+  "max_band_width": 0.0,
+  "core_min_null": -3.1852113345445128,
+  "layer_min_null": -3.4753140589414384,
+  "exterior_max_abs": 0.0,
+  "census_type_iv": 0,
+  "census_unresolved": 0,
+  "start_matches_standing": 0.0,
+  "standing_energy_balance": 0.00019217953571984238,
+  "max_along_track_light_speed": 20826.00698021116,
+  "light_transit": 2.6272264168132957,
+  "light_arrival": 1.2272264168132958,
+  "audit_log": [
+   {
+    "script": "run_horizon_escape_ladder.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/source_ledger_point_ledger.csv",
+     "--label",
+     "flat_lapse_6",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/escape_seed120",
+     "--seeds-per-scope",
+     "120",
+     "--max-steps",
+     "12000"
+    ],
+    "returncode": 0,
+    "seconds": 21.62,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_entry_packet_reachability.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/source_ledger_point_ledger.csv",
+     "--label",
+     "flat_lapse_6",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/entry_reachability",
+     "--entry-side",
+     "lower",
+     "--entry-side",
+     "upper"
+    ],
+    "returncode": 0,
+    "seconds": 5.39,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_scheduled_adm_probe_evolution.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/source_ledger_point_ledger.csv",
+     "--label",
+     "flat_lapse_6",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/scheduled_probe",
+     "--red-tag-seeds",
+     "120",
+     "--max-steps",
+     "12000"
+    ],
+    "returncode": 0,
+    "seconds": 11.45,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_trace_expansion_audit.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/source_ledger_point_ledger.csv",
+     "--seeds",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/scheduled_probe/scheduled_adm_probe_seeds.csv",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/trace_expansion",
+     "--label",
+     "flat_lapse_6"
+    ],
+    "returncode": 0,
+    "seconds": 10.82,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_dense_congruence_caustic_audit.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/source_ledger_point_ledger.csv",
+     "--trace-traces",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/trace_expansion/trace_expansion_audit_traces.csv",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/amplitude_pass/flat_lapse_6/dense_bundles_all_centers",
+     "--label",
+     "flat_lapse_6",
+     "--no-require-both-shrinking",
+     "--trace-step-scale",
+     "0.1",
+     "--max-steps",
+     "60000"
+    ],
+    "returncode": 0,
+    "seconds": 6.53,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   }
+  ]
+ },
+ "envelope_params_changed": {
+  "standing_support_packet_lapse_log_gain": 3.0,
+  "standing_support_packet_lapse_radius_multiplier": 2.5,
+  "standing_support_packet_lapse_schedule": "live_only"
+ },
+ "software_sha256": {
+  "adm_harness/axial_track.py": "395a4ea7e8dac1b1d1666cedfc808db638a87acfe6dd0648c5797d7e33969270",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "01cf049a580d7a5e98ed339eed7a55b899561682552ae783f8f0e84c1b0c97a0",
+  "scripts/run_choreography_pass.py": "15c434195312759df672dc34c8cedc1714acf4f1dbd7483a0dec01606b00c5ed",
+  "scripts/run_demand_census.py": "e60e2c0d373e2a7c4e8d3c14e0a6bac8e731f38012241ab55ee16b9594eba4e0",
+  "scripts/run_amplitude_pass.py": "bd0625db51295955bdde6dbbdc01b541ea85dc06a1e5f6cee92ac86df92bbbc5"
+ }
+}

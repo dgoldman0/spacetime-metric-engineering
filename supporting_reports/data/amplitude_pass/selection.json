@@ -1,0 +1,10 @@
+{
+ "amplitude": "flat_lapse_6",
+ "support": {
+  "C0": 1.0,
+  "B0": 1.0,
+  "lam": 6.0
+ },
+ "presheath": 7.0,
+ "rule": "least standing energy, then least coordinate content, among designs with no Type IV or unresolved node over the transit, no band at the 60 widest-estimate samples, and a timelike packet"
+}

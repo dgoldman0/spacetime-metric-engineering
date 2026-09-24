@@ -25,7 +25,8 @@ stress channel and location, as the input to source evaluation. Code:
   it fixes a scale-free energy per unit length of
   \(G\mu/c^2\approx2.0\times10^{4}\) of each sign, which is 13 solar masses
   per metre at any size. A pre-sheath of \(e^{6}\) passes the node-level
-  gate screen with 8 times less energy.
+  gate screen with 8 times less energy; resolved bands place the band-free
+  threshold at \(e^{7}\) ([amplitude pass](AMPLITUDE_PASS.md)).
 - **The demand sits at the support.** The support region \(|z|\le2.4\)
   holds 99.6% of the energy and 99.7% of the proper negative-null content.
 - **Standing demand dominates.** One transit adds 0.13 σ of standing
@@ -172,9 +173,9 @@ factors of thousands.
 
 The pre-sheath remains necessary after the carve's removal. It carries the
 flux-free rise that the moving shift needs: without it the transit leaves
-835 Type IV nodes, and at \(e^{4}\) three remain. At \(e^{6}\) the
-screen is clean, so the stack can drop from \(e^{8}\) to \(e^{6}\) once
-the full gate confirms it.
+835 Type IV nodes, and at \(e^{4}\) three remain. At \(e^{6}\) every node
+is Type I. The [amplitude pass](AMPLITUDE_PASS.md) resolves bands there and
+places the band-free threshold at \(e^{7}\).
 
 ## Transit
 

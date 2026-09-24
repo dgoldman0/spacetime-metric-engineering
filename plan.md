@@ -107,10 +107,21 @@ decisions now have test results:
   \(|z|=8\) pass the gate, and one transit adds 0.13 σ of standing demand
   in the coordinate measure.
 
-Next: test the candidate source families against the census roles (energy
-shells, pure stress, service-region pressure, moving stress), starting with
-the scaling of quantum supply against demand. Run the full gate on the
-\(e^{6}\) pre-sheath. The technical disclosure update to the one-space
+- **Amplitude pass.** The [amplitude pass](supporting_reports/AMPLITUDE_PASS.md)
+  flattens the support (\(C_0=B_0=1\), support lapse 6) and lowers the
+  pre-sheath to \(e^{7}\), the band-free threshold. The service is
+  unchanged: the 2.1c lane leads light by 1.66 with the packet timelike. The
+  gate passes over \(\sigma\in[-8,10]\) and \(|z|\le8\) at 5.05 million
+  points (10.17 million refined), with no band at 60 resolved crossings, and
+  the audits over the approach are clean. The energy of each sign falls 450
+  times, to \(7.5\times10^{4}\), and the proper negative-null content 540
+  times. The pre-sheath along the track now carries most of it, with
+  \(G\mu/c^2\approx6.6\times10^{3}\) of each sign.
+
+Next: shorten the sheathed length by switching the packet windows on at the
+entry, and test a pre-sheath staged in time around the live carry. Then run
+the scaling test of candidate source families against the census roles on
+the resulting design. The technical disclosure update to the one-space
 geometry follows the source evaluation. The sheath's along-track extent,
 which sets the standing signal channel, remains open.
 

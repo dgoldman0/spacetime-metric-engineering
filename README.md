@@ -25,7 +25,10 @@ a superluminal signal channel along the track. The
 [demand census](supporting_reports/DEMAND_CENSUS.md) records what this
 geometry asks of its sources: almost no ordinary matter, exactly balanced
 positive and negative energy shells whose size is set by the conformal
-pre-sheath, and a lapse sheath of pure stress. Source evaluation against
+pre-sheath, and a lapse sheath of pure stress. The
+[amplitude pass](supporting_reports/AMPLITUDE_PASS.md) flattens the support
+and lowers the pre-sheath to its band-free threshold, which cuts that energy
+450 times with the service and gate unchanged. Source evaluation against
 these roles comes next, ahead of the disclosure update. The
 C1 and source-population results below retain their recorded scope on the
 static phase-0.745 surrogate.
