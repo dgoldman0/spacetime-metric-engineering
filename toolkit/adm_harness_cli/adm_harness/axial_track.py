@@ -269,6 +269,23 @@ def stencil_jet(fields, s: float, z: float, step: float) -> dict[str, np.ndarray
             "zz": (grid[:, 1, 2]-2*grid[:, 1, 1]+grid[:, 1, 0])/step**2}
 
 
+def radial_fields(jet, r, design: AxialTrackDesign, z: float = 0.) -> dict[str, np.ndarray]:
+    """alpha, A, beta and C with their jets at radii r for one (sigma, z) service jet."""
+    r = np.atleast_1d(np.asarray(r, dtype=float))
+    value, slope, curvature = transverse_profile(r, design)
+    if design.staged:
+        fraction = design.track.join_fraction
+        blends = tuple(layer_blend(r, design.layers[name], fraction) for name in ("alpha", "A", "beta"))
+        sheath = sheath_terms(r, z, design) if design.sheath_log_lapse else None
+        conformal = conformal_terms(r, z, design) if design.conformal_log_scale else None
+        fields = radial_jets(jet, None, None, None, blends=blends, sheath=sheath, conformal=conformal)
+    else:
+        chi, d1, d2 = wall_blend(r, design)
+        fields = radial_jets(jet, chi, d1, d2)
+    fields.update(C=value, C_r=slope, C_rr=-curvature*value)
+    return fields
+
+
 def core_fields(s: float, z: float, params: SourceParams, design: AxialTrackDesign) -> tuple[float, float, float]:
     """log alpha, log A and beta of the core: the constant-radius track's service fields along z."""
     f = track_scalars(float(s), float(z), params, design.track)
@@ -333,17 +350,8 @@ def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0.) -> np.ndarray:
     The rail coordinate z enters through the sheath's taper along the track.
     """
     r = np.atleast_1d(np.asarray(r, dtype=float))
-    value, slope, curvature = transverse_profile(r, design)
-    if design.staged:
-        fraction = design.track.join_fraction
-        blends = tuple(layer_blend(r, design.layers[name], fraction) for name in ("alpha", "A", "beta"))
-        sheath = sheath_terms(r, z, design) if design.sheath_log_lapse else None
-        conformal = conformal_terms(r, z, design) if design.conformal_log_scale else None
-        fields = radial_jets(jet, None, None, None, blends=blends, sheath=sheath, conformal=conformal)
-    else:
-        chi, d1, d2 = wall_blend(r, design)
-        fields = radial_jets(jet, chi, d1, d2)
-    fields.update(C=value, C_r=slope, C_rr=-curvature*value)
+    curvature = transverse_profile(r, design)[2]
+    fields = radial_fields(jet, r, design, z)
     wall = r > design.core_radius
     tensor = np.zeros((len(r), 4, 4))
     transverse = generated.product_rr({**fields, "C": np.ones_like(r)})
@@ -458,6 +466,46 @@ def classify(tensor: np.ndarray, *, imaginary_tolerance: float = 1e-6, null_tole
     certified = vacuum | complex_pair | type_i
     return {"type": kind, "certified": certified, "type_margin": margin, "scale": scale,
             "rest_energy_density": energy, "principal_pressures": pressures, "rest_null_margin": rest_null}
+
+
+def principal_frame(tensor: np.ndarray, *, null_tolerance: float = 1e-6) -> dict[str, np.ndarray]:
+    """Source velocity and axis-labelled principal stresses of frame tensors with a generic Type I spectrum.
+
+    The timelike eigenvector of the (n, z, r) block of T^a_b is the source's
+    4-velocity, and its components give the velocity (v_z, v_r) relative to n.
+    Each spacelike eigenvector takes the label of the axis, z or r, that carries
+    the larger share of its spatial components; p_phi is T_phiphi. Repeated or
+    complex spectra give NaN.
+    """
+    tensor = np.asarray(tensor, dtype=float)
+    count = len(tensor)
+    scale = np.max(np.abs(tensor.reshape(count, -1)), axis=1)
+    safe = np.where(scale > 0, scale, 1.)
+    mixed = np.diag([-1., 1., 1.])[None]@tensor[:, :3, :3]/safe[:, None, None]
+    values, vectors = np.linalg.eig(mixed)
+    spectrum, basis = values.real, vectors.real
+    norms = -basis[:, 0, :]**2+basis[:, 1, :]**2+basis[:, 2, :]**2
+    rows = np.arange(count)
+    which = np.argmin(norms, axis=1)
+    gap = np.min(np.abs(spectrum[:, [0, 0, 1]]-spectrum[:, [1, 2, 2]]), axis=1)
+    generic = ((scale > 0) & (np.max(np.abs(values.imag), axis=1) <= 1e-12) & (gap > 1e-6)
+               & (norms[rows, which] < -null_tolerance) & ((norms < -null_tolerance).sum(axis=1) == 1))
+    first, second = (which+1) % 3, (which+2) % 3
+
+    def z_share(index):
+        vector = basis[rows, :, index]
+        return np.abs(vector[:, 1])/np.maximum(np.abs(vector[:, 1])+np.abs(vector[:, 2]), 1e-300)
+
+    first_is_z = z_share(first) >= z_share(second)
+    velocity = basis[rows, 1:, which]/basis[rows, 0, which][:, None]
+    out = {"energy_density": -spectrum[rows, which]*safe,
+           "p_z": np.where(first_is_z, spectrum[rows, first], spectrum[rows, second])*safe,
+           "p_r": np.where(first_is_z, spectrum[rows, second], spectrum[rows, first])*safe,
+           "p_phi": tensor[:, 3, 3].copy(), "v_z": velocity[:, 0], "v_r": velocity[:, 1]}
+    for key in out:
+        out[key] = np.where(generic, out[key], np.nan)
+    out["generic"] = generic
+    return out
 
 
 def _resolve_degenerate(matrix, null_tolerance):

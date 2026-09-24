@@ -218,6 +218,33 @@ def test_classifier_recovers_boosted_type_i_type_iv_and_null_dust():
     assert result["rest_null_margin"][0] == pytest.approx(-.4)
 
 
+def test_principal_frame_recovers_source_velocity_and_axis_labels():
+    rest = np.diag([2., .3, -.5, .7])
+    frame = ax.principal_frame(boost(rest, .8)[None])
+    assert frame["generic"][0]
+    assert frame["energy_density"][0] == pytest.approx(2., rel=1e-10)
+    assert (frame["p_z"][0], frame["p_r"][0], frame["p_phi"][0]) == pytest.approx((.3, -.5, .7), rel=1e-10)
+    assert (frame["v_z"][0], frame["v_r"][0]) == pytest.approx((-math.tanh(.8), 0.), abs=1e-12)
+    turn = np.eye(4)
+    turn[1:3, 1:3] = [[math.cos(.3), -math.sin(.3)], [math.sin(.3), math.cos(.3)]]
+    frame = ax.principal_frame((turn@boost(rest, -.5)@turn.T)[None])
+    assert (frame["p_z"][0], frame["p_r"][0]) == pytest.approx((.3, -.5), rel=1e-10)
+    assert (frame["v_z"][0], frame["v_r"][0]) == pytest.approx((math.tanh(.5)*math.cos(.3),
+                                                                math.tanh(.5)*math.sin(.3)), rel=1e-10)
+    repeated = ax.principal_frame(np.diag([0., 0., -.4, -.4])[None])
+    assert not repeated["generic"][0] and np.isnan(repeated["v_z"][0])
+
+
+def test_radial_fields_match_the_frame_tensor_fields_and_the_service_core():
+    jet = ax.service_jet(.3, .2, PARAMS, STAGED)
+    r = np.array([0., 1., 2.1, 3.3, 6.])
+    fields = ax.radial_fields(jet, r, STAGED, z=.2)
+    assert fields["alpha"][:2] == pytest.approx(np.exp(jet["v"][0])*np.ones(2), rel=1e-14)
+    assert fields["A"][:2] == pytest.approx(np.exp(jet["v"][1])*np.ones(2), rel=1e-14)
+    assert fields["alpha"][-1] == fields["A"][-1] == 1. and fields["beta"][-1] == 0.
+    assert fields["C"] == pytest.approx(r)
+
+
 def test_classifier_agrees_with_spherical_block_discriminant():
     generator = np.random.default_rng(5)
     for _ in range(40):
