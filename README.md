@@ -21,8 +21,12 @@ transverse boundary layer with a conformal pre-sheath and a lapse sheath. The
 on a prescribed path over a static support: the 2.1c lane reaches the track
 end 1.66 ahead of light through flat space, the packet stays timelike, and
 the gate passes with no residual bands. The lapse sheath of the geometry is itself
-a superluminal signal channel along the track. The disclosure update and the
-source roles are the next construction. The
+a superluminal signal channel along the track. The
+[demand census](supporting_reports/DEMAND_CENSUS.md) records what this
+geometry asks of its sources: almost no ordinary matter, exactly balanced
+positive and negative energy shells whose size is set by the conformal
+pre-sheath, and a lapse sheath of pure stress. Source evaluation against
+these roles comes next, ahead of the disclosure update. The
 C1 and source-population results below retain their recorded scope on the
 static phase-0.745 surrogate.
 

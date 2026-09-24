@@ -34,8 +34,8 @@ resolves residual Type IV bands on the packet path. The widest band is
 with the carve removed, the same stack shows no band at any resolved
 crossing. The width falls exponentially with the sheath lapse, so the stack
 can place it below any chosen scale. At the recorded normalization, where
-1.75 units is about 415 Planck lengths, \(8\times10^{-6}\) units is about
-0.002 Planck lengths.
+one unit is \(1/\sqrt\eta\approx204\) Planck lengths, \(8\times10^{-6}\) units is about
+0.0016 Planck lengths.
 
 The service keeps its safety and its advantage:
 

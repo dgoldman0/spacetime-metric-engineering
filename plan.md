@@ -93,11 +93,26 @@ decisions now have test results:
   service-region minimum null energy rises to −1.16 to −1.30 on the leading
   flank of the packet lapse window.
 
-Next: update the technical disclosure to the one-space geometry with the
-static support, the staged boundary layer and the path choreography. Decide
-the sheath's along-track extent, which sets the standing signal channel, and
-specify the source roles: the service region's transverse pressure, the
-standing support and the boundary-layer stack.
+- **Demand census.** The [demand census](supporting_reports/DEMAND_CENSUS.md)
+  records the stress this geometry demands, as the input to source
+  evaluation. The dominant energy condition holds on 0.003% of the standing
+  proper volume; 57% respects the null condition and 31% violates it. In
+  the standing configuration the energy density follows the stretch alone,
+  and every z-slice carries exactly balanced positive and negative energy,
+  \(3.39\times10^{7}\) of each sign in rail units. The lapse sheath carries
+  stress without energy. The conformal pre-sheath carries 99.98% of the
+  energy and fixes a scale-free \(G\mu/c^2\approx2\times10^{4}\) along the
+  track; an \(e^{6}\) pre-sheath passes the node-level screen at 8 times
+  less energy. The approach from \(\sigma=-8\) and the sheath ends to
+  \(|z|=8\) pass the gate, and one transit adds 0.13 σ of standing demand
+  in the coordinate measure.
+
+Next: test the candidate source families against the census roles (energy
+shells, pure stress, service-region pressure, moving stress), starting with
+the scaling of quantum supply against demand. Run the full gate on the
+\(e^{6}\) pre-sheath. The technical disclosure update to the one-space
+geometry follows the source evaluation. The sheath's along-track extent,
+which sets the standing signal channel, remains open.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it
