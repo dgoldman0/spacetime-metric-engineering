@@ -177,9 +177,18 @@ decisions now have test results:
     frequency by \(4.5\times10^{9}\), which a quantum sector must survive.
   - Classical scalars with higher-derivative kinetic terms remain open.
 
-Next: update the technical disclosure to the one-space geometry, its
-lapse-staged service and the source understanding above. A construction
-in the open classical family would follow as the next source stage.
+- **Technical disclosure.** The [technical disclosure](active_rail_technical_disclosure.tex)
+  describes the one-space operating embodiment: the axial metric, the
+  packet choreography, the lapse plateau and gated windows, the time-staged
+  boundary layer, the gate and audits, the demand and its placement, and the
+  source-family requirements. Its throat-metric revision is preserved at
+  commit `2146526c7a70691cd1ac1f8f4928b99d7cca0c19`.
+
+Next: a source construction in the open family, a classical scalar with
+higher-derivative kinetic terms that supplies the deficit in the outer falls
+and the sheath rise during each transit, with its perturbations checked on
+the time-dependent background. The C1 finite assembly and coupled dynamics
+follow on that construction.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

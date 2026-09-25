@@ -50,7 +50,10 @@ millimetre. Casimir cavities carry about \(10^{7}\) times their deficit in
 mirror energy. Curvature-coupled scalars reach the critical coupling in the
 outer falls on every radial ray through the packet, at any scale. Classical
 scalars with higher-derivative kinetic terms remain the open family for a
-macroscopic rail. The disclosure update follows. The C1 and
+macroscopic rail. The [technical disclosure](active_rail_technical_disclosure.pdf)
+now describes this one-space operating embodiment and its source
+requirements; its throat-metric revision is preserved at commit
+`2146526c7a70691cd1ac1f8f4928b99d7cca0c19`. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

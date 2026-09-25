@@ -233,17 +233,21 @@ ds^2=-\alpha^2d\sigma^2+(dz+\beta\,d\sigma)^2+dr^2+r^2d\phi^2,
 The design and its results are in the
 [lapse and staging pass](LAPSE_AND_STAGING_PASS.md).
 
-## For the disclosure update
+## The disclosure update
 
-The disclosure update follows the source evaluation.
-- **Sections that carry over:** the service architecture, the catch and
-  release choreography, the entry gating and the chronology governance.
-- **Sections to replace:**
-  - the reduced metric;
-  - the constant-radius track and its end transitions;
-  - the rail-stretch substrate;
-  - the string-cloud source family;
-  - the service-time ledger, which becomes the one-space arrival comparison.
+The [technical disclosure](../active_rail_technical_disclosure.pdf) now
+describes the one-space rail and its source requirements. Its revision
+describing the spherical throat metric is preserved at commit
+`2146526c7a70691cd1ac1f8f4928b99d7cca0c19`.
+- **Carried over:** the service architecture, the catch and release
+  choreography, the entry gating and the chronology governance.
+- **Replaced:**
+  - the reduced metric, now the axial metric with flat spatial slices;
+  - the constant-radius track and its end transitions, now the time-staged
+    transverse boundary layer;
+  - the rail-stretch substrate and the string-cloud source family, now the
+    lapse-borne demand and its source-family requirements;
+  - the service-time ledger, now the one-space arrival comparison.
 
-The Garattini–Zatrimaylov discussion moves to the warp side of the
+The Garattini–Zatrimaylov discussion sits on the warp side of the
 correspondence.
