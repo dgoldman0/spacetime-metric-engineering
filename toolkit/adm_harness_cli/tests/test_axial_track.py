@@ -6,7 +6,7 @@ import pytest
 
 from adm_harness import axial_track as ax
 from adm_harness.constant_radius_track import (
-    ConstantRadiusTrackDesign, flattened_step, track_scalars,
+    ConstantRadiusTrackDesign, flattened_step, packet_position, track_scalars,
 )
 from adm_harness.numerical_einstein import einstein_fd
 from adm_harness.source_ledger import smoothstep_minjerk
@@ -399,6 +399,78 @@ def test_staged_tensor_with_sheath_matches_brute_force_kernel(s, z, r):
     frame[3, 3] = 1/r
     reference = frame@einstein@frame.T/ax.EIGHT_PI
     assert np.max(np.abs(generated-reference)) < 5e-5*max(np.max(np.abs(reference)), 1.)
+
+
+FOLLOW_PATH = (-1.4, -1.4, .9, 2.1, .95, -1.4, .3, .2, .4)
+STAGED_FOLLOW = replace(STAGED, track=ConstantRadiusTrackDesign(packet_path=FOLLOW_PATH), sheath_length=(5., 1.),
+                        sheath_follow=(.2, .8), sheath_schedule=(-.9, .6, .8))
+
+
+def time_staged_metric(fields, design):
+    """Four-dimensional metric with a lapse sheath that follows the packet on a schedule, built directly."""
+    fraction = design.track.join_fraction
+
+    def metric(x):
+        s, z, r, _ = x
+        radius = np.array([r])
+        chi = {name: ax.layer_blend(radius, design.layers[name], fraction)[0][0] for name in ("alpha", "A", "beta")}
+        (e, _, _), h = ax.sheath_jets(radius, s, z, design)
+        log_alpha, log_a, beta = fields(s, z)
+        alpha = math.exp(chi["alpha"]*log_alpha+h["v"]*e[0])
+        a, shift = math.exp(chi["A"]*log_a), chi["beta"]*beta
+        g = np.zeros((4, 4))
+        g[0, 0] = -alpha*alpha+a*a*shift*shift
+        g[0, 1] = g[1, 0] = a*a*shift
+        g[1, 1] = a*a
+        g[2, 2] = 1.
+        g[3, 3] = r*r
+        return g
+    return metric
+
+
+def test_time_staged_sheath_jets_match_finite_differences():
+    r = np.array([2.2, 2.9])
+    h = 1e-4
+
+    def value(s, z):
+        return ax.sheath_jets(r, s, z, STAGED_FOLLOW)[1]["v"]
+
+    for s, offset in ((-.6, .5), (-.2, -.6), (.3, .35), (.7, -.4)):
+        z = packet_position(s, FOLLOW_PATH)+offset
+        jet = ax.sheath_jets(r, s, z, STAGED_FOLLOW)[1]
+        assert jet["s"] == pytest.approx((value(s+h, z)-value(s-h, z))/(2*h), rel=1e-5, abs=1e-8)
+        assert jet["z"] == pytest.approx((value(s, z+h)-value(s, z-h))/(2*h), rel=1e-5, abs=1e-8)
+        assert jet["ss"] == pytest.approx((value(s+h, z)-2*value(s, z)+value(s-h, z))/h**2, rel=1e-3, abs=1e-5)
+        assert jet["zz"] == pytest.approx((value(s, z+h)-2*value(s, z)+value(s, z-h))/h**2, rel=1e-3, abs=1e-5)
+        mixed = (value(s+h, z+h)-value(s+h, z-h)-value(s-h, z+h)+value(s-h, z-h))/(4*h*h)
+        assert jet["sz"] == pytest.approx(mixed, rel=1e-3, abs=1e-5)
+
+
+@pytest.mark.parametrize("s,offset,r", [(-.6, .5, 2.2), (-.2, -.6, 2.9), (.3, .35, 3.6), (.7, -.4, 4.1)])
+def test_time_staged_sheath_tensor_matches_brute_force_kernel(s, offset, r):
+    z = packet_position(s, FOLLOW_PATH)+offset
+    jet = ax.stencil_jet(analytic_fields, s, z, 1e-4)
+    generated = ax.frame_tensor(jet, [r], STAGED_FOLLOW, z=z, s=s)[0]
+    metric = time_staged_metric(analytic_fields, STAGED_FOLLOW)
+    einstein = einstein_fd(metric, [s, z, r, 0.], 5e-4, varying=3)
+    g = metric([s, z, r, 0.])
+    alpha = math.sqrt(-(g[0, 0]-g[0, 1]**2/g[1, 1]))
+    frame = np.zeros((4, 4))
+    frame[0, :2] = (1/alpha, -(g[0, 1]/g[1, 1])/alpha)
+    frame[1, 1] = 1/math.sqrt(g[1, 1])
+    frame[2, 2] = 1.
+    frame[3, 3] = 1/r
+    reference = frame@einstein@frame.T/ax.EIGHT_PI
+    assert np.max(np.abs(generated-reference)) < 5e-5*max(np.max(np.abs(reference)), 1.)
+    with pytest.raises(ValueError):
+        ax.frame_tensor(jet, [r], STAGED_FOLLOW, z=z)
+
+
+def test_following_sheath_validation():
+    with pytest.raises(ValueError):
+        replace(STAGED, sheath_follow=(.2, .8))
+    with pytest.raises(ValueError):
+        replace(STAGED_FOLLOW, sheath_schedule=(0., .5, .8))
 
 
 def test_lapse_sheath_alone_carries_no_energy_flux_and_is_type_i():

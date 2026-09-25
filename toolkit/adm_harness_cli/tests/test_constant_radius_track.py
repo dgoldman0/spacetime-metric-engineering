@@ -9,10 +9,10 @@ import pytest
 from adm_harness.constant_radius_track import (
     ConstantRadiusTrackDesign, areal_radius, transition_integral, track_scalars, flattened_step, service_cutoff,
     service_fields, smooth_abs, smooth_cap, smooth_step,
-    packet_position, packet_velocity,
+    packet_acceleration, packet_position, packet_velocity,
 )
 from adm_harness.radial_stress import TYPE_I
-from adm_harness.source_ledger import SourceParams, scalars, smoothstep_minjerk
+from adm_harness.source_ledger import SourceParams, live_packet_end, scalars, smoothstep_minjerk
 from adm_harness.warped_product import evaluate_spherical_demand
 
 
@@ -226,6 +226,50 @@ def test_unit_speed_path_keeps_the_lapse_and_stretch_of_the_window_track(params)
         path = service_fields(s, ell, params, hold=True, packet_path=unit)
         assert path["alpha"] == pytest.approx(legacy["alpha"], rel=1e-12)
         assert path["gamma_ll"] == pytest.approx(legacy["gamma_ll"], rel=1e-12)
+
+
+def test_packet_acceleration_is_the_derivative_of_the_path_velocity():
+    h = 1e-6
+    for s in (-1.3, -1.1, -.95, .35, .5, .8):
+        slope = (packet_velocity(s+h, PATH)-packet_velocity(s-h, PATH))/(2*h)
+        assert packet_acceleration(s, PATH) == pytest.approx(slope, abs=1e-6)
+    assert packet_acceleration(-3., PATH) == 0. and packet_acceleration(0., PATH) == 0.
+
+
+def test_live_start_delays_the_windows_and_the_lapse_lags_and_bends(params):
+    lapse = replace(params, standing_support_packet_lapse_log_gain=3., standing_support_packet_lapse_radius_multiplier=10.,
+                    standing_support_packet_lapse_width_multiplier=5.,
+                    standing_support_packet_beta_rematch_temporal_profile="minjerk")
+    flat = replace(lapse, standing_support_packet_lapse_log_gain=0.)
+    common = dict(standing=True, packet_path=PATH, lapse_profile="compact_smoothstep7")
+
+    def alpha(p, s, ell, **options):
+        return service_fields(s, ell, p, **{**common, **options})["alpha"]
+
+    early = -4.
+    centre = packet_position(early, PATH)
+    assert alpha(lapse, early, centre, live_start=-.5, lapse_lead=.6) == alpha(flat, early, centre)
+    assert abs(service_fields(early, centre, lapse, **common)["beta"]) > .1
+    assert abs(service_fields(early, centre, lapse, **common, live_start=-.5)["beta"]) < 1e-12
+    after = live_packet_end(lapse)+.6
+    centre = packet_position(after, PATH)
+    assert alpha(lapse, after, centre) == pytest.approx(alpha(flat, after, centre), rel=1e-12)
+    assert alpha(lapse, after, centre, lapse_lag=2.)/alpha(flat, after, centre) == pytest.approx(math.exp(3.), rel=1e-12)
+    s = -.2
+    centre = packet_position(s, PATH)
+    bent = alpha(lapse, s, centre+.7, lapse_convexity=.3)/alpha(lapse, s, centre+.7)
+    assert bent == pytest.approx(math.exp(.3*.49/2), rel=1e-12)
+
+
+def test_live_window_timing_validation():
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=PATH, lapse_release_lag=-1.)
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(live_start=0.)
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=PATH, lapse_window_profile="box")
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=PATH, lapse_convexity=-.1)
 
 
 def test_packet_path_validation():

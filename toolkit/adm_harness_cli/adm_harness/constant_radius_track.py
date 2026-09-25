@@ -49,6 +49,11 @@ class ConstantRadiusTrackDesign:
     standing_support: bool = False
     hold_support: bool = False
     packet_path: tuple[float, ...] | None = None
+    lapse_release_lag: float = 0.
+    live_start: float | None = None
+    lapse_lead: float = 0.
+    lapse_window_profile: str = "tanh"
+    lapse_convexity: float = 0.
 
     def __post_init__(self):
         values = (self.track_radius, self.service_inner, self.track_half_length, self.transition_width,
@@ -70,6 +75,19 @@ class ConstantRadiusTrackDesign:
                 raise ValueError("a standing or held support has no decompression front")
         if self.packet_path is not None:
             check_packet_path(self.packet_path)
+        if not math.isfinite(self.lapse_release_lag) or self.lapse_release_lag < 0:
+            raise ValueError("the lapse release lag must be finite and nonnegative")
+        if self.live_start is not None and not math.isfinite(self.live_start):
+            raise ValueError("the live start must be finite")
+        if not math.isfinite(self.lapse_lead) or self.lapse_lead < 0:
+            raise ValueError("the lapse lead must be finite and nonnegative")
+        if self.lapse_window_profile not in {"tanh", "compact_smoothstep7"}:
+            raise ValueError("the lapse window profile is tanh or compact_smoothstep7")
+        if not math.isfinite(self.lapse_convexity) or self.lapse_convexity < 0:
+            raise ValueError("the lapse convexity must be finite and nonnegative")
+        if (self.live_start is not None or self.lapse_lead or self.lapse_release_lag or self.lapse_convexity
+                or self.lapse_window_profile != "tanh") and self.packet_path is None:
+            raise ValueError("live-window timing and lapse shaping need a packet path")
 
     @property
     def reset_front(self):
@@ -163,6 +181,21 @@ def packet_velocity(s: float, path) -> float:
     return v_in+(v_lane-v_in)*smooth_step((s-a)/ta)-(v_lane-v_out)*smooth_step((s-d)/td)
 
 
+def smooth_step_derivative(t: float) -> float:
+    """First derivative of smooth_step."""
+    if t <= 0 or t >= 1:
+        return 0.
+    g = 1/(1-t)-1/t
+    return float(expit(g)*expit(-g)*(1/(1-t)**2+1/t**2))
+
+
+def packet_acceleration(s: float, path) -> float:
+    """Coordinate acceleration of the packet path, the derivative of packet_velocity."""
+    s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
+    return ((v_lane-v_in)*smooth_step_derivative((s-a)/ta)/ta
+            - (v_lane-v_out)*smooth_step_derivative((s-d)/td)/td)
+
+
 def packet_position(s: float, path) -> float:
     """Exact integral of packet_velocity from (s0, l0)."""
     s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
@@ -224,7 +257,9 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
                    abs_width: float = .02, cap_width: float = .25, join_fraction: float = .1,
                    reset_front: tuple[float, float, float, float, float] | None = None,
                    standing: bool = False, hold: bool = False,
-                   packet_path: tuple[float, ...] | None = None) -> dict[str, float]:
+                   packet_path: tuple[float, ...] | None = None, lapse_lag: float = 0.,
+                   live_start: float | None = None, lapse_lead: float = 0., lapse_profile: str = "tanh",
+                   lapse_convexity: float = 0.) -> dict[str, float]:
     """Rebuild beta075's alpha, beta and gamma_ll with selectable primitives.
 
     Legacy primitives follow source_ledger.scalars operation by operation.
@@ -245,7 +280,13 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
     support factor B at the path centre, so the packet's coordinate speed there
     equals packet_velocity(s). The packet lapse window then follows the
     schedule of the carried rematch shift, so the lapse envelope lasts as long
-    as the shift it covers.
+    as the shift it covers. A lapse lag moves the end of the packet lapse
+    window's schedule later by that interval of sigma, so the lapse can
+    outlast the shift it covers. A live start switches the rematch and packet
+    lapse windows on at that sigma, the lapse a lead earlier. The lapse window
+    takes the given radial profile, and a convexity c adds c (ell - centre)^2 / 2
+    to the log-lapse inside the window, making the lapse convex along the
+    track wherever the window is full.
     """
     _check_supported(params)
     prim = _Primitives(smooth, abs_width, cap_width, join_fraction)
@@ -268,19 +309,20 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
             return float(smooth_box(s, lo, hi, edge))
         return float(np.clip(rise(lo, edge, profile)*fall(hi, edge, profile), 0.0, 1.0))
 
-    def schedule(name, multiplier, profile):
+    def schedule(name, multiplier, profile, lag=0.0, start=None):
         width = max(float(params.w_beta)*float(multiplier), 1.0e-12)
+        onset = 1.0 if start is None else rise(start, width, profile)
         catch = max(params.w_catch_packet, params.w_catch_beta)*float(multiplier)
         if name == "live_only":
-            value = fall(live_end, width, profile)
+            value = fall(live_end+lag, width, profile)
         elif name == "entry_catch_release":
-            value = box(params.x_catch_packet-2.0*catch, live_end, max(width/2.0, 1.0e-12), profile)
+            value = box(params.x_catch_packet-2.0*catch, live_end+lag, max(width/2.0, 1.0e-12), profile)
         elif name == "catch_only":
-            value = box(params.x_catch_packet-2.0*catch, params.x_catch_packet+2.0*catch,
+            value = box(params.x_catch_packet-2.0*catch, params.x_catch_packet+2.0*catch+lag,
                         max(width/2.0, 1.0e-12), profile)
         else:
             raise ValueError(f"unsupported packet schedule {name}")
-        return float(np.clip(value, 0.0, 1.0))
+        return float(np.clip(value*onset, 0.0, 1.0))
 
     def packet_bump(radius, width, profile, at=None):
         x2 = ((ell if at is None else at)-centre)**2+params.eps*params.eps
@@ -294,11 +336,11 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
         return 1.0-prim.step7(0.5*(z+1.0))
 
     def window(radius_multiplier, width_multiplier, schedule_name, temporal_multiplier=1.0,
-               temporal_profile="tanh", radial_profile="tanh", at=None):
+               temporal_profile="tanh", radial_profile="tanh", at=None, lag=0.0, start=None):
         radius = max(float(params.Rpass)*float(radius_multiplier), 1.0e-12)
         width = max(float(params.w_pass)*float(width_multiplier), 1.0e-12)
         value = packet_bump(radius, width, radial_profile, at)*schedule(schedule_name, temporal_multiplier,
-                                                                         temporal_profile)
+                                                                         temporal_profile, lag, start)
         return float(np.clip(value, 0.0, 1.0))
 
     def annulus(outer, inner):
@@ -439,13 +481,16 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
                               params.standing_support_packet_lapse_width_multiplier,
                               params.standing_support_packet_beta_rematch_schedule,
                               params.standing_support_packet_beta_rematch_temporal_width_multiplier,
-                              params.standing_support_packet_beta_rematch_temporal_profile)
+                              params.standing_support_packet_beta_rematch_temporal_profile,
+                              radial_profile=lapse_profile, lag=lapse_lag,
+                              start=None if live_start is None else live_start-lapse_lead)
     elif params.standing_support_packet_lapse_log_gain != 0.0:
         lapse_window = window(params.standing_support_packet_lapse_radius_multiplier,
                               params.standing_support_packet_lapse_width_multiplier,
                               params.standing_support_packet_lapse_schedule,
-                              temporal_profile=params.standing_support_packet_lapse_temporal_profile)
-    packet_lapse = float(math.exp(float(params.standing_support_packet_lapse_log_gain)*float(lapse_window)))
+                              temporal_profile=params.standing_support_packet_lapse_temporal_profile, lag=lapse_lag)
+    packet_lapse = float(math.exp((float(params.standing_support_packet_lapse_log_gain)
+                                   + 0.5*lapse_convexity*(ell-centre)**2)*float(lapse_window)))
     cushion_window = edge if params.standing_support_packet_smooth_split_null_cushion_log_gain != 0.0 else 0.0
     split_cushion = float(math.exp(float(params.standing_support_packet_smooth_split_null_cushion_log_gain)
                                    * float(cushion_window)))
@@ -495,12 +540,13 @@ def service_fields(s: float, ell: float, params: SourceParams, *, smooth: bool =
         profile = params.standing_support_packet_beta_rematch_temporal_profile
         floor = float(params.standing_support_packet_beta_rematch_center_floor)*window(
             params.standing_support_packet_beta_rematch_radius_multiplier,
-            params.standing_support_packet_beta_rematch_width_multiplier, schedule_name, multiplier, profile)
+            params.standing_support_packet_beta_rematch_width_multiplier, schedule_name, multiplier, profile,
+            start=live_start)
         ring = annulus(
             window(params.standing_support_packet_beta_rematch_outer_radius_multiplier, edge_width,
-                   schedule_name, multiplier, profile),
+                   schedule_name, multiplier, profile, start=live_start),
             window(params.standing_support_packet_beta_rematch_inner_radius_multiplier, edge_width,
-                   schedule_name, multiplier, profile))
+                   schedule_name, multiplier, profile, start=live_start))
         trailing = float(falloff(ell-centre, max(float(params.w_pass)*float(edge_width), 1.0e-12)))
         value = ring*trailing
         rematch = float(np.clip(value+floor*(1.0-value), 0.0, 1.0))
@@ -518,7 +564,10 @@ def track_scalars(s: float, ell: float, params: SourceParams, design: ConstantRa
             service = service_fields(s, ell, params, smooth=True, abs_width=design.abs_width,
                                      cap_width=design.cap_width, join_fraction=design.join_fraction,
                                      reset_front=design.reset_front, standing=design.standing_support,
-                                     hold=design.hold_support, packet_path=design.packet_path)
+                                     hold=design.hold_support, packet_path=design.packet_path,
+                                     lapse_lag=design.lapse_release_lag, live_start=design.live_start,
+                                     lapse_lead=design.lapse_lead, lapse_profile=design.lapse_window_profile,
+                                     lapse_convexity=design.lapse_convexity)
         else:
             service = regularized_scalars(s, ell, params)
         alpha = 1.+cutoff*(service["alpha"]-1.)

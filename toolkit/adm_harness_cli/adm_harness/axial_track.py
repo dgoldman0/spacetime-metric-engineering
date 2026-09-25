@@ -31,7 +31,9 @@ from scipy.integrate import solve_ivp
 from scipy.special import expit
 
 from . import axial_einstein_generated as generated
-from .constant_radius_track import ConstantRadiusTrackDesign, track_scalars
+from .constant_radius_track import (
+    ConstantRadiusTrackDesign, packet_acceleration, packet_position, packet_velocity, track_scalars,
+)
 from .source_ledger import SourceParams
 
 EIGHT_PI = 8*math.pi
@@ -61,6 +63,8 @@ class AxialTrackDesign:
     conformal_log_scale: float = 0.
     conformal_rise: tuple[float, float] = (1.75, 1.)
     conformal_fall: tuple[float, float] = (5.25, 1.)
+    sheath_follow: tuple[float, float] | None = None
+    sheath_schedule: tuple[float, float, float] | None = None
 
     def __post_init__(self):
         values = (self.core_radius, self.wall_width, self.string_curvature, self.jet_step, self.sheath_log_lapse,
@@ -85,6 +89,21 @@ class AxialTrackDesign:
                 raise ValueError("every layer starts at or beyond the service-region radius with positive width")
             if min(self.sheath_length) <= 0:
                 raise ValueError("the sheath length and its taper must be positive")
+        if self.sheath_follow is not None:
+            if self.track.packet_path is None:
+                raise ValueError("a sheath that follows the packet needs a packet path")
+            half, edge = self.sheath_follow
+            if not (math.isfinite(half) and math.isfinite(edge)) or half < 0 or edge <= 0:
+                raise ValueError("the following sheath needs a finite nonnegative half-length and positive edge")
+        if self.sheath_schedule is not None:
+            on, off, ramp = self.sheath_schedule
+            if not all(math.isfinite(x) for x in (on, off, ramp)) or ramp <= 0 or off < on+ramp:
+                raise ValueError("the sheath schedule needs finite on < off - ramp and a positive ramp")
+
+    @property
+    def time_staged(self) -> bool:
+        """True when the lapse sheath depends on sigma, through the packet window or the schedule."""
+        return bool(self.sheath_log_lapse) and (self.sheath_follow is not None or self.sheath_schedule is not None)
 
     @property
     def staged(self) -> bool:
@@ -192,6 +211,47 @@ def sheath_terms(r, z, design: AxialTrackDesign, rise=None, fall=None, amplitude
     return (e, e1, e2), (h, h1, h2)
 
 
+def sheath_jets(r, s, z, design: AxialTrackDesign):
+    """Lapse sheath h(sigma, z) E(r): E with two r-derivatives, and h with its sigma and z jet.
+
+    h is the amplitude times the static taper along the track, times the
+    schedule T(sigma) when one is set, times a flat-top window around the
+    packet, Z(z - l_p(sigma)), when the sheath follows the packet. The window
+    equals one within the follow half-length of the packet and falls to zero
+    across the follow edge.
+    """
+    fraction = design.track.join_fraction
+    (e, e1, e2), (taper, taper_z, taper_zz) = sheath_terms(r, z, design, amplitude=1.)
+    time = {"v": 1., "s": 0., "ss": 0.}
+    if design.sheath_schedule is not None:
+        on, off, ramp = design.sheath_schedule
+        up = [float(x[0]) for x in step_jet(np.array([(s-on)/ramp]), fraction)]
+        down = [float(x[0]) for x in step_jet(np.array([(s-off)/ramp]), fraction)]
+        up[1], up[2] = up[1]/ramp, up[2]/ramp**2
+        down[1], down[2] = down[1]/ramp, down[2]/ramp**2
+        time = {"v": up[0]*(1-down[0]), "s": up[1]*(1-down[0])-up[0]*down[1],
+                "ss": up[2]*(1-down[0])-2*up[1]*down[1]-up[0]*down[2]}
+    follow = {"v": 1., "s": 0., "z": 0., "ss": 0., "sz": 0., "zz": 0.}
+    if design.sheath_follow is not None:
+        half, edge = design.sheath_follow
+        path = design.track.packet_path
+        offset = z-packet_position(s, path)
+        velocity, acceleration = packet_velocity(s, path), packet_acceleration(s, path)
+        step, step1, step2 = (float(x[0]) for x in step_jet(np.array([(abs(offset)-half)/edge]), fraction))
+        window, window1, window2 = 1-step, -math.copysign(1., offset)*step1/edge, -step2/edge**2
+        follow = {"v": window, "z": window1, "zz": window2, "s": -velocity*window1, "sz": -velocity*window2,
+                  "ss": velocity*velocity*window2-acceleration*window1}
+    amplitude = design.sheath_log_lapse
+    h = {"v": amplitude*taper*time["v"]*follow["v"],
+         "s": amplitude*taper*(time["s"]*follow["v"]+time["v"]*follow["s"]),
+         "z": amplitude*time["v"]*(taper_z*follow["v"]+taper*follow["z"]),
+         "ss": amplitude*taper*(time["ss"]*follow["v"]+2*time["s"]*follow["s"]+time["v"]*follow["ss"]),
+         "sz": amplitude*(taper_z*(time["s"]*follow["v"]+time["v"]*follow["s"])
+                          + taper*(time["s"]*follow["z"]+time["v"]*follow["sz"])),
+         "zz": amplitude*time["v"]*(taper_zz*follow["v"]+2*taper_z*follow["z"]+taper*follow["zz"])}
+    return (e, e1, e2), h
+
+
 def conformal_terms(r, z, design: AxialTrackDesign):
     """The conformal sheath, added equally to log alpha and log A."""
     return sheath_terms(r, z, design, design.conformal_rise, design.conformal_fall, design.conformal_log_scale)
@@ -269,14 +329,22 @@ def stencil_jet(fields, s: float, z: float, step: float) -> dict[str, np.ndarray
             "zz": (grid[:, 1, 2]-2*grid[:, 1, 1]+grid[:, 1, 0])/step**2}
 
 
-def radial_fields(jet, r, design: AxialTrackDesign, z: float = 0.) -> dict[str, np.ndarray]:
-    """alpha, A, beta and C with their jets at radii r for one (sigma, z) service jet."""
+def radial_fields(jet, r, design: AxialTrackDesign, z: float = 0., s: float | None = None) -> dict[str, np.ndarray]:
+    """alpha, A, beta and C with their jets at radii r for one (sigma, z) service jet.
+
+    A time-staged sheath needs sigma.
+    """
     r = np.atleast_1d(np.asarray(r, dtype=float))
     value, slope, curvature = transverse_profile(r, design)
     if design.staged:
         fraction = design.track.join_fraction
         blends = tuple(layer_blend(r, design.layers[name], fraction) for name in ("alpha", "A", "beta"))
-        sheath = sheath_terms(r, z, design) if design.sheath_log_lapse else None
+        if design.time_staged:
+            if s is None:
+                raise ValueError("a time-staged sheath needs sigma")
+            sheath = sheath_jets(r, s, z, design)
+        else:
+            sheath = sheath_terms(r, z, design) if design.sheath_log_lapse else None
         conformal = conformal_terms(r, z, design) if design.conformal_log_scale else None
         fields = radial_jets(jet, None, None, None, blends=blends, sheath=sheath, conformal=conformal)
     else:
@@ -301,8 +369,10 @@ def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
 
     Without blends, one blend (chi, d1, d2) serves all three fields. blends
     gives one (chi, chi', chi'') per field in the order alpha, A, beta. sheath
-    is ((E, E', E''), (h, h', h'')) for the log-lapse sheath, and conformal has
-    the same form for a sheath added equally to log alpha and log A.
+    is ((E, E', E''), (h, h', h'')) for the log-lapse sheath, with h' and h''
+    its z-derivatives, or ((E, E', E''), h) with h a jet dict over sigma and z
+    for a time-staged sheath. conformal has the static form for a sheath added
+    equally to log alpha and log A.
     """
     blends = blends or ((chi, d1, d2),)*3
     out = {}
@@ -314,13 +384,19 @@ def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
         for term in ((sheath,) if index == 0 else ())+(conformal,):
             if term is None:
                 continue
-            (e, e1, e2), (h, h1, h2) = term
-            g["v"] = g["v"]+h*e
-            g["z"] = g["z"]+h1*e
-            g["r"] = g["r"]+h*e1
-            g["zz"] = g["zz"]+h2*e
-            g["zr"] = g["zr"]+h1*e1
-            g["rr"] = g["rr"]+h*e2
+            (e, e1, e2), h = term
+            if not isinstance(h, dict):
+                h = {"v": h[0], "s": 0., "z": h[1], "ss": 0., "sz": 0., "zz": h[2]}
+            g["v"] = g["v"]+h["v"]*e
+            g["s"] = g["s"]+h["s"]*e
+            g["z"] = g["z"]+h["z"]*e
+            g["r"] = g["r"]+h["v"]*e1
+            g["ss"] = g["ss"]+h["ss"]*e
+            g["sz"] = g["sz"]+h["sz"]*e
+            g["zz"] = g["zz"]+h["zz"]*e
+            g["sr"] = g["sr"]+h["s"]*e1
+            g["zr"] = g["zr"]+h["z"]*e1
+            g["rr"] = g["rr"]+h["v"]*e2
         value = np.exp(g["v"])
         out[name] = value
         for key in ("s", "z", "r"):
@@ -344,14 +420,15 @@ def service_curvature(jet) -> float:
     return float(-generated.product_rr(fields)[0])
 
 
-def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0.) -> np.ndarray:
+def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0., s: float | None = None) -> np.ndarray:
     """Orthonormal stress tensors T_ab = G_ab/(8 pi) at radii r for one (sigma, z) jet; shape (len(r), 4, 4).
 
-    The rail coordinate z enters through the sheath's taper along the track.
+    The rail coordinate z enters through the sheath's taper along the track,
+    and sigma through a time-staged sheath.
     """
     r = np.atleast_1d(np.asarray(r, dtype=float))
     curvature = transverse_profile(r, design)[2]
-    fields = radial_fields(jet, r, design, z)
+    fields = radial_fields(jet, r, design, z, s)
     wall = r > design.core_radius
     tensor = np.zeros((len(r), 4, 4))
     transverse = generated.product_rr({**fields, "C": np.ones_like(r)})
