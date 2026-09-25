@@ -80,7 +80,8 @@ def point_census(tensor, fields, coord_weight, proper_weight):
     respecting = type_i & ~violating & ~ordinary
     eulerian = tensor[:, 0, 0]
     trace = tensor[:, 0, 0]+tensor[:, 1, 1]+tensor[:, 2, 2]+tensor[:, 3, 3]
-    speed = np.hypot(frame["v_z"], frame["v_r"])
+    # Source velocities are read only where the tensor rises above the noise floor.
+    speed = np.where(vacuum, np.nan, np.hypot(frame["v_z"], frame["v_r"]))
     # Observers at fixed (z, r, phi) move along e_z at A beta/alpha relative to n; beyond one, none exist.
     static_speed = fields["A"]*fields["beta"]/fields["alpha"]
     with np.errstate(invalid="ignore", divide="ignore"):
