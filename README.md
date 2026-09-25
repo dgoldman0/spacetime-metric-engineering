@@ -33,8 +33,13 @@ and lowers the pre-sheath to its band-free threshold, which cuts that energy
 removes the stretch altogether. The lapse, which carries no energy, takes
 over the pre-sheath's work, and the sheath rides with the packet. The
 standing geometry is then flat space, and each transit demands a local
-tension without energy that passes the gate everywhere. Source evaluation
-against that demand comes next, ahead of the disclosure update. The
+tension without energy that passes the gate everywhere. The
+[geometry clarification](supporting_reports/THROAT_GEOMETRY_CLARIFICATION.md)
+records that the May 2026 paper and the disclosure's throat metric describe
+a two-ended traversable wormhole carrying a shift service. A one-page
+[addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf) updates
+that paper with the clarification and the current state. Source evaluation
+against the transit demand comes next, ahead of the disclosure update. The
 C1 and source-population results below retain their recorded scope on the
 static phase-0.745 surrogate.
 

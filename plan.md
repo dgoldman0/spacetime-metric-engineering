@@ -133,6 +133,16 @@ decisions now have test results:
   \(4.47\times10^{7}\) standing in the census design, with a peak stress
   of 2.9. The packet's clock peaks at 55 times exterior time, below both
   earlier designs, and the service and audits hold.
+- **Geometry clarification.** The [geometry clarification](supporting_reports/THROAT_GEOMETRY_CLARIFICATION.md)
+  records that the reduced metric of the May 2026 paper and of the
+  disclosure through its constant-radius revision is a two-ended traversable
+  wormhole: an Ellis–Morris–Thorne throat, later a constant-radius throat,
+  carrying a shift service. Three readings belong to a rail through one
+  space: the exterior-null service-time comparison, the throat relaxation
+  and the supplied-source premise. The one-space geometry resolves them, and
+  the paper's service rules carry forward. A one-page
+  [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf)
+  updates the paper.
 
 Next: run the scaling test of candidate source families against this
 demand, a tension without energy that is local to the packet during each
