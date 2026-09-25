@@ -9,10 +9,12 @@ same clarification: [addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf](.
 
 ## Summary
 
-The earlier geometry is a traversable wormhole carrying a shift service
-along its throat. The May paper says so in its own terms: the wormhole side
-supplies the plant and the warp side supplies the transport handle. The
-technical disclosure kept the same metric, describing it as a
+The earlier geometry is a two-ended, traversable wormhole of Morris–Thorne
+type. The earlier system is an active rail laid through its throat. The May
+paper describes this combination in its own terms: the wormhole side
+supplies the plant and the warp side supplies the transport handle.
+
+The technical disclosure kept the same metric, calling it a
 "Morris–Thorne-like intrinsic throat/support geometry", while presenting the
 system as a rail between two endpoints. Three of its readings belong to a
 rail through one space:
@@ -20,9 +22,13 @@ rail through one space:
 - its throat relaxation;
 - its premise that sources are available.
 
-The one-space geometry of the current work places the rail along an axis in
-ordinary space. The paper's two service rules and its service sequence
-carry forward into it directly.
+The Garattini–Zatrimaylov obstruction concerns warp bubbles crossing a
+wormhole. The rail's shift lies outside it, because the shift is the
+throat's own radial field.
+
+The one-space geometry of the current work is a track-only rail: a
+packet-safe service region in ordinary space, with no throat. The paper's
+two service rules and its service sequence carry forward into it directly.
 
 ## The earlier geometry
 
@@ -37,24 +43,71 @@ with the rail coordinate \(l\) as its radial direction and
 radius took two profiles:
 - **beta075 service.** The service sets
   \(\gamma_{\Omega\Omega}=(l^2+R_{th}^2)\,c_\Omega^2\) with \(R_{th}=1.75\)
-  (`source_ledger.scalars`). This is the Ellis–Morris–Thorne throat, with
-  minimum radius \(R_{th}\) at \(l=0\) and \(R\to|l|\) on both sides. The
-  angular capacity jacket \(c_\Omega=e^{0.2\,q_\Omega w_\Omega}\) widens the
-  throat by up to 22% until \(\sigma\approx2\) and then relaxes.
+  (`source_ledger.scalars`). This is the Ellis throat, with minimum radius
+  \(R_{th}\) at \(l=0\) and \(R\to|l|\) on both sides. The angular capacity
+  jacket \(c_\Omega=e^{0.2\,q_\Omega w_\Omega}\) widens the throat by up to
+  22% until \(\sigma\approx2\) and then relaxes.
 - **Constant-radius track.** It holds \(R=R_b=1.75\) for \(|l|\le5\) and
   flares to \(R'=1\) beyond \(|l|=6.5\) at both ends
   (`constant_radius_track.areal_radius`). The whole track then sits at the
-  minimum radius.
+  minimum radius, forming a long throat.
 
 Either profile joins two asymptotically flat regions through a minimal
 sphere, so the spatial slices have the topology \(\mathbb R\times S^2\) with
-two ends. The flare-out sits in the end transitions, where both radial null
+two ends. The geometry is therefore a spherically symmetric, two-ended
+wormhole of Morris–Thorne type: an Ellis throat in the beta075 service and a
+long throat of constant radius in the later revision. Its topology is
+static, while the support stretch, the lapse and the shift change during a
+service. The flare-out sits in the end transitions, where both radial null
 energies equal \(-R''/4\pi R\). Along the constant-radius track the radial
-block is a string cloud with zero radial null energy. With the shift off,
-the lapse is positive and finite everywhere. The escape and reachability
-audits carried radial light across the throat both ways, so the throat is
-traversable as a static geometry. The shift is the transport service riding
-along it.
+block is a string cloud with zero radial null energy.
+
+The throat is traversable in the Morris–Thorne sense. The lapse is positive
+and finite everywhere, so the geometry has no horizon, and light and slow
+travelers cross the throat directly. The escape and reachability audits
+carried radial light across it in both directions. The metric leaves open
+whether the two flat regions belong to one universe; the service-time
+ledger assumed they do.
+
+The earlier system is therefore an active rail laid through a wormhole, and
+its shortcut has two sources. The throat's topology joins the two regions,
+and the shift carries the packet along the throat.
+
+## Relation to the wormhole–warp correspondence
+
+Garattini and Zatrimaylov
+([arXiv:2401.15136](https://arxiv.org/abs/2401.15136), *JCAP* 2024(08), 061)
+write a Morris–Thorne wormhole in warp form. They use unit lapse and a
+spatial form factor \(g=e^{\Phi}/\sqrt{1-b/r}\) that carries the intrinsic
+curvature. Into that background they embed a localized Natário–Alcubierre
+bubble and move it through the throat. At a throat free of horizons the
+form factor diverges, and the bubble's shell meets a real curvature
+singularity. A warp bubble therefore crosses only a wormhole with a
+horizon, and a humanly traversable wormhole admits ordinary travel through
+its throat.
+
+The rail's shift belongs to another class. It is the throat's own radial
+field, with three properties:
+- it is spherically symmetric;
+- it is written in the proper-distance coordinate \(l\), in which the Ellis
+  throat is regular;
+- it is paired with a non-unit lapse.
+
+The correspondence paper identifies spherical warp drives, and a
+reparametrized radial coordinate, as regular. Both carry an extra radial
+function whose physical meaning the sources supply. The May paper's move
+from a bubble crossing a completed throat to a throat that carries the
+transport role directly is the choice of that class.
+
+During a carry, the shift tilted the radial light cones far enough that one
+radial null branch crossed zero while \(g_{\sigma\sigma}\) changed sign in
+the active support band. The disclosure records this as the GZ-like cone
+signature. It is a local, horizon-like tilt of the kind the correspondence
+associates with warp traversal. The escape and reachability audits carried
+rays out of that band, so no persistent horizon formed.
+
+The current metric has flat spatial slices. It is the Natário–Alcubierre
+form with a non-unit lapse, on the warp side of the correspondence.
 
 ## Three readings that belong to one space
 
@@ -106,23 +159,32 @@ packet leads light through flat space by 1.66, a mean of 1.35c.
 
 ## Current state
 
+The current design realizes the rail as a track in one flat space, with no
+throat:
+
 \[
 ds^2=-\alpha^2d\sigma^2+(dz+\beta\,d\sigma)^2+dr^2+r^2d\phi^2,
 \qquad
 \rho=-\frac{1}{32\pi}\left(\frac{\beta_r}{\alpha}\right)^2 .
 \]
 
-The service region \(r\le1.75\) carries the lapse and shift. A transverse
-boundary layer returns them to Minkowski values by \(r=13.25\). The design
-and its results are in the [lapse and staging pass](LAPSE_AND_STAGING_PASS.md):
-- **Gate.** Every non-vacuum boundary-layer point is Type I, including
-  under refinement.
-- **Arrival and packet.** The 2.1c lane arrives 1.66 ahead of light through
-  flat space, with the packet timelike throughout.
-- **Standing geometry.** It is flat space.
-- **Demand.** A tension without energy acts during each transit, local to
-  the packet: peak stress 2.9 and peak negative energy
-  \(1.9\times10^{-4}\).
+- **Packet-safe region.** The service region \(r\le1.75\) plays this role.
+  The packet rides the shift there, inside the convex lapse plateau.
+- **Transverse boundary layer.** It returns the lapse and shift to
+  Minkowski values by \(r=13.25\). In the staged form it exists only around
+  the packet as it passes, and flat space remains behind each transit.
+- **Lane.** The lane forms the track. Sources placed along the route switch
+  on as the packet arrives.
+- **Arrival.** The lead comes entirely from the shift and the lapse,
+  measured against light through the same flat space. The 2.1c lane arrives
+  1.66 ahead, a mean of 1.35c, with the packet timelike throughout.
+- **Gate and demand.** Every non-vacuum boundary-layer point is Type I,
+  including under refinement. During each transit the demand is a tension
+  without energy, local to the packet: peak stress 2.9 and peak negative
+  energy \(1.9\times10^{-4}\).
+
+The design and its results are in the
+[lapse and staging pass](LAPSE_AND_STAGING_PASS.md).
 
 ## For the disclosure update
 
@@ -135,3 +197,6 @@ The disclosure update follows the source evaluation.
   - the rail-stretch substrate;
   - the string-cloud source family;
   - the service-time ledger, which becomes the one-space arrival comparison.
+
+The Garattini–Zatrimaylov discussion moves to the warp side of the
+correspondence.

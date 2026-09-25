@@ -137,10 +137,13 @@ decisions now have test results:
   records that the reduced metric of the May 2026 paper and of the
   disclosure through its constant-radius revision is a two-ended traversable
   wormhole: an Ellis–Morris–Thorne throat, later a constant-radius throat,
-  carrying a shift service. Three readings belong to a rail through one
-  space: the exterior-null service-time comparison, the throat relaxation
-  and the supplied-source premise. The one-space geometry resolves them, and
-  the paper's service rules carry forward. A one-page
+  carrying a shift service. The earlier system is an active rail through that
+  throat, and its shift, the throat's own radial field, lies in the spherical
+  class that the Garattini–Zatrimaylov analysis leaves regular. Three readings
+  belong to a rail through one space: the exterior-null service-time
+  comparison, the throat relaxation and the supplied-source premise. The
+  one-space geometry, a track-only rail with a packet-safe service region,
+  resolves them, and the paper's service rules carry forward. A one-page
   [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf)
   updates the paper.
 
