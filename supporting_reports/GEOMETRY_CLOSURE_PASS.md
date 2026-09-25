@@ -48,7 +48,8 @@ prescribed metric. Run: `scripts/run_geometry_closure_pass.py`, with data in
     flat space, without blueshift. Its largest gain is 1.00 at 2.1.
   - The compartment is a lapse cavity. Light leaves it during the carry only
     within 1.05° of the normal of its boundaries at 2.1, and within 0.22° at
-    10. That is about 2% of light emitted evenly inside at 2.1, and 0.4% at
+    10. Forward, where the cone's lapse adds to the plateau, the cone is 0.36°
+    at 2.1, as measured in the [ANEC map pass](ANEC_MAP_PASS.md). That is about 2% of light emitted evenly inside at 2.1, and 0.4% at
     10. The rest reflects inside until the lapse relaxes at arrival, so
     passengers see out through narrow cones and a closed cabin keeps most of
     its radiated heat.

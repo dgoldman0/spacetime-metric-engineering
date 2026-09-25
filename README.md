@@ -85,7 +85,12 @@ along its normal slower than light. With that, every speed from 1.5 to 20
 passes the gate with bounded swept energy. Path audits in three dimensions
 find no trapping. They also find that the compartment is a lapse cavity:
 light leaves it during the carry only within about 1° of its boundary
-normals. The C1 and
+normals. The [ANEC map pass](supporting_reports/ANEC_MAP_PASS.md) finds
+negative averaged null energy along the first light from the departure, an
+achronal ray that runs through the cone's fast interior and rides its tip.
+Achronal ANEC holds for quantum fields, so no semiclassical quantum sector
+can supply the demand at any size. The source class left is classical
+fields that violate ANEC. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

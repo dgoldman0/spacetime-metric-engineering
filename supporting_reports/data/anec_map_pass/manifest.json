@@ -1,0 +1,50 @@
+{
+ "sample": 0.004,
+ "speeds": [
+  2.1,
+  10.0
+ ],
+ "decels": [
+  6.0,
+  30.0
+ ],
+ "departure_angles": [
+  0.0,
+  0.5,
+  1.0,
+  2.0,
+  5.0,
+  10.0,
+  20.0,
+  45.0,
+  90.0,
+  135.0,
+  180.0
+ ],
+ "trim": {
+  "service": {
+   "plateau_log": 3.0,
+   "shift_width": 1.0
+  },
+  "axial": {
+   "sheath_fall": [
+    8.75,
+    2.0
+   ],
+   "lapse_layer": [
+    8.75,
+    2.0
+   ]
+  },
+  "cone": {
+   "base_radius": 14.0,
+   "flank_speed": 0.5435199947152936
+  }
+ },
+ "elapsed_seconds": 3747.7,
+ "software_sha256": {
+  "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+  "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+  "scripts/run_anec_map_pass.py": "aa5c7dbdaeed9f22583bb850b769ff896dec78bb25fd17e94aa9d83969ebd76e"
+ }
+}

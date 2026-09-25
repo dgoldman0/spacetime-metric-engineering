@@ -263,8 +263,21 @@ decisions now have test results:
     of \(\arcsin(\alpha_c/\alpha_{\max})\), 1.05° at 2.1. The tip-grazing
     fan forms a caustic.
 
-Next: the averaged null energy along achronal light rays, then the trace
-anomaly, the rear horizon's flux and the mode mixing in the outrun exterior. A source construction
+- **ANEC map pass.** The [ANEC map pass](supporting_reports/ANEC_MAP_PASS.md)
+  integrates the null energy along 80 complete light rays.
+  - The first light from the departure is achronal. It travels along the axis
+    through the cone's interior, where the lapse exceeds the carry speed, and
+    reaches the plane past the arrival 11.4 ahead of exterior light at 2.1.
+  - Its ANEC is negative: −0.0012 on the test trip, and −202 on a lane ending
+    at \(\sigma=30\), where it rides the tip. At 10 the values are −0.0007 and
+    \(-2.2\times10^{4}\).
+  - Later rays carry positive ANEC, mostly from the compartment's reflecting
+    boundary.
+  - Achronal ANEC holds for quantum fields, so the source must be a classical
+    field that violates ANEC.
+
+Next (paused for review): the trace anomaly, the rear horizon's flux and the
+mode mixing in the outrun exterior. A source construction
 in the open family follows: a classical scalar with higher-derivative
 kinetic terms that supplies the deficit in the outer falls and the sheath
 rise during each transit, with its perturbations checked on the
