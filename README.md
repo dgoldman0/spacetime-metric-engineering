@@ -1,6 +1,6 @@
 # Active Rail Refined Design Base
 
-Current status, 2026-09-23: every geometry used for source construction
+Current status, 2026-09-25: every geometry used for source construction
 first passes the Le boundary classification on its active metric
 ([current handoff](plan.md), [workflow](supporting_reports/SOURCE_FEASIBILITY_WORKFLOW.md)).
 The frozen beta075 `V=5` geometry fails that gate through a refinement-stable
@@ -40,10 +40,19 @@ a two-ended traversable wormhole carrying a shift service. It lists the
 paper's six issues with their evidence and cites the disclosure at commit
 `2146526c7a70691cd1ac1f8f4928b99d7cca0c19`. A two-page
 [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf) carries
-those corrections to the paper, along with the current state. Source evaluation
-against the transit demand comes next, ahead of the disclosure update. The
-C1 and source-population results below retain their recorded scope on the
-static phase-0.745 surrogate.
+those corrections to the paper, along with the current state. The
+[source scaling test](supporting_reports/SOURCE_SCALING_TEST.md) measures
+how candidate source families scale against the transit demand. Quantum
+fields need \(N\ge Q\,(L/\ell_P)^2\) fields, with \(Q=0.013\) at the
+conventional sampling fraction. By the species bound and the verified
+inverse-square law, that confines them to unit lengths below about half a
+millimetre. Casimir cavities carry about \(10^{7}\) times their deficit in
+mirror energy. Curvature-coupled scalars reach the critical coupling in the
+outer falls on every radial ray through the packet, at any scale. Classical
+scalars with higher-derivative kinetic terms remain the open family for a
+macroscopic rail. The disclosure update follows. The C1 and
+source-population results below retain their recorded scope on the static
+phase-0.745 surrogate.
 
 Status recorded 2026-09-17: the beta075 `V=5` package is the archived
 prescribed-metric service reference. The

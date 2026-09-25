@@ -1,6 +1,6 @@
 # Active-Rail Codex Handoff Plan
 
-## Current handoff, 2026-09-23
+## Current handoff, 2026-09-25
 
 **Standing geometry gate.** Every geometry used for source construction
 first passes the [Le boundary classification](active_rail_test1_le_boundary_gate_handoff.md)
@@ -157,10 +157,29 @@ decisions now have test results:
   two-page [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf)
   carries the corrections to the paper.
 
-Next: run the scaling test of candidate source families against this
-demand, a tension without energy that is local to the packet during each
-transit. The technical disclosure update to the one-space geometry follows
-the source evaluation.
+- **Source scaling test.** The [source scaling test](supporting_reports/SOURCE_SCALING_TEST.md)
+  measures how candidate source families scale against the transit demand,
+  whose magnitude falls as \(1/L^2\) with the unit length.
+  - A quantum inequality along the static source units' worldlines requires
+    \(N\ge Q\,(L/\ell_P)^2\) free fields. \(Q=0.013\) at sampling fraction 0.1
+    and \(3\times10^{-6}\) at 0.01, governed by broad, gentle deficits in the
+    outer falls and at the switch-on phases.
+  - The species bound puts gravity's cutoff at \(\sqrt Q\,L=0.12\,L\), the
+    demand's sharpest curvature radius. With the inverse-square law verified
+    to 52 μm, quantum sources reach unit lengths of 0.45 mm (3 cm at 0.01).
+  - Casimir cavities need gaps of \(0.58\sqrt{\ell_P L}\), and their electron
+    mirrors carry about \(10^{7}\) times the deficit they bound.
+  - Curvature-coupled scalars need \(F''\le8\pi T(k,k)F\) along light rays.
+    All 8 radial rays through the packet and all 16 rays at the deepest
+    deficits carry bound states, so \(F\) vanishes at \(r\approx10.65\),
+    independent of scale.
+  - During the lane, light co-moves with the plateau's edges and shifts in
+    frequency by \(4.5\times10^{9}\), which a quantum sector must survive.
+  - Classical scalars with higher-derivative kinetic terms remain open.
+
+Next: update the technical disclosure to the one-space geometry, its
+lapse-staged service and the source understanding above. A construction
+in the open classical family would follow as the next source stage.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it
