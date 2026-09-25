@@ -1,0 +1,155 @@
+{
+ "sigma": 3.75,
+ "speed": 2.1,
+ "grid_step": 0.03,
+ "courant": 0.45,
+ "dissipation": 0.05,
+ "domain": [
+  -12.0,
+  14.0,
+  8.0
+ ],
+ "layers": {
+  "back": 2.5,
+  "front": 2.0,
+  "outer": 1.5,
+  "rate": 8.0
+ },
+ "refined": {
+  "grid_step": 0.015,
+  "domain": [
+   -9.0,
+   5.0,
+   7.0
+  ],
+  "layers": {
+   "back": 1.5,
+   "front": 1.5,
+   "outer": 1.2,
+   "rate": 8.0
+  }
+ },
+ "flat_radius": [
+  6.0,
+  1.0
+ ],
+ "tip_box": [
+  1.5,
+  1.0
+ ],
+ "packets": {
+  "ahead_axis_short": {
+   "offset": 4.0,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0,
+   "end": 10.0
+  },
+  "ahead_axis_wide": {
+   "offset": 4.0,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 1.5,
+   "wavelength": 1.0,
+   "end": 10.0
+  },
+  "ahead_axis_long": {
+   "offset": 7.0,
+   "r0": 0.0,
+   "width_zeta": 1.5,
+   "width_r": 1.5,
+   "wavelength": 3.0,
+   "end": 13.0
+  },
+  "ahead_ring": {
+   "offset": 4.0,
+   "r0": 1.5,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0,
+   "end": 10.0
+  },
+  "inside_axis": {
+   "offset": -5.0,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0,
+   "end": 8.0
+  },
+  "inside_axis_wide": {
+   "offset": -5.0,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 1.5,
+   "wavelength": 1.0,
+   "end": 8.0
+  },
+  "inside_axis_refined": {
+   "offset": -4.5,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0,
+   "end": 3.5,
+   "refined": true
+  },
+  "inside_axis_wide_refined": {
+   "offset": -4.5,
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 1.5,
+   "wavelength": 1.0,
+   "end": 3.5,
+   "refined": true
+  }
+ },
+ "cone": {
+  "half_angle": 15.0,
+  "log_lapse": 1.5,
+  "layer": 3.0,
+  "rounding": 0.5,
+  "base_radius": 16.0,
+  "base_softness": 1.0,
+  "rise_width": 1.5,
+  "extend": [
+   0.6,
+   1.0
+  ]
+ },
+ "tip_rates": {
+  "tip_offset": 66.46281292110204,
+  "surface_offset": 60.89482537154252,
+  "kappa": 0.5626767630872997,
+  "transverse_curvature": 4.199872320143072,
+  "lambda": 2.7017612073454056,
+  "lambda_over_kappa": 4.801622147183329,
+  "field_decay_rate": 4.278168888516212,
+  "flat_growth_rate": 1.1253535261745995
+ },
+ "run_seconds": {
+  "cone:ahead_axis_short": 979.3,
+  "flat:ahead_axis_short": 963.2,
+  "cone:ahead_axis_wide": 968.6,
+  "flat:ahead_axis_wide": 977.6,
+  "cone:ahead_axis_long": 1056.7,
+  "flat:ahead_axis_long": 1100.4,
+  "cone:ahead_ring": 916.3,
+  "flat:ahead_ring": 876.0,
+  "cone:inside_axis": 625.6,
+  "flat:inside_axis": 698.6,
+  "cone:inside_axis_wide": 632.7,
+  "flat:inside_axis_wide": 612.7,
+  "cone:inside_axis_refined": 1600.8,
+  "flat:inside_axis_refined": 1534.7,
+  "cone:inside_axis_wide_refined": 1560.7,
+  "flat:inside_axis_wide_refined": 1548.7
+ },
+ "elapsed_seconds": 1604.0,
+ "software_sha256": {
+  "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+  "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+  "scripts/run_cone_tip_field_pass.py": "b6a66852078fb974fde5e4f08bca18c31a1756d11d3eb88fa94395e70ed54749"
+ }
+}

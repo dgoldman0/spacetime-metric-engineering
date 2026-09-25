@@ -224,6 +224,24 @@ decisions now have test results:
   - A clock-rate sweep from 0.1 to 5 records the compartment's demand
     alongside the primary rate of 1.
 
+- **Cone tip field pass.** The [cone tip field pass](supporting_reports/CONE_TIP_FIELD_PASS.md)
+  asks whether the cone's tip carries the warp-drive front instability.
+  - In the pattern's frame, the surface where its Killing vector turns null
+    is a horizon only where its transverse lapse gradient vanishes. The
+    current front's is a null disk with \(\kappa=9.1\)–9.7. The cone's is
+    timelike off the axis, with transverse gradients 2.6–4.3 times the
+    along-track one.
+  - At the tip \(\kappa=0.563\), and the lapse pushes modes off the axis at
+    \(\lambda=2.70\).
+  - Evolved scalar modes rise at the tip by at most 1.6 and leave, with the
+    Killing energy held to \(6\times10^{-4}\). On a flat front with the same
+    axis lapse they grow at 1.07–1.10, close to \(2\kappa=1.13\), until
+    they reach the grid scale.
+  - The quantum stress at the tip stays at the vacuum-polarization scale.
+    The rear keeps a black-hole-type horizon radiating at \(\kappa/2\pi\),
+    about 3 mK at \(L=1\) m. A renormalized 3+1 stress and the steady
+    emission from the exterior remain open.
+
 Next: the service audits with the swept-object audit on a ledger for the
 compartment's path with the conical front, and the plateau \(e^{3}\),
 shift-edge and radial-extent levers on the demand. A source construction

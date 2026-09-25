@@ -68,7 +68,13 @@ it for any trip length, and both pass the gate. A forward shelf holds the
 lapse above the carry speed ahead of the packet, at a cost that grows with
 the route. The reference design takes the second element, a slender conical
 front, which sheds what it overtakes sideways and adds 68% to the peak
-demand carried with the packet. The C1 and
+demand carried with the packet. The [cone tip field pass](supporting_reports/CONE_TIP_FIELD_PASS.md)
+finds that the cone carries no front horizon: its light surface is timelike
+off the axis, and at the tip it pushes field modes off the axis 4.8 times
+faster than it blueshifts them. Evolved field modes rise at the tip by at most
+1.6 and leave, while a flat front with the same axis lapse gathers them and
+grows at the horizon rate \(2\kappa\). The quantum stress at the tip thus
+stays at the scale of local vacuum polarization. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

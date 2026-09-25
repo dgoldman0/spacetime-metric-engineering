@@ -1,0 +1,10 @@
+{
+ "tip_offset": 66.46281292110204,
+ "surface_offset": 60.89482537154252,
+ "kappa": 0.5626767630872997,
+ "transverse_curvature": 4.199872320143072,
+ "lambda": 2.7017612073454056,
+ "lambda_over_kappa": 4.801622147183329,
+ "field_decay_rate": 4.278168888516212,
+ "flat_growth_rate": 1.1253535261745995
+}
