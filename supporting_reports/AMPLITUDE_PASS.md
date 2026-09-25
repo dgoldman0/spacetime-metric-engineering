@@ -163,6 +163,10 @@ Jupiter masses per metre.
    energy shells, pure stress in the lapse sheath, the service-region
    pressure, and moving stress during the carry.
 
+The [lapse and staging pass](LAPSE_AND_STAGING_PASS.md) takes up items 1
+and 2. It removes the stretch everywhere and stages the sheath with the
+packet, which leaves no standing demand.
+
 ## Reproduction
 
 ```bash

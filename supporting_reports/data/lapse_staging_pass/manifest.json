@@ -1,0 +1,881 @@
+{
+ "completed_utc": "2026-09-25T02:16:28+00:00",
+ "elapsed_seconds": 1755.1,
+ "workers": 4,
+ "step": 0.1,
+ "sigma_range": [
+  -8.0,
+  10.0
+ ],
+ "screen_sigma_end": 3.0,
+ "z_max": 10.0,
+ "lane": "lane_2p1",
+ "lapse_service": {
+  "C0": 1.0,
+  "B0": 1.0,
+  "lam": 1.0,
+  "eta_N": 0.0,
+  "support_shell_overlay_enabled": false,
+  "support_shell_clock_lapse_log_gain": 0.0,
+  "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+  "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+  "standing_support_packet_lapse_log_gain": 4.0,
+  "standing_support_packet_lapse_radius_multiplier": 7.8,
+  "standing_support_packet_lapse_width_multiplier": 15.0
+ },
+ "lapse_track": {
+  "live_start": -2.4,
+  "lapse_lead": 1.0,
+  "lapse_release_lag": 1.5,
+  "lapse_window_profile": "compact_smoothstep7",
+  "lapse_convexity": 0.3,
+  "service_inner": 7.5,
+  "track_half_length": 8.5
+ },
+ "lapse_stack": {
+  "sheath_log_lapse": 1.0,
+  "sheath_rise": [
+   3.75,
+   5.0
+  ],
+  "sheath_fall": [
+   9.25,
+   4.0
+  ],
+  "shift_layer": [
+   4.25,
+   2.0
+  ],
+  "stretch_layer": [
+   9.25,
+   2.0
+  ],
+  "lapse_layer": [
+   9.25,
+   4.0
+  ]
+ },
+ "follow": {
+  "sheath_follow": [
+   2.5,
+   1.0
+  ],
+  "sheath_schedule": [
+   -4.0,
+   1.5,
+   1.0
+  ]
+ },
+ "screen": {
+  "lapse_static": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "lapse_staged": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ],
+    "sheath_follow": [
+     2.5,
+     1.0
+    ],
+    "sheath_schedule": [
+     -4.0,
+     1.5,
+     1.0
+    ]
+   }
+  },
+  "ungated_windows": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": null,
+    "lapse_lead": 0.0,
+    "lapse_release_lag": 0.0,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "flat_plateau": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.0,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "convexity_0p05": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.05,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "packet_lapse_e3": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 3.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "sheath_e4": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 4.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "sheath_e0p5": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 0.5,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "no_sheath": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 0.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "flat_plateau_e10": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 10.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.0,
+    "service_inner": 7.5,
+    "track_half_length": 8.5
+   },
+   "stack": {
+    "sheath_log_lapse": 8.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  }
+ },
+ "shapes": {
+  "narrow_edge_cutoff_in": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 10.0,
+    "standing_support_packet_lapse_width_multiplier": 5.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 4.0,
+    "track_half_length": 5.0
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "wide_edge_cutoff_in": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 1.0,
+    "eta_N": 0.0,
+    "support_shell_overlay_enabled": false,
+    "support_shell_clock_lapse_log_gain": 0.0,
+    "standing_support_packet_smooth_split_null_cushion_log_gain": 0.0,
+    "standing_support_packet_beta_rematch_temporal_profile": "minjerk",
+    "standing_support_packet_lapse_log_gain": 4.0,
+    "standing_support_packet_lapse_radius_multiplier": 7.8,
+    "standing_support_packet_lapse_width_multiplier": 15.0
+   },
+   "track": {
+    "live_start": -2.4,
+    "lapse_lead": 1.0,
+    "lapse_release_lag": 1.5,
+    "lapse_window_profile": "compact_smoothstep7",
+    "lapse_convexity": 0.3,
+    "service_inner": 4.0,
+    "track_half_length": 5.0
+   },
+   "stack": {
+    "sheath_log_lapse": 1.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  }
+ },
+ "earlier": {
+  "census_design": {
+   "service": {},
+   "track": {},
+   "stack": {
+    "conformal_log_scale": 8.0,
+    "conformal_rise": [
+     1.75,
+     2.0
+    ],
+    "conformal_fall": [
+     9.25,
+     2.0
+    ],
+    "sheath_log_lapse": 8.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  },
+  "amplitude_design": {
+   "service": {
+    "C0": 1.0,
+    "B0": 1.0,
+    "lam": 6.0
+   },
+   "track": {},
+   "stack": {
+    "conformal_log_scale": 7.0,
+    "conformal_rise": [
+     1.75,
+     2.0
+    ],
+    "conformal_fall": [
+     9.25,
+     2.0
+    ],
+    "sheath_log_lapse": 8.0,
+    "sheath_rise": [
+     3.75,
+     5.0
+    ],
+    "sheath_fall": [
+     9.25,
+     4.0
+    ],
+    "shift_layer": [
+     4.25,
+     2.0
+    ],
+    "stretch_layer": [
+     9.25,
+     2.0
+    ],
+    "lapse_layer": [
+     9.25,
+     4.0
+    ]
+   }
+  }
+ },
+ "per_panel": 12,
+ "noise_floor": 1e-08,
+ "checks": {
+  "lapse_static": {
+   "gate_samples": 36381,
+   "gate_type_i": 3936637,
+   "gate_type_iv": 0,
+   "gate_other": 0,
+   "refined_type_i": 7891975,
+   "refined_type_iv": 0,
+   "refined_other": 0,
+   "estimated_band_samples": 4,
+   "resolved_crossings": 4,
+   "samples_with_band": 0,
+   "max_band_width": 0.0,
+   "envelope_violations": 0,
+   "worst_envelope_ratio": 0.48494200555517636,
+   "core_min_null": -0.2629943031834128,
+   "layer_min_null": -0.4803187184317396,
+   "census_type_iv": 0,
+   "census_unresolved": 0,
+   "exterior_max_abs": 0.0,
+   "start_matches_standing": 0.0
+  },
+  "lapse_staged": {
+   "gate_samples": 36381,
+   "gate_type_i": 906108,
+   "gate_type_iv": 0,
+   "gate_other": 0,
+   "refined_type_i": 1815247,
+   "refined_type_iv": 0,
+   "refined_other": 0,
+   "estimated_band_samples": 4,
+   "resolved_crossings": 4,
+   "samples_with_band": 0,
+   "max_band_width": 0.0,
+   "envelope_violations": 0,
+   "worst_envelope_ratio": 0.48494200555517636,
+   "core_min_null": -0.2629943031834128,
+   "layer_min_null": -0.4684348354483277,
+   "census_type_iv": 0,
+   "census_unresolved": 0,
+   "exterior_max_abs": 0.0,
+   "start_matches_standing": 0.0
+  },
+  "audit_log": [
+   {
+    "script": "run_horizon_escape_ladder.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/source_ledger_point_ledger.csv",
+     "--label",
+     "lapse_static",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/escape_seed120",
+     "--seeds-per-scope",
+     "120",
+     "--max-steps",
+     "12000"
+    ],
+    "returncode": 0,
+    "seconds": 18.12,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_entry_packet_reachability.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/source_ledger_point_ledger.csv",
+     "--label",
+     "lapse_static",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/entry_reachability",
+     "--entry-side",
+     "lower",
+     "--entry-side",
+     "upper"
+    ],
+    "returncode": 0,
+    "seconds": 5.41,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_scheduled_adm_probe_evolution.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/source_ledger_point_ledger.csv",
+     "--label",
+     "lapse_static",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/scheduled_probe",
+     "--red-tag-seeds",
+     "120",
+     "--max-steps",
+     "12000"
+    ],
+    "returncode": 0,
+    "seconds": 9.88,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_trace_expansion_audit.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/source_ledger_point_ledger.csv",
+     "--seeds",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/scheduled_probe/scheduled_adm_probe_seeds.csv",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/trace_expansion",
+     "--label",
+     "lapse_static"
+    ],
+    "returncode": 0,
+    "seconds": 8.67,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   },
+   {
+    "script": "run_dense_congruence_caustic_audit.py",
+    "arguments": [
+     "--point-ledger",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/source_ledger_point_ledger.csv",
+     "--trace-traces",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/trace_expansion/trace_expansion_audit_traces.csv",
+     "--outdir",
+     "/home/kir/Downloads/active_rail_final_refreeze_source_track_record_bundle/active-rail-refined-design-base/toolkit/adm_harness_cli/runs/lapse_staging_pass/lapse_static/dense_bundles_all_centers",
+     "--label",
+     "lapse_static",
+     "--no-require-both-shrinking",
+     "--trace-step-scale",
+     "0.1",
+     "--max-steps",
+     "60000"
+    ],
+    "returncode": 0,
+    "seconds": 15.7,
+    "stderr_tail": "",
+    "recorded_outcome": null
+   }
+  ]
+ },
+ "envelope_params_changed": {
+  "standing_support_packet_lapse_log_gain": 3.0,
+  "standing_support_packet_lapse_radius_multiplier": 2.5,
+  "standing_support_packet_lapse_schedule": "live_only"
+ },
+ "software_sha256": {
+  "adm_harness/axial_track.py": "7c992534710024139455697ae7607ec94f21181e04637433a010f821b54e120e",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "89e1489d1cefc8b2e7dd5d8cbec4ab890c7dbaa1ec87e987aa805172c5920e89",
+  "scripts/run_choreography_pass.py": "15c434195312759df672dc34c8cedc1714acf4f1dbd7483a0dec01606b00c5ed",
+  "scripts/run_demand_census.py": "3d531ff5b7b4d85bd6da784f76cc6721c460cdbf030c2971dbcbc55f93ba1b0f",
+  "scripts/run_lapse_staging_pass.py": "b5787839c95bb430843646cd2dbbea0329d8e6a7aa8df86e1aef8aa77119ae05"
+ }
+}

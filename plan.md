@@ -118,12 +118,26 @@ decisions now have test results:
   times. The pre-sheath along the track now carries most of it, with
   \(G\mu/c^2\approx6.6\times10^{3}\) of each sign.
 
-Next: shorten the sheathed length by switching the packet windows on at the
-entry, and test a pre-sheath staged in time around the live carry. Then run
-the scaling test of candidate source families against the census roles on
-the resulting design. The technical disclosure update to the one-space
-geometry follows the source evaluation. The sheath's along-track extent,
-which sets the standing signal channel, remains open.
+- **Lapse and staging.** The [lapse and staging pass](supporting_reports/LAPSE_AND_STAGING_PASS.md)
+  removes the stretch everywhere, so the energy density is exactly
+  \(-(A\beta_r/\alpha)^2/32\pi\): zero at standing and at most
+  \(1.9\times10^{-4}\) during a transit. The lapse does the pre-sheath's
+  work through four elements: a convex packet lapse plateau of \(e^{4}\),
+  live windows that open inside the service domain with the lapse leading
+  and lagging the shift, a lapse sheath of \(e^{1}\), and a plateau with a
+  gentle edge inside an enlarged service domain. Over \(\sigma\in[-8,10]\)
+  and \(|z|\le10\) the gate passes at 3.94 million points (7.89 million
+  refined) with no band. A sheath that rides with the packet passes too and
+  leaves flat space standing. The demand becomes stress, local to the
+  packet and per transit: a peak negative-null content of 141 against
+  \(4.47\times10^{7}\) standing in the census design, with a peak stress
+  of 2.9. The packet's clock peaks at 55 times exterior time, below both
+  earlier designs, and the service and audits hold.
+
+Next: run the scaling test of candidate source families against this
+demand, a tension without energy that is local to the packet during each
+transit. The technical disclosure update to the one-space geometry follows
+the source evaluation.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

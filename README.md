@@ -28,8 +28,13 @@ positive and negative energy shells whose size is set by the conformal
 pre-sheath, and a lapse sheath of pure stress. The
 [amplitude pass](supporting_reports/AMPLITUDE_PASS.md) flattens the support
 and lowers the pre-sheath to its band-free threshold, which cuts that energy
-450 times with the service and gate unchanged. Source evaluation against
-these roles comes next, ahead of the disclosure update. The
+450 times with the service and gate unchanged. The
+[lapse and staging pass](supporting_reports/LAPSE_AND_STAGING_PASS.md)
+removes the stretch altogether. The lapse, which carries no energy, takes
+over the pre-sheath's work, and the sheath rides with the packet. The
+standing geometry is then flat space, and each transit demands a local
+tension without energy that passes the gate everywhere. Source evaluation
+against that demand comes next, ahead of the disclosure update. The
 C1 and source-population results below retain their recorded scope on the
 static phase-0.745 surrogate.
 

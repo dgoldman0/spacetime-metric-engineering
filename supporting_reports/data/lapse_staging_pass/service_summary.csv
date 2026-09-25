@@ -1,0 +1,2 @@
+design,ledger_points,live_packet_points,spacelike_live_points,max_live_packet_norm,escape_traces,escape_expected,escape_escaped,escape_stalled,reachable_packet_hits,probe_traces,probe_escaped,centerline_probes,centerline_escaped,centerline_max_packet_norm,probes_in_transit_at_window_end,in_transit_min_null_speed,traces_entering_both_shrinking,bundle_crossings,bundle_caustic_like,bundle_min_l_width_ratio
+lapse_static,52863,707,0,-0.18999999999999995,1880,1754,1754,0,0,266,201,24,24,-0.0974999999999999,65,0.9999999999999998,0,0,5,0.0903455891727799
