@@ -74,7 +74,18 @@ off the axis, and at the tip it pushes field modes off the axis 4.8 times
 faster than it blueshifts them. Evolved field modes rise at the tip by at most
 1.6 and leave, while a flat front with the same axis lapse gathers them and
 grows at the horizon rate \(2\kappa\). The quantum stress at the tip thus
-stays at the scale of local vacuum polarization. The C1 and
+stays at the scale of local vacuum polarization. The
+[geometry closure pass](supporting_reports/GEOMETRY_CLOSURE_PASS.md) trims the
+reference design: plateau \(e^{3}\), shift edge 1, outer lapse fall pulled in.
+That cuts the peak demand to 252 and the peak stress to 1.81, and the design
+still passes the full gate. Speed turns out to be a lapse contrast: raising
+the plateau with the speed leaves the geometry around the shift unchanged. The
+cone needs a half-angle below \(\arcsin(1/v)\) so that its flank advances
+along its normal slower than light. With that, every speed from 1.5 to 20
+passes the gate with bounded swept energy. Path audits in three dimensions
+find no trapping. They also find that the compartment is a lapse cavity:
+light leaves it during the carry only within about 1° of its boundary
+normals. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

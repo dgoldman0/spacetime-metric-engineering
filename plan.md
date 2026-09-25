@@ -242,9 +242,29 @@ decisions now have test results:
     about 3 mK at \(L=1\) m. A renormalized 3+1 stress and the steady
     emission from the exterior remain open.
 
-Next: the service audits with the swept-object audit on a ledger for the
-compartment's path with the conical front, and the plateau \(e^{3}\),
-shift-edge and radial-extent levers on the demand. A source construction
+- **Geometry closure pass.** The [geometry closure pass](supporting_reports/GEOMETRY_CLOSURE_PASS.md)
+  closes the prescribed geometry.
+  - Trimmed reference: plateau \(e^{3}\), shift edge 1, outer lapse fall
+    \(8.75\le r\le10.75\), cone base 14. It passes the full gate (2.67
+    million points, all Type I, no band). Peak content is 252 and peak stress
+    1.81, against 333 and 2.91.
+  - The sheath's rise must span the shift's whole radial transition. The
+    outer fall, being shift-free, can be pulled in freely.
+  - Speed is a lapse contrast. Raising the plateau and cone log-lapse by
+    \(\ln(v/2.1)\) leaves the geometry around the shift unchanged, to
+    \(10^{-5}\).
+  - A front must advance along its normal slower than light. The 15° cone
+    traps swept light on its flank above 3.9. With
+    \(\sin\theta_c=0.54/v\), speeds 1.5–20 all pass, with swept gains near
+    \(5v\). Peak stress grows as \(\ln v\), and content grows with the
+    cone's length (787 at 10).
+  - Path audits in 3D find escape from the compartment in every direction,
+    with no blueshift. The compartment is a lapse cavity with escape cones
+    of \(\arcsin(\alpha_c/\alpha_{\max})\), 1.05° at 2.1. The tip-grazing
+    fan forms a caustic.
+
+Next: the averaged null energy along achronal light rays, then the trace
+anomaly, the rear horizon's flux and the mode mixing in the outrun exterior. A source construction
 in the open family follows: a classical scalar with higher-derivative
 kinetic terms that supplies the deficit in the outer falls and the sheath
 rise during each transit, with its perturbations checked on the
