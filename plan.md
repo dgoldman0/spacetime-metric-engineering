@@ -135,17 +135,27 @@ decisions now have test results:
   earlier designs, and the service and audits hold.
 - **Geometry clarification.** The [geometry clarification](supporting_reports/THROAT_GEOMETRY_CLARIFICATION.md)
   records that the reduced metric of the May 2026 paper and of the
-  disclosure through its constant-radius revision is a two-ended traversable
-  wormhole: an Ellis–Morris–Thorne throat, later a constant-radius throat,
-  carrying a shift service. The earlier system is an active rail through that
-  throat, and its shift, the throat's own radial field, lies in the spherical
-  class that the Garattini–Zatrimaylov analysis leaves regular. Three readings
-  belong to a rail through one space: the exterior-null service-time
-  comparison, the throat relaxation and the supplied-source premise. The
-  one-space geometry, a track-only rail with a packet-safe service region,
-  resolves them, and the paper's service rules carry forward. A one-page
-  [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf)
-  updates the paper.
+  disclosure at commit `2146526c7a70691cd1ac1f8f4928b99d7cca0c19`, its
+  constant-radius revision, is a two-ended traversable wormhole: an
+  Ellis–Morris–Thorne throat, later a constant-radius throat, carrying a
+  shift service. The earlier system is an active rail through that throat,
+  and its shift, the throat's own radial field, lies in the spherical class
+  that the Garattini–Zatrimaylov analysis leaves regular. The report lists
+  six issues in the paper:
+  - its topology is unstated;
+  - its source premise omits the topology change a two-ended space requires;
+  - its relaxation step, support decompression on the throat's varying
+    areal radius, demands Type IV stress;
+  - its packet screen combines two readings of the packet's motion;
+  - it leaves the throat's shortcut and the shift's transport unseparated,
+    so the disclosure's service-time ratios compare throat traversal with an
+    exterior light path the geometry lacks;
+  - its confidence statement extends past its two service rules.
+
+  The one-space geometry, a track-only rail with a packet-safe service
+  region, resolves them, and the paper's service rules carry forward. A
+  two-page [addendum](addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf)
+  carries the corrections to the paper.
 
 Next: run the scaling test of candidate source families against this
 demand, a tension without energy that is local to the packet during each

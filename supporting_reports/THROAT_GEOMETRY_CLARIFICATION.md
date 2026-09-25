@@ -3,9 +3,13 @@
 Date: 2026-09-24. Scope: the May 2026 paper *From the Warp/Wormhole
 Interface to a Throat-Supported Shift Rail* (preprint,
 [doi:10.13140/RG.2.2.10402.39368](https://doi.org/10.13140/RG.2.2.10402.39368)),
-and the [technical disclosure](../active_rail_technical_disclosure.tex)
-through its constant-radius revision. A one-page public addendum carries the
-same clarification: [addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf](../addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf).
+and the technical disclosure at commit
+`2146526c7a70691cd1ac1f8f4928b99d7cca0c19` (2026-09-23), its constant-radius
+revision
+([PDF at that commit](https://github.com/dgoldman0/spacetime-metric-engineering/blob/2146526c7a70691cd1ac1f8f4928b99d7cca0c19/active_rail_technical_disclosure.pdf)).
+The disclosure will be revised after the source evaluation, and references
+to it here and in the addendum name that commit. A two-page public addendum
+carries the corrections: [addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf](../addenda/2026-09_Throat_Supported_Shift_Rail_Addendum.pdf).
 
 ## Summary
 
@@ -16,11 +20,16 @@ supplies the plant and the warp side supplies the transport handle.
 
 The technical disclosure kept the same metric, calling it a
 "Morris–Thorne-like intrinsic throat/support geometry", while presenting the
-system as a rail between two endpoints. Three of its readings belong to a
-rail through one space:
-- its comparison with an exterior light signal;
-- its throat relaxation;
-- its premise that sources are available.
+system as a rail between two endpoints.
+
+The paper has six issues, listed below with their evidence:
+1. It leaves the topology unstated.
+2. Its source premise is incomplete.
+3. Its own relaxation step demands a Type IV stress.
+4. It reads the packet's motion two ways.
+5. It leaves the throat's shortcut and the shift's transport unseparated,
+   which the disclosure's service-time ratios then inherit.
+6. Its confidence statement overreaches.
 
 The Garattini–Zatrimaylov obstruction concerns warp bubbles crossing a
 wormhole. The rail's shift lies outside it, because the shift is the
@@ -109,28 +118,66 @@ rays out of that band, so no persistent horizon formed.
 The current metric has flat spatial slices. It is the Natário–Alcubierre
 form with a non-unit lapse, on the warp side of the correspondence.
 
-## Three readings that belong to one space
+## Issues in the May paper and the disclosure
 
-1. **The exterior light comparison.** The disclosure's service-time ledger
-   compares the packet's service time with an exterior null signal between
-   endpoints A and B. It takes the rail coordinate as their distance, through
-   the "modeled tube relation \(l=\sigma\)". The two sides of the throat lie in
-   separate asymptotic regions, and the reduced metric contains no exterior
-   path between them. The V = 5 ratios, 2.569 on the schedule factor and 1.233
-   on the packet coordinate, therefore compare throat traversal with a
-   flat-space reference placed by that assumption.
-2. **Throat relaxation.** The service sequence ends
-   "relax throat → reset". In the code, the relaxation acts on three things:
+1. **Unstated topology.** The paper presents the throat as infrastructure
+   that the service prepares and relaxes: "prepare support → carry packet →
+   catch packet → fade shift → relax throat → reset". It also draws on the
+   prepared-route picture of the Krasnikov tube, a route through ordinary
+   space. The geometry is a wormhole with two asymptotic ends, and the paper
+   leaves that topology and its consequences unstated. In the code, the
+   relaxation acts on three things:
    - the support stretch (\(C_0=100\), \(B_0=8\));
    - the support lapse (\(\lambda C_0=600\));
    - the angular capacity jacket.
 
    The minimal sphere of radius 1.75, and with it the two ends, persists
    through every service.
-3. **Source availability.** The paper's premise supplies the stress that
-   holds a throat open. Forming a two-ended space from ordinary space
+2. **Incomplete source premise.** The paper's premise supplies the stress
+   that holds a throat open. Forming a two-ended space from ordinary space
    requires a change of spatial topology, which in a compact region brings
-   closed timelike curves (Geroch, *J. Math. Phys.* 8, 782 (1967)).
+   closed timelike curves (Geroch, *J. Math. Phys.* 8, 782 (1967)). The
+   paper's conditional feasibility claim therefore rests on a geometry that
+   sources alone cannot produce.
+3. **Inadmissible stress.** The paper's screen tests four things:
+   - packet timelikeness;
+   - a stationary monitor;
+   - radial light speeds;
+   - bundle compression.
+
+   The algebraic type of the demanded stress lies outside it. The
+   Hawking–Ellis classification applied later found a refinement-stable
+   Type IV layer in the service family's V = 5 operating geometry, with
+   13,587 points on its 141,661-point certification map
+   ([boundary diagnostic](LE_GEOMETRY_BOUNDARY_DIAGNOSTIC.md),
+   [constant-radius track](CONSTANT_RADIUS_TRACK.md)). The attribution run
+   isolates the paper's own relaxation step. Support decompression alone,
+   acting on the throat's varying areal radius, produces 874 Type IV points,
+   against 842 for the full geometry on the same grid. It splits the two
+   radial null energies into opposite signs, leaving the stress with no
+   timelike eigenvector, so no source with a rest frame supplies it.
+4. **Mismatched packet readings.** In the service family behind the paper,
+   the packet windows advanced at unit coordinate speed while the packet-norm
+   test used the carry speed \(U/B\). The packet screen therefore combined
+   two readings of the packet's motion. The
+   [choreography pass](CHOREOGRAPHY_PASS.md) aligns both to one prescribed
+   path.
+5. **Unseparated transport.** The paper describes traversal as a timed rail
+   service and leaves the throat's shortcut and the shift's transport
+   unseparated. The disclosure's service-time ledger then compares the
+   packet's service time with an exterior null signal between endpoints A
+   and B. It takes the rail coordinate as their distance, through the
+   "modeled tube relation \(l=\sigma\)". The two sides of the throat lie in
+   separate asymptotic regions, and the reduced metric contains no exterior
+   path between them. The V = 5 ratios, 2.569 on the schedule factor and
+   1.233 on the packet coordinate, therefore compare throat traversal with a
+   flat-space reference placed by that assumption. The mismatch of item 4
+   enters both. They are proxies, and the geometry defines no arrival lead.
+6. **Overstated confidence.** The paper concludes that its reduced results
+   "increase confidence" in a conditional engineering possibility. Given
+   items 1–3, that confidence applies to its two service rules alone. The
+   geometry on which they were tested requires a change of topology and
+   demands inadmissible stress.
 
 ## Resolution
 

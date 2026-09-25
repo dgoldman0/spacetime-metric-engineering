@@ -1,94 +1,139 @@
 \documentclass[10pt]{article}
 
-\usepackage[letterpaper,margin=0.6in]{geometry}
+\usepackage[letterpaper,margin=0.8in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{hyperref}
 
 \hypersetup{colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black}
-\titleformat{\section}{\normalsize\bfseries}{}{0em}{}
-\titlespacing*{\section}{0pt}{6pt}{2pt}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
 \setlist[itemize]{nosep,leftmargin=1.2em,topsep=2pt}
-\setlength{\parskip}{2.5pt}
+\setlist[enumerate]{nosep,leftmargin=1.5em,topsep=2pt,itemsep=2pt}
+\setlength{\parskip}{3pt}
 \setlength{\parindent}{0pt}
-\pagestyle{empty}
+\pagestyle{plain}
 
 \begin{document}
 
 \begin{center}
-{\large\bfseries Addendum to ``From the Warp/Wormhole Interface to a Throat-Supported Shift Rail'':\\[2pt]
-Geometry Clarification and Current State}\\[3pt]
+{\large\bfseries Addendum to ``From the Warp/Wormhole Interface\\[1pt]
+to a Throat-Supported Shift Rail'':\\[3pt]
+Corrections, Geometry Clarification and Current State}\\[6pt]
 Daniel S. Goldman \quad Independent researcher \quad
 \href{https://orcid.org/0000-0003-2835-3521}{ORCID: 0000-0003-2835-3521}\\[1pt]
 September 24, 2026
 \end{center}
 
-\section{Clarification}
+This addendum corrects the May 2026 paper \cite{rail}. Work since its release shows three things: the paper's reduced
+model describes a two-ended traversable wormhole; several of its readings belong to a rail through one space; and its
+service sequence, applied to its throat, demands a stress that no source with a rest frame supplies. The two service
+rules the paper found carry forward into a one-space design that passes that admissibility test. The technical
+disclosure cited here is the version at a fixed commit \cite{disclosure}; a later revision will follow the source
+evaluation.
 
-The reduced diagnostic model of the May 2026 paper \cite{rail} uses the spherically symmetric form
+\section{The geometry of the paper}
+
+The reduced diagnostic model uses the spherically symmetric form
 \[
 ds^2=-\alpha^2ds^2+\gamma_{ll}\,(dl+\beta^l ds)^2+\gamma_{\Omega\Omega}\,d\Omega^2 ,
 \]
 with the rail coordinate $l$ as its radial direction. Its implementation sets the areal radius by the Ellis profile
-$R^2\propto l^2+R_{th}^2$, a throat of radius $R_{th}=1.75$ at $l=0$; a later revision held $R=1.75$ along the whole
+$R^2\propto l^2+R_{th}^2$, a throat of radius $R_{th}=1.75$ at $l=0$. A later revision held $R=1.75$ along the whole
 track, with flared ends. The geometry is therefore a two-ended, traversable wormhole of Morris--Thorne type. Its lapse
-stays positive and finite, so light and slow travelers cross the throat directly, and the metric leaves open whether the
-two flat regions belong to one universe. The earlier system is thus an active rail laid through this throat, and its
-shortcut combines the throat's topology with the shift along it. The same shift places the construction relative to
-the wormhole--warp correspondence \cite{gz}, where a localized warp bubble crossing a horizon-free throat meets a
-curvature singularity. The rail's shift is instead the throat's own
-spherically symmetric radial field, written in the proper-distance coordinate with a non-unit lapse, which places it in
-the regular spherical class of that analysis.
+stays positive and finite, so light and slow travelers cross the throat directly. The metric leaves open whether the two
+flat regions belong to one universe. The paper's system is thus an active rail laid through this throat, and its
+shortcut combines the throat's topology with the shift along it.
 
-Three readings in the paper and in the accompanying technical disclosure belong to a rail through one space. The
-disclosure's service-time comparison with an exterior null signal takes the rail coordinate as the distance between
-endpoints that lie in separate asymptotic regions, so its ratios compare throat traversal with a reference placed by
-assumption. Next, the throat relaxation in the service sequence acts on the support stretch, the lapse and an angular
-capacity jacket, while the minimal sphere persists. Finally, supplied sources hold an existing throat open, whereas
-forming a two-ended space from ordinary space requires a change of spatial topology \cite{geroch}. The paper's two service
-rules hold unchanged: transport shift stays inside its support envelope, and the packet is caught before release. Its
-service sequence, prepare $\rightarrow$ carry $\rightarrow$ catch $\rightarrow$ release $\rightarrow$ relax $\rightarrow$
-reset, now runs as a literal schedule.
+The shift also fixes the construction's place in the wormhole--warp correspondence \cite{gz}. There, a localized warp
+bubble crossing a horizon-free throat meets a curvature singularity. The rail's shift is instead the throat's own
+spherically symmetric radial field, written in the proper-distance coordinate with a non-unit lapse. That places it in the
+regular spherical class of the correspondence, a class the paper left unnamed.
+
+\section{Issues in the paper}
+
+\begin{enumerate}
+\item \textbf{Unstated topology.} The paper presents the throat as infrastructure that the service prepares and relaxes.
+It also draws on the prepared-route picture of the Krasnikov tube, a route through ordinary space. Its geometry, however,
+is a wormhole with two asymptotic ends, and the paper leaves that topology and its consequences unstated.
+\item \textbf{Incomplete source premise.} Supplied sources can provide the stress that holds a throat open. Forming a
+two-ended space from ordinary space requires a change of spatial topology, which in a compact region brings closed
+timelike curves \cite{geroch}. The paper's conditional feasibility claim therefore rests on a geometry that sources
+alone cannot produce.
+\item \textbf{Inadmissible stress.} The paper's screen tests packet timelikeness, a stationary monitor, radial light
+speeds and bundle compression. The algebraic type of the demanded stress lies outside it. The Hawking--Ellis
+classification applied later \cite{le,repo} shows that the paper's own relaxation step demands a Type~IV layer. That step
+is the support decompression, acting on the throat's varying areal radius. It splits the two radial null energies into
+opposite signs, which leaves the stress with no timelike eigenvector, so no source with a rest frame can supply it.
+Decompression alone produces 874 Type~IV points in a controlled run, and the full operating geometry of the same service
+family produces 13,587 on its certification map.
+\item \textbf{Mismatched packet readings.} In the service family behind the paper, the packet windows advanced at unit
+coordinate speed while the packet-norm test used the carry speed $U/B$. The packet screen therefore combined two different
+readings of the packet's motion \cite{repo}.
+\item \textbf{Unseparated transport.} The paper describes traversal as a timed rail service and leaves the throat's
+shortcut and the shift's transport unseparated. The disclosure \cite{disclosure} then rated the service against an
+exterior null signal between endpoints taken a rail-coordinate distance apart. Those endpoints lie in separate asymptotic
+regions. Its service-time ratios, 2.569 and 1.233, therefore compare throat traversal with a light path the geometry
+lacks, and the mismatch of item~4 enters both. They are proxies, and the geometry defines no arrival lead.
+\item \textbf{Overstated confidence.} The paper concludes that its reduced results ``increase confidence'' in a
+conditional engineering possibility. Given items 1--3, that confidence applies to its two service rules alone. The
+geometry on which they were tested requires a change of topology and demands inadmissible stress.
+\end{enumerate}
+
+\section{What carries forward}
+
+The paper's two service rules hold. Transport shift stays inside its support envelope, and the packet is caught before
+release. Its packet-centred division of labour also holds: the packet worldtube is the passenger object, and
+infrastructure bears the gradients. The service sequence, prepare $\rightarrow$ carry $\rightarrow$ catch $\rightarrow$
+release $\rightarrow$ relax $\rightarrow$ reset, now runs as a literal schedule.
 
 \section{Current state}
 
-The current design realizes the rail as a track in one flat space \cite{repo}, with no throat and unit stretch:
+The current design realizes the rail as a track in one flat space, with no throat and unit stretch \cite{repo}:
 \[
 ds^2=-\alpha^2d\sigma^2+(dz+\beta\,d\sigma)^2+dr^2+r^2d\phi^2,
 \qquad
-\rho=-\frac{1}{32\pi}\left(\frac{\partial_r\beta}{\alpha}\right)^2 ,
+\rho=-\frac{1}{32\pi}\left(\frac{\partial_r\beta}{\alpha}\right)^2 .
 \]
-with the energy density fixed by the Hamiltonian constraint on the flat slices. The service region
-$r\le1.75$ is the packet-safe region: the shift carries the packet along a prescribed path with a $2.1c$ lane, inside a
-convex lapse plateau of $e^{4}$ whose windows open with the lapse leading and lagging the shift. A transverse boundary
-layer returns the fields to Minkowski values by $r=13.25$. Its lapse sheath of $e^{1}$ travels with the packet on a
-schedule, so flat space remains behind each transit, and sources placed along the lane switch on as the packet arrives.
+The Hamiltonian constraint on the flat slices fixes this energy density. The service region $r\le1.75$ is the
+packet-safe region. There the shift carries the packet along one prescribed path. It enters at $0.9c$, crosses a $2.1c$
+lane, slows to $0.95c$ across the lane's edge and is released. The shift sits inside a convex lapse plateau of $e^{4}$,
+whose windows open with the lapse leading and lagging the shift. A transverse boundary layer returns the fields to
+Minkowski values by $r=13.25$. Its lapse sheath of $e^{1}$ travels with the packet on a schedule, so flat space remains
+behind each transit, and sources placed along the lane switch on as the packet arrives.
 \begin{itemize}
 \item \textbf{Arrival.} The packet reaches the track end at $\sigma=3.34$. Light through flat space from the same
-entry event arrives at $\sigma=5.0$, a mean packet speed of $1.35c$ set entirely by the shift and lapse.
+entry event arrives at $\sigma=5.0$. That gives the packet a mean speed of $1.35c$, set entirely by the shift and lapse.
 \item \textbf{Packet.} Its worldtube is timelike from approach to arrival. In the lane the packet moves at $0.016c$
 or less relative to local normal observers, and its clock runs at most 55 times exterior time.
 \item \textbf{Admissibility.} Over $\sigma\in[-8,10]$ and $|z|\le10$, every non-vacuum boundary-layer point is
-Hawking--Ellis Type I, including under refinement, with no Type IV band at any resolved crossing \cite{le}. The
-exterior is exactly vacuum.
+Hawking--Ellis Type~I, including under refinement. No resolved crossing carries a Type~IV band, and the exterior is
+exactly vacuum.
 \item \textbf{Demand.} During a transit the demand is a tension without energy on the shoulders of the lapse profile,
-local to the packet: peak stress 2.9 and peak negative energy $1.9\times10^{-4}$, in units where the service region
-has radius 1.75. At one unit per metre, the peak null-energy deficit integrates to about $0.1\,M_\odot$ and the peak
-stress is $3.5\times10^{44}$\,Pa, both independent of route length.
+local to the packet: peak stress 2.9 and peak negative energy $1.9\times10^{-4}$, in units where the service region has
+radius 1.75. At one unit per metre, the peak null-energy deficit integrates to about $0.1\,M_\odot$ and the peak stress
+is $3.5\times10^{44}$\,Pa. Both are independent of route length.
 \end{itemize}
 The next stage evaluates candidate source families against this demand.
 
 \begingroup
 \small
-\renewcommand{\section}[2]{\vspace{3pt}\textbf{References}\par}
+\raggedright
+\renewcommand{\section}[2]{\vspace{4pt}\textbf{References}\par}
 \begin{thebibliography}{9}
-\setlength{\itemsep}{0pt}
+\setlength{\itemsep}{1pt}
 \bibitem{rail} D.~S. Goldman, ``From the Warp/Wormhole Interface to a Throat-Supported Shift Rail: A Packet-Centered
 Active-Rail Architecture after the Wormhole--Warp-Drive Correspondence,'' preprint (2026),
 \href{https://doi.org/10.13140/RG.2.2.10402.39368}{doi:10.13140/RG.2.2.10402.39368}.
-\bibitem{repo} D.~S. Goldman, active-rail reports, data and code (2026), including \emph{Geometry Clarification} and
-\emph{Lapse and Staging Pass}, \url{https://github.com/dgoldman0/spacetime-metric-engineering}.
+\bibitem{disclosure} D.~S. Goldman, ``Active-Rail Spacetime Metric Engineering System: Technical Disclosure and
+Source-Placement Architecture,'' version at commit \texttt{2146526c7a70691cd1ac1f8f4928b99d7cca0c19} (2026-09-23),
+\url{https://github.com/dgoldman0/spacetime-metric-engineering/blob/2146526c7a70691cd1ac1f8f4928b99d7cca0c19/active_rail_technical_disclosure.pdf}.
+\bibitem{repo} D.~S. Goldman, active-rail reports, data and code at commit
+\texttt{564e69f528d0780a58cccbd764a7d15fc2ee5867} (2026-09-24): \emph{LE Boundary Diagnostic}, \emph{Constant-Radius
+Track}, \emph{Choreography Pass} and \emph{Lapse and Staging Pass},
+\url{https://github.com/dgoldman0/spacetime-metric-engineering/tree/564e69f528d0780a58cccbd764a7d15fc2ee5867/supporting_reports};
+the corrections are maintained in \emph{Geometry Clarification}, \texttt{supporting\_reports/THROAT\_GEOMETRY\_CLARIFICATION.md}.
 \bibitem{gz} R. Garattini and K. Zatrimaylov, ``On the wormhole--warp drive correspondence,'' \emph{JCAP} 08 (2024) 061.
 \bibitem{le} A.~T. Le, ``On the boundary cost of source-consistent warp shells,'' arXiv:2605.25417 (2026).
 \bibitem{geroch} R.~P. Geroch, ``Topology in general relativity,'' \emph{J. Math. Phys.} \textbf{8}, 782 (1967).
