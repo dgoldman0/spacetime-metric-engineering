@@ -53,7 +53,13 @@ scalars with higher-derivative kinetic terms remain the open family for a
 macroscopic rail. The [technical disclosure](active_rail_technical_disclosure.pdf)
 now describes this one-space operating embodiment and its source
 requirements; its throat-metric revision is preserved at commit
-`2146526c7a70691cd1ac1f8f4928b99d7cca0c19`. The C1 and
+`2146526c7a70691cd1ac1f8f4928b99d7cca0c19`. The
+[compartment pass](supporting_reports/COMPARTMENT_PASS.md) carries the packet
+in an exactly flat compartment cut into the gate-passing lapse structure
+where the shift is uniform. Passengers are weightless and free of tides, and
+their clock runs at a lapse chosen by design: 0.2, 1 and 55 times exterior
+time all pass the full gate, with the packet 5.1 ahead of light on a
+rest-to-rest trip. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

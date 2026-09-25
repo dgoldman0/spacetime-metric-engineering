@@ -364,7 +364,7 @@ def service_jet(s: float, z: float, params: SourceParams, design: AxialTrackDesi
     return stencil_jet(lambda a, b: core_fields(a, b, params, design), s, z, design.jet_step)
 
 
-def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
+def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None, lapse_terms=()):
     """Full jets of alpha = exp(chi_a a + s0 h E), A = exp(chi_b b) and beta = chi_s beta_s over arrays of r.
 
     Without blends, one blend (chi, d1, d2) serves all three fields. blends
@@ -372,7 +372,8 @@ def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
     is ((E, E', E''), (h, h', h'')) for the log-lapse sheath, with h' and h''
     its z-derivatives, or ((E, E', E''), h) with h a jet dict over sigma and z
     for a time-staged sheath. conformal has the static form for a sheath added
-    equally to log alpha and log A.
+    equally to log alpha and log A. lapse_terms adds further log-lapse terms
+    in the time-staged sheath form.
     """
     blends = blends or ((chi, d1, d2),)*3
     out = {}
@@ -381,7 +382,7 @@ def radial_jets(jet, chi, d1, d2, *, blends=None, sheath=None, conformal=None):
         c, c1, c2 = blends[index]
         g = {"v": c*f["v"], "s": c*f["s"], "z": c*f["z"], "r": c1*f["v"], "ss": c*f["ss"], "sz": c*f["sz"],
              "zz": c*f["zz"], "sr": c1*f["s"], "zr": c1*f["z"], "rr": c2*f["v"]}
-        for term in ((sheath,) if index == 0 else ())+(conformal,):
+        for term in ((sheath, *lapse_terms) if index == 0 else ())+(conformal,):
             if term is None:
                 continue
             (e, e1, e2), h = term
@@ -427,8 +428,13 @@ def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0., s: float | Non
     and sigma through a time-staged sheath.
     """
     r = np.atleast_1d(np.asarray(r, dtype=float))
+    return tensor_from_fields(radial_fields(jet, r, design, z, s), r, design)
+
+
+def tensor_from_fields(fields, r, design: AxialTrackDesign) -> np.ndarray:
+    """Orthonormal T_ab = G_ab/(8 pi) at radii r from full field jets; the wall terms act beyond the core."""
+    r = np.atleast_1d(np.asarray(r, dtype=float))
     curvature = transverse_profile(r, design)[2]
-    fields = radial_fields(jet, r, design, z, s)
     wall = r > design.core_radius
     tensor = np.zeros((len(r), 4, 4))
     transverse = generated.product_rr({**fields, "C": np.ones_like(r)})

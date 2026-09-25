@@ -1,0 +1,226 @@
+{
+ "completed_utc": "2026-09-25T11:02:45+00:00",
+ "elapsed_seconds": 692.4,
+ "workers": 4,
+ "step": 0.1,
+ "sigma_range": [
+  -3.5,
+  10.0
+ ],
+ "margin": 1.5,
+ "per_panel": 12,
+ "noise_floor": 1e-08,
+ "designs": {
+  "clock_1": {
+   "service": {
+    "clock_log": 0.0
+   },
+   "axial": {}
+  },
+  "clock_0p2": {
+   "service": {
+    "clock_log": -1.6094379124341003
+   },
+   "axial": {}
+  },
+  "clock_55": {
+   "service": {
+    "clock_log": 4.0
+   },
+   "axial": {}
+  }
+ },
+ "screen": {
+  "clock_1": {
+   "service": {
+    "clock_log": 0.0
+   },
+   "axial": {}
+  },
+  "clock_0p2": {
+   "service": {
+    "clock_log": -1.6094379124341003
+   },
+   "axial": {}
+  },
+  "clock_55": {
+   "service": {
+    "clock_log": 4.0
+   },
+   "axial": {}
+  },
+  "clock_0p05": {
+   "service": {
+    "clock_log": -2.995732273553991
+   },
+   "axial": {}
+  },
+  "plateau_e3": {
+   "service": {
+    "plateau_log": 3.0
+   },
+   "axial": {}
+  },
+  "plateau_e2": {
+   "service": {
+    "plateau_log": 2.0
+   },
+   "axial": {}
+  },
+  "shift_edge_1": {
+   "service": {
+    "shift_width": 1.0
+   },
+   "axial": {}
+  },
+  "hole_edge_0p5": {
+   "service": {
+    "hole_edge": 0.5
+   },
+   "axial": {}
+  },
+  "slope_0": {
+   "service": {
+    "slope": 0.0
+   },
+   "axial": {}
+  },
+  "sheath_e0p5": {
+   "service": {},
+   "axial": {
+    "sheath_log_lapse": 0.5
+   }
+  },
+  "no_sheath": {
+   "service": {},
+   "axial": {
+    "sheath_log_lapse": 0.0
+   }
+  }
+ },
+ "zones": [
+  [
+   "compartment_region",
+   0.0,
+   1.75
+  ],
+  [
+   "hole_boundary",
+   1.75,
+   3.25
+  ],
+  [
+   "inner_band",
+   3.25,
+   3.75
+  ],
+  [
+   "sheath_rise",
+   3.75,
+   8.75
+  ],
+  [
+   "sheath_plateau",
+   8.75,
+   9.25
+  ],
+  [
+   "outer_falls",
+   9.25,
+   13.25
+  ]
+ ],
+ "service_defaults": {
+  "path": [
+   -1.0,
+   0.0,
+   0.0,
+   2.1,
+   0.0,
+   0.0,
+   1.5,
+   6.0,
+   1.5
+  ],
+  "clock_log": 0.0,
+  "plateau_log": 4.0,
+  "slope": 0.5,
+  "slope_ramp": 0.5,
+  "half_width": 1.0,
+  "hole_edge": 1.0,
+  "hole_radius": [
+   1.75,
+   1.5
+  ],
+  "shift_gap": 0.25,
+  "shift_width": 2.0,
+  "fall_margin": 0.5,
+  "fall_width": 2.0,
+  "schedule": [
+   -2.5,
+   9.0,
+   1.0
+  ]
+ },
+ "checks": {
+  "clock_1": {
+   "gate_samples": 22576,
+   "gate_type_i": 2457368,
+   "gate_type_iv": 0,
+   "gate_other": 0,
+   "refined_type_i": 4929072,
+   "refined_type_iv": 0,
+   "refined_other": 0,
+   "estimated_band_samples": 0,
+   "resolved_crossings": 0,
+   "samples_with_band": 0,
+   "max_band_width": 0.0,
+   "envelope_violations": 0,
+   "worst_envelope_ratio": 0.07590688172019587,
+   "core_min_null": -0.9261202000010909,
+   "layer_min_null": -0.9261201807343953
+  },
+  "clock_0p2": {
+   "gate_samples": 22576,
+   "gate_type_i": 2457368,
+   "gate_type_iv": 0,
+   "gate_other": 0,
+   "refined_type_i": 4929072,
+   "refined_type_iv": 0,
+   "refined_other": 0,
+   "estimated_band_samples": 0,
+   "resolved_crossings": 0,
+   "samples_with_band": 0,
+   "max_band_width": 0.0,
+   "envelope_violations": 0,
+   "worst_envelope_ratio": 0.07590688172019587,
+   "core_min_null": -1.2956485087530365,
+   "layer_min_null": -1.2956484821569498
+  },
+  "clock_55": {
+   "gate_samples": 22576,
+   "gate_type_i": 2421656,
+   "gate_type_iv": 0,
+   "gate_other": 0,
+   "refined_type_i": 4860128,
+   "refined_type_iv": 0,
+   "refined_other": 0,
+   "estimated_band_samples": 0,
+   "resolved_crossings": 0,
+   "samples_with_band": 0,
+   "max_band_width": 0.0,
+   "envelope_violations": 0,
+   "worst_envelope_ratio": 0.07590688172019587,
+   "core_min_null": -0.4886879984450512,
+   "layer_min_null": -0.5810556219319822
+  }
+ },
+ "software_sha256": {
+  "adm_harness/compartment_service.py": "8600259e8d7ce6c2e27b2f3e987c700d1aa4eb78a0ce83b7776f2d8cd5a7fc8a",
+  "adm_harness/axial_track.py": "bcda08d0a9daa7fc02ae6117dc9f4459a7eb4ac20b73081fd65cf828cd4bbfd5",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "98e671ffa60677454027778eafd5899cbd7b2ef826d30cecc2a973f30a88ca3c",
+  "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+  "scripts/run_compartment_pass.py": "2ecf2f698dc886383fa95df179df57cd5b6d4f94d238d85e17dac75ab305d9d9"
+ }
+}

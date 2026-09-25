@@ -171,8 +171,8 @@ def check_packet_path(path) -> None:
     if len(path) != len(PATH_FIELDS) or not all(math.isfinite(x) for x in path):
         raise ValueError("a packet path has nine finite values: "+", ".join(PATH_FIELDS))
     s0, l0, v_in, v_lane, v_out, a, ta, d, td = path
-    if min(v_in, v_lane, v_out, ta, td) <= 0:
-        raise ValueError("packet speeds and ramp durations must be positive")
+    if min(v_lane, ta, td) <= 0 or min(v_in, v_out) < 0:
+        raise ValueError("the lane speed and ramp durations must be positive, the entry and exit speeds nonnegative")
 
 
 def packet_velocity(s: float, path) -> float:

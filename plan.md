@@ -184,11 +184,30 @@ decisions now have test results:
   source-family requirements. Its throat-metric revision is preserved at
   commit `2146526c7a70691cd1ac1f8f4928b99d7cca0c19`.
 
-Next: a source construction in the open family, a classical scalar with
-higher-derivative kinetic terms that supplies the deficit in the outer falls
-and the sheath rise during each transit, with its perturbations checked on
-the time-dependent background. The C1 finite assembly and coupled dynamics
-follow on that construction.
+- **Compartment pass.** The [compartment pass](supporting_reports/COMPARTMENT_PASS.md)
+  carries the packet from rest to rest in a compartment where the lapse and
+  the shift are uniform in space, so spacetime there is flat and the packet
+  rests on free-falling observers.
+  - The compartment is a hole cut into a gate-passing lapse structure:
+    plateau \(e^{4}\), convex rise across the shift's edges, sheath \(e^{1}\)
+    across its radial transition.
+  - The hole's boundary lies where the shift is uniform, where a coordinate
+    change leaves a pure lapse, Type I for any profile.
+  - Clock rates 0.2, 1 and 55 each pass the full gate (2.4 million points,
+    4.9 million refined, no band). The compartment's curvature stays at
+    \(4\times10^{-16}\), and the packet arrives 5.1 ahead of light at a mean
+    of \(1.68c\).
+  - At clock rate 1 the passenger ages as exterior clocks do; at 0.2, 0.12 of
+    light's crossing time.
+  - The negative-null content per unit distance is 1.5 times the lapse-staged
+    rail's, and static source units can sit wherever the deficit lies.
+
+Next: the service audits on a ledger for the compartment's path, and the
+plateau \(e^{3}\) and shift-edge levers on the demand. A source construction
+in the open family follows: a classical scalar with higher-derivative
+kinetic terms that supplies the deficit in the outer falls and the sheath
+rise during each transit, with its perturbations checked on the
+time-dependent background.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

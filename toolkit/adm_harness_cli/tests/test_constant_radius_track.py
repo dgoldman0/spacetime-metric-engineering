@@ -277,3 +277,16 @@ def test_packet_path_validation():
         ConstantRadiusTrackDesign(packet_path=(0., 0., 1.))
     with pytest.raises(ValueError):
         ConstantRadiusTrackDesign(packet_path=(0., 0., 1., 1., 1., 0., 0., 1., 1.))
+    with pytest.raises(ValueError):
+        ConstantRadiusTrackDesign(packet_path=(0., 0., -.1, 2., 0., 0., 1., 3., 1.))
+
+
+def test_packet_path_from_rest_to_rest():
+    path = (-1., 0., 0., 2.1, 0., 0., 1.5, 6., 1.5)
+    ConstantRadiusTrackDesign(packet_path=path)
+    assert packet_position(-.5, path) == 0.
+    assert packet_velocity(3., path) == pytest.approx(2.1)
+    assert packet_velocity(8., path) == 0.
+    s = np.linspace(-1., 9., 20001)
+    assert packet_position(9., path) == pytest.approx(np.trapezoid([packet_velocity(x, path) for x in s], s),
+                                                      rel=1e-6)

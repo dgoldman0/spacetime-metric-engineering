@@ -1,0 +1,12 @@
+design,type_iv,samples_with_type_iv,unresolved,resolved_crossings,samples_with_band,widest_band
+clock_1,0,0,0,0.0,0.0,0.0
+clock_0p2,0,0,0,0.0,0.0,0.0
+clock_55,0,0,0,0.0,0.0,0.0
+clock_0p05,0,0,0,0.0,0.0,0.0
+plateau_e3,0,0,0,0.0,0.0,0.0
+plateau_e2,22348,1452,0,0.0,0.0,0.0
+shift_edge_1,0,0,0,0.0,0.0,0.0
+hole_edge_0p5,0,0,0,0.0,0.0,0.0
+slope_0,218,218,0,24.0,24.0,0.0020009999999999195
+sheath_e0p5,0,0,0,0.0,0.0,0.0
+no_sheath,101638,2374,0,0.0,0.0,0.0
