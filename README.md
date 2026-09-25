@@ -59,7 +59,16 @@ in an exactly flat compartment cut into the gate-passing lapse structure
 where the shift is uniform. Passengers are weightless and free of tides, and
 their clock runs at a lapse chosen by design: 0.2, 1 and 55 times exterior
 time all pass the full gate, with the packet 5.1 ahead of light on a
-rest-to-rest trip. The C1 and
+rest-to-rest trip. The [front light surface pass](supporting_reports/FRONT_LIGHT_SURFACE_PASS.md)
+follows what that moving structure overtakes. Its front gathers forward
+light and matter at rest in its path and releases them at arrival with
+energies growing 9.6 e-folds per unit time of the carry, the front-horizon
+problem of superluminal warp drives. Two route-prepared front elements bound
+it for any trip length, and both pass the gate. A forward shelf holds the
+lapse above the carry speed ahead of the packet, at a cost that grows with
+the route. The reference design takes the second element, a slender conical
+front, which sheds what it overtakes sideways and adds 68% to the peak
+demand carried with the packet. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

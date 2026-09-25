@@ -1,0 +1,237 @@
+{
+ "completed_utc": "2026-09-25T13:42:56+00:00",
+ "elapsed_seconds": 3507.5,
+ "workers": 4,
+ "speed": 2.1,
+ "lanes": [
+  6.0,
+  12.0,
+  18.0
+ ],
+ "fronts": {
+  "current_front": null,
+  "shelf_running": {
+   "type": "ForwardShelf",
+   "log_lapse": 1.0,
+   "radius": [
+    13.25,
+    4.0
+   ],
+   "lead_speed": 3.5,
+   "lead_width": 2.0,
+   "terminal_gap": 2.0,
+   "stop_time": 1.0
+  },
+  "shelf_static": {
+   "type": "ForwardShelf",
+   "log_lapse": 1.0,
+   "radius": [
+    13.25,
+    4.0
+   ],
+   "lead_speed": Infinity,
+   "lead_width": 2.0,
+   "terminal_gap": 2.0,
+   "stop_time": 1.0
+  },
+  "cone": {
+   "type": "ConeFront",
+   "half_angle": 15.0,
+   "log_lapse": 1.5,
+   "layer": 3.0,
+   "rounding": 0.5,
+   "base_radius": 16.0,
+   "base_softness": 1.0,
+   "rise_width": 1.5,
+   "extend": [
+    0.6,
+    1.0
+   ]
+  }
+ },
+ "clock_rates": [
+  0.1,
+  0.2,
+  0.3,
+  0.5,
+  0.7,
+  1.0,
+  1.5,
+  2.0,
+  3.0,
+  5.0
+ ],
+ "launch_radii": [
+  0.05,
+  0.5,
+  2.0,
+  5.0,
+  8.0,
+  11.0,
+  14.0,
+  17.0
+ ],
+ "trace_start": -3.0,
+ "trace_step": 0.005,
+ "sigma_range": [
+  -3.5,
+  10.0
+ ],
+ "window": 8.25,
+ "per_panel": 6,
+ "max_panel": 0.5,
+ "noise_floor": 1e-08,
+ "service_defaults": {
+  "path": [
+   -1.0,
+   0.0,
+   0.0,
+   2.1,
+   0.0,
+   0.0,
+   1.5,
+   6.0,
+   1.5
+  ],
+  "clock_log": 0.0,
+  "plateau_log": 4.0,
+  "slope": 0.5,
+  "slope_ramp": 0.5,
+  "half_width": 1.0,
+  "hole_edge": 1.0,
+  "hole_radius": [
+   1.75,
+   1.5
+  ],
+  "shift_gap": 0.25,
+  "shift_width": 2.0,
+  "fall_margin": 0.5,
+  "fall_width": 2.0,
+  "schedule": [
+   -2.5,
+   9.0,
+   1.0
+  ]
+ },
+ "checks": {
+  "current_front": {
+   "pattern": {
+    "samples": 22576,
+    "type_i": 3231276,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.9261202000010909,
+    "refined_samples": 11288,
+    "refined_type_i": 3231258,
+    "refined_type_iv": 0,
+    "refined_other": 0,
+    "resolved_crossings": 0,
+    "samples_with_band": 0,
+    "max_band_width": 0.0
+   }
+  },
+  "shelf_running": {
+   "pattern": {
+    "samples": 22576,
+    "type_i": 3483277,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.9261202000010909,
+    "refined_samples": 11288,
+    "refined_type_i": 3480673,
+    "refined_type_iv": 0,
+    "refined_other": 0,
+    "resolved_crossings": 0,
+    "samples_with_band": 0,
+    "max_band_width": 0.0
+   },
+   "front": {
+    "samples": 3520,
+    "type_i": 142503,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.1127813974880789,
+    "refined_samples": 1792,
+    "refined_type_i": 139131,
+    "refined_type_iv": 0,
+    "refined_other": 0
+   }
+  },
+  "shelf_static": {
+   "pattern": {
+    "samples": 22576,
+    "type_i": 3478298,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.9261202000010909,
+    "refined_samples": 11288,
+    "refined_type_i": 3476948,
+    "refined_type_iv": 0,
+    "refined_other": 0,
+    "resolved_crossings": 0,
+    "samples_with_band": 0,
+    "max_band_width": 0.0
+   },
+   "front": {
+    "samples": 3520,
+    "type_i": 169066,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.1127813974880789,
+    "refined_samples": 1792,
+    "refined_type_i": 164607,
+    "refined_type_iv": 0,
+    "refined_other": 0
+   }
+  },
+  "cone": {
+   "pattern": {
+    "samples": 22576,
+    "type_i": 3315848,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.9261202000010909,
+    "refined_samples": 11288,
+    "refined_type_i": 3315829,
+    "refined_type_iv": 0,
+    "refined_other": 0,
+    "resolved_crossings": 0,
+    "samples_with_band": 0,
+    "max_band_width": 0.0
+   },
+   "front": {
+    "samples": 15785,
+    "type_i": 229150,
+    "type_iv": 0,
+    "other": 0,
+    "estimated_band_samples": 0,
+    "envelope_violations": 0,
+    "min_null": -0.15891613318643055,
+    "refined_samples": 8036,
+    "refined_type_i": 219996,
+    "refined_type_iv": 0,
+    "refined_other": 0
+   }
+  }
+ },
+ "software_sha256": {
+  "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+  "adm_harness/compartment_service.py": "8600259e8d7ce6c2e27b2f3e987c700d1aa4eb78a0ce83b7776f2d8cd5a7fc8a",
+  "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+  "adm_harness/axial_einstein_generated.py": "6153f6ec14a47c01353f7e0cb9ca6f01002061276237c53d67809afd6b632493",
+  "adm_harness/constant_radius_track.py": "98e671ffa60677454027778eafd5899cbd7b2ef826d30cecc2a973f30a88ca3c",
+  "scripts/run_front_surface_pass.py": "77fcc0031d753c4ee098d82dd7bffe80b9e520c38bae26e7612ffc429f728532"
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "speed": 2.1,
+ "angles": [
+  15.0,
+  22.0,
+  30.0,
+  45.0
+ ],
+ "layers": [
+  2.0,
+  5.0
+ ],
+ "roundings": [
+  0.5,
+  2.0
+ ],
+ "radii": [
+  0.05,
+  0.2,
+  0.5,
+  1.0,
+  2.0,
+  4.0,
+  7.0,
+  10.0,
+  12.5
+ ],
+ "base_radius": 13.0,
+ "interior_log_lapse": 1.5,
+ "software_sha256": {
+  "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+  "scripts/run_front_surface_pass.py": "77fcc0031d753c4ee098d82dd7bffe80b9e520c38bae26e7612ffc429f728532",
+  "scripts/run_cone_front_checks.py": "5f49a7bb61f08286998b464e995e2cc3aa0a9b6d1fbc83a1a5476e75e23f8ca8"
+ }
+}

@@ -202,8 +202,31 @@ decisions now have test results:
   - The negative-null content per unit distance is 1.5 times the lapse-staged
     rail's, and static source units can sit wherever the deficit lies.
 
-Next: the service audits on a ledger for the compartment's path, and the
-plateau \(e^{3}\) and shift-edge levers on the demand. A source construction
+- **Front light surface pass.** The [front light surface pass](supporting_reports/FRONT_LIGHT_SURFACE_PASS.md)
+  traces the light and matter that the moving structure overtakes.
+  - The current front's lapse falls through the carry speed 6.2 ahead of the
+    packet. Everything it overtakes within \(r\approx11\) gathers there
+    and gains 9.6 e-folds per unit \(\sigma\). Matter at rest in the path
+    leaves the 12.6 trip at \(\gamma=10^{22}\) and the 37.8 trip at
+    \(10^{72}\).
+  - A forward shelf, lapse \(e^{1}\) held ahead of the pattern, removes the
+    front surface. Swept matter leaves at \(\gamma=10.8\) and light at
+    2.72, or 8.7 with the shelf's edge running at \(3.5c\), on every trip.
+    Signals from the packet outrun the pattern inside the shelf. It costs
+    1.58 per unit length, \(2.1\times10^{27}\) kg per metre at any scale.
+  - A conical front, half-angle 15° and 66 long, sheds what it overtakes
+    sideways. Matter overtaken during the carry leaves at
+    \(\gamma\le5.8\), and matter inside the cone at departure at up to
+    14.9, on every trip length. It raises the peak content from 198 to 333.
+  - All four fronts are Type I at every evaluated point. The conical front
+    is the reference; the shelf is recorded as the fork with causal
+    choreography and no front surface.
+  - A clock-rate sweep from 0.1 to 5 records the compartment's demand
+    alongside the primary rate of 1.
+
+Next: the service audits with the swept-object audit on a ledger for the
+compartment's path with the conical front, and the plateau \(e^{3}\),
+shift-edge and radial-extent levers on the demand. A source construction
 in the open family follows: a classical scalar with higher-derivative
 kinetic terms that supplies the deficit in the outer falls and the sheath
 rise during each transit, with its perturbations checked on the

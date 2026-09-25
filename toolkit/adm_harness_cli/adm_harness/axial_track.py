@@ -431,11 +431,15 @@ def frame_tensor(jet, r, design: AxialTrackDesign, z: float = 0., s: float | Non
     return tensor_from_fields(radial_fields(jet, r, design, z, s), r, design)
 
 
-def tensor_from_fields(fields, r, design: AxialTrackDesign) -> np.ndarray:
-    """Orthonormal T_ab = G_ab/(8 pi) at radii r from full field jets; the wall terms act beyond the core."""
+def tensor_from_fields(fields, r, design: AxialTrackDesign, *, product_core: bool = True) -> np.ndarray:
+    """Orthonormal T_ab = G_ab/(8 pi) at radii r from full field jets; the wall terms act beyond the core.
+
+    Inside the core the fields are independent of r and the product form is exact. product_core=False applies
+    the wall terms at every r > 0, for fields that vary with r inside the core radius.
+    """
     r = np.atleast_1d(np.asarray(r, dtype=float))
     curvature = transverse_profile(r, design)[2]
-    wall = r > design.core_radius
+    wall = r > design.core_radius if product_core else r > 0
     tensor = np.zeros((len(r), 4, 4))
     transverse = generated.product_rr({**fields, "C": np.ones_like(r)})
     tensor[:, 0, 0] = curvature
