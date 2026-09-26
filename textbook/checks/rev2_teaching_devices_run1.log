@@ -1,0 +1,93 @@
+
+== Chapter 1: how stiff is the sheet? (unchanged numbers, new wording)
+ok  mass to slow a clock 1e-9 at 1 m (kg): computed 1.34665e+18, text 1.3e+18
+ok  diameter of a rocky asteroid of that mass (km): computed 100.95, text 100
+ok  far more than a loaded truck (4e4 kg) or a large mountain (~1e15 kg)
+
+== Chapter 1: Example, the Sun as a lens
+ok  deflection at the limb (rad): computed 8.48998e-06, text 8.5e-06
+ok  deflection at the limb (arcsec): computed 1.75118, text 1.75
+ok  GM_sun/c^2 quoted in the example (km): computed 1.47662, text 1.48
+ok  distance where grazing rays cross the axis (m): computed 8.19436e+13, text 8.2e+13
+ok  same, in AU: computed 547.759, text 550
+ok  ratio to Pluto's mean distance, 39.5 AU: computed 13.8673, text 14
+ok  deflection is four times the clock-slowing fraction at the limb: computed 4, text 4
+ok  rays at larger impact parameter cross the axis farther away
+
+== Chapter 1: Check, the Casimir force
+ok  energy per area falls (more negative) as d shrinks
+ok  force per area is -pi^2 hbar c/(240 d^4): attractive
+ok  Casimir pressure at 1 um (mPa): computed 1.30013, text 1.3
+
+== Chapter 1: Check, aging in a warp bubble versus a fast ship
+ok  time-dilation factor at 0.99c (sevenfold): computed 7.08881, text 7
+
+== Chapter 2: Check, the zigzag worldline
+    zigzag at v = 0.9: clock records 4.359 of 10.0 years
+    zigzag at v = 0.99: clock records 1.411 of 10.0 years
+    zigzag at v = 0.9999: clock records 0.1414 of 10.0 years
+ok  zigzag proper time goes to zero as v -> 1
+
+== Chapter 2: Check, a clock riding a grid point (flowing coordinates)
+ok  proper time over 10 years of t at v0 = 0.6 (years): computed 8, text 8
+ok  equals special-relativistic time dilation at 0.6: computed 8, text 8
+
+== Chapter 2: Thought experiment, light climbing a tower (Pound-Rebka)
+ok  74 ft in metres: computed 22.5552, text 22.6
+ok  one-way shift gh/c^2 over the tower: computed 2.46192e-15, text 2.5e-15
+ok  two-way shift predicted in the paper, 4.92e-15: computed 4.92384e-15, text 4.92e-15
+ok  f_top/f_bottom = 1 - (Phi_t - Phi_b) to first order in the potentials
+
+== Chapter 2: Check, twins on Everest (moved from a thought experiment)
+ok  gh/c^2 at the summit: computed 9.63667e-13, text 9.6e-13
+ok  80 years in seconds: computed 2.5248e+09, text 2.5e+09
+ok  age difference (ms): computed 2.43307, text 2.4
+
+== Chapter 2: Check, the volume of a falling ball in empty space
+ok  on the z axis: stretch 2GM/r^3 along z, squeeze GM/r^3 across
+ok  sum of the three rates (trace) is zero in empty space
+ok  stretching rate 2GM/r^3 at the Earth's surface (s^-2): computed 3.0828e-06, text 3.08e-06
+
+== Chapter 2: Problem, the orbit paradox
+ok  hovering minus orbiting rate, GM/(2rc^2): computed 3.26585e-10, text 3.27e-10
+ok  orbital period at 6790 km (min): computed 92.8035, text 93
+ok  difference over one orbit (us): computed 1.8185, text 1.8
+    up-and-down path: apoapsis 15140 km from the centre, gain over hovering 1.175 us
+ok  straight up and down records more than hovering
+ok  hovering records more than orbiting
+
+== Chapter 3: Check, a laser beam seen by a moving observer
+ok  T_tx = -u after lowering
+ok  rho_w = u (1 - v)/(1 + v)
+ok  chasing at 0.8: fraction of u: computed 0.111111, text 0.111111
+ok  running into it at 0.8: multiple of u: computed 9, text 9
+ok  factor is the Doppler factor squared
+BAD photon number density seen by the observer scales by the Doppler factor
+
+== Chapter 3: Einstein's equation as a falling ball (Baez-Bunn)
+ok  R_tt = 4 pi (rho + p_x + p_y + p_z), so Vddot/V = -4 pi (rho + sum p)
+ok  perfect fluid: source rho + 3p
+ok  ball keeps its volume when p = -rho/3
+ok  vacuum energy p = -rho gives rho + 3p = -2 rho
+ok  uniform matter: laplacian(Phi) = 4 pi rho (Poisson)
+ok  Newtonian ball in dust: Vddot/V = -4 pi rho, matching the ball equation with p = 0
+
+== Chapter 3: empty space, trace and counting
+ok  g^{mu nu} G_{mu nu} = R - (n/2) R = -R in four dimensions
+ok  Riemann has 20 independent components in 4D
+ok  Ricci has 10 independent components in 4D
+
+== Chapter 3: Check, water in geometric units
+ok  energy density of water (m^-2): computed 7.42583e-25, text 7.4e-25
+ok  curvature length 1/sqrt(8 pi rho) (m): computed 2.31477e+11, text 2e+11
+ok  longer than the Earth-Sun distance
+
+== Chapter 3: Check, a layer of shear
+ok  linear ramp: rho = -beta0^2/(32 pi w^2)
+ok  total per unit area = -beta0^2/(32 pi w)
+ok  doubling w divides rho by 4
+ok  doubling w halves the total
+ok  riding four-velocity is unit timelike
+ok  riding observers measure -(beta')^2/(32 pi)
+
+1 check(s) FAILED: photon number density seen by the observer scales by the Doppler factor

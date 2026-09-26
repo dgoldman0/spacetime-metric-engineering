@@ -116,6 +116,13 @@ $\rho_{w} < 0$ whenever $v^{2} > \rho_{0}/\tau$. That is exactly the kind of
 material Morris and Thorne found a wormhole throat needs.
 \end{example}
 
+\begin{checkpoint}[label=chk:laser]
+A laser beam travelling along $+x$ has $T^{tt} = T^{tx} = T^{xt} = T^{xx} = u$,
+with all other components zero. What energy density does an observer moving
+along $x$ at speed $v$ measure? What does one moving at $0.8$ with the beam
+measure, and one moving at $0.8$ against it?
+\end{checkpoint}
+
 \begin{revisited}{A brick in passing}
 By more: the factor is $\gamma^{2}$. Each atom's energy is larger by $\gamma$,
 and the brick is contracted along the direction of motion, which packs the
@@ -182,7 +189,7 @@ density: this is the largest tension the dominant energy condition of
 Chapter~5 allows, and magnetic fields reach it exactly.
 \end{deeper}
 
-\begin{checkpoint}
+\begin{checkpoint}[label=chk:rho-p]
 For dust, radiation, a perfect fluid with $p > 0$, and vacuum energy, compute
 $\rho + p$. Which of them has $\rho + p = 0$? (In Chapter~5 you will see that
 the sign of $\rho + p$ decides whether matter focuses light.)
@@ -202,11 +209,11 @@ defines no preferred state of rest, as empty space should not.
 % ===========================================================================
 \section{Einstein's equation}\label{sec:einstein}
 
-\begin{thought}{Fixing the constant}
-In 1915 there were no measurements of strong gravity to guide Einstein. He had
-the curvature of spacetime on one side of his equation and the stress-energy of
-matter on the other, and he needed the number that connects them. How could he
-pin that number down without any new experiment?
+\begin{thought}{Between the Earth and the Moon}
+Between the Earth and the Moon there is almost no matter at all, so the
+stress-energy on the right side of Einstein's equation is zero there. Does the
+equation then say that spacetime between them is flat? If it does, what steers
+the Moon around its orbit, and what raises the tides in the Earth's oceans?
 \end{thought}
 
 Energy and momentum are conserved: whatever flows out of a small box must be
@@ -262,6 +269,21 @@ to get joules per cubic metre, which are the same as pascals, and divide by
 $c^{2}$ to express an energy density as a mass density. This one conversion
 factor is the stiffness of spacetime from \cref{eq:stiffness}.
 
+Einstein's equation also has a statement in plain words, due to John Baez and
+Emory Bunn. Release a small ball of test particles, all at rest relative to
+one another, and let them fall freely. Tides may at once begin to change the
+ball's shape, and its volume $V$ begins to change at the rate
+\begin{equation}
+  \frac{\ddot V}{V} = -4\pi\,\bigl(\rho + p_{x} + p_{y} + p_{z}\bigr),
+  \label{eq:ball}
+\end{equation}
+where the dots are derivatives with respect to the particles' proper time, and
+the energy density and the three pressures are those at the centre of the
+ball, measured by an observer at rest relative to it. Energy density makes the
+ball shrink, and so does pressure. Required of every small ball, in every
+state of motion, \cref{eq:ball} is equivalent to the whole of Einstein's
+equation.
+
 \begin{example}[label=ex:newtonian, unbreakable]{The Newtonian limit}
 Show that for the weak-field metric \cref{eq:weak-field} with a static
 potential $\Phi$, the $tt$ component of Einstein's equation reduces to Poisson's
@@ -277,17 +299,40 @@ $\nabla^{2}\Phi = 4\pi\rho$: Poisson's equation, in units with $G = 1$.
 
 \discussion Newtonian gravity is the weak-field, slow-motion limit of
 Einstein's equation, and the factor $8\pi$ is what makes the limit come out
-right.
+right. Einstein fixed the constant in just this way, by requiring his equation
+to reproduce Newton's gravity wherever Newton's gravity works. Every
+prediction beyond Newton, from the bending of starlight to the clock rates of
+\cref{ch:geometry}, then came with no adjustable number left.
 \end{example}
 
-\begin{revisited}{Fixing the constant}
-By demanding that his equation reproduce Newton's gravity wherever Newton's
-gravity is known to work: for weak fields and slow motion. The Newtonian limit
-in \cref{ex:newtonian} turns $G_{tt} = \kappa T_{tt}$ into
-$2\nabla^{2}\Phi = \kappa\rho$, and matching Poisson's equation
-$\nabla^{2}\Phi = 4\pi G\rho$ fixes $\kappa = 8\pi G/c^{4}$. Every prediction
-of the theory beyond Newton, from the bending of starlight to the clock rates
-of \cref{ch:geometry}, then came with no adjustable number left.
+In empty space the right side of \cref{eq:ball} vanishes. A ball of falling
+particles is still stretched and squeezed by tides, but its volume does not
+begin to change: the stretching along one direction is balanced by squeezing
+along the others, as you found for the Earth in \cref{chk:tidal-volume}. In
+Newtonian terms, Poisson's equation in empty space says $\nabla^{2}\Phi = 0$,
+not $\Phi = 0$. In the full theory, the trace of Einstein's equation gives
+$R = -8\pi T$, with $T = g^{\mu\nu}T_{\mu\nu}$, so in empty space $R = 0$ and
+then $G_{\mu\nu} = 0$ says $R_{\mu\nu} = 0$. The Ricci tensor, which governs
+changes of volume, vanishes. The Riemann tensor, with twenty independent
+components to the Ricci tensor's ten, need not; the rest of the curvature is
+set by matter elsewhere and by what arrives from far away.
+
+\begin{checkpoint}[label=chk:water]
+Water has a density of \SI{1000}{\kilogram\per\cubic\metre}. What is its
+energy density in geometric units? Einstein's equation then sets a curvature
+of order $8\pi\rho$; over what distance does spacetime filled with water curve
+appreciably?
+\end{checkpoint}
+
+\begin{revisited}{Between the Earth and the Moon}
+No. Einstein's equation fixes only part of the curvature. Where there is no
+matter it sets the Ricci tensor to zero, so a ball of falling particles keeps
+its volume at first, but the rest of the Riemann tensor survives. In Newtonian
+terms, the potential between the Earth and the Moon obeys $\nabla^{2}\Phi = 0$
+without being zero: its slope steers the Moon around its orbit, and its second
+derivatives, which add up to zero, stretch the oceans along the line to the
+Moon and squeeze them across it. Empty space can be curved. Matter is what
+makes a falling ball begin to shrink.
 \end{revisited}
 
 % ===========================================================================
@@ -300,13 +345,15 @@ its shape. Does the box now pull on a distant planet harder than its energy
 alone would suggest, because of all that pressure?
 \end{thought}
 
-Einstein's equation says more than Newton's. For a perfect fluid at rest, a
-short calculation (\cref{prob:rho-3p}) shows that the quantity playing the
-role of $\rho$ in Poisson's equation is
+Einstein's equation says more than Newton's. In a perfect fluid at rest the
+three pressures are equal, so by \cref{eq:ball} a small ball of test particles
+begins to shrink at a rate set by
 \begin{equation}
-  \rho + 3p .
+  \rho + 3p ,
   \label{eq:active-mass}
 \end{equation}
+and this is the quantity that plays the role of $\rho$ in Poisson's equation
+(\cref{prob:rho-3p}).
 Pressure is a source of gravity alongside energy. For ordinary matter the
 pressure is tiny compared with the energy density, which includes the rest
 energy $mc^{2}$, so Newton never noticed. Tension, however, \emph{weakens}
@@ -320,6 +367,12 @@ In general relativity every component of the stress-energy tensor bends
 spacetime: energy, momentum and stress alike. Pressure attracts, tension
 repels, and a spacetime engineer designs with all of them.
 \end{keyidea}
+
+\begin{checkpoint}[label=chk:stop-tension]
+A material has energy density $\rho$ and the same stress $p$ in every
+direction. What value of $p$ would keep a small ball of test particles inside
+it from beginning to shrink? Is that a pressure or a tension?
+\end{checkpoint}
 
 \begin{figure}[tb]
 \centering
@@ -370,7 +423,7 @@ For all but the simplest metrics, steps 2 and 3 are best done with computer
 algebra. The examples in this chapter are simple enough to follow by hand, and
 each teaches something the rest of the book builds on.
 
-\begin{example}[label=ex:lapse]{Clocks that run at different rates}
+\begin{example}[label=ex:lapse, unbreakable]{Clocks that run at different rates}
 Suppose we want clocks to run at different rates at different places along
 $x$, while space itself stays exactly flat. The metric is
 \begin{equation}
@@ -442,7 +495,7 @@ everywhere.}
 \label{fig:lapse-bump}
 \end{figure}
 
-\begin{checkpoint}
+\begin{checkpoint}[label=chk:lapse-dip]
 Suppose instead that clocks run \emph{slowest} in the middle, with
 $\alpha = 1 - \tfrac12 e^{-x^{2}}$. Where is the demand a tension, and where a
 pressure?
@@ -465,7 +518,7 @@ ordinary material can provide.
 % ===========================================================================
 \section{When space flows unevenly}\label{sec:shear}
 
-\begin{thought}{A conveyor belt with a fast lane}
+\begin{thought}{A river with a fast lane}
 In \cref{ch:geometry}, space flowing at one uniform speed turned out to be flat
 spacetime in disguise, and it cost nothing. Now let the flow run faster down
 the middle of a channel than near its banks, the way a river does. Does that
@@ -507,7 +560,15 @@ of light across one metre has $\dd\beta/\dd y \approx \SI{1}{\per\metre}$, and
 \SI{-1e25}{\kilogram\per\cubic\metre}. Nuclear matter, the densest material in
 nature, has about \SI{+2e17}{\kilogram\per\cubic\metre}.
 
-\begin{revisited}{A conveyor belt with a fast lane}
+\begin{checkpoint}[label=chk:shear-width]
+Suppose the flow speed in \cref{ex:shear} rises steadily from $0$ to
+$\beta_{0}$ across a layer of width $w$. What energy density do the riding
+observers measure in the layer? If you make the layer twice as wide, what
+happens to the energy density, and to the total negative energy in the layer
+per unit area of its face?
+\end{checkpoint}
+
+\begin{revisited}{A river with a fast lane}
 It costs a great deal, and the cost is negative energy. By
 \cref{eq:shear-density}, observers riding a shearing flow of space measure
 $\rho = -(\dd\beta/\dd y)^{2}/32\pi$, negative whichever way the shear runs.
@@ -549,6 +610,10 @@ physics can go beyond them.
 \item Einstein's equation $G_{\mu\nu} = 8\pi T_{\mu\nu}$ (with $G = c = 1$) links
   curvature to matter. Multiply geometric stresses by
   $c^{4}/G = \SI{1.21e44}{\newton}$ to get pascals.
+\item In plain words, Einstein's equation says that a small ball of test
+  particles, initially at rest relative to one another, begins to change
+  volume at the rate $\ddot V/V = -4\pi(\rho + p_{x} + p_{y} + p_{z})$. In empty
+  space $R_{\mu\nu} = 0$: tides remain, but they change only the ball's shape.
 \item Newton's gravity is the weak-field limit. Beyond it, pressure gravitates
   through $\rho + 3p$ and tension can make gravity repel; in a body that holds
   itself together, the pressures and tensions cancel in total.
@@ -558,12 +623,33 @@ physics can go beyond them.
 \end{chaptersummary}
 
 \begin{checkanswers}
-\item[3.1] Dust: $\rho + p = \rho$. Radiation: $\rho + p = \tfrac43\rho$. Fluid with
-  $p > 0$: $\rho + p > \rho$. Vacuum energy: $\rho + p = 0$. Only vacuum energy
-  sits exactly on the boundary.
-\item[3.2] Now $\alpha'' > 0$ near $x = 0$, so the demand there is a pressure;
-  on the flanks, where $\alpha$ curves back toward 1 from below, it is a
-  tension. Wherever the demand is a tension, $\rho + p_{y} < 0$.
+\item[\ref{chk:laser}] Lowering the indices flips the sign of each component
+  with a single $t$: $T_{tt} = T_{xx} = u$ and $T_{tx} = T_{xt} = -u$. With
+  $w^{\mu} = \gamma\,(1, v, 0, 0)$,
+  $\rho_{w} = \gamma^{2}u\,(1 - 2v + v^{2}) = u\,(1 - v)/(1 + v)$. Chasing the
+  beam at $0.8$ gives $u/9$; running into it ($v = -0.8$) gives $9u$. Each
+  photon is Doppler shifted by the factor $\sqrt{(1 - v)/(1 + v)}$, and the
+  photons' number density changes by the same factor.
+\item[\ref{chk:rho-p}] Dust: $\rho + p = \rho$. Radiation: $\rho + p = \tfrac43\rho$.
+  Fluid with $p > 0$: $\rho + p > \rho$. Vacuum energy: $\rho + p = 0$. Only
+  vacuum energy sits exactly on the boundary.
+\item[\ref{chk:water}] $\rho = G\rho_{\mathrm{mass}}/c^{2} = 6.67\times10^{-11}
+  \times 1000/(9.0\times10^{16}) \approx \SI{7.4e-25}{\per\square\metre}$. A
+  curvature of $8\pi\rho$ corresponds to a length
+  $1/\sqrt{8\pi\rho} \approx \SI{2e11}{\metre}$, more than the distance from
+  the Earth to the Sun. Spacetime is stiff.
+\item[\ref{chk:stop-tension}] By \cref{eq:ball} the ball keeps its volume when
+  $\rho + 3p = 0$, that is, $p = -\rho/3$: a tension of one third of the
+  energy density in every direction. Vacuum energy, with $p = -\rho$, goes
+  beyond this, and a ball of test particles in it begins to grow.
+\item[\ref{chk:lapse-dip}] Now $\alpha'' > 0$ near $x = 0$, so the demand there
+  is a pressure; on the flanks, where $\alpha$ curves back toward 1 from
+  below, it is a tension. Wherever the demand is a tension, $\rho + p_{y} < 0$.
+\item[\ref{chk:shear-width}] In the layer $\dd\beta/\dd y = \beta_{0}/w$, so
+  $\rho = -\beta_{0}^{2}/(32\pi w^{2})$. Doubling $w$ divides the energy
+  density by four. The layer then holds twice the volume, so the total per
+  unit area, $-\beta_{0}^{2}/(32\pi w)$, is halved. Thin layers of shear are
+  expensive on both counts.
 \end{checkanswers}
 
 \begin{problems}
@@ -619,6 +705,9 @@ physics can go beyond them.
 \begin{furtherreading}
 \item[\textcite{Schutz2009}] A careful introduction to the stress-energy tensor
   through dust and perfect fluids.
+\item[\textcite{Baez2005}] Einstein's equation stated through a ball of
+  falling particles, the form used in this chapter, with its consequences
+  worked out at an introductory level.
 \item[\textcite{Carroll2004}] Einstein's equation, its Newtonian limit and the
   Bianchi identity at graduate level.
 \item[\textcite{Hartle2003}] A physical approach to Einstein's equation and to

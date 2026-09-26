@@ -94,7 +94,7 @@ spacelike from $A$: no signal connects them to it.}
 \label{fig:light-cone}
 \end{figure}
 
-\begin{checkpoint}
+\begin{checkpoint}[label=chk:classify]
 Event $B$ happens \SI{3}{\second} after event $A$ and 4~light-seconds away
 from it. Event $C$ happens \SI{5}{\second} after $A$ and 4~light-seconds away.
 Classify the intervals $AB$ and $AC$. Can anything that happens at $A$ affect
@@ -120,9 +120,9 @@ observer's version is privileged.
 \begin{thought}{The twins}
 Twins say goodbye on Earth. One boards a ship to Proxima Centauri, 4.24
 light-years away, travelling at 80 percent of the speed of light, and returns
-at once at the same speed. On each leg of the trip, each twin sees the other's
-clock running slow, so the situation looks symmetric. When they meet again,
-who is younger, and by how much?
+at once at the same speed. On each leg of the trip, each twin measures the
+other's clock running slow, so the situation looks symmetric. When they meet
+again, who is younger, and by how much?
 \end{thought}
 
 A clock carried along a worldline measures the \emph{proper time} $\tau$ along
@@ -171,6 +171,12 @@ the longest proper time. Every detour, and every acceleration, shortens the
 time a clock records.
 \end{keyidea}
 
+\begin{checkpoint}[label=chk:zigzag]
+Two events happen at the same place, ten years apart. Describe a worldline
+between them along which a clock records as little time as you like. Is there
+a worldline of \emph{least} proper time?
+\end{checkpoint}
+
 \begin{revisited}{The twins}
 The travelling twin is younger. In the Earth's frame the round trip covers
 8.48 light-years at speed 0.8 and takes 10.6 years; on the traveller's clock
@@ -195,14 +201,15 @@ the bent worldline of the traveller collects 6.36.}
 % ===========================================================================
 \section{The metric: measuring with any grid}\label{sec:metric}
 
-\begin{thought}{A grid on a conveyor belt}
-Surveyors usually paint their grids on solid ground. Imagine instead a grid
-painted on an enormous conveyor belt that slides past at half the speed of
-light, and time measured by clocks at rest beside the belt. Counted in belt
-squares per unit time, light moving against the belt's motion covers one and a
-half squares. Has anything gone faster than light? And if the belt slid at
-twice the speed of light, could light ever make progress across the grid in the
-direction the belt moves?
+\begin{thought}{A sliding grid}
+Surveyors usually paint their grids on solid ground. Imagine instead a grid of
+lines projected onto a very long wall and made to slide along it at half the
+speed of light, with time kept by clocks fixed to the wall. The lines are only
+a pattern of light, nothing that travels along the wall, so they can slide at
+any speed at all. Counted in grid squares per unit time, light moving against
+the grid's motion covers one and a half squares. Has anything gone faster than
+light? And if the grid slid at twice the speed of light, could light ever make
+progress across the grid in the direction the grid moves?
 \end{thought}
 
 \Cref{eq:interval} holds for inertial observers using Cartesian coordinates. We
@@ -286,27 +293,37 @@ at speed $v$ along $x$, $u^{\mu} = \gamma\,(1, v, 0, 0)$ with
 $\gamma = 1/\sqrt{1-v^{2}}$. In \cref{ch:matter-geometry} four-velocities tell
 us what an observer measures.
 
-\begin{revisited}{A grid on a conveyor belt}
-The belt is \cref{eq:flow-metric} with $v_{0} = 0.5$: light crosses the squares
-at $v_{0} + 1 = 1.5$ against the belt's motion and $v_{0} - 1 = -0.5$ with it.
+\begin{checkpoint}[label=chk:grid-clock]
+In the flowing coordinates of \cref{ex:flow} with $v_{0} = 0.6$, a clock rides
+with one grid point, at fixed $x$. How much time does it record while the
+coordinate time $t$ advances by ten years? Compare with the time dilation of a
+clock moving at speed $0.6$.
+\end{checkpoint}
+
+\begin{revisited}{A sliding grid}
+The grid is \cref{eq:flow-metric} with $v_{0} = 0.5$: light crosses the squares
+at $v_{0} + 1 = 1.5$ against the grid's motion and $v_{0} - 1 = -0.5$ with it.
 Nothing has broken the speed limit. These numbers say how fast light passes the
-squares, and the squares are labels, not objects racing the light; anything
-moving beside a light signal is still outrun by it. No real belt could slide at
-twice the speed of light, but a grid of labels can. With $v_{0} = 2$ both
-speeds, $3$ and $1$, are positive, so no light makes progress in the belt's
-direction. Worse, nothing at all can stay on one square: a clock held at fixed
-$x$ would have $\dd s^{2} = (v_{0}^{2} - 1)\,\dd t^{2} > 0$, a spacelike path.
-Keep this in mind for the river of space, two topics ahead.
+lines, and the lines are a pattern, not objects racing the light; anything
+moving beside a light signal is still outrun by it. With $v_{0} = 2$ both
+speeds, $3$ and $1$, are positive, so no light makes progress in the grid's
+direction. Nothing material can keep pace with a line, either: a clock held at
+fixed $x$ would have $\dd s^{2} = (v_{0}^{2} - 1)\,\dd t^{2} > 0$, a spacelike
+path. Keep this in mind for the river of space, two topics ahead.
 \end{revisited}
 
 % ===========================================================================
 \section{Clocks in a gravitational field}\label{sec:clocks}
 
-\begin{thought}{Twins on a mountain}
-Another pair of twins: one spends 80 years living at the summit of Mount
-Everest, \SI{8.85}{\kilo\metre} above sea level, and the other spends the same
-80 years at sea level. Neither travels. When they meet, who is older, and by
-how much?
+\begin{thought}{Light climbing a tower}
+A laser at the foot of a tower shines a steady beam up to a detector at the
+top. Light carries energy, and energy has weight, so the light should lose a
+little energy as it climbs, and the detector should find a slightly lower
+frequency than the laser emits. (If it did not, you could lift a stone for
+free: turn it into light at the bottom, send the light up, and turn it back
+into a stone at the top.) Yet the beam is steady. Every crest that leaves the
+laser reaches the detector, and none pile up in between. How can fewer crests
+per second arrive at the top than leave the bottom?
 \end{thought}
 
 In curved spacetime no choice of coordinates puts the metric into the
@@ -341,6 +358,22 @@ A clock moving slowly at speed $v$ through this spacetime records, from
 keeping only the leading terms in the small quantities $\Phi$ and $v^{2}$. The
 two corrections have a clear meaning: a clock deeper in the potential (more
 negative $\Phi$) runs slower, and a moving clock runs slower.
+
+The same clock rates set what a receiver finds in a signal. The metric
+\cref{eq:weak-field} does not change with $t$, so every wave crest sent from
+one place to another takes the same coordinate time for the trip: crests that
+leave a transmitter a coordinate interval $\Delta t$ apart arrive $\Delta t$
+apart. Each clock converts $\Delta t$ into its own time at its own rate. A
+receiver higher up, where clocks run faster, counts more of its own time
+between crests than the transmitter did, and so measures a lower frequency,
+lower by the fractional difference in potential, $\Delta\Phi$. This is the
+\emph{gravitational redshift}. Near the ground $\Delta\Phi = gh/c^{2}$ for a
+height difference $h$. In 1960 Robert Pound and Glen Rebka measured it with
+gamma rays sent up and down a tower \SI{22.6}{\metre} tall at Harvard, where the
+shift is only $2.5\times10^{-15}$, and their result agreed with the prediction
+to within ten percent. Today's optical clocks detect the change in rate when
+one of them is raised by just \SI{33}{\centi\metre}, a shift of four parts in
+$10^{17}$.
 
 \begin{example}[label=ex:gps]{Clocks on the ground and in orbit}
 Navigation satellites orbit at a radius
@@ -391,15 +424,22 @@ black hole. The metric \cref{eq:schwarzschild} also misbehaves there, where
 $g_{rr}$ becomes infinite, but that part is an artefact of the labels, as the
 next topic shows.
 
-\begin{revisited}{Twins on a mountain}
-By \cref{eq:clock-rate}, clocks at rest at two heights differ in rate by the
-difference in $\Phi$, which near the ground is $gh/c^{2}$. For the summit,
-$gh/c^{2} = 9.8 \times 8850/(3.0\times10^{8})^{2} \approx 9.6\times10^{-13}$.
-Over 80 years, about \SI{2.5e9}{\second}, that adds up to
-\SI{2.4}{\milli\second}: the twin on the summit is older by about two and a
-half thousandths of a second. The effect is easy to measure today. In 2010 a pair of
-optical clocks detected the change in rate when one of them was raised by just
-\SI{33}{\centi\metre}, a shift of four parts in $10^{17}$.
+\begin{checkpoint}[label=chk:everest]
+One twin spends 80 years living at the summit of Mount Everest,
+\SI{8.85}{\kilo\metre} above sea level, and the other spends the same 80 years
+at sea level. Neither travels. When they meet, who is older, and by how much?
+\end{checkpoint}
+
+\begin{revisited}{Light climbing a tower}
+No crests go missing; the two ends of the tower disagree about what a second
+is. The geometry does not change with time, so crests reach the top exactly as
+often as they leave the bottom, counted in the coordinate time $t$. The clock
+at the top runs faster than the clock at the bottom, by the fraction
+$gh/c^{2}$, so it counts a longer time between crests and reports a lower
+frequency. The loss of energy that the thought experiment demands and the
+difference in clock rates are one effect seen two ways. Energy conservation
+alone therefore forces gravity to act on time: if clocks at different heights
+ticked at the same rate, light could not lose energy as it climbs.
 \end{revisited}
 
 % ===========================================================================
@@ -439,9 +479,9 @@ geometries whose space flows.
 \includegraphics{ch02-river}
 \caption{The Schwarzschild geometry pictured as space flowing inward
 (\cref{eq:river}). Top: the inward flow speed $\sqrt{r_{\mathrm{s}}/r}$
-reaches the speed of light at the horizon. Bottom: the flow drawn to scale
-(orange), and the net speed of outgoing light (green), which falls to zero at
-the horizon and turns inward inside it.}
+(blue) reaches the speed of light (dashed) at the horizon. Bottom: the flow
+drawn to scale (blue), and the net speed of outgoing light (orange), which
+falls to zero at the horizon and turns inward inside it.}
 \label{fig:river}
 \end{figure}
 
@@ -502,9 +542,10 @@ The key idea of \topicref{sec:proper-time} becomes, in general relativity, the
 law of motion for anything on which no force other than gravity acts.
 
 \begin{keyidea}[free fall]
-A freely falling body follows a worldline of greatest proper time, a
-\emph{geodesic} of spacetime. Gravity is not a force that deflects it; it is
-the curvature that bends what \enquote{straight} means.
+A freely falling body follows a \emph{geodesic} of spacetime: a worldline
+whose proper time is greater than that of any nearby worldline between the
+same two events. Gravity is not a force that deflects it; it is the curvature
+that bends what \enquote{straight} means.
 \end{keyidea}
 
 Making the proper time stationary leads, after a calculation you can do in
@@ -626,6 +667,14 @@ small to notice. Near a black hole of a few solar masses it would tear a person
 apart. Tides are one of the first things a spacetime engineer checks on behalf
 of a traveller.
 
+\begin{checkpoint}[label=chk:tidal-volume]
+A small ball of freely falling particles above the Earth is stretched along
+the direction to the Earth's centre by a relative acceleration of $2GM/r^{3}$
+per unit length, and squeezed along each of the two directions across it by
+$GM/r^{3}$ per unit length. Does the volume of the ball begin to grow, to
+shrink, or neither?
+\end{checkpoint}
+
 Two combinations of the Riemann tensor carry the information Einstein's
 equation needs. The \emph{Ricci tensor} and the \emph{Ricci scalar} are
 \begin{equation*}
@@ -678,8 +727,9 @@ experiment short enough, for tides to go unnoticed.
   any coordinates. Effects of the coordinates can be dramatic, as in flowing
   coordinates, where light's coordinate speed differs from 1.
 \item In a weak field a clock runs at $\dd\tau/\dd t \approx 1 + \Phi - v^{2}/2$.
-  Near a black hole the rate of a clock held at rest falls to zero at the
-  horizon.
+  Light climbing out of a potential arrives redshifted, because clocks at
+  different heights tick at different rates. Near a black hole the rate of a
+  clock held at rest falls to zero at the horizon.
 \item The Schwarzschild geometry can be pictured as space flowing inward at the
   Newtonian escape speed; the horizon is where the flow reaches the speed of
   light.
@@ -690,9 +740,32 @@ experiment short enough, for tides to go unnoticed.
 \end{chaptersummary}
 
 \begin{checkanswers}
-\item[2.1] $AB$: $\Delta s^{2} = -9 + 16 = +7$, spacelike, so nothing at $A$ can
-  affect $B$. $AC$: $\Delta s^{2} = -25 + 16 = -9$, timelike, so a signal slower
-  than light can carry an influence from $A$ to $C$.
+\item[\ref{chk:classify}] $AB$: $\Delta s^{2} = -9 + 16 = +7$, spacelike, so
+  nothing at $A$ can affect $B$. $AC$: $\Delta s^{2} = -25 + 16 = -9$, timelike,
+  so a signal slower than light can carry an influence from $A$ to $C$.
+\item[\ref{chk:zigzag}] Zigzag back and forth at nearly the speed of light. On
+  each leg $\dd\tau = \sqrt{1 - v^{2}}\,\dd t$, which approaches zero as $v \to 1$,
+  so the total can be made as small as you like: at $v = 0.99$ the clock
+  records 1.4 of the ten years. There is no worldline of least proper time,
+  only one of greatest: the straight one, which records all ten years.
+\item[\ref{chk:grid-clock}] With $\dd x = 0$,
+  $\dd s^{2} = -(1 - v_{0}^{2})\,\dd t^{2} = -0.64\,\dd t^{2}$, so
+  $\dd\tau = 0.8\,\dd t$: eight years. The grid point moves at speed 0.6 past
+  the inertial observers whose clocks keep the time $t$, and
+  $10\sqrt{1 - 0.6^{2}} = 8$ is exactly the time dilation of a clock moving at
+  that speed. The metric has done the calculation of special relativity for
+  us.
+\item[\ref{chk:everest}] The twin on the summit, where clocks run faster, by the
+  fraction $gh/c^{2} = 9.8 \times 8850/(3.0\times10^{8})^{2} \approx
+  9.6\times10^{-13}$. Over 80 years, about \SI{2.5e9}{\second}, that adds up
+  to \SI{2.4}{\milli\second}.
+\item[\ref{chk:tidal-volume}] Neither. The volume's acceleration, as a
+  fraction of the volume, is the sum of the relative accelerations per unit
+  length along three perpendicular directions:
+  $2GM/r^{3} - GM/r^{3} - GM/r^{3} = 0$. In empty space, tides change the shape
+  of a ball of falling particles but, at first, not its volume. The sum is
+  $-\nabla^{2}\Phi$, which vanishes wherever there is no matter;
+  \cref{ch:matter-geometry} shows what matter does to it.
 \end{checkanswers}
 
 \begin{problems}
@@ -712,7 +785,7 @@ experiment short enough, for tides to go unnoticed.
   over the first year of Earth time, cruises, and decelerates symmetrically at
   the star and on the way home. Set up the proper-time integral and evaluate it
   numerically.
-\item \diff{2}\label{prob:gps-curves} \textbf{The curves of Figure 1.1.} For a
+\item \diff{2}\label{prob:gps-curves} \textbf{The curves of \cref{fig:clock-offsets}.} For a
   clock on a circular orbit of radius $r$, show that its daily gain over a clock
   on the ground is proportional to $1/R - 3/(2r)$. At what orbital radius does it
   vanish? Plot the gain from height, the loss from speed and the net result.
@@ -738,6 +811,15 @@ experiment short enough, for tides to go unnoticed.
   \cref{eq:clock-rate} with $\Phi = gh/c^{2}$, show that its clock gains
   $v_{0}^{3}/(3gc^{2})$ over a clock held at the height of the hand. Then show that
   any other path $h(t)$ with the same endpoints gains less.
+\item \diff{3}\label{prob:orbit-paradox} \textbf{The orbit paradox.} An
+  astronaut in a circular orbit of radius $r$ passes a second astronaut who
+  hovers at the same height on rocket power, and they meet again one orbit
+  later. Using \cref{eq:clock-rate}, show that the hovering astronaut, who is
+  not in free fall, records more time, by the fraction $GM/(2rc^{2})$. Find the
+  difference over one orbit at the height of the space station,
+  $r = \SI{6790}{\kilo\metre}$. Why does this not contradict the key idea of
+  \topicref{sec:geodesics}? Describe a third worldline, also in free fall, that
+  joins the same two events and records more time than either.
 \item \diff{2} \textbf{The river.} Show that \cref{eq:river} turns into
   \cref{eq:schwarzschild} under the change of time coordinate
   $\dd T = \dd t + \frac{\sqrt{r_{\mathrm{s}}/r}}{1 - r_{\mathrm{s}}/r}\,\dd r$.
@@ -760,6 +842,8 @@ experiment short enough, for tides to go unnoticed.
 \item[\textcite{Wald1984}] General relativity in coordinate-free form.
 \item[\textcite{Ashby2003}] Relativity in satellite navigation, including the
   Earth's rotation and shape.
+\item[\textcite{Pound1960}] The first laboratory measurement of the
+  gravitational redshift, in a tower at Harvard.
 \item[\textcite{Chou2010}] Clocks that detect a change of height of
   \SI{33}{\centi\metre}.
 \item[\textcite{Hamilton2008}] The river model of black holes, developed in

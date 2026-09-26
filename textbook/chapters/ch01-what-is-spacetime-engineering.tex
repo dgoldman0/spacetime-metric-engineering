@@ -99,8 +99,8 @@ Popular pictures show gravity as a heavy ball denting a stretched rubber
 sheet. Yet the whole Earth, \SI{6e24}{\kilogram} of it, dents time so slightly
 that a clock on its surface runs slow by less than one part in a billion,
 compared with a clock far out in space. Suppose you wanted to slow a clock by
-one part in a billion with a compact mass placed one metre away from it. How
-much mass would you need?
+one part in a billion with a compact mass placed one metre away from it. Would
+a loaded truck do? A mountain? How much mass would you need?
 \end{thought}
 
 Special relativity teaches that space and time are not separate. Observers in
@@ -175,7 +175,7 @@ This is the same 60 microseconds a day at which the height curve of
 \cref{fig:clock-offsets} levels off far from the Earth.
 \end{example}
 
-\begin{checkpoint}
+\begin{checkpoint}[label=chk:sun-ns]
 Estimate the fractional slowing of clocks at the surface of the Sun
 ($M = \SI{2.0e30}{\kilogram}$, $R = \SI{7.0e8}{\metre}$) and of a neutron star
 of 1.4 solar masses and radius \SI{12}{\kilo\metre}. For which of the two is
@@ -183,7 +183,7 @@ of 1.4 solar masses and radius \SI{12}{\kilo\metre}. For which of the two is
 \end{checkpoint}
 
 \begin{revisited}{How stiff is the sheet?}
-Setting $GM/(c^{2}r) = 10^{-9}$ with $r = \SI{1}{\metre}$ gives
+Far more than either. Setting $GM/(c^{2}r) = 10^{-9}$ with $r = \SI{1}{\metre}$ gives
 $M = 10^{-9} \times \SI{1.35e27}{\kilogram} \approx \SI{1.3e18}{\kilogram}$:
 the mass of a rocky asteroid about \SI{100}{\kilo\metre} across, squeezed
 into a lump small enough to sit a metre from the clock. The sheet is that
@@ -250,9 +250,11 @@ solves for the geometry it produces, and then asks what that geometry can do
 for a traveller. Both directions appear in this book. The geometry-first
 direction is the more common, and it shows most clearly what a design costs.
 
-\begin{checkpoint}
-Why can the demanded matter of a geometry always be computed, while the
-geometry produced by given matter often cannot be found by hand?
+\begin{checkpoint}[label=chk:division]
+Which of these questions can Einstein's equation answer on its own, and which
+need physics beyond it? (a)~What matter would produce a given geometry?
+(b)~Can that matter exist? (c)~What geometry does a given arrangement of
+matter produce?
 \end{checkpoint}
 
 \begin{revisited}{Can relativity say no?}
@@ -356,6 +358,13 @@ all. What \emph{is} essential is the demand. The bubble's wall requires
 negative energy density (\cref{fig:warp}b), just as the wormhole's throat
 does.
 
+\begin{checkpoint}[label=chk:warp-aging]
+Alcubierre's travellers age at the same rate as the people they left behind,
+although their bubble crosses space faster than light. A ship coasting through
+ordinary space at 99~percent of the speed of light has its clocks slowed
+sevenfold. What difference between the two trips accounts for this?
+\end{checkpoint}
+
 \subsection{Building the road on the way out}
 
 Sergei Krasnikov pointed out a problem with warp drives: the people inside a
@@ -421,8 +430,10 @@ out of ordinary matter, say from a ring or a hollow shell of very dense
 material?
 \end{thought}
 
-Physicists summarize what ordinary matter can do with a small set of
-inequalities called \emph{energy conditions}. The simplest to state is the
+Gravity bends light toward mass, and the Sun, like every ordinary body, acts
+on light as a converging lens (\cref{ex:sun-lens}). Physicists summarize what
+ordinary matter can do with a small set of inequalities called
+\emph{energy conditions}. The simplest to state is the
 \emph{weak energy condition}: every observer, however they move, measures an
 energy density that is zero or positive. The most important for this book is
 the \emph{null energy condition}, which is weaker still. It concerns light
@@ -431,6 +442,28 @@ bundle of light rays and never spreads it
 (\cref{fig:focusing}a). Everything you have ever touched satisfies these
 conditions, and so do light itself, electric and magnetic fields, and all
 ordinary fluids.
+
+\begin{example}[label=ex:sun-lens]{The Sun as a lens}
+General relativity predicts that light passing a mass $M$ at distance $b$ is
+bent toward it by the angle $4GM/(c^{2}b)$, twice what a Newtonian argument
+gives. How strongly does the Sun bend light that grazes its edge, and where
+does that light cross the axis on the far side? For the Sun,
+$GM/c^{2} = \SI{1.48}{\kilo\metre}$ and $R = \SI{6.96e8}{\metre}$.
+
+\solution For light grazing the edge, $b = R$ and the angle is
+\begin{equation*}
+  \frac{4 \times \SI{1.48e3}{\metre}}{\SI{6.96e8}{\metre}} = \SI{8.5e-6}{\radian},
+\end{equation*}
+or 1.75 seconds of arc. A ray bent inward by this small angle reaches the axis
+after a distance $R$ divided by the angle, \SI{8.2e13}{\metre}, which is about
+550 times the distance from the Earth to the Sun.
+
+\discussion The deflection was first measured during the total solar eclipse
+of 1919. Rays passing farther from the Sun are bent less and cross the axis
+farther away, so the Sun focuses light along a line that starts some
+550~astronomical units out, fourteen times as far as Pluto. The lens is weak,
+and it is always a converging one.
+\end{example}
 
 \begin{figure}[tb]
 \centering
@@ -452,8 +485,9 @@ somewhere.
 
 \begin{keyidea}
 Designing a shortcut through spacetime is easy on paper. Supplying the matter
-it demands is the hard part, because every shortcut demands matter that
-violates the null energy condition, and ordinary matter never does.
+it demands is the hard part: under very general conditions, a shortcut
+demands matter that violates the null energy condition, and ordinary matter
+never does.
 \end{keyidea}
 
 \begin{revisited}{A concave lens made of gravity}
@@ -507,9 +541,11 @@ Broeck brought it down to a few solar masses. That is still an astronomical
 amount, and his design bends space on scales of about ten Planck lengths, far
 below anything that has ever been probed.
 
-\begin{checkpoint}
-By what factor does the Casimir energy density grow when the gap between the
-plates shrinks from \SI{1}{\micro\metre} to \SI{10}{\nano\metre}?
+\begin{checkpoint}[label=chk:casimir-force]
+The energy between the plates, per unit area of plate, is $u\,d$. As the
+plates move closer together, does this energy rise or fall? Which way, then,
+does the force between the plates point, and how does its strength depend on
+$d$?
 \end{checkpoint}
 
 \begin{revisited}{A stack of Casimir plates}
@@ -553,6 +589,12 @@ warp bubble moving faster than light are cut off from the bubble's front edge.
 They can neither build the bubble nor steer it from inside. Designs that
 carry travellers faster than light must therefore be laid out in advance, or
 driven by something outside the travellers' reach.
+
+\begin{checkpoint}[label=chk:krasnikov-control]
+The builder of a Krasnikov tube travels to the star at less than the speed of
+light, modifying spacetime along the way. Why is the builder not cut off the
+way the crew of a warp bubble is?
+\end{checkpoint}
 
 \begin{revisited}{A message to the front}
 It never arrives. Seen from the bubble, the space outside streams backward
@@ -633,16 +675,33 @@ we convert back to everyday units.
 \end{chaptersummary}
 
 \begin{checkanswers}
-\item[1.1] Sun: $GM/(c^{2}R) \approx 2\times10^{-6}$, small, so the estimate is
-  safe. Neutron star: $GM/(c^{2}R) \approx 0.17$, not small, so the estimate
-  is rough; the exact result of \cref{ch:geometry} is a clock rate of 0.81 of
-  the rate far away.
-\item[1.2] Computing the demanded matter only requires differentiating the
-  geometry, which can always be done. Finding the geometry means solving
-  coupled nonlinear partial differential equations for unknown functions, which
-  is possible by hand only in highly symmetric cases.
-\item[1.3] The energy density scales as $1/d^{4}$, and the gap shrinks by a
-  factor of 100, so the energy density grows by $100^{4} = 10^{8}$.
+\item[\ref{chk:sun-ns}] Sun: $GM/(c^{2}R) \approx 2\times10^{-6}$, small, so the
+  estimate is safe. Neutron star: $GM/(c^{2}R) \approx 0.17$, not small, so the
+  estimate is rough; the exact result of \cref{ch:geometry} is a clock rate of
+  0.81 of the rate far away.
+\item[\ref{chk:division}] Questions (a) and (c) belong to Einstein's equation.
+  Answering (a) takes only differentiation of the geometry, which can always
+  be done. Answering (c) means solving coupled nonlinear partial differential
+  equations, which is possible by hand only in highly symmetric cases.
+  Question (b) is about matter itself, and the physics of materials and fields
+  answers it; Chapters~5 and~6 take it up.
+\item[\ref{chk:warp-aging}] The fast ship moves through the space around it, and
+  a clock moving through its surroundings runs slow. The warp traveller does
+  not move through the surrounding space at all: the ship floats at rest in a
+  region of flat space that the bubble carries along. How fast its clock runs
+  compared with distant clocks is then set by the geometry, and Alcubierre's
+  geometry keeps the two rates equal.
+\item[\ref{chk:casimir-force}] $u\,d = -\pi^{2}\hbar c/(720\,d^{3})$ grows more
+  negative as $d$ shrinks, so the energy falls as the plates approach, and the
+  plates attract. The force per unit area is the rate at which the energy
+  falls with distance, $\pi^{2}\hbar c/(240\,d^{4})$: it grows as $1/d^{4}$ and
+  is about \SI{1.3}{\milli\pascal} for plates \SI{1}{\micro\metre} apart.
+  Laboratory measurements of the attraction agree with this prediction.
+\item[\ref{chk:krasnikov-control}] Every modification is made where the ship
+  is, as it passes, so each lies inside the ship's own future light cone, and
+  nothing has to be done ahead of a signal. The price is that the tube helps
+  only later trips: the outbound journey takes as long as ever, and only the
+  return through the prepared tube arrives home early.
 \end{checkanswers}
 
 \begin{problems}
@@ -685,6 +744,8 @@ we convert back to everyday units.
   navigation, including the clock corrections of the first topic.
 \item[\textcite{Einstein1916}] Einstein's own presentation of general
   relativity, still readable today.
+\item[\textcite{Dyson1920}] The eclipse expedition of 1919 that measured the
+  Sun's bending of starlight.
 \item[\textcite{Morris1988a}] The paper that started the field, written for
   students and still one of the best introductions to engineered spacetimes.
 \item[\textcite{McMonigal2012,Schuster2023}] Two treatments of metric
