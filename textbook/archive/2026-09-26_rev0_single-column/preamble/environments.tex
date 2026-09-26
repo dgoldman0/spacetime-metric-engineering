@@ -1,0 +1,88 @@
+% Teaching environments.
+
+% ---------------------------------------------------------------------------
+% Definitions and results, numbered within chapters.
+\declaretheoremstyle[
+  headfont=\bfseries, notefont=\bfseries, notebraces={(}{)},
+  bodyfont=\normalfont, spaceabove=0.8\baselineskip, spacebelow=0.8\baselineskip,
+]{bookdef}
+\declaretheorem[style=bookdef, numberwithin=chapter, name=Definition,
+  refname={definition,definitions}, Refname={Definition,Definitions}]{definition}
+
+% ---------------------------------------------------------------------------
+\tcbset{
+  bookbox/.style={
+    enhanced, breakable, sharp corners, boxrule=0.5pt,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm,
+    before skip=1.0\baselineskip, after skip=1.0\baselineskip,
+    fonttitle=\bfseries, coltitle=white,
+  },
+}
+
+% What the reader will be able to do after the chapter.
+\newtcolorbox{goals}{
+  bookbox, colback=goalblue!4, colframe=goalblue, colbacktitle=goalblue,
+  title={What you will learn},
+}
+
+% A central idea stated once, plainly.
+\newtcolorbox{keyidea}[1][]{
+  bookbox, colback=keygold!6, colframe=keygold, colbacktitle=keygold,
+  title={Key idea\ifstrempty{#1}{}{: #1}},
+}
+
+% Worked examples, numbered within chapters.
+\newcounter{workedexample}[chapter]
+\renewcommand{\theworkedexample}{\thechapter.\arabic{workedexample}}
+\newtcolorbox{example}[2][]{
+  bookbox, colback=examplegreen!3, colframe=examplegreen, colbacktitle=examplegreen,
+  title={Worked Example \theworkedexample\quad #2},
+  code={\refstepcounter{workedexample}},
+  #1,
+}
+\crefname{workedexample}{Worked Example}{Worked Examples}
+\Crefname{workedexample}{Worked Example}{Worked Examples}
+\newcommand{\solution}{\par\smallskip\noindent\textbf{Solution.}\enspace}
+\newcommand{\discussion}{\par\smallskip\noindent\textbf{What it tells us.}\enspace}
+
+% Short questions in the text; answers at the end of each chapter.
+\newcounter{checkpoint}[chapter]
+\renewcommand{\thecheckpoint}{\thechapter.\arabic{checkpoint}}
+\newtcolorbox{checkpoint}[1][]{
+  bookbox, colback=checkteal!4, colframe=checkteal, colbacktitle=checkteal,
+  title={Check your understanding \thecheckpoint},
+  code={\refstepcounter{checkpoint}},
+  #1,
+}
+\crefname{checkpoint}{Check your understanding}{Check your understanding}
+
+% Material for readers with more background.
+\newtcolorbox{deeper}[1]{
+  bookbox, colback=deeperviolet!4, colframe=deeperviolet, colbacktitle=deeperviolet,
+  title={Going deeper: #1},
+}
+
+% History.
+\newtcolorbox{history}[1]{
+  bookbox, colback=historybrown!5, colframe=historybrown, colbacktitle=historybrown,
+  title={Historical note: #1},
+}
+
+% ---------------------------------------------------------------------------
+% End-of-chapter sections.
+\newenvironment{chaptersummary}
+  {\section*{Summary}\addcontentsline{toc}{section}{Summary}\begin{itemize}}
+  {\end{itemize}}
+\newenvironment{checkanswers}
+  {\section*{Answers to Check your understanding}\begin{description}[style=nextline,font=\normalfont\bfseries]}
+  {\end{description}}
+\newlist{problemlist}{enumerate}{1}
+\setlist[problemlist]{label=\thechapter.\arabic*, ref=\thechapter.\arabic*, leftmargin=*, itemsep=0.9ex}
+\crefname{problemlisti}{Problem}{Problems}
+\Crefname{problemlisti}{Problem}{Problems}
+\newenvironment{problems}
+  {\section*{Problems}\addcontentsline{toc}{section}{Problems}\begin{problemlist}}
+  {\end{problemlist}}
+\newenvironment{furtherreading}
+  {\section*{Further reading}\begin{description}[style=nextline,font=\normalfont]}
+  {\end{description}}

@@ -1,0 +1,46 @@
+% Embedding diagram of a wormhole (Ellis throat of radius 1): the surface
+%   r = sqrt(1 + l^2),  z = asinh(l),
+% where l is proper radial distance through the throat. Shading is a simple
+% two-sided Lambert model; the outward unit normal is
+%   n = (cos(phi), sin(phi), -l) / sqrt(1 + l^2).
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  hide axis, view={-28}{16}, axis equal image, clip=false,
+  width=368pt, height=317pt,
+  colormap={worm}{rgb255(0cm)=(16,55,90) rgb255(3cm)=(38,103,158)
+    rgb255(6cm)=(128,172,210) rgb255(9cm)=(226,236,246)},
+  point meta min=0, point meta max=1,
+]
+% light from the upper left, slightly in front
+\pgfmathsetmacro{\Lx}{-0.62}\pgfmathsetmacro{\Ly}{-0.42}\pgfmathsetmacro{\Lz}{0.66}
+\addplot3[
+  surf, shader=faceted interp, faceted color=seblueDark!55, line width=0.12pt,
+  z buffer=sort, samples=31, samples y=49,
+  domain=-4.4:4.4, y domain=0:360, variable=\u, variable y=\v,
+  point meta={0.08 + 0.92*abs((\Lx*cos(\v) + \Ly*sin(\v) - \Lz*\u)/sqrt(1+\u^2))},
+] ({sqrt(1+\u^2)*cos(\v)}, {sqrt(1+\u^2)*sin(\v)}, {ln(\u + sqrt(1+\u^2))});
+
+% the throat: front half only (the viewer sits at azimuth 242 degrees, so the
+% visible half runs from 152 to 332 degrees)
+\addplot3[seorange, line width=1.5pt, domain=152:332, samples=60, samples y=1, variable=\t]
+  ({cos(\t)}, {sin(\t)}, {0});
+
+% a traveller's path through the throat, on the side facing the viewer
+\addplot3[seteal, line width=1.4pt, domain=-3.3:3.3, samples=60, samples y=1, variable=\u,
+  postaction={decorate}, decoration={markings,
+    mark=at position 0.3 with {\arrow{Latex[length=2.4mm,width=1.8mm]}},
+    mark=at position 0.78 with {\arrow{Latex[length=2.4mm,width=1.8mm]}}}]
+  ({sqrt(1+\u^2)*cos(178)}, {sqrt(1+\u^2)*sin(178)}, {-ln(\u + sqrt(1+\u^2))});
+
+\coordinate (throatlabel) at (axis cs:{cos(300)},{sin(300)},0);
+\coordinate (pathstart) at (axis cs:{3.45*cos(178)},{3.45*sin(178)},1.91);
+\node[lbl, anchor=south] at (axis cs:0,0,2.45) {region A};
+\node[lbl, anchor=north] at (axis cs:0,0,-2.6) {region B};
+\end{axis}
+\draw[guide] (throatlabel) -- ++(40pt,-2pt) node[lbl, anchor=west, text=seorange!85!black] {throat};
+\node[lbl, text=seteal!85!black, anchor=south east] at ($(pathstart)+(4pt,5pt)$) {traveller};
+\end{tikzpicture}
+\end{document}

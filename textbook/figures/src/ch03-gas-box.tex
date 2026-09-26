@@ -1,0 +1,38 @@
+% A sealed box of hot gas cut by an imaginary plane. Forces on each half across
+% the cut: the gas pushes the halves apart; the walls, under tension, pull them
+% together. Equilibrium: the two balance for every cut.
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=26pt, y=26pt]
+% walls and gas
+\fill[black!40, rounded corners=2pt] (-3,-1.6) rectangle (3,1.6);
+\fill[seorange!12] (-2.78,-1.38) rectangle (2.78,1.38);
+\pgfmathsetseed{7}
+\foreach \k in {1,...,70} {
+  \pgfmathsetmacro{\px}{-2.6 + 5.2*rnd}
+  \pgfmathsetmacro{\py}{-1.2 + 2.4*rnd}
+  \fill[seorange!70!black] (\px,\py) circle (1.1pt);
+}
+% the cut
+\draw[black!75, line width=0.7pt, dash pattern=on 3pt off 2pt] (0,-2.05) -- (0,2.05);
+\node[smalllbl, anchor=south] at (0,2.05) {imaginary cut};
+% gas pushes the halves apart
+\foreach \y in {-0.55,0.55} {
+  \draw[seorange!90!black, line width=1.3pt, -{Latex[length=2mm,width=1.6mm]}] (0.12,\y) -- (0.95,\y);
+  \draw[seorange!90!black, line width=1.3pt, -{Latex[length=2mm,width=1.6mm]}] (-0.12,\y) -- (-0.95,\y);
+}
+% walls pull the halves together
+\foreach \y in {-1.49,1.49} {
+  \draw[sered, line width=1.3pt, -{Latex[length=2mm,width=1.6mm]}] (1.0,\y) -- (0.14,\y);
+  \draw[sered, line width=1.3pt, -{Latex[length=2mm,width=1.6mm]}] (-1.0,\y) -- (-0.14,\y);
+}
+\node[smalllbl, text=seorange!85!black, anchor=west, align=left] at (3.2,0.0)
+  {gas pushes the\\halves apart};
+\draw[guide] (1.0,0.55) -- (3.15,0.12);
+\node[smalllbl, text=sered, anchor=west, align=left] at (3.2,1.55)
+  {stretched walls pull\\the halves together};
+\draw[guide] (1.05,1.49) -- (3.15,1.6);
+\node[smalllbl, text=black!65] at (-1.6,-1.9) {steel wall};
+\end{tikzpicture}
+\end{document}

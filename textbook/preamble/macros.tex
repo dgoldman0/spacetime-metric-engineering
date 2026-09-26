@@ -1,0 +1,16 @@
+% Notation macros.
+
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\lP}{\ell_{\mathrm{P}}}
+\newcommand{\Msun}{M_{\odot}}
+\newcommand{\rs}{r_{\mathrm{s}}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\idx}[1]{#1\index{#1}}
+
+% Topics are unnumbered, so the book refers to them by name and page.
+\newcommand{\topicref}[1]{\emph{\nameref{#1}} (page~\pageref{#1})}
+
+% Problem difficulty: \diff{1} warm-up, \diff{2} standard, \diff{3} challenging.
+\newcommand{\diff}[1]{%
+  \ifcase#1\or\textcolor{segray}{[$\star$]}\or\textcolor{segray}{[$\star\star$]}\or\textcolor{segray}{[$\star\star\star$]}\fi\ }

@@ -1,0 +1,22 @@
+% Notation macros.
+
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\lP}{\ell_{\mathrm{P}}}
+\newcommand{\Msun}{M_{\odot}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\idx}[1]{#1\index{#1}}
+
+% Colours used by the teaching boxes and figures.
+\definecolor{goalblue}{HTML}{1F4E79}
+\definecolor{keygold}{HTML}{9A6B00}
+\definecolor{examplegreen}{HTML}{2E6B30}
+\definecolor{checkteal}{HTML}{00707A}
+\definecolor{deeperviolet}{HTML}{5B3C88}
+\definecolor{historybrown}{HTML}{7A4A2A}
+\definecolor{lightcone}{HTML}{E8B84A}
+\definecolor{worldline}{HTML}{1F4E79}
+
+% Problem difficulty: \diff{1} warm-up, \diff{2} standard, \diff{3} challenging.
+\newcommand{\diff}[1]{%
+  \ifcase#1\or\textcolor{gray}{[$\star$]}\or\textcolor{gray}{[$\star\star$]}\or\textcolor{gray}{[$\star\star\star$]}\fi\ }

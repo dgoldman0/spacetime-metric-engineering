@@ -1,0 +1,33 @@
+% The twins: Earth twin at x = 0 for 10.6 years; traveller to x = 4.24 ly at
+% speed 0.8 and back. Ticks mark each year of each twin's own proper time.
+% Traveller: proper time runs at 0.6 of Earth time, so one proper year takes
+% 1/0.6 = 1.667 years of Earth time; turnaround at t = 5.3 (tau = 3.18).
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=17pt, y=17pt]
+\draw[axisline] (-0.6,0) -- (6.0,0) node[anchor=west, smalllbl] {distance (light-years)};
+\draw[axisline] (0,-0.3) -- (0,11.6) node[anchor=south, smalllbl] {time (years)};
+\foreach \x in {1,2,3,4} \draw[segray, line width=0.4pt] (\x,0) -- (\x,-0.15) node[anchor=north, font=\sffamily\tiny, text=black!60] {\x};
+\foreach \t in {2,4,6,8,10} \draw[segray, line width=0.4pt] (0,\t) -- (-0.15,\t) node[anchor=east, font=\sffamily\tiny, text=black!60] {\t};
+% light to Proxima and back, faint
+\draw[seorange!55, line width=0.5pt, dash pattern=on 2pt off 1.5pt] (0,0) -- (4.24,4.24) -- (0,8.48);
+% worldlines
+\draw[seblue, line width=1.4pt] (0,0) -- (0,10.6);
+\draw[seteal, line width=1.4pt] (0,0) -- (4.24,5.3) -- (0,10.6);
+% Earth ticks: every year
+\foreach \t in {1,...,10} \draw[seblue, line width=0.9pt] (-0.28,\t) -- (0.28,\t);
+% traveller ticks: every proper year
+\foreach \t/\x in {1.667/1.333, 3.333/2.667, 5.0/4.0}
+  \draw[seteal!80!black, line width=0.9pt, shift={(\x,\t)}, rotate=-38.66] (-0.28,0) -- (0.28,0);
+\foreach \t/\x in {6.667/3.147, 8.333/1.813, 10.0/0.48}
+  \draw[seteal!80!black, line width=0.9pt, shift={(\x,\t)}, rotate=38.66] (-0.28,0) -- (0.28,0);
+\fill (0,0) circle (1.7pt);
+\fill (0,10.6) circle (1.7pt);
+\node[smalllbl, anchor=east] at (-0.35,10.6) {reunion};
+\node[smalllbl, anchor=east] at (-0.35,0.25) {departure};
+\node[smalllbl, text=seblue, anchor=east, align=right] at (-0.5,6.2) {stays home\\10.6 years};
+\node[smalllbl, text=seteal!85!black, anchor=west, align=left] at (4.45,5.4) {travels\\6.36 years};
+\node[smalllbl, text=black!60, anchor=west] at (4.35,4.1) {Proxima};
+\end{tikzpicture}
+\end{document}

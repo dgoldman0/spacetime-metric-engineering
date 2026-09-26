@@ -1,0 +1,71 @@
+% Packages. hyperref and cleveref come last.
+
+\usepackage[
+  letterpaper,
+  inner=0.8in, outer=0.7in,
+  top=0.9in, bottom=0.95in,
+  columnsep=0.3in,
+  headheight=14pt, headsep=18pt, footskip=30pt,
+]{geometry}
+
+\usepackage{mathtools}
+
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext}
+\usepackage[varbb]{newpxmath}
+\usepackage[semibold,scale=0.95,lining]{sourcesanspro}
+\usepackage[final]{microtype}
+\linespread{1.04}
+
+\usepackage{bm}
+\usepackage[separate-uncertainty=true,per-mode=symbol]{siunitx}
+
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{xcolor}
+\input{preamble/colors}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5}
+\usepackage{csquotes}
+\usepackage{scrlayer-scrpage}
+\usepackage{scrhack}
+
+\usepackage[
+  backend=biber,
+  style=authoryear-comp,
+  maxcitenames=2,
+  maxbibnames=10,
+  minbibnames=3,
+  giveninits=true,
+  uniquename=init,
+  uniquelist=false,
+  dashed=false,
+  sortcites=true,
+  date=year,
+  doi=true,
+  eprint=true,
+  url=false,
+  isbn=false,
+]{biblatex}
+
+% The shared bibliography carries provenance notes for the repository's
+% evidence review; the book's reference list leaves them out.
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{\step[fieldset=note, null]\step[fieldset=addendum, null]}
+  }
+}
+
+\usepackage{imakeidx}
+\makeindex[intoc]
+
+\usepackage[hidelinks,bookmarksnumbered,pdfusetitle]{hyperref}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}

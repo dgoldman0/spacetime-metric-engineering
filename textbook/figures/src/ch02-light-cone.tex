@@ -1,0 +1,40 @@
+% The light cone of an event A, one dimension of space suppressed: future and
+% past cones, the region elsewhere, a worldline through A, and two events.
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=36pt, y=36pt]
+\def\R{1.55}\def\e{0.34}
+% past cone (drawn first)
+\shade[left color=seblue!10, right color=seblue!30, middle color=seblue!6]
+  (0,0) -- (-\R,-\R) arc[start angle=180, end angle=360, x radius=\R, y radius=\e] -- cycle;
+\draw[seblue!70, line width=0.5pt] (-\R,-\R) arc[start angle=180, end angle=360, x radius=\R, y radius=\e];
+\draw[seblue!45, line width=0.4pt, dash pattern=on 2pt off 1.5pt] (-\R,-\R) arc[start angle=180, end angle=0, x radius=\R, y radius=\e];
+\draw[seblue!70, line width=0.6pt] (0,0) -- (-\R,-\R) (0,0) -- (\R,-\R);
+% worldline, lower half
+\draw[black!80, line width=1.2pt] (0.12,-1.75) .. controls (0.05,-0.9) and (-0.02,-0.4) .. (0,0);
+% future cone
+\shade[left color=seorange!12, right color=seorange!38, middle color=seorange!8]
+  (0,0) -- (-\R,\R) arc[start angle=180, end angle=360, x radius=\R, y radius=\e] -- cycle;
+\fill[seorange!10] (0,\R) ellipse[x radius=\R, y radius=\e];
+\draw[seorange!85!black, line width=0.6pt] (0,\R) ellipse[x radius=\R, y radius=\e];
+\draw[seorange!85!black, line width=0.6pt] (0,0) -- (-\R,\R) (0,0) -- (\R,\R);
+% worldline, upper half
+\draw[black!80, line width=1.2pt, -{Latex[length=2mm,width=1.5mm]}] (0,0) .. controls (0.02,0.5) and (0.25,1.0) .. (0.3,1.95);
+\node[smalllbl, anchor=south] at (0.3,1.95) {a worldline through $A$};
+% axis
+\draw[axisline] (-2.25,-1.6) -- (-2.25,1.8) node[anchor=south, font=\small] {$t$};
+% event A and labels
+\fill (0,0) circle (1.9pt);
+\node[font=\small, anchor=west] at (0.08,-0.12) {$A$};
+\node[lbl, text=seorange!80!black] at (-0.62,1.02) {future};
+\node[lbl, text=seblue] at (-0.6,-1.02) {past};
+\node[lbl, text=black!65, align=center] at (2.55,0.28) {elsewhere};
+\node[smalllbl, text=black!55, align=center] at (2.55,-0.05) {spacelike from $A$};
+% two events
+\fill[seteal] (0.7,1.25) circle (1.7pt);
+\draw[guide] (0.7,1.25) -- (1.75,1.42) node[smalllbl, anchor=west, text=seteal!85!black] {can be influenced by $A$};
+\fill[seviolet] (2.25,-0.72) circle (1.7pt);
+\node[smalllbl, anchor=west, text=seviolet] at (2.33,-0.72) {cannot};
+\end{tikzpicture}
+\end{document}

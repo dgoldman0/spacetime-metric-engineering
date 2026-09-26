@@ -1,0 +1,97 @@
+
+== Chapter 1: clocks that disagree (Figure 1.1)
+ok  height-gain asymptote far away (us/day): computed 60.1454, text 60.15
+ok  GPS gain from height (us/day): computed 45.7182, text 45.7
+ok  GPS loss from speed (us/day): computed 7.2136, text 7.2
+ok  GPS net gain (us/day): computed 38.5046, text 38.5
+ok  GPS orbital speed (km/s): computed 3.87396, text 3.87
+ok  ranging error per day (km): computed 11.5434, text 11.5
+ok  net fractional rate (parts in 1e10): computed 4.45655, text 4.465
+ok  space station net (us/day): computed -24.493, text -24.5
+ok  space station orbital speed (km/s): computed 7.66129, text 7.66
+ok  orbit radius where the effects cancel (Earth radii): computed 1.5, text 1.5
+   (net = K (1 - 3R/(2r)) vanishes at r = 3R/2 exactly)
+
+== Chapter 1: spacetime is stiff
+ok  c^4/G (N): computed 1.21031e+44, text 1.2e+44
+ok  c^2/G (kg/m): computed 1.34665e+27, text 1.35e+27
+ok  Earth GM/(c^2 R): computed 6.95843e-10, text 7e-10
+ok  Earth M/R (kg/m): computed 9.37059e+17, text 9.4e+17
+ok  Earth clock loss per day (us): computed 60.1209, text 60
+ok  mass to slow a clock 1e-9 at 1 m (kg): computed 1.34665e+18, text 1.3e+18
+ok  diameter of such a rock at 3000 kg/m^3 (km): computed 94.9974, text 100
+ok  Sun GM/(c^2 R): computed 2.12166e-06, text 2e-06
+ok  neutron star GM/(c^2 R): computed 0.172316, text 0.17
+ok  neutron star exact clock rate: computed 0.809548, text 0.81
+ok  stress to bend 1 m (Pa): computed 1.21031e+44, text 1e+44
+   strongest materials ~1e11 Pa, so the gap is ~33 orders of magnitude: 33.0
+
+== Chapter 1: negative energy in the laboratory
+ok  Casimir energy density at 1 um (J/m^3): computed -0.000433375, text -0.00043
+ok  growth from 1 um to 10 nm: computed 1e+08, text 1e+08
+ok  aluminium rest-energy density (J/m^3): computed 2.42664e+20, text 2.4e+20
+   ratio plate / gap at 1 um: 5.60e+23 (text: more than twenty orders)
+ok  throat demand c^4/(8 pi G b^2), b = 1 m (J/m^3): computed 4.81567e+42, text 4.8e+42
+ok  Problem 1.6: Casimir density at 100 nm (J/m^3): computed -4.33375, text -4.33
+ok  Problem 1.5: Pfenning-Ford estimate in solar masses: computed 3e+32, text 3e+32
+ok  Problem 1.3: six months on the station (ms): computed 4.47125, text 4.5
+ok  Problem 1.4: time to drift 30 ns (minutes): computed 1.12208, text 1.12
+
+== Chapter 1: Figure 1.5 geometry
+   warp cone edges (deg): 14.04 26.57 and 153.43 165.96
+ok  Krasnikov tipped edge angle (deg): computed 220.365, text 220.36
+   return direction 218.66 deg lies inside the cone [45, 220.36 ]: True
+   return path t = 0.45 + 0.8 x stays in the tube t >= x/0.8: True
+ok  Krasnikov home time: computed 0.45, text 0.45
+
+== Chapter 2: muons and twins
+ok  muon trip, Earth time (us): computed 50.0596, text 50.1
+ok  muon trip, own clock (us): computed 1.58283, text 1.58
+ok  muon survival fraction: computed 0.486534, text 0.49
+ok  muon trip in lifetimes (Earth time): computed 22.7855, text 23
+ok  survival without dilation: computed 1.27175e-10, text 1.3e-10
+ok  twins: Earth time (yr): computed 10.6, text 10.6
+ok  twins: traveller (yr): computed 6.36, text 6.36
+ok  Problem 2.2: explosion time for an observer at 0.5 (yr): computed -317.543, text -317.5
+
+== Chapter 2: clocks in a gravitational field
+ok  Everest rate difference: computed 9.65001e-13, text 9.6e-13
+BAD Everest, 80 years (us): computed 2436.44, text 2.4
+ok  33 cm height shift (Chou et al.): computed 3.59831e-17, text 3.6e-17
+   (measured: (4.1 +- 1.6) x 1e-17, consistent)
+ok  Sun r_s (km): computed 2.95399, text 2.95
+ok  escape speed at the Earth's surface (km/s): computed 11.1861, text 11.2
+ok  Michell: Sun escape speed x 500 exceeds c: computed 1.0303, text 1.03
+
+== Chapter 2: the thrown ball
+ok  ball's gain v0^3/(3g) (m^2/s): computed 32.0133, text 32.0133
+ok  ball's gain in seconds: computed 3.56196e-16, text 3.6e-16
+   gain(path + eps sin(pi t/T)) - gain(path) = -0.125*pi**2*epsilon**2 + 5.6843418860808e-14 (negative for eps != 0)
+
+== Chapter 2: tides
+ok  stretching gradient at the surface, 2GM/r^3 (1/s^2): computed 3.0828e-06, text 3.1e-06
+ok  across a 2 m person (m/s^2): computed 6.16559e-06, text 6e-06
+ok  stretching gradient in low orbit (1/s^2): computed 2.54546e-06, text 2.5e-06
+ok  drift of balls 10 m apart in a minute (cm): computed 4.58183, text 4.5
+
+== Chapter 2: Figure 2.3 tick marks
+   outbound proper year 1: t = 1.667, x = 1.333
+   outbound proper year 2: t = 3.333, x = 2.667
+   outbound proper year 3: t = 5.000, x = 4.000
+   return proper year 4: t = 6.667, x = 3.147
+   return proper year 5: t = 8.333, x = 1.813
+   return proper year 6: t = 10.000, x = 0.480
+
+== Chapter 3
+   rod seen in passing: (-rho0 + tau*v**2)/(v**2 - 1) = gamma^2 (rho0 - v^2 tau)
+   dust (rest frame) seen by w: -rho0/(v**2 - 1)
+   vacuum energy seen by w: rho_vac
+ok  gamma^2 at 0.8: computed 2.77778, text 2.77778
+ok  steel tau/rho0 at 1e9 Pa: computed 1.41739e-12, text 1.4e-12
+ok  lapse stress for alpha'' = 1e-9 /m^2 (Pa): computed 4.81567e+33, text 5e+33
+ok  shear energy density, beta' = 1/m (J/m^3): computed -1.20392e+42, text -1.2e+42
+ok  as a mass density (kg/m^3): computed -1.33954e+25, text -1.3e+25
+   net xx stress across a cut: 0
+   lapse metric Einstein tensor diag: [0, 0, Derivative(alpha(x), (x, 2))/alpha(x), Derivative(alpha(x), (x, 2))/alpha(x)]
+
+failures: ['Everest, 80 years (us)']

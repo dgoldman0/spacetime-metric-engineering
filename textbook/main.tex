@@ -1,0 +1,45 @@
+% Spacetime Engineering: master document.
+% Build with `make` (latexmk, pdfLaTeX, biber). Figures are standalone files in
+% figures/src, built by `make figures`. One chapter:
+%   make chapter CH=chapters/ch02-spacetime-geometry
+
+\documentclass[
+  paper=letter,
+  fontsize=10pt,
+  twoside=true,
+  twocolumn=true,
+  open=right,
+  chapterprefix=false,
+  numbers=noenddot,
+  bibliography=totoc,
+  index=totoc,
+]{scrbook}
+
+\input{preamble/packages}
+\input{preamble/layout}
+\input{preamble/macros}
+\input{preamble/environments}
+\addbibresource{bib/references.bib}
+
+\ifdefined\ChapterOnly \includeonly{\ChapterOnly}\fi
+
+\begin{document}
+
+\frontmatter
+\onecolumn
+\input{frontmatter/titlepage}
+\tableofcontents
+\twocolumn
+\include{frontmatter/preface}
+
+\mainmatter
+\part{Foundations}
+\include{chapters/ch01-what-is-spacetime-engineering}
+\include{chapters/ch02-spacetime-geometry}
+\include{chapters/ch03-matter-and-geometry}
+
+\backmatter
+\printbibliography[heading=bibintoc,title={References}]
+\printindex
+
+\end{document}

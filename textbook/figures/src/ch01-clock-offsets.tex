@@ -1,0 +1,49 @@
+% Daily gain of an orbiting clock over a clock on the ground, against orbit
+% radius (Earth's rotation ignored). Rates in microseconds per day:
+%   height  H = K (1 - R/r),   speed  S = -(K/2)(R/r),   net  N = K (1 - 3R/2r),
+% with K = GM/(c^2 R) x 86400 s x 1e6 = 60.146 and R = 6371 km.
+% Numbers checked in checks/rev1_quoted_numbers.py.
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  se axis,
+  width=245pt, height=178pt,
+  xmin=0, xmax=46, ymin=-36, ymax=66,
+  xtick={0,10,20,30,40}, ytick={-30,-15,0,15,30,45,60},
+  xlabel={distance from the Earth's centre (\num{1000} km)},
+  ylabel={daily gain (\si{\micro\second})},
+  clip=false,
+  axis x line=bottom, axis y line=left,
+]
+% Earth's surface and the zero line
+\fill[selight!45] (axis cs:0,-36) rectangle (axis cs:6.371,66);
+\node[smalllbl, anchor=north] at (axis cs:3.2,64) {Earth};
+\draw[guide, dash pattern=on 2pt off 1.5pt] (axis cs:6.371,0) -- (axis cs:46,0);
+
+% the two effects and their sum
+\addplot[seblue, domain=6.371:46, samples=120] {60.146*(1 - 6.371/x)};
+\addplot[seorange, domain=6.371:46, samples=120] {-30.073*6.371/x};
+\addplot[black!85, line width=1.6pt, domain=6.371:46, samples=120] {60.146*(1 - 1.5*6.371/x)};
+
+% direct labels
+\node[lbl, text=seblue, anchor=south east, align=right] at (axis cs:45.5,54.5)
+  {higher up: runs fast};
+\node[lbl, text=black!85, anchor=north east] at (axis cs:45.5,44.8) {net};
+\node[lbl, text=seorange!85!black, anchor=north east, align=right] at (axis cs:45.5,-7)
+  {moving: runs slow};
+
+% where the effects cancel
+\fill[black!85] (axis cs:9.557,0) circle (1.5pt);
+\draw[guide] (axis cs:9.557,0) -- (axis cs:12.6,5.5);
+\node[smalllbl, anchor=west, align=left] at (axis cs:12.4,6) {the two effects cancel};
+
+% satellites
+\fill[sered] (axis cs:6.791,-24.49) circle (1.9pt);
+\node[smalllbl, anchor=west] at (axis cs:8.3,-31) {space station, \num{-24.5}};
+\fill[sered] (axis cs:26.56,38.51) circle (1.9pt);
+\node[smalllbl, anchor=north west] at (axis cs:26.9,36.8) {GPS, \num[print-implicit-plus]{+38.5}};
+\end{axis}
+\end{tikzpicture}
+\end{document}

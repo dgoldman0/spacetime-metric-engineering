@@ -1,0 +1,29 @@
+% A first spacetime diagram: worldlines of a particle at rest, a particle moving
+% at speed 0.4, a particle that speeds up and slows down, and light (c = 1).
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=30pt, y=30pt]
+% faint grid
+\foreach \x in {-3,...,3} \draw[selight!70, line width=0.3pt] (\x,0) -- (\x,3.9);
+\foreach \t in {1,...,3} \draw[selight!70, line width=0.3pt] (-3.3,\t) -- (3.4,\t);
+\draw[axisline] (-3.4,0) -- (3.7,0) node[anchor=west, font=\small] {$x$};
+\draw[axisline] (0,-0.25) -- (0,4.15) node[anchor=south, font=\small] {$t$};
+% light from A
+\draw[lightdash] (0,0) -- (3.4,3.4);
+\draw[lightdash] (0,0) -- (-3.3,3.3);
+\node[smalllbl, text=seorange!85!black, rotate=45, anchor=south] at (2.55,2.55) {light};
+% at rest
+\draw[seblue, line width=1.3pt] (-2,0) -- (-2,3.8);
+\node[smalllbl, anchor=south, text=seblue] at (-2.35,3.8) {at rest};
+% moving at 0.4
+\draw[seteal, line width=1.3pt] (0,0) -- (1.52,3.8);
+\node[smalllbl, anchor=south, text=seteal!85!black] at (1.52,3.8) {moving, $v = 0.4$};
+% speeding up then slowing down: x(t) = -3 + 1.9 (1 - cos(pi t/3.6))/2,
+% whose largest speed is 1.9 pi/7.2 = 0.83, below the speed of light
+\draw[seviolet, line width=1.3pt, domain=0:3.6, samples=60, variable=\t]
+  plot ({-3 + 0.95*(1 - cos(180*\t/3.6))}, {\t});
+\node[smalllbl, anchor=south, text=seviolet] at (-1.1,3.6) {accelerating};
+\fill (0,0) circle (1.8pt) node[anchor=north west, font=\small] {$A$};
+\end{tikzpicture}
+\end{document}

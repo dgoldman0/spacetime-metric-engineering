@@ -1,0 +1,143 @@
+% Teaching environments.
+%
+% In the reading flow: thought experiments (and their return at the end of a
+% topic), worked examples, key ideas and checks. Beside the reading flow, as
+% floating sidebars: history and going deeper.
+
+\tcbset{
+  sebox/.style={
+    enhanced jigsaw, breakable, sharp corners, frame hidden, boxrule=0pt,
+    left=2.6mm, right=2.6mm, top=1.0mm, bottom=1.8mm, boxsep=0pt,
+    lefttitle=2.6mm, righttitle=2.6mm, toptitle=1.7mm, bottomtitle=0.3mm,
+    before skip=1.0\baselineskip plus 3pt minus 2pt,
+    after skip=1.0\baselineskip plus 3pt minus 2pt,
+    fonttitle=\sffamily\bfseries\small, titlerule=0pt,
+    parbox=false, before upper={\setlength{\parindent}{1em}},
+  },
+  sebar/.style={
+    sebox, colback=#1!9, colbacktitle=#1!9, coltitle=#1!82!black,
+    borderline west={2.4pt}{0pt}{#1},
+  },
+  sesidebar/.style={
+    enhanced, sharp corners, frame hidden, boxrule=0pt,
+    left=2.6mm, right=2.6mm, top=1.0mm, bottom=1.8mm, boxsep=0pt,
+    lefttitle=2.6mm, righttitle=2.6mm, toptitle=1.7mm, bottomtitle=0.3mm,
+    fonttitle=\sffamily\bfseries\small, titlerule=0pt, fontupper=\small,
+    parbox=false, before upper={\setlength{\parindent}{1em}},
+    colback=#1!8, colbacktitle=#1!8, coltitle=#1!85!black,
+    borderline north={1.2pt}{0pt}{#1},
+    float=tb,
+  },
+}
+
+% A puzzle that opens a topic. The topic gives the reader what is needed to
+% solve it, and the topic closes by returning to it. Short boxes (thought
+% experiments and their return, key ideas, checks) never break, so a topic
+% heading moves to the next column together with its thought experiment.
+\makeatletter
+\newcommand{\seafterbox}{\par\@afterindentfalse\@afterheading}
+\makeatother
+\newtcolorbox{thought}[1]{
+  sebar=seorange, unbreakable, after app={\seafterbox},
+  title={\faLightbulb[regular]\enspace Thought experiment\enspace
+    {\color{black!85}\textperiodcentered\enspace #1}},
+}
+\newtcolorbox{revisited}[1]{
+  sebox, unbreakable, colback=white, colbacktitle=white, coltitle=seorange!82!black,
+  borderline west={2.4pt}{0pt}{seorange},
+  title={\faLightbulb\enspace Back to the thought experiment\enspace
+    {\color{black!85}\textperiodcentered\enspace #1}},
+}
+
+% Worked examples, numbered within chapters.
+\newtcolorbox[auto counter, number within=chapter,
+  crefname={Example}{Examples}, Crefname={Example}{Examples}]{example}[2][]{
+  sebox, colback=seblue!5, colbacktitle=seblue!5, coltitle=seblue,
+  borderline north={1.3pt}{0pt}{seblue},
+  title={Example~\thetcbcounter\hspace{0.7em}{\color{black!85}#2}},
+  #1,
+}
+\newcommand{\solution}{\par\smallskip\noindent
+  {\sffamily\bfseries\small\color{seblue}Solution}\enspace}
+\newcommand{\discussion}{\par\smallskip\noindent
+  {\sffamily\bfseries\small\color{seblue}What it tells us}\enspace}
+
+% A central idea stated once, plainly.
+\newtcolorbox{keyidea}[1][]{
+  sebar=seblue, unbreakable,
+  title={\faKey\enspace Key idea\ifstrempty{#1}{}{\enspace{\color{black!85}\textperiodcentered\enspace #1}}},
+}
+
+% Short questions in the text; answers at the end of each chapter.
+\newtcolorbox[auto counter, number within=chapter,
+  crefname={Check}{Checks}, Crefname={Check}{Checks}]{checkpoint}[1][]{
+  sebar=seteal, unbreakable,
+  title={\faCheckCircle[regular]\enspace Check your understanding~\thetcbcounter},
+  #1,
+}
+
+% Sidebars beside the reading flow.
+\newtcolorbox{deeper}[1]{
+  sesidebar=seviolet,
+  title={Going deeper\enspace{\color{black!85}\textperiodcentered\enspace #1}},
+}
+\newtcolorbox{history}[1]{
+  sesidebar=sesand,
+  title={History\enspace{\color{black!85}\textperiodcentered\enspace #1}},
+}
+
+% ---------------------------------------------------------------------------
+% Chapter openings: a lead paragraph beside the list of goals, across both
+% columns. Use before \chapter:
+%   \chapteropening{lead text}{\item goal \item goal ...}
+\newtcolorbox{goalsbox}{
+  enhanced, sharp corners, frame hidden, boxrule=0pt,
+  colback=seblue!6, colbacktitle=seblue!6, coltitle=seblue, titlerule=0pt,
+  left=3mm, right=3mm, top=0.6mm, bottom=2mm, toptitle=2mm, bottomtitle=0.2mm,
+  lefttitle=3mm, fonttitle=\sffamily\bfseries\small, fontupper=\small,
+  borderline north={1.3pt}{0pt}{seblue},
+  title={In this chapter you will learn},
+}
+\newcommand{\chapteropening}[2]{%
+  \setchapterpreamble[u]{%
+    \vspace*{0.1\baselineskip}%
+    \noindent
+    \begin{minipage}[t]{0.47\textwidth}\vspace{0pt}%
+      \setlength{\parindent}{0pt}\setlength{\parskip}{0.6\baselineskip}%
+      {\fontsize{11.3}{15.2}\selectfont #1\par}%
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.49\textwidth}\vspace{0pt}%
+      \begin{goalsbox}
+        \begin{itemize}[leftmargin=1.1em, itemsep=0.35ex, topsep=0.2ex]
+          #2
+        \end{itemize}
+      \end{goalsbox}
+    \end{minipage}\par
+    \vspace{1.3\baselineskip}%
+  }%
+}
+
+% ---------------------------------------------------------------------------
+% End-of-chapter sections.
+\newcommand{\closingsection}[1]{\section*{#1}\markright{#1}}
+\newenvironment{chaptersummary}
+  {\closingsection{Summary}\begin{itemize}}
+  {\end{itemize}}
+\newenvironment{checkanswers}
+  {\closingsection{Answers to Check your understanding}%
+   \begin{description}[style=nextline, font=\normalfont\sffamily\bfseries\small\color{seteal}]}
+  {\end{description}}
+\newlist{problemlist}{enumerate}{1}
+\setlist[problemlist]{
+  label={\sffamily\bfseries\small\color{seblue}\thechapter.\arabic*},
+  ref=\thechapter.\arabic*, leftmargin=*, labelsep=0.6em, itemsep=0.8ex,
+}
+\crefname{problemlisti}{Problem}{Problems}
+\Crefname{problemlisti}{Problem}{Problems}
+\newenvironment{problems}
+  {\closingsection{Problems}\begin{problemlist}}
+  {\end{problemlist}}
+\newenvironment{furtherreading}
+  {\closingsection{Sources and further reading}%
+   \begin{description}[style=nextline, font=\normalfont]}
+  {\end{description}}

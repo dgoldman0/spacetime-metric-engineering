@@ -1,0 +1,23 @@
+% Page layout, headings and running heads.
+
+\setkomafont{disposition}{\normalfont\bfseries}
+\setkomafont{part}{\normalfont\bfseries\Huge}
+\setkomafont{chapter}{\normalfont\bfseries\LARGE}
+\RedeclareSectionCommand[beforeskip=-1.5\baselineskip,afterskip=0.7\baselineskip]{section}
+\RedeclareSectionCommand[beforeskip=-1.2\baselineskip,afterskip=0.5\baselineskip]{subsection}
+
+\counterwithin{equation}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+\ohead{\headmark}
+\ofoot*{\pagemark}
+\ifoot*{\textcolor{gray}{\footnotesize Draft \enspace\today}}
+
+\setlist{itemsep=0.25ex,topsep=0.7ex}
+\setlength{\emergencystretch}{2em}
+\widowpenalty=10000
+\clubpenalty=10000

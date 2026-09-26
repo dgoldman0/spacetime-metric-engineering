@@ -1,0 +1,54 @@
+% Packages. amsthm must precede newpxmath; hyperref and cleveref come last.
+
+\usepackage{mathtools}
+\usepackage{amsthm}
+
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext}
+\usepackage[varbb]{newpxmath}
+\usepackage[final]{microtype}
+
+\usepackage{thmtools}
+\usepackage{bm}
+\usepackage[separate-uncertainty=true,per-mode=symbol]{siunitx}
+
+\usepackage{etoolbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing,shapes.geometric,3d}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[most]{tcolorbox}
+\usepackage{csquotes}
+\usepackage{scrlayer-scrpage}
+\usepackage{scrhack}
+
+\usepackage[
+  backend=biber,
+  style=authoryear-comp,
+  maxcitenames=2,
+  maxbibnames=10,
+  minbibnames=3,
+  giveninits=true,
+  uniquename=init,
+  uniquelist=false,
+  dashed=false,
+  sortcites=true,
+  date=year,
+  doi=true,
+  eprint=true,
+  url=false,
+  isbn=false,
+]{biblatex}
+
+\usepackage{imakeidx}
+\makeindex[intoc]
+
+\usepackage[hidelinks,bookmarksnumbered,pdfusetitle]{hyperref}
+\usepackage[nameinlink,capitalise,noabbrev]{cleveref}

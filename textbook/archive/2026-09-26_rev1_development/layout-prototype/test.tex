@@ -1,0 +1,61 @@
+\documentclass[paper=letter,fontsize=10pt,twoside=true,twocolumn=true,open=right,chapterprefix=false,numbers=noenddot]{scrbook}
+\input{preamble/packages}
+\input{preamble/layout}
+\input{preamble/macros}
+\input{preamble/environments}
+\addbibresource{bib/references.bib}
+\begin{document}
+\mainmatter
+\chapteropening{Could we build a shortcut to the stars? General relativity turns that question into an engineering problem with a precise form. This chapter is a tour of that problem with almost no mathematics.
+
+Every idea here returns later in equations, and most of them you will derive yourself.}{%
+\item what it means to engineer spacetime, and how that differs from engineering inside a geometry nature has fixed;
+\item why spacetime is so stiff, and what sets its stiffness;
+\item how a spacetime engineer reads Einstein's equation backwards;
+\item the landmark designs: wormholes, warp drives and Krasnikov tubes;
+\item why they are hard to build.}
+\chapter{What Is Spacetime Engineering?}\label{ch:what-is}
+\section{Clocks that disagree}\label{sec:gps}
+\begin{thought}{The satellite's clock}
+Two identical atomic clocks are synchronized on the ground. One stays there; the other rides a navigation satellite \SI{20000}{\kilo\metre} up, circling the Earth at nearly \SI{4}{\kilo\metre\per\second}. Relativity offers two competing effects: a moving clock runs slow, and a clock higher in the Earth's gravity runs fast. After a day the two clocks are compared by radio. Which one is ahead, and by roughly how much?
+\end{thought}
+Every time a phone finds its position by satellite, it trusts clocks that are orbiting about \SI{20000}{\kilo\metre} overhead. The navigation satellites broadcast the time on their onboard atomic clocks, and your receiver works out how far away each satellite is from how long its signal took to arrive. Light travels about \SI{30}{\centi\metre} in a nanosecond, so the clocks must agree with one another to within a few tens of nanoseconds for the position to be good to a few metres.
+
+Here is the remarkable part. Two identical atomic clocks, one on the ground and one in a navigation satellite, do not tick at the same rate. The satellite clock gains about 45 microseconds per day because it sits higher in Earth's gravity, where time runs faster.
+\begin{equation}
+  \frac{c^{4}}{G} \approx \SI{1.2e44}{\newton}.
+  \label{eq:stiffness}
+\end{equation}
+\begin{keyidea}
+Designing a shortcut through spacetime is easy on paper. Supplying the matter it demands is the hard part.
+\end{keyidea}
+\begin{history}{a novel and a wormhole}
+Morris and Thorne were prompted to study traversable wormholes in the summer of 1985, when the astronomer Carl Sagan sent Thorne a draft of his novel \emph{Contact} and asked for help making its gravitational physics as accurate as possible.
+\end{history}
+\begin{example}{A trip to the nearest star}\label{ex:twin}
+Proxima Centauri is about 4.24 light-years away. A traveller leaves Earth at $v = 0.8$, reaches the star, turns around at once, and returns at the same speed. How much time passes on Earth, and on the traveller's clock?
+\solution In the Earth's frame the trip covers $2 \times 4.24 = 8.48$ light-years at speed $0.8$, so it takes
+\begin{equation*}
+  \Delta t = \frac{8.48}{0.8}\ \text{years} = 10.6\ \text{years}.
+\end{equation*}
+\discussion The traveller returns 4.2 years younger than a twin who stayed home.
+\end{example}
+\begin{checkpoint}
+Why is it always possible to compute the demanded matter of a geometry?
+\end{checkpoint}
+\begin{revisited}{The satellite's clock}
+The satellite clock is ahead by about 38 microseconds per day.
+\end{revisited}
+\section{Spacetime is stiff}
+\begin{deeper}{tensors}
+The objects in this chapter are \emph{tensors}: quantities whose components change in a definite way under a change of coordinates.
+\end{deeper}
+Text text. See \cref{ex:twin} and \topicref{sec:gps}.
+\begin{chaptersummary}
+\item Spacetime has a geometry that matter bends.
+\end{chaptersummary}
+\begin{problems}
+\item \diff{1} \textbf{Two clocks.} A clock sits at the top of a tower.\label{prob:a}
+\item \diff{2} See \cref{prob:a}.
+\end{problems}
+\end{document}

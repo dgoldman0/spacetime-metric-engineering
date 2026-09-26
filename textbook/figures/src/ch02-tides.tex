@@ -1,0 +1,36 @@
+% Tides above the Earth: a ring of freely falling particles, and each
+% particle's acceleration relative to the ring's centre. In the Newtonian
+% limit the relative acceleration of a particle displaced by (x, y) from the
+% centre (y pointing away from the Earth) is (GM/r^3)(-x, 2y). The dashed
+% ellipse is the ring a little later: stretched along y, squeezed along x.
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=34pt, y=34pt]
+% the Earth
+\begin{scope}
+  \clip (-3.4,-2.2) rectangle (3.4,0.2);
+  \shade[top color=seblue!42, bottom color=seblue!14] (0,-4.4) circle (4.2);
+  \draw[seblue!55, line width=0.6pt] (0,-4.4) circle (4.2);
+\end{scope}
+\node[lbl, text=seblue!90!black] at (0,-1.05) {Earth};
+\draw[black!55, line width=0.5pt, -{Latex[length=1.8mm,width=1.3mm]}, dash pattern=on 2pt off 1.5pt]
+  (-2.55,2.7) -- (-2.55,0.55) node[pos=0.5, anchor=east, smalllbl, align=right] {toward the\\centre};
+% the ring and its later shape
+\draw[black!35, line width=0.5pt] (0,1.95) circle (0.9);
+\draw[seteal, line width=0.8pt, dash pattern=on 3pt off 2pt] (0,1.95) ellipse[x radius=0.74, y radius=1.22];
+\foreach \a in {0,30,...,330} {
+  \pgfmathsetmacro{\px}{0.9*sin(\a)}
+  \pgfmathsetmacro{\py}{0.9*cos(\a)}
+  \pgfmathsetmacro{\ax}{-0.32*sin(\a)}
+  \pgfmathsetmacro{\ay}{0.64*cos(\a)}
+  \draw[sered, line width=0.9pt, -{Latex[length=1.6mm,width=1.2mm]}]
+    (\px,1.95+\py) -- ++(\ax,\ay);
+  \fill[black!80] (\px,1.95+\py) circle (1.7pt);
+}
+\node[smalllbl, anchor=west] at (1.1,3.2) {stretched along the line};
+\node[smalllbl, anchor=west] at (1.1,2.95) {to the Earth's centre};
+\node[smalllbl, anchor=west] at (1.25,1.95) {squeezed across it};
+\node[smalllbl, text=seteal!85!black, anchor=west] at (0.55,0.78) {the ring a moment later};
+\end{tikzpicture}
+\end{document}

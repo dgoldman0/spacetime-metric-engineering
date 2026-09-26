@@ -1,0 +1,54 @@
+% Shared preamble for the standalone figures: the book's fonts, palette and
+% drawing styles. Figures are drawn at their final printed size. A column is
+% 3.35in (241pt) wide; a figure across both columns is 7in (505pt) wide.
+
+\usepackage[T1]{fontenc}
+\usepackage{newpxtext}
+\usepackage[varbb]{newpxmath}
+\usepackage[semibold,scale=0.95,lining]{sourcesanspro}
+\usepackage{xcolor}
+\input{../../preamble/colors}
+\usepackage{siunitx}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathreplacing,
+  decorations.markings,shapes.geometric,fadings,shadings,patterns,3d,
+  intersections,backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween,groupplots,colormaps}
+
+\tikzset{
+  >={Latex[length=2.1mm,width=1.4mm]},
+  every picture/.style={line cap=round, line join=round},
+  lbl/.style={font=\sffamily\footnotesize, text=black!85},
+  smalllbl/.style={font=\sffamily\scriptsize, text=black!75},
+  guide/.style={segray, line width=0.4pt},
+  axisline/.style={segray, line width=0.5pt, -{Latex[length=1.7mm,width=1.1mm]}},
+  light/.style={seorange, line width=0.9pt},
+  lightdash/.style={seorange, line width=0.9pt, dash pattern=on 3pt off 2pt},
+  ship/.style={seteal, line width=1.4pt},
+  cone/.style={fill=seorange!22, draw=seorange!85!black, line width=0.35pt},
+}
+
+\pgfplotsset{
+  se axis/.style={
+    axis lines=left,
+    axis line style={segray, line width=0.5pt, -{Latex[length=1.6mm,width=1.1mm]}},
+    tick style={segray, line width=0.4pt},
+    major tick length=2.5pt,
+    tick label style={font=\sffamily\scriptsize, text=black!75},
+    label style={font=\sffamily\footnotesize, text=black!85},
+    every axis plot/.append style={line width=1.1pt},
+    legend style={font=\sffamily\scriptsize, draw=none, fill=none},
+    scaled ticks=false,
+    xticklabel={\sansnum{\tick}}, yticklabel={\sansnum{\tick}},
+  },
+}
+
+% Numbers in figures are set in the sans-serif text font, with a true minus.
+\sisetup{mode=text, reset-text-family=false, reset-text-series=false,
+  reset-text-shape=false, drop-zero-decimal, group-minimum-digits=5}
+% Tick values arrive as long decimals (1.5000000000); parse them first.
+\newcommand{\sansnum}[1]{\begingroup\pgfkeys{/pgf/fpu=false}%
+  \pgfmathparse{1*(#1)}\num{\pgfmathresult}\endgroup}

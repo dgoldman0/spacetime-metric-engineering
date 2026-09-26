@@ -1,0 +1,29 @@
+% The components of the stress-energy tensor in one observer's frame.
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[x=27pt, y=27pt,
+  cell/.style={rounded corners=2pt, draw=white, line width=1.2pt},
+  key/.style={rounded corners=1.5pt, minimum width=9pt, minimum height=9pt, inner sep=0pt},
+]
+\foreach \i in {0,...,3} \foreach \j in {0,...,3} {
+  \ifnum\i=0 \ifnum\j=0 \def\c{seorange!45}\else\def\c{seteal!30}\fi
+  \else\ifnum\j=0 \def\c{seteal!30}\else\ifnum\i=\j \def\c{seblue!40}\else\def\c{seblue!14}\fi\fi\fi
+  \fill[cell, fill=\c] (\j,-\i) rectangle ++(1,-1);
+}
+\foreach \l [count=\k from 0] in {t,x,y,z} {
+  \node[font=\small] at (\k+0.5,0.28) {$\l$};
+  \node[font=\small] at (-0.28,-\k-0.5) {$\l$};
+}
+\node[font=\small] at (0.5,-0.5) {$\rho$};
+\node[font=\small, text=black!80] at (1.5,-1.5) {$p$};
+\node[font=\small, text=black!70] at (2.5,-1.5) {$\sigma$};
+% key
+\begin{scope}[shift={(4.55,-0.35)}, every node/.style={font=\sffamily\footnotesize, anchor=west, text=black!85}]
+  \node[key, fill=seorange!45] at (0,0) {}; \node at (0.25,0) {energy density $T^{tt}$};
+  \node[key, fill=seteal!30] at (0,-0.75) {}; \node[align=left] at (0.25,-0.9) {energy flux $T^{ti}$, equal to\\momentum density $T^{it}$};
+  \node[key, fill=seblue!40] at (0,-1.75) {}; \node at (0.25,-1.75) {pressures $p$: $T^{xx}, T^{yy}, T^{zz}$};
+  \node[key, fill=seblue!14] at (0,-2.5) {}; \node at (0.25,-2.5) {shear stresses $\sigma$: $T^{ij}$, $i \ne j$};
+\end{scope}
+\end{tikzpicture}
+\end{document}

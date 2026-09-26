@@ -1,0 +1,45 @@
+% Alcubierre's warp bubble (R = 1, sigma = 8, v = 1), in a plane through the
+% direction of travel (x) and a transverse direction (y); the bubble is at the
+% origin and moves toward +x. With r = sqrt(x^2 + y^2) and the shape function
+%   f(r) = [tanh(s(r+R)) - tanh(s(r-R))] / (2 tanh(s R)),
+%   f'(r) = s [sech^2(s(r+R)) - sech^2(s(r-R))] / (2 tanh(s R)),
+% (a) the expansion of the volume of space,   theta = v (x/r) f'(r);
+% (b) the energy density measured by observers at rest in the grid,
+%     rho = -(v^2 / 32 pi) (y^2 / r^2) f'(r)^2   (negative everywhere).
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[
+  declare function={
+    rr(\x,\y)=sqrt(\x*\x+\y*\y)+1e-9;
+    sechsq(\a)=1/(cosh(\a)^2);
+    fp(\r)=8*(sechsq(8*(\r+1)) - sechsq(8*(\r-1)))/(2*tanh(8));
+  },
+]
+% ---------------------------------------------------------------- (a)
+\begin{axis}[
+  name=A, hide axis, view={-22}{38}, clip=false,
+  width=285pt, height=225pt,
+  xmin=-2.6, xmax=2.6, ymin=-2.6, ymax=2.6, zmin=-4.2, zmax=4.2,
+  colormap={diverge}{rgb255(0cm)=(29,91,143) rgb255(4cm)=(214,226,238)
+    rgb255(5cm)=(240,240,238) rgb255(6cm)=(246,221,196) rgb255(10cm)=(214,112,32)},
+  point meta min=-4, point meta max=4,
+]
+\addplot3[surf, shader=interp, z buffer=sort, samples=71, samples y=71,
+  domain=-2.6:2.6, y domain=-2.6:2.6]
+  {x/rr(x,y)*fp(rr(x,y))};
+\coordinate (behind) at (axis cs:-1.02,0,3.95);
+\coordinate (ahead)  at (axis cs:1.02,0,-3.95);
+\coordinate (arrowstart) at (axis cs:-1.4,-3.3,-1.6);
+\coordinate (arrowend)   at (axis cs:1.6,-3.3,-1.6);
+\end{axis}
+\draw[guide] (behind) -- ++(-30pt,6pt) node[lbl, anchor=east, text=seorange!85!black,
+  align=right] {space expands\\behind};
+\draw[guide] (ahead) -- ++(34pt,-4pt) node[lbl, anchor=west, text=seblue, align=left]
+  {space contracts\\ahead};
+\draw[->, black!70, line width=0.8pt] (arrowstart) -- (arrowend)
+  node[pos=0.5, below=2pt, smalllbl] {direction of travel};
+\node[font=\sffamily\bfseries\small, text=black!85, anchor=north west] at ($(A.north west)+(0pt,6pt)$) {(a)};
+
+\end{tikzpicture}
+\end{document}

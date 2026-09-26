@@ -1,0 +1,100 @@
+% Page layout, headings and running heads.
+%
+% Chapters are numbered. Topics inside a chapter carry descriptive, unnumbered
+% headings; equations, figures, examples and problems are numbered by chapter.
+
+\setcounter{secnumdepth}{\chapternumdepth}
+\setcounter{tocdepth}{\sectiontocdepth}
+
+\counterwithin{equation}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+% ---------------------------------------------------------------------------
+% Headings
+\setkomafont{disposition}{\sffamily\bfseries}
+\setkomafont{part}{\sffamily\bfseries\fontsize{30}{36}\selectfont}
+\setkomafont{partnumber}{\sffamily\mdseries\fontsize{18}{22}\selectfont\color{seblue}}
+\setkomafont{chapter}{\sffamily\bfseries\fontsize{25}{30}\selectfont}
+\setkomafont{section}{\sffamily\bfseries\fontsize{13}{16}\selectfont\color{seblue}}
+\setkomafont{subsection}{\sffamily\bfseries\normalsize\color{black!82}}
+\setkomafont{paragraph}{\sffamily\bfseries\small\color{black!82}}
+
+\RedeclareSectionCommand[
+  beforeskip=0pt, afterskip=1.4\baselineskip,
+]{chapter}
+\RedeclareSectionCommand[
+  beforeskip=1.5\baselineskip plus 0.5\baselineskip minus 0.2\baselineskip,
+  afterskip=0.55\baselineskip plus 0.1\baselineskip,
+]{section}
+\RedeclareSectionCommand[
+  beforeskip=1.0\baselineskip plus 0.3\baselineskip minus 0.1\baselineskip,
+  afterskip=0.35\baselineskip,
+]{subsection}
+\RedeclareSectionCommand[
+  beforeskip=0.6\baselineskip plus 0.2\baselineskip, afterskip=-0.6em,
+]{paragraph}
+
+% Chapter heads: a small label, a large number, the title and a rule. The
+% chapter preamble (lead paragraph and goals) follows across both columns.
+\makeatletter
+\renewcommand*{\chapterformat}{\thechapter}
+\renewcommand*{\chapterlinesformat}[3]{%
+  \Ifstr{#1}{chapter}{%
+    \IfArgIsEmpty{#2}{}{%
+      {\normalfont\sffamily\small\color{segray}\textls[150]{\MakeUppercase{\chapapp}}\par}%
+      {\normalfont\sffamily\fontsize{54}{50}\selectfont\color{seblue}#2\par}%
+      \vspace{0.25\baselineskip}}%
+    #3\par
+    \vspace{0.3\baselineskip}%
+    {\color{seblue}\rule{\linewidth}{0.9pt}}\par
+  }{\@hangfrom{#2}{#3}}%
+}
+\makeatother
+
+% ---------------------------------------------------------------------------
+% Running heads: chapter on the left page, topic on the right.
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+\renewcommand*{\chaptermarkformat}{\thechapter\enskip}
+\ohead{\headmark}
+\ofoot*{\pagemark}
+\ifoot*{\textcolor{segray}{Draft\enspace\today}}
+\setkomafont{pageheadfoot}{\normalfont\sffamily\footnotesize\color{black!70}}
+\setkomafont{pagenumber}{\normalfont\sffamily\bfseries\footnotesize\color{seblue}}
+\renewcommand*{\chapterpagestyle}{plain.scrheadings}
+
+% ---------------------------------------------------------------------------
+% Captions
+\setkomafont{captionlabel}{\sffamily\bfseries\color{seblue}}
+\setkomafont{caption}{\small}
+\setcapindent{0pt}
+\renewcommand*{\captionformat}{\quad}
+\renewcommand*{\figureformat}{\figurename~\thefigure}
+
+% ---------------------------------------------------------------------------
+% Floats in two columns
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.12}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dbltopfraction}{0.85}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\setcounter{dbltopnumber}{2}
+\setlength{\floatsep}{10pt plus 3pt minus 2pt}
+\setlength{\textfloatsep}{12pt plus 3pt minus 3pt}
+\setlength{\dbltextfloatsep}{14pt plus 3pt minus 3pt}
+
+% ---------------------------------------------------------------------------
+% Text
+\setlist{itemsep=0.2ex, topsep=0.6ex}
+\setlist[itemize]{label={\color{seblue}\small\textbullet}, leftmargin=1.3em}
+\setlength{\emergencystretch}{1.5em}
+\tolerance=1200
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom

@@ -1,0 +1,12 @@
+GPS: gravitational +45.72 us/day, velocity -7.21 us/day, net 38.50 us/day, v = 3874 m/s
+GPS: ranging error per day 11.5 km
+Twin: Earth time 10.60 yr, traveller 6.36 yr
+Neutron star (1.4 Msun, 12 km): surface clock rate 0.810
+c^4/G = 1.210e+44 N;  c^2/G = 1.347e+27 kg/m
+Uniform flow metric is flat: True
+Lapse example: R_tt = alpha(x)*Derivative(alpha(x), (x, 2)) ; R_xx = -Derivative(alpha(x), (x, 2))/alpha(x) ; R = -2*Derivative(alpha(x), (x, 2))/alpha(x)
+Lapse example: G_tt = 0 ; G_xx = 0 ; G_yy = Derivative(alpha(x), (x, 2))/alpha(x) ; G_zz = Derivative(alpha(x), (x, 2))/alpha(x)
+Lapse example: Gamma^t_tx = Derivative(alpha(x), x)/alpha(x) ; Gamma^x_tt = alpha(x)*Derivative(alpha(x), x)
+Linear lapse is flat: True
+Shear flow: energy density seen by observers at rest in the flow rho = -Derivative(beta(y), y)**2/(32*pi)
+Weak field: G_tt at first order minus 2*Laplacian(Phi) = 0

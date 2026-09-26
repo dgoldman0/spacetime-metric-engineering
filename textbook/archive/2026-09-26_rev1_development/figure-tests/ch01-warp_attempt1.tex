@@ -1,0 +1,70 @@
+% Alcubierre's warp bubble (R = 1, sigma = 8, v = 1), in a plane through the
+% direction of travel (x) and a transverse direction (y); the bubble is at the
+% origin and moves toward +x. With r = sqrt(x^2 + y^2) and the shape function
+%   f(r) = [tanh(s(r+R)) - tanh(s(r-R))] / (2 tanh(s R)),
+%   f'(r) = s [sech^2(s(r+R)) - sech^2(s(r-R))] / (2 tanh(s R)),
+% (a) the expansion of the volume of space,   theta = v (x/r) f'(r);
+% (b) the energy density measured by observers at rest in the grid,
+%     rho = -(v^2 / 32 pi) (y^2 / r^2) f'(r)^2   (negative everywhere).
+\documentclass[tikz,border=1pt]{standalone}
+\input{figpreamble}
+\begin{document}
+\begin{tikzpicture}[
+  declare function={
+    rr(\x,\y)=sqrt(\x*\x+\y*\y+1e-10);
+    sechsq(\a)=1/(cosh(\a)^2);
+    fp(\r)=8*(sechsq(8*(\r+1)) - sechsq(8*(\r-1)))/(2*tanh(8));
+  },
+]
+% ---------------------------------------------------------------- (a)
+\begin{axis}[
+  name=A, hide axis, view={-22}{38}, clip=false,
+  width=285pt, height=225pt,
+  xmin=-2.6, xmax=2.6, ymin=-2.6, ymax=2.6, zmin=-4.2, zmax=4.2,
+  colormap={diverge}{rgb255=(29,91,143) rgb255=(96,146,192) rgb255=(172,200,225)
+    rgb255=(236,238,240) rgb255=(242,196,152) rgb255=(230,150,82) rgb255=(214,112,32)},
+  point meta min=-4.5, point meta max=4.5,
+]
+\addplot3[surf, shader=faceted interp, faceted color=black!16, line width=0.07pt,
+  z buffer=sort, samples=57, samples y=57,
+  domain=-2.6:2.6, y domain=-2.6:2.6]
+  {x/rr(x,y)*fp(rr(x,y))};
+\coordinate (behind) at (axis cs:-1.02,0,3.95);
+\coordinate (ahead)  at (axis cs:1.02,0,-3.95);
+\coordinate (arrowstart) at (axis cs:-1.4,-3.3,-1.6);
+\coordinate (arrowend)   at (axis cs:1.6,-3.3,-1.6);
+\end{axis}
+\draw[guide] (behind) -- ++(-30pt,6pt) node[lbl, anchor=east, text=seorange!85!black,
+  align=right] {space expands\\behind};
+\draw[guide] (ahead) -- ++(34pt,-4pt) node[lbl, anchor=west, text=seblue, align=left]
+  {space contracts\\ahead};
+\draw[->, black!70, line width=0.8pt] (arrowstart) -- (arrowend)
+  node[pos=0.5, below=2pt, smalllbl] {direction of travel};
+\node[font=\sffamily\bfseries\small, text=black!85, anchor=north west] at ($(A.north west)+(0pt,6pt)$) {(a)};
+
+% ---------------------------------------------------------------- (b)
+\begin{axis}[
+  name=B, at={($(A.east)+(26pt,0)$)}, anchor=west,
+  se axis, view={0}{90}, axis equal image, axis on top,
+  width=215pt, height=205pt,
+  xmin=-2.3, xmax=2.3, ymin=-2.3, ymax=2.3,
+  xtick={-2,-1,0,1,2}, ytick={-2,-1,0,1,2},
+  xlabel={$x$, along the direction of travel}, ylabel={$y$},
+  colormap={neg}{rgb255=(255,255,255) rgb255=(248,222,214) rgb255=(238,170,150)
+    rgb255=(212,98,78) rgb255=(168,50,36) rgb255=(120,24,18)},
+  point meta min=0, point meta max=1,
+  axis line style={draw=none}, tick style={draw=none},
+]
+% plotted: -rho / max(-rho), so white means zero and dark red the most negative
+\addplot3[surf, shader=interp, samples=121, samples y=121,
+  domain=-2.3:2.3, y domain=-2.3:2.3]
+  {(y*y/(rr(x,y)^2))*fp(rr(x,y))^2/16.0};
+\draw[black!55, line width=0.5pt, dash pattern=on 2pt off 1.5pt] (axis cs:0,0) circle[radius=1];
+\fill[seteal] (axis cs:-0.28,-0.07) rectangle (axis cs:0.28,0.07);
+\draw[seteal, line width=0.4pt, -{Latex[length=1.2mm,width=1mm]}] (axis cs:0.34,0) -- (axis cs:0.66,0);
+\node[smalllbl, text=black!80] at (axis cs:0,0.3) {ship};
+\node[smalllbl, fill=white, fill opacity=0.8, text opacity=1, inner sep=1pt] at (axis cs:0,-1.62) {bubble wall};
+\end{axis}
+\node[font=\sffamily\bfseries\small, text=black!85, anchor=north west] at ($(B.north west)+(-22pt,6pt)$) {(b)};
+\end{tikzpicture}
+\end{document}

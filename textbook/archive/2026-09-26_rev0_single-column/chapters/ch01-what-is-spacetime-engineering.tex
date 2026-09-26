@@ -1,0 +1,529 @@
+% !TEX root = ../main.tex
+\chapter{What Is Spacetime Engineering?}\label{ch:what-is}
+
+\begin{goals}
+\begin{itemize}
+\item What it means to engineer spacetime, and how that differs from
+  engineering inside a gravitational field that nature has already fixed.
+\item The two directions in which Einstein's equation can be read, and why
+  a spacetime engineer reads it \enquote{backwards}.
+\item The landmark designs of the field (traversable wormholes, warp drives
+  and Krasnikov tubes) and what each one is meant to do.
+\item Why these designs are hard to build: the unusual matter they need, the
+  limits quantum physics places on that matter, and the threat they pose to
+  cause and effect.
+\item How the rest of the book is organized.
+\end{itemize}
+\end{goals}
+
+This chapter is a tour. It introduces the ideas of the whole subject with as
+little mathematics as possible, so that you know where the later chapters are
+heading and why each one matters. Every claim made here in words is made again
+later in equations, and most of them you will derive yourself.
+
+\section{You already depend on engineered time}\label{sec:gps}
+
+Every time a phone finds its position by satellite, it trusts clocks that are
+orbiting about \SI{20000}{\kilo\metre} overhead. The navigation satellites
+broadcast the time on their onboard atomic clocks, and your receiver works out
+how far away each satellite is from how long its signal took to arrive. Light
+travels about \SI{30}{\centi\metre} in a nanosecond, so the clocks must agree
+with one another to within a few tens of nanoseconds for the position to be
+good to a few metres.
+
+Here is the remarkable part. Two identical atomic clocks, one on the ground and
+one in a navigation satellite, do not tick at the same rate. The satellite
+clock gains about 45 microseconds per day because it sits higher in Earth's
+gravity, where time runs faster. It loses about 7 microseconds per day because
+it moves at almost \SI{4}{\kilo\metre\per\second}, and moving clocks run slow.
+The net effect is that the orbiting clock runs fast by roughly 38 microseconds
+every day. Left uncorrected, that offset would produce a ranging error of about
+\SI{11}{\kilo\metre} after a single day, since light covers that distance in
+38 microseconds. The system works because its designers account for both
+effects \parencite{Ashby2003}. You will calculate both numbers yourself in
+\cref{ch:geometry}.
+
+Navigation engineers are working \emph{within} a geometry that nature has
+fixed. The rates at which clocks tick at different altitudes are set by the
+mass of the Earth, and the engineers' job is to measure those rates and correct
+for them. Spacetime engineering asks the reverse question. Suppose we could
+choose the geometry. What pattern of clock rates, distances and light paths
+would we want? What would such a spacetime do to travellers, to light, and to
+the ordinary matter around it? And what would it take to produce it?
+
+\section{Spacetime has a geometry}\label{sec:spacetime-geometry}
+
+Special relativity teaches that space and time are not separate. Observers in
+relative motion disagree about lengths and durations. They agree, however, on a
+combination of the two called the \emph{interval} between events, and on the
+speed of light. Together, space and time form a four-dimensional
+\emph{spacetime}, and the interval plays the role that distance plays in
+ordinary geometry.
+
+General relativity takes one further step. It says that spacetime is not a
+fixed, flat stage. Its geometry can be curved, and gravity \emph{is} that
+curvature. An apple falls because it follows the straightest possible path
+through a curved spacetime, and clocks at different heights tick at different
+rates because the geometry of time itself varies from place to place. The
+physicist John Wheeler summarized the theory in one sentence: spacetime tells
+matter how to move, and matter tells spacetime how to curve.
+
+The rule for the second half of that sentence is \emph{Einstein's equation}
+\parencite{Einstein1916}. In words it says
+\begin{equation}
+  \bigl(\text{curvature of spacetime}\bigr)
+  = \frac{8\pi G}{c^{4}}\,
+  \bigl(\text{energy, momentum, pressure and stress of matter}\bigr).
+  \label{eq:einstein-words}
+\end{equation}
+The left side is built from the geometry. The right side describes everything
+that has energy: matter, light, fields, and even the pressure and tension
+inside a material. \Cref{ch:matter-geometry} turns both sides into precise
+mathematical objects, and by the end of that chapter you will be able to use
+the equation yourself.
+
+The constant in front deserves attention right away, because it sets the scale
+of the entire subject. In SI units,
+\begin{equation}
+  \frac{c^{4}}{G} \approx \SI{1.2e44}{\newton}.
+  \label{eq:stiffness}
+\end{equation}
+This is a force, and an enormous one. Roughly speaking, bending spacetime so
+that it curves appreciably over a distance $L$ requires stresses of order
+$c^{4}/(G L^{2})$. For $L = \SI{1}{\metre}$ that is about
+$\SI{e44}{\pascal}$, more than thirty orders of magnitude beyond the strength of
+the strongest materials we know. Spacetime is extraordinarily stiff. This single
+number explains why the geometry around you is so nearly flat, and it is the
+first reason spacetime engineering is hard.
+
+\begin{checkpoint}
+The Earth's gravity bends spacetime enough to make clocks on the ground and in
+orbit disagree measurably. How can that be, if spacetime is so stiff? What
+property of the Earth makes up for the huge constant in
+\cref{eq:stiffness}?
+\end{checkpoint}
+
+\section{Reading Einstein's equation in both directions}\label{sec:both-directions}
+
+Physicists usually read Einstein's equation from right to left. They describe
+the matter first (a star, a galaxy, the contents of the universe) and then
+solve the equation for the geometry that matter produces. This is how the
+geometry around the Sun was found, and the geometry of black holes, and the
+expanding universe of cosmology. It is also hard: the equation is a set of
+coupled, nonlinear partial differential equations, and only highly symmetric
+problems can be solved by hand.
+
+A spacetime engineer can read the equation from left to right instead. Start by
+deciding what you want the spacetime to do: carry a traveller quickly between
+two points, keep the traveller's clock in step with clocks at home, protect the
+traveller from tidal forces. Write down a geometry that does those things. Then
+compute its curvature, and read off from \cref{eq:einstein-words} the matter
+that must be present to produce it. We will call that matter the
+\emph{demanded} matter of the geometry. In this direction the mathematics is
+easy: computing curvature from a given geometry takes only differentiation.
+
+Michael Morris and Kip Thorne introduced this way of working in 1988, in a paper
+written for students \parencite{Morris1988a}. The literature now calls it
+\emph{metric engineering}, because the geometry is specified by its metric,
+the object you will meet in \cref{ch:geometry}
+\parencite{McMonigal2012,Schuster2023}. Morris and Thorne designed spacetimes
+containing traversable wormholes by first listing the properties a traveller
+would need, then choosing a geometry with those properties, and only then
+asking what matter the geometry would require.
+
+The catch comes at the last step. Einstein's equation always returns an answer:
+\emph{every} geometry has some demanded matter. Nothing guarantees that such
+matter exists. The demand might call for energy densities that are negative, or
+tensions larger than any material can bear, or both. The real work of spacetime
+engineering begins there, and it proceeds in a loop (\cref{fig:design-loop}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=0.55cm and 0.9cm,
+  stage/.style={draw=goalblue, thick, rounded corners=3pt, fill=goalblue!6,
+    align=center, text width=5.6cm, minimum height=1.05cm, font=\small},
+  arrow/.style={-{Stealth[length=2.5mm]}, thick, goalblue},
+]
+\node[stage] (want) {What should the spacetime do?\\\footnotesize carry a traveller, shorten a trip, keep clocks in step};
+\node[stage, below=of want] (geom) {Choose a geometry that does it};
+\node[stage, below=of geom] (demand) {Compute the matter it demands};
+\node[stage, below=of demand] (test) {Test the demand against physics\\\footnotesize energy conditions, quantum limits, causality, stability, effects on travellers};
+\node[stage, below=of test] (source) {Find matter and fields that could supply it};
+\draw[arrow] (want) -- (geom);
+\draw[arrow] (geom) -- (demand);
+\draw[arrow] (demand) -- (test);
+\draw[arrow] (test) -- (source);
+\draw[arrow] (test.east) -- ++(1.1,0) |- (geom.east);
+\draw[arrow] (source.east) -- ++(1.5,0) |- node[pos=0.25, right=3pt, font=\footnotesize, align=left, text=goalblue] {revise the\\geometry} (geom.east);
+\end{tikzpicture}
+\caption{The design loop of spacetime engineering. A geometry is chosen for what
+it does, and its demanded matter is tested against physics. When no known
+matter can supply the demand, the geometry is revised. Most of this book
+teaches the steps inside this loop.}
+\label{fig:design-loop}
+\end{figure}
+
+The loop can also run the other way. Some recent work starts from a matter
+distribution with sensible properties, such as a shell of ordinary matter,
+solves for the geometry it produces, and then asks what that geometry can do.
+Both directions appear in this book. The geometry-first direction is the more
+common one, and it is the one that most clearly exposes what a design costs.
+
+\begin{checkpoint}
+Why is it always possible to compute the demanded matter of a geometry, while
+solving for the geometry produced by given matter is often impossible to do by
+hand?
+\end{checkpoint}
+
+\section{A gallery of engineered spacetimes}\label{sec:gallery}
+
+Three designs define the field. Each was invented to answer the question
+\enquote{could we travel between the stars much faster than light takes?}, and
+each answers it in a different way.
+
+\subsection{Traversable wormholes}
+
+A wormhole is a tunnel through space: two openings, perhaps light-years apart,
+joined by a short passage. \Cref{fig:wormhole} shows the usual way of picturing
+one. Take a two-dimensional slice through space around the wormhole, and draw
+it as a curved surface. Far from the wormhole the surface is flat. Near it, the
+surface curves down into a funnel, narrows to a smallest circle called the
+\emph{throat}, and opens out again into a second region of space.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  % profile curves r(z) = cosh(z)
+  \draw[thick, goalblue, domain=-1.9:1.9, samples=60, smooth, variable=\z]
+    plot ({cosh(\z)}, {\z});
+  \draw[thick, goalblue, domain=-1.9:1.9, samples=60, smooth, variable=\z]
+    plot ({-cosh(\z)}, {\z});
+  % rims and throat
+  \draw[thick, goalblue] (0,1.9) ellipse ({cosh(1.9)} and 0.42);
+  \draw[goalblue, dashed] (0,-1.9) ellipse ({cosh(1.9)} and 0.42);
+  \draw[goalblue, thick, domain=180:360, samples=40, variable=\t]
+    plot ({cosh(-1.9)*cos(\t)}, {-1.9+0.42*sin(\t)});
+  \draw[keygold, very thick] (0,0) ellipse (1 and 0.22);
+  \draw[goalblue!60] (0,1.0) ellipse ({cosh(1.0)} and 0.3);
+  \draw[goalblue!60] (0,-1.0) ellipse ({cosh(1.0)} and 0.3);
+  % labels
+  \node[keygold!80!black, font=\small, anchor=west] at (1.25,0) {throat};
+  \node[font=\small, align=center] at (0,2.75) {opening into region A};
+  \node[font=\small, align=center] at (0,-2.75) {opening into region B};
+  \draw[-{Stealth}, examplegreen, thick] (-0.25,1.7) .. controls (-0.15,0.5) and (0.15,-0.5) .. (0.25,-1.7);
+  \draw[examplegreen!70, thin] (-0.2,1.15) -- (-2.25,1.5);
+  \node[examplegreen, font=\footnotesize, anchor=east] at (-2.3,1.5) {traveller};
+\end{tikzpicture}
+\caption{An embedding diagram of a wormhole. A two-dimensional slice of space
+is drawn as a surface. Circles around the wormhole shrink toward the throat and
+grow again on the far side: the throat \emph{flares out} in both directions.}
+\label{fig:wormhole}
+\end{figure}
+
+Wormholes appear as mathematical solutions in general relativity going back to
+the 1930s, but the early examples could not be crossed. Morris and Thorne asked
+what a wormhole would need in order to be \emph{traversable}: no horizon at the
+throat, tidal forces a person could survive, and a crossing that takes a
+reasonable time. They found geometries that meet all these requirements, and
+then computed what those geometries demand.
+
+\begin{history}{a novel and a wormhole}
+Morris and Thorne were prompted to study traversable wormholes in the summer of
+1985, when the astronomer Carl Sagan sent Thorne a draft of his novel
+\emph{Contact} and asked for help making its gravitational physics as accurate
+as possible \parencite{Morris1988a}. Sagan revised the novel's travel method
+in light of their preliminary results. The resulting paper, subtitled \enquote{a
+tool for teaching general relativity}, launched the modern study of engineered
+spacetimes.
+\end{history}
+
+The difficulty lies at the throat. A bundle of light rays heading into a
+wormhole converges as it approaches the throat. To come out the other side, the
+bundle must spread apart again. Ordinary matter, however, always makes light
+rays converge: gravity attracts, and it bends light the way a converging lens
+does. A throat has to act as a \emph{diverging} lens. Morris and Thorne showed
+that this requires the material at the throat to carry a tension greater than
+its energy density. Observers passing through the throat at speeds close to
+that of light would then measure a \emph{negative} energy density. Matter with
+this property is called \emph{exotic}. You will derive the flaring-out
+condition and its consequence for yourself in Part~II.
+
+\subsection{Warp drives}
+
+In 1994 Miguel Alcubierre took a different approach \parencite{Alcubierre1994}.
+Instead of connecting two distant places by a tunnel, his design moves a region
+of space itself. Space contracts in front of a bubble and expands behind it,
+and a region of perfectly flat spacetime inside the bubble is carried along
+(\cref{fig:warp}). A ship inside that region does not move through its
+surroundings at all; it floats in free fall while the bubble carries it.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9]
+  \draw[-{Stealth}, thick, gray] (-5.6,0) -- (5.8,0) node[right, font=\small, text=black] {direction of travel};
+  \draw[thick, deeperviolet, dashed] (0,0) circle (1.55);
+  \fill[goalblue!15] (0,0) circle (1.05);
+  \node[font=\footnotesize, align=center] at (0,0.55) {flat region};
+  \draw[fill=goalblue!60, draw=goalblue] (-0.45,-0.14) rectangle (0.45,0.14);
+  \node[font=\footnotesize] at (0,-0.5) {ship};
+  \foreach \y in {-1.1,-0.45,0.45,1.1} {
+    \draw[-{Stealth}, thick, keygold!80!black] (3.9,\y) -- (2.2,\y);
+    \draw[-{Stealth}, thick, examplegreen] (-2.2,\y) -- (-3.9,\y);
+  }
+  \node[font=\small, align=center, text=keygold!70!black] at (3.2,1.75) {space contracts\\ahead};
+  \node[font=\small, align=center, text=examplegreen] at (-3.2,1.75) {space expands\\behind};
+  \node[font=\footnotesize, text=deeperviolet] at (0,-1.95) {bubble wall};
+\end{tikzpicture}
+\caption{A schematic warp drive. Space contracts in front of the bubble and
+expands behind it, and the flat region inside is carried along. The ship inside
+is in free fall.}
+\label{fig:warp}
+\end{figure}
+
+Alcubierre's bubble has several striking properties. Nothing inside it ever
+moves faster than light relative to its own surroundings, yet the bubble as a
+whole can move at any speed relative to distant observers. The ship feels no
+acceleration. In Alcubierre's design its clock ticks at the same rate as clocks
+far away, so the travellers age no more than the people they left behind
+during the trip. José Natário later showed that the expansion and contraction
+are not essential: a warp drive can carry its passengers with no change in
+volume at all \parencite{Natario2002}. What \emph{is} essential is the demand.
+The bubble's wall requires negative energy density, just as the wormhole's
+throat does.
+
+\subsection{Krasnikov tubes}
+
+Sergei Krasnikov pointed out a problem with the warp drive as a means of
+travel: the people inside a bubble moving faster than light cannot send signals
+to its front edge, so they cannot create the bubble or steer it
+\parencite{Krasnikov1998}. His alternative has the traveller build the
+structure on the way out. A ship travels to a distant star at less than light
+speed, and as it goes it modifies the spacetime along its path, leaving behind
+a tube. The modified geometry inside the tube lets the return trip arrive home
+shortly after departure. Allen Everett and Thomas Roman analysed these tubes
+further and showed that two of them, placed suitably, could form a time
+machine \parencite{Everett1997}.
+
+\subsection{Recent work}
+
+In 2021 several authors proposed warp drives that appeared to require only
+positive energy. Examining them closely, Jessica Santiago, Sebastian Schuster
+and Matt Visser showed that the positive energy was measured by one special
+family of observers only. Other observers see negative energy, and every
+physically reasonable warp drive violates the conditions that ordinary matter
+satisfies \parencite{Santiago2022}. That episode taught the field a lesson you
+will meet again and again in this book: the demand of a geometry must be
+checked from the point of view of \emph{every} observer. Current research
+includes shells of ordinary matter that carry a flat interior at speeds below
+that of light, computer simulations of warp spacetimes, and the search for
+fields that could supply negative energy.
+
+\section{The central obstacle}\label{sec:obstacle}
+
+All the designs in the gallery share one requirement. Somewhere, they need
+matter that bends light the \enquote{wrong} way.
+
+\subsection{Energy conditions}
+
+Physicists summarize what ordinary matter can do with a small set of
+inequalities called \emph{energy conditions}. The simplest to state is the
+\emph{weak energy condition}: every observer, however they move, measures a
+non-negative energy density. The most important for this book is the
+\emph{null energy condition}, which is weaker still. It concerns light rays
+passing through matter, and it guarantees that matter always focuses a
+bundle of light rays rather than spreading it. Everything you have ever
+touched satisfies these conditions, and so do light, electric and magnetic
+fields, and all ordinary fluids.
+
+The null energy condition is exactly what shortcuts need to violate. A wormhole
+throat must defocus light, and a warp bubble's wall must do the same. In
+Chapter~5 you will see that this is no accident: under quite general
+assumptions, a spacetime that lets travellers outrun light through an otherwise
+ordinary region of space must violate the null energy condition somewhere.
+
+\begin{keyidea}
+Designing a shortcut through spacetime is easy on paper. Supplying the matter
+it demands is the hard part, because shortcuts demand matter that violates the
+null energy condition, and no ordinary matter does.
+\end{keyidea}
+
+\subsection{Negative energy in the laboratory}
+
+Negative energy density is not pure fiction. In 1948 Hendrik Casimir predicted
+that two parallel, uncharged metal plates in vacuum attract each other
+\parencite{Casimir1948}. The plates restrict which electromagnetic vacuum
+fluctuations fit between them, and the energy density between the plates is
+lower than that of empty space: in this sense it is negative. Steve Lamoreaux
+measured the Casimir force in 1997 \parencite{Lamoreaux1997}, and it has since
+been measured many times. Quantum physics therefore allows negative energy.
+
+It allows it only in limited amounts. Lawrence Ford and Thomas Roman showed that
+quantum fields obey \emph{quantum inequalities}: the more negative the energy
+density in a region, the shorter the time it can last and the smaller the region
+it can occupy \parencite{Ford1995,Ford1997}. Applied to a warp bubble, these
+inequalities force the bubble's wall to be extraordinarily thin. Michael
+Pfenning and Ford estimated that a bubble with a radius of \SI{100}{\metre} would
+then need about $\SI{6e62}{\kilogram}$ of negative energy for every unit of its
+speed in units of $c$ \parencite{Pfenning1997}. That is vastly more than the
+total mass of the observable universe. Clever reshaping of the bubble can cut
+the requirement dramatically: Chris Van Den Broeck brought it down to a few
+solar masses \parencite{VanDenBroeck1999}. That is still an astronomical
+amount, and his design bends space on scales of about ten Planck lengths,
+far below anything that has ever been probed.
+
+\begin{checkpoint}
+The Casimir effect shows that negative energy density exists. Why does that not
+settle the question of whether a warp drive can be built?
+\end{checkpoint}
+
+\subsection{Causality and control}
+
+Two further obstacles have nothing to do with the amount of energy. The first
+is causality. Relativity allows observers in relative motion to disagree about
+which of two distant events happens first. If a signal or a traveller could
+outrun light, some observers would see it arrive before it left. With two
+faster-than-light structures, a traveller could return before departing and
+change the past. Stephen Hawking conjectured that physics always prevents
+this, a proposal he called the \emph{chronology protection conjecture}
+\parencite{Hawking1992}. It remains a conjecture, and any practical design
+must show that it creates no such loops.
+
+The second is control. As Krasnikov noticed, the occupants of a warp bubble
+moving faster than light are cut off from the bubble's front edge. They can
+neither build the bubble nor steer it from inside. Designs that carry
+travellers faster than light must therefore be laid out in advance, or driven
+by something outside the travellers' reach.
+
+\section{What spacetime engineering is today}\label{sec:today}
+
+With all these obstacles, what is the subject for? Nobody knows how to build
+any of the spacetimes in this book, and some of them may be forbidden outright.
+Spacetime engineering today is a theoretical discipline, and it earns its place
+in three ways.
+
+It teaches general relativity. Designing a spacetime forces you to understand
+how every piece of its geometry affects clocks, rulers, light and matter. That
+was Morris and Thorne's reason for writing their paper, and it is one reason for
+this book.
+
+It maps the boundary of the possible. Some of the obstacles above are theorems
+with precise assumptions. Some are estimates that depend on how a design is
+drawn. Some are conjectures. Knowing which is which tells you what would have to
+change for a design to become possible, and a large part of this book is about
+learning to tell them apart.
+
+It develops methods that carry over to other problems: how to design under
+severe physical constraints, how to check a long calculation, and how to judge
+how far a result can be trusted. Those methods are useful long before anyone
+builds a warp drive.
+
+\section{How this book is organized}\label{sec:organization}
+
+The rest of Part~I gives you the tools. \Cref{ch:geometry} develops the geometry
+of spacetime: intervals, proper time, the metric, curvature and free fall.
+\Cref{ch:matter-geometry} describes matter by its energy, momentum and stress,
+states Einstein's equation, and shows how to compute the matter a geometry
+demands. The chapters that follow split spacetime into space and time the way
+an engineer describes a design, state the energy conditions precisely, explain
+what quantum physics allows, and treat causality and the shape of space as a
+whole.
+
+Part~II studies the classic designs in detail. Part~III is about design: how
+the rate of clocks, the flow of space and the shape of space each affect what a
+spacetime demands and what it does to the people inside it. Part~IV asks what
+kinds of matter and fields could supply a demand. Part~V takes up dynamics,
+the checking of calculations, and the open problems of the field.
+
+In this chapter we have used SI units. From \cref{ch:geometry} onward we
+measure time and distance in the same units, which sets $c = 1$, and from
+\cref{ch:matter-geometry} onward we also set $G = 1$. Each chapter shows how to
+convert back to everyday units whenever a number matters.
+
+\begin{chaptersummary}
+\item Spacetime has a geometry that matter bends; gravity is that bending.
+  Einstein's equation links the curvature of spacetime to the energy,
+  momentum, pressure and stress of matter.
+\item The constant $c^{4}/G \approx \SI{1.2e44}{\newton}$ makes spacetime
+  extremely stiff. Large changes in geometry require enormous amounts of
+  energy and stress.
+\item Spacetime engineering reads Einstein's equation backwards: choose a
+  geometry for what it does, then compute the matter it demands. Every
+  geometry has a demanded matter content; whether that matter exists is the
+  real question.
+\item The classic designs are traversable wormholes (tunnels through space),
+  warp drives (bubbles of flat space carried along by a flow of space) and
+  Krasnikov tubes (structures laid down on an outbound trip).
+\item All of them demand matter that violates the null energy condition,
+  which every ordinary material satisfies. Quantum physics allows negative
+  energy density, as the Casimir effect shows, but quantum inequalities limit
+  how much and for how long.
+\item Faster-than-light designs also face causality (the risk of time
+  machines) and control (occupants cannot steer a faster-than-light bubble
+  from inside).
+\end{chaptersummary}
+
+\begin{checkanswers}
+\item[1.1] The stiffness constant multiplies the \emph{density} of energy.
+  The Earth's mass, about $\SI{6e24}{\kilogram}$, is concentrated enough that
+  its gravitational potential at the surface is about $7\times10^{-10}$ in
+  units of $c^{2}$. That tiny fraction is exactly the size of the clock-rate
+  differences GPS must correct. Large masses produce small curvature, and
+  precise clocks can measure small curvature.
+\item[1.2] Computing the demanded matter only requires differentiating the
+  geometry, which can always be done. Solving for the geometry means solving
+  nonlinear partial differential equations for unknown functions, which is
+  possible by hand only in highly symmetric cases.
+\item[1.3] The quantum inequalities limit how large and long-lived a region of
+  negative energy can be. A warp drive needs large amounts of negative energy
+  held in place for the duration of the trip, far beyond what the
+  inequalities allow for known quantum fields.
+\end{checkanswers}
+
+\begin{problems}
+\item \diff{1} \textbf{Two clocks.} A clock sits at the top of a tower of height
+  $h = \SI{100}{\metre}$. Near the Earth's surface, a clock higher by $h$ runs
+  faster by the fraction $gh/c^{2}$, where $g = \SI{9.8}{\metre\per\second\squared}$.
+  How many nanoseconds does the top clock gain over a clock at the base in one
+  year?
+\item \diff{1} \textbf{The stiffness of spacetime.} Compute $c^{4}/G$ in newtons
+  from $c = \SI{2.998e8}{\metre\per\second}$ and
+  $G = \SI{6.674e-11}{\newton\metre\squared\per\kilogram\squared}$. Then
+  estimate the stress, in pascals, needed to curve spacetime appreciably over a
+  distance of \SI{1}{\kilo\metre}, and compare it with the tensile strength of
+  steel, about $\SI{e9}{\pascal}$.
+\item \diff{2} \textbf{A day of GPS error.} Using the numbers in
+  \cref{sec:gps}, find how long it takes for an uncorrected satellite clock to
+  drift by the \SI{30}{\nano\second} that corresponds to about \SI{10}{\metre}
+  of position error.
+\item \diff{2} \textbf{Converging and diverging lenses.} Explain in your own
+  words why a wormhole throat must defocus light, and why ordinary matter
+  cannot do that. (Hint: think about how a bundle of light rays behaves as it
+  enters the throat, passes through, and leaves on the other side.)
+\item \diff{2} \textbf{How much is too much?} Express the Pfenning–Ford estimate
+  of $\SI{6e62}{\kilogram}$ in solar masses, taking
+  $\Msun = \SI{2.0e30}{\kilogram}$. Van Den Broeck's design needs a few solar
+  masses. By what factor did reshaping the bubble reduce the requirement?
+\item \diff{3} \textbf{Which assumptions?} The quantum inequalities rest on
+  assumptions: the kind of quantum field, the flatness of spacetime over the
+  sampling time, and the way the energy is averaged. For each, describe how a
+  designer might try to take advantage of it, and what you would check to see
+  whether the attempt succeeds. Return to your answer after
+  Chapter~6.
+\end{problems}
+
+\begin{furtherreading}
+\item[\textcite{Morris1988a}] The paper that started the field, written for
+  students and still one of the best introductions to engineered spacetimes.
+\item[\textcite{Alcubierre1994}] A five-page paper introducing the warp drive,
+  readable after \cref{ch:matter-geometry}.
+\item[\textcite{Everett2011}] A book-length, non-technical account of warp
+  drives, wormholes and time travel by two researchers who helped shape the
+  field.
+\item[\textcite{Visser1995b}] The standard monograph on wormholes, for readers
+  who want the full mathematical treatment.
+\item[\textcite{Kontou2020}] A modern review of energy conditions in classical
+  and quantum physics, useful as a reference throughout this book.
+\item[\textcite{Ashby2003}] The complete relativistic treatment of the Global
+  Positioning System.
+\end{furtherreading}

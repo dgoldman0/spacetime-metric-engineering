@@ -1,0 +1,632 @@
+% !TEX root = ../main.tex
+\chapteropening{%
+\Cref{ch:geometry} gave us the left side of Einstein's equation, the geometry.
+This chapter supplies the right side, the description of matter, and then puts
+the two together.
+
+By the end of it you will be able to take any metric, compute the matter it
+requires, and read the result the way a spacetime engineer does: as a list of
+demands that some physical material would have to meet.}{%
+\item describe the energy, momentum and stress of matter with the
+  stress-energy tensor, and say what each component means;
+\item compute the energy density that any observer measures;
+\item write down the stress-energy of dust, fluids, radiation, tension and
+  vacuum energy;
+\item state Einstein's equation, convert between geometric and everyday units,
+  and recover Newton's gravity from it;
+\item carry out the spacetime engineer's central calculation, from a chosen
+  metric to the matter it demands, and recognize the first signs of an exotic
+  demand.}
+\chapter{How Matter Shapes Spacetime}\label{ch:matter-geometry}
+
+% ===========================================================================
+\section{Energy depends on who measures it}\label{sec:energy-observers}
+
+\begin{thought}{A brick in passing}
+A brick sits on a table. You fly past it at 80 percent of the speed of light.
+Because the brick moves relative to you, each of its atoms carries more energy
+by the factor $\gamma = 1/\sqrt{1 - 0.8^{2}} = 5/3$. Is the energy per unit
+volume that you measure larger by the same factor, or by a different one?
+\end{thought}
+
+In Newtonian physics, the mass of a brick is one fixed number. In relativity
+the brick's \emph{energy} depends on the observer: someone moving past it sees
+it carry kinetic energy as well as its rest energy. To describe matter in a
+way every observer can use, we need to say how the measured energy changes
+from one observer to another.
+
+A particle of mass $m$ with four-velocity $u^{\mu}$ has \emph{four-momentum}
+$p^{\mu} = m\,u^{\mu}$. An observer with four-velocity $w^{\mu}$ measures the
+particle's energy to be
+\begin{equation}
+  E = -g_{\mu\nu}\,p^{\mu}w^{\nu} \equiv -p_{\mu}w^{\mu}.
+  \label{eq:measured-energy}
+\end{equation}
+In the second form we have \emph{lowered an index}, $p_{\mu} = g_{\mu\nu}p^{\nu}$:
+lowering indices with the metric is the bookkeeping that turns a pair of
+vectors into a number every observer agrees on. For an observer at rest in flat
+spacetime, $w^{\mu} = (1,0,0,0)$ and \cref{eq:measured-energy} gives
+$E = p^{0}$. For a particle at rest relative to the observer, $E = m$, its rest
+energy $mc^{2}$ in ordinary units.
+
+A continuous material, such as a gas, a fluid or a stretched rope, needs more
+than a four-momentum. At each event we want to know how much energy is present
+per unit volume, how fast energy is flowing, how much momentum there is, and
+what forces neighbouring parts of the material exert on each other. All of
+this fits into one symmetric $4\times4$ array, the \emph{stress-energy tensor}
+$T^{\mu\nu}$ (\cref{fig:stress-energy}). In the frame of a given observer,
+$T^{tt}$ is the \textbf{energy density}; $T^{ti} = T^{it}$ is the
+\textbf{energy flux} in direction $i$, which equals the density of momentum in
+that direction; and $T^{ij}$ is the \textbf{stress}, the flux of $i$-momentum
+across a surface facing the $j$ direction. The diagonal stresses are
+\textbf{pressures} and the off-diagonal ones are \textbf{shear stresses}.
+
+\begin{figure}[tb]
+\centering
+\includegraphics{ch03-stress-energy}
+\caption{The components of the stress-energy tensor in one observer's frame.
+The array is symmetric, so ten numbers describe the matter at each event.}
+\label{fig:stress-energy}
+\end{figure}
+
+Observers in relative motion split the same tensor into energy, flux and
+stress differently, just as they split an interval into time and distance
+differently. The rule generalizes \cref{eq:measured-energy}: an observer with
+four-velocity $w^{\mu}$ measures the energy density
+\begin{equation}
+  \rho_{w} = T_{\mu\nu}\,w^{\mu}w^{\nu},
+  \label{eq:observed-density}
+\end{equation}
+where $T_{\mu\nu} = g_{\mu\alpha}g_{\nu\beta}T^{\alpha\beta}$ is the tensor
+with both indices lowered. This formula is one of the most used in the book.
+When a geometry demands matter, the first question is always what energy
+density each observer would measure.
+
+The simplest material is \textbf{dust}: particles at rest relative to one
+another, with no pressure between them. In the dust's own rest frame the only
+nonzero component is the energy density $\rho_{0}$, and the tensor that
+reduces to that in the rest frame is
+\begin{equation}
+  T^{\mu\nu} = \rho_{0}\,u^{\mu}u^{\nu},
+  \label{eq:dust}
+\end{equation}
+where $u^{\mu}$ is the dust's four-velocity.
+
+\begin{example}[label=ex:tension-passing]{Tension seen in passing}
+A long rod at rest has energy density $\rho_{0}$ and is stretched along its
+length, the $x$ direction, by a tension $\tau$. In its rest frame
+$T^{tt} = \rho_{0}$ and $T^{xx} = -\tau$ (a pull is a negative pressure), and
+all other components vanish. What energy density does an observer moving
+along the rod at speed $v$ measure?
+
+\solution The observer's four-velocity is $w^{\mu} = \gamma\,(1, v, 0, 0)$. In
+flat spacetime, lowering both indices leaves these two components unchanged:
+$T_{tt} = \rho_{0}$ and $T_{xx} = -\tau$. \Cref{eq:observed-density} then gives
+\begin{equation*}
+  \rho_{w} = \gamma^{2}\bigl(T_{tt} + v^{2}\,T_{xx}\bigr)
+  = \gamma^{2}\bigl(\rho_{0} - v^{2}\tau\bigr).
+\end{equation*}
+
+\discussion Tension lowers the energy density that a passing observer
+measures. For ordinary materials the effect is tiny: the energy density
+includes the rest energy, and for steel near its breaking point $\tau/\rho_{0}$
+is about $10^{-12}$. But a material whose tension \emph{exceeded} its energy
+density would look negative to observers moving fast enough along it, since
+$\rho_{w} < 0$ whenever $v^{2} > \rho_{0}/\tau$. That is exactly the kind of
+material Morris and Thorne found a wormhole throat needs.
+\end{example}
+
+\begin{revisited}{A brick in passing}
+By more: the factor is $\gamma^{2}$. Each atom's energy is larger by $\gamma$,
+and the brick is contracted along the direction of motion, which packs the
+atoms more densely by another factor of $\gamma$. The formulas say the same
+thing: with $T^{\mu\nu} = \rho_{0}u^{\mu}u^{\nu}$, \cref{eq:observed-density}
+gives $\rho_{w} = \rho_{0}(u_{\mu}w^{\mu})^{2} = \gamma^{2}\rho_{0}$, because
+$u_{\mu}w^{\mu} = -\gamma$ for two four-velocities in relative motion at speed
+$v$. At 80 percent of the speed of light, $\gamma^{2} = 25/9 \approx 2.8$.
+Energy density is not a quantity all observers share; it is one component of a
+tensor, and each observer sees a different mix of components.
+\end{revisited}
+
+% ===========================================================================
+\section{Pressure, tension and the vacuum}\label{sec:catalogue}
+
+\begin{thought}{Flying through empty space}
+Cosmologists have found that empty space seems to carry a small energy density
+of its own, the \enquote{dark energy} that makes the expansion of the universe
+speed up. When you flew past the brick, you measured more energy density than
+someone at rest beside it. If you fly through empty space at 80 percent of the
+speed of light, do you measure more of the vacuum's energy density too?
+\end{thought}
+
+The stress-energy tensors of a few kinds of matter recur throughout this book.
+Each is simplest in its own rest frame.
+
+\paragraph{Perfect fluid.} A fluid with energy density $\rho$ and the same
+pressure $p$ in every direction has
+\begin{equation}
+  T^{\mu\nu} = (\rho + p)\,u^{\mu}u^{\nu} + p\,g^{\mu\nu},
+  \label{eq:perfect-fluid}
+\end{equation}
+which in the rest frame is $\mathrm{diag}(\rho, p, p, p)$. Dust is a perfect fluid
+with $p = 0$. Gases, liquids and the interiors of stars are perfect fluids to
+a good approximation.
+
+\paragraph{Radiation.} A gas of light moving in all directions is a perfect
+fluid with $p = \rho/3$.
+
+\paragraph{Tension.} Stretch a rope and each part pulls on its neighbours along
+the rope. A pull is a negative pressure, so tension appears in $T^{\mu\nu}$ as a
+\emph{negative} diagonal stress: a material under tension $\tau$ along $z$ has
+$T^{zz} = -\tau$. Tension is one of the spacetime engineer's most important
+ingredients, and you will meet it again and again in the demands of engineered
+geometries.
+
+\paragraph{Vacuum energy.} Empty space can carry an energy density
+$\rho_{\text{vac}}$ of its own, with stress-energy
+\begin{equation}
+  T_{\mu\nu} = -\rho_{\text{vac}}\,g_{\mu\nu}.
+  \label{eq:vacuum-energy}
+\end{equation}
+In its rest frame, if it can be said to have one, this is an energy density
+$\rho_{\text{vac}}$ with pressure $p = -\rho_{\text{vac}}$ in every direction: a
+tension equal to the energy density.
+
+\begin{deeper}{the electromagnetic field}
+In Heaviside--Lorentz units with $c = 1$, a magnetic field of strength $B$
+along $z$ has energy density $B^{2}/2$, a pressure $+B^{2}/2$ across the field
+lines ($T^{xx} = T^{yy}$), and a tension $B^{2}/2$ along them
+($T^{zz} = -B^{2}/2$). Field lines behave like stretched elastic bands that
+push sideways on one another. The tension along the field equals the energy
+density: this is the largest tension the dominant energy condition of
+Chapter~5 allows, and magnetic fields reach it exactly.
+\end{deeper}
+
+\begin{checkpoint}
+For dust, radiation, a perfect fluid with $p > 0$, and vacuum energy, compute
+$\rho + p$. Which of them has $\rho + p = 0$? (In Chapter~5 you will see that
+the sign of $\rho + p$ decides whether matter focuses light.)
+\end{checkpoint}
+
+\begin{revisited}{Flying through empty space}
+No: every observer measures the same vacuum energy density. For any
+four-velocity, \cref{eq:vacuum-energy} and \cref{eq:four-velocity} give
+$\rho_{w} = -\rho_{\text{vac}}\,g_{\mu\nu}w^{\mu}w^{\nu} = \rho_{\text{vac}}$.
+In the language of \cref{ex:tension-passing}, the vacuum's tension equals its
+energy density, so the factor $\gamma^{2}(\rho - v^{2}\tau)$ becomes
+$\gamma^{2}\rho_{\text{vac}}(1 - v^{2}) = \rho_{\text{vac}}$: the tension exactly
+cancels the boost that made the brick look denser. That is why a vacuum energy
+defines no preferred state of rest, as empty space should not.
+\end{revisited}
+
+% ===========================================================================
+\section{Einstein's equation}\label{sec:einstein}
+
+\begin{thought}{Fixing the constant}
+In 1915 there were no measurements of strong gravity to guide Einstein. He had
+the curvature of spacetime on one side of his equation and the stress-energy of
+matter on the other, and he needed the number that connects them. How could he
+pin that number down without any new experiment?
+\end{thought}
+
+Energy and momentum are conserved: whatever flows out of a small box must be
+accounted for by a loss inside it. In flat spacetime this is the statement
+\begin{equation}
+  \partial_{\mu}T^{\mu\nu} = 0 .
+  \label{eq:conservation-flat}
+\end{equation}
+Its $\nu = t$ component is the continuity equation for energy,
+$\partial_{t}T^{tt} + \partial_{i}T^{it} = 0$; its three spatial components say
+that momentum changes only through the stresses acting on a region. In curved
+spacetime the partial derivative becomes the \emph{covariant} derivative
+$\nabla_{\mu}$, which adds Christoffel-symbol terms: $\nabla_{\mu}T^{\mu\nu} = 0$.
+Physically, matter then exchanges energy and momentum with the gravitational
+field in a definite way, and the extra terms describe the exchange.
+
+Einstein's equation is
+\begin{equation}
+  G_{\mu\nu} = \frac{8\pi G}{c^{4}}\,T_{\mu\nu},
+  \label{eq:einstein-si}
+\end{equation}
+with $G_{\mu\nu}$ the Einstein tensor of \cref{eq:einstein-tensor}. There are ten
+equations here, one for each independent component of the two symmetric
+tensors.
+
+\begin{deeper}{why the Einstein tensor?}
+Whatever sits on the left side must be consistent with conservation of energy
+and momentum on the right. The Einstein tensor has exactly this property: its
+covariant divergence vanishes identically, $\nabla^{\mu}G_{\mu\nu} = 0$ for
+\emph{every} metric, a result called the contracted Bianchi identity.
+Einstein's equation therefore implies $\nabla^{\mu}T_{\mu\nu} = 0$
+automatically. Apart from a term proportional to the metric itself, which acts
+as vacuum energy, the Einstein tensor is essentially the only combination of
+the metric and its first two derivatives with this property.
+\end{deeper}
+
+From now on we set $G = 1$ as well as $c = 1$, and Einstein's equation reads
+\begin{equation}
+  G_{\mu\nu} = 8\pi\,T_{\mu\nu}.
+  \label{eq:einstein}
+\end{equation}
+In these \emph{geometric units} everything is measured in powers of length. A
+mass $M$ becomes the length $GM/c^{2}$: the Sun is \SI{1.48}{\kilo\metre} and
+the Earth \SI{4.4}{\milli\metre}. Curvature has units of one over length
+squared, and so, by \cref{eq:einstein}, do energy density and stress. To
+convert back, multiply a geometric energy density or stress, with lengths in
+metres, by
+\begin{equation}
+  \frac{c^{4}}{G} = \SI{1.21e44}{\newton}
+  \label{eq:conversion}
+\end{equation}
+to get joules per cubic metre, which are the same as pascals, and divide by
+$c^{2}$ to express an energy density as a mass density. This one conversion
+factor is the stiffness of spacetime from \cref{eq:stiffness}.
+
+\begin{example}[label=ex:newtonian, unbreakable]{The Newtonian limit}
+Show that for the weak-field metric \cref{eq:weak-field} with a static
+potential $\Phi$, the $tt$ component of Einstein's equation reduces to Poisson's
+equation of Newtonian gravity, $\nabla^{2}\Phi = 4\pi\rho$.
+
+\solution Compute the Einstein tensor of \cref{eq:weak-field} to first order in
+$\Phi$. The Christoffel symbols are first order, so their products in
+\cref{eq:riemann} are second order and can be dropped. The calculation
+(\cref{prob:weak-field}) gives $G_{tt} \approx 2\,\nabla^{2}\Phi$. For slowly
+moving matter the dominant component of the stress-energy is the energy
+density, $T_{tt} \approx \rho$, so $G_{tt} = 8\pi T_{tt}$ becomes
+$\nabla^{2}\Phi = 4\pi\rho$: Poisson's equation, in units with $G = 1$.
+
+\discussion Newtonian gravity is the weak-field, slow-motion limit of
+Einstein's equation, and the factor $8\pi$ is what makes the limit come out
+right.
+\end{example}
+
+\begin{revisited}{Fixing the constant}
+By demanding that his equation reproduce Newton's gravity wherever Newton's
+gravity is known to work: for weak fields and slow motion. The Newtonian limit
+in \cref{ex:newtonian} turns $G_{tt} = \kappa T_{tt}$ into
+$2\nabla^{2}\Phi = \kappa\rho$, and matching Poisson's equation
+$\nabla^{2}\Phi = 4\pi G\rho$ fixes $\kappa = 8\pi G/c^{4}$. Every prediction
+of the theory beyond Newton, from the bending of starlight to the clock rates
+of \cref{ch:geometry}, then came with no adjustable number left.
+\end{revisited}
+
+% ===========================================================================
+\section{Pressure gravitates}\label{sec:pressure}
+
+\begin{thought}{A box of hot gas}
+Inside a star, pressure adds to the source of gravity. Take a sealed steel box
+of gas and heat it until the pressure inside is enormous, while the box keeps
+its shape. Does the box now pull on a distant planet harder than its energy
+alone would suggest, because of all that pressure?
+\end{thought}
+
+Einstein's equation says more than Newton's. For a perfect fluid at rest, a
+short calculation (\cref{prob:rho-3p}) shows that the quantity playing the
+role of $\rho$ in Poisson's equation is
+\begin{equation}
+  \rho + 3p .
+  \label{eq:active-mass}
+\end{equation}
+Pressure is a source of gravity alongside energy. For ordinary matter the
+pressure is tiny compared with the energy density, which includes the rest
+energy $mc^{2}$, so Newton never noticed. Tension, however, \emph{weakens}
+gravity, and enough of it reverses its sign. Vacuum energy has
+$\rho + 3p = -2\rho_{\text{vac}}$: it repels. This is why a positive vacuum
+energy makes the expansion of the universe accelerate, and it is a first hint
+of what engineered spacetimes can do with tension.
+
+\begin{keyidea}
+In general relativity every component of the stress-energy tensor bends
+spacetime: energy, momentum and stress alike. Pressure attracts, tension
+repels, and a spacetime engineer designs with all of them.
+\end{keyidea}
+
+\begin{figure}[tb]
+\centering
+\includegraphics{ch03-gas-box}
+\caption{A sealed box of hot gas, cut by an imaginary plane. Across the cut,
+the gas pushes the two halves apart and the stretched walls pull them
+together. In equilibrium the forces balance, for every cut.}
+\label{fig:gas-box}
+\end{figure}
+
+\begin{revisited}{A box of hot gas}
+No. The gas pressure does add $3p$ to the source of gravity inside the box,
+but the steel walls that hold the gas in are under tension, and tension
+subtracts. For any object that holds itself together in equilibrium, the two
+cancel exactly. Cut the box in two with an imaginary plane
+(\cref{fig:gas-box}). The gas pushes the halves apart with a force equal to its
+pressure times the area of gas in the cut, and the walls pull them together
+with their tension times the area of steel in the cut. Equilibrium means these
+balance, for every cut in every direction, so the total of all the stresses
+over the box, $\int (T^{xx} + T^{yy} + T^{zz})\,\dd V$, is zero
+(\cref{prob:von-laue}). A distant planet feels only the box's total energy,
+which heating has raised by the thermal energy added, $\Delta E$, making the
+box heavier by $\Delta E/c^{2}$.
+\end{revisited}
+
+% ===========================================================================
+\section{Reading the equation backwards}\label{sec:backwards}
+
+\begin{thought}{A room where time runs fast}
+In a rocket accelerating through empty space, clocks at the nose tick faster
+than clocks at the tail, and nothing but the rocket's acceleration is needed to
+make it so. Could you instead arrange for clocks to tick fastest in the middle
+of a room and slower toward both walls, keeping the room's space perfectly
+flat? What would have to fill the room?
+\end{thought}
+
+Here is the spacetime engineer's central calculation. It has five steps.
+\begin{enumerate}
+\item Write down the metric $g_{\mu\nu}$ of the geometry you want.
+\item Compute the Christoffel symbols, \cref{eq:christoffel}.
+\item Compute the Riemann tensor \cref{eq:riemann}, then the Ricci tensor, the
+  Ricci scalar and the Einstein tensor \cref{eq:einstein-tensor}.
+\item Read off the demanded stress-energy, $T_{\mu\nu} = G_{\mu\nu}/8\pi$.
+\item Interpret it: compute the energy density and stresses measured by the
+  observers you care about, using \cref{eq:observed-density}.
+\end{enumerate}
+For all but the simplest metrics, steps 2 and 3 are best done with computer
+algebra. The examples in this chapter are simple enough to follow by hand, and
+each teaches something the rest of the book builds on.
+
+\begin{example}[label=ex:lapse]{Clocks that run at different rates}
+Suppose we want clocks to run at different rates at different places along
+$x$, while space itself stays exactly flat. The metric is
+\begin{equation}
+  \dd s^{2} = -\alpha(x)^{2}\,\dd t^{2} + \dd x^{2} + \dd y^{2} + \dd z^{2},
+  \label{eq:lapse-metric}
+\end{equation}
+where $\alpha(x) > 0$ is the rate of a clock at rest at $x$, relative to
+coordinate time. Find the matter this geometry demands.
+
+\solution \emph{Christoffel symbols.} Only $g_{tt} = -\alpha^{2}$ varies, and
+only with $x$. Writing $\alpha' = \dd\alpha/\dd x$, \cref{eq:christoffel} gives
+two independent nonzero symbols:
+\begin{equation*}
+  \Gamma^{t}{}_{tx} = \Gamma^{t}{}_{xt} = \frac{\alpha'}{\alpha},
+  \qquad
+  \Gamma^{x}{}_{tt} = \alpha\,\alpha' .
+\end{equation*}
+\emph{Curvature.} From \cref{eq:riemann}, the nonzero components of the Ricci
+tensor are
+\begin{equation*}
+  R_{tt} = \alpha\,\alpha'', \qquad R_{xx} = -\frac{\alpha''}{\alpha},
+\end{equation*}
+and the Ricci scalar is $R = g^{tt}R_{tt} + g^{xx}R_{xx} = -2\alpha''/\alpha$.
+\emph{Einstein tensor.} From \cref{eq:einstein-tensor}, $G_{tt} = 0$ and
+$G_{xx} = 0$, while
+\begin{equation*}
+  G_{yy} = G_{zz} = -\tfrac{1}{2}R = \frac{\alpha''}{\alpha}.
+\end{equation*}
+\emph{Interpretation.} A clock at rest at $x$ has four-velocity
+$w^{\mu} = (1/\alpha, 0, 0, 0)$, and by \cref{eq:observed-density} it measures
+energy density $\rho = G_{tt}/(8\pi\alpha^{2}) = 0$. The demand is
+\begin{equation}
+  \rho = 0, \quad p_{x} = 0, \quad p_{y} = p_{z} = \frac{\alpha''}{8\pi\,\alpha}.
+  \label{eq:lapse-demand}
+\end{equation}
+
+\discussion Changing the rate of clocks from place to place, with space kept
+flat, demands \emph{no energy at all}: only stress, and only in the directions
+perpendicular to the change. If $\alpha$ is a straight line, $\alpha = 1 + gx$,
+the demand vanishes entirely: that geometry is flat spacetime seen by an
+observer with constant acceleration $g$ (\cref{prob:rindler}), the rocket of
+the thought experiment.
+\end{example}
+
+The Earth also makes clocks run at different rates at different heights, yet
+the empty space around it holds no stress. The difference is that the Earth's
+geometry curves space as well: the factor $(1 - 2\Phi)$ in front of the
+spatial part of \cref{eq:weak-field}. In empty space the curvature of space and
+the variation of clock rates cancel exactly in Einstein's equation
+(\cref{prob:weak-field}). In \cref{ex:lapse} we insisted on keeping space flat,
+and the stress is the price of that choice. Designs make choices like this all
+the time, and Einstein's equation prices each one.
+
+The price is steep. Take a clock rate that changes by one part in a billion
+across one metre, so that $\alpha'' \sim \SI{e-9}{\per\metre\squared}$. By
+\cref{eq:lapse-demand,eq:conversion}, the stress is about
+$10^{-9}/(8\pi) \times \SI{1.2e44}{\pascal} \approx \SI{5e33}{\pascal}$, the
+pressure deep inside a neutron star, demanded to make two clocks a metre apart
+differ by one part in a billion.
+
+\begin{figure}[tb]
+\centering
+\includegraphics{ch03-lapse-bump}
+\caption{Clocks that run fastest in the middle, $\alpha = 1 + \tfrac12
+e^{-x^{2}}$ (top), and the stress this demands across the direction of the
+change, \cref{eq:lapse-demand} (bottom). Around the peak the demand is a
+tension; on the flanks it is a pressure. The energy density is zero
+everywhere.}
+\label{fig:lapse-bump}
+\end{figure}
+
+\begin{checkpoint}
+Suppose instead that clocks run \emph{slowest} in the middle, with
+$\alpha = 1 - \tfrac12 e^{-x^{2}}$. Where is the demand a tension, and where a
+pressure?
+\end{checkpoint}
+
+\begin{revisited}{A room where time runs fast}
+The room must hold a strange material: one with no energy density at all, but
+with stress along the two directions parallel to the walls
+(\cref{fig:lapse-bump}). Where the clock rate peaks, $\alpha'' < 0$ and the
+stress is a tension; nearer the walls, where $\alpha$ curves back up, it is a
+pressure. The rocket needed nothing because its $\alpha$ is a straight line;
+the room pays for the curvature of $\alpha$. And the tension at the peak is
+worse than it looks. For light travelling parallel to the walls,
+$\rho + p_{y} = \alpha''/(8\pi\alpha) < 0$, and in Chapter~5 you will learn that
+ordinary matter always has $\rho + p \ge 0$ along every direction light can
+travel. A simple bump in the rate of clocks already demands matter that no
+ordinary material can provide.
+\end{revisited}
+
+% ===========================================================================
+\section{When space flows unevenly}\label{sec:shear}
+
+\begin{thought}{A conveyor belt with a fast lane}
+In \cref{ch:geometry}, space flowing at one uniform speed turned out to be flat
+spacetime in disguise, and it cost nothing. Now let the flow run faster down
+the middle of a channel than near its banks, the way a river does. Does that
+cost anything? If it does, will the observers carried along by the flow
+measure a positive or a negative energy density? Make a guess before reading
+on.
+\end{thought}
+
+\begin{example}[label=ex:shear]{A flow of space that shears}
+Let the speed of the flow of \cref{ex:flow} vary across space:
+\begin{equation}
+  \dd s^{2} = -\dd t^{2} + \bigl(\dd x + \beta(y)\,\dd t\bigr)^{2} + \dd y^{2} + \dd z^{2},
+  \label{eq:shear-metric}
+\end{equation}
+a flow of space along $x$ whose speed depends on $y$. Find the energy density
+measured by observers carried along by the flow.
+
+\solution Observers carried by the flow move with $\dd x/\dd t = -\beta$ and
+feel no force. Their four-velocity is $w^{\mu} = (1, -\beta, 0, 0)$, which
+satisfies $g_{\mu\nu}w^{\mu}w^{\nu} = -1$ (\cref{prob:shear-check}). Carrying
+out the recipe for \cref{eq:shear-metric} is longer than for \cref{ex:lapse},
+and a good exercise for computer algebra (\cref{prob:shear-check}). The energy
+density these observers measure is
+\begin{equation}
+  \rho = T_{\mu\nu}w^{\mu}w^{\nu} = -\frac{1}{32\pi}\left(\frac{\dd\beta}{\dd y}\right)^{2}.
+  \label{eq:shear-density}
+\end{equation}
+
+\discussion Where the flow is uniform, $\dd\beta/\dd y = 0$ and nothing is
+demanded, just as in \cref{ex:flow}. Wherever the flow shears, the observers
+riding it measure a \emph{negative} energy density, whichever way the shear
+goes, since the derivative is squared.
+\end{example}
+
+The numbers are once again enormous. A flow that changes from zero to the speed
+of light across one metre has $\dd\beta/\dd y \approx \SI{1}{\per\metre}$, and
+\cref{eq:shear-density,eq:conversion} give an energy density of about
+\SI{-1.2e42}{\joule\per\cubic\metre}, equivalent to a mass density of about
+\SI{-1e25}{\kilogram\per\cubic\metre}. Nuclear matter, the densest material in
+nature, has about \SI{+2e17}{\kilogram\per\cubic\metre}.
+
+\begin{revisited}{A conveyor belt with a fast lane}
+It costs a great deal, and the cost is negative energy. By
+\cref{eq:shear-density}, observers riding a shearing flow of space measure
+$\rho = -(\dd\beta/\dd y)^{2}/32\pi$, negative whichever way the shear runs.
+This is the warp drive's problem in miniature. At the wall of a warp bubble the
+flow of space changes from the bubble's speed to zero, so the wall is a region
+of shear, and \cref{eq:shear-density} is why Alcubierre's bubble demands
+negative energy there (\cref{fig:warp}b).
+\end{revisited}
+
+% ===========================================================================
+\section{Every geometry has a price}\label{sec:price}
+
+The recipe of \topicref{sec:backwards} never fails. Every metric you can write
+down has an Einstein tensor, so every geometry has a demanded stress-energy.
+Read backwards, Einstein's equation is a price list: it tells you exactly what
+matter any geometry would require.
+
+Whether anything in nature can pay the price is a separate question, and it is
+the question the rest of this book is organized around. The examples of this
+chapter already show its shape. Shaping the rate of clocks demands stress
+without energy, and can demand matter that violates $\rho + p \ge 0$. Shearing
+the flow of space demands negative energy density. Chapter~4 splits spacetime
+into space and time the way these examples suggest, with a \emph{lapse} that
+sets the rate of clocks and a \emph{shift} that describes the flow of space, and
+shows how to compute demands like these efficiently. Chapter~5 states precisely
+which demands ordinary matter can meet, and Chapter~6 asks how far quantum
+physics can go beyond them.
+
+% ===========================================================================
+\begin{chaptersummary}
+\item Energy depends on the observer. An observer with four-velocity $w^{\mu}$
+  measures the energy density $\rho_{w} = T_{\mu\nu}w^{\mu}w^{\nu}$; a passing
+  observer sees a brick's energy density raised by $\gamma^{2}$.
+\item The stress-energy tensor $T^{\mu\nu}$ collects energy density, energy
+  flux, momentum density and stress into one symmetric array.
+\item Dust, perfect fluids, radiation, tension and vacuum energy each have a
+  characteristic stress-energy. Tension is negative pressure, and it lowers the
+  energy density that passing observers measure.
+\item Einstein's equation $G_{\mu\nu} = 8\pi T_{\mu\nu}$ (with $G = c = 1$) links
+  curvature to matter. Multiply geometric stresses by
+  $c^{4}/G = \SI{1.21e44}{\newton}$ to get pascals.
+\item Newton's gravity is the weak-field limit. Beyond it, pressure gravitates
+  through $\rho + 3p$ and tension can make gravity repel; in a body that holds
+  itself together, the pressures and tensions cancel in total.
+\item Reading the equation backwards gives the matter any geometry demands.
+  Varying clock rates across flat space demands stress without energy; a
+  shearing flow of space demands negative energy density.
+\end{chaptersummary}
+
+\begin{checkanswers}
+\item[3.1] Dust: $\rho + p = \rho$. Radiation: $\rho + p = \tfrac43\rho$. Fluid with
+  $p > 0$: $\rho + p > \rho$. Vacuum energy: $\rho + p = 0$. Only vacuum energy
+  sits exactly on the boundary.
+\item[3.2] Now $\alpha'' > 0$ near $x = 0$, so the demand there is a pressure;
+  on the flanks, where $\alpha$ curves back toward 1 from below, it is a
+  tension. Wherever the demand is a tension, $\rho + p_{y} < 0$.
+\end{checkanswers}
+
+\begin{problems}
+\item \diff{1} A cloud of dust with rest-frame density $\rho_{0}$ moves at speed
+  $v$ along $y$. Write down all components of $T^{\mu\nu}$ in the observer's
+  frame.
+\item \diff{1} \textbf{Geometric units.} Express the mass of the Earth, the Sun
+  and a $10^{9}\,\Msun$ black hole in metres. What energy density, in joules per
+  cubic metre, corresponds to a geometric energy density of
+  \SI{1}{\per\square\kilo\metre}?
+\item \diff{2} \textbf{Magnetic tension.} Using the stress-energy of a magnetic
+  field in the \emph{Going deeper} box on the electromagnetic field, verify
+  that $\rho + p \ge 0$ for every direction of the pressure, and that the tension
+  along the field lines equals the energy density.
+\item \diff{2} \textbf{Vacuum energy.} Show from \cref{eq:vacuum-energy} that
+  every observer measures the same energy density $\rho_{\text{vac}}$, and that
+  the pressure is $-\rho_{\text{vac}}$ in every direction.
+\item \diff{2}\label{prob:rho-3p} \textbf{Pressure gravitates.} Einstein's
+  equation can be rewritten as
+  $R_{\mu\nu} = 8\pi\bigl(T_{\mu\nu} - \tfrac12 T g_{\mu\nu}\bigr)$, with
+  $T = g^{\mu\nu}T_{\mu\nu}$. For a perfect fluid at rest, show that
+  $R_{tt} = 4\pi(\rho + 3p)$. Given that $R_{tt} \approx \nabla^{2}\Phi$ in a weak,
+  static field, explain why $\rho + 3p$ plays the role of $\rho$ in Poisson's
+  equation.
+\item \diff{3}\label{prob:von-laue} \textbf{Stresses in a body at rest.} For a
+  static body of finite size in flat spacetime, conservation gives
+  $\partial_{j}T^{ij} = 0$. Show that $\int T^{xx}\,\dd V = 0$ by integrating
+  $\partial_{j}(x\,T^{xj}) = T^{xx}$ over a region enclosing the body, and deduce
+  that the pressures and tensions in the box of hot gas cancel in total.
+\item \diff{2}\label{prob:weak-field} \textbf{Weak fields.} Compute the Einstein
+  tensor of \cref{eq:weak-field} to first order in $\Phi$. Show that
+  $G_{tt} \approx 2\nabla^{2}\Phi$, and that all components vanish where
+  $\nabla^{2}\Phi = 0$. Explain why the result differs from \cref{ex:lapse}.
+\item \diff{2}\label{prob:rindler} \textbf{Uniform acceleration.} Show that the
+  metric \cref{eq:lapse-metric} with $\alpha = 1 + gx$ has vanishing Riemann
+  tensor. What does an observer at rest at fixed $x$ feel?
+\item \diff{2} \textbf{A rippled clock rate.} Take $\alpha = 1 + \epsilon\sin kx$
+  with $0 < \epsilon < 1$ in \cref{ex:lapse}. Where is the demand a tension? For
+  light moving along $y$, where is $\rho + p_{y}$ negative?
+\item \diff{3}\label{prob:shear-check} \textbf{The shearing flow.} Using a
+  computer algebra system, compute the Einstein tensor of \cref{eq:shear-metric}
+  and verify \cref{eq:shear-density}. Check that $w^{\mu} = (1,-\beta,0,0)$ is a
+  unit timelike vector. Then compute the energy density measured by an observer
+  at rest in the coordinates, $w^{\mu} = (1,0,0,0)/\sqrt{1-\beta^{2}}$, where
+  $|\beta| < 1$, and compare.
+\item \diff{3} \textbf{Designing a fast-clock region.} You want a region where
+  clocks run twice as fast as clocks far away, with space kept flat and the
+  transition taking place over \SI{10}{\metre}. Using \cref{ex:lapse}, sketch a
+  suitable $\alpha(x)$, locate the tensions and pressures it demands, and
+  estimate their size in pascals.
+\end{problems}
+
+\begin{furtherreading}
+\item[\textcite{Schutz2009}] A careful introduction to the stress-energy tensor
+  through dust and perfect fluids.
+\item[\textcite{Carroll2004}] Einstein's equation, its Newtonian limit and the
+  Bianchi identity at graduate level.
+\item[\textcite{Hartle2003}] A physical approach to Einstein's equation and to
+  what curvature does.
+\item[\textcite{Misner1973}] The stress-energy tensor, and why stresses must
+  balance in a body at rest.
+\item[\textcite{Morris1988a}] The engineer's calculation of this chapter,
+  applied to traversable wormholes.
+\item[\textcite{Alcubierre1994}] The original warp drive. After \cref{ex:shear}
+  you can follow its energy density calculation.
+\end{furtherreading}

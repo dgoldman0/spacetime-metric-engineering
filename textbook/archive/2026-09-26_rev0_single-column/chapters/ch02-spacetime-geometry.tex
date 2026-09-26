@@ -1,0 +1,648 @@
+% !TEX root = ../main.tex
+\chapter{The Geometry of Spacetime}\label{ch:geometry}
+
+\begin{goals}
+\begin{itemize}
+\item Draw and read spacetime diagrams, worldlines and light cones.
+\item Compute the interval between two events and say whether it is timelike,
+  spacelike or null.
+\item Compute the time a clock records along any path through spacetime.
+\item Use a metric to measure intervals, and tell a coordinate effect from a
+  real feature of the geometry.
+\item Compute how fast clocks tick in a weak gravitational field and near a
+  black hole.
+\item Describe free fall as motion along a geodesic, and curvature as the
+  source of tidal forces.
+\end{itemize}
+\end{goals}
+
+A spacetime engineer designs geometries, so we need a precise language for
+geometry. This chapter builds it in steps. We start with the flat spacetime of
+special relativity and learn to measure it with the interval. We then write the
+interval in a form, the \emph{metric}, that works in any coordinates and in
+curved spacetime too. With the metric in hand, we can compute everything a
+traveller would experience: the ticking of clocks, the paths of light, the
+motion of falling objects, and the stretching forces called tides.
+
+\section{Events, worldlines and units}\label{sec:events}
+
+An \emph{event} is a place at an instant: a firecracker going off at a
+particular point and time. We label events with four coordinates, a time $t$
+and three positions $x$, $y$, $z$. A particle traces out a sequence of events
+called its \emph{worldline}.
+
+A \emph{spacetime diagram} plots worldlines with time running up the page and
+one direction of space across it (\cref{fig:spacetime-diagram}). A particle at
+rest has a vertical worldline. A moving particle has a tilted one, and the
+faster it moves the more its worldline leans over.
+
+It pays to measure time and distance in the same units. A light-second is the
+distance light travels in one second, about \SI{3e8}{\metre}. If we measure
+distance in light-seconds and time in seconds, or equivalently time in metres
+(one metre of time is the time light takes to travel a metre, about
+\SI{3.3}{\nano\second}), then the speed of light is exactly $c = 1$. Velocities
+become pure numbers: a speed of $0.5$ means half the speed of light. From here
+on we use these units, and restore factors of $c$ when we need a number in
+everyday units. Light worldlines then run at $45^{\circ}$ on every spacetime
+diagram.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+  \draw[-{Stealth}] (-3.2,0) -- (3.4,0) node[right] {$x$};
+  \draw[-{Stealth}] (0,-0.4) -- (0,4.2) node[above] {$t$};
+  \draw[very thick, worldline] (-2,0) -- (-2,3.9) node[above, font=\small, align=center] {at rest};
+  \draw[very thick, examplegreen] (0,0) -- (1.6,3.9) node[above, font=\small] {moving, $v=0.4$};
+  \draw[thick, lightcone!85!black, dashed] (0,0) -- (3.3,3.3) node[right, font=\small] {light};
+  \draw[thick, lightcone!85!black, dashed] (0,0) -- (-3.2,3.2);
+  \fill (0,0) circle (1.6pt) node[below right, font=\small] {event $A$};
+\end{tikzpicture}
+\caption{A spacetime diagram. Time runs up the page. A particle at rest has a
+vertical worldline; a moving particle has a tilted one. With $c = 1$, light
+travels along lines at $45^{\circ}$.}
+\label{fig:spacetime-diagram}
+\end{figure}
+
+\section{The interval}\label{sec:interval}
+
+In ordinary three-dimensional space, two observers who use differently
+oriented axes disagree about the coordinates of two points but agree on the
+distance between them. The squared distance
+$\Delta x^{2} + \Delta y^{2} + \Delta z^{2}$ is the same in every set of
+rotated axes.
+
+Special relativity has an exact analogue. Observers moving relative to one
+another disagree about time differences and about distances, yet all inertial
+observers agree on the \emph{interval}
+\begin{equation}
+  \Delta s^{2} = -\Delta t^{2} + \Delta x^{2} + \Delta y^{2} + \Delta z^{2}.
+  \label{eq:interval}
+\end{equation}
+The minus sign in front of the time difference is the whole difference between
+the geometry of spacetime and the geometry of space. It divides pairs of events
+into three kinds.
+
+\begin{definition}[Kinds of interval]
+The interval between two events is
+\begin{itemize}
+\item \emph{timelike} if $\Delta s^{2} < 0$: a clock can travel from one event
+  to the other at less than the speed of light;
+\item \emph{null} (or \emph{lightlike}) if $\Delta s^{2} = 0$: a light signal
+  can travel from one to the other;
+\item \emph{spacelike} if $\Delta s^{2} > 0$: nothing, not even light, can
+  travel from one to the other.
+\end{itemize}
+\end{definition}
+
+The events that light can reach from an event $A$ form a cone, the
+\emph{future light cone} of $A$ (\cref{fig:light-cone}). Events inside it can
+be influenced by what happens at $A$; events outside it cannot. The events
+from which light can reach $A$ form its past light cone. The light cones of all
+events together are the \emph{causal structure} of spacetime: they tell you
+what can affect what. Every question about faster-than-light travel is, at
+bottom, a question about light cones.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[lightcone!18] (0,0) -- (-2.2,2.2) arc (180:360:2.2 and 0.45) -- cycle;
+  \draw[lightcone!80!black, thick] (0,0) -- (-2.2,2.2);
+  \draw[lightcone!80!black, thick] (0,0) -- (2.2,2.2);
+  \draw[lightcone!80!black, thick] (0,2.2) ellipse (2.2 and 0.45);
+  \fill[lightcone!10] (0,0) -- (-2.2,-2.2) arc (180:360:2.2 and 0.45) -- cycle;
+  \draw[lightcone!80!black, thick] (0,0) -- (-2.2,-2.2);
+  \draw[lightcone!80!black, thick] (0,0) -- (2.2,-2.2);
+  \draw[lightcone!80!black, thick, dashed] (0,-2.2) ellipse (2.2 and 0.45);
+  \draw[-{Stealth}] (0,-2.9) -- (0,3.1) node[above] {$t$};
+  \fill (0,0) circle (1.7pt) node[right, font=\small] {$\;A$};
+  \node[font=\small, align=center] at (0,1.5) {future};
+  \node[font=\small, align=center] at (0,-1.5) {past};
+  \node[font=\small, align=center] at (3.6,0.2) {elsewhere\\(spacelike from $A$)};
+  \fill[examplegreen] (0.5,1.3) circle (1.5pt) node[right, font=\footnotesize] {can be influenced by $A$};
+  \fill[deeperviolet] (2.6,-0.9) circle (1.5pt) node[right, font=\footnotesize] {cannot};
+\end{tikzpicture}
+\caption{The light cone of an event $A$, drawn with one dimension of space
+suppressed. Events inside the future cone can be influenced by $A$. Events
+outside both cones are spacelike from $A$, and no signal connects them to it.}
+\label{fig:light-cone}
+\end{figure}
+
+\begin{checkpoint}
+Event $B$ happens \SI{3}{\second} after event $A$ and 4~light-seconds
+away from it. Event $C$ happens \SI{5}{\second} after $A$ and
+4~light-seconds away. Classify the intervals $AB$ and $AC$. Can
+anything that happens at $A$ affect $B$? Can it affect $C$?
+\end{checkpoint}
+
+\section{Proper time}\label{sec:proper-time}
+
+A clock carried along a worldline measures the \emph{proper time} $\tau$ along
+it. For a clock at rest, proper time is just coordinate time. For a moving
+clock, the interval does the bookkeeping. Along a short piece of a timelike
+worldline the interval is negative, and the clock records
+\begin{equation}
+  \dd\tau^{2} = -\dd s^{2} = \dd t^{2} - \dd x^{2} - \dd y^{2} - \dd z^{2}.
+  \label{eq:proper-time}
+\end{equation}
+Dividing by $\dd t^{2}$ gives $\dd\tau/\dd t = \sqrt{1 - v^{2}}$, where $v$ is the
+clock's speed. The proper time along a whole worldline is the sum of these
+pieces:
+\begin{equation}
+  \tau = \int \sqrt{1 - v(t)^{2}}\;\dd t .
+  \label{eq:proper-time-integral}
+\end{equation}
+This is the time dilation of special relativity written as a geometric length:
+proper time is to a worldline what length is to a curve in space.
+
+\begin{example}{A trip to the nearest star}\label{ex:twin}
+Proxima Centauri is about 4.24 light-years away. A traveller leaves Earth at
+$v = 0.8$, reaches the star, turns around at once, and returns at the same
+speed. How much time passes on Earth, and on the traveller's clock?
+
+\solution In the Earth's frame the trip covers $2 \times 4.24 = 8.48$
+light-years at speed $0.8$, so it takes
+\begin{equation*}
+  \Delta t = \frac{8.48}{0.8}\ \text{years} = 10.6\ \text{years}.
+\end{equation*}
+The traveller moves at constant speed on each leg, so
+\cref{eq:proper-time-integral} gives
+\begin{equation*}
+  \Delta\tau = \sqrt{1 - 0.8^{2}}\;\Delta t = 0.6 \times 10.6\ \text{years}
+  = 6.36\ \text{years}.
+\end{equation*}
+\discussion The traveller returns 4.2 years younger than a twin who stayed
+home. The trip is not symmetric: the Earth twin's worldline is straight, while
+the traveller's worldline has a corner at the turnaround. In the geometry of
+spacetime, the straight worldline between two events is the one with the
+\emph{longest} proper time, which is the reverse of ordinary geometry, where the
+straight line is the shortest. The minus sign in \cref{eq:interval} is
+responsible.
+\end{example}
+
+\begin{keyidea}
+Between two events, the straight worldline of a freely moving clock records
+the longest proper time. Every detour, every acceleration, shortens the time a
+clock records.
+\end{keyidea}
+
+\section{The metric}\label{sec:metric}
+
+\Cref{eq:interval} holds for inertial observers using ordinary Cartesian
+coordinates. We need a version that works in any coordinates, and later in
+curved spacetime. The idea is to write down the interval between
+\emph{neighbouring} events, as a formula in whatever coordinates we are using.
+
+\subsection{Index notation}
+
+We label the four coordinates with an index that runs from 0 to 3:
+$x^{0} = t$, $x^{1} = x$, $x^{2} = y$, $x^{3} = z$. The raised index is a label,
+not a power. Greek letters $\mu, \nu, \dots$ stand for any of the four values.
+The interval between neighbouring events can then be written
+\begin{equation}
+  \dd s^{2} = \sum_{\mu=0}^{3}\sum_{\nu=0}^{3} g_{\mu\nu}\,\dd x^{\mu}\,\dd x^{\nu}
+  \equiv g_{\mu\nu}\,\dd x^{\mu}\,\dd x^{\nu}.
+  \label{eq:metric}
+\end{equation}
+The sixteen numbers $g_{\mu\nu}$ form a symmetric $4\times4$ matrix called the
+\emph{metric}. In the second form we have used the \emph{summation convention}:
+an index that appears once up and once down in a term is summed from 0 to 3.
+We use the convention from now on.
+
+For flat spacetime in Cartesian coordinates, comparing with
+\cref{eq:interval} gives the Minkowski metric
+\begin{equation}
+  g_{\mu\nu} = \eta_{\mu\nu} =
+  \begin{pmatrix} -1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1\end{pmatrix}.
+\end{equation}
+
+\subsection{Coordinates are labels}
+
+The same flat spacetime looks different in other coordinates. In spherical
+coordinates the interval reads
+\begin{equation}
+  \dd s^{2} = -\dd t^{2} + \dd r^{2} + r^{2}\bigl(\dd\theta^{2} + \sin^{2}\theta\,\dd\phi^{2}\bigr).
+  \label{eq:flat-spherical}
+\end{equation}
+The metric components now depend on position, yet nothing physical has
+changed. Coordinates are labels we attach to events, and a good deal of the
+skill of working with metrics lies in telling which features of a metric belong
+to the labels and which belong to the geometry. The next example shows how
+dramatic a pure coordinate effect can look.
+
+\begin{example}{Flowing coordinates}\label{ex:flow}
+Consider the metric
+\begin{equation}
+  \dd s^{2} = -\dd t^{2} + \bigl(\dd x - v_{0}\,\dd t\bigr)^{2} + \dd y^{2} + \dd z^{2},
+  \label{eq:flow-metric}
+\end{equation}
+with $v_{0}$ a constant. Find the coordinate speed $\dd x/\dd t$ of light moving
+along $x$. Then show that this metric describes flat spacetime.
+
+\solution Light has $\dd s^{2} = 0$. Along $x$ we set $\dd y = \dd z = 0$ and find
+$(\dd x - v_{0}\dd t)^{2} = \dd t^{2}$, so $\dd x - v_{0}\,\dd t = \pm\dd t$ and
+\begin{equation*}
+  \frac{\dd x}{\dd t} = v_{0} \pm 1.
+\end{equation*}
+For $v_{0} = 0.5$, light moves at $+1.5$ in one direction and $-0.5$ in the
+other, as measured in these coordinates.
+
+Now change coordinates to $x' = x - v_{0}t$, keeping $t$, $y$ and $z$. Then
+$\dd x' = \dd x - v_{0}\,\dd t$, and the metric becomes
+$\dd s^{2} = -\dd t^{2} + \dd x'^{2} + \dd y^{2} + \dd z^{2}$, the Minkowski metric.
+
+\discussion This is flat spacetime described by an observer who labels points
+with a grid that slides along $x$ at speed $v_{0}$ relative to inertial
+observers. In the sliding grid, light seems to move faster than 1 in one
+direction. No object ever outruns a light signal sent beside it: the speeds
+$v_{0} \pm 1$ describe how the labels move, not how anything moves relative to
+its surroundings. Keep this example in mind. The metrics of warp drives have
+exactly this form, with $v_{0}$ replaced by a function that varies from place
+to place, and in that case the effect is no longer only a matter of labels.
+\end{example}
+
+The form \cref{eq:flow-metric} gives us a picture that will run through this
+book: space \emph{flowing} past a grid of coordinates. Observers who are carried
+along by the flow feel no force. The flow speed can take any value, and where
+it varies from place to place the geometry is genuinely curved.
+
+\begin{checkpoint}
+In \cref{ex:flow}, suppose $v_{0} = 2$. In which direction can light move, as
+measured in the sliding coordinates? Does this mean something is moving faster
+than light?
+\end{checkpoint}
+
+\subsection{Four-velocity}
+
+The tangent to a worldline, measured per unit proper time, is the
+\emph{four-velocity} $u^{\mu} = \dd x^{\mu}/\dd\tau$. Dividing
+\cref{eq:metric} by $\dd\tau^{2} = -\dd s^{2}$ gives the normalization
+\begin{equation}
+  g_{\mu\nu}\,u^{\mu}u^{\nu} = -1.
+  \label{eq:four-velocity}
+\end{equation}
+For a clock at rest in flat spacetime, $u^{\mu} = (1,0,0,0)$. For a clock moving
+at speed $v$ along $x$, $u^{\mu} = \gamma\,(1, v, 0, 0)$ with
+$\gamma = 1/\sqrt{1-v^{2}}$. We will use four-velocities in
+\cref{ch:matter-geometry} to say what an observer measures.
+
+\section{Clocks in curved spacetime}\label{sec:clocks}
+
+In curved spacetime no choice of coordinates puts the metric into the
+Minkowski form everywhere at once. The metric still gives the interval between
+neighbouring events through \cref{eq:metric}, and the proper time along a
+worldline is still $\tau = \int\sqrt{-\dd s^{2}}$. Everything we did above
+carries over; only the metric changes.
+
+\subsection{Weak gravity}
+
+Around a planet or a star the gravitational field is weak, and the metric is
+very close to Minkowski. To an excellent approximation,
+\begin{equation}
+  \dd s^{2} = -(1 + 2\Phi)\,\dd t^{2} + (1 - 2\Phi)\bigl(\dd x^{2} + \dd y^{2} + \dd z^{2}\bigr),
+  \label{eq:weak-field}
+\end{equation}
+where $\Phi$ is the Newtonian gravitational potential divided by $c^{2}$. For a
+spherical mass $M$, $\Phi = -GM/(c^{2}r)$, which is small and negative:
+$\Phi \approx -7\times10^{-10}$ at the Earth's surface. The approximation holds
+whenever $|\Phi| \ll 1$.
+
+A clock moving slowly at speed $v$ through this spacetime records, from
+\cref{eq:weak-field},
+\begin{equation}
+  \frac{\dd\tau}{\dd t} = \sqrt{1 + 2\Phi - (1 - 2\Phi)\,v^{2}}
+  \approx 1 + \Phi - \tfrac{1}{2}v^{2},
+  \label{eq:clock-rate}
+\end{equation}
+keeping only the leading terms in the small quantities $\Phi$ and $v^{2}$. The
+two corrections have a clear meaning. A clock deeper in the potential (more
+negative $\Phi$) runs slower, and a moving clock runs slower.
+
+\begin{example}{Clocks on the ground and in orbit}\label{ex:gps}
+Navigation satellites orbit at a radius $r_{\mathrm{s}} = \SI{26560}{\kilo\metre}$
+from the Earth's centre. Take $GM = \SI{3.986e14}{\metre\cubed\per\second\squared}$
+for the Earth and $R = \SI{6371}{\kilo\metre}$ for its radius, and ignore the
+Earth's rotation. By how much does a satellite clock gain or lose each day,
+compared with a clock on the ground?
+
+\solution The ground clock is at rest at $r = R$, so its rate is
+$1 + \Phi(R)$. The satellite clock moves on a circular orbit at speed
+$v = \sqrt{GM/r_{\mathrm{s}}}$, about \SI{3.87}{\kilo\metre\per\second}. The
+difference in rates is
+\begin{equation*}
+  \frac{\dd\tau_{\mathrm{s}}}{\dd t} - \frac{\dd\tau_{\mathrm{g}}}{\dd t}
+  = \underbrace{\frac{GM}{c^{2}}\left(\frac{1}{R} - \frac{1}{r_{\mathrm{s}}}\right)}_{\text{altitude}}
+  \; - \; \underbrace{\frac{v^{2}}{2c^{2}}}_{\text{speed}} .
+\end{equation*}
+Numerically the altitude term is $5.29\times10^{-10}$ and the speed term is
+$8.35\times10^{-11}$. Over one day, \SI{86400}{\second}, the satellite clock
+gains \SI{45.7}{\micro\second} from its altitude and loses
+\SI{7.2}{\micro\second} from its speed, a net gain of about
+\SI{38.5}{\micro\second} per day.
+
+\discussion Light travels \SI{11.5}{\kilo\metre} in \SI{38.5}{\micro\second},
+so an uncorrected clock would spoil positions by kilometres within a day. The
+full treatment, including the Earth's rotation and shape, is given by
+\textcite{Ashby2003}. This is the calculation behind the numbers quoted in
+\cref{sec:gps}.
+\end{example}
+
+\subsection{Near a black hole}
+
+For a non-rotating mass $M$ with no weak-field approximation at all, the
+geometry outside the mass is described by the \emph{Schwarzschild metric}:
+\begin{equation}
+  \dd s^{2} = -\left(1 - \frac{r_{\mathrm{s}}}{r}\right)\dd t^{2}
+  + \frac{\dd r^{2}}{1 - r_{\mathrm{s}}/r}
+  + r^{2}\bigl(\dd\theta^{2} + \sin^{2}\theta\,\dd\phi^{2}\bigr),
+  \qquad r_{\mathrm{s}} = \frac{2GM}{c^{2}} .
+  \label{eq:schwarzschild}
+\end{equation}
+Here $r$ is defined so that a sphere at radius $r$ has area $4\pi r^{2}$. A
+clock held at fixed $r$ records $\dd\tau/\dd t = \sqrt{1 - r_{\mathrm{s}}/r}$
+relative to a clock far away. For the Sun, $r_{\mathrm{s}} \approx
+\SI{2.95}{\kilo\metre}$, so the effect at its surface is tiny. For a neutron star
+of 1.4 solar masses and radius \SI{12}{\kilo\metre}, the surface clock runs at
+0.81 of the rate of a distant clock (\cref{prob:neutron-star}).
+
+At $r = r_{\mathrm{s}}$ the clock rate would fall to zero. No clock can be held
+at rest there: $r = r_{\mathrm{s}}$ is the \emph{event horizon} of a black hole.
+The metric \cref{eq:schwarzschild} also misbehaves at the horizon, where
+$g_{rr}$ becomes infinite. That part is a coordinate effect, as another way of
+writing the same geometry shows.
+
+\subsection{Space as a flowing river}
+
+Introduce a new time coordinate $T$, the time on the clocks of observers who
+fall inward from rest far away. In these coordinates the Schwarzschild geometry
+takes the Painlevé--Gullstrand form (in units with $c = 1$):
+\begin{equation}
+  \dd s^{2} = -\dd T^{2} + \left(\dd r + \sqrt{\frac{r_{\mathrm{s}}}{r}}\,\dd T\right)^{2}
+  + r^{2}\bigl(\dd\theta^{2} + \sin^{2}\theta\,\dd\phi^{2}\bigr).
+  \label{eq:river}
+\end{equation}
+Compare this with \cref{eq:flow-metric}. It has the same form, with space
+flowing \emph{inward} at the speed $\sqrt{r_{\mathrm{s}}/r}$, which grows as
+$r$ shrinks. Nothing is singular at $r = r_{\mathrm{s}}$ any more.
+
+\begin{example}{Where light stands still}\label{ex:horizon}
+Use \cref{eq:river} to find the coordinate speed $\dd r/\dd T$ of light moving
+radially, and locate the place where outgoing light makes no progress.
+
+\solution For radial light, $\dd s^{2} = 0$ with $\dd\theta = \dd\phi = 0$, so
+$\dd r + \sqrt{r_{\mathrm{s}}/r}\,\dd T = \pm\dd T$, or
+\begin{equation*}
+  \frac{\dd r}{\dd T} = -\sqrt{\frac{r_{\mathrm{s}}}{r}} \pm 1 .
+\end{equation*}
+Ingoing light ($-$ sign) always moves inward. Outgoing light ($+$ sign) moves
+outward only where $\sqrt{r_{\mathrm{s}}/r} < 1$, that is, where $r > r_{\mathrm{s}}$.
+At $r = r_{\mathrm{s}}$ it stands still, and inside it is swept inward.
+
+\discussion This is the horizon, seen as a place where space flows inward faster
+than light can move through it. Light always moves at speed 1 relative to the
+space around it; the horizon forms where the flow itself exceeds 1. A warp drive
+uses the same mechanism in reverse, carrying a region along by a flow of space.
+It also inherits the same danger: wherever the flow outruns light, horizons can
+form. You will meet those horizons again in Part~III.
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.95]
+  \draw[-{Stealth}] (0,0) -- (10.2,0) node[right] {$r$};
+  \draw[thick, deeperviolet, dashed] (3,-1.5) -- (3,1.75);
+  \node[font=\small, text=deeperviolet] at (3,2.05) {horizon, $r = r_{\mathrm s}$};
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (1.912,1.0) -- (0.488,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (2.725,1.0) -- (1.675,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (3.450,1.0) -- (2.550,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (4.867,1.0) -- (4.133,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (6.806,1.0) -- (6.194,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, keygold!80!black] (9.260,1.0) -- (8.740,1.0);
+  \draw[-{Stealth[length=2mm]}, thick, examplegreen] (1.462,-0.9) -- (0.938,-0.9);
+  \draw[-{Stealth[length=2mm]}, thick, examplegreen] (2.275,-0.9) -- (2.125,-0.9);
+  \fill[examplegreen] (3.000,-0.9) circle (2.2pt);
+  \draw[-{Stealth[length=2mm]}, thick, examplegreen] (4.417,-0.9) -- (4.583,-0.9);
+  \draw[-{Stealth[length=2mm]}, thick, examplegreen] (6.356,-0.9) -- (6.644,-0.9);
+  \draw[-{Stealth[length=2mm]}, thick, examplegreen] (8.810,-0.9) -- (9.190,-0.9);
+  \node[font=\small, text=keygold!70!black, anchor=west] at (10.4,1.0) {flow of space};
+  \node[font=\small, text=examplegreen, anchor=west, align=left] at (10.4,-0.9) {outgoing light,\\net motion};
+\end{tikzpicture}
+\caption{The Schwarzschild geometry pictured as space flowing inward
+(\cref{eq:river}). Top: the inward flow speed $\sqrt{r_{\mathrm s}/r}$ at six radii, drawn
+to scale. Bottom: the net coordinate velocity $1 - \sqrt{r_{\mathrm s}/r}$ of outgoing
+light at the same radii. Outside the horizon light makes headway; at the horizon
+it stands still; inside, the flow sweeps it inward.}
+\label{fig:river}
+\end{figure}
+
+\section{Free fall and geodesics}\label{sec:geodesics}
+
+In \cref{ex:twin} we found that the straight worldline between two events has
+the longest proper time. General relativity turns this into the law of motion
+for anything on which no non-gravitational force acts:
+
+\begin{keyidea}[free fall]
+A freely falling body follows a worldline of extremal proper time, a
+\emph{geodesic} of spacetime. Gravity is not a force that deflects it; it is
+the curvature that bends what \enquote{straight} means.
+\end{keyidea}
+
+Making the proper time extremal leads, after a calculation you can do in
+\cref{prob:geodesic}, to the \emph{geodesic equation}
+\begin{equation}
+  \frac{\dd^{2}x^{\mu}}{\dd\tau^{2}}
+  + \Gamma^{\mu}{}_{\alpha\beta}\,\frac{\dd x^{\alpha}}{\dd\tau}\frac{\dd x^{\beta}}{\dd\tau} = 0,
+  \label{eq:geodesic}
+\end{equation}
+where the \emph{Christoffel symbols} are built from first derivatives of the
+metric:
+\begin{equation}
+  \Gamma^{\mu}{}_{\alpha\beta} = \tfrac{1}{2}\,g^{\mu\nu}
+  \left(\partial_{\alpha}g_{\nu\beta} + \partial_{\beta}g_{\nu\alpha} - \partial_{\nu}g_{\alpha\beta}\right).
+  \label{eq:christoffel}
+\end{equation}
+Here $\partial_{\alpha}$ means $\partial/\partial x^{\alpha}$, and $g^{\mu\nu}$ is
+the inverse of the matrix $g_{\mu\nu}$. In flat spacetime with Cartesian
+coordinates every $\Gamma$ vanishes, and \cref{eq:geodesic} says that free
+bodies move in straight lines at constant speed.
+
+\begin{example}{Newton's law of gravity from geometry}\label{ex:newton}
+Show that for a slowly moving body in the weak-field metric
+\cref{eq:weak-field}, the geodesic equation reduces to Newton's law
+$\dd^{2}x^{i}/\dd t^{2} = -\partial_{i}\Phi$, for a potential that does not
+change in time.
+
+\solution A slow body has $\dd x^{i}/\dd\tau \ll \dd t/\dd\tau$, so in
+\cref{eq:geodesic} the term with $\alpha = \beta = 0$ dominates:
+\begin{equation*}
+  \frac{\dd^{2}x^{i}}{\dd\tau^{2}} \approx -\Gamma^{i}{}_{00}\left(\frac{\dd t}{\dd\tau}\right)^{2}.
+\end{equation*}
+With $g_{00} = -(1+2\Phi)$ independent of time, \cref{eq:christoffel} gives
+$\Gamma^{i}{}_{00} = -\tfrac{1}{2}g^{ii}\partial_{i}g_{00} \approx \partial_{i}\Phi$ to
+first order. Since $\dd t/\dd\tau \approx 1$ for a slow body,
+\begin{equation*}
+  \frac{\dd^{2}x^{i}}{\dd t^{2}} \approx -\partial_{i}\Phi .
+\end{equation*}
+\discussion Newton's law of gravity emerges from the $tt$ part of the metric
+alone, that is, from the way the rate of clocks changes from place to place.
+Objects fall toward regions where clocks run slower. This is one of the most
+important intuitions in the book: the rate of clocks, and how it varies across
+space, is itself a gravitational field.
+\end{example}
+
+\section{Curvature and tides}\label{sec:tides}
+
+A single freely falling observer feels nothing: in a small enough laboratory,
+free fall is indistinguishable from floating in empty space. This is the
+\emph{equivalence principle}, and it is why the metric can always be made to
+look like Minkowski at any one event by a suitable choice of coordinates.
+Gravity reveals itself when you compare \emph{nearby} free-fall paths.
+
+Drop two balls side by side above the Earth. Both fall toward the Earth's
+centre, so their paths converge and the balls drift together. Drop two balls one
+above the other, and the lower one, closer to the Earth, accelerates slightly
+more; they drift apart. These relative accelerations are \emph{tides}, and no
+choice of coordinates can remove them. They are the true signature of curvature.
+
+\subsection{The Riemann tensor}
+
+In general relativity the relative acceleration of two nearby free-fall paths
+separated by a small displacement $\xi^{\mu}$ is
+\begin{equation}
+  \frac{\dd^{2}\xi^{\mu}}{\dd\tau^{2}} = -R^{\mu}{}_{\alpha\nu\beta}\,u^{\alpha}\xi^{\nu}u^{\beta},
+  \label{eq:geodesic-deviation}
+\end{equation}
+where $u^{\mu}$ is the four-velocity of the falling bodies and
+$R^{\mu}{}_{\alpha\nu\beta}$ is the \emph{Riemann curvature tensor}:
+\begin{equation}
+  R^{\mu}{}_{\alpha\nu\beta} = \partial_{\nu}\Gamma^{\mu}{}_{\alpha\beta}
+  - \partial_{\beta}\Gamma^{\mu}{}_{\alpha\nu}
+  + \Gamma^{\mu}{}_{\nu\lambda}\Gamma^{\lambda}{}_{\alpha\beta}
+  - \Gamma^{\mu}{}_{\beta\lambda}\Gamma^{\lambda}{}_{\alpha\nu}.
+  \label{eq:riemann}
+\end{equation}
+The Riemann tensor vanishes everywhere if and only if spacetime is flat. When
+\cref{ex:flow} asked whether a metric describes flat spacetime, computing its
+Riemann tensor would have answered the question directly, without having to
+guess the right change of coordinates.
+
+In the weak-field limit, the tidal part of the Riemann tensor becomes the
+familiar Newtonian tidal tensor, $R^{i}{}_{0j0} \approx \partial_{i}\partial_{j}\Phi$.
+Near the Earth the tidal acceleration across a person \SI{2}{\metre} tall is
+about $2GM L/r^{3} \approx \SI{6e-6}{\metre\per\second\squared}$, far too small to
+notice. Near a black hole of a few solar masses it would tear a person apart.
+Tides are one of the first things a spacetime engineer checks on behalf of a
+traveller.
+
+\subsection{Ricci and Einstein}
+
+Two combinations of the Riemann tensor carry the information Einstein's
+equation needs. The \emph{Ricci tensor} and the \emph{Ricci scalar} are
+\begin{equation}
+  R_{\alpha\beta} = R^{\mu}{}_{\alpha\mu\beta}, \qquad R = g^{\alpha\beta}R_{\alpha\beta},
+\end{equation}
+and the \emph{Einstein tensor} is
+\begin{equation}
+  G_{\alpha\beta} = R_{\alpha\beta} - \tfrac{1}{2}R\,g_{\alpha\beta}.
+  \label{eq:einstein-tensor}
+\end{equation}
+The Einstein tensor is the \enquote{curvature of spacetime} on the left side of
+Einstein's equation. \Cref{ch:matter-geometry} explains why this particular
+combination appears, and uses it to compute what a geometry demands.
+
+\begin{deeper}{tensors and coordinate independence}
+The objects in this chapter are \emph{tensors}: quantities whose components
+change in a definite way under a change of coordinates, so that equations
+between tensors hold in every coordinate system if they hold in one. The metric
+is a symmetric tensor of type $(0,2)$; the Riemann tensor has type $(1,3)$.
+The Christoffel symbols are \emph{not} tensor components, which is why they can
+vanish at a point in one set of coordinates and not in another. Spacetime is
+modelled as a four-dimensional Lorentzian manifold, and all the curvature
+quantities here follow the sign conventions of \textcite{Misner1973}. Wald's
+text develops the same material in coordinate-free, abstract-index form
+\parencite{Wald1984}.
+\end{deeper}
+
+\begin{chaptersummary}
+\item With $c = 1$, time and distance share units and light moves at
+  $45^{\circ}$ on a spacetime diagram.
+\item The interval $\Delta s^{2} = -\Delta t^{2} + \Delta x^{2} + \Delta y^{2} + \Delta z^{2}$
+  is the same for all inertial observers. It is timelike, null or spacelike,
+  and light cones divide spacetime into what an event can and cannot
+  influence.
+\item A clock measures proper time $\tau = \int\sqrt{-\dd s^{2}}$ along its
+  worldline. Between two events, the free-fall worldline records the longest
+  proper time.
+\item The metric $g_{\mu\nu}$ gives the interval between neighbouring events in
+  any coordinates. Coordinate effects can be dramatic, as in flowing
+  coordinates, where light's coordinate speed differs from 1.
+\item In a weak field a clock runs at $\dd\tau/\dd t \approx 1 + \Phi - v^{2}/2$. The
+  GPS satellites gain about \SI{38}{\micro\second} per day for this reason.
+\item The Schwarzschild geometry can be pictured as space flowing inward; its
+  horizon is where the flow reaches the speed of light.
+\item Free bodies follow geodesics, and the rate of clocks from place to place
+  acts as a gravitational field. The Riemann tensor measures tides, the true
+  signature of curvature; the Ricci and Einstein tensors are built from it.
+\end{chaptersummary}
+
+\begin{checkanswers}
+\item[2.1] $AB$: $\Delta s^{2} = -9 + 16 = +7$, spacelike, so nothing at $A$ can
+  affect $B$. $AC$: $\Delta s^{2} = -25 + 16 = -9$, timelike, so a signal slower
+  than light can carry an influence from $A$ to $C$.
+\item[2.2] With $v_{0} = 2$, both solutions $\dd x/\dd t = 2 \pm 1$ are positive:
+  light moves only toward $+x$ in the sliding coordinates. Nothing outruns
+  light. The grid slides at twice the speed of light relative to inertial
+  observers, which is allowed because a grid of labels is not an object.
+\end{checkanswers}
+
+\begin{problems}
+\item \diff{1} Two events are separated by $\Delta t = \SI{2}{\second}$ and
+  $\Delta x = 1.5$~light-seconds. Find the interval and classify it. What
+  proper time does a clock record if it travels between them at constant
+  velocity?
+\item \diff{1} A clock travels at $v = 0.99$ for one year of Earth time. How much
+  time does it record?
+\item \diff{2} \textbf{Accelerating twin.} Repeat \cref{ex:twin} with a more
+  realistic trip: the traveller accelerates uniformly from rest to $0.8$ over
+  the first year of Earth time, cruises, and decelerates symmetrically at the
+  star and on the way home. Set up the proper-time integral and evaluate it
+  numerically.
+\item \diff{1} \textbf{Everest.} By what fraction does a clock on the summit of
+  Mount Everest (\SI{8.85}{\kilo\metre}) run faster than one at sea level?
+  How many nanoseconds does it gain per year?
+\item \diff{2}\label{prob:neutron-star} \textbf{Neutron star.} Show that a clock on
+  the surface of a neutron star of mass $1.4\,\Msun$ and radius
+  \SI{12}{\kilo\metre} runs at 0.81 of the rate of a distant clock. Use
+  $GM_{\odot}/c^{2} = \SI{1.477}{\kilo\metre}$.
+\item \diff{2} \textbf{Polar coordinates.} For the flat two-dimensional metric
+  $\dd s^{2} = \dd r^{2} + r^{2}\dd\phi^{2}$, compute all the Christoffel symbols
+  from \cref{eq:christoffel}. Show that the geodesic equation has straight
+  lines as solutions.
+\item \diff{2} \textbf{Flowing coordinates, again.} Compute the Christoffel
+  symbols of the metric \cref{eq:flow-metric} and show that the Riemann tensor
+  vanishes. Then repeat with $v_{0}$ replaced by a function $v(y)$, and show
+  that the Riemann tensor no longer vanishes.
+\item \diff{2}\label{prob:geodesic} \textbf{Deriving the geodesic equation.}
+  Write the proper time along a worldline as $\tau = \int
+  \sqrt{-g_{\mu\nu}\dot x^{\mu}\dot x^{\nu}}\,\dd\lambda$, where the dot is
+  $\dd/\dd\lambda$. Apply the Euler--Lagrange equations and choose
+  $\lambda = \tau$ to obtain \cref{eq:geodesic}.
+\item \diff{2} \textbf{The river.} Show that \cref{eq:river} turns into
+  \cref{eq:schwarzschild} under the change of time coordinate
+  $\dd T = \dd t + \frac{\sqrt{r_{\mathrm{s}}/r}}{1 - r_{\mathrm{s}}/r}\,\dd r$.
+\item \diff{3} \textbf{Tides near a black hole.} Estimate the stretching
+  acceleration across a \SI{2}{\metre} tall person falling feet first into a
+  black hole of $10\,\Msun$ at the moment they cross the horizon, and again for a
+  black hole of $10^{9}\,\Msun$. Which one could a traveller cross unharmed, and
+  why does the answer depend on the mass the way it does?
+\end{problems}
+
+\begin{furtherreading}
+\item[\textcite{Hartle2003}] A physics-first introduction to general relativity
+  that builds intuition for metrics, clocks and geodesics before the formalism.
+\item[\textcite{Schutz2009}] A careful, gentle development of spacetime
+  diagrams, tensors and curvature, well suited to self-study.
+\item[\textcite{Carroll2004}] A graduate-level introduction that covers the
+  geometry of this chapter with full mathematical care.
+\item[\textcite{Misner1973}] The encyclopedic classic, with deep geometric
+  intuition; its conventions are the ones used in this book.
+\end{furtherreading}
