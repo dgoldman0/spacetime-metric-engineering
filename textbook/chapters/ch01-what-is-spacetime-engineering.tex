@@ -10,7 +10,7 @@ in it returns later in equations, and most of them you will derive
 yourself.}{%
 \item what it means to engineer spacetime, and how that differs from
   engineering inside a geometry that nature has already fixed;
-\item why spacetime is so stiff, and what sets its stiffness;
+\item how hard it is to bend spacetime, and what sets that difficulty;
 \item how a spacetime engineer reads Einstein's equation backwards;
 \item the landmark designs of the field: traversable wormholes, warp drives
   and Krasnikov tubes;
@@ -45,8 +45,9 @@ different places do not tick at the same rate. A clock moving relative to you
 runs slow, by an amount that grows with its speed. A clock higher up in a
 gravitational field runs fast compared with a clock lower down: gravity
 affects the rate of time itself. At everyday speeds and heights both effects
-are minute, a few parts in $10^{10}$ or less, but a navigation clock must keep
-time to about one part in $10^{13}$.
+are minute, about a part in $10^{12}$ or less, and even for a satellite they
+are only a few parts in $10^{10}$. A navigation clock, though, must keep time
+to about one part in $10^{13}$.
 
 \Cref{fig:clock-offsets} shows both effects for a clock on a circular orbit,
 as a function of the orbit's size. The gain from height grows as the orbit
@@ -85,22 +86,23 @@ what would it take to produce it?
 The satellite clock is ahead, by about 38 microseconds a day. At the
 satellites' height, the gain from being higher (about 46 microseconds a day)
 beats the loss from moving (about 7). The space station is barely higher than
-the ground, about \SI{420}{\kilo\metre} up, but moves at almost
-\SI{8}{\kilo\metre\per\second}; there the loss wins, and the station's clock
+the ground, about \SI{420}{\kilo\metre} up, but moves at
+\SI{7.7}{\kilo\metre\per\second}; there the loss wins, and the station's clock
 falls behind the ground by about 25 microseconds a day. Astronauts on the
 station age slightly less than the rest of us.
 \end{revisited}
 
 % ===========================================================================
-\section{Spacetime is stiff}\label{sec:stiff}
+\section{How hard is it to bend spacetime?}\label{sec:stiff}
 
-\begin{thought}{How stiff is the sheet?}
+\begin{thought}{Denting time in the laboratory}
 Popular pictures show gravity as a heavy ball denting a stretched rubber
-sheet. Yet the whole Earth, \SI{6e24}{\kilogram} of it, dents time so slightly
-that a clock on its surface runs slow by less than one part in a billion,
-compared with a clock far out in space. Suppose you wanted to slow a clock by
-one part in a billion with a compact mass placed one metre away from it. Would
-a loaded truck do? A mountain? How much mass would you need?
+sheet. Try making a dent yourself. Cast a ball one metre across from osmium,
+the densest metal known: about twelve tonnes of it. Set one of today's best
+atomic clocks against its surface, and an identical clock at the far end of
+the laboratory, well away from it. Such clocks keep time to better than one
+part in $10^{18}$. Will they detect the dent the ball makes in the rate of
+time?
 \end{thought}
 
 Special relativity teaches that space and time are not separate. Observers in
@@ -132,18 +134,20 @@ everything that has energy: matter, light and fields, and even the pressure
 and tension inside a material. \Cref{ch:matter-geometry} turns both sides into
 precise mathematical objects.
 
-The constant in front sets the scale of the whole subject. Its inverse is
+The constant in front, $8\pi G/c^{4}$, sets the scale of the whole subject.
+Its size is fixed by
 \begin{equation}
   \frac{c^{4}}{G} \approx \SI{1.2e44}{\newton},
   \label{eq:stiffness}
 \end{equation}
-a force, and an enormous one. Roughly speaking, bending spacetime
-appreciably over a distance $L$ takes stresses of order $c^{4}/(GL^{2})$. For
-$L = \SI{1}{\metre}$ that is about \SI{e44}{\pascal}, some thirty-three orders
-of magnitude beyond the breaking strength of the strongest materials known.
-Spacetime is extraordinarily stiff. That single number explains why the
-geometry around you is so nearly flat, and it is the first reason spacetime
-engineering is hard.
+a force, and an enormous one. Read \cref{eq:einstein-words} as a rule for
+estimates: to curve spacetime so that its radius of curvature is about $L$,
+matter must supply energy densities or stresses of order
+$c^{4}/(8\pi G L^{2})$. For $L = \SI{1}{\metre}$ that is about
+\SI{5e42}{\pascal}, more than thirty orders of magnitude beyond the breaking
+strength of the strongest materials known. Spacetime is extraordinarily stiff.
+That single number explains why the geometry around you is so nearly flat, and
+it is the first reason spacetime engineering is hard.
 
 A compact mass $M$ slows clocks near it by a fraction that, at a distance $r$
 where the effect is small, is
@@ -177,16 +181,21 @@ This is the same 60 microseconds a day at which the height curve of
 
 \begin{checkpoint}[label=chk:sun-ns]
 Estimate the fractional slowing of clocks at the surface of the Sun
-($M = \SI{2.0e30}{\kilogram}$, $R = \SI{7.0e8}{\metre}$) and of a neutron star
-of 1.4 solar masses and radius \SI{12}{\kilo\metre}. For which of the two is
+($M = \SI{2.0e30}{\kilogram}$, $R = \SI{7.0e8}{\metre}$), of a white dwarf of
+0.6 solar masses and radius \SI{7000}{\kilo\metre}, and of a neutron star of
+1.4 solar masses and radius \SI{12}{\kilo\metre}. For which of them is
 \cref{eq:clock-slowing} a safe approximation?
 \end{checkpoint}
 
-\begin{revisited}{How stiff is the sheet?}
-Far more than either. Setting $GM/(c^{2}r) = 10^{-9}$ with $r = \SI{1}{\metre}$ gives
-$M = 10^{-9} \times \SI{1.35e27}{\kilogram} \approx \SI{1.3e18}{\kilogram}$:
-the mass of a rocky asteroid about \SI{100}{\kilo\metre} across, squeezed
-into a lump small enough to sit a metre from the clock. The sheet is that
+\begin{revisited}{Denting time in the laboratory}
+Not even close. The ball's mass per unit radius is
+$\SI{1.2e4}{\kilogram}/\SI{0.5}{\metre} = \SI{2.4e4}{\kilogram\per\metre}$,
+and dividing by $c^{2}/G$ in \cref{eq:clock-slowing} gives a slowing of about
+$2\times10^{-23}$ at its surface. The clock across the laboratory is slowed by
+only a few percent of that, so the difference between the two is still about
+$2\times10^{-23}$, tens of thousands of times too small for the best clocks to
+see. For the dent to reach one part in $10^{18}$, an osmium ball would have to
+be about \SI{240}{\metre} across, some 160 million tonnes. The sheet is that
 stiff.
 \end{revisited}
 
@@ -251,10 +260,10 @@ for a traveller. Both directions appear in this book. The geometry-first
 direction is the more common, and it shows most clearly what a design costs.
 
 \begin{checkpoint}[label=chk:division]
-Which of these questions can Einstein's equation answer on its own, and which
-need physics beyond it? (a)~What matter would produce a given geometry?
-(b)~Can that matter exist? (c)~What geometry does a given arrangement of
-matter produce?
+Team~A writes down a geometry that carries a ship to a nearby star in a week,
+and computes the matter it demands. Team~B takes a moving shell of ordinary
+steel and solves Einstein's equation for the geometry it produces. What is
+each team sure of, and what must each still find out?
 \end{checkpoint}
 
 \begin{revisited}{Can relativity say no?}
@@ -262,8 +271,8 @@ Einstein's equation on its own forbids nothing. Read backwards, it assigns
 every geometry the matter that would produce it, so it always has an answer.
 The question \enquote{does relativity allow this?} therefore becomes
 \enquote{does the matter this geometry demands exist, and can it be put in
-place?} Your friend's afternoon crossing is allowed exactly if nature can
-supply its demand, and that is where the physics bites.
+place?} Your friend's afternoon crossing is possible only if nature can
+supply its demand and put it in place, and that is where the physics bites.
 \end{revisited}
 
 % ===========================================================================
@@ -317,14 +326,9 @@ modern study of engineered spacetimes.
 
 The difficulty lies at the throat. A bundle of light rays heading into a
 wormhole converges as it approaches the throat, and to come out the other side
-it must spread apart again. Ordinary matter always makes a bundle of light
-converge: gravity attracts, and it bends light the way a converging lens does.
-A throat has to act as a \emph{diverging} lens. Morris and Thorne showed that
-this requires the material at the throat to carry a tension greater than its
-energy density, so that observers moving through the throat close to the
-speed of light would measure a \emph{negative} energy density. Matter with
-such properties is called \emph{exotic}. You will derive this requirement
-yourself in Part~II.
+it must spread apart again: the throat has to act on light as a
+\emph{diverging} lens. What kind of matter could do that is the question of
+the next topic.
 
 \subsection{Moving space itself}
 
@@ -341,9 +345,10 @@ surroundings at all; it floats in free fall while the bubble carries it.
 \caption{Alcubierre's warp bubble, in a plane containing the direction of
 travel. (a)~The rate at which the volume of space grows (up, orange) or
 shrinks (down, blue): space contracts ahead of the bubble and expands behind
-it. (b)~The energy density that observers at rest outside the bubble would
-measure: negative everywhere it is not zero, and concentrated in a ring around
-the bubble's wall.}
+it. (b)~The energy density measured by observers carried along by the flow of
+space, who far from the bubble are at rest relative to the stars: negative
+everywhere it is not zero, and concentrated in a ring around the bubble's
+wall.}
 \label{fig:warp}
 \end{figure*}
 
@@ -351,27 +356,27 @@ Alcubierre's bubble has striking properties. Nothing inside it ever moves
 faster than light relative to its own surroundings, yet the bubble as a whole
 can move at any speed relative to distant stars. The ship feels no
 acceleration, and its clock ticks at the same rate as clocks far away, so the
-travellers age no more during the trip than the people they left behind.
-José Natário later showed that the expansion and contraction are not
+travellers age exactly as much during the trip as the people they left
+behind. José Natário later showed that the expansion and contraction are not
 essential: a warp drive can carry its passengers with no change of volume at
-all. What \emph{is} essential is the demand. The bubble's wall requires
-negative energy density (\cref{fig:warp}b), just as the wormhole's throat
-does.
+all. What \emph{is} essential is the demand. Observers carried along by the
+flow of space find a negative energy density in the bubble's wall
+(\cref{fig:warp}b), much as observers passing quickly through a wormhole's
+throat would find one there.
 
 \begin{checkpoint}[label=chk:warp-aging]
-Alcubierre's travellers age at the same rate as the people they left behind,
-although their bubble crosses space faster than light. A ship coasting through
-ordinary space at 99~percent of the speed of light has its clocks slowed
-sevenfold. What difference between the two trips accounts for this?
+A crew makes a round trip to a star ten light-years away, once in a warp
+bubble that moves at five times the speed of light, and once in a ship that
+coasts at 99~percent of the speed of light, whose clocks run sevenfold slow.
+For each trip, how much does the crew age, and how long do the people at home
+wait?
 \end{checkpoint}
 
 \subsection{Building the road on the way out}
 
-Sergei Krasnikov pointed out a problem with warp drives: the people inside a
-bubble moving faster than light cannot send signals to its front edge, so they
-cannot create the bubble or steer it (you will see why at the end of this
-chapter). His alternative has the traveller prepare the route on the way
-out. A ship travels to a distant star at less than the speed of light, and as
+Sergei Krasnikov pointed out a problem with building and steering warp
+drives, which the end of this chapter takes up. His alternative has the
+traveller prepare the route on the way out. A ship travels to a distant star at less than the speed of light, and as
 it goes it modifies the spacetime along its path, leaving behind a tube. The
 modified geometry inside the tube lets the return trip arrive home shortly
 after the departure. Allen Everett and Thomas Roman analysed these tubes
@@ -396,13 +401,14 @@ fields that could supply negative energy.
 The light pulse never loses a race run side by side. In every design the ship
 stays inside its local \emph{light cone}, the set of directions light can take
 from where the ship is, so a light signal sent beside the ship would always
-outrun it. What the designs change is the course (\cref{fig:three-ways}). The
-wormhole shortens the route, so the pulse through ordinary space runs a longer
-race. The warp drive moves the space the ship sits in: inside the bubble the
-light cones themselves are tilted toward the star, and the ship rides inside
-them. The Krasnikov tube tips the light cones along a route that the outbound
-trip has already prepared, so the trip home can end shortly after the
-departure.
+outrun it. What the designs change is the geometry that the ship and the pulse
+travel through (\cref{fig:three-ways}). The wormhole shortens the ship's
+route, so the pulse through ordinary space runs a longer race. The warp drive
+moves the space the ship sits in: inside the bubble the light cones themselves
+are tilted toward the ship's destination, and the ship rides inside them. The
+Krasnikov tube tips the light cones along a route that the outbound trip has
+prepared. There the ship even reaches the star after the pulse does, and yet,
+by the clocks at home, it is back before the pulse has reached the star.
 \end{revisited}
 
 \begin{figure*}[tb]
@@ -437,9 +443,9 @@ ordinary matter can do with a small set of inequalities called
 \emph{weak energy condition}: every observer, however they move, measures an
 energy density that is zero or positive. The most important for this book is
 the \emph{null energy condition}, which is weaker still. It concerns light
-passing through matter, and it guarantees that the matter's gravity focuses a
-bundle of light rays and never spreads it
-(\cref{fig:focusing}a). Everything you have ever touched satisfies these
+passing through matter, and it guarantees that the matter's gravity can focus
+a bundle of light rays but can never make a shrinking bundle start to grow
+again before its rays cross (\cref{fig:focusing}a). Everything you have ever touched satisfies these
 conditions, and so do light itself, electric and magnetic fields, and all
 ordinary fluids.
 
@@ -469,16 +475,22 @@ and it is always a converging one.
 \centering
 \includegraphics{ch01-focusing}
 \caption{(a)~Light passing through ordinary matter is focused: the bundle's
-cross-section shrinks, and once it has started to shrink it keeps shrinking.
+cross-section shrinks, and once it has started to shrink it keeps shrinking
+until its rays cross.
 (b)~Light passing through a wormhole throat follows the walls: the bundle
 shrinks toward the throat and must grow again beyond it.}
 \label{fig:focusing}
 \end{figure}
 
 The null energy condition is exactly what a shortcut has to violate. A
-wormhole throat must spread a bundle of light after it has been shrinking
-(\cref{fig:focusing}b), and a warp bubble's wall must do the same. In
-Chapter~5 you will see that this is no accident. Under quite general
+wormhole throat must make a shrinking bundle of light grow again
+(\cref{fig:focusing}b), and a warp bubble's wall must do the same. Morris and
+Thorne showed that a throat requires the material there to carry a tension
+greater than its energy density, so that observers moving through the throat
+close to the speed of light would measure a \emph{negative} energy density.
+Matter with such properties is called \emph{exotic}, and you will derive this
+requirement yourself in Part~II. In Chapter~5 you will see that it is no
+accident. Under quite general
 assumptions, any spacetime that lets travellers outrun light through an
 otherwise ordinary region of space violates the null energy condition
 somewhere.
@@ -495,14 +507,14 @@ No arrangement of ordinary matter will do. A glass lens spreads light by its
 shape: glass slows light, and a concave lens is thicker at its edges than at
 its centre. Gravity has no such freedom. The focusing power of matter is set
 by the energy density and pressure of the matter that the light passes
-through, and for ordinary matter it always focuses. A ring does not help: just
-as there is no gravitational pull inside a hollow shell, light passing through
-the middle of a ring is not deflected at all, while light passing outside it
-is bent inward. Light crossing a shell passes through its walls, and the walls
-focus it. The tidal pull of nearby matter can squeeze a bundle into an
-ellipse, but it never makes the bundle's area start to grow. Spreading a
-bundle that has been shrinking takes matter that violates the null energy
-condition.
+through, and for ordinary matter it always focuses. A ring does not help.
+Light passing through its middle is tugged one way and then the other, and
+along its whole path the tugs cancel exactly, so it emerges undeflected, while
+light passing outside the ring is bent inward. Light crossing a shell passes
+through its walls, and the walls focus it. The tidal pull of nearby matter can
+squeeze a bundle into an ellipse, but it never makes the bundle's area start
+to grow. Making a shrinking bundle grow again before its rays cross takes
+matter that violates the null energy condition.
 \end{revisited}
 
 % ===========================================================================
@@ -516,7 +528,7 @@ energy. Why not simply build an enormous stack of plates?
 \end{thought}
 
 In 1948 Hendrik Casimir predicted that two parallel, uncharged metal plates in
-vacuum attract each other. The plates restrict which electromagnetic vacuum
+vacuum exert a force on each other. The plates restrict which electromagnetic vacuum
 fluctuations fit between them, and the energy density between the plates is
 lower than that of empty space; measured from empty space, it is negative.
 For perfectly conducting plates a distance $d$ apart it is
@@ -542,24 +554,24 @@ amount, and his design bends space on scales of about ten Planck lengths, far
 below anything that has ever been probed.
 
 \begin{checkpoint}[label=chk:casimir-force]
-The energy between the plates, per unit area of plate, is $u\,d$. As the
-plates move closer together, does this energy rise or fall? Which way, then,
-does the force between the plates point, and how does its strength depend on
-$d$?
+The energy between the plates is negative. Does that make the plates repel
+each other? The energy between them, per unit area of plate, is $u\,d$: as the
+plates move closer together, does it rise or fall, which way does the force
+point, and how does its strength depend on $d$?
 \end{checkpoint}
 
 \begin{revisited}{A stack of Casimir plates}
-Put numbers into \cref{eq:casimir}. For plates \SI{1}{\micro\metre} apart,
-$u \approx \SI{-4e-4}{\joule\per\cubic\metre}$. The plates themselves carry
-the positive rest energy of the metal, about
-\SI{2e20}{\joule\per\cubic\metre} for aluminium, so each plate outweighs the
-gap beside it by more than twenty orders of magnitude, and the stack as a
-whole has plenty of positive energy. For comparison, a wormhole throat one
-metre in radius needs a tension exceeding its energy density by roughly
-\SI{5e42}{\joule\per\cubic\metre}. The quantum inequalities show that the
-difficulty goes deeper than plates: in the quantum fields studied so far,
-large negative energy densities can only be brief or confined to tiny
-regions.
+A stack adds more gaps, but never deeper ones. A gap \SI{1}{\micro\metre} wide
+holds about \SI{-4e-4}{\joule\per\cubic\metre}, however many plates surround
+it, while a wormhole throat one metre in radius needs a tension exceeding its
+energy density by roughly \SI{5e42}{\joule\per\cubic\metre}, some 46 orders of
+magnitude more. Because the Casimir energy density grows as $1/d^{4}$,
+reaching that value would take plates about \SI{3e-18}{\metre} apart, a few
+hundred times smaller than a proton. This is the pattern the quantum
+inequalities describe: large negative energy densities are confined to tiny
+regions. The plates themselves, besides, carry the positive rest energy of the
+metal, about \SI{2e20}{\joule\per\cubic\metre} for aluminium, which outweighs
+the gap beside each one by more than twenty orders of magnitude.
 \end{revisited}
 
 % ===========================================================================
@@ -584,20 +596,24 @@ a proposal he called the \emph{chronology protection conjecture}. It remains
 a conjecture, and a responsible design must show that it creates no such
 loops.
 
-The second obstacle is control. Krasnikov noticed that the occupants of a
-warp bubble moving faster than light are cut off from the bubble's front edge.
-They can neither build the bubble nor steer it from inside. Designs that
-carry travellers faster than light must therefore be laid out in advance, or
-driven by something outside the travellers' reach.
+The second obstacle is control. A warp bubble is a flow of space. Inside it
+the ship floats at rest in its own patch of space; across the bubble's wall
+the flow changes to match the space of the distant stars; and light always
+moves at the speed of light relative to the space around it. Krasnikov showed
+what follows when the bubble outruns light: the crew is cut off from the front
+of its own bubble, and can neither build the bubble nor steer it from inside.
+Designs that carry travellers faster than light must therefore be laid out in
+advance, or driven by something outside the travellers' reach.
 
 \begin{checkpoint}[label=chk:krasnikov-control]
-The builder of a Krasnikov tube travels to the star at less than the speed of
-light, modifying spacetime along the way. Why is the builder not cut off the
-way the crew of a warp bubble is?
+Robot ships leave the Earth at 90~percent of the speed of light for a star ten
+light-years away, programmed to shape the wall of a warp bubble along the route
+as they pass. Can the crew of a bubble that follows them steer it? How soon,
+by the clocks at home, can the first bubble reach the star?
 \end{checkpoint}
 
 \begin{revisited}{A message to the front}
-It never arrives. Seen from the bubble, the space outside streams backward
+It never arrives, however close the wall is. Seen from the bubble, the space outside streams backward
 past it at twice the speed of light, and inside the front wall the stream
 slows smoothly to zero. Your radio signal moves forward at the speed of light
 relative to the space it is in, so somewhere in the wall, where the backward
@@ -655,7 +671,9 @@ we convert back to everyday units.
   Einstein's equation links the curvature of spacetime to the energy,
   momentum, pressure and stress of matter.
 \item The constant $c^{4}/G \approx \SI{1.2e44}{\newton}$ makes spacetime
-  extremely stiff. A mass $M$ slows clocks at distance $r$ by about
+  extremely stiff: curving it with a radius of curvature $L$ takes energy
+  densities or stresses of order $c^{4}/(8\pi G L^{2})$. A mass $M$ slows
+  clocks at distance $r$ by about
   $GM/(c^{2}r)$, which is small unless $M/r$ approaches
   $c^{2}/G \approx \SI{1.35e27}{\kilogram\per\metre}$.
 \item Spacetime engineering reads Einstein's equation backwards: choose a
@@ -675,33 +693,41 @@ we convert back to everyday units.
 \end{chaptersummary}
 
 \begin{checkanswers}
-\item[\ref{chk:sun-ns}] Sun: $GM/(c^{2}R) \approx 2\times10^{-6}$, small, so the
-  estimate is safe. Neutron star: $GM/(c^{2}R) \approx 0.17$, not small, so the
-  estimate is rough; the exact result of \cref{ch:geometry} is a clock rate of
-  0.81 of the rate far away.
-\item[\ref{chk:division}] Questions (a) and (c) belong to Einstein's equation.
-  Answering (a) takes only differentiation of the geometry, which can always
-  be done. Answering (c) means solving coupled nonlinear partial differential
-  equations, which is possible by hand only in highly symmetric cases.
-  Question (b) is about matter itself, and the physics of materials and fields
-  answers it; Chapters~5 and~6 take it up.
-\item[\ref{chk:warp-aging}] The fast ship moves through the space around it, and
-  a clock moving through its surroundings runs slow. The warp traveller does
-  not move through the surrounding space at all: the ship floats at rest in a
-  region of flat space that the bubble carries along. How fast its clock runs
-  compared with distant clocks is then set by the geometry, and Alcubierre's
-  geometry keeps the two rates equal.
-\item[\ref{chk:casimir-force}] $u\,d = -\pi^{2}\hbar c/(720\,d^{3})$ grows more
-  negative as $d$ shrinks, so the energy falls as the plates approach, and the
-  plates attract. The force per unit area is the rate at which the energy
-  falls with distance, $\pi^{2}\hbar c/(240\,d^{4})$: it grows as $1/d^{4}$ and
-  is about \SI{1.3}{\milli\pascal} for plates \SI{1}{\micro\metre} apart.
-  Laboratory measurements of the attraction agree with this prediction.
-\item[\ref{chk:krasnikov-control}] Every modification is made where the ship
-  is, as it passes, so each lies inside the ship's own future light cone, and
-  nothing has to be done ahead of a signal. The price is that the tube helps
-  only later trips: the outbound journey takes as long as ever, and only the
-  return through the prepared tube arrives home early.
+\item[\ref{chk:sun-ns}] Sun: $GM/(c^{2}R) \approx 2\times10^{-6}$. White dwarf:
+  about $1.3\times10^{-4}$. Both are small, so the estimate is safe. Neutron
+  star: about $0.17$, not small, so the estimate is rough; the exact result of
+  \cref{ch:geometry} is a clock rate of 0.81 of the rate far away. The step
+  from star to white dwarf to neutron star is a step in mass per unit radius.
+\item[\ref{chk:division}] Team~A is sure its geometry does the job, and it can
+  always compute the demand, since that takes only differentiation; it must
+  still find out whether matter with that demand can exist and be put in
+  place. Team~B is sure its matter exists. It must solve coupled nonlinear
+  equations, which is possible by hand only with a great deal of symmetry and
+  needs conditions far from the shell as well, and it may find that its
+  geometry does nothing useful for a traveller.
+\item[\ref{chk:warp-aging}] Warp bubble: the round trip covers 20 light-years at
+  five times the speed of light, so it takes 4 years by the clocks at home.
+  The crew floats at rest in its own patch of space, and its clocks keep pace
+  with those at home, so the crew also ages 4 years. Coasting ship: the trip
+  takes $20/0.99 = 20.2$ years at home, while the crew, moving through the
+  space around it, ages $20.2/7.09 = 2.85$ years. The fast ship shortens the
+  trip only for its crew, who come home to a world 20 years older; the warp
+  bubble shortens it for everyone.
+\item[\ref{chk:casimir-force}] No: they attract.
+  $u\,d = -\pi^{2}\hbar c/(720\,d^{3})$ grows more negative as $d$ shrinks, so
+  the energy falls as the plates approach, and the plates move the way that
+  lowers it. The force per unit area is the rate at which the energy falls
+  with distance, $\pi^{2}\hbar c/(240\,d^{4})$: about \SI{1.3}{\milli\pascal}
+  for plates \SI{1}{\micro\metre} apart, rising to a full atmosphere at about
+  \SI{11}{\nano\metre}. Laboratory measurements of the attraction agree with
+  this prediction.
+\item[\ref{chk:krasnikov-control}] No. The robots follow a program fixed
+  before they left, and nothing the crew does can reach the parts of the route
+  ahead of the bubble. The bubble also cannot outrun the robots that prepare
+  its path, so the first trip reaches the star no sooner than they do,
+  $10/0.9 = 11.1$ years after they left: later than a light signal would.
+  Only later trips gain, once the route is prepared. This is Krasnikov's
+  point, and the idea behind his tube.
 \end{checkanswers}
 
 \begin{problems}
@@ -746,6 +772,9 @@ we convert back to everyday units.
   relativity, still readable today.
 \item[\textcite{Dyson1920}] The eclipse expedition of 1919 that measured the
   Sun's bending of starlight.
+\item[\textcite{Brewer2019}] An atomic clock that keeps time to better than one
+  part in $10^{18}$, the precision assumed in the thought experiment on
+  denting time.
 \item[\textcite{Morris1988a}] The paper that started the field, written for
   students and still one of the best introductions to engineered spacetimes.
 \item[\textcite{McMonigal2012,Schuster2023}] Two treatments of metric

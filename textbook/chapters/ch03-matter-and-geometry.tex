@@ -25,8 +25,8 @@ demands that some physical material would have to meet.}{%
 \begin{thought}{A brick in passing}
 A brick sits on a table. You fly past it at 80 percent of the speed of light.
 Because the brick moves relative to you, each of its atoms carries more energy
-by the factor $\gamma = 1/\sqrt{1 - 0.8^{2}} = 5/3$. Is the energy per unit
-volume that you measure larger by the same factor, or by a different one?
+by the factor $\gamma = 1/\sqrt{1 - 0.8^{2}} = 5/3$. By what factor is the
+energy per unit volume that you measure larger?
 \end{thought}
 
 In Newtonian physics, the mass of a brick is one fixed number. In relativity
@@ -43,8 +43,9 @@ particle's energy to be
   \label{eq:measured-energy}
 \end{equation}
 In the second form we have \emph{lowered an index}, $p_{\mu} = g_{\mu\nu}p^{\nu}$:
-lowering indices with the metric is the bookkeeping that turns a pair of
-vectors into a number every observer agrees on. For an observer at rest in flat
+lowering indices with the metric is the bookkeeping that combines two vectors
+into a single number, one that every observer computes the same way. Here that
+number is the energy measured by the observer with four-velocity $w^{\mu}$. For an observer at rest in flat
 spacetime, $w^{\mu} = (1,0,0,0)$ and \cref{eq:measured-energy} gives
 $E = p^{0}$. For a particle at rest relative to the observer, $E = m$, its rest
 energy $mc^{2}$ in ordinary units.
@@ -54,18 +55,23 @@ than a four-momentum. At each event we want to know how much energy is present
 per unit volume, how fast energy is flowing, how much momentum there is, and
 what forces neighbouring parts of the material exert on each other. All of
 this fits into one symmetric $4\times4$ array, the \emph{stress-energy tensor}
-$T^{\mu\nu}$ (\cref{fig:stress-energy}). In the frame of a given observer,
-$T^{tt}$ is the \textbf{energy density}; $T^{ti} = T^{it}$ is the
-\textbf{energy flux} in direction $i$, which equals the density of momentum in
-that direction; and $T^{ij}$ is the \textbf{stress}, the flux of $i$-momentum
-across a surface facing the $j$ direction. The diagonal stresses are
-\textbf{pressures} and the off-diagonal ones are \textbf{shear stresses}.
+$T^{\mu\nu}$ (\cref{fig:stress-energy}). Its first index names what is carried:
+energy ($t$) or one component of momentum ($x$, $y$ or $z$). Its second index
+says where it goes: $t$ for the amount stored per unit volume, or $x$, $y$ or
+$z$ for the rate at which it flows across a surface facing that direction. In
+the frame of a given observer, $T^{tt} = \rho$ is the \textbf{energy density};
+$T^{ti} = S_{i}$ is the \textbf{energy flux} along $i$, and $T^{it}$, the
+density of $i$-momentum, equals it; and $T^{ij}$ is the \textbf{stress}, the
+flow of $i$-momentum along $j$. The diagonal stresses are \textbf{pressures}
+and the off-diagonal ones are \textbf{shear stresses}.
 
 \begin{figure}[tb]
 \centering
 \includegraphics{ch03-stress-energy}
 \caption{The components of the stress-energy tensor in one observer's frame.
-The array is symmetric, so ten numbers describe the matter at each event.}
+The row says what is carried and the column where it goes: $T^{xy}$, for
+instance, is $x$-momentum flowing along $y$, a shear stress. The array is
+symmetric, so ten numbers describe the matter at each event.}
 \label{fig:stress-energy}
 \end{figure}
 
@@ -190,9 +196,11 @@ Chapter~5 allows, and magnetic fields reach it exactly.
 \end{deeper}
 
 \begin{checkpoint}[label=chk:rho-p]
-For dust, radiation, a perfect fluid with $p > 0$, and vacuum energy, compute
-$\rho + p$. Which of them has $\rho + p = 0$? (In Chapter~5 you will see that
-the sign of $\rho + p$ decides whether matter focuses light.)
+Show from \cref{eq:perfect-fluid,eq:observed-density} that an observer moving
+at speed $v$ through a perfect fluid measures the energy density
+$\rho_{w} = \rho + \gamma^{2}v^{2}(\rho + p)$. At $v = 0.8$, compare dust,
+radiation and vacuum energy. What would a fast enough observer measure in a
+material with $\rho + p < 0$?
 \end{checkpoint}
 
 \begin{revisited}{Flying through empty space}
@@ -200,7 +208,7 @@ No: every observer measures the same vacuum energy density. For any
 four-velocity, \cref{eq:vacuum-energy} and \cref{eq:four-velocity} give
 $\rho_{w} = -\rho_{\text{vac}}\,g_{\mu\nu}w^{\mu}w^{\nu} = \rho_{\text{vac}}$.
 In the language of \cref{ex:tension-passing}, the vacuum's tension equals its
-energy density, so the factor $\gamma^{2}(\rho - v^{2}\tau)$ becomes
+energy density, so the expression $\gamma^{2}(\rho - v^{2}\tau)$ becomes
 $\gamma^{2}\rho_{\text{vac}}(1 - v^{2}) = \rho_{\text{vac}}$: the tension exactly
 cancels the boost that made the brick look denser. That is why a vacuum energy
 defines no preferred state of rest, as empty space should not.
@@ -209,11 +217,12 @@ defines no preferred state of rest, as empty space should not.
 % ===========================================================================
 \section{Einstein's equation}\label{sec:einstein}
 
-\begin{thought}{Between the Earth and the Moon}
-Between the Earth and the Moon there is almost no matter at all, so the
-stress-energy on the right side of Einstein's equation is zero there. Does the
-equation then say that spacetime between them is flat? If it does, what steers
-the Moon around its orbit, and what raises the tides in the Earth's oceans?
+\begin{thought}{A drop and a lake}
+A grape-sized drop of water floats inside a space station. A tiny ball of test
+particles, which pass through water without resistance, is released at rest
+at the drop's centre. A second such ball is released a few metres deep in a
+lake on Earth, where gravity pulls about three and a half billion times harder
+than at the surface of the drop. Which ball begins to shrink faster?
 \end{thought}
 
 Energy and momentum are conserved: whatever flows out of a small box must be
@@ -272,7 +281,8 @@ factor is the stiffness of spacetime from \cref{eq:stiffness}.
 Einstein's equation also has a statement in plain words, due to John Baez and
 Emory Bunn. Release a small ball of test particles, all at rest relative to
 one another, and let them fall freely. Tides may at once begin to change the
-ball's shape, and its volume $V$ begins to change at the rate
+ball's shape. Its volume $V$, momentarily steady, begins to change with the
+acceleration
 \begin{equation}
   \frac{\ddot V}{V} = -4\pi\,\bigl(\rho + p_{x} + p_{y} + p_{z}\bigr),
   \label{eq:ball}
@@ -301,8 +311,8 @@ $\nabla^{2}\Phi = 4\pi\rho$: Poisson's equation, in units with $G = 1$.
 Einstein's equation, and the factor $8\pi$ is what makes the limit come out
 right. Einstein fixed the constant in just this way, by requiring his equation
 to reproduce Newton's gravity wherever Newton's gravity works. Every
-prediction beyond Newton, from the bending of starlight to the clock rates of
-\cref{ch:geometry}, then came with no adjustable number left.
+prediction beyond Newton, from the bending of starlight to the slow turning of
+Mercury's orbit, then came with no adjustable number left.
 \end{example}
 
 In empty space the right side of \cref{eq:ball} vanishes. A ball of falling
@@ -318,30 +328,32 @@ components to the Ricci tensor's ten, need not; the rest of the curvature is
 set by matter elsewhere and by what arrives from far away.
 
 \begin{checkpoint}[label=chk:water]
-Water has a density of \SI{1000}{\kilogram\per\cubic\metre}. What is its
-energy density in geometric units? Einstein's equation then sets a curvature
-of order $8\pi\rho$; over what distance does spacetime filled with water curve
-appreciably?
+How large would a ball of water have to be to trap its own light, that is, for
+its radius to be no larger than the horizon radius $r_{\mathrm{s}} = 2GM/c^{2}$
+of its own mass? Give the answer in astronomical units.
 \end{checkpoint}
 
-\begin{revisited}{Between the Earth and the Moon}
-No. Einstein's equation fixes only part of the curvature. Where there is no
-matter it sets the Ricci tensor to zero, so a ball of falling particles keeps
-its volume at first, but the rest of the Riemann tensor survives. In Newtonian
-terms, the potential between the Earth and the Moon obeys $\nabla^{2}\Phi = 0$
-without being zero: its slope steers the Moon around its orbit, and its second
-derivatives, which add up to zero, stretch the oceans along the line to the
-Moon and squeeze them across it. Empty space can be curved. Matter is what
-makes a falling ball begin to shrink.
+\begin{revisited}{A drop and a lake}
+Neither: both begin to shrink at the same rate. By \cref{eq:ball}, a ball's
+volume responds only to the energy density and pressures where the ball is,
+and in both places that is water, with a pressure far too small to matter. In
+SI units, $\ddot V/V = -4\pi G\rho \approx \SI{-8.4e-7}{\per\second\squared}$
+for both. The ball in the lake falls freely toward the Earth, and falling
+removes the Earth's pull entirely. What remains of the Earth's gravity is its
+tide, produced by matter elsewhere: it stretches the ball vertically and
+squeezes it sideways, changing its shape but, at first, not its volume
+(\cref{chk:tidal-volume}). The drop in the station is falling freely too.
+Einstein's equation is local: only the matter where the ball is decides how
+its volume begins to change.
 \end{revisited}
 
 % ===========================================================================
 \section{Pressure gravitates}\label{sec:pressure}
 
 \begin{thought}{A box of hot gas}
-Inside a star, pressure adds to the source of gravity. Take a sealed steel box
-of gas and heat it until the pressure inside is enormous, while the box keeps
-its shape. Does the box now pull on a distant planet harder than its energy
+Einstein's equation counts pressure as a source of gravity alongside energy.
+Take a sealed steel box of gas and heat it until the pressure inside is
+enormous, while the box keeps its shape. Does the box now pull on a distant planet harder than its energy
 alone would suggest, because of all that pressure?
 \end{thought}
 
@@ -369,9 +381,9 @@ repels, and a spacetime engineer designs with all of them.
 \end{keyidea}
 
 \begin{checkpoint}[label=chk:stop-tension]
-A material has energy density $\rho$ and the same stress $p$ in every
-direction. What value of $p$ would keep a small ball of test particles inside
-it from beginning to shrink? Is that a pressure or a tension?
+A long rod has energy density $\rho$ and a tension $\tau$ along its length,
+with no stress across it. How large must $\tau$ be for a small ball of test
+particles inside the rod not to begin shrinking? How close does steel come?
 \end{checkpoint}
 
 \begin{figure}[tb]
@@ -386,8 +398,8 @@ together. In equilibrium the forces balance, for every cut.}
 \begin{revisited}{A box of hot gas}
 No. The gas pressure does add $3p$ to the source of gravity inside the box,
 but the steel walls that hold the gas in are under tension, and tension
-subtracts. For any object that holds itself together in equilibrium, the two
-cancel exactly. Cut the box in two with an imaginary plane
+subtracts. For any object held together by the strength of its materials,
+with its own gravity too weak to matter, the two cancel exactly. Cut the box in two with an imaginary plane
 (\cref{fig:gas-box}). The gas pushes the halves apart with a force equal to its
 pressure times the area of gas in the cut, and the walls pull them together
 with their tension times the area of steel in the cut. Equilibrium means these
@@ -404,9 +416,11 @@ box heavier by $\Delta E/c^{2}$.
 \begin{thought}{A room where time runs fast}
 In a rocket accelerating through empty space, clocks at the nose tick faster
 than clocks at the tail, and nothing but the rocket's acceleration is needed to
-make it so. Could you instead arrange for clocks to tick fastest in the middle
-of a room and slower toward both walls, keeping the room's space perfectly
-flat? What would have to fill the room?
+make it so. Suppose instead you want clocks midway between two large facing
+walls to tick faster than clocks at either wall, with the walls held still,
+neither accelerating nor spinning, and with the space between them kept
+perfectly flat. Why can the rocket's trick not do it? What would have to fill
+the space between the walls?
 \end{thought}
 
 Here is the spacetime engineer's central calculation. It has five steps.
@@ -420,8 +434,9 @@ Here is the spacetime engineer's central calculation. It has five steps.
   observers you care about, using \cref{eq:observed-density}.
 \end{enumerate}
 For all but the simplest metrics, steps 2 and 3 are best done with computer
-algebra. The examples in this chapter are simple enough to follow by hand, and
-each teaches something the rest of the book builds on.
+algebra. The example in this topic is simple enough to follow by hand; the one
+in the next topic is best checked by computer. Each teaches something the rest
+of the book builds on.
 
 \begin{example}[label=ex:lapse, unbreakable]{Clocks that run at different rates}
 Suppose we want clocks to run at different rates at different places along
@@ -477,12 +492,12 @@ the variation of clock rates cancel exactly in Einstein's equation
 and the stress is the price of that choice. Designs make choices like this all
 the time, and Einstein's equation prices each one.
 
-The price is steep. Take a clock rate that changes by one part in a billion
-across one metre, so that $\alpha'' \sim \SI{e-9}{\per\metre\squared}$. By
-\cref{eq:lapse-demand,eq:conversion}, the stress is about
-$10^{-9}/(8\pi) \times \SI{1.2e44}{\pascal} \approx \SI{5e33}{\pascal}$, the
-pressure deep inside a neutron star, demanded to make two clocks a metre apart
-differ by one part in a billion.
+The price is steep. Take a bump of one part in a billion in the rate of
+clocks, confined between walls a metre apart: a parabolic profile has
+$\alpha'' = \SI{-8e-9}{\per\metre\squared}$ at its peak. By
+\cref{eq:lapse-demand,eq:conversion} the tension there is about
+$8\times10^{-9}/(8\pi) \times \SI{1.2e44}{\pascal} \approx \SI{4e34}{\pascal}$,
+a pressure found in nature only deep inside neutron stars.
 
 \begin{figure}[tb]
 \centering
@@ -496,23 +511,26 @@ everywhere.}
 \end{figure}
 
 \begin{checkpoint}[label=chk:lapse-dip]
-Suppose instead that clocks run \emph{slowest} in the middle, with
-$\alpha = 1 - \tfrac12 e^{-x^{2}}$. Where is the demand a tension, and where a
-pressure?
+Suppose $\alpha(x)$ takes the same constant value far away on both sides, and
+space is flat. Can any profile that differs from that constant somewhere avoid
+tension altogether?
 \end{checkpoint}
 
 \begin{revisited}{A room where time runs fast}
-The room must hold a strange material: one with no energy density at all, but
+The rocket's clock rate changes along its length in a straight line, and a
+straight-line $\alpha$ is flat spacetime seen from an accelerating frame: it
+demands nothing, and it can make the clocks at one wall fast only by making
+those at the other wall slow. A rate that rises and falls again has
+curvature, $\alpha'' \ne 0$, and that is what costs. The space between the
+walls must hold a strange material: one with no energy density at all, but
 with stress along the two directions parallel to the walls
 (\cref{fig:lapse-bump}). Where the clock rate peaks, $\alpha'' < 0$ and the
 stress is a tension; nearer the walls, where $\alpha$ curves back up, it is a
-pressure. The rocket needed nothing because its $\alpha$ is a straight line;
-the room pays for the curvature of $\alpha$. And the tension at the peak is
-worse than it looks. For light travelling parallel to the walls,
-$\rho + p_{y} = \alpha''/(8\pi\alpha) < 0$, and in Chapter~5 you will learn that
-ordinary matter always has $\rho + p \ge 0$ along every direction light can
-travel. A simple bump in the rate of clocks already demands matter that no
-ordinary material can provide.
+pressure. At the peak, light travelling parallel to the walls finds
+$\rho + p_{y} = \alpha''/(8\pi\alpha) < 0$, and in Chapter~5 you will learn
+that ordinary matter always has $\rho + p \ge 0$ along every direction light
+can travel. With space held flat, a simple bump in the rate of clocks already
+demands matter that no ordinary material can provide.
 \end{revisited}
 
 % ===========================================================================
@@ -521,23 +539,24 @@ ordinary material can provide.
 \begin{thought}{A river with a fast lane}
 In \cref{ch:geometry}, space flowing at one uniform speed turned out to be flat
 spacetime in disguise, and it cost nothing. Now let the flow run faster down
-the middle of a channel than near its banks, the way a river does. Does that
-cost anything? If it does, will the observers carried along by the flow
-measure a positive or a negative energy density? Make a guess before reading
-on.
+the middle of a channel than near its banks, the way a river does. A bump in
+the rate of clocks, in the previous topic, demanded tension in some places and
+pressure in others. Does a lane of fast-flowing space likewise demand positive
+energy in some places and negative in others? Would a slow lane, instead of a
+fast one, change the answer?
 \end{thought}
 
 \begin{example}[label=ex:shear]{A flow of space that shears}
 Let the speed of the flow of \cref{ex:flow} vary across space:
 \begin{equation}
-  \dd s^{2} = -\dd t^{2} + \bigl(\dd x + \beta(y)\,\dd t\bigr)^{2} + \dd y^{2} + \dd z^{2},
+  \dd s^{2} = -\dd t^{2} + \bigl(\dd x - \beta(y)\,\dd t\bigr)^{2} + \dd y^{2} + \dd z^{2},
   \label{eq:shear-metric}
 \end{equation}
 a flow of space along $x$ whose speed depends on $y$. Find the energy density
 measured by observers carried along by the flow.
 
-\solution Observers carried by the flow move with $\dd x/\dd t = -\beta$ and
-feel no force. Their four-velocity is $w^{\mu} = (1, -\beta, 0, 0)$, which
+\solution Observers carried by the flow move with $\dd x/\dd t = \beta$ and
+feel no force. Their four-velocity is $w^{\mu} = (1, \beta, 0, 0)$, which
 satisfies $g_{\mu\nu}w^{\mu}w^{\nu} = -1$ (\cref{prob:shear-check}). Carrying
 out the recipe for \cref{eq:shear-metric} is longer than for \cref{ex:lapse},
 and a good exercise for computer algebra (\cref{prob:shear-check}). The energy
@@ -550,15 +569,28 @@ density these observers measure is
 \discussion Where the flow is uniform, $\dd\beta/\dd y = 0$ and nothing is
 demanded, just as in \cref{ex:flow}. Wherever the flow shears, the observers
 riding it measure a \emph{negative} energy density, whichever way the shear
-goes, since the derivative is squared.
+goes, since the derivative is squared. The sign is not an accident of these
+observers. For light travelling along $z$ in their frame,
+$\rho + p_{z} = -(\dd\beta/\dd y)^{2}/16\pi$: the same combination the bump in
+the rate of clocks made negative, and no change of observer can make it
+positive.
 \end{example}
+
+Chapter~4 derives a rule that shows where the minus sign comes from. For observers riding a flow of space, the energy density they measure is
+the curvature of the space they see, plus two-thirds of the square of the rate
+at which the flow expands, minus the square of the rate at which it shears,
+all divided by $16\pi$. Here space is flat and the flow neither expands nor
+compresses, so only the shear term remains; for this flow its square is
+$(\dd\beta/\dd y)^{2}/2$, which gives \cref{eq:shear-density}. Shear always
+enters with a minus sign.
 
 The numbers are once again enormous. A flow that changes from zero to the speed
 of light across one metre has $\dd\beta/\dd y \approx \SI{1}{\per\metre}$, and
 \cref{eq:shear-density,eq:conversion} give an energy density of about
 \SI{-1.2e42}{\joule\per\cubic\metre}, equivalent to a mass density of about
-\SI{-1e25}{\kilogram\per\cubic\metre}. Nuclear matter, the densest material in
-nature, has about \SI{+2e17}{\kilogram\per\cubic\metre}.
+\SI{-1.3e25}{\kilogram\per\cubic\metre}. The matter inside an atomic nucleus
+has about \SI{+2e17}{\kilogram\per\cubic\metre}, and the cores of neutron
+stars reach a few times that.
 
 \begin{checkpoint}[label=chk:shear-width]
 Suppose the flow speed in \cref{ex:shear} rises steadily from $0$ to
@@ -569,10 +601,14 @@ per unit area of its face?
 \end{checkpoint}
 
 \begin{revisited}{A river with a fast lane}
-It costs a great deal, and the cost is negative energy. By
-\cref{eq:shear-density}, observers riding a shearing flow of space measure
-$\rho = -(\dd\beta/\dd y)^{2}/32\pi$, negative whichever way the shear runs.
-This is the warp drive's problem in miniature. At the wall of a warp bubble the
+No balance, and no change. The observers riding the flow measure
+$\rho = -(\dd\beta/\dd y)^{2}/32\pi$, negative wherever the flow shears and
+whichever way it shears, so a slow lane costs exactly what a fast lane of the
+same profile costs. The bump in the rate of clocks could balance its books,
+because $\alpha''$ is positive in some places and negative in others and adds
+up to zero across the room; the square of the shear can only add up. Every
+lane of faster or slower space costs a net negative energy. This is the warp
+drive's problem in miniature. At the wall of a warp bubble the
 flow of space changes from the bubble's speed to zero, so the wall is a region
 of shear, and \cref{eq:shear-density} is why Alcubierre's bubble demands
 negative energy there (\cref{fig:warp}b).
@@ -588,9 +624,11 @@ matter any geometry would require.
 
 Whether anything in nature can pay the price is a separate question, and it is
 the question the rest of this book is organized around. The examples of this
-chapter already show its shape. Shaping the rate of clocks demands stress
-without energy, and can demand matter that violates $\rho + p \ge 0$. Shearing
-the flow of space demands negative energy density. Chapter~4 splits spacetime
+chapter already show its shape. With space held flat, shaping the rate of
+clocks demands stress without energy, and a bump in the rate demands matter
+that violates $\rho + p \ge 0$. Shearing the flow of space demands negative
+energy density from the observers who ride it, and violates $\rho + p \ge 0$
+for light crossing the shear. Chapter~4 splits spacetime
 into space and time the way these examples suggest, with a \emph{lapse} that
 sets the rate of clocks and a \emph{shift} that describes the flow of space, and
 shows how to compute demands like these efficiently. Chapter~5 states precisely
@@ -612,14 +650,19 @@ physics can go beyond them.
   $c^{4}/G = \SI{1.21e44}{\newton}$ to get pascals.
 \item In plain words, Einstein's equation says that a small ball of test
   particles, initially at rest relative to one another, begins to change
-  volume at the rate $\ddot V/V = -4\pi(\rho + p_{x} + p_{y} + p_{z})$. In empty
-  space $R_{\mu\nu} = 0$: tides remain, but they change only the ball's shape.
+  volume at the rate $\ddot V/V = -4\pi(\rho + p_{x} + p_{y} + p_{z})$. Only
+  the matter where the ball is counts. In empty space $R_{\mu\nu} = 0$: tides
+  remain, but at first they change only the ball's shape.
 \item Newton's gravity is the weak-field limit. Beyond it, pressure gravitates
-  through $\rho + 3p$ and tension can make gravity repel; in a body that holds
-  itself together, the pressures and tensions cancel in total.
+  through $\rho + 3p$ and tension can make gravity repel. In a body held
+  together by the strength of its materials, with its own gravity negligible,
+  the pressures and tensions cancel in total; in a star, held together by its
+  own gravity, they do not.
 \item Reading the equation backwards gives the matter any geometry demands.
-  Varying clock rates across flat space demands stress without energy; a
-  shearing flow of space demands negative energy density.
+  With space held flat, a bump in the rate of clocks demands stress without
+  energy, including tension that no ordinary material provides; a shearing
+  flow of space demands negative energy density from the observers riding
+  it.
 \end{chaptersummary}
 
 \begin{checkanswers}
@@ -630,21 +673,35 @@ physics can go beyond them.
   beam at $0.8$ gives $u/9$; running into it ($v = -0.8$) gives $9u$. Each
   photon is Doppler shifted by the factor $\sqrt{(1 - v)/(1 + v)}$, and the
   photons' number density changes by the same factor.
-\item[\ref{chk:rho-p}] Dust: $\rho + p = \rho$. Radiation: $\rho + p = \tfrac43\rho$.
-  Fluid with $p > 0$: $\rho + p > \rho$. Vacuum energy: $\rho + p = 0$. Only
-  vacuum energy sits exactly on the boundary.
-\item[\ref{chk:water}] $\rho = G\rho_{\mathrm{mass}}/c^{2} = 6.67\times10^{-11}
-  \times 1000/(9.0\times10^{16}) \approx \SI{7.4e-25}{\per\square\metre}$. A
-  curvature of $8\pi\rho$ corresponds to a length
-  $1/\sqrt{8\pi\rho} \approx \SI{2e11}{\metre}$, more than the distance from
-  the Earth to the Sun. Spacetime is stiff.
+\item[\ref{chk:rho-p}] With the fluid at rest, $u_{\mu}w^{\mu} = -\gamma$ and
+  $g_{\mu\nu}w^{\mu}w^{\nu} = -1$, so
+  $\rho_{w} = (\rho + p)\gamma^{2} - p = \rho + (\gamma^{2} - 1)(\rho + p)
+  = \rho + \gamma^{2}v^{2}(\rho + p)$. At $v = 0.8$, $\gamma^{2}v^{2} = 16/9$:
+  dust gives $\tfrac{25}{9}\rho \approx 2.8\rho$, the brick again; radiation
+  gives $\tfrac{91}{27}\rho \approx 3.4\rho$; vacuum energy gives exactly
+  $\rho$, at every speed. If $\rho + p < 0$ the second term is negative and
+  grows without limit as $v \to 1$, so fast enough observers measure a
+  negative energy density however positive $\rho$ is. That is why $\rho + p$
+  is the combination the null energy condition of Chapter~5 constrains.
+\item[\ref{chk:water}] With $M = \tfrac43\pi R^{3}\rho$, the condition
+  $R = 2GM/c^{2}$ gives $R^{2} = 3c^{2}/(8\pi G\rho)$, so
+  $R = \SI{4.0e11}{\metre}$, about 2.7 astronomical units: a ball of water
+  reaching beyond the orbit of Mars. A black hole need not be dense; the
+  larger it is, the lower the density it needs, falling as $1/R^{2}$.
 \item[\ref{chk:stop-tension}] By \cref{eq:ball} the ball keeps its volume when
-  $\rho + 3p = 0$, that is, $p = -\rho/3$: a tension of one third of the
-  energy density in every direction. Vacuum energy, with $p = -\rho$, goes
-  beyond this, and a ball of test particles in it begins to grow.
-\item[\ref{chk:lapse-dip}] Now $\alpha'' > 0$ near $x = 0$, so the demand there
-  is a pressure; on the flanks, where $\alpha$ curves back toward 1 from
-  below, it is a tension. Wherever the demand is a tension, $\rho + p_{y} < 0$.
+  $\rho + p_{x} + p_{y} + p_{z} = \rho - \tau = 0$, so $\tau = \rho$: a tension
+  equal to the whole energy density, not the third of it that an equal stress
+  in every direction would need. Steel at its breaking point reaches
+  $\tau/\rho \approx 10^{-12}$. A magnetic field has a tension along its lines
+  equal to its energy density, but it also pushes sideways, so
+  $\rho + p_{x} + p_{y} + p_{z} = B^{2} > 0$ and a ball inside it still
+  shrinks.
+\item[\ref{chk:lapse-dip}] No. Since $\alpha' = 0$ far away on both sides,
+  $\int \alpha''\,\dd x = \alpha'(\infty) - \alpha'(-\infty) = 0$. A profile
+  that differs from the constant somewhere has $\alpha'' \ne 0$ somewhere, so
+  $\alpha''$ must be positive in some places and negative in others. Wherever
+  $\alpha'' < 0$ the demand is a tension, and there $\rho + p_{y} < 0$. Every
+  shaping of the rate of clocks in flat space pays in tension somewhere.
 \item[\ref{chk:shear-width}] In the layer $\dd\beta/\dd y = \beta_{0}/w$, so
   $\rho = -\beta_{0}^{2}/(32\pi w^{2})$. Doubling $w$ divides the energy
   density by four. The layer then holds twice the volume, so the total per
@@ -679,6 +736,13 @@ physics can go beyond them.
   $\partial_{j}T^{ij} = 0$. Show that $\int T^{xx}\,\dd V = 0$ by integrating
   $\partial_{j}(x\,T^{xj}) = T^{xx}$ over a region enclosing the body, and deduce
   that the pressures and tensions in the box of hot gas cancel in total.
+\item \diff{3}\label{prob:star-pressure} \textbf{Pressure in a star.} A star is
+  held together by its own gravity, not by walls. For a star of uniform
+  density in Newtonian hydrostatic equilibrium, show that
+  $\int 3p\,\dd V = \tfrac{3}{5}GM^{2}/R$, the magnitude of its gravitational
+  potential energy, so that no tension cancels the pressure's contribution to
+  the source of gravity. Estimate that contribution as a fraction of $Mc^{2}$
+  for the Sun.
 \item \diff{2}\label{prob:weak-field} \textbf{Weak fields.} Compute the Einstein
   tensor of \cref{eq:weak-field} to first order in $\Phi$. Show that
   $G_{tt} \approx 2\nabla^{2}\Phi$, and that all components vanish where
@@ -691,8 +755,9 @@ physics can go beyond them.
   light moving along $y$, where is $\rho + p_{y}$ negative?
 \item \diff{3}\label{prob:shear-check} \textbf{The shearing flow.} Using a
   computer algebra system, compute the Einstein tensor of \cref{eq:shear-metric}
-  and verify \cref{eq:shear-density}. Check that $w^{\mu} = (1,-\beta,0,0)$ is a
-  unit timelike vector. Then compute the energy density measured by an observer
+  and verify \cref{eq:shear-density}. Check that $w^{\mu} = (1,\beta,0,0)$ is a
+  unit timelike vector, and that light travelling along $z$ in its frame finds
+  $\rho + p_{z} = -(\dd\beta/\dd y)^{2}/16\pi$. Then compute the energy density measured by an observer
   at rest in the coordinates, $w^{\mu} = (1,0,0,0)/\sqrt{1-\beta^{2}}$, where
   $|\beta| < 1$, and compare.
 \item \diff{3} \textbf{Designing a fast-clock region.} You want a region where
@@ -718,4 +783,7 @@ physics can go beyond them.
   applied to traversable wormholes.
 \item[\textcite{Alcubierre1994}] The original warp drive. After \cref{ex:shear}
   you can follow its energy density calculation.
+\item[\textcite{Abbott2018}] The pressure inside neutron stars, read from the
+  gravitational waves of a neutron-star merger: about \SI{3.5e33}{\pascal} at
+  twice the density of an atomic nucleus.
 \end{furtherreading}

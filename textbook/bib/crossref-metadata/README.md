@@ -15,3 +15,12 @@ during the review of the textbook's thought experiments and checks.
 - `arxiv_gr-qc_0103044.xml`, `arxiv_gr-qc_0103044_https.xml`: two empty
   responses from the arXiv API when checking the arXiv number of Baez and
   Bunn. The `Baez2005` entry therefore carries no eprint field.
+- `10.1103_PhysRevLett.121.161101.json`: Crossref record for the LIGO and Virgo
+  analysis of GW170817 (Abbott et al. 2018), fetched while checking the claim
+  that 5 × 10³³ Pa is the pressure deep inside a neutron star. The paper's
+  constraint on the pressure at twice nuclear saturation density,
+  3.5 (+2.7/−1.7) × 10³⁴ dyn/cm², was taken from its arXiv and publication
+  listings found by web search (arXiv:1805.11581).
+- `10.1103_PhysRevLett.123.033201.json`: Crossref record for Brewer et al.
+  (2019), the aluminium-ion clock with a systematic uncertainty below 10⁻¹⁸,
+  fetched for the redesigned stiffness thought experiment of Chapter 1.

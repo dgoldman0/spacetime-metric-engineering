@@ -1,0 +1,17 @@
+
+== Chapter 1: How stiff is the sheet? (stress per strain)
+ok  stress to strain steel by 1e-9 (Pa): computed 200, text 200
+ok  that stress as a fraction of an atmosphere (1/500): computed 0.00197385, text 0.002
+ok  steel is about 1e5 times stiffer than rubber: computed 100000, text 100000
+ok  stiffness of spacetime on the scale of 1 m, c^4/(8 pi G) (Pa): computed 4.81567e+42, text 5e+42
+ok  more than thirty orders beyond the strongest materials
+    log10(stiffness / strongest strength) = 31.57
+ok  stress for a strain of 1e-9 across 1 m (Pa): computed 4.81567e+33, text 5e+33
+ok  more than 1e31 times the stress steel needs for the same strain
+    ratio to steel = 2.41e+31
+ok  the comparison with steel does not depend on the size of the strain
+    GW170817 pressure at twice nuclear density: 1.8e+33 to 6.2e+33 Pa (median 3.5e+33)
+ok  5e33 Pa lies inside the GW170817 range at twice nuclear density
+ok  exact demand at the centre of the bump is -2 eps/(8 pi L^2): the rule to within a factor 2
+
+all checks passed

@@ -1,29 +1,65 @@
-% The components of the stress-energy tensor in one observer's frame.
+% The components of the stress-energy tensor in one observer's frame. The
+% figure carries its own reading rule: each row is what is carried (energy,
+% or one component of momentum), each column is where it goes (stored in
+% place, or flowing along x, y or z), and every cell holds its symbol.
 \documentclass[tikz,border=1pt]{standalone}
 \input{figpreamble}
 \begin{document}
-\begin{tikzpicture}[x=27pt, y=27pt,
+\begin{tikzpicture}[x=1pt, y=1pt,
   cell/.style={rounded corners=2pt, draw=white, line width=1.2pt},
-  key/.style={rounded corners=1.5pt, minimum width=9pt, minimum height=9pt, inner sep=0pt},
+  sym/.style={font=\small, text=black!88},
+  idx/.style={font=\small},
+  hdr/.style={font=\sffamily\scriptsize, text=black!72, align=center,
+    inner sep=0.5pt, anchor=south},
+  rowlbl/.style={font=\sffamily\scriptsize, text=black!72, anchor=east,
+    inner sep=0.5pt},
+  axttl/.style={font=\sffamily\scriptsize\bfseries, text=segray},
+  key/.style={rounded corners=1.5pt, minimum width=8pt, minimum height=8pt,
+    inner sep=0pt},
+  keylbl/.style={font=\sffamily\scriptsize, text=black!85, anchor=west,
+    inner sep=0.5pt},
 ]
+\def\cw{34}\def\ch{21}
+% Cells, coloured by kind.
 \foreach \i in {0,...,3} \foreach \j in {0,...,3} {
   \ifnum\i=0 \ifnum\j=0 \def\c{seorange!45}\else\def\c{seteal!30}\fi
-  \else\ifnum\j=0 \def\c{seteal!30}\else\ifnum\i=\j \def\c{seblue!40}\else\def\c{seblue!14}\fi\fi\fi
-  \fill[cell, fill=\c] (\j,-\i) rectangle ++(1,-1);
+  \else\ifnum\j=0 \def\c{seteal!30}\else\ifnum\i=\j \def\c{seblue!40}%
+  \else\def\c{seblue!14}\fi\fi\fi
+  \fill[cell, fill=\c] (\j*\cw,-\i*\ch) rectangle ++(\cw,-\ch);
 }
-\foreach \l [count=\k from 0] in {t,x,y,z} {
-  \node[font=\small] at (\k+0.5,0.28) {$\l$};
-  \node[font=\small] at (-0.28,-\k-0.5) {$\l$};
+% Every component, by name.
+\foreach \row [count=\i from 0] in {
+    {\rho,S_x,S_y,S_z},
+    {S_x,p_x,\sigma_{xy},\sigma_{xz}},
+    {S_y,\sigma_{yx},p_y,\sigma_{yz}},
+    {S_z,\sigma_{zx},\sigma_{zy},p_z}} {
+  \foreach \e [count=\j from 0] in \row {
+    \node[sym] at (\j*\cw+0.5*\cw, -\i*\ch-0.5*\ch) {$\e$};
+  }
 }
-\node[font=\small] at (0.5,-0.5) {$\rho$};
-\node[font=\small, text=black!80] at (1.5,-1.5) {$p$};
-\node[font=\small, text=black!70] at (2.5,-1.5) {$\sigma$};
-% key
-\begin{scope}[shift={(4.55,-0.35)}, every node/.style={font=\sffamily\footnotesize, anchor=west, text=black!85}]
-  \node[key, fill=seorange!45] at (0,0) {}; \node at (0.25,0) {energy density $T^{tt}$};
-  \node[key, fill=seteal!30] at (0,-0.75) {}; \node[align=left] at (0.25,-0.9) {energy flux $T^{ti}$, equal to\\momentum density $T^{it}$};
-  \node[key, fill=seblue!40] at (0,-1.75) {}; \node at (0.25,-1.75) {pressures $p$: $T^{xx}, T^{yy}, T^{zz}$};
-  \node[key, fill=seblue!14] at (0,-2.5) {}; \node at (0.25,-2.5) {shear stresses $\sigma$: $T^{ij}$, $i \ne j$};
+% Second index: where it goes.
+\foreach \l [count=\j from 0] in {t,x,y,z}
+  \node[idx] at (\j*\cw+0.5*\cw, 7) {$\l$};
+\node[hdr] at (0.5*\cw, 14) {stored\strut\\here\strut};
+\foreach \l [count=\j from 1] in {x,y,z}
+  \node[hdr] at (\j*\cw+0.5*\cw, 14) {flowing\strut\\along $\l$\strut};
+\node[axttl] at (2*\cw, 42) {second index: where it goes};
+% First index: what is carried.
+\foreach \l [count=\i from 0] in {t,x,y,z}
+  \node[idx] at (-7, -\i*\ch-0.5*\ch) {$\l$};
+\foreach \w [count=\i from 0] in {energy,$x$-momentum,$y$-momentum,$z$-momentum}
+  \node[rowlbl] at (-15, -\i*\ch-0.5*\ch) {\w};
+\node[axttl, rotate=90] at (-66, -2*\ch) {first index: what is carried};
+% Key.
+\begin{scope}[shift={(-58,-4*\ch-15)}]
+  \node[key, fill=seorange!45] at (4,0) {};
+  \node[keylbl] at (11,0) {energy density $\rho$};
+  \node[key, fill=seteal!30] at (4,-12) {};
+  \node[keylbl] at (11,-12) {energy flux $S$, equal to momentum density};
+  \node[key, fill=seblue!40] at (140,0) {};
+  \node[keylbl] at (147,0) {pressure $p$};
+  \node[key, fill=seblue!14] at (140,-12) {};
+  \node[keylbl] at (147,-12) {shear stress $\sigma$};
 \end{scope}
 \end{tikzpicture}
 \end{document}

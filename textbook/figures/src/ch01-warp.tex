@@ -5,7 +5,8 @@
 %   f(r)  = [tanh(s(r+R)) - tanh(s(r-R))] / (2 tanh(s R)),
 %   f'(r) = s [sech^2(s(r+R)) - sech^2(s(r-R))] / (2 tanh(s R)),
 % (a) the expansion of the volume of space, theta = v (x/r) f'(r);
-% (b) the energy density measured by observers at rest in the grid,
+% (b) the energy density measured by observers carried along by the flow of
+%     space (the Eulerian observers, at rest relative to the stars far away),
 %     rho = -(v^2 / 32 pi) (y^2 / r^2) f'(r)^2, shown as -rho / max(-rho).
 % (The sqrt argument is offset slightly: pgf's floating-point sqrt(0) fails.)
 \documentclass[tikz,border=1pt]{standalone}

@@ -25,8 +25,11 @@ bodies and the stretching forces called tides.}{%
 Betelgeuse, the red supergiant at Orion's shoulder, is roughly 550 light-years
 away, and one day it will explode as a supernova. Suppose that, in the frame
 in which the Earth and the star are at rest, it explodes at the very moment you
-read this sentence. Has the explosion happened yet? Could it affect you today?
-Could anything you do today affect it?
+read this sentence. At that moment a ship passes the Earth, heading for
+Betelgeuse at half the speed of light. Much later, working back from what they
+have seen, the crew concludes that the explosion happened 318 years before
+they passed you. Could they have seen it in time to warn you? And how far away
+was the star, by their reckoning, when it exploded?
 \end{thought}
 
 An \emph{event} is a place at an instant: a firecracker going off at a
@@ -84,6 +87,12 @@ events together make up the \emph{causal structure} of spacetime: they tell
 you what can affect what. Every question about faster-than-light travel is, at
 bottom, a question about light cones.
 
+The interval also settles when the order of two events is shared. For a
+timelike or null pair, every observer agrees which came first, since a signal
+could pass from one to the other. For a spacelike pair, observers in relative
+motion can disagree about the order, and none of them is wrong;
+\cref{prob:simultaneity} shows how.
+
 \begin{figure}[tb]
 \centering
 \includegraphics{ch02-light-cone}
@@ -96,22 +105,28 @@ spacelike from $A$: no signal connects them to it.}
 
 \begin{checkpoint}[label=chk:classify]
 Event $B$ happens \SI{3}{\second} after event $A$ and 4~light-seconds away
-from it. Event $C$ happens \SI{5}{\second} after $A$ and 4~light-seconds away.
-Classify the intervals $AB$ and $AC$. Can anything that happens at $A$ affect
-$B$? Can it affect $C$?
+from it. Event $C$ happens \SI{5}{\second} after $A$, at the same place as $B$.
+A probe travels from $A$ to $C$ at constant velocity: how fast does it go, and
+how much time does its clock record? Could any probe be present at both $A$
+and $B$? For an observer who finds $A$ and $B$ simultaneous, how far apart are
+they?
 \end{checkpoint}
 
 \begin{revisited}{Has Betelgeuse exploded?}
-The two events, you reading and the star exploding, are 550 light-years apart
-with no time between them in the Earth's frame, so the interval between them
-is spacelike: $\Delta s^{2} = (\text{550 light-years})^{2} > 0$. The explosion
-lies outside both of your light cones. Nothing you do today can reach the star
-before it explodes, and nothing from the explosion can reach you for 550
-years, when its light arrives. Whether it has \enquote{happened yet} depends on
-who is asking: observers moving relative to the Earth disagree about which of
-the two events came first (\cref{prob:simultaneity}). For events with a
-spacelike interval, the order in time is not the same for everyone, and no
-observer's version is privileged.
+No warning was possible. In the Earth's frame the two events, you reading and
+the star exploding, are 550 light-years apart with no time between them, so
+$\Delta s^{2} = (\text{550 light-years})^{2}$: a spacelike interval. The crew
+must find the same interval. With $\Delta t' = 318$ years,
+$\Delta x'^{2} = 550^{2} + 318^{2}$ in light-years squared, so by their
+reckoning the star was 635 light-years away when it exploded, not the 476 that
+length contraction gives for its distance as they pass you. Its light needs
+635 years to reach them and has had only 318, so it is still some 318
+light-years away when they pass you. The crew places the explosion in the
+past, you place it in the present, and an observer flying away from the star
+would place it in the future (\cref{prob:simultaneity}). For events with a
+spacelike interval the order in time is not the same for everyone, and no
+observer's version is privileged; yet no one can use the difference to send a
+signal.
 \end{revisited}
 
 % ===========================================================================
@@ -119,10 +134,13 @@ observer's version is privileged.
 
 \begin{thought}{The twins}
 Twins say goodbye on Earth. One boards a ship to Proxima Centauri, 4.24
-light-years away, travelling at 80 percent of the speed of light, and returns
-at once at the same speed. On each leg of the trip, each twin measures the
-other's clock running slow, so the situation looks symmetric. When they meet
-again, who is younger, and by how much?
+light-years away, travelling at 80 percent of the speed of light; she turns
+round in a single day and comes straight back at the same speed. On each leg
+of the trip, each twin measures the other's clock running slow, so the
+situation looks symmetric. When they meet again, who is younger, and by how
+much? A common answer blames the turnaround, since only the traveller
+accelerates. If that were right, how would the answer change for a star ten
+times as far away, with the same one-day turnaround?
 \end{thought}
 
 A clock carried along a worldline measures the \emph{proper time} $\tau$ along
@@ -161,14 +179,14 @@ The muon moves at constant speed, so \cref{eq:proper-time-integral} gives
 
 \discussion The trip takes less than one mean lifetime on the muon's clock, so
 about half the muons survive it. Measured in Earth time the trip lasts 23
-lifetimes, and without time dilation only about one muon in ten billion would
-reach the ground. Detectors on the ground see the larger number.
+lifetimes, and without time dilation only about one muon in eight billion
+would reach the ground. Detectors on the ground see the larger number.
 \end{example}
 
 \begin{keyidea}
 Between two events, the straight worldline of a freely moving clock records
-the longest proper time. Every detour, and every acceleration, shortens the
-time a clock records.
+the longest proper time. Every other worldline between the same two events,
+however it bends, records less.
 \end{keyidea}
 
 \begin{checkpoint}[label=chk:zigzag]
@@ -178,15 +196,21 @@ a worldline of \emph{least} proper time?
 \end{checkpoint}
 
 \begin{revisited}{The twins}
-The travelling twin is younger. In the Earth's frame the round trip covers
-8.48 light-years at speed 0.8 and takes 10.6 years; on the traveller's clock
-it takes $0.6 \times 10.6 = 6.36$ years, so the traveller returns 4.2 years
-younger. The trip only looks symmetric. The Earth twin's worldline is
-straight, while the traveller's has a corner at the turnaround
-(\cref{fig:twins}), and between the same two events the straight worldline
-records the longest time. The mutual slowing seen during each leg is resolved
-at the corner, where the traveller's sense of \enquote{now} on Earth jumps
-forward.
+The traveller is younger, by 4.24 years. In the Earth's frame the round trip
+covers 8.48 light-years at speed 0.8 and takes 10.6 years; on her clock it
+takes $0.6 \times 10.6 = 6.36$ years. For a star ten times as far away the gap
+grows tenfold, to 42.4 years, although the turnaround is unchanged: the
+ageing builds up along the whole trip, not at the corner. Between the same
+two events, the traveller's bent worldline is shorter than the Earth twin's
+straight one (\cref{fig:twins}). The symmetry is only apparent, and the twins
+can check it by sending each other a signal every year. Each receives the
+other's signals at a third of the rate they are sent while the two move
+apart, and at three times the rate while they approach. The traveller
+switches from one to the other at her turnaround, halfway through her trip,
+and receives $1.06 + 9.54 = 10.6$ years' worth of Earth's signals. The Earth
+twin receives slow signals until the light from the turnaround arrives, 9.54
+years after the start, and fast ones only for the last 1.06 years:
+$3.18 + 3.18 = 6.36$ years' worth.
 \end{revisited}
 
 \begin{figure}[tb]
@@ -201,15 +225,13 @@ the bent worldline of the traveller collects 6.36.}
 % ===========================================================================
 \section{The metric: measuring with any grid}\label{sec:metric}
 
-\begin{thought}{A sliding grid}
-Surveyors usually paint their grids on solid ground. Imagine instead a grid of
-lines projected onto a very long wall and made to slide along it at half the
-speed of light, with time kept by clocks fixed to the wall. The lines are only
-a pattern of light, nothing that travels along the wall, so they can slide at
-any speed at all. Counted in grid squares per unit time, light moving against
-the grid's motion covers one and a half squares. Has anything gone faster than
-light? And if the grid slid at twice the speed of light, could light ever make
-progress across the grid in the direction the grid moves?
+\begin{thought}{A current faster than light}
+In \cref{ch:what-is}, a radio command sent forward inside a warp bubble
+stalled in the bubble's wall, where space streamed backward past the ship at
+the speed of light. Suppose instead that space streams past a grid of
+coordinates at twice the speed of light, at the same rate everywhere. Two
+probes drift with the stream, one light-second apart, and the downstream probe
+radios the upstream one. Does the message ever arrive?
 \end{thought}
 
 \Cref{eq:interval} holds for inertial observers using Cartesian coordinates. We
@@ -278,8 +300,10 @@ only a matter of labels.
 
 The form \cref{eq:flow-metric} gives us a picture that runs through this book:
 space \emph{flowing} past a grid of coordinates. Observers carried along by the
-flow feel no force. The flow speed can take any value, and where it varies from
-place to place the geometry is genuinely curved.
+flow feel no force. The flow speed can take any value. Where it varies from
+place to place the geometry may be genuinely curved, though not always: a flow
+that rotates rigidly, for instance, is still flat spacetime in rotating
+coordinates, and only a calculation of curvature settles the question.
 
 The tangent to a worldline, measured per unit proper time, is the
 \emph{four-velocity} $u^{\mu} = \dd x^{\mu}/\dd\tau$. Dividing \cref{eq:metric}
@@ -300,30 +324,33 @@ coordinate time $t$ advances by ten years? Compare with the time dilation of a
 clock moving at speed $0.6$.
 \end{checkpoint}
 
-\begin{revisited}{A sliding grid}
-The grid is \cref{eq:flow-metric} with $v_{0} = 0.5$: light crosses the squares
-at $v_{0} + 1 = 1.5$ against the grid's motion and $v_{0} - 1 = -0.5$ with it.
-Nothing has broken the speed limit. These numbers say how fast light passes the
-lines, and the lines are a pattern, not objects racing the light; anything
-moving beside a light signal is still outrun by it. With $v_{0} = 2$ both
-speeds, $3$ and $1$, are positive, so no light makes progress in the grid's
-direction. Nothing material can keep pace with a line, either: a clock held at
-fixed $x$ would have $\dd s^{2} = (v_{0}^{2} - 1)\,\dd t^{2} > 0$, a spacelike
-path. Keep this in mind for the river of space, two topics ahead.
+\begin{revisited}{A current faster than light}
+It arrives after one second, exactly as if there were no stream at all. A
+stream that is the same everywhere is flat spacetime described with sliding
+coordinates: it is \cref{eq:flow-metric} with $v_{0} = 2$, and in the
+coordinates $x' = x - v_{0}t$ of \cref{ex:flow} the metric is Minkowski and
+both probes sit at rest. In the grid coordinates the numbers look alarming.
+The probes move at $\dd x/\dd t = 2$, and the message, sent upstream, moves at
+$v_{0} - 1 = +1$, carried downstream by the stream; yet the upstream probe
+gains on it and meets it one second later. What stalled the command in the
+warp bubble is something no change of coordinates removes: a stream that
+changes, across the wall, from nothing to faster than light. A horizon needs
+flow that reaches the speed of light next to slower flow, where an observer
+can hold position against it, as in the river of space two topics ahead.
 \end{revisited}
 
 % ===========================================================================
 \section{Clocks in a gravitational field}\label{sec:clocks}
 
 \begin{thought}{Light climbing a tower}
-A laser at the foot of a tower shines a steady beam up to a detector at the
-top. Light carries energy, and energy has weight, so the light should lose a
-little energy as it climbs, and the detector should find a slightly lower
-frequency than the laser emits. (If it did not, you could lift a stone for
-free: turn it into light at the bottom, send the light up, and turn it back
-into a stone at the top.) Yet the beam is steady. Every crest that leaves the
-laser reaches the detector, and none pile up in between. How can fewer crests
-per second arrive at the top than leave the bottom?
+\Cref{ch:what-is} told you that a clock at the top of a tower runs fast
+compared with one at its foot, by the fraction $gh/c^{2}$. A laser at the foot
+shines a steady beam up to a detector at the top. Each photon carries the
+energy $E = hf$, where $f$ is the light's frequency and $h$ is Planck's
+constant, and energy has weight, so each photon loses the fraction $gh/c^{2}$
+of its energy on the way up. Someone reasons that the detector must find the
+frequency lower by $2gh/c^{2}$ in all: once because the light arrives with
+less energy, and again because the detector's clock runs fast. Is that right?
 \end{thought}
 
 In curved spacetime no choice of coordinates puts the metric into the
@@ -375,7 +402,7 @@ to within ten percent. Today's optical clocks detect the change in rate when
 one of them is raised by just \SI{33}{\centi\metre}, a shift of four parts in
 $10^{17}$.
 
-\begin{example}[label=ex:gps]{Clocks on the ground and in orbit}
+\begin{example}[label=ex:gps, unbreakable]{Clocks on the ground and in orbit}
 Navigation satellites orbit at a radius
 $r_{\mathrm{sat}} = \SI{26560}{\kilo\metre}$. Take
 $GM = \SI{3.986e14}{\metre\cubed\per\second\squared}$ and
@@ -424,33 +451,33 @@ black hole. The metric \cref{eq:schwarzschild} also misbehaves there, where
 $g_{rr}$ becomes infinite, but that part is an artefact of the labels, as the
 next topic shows.
 
-\begin{checkpoint}[label=chk:everest]
-One twin spends 80 years living at the summit of Mount Everest,
-\SI{8.85}{\kilo\metre} above sea level, and the other spends the same 80 years
-at sea level. Neither travels. When they meet, who is older, and by how much?
+\begin{checkpoint}[label=chk:earth-centre]
+A clock sits in a small cavity at the centre of the Earth. It feels no pull at
+all, just like a clock far out in space. Does it keep the same rate as the
+distant clock? Is it faster or slower than a clock on the Earth's surface?
 \end{checkpoint}
 
 \begin{revisited}{Light climbing a tower}
-No crests go missing; the two ends of the tower disagree about what a second
-is. The geometry does not change with time, so crests reach the top exactly as
-often as they leave the bottom, counted in the coordinate time $t$. The clock
-at the top runs faster than the clock at the bottom, by the fraction
-$gh/c^{2}$, so it counts a longer time between crests and reports a lower
-frequency. The loss of energy that the thought experiment demands and the
-difference in clock rates are one effect seen two ways. Energy conservation
-alone therefore forces gravity to act on time: if clocks at different heights
-ticked at the same rate, light could not lose energy as it climbs.
+No: the frequency is lower by $gh/c^{2}$, once. The geometry does not change
+with time, so crests reach the top exactly as often as they leave the bottom,
+counted in the coordinate time $t$. The only difference between the two ends
+is the rate of their clocks. The top clock runs faster, so it counts a longer
+time between crests and reports a frequency lower by $gh/c^{2}$, and with
+$E = hf$ that lower frequency \emph{is} the lost energy. The energy loss and
+the fast clock are one effect described twice, and adding them counts it
+twice. Pound and Rebka measured $1.05 \pm 0.10$ times the prediction, which
+rules out the doubled value.
 \end{revisited}
 
 % ===========================================================================
 \section{Space as a flowing river}\label{sec:river}
 
-\begin{thought}{The fish and the waterfall}
-A fish can swim at one metre per second through still water. It is caught in a
-river that flows toward a waterfall, faster and faster as it nears the edge.
-Somewhere upstream of the edge is a point of no return: once past it, the fish
-can never swim back upstream, however hard it tries. Where is it? Now replace
-the fish by a flash of light, and the river by space itself.
+\begin{thought}{Standing still in the river}
+A probe hangs on a long cable at twice the horizon radius of a black hole,
+$r = 2r_{\mathrm{s}}$. Its clock runs at $\sqrt{1 - r_{\mathrm{s}}/r} = 0.71$ of
+the rate of clocks far away. A second probe, dropped from rest far away, falls
+past it at 71~percent of the speed of light. Moving clocks run slow; but which
+of these two probes is moving? Is it a coincidence that the two numbers match?
 \end{thought}
 
 Introduce a new time coordinate $T$: the time on the clocks of observers who
@@ -470,9 +497,13 @@ light obeys $\dd s^{2} = 0$, which gives
   \label{eq:river-light}
 \end{equation}
 light always moves at speed 1 relative to the space around it, and the space
-carries it inward. This picture, developed by Andrew Hamilton and Jason Lisle
-as the \emph{river model} of black holes, will be our main intuition for
-geometries whose space flows.
+carries it inward. Like a fish in a river that runs ever faster toward a
+waterfall, outgoing light makes headway only where the flow is slower than its
+own speed. At $r = r_{\mathrm{s}}$ the flow reaches the speed of light, and
+inside that sphere even outgoing light is swept inward: the sphere is the
+horizon. This picture, developed by Andrew Hamilton and Jason Lisle as the
+\emph{river model} of black holes, will be our main intuition for geometries
+whose space flows.
 
 \begin{figure}[tb]
 \centering
@@ -503,7 +534,7 @@ speed.
 \end{example}
 
 \begin{history}{dark stars}
-In 1783 John Michell read a paper to the Royal Society asking what gravity
+In a paper read to the Royal Society in 1783, John Michell asked what gravity
 does to light leaving a star. Treating light as particles obeying Newton's
 laws, he found that a star with the Sun's density and 500 times its radius
 would have an escape speed greater than the speed of light, so its light
@@ -513,17 +544,19 @@ $c$ is $2GM/c^{2}$, the same radius at which general relativity places the
 horizon.
 \end{history}
 
-\begin{revisited}{The fish and the waterfall}
-The point of no return is where the river flows at exactly the fish's top
-speed. Upstream of it the fish can make headway; downstream, even swimming
-flat out, it is carried toward the edge. For light in the river of space the
-swimming speed is the speed of light and the flow speed is
-$\sqrt{r_{\mathrm{s}}/r}$, so by \cref{eq:river-light} the point of no return is
-where $\sqrt{r_{\mathrm{s}}/r} = 1$, at $r = r_{\mathrm{s}}$: the event horizon.
-Outgoing light just inside it is swept inward, like the fish. This is also the
-fate of the radio command in \cref{ch:what-is}: in the front wall of a warp
-bubble, space streams backward past the bubble, and the command stalls where
-that stream reaches the speed of light.
+\begin{revisited}{Standing still in the river}
+It is no coincidence: in the river picture the hanging probe is the one that
+moves. Space flows inward past it at $\sqrt{r_{\mathrm{s}}/r}$, which is 0.71 at
+$r = 2r_{\mathrm{s}}$, while the falling probe drifts with the flow, at rest
+relative to the space around it, and its clock keeps pace with clocks far
+away. By \cref{eq:river}, a clock held at fixed $r$, with $\dd r = 0$, records
+$\dd\tau = \sqrt{1 - r_{\mathrm{s}}/r}\,\dd T$: exactly the time dilation of a
+clock moving at $\sqrt{r_{\mathrm{s}}/r}$ through the local space. The
+gravitational slowing of a hanging clock is its motion upstream through
+flowing space. At the Earth's surface, where the river flows at the escape
+speed (\cref{ex:earth-river}), it is the 60 microseconds a day by which
+ground clocks lag clocks far away. At the horizon the flow reaches the speed
+of light, and no probe can hang there at all.
 \end{revisited}
 
 % ===========================================================================
@@ -542,10 +575,11 @@ The key idea of \topicref{sec:proper-time} becomes, in general relativity, the
 law of motion for anything on which no force other than gravity acts.
 
 \begin{keyidea}[free fall]
-A freely falling body follows a \emph{geodesic} of spacetime: a worldline
-whose proper time is greater than that of any nearby worldline between the
-same two events. Gravity is not a force that deflects it; it is the curvature
-that bends what \enquote{straight} means.
+A freely falling body follows a \emph{geodesic} of spacetime: a worldline that
+makes the proper time stationary, and that, over any short enough stretch,
+records more time than every nearby worldline between the same events.
+Gravity is not a force that deflects it; it is the curvature that bends what
+\enquote{straight} means.
 \end{keyidea}
 
 Making the proper time stationary leads, after a calculation you can do in
@@ -568,7 +602,7 @@ the inverse of the matrix $g_{\mu\nu}$. In flat spacetime with Cartesian
 coordinates every $\Gamma$ vanishes, and \cref{eq:geodesic} says that free
 bodies move in straight lines at constant speed.
 
-\begin{example}[label=ex:newton]{Newton's law of gravity from geometry}
+\begin{example}[label=ex:newton, unbreakable]{Newton's law of gravity from geometry}
 Show that for a slowly moving body in the weak-field metric
 \cref{eq:weak-field}, with a potential that does not change in time, the
 geodesic equation reduces to Newton's law $\dd^{2}x^{i}/\dd t^{2} = -\partial_{i}\Phi$.
@@ -593,8 +627,9 @@ space, is itself a gravitational field.
 \begin{revisited}{The thrown ball}
 The ball's clock records more. Between the throw and the catch the ball falls
 freely, so its worldline is a geodesic; your hand, held up by your arm,
-follows a different worldline between the same two events. Of all worldlines
-joining the two events, the geodesic records the most time. By
+follows a different worldline between the same two events. In the nearly
+uniform field near the ground, the geodesic records more time than every other
+worldline joining the two events. By
 \cref{eq:clock-rate} the ball's clock gains $\int (gh - \tfrac{1}{2}v^{2})\,\dd t/c^{2}$
 over your watch, and for the actual path this comes to $v_{0}^{3}/(3gc^{2})$,
 about \SI{3.6e-16}{\second} for a two-second throw
@@ -610,15 +645,17 @@ picks out the path of greatest proper time.
 \begin{thought}{The windowless capsule}
 Astronauts in a sealed, windowless capsule float weightless. They might be
 drifting in deep space, far from any star, or orbiting the Earth, which is
-also free fall. Is there any experiment they can do inside the capsule to tell
-which?
+also free fall. Is there any experiment they can do with loose objects inside
+the capsule to tell which?
 \end{thought}
 
 A single freely falling observer feels nothing: in a small enough laboratory,
 free fall cannot be told apart from floating in empty space. This is the
-\emph{equivalence principle}, and it is why the metric can always be made to
-look like Minkowski at any one event by a suitable choice of coordinates.
-Gravity reveals itself when you compare \emph{nearby} free-fall paths.
+\emph{equivalence principle}, and it is the physical reason gravity can be
+described as geometry at all. Its mathematical counterpart holds for any
+metric: at any one event, coordinates can be chosen that make the metric look
+like Minkowski's. Gravity reveals itself when you compare \emph{nearby}
+free-fall paths.
 
 Drop two balls side by side above the Earth. Both fall toward the Earth's
 centre, so their paths converge and the balls drift together. Drop two balls
@@ -702,11 +739,11 @@ same material in coordinate-free form.
 \end{deeper}
 
 \begin{revisited}{The windowless capsule}
-Yes: they can look for tides. Near the Earth, balls released a few metres apart
-one above the other drift apart, and balls side by side drift together, with
-relative accelerations of a few millionths of a metre per second squared for
-every metre of separation. In a minute, two balls released ten metres apart
-drift apart by a few centimetres. In deep space the balls stay where they were
+Yes: they can look for tides. Near the Earth, two balls released a few metres
+apart, one above the other, drift apart, with a relative acceleration of a few
+millionths of a metre per second squared for every metre of separation. In a
+minute, two balls released ten metres apart drift apart by a few
+centimetres. In deep space the balls stay where they were
 put. The relative acceleration is curvature, and no choice of frame removes
 it. The equivalence principle holds only in a laboratory small enough, and an
 experiment short enough, for tides to go unnoticed.
@@ -721,8 +758,9 @@ experiment short enough, for tides to go unnoticed.
   and light cones divide spacetime into what an event can and cannot
   influence.
 \item A clock measures proper time $\tau = \int\sqrt{-\dd s^{2}}$ along its
-  worldline. Between two events, the free-fall worldline records the most
-  proper time.
+  worldline. In flat spacetime the straight worldline between two events
+  records the most proper time; in curved spacetime a free-fall worldline
+  records more than every nearby worldline over any short enough stretch.
 \item The metric $g_{\mu\nu}$ gives the interval between neighbouring events in
   any coordinates. Effects of the coordinates can be dramatic, as in flowing
   coordinates, where light's coordinate speed differs from 1.
@@ -732,7 +770,8 @@ experiment short enough, for tides to go unnoticed.
   clock held at rest falls to zero at the horizon.
 \item The Schwarzschild geometry can be pictured as space flowing inward at the
   Newtonian escape speed; the horizon is where the flow reaches the speed of
-  light.
+  light. A clock held at rest is slowed by its motion upstream through the
+  flow.
 \item Free bodies follow geodesics, and the variation of clock rates from place
   to place acts as a gravitational field. The Riemann tensor measures tides,
   the true signature of curvature; the Ricci and Einstein tensors are built
@@ -740,14 +779,19 @@ experiment short enough, for tides to go unnoticed.
 \end{chaptersummary}
 
 \begin{checkanswers}
-\item[\ref{chk:classify}] $AB$: $\Delta s^{2} = -9 + 16 = +7$, spacelike, so
-  nothing at $A$ can affect $B$. $AC$: $\Delta s^{2} = -25 + 16 = -9$, timelike,
-  so a signal slower than light can carry an influence from $A$ to $C$.
+\item[\ref{chk:classify}] The probe covers 4 light-seconds in 5 seconds, at
+  speed 0.8. Its clock records $\sqrt{5^{2} - 4^{2}} = 3$ seconds, since the
+  interval $AC$ is timelike, $\Delta s^{2} = -25 + 16 = -9$. The interval $AB$
+  is spacelike, $\Delta s^{2} = -9 + 16 = +7$, so no probe can be present at
+  both. An observer who finds $A$ and $B$ simultaneous has $\Delta t' = 0$, and
+  the invariance of the interval gives $\Delta x'^{2} = 7$: the events are
+  $\sqrt{7} \approx 2.65$ light-seconds apart for that observer.
 \item[\ref{chk:zigzag}] Zigzag back and forth at nearly the speed of light. On
   each leg $\dd\tau = \sqrt{1 - v^{2}}\,\dd t$, which approaches zero as $v \to 1$,
   so the total can be made as small as you like: at $v = 0.99$ the clock
-  records 1.4 of the ten years. There is no worldline of least proper time,
-  only one of greatest: the straight one, which records all ten years.
+  records 1.4 of the ten years. The limit, zero, belongs to light, which
+  carries no clock. There is no worldline of least proper time, only one of
+  greatest: the straight one, which records all ten years.
 \item[\ref{chk:grid-clock}] With $\dd x = 0$,
   $\dd s^{2} = -(1 - v_{0}^{2})\,\dd t^{2} = -0.64\,\dd t^{2}$, so
   $\dd\tau = 0.8\,\dd t$: eight years. The grid point moves at speed 0.6 past
@@ -755,10 +799,14 @@ experiment short enough, for tides to go unnoticed.
   $10\sqrt{1 - 0.6^{2}} = 8$ is exactly the time dilation of a clock moving at
   that speed. The metric has done the calculation of special relativity for
   us.
-\item[\ref{chk:everest}] The twin on the summit, where clocks run faster, by the
-  fraction $gh/c^{2} = 9.8 \times 8850/(3.0\times10^{8})^{2} \approx
-  9.6\times10^{-13}$. Over 80 years, about \SI{2.5e9}{\second}, that adds up
-  to \SI{2.4}{\milli\second}.
+\item[\ref{chk:earth-centre}] Neither: the rate follows the potential $\Phi$,
+  not the pull. Going down from the surface, the pull still points toward the
+  centre, so $\Phi$ keeps falling all the way down. The centre is the bottom of
+  the potential, and its clock is the slowest of the three. For an Earth of
+  uniform density, $\Phi$ at the centre is 1.5 times its value at the surface,
+  so the centre clock runs slow compared with a surface clock by
+  $0.5\,GM/(c^{2}R) \approx 3.5\times10^{-10}$, about 11 milliseconds a year.
+  The real Earth, denser toward its centre, gives somewhat more.
 \item[\ref{chk:tidal-volume}] Neither. The volume's acceleration, as a
   fraction of the volume, is the sum of the relative accelerations per unit
   length along three perpendicular directions:
@@ -772,12 +820,11 @@ experiment short enough, for tides to go unnoticed.
 \item \diff{1} Two events are separated by $\Delta t = \SI{2}{\second}$ and
   $\Delta x = 1.5$~light-seconds. Find the interval and classify it. What proper
   time does a clock record if it travels between them at constant velocity?
-\item \diff{2}\label{prob:simultaneity} \textbf{Whose now?} An observer flies
-  past the Earth toward Betelgeuse at speed 0.5. Using the Lorentz
-  transformation $t' = \gamma(t - vx)$, find how long before or after your
-  reading of the thought experiment's sentence the explosion happens for that
-  observer. What would an observer flying away from Betelgeuse at the same
-  speed say?
+\item \diff{2}\label{prob:simultaneity} \textbf{Whose now?} The crew of the ship
+  in the Betelgeuse thought experiment flies past the Earth toward the star at
+  speed 0.5. Using the Lorentz transformation $t' = \gamma(t - vx)$, show that
+  for the crew the explosion happened about 318 years before they passed you.
+  What would an observer flying away from Betelgeuse at the same speed say?
 \item \diff{1} A clock travels at $v = 0.99$ for one year of Earth time. How much
   time does it record?
 \item \diff{2} \textbf{Accelerating twin.} Repeat the twins' trip with a more
@@ -812,14 +859,17 @@ experiment short enough, for tides to go unnoticed.
   $v_{0}^{3}/(3gc^{2})$ over a clock held at the height of the hand. Then show that
   any other path $h(t)$ with the same endpoints gains less.
 \item \diff{3}\label{prob:orbit-paradox} \textbf{The orbit paradox.} An
-  astronaut in a circular orbit of radius $r$ passes a second astronaut who
-  hovers at the same height on rocket power, and they meet again one orbit
-  later. Using \cref{eq:clock-rate}, show that the hovering astronaut, who is
-  not in free fall, records more time, by the fraction $GM/(2rc^{2})$. Find the
+  astronaut in a circular orbit of radius $r$ passes a colleague standing on
+  top of a tower of the same height, and they meet again one orbit later.
+  Using \cref{eq:clock-rate}, show that the colleague on the tower, who is not
+  in free fall, records more time, by the fraction $GM/(2rc^{2})$, and find the
   difference over one orbit at the height of the space station,
-  $r = \SI{6790}{\kilo\metre}$. Why does this not contradict the key idea of
-  \topicref{sec:geodesics}? Describe a third worldline, also in free fall, that
-  joins the same two events and records more time than either.
+  $r = \SI{6790}{\kilo\metre}$. Then resolve the paradox. (a)~Show that two
+  circular orbits of the same radius, tilted slightly with respect to each
+  other, cross again after half an orbit, so that a full orbit is longer than
+  the \enquote{short enough stretch} of the key idea of
+  \topicref{sec:geodesics}. (b)~Describe a third worldline, also in free fall,
+  that joins the same two events and records more time than either.
 \item \diff{2} \textbf{The river.} Show that \cref{eq:river} turns into
   \cref{eq:schwarzschild} under the change of time coordinate
   $\dd T = \dd t + \frac{\sqrt{r_{\mathrm{s}}/r}}{1 - r_{\mathrm{s}}/r}\,\dd r$.

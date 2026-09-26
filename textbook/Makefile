@@ -23,5 +23,6 @@ checks:
 	$(NICE) python3 checks/ch02_ch03_examples.py | tee checks/ch02_ch03_examples.log
 	$(NICE) python3 checks/rev1_quoted_numbers.py | tee checks/rev1_quoted_numbers.log
 	$(NICE) python3 checks/rev2_teaching_devices.py | tee checks/rev2_teaching_devices.log
+	$(NICE) python3 checks/rev3_redesigns.py | tee checks/rev3_redesigns.log
 clean:
 	$(LATEXMK) -c main.tex; $(LATEXMK) -c -jobname=chapter main.tex; find . -name '*.aux' -delete; rm -rf figures/build

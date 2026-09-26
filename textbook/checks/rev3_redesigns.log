@@ -1,0 +1,88 @@
+
+== Chapter 1: How stiff is the sheet? (stress per strain)
+ok  stress to strain steel by 1e-9 (Pa): computed 200, text 200
+ok  that stress as a fraction of an atmosphere (1/500): computed 0.00197385, text 0.002
+ok  steel is about 1e5 times stiffer than rubber: computed 100000, text 100000
+ok  stiffness of spacetime on the scale of 1 m, c^4/(8 pi G) (Pa): computed 4.81567e+42, text 5e+42
+ok  more than thirty orders beyond the strongest materials
+    log10(stiffness / strongest strength) = 31.57
+ok  stress for a strain of 1e-9 across 1 m (Pa): computed 4.81567e+33, text 5e+33
+ok  more than 1e31 times the stress steel needs for the same strain
+    ratio to steel = 2.41e+31
+ok  the comparison with steel does not depend on the size of the strain
+    GW170817 pressure at twice nuclear density: 1.8e+33 to 6.2e+33 Pa (median 3.5e+33)
+ok  5e33 Pa lies inside the GW170817 range at twice nuclear density
+ok  exact demand at the centre of the bump is -2 eps/(8 pi L^2): the rule to within a factor 2
+
+== Chapter 1: Denting time in the laboratory (osmium ball)
+ok  mass of a 1 m osmium ball (kg), 'about twelve tonnes': computed 11828.1, text 12000
+ok  mass per unit radius (kg/m): computed 23656.2, text 24000
+ok  slowing at the surface: computed 1.75667e-23, text 2e-23
+    clock 10 m away is slowed by 5.0% of the surface value
+ok  the far clock's slowing is only a few percent of the surface value
+    difference 1.67e-23; best clocks 1e-18; factor 5.99e+04
+ok  difference is tens of thousands of times below 1e-18
+ok  diameter of an osmium ball denting time by 1e-18 (m): computed 238.592, text 240
+ok  its mass in tonnes (160 million): computed 1.6065e+08, text 1.6e+08
+
+== Chapter 1: other corrected numbers
+ok  stress to curve spacetime with radius of curvature 1 m, c^4/(8 pi G) (Pa): computed 4.81567e+42, text 5e+42
+ok  airliner speed effect v^2/2c^2 at 250 m/s: computed 3.47703e-13, text 3.5e-13
+ok  height effect gh/c^2 at 11 km: computed 1.19944e-12, text 1.2e-12
+ok  space station speed (km/s): computed 7.66129, text 7.7
+ok  white dwarf 0.6 Msun, 7000 km: GM/(c^2 R): computed 0.000126567, text 0.00013
+ok  warp round trip of 20 ly at 5c (years): computed 4, text 4
+ok  coasting round trip at 0.99c, home (years): computed 20.202, text 20.2
+ok  coasting round trip, crew (years): computed 2.84985, text 2.85
+ok  orders of magnitude between 5e42 and the 1 um gap: computed 46.0621, text 46
+ok  plate gap giving 5e42 J/m^3 (m): computed 3.05122e-18, text 3e-18
+ok  times smaller than a proton (radius 0.84 fm): computed 275.3, text 275
+ok  gap at which the Casimir pressure is one atmosphere (nm): computed 10.6431, text 11
+ok  robots at 0.9c to 10 ly (years): computed 11.1111, text 11.1
+
+== Chapter 2: Betelgeuse and the passing ship
+ok  crew's time of the explosion (years before passing): computed 317.543, text 318
+ok  distance by the crew's reckoning (ly): computed 635.085, text 635
+ok  contracted distance as they pass (ly): computed 476.314, text 476
+ok  light still on its way when they pass (ly): computed 317.543, text 318
+
+== Chapter 2: the twins' signals
+ok  Doppler factor at 0.8: computed 3, text 3
+ok  traveller receives, outbound (Earth years): computed 1.06, text 1.06
+ok  traveller receives, inbound (Earth years): computed 9.54, text 9.54
+ok  light from the turnaround reaches Earth (years): computed 9.54, text 9.54
+ok  gap for a star ten times farther (years): computed 42.4, text 42.4
+
+== Chapter 2: checks and river
+ok  probe A to C: speed: computed 0.8, text 0.8
+ok  probe A to C: proper time (s): computed 3, text 3
+ok  distance of A and B for an observer who finds them simultaneous (ls): computed 2.64575, text 2.65
+ok  centre clock slow compared with the surface (uniform Earth): computed 3.48064e-10, text 3.5e-10
+ok  per year (ms): computed 10.9849, text 11
+ok  hanging clock at 2 r_s: sqrt(1 - 1/2): computed 0.707107, text 0.71
+ok  ground clock lag from the river at the escape speed (us/day): computed 60.1454, text 60
+ok  Pound-Rebka: sigma by which 1.05 +- 0.10 excludes 2: computed 9.5, text 9.5
+
+== Chapter 3: a drop and a lake
+ok  Earth's pull over the pull at a 1 cm drop's surface: computed 3.50909e+09, text 3.5e+09
+ok  Vddot/V = -4 pi G rho for water (s^-2): computed 8.3868e-07, text 8.4e-07
+ok  pressure correction a few metres down, 3p/(rho c^2): computed 1.66898e-15, text 1.7e-15
+
+== Chapter 3: checks, price and problems
+ok  radius of a water ball that traps its light (m): computed 4.0093e+11, text 4e+11
+ok  same in AU: computed 2.68005, text 2.7
+ok  beyond the orbit of Mars (1.52 AU)
+ok  gamma^2 v^2 at 0.8: computed 1.77778, text 1.77778
+ok  dust seen at 0.8 (multiple of rho): computed 2.77778, text 2.77778
+ok  radiation seen at 0.8: computed 3.37037, text 3.37037
+ok  steel tau/rho at 1e9 Pa: computed 1.41739e-12, text 1.4e-12
+ok  magnetic field: rho + sum p = B^2
+ok  parabolic bump of 1e-9 within 1 m: peak tension (Pa): computed 3.85254e+34, text 4e+34
+ok  shear mass density at beta' = 1/m (kg/m^3), text rounds 1.34e25 to two figures: computed 1.33954e+25, text 1.3e+25
+ok  Sun: (3/5) GM/(R c^2), pressure's share of Mc^2 (uniform star): computed 1.2735e-06, text 1.3e-06
+ok  a bump's alpha'' integrates to zero
+ok  (dx - beta dt): riders unit timelike
+ok  (dx - beta dt): riders see -(beta')^2/(32 pi)
+ok  light along z: T(k,k) = -(beta')^2/(16 pi), k null
+
+all checks passed

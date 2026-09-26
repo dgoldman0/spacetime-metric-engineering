@@ -1,5 +1,15 @@
 # Review of the teaching devices in Chapters 1–3
 
+> **Superseded, 26 September 2026.** The verdicts in this record came from
+> yes-or-no criteria that I answered by assertion. They passed a flawed thought
+> experiment ("How stiff is the sheet?"). Independent reviews then failed 10
+> and marked marginal 13 of the 36 thought experiments and checks
+> (`2026-09-26_independent-review-ch1.md`, `-ch2.md`, `-ch3.md`; decisions in
+> `2026-09-26_reconciliation.md`). The "Verification" section below describes
+> script checks of arithmetic. They say nothing about whether the puzzles
+> teach. The record is kept unchanged below as provenance.
+
+
 26 September 2026, after the two-column draft was committed (ef9ae1f).
 
 The user reviewed the two-column draft and asked for every puzzle, thought
