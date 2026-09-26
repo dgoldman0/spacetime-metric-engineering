@@ -276,12 +276,24 @@ decisions now have test results:
   - Achronal ANEC holds for quantum fields, so the source must be a classical
     field that violates ANEC.
 
-Next (paused for review): the trace anomaly, the rear horizon's flux and the
-mode mixing in the outrun exterior. A source construction
-in the open family follows: a classical scalar with higher-derivative
-kinetic terms that supplies the deficit in the outer falls and the sheath
-rise during each transit, with its perturbations checked on the
-time-dependent background.
+- **Quantum estimates pass.** The [quantum estimates pass](supporting_reports/QUANTUM_ESTIMATES_PASS.md)
+  sizes the response of quantum fields to the trimmed carry.
+  - The photon field's trace anomaly peaks at \(1.33\,\hbar c/L^4\) at 2.1
+    and 6.0 at 10, on the axis at the compartment's lapse boundary. Against
+    the demanded stress that is \((\ell_P/L)^2\) times 0.74 and 1.6. Inside
+    the compartment it vanishes, and the peaks hold through the cone's
+    extension.
+  - The rear horizon is a null disk out to \(r\approx9\), with
+    \(\kappa=7.55\) at 2.1 and 57 at 10. Passengers at the 1× clock read
+    \(\kappa/2\pi\): 2.8 mK and 21 mK at \(L=1\) m.
+  - Exterior mixing stays within a few \(10^{-3}\) per packet at wavelengths
+    0.5–2, the resolution of the flat-space window.
+
+Next: a source construction in the open family, a classical scalar with
+higher-derivative kinetic terms that supplies the deficit in the outer falls
+and the sheath rise during each transit, with its perturbations checked on the
+time-dependent background. The quantum items that remain are the renormalized
+3+1 stress, the far-field mixing and the fields through the transitions.
 
 The C1 finite-module and source-population work pauses at `42e6688`. Its
 static phase-0.745 slice carries zero shift and zero time dependence, so it

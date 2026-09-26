@@ -1,0 +1,878 @@
+{
+ "sigmas": [
+  0.75,
+  3.75,
+  6.75
+ ],
+ "speeds": [
+  2.1,
+  10.0
+ ],
+ "anomaly_fields": {
+  "scalar": [
+   0.002777777777777778,
+   0.008333333333333333
+  ],
+  "weyl_fermion": [
+   0.015277777777777777,
+   0.025
+  ],
+  "maxwell": [
+   0.17222222222222222,
+   0.1
+  ]
+ },
+ "anomaly_steps": {
+  "core": 0.125,
+  "cone": 0.25
+ },
+ "rail_scales_m": [
+  1.0,
+  10.0,
+  100.0,
+  1000.0
+ ],
+ "mixing_packets": {
+  "axis_wavelength_0p5": {
+   "r0": 0.0,
+   "width_zeta": 0.75,
+   "width_r": 0.5,
+   "wavelength": 0.5
+  },
+  "axis_wavelength_1": {
+   "r0": 0.0,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0
+  },
+  "axis_wavelength_2": {
+   "r0": 0.0,
+   "width_zeta": 1.5,
+   "width_r": 1.0,
+   "wavelength": 2.0
+  },
+  "ring_wavelength_1": {
+   "r0": 2.0,
+   "width_zeta": 1.0,
+   "width_r": 0.5,
+   "wavelength": 1.0
+  }
+ },
+ "mixing_grid": {
+  "step": 0.04,
+  "back": -26.0,
+  "ahead": 22.0,
+  "radius": 14.0,
+  "start": 12.0,
+  "end": 15.0,
+  "layers": {
+   "back": 3.0,
+   "front": 2.0,
+   "outer": 2.0,
+   "rate": 6.0
+  }
+ },
+ "trim": {
+  "service": {
+   "plateau_log": 3.0,
+   "shift_width": 1.0
+  },
+  "axial": {
+   "sheath_fall": [
+    8.75,
+    2.0
+   ],
+   "lapse_layer": [
+    8.75,
+    2.0
+   ]
+  },
+  "cone": {
+   "base_radius": 14.0,
+   "flank_speed": 0.5435199947152936
+  }
+ },
+ "anomaly": [
+  {
+   "speed": 2.1,
+   "s": 0.66027,
+   "max_kretschmann": 6364.6420005025875,
+   "max_demand_energy": 1.0175991273015049e-05,
+   "max_demand_component": 1.7865270471073538,
+   "demand_component_content": 1047.4277024629193,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.11049884028884027,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.014772293768060513,
+   "trace_content_scalar": 28.85974732334093,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 0.33149652086652076,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 86.57924141670507,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 1.325986083466083,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 346.31695681373674
+  },
+  {
+   "speed": 2.1,
+   "s": 0.75,
+   "max_kretschmann": 6364.642000502588,
+   "max_demand_energy": 1.7529770456376382e-05,
+   "max_demand_component": 1.7865270471073538,
+   "demand_component_content": 1286.4069960926586,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.11049884028884023,
+   "offset_at_max_scalar": 1.375,
+   "r_at_max_scalar": 0.07411044671050465,
+   "trace_content_scalar": 29.952116147317284,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 0.33149652086652076,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 89.8563474887737,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 1.325986083466085,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 359.4253747042441
+  },
+  {
+   "speed": 2.1,
+   "s": 3.75,
+   "max_kretschmann": 6364.64200050631,
+   "max_demand_energy": 7.011908182550332e-05,
+   "max_demand_component": 1.786527047107822,
+   "demand_component_content": 1286.3834729284306,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.11049884028890605,
+   "offset_at_max_scalar": 1.375,
+   "r_at_max_scalar": 0.014772293768060513,
+   "trace_content_scalar": 29.951974520019725,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 0.33149652086671816,
+   "offset_at_max_weyl_fermion": 1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 89.85591974734649,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 1.3259860834668726,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 359.4236179859833
+  },
+  {
+   "speed": 2.1,
+   "s": 6.75,
+   "max_kretschmann": 6364.642000476754,
+   "max_demand_energy": 1.7529770456376382e-05,
+   "max_demand_component": 1.7865270471041026,
+   "demand_component_content": 1286.406996071098,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.11049884028838372,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.07411044671050465,
+   "trace_content_scalar": 29.952116147366826,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 0.33149652086515113,
+   "offset_at_max_weyl_fermion": 1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 89.85634748892232,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 1.3259860834606045,
+   "offset_at_max_maxwell": 1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 359.4253747048386
+  },
+  {
+   "speed": 2.1,
+   "s": 6.83973,
+   "max_kretschmann": 6364.642000476757,
+   "max_demand_energy": 1.0175991273015049e-05,
+   "max_demand_component": 1.7865270471041033,
+   "demand_component_content": 1047.427702463782,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.11049884028838383,
+   "offset_at_max_scalar": 1.375,
+   "r_at_max_scalar": 0.07411044671050465,
+   "trace_content_scalar": 28.859747323387076,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 0.3314965208651514,
+   "offset_at_max_weyl_fermion": 1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 86.57924141684352,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 1.325986083460605,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 346.3169568142905
+  },
+  {
+   "speed": 10.0,
+   "s": 0.394784,
+   "max_kretschmann": 28614.3869529369,
+   "max_demand_energy": 4.487635429801727e-07,
+   "max_demand_component": 3.674799935995811,
+   "demand_component_content": 2303.905349104592,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.5011820877614162,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.014772293768060513,
+   "trace_content_scalar": 89.0762381829394,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 1.5035462632842485,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 267.2287145244168,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 6.014185053136994,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 1068.914857707244
+  },
+  {
+   "speed": 10.0,
+   "s": 0.75,
+   "max_kretschmann": 28614.386952936868,
+   "max_demand_energy": 1.7529770456376382e-05,
+   "max_demand_component": 3.67479993599581,
+   "demand_component_content": 4761.1534114519345,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.5011820877614158,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.014772293768060513,
+   "trace_content_scalar": 110.40743729386232,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 1.503546263284247,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 331.2223109284088,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 6.01418505313698,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 1324.889228462784
+  },
+  {
+   "speed": 10.0,
+   "s": 3.75,
+   "max_kretschmann": 28614.38695298696,
+   "max_demand_energy": 7.011908182550553e-05,
+   "max_demand_component": 3.674799935998768,
+   "demand_component_content": 4761.12979894946,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.5011820877623082,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.014772293768060513,
+   "trace_content_scalar": 110.4072959055331,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 1.503546263286923,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 331.22188390388703,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 6.0141850531476635,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 1324.887474612152
+  },
+  {
+   "speed": 10.0,
+   "s": 6.75,
+   "max_kretschmann": 28614.386952854744,
+   "max_demand_energy": 1.7529770456376382e-05,
+   "max_demand_component": 3.6747999359909573,
+   "demand_component_content": 4761.153411458156,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.5011820877599636,
+   "offset_at_max_scalar": 1.375,
+   "r_at_max_scalar": 0.16655205304430068,
+   "trace_content_scalar": 110.40743729483461,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 1.5035462632798893,
+   "offset_at_max_weyl_fermion": 1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 331.22231093132564,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 6.014185053119537,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 1324.889228474452
+  },
+  {
+   "speed": 10.0,
+   "s": 7.105216,
+   "max_kretschmann": 28614.386952854755,
+   "max_demand_energy": 4.487635429801727e-07,
+   "max_demand_component": 3.674799935990958,
+   "demand_component_content": 2303.9053491011264,
+   "compartment_abs_trace_scalar": 2.9101013454814863e-29,
+   "max_abs_trace_scalar": 0.5011820877599629,
+   "offset_at_max_scalar": -1.375,
+   "r_at_max_scalar": 0.16655205304430068,
+   "trace_content_scalar": 89.07623818270807,
+   "compartment_abs_trace_weyl_fermion": 1.2367930718296317e-28,
+   "max_abs_trace_weyl_fermion": 1.5035462632798884,
+   "offset_at_max_weyl_fermion": -1.375,
+   "r_at_max_weyl_fermion": 0.16655205304430068,
+   "trace_content_weyl_fermion": 267.22871452372283,
+   "compartment_abs_trace_maxwell": 1.07673749782815e-27,
+   "max_abs_trace_maxwell": 6.0141850531195535,
+   "offset_at_max_maxwell": -1.375,
+   "r_at_max_maxwell": 0.16655205304430068,
+   "trace_content_maxwell": 1068.9148577044682
+  }
+ ],
+ "rear": [
+  {
+   "speed": 2.1,
+   "r": 0.0,
+   "offset": -5.106991225479466,
+   "kappa": 7.554133908869165,
+   "transverse_over_along": 0.0,
+   "temperature": 1.2022777523746289,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.2022777523746289
+  },
+  {
+   "speed": 2.1,
+   "r": 2.0,
+   "offset": -5.106991225479466,
+   "kappa": 7.554133908869165,
+   "transverse_over_along": 0.0,
+   "temperature": 1.2022777523746289,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.2022777523746289
+  },
+  {
+   "speed": 2.1,
+   "r": 4.0,
+   "offset": -5.107022237590727,
+   "kappa": 7.554641562763642,
+   "transverse_over_along": 0.0006105466963612766,
+   "temperature": 1.2023585480013148,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.2023585480013148
+  },
+  {
+   "speed": 2.1,
+   "r": 6.0,
+   "offset": -5.127492960894429,
+   "kappa": 7.890314999423609,
+   "transverse_over_along": 0.017439673610972945,
+   "temperature": 1.2557826347103926,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.2557826347103926
+  },
+  {
+   "speed": 2.1,
+   "r": 8.0,
+   "offset": -5.152419795920937,
+   "kappa": 8.299582494122326,
+   "transverse_over_along": 0.003985304177831977,
+   "temperature": 1.3209195795385296,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.3209195795385296
+  },
+  {
+   "speed": 2.1,
+   "r": 8.5,
+   "offset": -5.153480064269295,
+   "kappa": 8.316982249227944,
+   "transverse_over_along": 0.0004628637479022916,
+   "temperature": 1.3236888365721773,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.3236888365721773
+  },
+  {
+   "speed": 2.1,
+   "r": 9.0,
+   "offset": -5.150457259440495,
+   "kappa": 8.236212148959865,
+   "transverse_over_along": 0.034499624036822406,
+   "temperature": 1.3108338758604843,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.3108338758604843
+  },
+  {
+   "speed": 2.1,
+   "r": 9.5,
+   "offset": -5.08664519228327,
+   "kappa": 6.758091557033108,
+   "transverse_over_along": 0.26209733257844675,
+   "temperature": 1.0755836771694227,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 1.0755836771694227
+  },
+  {
+   "speed": 2.1,
+   "r": 10.0,
+   "offset": -4.748336594857957,
+   "kappa": 2.924828601271745,
+   "transverse_over_along": 1.5949227190942266,
+   "temperature": 0.46550092958895245,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 0.46550092958895245
+  },
+  {
+   "speed": 10.0,
+   "r": 0.0,
+   "offset": -4.866385386551065,
+   "kappa": 57.15830072538175,
+   "transverse_over_along": 0.0,
+   "temperature": 9.097026099177572,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 9.097026099177572
+  },
+  {
+   "speed": 10.0,
+   "r": 2.0,
+   "offset": -4.866385386551065,
+   "kappa": 57.15830072538175,
+   "transverse_over_along": 0.0,
+   "temperature": 9.097026099177572,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 9.097026099177572
+  },
+  {
+   "speed": 10.0,
+   "r": 4.0,
+   "offset": -4.866425082748944,
+   "kappa": 57.16335605776557,
+   "transverse_over_along": 0.0007815139317602207,
+   "temperature": 9.09783068031543,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 9.09783068031543
+  },
+  {
+   "speed": 10.0,
+   "r": 6.0,
+   "offset": -4.892630541024929,
+   "kappa": 60.60961453349556,
+   "transverse_over_along": 0.02232080164937005,
+   "temperature": 9.646319751900199,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 9.646319751900199
+  },
+  {
+   "speed": 10.0,
+   "r": 8.0,
+   "offset": -4.924504609545945,
+   "kappa": 65.09711074976998,
+   "transverse_over_along": 0.00508974809244211,
+   "temperature": 10.36052695682645,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 10.36052695682645
+  },
+  {
+   "speed": 10.0,
+   "r": 8.5,
+   "offset": -4.925858621808377,
+   "kappa": 65.29496276110436,
+   "transverse_over_along": 0.0005910602436605375,
+   "temperature": 10.39201608243099,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 10.39201608243099
+  },
+  {
+   "speed": 10.0,
+   "r": 9.0,
+   "offset": -4.92014177382428,
+   "kappa": 64.37992159899153,
+   "transverse_over_along": 0.06522597834428862,
+   "temperature": 10.246382758348181,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 10.246382758348181
+  },
+  {
+   "speed": 10.0,
+   "r": 9.5,
+   "offset": -4.793815363674152,
+   "kappa": 48.211896873686655,
+   "transverse_over_along": 0.5429522237507459,
+   "temperature": 7.6731617032839265,
+   "compartment_killing_norm": 1.0,
+   "passenger_temperature": 7.6731617032839265
+  }
+ ],
+ "physical": [
+  {
+   "rail_scale_m": 1.0,
+   "speed": 2.1,
+   "demand_stress_peak_Pa": 2.1621542996029465e+44,
+   "demand_stress_content_J": 1.5568812250247372e+47,
+   "rear_kappa_axis": 7.554133908869165,
+   "passenger_temperature_K": 0.0027530772129504646,
+   "blackbody_flux_W_m2": 3.257506596704996e-18,
+   "mixing_power_unit_W": 9.478018818786455e-18,
+   "trace_peak_scalar_J_m3": 3.493450417996606e-27,
+   "trace_content_scalar_J": 9.469441706476165e-25,
+   "peak_ratio_scalar": 1.6157266938063282e-71,
+   "trace_peak_weyl_fermion_J_m3": 1.0480351253989821e-26,
+   "trace_content_weyl_fermion_J": 2.840832481807867e-24,
+   "peak_ratio_weyl_fermion": 4.847180081418986e-71,
+   "trace_peak_maxwell_J_m3": 4.192140501595929e-26,
+   "trace_content_maxwell_J": 1.136332944507174e-23,
+   "peak_ratio_maxwell": 1.9388720325675947e-70
+  },
+  {
+   "rail_scale_m": 1.0,
+   "speed": 10.0,
+   "demand_stress_peak_Pa": 4.4474470703721936e+44,
+   "demand_stress_content_J": 5.762212408885067e+47,
+   "rear_kappa_axis": 57.15830072538175,
+   "passenger_temperature_K": 0.020831139235334934,
+   "blackbody_flux_W_m2": 1.0677358473336781e-14,
+   "mixing_power_unit_W": 9.478018818786455e-18,
+   "trace_peak_scalar_J_m3": 1.5845005878866513e-26,
+   "trace_content_scalar_J": 3.490560687869032e-24,
+   "peak_ratio_scalar": 3.5627193821871592e-71,
+   "trace_peak_weyl_fermion_J_m3": 4.7535017636599485e-26,
+   "trace_content_weyl_fermion_J": 1.0471682033472113e-23,
+   "peak_ratio_weyl_fermion": 1.0688158146561465e-70,
+   "trace_peak_maxwell_J_m3": 1.9014007054639707e-25,
+   "trace_content_maxwell_J": 4.188672765172873e-23,
+   "peak_ratio_maxwell": 4.2752632586245666e-70
+  },
+  {
+   "rail_scale_m": 10.0,
+   "speed": 2.1,
+   "demand_stress_peak_Pa": 2.1621542996029463e+42,
+   "demand_stress_content_J": 1.5568812250247372e+48,
+   "rear_kappa_axis": 7.554133908869165,
+   "passenger_temperature_K": 0.00027530772129504645,
+   "blackbody_flux_W_m2": 3.2575065967049953e-22,
+   "mixing_power_unit_W": 9.478018818786455e-20,
+   "trace_peak_scalar_J_m3": 3.4934504179966063e-31,
+   "trace_content_scalar_J": 9.469441706476165e-26,
+   "peak_ratio_scalar": 1.6157266938063285e-73,
+   "trace_peak_weyl_fermion_J_m3": 1.0480351253989823e-30,
+   "trace_content_weyl_fermion_J": 2.8408324818078675e-25,
+   "peak_ratio_weyl_fermion": 4.847180081418987e-73,
+   "trace_peak_maxwell_J_m3": 4.19214050159593e-30,
+   "trace_content_maxwell_J": 1.1363329445071741e-24,
+   "peak_ratio_maxwell": 1.9388720325675953e-72
+  },
+  {
+   "rail_scale_m": 10.0,
+   "speed": 10.0,
+   "demand_stress_peak_Pa": 4.447447070372193e+42,
+   "demand_stress_content_J": 5.762212408885067e+48,
+   "rear_kappa_axis": 57.15830072538175,
+   "passenger_temperature_K": 0.0020831139235334933,
+   "blackbody_flux_W_m2": 1.0677358473336779e-18,
+   "mixing_power_unit_W": 9.478018818786455e-20,
+   "trace_peak_scalar_J_m3": 1.5845005878866512e-30,
+   "trace_content_scalar_J": 3.490560687869032e-25,
+   "peak_ratio_scalar": 3.5627193821871595e-73,
+   "trace_peak_weyl_fermion_J_m3": 4.753501763659949e-30,
+   "trace_content_weyl_fermion_J": 1.0471682033472114e-24,
+   "peak_ratio_weyl_fermion": 1.0688158146561467e-72,
+   "trace_peak_maxwell_J_m3": 1.9014007054639708e-29,
+   "trace_content_maxwell_J": 4.188672765172873e-24,
+   "peak_ratio_maxwell": 4.2752632586245673e-72
+  },
+  {
+   "rail_scale_m": 100.0,
+   "speed": 2.1,
+   "demand_stress_peak_Pa": 2.1621542996029467e+40,
+   "demand_stress_content_J": 1.5568812250247373e+49,
+   "rear_kappa_axis": 7.554133908869165,
+   "passenger_temperature_K": 2.7530772129504647e-05,
+   "blackbody_flux_W_m2": 3.2575065967049963e-26,
+   "mixing_power_unit_W": 9.478018818786455e-22,
+   "trace_peak_scalar_J_m3": 3.493450417996606e-35,
+   "trace_content_scalar_J": 9.469441706476166e-27,
+   "peak_ratio_scalar": 1.6157266938063282e-75,
+   "trace_peak_weyl_fermion_J_m3": 1.0480351253989822e-34,
+   "trace_content_weyl_fermion_J": 2.840832481807867e-26,
+   "peak_ratio_weyl_fermion": 4.847180081418986e-75,
+   "trace_peak_maxwell_J_m3": 4.19214050159593e-34,
+   "trace_content_maxwell_J": 1.136332944507174e-25,
+   "peak_ratio_maxwell": 1.938872032567595e-74
+  },
+  {
+   "rail_scale_m": 100.0,
+   "speed": 10.0,
+   "demand_stress_peak_Pa": 4.447447070372194e+40,
+   "demand_stress_content_J": 5.762212408885068e+49,
+   "rear_kappa_axis": 57.15830072538175,
+   "passenger_temperature_K": 0.00020831139235334933,
+   "blackbody_flux_W_m2": 1.067735847333678e-22,
+   "mixing_power_unit_W": 9.478018818786455e-22,
+   "trace_peak_scalar_J_m3": 1.5845005878866513e-34,
+   "trace_content_scalar_J": 3.490560687869032e-26,
+   "peak_ratio_scalar": 3.5627193821871587e-75,
+   "trace_peak_weyl_fermion_J_m3": 4.753501763659949e-34,
+   "trace_content_weyl_fermion_J": 1.0471682033472114e-25,
+   "peak_ratio_weyl_fermion": 1.0688158146561464e-74,
+   "trace_peak_maxwell_J_m3": 1.9014007054639707e-33,
+   "trace_content_maxwell_J": 4.188672765172873e-25,
+   "peak_ratio_maxwell": 4.275263258624566e-74
+  },
+  {
+   "rail_scale_m": 1000.0,
+   "speed": 2.1,
+   "demand_stress_peak_Pa": 2.1621542996029465e+38,
+   "demand_stress_content_J": 1.5568812250247371e+50,
+   "rear_kappa_axis": 7.554133908869165,
+   "passenger_temperature_K": 2.753077212950465e-06,
+   "blackbody_flux_W_m2": 3.2575065967049965e-30,
+   "mixing_power_unit_W": 9.478018818786454e-24,
+   "trace_peak_scalar_J_m3": 3.493450417996606e-39,
+   "trace_content_scalar_J": 9.469441706476165e-28,
+   "peak_ratio_scalar": 1.6157266938063281e-77,
+   "trace_peak_weyl_fermion_J_m3": 1.0480351253989821e-38,
+   "trace_content_weyl_fermion_J": 2.840832481807867e-27,
+   "peak_ratio_weyl_fermion": 4.847180081418986e-77,
+   "trace_peak_maxwell_J_m3": 4.192140501595929e-38,
+   "trace_content_maxwell_J": 1.136332944507174e-26,
+   "peak_ratio_maxwell": 1.9388720325675948e-76
+  },
+  {
+   "rail_scale_m": 1000.0,
+   "speed": 10.0,
+   "demand_stress_peak_Pa": 4.4474470703721935e+38,
+   "demand_stress_content_J": 5.762212408885067e+50,
+   "rear_kappa_axis": 57.15830072538175,
+   "passenger_temperature_K": 2.0831139235334936e-05,
+   "blackbody_flux_W_m2": 1.0677358473336784e-26,
+   "mixing_power_unit_W": 9.478018818786454e-24,
+   "trace_peak_scalar_J_m3": 1.5845005878866512e-38,
+   "trace_content_scalar_J": 3.490560687869031e-27,
+   "peak_ratio_scalar": 3.562719382187159e-77,
+   "trace_peak_weyl_fermion_J_m3": 4.753501763659948e-38,
+   "trace_content_weyl_fermion_J": 1.0471682033472111e-26,
+   "peak_ratio_weyl_fermion": 1.0688158146561463e-76,
+   "trace_peak_maxwell_J_m3": 1.9014007054639707e-37,
+   "trace_content_maxwell_J": 4.188672765172873e-26,
+   "peak_ratio_maxwell": 4.275263258624567e-76
+  }
+ ],
+ "elapsed_anomaly_mixing_physical_rear": 6633.0,
+ "software_sha256": {
+  "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+  "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+  "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+  "scripts/run_quantum_estimates_pass.py": "f67a2aba2b94292af66acb74cd5716740fce0f7c9cf525944567bf975189d2fe"
+ },
+ "sample_times": {
+  "2.1": [
+   0.66027,
+   0.75,
+   3.75,
+   6.75,
+   6.83973
+  ],
+  "10.0": [
+   0.394784,
+   0.75,
+   3.75,
+   6.75,
+   7.105216
+  ]
+ },
+ "window_control_depths": [
+  4.0,
+  2.0,
+  1.0,
+  0.0,
+  -1.0
+ ],
+ "control": [
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_0p5",
+   "depth": 4.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9999999959270983,
+   "negative_share": 2.0627729810324332e-10
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_0p5",
+   "depth": 2.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9998558900673317,
+   "negative_share": 5.742122262551045e-07
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_0p5",
+   "depth": 1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9783014155183187,
+   "negative_share": 9.236672269624552e-05
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_0p5",
+   "depth": 0.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.6770238655210358,
+   "negative_share": 0.001305771263053275
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_0p5",
+   "depth": -1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.14810139766061667,
+   "negative_share": 0.005122198084994457
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_1",
+   "depth": 4.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9999999744565948,
+   "negative_share": 8.252351451496735e-10
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_1",
+   "depth": 2.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9981090610951795,
+   "negative_share": 2.6195405316958963e-05
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_1",
+   "depth": 1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9478453411329203,
+   "negative_share": 0.0006153992657727072
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_1",
+   "depth": 0.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.6441972285569068,
+   "negative_share": 0.003904870618284465
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_1",
+   "depth": -1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.19361187835060562,
+   "negative_share": 0.01201606258991409
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_2",
+   "depth": 4.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9999723580430531,
+   "negative_share": 1.1889020885020804e-06
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_2",
+   "depth": 2.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9892342414621849,
+   "negative_share": 0.00034211517872454074
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_2",
+   "depth": 1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9262914920996002,
+   "negative_share": 0.0018945037324823541
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_2",
+   "depth": 0.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.7317314480175472,
+   "negative_share": 0.005930256620065753
+  },
+  {
+   "speed": 2.1,
+   "packet": "axis_wavelength_2",
+   "depth": -1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.42879885524149397,
+   "negative_share": 0.012488343536048826
+  },
+  {
+   "speed": 2.1,
+   "packet": "ring_wavelength_1",
+   "depth": 4.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9999999715034286,
+   "negative_share": 2.1371743667892675e-12
+  },
+  {
+   "speed": 2.1,
+   "packet": "ring_wavelength_1",
+   "depth": 2.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9999978369684036,
+   "negative_share": 2.484026601328462e-08
+  },
+  {
+   "speed": 2.1,
+   "packet": "ring_wavelength_1",
+   "depth": 1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9997868839028144,
+   "negative_share": 2.244424597869865e-06
+  },
+  {
+   "speed": 2.1,
+   "packet": "ring_wavelength_1",
+   "depth": 0.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9944106383807797,
+   "negative_share": 4.407415454110957e-05
+  },
+  {
+   "speed": 2.1,
+   "packet": "ring_wavelength_1",
+   "depth": -1.0,
+   "edge_past_surface": 5.739999999999327,
+   "windowed_norm": 0.9530486340599502,
+   "negative_share": 0.0002513633280452059
+  }
+ ],
+ "elapsed_anomaly_control_physical_rear": 39.6,
+ "stage_software_sha256": {
+  "anomaly": {
+   "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+   "scripts/run_quantum_estimates_pass.py": "f67a2aba2b94292af66acb74cd5716740fce0f7c9cf525944567bf975189d2fe"
+  },
+  "rear": {
+   "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+   "scripts/run_quantum_estimates_pass.py": "f67a2aba2b94292af66acb74cd5716740fce0f7c9cf525944567bf975189d2fe"
+  },
+  "mixing": {
+   "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+   "scripts/run_quantum_estimates_pass.py": "630463c61451330f428c8449f6ca704a5e110a75e63919534a58bef50b32926a"
+  },
+  "physical": {
+   "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+   "scripts/run_quantum_estimates_pass.py": "f67a2aba2b94292af66acb74cd5716740fce0f7c9cf525944567bf975189d2fe"
+  },
+  "control": {
+   "adm_harness/scalar_wave.py": "30fbb1cafed94760df994326b661271572f7feb783af57fe8fab04e6d915e803",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/source_scaling.py": "792ccec14a9a27445da9f766e46b9f2b624e15e67634d2e2169ae4152e8bc331",
+   "scripts/run_quantum_estimates_pass.py": "f67a2aba2b94292af66acb74cd5716740fce0f7c9cf525944567bf975189d2fe"
+  }
+ }
+}

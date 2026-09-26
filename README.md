@@ -90,7 +90,14 @@ negative averaged null energy along the first light from the departure, an
 achronal ray that runs through the cone's fast interior and rides its tip.
 Achronal ANEC holds for quantum fields, so no semiclassical quantum sector
 can supply the demand at any size. The source class left is classical
-fields that violate ANEC. The C1 and
+fields that violate ANEC. The
+[quantum estimates pass](supporting_reports/QUANTUM_ESTIMATES_PASS.md) sizes
+what quantum fields do on this geometry. Their vacuum stress sits at
+\((\ell_P/L)^2\) of the demanded stress, about \(10^{-70}\) on a metre
+scale, and vanishes in the compartment. The rear horizon radiates at
+\(\kappa/2\pi\): passengers at the 1× clock read 2.8 mK at 2.1 and 21 mK at
+10 for \(L=1\) m. Pair creation in the outrun exterior stays within a few
+\(10^{-3}\) per mode. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 
