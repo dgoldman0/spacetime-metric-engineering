@@ -289,6 +289,23 @@ decisions now have test results:
   - Exterior mixing stays within a few \(10^{-3}\) per packet at wavelengths
     0.5–2, the resolution of the flat-space window.
 
+- **Deficit minimization pass.** The [deficit minimization pass](supporting_reports/DEFICIT_MINIMIZATION_PASS.md)
+  reshapes the pattern's lapse falls.
+  - The falls along the track interpolate the lapse with an onset warped
+    toward the plateau; the radial fall keeps the log-lapse and moves in to
+    8.25; the shift's edge narrows to 0.75; the cone takes log-lapse 1 and a
+    rise of 2. The negative-null content falls from 252 to 137 at 2.1 and from
+    787 to 591 at 10, with peak stress 1.84 and the full gate clean.
+  - Floor: half the log-lapse drop times the plateau's mean width, about 48
+    here. The rims sit near their floor; the radial fall and the cone hold the
+    remaining room.
+  - Forks: a slow cone rise opens a flat front across the front fall from 3
+    upward, and lapse-space radial falls tilt the side past the front rule
+    above 15. The minimized design keeps the front below 0.77 of light speed
+    along its normal from 1.5 to 20.
+  - The minimized design becomes the reference once its three-dimensional
+    path audits pass.
+
 Next: a source construction in the open family, a classical scalar with
 higher-derivative kinetic terms that supplies the deficit in the outer falls
 and the sheath rise during each transit, with its perturbations checked on the

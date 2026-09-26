@@ -1,8 +1,11 @@
 import math
+from pathlib import Path
+import sys
 
 import numpy as np
 import pytest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"scripts"))
 import run_geometry_closure_pass as closure
 from adm_harness import front_surface as fs
 

@@ -1,0 +1,1313 @@
+{
+ "stage_software_sha256": {
+  "screen": {
+   "adm_harness/compartment_service.py": "41ad926daef580deb41181875bbfb7d35eb2f97b7ad7c1e18f939d62c6da4865",
+   "adm_harness/front_surface.py": "8066187ded17a385b283be2880ca72fe373354607561299006199e661e5d8d5c",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "dbcf51cbdea7ec343d4f8df9066f89e5b305fcb62d2320ef690250522f804d46"
+  },
+  "shapes": {
+   "adm_harness/compartment_service.py": "53b9fc9adbcf6682cea694d0424ee78f308e44a1d99ffe3e9ee20587c3b6ddd7",
+   "adm_harness/front_surface.py": "7dcca39329cda8f3a013002bb1ebcba0b5fac7ed4f6415e3ba5c640a320e45c9",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "de5d921bc6e2c359b0a8b037ab9ebc98f5df5ee9dbf1a94c3adf625a1fbe4174"
+  },
+  "combine": {
+   "adm_harness/compartment_service.py": "5a8c90ec2f8cf781f94812e6435af464f219dab1fb66f7c60c4508b6342329cf",
+   "adm_harness/front_surface.py": "312a41e716e33cc3c43cad4c6ed1fbcc4b280dd531cff73980e4bca5504cdddf",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "394b8567af87bb6df1e7328033ceb0b8133d25ba1f5a1e2780c4a3f5d701a931"
+  },
+  "full": {
+   "adm_harness/compartment_service.py": "2cc5669933fb45ff06a02ffd90bd8c56cce8131d50ae1b3a05d75a272f32ac16",
+   "adm_harness/front_surface.py": "c20f74dc211b5427263be162d5e427319079a7c053c88dacd3febd49143fdd85",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "fbb3475ddc8093b56449cd47bdb3d0187c8c931918bf1eb56cabd95d2f2ade2c"
+  },
+  "fronts": {
+   "adm_harness/compartment_service.py": "2cc5669933fb45ff06a02ffd90bd8c56cce8131d50ae1b3a05d75a272f32ac16",
+   "adm_harness/front_surface.py": "c20f74dc211b5427263be162d5e427319079a7c053c88dacd3febd49143fdd85",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "d791f2155067974b0b0c5bf314faa828b2f0d75f9ddb0d65447dcd8d15e9ae5b"
+  },
+  "mixed": {
+   "adm_harness/compartment_service.py": "2cc5669933fb45ff06a02ffd90bd8c56cce8131d50ae1b3a05d75a272f32ac16",
+   "adm_harness/front_surface.py": "c20f74dc211b5427263be162d5e427319079a7c053c88dacd3febd49143fdd85",
+   "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+   "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+   "scripts/run_deficit_minimization_pass.py": "d791f2155067974b0b0c5bf314faa828b2f0d75f9ddb0d65447dcd8d15e9ae5b"
+  }
+ },
+ "variants": {
+  "reference": {},
+  "end_fall_3": {
+   "service": {
+    "fall_width": 3.0
+   }
+  },
+  "end_fall_4": {
+   "service": {
+    "fall_width": 4.0
+   }
+  },
+  "end_fall_6": {
+   "service": {
+    "fall_width": 6.0
+   }
+  },
+  "radial_fall_3": {
+   "axial": {
+    "sheath_fall": [
+     8.75,
+     3.0
+    ],
+    "lapse_layer": [
+     8.75,
+     3.0
+    ]
+   }
+  },
+  "radial_fall_4": {
+   "axial": {
+    "sheath_fall": [
+     8.75,
+     4.0
+    ],
+    "lapse_layer": [
+     8.75,
+     4.0
+    ]
+   }
+  },
+  "radial_fall_from_8p25": {
+   "axial": {
+    "sheath_rise": [
+     3.75,
+     4.5
+    ],
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   }
+  },
+  "radial_fall_3_from_8p25": {
+   "axial": {
+    "sheath_rise": [
+     3.75,
+     4.5
+    ],
+    "sheath_fall": [
+     8.25,
+     3.0
+    ],
+    "lapse_layer": [
+     8.25,
+     3.0
+    ]
+   }
+  },
+  "shift_edge_0p75": {
+   "service": {
+    "shift_width": 0.75
+   }
+  },
+  "hole_edge_1p5": {
+   "service": {
+    "hole_edge": 1.5
+   }
+  },
+  "hole_radial_edge_2": {
+   "service": {
+    "hole_radius": [
+     1.75,
+     2.0
+    ]
+   }
+  },
+  "join_0p25": {
+   "axial": {
+    "join_fraction": 0.25
+   }
+  },
+  "join_0p4": {
+   "axial": {
+    "join_fraction": 0.4
+   }
+  },
+  "cone_lapse_1": {
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "cone_lapse_1p25": {
+   "cone": {
+    "log_lapse": 1.25
+   }
+  },
+  "cone_layer_4": {
+   "cone": {
+    "layer": 4.0
+   }
+  },
+  "cone_rise_3": {
+   "cone": {
+    "rise_width": 3.0
+   }
+  },
+  "cone_rounding_1": {
+   "cone": {
+    "rounding": 1.0
+   }
+  }
+ },
+ "combinations": {
+  "warps": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5
+   }
+  },
+  "warps_fall_8p25": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   }
+  },
+  "warps_fall_8p25_cone": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  },
+  "warps_fall_8p25_cone_alpha": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0,
+    "space": "alpha",
+    "warp": 0.5
+   }
+  },
+  "warps_radial_1_fall_8p25_cone": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  },
+  "warps_fall_7p75_cone": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5
+   },
+   "axial": {
+    "sheath_fall": [
+     7.75,
+     2.0
+    ],
+    "lapse_layer": [
+     7.75,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  },
+  "warps_fall_8p25_cone_shift_0p75": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  },
+  "warps_fall_8p25_cone_end_3": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5,
+    "fall_width": 3.0
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  },
+  "warps_fall_8p25_cone_hole_1p5": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.5,
+    "hole_edge": 1.5
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 3.0
+   }
+  }
+ },
+ "finalists": {
+  "warps_fall_8p25_cone_shift_0p75": {
+   "variant": "warps_fall_8p25_cone_shift_0p75",
+   "spec": {
+    "service": {
+     "plateau_log": 3.0,
+     "shift_width": 0.75,
+     "pattern_space": "alpha",
+     "pattern_warp": 0.35,
+     "pattern_radial_warp": 0.5
+    },
+    "axial": {
+     "sheath_fall": [
+      8.25,
+      2.0
+     ],
+     "lapse_layer": [
+      8.25,
+      2.0
+     ]
+    },
+    "cone": {
+     "base_radius": 13.5,
+     "flank_speed": 0.5435199947152936,
+     "log_lapse": 1.0,
+     "rise_width": 3.0
+    }
+   },
+   "alpha_v_radius": 9.600000000000001,
+   "sizes": {
+    "extent": 5.5,
+    "outer_radius": 10.25,
+    "cone_base": 13.5,
+    "cone_tip": 55.882685902179844,
+    "cone_half_angle": 14.999999999999998
+   },
+   "checks": {
+    "pattern": {
+     "samples": 17816,
+     "type_i": 2270398,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.7196234223290516,
+     "min_null": -1.0163388646710334,
+     "refined_samples": 8908,
+     "refined_type_i": 2268709,
+     "refined_type_iv": 0,
+     "refined_other": 0,
+     "resolved_crossings": 0,
+     "samples_with_band": 0,
+     "max_band_width": 0.0
+    },
+    "front": {
+     "samples": 13940,
+     "type_i": 247956,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.0,
+     "min_null": -0.10599104197594554,
+     "refined_samples": 6970,
+     "refined_type_i": 240075,
+     "refined_type_iv": 0,
+     "refined_other": 0
+    }
+   },
+   "demand": {
+    "peak_nec_content": 122.78459434773146,
+    "nec_content_over_sigma": 1126.5760579768873,
+    "front_window_over_sigma": 328.93885012624037,
+    "peak_negative_energy": 0.00881925599807167,
+    "peak_positive_energy": 0.0,
+    "peak_stress": 1.8413234494478188,
+    "max_alpha": 115.57581762878506
+   },
+   "tip_rates": {
+    "speed": 2.1,
+    "tip_offset": 55.882685902179844,
+    "surface_offset": 48.897354524760686,
+    "kappa": 0.34614307404812195,
+    "lambda": 2.1626628948299027,
+    "lambda_over_kappa": 6.247887237891815
+   },
+   "passenger": {
+    "speed": 2.1,
+    "trip_distance": 12.600000000000001,
+    "exterior_time": 7.5,
+    "lead_over_light": 5.100000000000001,
+    "mean_speed": 1.6800000000000002,
+    "passenger_time_clock_1": 7.5,
+    "passenger_days_per_light_year": 173.92857142857142
+   },
+   "swept": [
+    {
+     "decel": 6.0,
+     "kind": "light",
+     "max": 5.854562597205119,
+     "median": 1.0048415953198901
+    },
+    {
+     "decel": 6.0,
+     "kind": "matter",
+     "max": 6.02442242031539,
+     "median": 1.0003746680496777
+    },
+    {
+     "decel": 12.0,
+     "kind": "light",
+     "max": 6.790982255203494,
+     "median": 1.0049036851058548
+    },
+    {
+     "decel": 12.0,
+     "kind": "matter",
+     "max": 12.390557815156914,
+     "median": 1.7972453554936823
+    }
+   ],
+   "light_surfaces": {
+    "front_surfaces_max": 1,
+    "front_surfaces_min": 1
+   },
+   "light_surfaces_10": {
+    "front_surfaces_max": 2,
+    "front_surfaces_min": 1
+   },
+   "speed_10": {
+    "alpha_v_radius": 9.55,
+    "sizes": {
+     "extent": 5.5,
+     "outer_radius": 10.25,
+     "cone_base": 13.5,
+     "cone_tip": 253.51377941190975,
+     "cone_half_angle": 3.1156754872742076
+    },
+    "checks": {
+     "pattern": {
+      "samples": 7205,
+      "type_i": 904070,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.7196234223292951,
+      "min_null": -1.444634000693993
+     },
+     "front": {
+      "samples": 54780,
+      "type_i": 1082619,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.0,
+      "min_null": -0.2713518950563628
+     }
+    },
+    "demand": {
+     "peak_nec_content": 554.6859668995558,
+     "nec_content_over_sigma": 4156.336438635798,
+     "front_window_over_sigma": 2956.918506807152,
+     "peak_negative_energy": 0.008819255998071672,
+     "peak_positive_energy": 0.0,
+     "peak_stress": 4.023279156907701,
+     "max_alpha": 557.4168756132362
+    },
+    "tip_rates": {
+     "speed": 10.0,
+     "tip_offset": 253.51377941190975,
+     "surface_offset": 213.80869209072543,
+     "kappa": 0.6197470152446982,
+     "lambda": 14.783532141133989,
+     "lambda_over_kappa": 23.854140120863548
+    }
+   },
+   "split_2p1": {
+    "variant": "warps_fall_8p25_cone_shift_0p75",
+    "speed": 2.1,
+    "s": 3.75,
+    "total": 124.49721740733368,
+    "content_radial_fall": 28.014503327267445,
+    "content_end_falls": 4.392029169427964,
+    "content_corners": 33.96726268749171,
+    "content_interior": 12.329909921220988,
+    "content_cone": 42.684190156846064,
+    "content_rest": 3.1093221450795006,
+    "floor_radial_fall": 4.792793366170727,
+    "floor_cone": 9.47997613820677,
+    "radial_log_lapse_drop": 3.9682412543999996,
+    "analytic_radial_floor": 6.9444221952
+   },
+   "split_10": {
+    "variant": "warps_fall_8p25_cone_shift_0p75",
+    "speed": 10.0,
+    "s": 3.75,
+    "total": 556.2787626883744,
+    "content_radial_fall": 30.648513613345415,
+    "content_end_falls": 12.159261463475065,
+    "content_corners": 52.794925788003674,
+    "content_interior": 15.390564640063456,
+    "content_cone": 438.31519234863646,
+    "content_rest": 6.970304834850277,
+    "floor_radial_fall": 6.962639127850858,
+    "floor_cone": 137.1223858822842,
+    "radial_log_lapse_drop": 5.528889002664668,
+    "analytic_radial_floor": 9.675555754663169
+   }
+  },
+  "warps_fall_8p25_cone": {
+   "variant": "warps_fall_8p25_cone",
+   "spec": {
+    "service": {
+     "plateau_log": 3.0,
+     "shift_width": 1.0,
+     "pattern_space": "alpha",
+     "pattern_warp": 0.35,
+     "pattern_radial_warp": 0.5
+    },
+    "axial": {
+     "sheath_fall": [
+      8.25,
+      2.0
+     ],
+     "lapse_layer": [
+      8.25,
+      2.0
+     ]
+    },
+    "cone": {
+     "base_radius": 13.5,
+     "flank_speed": 0.5435199947152936,
+     "log_lapse": 1.0,
+     "rise_width": 3.0
+    }
+   },
+   "alpha_v_radius": 9.625,
+   "sizes": {
+    "extent": 5.75,
+    "outer_radius": 10.25,
+    "cone_base": 13.5,
+    "cone_tip": 56.132685902179844,
+    "cone_half_angle": 14.999999999999998
+   },
+   "checks": {
+    "pattern": {
+     "samples": 18496,
+     "type_i": 2375704,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.5040328796924103,
+     "min_null": -0.6928617067336303,
+     "refined_samples": 9248,
+     "refined_type_i": 2373515,
+     "refined_type_iv": 0,
+     "refined_other": 0,
+     "resolved_crossings": 0,
+     "samples_with_band": 0,
+     "max_band_width": 0.0
+    },
+    "front": {
+     "samples": 13940,
+     "type_i": 247956,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.0,
+     "min_null": -0.10599104197594554,
+     "refined_samples": 6970,
+     "refined_type_i": 240075,
+     "refined_type_iv": 0,
+     "refined_other": 0
+    }
+   },
+   "demand": {
+    "peak_nec_content": 126.84848320421601,
+    "nec_content_over_sigma": 1173.6311335759135,
+    "front_window_over_sigma": 328.9388501263634,
+    "peak_negative_energy": 0.009014848622725218,
+    "peak_positive_energy": 0.0,
+    "peak_stress": 1.9004636630594318,
+    "max_alpha": 130.9645589449588
+   },
+   "tip_rates": {
+    "speed": 2.1,
+    "tip_offset": 56.132685902179844,
+    "surface_offset": 49.147354524760686,
+    "kappa": 0.34614307404812195,
+    "lambda": 2.1626628948299027,
+    "lambda_over_kappa": 6.247887237891815
+   },
+   "passenger": {
+    "speed": 2.1,
+    "trip_distance": 12.600000000000001,
+    "exterior_time": 7.5,
+    "lead_over_light": 5.100000000000001,
+    "mean_speed": 1.6800000000000002,
+    "passenger_time_clock_1": 7.5,
+    "passenger_days_per_light_year": 173.92857142857142
+   },
+   "swept": [
+    {
+     "decel": 6.0,
+     "kind": "light",
+     "max": 5.854562597205119,
+     "median": 1.004841595319852
+    },
+    {
+     "decel": 6.0,
+     "kind": "matter",
+     "max": 5.353426459242682,
+     "median": 1.000453178367997
+    },
+    {
+     "decel": 12.0,
+     "kind": "light",
+     "max": 6.790982255203494,
+     "median": 1.004903685105813
+    },
+    {
+     "decel": 12.0,
+     "kind": "matter",
+     "max": 11.327790738021841,
+     "median": 1.7972453554936823
+    }
+   ],
+   "light_surfaces": {
+    "front_surfaces_max": 1,
+    "front_surfaces_min": 1
+   },
+   "light_surfaces_10": {
+    "front_surfaces_max": 2,
+    "front_surfaces_min": 1
+   },
+   "speed_10": {
+    "alpha_v_radius": 9.575000000000001,
+    "sizes": {
+     "extent": 5.75,
+     "outer_radius": 10.25,
+     "cone_base": 13.5,
+     "cone_tip": 253.76377941190975,
+     "cone_half_angle": 3.1156754872742076
+    },
+    "checks": {
+     "pattern": {
+      "samples": 7480,
+      "type_i": 945818,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.5040328796925957,
+      "min_null": -1.0556695995925827
+     },
+     "front": {
+      "samples": 54780,
+      "type_i": 1082619,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.0,
+      "min_null": -0.2713518950563628
+     }
+    },
+    "demand": {
+     "peak_nec_content": 558.9418943533325,
+     "nec_content_over_sigma": 4205.801169253651,
+     "front_window_over_sigma": 2956.9185068072093,
+     "peak_negative_energy": 0.009014848622725221,
+     "peak_positive_energy": 0.0,
+     "peak_stress": 4.20661706995298,
+     "max_alpha": 631.6360703012822
+    },
+    "tip_rates": {
+     "speed": 10.0,
+     "tip_offset": 253.76377941190975,
+     "surface_offset": 214.05869209072543,
+     "kappa": 0.6197470152446982,
+     "lambda": 14.783532141133989,
+     "lambda_over_kappa": 23.854140120863548
+    }
+   },
+   "split_2p1": {
+    "variant": "warps_fall_8p25_cone",
+    "speed": 2.1,
+    "s": 3.75,
+    "total": 127.88095094500713,
+    "content_radial_fall": 30.35477419960251,
+    "content_end_falls": 4.392886761298124,
+    "content_corners": 34.83854217791205,
+    "content_interior": 12.501235504562953,
+    "content_cone": 42.68419015665513,
+    "content_rest": 3.1093221449763675,
+    "floor_radial_fall": 5.062057798572165,
+    "floor_cone": 9.479976137985027,
+    "radial_log_lapse_drop": 3.9682412543999996,
+    "analytic_radial_floor": 7.440452351999999
+   },
+   "split_10": {
+    "variant": "warps_fall_8p25_cone",
+    "speed": 10.0,
+    "s": 3.75,
+    "total": 559.9532042792498,
+    "content_radial_fall": 33.20405614546018,
+    "content_end_falls": 12.179219265616162,
+    "content_corners": 53.722542373487464,
+    "content_interior": 15.56188931125459,
+    "content_cone": 438.3151923485176,
+    "content_rest": 6.9703048349138115,
+    "floor_radial_fall": 7.386266927435283,
+    "floor_cone": 137.12238588214143,
+    "radial_log_lapse_drop": 5.528889002664668,
+    "analytic_radial_floor": 10.366666879996252
+   }
+  },
+  "mixed_fall_8p25_shift_0p75_cone_1_rise_2": {
+   "variant": "mixed_fall_8p25_shift_0p75_cone_1_rise_2",
+   "spec": {
+    "service": {
+     "plateau_log": 3.0,
+     "shift_width": 0.75,
+     "pattern_space": "mixed",
+     "pattern_warp": 0.35,
+     "pattern_radial_warp": 1.0
+    },
+    "axial": {
+     "sheath_fall": [
+      8.25,
+      2.0
+     ],
+     "lapse_layer": [
+      8.25,
+      2.0
+     ]
+    },
+    "cone": {
+     "base_radius": 13.5,
+     "flank_speed": 0.5435199947152936,
+     "log_lapse": 1.0,
+     "rise_width": 2.0
+    }
+   },
+   "alpha_v_radius": 9.600000000000001,
+   "sizes": {
+    "extent": 5.5,
+    "outer_radius": 10.25,
+    "cone_base": 13.5,
+    "cone_tip": 55.882685902179844,
+    "cone_half_angle": 14.999999999999998
+   },
+   "checks": {
+    "pattern": {
+     "samples": 17816,
+     "type_i": 2229222,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.7196234223290516,
+     "min_null": -1.0163388646710334,
+     "refined_samples": 8908,
+     "refined_type_i": 2227838,
+     "refined_type_iv": 0,
+     "refined_other": 0,
+     "resolved_crossings": 0,
+     "samples_with_band": 0,
+     "max_band_width": 0.0
+    },
+    "front": {
+     "samples": 13940,
+     "type_i": 247956,
+     "type_iv": 0,
+     "other": 0,
+     "estimated_band_samples": 0,
+     "envelope_violations": 0,
+     "worst_envelope_ratio": 0.0,
+     "min_null": -0.10599104197594554,
+     "refined_samples": 6970,
+     "refined_type_i": 240075,
+     "refined_type_iv": 0,
+     "refined_other": 0
+    }
+   },
+   "demand": {
+    "peak_nec_content": 136.5565197916073,
+    "nec_content_over_sigma": 1275.3565559689841,
+    "front_window_over_sigma": 328.93885012624037,
+    "peak_negative_energy": 0.00881925599807167,
+    "peak_positive_energy": 0.0,
+    "peak_stress": 1.8413234494478188,
+    "max_alpha": 123.09920461394549
+   },
+   "tip_rates": {
+    "speed": 2.1,
+    "tip_offset": 55.882685902179844,
+    "surface_offset": 48.897354524760686,
+    "kappa": 0.34614307404812195,
+    "lambda": 2.1626628948299027,
+    "lambda_over_kappa": 6.247887237891815
+   },
+   "passenger": {
+    "speed": 2.1,
+    "trip_distance": 12.600000000000001,
+    "exterior_time": 7.5,
+    "lead_over_light": 5.100000000000001,
+    "mean_speed": 1.6800000000000002,
+    "passenger_time_clock_1": 7.5,
+    "passenger_days_per_light_year": 173.92857142857142
+   },
+   "swept": [
+    {
+     "decel": 6.0,
+     "kind": "light",
+     "max": 5.854562597205119,
+     "median": 1.0048415953198901
+    },
+    {
+     "decel": 6.0,
+     "kind": "matter",
+     "max": 4.4887713656355235,
+     "median": 1.0001812074854601
+    },
+    {
+     "decel": 12.0,
+     "kind": "light",
+     "max": 6.790982255203494,
+     "median": 1.0049036851058548
+    },
+    {
+     "decel": 12.0,
+     "kind": "matter",
+     "max": 5.465974853145251,
+     "median": 1.8175898836972726
+    }
+   ],
+   "light_surfaces": {
+    "front_surfaces_max": 1,
+    "front_surfaces_min": 1
+   },
+   "light_surfaces_10": {
+    "front_surfaces_max": 1,
+    "front_surfaces_min": 1
+   },
+   "front_normal_speed": {
+    "1.5": 0.7226696355857618,
+    "2.1": 0.7441269122296028,
+    "3.0": 0.7563324695548815,
+    "5.0": 0.7641423641162962,
+    "7.0": 0.7663367559672709,
+    "10.0": 0.7675101053788473,
+    "15.0": 0.7681384748556555,
+    "20.0": 0.7683586828805774
+   },
+   "speed_10": {
+    "alpha_v_radius": 9.375,
+    "sizes": {
+     "extent": 5.5,
+     "outer_radius": 10.25,
+     "cone_base": 13.5,
+     "cone_tip": 253.51377941190975,
+     "cone_half_angle": 3.1156754872742076
+    },
+    "checks": {
+     "pattern": {
+      "samples": 7205,
+      "type_i": 886123,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.7196234223292951,
+      "min_null": -1.444634000693993
+     },
+     "front": {
+      "samples": 54780,
+      "type_i": 1082619,
+      "type_iv": 0,
+      "other": 0,
+      "estimated_band_samples": 0,
+      "envelope_violations": 0,
+      "worst_envelope_ratio": 0.0,
+      "min_null": -0.2713518950563628
+     }
+    },
+    "demand": {
+     "peak_nec_content": 591.398987132078,
+     "nec_content_over_sigma": 4491.094317929693,
+     "front_window_over_sigma": 2956.918506807152,
+     "peak_negative_energy": 0.008819255998071672,
+     "peak_positive_energy": 0.0,
+     "peak_stress": 3.691388659912873,
+     "max_alpha": 696.6259729851549
+    },
+    "tip_rates": {
+     "speed": 10.0,
+     "tip_offset": 253.51377941190975,
+     "surface_offset": 213.80869209072543,
+     "kappa": 0.6197470152446982,
+     "lambda": 14.783532141133989,
+     "lambda_over_kappa": 23.854140120863548
+    }
+   },
+   "split_2p1": {
+    "variant": "mixed_fall_8p25_shift_0p75_cone_1_rise_2",
+    "speed": 2.1,
+    "s": 3.75,
+    "total": 138.0180046169812,
+    "content_radial_fall": 39.22047378150885,
+    "content_end_falls": 3.979251725495772,
+    "content_corners": 38.024087726281586,
+    "content_interior": 12.321097293911736,
+    "content_cone": 42.684190156846064,
+    "content_rest": 1.788903932937179,
+    "floor_radial_fall": 5.693824760705741,
+    "floor_cone": 9.47997613820677,
+    "radial_log_lapse_drop": 3.9682412543999996,
+    "analytic_radial_floor": 6.9444221952
+   },
+   "split_10": {
+    "variant": "mixed_fall_8p25_shift_0p75_cone_1_rise_2",
+    "speed": 10.0,
+    "s": 3.75,
+    "total": 592.8770808727375,
+    "content_radial_fall": 47.987645981457675,
+    "content_end_falls": 23.018724045536004,
+    "content_corners": 64.58379020467584,
+    "content_interior": 15.384214228240511,
+    "content_cone": 438.31519234863646,
+    "content_rest": 3.587514064190937,
+    "floor_radial_fall": 8.076680634592236,
+    "floor_cone": 137.1223858822842,
+    "radial_log_lapse_drop": 5.528889002664668,
+    "analytic_radial_floor": 9.675555754663169
+   }
+  }
+ },
+ "cone_margin": 0.8,
+ "split_time": 3.75,
+ "trim": {
+  "service": {
+   "plateau_log": 3.0,
+   "shift_width": 1.0
+  },
+  "axial": {
+   "sheath_fall": [
+    8.75,
+    2.0
+   ],
+   "lapse_layer": [
+    8.75,
+    2.0
+   ]
+  },
+  "cone": {
+   "base_radius": 14.0,
+   "flank_speed": 0.5435199947152936
+  }
+ },
+ "elapsed_screen": 613.5,
+ "software_sha256": {
+  "adm_harness/compartment_service.py": "2cc5669933fb45ff06a02ffd90bd8c56cce8131d50ae1b3a05d75a272f32ac16",
+  "adm_harness/front_surface.py": "c20f74dc211b5427263be162d5e427319079a7c053c88dacd3febd49143fdd85",
+  "adm_harness/axial_track.py": "effef69593b1f230c8d57569d686148b4705401f5ad7377105fca55d807dedc0",
+  "scripts/run_geometry_closure_pass.py": "62ecffb163ff338c8928c70c2d55139109935cd0ab61826a5f50df6dbef78457",
+  "scripts/run_deficit_minimization_pass.py": "fbb3475ddc8093b56449cd47bdb3d0187c8c931918bf1eb56cabd95d2f2ade2c"
+ },
+ "shapes": {
+  "alpha_falls": {
+   "service": {
+    "pattern_space": "alpha"
+   }
+  },
+  "alpha_falls_warp_0p5": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.5
+   }
+  },
+  "alpha_falls_warp_0p35": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_warp": 0.35
+   }
+  },
+  "round_corners": {
+   "service": {
+    "pattern_corner": "round"
+   }
+  },
+  "alpha_round": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_corner": "round"
+   }
+  },
+  "alpha_round_warp_0p5": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_corner": "round",
+    "pattern_warp": 0.5
+   }
+  },
+  "alpha_round_warp_0p5_fall_from_8p25": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_corner": "round",
+    "pattern_warp": 0.5
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   }
+  },
+  "alpha_round_warp_0p5_end_fall_3": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_corner": "round",
+    "pattern_warp": 0.5,
+    "fall_width": 3.0
+   }
+  },
+  "cone_alpha": {
+   "cone": {
+    "space": "alpha"
+   }
+  },
+  "cone_alpha_warp_0p5": {
+   "cone": {
+    "space": "alpha",
+    "warp": 0.5
+   }
+  },
+  "alpha_round_warp_0p5_cone_alpha_warp_0p5": {
+   "service": {
+    "pattern_space": "alpha",
+    "pattern_corner": "round",
+    "pattern_warp": 0.5
+   },
+   "cone": {
+    "space": "alpha",
+    "warp": 0.5
+   }
+  }
+ },
+ "elapsed_shapes": 740.1,
+ "elapsed_combine": 1264.7,
+ "elapsed_full": 2448.1,
+ "mixed": {
+  "mixed_shift_0p75_cone_1": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "mixed_fall_8p25_shift_0p75_cone_1": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "mixed_radial_warp_0p7_fall_8p25_shift_0p75_cone_1": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 0.7,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "mixed_fall_8p25_shift_0p75_cone_1_alpha": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "space": "alpha",
+    "warp": 0.5
+   }
+  },
+  "mixed_fall_8p25_shift_0p75_cone_1_rise_2": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0,
+    "rise_width": 2.0
+   }
+  },
+  "mixed_warp_0p5_fall_8p25_shift_0p75_cone_1": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.5,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "mixed_fall_8p25_cone_1": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.0
+   }
+  },
+  "mixed_fall_8p25_shift_0p75_cone_1p25": {
+   "service": {
+    "pattern_space": "mixed",
+    "pattern_warp": 0.35,
+    "pattern_radial_warp": 1.0,
+    "shift_width": 0.75
+   },
+   "axial": {
+    "sheath_fall": [
+     8.25,
+     2.0
+    ],
+    "lapse_layer": [
+     8.25,
+     2.0
+    ]
+   },
+   "cone": {
+    "log_lapse": 1.25
+   }
+  }
+ },
+ "front_radii": [
+  0.5,
+  1.0,
+  1.5,
+  2.0,
+  2.5,
+  3.0,
+  3.5,
+  4.0,
+  4.5,
+  5.0,
+  5.5,
+  6.0,
+  6.5,
+  7.0,
+  7.5,
+  8.0,
+  8.5,
+  9.0,
+  9.5,
+  10.0,
+  10.5,
+  11.0,
+  11.5,
+  12.0,
+  12.5,
+  13.0,
+  13.5,
+  14.0
+ ],
+ "front_speeds": [
+  1.5,
+  2.1,
+  3.0,
+  5.0,
+  7.0,
+  10.0,
+  15.0,
+  20.0
+ ],
+ "elapsed_fronts_mixed": 845.2
+}

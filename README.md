@@ -97,7 +97,13 @@ what quantum fields do on this geometry. Their vacuum stress sits at
 scale, and vanishes in the compartment. The rear horizon radiates at
 \(\kappa/2\pi\): passengers at the 1× clock read 2.8 mK at 2.1 and 21 mK at
 10 for \(L=1\) m. Pair creation in the outrun exterior stays within a few
-\(10^{-3}\) per mode. The C1 and
+\(10^{-3}\) per mode. The
+[deficit minimization pass](supporting_reports/DEFICIT_MINIMIZATION_PASS.md)
+reshapes the pattern's lapse falls. Its null-energy deficit falls 46%, from 252
+to 137 at 2.1, or \(0.092M_\odot\) at a one-metre scale, with the peak stress
+unchanged and every piece of the front below light speed along its normal from
+1.5 to 20. A floor of half the log-lapse drop times the plateau's mean width
+lies near 48. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
 

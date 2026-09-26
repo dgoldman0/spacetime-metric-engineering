@@ -20,6 +20,13 @@ profile. Every profile is attached to the packet, zeta = z - l_p(sigma), and
 the packet rests on the normal observers, beta = -v(sigma) across the shift's
 uniform zone. The lapse structure switches on before the carry and off after
 it.
+
+The falls to the flat exterior default to products of log-lapse steps.
+pattern_space, pattern_warp, pattern_radial_warp and pattern_corner reshape
+them through front_surface.pattern_correction; the mixed space keeps the
+radial fall in the log-lapse and interpolates the lapse along the track. The
+falls lie where the shift vanishes, so every shape leaves a Type I stress
+there.
 """
 from __future__ import annotations
 
@@ -50,14 +57,25 @@ class CompartmentService:
     fall_margin: float = .5
     fall_width: float = 2.
     schedule: tuple[float, float, float] = (-2.5, 9., 1.)
+    pattern_space: str = "log"
+    pattern_warp: float = 1.
+    pattern_corner: str = "product"
+    pattern_rounding: float = .05
+    pattern_radial_warp: float | None = None
 
     def __post_init__(self):
         check_packet_path(self.path)
         values = (self.clock_log, self.plateau_log, self.slope, self.slope_ramp, self.half_width, self.hole_edge,
                   *self.hole_radius, self.shift_gap, self.shift_width, self.fall_margin, self.fall_width,
-                  *self.schedule)
+                  *self.schedule, self.pattern_warp, self.pattern_rounding)
         if not all(math.isfinite(x) for x in values):
             raise ValueError("compartment values must be finite")
+        radial = self.pattern_warp if self.pattern_radial_warp is None else self.pattern_radial_warp
+        if self.pattern_space not in ("log", "alpha", "mixed") or self.pattern_corner not in ("product", "round") \
+                or not 0 < self.pattern_warp <= 1 or not 0 < radial <= 1 or self.pattern_rounding <= 0 \
+                or (self.pattern_space == "mixed" and self.pattern_corner == "round"):
+            raise ValueError("pattern space is log, alpha or mixed (product corners), corners product or round, "
+                             "warps in (0, 1]")
         if min(self.half_width, self.hole_edge, self.hole_radius[1], self.slope_ramp, self.shift_width,
                self.fall_width, self.schedule[2]) <= 0 or min(self.shift_gap, self.fall_margin, self.slope) < 0:
             raise ValueError("widths must be positive; gaps, margins and slope nonnegative")
@@ -67,6 +85,12 @@ class CompartmentService:
         _, _, _, _, _, accel, _, decel, decel_time = self.path
         if on+ramp > accel or off < decel+decel_time:
             raise ValueError("the lapse structure must be on before the carry starts and stay on until it ends")
+
+    @property
+    def shaped(self) -> bool:
+        """True when the pattern's outer falls take a shape other than the product of log-lapse steps."""
+        return self.pattern_space != "log" or self.pattern_warp != 1. or self.pattern_corner != "product" \
+            or self.pattern_radial_warp not in (None, 1.)
 
     @property
     def shift_start(self) -> float:
@@ -119,12 +143,15 @@ class CompartmentService:
 
 
 def axial_design(service: CompartmentService, *, sheath_log_lapse: float = 1., sheath_rise=(3.75, 5.),
-                 sheath_fall=(9.25, 4.), shift_layer=(4.25, 2.), lapse_layer=(9.25, 4.), jet_step: float = .0025):
+                 sheath_fall=(9.25, 4.), shift_layer=(4.25, 2.), lapse_layer=(9.25, 4.), jet_step: float = .0025,
+                 join_fraction: float = .1):
     """Axial design whose time-staged sheath follows the compartment across the shift's radial transition.
 
     The sheath falls along the track together with the plateau, so every field is Minkowski beyond extent.
+    join_fraction sets the flattened ends of every radial step, the profile shape of the radial layers.
     """
-    track = ConstantRadiusTrackDesign(packet_path=service.path, service_inner=900., track_half_length=1000.)
+    track = ConstantRadiusTrackDesign(packet_path=service.path, service_inner=900., track_half_length=1000.,
+                                      join_fraction=join_fraction)
     return ax.AxialTrackDesign(track=track, jet_step=jet_step, lapse_layer=lapse_layer, stretch_layer=lapse_layer,
                                shift_layer=shift_layer, sheath_log_lapse=sheath_log_lapse, sheath_rise=sheath_rise,
                                sheath_fall=sheath_fall, sheath_length=(1000., 1.),

@@ -127,7 +127,8 @@ class ConeFront:
     inside the surface d = r_c - (sqrt(r^2 + rounding^2) - rounding) = 0. The rounding sets the lapse curvature on
     the axis near the tip. The term rises along the track over rise_width from the shift's front edge, into the
     pattern's front fall where the pattern's own lapse still exceeds the carry speed. The cone extends from the
-    shift's front edge as the carry speed rises through extend.
+    shift's front edge as the carry speed rises through extend. With space = "alpha" the layer interpolates
+    alpha - 1 in place of the log-lapse, and warp < 1 moves the onset of its fall toward the cone's interior.
     """
     half_angle: float = 15.
     log_lapse: float = 1.5
@@ -137,12 +138,16 @@ class ConeFront:
     base_softness: float = 1.
     rise_width: float = 1.5
     extend: tuple[float, float] = (.6, 1.)
+    space: str = "log"
+    warp: float = 1.
 
     def __post_init__(self):
         values = (self.half_angle, self.log_lapse, self.layer, self.rounding, self.base_radius, self.base_softness,
-                  self.rise_width, *self.extend)
+                  self.rise_width, *self.extend, self.warp)
         if not all(math.isfinite(x) for x in values):
             raise ValueError("cone values must be finite")
+        if self.space not in ("log", "alpha") or not 0 < self.warp <= 1:
+            raise ValueError("the cone's space is log or alpha and its warp lies in (0, 1]")
         if not 0 < self.half_angle < 90 or min(self.log_lapse, self.layer, self.rounding, self.base_radius,
                                                self.base_softness, self.rise_width) <= 0 \
                 or self.extend[1] <= self.extend[0]:
@@ -167,7 +172,12 @@ class ConeFront:
         cone = math.tan(math.radians(self.half_angle))*(tip-zeta)
         radius = -self.base_softness*np.logaddexp(-cone/self.base_softness, -self.base_radius/self.base_softness)
         depth = radius-(np.sqrt(r*r+self.rounding**2)-self.rounding)
-        return weight*self.log_lapse*step(depth/self.layer)
+        if self.space == "log" and self.warp == 1.:
+            return weight*self.log_lapse*step(depth/self.layer)
+        profile = 1-shaped_step(1-depth/self.layer, self.warp)
+        if self.space == "alpha":
+            return np.log1p(np.expm1(weight*self.log_lapse)*profile)
+        return weight*self.log_lapse*profile
 
 
 def log_lapse_jet(function, s: float, z: float, r, h: float) -> dict[str, np.ndarray]:
@@ -212,6 +222,9 @@ def fields(service: cs.CompartmentService, design, front, s: float, z: float, r)
     """Compartment fields at radii r with the front element's log-lapse added (front None leaves them unchanged)."""
     r = np.atleast_1d(np.asarray(r, dtype=float))
     out = cs.fields(service, design, s, z, r)
+    if service.shaped:
+        out = add_log_lapse(out, log_lapse_jet(lambda a, b, c: pattern_correction(service, design, a, b, c),
+                                               float(s), float(z), r, design.jet_step/4))
     if front is None:
         return out
     jet = log_lapse_jet(lambda a, b, c: front.log_lapse_at(service, a, b, c), float(s), float(z), r,
@@ -243,6 +256,70 @@ def sheath_value(design, s: float, z, r) -> np.ndarray:
     return value
 
 
+def shaped_step(t, warp: float = 1.) -> np.ndarray:
+    """C-infinity step of t**warp on [0, 1]; warp < 1 moves the onset toward t = 0 and lengthens the landing."""
+    t = np.clip(np.asarray(t, dtype=float), 0., 1.)
+    return step(t**warp)
+
+
+def pattern_log_lapse(service: cs.CompartmentService, design, s: float, z, r) -> np.ndarray:
+    """Log-lapse of the plateau and the sheath with the outer falls shaped as the service sets.
+
+    Inside the falls the level, plateau plus convex rise plus the sheath's radial rise, keeps its value. The falls
+    take the factor (1 - shaped_step(x)) (1 - shaped_step(y)) along the track and in r, with the radial warp set
+    apart when the service gives one, or, with rounded corners,
+    1 - shaped_step(d) of the softened distance d from the plateau's core. In lapse space the factor scales
+    alpha - 1, in log space the log-lapse; the mixed space scales the log-lapse across the radial fall and
+    alpha - 1 along the track. The radial fall of plateau and sheath both follow the lapse layer, and
+    the falls lie where the shift vanishes.
+    """
+    z, r = np.broadcast_arrays(np.asarray(z, dtype=float), np.abs(np.asarray(r, dtype=float)))
+    fraction = design.track.join_fraction
+    u = np.abs(z-service.packet_position(s))
+    start = service.shift_start-service.slope_ramp
+    rise = service.slope*service.slope_ramp*transition_integral_array((u-start)/service.slope_ramp)
+    sheath = design.sheath_log_lapse*ax.step_jet((r-design.sheath_rise[0])/design.sheath_rise[1], fraction)[0]
+    length, taper = design.sheath_length
+    sheath = sheath*(1-ax.step_jet((np.abs(z)-length)/taper, fraction)[0])
+    if design.sheath_schedule is not None:
+        on, off, ramp = design.sheath_schedule
+        up, down = ax.step_jet(np.array([(s-on)/ramp, (s-off)/ramp]), fraction)[0]
+        sheath = sheath*up*(1-down)
+    level = service.schedule_value(s)*(service.plateau_log+rise)+sheath
+    fall_start, fall_width = design.layers["alpha"]
+    x = (u-service.fall_start)/service.fall_width
+    y = (r-fall_start)/fall_width
+    if service.pattern_corner == "round":
+        width = service.pattern_rounding
+        distance = np.hypot(width*np.logaddexp(0., x/width), width*np.logaddexp(0., y/width))
+        keep = 1-shaped_step(distance, service.pattern_warp)
+    else:
+        radial = service.pattern_warp if service.pattern_radial_warp is None else service.pattern_radial_warp
+        along, across = 1-shaped_step(x, service.pattern_warp), 1-shaped_step(y, radial)
+        if service.pattern_space == "mixed":
+            return np.log1p(np.expm1(level*across)*along)
+        keep = along*across
+    if service.pattern_space == "alpha":
+        return np.log1p(np.expm1(level)*keep)
+    return level*keep
+
+
+def product_pattern_log_lapse(service: cs.CompartmentService, design, s: float, z, r) -> np.ndarray:
+    """Log-lapse of the plateau and the sheath as products of log-lapse steps, the unshaped pattern."""
+    z, r = np.broadcast_arrays(np.asarray(z, dtype=float), np.abs(np.asarray(r, dtype=float)))
+    u = np.abs(z-service.packet_position(s))
+    start = service.shift_start-service.slope_ramp
+    rise = service.slope*service.slope_ramp*transition_integral_array((u-start)/service.slope_ramp)
+    plateau = service.schedule_value(s)*(service.plateau_log+rise)*(1.-step((u-service.fall_start)/service.fall_width))
+    chi_alpha = ax.layer_blend(r, design.layers["alpha"], design.track.join_fraction)[0]
+    return chi_alpha*plateau+sheath_value(design, s, z, r)
+
+
+def pattern_correction(service: cs.CompartmentService, design, s: float, z, r) -> np.ndarray:
+    """Log-lapse that turns the unshaped pattern into the shaped one; it vanishes inside the plateau's core."""
+    return pattern_log_lapse(service, design, s, z, r)-product_pattern_log_lapse(service, design, s, z, r)
+
+
 def log_lapse_and_shift(service: cs.CompartmentService, design, front, s: float, z, r):
     """log alpha and beta at points (z, r), broadcast together, at exterior time s, directly from the profiles."""
     z, r = np.broadcast_arrays(np.asarray(z, dtype=float), np.abs(np.asarray(r, dtype=float)))
@@ -258,6 +335,8 @@ def log_lapse_and_shift(service: cs.CompartmentService, design, front, s: float,
     chi_beta = ax.layer_blend(r, design.layers["beta"], fraction)[0]
     edge = ax.layer_blend(r, service.hole_radius, fraction)[0]
     log_alpha = chi_alpha*plateau+sheath_value(design, s, z, r)+edge*hole
+    if service.shaped:
+        log_alpha = log_alpha+pattern_correction(service, design, s, z, r)
     if front is not None:
         log_alpha = log_alpha+front.log_lapse_at(service, s, z, r)
     return log_alpha, chi_beta*shift
