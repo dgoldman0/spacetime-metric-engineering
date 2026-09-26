@@ -27,3 +27,6 @@ active_rail_technical_disclosure.log
 active_rail_technical_disclosure.out
 active_rail_technical_disclosure.pdf
 PROJECT_WORK_ANALYSIS.md
+
+# Evidence review: downloaded sources, metadata caches and superseded builds (kept locally, not published)
+supporting_reports/data/evidence_review/local_archive/

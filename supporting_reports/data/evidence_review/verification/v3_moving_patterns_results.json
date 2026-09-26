@@ -1,0 +1,1482 @@
+{
+ "S1": {
+  "rate_law_general": "d ln|k|/dsigma = khat_z (khat.grad beta) - khat.grad alpha",
+  "kept_gain_identity": "ln(alpha_f|k_f|/alpha_i|k_i|) = int[ b(-d_zeta ln alpha) + khat_z (khat.grad beta) ] dsigma ; beta = 0 on the path => int v(-d_zeta ln alpha) dsigma"
+ },
+ "S2": {
+  "exit_angle_general": "gain = (1 - v cos theta_i)/(1 - v cos theta_f)",
+  "exit_angle_range": "cos theta_f > 1/v (overtaken light exits inside arccos(1/v))",
+  "shelf_numbers_report": {
+   "gamma_prime(alpha_s=e, v=2.1)": 3.960669321791554,
+   "terminal alpha_s*gamma_prime": 10.766215445961192,
+   "edge gain (u_e=3.5)": 3.19808351783853
+  }
+ },
+ "S3": {
+  "kappa_normalization": "xi = d_sigma|_zeta, sigma = proper time of static exterior observers; xi -> c xi gives kappa -> c kappa",
+  "null_surface_criterion": "|b.N| = alpha (N the unit normal in the flat slice)"
+ },
+ "S4": {
+  "report_numbers": {
+   "lambda(kappa=0.563, A=4.20, v=2.1)": 2.7016597761434102,
+   "2(kappa-lambda)": -4.27731955228682
+  }
+ },
+ "S5": {
+  "threshold_15deg": 3.8637033051562737
+ },
+ "S6": {
+  "sphere_escape": "k_r^2 = E^2/alpha^2 - L^2/r^2 >= 0  <=>  r/alpha(r) >= L/E"
+ },
+ "S7": {},
+ "S8": {},
+ "N1": {
+  "runs": [
+   {
+    "run": "light fwd, axis",
+    "sigma_end": 14.0,
+    "gain": 15695.392190462931,
+    "E_drift": 4.899571673514159e-14,
+    "max_abs_beta_on_path": 0.0,
+    "both_ends_exterior": false,
+    "kept_gain_formula": 32959.22359997216,
+    "general_identity_err": 2.2026824808563106e-13,
+    "E": -1.1
+   },
+   {
+    "run": "light fwd, r=4.3",
+    "sigma_end": 13.291841021358236,
+    "gain": 3.4238784331962866,
+    "E_drift": 2.0000288414158706e-12,
+    "max_abs_beta_on_path": 0.0,
+    "both_ends_exterior": true,
+    "kept_gain_formula": 3.4238784331995458,
+    "general_identity_err": 9.536815781530095e-13,
+    "E": -1.1,
+    "exit_theta_deg": 51.01052209241727,
+    "E_law_gain": 3.4238784331849144,
+    "kept_formula_rel_err": 9.519052213136092e-13
+   },
+   {
+    "run": "light bwd, axis",
+    "sigma_end": 4.849036068882922,
+    "gain": 0.9999999999937225,
+    "E_drift": 7.838031299269782e-12,
+    "max_abs_beta_on_path": 2.1,
+    "both_ends_exterior": true,
+    "kept_gain_formula": 1.0000000000018427,
+    "general_identity_err": 6.480265467558493e-12,
+    "E": 3.1,
+    "exit_theta_deg": 180.0,
+    "E_law_gain": 1.0,
+    "kept_formula_rel_err": 8.12039324671332e-12
+   },
+   {
+    "run": "light bwd, r=4.3",
+    "sigma_end": 5.8024344278011775,
+    "gain": 1.467028108992071,
+    "E_drift": 1.4919964905123877e-12,
+    "max_abs_beta_on_path": 0.0,
+    "both_ends_exterior": true,
+    "kept_gain_formula": 1.4670281089948263,
+    "general_identity_err": 1.878552868816996e-12,
+    "E": 3.1,
+    "exit_theta_deg": 122.00917462704665,
+    "E_law_gain": 1.4670281089932422,
+    "kept_formula_rel_err": 1.87827531306084e-12
+   },
+   {
+    "run": "light oblique",
+    "sigma_end": 4.474886745276965,
+    "gain": 1.0378216575649768,
+    "E_drift": 1.3428978519314138e-11,
+    "max_abs_beta_on_path": 0.823064281108904,
+    "both_ends_exterior": true,
+    "kept_gain_formula": 0.9744243919355845,
+    "general_identity_err": 2.7092078580537304e-12,
+    "E": 3.1488088481701517,
+    "exit_theta_deg": 154.3375847053985,
+    "E_law_gain": 1.037821657577572,
+    "kept_formula_rel_err": 0.06108685935321512
+   },
+   {
+    "run": "matter at rest, axis",
+    "sigma_end": 14.0,
+    "gain": 87148.98979287368,
+    "E_drift": 6.35349457614462e-13,
+    "max_abs_beta_on_path": 0.0,
+    "both_ends_exterior": false,
+    "kept_gain_formula": NaN,
+    "general_identity_err": 8.828493491819245e-13,
+    "E": 1.0
+   },
+   {
+    "run": "matter at rest, r=4.3",
+    "sigma_end": 9.118188403907565,
+    "gain": 2.0354810746792205,
+    "E_drift": 9.86255926474743e-13,
+    "max_abs_beta_on_path": 0.0,
+    "both_ends_exterior": true,
+    "kept_gain_formula": NaN,
+    "general_identity_err": 4.063416270128073e-14,
+    "E": 1.0
+   }
+  ],
+  "ramped": [
+   {
+    "run": "light fwd r=4.3",
+    "identity_err": 2.6423307986078726e-14,
+    "EK_rel_change": 0.2908983040344415
+   },
+   {
+    "run": "light bwd axis",
+    "identity_err": 1.1293466162243249e-12,
+    "EK_rel_change": 0.17070264502395416
+   },
+   {
+    "run": "matter r=1.0",
+    "identity_err": 1.5276668818842154e-13,
+    "EK_rel_change": 4.068115234375
+   }
+  ]
+ },
+ "N2": {
+  "cone_runs": {
+   "2.1": [
+    {
+     "r0": 0.02,
+     "sigma_exit": 22.65510218854239,
+     "exterior": true,
+     "gain": 6.293545385120606,
+     "theta_f_deg": 55.98429552714097,
+     "law": 6.293545385121843,
+     "rel_err": 1.965094753586527e-13,
+     "residual": 1.6363813426727047e-14,
+     "kept_log_err": 4.463096558993129e-14,
+     "cos_minus_1_over_v": 0.08322964112530717,
+     "E_drift": 4.5009515573439704e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 55.984295527140965,
+     "vN_pattern_before_base": 0.40190930884298115,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.1,
+     "sigma_exit": 22.96131259785348,
+     "exterior": true,
+     "gain": 3.6540892068595117,
+     "theta_f_deg": 51.71749780590534,
+     "law": 3.654089206859906,
+     "rel_err": 1.0791367799356522e-13,
+     "residual": 1.5480877255709667e-14,
+     "kept_log_err": 4.1522341120980855e-14,
+     "cos_minus_1_over_v": 0.14334886045643447,
+     "E_drift": 4.192858871839185e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 51.71749780590534,
+     "vN_pattern_before_base": 0.3750471411478784,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.25,
+     "sigma_exit": 24.351916375335474,
+     "exterior": true,
+     "gain": 2.4322665860478723,
+     "theta_f_deg": 46.247142996697804,
+     "law": 2.4322665860479264,
+     "rel_err": 2.220446049250313e-14,
+     "residual": 4.825393511757606e-15,
+     "kept_log_err": 1.3988810110276972e-14,
+     "cos_minus_1_over_v": 0.21535859877129537,
+     "E_drift": 2.2457807473730664e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 46.2471429966978,
+     "vN_pattern_before_base": 0.3331827758232834,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.5,
+     "sigma_exit": 26.03968016282958,
+     "exterior": true,
+     "gain": 1.8268653539370112,
+     "theta_f_deg": 40.27802618235919,
+     "law": 1.8268653539370634,
+     "rel_err": 2.864375403532904e-14,
+     "residual": 8.218692571743847e-15,
+     "kept_log_err": 1.609823385706477e-14,
+     "cos_minus_1_over_v": 0.28672585129531625,
+     "E_drift": 1.9690136209540714e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 40.278026182359184,
+     "vN_pattern_before_base": 0.2784056583563139,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 1.0,
+     "sigma_exit": 27.08020713692914,
+     "exterior": true,
+     "gain": 1.557836537955258,
+     "theta_f_deg": 35.66575832835456,
+     "law": 1.5578365379552712,
+     "rel_err": 8.659739592076221e-15,
+     "residual": 2.9185524372300897e-15,
+     "kept_log_err": 6.050715484207103e-15,
+     "cos_minus_1_over_v": 0.33624164734064255,
+     "E_drift": 8.837108412792733e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 35.66575832835457,
+     "vN_pattern_before_base": 0.22994154948586254,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 1.5,
+     "sigma_exit": 27.53446964186535,
+     "exterior": true,
+     "gain": 1.4953199574236091,
+     "theta_f_deg": 34.26017703346902,
+     "law": 1.495319957423622,
+     "rel_err": 8.659739592076221e-15,
+     "residual": 3.040571753278211e-15,
+     "kept_log_err": 6.328271240363392e-15,
+     "cos_minus_1_over_v": 0.35029929294331574,
+     "E_drift": 8.90958770780137e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 34.260177033469006,
+     "vN_pattern_before_base": 0.21416092269479792,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 2.0,
+     "sigma_exit": 27.841863211778275,
+     "exterior": true,
+     "gain": 1.471795026449284,
+     "theta_f_deg": 33.68608012393987,
+     "law": 1.4717950264492892,
+     "rel_err": 3.552713678800501e-15,
+     "residual": 1.2213004612250231e-15,
+     "kept_log_err": 4.440892098500626e-15,
+     "cos_minus_1_over_v": 0.3558984195463796,
+     "E_drift": 8.901132624079468e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 33.68608012393986,
+     "vN_pattern_before_base": 0.2075837707520679,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 3.0,
+     "sigma_exit": 28.338570032689034,
+     "exterior": true,
+     "gain": 1.4541952397679534,
+     "theta_f_deg": 33.238493413979015,
+     "law": 1.4541952397679676,
+     "rel_err": 9.769962616701378e-15,
+     "residual": 3.562823367796752e-15,
+     "kept_log_err": 9.381384558082573e-15,
+     "cos_minus_1_over_v": 0.3602057753215471,
+     "E_drift": 9.00885410826787e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 33.23849341397902,
+     "vN_pattern_before_base": 0.20240363774452852,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 4.0,
+     "sigma_exit": 28.79063811949261,
+     "exterior": true,
+     "gain": 1.4478007828304582,
+     "theta_f_deg": 33.07182477337245,
+     "law": 1.4478007828304675,
+     "rel_err": 6.439293542825908e-15,
+     "residual": 2.337018239718054e-15,
+     "kept_log_err": 6.38378239159465e-15,
+     "cos_minus_1_over_v": 0.3617966850283574,
+     "E_drift": 7.514974902243809e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 33.07182477337245,
+     "vN_pattern_before_base": 0.20046305456046964,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 5.0,
+     "sigma_exit": 29.22997865746177,
+     "exterior": true,
+     "gain": 1.4447789044347101,
+     "theta_f_deg": 32.99228576747755,
+     "law": 1.4447789044347161,
+     "rel_err": 4.218847493575595e-15,
+     "residual": 1.4636914455246328e-15,
+     "kept_log_err": 2.0539125955565396e-15,
+     "cos_minus_1_over_v": 0.3625534136757551,
+     "E_drift": 7.065055611250996e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 32.99228576747755,
+     "vN_pattern_before_base": 0.1995347331136944,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 6.0,
+     "sigma_exit": 29.664570607102647,
+     "exterior": true,
+     "gain": 1.4431151424038853,
+     "theta_f_deg": 32.948278625460176,
+     "law": 1.443115142403906,
+     "rel_err": 1.4210854715202004e-14,
+     "residual": 5.202095201138222e-15,
+     "kept_log_err": 1.149080830487037e-14,
+     "cos_minus_1_over_v": 0.3629714001455038,
+     "E_drift": 1.538649373572137e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 32.94827862546017,
+     "vN_pattern_before_base": 0.1990204983180529,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 7.0,
+     "sigma_exit": 30.164800971116474,
+     "exterior": true,
+     "gain": 1.3840966379756081,
+     "theta_f_deg": 31.280108587189403,
+     "law": 1.3840966379756736,
+     "rel_err": 4.729550084903167e-14,
+     "residual": 1.78760011702693e-14,
+     "kept_log_err": 4.729550084903167e-14,
+     "cos_minus_1_over_v": 0.3784486642317313,
+     "E_drift": 6.197063064725873e-14,
+     "alpha_before_base": 1.000000000951786,
+     "dir_deg_before_base": 0.0,
+     "vN_pattern_before_base": -0.2847009462551969,
+     "rate_before_base": 1.1595623607786842e-07
+    }
+   ],
+   "3.0": [
+    {
+     "r0": 0.02,
+     "sigma_exit": 14.122902566819137,
+     "exterior": true,
+     "gain": 20.98878110710944,
+     "theta_f_deg": 68.58648862314428,
+     "law": 20.988781107113518,
+     "rel_err": 1.942890293094024e-13,
+     "residual": 6.171202552382987e-15,
+     "kept_log_err": 4.8405723873656825e-14,
+     "cos_minus_1_over_v": 0.031763000588953705,
+     "E_drift": 2.2174042216861233e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 68.58648862314428,
+     "vN_pattern_before_base": 0.21728446983943317,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.1,
+     "sigma_exit": 13.804368939890397,
+     "exterior": true,
+     "gain": 12.211218705151497,
+     "theta_f_deg": 67.17436900719017,
+     "law": 12.211218705152609,
+     "rel_err": 9.103828801926284e-14,
+     "residual": 4.970199410746605e-15,
+     "kept_log_err": 2.1760371282653068e-14,
+     "cos_minus_1_over_v": 0.054594605400471785,
+     "E_drift": 1.658350136475473e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 67.17436900719017,
+     "vN_pattern_before_base": 0.2142298943208566,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.25,
+     "sigma_exit": 13.766543181687183,
+     "exterior": true,
+     "gain": 7.852976064752226,
+     "theta_f_deg": 65.27730906997859,
+     "law": 7.852976064752445,
+     "rel_err": 2.7977620220553945e-14,
+     "residual": 2.375118255793528e-15,
+     "kept_log_err": 1.0658141036401503e-14,
+     "cos_minus_1_over_v": 0.08489350549009761,
+     "E_drift": 1.2124547495554944e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 65.27730906997859,
+     "vN_pattern_before_base": 0.20917952939224538,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 0.5,
+     "sigma_exit": 13.925546980243883,
+     "exterior": true,
+     "gain": 5.225837310143713,
+     "theta_f_deg": 62.554505122514094,
+     "law": 5.2258373101437945,
+     "rel_err": 1.554312234475219e-14,
+     "residual": 1.9970190061637174e-15,
+     "kept_log_err": 1.7985612998927536e-14,
+     "cos_minus_1_over_v": 0.12757126314908618,
+     "E_drift": 1.5466278624818243e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 62.554505122514094,
+     "vN_pattern_before_base": 0.20004432769994263,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 1.0,
+     "sigma_exit": 14.256590276378382,
+     "exterior": true,
+     "gain": 3.7870942316194824,
+     "theta_f_deg": 59.37813881545224,
+     "law": 3.7870942316194953,
+     "rel_err": 3.3306690738754696e-15,
+     "residual": 6.058631703435254e-16,
+     "kept_log_err": 1.5543122344752192e-15,
+     "cos_minus_1_over_v": 0.17603646117397415,
+     "E_drift": 6.91856880433973e-15,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 59.37813881545224,
+     "vN_pattern_before_base": 0.18660275512082225,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 1.5,
+     "sigma_exit": 14.499214746281815,
+     "exterior": true,
+     "gain": 3.4050125986699333,
+     "theta_f_deg": 58.053773762152616,
+     "law": 3.4050125986699697,
+     "rel_err": 1.0658141036401503e-14,
+     "residual": 2.108492117977414e-15,
+     "kept_log_err": 6.8833827526759706e-15,
+     "cos_minus_1_over_v": 0.19578977972858985,
+     "E_drift": 1.4654943925052066e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 58.053773762152616,
+     "vN_pattern_before_base": 0.18012159882323997,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 2.0,
+     "sigma_exit": 14.702254408916202,
+     "exterior": true,
+     "gain": 3.252556894561687,
+     "theta_f_deg": 57.43199343258343,
+     "law": 3.2525568945617334,
+     "rel_err": 1.4210854715202004e-14,
+     "residual": 2.9127555491215166e-15,
+     "kept_log_err": 1.509903313490213e-14,
+     "cos_minus_1_over_v": 0.20496695008820037,
+     "E_drift": 1.0920217416436708e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 57.43199343258343,
+     "vN_pattern_before_base": 0.17690222442040937,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 3.0,
+     "sigma_exit": 15.068390693149533,
+     "exterior": true,
+     "gain": 3.133250900277419,
+     "theta_f_deg": 56.89979977682953,
+     "law": 3.1332509002774813,
+     "rel_err": 1.9761969838327786e-14,
+     "residual": 4.2047850549468295e-15,
+     "kept_log_err": 2.6423307986078726e-14,
+     "cos_minus_1_over_v": 0.21277155513068763,
+     "E_drift": 1.935824066148787e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 56.89979977682953,
+     "vN_pattern_before_base": 0.17405751063899344,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 4.0,
+     "sigma_exit": 15.417487185511485,
+     "exterior": true,
+     "gain": 3.0880743898728626,
+     "theta_f_deg": 56.68664658190165,
+     "law": 3.088074389872906,
+     "rel_err": 1.3988810110276972e-14,
+     "residual": 3.0439319421792347e-15,
+     "kept_log_err": 1.0436096431476471e-14,
+     "cos_minus_1_over_v": 0.2158842639455017,
+     "E_drift": 1.3517938913340554e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 56.68664658190165,
+     "vN_pattern_before_base": 0.1728951371187898,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 5.0,
+     "sigma_exit": 15.761366001896377,
+     "exterior": true,
+     "gain": 3.0661692620058614,
+     "theta_f_deg": 56.58083883405805,
+     "law": 3.0661692620059684,
+     "rel_err": 3.4861002973229915e-14,
+     "residual": 7.603847512930849e-15,
+     "kept_log_err": 4.463096558993129e-14,
+     "cos_minus_1_over_v": 0.21742657032264284,
+     "E_drift": 2.4042641659966157e-14,
+     "alpha_before_base": 1.0,
+     "dir_deg_before_base": 56.58083883405805,
+     "vN_pattern_before_base": 0.17231326221134147,
+     "rate_before_base": -0.0
+    },
+    {
+     "r0": 6.0,
+     "sigma_exit": 16.103272093772137,
+     "exterior": true,
+     "gain": 3.053703527038268,
+     "theta_f_deg": 56.51988973926997,
+     "law": 3.053703527044518,
+     "rel_err": 2.0465851235940136e-12,
+     "residual": 4.467984761177213e-13,
+     "kept_log_err": 1.3511414209688155e-12,
+     "cos_minus_1_over_v": 0.2183141424052682,
+     "E_drift": 1.3606828628045429e-12,
+     "alpha_before_base": 1.0080004544486671,
+     "dir_deg_before_base": 55.6573210232716,
+     "vN_pattern_before_base": 0.174646222779139,
+     "rate_before_base": 0.27260822095572673
+    },
+    {
+     "r0": 7.0,
+     "sigma_exit": 16.566150087189126,
+     "exterior": true,
+     "gain": 1.9949416348369522,
+     "theta_f_deg": 48.12468139875897,
+     "law": 1.9949416348370828,
+     "rel_err": 6.550315845288424e-14,
+     "residual": 2.1852648053624637e-14,
+     "kept_log_err": 3.608224830031759e-14,
+     "cos_minus_1_over_v": 0.334178531855199,
+     "E_drift": 1.0080825063596421e-13,
+     "alpha_before_base": 1.0000000006697864,
+     "dir_deg_before_base": 0.0,
+     "vN_pattern_before_base": -0.5176380888275072,
+     "rate_before_base": 8.589965218453383e-08
+    }
+   ],
+   "5.0": [
+    {
+     "r0": 0.02,
+     "sigma_exit": 7.953886727487874,
+     "exterior": true,
+     "gain": 578305.0044086633,
+     "theta_f_deg": 78.46296007248401,
+     "law": 578305.0622666084,
+     "rel_err": 1.0004745698566353e-07,
+     "residual": 1.3840094238293271e-13,
+     "kept_log_err": 7.602807272633072e-13,
+     "cos_minus_1_over_v": 1.3833529259599242e-06,
+     "E_drift": 7.180526623753804e-13,
+     "alpha_before_base": 1.2982955300193058,
+     "dir_deg_before_base": 74.94990289921387,
+     "vN_pattern_before_base": 0.0041998082304886,
+     "rate_before_base": 2.3083697777448844
+    },
+    {
+     "r0": 0.1,
+     "sigma_exit": 7.709764924275149,
+     "exterior": true,
+     "gain": 490998.64891859336,
+     "theta_f_deg": 78.46294568828039,
+     "law": 490998.67848988273,
+     "rel_err": 6.02268244165316e-08,
+     "residual": 9.812950935717756e-14,
+     "kept_log_err": 6.217248937900877e-13,
+     "cos_minus_1_over_v": 1.6293322875338134e-06,
+     "E_drift": 5.148606172469552e-13,
+     "alpha_before_base": 1.2982827623950757,
+     "dir_deg_before_base": 74.95000760007026,
+     "vN_pattern_before_base": 0.004187042683344133,
+     "rate_before_base": 2.308334552808096
+    },
+    {
+     "r0": 0.25,
+     "sigma_exit": 7.59363924944115,
+     "exterior": true,
+     "gain": 437234.63970360596,
+     "theta_f_deg": 78.4629339724332,
+     "law": 437234.6906588592,
+     "rel_err": 1.1653983600368178e-07,
+     "residual": 2.1323072233981018e-13,
+     "kept_log_err": 1.758593271006248e-12,
+     "cos_minus_1_over_v": 1.8296809861650942e-06,
+     "E_drift": 1.81206895742629e-12,
+     "alpha_before_base": 1.2982748921825076,
+     "dir_deg_before_base": 74.95006334880745,
+     "vN_pattern_before_base": 0.004179173575357131,
+     "rate_before_base": 2.3083142009505786
+    },
+    {
+     "r0": 0.5,
+     "sigma_exit": 7.548396651744788,
+     "exterior": true,
+     "gain": 324836.76256881247,
+     "theta_f_deg": 78.4628969508164,
+     "law": 324836.8271389654,
+     "rel_err": 1.9877723334005282e-07,
+     "residual": 4.895435907074146e-13,
+     "kept_log_err": 4.149569576838985e-12,
+     "cos_minus_1_over_v": 2.462774947808999e-06,
+     "E_drift": 3.740265001967527e-12,
+     "alpha_before_base": 1.2982705049161687,
+     "dir_deg_before_base": 74.94999635047606,
+     "vN_pattern_before_base": 0.004174784986664681,
+     "rate_before_base": 2.30830374848436
+    },
+    {
+     "r0": 1.0,
+     "sigma_exit": 7.5681226021907735,
+     "exterior": true,
+     "gain": 145554.19291518797,
+     "theta_f_deg": 78.46271956226394,
+     "law": 145554.19616843647,
+     "rel_err": 2.2350771455847962e-08,
+     "residual": 1.2284508109079385e-13,
+     "kept_log_err": 9.07718344933528e-13,
+     "cos_minus_1_over_v": 5.496234537077926e-06,
+     "E_drift": 6.428451797156079e-13,
+     "alpha_before_base": 1.2982753586004583,
+     "dir_deg_before_base": 74.94936397377126,
+     "vN_pattern_before_base": 0.004179626084587884,
+     "rate_before_base": 2.3083147563425146
+    },
+    {
+     "r0": 1.5,
+     "sigma_exit": 7.6193812629733095,
+     "exterior": true,
+     "gain": 60352.97342377603,
+     "theta_f_deg": 78.46226582936777,
+     "law": 60352.974219022704,
+     "rel_err": 1.317659492627854e-08,
+     "residual": 1.7466041980322008e-13,
+     "kept_log_err": 1.55964130499342e-12,
+     "cos_minus_1_over_v": 1.3255353366631306e-05,
+     "E_drift": 1.3925256222159102e-12,
+     "alpha_before_base": 1.2982911156633796,
+     "dir_deg_before_base": 74.94771267502732,
+     "vN_pattern_before_base": 0.004195349533845816,
+     "rate_before_base": 2.3083583389290783
+    },
+    {
+     "r0": 2.0,
+     "sigma_exit": 7.678673722586854,
+     "exterior": true,
+     "gain": 24500.400658662067,
+     "theta_f_deg": 78.46113153114767,
+     "law": 24500.410749620787,
+     "rel_err": 4.1186913057877916e-07,
+     "residual": 1.3448562471638042e-11,
+     "kept_log_err": 1.2280132466457871e-10,
+     "cos_minus_1_over_v": 3.265251379558354e-05,
+     "E_drift": 1.2291451320051396e-10,
+     "alpha_before_base": 1.2983378236207992,
+     "dir_deg_before_base": 74.94349659770545,
+     "vN_pattern_before_base": 0.004241966770658134,
+     "rate_before_base": 2.3084838761803517
+    },
+    {
+     "r0": 3.0,
+     "sigma_exit": 7.80491647753297,
+     "exterior": true,
+     "gain": 3954.276383554786,
+     "theta_f_deg": 78.45121003030056,
+     "law": 3954.2763855056382,
+     "rel_err": 4.933524699879399e-10,
+     "residual": 9.98114288702156e-14,
+     "kept_log_err": 5.950795411990839e-13,
+     "cos_minus_1_over_v": 0.00020231261601549866,
+     "E_drift": 5.223363917310398e-13,
+     "alpha_before_base": 1.2987731719558535,
+     "dir_deg_before_base": 74.90621867763626,
+     "vN_pattern_before_base": 0.004676206677983741,
+     "rate_before_base": 2.3096467891474783
+    },
+    {
+     "r0": 4.0,
+     "sigma_exit": 7.934866414422414,
+     "exterior": true,
+     "gain": 630.9130100099162,
+     "theta_f_deg": 78.38888177068235,
+     "law": 630.9130100511761,
+     "rel_err": 6.5397243176335e-11,
+     "residual": 8.292380232007536e-14,
+     "kept_log_err": 4.2454928461665986e-13,
+     "cos_minus_1_over_v": 0.0012680036506698411,
+     "E_drift": 4.3895296164304634e-13,
+     "alpha_before_base": 1.3015479646386212,
+     "dir_deg_before_base": 74.67091000928556,
+     "vN_pattern_before_base": 0.007431270064039541,
+     "rate_before_base": 2.316998969765572
+    },
+    {
+     "r0": 5.0,
+     "sigma_exit": 8.066872380670924,
+     "exterior": true,
+     "gain": 99.26664000184273,
+     "theta_f_deg": 77.99136511995569,
+     "law": 99.2666400023908,
+     "rel_err": 5.5211391014609035e-12,
+     "residual": 4.4496319195740864e-14,
+     "kept_log_err": 2.255973186038318e-13,
+     "cos_minus_1_over_v": 0.008059102231935428,
+     "E_drift": 2.468051014082643e-13,
+     "alpha_before_base": 1.3191482758849442,
+     "dir_deg_before_base": 73.1425352844781,
+     "vN_pattern_before_base": 0.0243599095739091,
+     "rate_before_base": 2.360852316934795
+    },
+    {
+     "r0": 6.0,
+     "sigma_exit": 8.204907789120064,
+     "exterior": true,
+     "gain": 14.612116145567983,
+     "theta_f_deg": 75.24128218271167,
+     "law": 14.612116145614337,
+     "rel_err": 3.1723512705639223e-12,
+     "residual": 1.736772534058257e-13,
+     "kept_log_err": 9.64561763794336e-13,
+     "cos_minus_1_over_v": 0.05474908576059401,
+     "E_drift": 8.936418783007569e-13,
+     "alpha_before_base": 1.4223237140878513,
+     "dir_deg_before_base": 61.45333923606344,
+     "vN_pattern_before_base": 0.08865870866025394,
+     "rate_before_base": 2.5031871962497956
+    },
+    {
+     "r0": 7.0,
+     "sigma_exit": 8.420895006137552,
+     "exterior": true,
+     "gain": 1.6409983516694435,
+     "theta_f_deg": 46.56682379900558,
+     "law": 1.640998351669488,
+     "rel_err": 2.708944180085382e-14,
+     "residual": 1.3152198219307284e-14,
+     "kept_log_err": 9.71445146547012e-14,
+     "cos_minus_1_over_v": 0.4875081069923752,
+     "E_drift": 6.306066779870889e-14,
+     "alpha_before_base": 1.0000000012869414,
+     "dir_deg_before_base": 0.0,
+     "vN_pattern_before_base": -1.0352761789201286,
+     "rate_before_base": 1.5903006832551492e-07
+    }
+   ]
+  },
+  "max_gain": {
+   "2.1": 6.293545385120606,
+   "3.0": 20.98878110710944,
+   "5.0": 578305.0044086633
+  },
+  "riders": {
+   "alpha": [
+    1.2983,
+    1.2983,
+    1.2983,
+    1.2983,
+    1.2983,
+    1.2983,
+    1.2983,
+    1.2988
+   ],
+   "direction": [
+    74.95,
+    74.95,
+    74.95,
+    74.95,
+    74.95,
+    74.95,
+    74.94,
+    74.91
+   ],
+   "vN": [
+    0.0042,
+    0.0042,
+    0.0042,
+    0.0042,
+    0.0042,
+    0.0042,
+    0.0042,
+    0.0047
+   ]
+  }
+ },
+ "N3": {
+  "gamma_shelf": 3.9606693217933917,
+  "gamma_prime_law": 3.9606693217915545,
+  "alpha_turn": 3.434975307727243,
+  "alpha_turn_law": 3.4349754146035236,
+  "gamma_final": 10.766215445988697,
+  "gamma_final_law": 10.766215445961192,
+  "E_drift_leg1": 2.31769690349398e-13,
+  "bump_front_at_terminal_entry": 65.68814144245354,
+  "bump_front_at_terminal_exit": 69.5172749568822
+ },
+ "N4": {
+  "zeta_S": 3.0000000000000004,
+  "kappa": 0.6931471805599452,
+  "runs": [
+   {
+    "run": "behind S, axis",
+    "sigma_end": 24.0,
+    "held": 1.0,
+    "slope_lnE": 0.6931472411606587,
+    "convergence_rate": 0.6931471749050693,
+    "final_r": 0.0,
+    "E_drift": 9.030470138315844e-15,
+    "final_gain": 30800128.201360326
+   },
+   {
+    "run": "behind S, r=2",
+    "sigma_end": 24.0,
+    "held": 1.0,
+    "slope_lnE": 0.6931472411606587,
+    "convergence_rate": 0.6931471749050693,
+    "final_r": 2.0,
+    "E_drift": 9.030470138315844e-15,
+    "final_gain": 30800128.201360326
+   },
+   {
+    "run": "behind S, r=4",
+    "sigma_end": 24.0,
+    "held": 1.0,
+    "slope_lnE": 0.6931472411606587,
+    "convergence_rate": 0.6931471749050693,
+    "final_r": 4.0,
+    "E_drift": 9.030470138315844e-15,
+    "final_gain": 30800128.201360326
+   },
+   {
+    "run": "ahead (overtaken), r=2",
+    "sigma_end": 24.0,
+    "held": 1.0,
+    "slope_lnE": 0.6931464362358968,
+    "convergence_rate": 0.6931468111496965,
+    "final_r": 2.0,
+    "E_drift": 3.959649165539464e-14,
+    "final_gain": 2519042.6749940747
+   },
+   {
+    "run": "behind S, r=5.8 (outside the flat disk)",
+    "sigma_end": 7.404405486769483,
+    "held": 0.0,
+    "slope_lnE": 0.0,
+    "convergence_rate": NaN,
+    "final_r": 12.0,
+    "E_drift": 1.3666121330924053e-12,
+    "final_gain": 3.1634494917823264
+   }
+  ],
+  "rear": {
+   "zeta_S": -6.000000000000043,
+   "kappa": 0.6931471805599351,
+   "rates": [
+    [
+     0.6931579214514464,
+     -0.6931686713278572
+    ],
+    [
+     0.6931364476572077,
+     -0.6931257128217881
+    ]
+   ]
+  },
+  "cone_S": [
+   {
+    "r": 0.0,
+    "zeta_S": 23.17550700720842,
+    "transverse_over_along": 0.0
+   },
+   {
+    "r": 0.25,
+    "zeta_S": 22.95525258569111,
+    "transverse_over_along": 1.6690238602413972
+   },
+   {
+    "r": 0.5,
+    "zeta_S": 22.402573977228172,
+    "transverse_over_along": 2.6389584337646816
+   },
+   {
+    "r": 1.0,
+    "zeta_S": 20.86897276038936,
+    "transverse_over_along": 3.3380477204827943
+   },
+   {
+    "r": 2.0,
+    "zeta_S": 17.347712571103777,
+    "transverse_over_along": 3.620621101124272
+   },
+   {
+    "r": 3.0,
+    "zeta_S": 13.690943004267982,
+    "transverse_over_along": 3.6812722400187803
+   },
+   {
+    "r": 4.0,
+    "zeta_S": 9.997154640809855,
+    "transverse_over_along": 3.7032314511219693
+   },
+   {
+    "r": 5.0,
+    "zeta_S": 6.2882091971071175,
+    "transverse_over_along": 3.7135293492842516
+   }
+  ]
+ },
+ "N5": {
+  "zeta_tip": 23.17550700720842,
+  "kappa": 0.4077342045715783,
+  "A": 3.0433695348896217,
+  "lam": 2.3323974380692998,
+  "lam_minus": -2.7401316426408777,
+  "density_rate": -3.849326466995443,
+  "fit_window": [
+   2.23,
+   5.17
+  ],
+  "lam_fit": 2.337442621497531,
+  "kap_fit": 0.40859547188771844,
+  "kap_sep": 0.4085954331823146,
+  "dens_fit": -3.8576943379250292,
+  "flat_front_kappa": 0.6931471805599452,
+  "flat_front_density_rate": 1.3864831337234735
+ },
+ "N6": {
+  "runs": [
+   {
+    "v": 5.0,
+    "u": 1.2940952255126037,
+    "n0": -0.5,
+    "held": true,
+    "alpha_at_ray": 1.2940952255152611,
+    "slope": 2.2481190798357047,
+    "kappa_n": 2.2481190788958827
+   },
+   {
+    "v": 5.0,
+    "u": 1.2940952255126037,
+    "n0": 0.3,
+    "held": true,
+    "alpha_at_ray": 1.2940952255136677,
+    "slope": 2.2481190793197414,
+    "kappa_n": 2.2481190788958827
+   },
+   {
+    "v": 2.1,
+    "u": 0.5435199947152936,
+    "n0": -0.5,
+    "held": false,
+    "gain": 12.360272623966894,
+    "law": 12.360272623980116
+   },
+   {
+    "v": 2.1,
+    "u": 0.5435199947152936,
+    "n0": 0.3,
+    "held": false,
+    "gain": 3.6118081289261434,
+    "law": 3.6118081289230957
+   }
+  ]
+ },
+ "N7": {
+  "planar": [
+   {
+    "psi_in": 11.0,
+    "transmitted": true,
+    "predicted": true,
+    "psi_out": 72.5626098412498,
+    "snell": 72.56260983980668
+   },
+   {
+    "psi_in": 11.4,
+    "transmitted": true,
+    "predicted": true,
+    "psi_out": 81.22186895351355,
+    "snell": 81.22186895305464
+   },
+   {
+    "psi_in": 11.7,
+    "transmitted": false,
+    "predicted": false
+   },
+   {
+    "psi_in": 12.5,
+    "transmitted": false,
+    "predicted": false
+   },
+   {
+    "psi_in": 30.0,
+    "transmitted": false,
+    "predicted": false
+   },
+   {
+    "psi_in": 30.0,
+    "reverse": true,
+    "transmitted": true,
+    "psi_out": 5.7391704772812515,
+    "snell": 5.739170477266786
+   },
+   {
+    "psi_in": 60.0,
+    "reverse": true,
+    "transmitted": true,
+    "psi_out": 9.97422179440572,
+    "snell": 9.974221794401348
+   },
+   {
+    "psi_in": 85.0,
+    "reverse": true,
+    "transmitted": true,
+    "psi_out": 11.492457830159596,
+    "snell": 11.4924578301052
+   }
+  ],
+  "sphere": {
+   "case_a": {
+    "L_star": 0.7670326586844274,
+    "runs": [
+     {
+      "psi0_deg": 29.736666759925598,
+      "L": 0.7440216789238946,
+      "escaped": true,
+      "exact_predicts": true,
+      "thin_wall_predicts": false
+     },
+     {
+      "psi0_deg": 31.7824712186697,
+      "L": 0.7900436384449602,
+      "escaped": false,
+      "exact_predicts": false,
+      "thin_wall_predicts": false
+     }
+    ]
+   },
+   "case_b": {
+    "min_r_over_alpha": 0.9,
+    "runs": [
+     {
+      "psi0_deg": 30.0,
+      "L": 0.44999999999999996,
+      "escaped": true,
+      "exact_predicts": true,
+      "thin_wall_predicts": true
+     },
+     {
+      "psi0_deg": 60.0,
+      "L": 0.7794228634059948,
+      "escaped": true,
+      "exact_predicts": true,
+      "thin_wall_predicts": false
+     },
+     {
+      "psi0_deg": 80.0,
+      "L": 0.8863269777109872,
+      "escaped": true,
+      "exact_predicts": true,
+      "thin_wall_predicts": false
+     },
+     {
+      "psi0_deg": 89.0,
+      "L": 0.8998629256407522,
+      "escaped": true,
+      "exact_predicts": true,
+      "thin_wall_predicts": false
+     }
+    ]
+   }
+  }
+ },
+ "N8": {
+  "family1": {
+   "min_sep": 2.1775244668731375e-05,
+   "final_sep": 2.1775244668731375e-05
+  },
+  "family-1": {
+   "min_sep": 0.2903225806452321,
+   "final_sep": 0.30000000000012683
+  },
+  "lens_final_x": [
+   0.12259442891869746,
+   -20.53072596576607,
+   -32.084646241894,
+   -30.985813441267457
+  ]
+ },
+ "checks": [
+  {
+   "label": "S1.1 xi = d_sigma + v d_z is Killing for alpha(z - v sigma, x, y), beta(z - v sigma, x, y)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.2 E = -p.xi equals alpha*E_n - b*p_z with b = beta + v",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.3 sigma-parametrized geodesic equations: dx^i/dsigma = alpha k^i/E_n - beta^i, dp_m/dsigma = p_z d_m beta - E_n d_m alpha",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.2b dE/dsigma = -(dp_sigma/dsigma + v dp_z/dsigma) = 0 along every geodesic of a steady pattern",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.4 dE_n/dsigma = p_z (k.grad beta)/E_n - k.grad alpha  (any geodesic, any time dependence)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.5 d ln(alpha E_n)/dsigma = (d_sigma - beta d_z) ln alpha + p_z (k.grad beta)/E_n^2",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S1.6 steady lane: (d_sigma - beta d_z) ln alpha = -b d_zeta ln alpha",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S2.1 exit-angle law: gain = (v-1)/(v cos theta_f - 1)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S2.2 shelf law: alpha_s gamma - v sqrt(gamma^2-1) = alpha_s has the non-trivial root (alpha_s^2+v^2)/(alpha_s^2-v^2)",
+   "passed": true,
+   "detail": "roots [1, (alpha_s**2 + v**2)/(alpha_s**2 - v**2)]"
+  },
+  {
+   "label": "S2.3 pattern-frame turning point: E = m sqrt(alpha^2 - v^2)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S2.4 same as reflection off a mirror moving at v/alpha_s in the shelf's light units",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S2.5 exit at angle theta' in the shelf: gamma' = (alpha_s^2+v^2cos^2)/(alpha_s^2-v^2cos^2), maximal on the axis",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S2.6 corollary: light overtaken by a shelf edge running at u_e > alpha_s gains (u_e-1)/(u_e-alpha_s)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.0 pattern-frame inverse metric: g^ss=-1/alpha^2, g^sz=b/alpha^2, g^zz=1-b^2/alpha^2",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.1 on S (alpha^2 = b^2): |dF|^2 = F_r^2 + F_phi^2/r^2 >= 0, so S is null exactly where its transverse gradient vanishes, timelike elsewhere",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.2 on S the Killing covector is xi_m = (0, b, 0, 0), i.e. proportional to d zeta; it is normal to S iff F_r = F_phi = 0",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.3 on S: xi^n nabla_n xi^m = kappa xi^m with a^zeta = 0",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.4 signed kappa = d_zeta(alpha - b) for b = +alpha > 0 (and -d_zeta(alpha - |b|) for b = -alpha)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.5 kappa^2 = -1/2 (nabla xi)^2 = (d_zeta(alpha - b))^2 on S",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.6 where the lab shift vanishes (b = v, B' = 0): kappa = d_zeta alpha",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.7 stationary surface F(x)=0: g^{mn}F_mF_n = |grad F|^2 (1 - (b N_zeta)^2/alpha^2): null iff |b.N| = alpha, timelike iff |b.N| < alpha",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S3.8 a null ray with p_perp = 0 has zero pattern-frame velocity iff b = alpha (with p_zeta along b)",
+   "passed": true,
+   "detail": "v_zeta = P*(A - B)/A"
+  },
+  {
+   "label": "S3.9 there the transverse force is -(P^2/alpha) d_perp(alpha - b): a ray rests in position and direction only where d_perp(alpha^2 - b^2) = 0, i.e. at the null points of S",
+   "passed": true,
+   "detail": "longitudinal force -P**2*(a_zeta - b_zeta)/A (the blueshift)"
+  },
+  {
+   "label": "S4.1 ray-direction equations are independent of |p| (null rays)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S4.2 tip eigenvalues: -kappa (along track) and lambda_pm from lambda^2 + kappa lambda - v A = 0; lambda_+ = (sqrt(kappa^2+4vA)-kappa)/2",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S4.3 energy per quantum on the axis ray grows at d ln|k|/dsigma = kappa",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S4.4 geometric-optics density exponent: kappa - (-kappa + 2 lambda_+) = 2(kappa - lambda_+)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S4.5 dictionary: Barcelo et al. eta_- with kappa_B = kappa, xi_B = v A/2 equals lambda_+",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S5.1 a planar layer moving at v along z is the same metric as the layer moving along its normal N at u = v sin(theta_c)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S5.2 the level alpha = v sin(theta_c) of the layer is null (stationary null-surface criterion)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S5.3 threshold v sin(theta_c) = 1 is theta_c = arcsin(1/v), the Mach angle",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S6.1 Snell: sin(psi_out) = (alpha_out/alpha_in) sin(psi_in) (index 1/alpha)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S6.2 total reflection iff sin(psi_in) > alpha_in/alpha_out, possible only for alpha_in < alpha_out",
+   "passed": true,
+   "detail": "sin_out - 1 = (alpha_out/alpha_in)(sin psi - alpha_in/alpha_out); threshold < 1 iff alpha_in < alpha_out"
+  },
+  {
+   "label": "S6.3 a uniform b != 0 cannot be removed without making alpha time dependent (the static-optics hypothesis needs b = 0, i.e. beta = -v)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S7.1 N^2 = -g(xi,xi) = alpha^2 - b^2; N = alpha_c in the compartment (b=0)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S7.2 kappa/(2 pi N) is invariant under xi -> c xi",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S7.3 a pattern-static observer (u = xi/N) measures omega_loc = omega/N, so a Planck spectrum at kappa/2pi becomes one at kappa/(2 pi N)",
+   "passed": true,
+   "detail": "u.u = -1 and -p.u = -p.xi/N for a generic covector p"
+  },
+  {
+   "label": "S8.1 C0: g^{sigma sigma} = -1/alpha^2 < 0 (sigma is a time function)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S8.2 C0A (stretch A): g^{sigma sigma} = -1/alpha^2 as well",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S8.3 widened metric g - c dsigma^2 (c > 0): g_c^{ss} = g^{ss}/(1 + c/alpha^2) < 0",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S8.4 alpha = 1 + z^2: the light ray z = tan(sigma) leaves every compact set at sigma = pi/2 (slices sigma > pi/2 are not met)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S8.5 null speeds of -alpha^2 dsigma^2 + gamma(dl + beta dsigma)^2: dl/dsigma = -beta +- alpha/sqrt(gamma)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "S8.6 fixed (z,x,y) is timelike iff alpha^2 > beta^2 (C0), alpha^2 > A^2 beta^2 (C0A)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N1.1 Killing energy conserved along all 7 geodesics (light and matter; drift relative to alpha*E_n)",
+   "passed": true,
+   "detail": "max drift 1.3e-11"
+  },
+  {
+   "label": "N1.2 kept gain exp(v int(-d_zeta ln alpha) dsigma) exact for exterior-to-exterior light whose path has beta = 0",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N1.3 counterexample: the oblique ray that crosses the shift region violates the kept-gain formula (the axial head-on ray satisfies it only by the test pattern's front-back symmetry)",
+   "passed": true,
+   "detail": "rel. error 0.061"
+  },
+  {
+   "label": "N1.4 general identity: change of ln(alpha E_n) = int[(d_s - beta d_z) ln alpha + k_z (k.grad beta)/E_n^2] dsigma on every run",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N1.5 exterior-to-exterior light obeys gain = (1 - v cos th_i)/(1 - v cos th_f)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N1.6 non-steady lapse: the general alpha E_n identity holds; E is not conserved",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N2.1 every overtaken ray reaches the flat exterior during the steady lane",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N2.2 exit-angle law |k_f|(v cos theta_f - 1) = |k_i|(v - 1) holds on all 36 interacting exits (residual relative to the terms; the gain itself is ill-conditioned as cos theta_f -> 1/v)",
+   "passed": true,
+   "detail": "max residual 1.3e-11; max rel. gain error 4.1e-07 at gains up to 5.8e+05; max E drift 1.2e-10"
+  },
+  {
+   "label": "N2.3 every interacting exit lies inside the cone cos theta_f > 1/v",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N2.6 the cone is shift-free throughout: ln(gain) = v int(-d_zeta ln alpha) dsigma on every exit",
+   "passed": true,
+   "detail": "max |ln gain - int| = 1.2e-10"
+  },
+  {
+   "label": "N2.4 flank threshold 1/sin15 = 3.86: bounded gains at v = 2.1 and 3, gains larger by >20x at v = 5 from light riding the flank",
+   "passed": true,
+   "detail": "6.29, 21, 5.78e+05"
+  },
+  {
+   "label": "N2.5 the v = 5 riders settle on the flank at alpha -> v sin(theta_c) = 1.294, moving along the flank normal (75 deg to the axis) with pattern-frame normal speed -> 0",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N3.1 shelf law gamma' = (alpha_s^2+v^2)/(alpha_s^2-v^2)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N3.2 the particle turns where alpha = sqrt(alpha_s^2 + v^2)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N3.3 resting terminal (static while crossed): final gamma = alpha_s gamma'",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N4.1 on the flat disk forward light is held at S and blueshifts at kappa = |d_zeta alpha|",
+   "passed": true,
+   "detail": "0.693147, 0.693147, 0.693147, 0.693146"
+  },
+  {
+   "label": "N4.2 the held light approaches S at the same rate kappa (lab-time normalization of xi)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N4.3 off the flat disk (S timelike there) the ray is not held: it leaves",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N4.5 rear fall (black-hole type): forward light leaves S on both sides at rate kappa and redshifts at kappa while near it",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N4.4 cone: S is null only on the axis; on the flank the gradient ratio -> cot(15 deg) = 3.73",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N5.1 off-axis displacement grows at lambda = (sqrt(kappa^2 + 4 v A) - kappa)/2",
+   "passed": true,
+   "detail": "2.3374 vs 2.3324"
+  },
+  {
+   "label": "N5.2 energy per quantum grows at kappa, axial separation shrinks at kappa",
+   "passed": true,
+   "detail": "0.4086, 0.4086 vs 0.4077"
+  },
+  {
+   "label": "N5.3 geometric-optics energy density of the ray bundle changes at 2(kappa - lambda)",
+   "passed": true,
+   "detail": "-3.8577 vs -3.8493"
+  },
+  {
+   "label": "N5.4 flat front (lambda = 0): the bundle's energy density grows at 2 kappa",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N6.1 v sin(theta_c) = 1.294 > 1: normal light is held at the level alpha = v sin(theta_c) and blueshifts at |d_n alpha| there",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N6.2 v sin(theta_c) = 0.544 < 1: normal light leaves the layer with the finite gain (alpha_0 - u)/(1 - u)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N7.1 climbing alpha 1 -> 5: transmitted iff psi < arcsin(1/5) = 11.54 deg",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N7.2 Snell's law with index 1/alpha on transmission",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N7.3 descending alpha 5 -> 1: always transmitted (no total reflection)",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N7.4 curved wall: a ray escapes iff L/E <= min r/alpha(r) (exact, 6 rays); the thin-wall arcsin rule misplaces the threshold (0.6 vs 0.767) and predicts trapping where the half-width-2 wall traps nothing",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N8.1 on the symmetry axis (a 2D reduction) rays of one family never cross",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "label": "N8.2 off the axis (3D) rays of one family cross (focusing), so ordering is a 2D statement",
+   "passed": true,
+   "detail": ""
+  }
+ ]
+}

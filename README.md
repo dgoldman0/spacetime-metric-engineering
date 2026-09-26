@@ -88,9 +88,11 @@ light leaves it during the carry only within about 1° of its boundary
 normals. The [ANEC map pass](supporting_reports/ANEC_MAP_PASS.md) finds
 negative averaged null energy along the first light from the departure, an
 achronal ray that runs through the cone's fast interior and rides its tip.
-Achronal ANEC holds for quantum fields, so no semiclassical quantum sector
-can supply the demand at any size. The source class left is classical
-fields that violate ANEC. The
+Achronal ANEC holds for quantum fields where it is proven, in flat space and
+perturbatively in curved spacetime, so no semiclassical quantum sector
+supplies a lead that persists between distant endpoints, at any size
+([scope](supporting_reports/EVIDENCE_REVIEW_AND_IDENTITY_VERIFICATION.md)).
+The source class left is classical fields that violate ANEC. The
 [quantum estimates pass](supporting_reports/QUANTUM_ESTIMATES_PASS.md) sizes
 what quantum fields do on this geometry. Their vacuum stress sits at
 \((\ell_P/L)^2\) of the demanded stress, about \(10^{-70}\) on a metre
@@ -106,6 +108,23 @@ unchanged and every piece of the front below light speed along its normal from
 lies near 48. The C1 and
 source-population results below retain their recorded scope on the static
 phase-0.745 surrogate.
+
+Evidence review, 2026-09-26: the
+[evidence review](supporting_reports/EVIDENCE_REVIEW_AND_IDENTITY_VERIFICATION.md)
+re-derives the identities the reports rely on in four independent symbolic
+verifications, 571 checks that all pass, and surveys the literature with
+every citation pinned to a version. The flat-slice, spherical,
+moving-pattern and source-physics identities hold with their stated
+hypotheses. Bounded designs are globally hyperbolic. On flat slices with a
+uniform shift, every non-constant lapse violates the null energy condition
+somewhere, the fact whose floor the
+[deficit minimization pass](supporting_reports/DEFICIT_MINIMIZATION_PASS.md)
+measures. The lapse envelope is a leading-order estimate, and the classifier
+decides admissibility. Kinetic-braiding scalars, the open source family, can
+be Type IV where they violate the null energy condition, so the Type I gate
+remains to be matched to that family. The review's scripts, inventories and
+verified bibliography are in
+[data/evidence_review](supporting_reports/data/evidence_review/README.md).
 
 Status recorded 2026-09-17: the beta075 `V=5` package is the archived
 prescribed-metric service reference. The

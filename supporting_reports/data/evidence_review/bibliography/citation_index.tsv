@@ -1,0 +1,382 @@
+key	first_author	year	arxiv_id_version	doi	short_title	status	cited_in
+Abdolrahimi2019	Abdolrahimi	2019	1607.05280v4	10.1103/PhysRevD.100.124038	Ingoing Eddington-Finkelstein metric of an evaporating BH	verified-abstract	foundations
+Abellan2023a	Abellán	2023		10.1140/epjc/s10052-022-11091-5	Alcubierre warp drive in spherical coordinates with matter	verified-abstract	design_strategy
+Abellan2023b	Abellán	2023	2302.13826v3	10.1007/s10714-023-03105-8	Influence of anisotropic matter on the Alcubierre metric	verified-fulltext	design_strategy
+Abellan2023c	Abellán	2023	2305.03736v1		Warp drive solutions in spherical coordinates with anisotropic matter	verified-abstract	design_strategy
+Abellan2024	Abellán	2024		10.1088/1361-6382/ad3ed9	Spherical warp bubble with non-trivial lapse	verified-abstract	design_strategy
+Abellan2026	Abellán	2026	2512.16109v1	10.1016/j.aop.2025.170300	Sources inspired by ideal EM fields in spherical PG coordinates	verified-abstract	design_strategy
+AbuShawareb2024	Abu-Shawareb	2024		10.1103/PhysRevLett.132.065102	Target gain larger than unity in an inertial fusion experiment	verified-abstract	engineering_methods
+Adams2006	Adams	2006	hep-th/0602178v2	10.1088/1126-6708/2006/10/014	Causality, analyticity and an IR obstruction to UV completion	verified-abstract	foundations
+AIAA1998	American Institute of Aeronautics and Astronautics	1998		10.2514/4.472855	AIAA guide for V&V of CFD simulations (G-077)	metadata-only	engineering_methods
+Alcubierre1994	Alcubierre	1994	gr-qc/0009013v1	10.1088/0264-9381/11/5/001	The warp drive: hyper-fast travel within GR	verified-fulltext	foundations;design_strategy;synthesis
+Alcubierre2004	Alcubierre	2004	gr-qc/0305023v1	10.1088/0264-9381/21/2/019	Towards standard testbeds for numerical relativity	verified-fulltext	engineering_methods
+Alcubierre2008	Alcubierre	2008		10.1093/acprof:oso/9780199205677.001.0001	Introduction to 3+1 numerical relativity	metadata-only	foundations
+Alcubierre2017	Alcubierre	2017	2103.05610v1	10.1007/978-3-319-55182-1_11	Warp drive basics (chapter)	verified-abstract	foundations
+Anderson1995	Anderson	1995		10.1103/PhysRevD.51.4337	Stress-energy of quantized scalars in static spherical spacetimes	verified-abstract	foundations
+Arnowitt1962	Arnowitt	1962	gr-qc/0405109v1		The dynamics of general relativity (ADM)	verified-abstract	foundations
+ASME2009	ASME	2009			ASME V&V 20-2009	metadata-only	engineering_methods
+ASME2018	ASME	2018			ASME V&V 40-2018 (risk-informed credibility)	verified-abstract	engineering_methods
+ASME2019	ASME	2019			ASME V&V 10-2019	metadata-only	engineering_methods
+Azad2024a	Azad	2024	2301.05243v2	10.1016/j.physletb.2023.138349	Are slowly rotating Ellis-Bronnikov wormholes stable?	verified-fulltext	design_strategy
+Azad2024b	Azad	2024		10.1103/PhysRevD.109.124051	Radial perturbations of slowly rotating Ellis-Bronnikov wormholes	unverified	design_strategy
+Azad2025	Azad	2025	2509.22118v1	10.3390/universe11100325	Quadrupole perturbations of slowly spinning Ellis-Bronnikov wormholes	verified-abstract	design_strategy
+Babiuc2008	Babiuc	2008	0709.3559v3	10.1088/0264-9381/25/12/125012	Implementation of standard testbeds for numerical relativity	verified-fulltext	engineering_methods
+Balakrishnan2019	Balakrishnan	2019	1706.09432v2	10.1007/JHEP09(2019)020	A general proof of the QNEC	verified-abstract	foundations
+Banerjee2023	Banerjee	2023	2307.13846v2	10.1103/PhysRevD.108.084047	Type III stress-energy in scalar-tensor gravity	verified-abstract	foundations
+Barcelo2000	Barceló	2000	gr-qc/0003025v2	10.1088/0264-9381/17/18/318	Scalar fields, energy conditions and traversable wormholes	verified-abstract	design_strategy
+Barcelo2002	Barceló	2002	gr-qc/0205066v1	10.1142/S0218271802002888	Twilight for the energy conditions?	verified-abstract	foundations
+Barcelo2005	Barceló	2005		10.12942/lrr-2005-12	Analogue gravity (Living Reviews, 1st ed.)	metadata-only	engineering_methods
+Barcelo2010	Barceló	2010	1001.4960v1		On the impossibility of superluminal travel: the warp drive lesson	verified-abstract	foundations;design_strategy
+Barcelo2011	Barceló	2011		10.12942/lrr-2011-3	Analogue gravity (Living Reviews, 2011 ed.)	metadata-only	engineering_methods
+Barcelo2017	Barceló	2017		10.1007/978-3-319-55182-1_12	Probing FTL travel and chronology protection (chapter)	metadata-only	foundations
+Barcelo2022	Barceló	2022	2207.06458v1	10.1007/JHEP08(2022)288	Warp drive aerodynamics	verified-fulltext	design_strategy;synthesis
+Barcelo2026	Barceló	2026	gr-qc/0505065v4	10.1007/s41114-026-00064-9	Analogue gravity (Living Reviews, 2026 ed.)	verified-fulltext	engineering_methods
+Barzegar2025	Barzegar	2025	2407.00720v2	10.3390/universe11090293	Restrictions of current warp drive spacetimes	verified-fulltext	design_strategy;synthesis
+Barzegar2026	Barzegar	2026	2602.16495v1		General formalism and demystification of warp-drive spacetimes	verified-fulltext	foundations;design_strategy;P01_vetting;synthesis
+Baumgarte2010	Baumgarte	2010		10.1017/CBO9781139193344	Numerical relativity: solving Einstein's equations on the computer	metadata-only	foundations
+Baumgarte2021	Baumgarte	2021		10.1017/9781108933445	Numerical relativity: starting from scratch	metadata-only	foundations
+Bendsoe1988	Bendsøe	1988		10.1016/0045-7825(88)90086-2	Generating optimal topologies by homogenization	metadata-only	engineering_methods
+Bendsoe2003	Bendsøe	2003		10.1007/978-3-662-05086-6	Topology optimization: theory, methods and applications	metadata-only	engineering_methods
+Birrell1982	Birrell	1982		10.1017/CBO9780511622632	Quantum fields in curved space	metadata-only	foundations
+BlazquezSalcedo2021	Blázquez-Salcedo	2021	2010.07317v2	10.1103/PhysRevLett.126.101102	Traversable wormholes in Einstein-Dirac-Maxwell theory	verified-fulltext	design_strategy
+BlazquezSalcedo2022	Blázquez-Salcedo	2022	2108.12187v1	10.1140/epjc/s10052-022-10488-6	EDM wormholes: ansatz, construction and properties	verified-fulltext	design_strategy
+Bobrick2021	Bobrick	2021	2102.06824v2	10.1088/1361-6382/abdf6e	Introducing physical warp drives	verified-fulltext	foundations;design_strategy;synthesis
+Bolivar2025	Bolívar	2025		10.1016/j.aop.2025.170147	Warp bubble geometries with anisotropic fluids	metadata-only	design_strategy
+Bolivar2026	Bolívar	2026	2608.15000v1		Boundary obstructions and lapse freedom in hollow cores	verified-fulltext	design_strategy;P01_vetting;synthesis
+Bolokhov2021	Bolokhov	2021	2104.10933v2	10.1134/S0202289321040034	A note on EDM traversable wormholes	verified-fulltext	design_strategy
+Borde1987	Borde	1987		10.1088/0264-9381/4/2/015	Geodesic focusing, energy conditions and singularities	unverified	design_strategy
+Borde1994	Borde	1994	gr-qc/9406053v1		Topology change in classical general relativity	verified-abstract	foundations
+Bousso2016a	Bousso	2016	1506.02669v1	10.1103/PhysRevD.93.064044	Quantum focusing conjecture	verified-abstract	foundations
+Bousso2016b	Bousso	2016	1509.02542v2	10.1103/PhysRevD.93.024017	Proof of the quantum null energy condition	verified-abstract	foundations
+Box2005	Box	2005			Statistics for experimenters	verified-fulltext	engineering_methods
+Bronnikov2007	Bronnikov	2007	gr-qc/0612032v1	10.1134/S0021364007010018	No realistic wormholes from ghost-free phantom dark energy	verified-abstract	design_strategy
+Bronnikov2011	Bronnikov	2011	1109.6576v2	10.1140/epjc/s10052-011-1791-2	On the stability of scalar-vacuum space-times	verified-abstract	design_strategy
+Bronnikov2012	Bronnikov	2012	1205.2224v3	10.1103/PhysRevD.86.024028	Instabilities of phantom-supported wormholes and regular BHs	verified-abstract	design_strategy
+Browning2001	Browning	2001		10.1109/17.946528	Applying the design structure matrix (review)	verified-fulltext	engineering_methods
+Buchert2026	Buchert	2026	2605.03653v1	10.3390/universe12050132	Novel realizations of warp drive spacetimes	verified-abstract	design_strategy
+Buckingham1914	Buckingham	1914		10.1103/PhysRev.4.345	On physically similar systems	metadata-only	engineering_methods
+Cactus2026		2026			Cactus 4.20 users' guide	verified-fulltext	engineering_methods
+Cai2007	Cai	2007		10.1038/nphoton.2007.28	Optical cloaking with metamaterials	verified-abstract	engineering_methods
+Candelas1980	Candelas	1980		10.1103/PhysRevD.21.2185	Vacuum polarization in Schwarzschild spacetime	metadata-only	foundations
+Capper1974	Capper	1974		10.1007/BF02748300	Trace anomalies in dimensional regularization	verified-abstract	foundations
+Carneiro2022	Carneiro	2022	2201.05684v2	10.1088/1475-7516/2022/07/030	Total energy conservation of the Alcubierre spacetime	verified-abstract	design_strategy
+Cassier2017	Cassier	2017		10.1063/1.4989990	Bounds on Herglotz functions and passive quasistatic cloaking	unverified	engineering_methods
+Celik2008	Celik	2008		10.1115/1.2960953	Procedure for estimating and reporting discretization uncertainty	metadata-only	engineering_methods
+Celmaster2025	Celmaster	2025	2511.18251v1		WEC violations for Lentz warp drives	verified-abstract	design_strategy
+Ceyhan2020	Ceyhan	2020	1812.04683v2	10.1007/s00220-020-03751-y	Recovering the QNEC from the ANEC	verified-abstract	foundations
+Chen2010	Chen	2010		10.1038/nmat2743	Transformation optics and metamaterials (review)	metadata-only	engineering_methods
+Chen2011	Chen	2011		10.1038/ncomms1176	Macroscopic invisibility cloaking of visible light	verified-abstract	engineering_methods
+Chen2013	Chen	2013	1306.5835v1	10.1103/PhysRevLett.111.233001	Broadening the cloaking bandwidth with non-Foster metasurfaces	verified-abstract	engineering_methods
+Choptuik1991	Choptuik	1991		10.1103/PhysRevD.44.3124	Consistency of finite-difference solutions of Einstein's equations	verified-abstract	engineering_methods
+ChoquetBruhat1969	Choquet-Bruhat	1969		10.1007/BF01645389	Global aspects of the Cauchy problem in GR	metadata-only	foundations
+Chowdhury2025	Chowdhury	2025	2404.15948v3	10.1140/epjc/s10052-025-13831-9	Warp drives and Martel-Poisson charts	verified-abstract	design_strategy
+Christensen1977	Christensen	1977		10.1103/PhysRevD.15.2088	Trace anomalies and the Hawking effect	verified-abstract	foundations
+Clark1999	Clark	1999	gr-qc/9907019v1	10.1088/0264-9381/16/12/313	Null geodesics in the Alcubierre warp drive: view from the bridge	verified-abstract	design_strategy
+Clough2024	Clough	2024	2406.02466v2	10.33232/001c.121868	Gravitational waveforms from warp drive collapse	verified-fulltext	foundations;design_strategy
+Cooper1990	Cooper	1990		10.1016/0007-6813(90)90040-I	Stage-gate systems	verified-fulltext	engineering_methods;synthesis
+Coutant2012	Coutant	2012	1111.4356v2	10.1103/PhysRevD.85.064020	Impossibility of superluminal travel in Lorentz violating theories	verified-abstract	design_strategy
+Creminelli2006	Creminelli	2006	hep-th/0606090v2	10.1088/1126-6708/2006/12/080	Starting the universe: stable violation of the NEC	verified-abstract	foundations
+Creminelli2010	Creminelli	2010	1007.0027v2	10.1088/1475-7516/2010/11/021	Galilean genesis	verified-abstract	foundations
+Creminelli2016	Creminelli	2016	1610.04207v2	10.1088/1475-7516/2016/11/047	Stability of geodesically complete cosmologies	verified-abstract	foundations
+Cremona2019	Cremona	2019	1805.02602v3	10.1007/s10714-019-2501-x	Linear instability of the Ellis-Bronnikov-Morris-Thorne wormhole	verified-abstract	design_strategy
+Crispino2008	Crispino	2008	0710.5373v1	10.1103/RevModPhys.80.787	The Unruh effect and its applications	verified-abstract	foundations
+Cummer2006	Cummer	2006		10.1103/PhysRevE.74.036621	Full-wave simulations of cloaking structures	verified-abstract	engineering_methods
+Curiel2017	Curiel	2017	1405.0403v1	10.1007/978-1-4939-3210-8_3	A primer on energy conditions	verified-abstract	foundations
+Cuyubamba2018	Cuyubamba	2018	1804.11170v2	10.1103/PhysRevD.98.044040	No stable wormholes in Einstein-dilaton-Gauss-Bonnet theory	verified-fulltext	design_strategy
+Czitrom1999	Czitrom	1999		10.1080/00031305.1999.10474445	One-factor-at-a-time versus designed experiments	verified-fulltext	engineering_methods
+Danielson2021	Danielson	2021	2108.13361v2	10.1103/PhysRevD.104.124055	BSKR wormholes are not solutions to the EDM equations	verified-fulltext	design_strategy
+Davies1975	Davies	1975		10.1088/0305-4470/8/4/022	Scalar production in Schwarzschild and Rindler metrics	metadata-only	foundations
+Deffayet2010	Deffayet	2010	1008.0048v2	10.1088/1475-7516/2010/10/026	Imperfect dark energy from kinetic gravity braiding	verified-abstract	foundations
+DeNeufville2011	de Neufville	2011		10.7551/mitpress/8292.001.0001	Flexibility in engineering design	unverified	engineering_methods
+Deser1993	Deser	1993	hep-th/9302047v1	10.1016/0370-2693(93)90934-A	Geometric classification of conformal anomalies	verified-abstract	foundations
+Dowding2016	Dowding	2016			Overview of ASME V&V 20-2009 (slides)	verified-fulltext	engineering_methods
+Dubovsky2006	Dubovsky	2006	hep-th/0512260v2	10.1088/1126-6708/2006/03/025	Null energy condition and superluminal propagation	verified-abstract	foundations
+Duff1994	Duff	1994	hep-th/9308075v1	10.1088/0264-9381/11/6/004	Twenty years of the Weyl anomaly	verified-abstract	foundations
+Dvali2008	Dvali	2008	0710.4344v1	10.1103/PhysRevD.77.045027	Black hole bound on the number of species	verified-abstract	foundations
+Dvali2010	Dvali	2010	0706.2050v1	10.1002/prop.201000009	Black holes and large N species solution to the hierarchy problem	verified-abstract	foundations
+Earman1995	Earman	1995		10.1093/oso/9780195095913.001.0001	Bangs, crunches, whimpers, and shrieks	metadata-only	foundations
+Eiroa2025	Eiroa	2025	2511.15001v1	10.3390/universe11110368	Tides and energy conditions in EGB thin-shell wormholes	verified-fulltext	design_strategy
+Eppinger2012	Eppinger	2012		10.7551/mitpress/8896.001.0001	Design structure matrix methods and applications	metadata-only	engineering_methods
+Epstein1965	Epstein	1965		10.1007/BF02749799	Nonpositivity of energy density in QFT	verified-abstract	foundations
+Everett1996	Everett	1996		10.1103/PhysRevD.53.7365	Warp drive and causality	verified-fulltext	design_strategy
+Everett1997	Everett	1997	gr-qc/9702049v1	10.1103/PhysRevD.56.2100	Superluminal subway: the Krasnikov tube	verified-fulltext	foundations;design_strategy;synthesis
+Everett2011	Everett	2011		10.7208/chicago/9780226225005.001.0001	Time travel and warp drives (popular)	verified-abstract	foundations
+Evseev2018	Evseev	2018	1711.04152v1	10.1103/PhysRevD.97.124040	No static spherically symmetric wormholes in Horndeski theory	verified-fulltext	foundations;design_strategy
+Fano1950	Fano	1950		10.1016/0016-0032(50)90006-8	Theoretical limitations on broadband matching	metadata-only	engineering_methods;synthesis
+Faulkner2016	Faulkner	2016	1605.08072v1	10.1007/JHEP09(2016)038	Modular Hamiltonians for deformed half-spaces and ANEC	verified-fulltext	foundations;design_strategy;P01_vetting
+Fell2021	Fell	2021	2104.06488v4	10.1088/1361-6382/ac0e47	Positive energy warp drive from hidden geometric structures	verified-abstract	foundations;design_strategy
+Fewster1998	Fewster	1998	gr-qc/9805024v2	10.1103/PhysRevD.58.084010	Bounds on negative energy densities in flat spacetime	verified-abstract	foundations;design_strategy
+Fewster2000a	Fewster	2000	gr-qc/9908073v2	10.1103/PhysRevD.61.084012	Quantum inequalities and quantum interest as eigenvalue problems	verified-abstract	foundations
+Fewster2000b	Fewster	2000	gr-qc/9910060v2	10.1088/0264-9381/17/9/302	A general worldline quantum inequality	verified-abstract	foundations;design_strategy
+Fewster2003	Fewster	2003	gr-qc/0209036v2	10.1103/PhysRevD.67.044003	Null energy conditions in QFT	verified-fulltext	foundations;design_strategy
+Fewster2005a	Fewster	2005	math-ph/0412028v2	10.1142/S0129055X05002406	QEIs in 2D conformal field theory	verified-abstract	foundations;design_strategy
+Fewster2005b	Fewster	2005	gr-qc/0507013v1	10.1103/PhysRevD.72.044023	Wormholes with arbitrarily small quantities of exotic matter	verified-fulltext	design_strategy
+Fewster2007	Fewster	2007	gr-qc/0609007v3	10.1103/PhysRevD.75.025007	ANEC in spacetimes with boundaries	verified-abstract	foundations;design_strategy
+Fewster2008	Fewster	2008	gr-qc/0702056v3	10.1007/s00023-008-0361-0	Absolute QEIs in curved spacetime	verified-abstract	foundations
+Fewster2012	Fewster	2012	1208.5399v1		Lectures on quantum energy inequalities	verified-abstract	foundations
+Fewster2017	Fewster	2017		10.1007/978-3-319-55182-1_10	Quantum energy inequalities (chapter)	metadata-only	foundations
+Finazzi2009	Finazzi	2009	0904.0141v2	10.1103/PhysRevD.79.124017	Semiclassical instability of dynamical warp drives	verified-fulltext	foundations;design_strategy;synthesis
+Fisher1935	Fisher	1935			The design of experiments	verified-fulltext	engineering_methods
+Flanagan1996	Flanagan	1996	gr-qc/9602052v2	10.1103/PhysRevD.54.6233	Does back reaction enforce ANEC?	verified-abstract	foundations;design_strategy
+Flanagan1997	Flanagan	1997	gr-qc/9706006v2	10.1103/PhysRevD.56.4922	Quantum inequalities in 2D Minkowski spacetime	verified-abstract	foundations
+Fliss2022	Fliss	2022	2108.06068v1	10.21468/SciPostPhys.12.3.084	Semi-local bounds on null energy in QFT	verified-abstract	foundations;design_strategy
+Fliss2023	Fliss	2023	2111.05772v1	10.21468/SciPostPhys.14.2.024	The double smeared null energy condition	verified-abstract	foundations;design_strategy
+Fliss2024	Fliss	2024	2309.10848v1	10.21468/SciPostPhys.16.5.119	Non-minimal coupling, negative null energy, EFT	verified-abstract	foundations
+Fliss2025a	Fliss	2025	2412.10618v1	10.21468/SciPostPhys.19.4.087	How negative can null energy be in large N CFTs?	verified-abstract	foundations
+Fliss2025b	Fliss	2025	2510.26247v2		Curious QNEIs from QNEC	verified-abstract	foundations;design_strategy
+Fliss2026	Fliss	2026	2605.18964v1		Modave lectures on energy conditions	verified-abstract	foundations
+Ford1978	Ford	1978		10.1098/rspa.1978.0197	Quantum coherence effects and the second law	metadata-only	foundations
+Ford1995	Ford	1995	gr-qc/9410043v1	10.1103/PhysRevD.51.4277	Averaged energy conditions and quantum inequalities	verified-fulltext	foundations;design_strategy
+Ford1996a	Ford	1996	gr-qc/9506052v2	10.1103/PhysRevD.53.1988	Averaged energy conditions and evaporating black holes	verified-abstract	foundations
+Ford1996b	Ford	1996	gr-qc/9510071v1	10.1103/PhysRevD.53.5496	QFT constrains traversable wormhole geometries	verified-fulltext	foundations;design_strategy
+Ford1997	Ford	1997	gr-qc/9607003v2	10.1103/PhysRevD.55.2082	Restrictions on negative energy density in flat spacetime	verified-fulltext	foundations;design_strategy
+Ford1999	Ford	1999	gr-qc/9901074v1	10.1103/PhysRevD.60.104018	The quantum interest conjecture	verified-abstract	foundations
+Ford2002	Ford	2002	gr-qc/0208045v2	10.1103/PhysRevD.66.124012	Spatially averaged QIs do not exist in 4D	verified-abstract	foundations
+FouresBruhat1952	Fourès-Bruhat	1952		10.1007/BF02392131	Existence theorem for nonlinear hyperbolic systems	metadata-only	foundations
+Franciolini2019	Franciolini	2019	1811.05481v2	10.1007/JHEP01(2019)221	Stable wormholes in scalar-tensor theories	verified-fulltext	foundations;design_strategy
+Freivogel2018	Freivogel	2018	1807.03808v4	10.1007/JHEP12(2018)067	The smeared null energy condition	verified-fulltext	foundations;design_strategy
+Freivogel2022	Freivogel	2022	2012.11569v2	10.21468/SciPostPhys.13.1.001	The return of the singularities (SNEC applications)	verified-fulltext	foundations;design_strategy
+Friedman1993	Friedman	1993	gr-qc/9305017v2	10.1103/PhysRevLett.71.1486	Topological censorship	verified-fulltext	foundations;design_strategy;synthesis
+Friedman2006	Friedman	2006	0801.0735v2	10.1002/andp.200510173	Topological censorship and chronology protection	verified-abstract	foundations
+Fu2019a	Fu	2019	1807.07917v3	10.1088/1361-6382/aafcea	A perturbative perspective on self-supporting wormholes	verified-fulltext	design_strategy
+Fu2019b	Fu	2019	1908.03273v2	10.1088/1361-6382/ab56e4	Traversable asymptotically flat wormholes with short transit times	verified-fulltext	design_strategy
+Fuchs2024	Fuchs	2024	2405.02709v1	10.1088/1361-6382/ad26aa	Constant velocity physical warp drive solution	verified-fulltext	foundations;design_strategy;synthesis
+Fulling1973	Fulling	1973		10.1103/PhysRevD.7.2850	Nonuniqueness of canonical field quantization	metadata-only	foundations
+Galloway1999	Galloway	1999	gr-qc/9902061v2	10.1103/PhysRevD.60.104039	Topological censorship and higher genus black holes	verified-abstract	foundations
+Gao2000	Gao	2000	gr-qc/0007021v2	10.1088/0264-9381/17/24/305	Theorems on gravitational time delay	verified-fulltext	foundations;design_strategy;synthesis
+Gao2017	Gao	2017	1608.05687v3	10.1007/JHEP12(2017)151	Traversable wormholes via a double trace deformation	verified-fulltext	design_strategy;synthesis
+GAO2020	U.S. Government Accountability Office	2020			GAO technology readiness assessment guide	verified-abstract	engineering_methods
+Garattini2019	Garattini	2019	1907.03623v1	10.1140/epjc/s10052-019-7468-y	Casimir wormholes	verified-fulltext	design_strategy
+Garattini2023	Garattini	2023	2311.06757v2		Black holes and warp drive (precursor)	verified-abstract	design_strategy
+Garattini2024a	Garattini	2024	2401.15136v2	10.1088/1475-7516/2024/08/061	On the wormhole-warp drive correspondence	verified-abstract	design_strategy
+Garattini2024b	Garattini	2024	2408.04495v4	10.1016/j.physletb.2024.138910	Black holes, warp drives, and energy conditions	verified-abstract	design_strategy
+Garattini2025	Garattini	2025	2502.13153v4		Warp drive in a de Sitter universe	verified-abstract	design_strategy
+Garcia2012	Garcia	2012	1112.2057v3	10.1103/PhysRevD.86.044026	Generic dynamic thin-shell traversable wormholes	verified-fulltext	design_strategy
+Gergely2026	Gergely	2026	2608.15228v1	10.1103/wgtj-h9bd	Hawking-Ellis classification of the kinetic gravity braiding stress tensor	verified-abstract	foundations;design_strategy;P01_vetting;synthesis
+Geroch1967	Geroch	1967		10.1063/1.1705276	Topology in general relativity	metadata-only	foundations;synthesis
+Gibbons1977	Gibbons	1977		10.1103/PhysRevD.15.2738	Cosmological event horizons and particle creation	verified-abstract	foundations
+Gonzalez2009a	González	2009	0806.0608v2	10.1088/0264-9381/26/1/015010	Instability of ghost-supported wormholes I: linear	verified-fulltext	design_strategy
+Gonzalez2009b	González	2009	0806.1370v2	10.1088/0264-9381/26/1/015011	Instability of ghost-supported wormholes II: nonlinear	verified-fulltext	design_strategy
+GonzalezDiaz2000	González-Díaz	2000	gr-qc/9907026v2	10.1103/PhysRevD.62.044005	Warp drive space-time	verified-abstract	design_strategy
+Gordon1923	Gordon	1923		10.1002/andp.19233772202	Zur Lichtfortpflanzung nach der Relativitaetstheorie	metadata-only	engineering_methods
+Gourgoulhon2007	Gourgoulhon	2007	gr-qc/0703035v1		3+1 formalism and bases of numerical relativity (notes)	verified-abstract	foundations
+Gourgoulhon2012	Gourgoulhon	2012		10.1007/978-3-642-24525-1	3+1 formalism in general relativity (book)	metadata-only	foundations
+Graham2005	Graham	2005	hep-th/0506136v2	10.1103/PhysRevD.72.025013	Plate with a hole obeys ANEC	verified-abstract	design_strategy
+Graham2007	Graham	2007	0705.3193v2	10.1103/PhysRevD.76.064001	Achronal averaged null energy condition	verified-fulltext	foundations;design_strategy;P01_vetting;synthesis
+Gundlach2005	Gundlach	2005		10.1088/0264-9381/22/17/025	Constraint damping in the Z4 formulation	unverified	engineering_methods
+Gurses2020	Gürses	2020	2004.03390v3	10.1140/epjc/s10052-020-8200-7	Is there a novel EGB theory in four dimensions?	verified-abstract	design_strategy
+Hannam2009	Hannam	2009	0901.2437v3	10.1103/PhysRevD.79.084025	The Samurai project	verified-abstract	engineering_methods
+Hartman2017	Hartman	2017	1610.05308v1	10.1007/JHEP07(2017)066	Averaged null energy condition from causality	verified-fulltext	foundations;design_strategy;P01_vetting
+Hashemi2010	Hashemi	2010	1003.5934v3	10.1103/PhysRevLett.104.253903	Delay-bandwidth and delay-loss limits for cloaking	verified-fulltext	engineering_methods
+Hawking1973	Hawking	1973		10.1017/CBO9780511524646	The large scale structure of space-time	metadata-only	foundations;design_strategy
+Hawking1975	Hawking	1975		10.1007/BF02345020	Particle creation by black holes	verified-abstract	foundations
+Hawking1992	Hawking	1992		10.1103/PhysRevD.46.603	Chronology protection conjecture	verified-fulltext	foundations;design_strategy;synthesis
+Helmerich2023	Helmerich	2023	2404.10855v1	10.2514/6.2023-0553	Warp Factory: numerical toolkit (AIAA SciTech 2023)	verified-abstract	design_strategy
+Helmerich2024	Helmerich	2024	2404.03095v2	10.1088/1361-6382/ad2e42	Analyzing warp drive spacetimes with Warp Factory	verified-fulltext	foundations;design_strategy;engineering_methods;P01_vetting;synthesis
+Hinder2014	Hinder	2014	1307.5307v3	10.1088/0264-9381/31/2/025012	Error analysis of NRAR numerical waveforms	verified-abstract	engineering_methods
+Hiscock1997	Hiscock	1997	gr-qc/9707024v1	10.1088/0264-9381/14/11/002	Quantum effects in the Alcubierre warp-drive spacetime	verified-abstract	foundations;design_strategy
+Hochberg1997a	Hochberg	1997	gr-qc/9701064v1	10.1103/PhysRevLett.78.2050	Self-consistent wormhole solutions of semiclassical gravity	verified-fulltext	design_strategy
+Hochberg1997b	Hochberg	1997	gr-qc/9704082v1	10.1103/PhysRevD.56.4745	Geometric structure of the generic static wormhole throat	verified-fulltext	design_strategy;synthesis
+Hochberg1998a	Hochberg	1998	gr-qc/9802048v3	10.1103/PhysRevLett.81.746	The null energy condition in dynamic wormholes	verified-fulltext	design_strategy
+Hochberg1998b	Hochberg	1998	gr-qc/9802046v2	10.1103/PhysRevD.58.044021	Dynamic wormholes, anti-trapped surfaces, and energy conditions	verified-abstract	design_strategy
+Hollands2015	Hollands	2015	1401.2026v2	10.1016/j.physrep.2015.02.001	Quantum fields in curved spacetime (review)	verified-abstract	foundations
+Hord1985	Hord	1985			CRC handbook of space technology	unverified	engineering_methods
+Horndeski1974	Horndeski	1974		10.1007/BF01807638	Second-order scalar-tensor field equations in 4D	verified-abstract	foundations
+Hu2008	Hu	2008	0802.0658v1	10.12942/lrr-2008-3	Stochastic gravity: theory and applications	verified-abstract	foundations
+Huey2024	Huey	2024	2311.07193v3	10.1088/1361-6382/ad4e00	Membrane models: superluminal warp drive satisfying the WEC	verified-abstract	design_strategy
+Ijjas2017	Ijjas	2017	1609.01253v5	10.1016/j.physletb.2016.11.047	Fully stable cosmological solutions with a nonsingular bounce	verified-abstract	foundations
+Ishibashi2019	Ishibashi	2019	1903.11806v1	10.1103/PhysRevD.100.066008	Achronal ANEC, weak cosmic censorship, AdS/CFT	verified-abstract	foundations;P01_vetting
+Jensen2011	Jensen	2011		10.1002/lpor.201000014	Topology optimization for nano-photonics	unverified	engineering_methods
+Jones2017	Jones	2017			Axiomatic design of space life support systems	verified-fulltext	engineering_methods
+Jusufi2026	Jusufi	2026	2609.05554v1		Quantum-gravity-inspired Alcubierre warp-drive geometries	verified-abstract	design_strategy
+Kain2023a	Kain	2023	2305.11217v2	10.1103/PhysRevD.108.044019	Are Einstein-Dirac-Maxwell wormholes traversable?	verified-fulltext	design_strategy
+Kain2023b	Kain	2023	2308.00049v2	10.1103/PhysRevD.108.084010	Einstein-Dirac-Maxwell wormholes in QFT	verified-abstract	design_strategy
+Kanai2026	Kanai	2026	2511.21017v1	10.1103/dsnv-gq47	Wormholes as perturbations of near-horizon geometries: no-go	verified-abstract	design_strategy
+Kanti2011	Kanti	2011	1108.3003v2	10.1103/PhysRevLett.107.271101	Wormholes in dilatonic Einstein-Gauss-Bonnet theory	verified-abstract	design_strategy
+Kanti2012	Kanti	2012	1111.4049v3	10.1103/PhysRevD.85.044007	Stable Lorentzian wormholes in dilatonic EGB theory	verified-fulltext	design_strategy
+Kar2004	Kar	2004	gr-qc/0405103v1	10.1007/BF02705207	Quantifying energy condition violations in wormholes	verified-fulltext	design_strategy
+Kay1997	Kay	1997	gr-qc/9603012v2	10.1007/s002200050042	QFT on spacetimes with a compactly generated Cauchy horizon	verified-abstract	foundations
+Khoo2024	Khoo	2024	2401.02898v2	10.1103/PhysRevD.109.084013	QNMs of rapidly rotating Ellis-Bronnikov wormholes	verified-abstract	design_strategy
+Kildishev2008	Kildishev	2008		10.1088/1367-2630/10/11/115029	Transformation optics: approaching broadband cloaking	unverified	engineering_methods
+Kim1991	Kim	1991		10.1103/PhysRevD.43.3929	Do vacuum fluctuations prevent creation of CTCs?	verified-abstract	foundations;design_strategy
+Klinkhammer1991	Klinkhammer	1991		10.1103/PhysRevD.43.2542	Averaged energy conditions for free scalar fields	verified-abstract	foundations
+Kobayashi2016	Kobayashi	2016	1606.05831v2	10.1103/PhysRevD.94.043511	Generic instabilities of nonsingular cosmologies in Horndeski	verified-abstract	foundations
+Kobayashi2019	Kobayashi	2019	1901.07183v2	10.1088/1361-6633/ab2429	Horndeski theory and beyond: a review	verified-abstract	foundations
+Kolevatov2017	Kolevatov	2017	1705.06626v2	10.1088/1475-7516/2017/08/038	Cosmological bounce and Genesis beyond Horndeski	verified-abstract	foundations
+Konoplya2022	Konoplya	2022	2106.05034v4	10.1103/PhysRevLett.128.091104	Traversable wormholes in general relativity	verified-fulltext	design_strategy
+Kontou2013	Kontou	2013	1212.2290v1	10.1103/PhysRevD.87.064009	ANEC in a classical curved background	verified-abstract	foundations;design_strategy
+Kontou2015	Kontou	2015	1507.00297v2	10.1103/PhysRevD.92.124009	Proof of ANEC using a null-projected QI	verified-fulltext	foundations;design_strategy;synthesis
+Kontou2020	Kontou	2020	2003.01815v2	10.1088/1361-6382/ab8fcf	Energy conditions in GR and QFT (review)	verified-fulltext	foundations;design_strategy
+Kontou2024	Kontou	2024	2405.05963v2	10.3390/universe10070291	Wormhole restrictions from QEIs	verified-fulltext	foundations;design_strategy;synthesis
+Krasnikov1998	Krasnikov	1998	gr-qc/9511068v6	10.1103/PhysRevD.57.4760	Hyperfast travel in general relativity	verified-fulltext	foundations;design_strategy;synthesis
+Krasnikov2003	Krasnikov	2003	gr-qc/0207057v3	10.1103/PhysRevD.67.104013	Quantum inequalities do not forbid spacetime shortcuts	verified-fulltext	design_strategy
+Krasnikov2018	Krasnikov	2018		10.1007/978-3-319-72754-7	Back-in-time and faster-than-light travel in GR	verified-abstract	foundations
+Lamport1978	Lamport	1978		10.1145/359545.359563	Time, clocks, and the ordering of events	verified-fulltext	engineering_methods;synthesis
+Lawson1957	Lawson	1957		10.1088/0370-1301/70/1/303	Criteria for a power producing thermonuclear reactor	metadata-only	engineering_methods;synthesis
+Le2026a	Le	2026	2605.25417v2		On the boundary cost of source-consistent warp shells	verified-fulltext	design_strategy;P01_vetting;synthesis
+Le2026b	Le	2026	2602.18023v6		Observer-robust energy condition verification for warp drives	verified-fulltext	design_strategy;P01_vetting;synthesis
+Le2026c	Le	2026	2606.22531v4		Radiative steering of warp shells	verified-abstract	design_strategy;synthesis
+Lentz2021	Lentz	2021	2006.07125v2	10.1088/1361-6382/abe692	Breaking the warp barrier: hyper-fast solitons	verified-abstract	foundations;design_strategy
+Lentz2023	Lentz	2023	2201.00652v1	10.1142/9789811269776_0061	Hyper-fast positive energy warp drives (MG16)	verified-abstract	design_strategy
+Leonhardt2006a	Leonhardt	2006	physics/0602092v1	10.1126/science.1126493	Optical conformal mapping	verified-abstract	engineering_methods
+Leonhardt2006b	Leonhardt	2006	cond-mat/0607418v2	10.1088/1367-2630/8/10/247	General relativity in electrical engineering	verified-fulltext	engineering_methods
+Leonhardt2009	Leonhardt	2009		10.1016/S0079-6638(08)00202-3	Transformation optics and the geometry of light	unverified	engineering_methods
+Li2008	Li	2008	0806.4396v1	10.1103/PhysRevLett.101.203901	Hiding under the carpet (carpet cloak)	verified-fulltext	engineering_methods
+Libanov2016	Libanov	2016	1605.05992v2	10.1088/1475-7516/2016/08/037	Generalized Galileons: instabilities of bouncing and Genesis	verified-abstract	foundations
+Liu2009	Liu	2009		10.1126/science.1166949	Broadband ground-plane cloak	verified-abstract	engineering_methods
+Lobo2004	Lobo	2004	gr-qc/0406083v2	10.1088/0264-9381/21/24/011	Fundamental limitations on warp drive spacetimes	verified-fulltext	design_strategy;synthesis
+Lobo2008	Lobo	2008	0710.4474v1		Exotic solutions in GR: wormholes and warp drives (review chapter)	verified-abstract	foundations
+Lobo2009	Lobo	2009	0909.5539v2	10.1103/PhysRevD.80.104012	Wormhole geometries in f(R) gravity	verified-fulltext	design_strategy
+Lobo2017	Lobo	2017		10.1007/978-3-319-55182-1	Wormholes, warp drives and energy conditions (edited)	verified-abstract	foundations
+Loffler2012	Löffler	2012	1111.3344v1	10.1088/0264-9381/29/11/115001	The Einstein Toolkit	verified-fulltext	engineering_methods
+LoPiano2021	Lo Piano	2021		10.1016/j.ress.2020.107300	Variance-based sensitivity analysis: estimators and designs	metadata-only	engineering_methods
+Loup2001	Loup	2001	gr-qc/0107097v2		Reduced total energy requirements for a modified Alcubierre drive	verified-abstract	design_strategy
+Low1999	Low	1999	gr-qc/9812067v1	10.1088/0264-9381/16/2/016	Speed limits in general relativity	verified-fulltext	design_strategy
+Maldacena2021	Maldacena	2021	2008.06618v2	10.1103/PhysRevD.103.066007	Humanly traversable wormholes	verified-fulltext	design_strategy;synthesis
+Maldacena2023	Maldacena	2023	1807.04726v3	10.1088/1361-6382/acde30	Traversable wormholes in four dimensions	verified-fulltext	design_strategy;synthesis
+Mankins1995	Mankins	1995			Technology readiness levels: a white paper	verified-fulltext	engineering_methods
+Mankins2009	Mankins	2009		10.1016/j.actaastro.2009.03.058	Technology readiness assessments: a retrospective	metadata-only	engineering_methods
+MartinMoruno2013	Martín-Moruno	2013	1306.2076v3	10.1007/JHEP09(2013)050	Semiclassical energy conditions for quantum vacuum states	verified-abstract	foundations
+MartinMoruno2017	Martín-Moruno	2017	1702.05915v3	10.1007/978-3-319-55182-1_9	Classical and semi-classical energy conditions (chapter)	verified-abstract	foundations
+MartinMoruno2018a	Martín-Moruno	2018	1802.00865v2	10.1088/1361-6382/aac147	Essential core of the Hawking-Ellis types	verified-abstract	foundations;design_strategy;P01_vetting
+MartinMoruno2018b	Martín-Moruno	2018	1806.02094v1	10.1088/1361-6382/aad473	Hawking-Ellis type III spacetime geometry	verified-abstract	foundations
+MartinMoruno2020	Martín-Moruno	2020	1907.01269v3	10.1088/1361-6382/ab56f6	Type III stress-energy tensor: ugly duckling	verified-abstract	foundations
+MartinMoruno2021	Martín-Moruno	2021	2102.13551v2	10.1103/PhysRevD.103.124003	Hawking-Ellis classification: test fields vs back-reaction	verified-fulltext	foundations;design_strategy;P01_vetting;synthesis
+Mattingly2021	Mattingly	2021	2010.13693v3	10.3390/universe7020021	Curvature invariants for Alcubierre and Natario warp drives	verified-abstract	design_strategy
+McMonigal2012	McMonigal	2012	1202.5708v1	10.1103/PhysRevD.85.064024	Alcubierre warp drive: on the matter of matter	verified-fulltext	design_strategy;synthesis
+Miller2006	Miller	2006		10.1364/OE.14.012457	On perfect cloaking	verified-abstract	engineering_methods
+Millis2004	Millis	2004			Breakthrough Propulsion Physics project management methods	metadata-only	engineering_methods
+Millis2005a	Millis	2005			Assessing potential propulsion breakthroughs (NASA TM)	verified-fulltext	engineering_methods
+Millis2005b	Millis	2005		10.1196/annals.1370.023	Assessing potential propulsion breakthroughs (NYAS)	metadata-only	engineering_methods
+Millis2009	Millis	2009		10.2514/4.479953	Frontiers of propulsion science	metadata-only	foundations
+Mironov2018	Mironov	2018	1811.05832v1	10.1051/epjconf/201819107014	Towards wormhole beyond Horndeski	verified-fulltext	design_strategy
+Mironov2019	Mironov	2019	1812.07022v2	10.1088/1361-6382/ab2574	More about stable wormholes in beyond Horndeski theory	verified-fulltext	foundations;design_strategy
+Mironov2023	Mironov	2023	2212.05969v1	10.1103/PhysRevD.107.104061	In hot pursuit of a stable wormhole beyond Horndeski	verified-fulltext	foundations;design_strategy
+Mironov2024	Mironov	2024	2404.06297v2	10.1142/S0217751X24430115	Complete stability for spherical backgrounds beyond Horndeski	verified-abstract	foundations
+Moghtaderi2025	Moghtaderi	2025	2503.19955v2	10.1103/j6hp-p8hs	How much NEC breaking can the Universe endure?	verified-abstract	foundations
+Molesky2018	Molesky	2018	1801.06715v1	10.1038/s41566-018-0246-9	Inverse design in nanophotonics	verified-fulltext	engineering_methods
+Monticone2013	Monticone	2013	1307.3996v1	10.1103/PhysRevX.3.041005	Do cloaked objects really scatter less?	verified-fulltext	engineering_methods
+Monticone2016	Monticone	2016		10.1364/OPTICA.3.000718	Invisibility exposed: physical bounds on passive cloaking	verified-abstract	engineering_methods
+Moore2009	Moore	2009		10.1137/1.9780898717716	Introduction to interval analysis	metadata-only	engineering_methods
+Morris1988a	Morris	1988		10.1119/1.15620	Wormholes in spacetime and their use for interstellar travel	verified-fulltext	foundations;design_strategy;synthesis
+Morris1988b	Morris	1988		10.1103/PhysRevLett.61.1446	Wormholes, time machines, and the weak energy condition	verified-fulltext	foundations;design_strategy
+Morris1991	Morris	1991		10.1080/00401706.1991.10484804	Factorial sampling plans for preliminary computational experiments	verified-fulltext	engineering_methods;synthesis
+Nandi2004	Nandi	2004	gr-qc/0407079v5	10.1103/PhysRevD.70.127503	Volume integral theorem for exotic matter	verified-fulltext	design_strategy
+NASA2016	National Aeronautics and Space Administration	2016			NASA systems engineering handbook	verified-fulltext	engineering_methods
+NASA2024	National Aeronautics and Space Administration	2024			NASA-STD-7009B: standard for models and simulations	verified-fulltext	engineering_methods;synthesis
+Natario2002	Natário	2002	gr-qc/0110086v3	10.1088/0264-9381/19/6/308	Warp drive with zero expansion	verified-fulltext	foundations;design_strategy;synthesis
+Natario2006	Natário	2006	gr-qc/0408085v3	10.1007/s10714-006-0234-0	Newtonian limits of warp drive spacetimes	verified-abstract	design_strategy
+Oberkampf2002	Oberkampf	2002		10.1016/S0376-0421(02)00005-2	Verification and validation in computational fluid dynamics	verified-fulltext	engineering_methods
+Oberkampf2007	Oberkampf	2007		10.2172/976951	Predictive capability maturity model (PCMM)	verified-abstract	engineering_methods;synthesis
+Oberkampf2010	Oberkampf	2010		10.1017/CBO9780511760396	Verification and validation in scientific computing	metadata-only	engineering_methods
+Oberkampf2025	Oberkampf	2025		10.1017/9781009031004	Verification, validation, and UQ in scientific computing (2nd ed.)	metadata-only	engineering_methods
+Olason2010	Olason	2010			Topology and shape optimization in the design process (thesis)	verified-fulltext	engineering_methods
+Olewnik2003	Olewnik	2003		10.1115/DETC2003/DTM-48669	On validating design decision methodologies	verified-fulltext	engineering_methods
+Olum1998	Olum	1998	gr-qc/9805003v2	10.1103/PhysRevLett.81.3567	Superluminal travel requires negative energies	verified-fulltext	foundations;design_strategy
+Olum2003	Olum	2003	gr-qc/0205134v3	10.1016/S0370-2693(03)00011-X	Static negative energies near a domain wall	verified-abstract	design_strategy
+Oreskes1994	Oreskes	1994		10.1126/science.263.5147.641	Verification, validation, and confirmation of numerical models	verified-abstract	engineering_methods
+Page1982	Page	1982		10.1103/PhysRevD.25.1499	Thermal stress tensors in static Einstein spaces	verified-abstract	foundations
+Palessandro2026	Palessandro	2026	2608.11817v1	10.1007/s10773-026-06434-x	Quantum inequalities from the second law	verified-abstract	design_strategy
+Parker2009	Parker	2009		10.1017/CBO9780511813924	QFT in curved spacetime (Parker-Toms)	metadata-only	foundations
+Pendry2006	Pendry	2006		10.1126/science.1125907	Controlling electromagnetic fields	verified-abstract	engineering_methods
+Penrose1993	Penrose	1993	gr-qc/9301015v2		Positive mass theorem from null focusing	verified-fulltext	foundations;design_strategy
+Pfenning1997	Pfenning	1997	gr-qc/9702026v3	10.1088/0264-9381/14/7/011	The unphysical nature of warp drive	verified-fulltext	foundations;design_strategy;synthesis
+Pfenning1998a	Pfenning	1998	gr-qc/9710055v1	10.1103/PhysRevD.57.3489	Scalar field quantum inequalities in static spacetimes	verified-fulltext	design_strategy
+Pfenning1998b	Pfenning	1998	gr-qc/9805037v1		QI restrictions in curved spacetimes (dissertation)	verified-abstract	foundations
+Philbin2008	Philbin	2008	0711.4796v2	10.1126/science.1153625	Fiber-optical analog of the event horizon	verified-abstract	engineering_methods
+Pieri2023	Pieri	2023	2311.12069v2		Hyperwave: hyper-fast communication within GR	verified-abstract	design_strategy
+Plebanski1960	Plebanski	1960		10.1103/PhysRev.118.1396	Electromagnetic waves in gravitational fields	metadata-only	engineering_methods
+Poisson1995	Poisson	1995	gr-qc/9506083v1	10.1103/PhysRevD.52.7318	Thin-shell wormholes: linearization stability	verified-fulltext	design_strategy;synthesis
+Post2005	Post	2005		10.1063/1.1881898	Computational science demands a new paradigm	unverified	engineering_methods
+Richardson1911	Richardson	1911		10.1098/rsta.1911.0009	Approximate arithmetical solution by finite differences	metadata-only	engineering_methods
+Richardson1927	Richardson	1927		10.1098/rsta.1927.0008	The deferred approach to the limit	metadata-only	engineering_methods
+Roache1994	Roache	1994		10.1115/1.2910291	Uniform reporting of grid refinement studies (GCI)	verified-abstract	engineering_methods
+Roache1998	Roache	1998			V&V in computational science and engineering	metadata-only	engineering_methods
+Roache2002	Roache	2002		10.1115/1.1436090	Code verification by the method of manufactured solutions	verified-abstract	engineering_methods
+Rodal2023	Rodal	2023	2512.20738v1	10.1007/s10714-023-03182-9	Curvature invariants in the Alcubierre warp-drive spacetime	verified-abstract	design_strategy
+Rodal2024	Rodal	2024	2512.19837v1	10.1007/s10773-024-05700-0	A closer look at Natario's zero-expansion warp drive	verified-abstract	design_strategy
+Rodal2025	Rodal	2025	2507.09724v2		Infeasibility of low-energy warp drive via metamaterial coupling	verified-abstract	design_strategy
+Rodal2026a	Rodal	2026	2512.18008v1	10.1007/s10714-025-03495-x	Warp drive with predominantly positive invariant energy density	verified-abstract	design_strategy;P01_vetting
+Rodal2026b	Rodal	2026	2603.21352v2		Weakly birefringent screening disfavors fast Type I warp drives	verified-abstract	design_strategy
+Roman1986	Roman	1986		10.1103/PhysRevD.33.3526	Quantum stress-energy tensors and the WEC	metadata-only	foundations
+Rosso2020	Rosso	2020	2005.06476v3	10.1007/JHEP07(2020)023	Achronal ANEC for extremal horizons and (A)dS	verified-abstract	design_strategy
+Roy2005	Roy	2005		10.1016/j.jcp.2004.10.036	Review of code and solution verification procedures	metadata-only	engineering_methods
+Rubakov2014	Rubakov	2014	1401.4024v2	10.3367/UFNe.0184.201402b.0137	The null energy condition and its violation	verified-abstract	foundations
+Rubakov2016a	Rubakov	2016	1509.08808v3	10.1134/S004057791605010X	Can Galileons support Lorentzian wormholes?	verified-fulltext	foundations;design_strategy
+Rubakov2016b	Rubakov	2016	1601.06566v1	10.1134/S0040577916080080	More about wormholes in generalized Galileon theories	verified-fulltext	design_strategy
+Sacks1989	Sacks	1989		10.1214/ss/1177012413	Design and analysis of computer experiments	verified-fulltext	engineering_methods
+Sajeendran2025	Sajeendran	2025	2407.18993v2	10.1103/1gmk-3zdq	Looping back to the past in a controlled warp drive	verified-abstract	design_strategy
+Salari2000	Salari	2000		10.2172/759450	Code verification by the method of manufactured solutions (Sandia)	verified-fulltext	engineering_methods;synthesis
+Saltelli2008	Saltelli	2008		10.1002/9780470725184	Global sensitivity analysis: the primer	metadata-only	engineering_methods
+Saltelli2010	Saltelli	2010		10.1016/j.envsoft.2010.04.012	How to avoid a perfunctory sensitivity analysis	metadata-only	engineering_methods
+Saltelli2019	Saltelli	2019		10.1016/j.envsoft.2019.01.012	Why so many published sensitivity analyses are false	verified-fulltext	engineering_methods
+Santiago2021	Santiago	2021	2106.05002v1	10.3390/universe7080271	Tractor, pressor and stressor beams in GR	verified-abstract	design_strategy
+Santiago2022	Santiago	2022	2105.03079v2	10.1103/PhysRevD.105.064038	Generic warp drives violate the NEC	verified-fulltext	foundations;design_strategy;P01_vetting;synthesis
+SantosPereira2020	Santos-Pereira	2020	2008.06560v1	10.1140/epjc/s10052-020-8355-2	Dust content solutions for the Alcubierre warp drive	verified-abstract	design_strategy
+SantosPereira2021a	Santos-Pereira	2021	2101.11467v2	10.1140/epjc/s10052-021-08921-3	Fluid dynamics in the warp drive spacetime geometry	verified-abstract	design_strategy
+SantosPereira2021b	Santos-Pereira	2021	2108.10960v1	10.1140/epjp/s13360-021-01899-7	Perfect fluid warp drive solutions with the cosmological constant	verified-abstract	design_strategy
+SantosPereira2023	Santos-Pereira	2023	2111.01298v1	10.1142/9789811269776_0066	Warp drive dynamic solutions with different fluid sources	verified-abstract	design_strategy
+SantosPereira2025	Santos-Pereira	2025	2508.20348v1		The warp drive: superluminal travel within GR (thesis)	verified-abstract	design_strategy
+SantosPereira2026a	Santos-Pereira	2026	2512.12541v1	10.1140/epjc/s10052-025-15215-5	Matching the Alcubierre and Minkowski spacetimes	verified-abstract	design_strategy
+SantosPereira2026b	Santos-Pereira	2026	2510.11836v3	10.1140/epjp/s13360-026-08079-5	Shift vector sign reversal and Burgers-type dynamics	verified-abstract	design_strategy
+Schurig2006	Schurig	2006		10.1126/science.1133628	Metamaterial electromagnetic cloak at microwave frequencies	verified-abstract	engineering_methods
+Schuster2023	Schuster	2023	2205.15950v2	10.1007/s10714-022-03061-9	ADM mass in warp drive spacetimes	verified-fulltext	foundations;design_strategy
+Shibata2015	Shibata	2015		10.1142/9692	Numerical relativity (Shibata)	metadata-only	foundations
+Shinkai2002	Shinkai	2002	gr-qc/0205041v2	10.1103/PhysRevD.66.044005	Fate of the first traversible wormhole	verified-fulltext	design_strategy
+Shoshany2024	Shoshany	2024	2309.10072v3	10.1088/1361-6382/ad74d1	Warp drives and closed timelike curves	verified-fulltext	foundations;design_strategy;synthesis
+Sigmund1998	Sigmund	1998		10.1007/BF01214002	Numerical instabilities in topology optimization	metadata-only	engineering_methods
+Sigmund2001	Sigmund	2001		10.1007/s001580050176	A 99 line topology optimization code in Matlab	verified-fulltext	engineering_methods
+Simpson2019	Simpson	2019	1812.07114v3	10.1088/1475-7516/2019/02/042	Black-bounce to traversable wormhole	verified-fulltext	design_strategy
+Smarr1978	Smarr	1978		10.1103/PhysRevD.17.2529	Kinematical conditions in the construction of spacetime	metadata-only	foundations
+Sobek1999	Sobek	1999			Toyota's principles of set-based concurrent engineering	metadata-only	engineering_methods
+Sobol2001	Sobol'	2001		10.1016/S0378-4754(00)00270-6	Global sensitivity indices for nonlinear models	metadata-only	engineering_methods;synthesis
+Steinhauer2016	Steinhauer	2016	1510.00621v3	10.1038/nphys3863	Quantum Hawking radiation in an analogue black hole	verified-abstract	engineering_methods
+Steward1981	Steward	1981		10.1109/TEM.1981.6448589	The design structure system	metadata-only	engineering_methods
+Suh1990	Suh	1990			The principles of design	metadata-only	engineering_methods;synthesis
+Suh1998	Suh	1998		10.1007/s001639870001	Axiomatic design theory for systems	unverified	engineering_methods
+Suh2001	Suh	2001			Axiomatic design: advances and applications	metadata-only	engineering_methods;synthesis
+Tajmar2022	Tajmar	2022		10.1007/s12567-021-00385-1	High-accuracy thrust measurements of the EMDrive	verified-fulltext	engineering_methods
+Teo2002	Teo	2002	gr-qc/0206066v2	10.1103/PhysRevD.66.064007	Quantum interest in two dimensions	verified-abstract	foundations
+Tillack2008	Tillack	2008			Fusion R&D gaps using TRLs (FPA presentation)	verified-fulltext	engineering_methods
+Tillack2009	Tillack	2009		10.13182/FST09-A9033	Fusion R&D gaps evaluated with TRLs	metadata-only	engineering_methods
+Tipler1976	Tipler	1976		10.1103/PhysRevLett.37.879	Causality violation in asymptotically flat space-times	verified-abstract	foundations;design_strategy
+Tipler1977	Tipler	1977		10.1016/0003-4916(77)90348-7	Singularities and causality violation	metadata-only	foundations;design_strategy
+Toche2020	Toche	2020		10.1017/dsj.2020.16	Set-based design: a review and new directions	verified-fulltext	engineering_methods
+Tolman1930a	Tolman	1930		10.1103/PhysRev.35.904	On the weight of heat and thermal equilibrium in GR	verified-abstract	foundations
+Tolman1930b	Tolman	1930		10.1103/PhysRev.36.1791	Temperature equilibrium in a static gravitational field	verified-abstract	foundations
+Tucker2011	Tucker	2011		10.1515/9781400838974	Validated numerics	metadata-only	engineering_methods
+Unruh1976	Unruh	1976		10.1103/PhysRevD.14.870	Notes on black-hole evaporation	verified-abstract	foundations
+Unruh1981	Unruh	1981		10.1103/PhysRevLett.46.1351	Experimental black-hole evaporation?	metadata-only	engineering_methods
+Urban2010a	Urban	2010	0910.5925v2	10.1103/PhysRevD.81.024039	ANEC violation in a conformally flat spacetime	verified-fulltext	foundations;design_strategy;P01_vetting
+Urban2010b	Urban	2010	1002.4689v2	10.1103/PhysRevD.81.124004	Spacetime averaged null energy condition	verified-abstract	foundations
+Valentine2009	Valentine	2009		10.1038/nmat2461	An optical cloak made of dielectrics	verified-abstract	engineering_methods
+VanDenBroeck1999	Van Den Broeck	1999	gr-qc/9905084v5	10.1088/0264-9381/16/12/314	A warp drive with more reasonable total energy requirements	verified-fulltext	foundations;design_strategy;synthesis
+Verch2000	Verch	2000	math-ph/9904036v1	10.1063/1.533130	ANEC for general QFTs in two dimensions	verified-abstract	foundations
+Visser1989a	Visser	1989	0809.0907v1	10.1103/PhysRevD.39.3182	Traversable wormholes: some simple examples	verified-fulltext	design_strategy
+Visser1989b	Visser	1989	0809.0927v1	10.1016/0550-3213(89)90100-4	Traversable wormholes from surgically modified Schwarzschild	verified-fulltext	design_strategy
+Visser1993	Visser	1993	hep-th/9202090v2	10.1103/PhysRevD.47.554	From wormhole to time machine (chronology protection)	verified-abstract	design_strategy
+Visser1995a	Visser	1995	gr-qc/9409043v1	10.1016/0370-2693(95)00303-3	Scale anomalies imply ANEC violation	verified-abstract	foundations;design_strategy
+Visser1995b	Visser	1995			Lorentzian wormholes: from Einstein to Hawking	metadata-only	foundations
+Visser1996a	Visser	1996	gr-qc/9604007v1	10.1103/PhysRevD.54.5103	Gravitational vacuum polarization I (Hartle-Hawking)	verified-abstract	foundations
+Visser1996b	Visser	1996	gr-qc/9604008v1	10.1103/PhysRevD.54.5116	Gravitational vacuum polarization II (Boulware)	verified-abstract	foundations
+Visser1996c	Visser	1996	gr-qc/9604009v1	10.1103/PhysRevD.54.5123	Gravitational vacuum polarization III (1+1 D)	verified-abstract	foundations
+Visser1997a	Visser	1997	gr-qc/9702043v1	10.1103/PhysRevD.55.5212	Traversable wormholes: the Roman ring	verified-abstract	design_strategy
+Visser1997b	Visser	1997	gr-qc/9703001v1	10.1103/PhysRevD.56.936	Gravitational vacuum polarization IV (Unruh)	verified-abstract	foundations
+Visser1999	Visser	1999	gr-qc/9908023v1	10.1063/1.1301601	Perturbative superluminal censorship and the NEC	verified-fulltext	design_strategy
+Visser2000	Visser	2000	gr-qc/9810026v2	10.1016/S0920-5632(00)00782-9	Superluminal censorship	verified-fulltext	foundations;design_strategy
+Visser2002	Visser	2002	gr-qc/0204022v2		The quantum physics of chronology protection	verified-abstract	foundations
+Visser2003	Visser	2003	gr-qc/0301003v2	10.1103/PhysRevLett.90.201102	Wormholes with arbitrarily small energy condition violations	verified-fulltext	design_strategy
+Wald1991	Wald	1991		10.1103/PhysRevD.44.403	General proof of ANEC for a 2D massless scalar	verified-abstract	foundations;design_strategy
+Wald1994	Wald	1994			QFT in curved spacetime and black hole thermodynamics	metadata-only	foundations
+Wall2010	Wall	2010	0910.5751v2	10.1103/PhysRevD.81.024038	Proving achronal ANEC from the GSL	verified-fulltext	foundations;design_strategy;synthesis
+Wang2011	Wang	2011		10.1007/s00158-010-0602-y	Projection methods and robust formulations in topology optimization	verified-abstract	engineering_methods
+Ward1995	Ward	1995			The second Toyota paradox	unverified	engineering_methods
+Weber2015	Weber	2015			Industrial application of axiomatic design	verified-fulltext	engineering_methods
+Weinfurtner2011	Weinfurtner	2011	1008.1911v2	10.1103/PhysRevLett.106.021302	Stimulated Hawking emission in an analogue system	verified-abstract	engineering_methods
+White2025	White	2025		10.1088/1361-6382/ae237a	Interior-flat cylindrical nacelle warp bubbles	verified-abstract	design_strategy
+Wurzel2022	Wurzel	2022	2105.10954v4	10.1063/5.0083990	Fusion breakeven and gain against the Lawson criterion	verified-fulltext	engineering_methods
+Yan2007	Yan	2007	0706.0655v2	10.1103/PhysRevLett.99.233901	Simplified cylindrical cloak is inherently visible	verified-fulltext	engineering_methods
+Zhang2010	Zhang	2010	1004.2551v2	10.1103/PhysRevLett.104.233903	Lateral shift makes a ground-plane cloak detectable	verified-abstract	engineering_methods
+Zhang2011	Zhang	2011	1012.2238v3	10.1103/PhysRevLett.106.033901	Macroscopic invisibility cloak for visible light	verified-fulltext	engineering_methods
+Zhang2023	Zhang	2023	2004.14267v4	10.1016/j.cjph.2023.04.016	Traversable thin-shell wormhole in 4D EGB theory	verified-abstract	design_strategy
+Zhou2004	Zhou	2004		10.1007/s00158-003-0351-2	Integrated topology, sizing, and shape optimization	metadata-only	engineering_methods

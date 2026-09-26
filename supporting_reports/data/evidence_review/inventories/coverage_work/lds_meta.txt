@@ -1,0 +1,509 @@
+1:# Design strategy in the spacetime-engineering literature: a verified inventory
+5:## Purpose and standard
+13:- "Abstract read" marks entries whose content beyond the abstract was not checked.
+14:- UNVERIFIED marks anything that could not be confirmed, with the reason.
+39:## Contents
+47:- Part G. UNVERIFIED items
+49:# Part A. Warp drives and shortcut corridors, 1994–2012
+62:### Alcubierre1994 — Miguel Alcubierre (1994), "The warp drive: hyper-fast travel within general relativity"
+63:- **Citation:** Class. Quantum Grav. 11, L73–L77 (1994). arXiv:gr-qc/0009013v1 (5 Sep 2000; the only version, posted six years after publication). Verified via https://arxiv.org/abs/gr-qc/0009013 and the v1 PDF, 2026-09-26.
+72:- **Scope and caveats:** test-particle ship; the WEC/DEC/SEC violation is shown for Eulerian observers only; time-dependent v_s(t) is postulated.
+77:### Hiscock1997 — William A. Hiscock (1997), "Quantum effects in the Alcubierre warp drive spacetime"
+78:- **Citation:** Class. Quantum Grav. 14, L183–L188 (1997). arXiv:gr-qc/9707024v1 (10 Jul 1997; only version). Verified via abstract page, 2026-09-26.
+82:- **Scope and caveats:** 2D reduction; four-dimensional behaviour conjectured.
+87:### PfenningFord1997 — Michael J. Pfenning, L. H. Ford (1997), "The unphysical nature of 'Warp Drive'"
+88:- **Citation:** Class. Quantum Grav. 14, 1743–1751 (1997). arXiv:gr-qc/9702026v3 (15 Mar 2001); history v1 13 Feb 1997, v2 20 Mar 1997 (withdrawn placeholder), v3 15 Mar 2001. Read v3. Verified 2026-09-26.
+97:- **Scope and caveats:** assumes the negative energy comes from a free quantum field obeying the flat-space QI; the curvature-radius argument is heuristic; Eulerian energy only.
+102:### EverettRoman1997 — Allen E. Everett, Thomas A. Roman (1997), "A Superluminal Subway: The Krasnikov Tube"
+103:- **Citation:** Phys. Rev. D 56, 2100 (1997). arXiv:gr-qc/9702049v1 (25 Feb 1997; only version). Verified 2026-09-26.
+112:- **Scope and caveats:** thin-wall estimates; positive energy on the outer side of the wall is ignored in the total (they argue exact cancellation is implausible).
+118:### Krasnikov1998 — S. V. Krasnikov (1998), "Hyperfast Interstellar Travel in General Relativity"
+119:- **Citation:** Phys. Rev. D 57, 4760–4766 (1998). arXiv:gr-qc/9511068v6 (9 Mar 1998); v1–v5 withdrawn placeholders (1995–1997). Read v6. Verified 2026-09-26.
+126:- **Scope and caveats:** 2D examples; energy estimates deferred to Everett & Roman 1997.
+131:### VanDenBroeck1999 — Chris Van Den Broeck (1999), "A 'warp drive' with more reasonable total energy requirements"
+132:- **Citation:** Class. Quantum Grav. 16, 3973–3979 (1999). arXiv:gr-qc/9905084v5 (21 Sep 1999); v1 21 May, v2 1 Jun, v3 16 Jun, v4 17 Jun, v5 21 Sep 1999. Read v5. Verified 2026-09-26.
+141:- **Scope and caveats:** structures near the Planck scale; energy densities remain enormous (author's own caveat); stellar-mass energies.
+146:### ClarkHiscockLarson1999 — Chad Clark, William A. Hiscock, Shane L. Larson (1999), "Null geodesics in the Alcubierre warp drive spacetime: the view from the bridge"
+147:- **Citation:** Class. Quantum Grav. 16, 3965–3972 (1999). arXiv:gr-qc/9907019v1 (6 Jul 1999; only version). Verified 2026-09-26.
+151:- **Scope and caveats:** eternal constant-speed bubble.
+156:### GonzalezDiaz2000 — Pedro F. González-Díaz (2000), "On the warp drive space-time"
+157:- **Citation:** Phys. Rev. D 62, 044005 (2000) (DOI 10.1103/PhysRevD.62.044005). arXiv:gr-qc/9907026v2 (10 Apr 2000); v1 7 Jul 1999. Verified via abstract page 2026-09-26.
+161:- **Scope and caveats:** depends on the chosen extension and vacuum; 2D.
+166:### LoupWaiteHalerewicz2001 — F. Loup, D. Waite, E. Halerewicz Jr (2001), "Reduced Total Energy Requirements for a Modified Alcubierre Warp Drive Spacetime"
+167:- **Citation:** arXiv-only preprint, arXiv:gr-qc/0107097v2 (3 Nov 2001); v1 30 Jul 2001. No journal reference found. Verified via abstract page 2026-09-26.
+171:- **Scope and caveats:** unrefereed; energy measured by Eulerian observers only; the proposed superluminal control scheme is called a "pseudo method" by the authors.
+176:### Natario2002 — José Natário (2002), "Warp Drive With Zero Expansion"
+177:- **Citation:** Class. Quantum Grav. 19, 1157–1166 (2002). arXiv:gr-qc/0110086v3 (13 Mar 2002); v1 19 Oct 2001, v2 6 Nov 2001. Read v3. Verified 2026-09-26.
+187:- **Scope and caveats:** constant velocity for the optics; thin-wall refraction.
+192:### LoboVisser2004 — Francisco S. N. Lobo, Matt Visser (2004), "Fundamental limitations on 'warp drive' spacetimes"
+193:- **Citation:** Class. Quantum Grav. 21, 5871–5892 (2004), DOI 10.1088/0264-9381/21/24/011. arXiv:gr-qc/0406083v2 (31 Oct 2004; "no physics changes"); v1 21 Jun 2004. Read v2. Verified 2026-09-26.
+203:- **Scope and caveats:** volume integrals of Eulerian quantities; ship modelled as a Newtonian source.
+208:### Natario2006 — José Natário (2006), "Newtonian limits of warp drive spacetimes"
+209:- **Citation:** Gen. Relativ. Gravit. 38, 475–484 (2006). arXiv:gr-qc/0408085v3 (7 Oct 2009); v1 25 Aug 2004, v2 28 Feb 2005 ("major changes"). Verified via abstract page 2026-09-26 (abstract only read).
+212:- **Scope:** abstract-level entry; content beyond the abstract UNVERIFIED.
+216:### FinazziLiberatiBarcelo2009 — Stefano Finazzi, Stefano Liberati, Carlos Barceló (2009), "Semiclassical instability of dynamical warp drives"
+217:- **Citation:** Phys. Rev. D 79, 124017 (2009). arXiv:0904.0141v2 (14 Jul 2009); v1 1 Apr 2009. Read v2. Verified 2026-09-26.
+225:- **Scope and caveats:** 1+1 dimensions; the 3+1 extension is argued for an open set around the axis.
+230:### BarceloFinazziLiberati2010 — Carlos Barceló, Stefano Finazzi, Stefano Liberati (2010), "On the impossibility of superluminal travel: the warp drive lesson"
+231:- **Citation:** FQXi essay (second prize, 2009 contest); arXiv:1001.4960v1 (27 Jan 2010; only version); no journal reference. Verified via abstract page 2026-09-26.
+236:### CoutantFinazziLiberatiParentani2012 — Antonin Coutant, Stefano Finazzi, Stefano Liberati, Renaud Parentani (2012), "Impossibility of superluminal travel in Lorentz violating theories"
+237:- **Citation:** Phys. Rev. D 85, 064020 (2012). arXiv:1111.4356v2 (11 Apr 2012); v1 18 Nov 2011. Verified via abstract page 2026-09-26.
+241:- **Scope:** 1+1 dimensions.
+245:### McMonigalLewisOByrne2012 — Brendan McMonigal, Geraint F. Lewis, Philip O'Byrne (2012), "The Alcubierre Warp Drive: On the Matter of Matter"
+246:- **Citation:** Phys. Rev. D 85, 064024 (2012). arXiv:1202.5708v1 (26 Feb 2012; only version). Read v1. Verified 2026-09-26.
+254:- **Scope and caveats:** test particles; Alcubierre profile only; no back-reaction.
+259:# Part B. Warp drives, 2020–2026
+263:### SantosPereiraAbreuRibeiro2020_2026 — Osvaldo L. Santos-Pereira, Everton M. C. Abreu, Marcelo B. Ribeiro (series), matter-sourced Alcubierre solutions
+264:- **Citation (each verified via its arXiv abstract page, 2026-09-26):**
+280:- **Scope and caveats:** one-dimensional shift profiles; the positive-density subcases use complex-valued regulating functions.
+285:### Lentz2021 — Erik W. Lentz (2021), "Breaking the Warp Barrier: Hyper-Fast Solitons in Einstein–Maxwell-Plasma Theory"
+286:- **Citation:** Class. Quantum Grav. 38, 075015 (2021), DOI 10.1088/1361-6382/abe692 (Crossref). arXiv:2006.07125v2 (10 Aug 2020); v1 12 Jun 2020 (abstract read; v2 text searched). Companion: "Hyper-Fast Positive Energy Warp Drives", MG16 proceedings (2023, pp. 779–786), arXiv:2201.00652v1. Verified 2026-09-26.
+292:- **Scope and caveats:** Eulerian observers only; trace-free stress part of the Einstein equations left unsolved (per SSV 2022 App. C).
+297:### BobrickMartire2021 — Alexey Bobrick, Gianni Martire (2021), "Introducing Physical Warp Drives"
+298:- **Citation:** Class. Quantum Grav. 38, 105009 (2021), DOI 10.1088/1361-6382/abdf6e (Crossref). arXiv:2102.06824v2 (17 Feb 2021); v1 12 Feb 2021. Read v2. Verified 2026-09-26.
+309:- **Scope and caveats:** spherical results only for the positive-energy statements; Eulerian energy only.
+314:### FellHeisenberg2021 — Shaun D. B. Fell, Lavinia Heisenberg (2021), "Positive Energy Warp Drive from Hidden Geometric Structures"
+315:- **Citation:** Class. Quantum Grav. 38, 155020 (2021), DOI 10.1088/1361-6382/ac0e47. arXiv:2104.06488v4 (9 Aug 2021); v1 13 Apr, v2 22 Apr, v3 5 Jul 2021. Verified 2026-09-26.
+319:- **Scope and caveats:** Eulerian energy only.
+324:### MattinglyEtAl2021 — Brandon Mattingly, Abinash Kar, Matthew Gorban, William Julius, Cooper Watson, MD Ali, Andrew Baas, Caleb Elmore, Jeff Lee, Bahram Shakerin, Eric Davis, Gerald Cleaver (2021), "Curvature Invariants for the Alcubierre and Natário Warp Drives"
+325:- **Citation:** Universe 7, 21 (2021), DOI 10.3390/universe7020021. arXiv:2010.13693v3 (14 Apr 2021); v1 26 Oct 2020, v2 20 Jan 2021. Verified via abstract page 2026-09-26 (abstract read).
+332:### Rodal2023_2024 — José Rodal (2023; 2024), curvature invariants of Alcubierre and Natário
+333:- **Citation:** "Visualization and analysis of the curvature invariants in the Alcubierre warp-drive spacetime", Gen. Relativ. Gravit. 55, 134 (2023), DOI 10.1007/s10714-023-03182-9, arXiv:2512.20738v1 (23 Dec 2025). "A Closer Look at Natário's Zero-Expansion Warp Drive", Int. J. Theor. Phys. 63, 168 (2024), DOI 10.1007/s10773-024-05700-0, arXiv:2512.19837v1 (22 Dec 2025). Both posted to arXiv after journal publication. Verified via abstract pages 2026-09-26 (abstracts read).
+340:### SSVTractor2021 — Jessica Santiago, Sebastian Schuster, Matt Visser (2021), "Tractor beams, pressor beams, and stressor beams in general relativity"
+341:- **Citation:** Universe 7, 271 (2021), DOI 10.3390/universe7080271 (Crossref). arXiv:2106.05002v1 (9 Jun 2021; only version). Verified 2026-09-26.
+348:### SSV2022 — Jessica Santiago, Sebastian Schuster, Matt Visser (2022), "Generic warp drives violate the null energy condition"
+349:- **Citation:** Phys. Rev. D 105, 064038 (2022), DOI 10.1103/PhysRevD.105.064038. arXiv:2105.03079v2 (25 Feb 2022); v1 7 May 2021. Read v2. Verified 2026-09-26.
+359:- **Scope and caveats:** unit lapse and flat slices (App. B names the N ≠ 1 and curved-slice generalizations as outside scope); "physically reasonable" is a localization hypothesis (Le 2026b note).
+364:### SSVADM2023 — Sebastian Schuster, Jessica Santiago, Matt Visser (2023), "ADM mass in warp drive spacetimes"
+365:- **Citation:** Gen. Relativ. Gravit. 55, 14 (2023), DOI 10.1007/s10714-022-03061-9 (Crossref). arXiv:2205.15950v2 (4 Aug 2022); v1 31 May 2022. Read v2 (§2.3 and conclusions). Verified 2026-09-26.
+369:- **Scope and caveats:** Natário zero-vorticity class; Painlevé–Gullstrand-type foliations.
+374:### CarneiroEtAl2022 — F. L. Carneiro, S. C. Ulhoa, J. W. Maluf, J. F. da Rocha-Neto (2022), "On the total energy conservation of the Alcubierre spacetime"
+375:- **Citation:** JCAP 07 (2022) 030, DOI 10.1088/1475-7516/2022/07/030. arXiv:2201.05684v2 (18 Aug 2022); v1 14 Jan 2022. Verified via abstract page 2026-09-26 (abstract read).
+382:### BarceloEtAl2022 — Carlos Barceló, Valentin Boyanov, Luis J. Garay, Eduardo Martín-Martínez, Jose M. Sánchez Velázquez (2022), "Warp Drive Aerodynamics"
+383:- **Citation:** JHEP 08 (2022) 288, DOI 10.1007/JHEP08(2022)288. arXiv:2207.06458v1 (13 Jul 2022; only version). Read v1. Verified 2026-09-26.
+391:- **Scope and caveats:** estimates; no 3+1 RSET.
+396:### AbellanBolivarVasilevSeries — Gabriel Abellán, Nelson Bolívar, Ivaylo Vasilev (2023–2026), matter-content warp studies
+397:- **Citation (verified via arXiv abstract pages or Crossref, 2026-09-26):**
+399:  - "Alcubierre warp drive in spherical coordinates with some matter configurations", Eur. Phys. J. C 83, 7 (2023), DOI 10.1140/epjc/s10052-022-11091-5 (Crossref); arXiv ID not identified (UNVERIFIED).
+401:  - "Spherical warp-based bubble with non-trivial lapse function and its consequences on matter content", Class. Quantum Grav. 41, 105011 (2024), DOI 10.1088/1361-6382/ad3ed9 (Crossref); arXiv ID not identified (UNVERIFIED).
+402:  - Bolívar, Abellán, Vasilev, "Warp bubble geometries with anisotropic fluids: A piecewise analytical approach", Ann. Phys. 481, 170147 (2025), DOI 10.1016/j.aop.2025.170147 (Crossref); content from search-engine summary only (UNVERIFIED beyond title/journal).
+411:- **Scope and caveats:** the "not mandatory negative" conclusion rests on sources that force the transverse shift gradient to vanish, which removes the localized bubble.
+416:### Pieri2023 — Lorenzo Pieri (2023), "Hyperwave: Hyper-Fast Communication within General Relativity"
+417:- **Citation:** arXiv-only, arXiv:2311.12069v2 (16 May 2024); v1 19 Nov 2023. Verified via abstract page 2026-09-26 (abstract read).
+420:- **Scope:** unrefereed; energy estimates follow the E ∝ v²R²/Δ scaling.
+424:### Huey2024 — Greg Huey (2024), "Membrane Models as a Means of Propulsion in General Relativity: Super-Luminal Warp-Drive that Satisfies the Weak Energy Condition"
+425:- **Citation:** Class. Quantum Grav. 41, 135007 (2024), DOI 10.1088/1361-6382/ad4e00 (Crossref). arXiv:2311.07193v3 (6 May 2024); v1 13 Nov 2023, v2 16 Feb 2024. Verified via abstract page 2026-09-26.
+428:- **Scope and caveats:** non-compact branes; quantum effects and stability not considered (author's statement).
+433:### WarpFactory2024 — Christopher Helmerich, Jared Fuchs, Alexey Bobrick, Luke Sellers, Brandon Melcher, Gianni Martire (2024), "Analyzing warp drive spacetimes with Warp Factory"
+434:- **Citation:** Class. Quantum Grav. 41, 095009 (2024), DOI 10.1088/1361-6382/ad2e42 (Crossref). arXiv:2404.03095v2 (10 Apr 2024); v1 3 Apr 2024. Read v2. Companion toolkit paper: "Warp Factory: A Numerical Toolkit for the Analysis and Optimization of Warp Drive Geometries", AIAA SciTech 2023 Forum, DOI 10.2514/6.2023-0553, arXiv:2404.10855v1. Verified 2026-09-26.
+441:- **Scope and caveats:** sampled observers and sampled grid; no convergence ladder reported in the main text.
+446:### Fuchs2024 — Jared Fuchs, Christopher Helmerich, Alexey Bobrick, Luke Sellers, Brandon Melcher, Gianni Martire (2024), "Constant Velocity Physical Warp Drive Solution"
+447:- **Citation:** Class. Quantum Grav. 41, 095013 (2024), DOI 10.1088/1361-6382/ad26aa. arXiv:2405.02709v1 (4 May 2024; only version). Read v1. Verified 2026-09-26.
+455:- **Scope and caveats:** subluminal; constant velocity; modest shift; smoothing kernel choices.
+460:### CloughDietrichKhan2024 — Katy Clough, Tim Dietrich, Sebastian Khan (2024), "What no one has seen before: gravitational waveforms from warp drive collapse"
+461:- **Citation:** Open J. Astrophys. 7 (2024), DOI 10.33232/001c.121868 (Crossref). arXiv:2406.02466v2 (24 Jul 2024); v1 4 Jun 2024. Read v2. Verified 2026-09-26.
+468:- **Scope and caveats:** subluminal (0.1–0.2; up to 0.5 evolves stably but needs very high resolution); one equation of state; no ship.
+473:### GarattiniZatrimaylov2024_2025 — Remo Garattini, Kirill Zatrimaylov (2024; 2025), warp drives on curved backgrounds
+474:- **Citation (verified via arXiv abstract pages and Crossref, 2026-09-26):**
+477:  - "Warp Drive in a De Sitter Universe" (title of v4; Le 2026a cites it as "Positive-energy warp drive in a De Sitter universe", apparently an earlier version's title — which version carried it is UNVERIFIED), arXiv:2502.13153v4 (17 Jun 2026; v1 14 Feb 2025, v2 28 Feb 2025, v3 12 Jun 2026); no journal reference.
+483:- **Scope and caveats:** the divergence identities do not establish pointwise energy-condition satisfaction (Le 2026b's note).
+487:### ShoshanySnodgrass2024 — Barak Shoshany, Ben Snodgrass (2024), "Warp Drives and Closed Timelike Curves"
+488:- **Citation:** Class. Quantum Grav. 41, 205005 (2024), DOI 10.1088/1361-6382/ad74d1. arXiv:2309.10072v3 (16 Sep 2024); v1 18 Sep 2023, v2 22 Apr 2024. Read v3. Verified 2026-09-26. (Causal-structure aspects are also covered in the QI/causality part.)
+499:- **Scope and caveats:** WEC (not NEC) for the lapse generalization.
+504:### Chowdhury2025 — Abhishek Chowdhury (2025), "Warp Drives and Martel–Poisson charts"
+505:- **Citation:** accepted in Eur. Phys. J. C (per arXiv comments; volume not verified). arXiv:2404.15948v3 (29 Jan 2025); v1 24 Apr 2024, v2 28 Oct 2024. Verified via abstract page 2026-09-26 (abstract read).
+511:### SajeendranRalph2025 — Achintya Sajeendran, Timothy C. Ralph (2025), "Looping back to the past through free fall in a controlled warp drive spacetime"
+512:- **Citation:** Phys. Rev. D 111, 124029 (2025), DOI 10.1103/1gmk-3zdq (Crossref). arXiv:2407.18993v2 (25 Mar 2025); v1 26 Jul 2024. Verified via abstract page 2026-09-26 (abstract read).
+518:### BarzegarBuchert2025 — Hamed Barzegar, Thomas Buchert (2025), "On restrictions of current warp drive spacetimes and immediate possibilities of improvement"
+519:- **Citation:** Universe 11, 293 (2025), DOI 10.3390/universe11090293. arXiv:2407.00720v2 (1 Sep 2025; matches published version); v1 30 Jun 2024. Read v2. Verified 2026-09-26. (This is the Barzegar–Buchert paper; the three-author critique is arXiv:2602.16495.)
+529:### Rodal2025 — José Rodal (2025), "A warp drive with predominantly positive invariant energy density and global Hawking–Ellis Type I"
+530:- **Citation:** Gen. Relativ. Gravit. 58, 1 (2026; published online 17 Dec 2025), DOI 10.1007/s10714-025-03495-x. arXiv:2512.18008v1 (19 Dec 2025; only version). Verified via abstract page 2026-09-26 (verbatim abstract read).
+538:- **Scope and caveats:** residual NEC/WEC violation remains (Rodal 2026 and Le 2026b); zero ADM mass (compact support).
+543:### CelmasterRubin2025 — Bill Celmaster, Steve Rubin (2025), "Violations of the Weak Energy Condition for Lentz Warp Drives"
+544:- **Citation:** arXiv-only, arXiv:2511.18251v1 (23 Nov 2025; only version). Verified via abstract page 2026-09-26 (abstract read).
+549:### WhiteEtAl2025 — Harold White, Jerry Vera, Andre Sylvester, Leonard Dudzinski (2025), "Interior-flat cylindrical nacelle warp bubbles: derivation and comparison with Alcubierre model"
+550:- **Citation:** Class. Quantum Grav. 42, 235022 (2025), DOI 10.1088/1361-6382/ae237a. No arXiv version identified. Verified via the IOP abstract page 2026-09-26 (abstract read).
+553:- **Scope:** Eulerian quantities; all-observer character of the wall unchanged (Le 2026b's note).
+557:### Rodal2025Metamaterial — José Rodal (2025), "On the Infeasibility of Low-Energy Warp Drive via Metamaterial Gravitational Coupling"
+558:- **Citation:** arXiv-only, arXiv:2507.09724v2 (20 Jul 2025); v1 13 Jul 2025. Verified via abstract page 2026-09-26 (abstract read).
+563:### BarzegarBuchertVigneron2026 — Hamed Barzegar, Thomas Buchert, Quentin Vigneron (2026), "General formalism, classification, and demystification of the current warp-drive spacetimes"
+564:- **Citation:** arXiv-only, arXiv:2602.16495v1 (18 Feb 2026; only version). Theorem statements and the Errors list of v1 read. Verified 2026-09-26. This is the "source-consistency critique" Le 2026a answers.
+575:- **Scope and caveats:** theorems are for the R-Warp class; arXiv-only.
+580:### BuchertFrackowiak2026 — Thomas Buchert, Antony Frackowiak (2026), "Novel Realizations of Warp Drive Spacetimes as Solutions of General Relativity"
+581:- **Citation:** Universe 12, 132 (2026), DOI 10.3390/universe12050132. arXiv:2605.03653v1 (5 May 2026; only version). Verified via abstract page 2026-09-26 (abstract read).
+587:### Le2026b — An T. Le (2026), "Observer-robust energy condition verification for warp drive spacetimes"
+588:- **Citation:** arXiv-only, arXiv:2602.18023v6 (24 Sep 2026); v1 20 Feb, v2 3 Mar, v3 27 Apr, v4 12 Jun, v5 1 Sep, v6 24 Sep 2026. Read v6. Toolkit "warpax" (JAX; Zenodo record). Verified 2026-09-26.
+601:- **Scope and caveats:** flat unit-lapse slices for the lemmas; type labels are numerical and distinct from interval bounds (author's statement); "The null-geodesic integrals are finite-segment, basin-local diagnostics … they supply no complete-geodesic ANEC conclusion. The flat-space quantum-inequality estimates likewise supply no curved-spacetime bound." (Sec. 6)
+606:### Rodal2026Birefringent — José Rodal (2026), "Weakly birefringent screening disfavors fast Hawking–Ellis Type I warp drives via low-velocity cubic tilt scaling" (v1–v2)
+607:- **Citation:** arXiv:2603.21352v2 (24 Mar 2026); v1 22 Mar 2026. **Version hazard:** v3 (24 May 2026) replaces the paper with "Tamm–Rubilar branch diagnostics for Drummond–Hathrell photon propagation: Schwarzschild calibration and a Kerr weak-lensing benchmark", and the warp-screening claim is "removed as a main result and retained only as an appendix-level test" (v3 comments). Cite v2 for the warp content. Verified via abstract pages 2026-09-26 (abstracts read).
+613:### Le2026a — An T. Le (2026), "On the boundary cost of source-consistent warp shells" (v1–v2)
+614:- **Citation:** arXiv:2605.25417v2 (20 Jun 2026); v1 25 May 2026 has the same title and abstract. **Version hazard:** v3 (17 Sep 2026) is a different paper, "Relativistic elastic shells: material support and cavity geometry". Cite v2. Read v2 (abstract, admissibility standard, Fuchs verification, scan and ANEC sections). Verified 2026-09-26.
+624:- **Scope and caveats:** spherical shells; quasi-static; ANEC along a representative ray is "an exploratory diagnostic rather than a proof".
+629:### Le2026c — An T. Le (2026), "Radiative steering of warp shells" (v4); v1–v3 "Steering a warp drive without exotic matter"
+630:- **Citation:** arXiv:2606.22531v4 (13 Sep 2026; "substantially revised and retitled"); v1 21 Jun, v2 30 Jun, v3 15 Jul 2026 carry the old title. Abstracts of v1–v4 read; v1 and v4 PDFs downloaded. Verified 2026-09-26.
+639:- **Scope and caveats:** thin-shell idealization; subluminal; self-gravitating settling after a turn open (v4).
+643:### BolivarAbellanVasilev2026 — Nelson Bolívar, Gabriel Abellán, Ivaylo Vasilev (2026), "Boundary Obstructions and Lapse Freedom in Static Spherical Hollow Cores"
+644:- **Citation:** arXiv-only, arXiv:2608.15000v1 (15 Aug 2026; only version). Abstract and the quoted sections of v1 read. Verified 2026-09-26.
+651:- **Scope and caveats:** static; not a transport result (authors' statement).
+655:### Gergely2026 — László Árpád Gergely (2026), "Fluid interpretation, Hawking–Ellis classification, and energy conditions of the proper kinetic gravity braiding stress tensor"
+656:- **Citation:** accepted in Phys. Rev. D (per arXiv comments). arXiv:2608.15228v1 (15 Aug 2026; only version). Abstract read; v1 full text searched for the classification statements. Verified 2026-09-26.
+662:### MartinMorenoVisser2018_2021 — Prado Martín-Moruno, Matt Visser, Hawking–Ellis type papers
+663:- **Citation:** "Essential core of the Hawking–Ellis types", Class. Quantum Grav. 35, 125003 (2018), arXiv:1802.00865v2 (11 May 2018; v1 2 Feb 2018). "Hawking–Ellis classification of stress-energy: test-fields versus back-reaction", Phys. Rev. D 103, 124003 (2021), arXiv:2102.13551v2 (5 Mar 2021; v1 26 Feb 2021). Verified via abstract pages 2026-09-26 (abstracts read).
+668:### JusufiLobo2026 — Kimet Jusufi, Francisco S. N. Lobo (2026), "Quantum-gravity-inspired Alcubierre warp-drive geometries"
+669:- **Citation:** arXiv-only, arXiv:2609.05554v1 (3 Sep 2026; only version). Verified via abstract page 2026-09-26.
+672:- **Scope and caveats:** effective ansatz (authors' statement); no RSET computed.
+676:# Part C. Quantum inequalities, averaged null energy, superluminal censorship and chronology
+680:## Verification protocol
+684:- Entries marked **abstract-level** rest on the abstract alone.
+697:## C.1 Quantum inequalities along timelike worldlines
+699:### FR95 — L. H. Ford, Thomas A. Roman (1995), "Averaged Energy Conditions and Quantum Inequalities"
+700:- **Citation:** Phys. Rev. D 51, 4277–4286 (1995); DOI 10.1103/PhysRevD.51.4277; report TUTP-94-16. arXiv:gr-qc/9410043v1 (read; v1 only). Submission history: v1 Sat, 29 Oct 1994 01:33:00 UTC. Verified via https://arxiv.org/abs/gr-qc/9410043 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9410043v1.
+708:- **Scope and caveats:** covers a free massless minimally coupled scalar with one specific (Lorentzian) sampling function in flat space without boundaries. The 2D compactified results are difference inequalities relative to the Casimir vacuum.
+713:### FR96 — L. H. Ford, Thomas A. Roman (1996), "Quantum Field Theory Constrains Traversable Wormhole Geometries"
+716:### FR97 — L. H. Ford, Thomas A. Roman (1997), "Restrictions on Negative Energy Density in Flat Spacetime"
+717:- **Citation:** Phys. Rev. D 55, 2082–2089 (1997); DOI 10.1103/PhysRevD.55.2082; report TUTP-96-2. arXiv:gr-qc/9607003v2 (read; 24 Jan 1997). Submission history: v1 Mon, 1 Jul 1996 17:17:18 UTC; v2 Fri, 24 Jan 1997 22:48:00 UTC ("minor revisions in the Introduction, conclusions unchanged"). Verified via https://arxiv.org/abs/gr-qc/9607003 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9607003v2.
+724:- **Scope and caveats:** free fields, Minkowski space, Lorentzian sampling.
+729:### PF98 — Michael J. Pfenning, L. H. Ford (1998), "Scalar Field Quantum Inequalities in Static Spacetimes"
+730:- **Citation:** Phys. Rev. D 57, 3489 (1998); DOI 10.1103/PhysRevD.57.3489; report TUTP-97-10. arXiv:gr-qc/9710055v1 (read; v1 only). Submission history: v1 Thu, 9 Oct 1997 22:47:29 UTC. Verified via https://arxiv.org/abs/gr-qc/9710055 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9710055v1.
+737:- **Scope and caveats:** minimally coupled scalar; static spacetimes and static observers only.
+742:### FE98 — C. J. Fewster, S. P. Eveson (1998), "Bounds on negative energy densities in flat spacetime" (abstract-level)
+743:- **Citation:** Phys. Rev. D 58, 084010 (1998); DOI 10.1103/PhysRevD.58.084010. arXiv:gr-qc/9805024v2 (pinned; 8 Jul 1998). Submission history: v1 Thu, 7 May 1998 17:28:57 UTC; v2 Wed, 8 Jul 1998 14:52:49 UTC. Verified via https://arxiv.org/abs/gr-qc/9805024 on 2026-09-26.
+747:- **Scope and caveats:** free scalar, flat space.
+752:### F00 — C. J. Fewster (2000), "A general worldline quantum inequality" (abstract-level)
+753:- **Citation:** Class. Quantum Grav. 17, 1897–1911 (2000); DOI 10.1088/0264-9381/17/9/302. arXiv:gr-qc/9910060v2 (pinned; 21 Feb 2000). Submission history: v1 Mon, 18 Oct 1999 14:32:49 UTC; v2 Mon, 21 Feb 2000 14:43:42 UTC ("The statement of the main result is changed slightly"). Verified via https://arxiv.org/abs/gr-qc/9910060 on 2026-09-26.
+757:- **Scope and caveats:** bounds the normal-ordered density relative to a reference state, and the bound has no closed form in general. K03 notes that such difference-type bounds do not directly give absolute Planck-scale restrictions.
+762:### OG03 — Ken D. Olum, Noah Graham (2003), "Static Negative Energies Near a Domain Wall" (abstract-level)
+763:- **Citation:** Phys. Lett. B 554, 175–179 (2003); DOI 10.1016/S0370-2693(03)00011-X; report UCLA/02/TEP/10. arXiv:gr-qc/0205134v3 (pinned; 7 Dec 2002). Submission history: v1 Fri, 31 May 2002 01:18:02 UTC; v2 Mon, 3 Jun 2002 20:53:55 UTC; v3 Sat, 7 Dec 2002 17:25:31 UTC. Verified via https://arxiv.org/abs/gr-qc/0205134 on 2026-09-26.
+767:- **Scope and caveats:** a specific interacting model.
+772:### FH05 — Christopher J. Fewster, Stefan Hollands (2005), "Quantum Energy Inequalities in two-dimensional conformal field theory" (abstract-level)
+773:- **Citation:** Rev. Math. Phys. 17, 577 (2005); DOI 10.1142/S0129055X05002406; report ESI Preprint 1559. arXiv:math-ph/0412028v2 (pinned; 29 Apr 2005). Submission history: v1 Thu, 9 Dec 2004 14:38:11 UTC; v2 Fri, 29 Apr 2005 16:42:14 UTC. Verified via https://arxiv.org/abs/math-ph/0412028 on 2026-09-26.
+777:- **Scope and caveats:** two dimensions only. In 4D, null-segment averages have no lower bound (FR03).
+782:### ER97 — Allen E. Everett, Thomas A. Roman (1997), "A Superluminal Subway: The Krasnikov Tube"
+785:### K03 — S. Krasnikov (2003), "The quantum inequalities do not forbid spacetime shortcuts"
+786:- **Citation:** Phys. Rev. D 67, 104013 (2003); DOI 10.1103/PhysRevD.67.104013. arXiv:gr-qc/0207057v3 (read; 19 May 2003). Submission history: v1 Mon, 15 Jul 2002 22:25:04 UTC; v2 Fri, 29 Nov 2002 21:25:08 UTC; v3 Mon, 19 May 2003 13:14:26 UTC ("Minor corrections and additions"). Verified via https://arxiv.org/abs/gr-qc/0207057 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/0207057v3.
+795:- **Scope and caveats:** addresses only the QI route; the ANEC and achronal-ANEC routes lie outside the paper.
+802:## C.2 Superluminal travel, time delay and speed-limit theorems
+804:### O98 — Ken D. Olum (1998), "Superluminal travel requires negative energies"
+805:- **Citation:** Phys. Rev. Lett. 81, 3567–3570 (1998); DOI 10.1103/PhysRevLett.81.3567. arXiv:gr-qc/9805003v2 (read; 14 Oct 1998). Submission history: v1 Fri, 1 May 1998 19:39:39 UTC; v2 Wed, 14 Oct 1998 18:55:32 UTC (merges gr-qc/9806091). Verified via https://arxiv.org/abs/gr-qc/9805003 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9805003v2.
+814:- **Scope and caveats:** the definition is local ("earlier than any neighboring path"). "It is possible that while P arrives earlier than any nearby path, it is still slower than a path some larger distance away." The generic condition is required.
+819:### VBL98 — Matt Visser, Bruce Bassett, Stefano Liberati (2000), "Superluminal censorship"
+820:- **Citation:** Nucl. Phys. Proc. Suppl. 88, 267–270 (2000); DOI 10.1016/S0920-5632(00)00782-9. arXiv:gr-qc/9810026v2 (read; 15 Dec 1999); v1 also read, for the record of the withdrawn claim. Submission history: v1 Wed, 7 Oct 1998 23:24:13 UTC; v2 Wed, 15 Dec 1999 19:54:38 UTC. v2 comment: "Significant revisions: (1) the perturbative analysis is extended; (2) the non-perturbative analysis in terms of null infinity is abandoned". Verified via https://arxiv.org/abs/gr-qc/9810026 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9810026v2 and https://arxiv.org/pdf/gr-qc/9810026v1.
+827:- **Scope and caveats:** weak fields; global Hilbert–Lorentz gauge; asymptotic flatness; no incoming radiation.
+832:### VBL99 — Matt Visser, Bruce Bassett, Stefano Liberati (1999), "Perturbative superluminal censorship and the null energy condition"
+833:- **Citation:** AIP Conf. Proc. 493, 301–305 (1999); DOI 10.1063/1.1301601. arXiv:gr-qc/9908023v1 (read; v1 only). Submission history: v1 Fri, 6 Aug 1999 22:58:15 UTC. Verified via https://arxiv.org/abs/gr-qc/9908023 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9908023v1.
+837:- **Scope and caveats:** weak field. The text refers to "a non-perturbative theorem regarding superluminal censorship" in [1] = gr-qc/9810026, whose v2 later abandoned it.
+842:### L99 — Robert J. Low (1999), "Speed Limits in General Relativity"
+843:- **Citation:** Class. Quantum Grav. 16, 543–549 (1999); DOI 10.1088/0264-9381/16/2/016. arXiv:gr-qc/9812067v1 (read; v1 only). Submission history: v1 Fri, 18 Dec 1998 14:06:01 UTC. Verified via https://arxiv.org/abs/gr-qc/9812067 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9812067v1.
+850:- **Scope and caveats:** the energy condition used is the DEC, stronger than the NEC; the conclusion is about *construction on demand*.
+855:### GW00 — Sijie Gao, Robert M. Wald (2000), "Theorems on gravitational time delay and related issues"
+856:- **Citation:** Class. Quantum Grav. 17, 4999–5008 (2000); DOI 10.1088/0264-9381/17/24/305. arXiv:gr-qc/0007021v2 (read; 28 Jul 2000). Submission history: v1 Tue, 11 Jul 2000 15:12:16 UTC; v2 Fri, 28 Jul 2000 22:10:54 UTC ("Example of gauge perturbation changed/corrected. Two footnotes added and one footnote removed"). Verified via https://arxiv.org/abs/gr-qc/0007021 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/0007021v2.
+865:- **Scope and caveats:** "the theorem gives little control over the size of the region K′". Theorem 1 speaks about sufficiently distant endpoints.
+870:### PSW93 — R. Penrose, R. D. Sorkin, E. Woolgar (1993), "A Positive Mass Theorem Based on the Focusing and Retardation of Null Geodesics"
+871:- **Citation:** no journal reference or DOI on arXiv. arXiv:gr-qc/9301015v2 (read; 15 Jan 1993). Submission history: v1 Thu, 14 Jan 1993 20:00:57 UTC (withdrawn); v2 Fri, 15 Jan 1993 21:00:19 UTC. Verified via https://arxiv.org/abs/gr-qc/9301015 on 2026-09-26; full text https://arxiv.org/pdf/gr-qc/9301015v2.
+877:- **Scope and caveats:** asymptotically flat; one asymptotic region.
+882:### FSW93 — John L. Friedman, Kristin Schleich, Donald M. Witt (1993), "Topological Censorship" (abstract-level)
+885:## C.3 ANEC, achronal ANEC and their proofs
+887:### GO07 — Noah Graham, Ken D. Olum (2007), "Achronal averaged null energy condition"
+888:- **Citation:** Phys. Rev. D 76, 064001 (2007); DOI 10.1103/PhysRevD.76.064001. arXiv:0705.3193v2 (read; 27 Aug 2007). Submission history: v1 Tue, 22 May 2007 15:24:36 UTC; v2 Mon, 27 Aug 2007 18:54:45 UTC ("qualify conditions on theorem 1, fix typos"). Verified via https://arxiv.org/abs/0705.3193 on 2026-09-26; full text https://arxiv.org/pdf/0705.3193v2.
+897:- **Scope and caveats:** "Condition 1 should be expected to hold only in cases where the curvature is well below the Planck scale". Theorem 1 needs simple connectedness. The null generic condition is assumed throughout.
+902:### W10 — Aron C. Wall (2010), "Proving the Achronal Averaged Null Energy Condition from the Generalized Second Law"
+903:- **Citation:** Phys. Rev. D 81, 024038 (2010); DOI 10.1103/PhysRevD.81.024038. arXiv:0910.5751v2 (read; 16 Feb 2010). Submission history: v1 Thu, 29 Oct 2009 23:43:08 UTC; v2 Tue, 16 Feb 2010 01:57:35 UTC ("Added 2 paragraphs to end of section 2"). Verified via https://arxiv.org/abs/0910.5751 on 2026-09-26; full text https://arxiv.org/pdf/0910.5751v2.
+911:- **Scope and caveats:** "The present result is weaker insofar as it is restricted to the case in which the gravitational perturbation to the background metric is small". It covers minimal coupling only and assumes a version of cosmic censorship (Sec. 3, footnote 6).
+916:### UO10 — Douglas Urban, Ken D. Olum (2010), "Averaged null energy condition violation in a conformally flat spacetime"
+917:- **Citation:** Phys. Rev. D 81, 024039 (2010); DOI 10.1103/PhysRevD.81.024039. arXiv:0910.5925v2 (read; 28 Jan 2010). Submission history: v1 Fri, 30 Oct 2009 19:59:16 UTC; v2 Thu, 28 Jan 2010 05:24:05 UTC. Verified via https://arxiv.org/abs/0910.5925 on 2026-09-26; full text https://arxiv.org/pdf/0910.5925v2.
+924:- **Scope and caveats:** the background is fixed and is not a solution sourced by the field ("we have computed the stress tensor in a given background without attempting to impose self-consistency").
+929:### FOP07 — Christopher J. Fewster, Ken D. Olum, Michael J. Pfenning (2007), "Averaged null energy condition in spacetimes with boundaries" (abstract-level)
+930:- **Citation:** Phys. Rev. D 75, 025007 (2007); DOI 10.1103/PhysRevD.75.025007. arXiv:gr-qc/0609007v3 (pinned; 10 Sep 2007). Submission history: v1 Fri, 1 Sep 2006 15:52:23 UTC; v2 Mon, 11 Dec 2006 18:45:21 UTC; v3 Mon, 10 Sep 2007 19:29:46 UTC. Verified via https://arxiv.org/abs/gr-qc/0609007 on 2026-09-26.
+934:- **Scope and caveats:** free scalar; flat tube.
+939:### GO05 — Noah Graham, Ken D. Olum (2005), "Plate with a hole obeys the averaged null energy condition" (abstract-level)
+940:- **Citation:** Phys. Rev. D 72, 025013 (2005); DOI 10.1103/PhysRevD.72.025013. arXiv:hep-th/0506136v2 (pinned; 7 Nov 2005). Submission history: v1 Thu, 16 Jun 2005 18:07:15 UTC; v2 Mon, 7 Nov 2005 15:17:36 UTC. Verified via https://arxiv.org/abs/hep-th/0506136 on 2026-09-26.
+944:- **Scope and caveats:** idealized boundaries.
+949:### KO13 — Eleni-Alexandra Kontou, Ken D. Olum (2013), "Averaged null energy condition in a classical curved background" (abstract-level)
+950:- **Citation:** Phys. Rev. D 87, 064009 (2013) (Crossref); DOI 10.1103/PhysRevD.87.064009. arXiv:1212.2290v1 (pinned; v1 only). Submission history: v1 Tue, 11 Dec 2012 03:30:34 UTC. Verified via https://arxiv.org/abs/1212.2290 on 2026-09-26.
+954:- **Scope and caveats:** conditional on the conjectured QI.
+959:### KO15 — Eleni-Alexandra Kontou, Ken D. Olum (2015), "Proof of the averaged null energy condition in a classical curved spacetime using a null-projected quantum inequality"
+960:- **Citation:** Phys. Rev. D 92, 124009 (2015); DOI 10.1103/PhysRevD.92.124009. arXiv:1507.00297v2 (read; 27 Oct 2015). Submission history: v1 Wed, 1 Jul 2015 17:45:19 UTC; v2 Tue, 27 Oct 2015 02:27:20 UTC ("references added"). Verified via https://arxiv.org/abs/1507.00297 on 2026-09-26; full text https://arxiv.org/pdf/1507.00297v2.
+968:- **Scope and caveats:** massless minimally coupled free scalar; first order in the Riemann tensor; a background obeying the null convergence condition. The curvature bounds R_max are finite "but not necessarily small". The conclusion is transverse-uniform.
+973:### FLPW16 — Thomas Faulkner, Robert G. Leigh, Onkar Parrikar, Huajia Wang (2016), "Modular Hamiltonians for Deformed Half-Spaces and the Averaged Null Energy Condition" (abstract-level)
+974:- **Citation:** JHEP 09 (2016) 038 (Crossref); DOI 10.1007/JHEP09(2016)038. arXiv:1605.08072v1 (pinned; v1 only). Submission history: v1 Wed, 25 May 2016 21:02:28 UTC. Verified via https://arxiv.org/abs/1605.08072 on 2026-09-26.
+978:- **Scope and caveats:** Minkowski space without gravity; relativistic QFTs.
+983:### HKT17 — Thomas Hartman, Sandipan Kundu, Amirhossein Tajdini (2017), "Averaged Null Energy Condition from Causality" (abstract-level)
+984:- **Citation:** JHEP 07 (2017) 066 (Crossref); DOI 10.1007/JHEP07(2017)066. arXiv:1610.05308v1 (pinned; v1 only). Submission history: v1 Mon, 17 Oct 2016 20:00:02 UTC. Verified via https://arxiv.org/abs/1610.05308 on 2026-09-26.
+988:- **Scope and caveats:** flat spacetime; interacting theories in more than two dimensions.
+993:### R20 — Felipe Rosso (2020), "Achronal averaged null energy condition for extremal horizons and (A)dS" (abstract-level)
+994:- **Citation:** JHEP 07 (2020) 023; DOI 10.1007/JHEP07(2020)023. arXiv:2005.06476v3 (pinned; 23 Dec 2020). Submission history: v1 Wed, 13 May 2020 18:00:01 UTC; v2 Wed, 12 Aug 2020 17:24:37 UTC; v3 Wed, 23 Dec 2020 22:32:31 UTC. Verified via https://arxiv.org/abs/2005.06476 on 2026-09-26.
+998:- **Scope and caveats:** highly symmetric fixed backgrounds.
+1003:### KS20 — Eleni-Alexandra Kontou, Ko Sanders (2020), "Energy conditions in general relativity and quantum field theory"
+1004:- **Citation:** Class. Quantum Grav. 37 (19), 193001 (2020) (Crossref); DOI 10.1088/1361-6382/ab8fcf. arXiv:2003.01815v2 (read; 5 Jun 2020). Submission history: v1 Tue, 3 Mar 2020 22:30:02 UTC; v2 Fri, 5 Jun 2020 02:22:16 UTC. Verified via https://arxiv.org/abs/2003.01815 on 2026-09-26; full text https://arxiv.org/pdf/2003.01815v2 (Secs. 4.3 and 5 read).
+1014:- **Scope and caveats:** review; formulation (ii) is a proposal.
+1019:### BV00 — Carlos Barceló, Matt Visser (2000), "Scalar fields, energy conditions, and traversable wormholes" (abstract-level)
+1020:- **Citation:** Class. Quantum Grav. 17, 3843–3864 (2000); DOI 10.1088/0264-9381/17/18/318. arXiv:gr-qc/0003025v2 (pinned; 14 Jul 2000). Submission history: v1 Wed, 8 Mar 2000 03:14:11 UTC; v2 Fri, 14 Jul 2000 23:29:14 UTC. Verified via https://arxiv.org/abs/gr-qc/0003025 on 2026-09-26.
+1024:- **Scope and caveats:** requires trans-Planckian field values. GO07, KO15 and KS20 note that the effective Newton constant diverges and changes sign.
+1031:## C.4 Null-segment bounds (no-go, SNEC, DSNEC, QNEIs) and QEI reviews
+1033:### FR03 — C. J. Fewster, T. A. Roman (2003), "Null energy conditions in quantum field theory"
+1034:- **Citation:** Phys. Rev. D 67, 044003 (2003); DOI 10.1103/PhysRevD.67.044003; report ESI 1205. Erratum: Phys. Rev. D 80, 069903 (2009) (Crossref; erratum content not read). arXiv:gr-qc/0209036v2 (pinned; 26 Nov 2002). Submission history: v1 Wed, 11 Sep 2002 14:38:12 UTC; v2 Tue, 26 Nov 2002 10:24:53 UTC. Verified via https://arxiv.org/abs/gr-qc/0209036 on 2026-09-26; abstract-level with PDF downloaded.
+1040:- **Scope and caveats:** free scalar; the 2D analogue has null QIs.
+1041:- **Disputes, refutations, later corrections:** the 2009 erratum exists (Crossref), and its content is UNVERIFIED here. FK18 and FF21 evade the no-go with a UV cutoff; FFK21 with double smearing.
+1045:### FK18 — Ben Freivogel, Dimitrios Krommydas (2018), "The Smeared Null Energy Condition"
+1046:- **Citation:** JHEP 12 (2018) 067 (Crossref); DOI 10.1007/JHEP12(2018)067. arXiv:1807.03808v4 (read; 19 Apr 2021). Submission history: v1 Tue, 10 Jul 2018 18:19:33 UTC; v2 Thu, 12 Jul 2018 08:08:16 UTC; v3 Thu, 18 Apr 2019 03:53:19 UTC; v4 Mon, 19 Apr 2021 09:54:21 UTC. Verified via https://arxiv.org/abs/1807.03808 on 2026-09-26; full text https://arxiv.org/pdf/1807.03808v4.
+1053:- **Scope and caveats:** a conjecture; regime of perturbative quantum gravity.
+1058:### FF21 — Jackson R. Fliss, Ben Freivogel (2022), "Semi-local Bounds on Null Energy in QFT" (abstract-level)
+1059:- **Citation:** SciPost Phys. 12, 084 (2022) (Crossref; not shown on arXiv); DOI 10.21468/SciPostPhys.12.3.084 (Crossref). arXiv:2108.06068v1 (pinned; v1 only). Submission history: v1 Fri, 13 Aug 2021 05:29:48 UTC. Verified via https://arxiv.org/abs/2108.06068 on 2026-09-26.
+1063:- **Scope and caveats:** free or super-renormalizable theories.
+1068:### FFK21 — Jackson R. Fliss, Ben Freivogel, Eleni-Alexandra Kontou (2023), "The double smeared null energy condition" (abstract-level)
+1069:- **Citation:** SciPost Phys. 14, 024 (2023) (Crossref; not shown on arXiv); DOI 10.21468/SciPostPhys.14.2.024 (Crossref). arXiv:2111.05772v1 (pinned; v1 only). Submission history: v1 Wed, 10 Nov 2021 16:24:47 UTC. Verified via https://arxiv.org/abs/2111.05772 on 2026-09-26.
+1073:- **Scope and caveats:** free fields, flat space; curvature corrections left for later work.
+1078:### FKK22 — Ben Freivogel, Eleni-Alexandra Kontou, Dimitrios Krommydas (2022), "The Return of the Singularities: Applications of the Smeared Null Energy Condition"
+1079:- **Citation:** SciPost Phys. 13, 001 (2022); DOI 10.21468/SciPostPhys.13.1.001. arXiv:2012.11569v2 (read; 15 Nov 2021). Submission history: v1 Mon, 21 Dec 2020 18:46:37 UTC; v2 Mon, 15 Nov 2021 17:17:02 UTC. Verified via https://arxiv.org/abs/2012.11569 on 2026-09-26; full text https://arxiv.org/pdf/2012.11569v2 (Secs. 1–2 read).
+1086:- **Scope and caveats:** SNEC is assumed.
+1091:### K24 — Eleni-Alexandra Kontou (2024), "Wormhole restrictions from quantum energy inequalities"
+1092:- **Citation:** Universe 10 (7), 291 (2024) (Crossref); DOI 10.3390/universe10070291. arXiv:2405.05963v2 (read; 8 Jul 2024). Submission history: v1 Thu, 9 May 2024 17:58:40 UTC; v2 Mon, 8 Jul 2024 11:50:33 UTC. Verified via https://arxiv.org/abs/2405.05963 on 2026-09-26; full text https://arxiv.org/pdf/2405.05963v2.
+1100:- **Scope and caveats:** wormhole-specific; the short-wormhole exclusion inherits GO07's conjecture status.
+1105:### FRo25 — Jackson R. Fliss, Andrew Rolph (2025), "Curious QNEIs from QNEC: New Bounds on Null Energy in Quantum Field Theory" (abstract-level)
+1106:- **Citation:** no journal reference on arXiv. arXiv:2510.26247v2 (pinned; 16 Apr 2026). Submission history: v1 Thu, 30 Oct 2025 08:31:26 UTC; v2 Thu, 16 Apr 2026 14:26:30 UTC ("simplified the higher-dimensional energy inequality and clarified its state-dependence"). Verified via https://arxiv.org/abs/2510.26247 on 2026-09-26.
+1110:- **Scope and caveats:** flat-space QFT.
+1115:### P26 — Andrea Palessandro (2026), "Quantum Inequalities from the Second Law" (abstract-level)
+1116:- **Citation:** Int. J. Theor. Phys. 65, 233 (2026); DOI 10.1007/s10773-026-06434-x. arXiv:2608.11817v1 (pinned; v1 only). Submission history: v1 Wed, 12 Aug 2026 08:58:51 UTC. Verified via https://arxiv.org/abs/2608.11817 on 2026-09-26.
+1120:- **Scope and caveats:** new paper; independent checks not yet visible.
+1127:## C.5 Chronology
+1129:### H92 — S. W. Hawking (1992), "Chronology protection conjecture"
+1130:- **Citation:** Phys. Rev. D 46, 603–611 (1992) (Crossref); DOI 10.1103/PhysRevD.46.603; received 23 Sep 1991, published 15 Jul 1992. No arXiv version. Verified 2026-09-26 via WebFetch of https://journals.aps.org/prd/abstract/10.1103/PhysRevD.46.603 (metadata; paraphrased abstract), Crossref metadata, and the text layer of the published article (archive.org item `pdfy-rUc2KLIygUZjXGDb`, a mirror of the APS PDF). Quotes come from that text layer.
+1137:- **Scope and caveats:** chronology protection is a conjecture. GO07 later upgraded the energy-condition part to self-consistent achronal ANEC.
+1142:### E96 — Allen E. Everett (1996), "Warp drive and causality"
+1143:- **Citation:** Phys. Rev. D 53, 7365–7368 (1996) (Crossref); DOI 10.1103/PhysRevD.53.7365; received 14 Sep 1995, published 15 Jun 1996. No arXiv version located. Verified 2026-09-26 via WebFetch of https://journals.aps.org/prd/abstract/10.1103/PhysRevD.53.7365 (paraphrased abstract), Crossref metadata, and the text layer of the published article hosted at https://www.if.ufrj.br/~mbr/warp/etc/prd53_7365.pdf. Quotes come from that text; mathematical symbols are garbled in the text layer, so inequalities below are transcribed from context.
+1151:- **Scope and caveats:** thin-wall Alcubierre metric; the overlap is only approximately negligible (SS24 makes the construction exact).
+1156:### SS24 — Barak Shoshany, Ben Snodgrass (2024), "Warp Drives and Closed Timelike Curves"
+1159:## C.6 2018–2026 applications to warp drives and shortcuts, and older weak-field constraints
+1163:### SSV22 — Jessica Santiago, Sebastian Schuster, Matt Visser (2022), "Generic warp drives violate the null energy condition"
+1166:### Le26 — An T. Le (2026), "Observer-robust energy condition verification for warp drive spacetimes"
+1169:### JL26 — Kimet Jusufi, Francisco S. N. Lobo (2026), "Quantum-gravity-inspired Alcubierre warp-drive geometries" (abstract-level)
+1172:### GZ25 — Remo Garattini, Kirill Zatrimaylov (2025), "Warp Drive in a De Sitter Universe" (abstract-level)
+1175:### LV04 — Francisco S. N. Lobo, Matt Visser (2004), "Fundamental limitations on 'warp drive' spacetimes"
+1178:## C.7 Assessment of project claim (g)
+1211:# Part D. Traversable wormholes
+1216:## Verification method and conventions
+1225:## D.1 Foundations: metric-first design of static wormholes
+1227:### MorrisThorne1988 — M. S. Morris, K. S. Thorne (1988), "Wormholes in spacetime and their use for interstellar travel: A tool for teaching general relativity"
+1228:- **Citation:** Am. J. Phys. 56, 395–412 (1988); DOI 10.1119/1.15620. Pre-arXiv. Verified via INSPIRE API (`q=doi:10.1119/1.15620`) and the full-text scan listed above (19 pages OCR'd) on 2026-09-26. INSPIRE lists the title as "…in space-time…"; the article page reads "Wormholes in spacetime…".
+1238:  - [derivation] Keeping the gravity at the end stations near g⊕ forces a finite-cutoff wormhole to have R_s ≳ 1×10¹¹ m (b₀/10 m)^{1/2} ≈ 0.6 AU and a trip time ≈ 7 days (R_s/10¹¹ m)^{1/2} (Eqs. A17–A27; the ½ exponents are read from a degraded scan, see UNVERIFIED list).
+1243:- **Scope and caveats:** Static, spherical, general relativity (GR). The matter model is left open ("we must let the relationships between ρ, τ, and p dangle"). The traveller–matter coupling is flagged as an open problem, with suggested remedies: a vacuum tube through the wormhole, or weakly coupled exotic matter.
+1248:### MorrisThorneYurtsever1988 — M. S. Morris, K. S. Thorne, U. Yurtsever (1988), "Wormholes, Time Machines, and the Weak Energy Condition"
+1249:- **Citation:** Phys. Rev. Lett. 61, 1446–1449 (1988); DOI 10.1103/PhysRevLett.61.1446. Pre-arXiv. Verified via INSPIRE API (`q=doi:10.1103/PhysRevLett.61.1446`) and the Caltech AUTHORS scan (4 pages, OCR) on 2026-09-26.
+1258:- **Scope and caveats:** Whether σ < ½τ_C s is allowed needs "explicit study of quantum-field-theory models for the plates (a task we have not attempted)".
+1263:### Visser1989a — M. Visser (1989), "Traversable wormholes: Some simple examples"
+1264:- **Citation:** Phys. Rev. D 39, 3182–3184 (1989); DOI 10.1103/PhysRevD.39.3182; arXiv:0809.0907v1 (read v1; pre-arXiv article uploaded 2008). Submission history: [v1] Thu, 4 Sep 2008 22:42:18 UTC. Verified via https://arxiv.org/abs/0809.0907 on 2026-09-26.
+1272:- **Scope and caveats:** No stability analysis. Negative-tension strings have no known field-theoretic realisation ("Note however, that field theoretic models of strings lead to positive string tensions").
+1277:### Visser1989b — M. Visser (1989), "Traversable wormholes from surgically modified Schwarzschild spacetimes"
+1278:- **Citation:** Nucl. Phys. B 328, 203–212 (1989); DOI 10.1016/0550-3213(89)90100-4; arXiv:0809.0927v1 (read v1; pre-arXiv article uploaded 2008). Submission history: [v1] Thu, 4 Sep 2008 22:35:09 UTC. Verified via https://arxiv.org/abs/0809.0927 on 2026-09-26.
+1286:- **Scope and caveats:** Spherical perturbations only. The conclusions depend on a Taylor-expandable ϑ(σ) at σ = 0.
+1293:## D.2 Thin-shell stability: equation of state as the stability knob
+1295:### PoissonVisser1995 — E. Poisson, M. Visser (1995), "Thin-shell wormholes: Linearization stability"
+1296:- **Citation:** Phys. Rev. D 52, 7318–7321 (1995); DOI 10.1103/PhysRevD.52.7318; arXiv:gr-qc/9506083v1 (read v1, 30 Jun 1995). Submission history: [v1] Fri, 30 Jun 1995 18:49:41 UTC. Verified via https://arxiv.org/abs/gr-qc/9506083 on 2026-09-26.
+1304:- **Scope and caveats:** The authors warn that β₀ need not be a sound speed without a microphysical model: "wormhole configurations with |β₀²| > 1 should not be ruled out a priori."
+1309:### GarciaLoboVisser2012 — N. Montelongo Garcia, F. S. N. Lobo, M. Visser (2012), "Generic spherically symmetric dynamic thin-shell traversable wormholes in standard general relativity"
+1310:- **Citation:** Phys. Rev. D 86, 044026 (2012); DOI 10.1103/PhysRevD.86.044026; arXiv:1112.2057v3 (read v3, 15 Aug 2012). Submission history: [v1] Fri, 9 Dec 2011; [v2] Thu, 15 Dec 2011 (fig. 4 corrected); [v3] Wed, 15 Aug 2012 (matches published). Verified via https://arxiv.org/abs/1112.2057 on 2026-09-26.
+1318:- **Scope and caveats:** Spherical, linearised, radial perturbations. Integrability of σ(a) is assumed; a two-fluid model is given as a sufficient condition.
+1325:## D.3 General theorems: where the NEC must fail
+1327:### HochbergVisser1997 — D. Hochberg, M. Visser (1997), "Geometric structure of the generic static traversable wormhole throat"
+1328:- **Citation:** Phys. Rev. D 56, 4745–4755 (1997); DOI 10.1103/PhysRevD.56.4745; arXiv:gr-qc/9704082v1 (read v1, 29 Apr 1997). Submission history: [v1] Tue, 29 Apr 1997 22:30:15 UTC. Verified via https://arxiv.org/abs/gr-qc/9704082 on 2026-09-26.
+1336:- **Scope and caveats:** Static spacetimes only (the authors call this "the major technical limitation").
+1341:### HochbergVisser1998PRL — D. Hochberg, M. Visser (1998), "The null energy condition in dynamic wormholes"
+1342:- **Citation:** Phys. Rev. Lett. 81, 746–749 (1998); DOI 10.1103/PhysRevLett.81.746; arXiv:gr-qc/9802048v3 (read v3, 18 Jun 1998). Submission history: [v1] Wed, 18 Feb 1998; [v2] Tue, 24 Feb 1998; [v3] Thu, 18 Jun 1998. Verified via https://arxiv.org/abs/gr-qc/9802048 on 2026-09-26.
+1349:- **Scope and caveats:** Proof sketched; details are in the PRD companion.
+1354:### HochbergVisser1998PRD — D. Hochberg, M. Visser (1998), "Dynamic wormholes, anti-trapped surfaces, and energy conditions"
+1355:- **Citation:** Phys. Rev. D 58, 044021 (1998); DOI 10.1103/PhysRevD.58.044021; arXiv:gr-qc/9802046v2 (read v2, 18 Jun 1998). Submission history: [v1] Tue, 17 Feb 1998; [v2] Thu, 18 Jun 1998. Verified via https://arxiv.org/abs/gr-qc/9802046 on 2026-09-26.
+1362:- **Scope and caveats:** Local theorems; the Page-style anti-trapped-surface definition.
+1367:### FriedmanSchleichWitt1993 — J. L. Friedman, K. Schleich, D. M. Witt (1993), "Topological Censorship"
+1368:- **Citation:** Phys. Rev. Lett. 71, 1486–1489 (1993), DOI 10.1103/PhysRevLett.71.1486; Erratum Phys. Rev. Lett. 75, 1872 (1995), DOI 10.1103/PhysRevLett.75.1872 (both DOIs from INSPIRE; the arXiv page shows only the erratum DOI). arXiv:gr-qc/9305017v2 (read v2, 9 Jun 1995). Submission history: [v1] Sun, 23 May 1993 (withdrawn); [v2] Fri, 9 Jun 1995. Verified via https://arxiv.org/abs/gr-qc/9305017 on 2026-09-26.
+1374:- **Scope and caveats:** Needs global hyperbolicity and asymptotic flatness. Wormholes connecting a region to itself need extra care (see GrahamOlum2007).
+1379:### GrahamOlum2007 — N. Graham, K. D. Olum (2007), "Achronal averaged null energy condition"
+1383:### KontouOlum2015 — E.-A. Kontou, K. D. Olum (2015), "Proof of the averaged null energy condition in a classical curved spacetime using a null-projected quantum inequality"
+1386:## D.4 How much exotic matter: volume quantifiers and their dispute
+1388:### VisserKarDadhich2003 — M. Visser, S. Kar, N. Dadhich (2003), "Traversable wormholes with arbitrarily small energy condition violations"
+1389:- **Citation:** Phys. Rev. Lett. 90, 201102 (2003); DOI 10.1103/PhysRevLett.90.201102; arXiv:gr-qc/0301003v2 (read v2, 23 Apr 2003). Submission history: [v1] Wed, 1 Jan 2003; [v2] Wed, 23 Apr 2003 ("no changes in physics conclusions"). Verified via https://arxiv.org/abs/gr-qc/0301003 on 2026-09-26.
+1398:- **Scope and caveats:** Spherical, static. The measure choice (4πr²dr) is a convention, which is exactly what NandiZhangKumar2004 dispute.
+1403:### KarDadhichVisser2004 — S. Kar, N. Dadhich, M. Visser (2004), "Quantifying energy condition violations in traversable wormholes"
+1404:- **Citation:** Pramana 63, 859–864 (2004); DOI 10.1007/BF02705207; arXiv:gr-qc/0405103v1 (read v1, 19 May 2004). Submission history: [v1] Wed, 19 May 2004. Verified via https://arxiv.org/abs/gr-qc/0405103 on 2026-09-26.
+1410:- **Scope and caveats:** The authors state that "the local and averaged energy conditions still remain violated and that violation cannot be made to vanish!"
+1415:### NandiZhangKumar2004 — K. K. Nandi, Y.-Z. Zhang, K. B. Vijaya Kumar (2004), "Volume Integral Theorem for Exotic Matter"
+1416:- **Citation:** Phys. Rev. D 70, 127503 (2004); DOI 10.1103/PhysRevD.70.127503; arXiv:gr-qc/0407079v5 (read v5, 17 Dec 2004). Submission history: [v1] Wed, 21 Jul 2004; [v2] Thu, 22 Jul 2004; [v3] Mon, 26 Jul 2004; [v4] Sat, 23 Oct 2004; [v5] Fri, 17 Dec 2004. Verified via https://arxiv.org/abs/gr-qc/0407079 on 2026-09-26.
+1423:- **Scope and caveats:** The authors "do not contend" VKD's qualitative conclusion; the dispute concerns the measure.
+1428:### FewsterRoman2005 — C. J. Fewster, T. A. Roman (2005), "On wormholes with arbitrarily small quantities of exotic matter"
+1429:- **Citation:** Phys. Rev. D 72, 044023 (2005); DOI 10.1103/PhysRevD.72.044023; arXiv:gr-qc/0507013v1 (read v1, 4 Jul 2005). Submission history: [v1] Mon, 4 Jul 2005. Verified via https://arxiv.org/abs/gr-qc/0507013 on 2026-09-26.
+1438:- **Scope and caveats:** Free-field QI assumed valid on scales small compared with curvature radii.
+1445:## D.5 Quantum-field constraints on geometry
+1447:### FordRoman1996 — L. H. Ford, T. A. Roman (1996), "Quantum Field Theory Constrains Traversable Wormhole Geometries"
+1448:- **Citation:** Phys. Rev. D 53, 5496–5507 (1996); DOI 10.1103/PhysRevD.53.5496; arXiv:gr-qc/9510071v1 (read v1, 31 Oct 1995). Submission history: [v1] Tue, 31 Oct 1995. Verified via https://arxiv.org/abs/gr-qc/9510071 on 2026-09-26.
+1457:- **Scope and caveats:** Assumes the flat-space QI holds on scales small compared with curvature radii and boundary distances (argued, not proven).
+1462:### FreivogelKrommydas2018 — B. Freivogel, D. Krommydas (2018), "The Smeared Null Energy Condition"
+1465:### Kontou2024 — E.-A. Kontou (2024), "Wormhole restrictions from quantum energy inequalities"
+1469:## D.6 Self-consistent semiclassical construction
+1471:### HochbergPopovSushkov1997 — D. Hochberg, A. Popov, S. V. Sushkov (1997), "Self-consistent Wormhole Solutions of Semiclassical Gravity"
+1472:- **Citation:** Phys. Rev. Lett. 78, 2050–2053 (1997); DOI 10.1103/PhysRevLett.78.2050; arXiv:gr-qc/9701064v1 (read v1, 30 Jan 1997). Submission history: [v1] Thu, 30 Jan 1997. Verified via https://arxiv.org/abs/gr-qc/9701064 on 2026-09-26.
+1479:- **Scope and caveats:** Approximate ⟨T_μν⟩. Throat sizes of order 10⁻²–10² l_P place the solutions where semiclassical gravity is questionable; this is an inference from the reported numbers, not the authors' statement. The solution is not asymptotically flat.
+1486:## D.7 Stability versus matter model (GR with phantom/ghost scalars; rotation)
+1488:### ShinkaiHayward2002 — H. Shinkai, S. A. Hayward (2002), "Fate of the first traversible wormhole: black-hole collapse or inflationary expansion"
+1489:- **Citation:** Phys. Rev. D 66, 044005 (2002); DOI 10.1103/PhysRevD.66.044005; arXiv:gr-qc/0205041v2 (read v2, 11 May 2002). Submission history: [v1] Fri, 10 May 2002; [v2] Sat, 11 May 2002. Verified via https://arxiv.org/abs/gr-qc/0205041 on 2026-09-26.
+1495:- **Scope and caveats:** Spherical symmetry, massless fields.
+1500:### GonzalezGuzmanSarbach2009a — J. A. Gonzalez, F. S. Guzman, O. Sarbach (2009), "Instability of wormholes supported by a ghost scalar field. I. Linear stability analysis"
+1501:- **Citation:** Class. Quantum Grav. 26, 015010 (2009); DOI 10.1088/0264-9381/26/1/015010; arXiv:0806.0608v2 (read v2, 19 Nov 2008). Submission history: [v1] Tue, 3 Jun 2008; [v2] Wed, 19 Nov 2008. Verified via https://arxiv.org/abs/0806.0608 on 2026-09-26.
+1507:- **Scope and caveats:** Massless ghost scalar, spherical perturbations.
+1512:### GonzalezGuzmanSarbach2009b — J. A. Gonzalez, F. S. Guzman, O. Sarbach (2009), "Instability of wormholes supported by a ghost scalar field. II. Nonlinear evolution"
+1513:- **Citation:** Class. Quantum Grav. 26, 015011 (2009); DOI 10.1088/0264-9381/26/1/015011; arXiv:0806.1370v2 (read v2, 19 Nov 2008). Submission history: [v1] Mon, 9 Jun 2008; [v2] Wed, 19 Nov 2008. Verified via https://arxiv.org/abs/0806.1370 on 2026-09-26.
+1519:- **Scope and caveats:** Spherical, massless ghost scalar.
+1524:### BronnikovFabrisZhidenko2011 — K. A. Bronnikov, J. C. Fabris, A. Zhidenko (2011), "On the stability of scalar-vacuum space-times"
+1525:- **Citation:** Eur. Phys. J. C 71, 1791 (2011); DOI 10.1140/epjc/s10052-011-1791-2; arXiv:1109.6576v2 (read v2, 22 Oct 2011). Submission history: [v1] Thu, 29 Sep 2011; [v2] Sat, 22 Oct 2011. Verified via https://arxiv.org/abs/1109.6576 on 2026-09-26.
+1530:- **Method / verification standard:** Analytic plus numerical perturbation analysis (abstract-level check).
+1531:- **Scope and caveats:** Radial perturbations only.
+1536:### BronnikovKonoplyaZhidenko2012 — K. A. Bronnikov, R. A. Konoplya, A. Zhidenko (2012), "Instabilities of wormholes and regular black holes supported by a phantom scalar field"
+1537:- **Citation:** Phys. Rev. D 86, 024028 (2012); DOI 10.1103/PhysRevD.86.024028; arXiv:1205.2224v3 (read v3, 12 Jul 2013). Submission history: [v1] Thu, 10 May 2012; [v2] Tue, 24 Jul 2012; [v3] Fri, 12 Jul 2013 ("Eqs (29) and (30) corrected"). Verified via https://arxiv.org/abs/1205.2224 on 2026-09-26.
+1541:- **Method / verification standard:** Numerical regularisation of the throat wall in the effective potential (abstract-level check).
+1542:- **Scope and caveats:** Axial and monopole polar perturbations only.
+1547:### CremonaPirottaPizzocchero2019 — F. Cremona, F. Pirotta, L. Pizzocchero (2019), "On the linear instability of the Ellis-Bronnikov-Morris-Thorne wormhole"
+1548:- **Citation:** Gen. Relativ. Gravit. 51, 19 (2019); DOI 10.1007/s10714-019-2501-x; arXiv:1805.02602v3 (read v3, 21 Jan 2019). Submission history: [v1] Mon, 7 May 2018; [v2] Mon, 6 Aug 2018; [v3] Mon, 21 Jan 2019. Verified via https://arxiv.org/abs/1805.02602 on 2026-09-26.
+1552:- **Method / verification standard:** Analytic (abstract-level check).
+1553:- **Scope and caveats:** Linear, spherical.
+1558:### BronnikovStarobinsky2007 — K. A. Bronnikov, A. A. Starobinsky (2007), "No realistic wormholes from ghost-free scalar-tensor phantom dark energy"
+1559:- **Citation:** JETP Lett. 85, 1–5 (2007); Pisma Zh. Eksp. Teor. Fiz. 85, 3–8 (2007); DOI 10.1134/S0021364007010018; arXiv:gr-qc/0612032v1 (read v1, 5 Dec 2006). Submission history: [v1] Tue, 5 Dec 2006. Verified via https://arxiv.org/abs/gr-qc/0612032 on 2026-09-26.
+1564:- **Method / verification standard:** Analytic theorem plus argument (abstract-level check).
+1565:- **Scope and caveats:** Static, spherical, scalar-tensor.
+1570:### Azad2023 — B. Azad, J. L. Blázquez-Salcedo, F. S. Khoo, J. Kunz (2023), "Are slowly rotating Ellis-Bronnikov wormholes stable?"
+1571:- **Citation:** Phys. Lett. B 848, 138349 (2024) (journal from INSPIRE); DOI 10.1016/j.physletb.2023.138349; arXiv:2301.05243v2 (read v2, 23 Nov 2023). Submission history: [v1] Thu, 12 Jan 2023; [v2] Thu, 23 Nov 2023 ("results unchanged"). Verified via https://arxiv.org/abs/2301.05243 on 2026-09-26.
+1576:- **Scope and caveats:** Slow-rotation expansion; radial-led (l = 0) modes only. The phrasing is "indications".
+1581:### Khoo2024 — F. S. Khoo, B. Azad, J. L. Blázquez-Salcedo, L. M. González-Romero, B. Kleihaus, J. Kunz, F. Navarro-Lérida (2024), "Quasinormal modes of rapidly rotating Ellis-Bronnikov wormholes"
+1582:- **Citation:** Phys. Rev. D 109, 084013 (2024); DOI 10.1103/PhysRevD.109.084013; arXiv:2401.02898v2 (read v2, 8 Apr 2024). Submission history: [v1] Fri, 5 Jan 2024; [v2] Mon, 8 Apr 2024. Verified via https://arxiv.org/abs/2401.02898 on 2026-09-26.
+1586:- **Method / verification standard:** Spectral decomposition on numerical backgrounds (abstract-level check).
+1587:- **Scope and caveats:** Only M_z = 2, 3; the radial (M_z = 0) sector is not covered.
+1592:### Azad2025 — B. Azad, J. L. Blázquez-Salcedo, F. S. Khoo, J. Kunz, F. Navarro-Lérida (2025), "Quadrupole perturbations of slowly spinning Ellis-Bronnikov wormholes"
+1593:- **Citation:** Universe 11(10), 325 (2025); DOI 10.3390/universe11100325; arXiv:2509.22118v1 (read v1, 26 Sep 2025). Submission history: [v1] Fri, 26 Sep 2025. Verified via https://arxiv.org/abs/2509.22118 on 2026-09-26.
+1597:- **Method / verification standard:** Perturbative derivation (abstract-level check).
+1598:- **Scope and caveats:** Equations derived. Stability verdicts for this sector are not stated in the abstract.
+1604:## D.8 Modified gravity: moving the NEC violation into the gravitational sector
+1606:### LoboOliveira2009 — F. S. N. Lobo, M. A. Oliveira (2009), "Wormhole geometries in f(R) modified theories of gravity"
+1607:- **Citation:** Phys. Rev. D 80, 104012 (2009); DOI 10.1103/PhysRevD.80.104012; arXiv:0909.5539v2 (read v2, 20 Oct 2009). Submission history: [v1] Wed, 30 Sep 2009; [v2] Tue, 20 Oct 2009. Verified via https://arxiv.org/abs/0909.5539 on 2026-09-26.
+1612:- **Scope and caveats:** Stability and ghost-freedom of the reconstructed f(R) are not established in the paper.
+1617:### KantiKleihausKunz2011 — P. Kanti, B. Kleihaus, J. Kunz (2011), "Wormholes in Dilatonic Einstein-Gauss-Bonnet Theory"
+1618:- **Citation:** Phys. Rev. Lett. 107, 271101 (2011); DOI 10.1103/PhysRevLett.107.271101; arXiv:1108.3003v2 (read v2, 14 Mar 2012). Submission history: [v1] Mon, 15 Aug 2011; [v2] Wed, 14 Mar 2012. Verified via https://arxiv.org/abs/1108.3003 on 2026-09-26.
+1623:- **Method / verification standard:** Numerical solution of the field equations (abstract-level check; details in KKK 2012).
+1624:- **Scope and caveats:** See KantiKleihausKunz2012.
+1629:### KantiKleihausKunz2012 — P. Kanti, B. Kleihaus, J. Kunz (2012), "Stable Lorentzian Wormholes in Dilatonic Einstein-Gauss-Bonnet Theory"
+1630:- **Citation:** Phys. Rev. D 85, 044007 (2012) (journal from INSPIRE); DOI 10.1103/PhysRevD.85.044007; arXiv:1111.4049v3 (read v3, 21 Mar 2012). Submission history: [v1] Thu, 17 Nov 2011; [v2] Tue, 6 Dec 2011; [v3] Wed, 21 Mar 2012. Verified via https://arxiv.org/abs/1111.4049 on 2026-09-26.
+1638:- **Scope and caveats:** A stated method limit on the stability analysis; the throat shell is needed.
+1643:### CuyubambaKonoplyaZhidenko2018 — M. A. Cuyubamba, R. A. Konoplya, A. Zhidenko (2018), "No stable wormholes in Einstein-dilaton-Gauss-Bonnet theory"
+1644:- **Citation:** Phys. Rev. D 98, 044040 (2018); DOI 10.1103/PhysRevD.98.044040; arXiv:1804.11170v2 (read v2, 19 Aug 2018). Submission history: [v1] Mon, 30 Apr 2018; [v2] Sun, 19 Aug 2018. Verified via https://arxiv.org/abs/1804.11170 on 2026-09-26.
+1650:- **Scope and caveats:** Radial perturbations.
+1655:### Rubakov2016a — V. A. Rubakov (2016), "Can Galileons support Lorentzian wormholes?"
+1656:- **Citation:** Theor. Math. Phys. 187, 743 (2016); Teor. Mat. Fiz. 187, 338 (journal from INSPIRE); DOI 10.1134/S004057791605010X; arXiv:1509.08808v3 (read v3, 18 Dec 2015). Submission history: [v1] Tue, 29 Sep 2015; [v2] Thu, 8 Oct 2015; [v3] Fri, 18 Dec 2015 ("Error corrected, results and conclusions unchanged"). Verified via https://arxiv.org/abs/1509.08808 on 2026-09-26.
+1663:- **Scope and caveats:** 4D not closed in this paper (completed in Rubakov2016b).
+1668:### Rubakov2016b — V. A. Rubakov (2016), "More about wormholes in generalized Galileon theories"
+1669:- **Citation:** Theor. Math. Phys. 188, 1253 (2016); Teor. Mat. Fiz. 188, 337 (journal from INSPIRE); DOI 10.1134/S0040577916080080; arXiv:1601.06566v1 (read v1, 25 Jan 2016). Submission history: [v1] Mon, 25 Jan 2016. Verified via https://arxiv.org/abs/1601.06566 on 2026-09-26.
+1674:- **Scope and caveats:** The Lagrangian class of Eq. (1) only.
+1679:### EvseevMelichev2018 — O. A. Evseev, O. I. Melichev (2018), "No static sphericaly symmetric wormholes in Horndeski theory"
+1680:- **Citation:** Phys. Rev. D 97, 124040 (2018); DOI 10.1103/PhysRevD.97.124040; arXiv:1711.04152v1 (read v1, 11 Nov 2017). Submission history: [v1] Sat, 11 Nov 2017. Title as on arXiv, including "sphericaly". Verified via https://arxiv.org/abs/1711.04152 on 2026-09-26.
+1685:- **Scope and caveats:** Parity-even perturbation stability conditions.
+1690:### MironovRubakovVolkova2018 — S. Mironov, V. Rubakov, V. Volkova (2018), "Towards wormhole beyond Horndeski"
+1691:- **Citation:** EPJ Web Conf. 191, 07014 (2018); DOI 10.1051/epjconf/201819107014; arXiv:1811.05832v1 (read v1, 14 Nov 2018). Submission history: [v1] Wed, 14 Nov 2018. Verified via https://arxiv.org/abs/1811.05832 on 2026-09-26.
+1697:- **Scope and caveats:** Gradient instabilities left open.
+1702:### MironovRubakovVolkova2019 — S. Mironov, V. Rubakov, V. Volkova (2019), "More about stable wormholes in beyond Horndeski theory"
+1703:- **Citation:** Class. Quantum Grav. 36, 135008 (2019) (journal from INSPIRE); DOI 10.1088/1361-6382/ab2574; arXiv:1812.07022v2 (read v2, 5 Jun 2019). Submission history: [v1] Mon, 17 Dec 2018; [v2] Wed, 5 Jun 2019. Verified via https://arxiv.org/abs/1812.07022 on 2026-09-26.
+1708:- **Scope and caveats:** Incomplete: spherically symmetric parity-even modes, angular propagation and slow tachyonic modes are not covered.
+1713:### FranciolinietAl2019 — G. Franciolini, L. Hui, R. Penco, L. Santoni, E. Trincherini (2019), "Stable wormholes in scalar-tensor theories"
+1714:- **Citation:** JHEP 01 (2019) 221 (journal from INSPIRE); DOI 10.1007/JHEP01(2019)221; arXiv:1811.05481v2 (read v2, 29 Jan 2019). Submission history: [v1] Tue, 13 Nov 2018; [v2] Tue, 29 Jan 2019. Verified via https://arxiv.org/abs/1811.05481 on 2026-09-26.
+1721:- **Scope and caveats:** No explicit covariant Lagrangian with the needed operator in this paper. Additional matter fields do not change the result (footnote).
+1726:### MironovRubakovVolkova2023 — S. Mironov, V. Rubakov, V. Volkova (2023), "In hot pursuit of a stable wormhole in beyond Horndeski theory"
+1727:- **Citation:** Phys. Rev. D 107, 104061 (2023) (journal from INSPIRE); DOI 10.1103/PhysRevD.107.104061; arXiv:2212.05969v1 (read v1, 12 Dec 2022). Submission history: [v1] Mon, 12 Dec 2022. Verified via https://arxiv.org/abs/2212.05969 on 2026-09-26.
+1734:- **Scope and caveats:** Tachyonic sector open; superluminal angular propagation in the example.
+1739:### LiuEtAl2023 — P. Liu, C. Niu, W.-L. Qian, X. Wang, C.-Y. Zhang (2023), "Traversable Thin-shell Wormhole in the 4D Einstein-Gauss-Bonnet Theory"
+1740:- **Citation:** Chin. J. Phys. 83, 527–538 (2023); DOI 10.1016/j.cjph.2023.04.016; arXiv:2004.14267v4 (read v4, 24 May 2023). Submission history: [v1] Wed, 29 Apr 2020; [v2] Mon, 4 May 2020; [v3] Thu, 11 Nov 2021; [v4] Wed, 24 May 2023. Verified via https://arxiv.org/abs/2004.14267 on 2026-09-26.
+1745:- **Method / verification standard:** Israel junction conditions plus linear radial stability (abstract-level check; the text notes it uses the regularised scalar-tensor version).
+1746:- **Scope and caveats:** Rests on "4D EGB", whose status as a 4D theory is disputed (see GursesSismanTekin2020).
+1751:### GursesSismanTekin2020 — M. Gurses, T. C. Sisman, B. Tekin (2020), "Is there a novel Einstein-Gauss-Bonnet theory in four dimensions?"
+1752:- **Citation:** Eur. Phys. J. C 80, 647 (2020); DOI 10.1140/epjc/s10052-020-8200-7; arXiv:2004.03390v3 (read v3 abstract, 11 May 2020). Submission history: [v1] Tue, 7 Apr 2020; [v2] Sun, 12 Apr 2020; [v3] Mon, 11 May 2020. Verified via https://arxiv.org/abs/2004.03390 on 2026-09-26 (abstract level).
+1757:- **Scope and caveats:** Concerns the unregularised proposal. Regularised scalar-tensor versions exist; LiuEtAl2023 invoke one.
+1762:### EiroaRubinDeCelisSimeone2025 — E. F. Eiroa, E. Rubín de Celis, C. Simeone (2025), "Tides and energy conditions in Einstein-Gauss-Bonnet thin-shell wormholes"
+1763:- **Citation:** Universe 11, 368 (2025); DOI 10.3390/universe11110368; arXiv:2511.15001v1 (read v1, 19 Nov 2025). Submission history: [v1] Wed, 19 Nov 2025. Verified via https://arxiv.org/abs/2511.15001 on 2026-09-26.
+1770:- **Scope and caveats:** 5D; a secondary cut-and-paste is used to avoid ill-defined regions of the non-GR branch; stability not treated.
+1777:## D.9 Quantum-sourced wormholes: long versus short
+1779:### GaoJafferisWall2017 — P. Gao, D. L. Jafferis, A. C. Wall (2017), "Traversable Wormholes via a Double Trace Deformation"
+1780:- **Citation:** JHEP 12 (2017) 151 (journal from INSPIRE); DOI 10.1007/JHEP12(2017)151; arXiv:1608.05687v3 (read v3, 24 Sep 2019). Submission history: [v1] Fri, 19 Aug 2016; [v2] Mon, 11 Sep 2017; [v3] Tue, 24 Sep 2019. Verified via https://arxiv.org/abs/1608.05687 on 2026-09-26.
+1787:- **Scope and caveats:** AdS₃, test-astronaut level. Astronaut backreaction is discussed separately.
+1792:### FuGradoWhiteMarolf2019a — Z. Fu, B. Grado-White, D. Marolf (2019), "A perturbative perspective on self-supporting wormholes"
+1793:- **Citation:** Class. Quantum Grav. 36, 045006 (2019); DOI 10.1088/1361-6382/aafcea; arXiv:1807.07917v3 (read v3, 9 Aug 2019). Submission history: [v1] Fri, 20 Jul 2018; [v2] Sat, 18 Aug 2018; [v3] Fri, 9 Aug 2019 ("fixing a factor of 2 in several formulas/plots"). Verified via https://arxiv.org/abs/1807.07917 on 2026-09-26.
+1799:- **Scope and caveats:** General case not analysed in detail.
+1804:### FuGradoWhiteMarolf2019b — Z. Fu, B. Grado-White, D. Marolf (2019), "Traversable Asymptotically Flat Wormholes with Short Transit Times"
+1805:- **Citation:** Class. Quantum Grav. 36, 245018 (2019); DOI 10.1088/1361-6382/ab56e4; arXiv:1908.03273v2 (read v2, 12 Nov 2019). Submission history: [v1] Thu, 8 Aug 2019; [v2] Tue, 12 Nov 2019. Verified via https://arxiv.org/abs/1908.03273 on 2026-09-26.
+1812:- **Scope and caveats:** Traversable only at early times, and only absent larger perturbations.
+1817:### MaldacenaMilekhinPopov2023 — J. Maldacena, A. Milekhin, F. Popov (2018 preprint; 2023 journal), "Traversable wormholes in four dimensions"
+1818:- **Citation:** Class. Quantum Grav. 40, 155016 (2023) (journal from INSPIRE; the arXiv page shows no journal reference); DOI 10.1088/1361-6382/acde30; arXiv:1807.04726v3 (read v3, 3 Nov 2020). Submission history: [v1] Thu, 12 Jul 2018; [v2] Wed, 29 Aug 2018 ("Further restriction on the regime of validity in section 5.5"); [v3] Tue, 3 Nov 2020. Verified via https://arxiv.org/abs/1807.04726 on 2026-09-26.
+1827:- **Scope and caveats:** A fragile configuration: enough energy creates horizons. Rotation leads to slow radiation-driven merger.
+1832:### MaldacenaMilekhin2021 — J. Maldacena, A. Milekhin (2021), "Humanly traversable wormholes"
+1833:- **Citation:** Phys. Rev. D 103, 066007 (2021); DOI 10.1103/PhysRevD.103.066007; arXiv:2008.06618v2 (read v2, 3 Nov 2020). Submission history: [v1] Sat, 15 Aug 2020; [v2] Tue, 3 Nov 2020. Verified via https://arxiv.org/abs/2008.06618 on 2026-09-26.
+1841:- **Scope and caveats:** Cold, empty, flat ambient space. The "science fiction" dark sector is stated as such.
+1846:### KanaiMaedaYoshida2025 — T. Kanai, K. Maeda, D. Yoshida (2025), "Wormholes as perturbations of near-horizon black hole geometries: no-go theorems within effective field theories"
+1847:- **Citation:** Phys. Rev. D 113, 064026 (2026) (journal from INSPIRE; the arXiv page shows no journal reference); DOI 10.1103/dsnv-gq47 (INSPIRE); arXiv:2511.21017v1 (read v1, 26 Nov 2025). Submission history: [v1] Wed, 26 Nov 2025. Verified via https://arxiv.org/abs/2511.21017 on 2026-09-26.
+1851:- **Method / verification standard:** Analytic perturbation theory (abstract-level check).
+1852:- **Scope and caveats:** Perturbative, EFT, specific symmetric backgrounds.
+1857:### Garattini2019 — R. Garattini (2019), "Casimir Wormholes"
+1858:- **Citation:** Eur. Phys. J. C 79, 951 (2019) (journal from INSPIRE); DOI 10.1140/epjc/s10052-019-7468-y; arXiv:1907.03623v1 (read v1, 5 Jul 2019). Submission history: [v1] Fri, 5 Jul 2019. Verified via https://arxiv.org/abs/1907.03623 on 2026-09-26.
+1864:- **Scope and caveats:** The flat-plate Casimir stress tensor is used with r replacing the plate separation. The author notes this "could make the stress-energy tensor … potentially not conserved".
+1871:## D.10 Einstein–Dirac–Maxwell wormholes and their dispute
+1873:### BlazquezSalcedoKnollRadu2021 — J. L. Blázquez-Salcedo, C. Knoll, E. Radu (2021), "Traversable wormholes in Einstein-Dirac-Maxwell theory"
+1874:- **Citation:** Phys. Rev. Lett. 126, 101102 (2021); DOI 10.1103/PhysRevLett.126.101102; arXiv:2010.07317v2 (read v2, 12 Mar 2021). Submission history: [v1] Wed, 14 Oct 2020; [v2] Fri, 12 Mar 2021 (same title both versions). Verified via https://arxiv.org/abs/2010.07317 on 2026-09-26.
+1881:- **Scope and caveats:** Z₂ symmetry creates non-smoothness at the throat (see disputes). Curvature at the throat is of Planck order (Bolokhov et al.).
+1886:### BolokhovEtAl2021 — S. Bolokhov, K. Bronnikov, S. Krasnikov, M. Skvortsova (2021), "A note on "Traversable wormholes in Einstein-Dirac-Maxwell theory""
+1887:- **Citation:** Grav. Cosmol. 27(4), 401 (2021); DOI 10.1134/S0202289321040034; arXiv:2104.10933v2 (read v2, 3 Sep 2021). Submission history: [v1] Thu, 22 Apr 2021; [v2] Fri, 3 Sep 2021. Verified via https://arxiv.org/abs/2104.10933 on 2026-09-26.
+1895:- **Scope and caveats:** Two pages.
+1900:### DanielsonEtAl2021 — D. L. Danielson, G. Satishchandran, R. M. Wald, R. J. Weinbaum (2021), "Blázquez-Salcedo-Knoll-Radu Wormholes Are Not Solutions to the Einstein-Dirac-Maxwell Equations"
+1901:- **Citation:** Phys. Rev. D 104, 124055 (2021); DOI 10.1103/PhysRevD.104.124055; arXiv:2108.13361v2 (read v2, 17 Dec 2021). Submission history: [v1] Mon, 30 Aug 2021; [v2] Fri, 17 Dec 2021. Verified via https://arxiv.org/abs/2108.13361 on 2026-09-26.
+1907:- **Scope and caveats:** Addresses the Z₂-symmetric BSKR construction.
+1912:### BlazquezSalcedoKnollRadu2022 — J. L. Blázquez-Salcedo, C. Knoll, E. Radu (2022), "Einstein-Dirac-Maxwell wormholes: ansatz, construction and properties of symmetric solutions"
+1913:- **Citation:** Eur. Phys. J. C 82, 533 (2022); DOI 10.1140/epjc/s10052-022-10488-6; arXiv:2108.12187v1 (read v1, 27 Aug 2021). Submission history: [v1] Fri, 27 Aug 2021. Verified via https://arxiv.org/abs/2108.12187 on 2026-09-26.
+1921:- **Scope and caveats:** Z₂-symmetric only. "Possible issues and limitations of the approach are also discussed."
+1926:### KonoplyaZhidenko2022 — R. A. Konoplya, A. Zhidenko (2022), "Traversable Wormholes in General Relativity"
+1927:- **Citation:** Phys. Rev. Lett. 128, 091104 (2022); DOI 10.1103/PhysRevLett.128.091104; arXiv:2106.05034v4 (read v4, 4 Mar 2022). Submission history: [v1] Wed, 9 Jun 2021; [v2] Wed, 16 Jun 2021; [v3] Mon, 13 Sep 2021; [v4] Fri, 4 Mar 2022. The v1 title was "Traversable wormholes in General Relativity without exotic matter" (checked at https://arxiv.org/abs/2106.05034v1); the v4 comment reads "(title changed)". Verified via https://arxiv.org/abs/2106.05034 on 2026-09-26.
+1933:- **Scope and caveats:** Dynamical stability not addressed; Kain 2023a addresses it.
+1938:### Kain2023a — B. Kain (2023), "Are Einstein-Dirac-Maxwell wormholes traversable?"
+1939:- **Citation:** Phys. Rev. D 108, 044019 (2023); DOI 10.1103/PhysRevD.108.044019; arXiv:2305.11217v2 (read v2, 8 Aug 2023). Submission history: [v1] Thu, 18 May 2023; [v2] Tue, 8 Aug 2023. Verified via https://arxiv.org/abs/2305.11217 on 2026-09-26.
+1944:- **Scope and caveats:** Spherical; the cases considered.
+1949:### Kain2023b — B. Kain (2023), "Einstein-Dirac-Maxwell wormholes in quantum field theory"
+1950:- **Citation:** Phys. Rev. D 108, 084010 (2023); DOI 10.1103/PhysRevD.108.084010; arXiv:2308.00049v2 (read v2, 10 Oct 2023). Submission history: [v1] Mon, 31 Jul 2023; [v2] Tue, 10 Oct 2023. Verified via https://arxiv.org/abs/2308.00049 on 2026-09-26.
+1954:- **Method / verification standard:** Numerical, semiclassical (abstract-level check).
+1955:- **Scope and caveats:** Static; stability not addressed in the abstract.
+1962:## D.11 One-parameter bridge between black hole and wormhole
+1964:### SimpsonVisser2019 — A. Simpson, M. Visser (2019), "Black-bounce to traversable wormhole"
+1965:- **Citation:** JCAP 02 (2019) 042; DOI 10.1088/1475-7516/2019/02/042; arXiv:1812.07114v3 (read v3, 3 Feb 2019). Submission history: [v1] Tue, 18 Dec 2018; [v2] Mon, 24 Dec 2018; [v3] Sun, 3 Feb 2019. Verified via https://arxiv.org/abs/1812.07114 on 2026-09-26.
+1971:- **Scope and caveats:** Geometry-first; no matter model; no stability analysis.
+1978:## D.12 Chronology
+1980:### KimThorne1991 — S.-W. Kim, K. S. Thorne (1991), "Do vacuum fluctuations prevent the creation of closed timelike curves?"
+1981:- **Citation:** Phys. Rev. D 43, 3929–3947 (1991); DOI 10.1103/PhysRevD.43.3929. Pre-arXiv. Verified via INSPIRE API (`q=doi:10.1103/PhysRevD.43.3929`, abstract from APS) on 2026-09-26. Full text not read.
+1987:- **Scope and caveats:** Massless conformal scalar; other free fields argued to agree to O(1).
+1992:### Hawking1992 — S. W. Hawking (1992), "The Chronology protection conjecture"
+1995:### Visser1993 — M. Visser (1993), "From wormhole to time machine: Comments on Hawking's Chronology Protection Conjecture"
+1996:- **Citation:** Phys. Rev. D 47, 554–565 (1993); DOI 10.1103/PhysRevD.47.554; arXiv:hep-th/9202090v2 (read v2, 8 Oct 1992). Submission history: [v1] Wed, 26 Feb 1992 (withdrawn); [v2] Thu, 8 Oct 1992 ("major revisions"). The arXiv author field reads "Visser, By Matt". Verified via https://arxiv.org/abs/hep-th/9202090 on 2026-09-26.
+2000:- **Method / verification standard:** Analytic model problems (abstract-level check).
+2001:- **Scope and caveats:** Model problems.
+2006:### Visser1997 — M. Visser (1997), "Traversable wormholes: the Roman ring"
+2007:- **Citation:** Phys. Rev. D 55, 5212–5214 (1997); DOI 10.1103/PhysRevD.55.5212; arXiv:gr-qc/9702043v1 (read v1, 21 Feb 1997). Submission history: [v1] Fri, 21 Feb 1997. Verified via https://arxiv.org/abs/gr-qc/9702043 on 2026-09-26.
+2011:- **Method / verification standard:** Analytic (abstract-level check).
+2012:- **Scope and caveats:** Semiclassical reliability argument.
+2019:## D.13 Cross-paper design findings (summary of the verified record)
+2028:# Part E. Synthesis table: knob/part × physics relation × papers × status
+2032:### E.1 Warp drives and shortcut corridors
+2081:### E.2 Quantum inequalities, ANEC and causality
+2116:### E.3 Traversable wormholes
+2155:### E.4 The project's results against the literature
+2171:### E.5 Derived here: the energy-condition cost of a lapse-only region on flat slices
+2194:# Part F. Open disputes
+2196:### F.1 Warp drives and shortcut corridors
+2213:### F.2 Quantum inequalities, ANEC and causality
+2224:### F.3 Traversable wormholes
+2230:5. **Rotation as stabiliser.** Second-order slow-rotation results indicate stabilisation of the Ellis–Bronnikov radial mode. Full non-perturbative radial stability and the quadrupole sector are not yet settled. The full text of Azad et al. 2025 (arXiv:2509.22118v1) reports, from a cited 2024 follow-up (Phys. Rev. D 109, 124051; UNVERIFIED here), that J_c decreases with the asymmetry parameter only up to C ≈ 0.5 and grows beyond it, and that a second unstable branch emerges from a zero mode; "the radial instability is conjectured to disappear."
+2237:# Part G. UNVERIFIED items
+2239:### G.1 Warp drives and shortcut corridors
+2253:### G.2 Quantum inequalities, ANEC and causality
+2265:### G.3 Traversable wormholes
+2267:1. **Hawking1992** and **KimThorne1991**: only the INSPIRE/APS abstracts were read. Every statement beyond the abstract (formulas, the precise boost/area quantities, the detailed spacetime example) is UNVERIFIED (full text not accessed).
+2268:2. **MorrisThorne1988, OCR-derived numerics.** The ½ exponents in R_s ≳ 1×10¹¹ m (b₀/10 m)^{1/2} and trip time ≈ 7 days (R_s/10¹¹ m)^{1/2} (Eqs. A18, A27), and the exact form of the traversal time in Eq. (A31), are read from a degraded scan. They are UNVERIFIED at the symbol level; prose statements and the equations quoted as legible are verified.
+2271:5. **Garattini2019, Eq. (26).** The form r₁² = π³l_p²/90 is read from a layout-garbled extraction (UNVERIFIED at the prefactor level). The Planck-size conclusion is quoted verbatim.
+2275:9. **2019–2026 f(R,T), f(Q), f(R,L_m) and non-commutative wormhole papers.** Seen only as search-result titles; none were read, and none are inventoried. Their design content is UNVERIFIED.
+

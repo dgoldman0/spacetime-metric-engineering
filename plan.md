@@ -1,5 +1,24 @@
 # Active-Rail Codex Handoff Plan
 
+## Evidence review, 2026-09-26
+
+The [evidence review](supporting_reports/EVIDENCE_REVIEW_AND_IDENTITY_VERIFICATION.md)
+verifies the identities the reports use and records these standing items:
+
+- The ANEC exclusion covers leads that persist between distant endpoints,
+  under null completeness and the generic condition, within the semiclassical
+  regime. Showing the complete first ray achronal and measuring the width of
+  the negative-ANEC bundle complete the argument.
+- The lapse envelope α > 2r|β_z| is a leading-order estimate; the classifier
+  decides. The exact plane-invariant condition is |a_r/r − K| > 2|β_z a_r|/α.
+- Kinetic-braiding scalars can be Type IV where they violate the null energy
+  condition (Gergely 2026). Match the Type I gate to that family's range.
+- Untested responses: the quantum-inequality source test on the newer designs,
+  passenger temperature at clock rates other than 1, and the shift-transition
+  radius.
+- The technical disclosure carries statements the review supersedes; its
+  author decides when it is updated.
+
 ## Current handoff, 2026-09-25
 
 **Standing geometry gate.** Every geometry used for source construction

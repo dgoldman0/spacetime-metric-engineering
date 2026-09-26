@@ -1,0 +1,221 @@
+
+=== S1  I12 part one: Killing energy and rate laws (symbolic) ===
+  [PASS] S1.1 xi = d_sigma + v d_z is Killing for alpha(z - v sigma, x, y), beta(z - v sigma, x, y)
+  [PASS] S1.2 E = -p.xi equals alpha*E_n - b*p_z with b = beta + v
+  [PASS] S1.3 sigma-parametrized geodesic equations: dx^i/dsigma = alpha k^i/E_n - beta^i, dp_m/dsigma = p_z d_m beta - E_n d_m alpha
+  [PASS] S1.2b dE/dsigma = -(dp_sigma/dsigma + v dp_z/dsigma) = 0 along every geodesic of a steady pattern
+  [PASS] S1.4 dE_n/dsigma = p_z (k.grad beta)/E_n - k.grad alpha  (any geodesic, any time dependence)
+  [PASS] S1.5 d ln(alpha E_n)/dsigma = (d_sigma - beta d_z) ln alpha + p_z (k.grad beta)/E_n^2
+  [PASS] S1.6 steady lane: (d_sigma - beta d_z) ln alpha = -b d_zeta ln alpha
+
+=== S2  I12 part two: exit-angle and shelf laws (symbolic) ===
+  [PASS] S2.1 exit-angle law: gain = (v-1)/(v cos theta_f - 1)
+  [PASS] S2.2 shelf law: alpha_s gamma - v sqrt(gamma^2-1) = alpha_s has the non-trivial root (alpha_s^2+v^2)/(alpha_s^2-v^2)  (roots [1, (alpha_s**2 + v**2)/(alpha_s**2 - v**2)])
+  [PASS] S2.3 pattern-frame turning point: E = m sqrt(alpha^2 - v^2)
+  [PASS] S2.4 same as reflection off a mirror moving at v/alpha_s in the shelf's light units
+  [PASS] S2.5 exit at angle theta' in the shelf: gamma' = (alpha_s^2+v^2cos^2)/(alpha_s^2-v^2cos^2), maximal on the axis
+  [PASS] S2.6 corollary: light overtaken by a shelf edge running at u_e > alpha_s gains (u_e-1)/(u_e-alpha_s)
+   report numbers reproduced: {'gamma_prime(alpha_s=e, v=2.1)': 3.960669321791554, 'terminal alpha_s*gamma_prime': 10.766215445961192, 'edge gain (u_e=3.5)': 3.19808351783853}
+
+=== S3  I13: light surface, Killing horizon, surface gravity (symbolic) ===
+  [PASS] S3.0 pattern-frame inverse metric: g^ss=-1/alpha^2, g^sz=b/alpha^2, g^zz=1-b^2/alpha^2
+  [PASS] S3.1 on S (alpha^2 = b^2): |dF|^2 = F_r^2 + F_phi^2/r^2 >= 0, so S is null exactly where its transverse gradient vanishes, timelike elsewhere
+  [PASS] S3.2 on S the Killing covector is xi_m = (0, b, 0, 0), i.e. proportional to d zeta; it is normal to S iff F_r = F_phi = 0
+  [PASS] S3.3 on S: xi^n nabla_n xi^m = kappa xi^m with a^zeta = 0
+  [PASS] S3.4 signed kappa = d_zeta(alpha - b) for b = +alpha > 0 (and -d_zeta(alpha - |b|) for b = -alpha)
+  [PASS] S3.5 kappa^2 = -1/2 (nabla xi)^2 = (d_zeta(alpha - b))^2 on S
+  [PASS] S3.6 where the lab shift vanishes (b = v, B' = 0): kappa = d_zeta alpha
+  [PASS] S3.7 stationary surface F(x)=0: g^{mn}F_mF_n = |grad F|^2 (1 - (b N_zeta)^2/alpha^2): null iff |b.N| = alpha, timelike iff |b.N| < alpha
+  [PASS] S3.8 a null ray with p_perp = 0 has zero pattern-frame velocity iff b = alpha (with p_zeta along b)  (v_zeta = P*(A - B)/A)
+  [PASS] S3.9 there the transverse force is -(P^2/alpha) d_perp(alpha - b): a ray rests in position and direction only where d_perp(alpha^2 - b^2) = 0, i.e. at the null points of S  (longitudinal force -P**2*(a_zeta - b_zeta)/A (the blueshift))
+
+=== S4  I14: paraxial tip rates (symbolic) ===
+  [PASS] S4.1 ray-direction equations are independent of |p| (null rays)
+   Jacobian at the tip fixed point (zeta, x, y, u_x, u_y):
+⎡-κ  0  0  0   0 ⎤
+⎢                ⎥
+⎢0   0  0  v   0 ⎥
+⎢                ⎥
+⎢0   0  0  0   v ⎥
+⎢                ⎥
+⎢0   A  0  -κ  0 ⎥
+⎢                ⎥
+⎣0   0  A  0   -κ⎦
+   characteristic polynomial: -(kappa + lambda)*(A*v - kappa*lambda - lambda**2)**2
+  [PASS] S4.2 tip eigenvalues: -kappa (along track) and lambda_pm from lambda^2 + kappa lambda - v A = 0; lambda_+ = (sqrt(kappa^2+4vA)-kappa)/2
+  [PASS] S4.3 energy per quantum on the axis ray grows at d ln|k|/dsigma = kappa
+  [PASS] S4.4 geometric-optics density exponent: kappa - (-kappa + 2 lambda_+) = 2(kappa - lambda_+)
+  [PASS] S4.5 dictionary: Barcelo et al. eta_- with kappa_B = kappa, xi_B = v A/2 equals lambda_+
+   report numbers: {'lambda(kappa=0.563, A=4.20, v=2.1)': 2.7016597761434102, '2(kappa-lambda)': -4.27731955228682}
+
+=== S5  I15: flank normal speed (symbolic) ===
+  [PASS] S5.1 a planar layer moving at v along z is the same metric as the layer moving along its normal N at u = v sin(theta_c)
+  [PASS] S5.2 the level alpha = v sin(theta_c) of the layer is null (stationary null-surface criterion)
+  [PASS] S5.3 threshold v sin(theta_c) = 1 is theta_c = arcsin(1/v), the Mach angle
+
+=== S6  I16: static pure-lapse optics (symbolic) ===
+  [PASS] S6.1 Snell: sin(psi_out) = (alpha_out/alpha_in) sin(psi_in) (index 1/alpha)
+  [PASS] S6.2 total reflection iff sin(psi_in) > alpha_in/alpha_out, possible only for alpha_in < alpha_out  (sin_out - 1 = (alpha_out/alpha_in)(sin psi - alpha_in/alpha_out); threshold < 1 iff alpha_in < alpha_out)
+  [PASS] S6.3 a uniform b != 0 cannot be removed without making alpha time dependent (the static-optics hypothesis needs b = 0, i.e. beta = -v)
+
+=== S7  I17: Tolman reading (symbolic) ===
+  [PASS] S7.1 N^2 = -g(xi,xi) = alpha^2 - b^2; N = alpha_c in the compartment (b=0)
+  [PASS] S7.2 kappa/(2 pi N) is invariant under xi -> c xi
+  [PASS] S7.3 a pattern-static observer (u = xi/N) measures omega_loc = omega/N, so a Planck spectrum at kappa/2pi becomes one at kappa/(2 pi N)  (u.u = -1 and -p.u = -p.xi/N for a generic covector p)
+
+=== S8  I19, I20: time function, light speeds, static observers ===
+  [PASS] S8.1 C0: g^{sigma sigma} = -1/alpha^2 < 0 (sigma is a time function)
+  [PASS] S8.2 C0A (stretch A): g^{sigma sigma} = -1/alpha^2 as well
+  [PASS] S8.3 widened metric g - c dsigma^2 (c > 0): g_c^{ss} = g^{ss}/(1 + c/alpha^2) < 0
+  [PASS] S8.4 alpha = 1 + z^2: the light ray z = tan(sigma) leaves every compact set at sigma = pi/2 (slices sigma > pi/2 are not met)
+  [PASS] S8.5 null speeds of -alpha^2 dsigma^2 + gamma(dl + beta dsigma)^2: dl/dsigma = -beta +- alpha/sqrt(gamma)
+  [PASS] S8.6 fixed (z,x,y) is timelike iff alpha^2 > beta^2 (C0), alpha^2 > A^2 beta^2 (C0A)
+
+(symbolic part 9.9 s)
+
+=== N1  I12 part one: Killing energy and kept gain on geodesics ===
+   light fwd, axis          end= 14.00 gain=      15695 E-drift= 4.9e-14 max|beta|=     0 ext=False kept-formula=     32959 gen-err=2.2e-13
+   light fwd, r=4.3         end= 13.29 gain=     3.4239 E-drift= 2.0e-12 max|beta|=     0 ext=True  kept-formula=    3.4239 gen-err=9.5e-13
+   light bwd, axis          end=  4.85 gain=          1 E-drift= 7.8e-12 max|beta|=   2.1 ext=True  kept-formula=         1 gen-err=6.5e-12
+   light bwd, r=4.3         end=  5.80 gain=      1.467 E-drift= 1.5e-12 max|beta|=     0 ext=True  kept-formula=     1.467 gen-err=1.9e-12
+   light oblique            end=  4.47 gain=     1.0378 E-drift= 1.3e-11 max|beta|= 0.823 ext=True  kept-formula=   0.97442 gen-err=2.7e-12
+   matter at rest, axis     end= 14.00 gain=      87149 E-drift= 6.4e-13 max|beta|=     0 ext=False kept-formula=       nan gen-err=8.8e-13
+   matter at rest, r=4.3    end=  9.12 gain=     2.0355 E-drift= 9.9e-13 max|beta|=     0 ext=True  kept-formula=       nan gen-err=4.1e-14
+  [PASS] N1.1 Killing energy conserved along all 7 geodesics (light and matter; drift relative to alpha*E_n)  (max drift 1.3e-11)
+  [PASS] N1.2 kept gain exp(v int(-d_zeta ln alpha) dsigma) exact for exterior-to-exterior light whose path has beta = 0
+  [PASS] N1.3 counterexample: the oblique ray that crosses the shift region violates the kept-gain formula (the axial head-on ray satisfies it only by the test pattern's front-back symmetry)  (rel. error 0.061)
+  [PASS] N1.4 general identity: change of ln(alpha E_n) = int[(d_s - beta d_z) ln alpha + k_z (k.grad beta)/E_n^2] dsigma on every run
+  [PASS] N1.5 exterior-to-exterior light obeys gain = (1 - v cos th_i)/(1 - v cos th_f)
+   ramped pattern, light fwd r=4.3   : identity err 2.6e-14, E changes by 2.91e-01
+   ramped pattern, light bwd axis    : identity err 1.1e-12, E changes by 1.71e-01
+   ramped pattern, matter r=1.0      : identity err 1.5e-13, E changes by 4.07e+00
+  [PASS] N1.6 non-steady lapse: the general alpha E_n identity holds; E is not conserved
+
+=== N2  exit-angle law (I12) and flank threshold (I15) on a 15 deg cone ===
+   v = 2.1:  v sin(theta_c) = 0.544
+     r0= 0.02 exit= 22.66 ext=True  gain=     6.2935 th_f= 55.9843 law: rel 2.0e-13, residual 1.6e-14; E-drift=4.5e-14 | before base: alpha=1.0000 dir=55.98 vN=0.4019 dlnE/ds=-0.000
+     r0= 0.10 exit= 22.96 ext=True  gain=     3.6541 th_f= 51.7175 law: rel 1.1e-13, residual 1.5e-14; E-drift=4.2e-14 | before base: alpha=1.0000 dir=51.72 vN=0.3750 dlnE/ds=-0.000
+     r0= 0.25 exit= 24.35 ext=True  gain=     2.4323 th_f= 46.2471 law: rel 2.2e-14, residual 4.8e-15; E-drift=2.2e-14 | before base: alpha=1.0000 dir=46.25 vN=0.3332 dlnE/ds=-0.000
+     r0= 0.50 exit= 26.04 ext=True  gain=     1.8269 th_f= 40.2780 law: rel 2.9e-14, residual 8.2e-15; E-drift=2.0e-14 | before base: alpha=1.0000 dir=40.28 vN=0.2784 dlnE/ds=-0.000
+     r0= 1.00 exit= 27.08 ext=True  gain=     1.5578 th_f= 35.6658 law: rel 8.7e-15, residual 2.9e-15; E-drift=8.8e-15 | before base: alpha=1.0000 dir=35.67 vN=0.2299 dlnE/ds=-0.000
+     r0= 1.50 exit= 27.53 ext=True  gain=     1.4953 th_f= 34.2602 law: rel 8.7e-15, residual 3.0e-15; E-drift=8.9e-15 | before base: alpha=1.0000 dir=34.26 vN=0.2142 dlnE/ds=-0.000
+     r0= 2.00 exit= 27.84 ext=True  gain=     1.4718 th_f= 33.6861 law: rel 3.6e-15, residual 1.2e-15; E-drift=8.9e-15 | before base: alpha=1.0000 dir=33.69 vN=0.2076 dlnE/ds=-0.000
+     r0= 3.00 exit= 28.34 ext=True  gain=     1.4542 th_f= 33.2385 law: rel 9.8e-15, residual 3.6e-15; E-drift=9.0e-15 | before base: alpha=1.0000 dir=33.24 vN=0.2024 dlnE/ds=-0.000
+     r0= 4.00 exit= 28.79 ext=True  gain=     1.4478 th_f= 33.0718 law: rel 6.4e-15, residual 2.3e-15; E-drift=7.5e-15 | before base: alpha=1.0000 dir=33.07 vN=0.2005 dlnE/ds=-0.000
+     r0= 5.00 exit= 29.23 ext=True  gain=     1.4448 th_f= 32.9923 law: rel 4.2e-15, residual 1.5e-15; E-drift=7.1e-15 | before base: alpha=1.0000 dir=32.99 vN=0.1995 dlnE/ds=-0.000
+     r0= 6.00 exit= 29.66 ext=True  gain=     1.4431 th_f= 32.9483 law: rel 1.4e-14, residual 5.2e-15; E-drift=1.5e-14 | before base: alpha=1.0000 dir=32.95 vN=0.1990 dlnE/ds=-0.000
+     r0= 7.00 exit= 30.16 ext=True  gain=     1.3841 th_f= 31.2801 law: rel 4.7e-14, residual 1.8e-14; E-drift=6.2e-14 | before base: alpha=1.0000 dir=0.00 vN=-0.2847 dlnE/ds=0.000
+   v = 3.0:  v sin(theta_c) = 0.776
+     r0= 0.02 exit= 14.12 ext=True  gain=     20.989 th_f= 68.5865 law: rel 1.9e-13, residual 6.2e-15; E-drift=2.2e-14 | before base: alpha=1.0000 dir=68.59 vN=0.2173 dlnE/ds=-0.000
+     r0= 0.10 exit= 13.80 ext=True  gain=     12.211 th_f= 67.1744 law: rel 9.1e-14, residual 5.0e-15; E-drift=1.7e-14 | before base: alpha=1.0000 dir=67.17 vN=0.2142 dlnE/ds=-0.000
+     r0= 0.25 exit= 13.77 ext=True  gain=      7.853 th_f= 65.2773 law: rel 2.8e-14, residual 2.4e-15; E-drift=1.2e-14 | before base: alpha=1.0000 dir=65.28 vN=0.2092 dlnE/ds=-0.000
+     r0= 0.50 exit= 13.93 ext=True  gain=     5.2258 th_f= 62.5545 law: rel 1.6e-14, residual 2.0e-15; E-drift=1.5e-14 | before base: alpha=1.0000 dir=62.55 vN=0.2000 dlnE/ds=-0.000
+     r0= 1.00 exit= 14.26 ext=True  gain=     3.7871 th_f= 59.3781 law: rel 3.3e-15, residual 6.1e-16; E-drift=6.9e-15 | before base: alpha=1.0000 dir=59.38 vN=0.1866 dlnE/ds=-0.000
+     r0= 1.50 exit= 14.50 ext=True  gain=      3.405 th_f= 58.0538 law: rel 1.1e-14, residual 2.1e-15; E-drift=1.5e-14 | before base: alpha=1.0000 dir=58.05 vN=0.1801 dlnE/ds=-0.000
+     r0= 2.00 exit= 14.70 ext=True  gain=     3.2526 th_f= 57.4320 law: rel 1.4e-14, residual 2.9e-15; E-drift=1.1e-14 | before base: alpha=1.0000 dir=57.43 vN=0.1769 dlnE/ds=-0.000
+     r0= 3.00 exit= 15.07 ext=True  gain=     3.1333 th_f= 56.8998 law: rel 2.0e-14, residual 4.2e-15; E-drift=1.9e-14 | before base: alpha=1.0000 dir=56.90 vN=0.1741 dlnE/ds=-0.000
+     r0= 4.00 exit= 15.42 ext=True  gain=     3.0881 th_f= 56.6866 law: rel 1.4e-14, residual 3.0e-15; E-drift=1.4e-14 | before base: alpha=1.0000 dir=56.69 vN=0.1729 dlnE/ds=-0.000
+     r0= 5.00 exit= 15.76 ext=True  gain=     3.0662 th_f= 56.5808 law: rel 3.5e-14, residual 7.6e-15; E-drift=2.4e-14 | before base: alpha=1.0000 dir=56.58 vN=0.1723 dlnE/ds=-0.000
+     r0= 6.00 exit= 16.10 ext=True  gain=     3.0537 th_f= 56.5199 law: rel 2.0e-12, residual 4.5e-13; E-drift=1.4e-12 | before base: alpha=1.0080 dir=55.66 vN=0.1746 dlnE/ds=0.273
+     r0= 7.00 exit= 16.57 ext=True  gain=     1.9949 th_f= 48.1247 law: rel 6.6e-14, residual 2.2e-14; E-drift=1.0e-13 | before base: alpha=1.0000 dir=0.00 vN=-0.5176 dlnE/ds=0.000
+   v = 5.0:  v sin(theta_c) = 1.294
+     r0= 0.02 exit=  7.95 ext=True  gain= 5.7831e+05 th_f= 78.4630 law: rel 1.0e-07, residual 1.4e-13; E-drift=7.2e-13 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 0.10 exit=  7.71 ext=True  gain=   4.91e+05 th_f= 78.4629 law: rel 6.0e-08, residual 9.8e-14; E-drift=5.1e-13 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 0.25 exit=  7.59 ext=True  gain= 4.3723e+05 th_f= 78.4629 law: rel 1.2e-07, residual 2.1e-13; E-drift=1.8e-12 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 0.50 exit=  7.55 ext=True  gain= 3.2484e+05 th_f= 78.4629 law: rel 2.0e-07, residual 4.9e-13; E-drift=3.7e-12 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 1.00 exit=  7.57 ext=True  gain= 1.4555e+05 th_f= 78.4627 law: rel 2.2e-08, residual 1.2e-13; E-drift=6.4e-13 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 1.50 exit=  7.62 ext=True  gain=      60353 th_f= 78.4623 law: rel 1.3e-08, residual 1.7e-13; E-drift=1.4e-12 | before base: alpha=1.2983 dir=74.95 vN=0.0042 dlnE/ds=2.308
+     r0= 2.00 exit=  7.68 ext=True  gain=      24500 th_f= 78.4611 law: rel 4.1e-07, residual 1.3e-11; E-drift=1.2e-10 | before base: alpha=1.2983 dir=74.94 vN=0.0042 dlnE/ds=2.308
+     r0= 3.00 exit=  7.80 ext=True  gain=     3954.3 th_f= 78.4512 law: rel 4.9e-10, residual 1.0e-13; E-drift=5.2e-13 | before base: alpha=1.2988 dir=74.91 vN=0.0047 dlnE/ds=2.310
+     r0= 4.00 exit=  7.93 ext=True  gain=     630.91 th_f= 78.3889 law: rel 6.5e-11, residual 8.3e-14; E-drift=4.4e-13 | before base: alpha=1.3015 dir=74.67 vN=0.0074 dlnE/ds=2.317
+     r0= 5.00 exit=  8.07 ext=True  gain=     99.267 th_f= 77.9914 law: rel 5.5e-12, residual 4.4e-14; E-drift=2.5e-13 | before base: alpha=1.3191 dir=73.14 vN=0.0244 dlnE/ds=2.361
+     r0= 6.00 exit=  8.20 ext=True  gain=     14.612 th_f= 75.2413 law: rel 3.2e-12, residual 1.7e-13; E-drift=8.9e-13 | before base: alpha=1.4223 dir=61.45 vN=0.0887 dlnE/ds=2.503
+     r0= 7.00 exit=  8.42 ext=True  gain=      1.641 th_f= 46.5668 law: rel 2.7e-14, residual 1.3e-14; E-drift=6.3e-14 | before base: alpha=1.0000 dir=0.00 vN=-1.0353 dlnE/ds=0.000
+  [PASS] N2.1 every overtaken ray reaches the flat exterior during the steady lane
+  [PASS] N2.2 exit-angle law |k_f|(v cos theta_f - 1) = |k_i|(v - 1) holds on all 36 interacting exits (residual relative to the terms; the gain itself is ill-conditioned as cos theta_f -> 1/v)  (max residual 1.3e-11; max rel. gain error 4.1e-07 at gains up to 5.8e+05; max E drift 1.2e-10)
+  [PASS] N2.3 every interacting exit lies inside the cone cos theta_f > 1/v
+  [PASS] N2.6 the cone is shift-free throughout: ln(gain) = v int(-d_zeta ln alpha) dsigma on every exit  (max |ln gain - int| = 1.2e-10)
+   max gain: v=2.1 6.294, v=3 20.99, v=5 5.783e+05; v=5 riders (gain > 1e3) before the base: alpha [1.2983, 1.2983, 1.2983, 1.2983, 1.2983, 1.2983, 1.2983, 1.2988], direction [74.95, 74.95, 74.95, 74.95, 74.95, 74.95, 74.94, 74.91], pattern-frame normal speed [np.float64(0.0042), np.float64(0.0042), np.float64(0.0042), np.float64(0.0042), np.float64(0.0042), np.float64(0.0042), np.float64(0.0042), np.float64(0.0047)]
+  [PASS] N2.4 flank threshold 1/sin15 = 3.86: bounded gains at v = 2.1 and 3, gains larger by >20x at v = 5 from light riding the flank  (6.29, 21, 5.78e+05)
+  [PASS] N2.5 the v = 5 riders settle on the flank at alpha -> v sin(theta_c) = 1.294, moving along the flank normal (75 deg to the axis) with pattern-frame normal speed -> 0
+
+=== N3  shelf law (I12): reflection in a shelf and a resting terminal ===
+   gamma' in the shelf 3.9606693218  law 3.9606693218  (E drift 2.3e-13)
+   turning lapse 3.43498  law sqrt(alpha_s^2+v^2) = 3.43498
+   after the terminal 10.7662154460  law alpha_s gamma' = 10.7662154460; bump front at z = 65.69 .. 69.52 while the particle crosses the terminal (z = 78.5 .. 81.5)
+  [PASS] N3.1 shelf law gamma' = (alpha_s^2+v^2)/(alpha_s^2-v^2)
+  [PASS] N3.2 the particle turns where alpha = sqrt(alpha_s^2 + v^2)
+  [PASS] N3.3 resting terminal (static while crossed): final gamma = alpha_s gamma'
+
+=== N4  I13: blueshift rate on a flat front; causal character of S ===
+   S on the axis at zeta = 3.000000; kappa = |d_zeta alpha| = 0.693147 (ln 2 = 0.693147)
+   behind S, axis                           end= 24.00 d lnE/ds (last 4) = 0.693147  approach rate = 0.69315  final r = 0.000  gain = 3.08e+07  E-drift = 9.0e-15
+   behind S, r=2                            end= 24.00 d lnE/ds (last 4) = 0.693147  approach rate = 0.69315  final r = 2.000  gain = 3.08e+07  E-drift = 9.0e-15
+   behind S, r=4                            end= 24.00 d lnE/ds (last 4) = 0.693147  approach rate = 0.69315  final r = 4.000  gain = 3.08e+07  E-drift = 9.0e-15
+   ahead (overtaken), r=2                   end= 24.00 d lnE/ds (last 4) = 0.693146  approach rate = 0.69315  final r = 2.000  gain = 2.519e+06  E-drift = 4.0e-14
+   behind S, r=5.8 (outside the flat disk)  end=  7.40 d lnE/ds (last 4) = 0.000000  approach rate = nan  final r = 12.000  gain = 3.163  E-drift = 1.4e-12
+  [PASS] N4.1 on the flat disk forward light is held at S and blueshifts at kappa = |d_zeta alpha|  (0.693147, 0.693147, 0.693147, 0.693146)
+  [PASS] N4.2 the held light approaches S at the same rate kappa (lab-time normalization of xi)
+  [PASS] N4.3 off the flat disk (S timelike there) the ray is not held: it leaves
+   rear S at zeta = -6.000000, kappa = 0.693147; forward light starting 1e-7 ahead/behind: separation rates [np.float64(0.69316), np.float64(0.69314)], d lnE/ds [np.float64(-0.69317), np.float64(-0.69313)]
+  [PASS] N4.5 rear fall (black-hole type): forward light leaves S on both sides at rate kappa and redshifts at kappa while near it
+   cone S: r=0.00 zeta= 23.1755 |d_r alpha|/|d_zeta alpha| = 0.0000
+   cone S: r=0.25 zeta= 22.9553 |d_r alpha|/|d_zeta alpha| = 1.6690
+   cone S: r=0.50 zeta= 22.4026 |d_r alpha|/|d_zeta alpha| = 2.6390
+   cone S: r=1.00 zeta= 20.8690 |d_r alpha|/|d_zeta alpha| = 3.3380
+   cone S: r=2.00 zeta= 17.3477 |d_r alpha|/|d_zeta alpha| = 3.6206
+   cone S: r=3.00 zeta= 13.6909 |d_r alpha|/|d_zeta alpha| = 3.6813
+   cone S: r=4.00 zeta=  9.9972 |d_r alpha|/|d_zeta alpha| = 3.7032
+   cone S: r=5.00 zeta=  6.2882 |d_r alpha|/|d_zeta alpha| = 3.7135
+  [PASS] N4.4 cone: S is null only on the axis; on the flank the gradient ratio -> cot(15 deg) = 3.73
+
+=== N5  I14: paraxial shedding rate at the cone tip ===
+   tip at zeta = 23.175507: kappa = 0.407734, A = -d_r^2 alpha = 3.043370, lambda = 2.332397, lambda_- = -2.740132, 2(kappa-lambda) = -3.849326
+   fit window sigma in [2.23, 5.17]:
+   transverse growth 2.33744 (lambda 2.33240); energy growth 0.40860 (kappa 0.40773); axial convergence 0.40860; density exponent -3.85769 (2(kappa-lambda) -3.84933)
+  [PASS] N5.1 off-axis displacement grows at lambda = (sqrt(kappa^2 + 4 v A) - kappa)/2  (2.3374 vs 2.3324)
+  [PASS] N5.2 energy per quantum grows at kappa, axial separation shrinks at kappa  (0.4086, 0.4086 vs 0.4077)
+  [PASS] N5.3 geometric-optics energy density of the ray bundle changes at 2(kappa - lambda)  (-3.8577 vs -3.8493)
+   flat front: bundle density exponent 1.386483 vs 2 kappa = 1.386294
+  [PASS] N5.4 flat front (lambda = 0): the bundle's energy density grows at 2 kappa
+
+=== N6  I15: planar layer at 15 deg moving at v along z ===
+    {'v': 5.0, 'u': 1.294095, 'n0': -0.5, 'held': True, 'alpha_at_ray': 1.294095, 'slope': 2.248119, 'kappa_n': 2.248119}
+    {'v': 5.0, 'u': 1.294095, 'n0': 0.3, 'held': True, 'alpha_at_ray': 1.294095, 'slope': 2.248119, 'kappa_n': 2.248119}
+    {'v': 2.1, 'u': 0.54352, 'n0': -0.5, 'held': False, 'gain': 12.360273, 'law': 12.360273}
+    {'v': 2.1, 'u': 0.54352, 'n0': 0.3, 'held': False, 'gain': 3.611808, 'law': 3.611808}
+  [PASS] N6.1 v sin(theta_c) = 1.294 > 1: normal light is held at the level alpha = v sin(theta_c) and blueshifts at |d_n alpha| there
+  [PASS] N6.2 v sin(theta_c) = 0.544 < 1: normal light leaves the layer with the finite gain (alpha_0 - u)/(1 - u)
+
+=== N7  I16: static lapse optics (b = 0) ===
+    {'psi_in': 11.0, 'transmitted': True, 'predicted': True, 'psi_out': 72.5626098412498, 'snell': 72.56260983980668}
+    {'psi_in': 11.4, 'transmitted': True, 'predicted': True, 'psi_out': 81.22186895351355, 'snell': 81.22186895305464}
+    {'psi_in': 11.7, 'transmitted': False, 'predicted': False}
+    {'psi_in': 12.5, 'transmitted': False, 'predicted': False}
+    {'psi_in': 30.0, 'transmitted': False, 'predicted': False}
+    {'psi_in': 30.0, 'reverse': True, 'transmitted': True, 'psi_out': 5.7391704772812515, 'snell': 5.739170477266786}
+    {'psi_in': 60.0, 'reverse': True, 'transmitted': True, 'psi_out': 9.97422179440572, 'snell': 9.974221794401348}
+    {'psi_in': 85.0, 'reverse': True, 'transmitted': True, 'psi_out': 11.492457830159596, 'snell': 11.4924578301052}
+  [PASS] N7.1 climbing alpha 1 -> 5: transmitted iff psi < arcsin(1/5) = 11.54 deg
+  [PASS] N7.2 Snell's law with index 1/alpha on transmission
+  [PASS] N7.3 descending alpha 5 -> 1: always transmitted (no total reflection)
+   sphere R=3, half-width 1: exact threshold L* = min r/alpha = 0.76703; thin-wall R/alpha_out = 0.6
+     {'psi0_deg': 29.736666759925598, 'L': 0.7440216789238946, 'escaped': True, 'exact_predicts': True, 'thin_wall_predicts': False}
+     {'psi0_deg': 31.7824712186697, 'L': 0.7900436384449602, 'escaped': False, 'exact_predicts': False, 'thin_wall_predicts': False}
+   sphere R=3, half-width 2, launch r0 = 0.9: min r/alpha = 0.90000 (= r0/alpha_in); all launches:
+     {'psi0_deg': 30.0, 'L': 0.44999999999999996, 'escaped': True, 'exact_predicts': True, 'thin_wall_predicts': True}
+     {'psi0_deg': 60.0, 'L': 0.7794228634059948, 'escaped': True, 'exact_predicts': True, 'thin_wall_predicts': False}
+     {'psi0_deg': 80.0, 'L': 0.8863269777109872, 'escaped': True, 'exact_predicts': True, 'thin_wall_predicts': False}
+     {'psi0_deg': 89.0, 'L': 0.8998629256407522, 'escaped': True, 'exact_predicts': True, 'thin_wall_predicts': False}
+  [PASS] N7.4 curved wall: a ray escapes iff L/E <= min r/alpha(r) (exact, 6 rays); the thin-wall arcsin rule misplaces the threshold (0.6 vs 0.767) and predicts trapping where the half-width-2 wall traps nothing
+
+=== N8  I20: ordering of rays of one family ===
+   axis rays, family +1: min separation 2.178e-05, final 2.178e-05
+   axis rays, family -1: min separation 2.903e-01, final 3.000e-01
+  [PASS] N8.1 on the symmetry axis (a 2D reduction) rays of one family never cross
+   lens: initial x [0.3, 0.6, 0.9, 1.2] -> x at sigma = 40: [0.1226, -20.5307, -32.0846, -30.9858]
+  [PASS] N8.2 off the axis (3D) rays of one family cross (focusing), so ordering is a 2D statement
+
+(numerical part 16.8 s)
+
+SUMMARY: 75 of 75 checks passed

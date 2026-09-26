@@ -1,0 +1,548 @@
+=== knobs_one_space
+1:# Part-and-knob → physics response map: the one-space era (23–25 September 2026)
+10:## 0. Scope, conventions, legend
+12:### 0.1 Metric classes
+27:### 0.2 Tags
+43:### 0.3 Design lineage (where each measurement lives)
+61:### 0.4 Physics channels (columns of the coupling matrix, §4)
+70:## 1. Parts
+102:## 2. Knobs
+107:### K1. Lane speed, choreography era (static support, D-ch)
+123:### K2. Carry speed with speed-scaled lapse (D-trim, closure scan)
+144:### K3. Choreography timing: entry, coast and catch speeds, ramps, catch exit
+155:### K4. Trip / lane length
+169:### K5. Plateau height (packet lapse log gain; `plateau_log`)
+188:### K6. Convexity (along-track convexity of log-lapse)
+198:### K7. Plateau shape and service-domain cutoff
+206:### K8. Lapse sheath: amplitude, rise width, envelope strength
+223:### K9. Conformal pre-sheath scale φ
+238:### K10. Support stretch (C0, B0)
+247:### K11. Support lapse (λC0)
+256:### K12. Stretch vs lapse (A ≡ 1 design fork)
+266:### K13. Time staging of the sheath (static vs staged)
+275:### K14. Live-window gating, lapse lead and lag, packet lapse window schedule
+285:### K15. Shift-transition placement, layer ordering, and shift edge width
+295:### K16. Compartment clock rate α_c
+315:### K17. Hole boundary sharpness and radius
+323:### K18. Outer fall placement and sheath rise width (trimming)
+332:### K19. Front element: current front, forward shelf, conical front
+348:### K20. Cone half-angle, layer, tip rounding, base, lapse
+358:### K21. Shelf lapse α_s and leading-edge speed
+366:### K22. Reset schedule of a decompressing support (CS, transferred to the axial core)
+374:### K23. Extended carry (CS)
+381:### K24. Support dynamics: decompressing vs held vs static; carve
+389:### K25. Single-layer boundary width, spacing, service-region radius, string cushion (D-ax0, stretch-bearing)
+396:### K26. Termination: two-ended spherical track vs one space; end-transition width, track length, track radius (CS)
+403:### K27. Physical scale L (and QI sampling fraction f)
+413:## 3. Identities
+415:### 3.1 Identities stated in the reports
+479:### 3.2 Complete demanded tensor of class C0 (ID-c; not stated in the reports)
+498:### 3.3 Identities with missing derivations or unclear validity
+517:## 4. Coupling matrix
+555:## 5. Gaps (untested or single-point)
+=== knobs_throat_era
+1:# Part-and-knob → physics response map: the spherical-throat era (16 May – 17 Sep 2026)
+16:## 0. Reading guide
+18:### 0.1 Metric class and notation
+44:### 0.2 Nomenclature traps
+63:### 0.3 Evidence and generality labels
+78:### 0.4 What the channels measure (caveats that apply to every number)
+102:### 0.5 Later findings that scope or invalidate results
+121:## 1. Parts
+128:### 1.1 Geometry parts
+154:### 1.2 Source-architecture parts (Sept 9 – 17)
+173:## 2. Knob index
+212:## 3. Geometry knobs
+214:### 3.A Throat, standing plant and service load (May 16 – 20, with later transfers)
+216:#### G1. Throat radius R_th (with support radius; compact vs wide)
+277:#### G2. Support-edge width w_th ("radial softening") and the packet-norm cliff
+344:#### G3. Lapse cushion η_N
+375:#### G4. Angular capacity jacket (width w_Ω; transferred width 1.80/2.20)
+389:#### G5. Support decompression schedule (the "reset") and uniform slowdown
+435:#### G6. Service factor V (carry-speed load)
+491:#### G7. Catch/rematch shaping: one-component shaping vs two-component split
+543:### 3.B Packet-local containment knobs (Stage I, May 17 – 20)
+568:#### G8. Packet carve (exclusion of support under the occupant tube)
+607:#### G9. Packet lapse compensator: gain and footprint
+633:#### G10. Carve shoulder: filled two-zone vs annular
+661:#### G11. Split carve, null cushion, smooth-split composition and edge sleeve
+690:#### G12. Coupled edge carve and pressure rebate
+710:#### G13. Local radial stretch profile on A (core, catch ring, outer skirt)
+739:#### G14. Local areal-radius partner (smooth-split angular log gain)
+765:#### G15. Temporal edge profile and schedule of packet windows
+784:#### G16. Compact handoff: transition profile and width of the carve windows
+810:#### G17. Entry gate (`live_packet_start`)
+824:### 3.C Support-shell overlay (V5/V10, May 16 – 17)
+834:#### G18. Shell amplitude and sign
+872:#### G19. Shell timing: catch lead, temporal width, profile
+895:#### G20. Shell metric partners: clock-lapse, rail-stretch, throat-capacity (κ_Q/a_β)
+933:#### G21. Shell radial profile, radial half-width and strength band
+965:### 3.D Endpoint, release, receiver, collar and causal knobs (Stage II, May 19 – 24)
+987:#### G22. Endpoint smearing: edge width, catch width, edge carve, guard blend, temporal width
+1012:#### G23. Release-fade width ("reset-release widening"), matched hold and lags
+1058:#### G24. Receiver actuation channel (lapse, radial stretch, shift relaxation, areal radius)
+1087:#### G25. Receiver placement, angular gain, localization and persistence
+1143:#### G26. β-rematch collar: gain, shape, floor, width, temporal width, schedule
+1201:#### G27. Causal-margin guard and local cone tilt
+1231:### 3.E Regularity repairs, reset sources and the constant-radius rule (Sept 8 – 23)
+1237:#### G28. Join regularity: receiver cusp, origin kink, shell cap
+1283:#### G29. Coupled reset source: tangential material plus two null streams
+1309:#### G30. Reset inverse search: geometry path and moving infrastructure
+1331:#### G31. Constant areal radius wherever the metric evolves (post-era design rule, Sept 23)
+1362:### 3.F Source-model knobs on the beta075 demand (May 21 – 24)
+1376:#### M1. Endpoint current regulator (safety factor) — (Adm)
+1394:#### M2. Source class — (Adm)
+1407:#### M3. Support-reservoir ansatz and basis size — (Adm)
+1426:#### M4. Source-time class and service-aligned scheduling — (Adm, transport)
+1443:#### M5. Heat-current rapidity: evolution variable, kick amplitude, injection form — (Adm, transport)
+1458:#### M6. Support-edge source reshaping (cap 0.95) — (Adm, transport)
+1467:#### M7. Mesh resolution (189×121 → 377×241) — mixed
+1478:#### M8. 3+1 "backreaction" scenario amplitude — (Adm)
+1488:### 3.G Demand-decomposition and diagnostic choices (May 19 – 24)
+1493:#### D1. Source-role partition (A–I oracle roles; composite ansatz)
+1511:#### D2. SNEC smearing width, coverage filter, domain and parameterization
+1539:#### D3. Nonminimal scalar source screen (profile × φ₀ × ξ)
+1548:## 4. Source-architecture knobs (Sept 9 – 17)
+1571:### S1. Mechanical connectivity (C1 separated modules vs connected control)
+1599:### S2. C1 overlap width and offset
+1638:### S3. Tension-carrier share and carrier type ("95% backbone")
+1674:### S4. Radial cavity length and subdivision (compartment count, count distribution)
+1705:### S5. Population grouping
+1726:### S6. Local subdivision at a population boundary
+1743:### S7. Angular division coordinate
+1756:### S8. Angular reflector pattern / reflector transparency
+1780:### S9. Curvature-coupling logarithm ℓ₀ = log(R₀/a₀)
+1802:### S10. Longitudinal channel strength, interval and clock freedom
+1820:### S11. Cavity gap and mirror profile (scalar-mirror proximity cavity)
+1838:### S12. Short magnetic-circuit geometry (summary level)
+1848:### S13. Planar EM Casimir cell realization and holding
+1861:### S14. Magnetic containment loop geometry and sleeve strength
+1876:### S15. Magnetic jacket (internal/annular field ratio, radius ratio)
+1892:### S16. Containment ensemble composition and orientation
+1904:### S17. Storage medium and converter directionality (capacitor vs pressure-linked vs elastic vs EM)
+1936:### S18. Physical scale L (homothetic enlargement)
+1945:## 5. General identities for spherical warped products
+1967:### 5.1 Time-dependent class identities (any α, β, A, B)
+2104:### 5.2 Static identities (β=0, time-independent; proper-distance gauge, lapse A)
+2166:### 5.3 Algebraic-type and source-model relations
+2200:### 5.4 Source-physics identities (independent of the throat)
+2257:## 6. Coupling matrix: knob × physics channel
+2282:### 6.1 Geometry knobs
+2318:### 6.2 Source-model and demand-reading knobs
+2332:### 6.3 Source-architecture knobs
+2355:### 6.4 What the matrix shows
+2379:## 7. Invalidation register
+2381:### 7.1 Results resting on the beta075 geometry (failed the Type IV gate) — marked †
+2401:### 7.2 Other later findings and what they overturn
+2412:### 7.3 What survives unchanged
+2423:## 8. Gaps
+2425:### 8.1 Channels never measured
+2447:### 8.2 Knobs never varied
+2465:### 8.3 Open questions the identities pose but the reports leave unanswered
+2484:### 8.4 Evidence hygiene issues the book should avoid inheriting
+=== lit_foundations
+1:# Foundations and Verification Canon for a Textbook on Spacetime (Metric) Engineering
+5:## How the items were checked
+22:## Area 1. Energy conditions and their classification
+120:## Area 2. Quantum inequalities (quantum energy inequalities)
+316:## Area 3. The averaged null energy condition
+445:## Area 4. Semiclassical gravity, vacuum polarization and horizon thermodynamics
+580:## Area 5. Topology and causality
+707:## Area 6. The 3+1 formalism and numerical-relativity textbooks
+754:## Area 7. Existing monographs and textbook-like treatments
+831:## Area 8. Higher-derivative NEC-violating theories: the open source class
+946:## Results commonly overstated (checked against the sources above)
+986:## Unverified or partially verified items
+1011:## Closing table: topic × anchor papers × status × known exceptions
+=== lit_design_strategy
+1:# Design strategy in the spacetime-engineering literature: a verified inventory
+5:## Purpose and standard
+39:## Contents
+49:# Part A. Warp drives and shortcut corridors, 1994–2012
+62:### Alcubierre1994 — Miguel Alcubierre (1994), "The warp drive: hyper-fast travel within general relativity"
+77:### Hiscock1997 — William A. Hiscock (1997), "Quantum effects in the Alcubierre warp drive spacetime"
+87:### PfenningFord1997 — Michael J. Pfenning, L. H. Ford (1997), "The unphysical nature of 'Warp Drive'"
+102:### EverettRoman1997 — Allen E. Everett, Thomas A. Roman (1997), "A Superluminal Subway: The Krasnikov Tube"
+118:### Krasnikov1998 — S. V. Krasnikov (1998), "Hyperfast Interstellar Travel in General Relativity"
+131:### VanDenBroeck1999 — Chris Van Den Broeck (1999), "A 'warp drive' with more reasonable total energy requirements"
+146:### ClarkHiscockLarson1999 — Chad Clark, William A. Hiscock, Shane L. Larson (1999), "Null geodesics in the Alcubierre warp drive spacetime: the view from the bridge"
+156:### GonzalezDiaz2000 — Pedro F. González-Díaz (2000), "On the warp drive space-time"
+166:### LoupWaiteHalerewicz2001 — F. Loup, D. Waite, E. Halerewicz Jr (2001), "Reduced Total Energy Requirements for a Modified Alcubierre Warp Drive Spacetime"
+176:### Natario2002 — José Natário (2002), "Warp Drive With Zero Expansion"
+192:### LoboVisser2004 — Francisco S. N. Lobo, Matt Visser (2004), "Fundamental limitations on 'warp drive' spacetimes"
+208:### Natario2006 — José Natário (2006), "Newtonian limits of warp drive spacetimes"
+216:### FinazziLiberatiBarcelo2009 — Stefano Finazzi, Stefano Liberati, Carlos Barceló (2009), "Semiclassical instability of dynamical warp drives"
+230:### BarceloFinazziLiberati2010 — Carlos Barceló, Stefano Finazzi, Stefano Liberati (2010), "On the impossibility of superluminal travel: the warp drive lesson"
+236:### CoutantFinazziLiberatiParentani2012 — Antonin Coutant, Stefano Finazzi, Stefano Liberati, Renaud Parentani (2012), "Impossibility of superluminal travel in Lorentz violating theories"
+245:### McMonigalLewisOByrne2012 — Brendan McMonigal, Geraint F. Lewis, Philip O'Byrne (2012), "The Alcubierre Warp Drive: On the Matter of Matter"
+259:# Part B. Warp drives, 2020–2026
+263:### SantosPereiraAbreuRibeiro2020_2026 — Osvaldo L. Santos-Pereira, Everton M. C. Abreu, Marcelo B. Ribeiro (series), matter-sourced Alcubierre solutions
+285:### Lentz2021 — Erik W. Lentz (2021), "Breaking the Warp Barrier: Hyper-Fast Solitons in Einstein–Maxwell-Plasma Theory"
+297:### BobrickMartire2021 — Alexey Bobrick, Gianni Martire (2021), "Introducing Physical Warp Drives"
+314:### FellHeisenberg2021 — Shaun D. B. Fell, Lavinia Heisenberg (2021), "Positive Energy Warp Drive from Hidden Geometric Structures"
+324:### MattinglyEtAl2021 — Brandon Mattingly, Abinash Kar, Matthew Gorban, William Julius, Cooper Watson, MD Ali, Andrew Baas, Caleb Elmore, Jeff Lee, Bahram Shakerin, Eric Davis, Gerald Cleaver (2021), "Curvature Invariants for the Alcubierre and Natário Warp Drives"
+332:### Rodal2023_2024 — José Rodal (2023; 2024), curvature invariants of Alcubierre and Natário
+340:### SSVTractor2021 — Jessica Santiago, Sebastian Schuster, Matt Visser (2021), "Tractor beams, pressor beams, and stressor beams in general relativity"
+348:### SSV2022 — Jessica Santiago, Sebastian Schuster, Matt Visser (2022), "Generic warp drives violate the null energy condition"
+364:### SSVADM2023 — Sebastian Schuster, Jessica Santiago, Matt Visser (2023), "ADM mass in warp drive spacetimes"
+374:### CarneiroEtAl2022 — F. L. Carneiro, S. C. Ulhoa, J. W. Maluf, J. F. da Rocha-Neto (2022), "On the total energy conservation of the Alcubierre spacetime"
+382:### BarceloEtAl2022 — Carlos Barceló, Valentin Boyanov, Luis J. Garay, Eduardo Martín-Martínez, Jose M. Sánchez Velázquez (2022), "Warp Drive Aerodynamics"
+396:### AbellanBolivarVasilevSeries — Gabriel Abellán, Nelson Bolívar, Ivaylo Vasilev (2023–2026), matter-content warp studies
+416:### Pieri2023 — Lorenzo Pieri (2023), "Hyperwave: Hyper-Fast Communication within General Relativity"
+424:### Huey2024 — Greg Huey (2024), "Membrane Models as a Means of Propulsion in General Relativity: Super-Luminal Warp-Drive that Satisfies the Weak Energy Condition"
+433:### WarpFactory2024 — Christopher Helmerich, Jared Fuchs, Alexey Bobrick, Luke Sellers, Brandon Melcher, Gianni Martire (2024), "Analyzing warp drive spacetimes with Warp Factory"
+446:### Fuchs2024 — Jared Fuchs, Christopher Helmerich, Alexey Bobrick, Luke Sellers, Brandon Melcher, Gianni Martire (2024), "Constant Velocity Physical Warp Drive Solution"
+460:### CloughDietrichKhan2024 — Katy Clough, Tim Dietrich, Sebastian Khan (2024), "What no one has seen before: gravitational waveforms from warp drive collapse"
+473:### GarattiniZatrimaylov2024_2025 — Remo Garattini, Kirill Zatrimaylov (2024; 2025), warp drives on curved backgrounds
+487:### ShoshanySnodgrass2024 — Barak Shoshany, Ben Snodgrass (2024), "Warp Drives and Closed Timelike Curves"
+504:### Chowdhury2025 — Abhishek Chowdhury (2025), "Warp Drives and Martel–Poisson charts"
+511:### SajeendranRalph2025 — Achintya Sajeendran, Timothy C. Ralph (2025), "Looping back to the past through free fall in a controlled warp drive spacetime"
+518:### BarzegarBuchert2025 — Hamed Barzegar, Thomas Buchert (2025), "On restrictions of current warp drive spacetimes and immediate possibilities of improvement"
+529:### Rodal2025 — José Rodal (2025), "A warp drive with predominantly positive invariant energy density and global Hawking–Ellis Type I"
+543:### CelmasterRubin2025 — Bill Celmaster, Steve Rubin (2025), "Violations of the Weak Energy Condition for Lentz Warp Drives"
+549:### WhiteEtAl2025 — Harold White, Jerry Vera, Andre Sylvester, Leonard Dudzinski (2025), "Interior-flat cylindrical nacelle warp bubbles: derivation and comparison with Alcubierre model"
+557:### Rodal2025Metamaterial — José Rodal (2025), "On the Infeasibility of Low-Energy Warp Drive via Metamaterial Gravitational Coupling"
+563:### BarzegarBuchertVigneron2026 — Hamed Barzegar, Thomas Buchert, Quentin Vigneron (2026), "General formalism, classification, and demystification of the current warp-drive spacetimes"
+580:### BuchertFrackowiak2026 — Thomas Buchert, Antony Frackowiak (2026), "Novel Realizations of Warp Drive Spacetimes as Solutions of General Relativity"
+587:### Le2026b — An T. Le (2026), "Observer-robust energy condition verification for warp drive spacetimes"
+606:### Rodal2026Birefringent — José Rodal (2026), "Weakly birefringent screening disfavors fast Hawking–Ellis Type I warp drives via low-velocity cubic tilt scaling" (v1–v2)
+613:### Le2026a — An T. Le (2026), "On the boundary cost of source-consistent warp shells" (v1–v2)
+629:### Le2026c — An T. Le (2026), "Radiative steering of warp shells" (v4); v1–v3 "Steering a warp drive without exotic matter"
+643:### BolivarAbellanVasilev2026 — Nelson Bolívar, Gabriel Abellán, Ivaylo Vasilev (2026), "Boundary Obstructions and Lapse Freedom in Static Spherical Hollow Cores"
+655:### Gergely2026 — László Árpád Gergely (2026), "Fluid interpretation, Hawking–Ellis classification, and energy conditions of the proper kinetic gravity braiding stress tensor"
+662:### MartinMorenoVisser2018_2021 — Prado Martín-Moruno, Matt Visser, Hawking–Ellis type papers
+668:### JusufiLobo2026 — Kimet Jusufi, Francisco S. N. Lobo (2026), "Quantum-gravity-inspired Alcubierre warp-drive geometries"
+676:# Part C. Quantum inequalities, averaged null energy, superluminal censorship and chronology
+680:## Verification protocol
+697:## C.1 Quantum inequalities along timelike worldlines
+699:### FR95 — L. H. Ford, Thomas A. Roman (1995), "Averaged Energy Conditions and Quantum Inequalities"
+713:### FR96 — L. H. Ford, Thomas A. Roman (1996), "Quantum Field Theory Constrains Traversable Wormhole Geometries"
+716:### FR97 — L. H. Ford, Thomas A. Roman (1997), "Restrictions on Negative Energy Density in Flat Spacetime"
+729:### PF98 — Michael J. Pfenning, L. H. Ford (1998), "Scalar Field Quantum Inequalities in Static Spacetimes"
+742:### FE98 — C. J. Fewster, S. P. Eveson (1998), "Bounds on negative energy densities in flat spacetime" (abstract-level)
+752:### F00 — C. J. Fewster (2000), "A general worldline quantum inequality" (abstract-level)
+762:### OG03 — Ken D. Olum, Noah Graham (2003), "Static Negative Energies Near a Domain Wall" (abstract-level)
+772:### FH05 — Christopher J. Fewster, Stefan Hollands (2005), "Quantum Energy Inequalities in two-dimensional conformal field theory" (abstract-level)
+782:### ER97 — Allen E. Everett, Thomas A. Roman (1997), "A Superluminal Subway: The Krasnikov Tube"
+785:### K03 — S. Krasnikov (2003), "The quantum inequalities do not forbid spacetime shortcuts"
+802:## C.2 Superluminal travel, time delay and speed-limit theorems
+804:### O98 — Ken D. Olum (1998), "Superluminal travel requires negative energies"
+819:### VBL98 — Matt Visser, Bruce Bassett, Stefano Liberati (2000), "Superluminal censorship"
+832:### VBL99 — Matt Visser, Bruce Bassett, Stefano Liberati (1999), "Perturbative superluminal censorship and the null energy condition"
+842:### L99 — Robert J. Low (1999), "Speed Limits in General Relativity"
+855:### GW00 — Sijie Gao, Robert M. Wald (2000), "Theorems on gravitational time delay and related issues"
+870:### PSW93 — R. Penrose, R. D. Sorkin, E. Woolgar (1993), "A Positive Mass Theorem Based on the Focusing and Retardation of Null Geodesics"
+882:### FSW93 — John L. Friedman, Kristin Schleich, Donald M. Witt (1993), "Topological Censorship" (abstract-level)
+885:## C.3 ANEC, achronal ANEC and their proofs
+887:### GO07 — Noah Graham, Ken D. Olum (2007), "Achronal averaged null energy condition"
+902:### W10 — Aron C. Wall (2010), "Proving the Achronal Averaged Null Energy Condition from the Generalized Second Law"
+916:### UO10 — Douglas Urban, Ken D. Olum (2010), "Averaged null energy condition violation in a conformally flat spacetime"
+929:### FOP07 — Christopher J. Fewster, Ken D. Olum, Michael J. Pfenning (2007), "Averaged null energy condition in spacetimes with boundaries" (abstract-level)
+939:### GO05 — Noah Graham, Ken D. Olum (2005), "Plate with a hole obeys the averaged null energy condition" (abstract-level)
+949:### KO13 — Eleni-Alexandra Kontou, Ken D. Olum (2013), "Averaged null energy condition in a classical curved background" (abstract-level)
+959:### KO15 — Eleni-Alexandra Kontou, Ken D. Olum (2015), "Proof of the averaged null energy condition in a classical curved spacetime using a null-projected quantum inequality"
+973:### FLPW16 — Thomas Faulkner, Robert G. Leigh, Onkar Parrikar, Huajia Wang (2016), "Modular Hamiltonians for Deformed Half-Spaces and the Averaged Null Energy Condition" (abstract-level)
+983:### HKT17 — Thomas Hartman, Sandipan Kundu, Amirhossein Tajdini (2017), "Averaged Null Energy Condition from Causality" (abstract-level)
+993:### R20 — Felipe Rosso (2020), "Achronal averaged null energy condition for extremal horizons and (A)dS" (abstract-level)
+1003:### KS20 — Eleni-Alexandra Kontou, Ko Sanders (2020), "Energy conditions in general relativity and quantum field theory"
+1019:### BV00 — Carlos Barceló, Matt Visser (2000), "Scalar fields, energy conditions, and traversable wormholes" (abstract-level)
+1031:## C.4 Null-segment bounds (no-go, SNEC, DSNEC, QNEIs) and QEI reviews
+1033:### FR03 — C. J. Fewster, T. A. Roman (2003), "Null energy conditions in quantum field theory"
+1045:### FK18 — Ben Freivogel, Dimitrios Krommydas (2018), "The Smeared Null Energy Condition"
+1058:### FF21 — Jackson R. Fliss, Ben Freivogel (2022), "Semi-local Bounds on Null Energy in QFT" (abstract-level)
+1068:### FFK21 — Jackson R. Fliss, Ben Freivogel, Eleni-Alexandra Kontou (2023), "The double smeared null energy condition" (abstract-level)
+1078:### FKK22 — Ben Freivogel, Eleni-Alexandra Kontou, Dimitrios Krommydas (2022), "The Return of the Singularities: Applications of the Smeared Null Energy Condition"
+1091:### K24 — Eleni-Alexandra Kontou (2024), "Wormhole restrictions from quantum energy inequalities"
+1105:### FRo25 — Jackson R. Fliss, Andrew Rolph (2025), "Curious QNEIs from QNEC: New Bounds on Null Energy in Quantum Field Theory" (abstract-level)
+1115:### P26 — Andrea Palessandro (2026), "Quantum Inequalities from the Second Law" (abstract-level)
+1127:## C.5 Chronology
+1129:### H92 — S. W. Hawking (1992), "Chronology protection conjecture"
+1142:### E96 — Allen E. Everett (1996), "Warp drive and causality"
+1156:### SS24 — Barak Shoshany, Ben Snodgrass (2024), "Warp Drives and Closed Timelike Curves"
+1159:## C.6 2018–2026 applications to warp drives and shortcuts, and older weak-field constraints
+1163:### SSV22 — Jessica Santiago, Sebastian Schuster, Matt Visser (2022), "Generic warp drives violate the null energy condition"
+1166:### Le26 — An T. Le (2026), "Observer-robust energy condition verification for warp drive spacetimes"
+1169:### JL26 — Kimet Jusufi, Francisco S. N. Lobo (2026), "Quantum-gravity-inspired Alcubierre warp-drive geometries" (abstract-level)
+1172:### GZ25 — Remo Garattini, Kirill Zatrimaylov (2025), "Warp Drive in a De Sitter Universe" (abstract-level)
+1175:### LV04 — Francisco S. N. Lobo, Matt Visser (2004), "Fundamental limitations on 'warp drive' spacetimes"
+1178:## C.7 Assessment of project claim (g)
+1211:# Part D. Traversable wormholes
+1216:## Verification method and conventions
+1225:## D.1 Foundations: metric-first design of static wormholes
+1227:### MorrisThorne1988 — M. S. Morris, K. S. Thorne (1988), "Wormholes in spacetime and their use for interstellar travel: A tool for teaching general relativity"
+1248:### MorrisThorneYurtsever1988 — M. S. Morris, K. S. Thorne, U. Yurtsever (1988), "Wormholes, Time Machines, and the Weak Energy Condition"
+1263:### Visser1989a — M. Visser (1989), "Traversable wormholes: Some simple examples"
+1277:### Visser1989b — M. Visser (1989), "Traversable wormholes from surgically modified Schwarzschild spacetimes"
+1293:## D.2 Thin-shell stability: equation of state as the stability knob
+1295:### PoissonVisser1995 — E. Poisson, M. Visser (1995), "Thin-shell wormholes: Linearization stability"
+1309:### GarciaLoboVisser2012 — N. Montelongo Garcia, F. S. N. Lobo, M. Visser (2012), "Generic spherically symmetric dynamic thin-shell traversable wormholes in standard general relativity"
+1325:## D.3 General theorems: where the NEC must fail
+1327:### HochbergVisser1997 — D. Hochberg, M. Visser (1997), "Geometric structure of the generic static traversable wormhole throat"
+1341:### HochbergVisser1998PRL — D. Hochberg, M. Visser (1998), "The null energy condition in dynamic wormholes"
+1354:### HochbergVisser1998PRD — D. Hochberg, M. Visser (1998), "Dynamic wormholes, anti-trapped surfaces, and energy conditions"
+1367:### FriedmanSchleichWitt1993 — J. L. Friedman, K. Schleich, D. M. Witt (1993), "Topological Censorship"
+1379:### GrahamOlum2007 — N. Graham, K. D. Olum (2007), "Achronal averaged null energy condition"
+1383:### KontouOlum2015 — E.-A. Kontou, K. D. Olum (2015), "Proof of the averaged null energy condition in a classical curved spacetime using a null-projected quantum inequality"
+1386:## D.4 How much exotic matter: volume quantifiers and their dispute
+1388:### VisserKarDadhich2003 — M. Visser, S. Kar, N. Dadhich (2003), "Traversable wormholes with arbitrarily small energy condition violations"
+1403:### KarDadhichVisser2004 — S. Kar, N. Dadhich, M. Visser (2004), "Quantifying energy condition violations in traversable wormholes"
+1415:### NandiZhangKumar2004 — K. K. Nandi, Y.-Z. Zhang, K. B. Vijaya Kumar (2004), "Volume Integral Theorem for Exotic Matter"
+1428:### FewsterRoman2005 — C. J. Fewster, T. A. Roman (2005), "On wormholes with arbitrarily small quantities of exotic matter"
+1445:## D.5 Quantum-field constraints on geometry
+1447:### FordRoman1996 — L. H. Ford, T. A. Roman (1996), "Quantum Field Theory Constrains Traversable Wormhole Geometries"
+1462:### FreivogelKrommydas2018 — B. Freivogel, D. Krommydas (2018), "The Smeared Null Energy Condition"
+1465:### Kontou2024 — E.-A. Kontou (2024), "Wormhole restrictions from quantum energy inequalities"
+1469:## D.6 Self-consistent semiclassical construction
+1471:### HochbergPopovSushkov1997 — D. Hochberg, A. Popov, S. V. Sushkov (1997), "Self-consistent Wormhole Solutions of Semiclassical Gravity"
+1486:## D.7 Stability versus matter model (GR with phantom/ghost scalars; rotation)
+1488:### ShinkaiHayward2002 — H. Shinkai, S. A. Hayward (2002), "Fate of the first traversible wormhole: black-hole collapse or inflationary expansion"
+1500:### GonzalezGuzmanSarbach2009a — J. A. Gonzalez, F. S. Guzman, O. Sarbach (2009), "Instability of wormholes supported by a ghost scalar field. I. Linear stability analysis"
+1512:### GonzalezGuzmanSarbach2009b — J. A. Gonzalez, F. S. Guzman, O. Sarbach (2009), "Instability of wormholes supported by a ghost scalar field. II. Nonlinear evolution"
+1524:### BronnikovFabrisZhidenko2011 — K. A. Bronnikov, J. C. Fabris, A. Zhidenko (2011), "On the stability of scalar-vacuum space-times"
+1536:### BronnikovKonoplyaZhidenko2012 — K. A. Bronnikov, R. A. Konoplya, A. Zhidenko (2012), "Instabilities of wormholes and regular black holes supported by a phantom scalar field"
+1547:### CremonaPirottaPizzocchero2019 — F. Cremona, F. Pirotta, L. Pizzocchero (2019), "On the linear instability of the Ellis-Bronnikov-Morris-Thorne wormhole"
+1558:### BronnikovStarobinsky2007 — K. A. Bronnikov, A. A. Starobinsky (2007), "No realistic wormholes from ghost-free scalar-tensor phantom dark energy"
+1570:### Azad2023 — B. Azad, J. L. Blázquez-Salcedo, F. S. Khoo, J. Kunz (2023), "Are slowly rotating Ellis-Bronnikov wormholes stable?"
+1581:### Khoo2024 — F. S. Khoo, B. Azad, J. L. Blázquez-Salcedo, L. M. González-Romero, B. Kleihaus, J. Kunz, F. Navarro-Lérida (2024), "Quasinormal modes of rapidly rotating Ellis-Bronnikov wormholes"
+1592:### Azad2025 — B. Azad, J. L. Blázquez-Salcedo, F. S. Khoo, J. Kunz, F. Navarro-Lérida (2025), "Quadrupole perturbations of slowly spinning Ellis-Bronnikov wormholes"
+1604:## D.8 Modified gravity: moving the NEC violation into the gravitational sector
+1606:### LoboOliveira2009 — F. S. N. Lobo, M. A. Oliveira (2009), "Wormhole geometries in f(R) modified theories of gravity"
+1617:### KantiKleihausKunz2011 — P. Kanti, B. Kleihaus, J. Kunz (2011), "Wormholes in Dilatonic Einstein-Gauss-Bonnet Theory"
+1629:### KantiKleihausKunz2012 — P. Kanti, B. Kleihaus, J. Kunz (2012), "Stable Lorentzian Wormholes in Dilatonic Einstein-Gauss-Bonnet Theory"
+1643:### CuyubambaKonoplyaZhidenko2018 — M. A. Cuyubamba, R. A. Konoplya, A. Zhidenko (2018), "No stable wormholes in Einstein-dilaton-Gauss-Bonnet theory"
+1655:### Rubakov2016a — V. A. Rubakov (2016), "Can Galileons support Lorentzian wormholes?"
+1668:### Rubakov2016b — V. A. Rubakov (2016), "More about wormholes in generalized Galileon theories"
+1679:### EvseevMelichev2018 — O. A. Evseev, O. I. Melichev (2018), "No static sphericaly symmetric wormholes in Horndeski theory"
+1690:### MironovRubakovVolkova2018 — S. Mironov, V. Rubakov, V. Volkova (2018), "Towards wormhole beyond Horndeski"
+1702:### MironovRubakovVolkova2019 — S. Mironov, V. Rubakov, V. Volkova (2019), "More about stable wormholes in beyond Horndeski theory"
+1713:### FranciolinietAl2019 — G. Franciolini, L. Hui, R. Penco, L. Santoni, E. Trincherini (2019), "Stable wormholes in scalar-tensor theories"
+1726:### MironovRubakovVolkova2023 — S. Mironov, V. Rubakov, V. Volkova (2023), "In hot pursuit of a stable wormhole in beyond Horndeski theory"
+1739:### LiuEtAl2023 — P. Liu, C. Niu, W.-L. Qian, X. Wang, C.-Y. Zhang (2023), "Traversable Thin-shell Wormhole in the 4D Einstein-Gauss-Bonnet Theory"
+1751:### GursesSismanTekin2020 — M. Gurses, T. C. Sisman, B. Tekin (2020), "Is there a novel Einstein-Gauss-Bonnet theory in four dimensions?"
+1762:### EiroaRubinDeCelisSimeone2025 — E. F. Eiroa, E. Rubín de Celis, C. Simeone (2025), "Tides and energy conditions in Einstein-Gauss-Bonnet thin-shell wormholes"
+1777:## D.9 Quantum-sourced wormholes: long versus short
+1779:### GaoJafferisWall2017 — P. Gao, D. L. Jafferis, A. C. Wall (2017), "Traversable Wormholes via a Double Trace Deformation"
+1792:### FuGradoWhiteMarolf2019a — Z. Fu, B. Grado-White, D. Marolf (2019), "A perturbative perspective on self-supporting wormholes"
+1804:### FuGradoWhiteMarolf2019b — Z. Fu, B. Grado-White, D. Marolf (2019), "Traversable Asymptotically Flat Wormholes with Short Transit Times"
+1817:### MaldacenaMilekhinPopov2023 — J. Maldacena, A. Milekhin, F. Popov (2018 preprint; 2023 journal), "Traversable wormholes in four dimensions"
+1832:### MaldacenaMilekhin2021 — J. Maldacena, A. Milekhin (2021), "Humanly traversable wormholes"
+1846:### KanaiMaedaYoshida2025 — T. Kanai, K. Maeda, D. Yoshida (2025), "Wormholes as perturbations of near-horizon black hole geometries: no-go theorems within effective field theories"
+1857:### Garattini2019 — R. Garattini (2019), "Casimir Wormholes"
+1871:## D.10 Einstein–Dirac–Maxwell wormholes and their dispute
+1873:### BlazquezSalcedoKnollRadu2021 — J. L. Blázquez-Salcedo, C. Knoll, E. Radu (2021), "Traversable wormholes in Einstein-Dirac-Maxwell theory"
+1886:### BolokhovEtAl2021 — S. Bolokhov, K. Bronnikov, S. Krasnikov, M. Skvortsova (2021), "A note on "Traversable wormholes in Einstein-Dirac-Maxwell theory""
+1900:### DanielsonEtAl2021 — D. L. Danielson, G. Satishchandran, R. M. Wald, R. J. Weinbaum (2021), "Blázquez-Salcedo-Knoll-Radu Wormholes Are Not Solutions to the Einstein-Dirac-Maxwell Equations"
+1912:### BlazquezSalcedoKnollRadu2022 — J. L. Blázquez-Salcedo, C. Knoll, E. Radu (2022), "Einstein-Dirac-Maxwell wormholes: ansatz, construction and properties of symmetric solutions"
+1926:### KonoplyaZhidenko2022 — R. A. Konoplya, A. Zhidenko (2022), "Traversable Wormholes in General Relativity"
+1938:### Kain2023a — B. Kain (2023), "Are Einstein-Dirac-Maxwell wormholes traversable?"
+1949:### Kain2023b — B. Kain (2023), "Einstein-Dirac-Maxwell wormholes in quantum field theory"
+1962:## D.11 One-parameter bridge between black hole and wormhole
+1964:### SimpsonVisser2019 — A. Simpson, M. Visser (2019), "Black-bounce to traversable wormhole"
+1978:## D.12 Chronology
+1980:### KimThorne1991 — S.-W. Kim, K. S. Thorne (1991), "Do vacuum fluctuations prevent the creation of closed timelike curves?"
+1992:### Hawking1992 — S. W. Hawking (1992), "The Chronology protection conjecture"
+1995:### Visser1993 — M. Visser (1993), "From wormhole to time machine: Comments on Hawking's Chronology Protection Conjecture"
+2006:### Visser1997 — M. Visser (1997), "Traversable wormholes: the Roman ring"
+2019:## D.13 Cross-paper design findings (summary of the verified record)
+2028:# Part E. Synthesis table: knob/part × physics relation × papers × status
+2032:### E.1 Warp drives and shortcut corridors
+2081:### E.2 Quantum inequalities, ANEC and causality
+2116:### E.3 Traversable wormholes
+2155:### E.4 The project's results against the literature
+2171:### E.5 Derived here: the energy-condition cost of a lapse-only region on flat slices
+2194:# Part F. Open disputes
+2196:### F.1 Warp drives and shortcut corridors
+2213:### F.2 Quantum inequalities, ANEC and causality
+2224:### F.3 Traversable wormholes
+2237:# Part G. UNVERIFIED items
+2239:### G.1 Warp drives and shortcut corridors
+2253:### G.2 Quantum inequalities, ANEC and causality
+2265:### G.3 Traversable wormholes
+=== lit_engineering_methods
+1:# Adjacent engineering methods: literature survey for the spacetime-engineering textbook
+6:## How the items were checked
+32:## Principal findings
+80:## Area 1. Verification and validation in computational science
+82:### V1. Roache, *Verification and Validation in Computational Science and Engineering* (1998)
+96:### V2. Roache 1994, the Grid Convergence Index
+124:### V3. Celik et al. 2008, ASME reporting procedure
+140:### V4. Richardson 1911; Richardson & Gaunt 1927
+157:### V5. Roache 2002, code verification by manufactured solutions
+172:### V6. Salari & Knupp 2000 (Sandia)
+209:### V7. Oberkampf & Roy, *Verification and Validation in Scientific Computing*
+226:### V8. Roy 2005 review
+234:### V9. Oberkampf & Trucano 2002; AIAA G-077-1998
+275:### V10. ASME V&V 20-2009
+295:### V11. ASME V&V 10-2019
+305:### V12. ASME V&V 40-2018 (risk-informed credibility)
+320:### V13. NASA-STD-7009B (2024)
+344:### V14. Predictive Capability Maturity Model (PCMM)
+364:### V15. Validated numerics (interval enclosures)
+381:### V16. Oreskes, Shrader-Frechette & Belitz 1994
+395:### Area 1 synthesis
+420:## Area 2. Numerical-relativity verification practice
+422:### N1. Choptuik 1991
+440:### N2. Alcubierre et al. 2004, "Apples with Apples"
+470:### N3. Babiuc et al. 2008
+491:### N4. Einstein Toolkit and Cactus test suites
+515:### N5. Hannam et al. 2009, the Samurai project
+533:### N6. Hinder et al. 2014, NRAR
+545:### N7. Helmerich et al. 2024, Warp Factory
+567:### Area 2 synthesis
+581:## Area 3. Inverse design and demanded-material design
+583:### T1. Pendry, Schurig & Smith 2006
+597:### T2. Leonhardt 2006
+611:### T3. Schurig et al. 2006 (first cloak, reduced parameters)
+626:### T4. Cummer et al. 2006
+645:### T5. Cai, Chettiar, Kildishev & Shalaev 2007
+654:### T6. Yan, Ruan & Qiu 2007: simplified cloaks are inherently visible
+683:### T7. Li & Pendry 2008: the carpet cloak
+718:### T8. Carpet cloak experiments
+735:### T9. Zhang, Chan & Wu 2010: the lateral shift
+751:### T10. Calcite cloaks: matching the transformation to a natural material
+781:### T11. Physical limits on cloaking
+839:### T12. Optical metrics: lapse as refractive index
+871:### T13. Topology optimization
+929:### T14. Inverse design in nanophotonics
+955:### T15. Review
+961:### Area 3 synthesis: what transformation optics learned
+994:## Area 4. Design decomposition and the mapping from knobs to physics
+996:### D1. Suh, axiomatic design
+1026:### D2. Jones 2017 (NASA Ames): a balanced assessment
+1043:### D3. Olewnik & Lewis 2003: validity critique
+1058:### D4. Weber, Kößler & Paetzold 2015
+1068:### D5. Design structure matrix (DSM)
+1095:### D6. Global sensitivity analysis
+1128:### D7. Morris 1991 elementary effects
+1143:### D8. Design of experiments
+1177:### D9. Set-based concurrent engineering
+1201:### Area 4 synthesis: the rail's knob map as a design matrix
+1256:## Area 5. Stage-gates, readiness and claim scope
+1258:### S1. Technology Readiness Levels
+1284:### S2. NASA Systems Engineering Handbook (2016)
+1318:### S3. GAO Technology Readiness Assessment Guide
+1330:### S4. Cooper 1990, stage-gate systems
+1351:### S5. Fusion's evidence ladder
+1402:### S6. Millis, NASA Breakthrough Propulsion Physics
+1440:### S7. False positives in propulsion anomaly testing
+1460:### S8. Lamport 1978: coordination under relativistic causality
+1481:### Comparison: the project's claim ladder against adjacent ladders
+1525:## Area 6. Analogue gravity as a laboratory-engineering neighbour
+1527:### A1. Barceló, Liberati & Visser, *Analogue Gravity*
+1566:### A2. Unruh 1981
+1572:### A3. Laboratory analogues
+1595:### Area 6 synthesis
+1605:## Incident lessons that adjacent fields already name
+1631:## Unverified and partial items
+1673:## Closing table: candidate × adjacent-field practice × verdict
+=== incidents_may_june
+1:# Incident inventory: 16 May – 1 June 2026 (spherical-throat era)
+8:## Scope and conventions
+28:## Timeline of decision-changing events
+58:## I-01 Unstated two-ended topology: the "rail" was a Morris–Thorne wormhole
+139:## I-02 Two readings of the packet's motion
+195:## I-03 Service-time "advantage" built from the service factor and a light path the geometry lacks
+238:## I-04 Entry gate: failing points reclassified as "pre-entry setup"
+276:## I-05 The passenger-separation gate eroded and was replaced by a metric that cannot fail
+327:## I-06 V5 support shell frozen at amplitude 1e-7: a cost-only objective selected a null component
+370:## I-07 Legacy V10 freeze on an under-resolved cliff with zero speed headroom
+421:## I-08 Burden reduction repeatedly consumed the passenger's causal margin
+456:## I-09 Fraction metrics improving by moving the denominator
+481:## I-10 Finite-domain ANEC negative on the demanded total; the residual was ablated
+522:## I-11 Seal before off-design tests: the closure fit held only at its calibration point
+566:## I-12 "Hard-affine" SNEC used the lapse parameter
+586:## I-13 Domain truncation hid failures and manufactured others
+616:## I-14 Central rays escaped while their neighbours focused
+635:## I-15 Knob tuning before term attribution; the channel-cause ledger redirected it
+661:## I-16 Wiring bug caught by a reproduction check
+678:## I-17 Claim labels ran ahead of evidence
+702:## I-18 Superseded claims persisted
+716:## I-19 White Casimir: morphology before magnitude
+763:## I-20 Scalar kill screen (a check that worked)
+783:## P01+ Additions to incidents already documented in P01
+820:## Counter-evidence: practices that were followed and did not help, or misled
+899:## Closing table
+=== incidents_september
+1:# Incident inventory, 8–25 September 2026
+71:## Part A. The Le boundary gate and its repair ladder (8 September)
+83:### A1. The legacy classifier had corrupted rest-frame quantities since May
+127:### A2. A role ledger is not a source partition
+158:### A3. Non-smooth primitives in a prescribed metric
+204:### A4. A local repair cannot change a demand outside its support
+222:### A5. Uniform slowdown: a scaling argument used as a stopping rule
+256:### A6. A pre-registered source candidate relocates the failure and overdraws the mass budget
+293:### A7. Onset analysis versus a bounded optimization
+330:### A8. The repair ladder as a whole: candidate-level stops held; the written program-level rule was not followed
+405:### A9. The failed-gate verdict dropped out of the status documents
+450:## Part B. Source families on the static background (8 September evening – 9 September)
+459:### B1. An exact inverse stress fit cancels gravity's own kinetic term
+485:### B2. NEC-satisfying sectors cannot pay a negative-enthalpy demand: rediscovered family by family
+522:### B3. Casimir cells with ordinary holders are net positive: known, then re-derived
+544:### B4. Idealized boundaries and joins give regulator-dependent or divergent quantum stress
+576:### B5. The Israel junction demanded a compressed shell, which buckles; a patch chain followed
+602:### B6. A one-sided shooting blow-up was reported as a physical obstruction
+628:### B7. Magnitude was deferred behind sign-only screening; the first normalized comparison fell short by about 10⁵
+665:### B8. Bulk tension was assigned to the quantum sector
+683:### B9. The surrogate's exterior is an Ellis tail, so the null demand runs along the route
+695:### B10. The zero-shift static surrogate: the scope error was recognized on 9 Sep and did not stick
+721:### B11. Helpful and parasitic terms share one length scaling, so reshaping cannot help
+741:### B12. A redundant recommendation, corrected within 15 minutes; an archive re-screen that was predictably null
+758:### B13. The technical disclosure used as a running log for 3.5 hours, then stripped
+765:### B14. The lapse hill at the packet (A up to about 108) was never read as passenger aging
+781:### B15. Checks that caught method errors early
+799:## Part C. Endpoint storage, capacitors, joints and virtual radial cells (10 and 12 September)
+809:### C1. Numerical temperature floors misread as physical heat depletion
+838:### C2. A conservation error normalized to the wrong budget
+854:### C3. Treating heat symptoms of a kinematic cause (γ ≈ 47); redirected by the user
+876:### C4. The null-projection screen ran after the dynamics; the user set the reservoir aside
+895:### C5. Solver statuses read as physics: HiGHS dropped small metric coefficients
+915:### C6. Stores must hold energy comparable to their own rest energy
+939:### C7. An optimistic enclosure bound stayed the reference after a 3× tighter one was derived
+955:### C8. Partial ledgers flattered candidates; counting the full route reversed them
+974:### C9. GR self-weight: a local contact cost hid an exponential pressure column
+989:### C10. Explicit correction: the independent audit omitted the moving-frame EM force
+1014:### C11. A selected support target was reversed by conservative evolution
+1031:### C12. Clearances that existed only at samples or at a moved test point
+1047:### C13. Optimizers exploited unphysical freedoms; passivity was checked afterwards
+1066:### C14. A spatial march posed against the characteristic direction
+1077:### C15. Cheap nodewise screens excluded passive and permanent prestress early (positive)
+1094:## Part D. Containment, optical and thermal transfer, fermionic hosts, C1 modules (16–17 September)
+1108:### D1. The gate's own control case became the design geometry
+1122:### D2. Batch commit of uncommitted work; a user rule on commit discipline
+1133:### D3. A direction-averaged stress basis over-scoped a rejection
+1150:### D4. A virial bound predicted the containment result before six commits measured it
+1173:### D5. A standing rejection was carried as a caveat through eight reports, then dropped from the summary
+1190:### D6. Implementation-first detour, stopped by a user pause and a topology decision
+1217:### D7. Physical normalization came last, and it exposed incompatible scale windows
+1256:### D8. Normalize-before-structure (`1e9ac1d`); the first normalized number changed a decision within 41 minutes
+1281:### D9. Multiplicity treated as a free continuous knob; the species bound was not applied
+1303:### D10. An anomaly identity excluded the radial channels; a reframing turned the exclusion into a requirement on another component
+1323:### D11. Sparse-probe passes reversed as probes were added; each fix moved the deficit to the boundary it created
+1345:### D12. Feasibility hinged on an unfixed renormalization coupling
+1363:### D13. A C²-joined reference metric was used for fourth-derivative vacuum stress
+1375:### D14 (minor). An unbounded LP concentrated support material
+1386:### D15 (minor). An illustrative cut forced a non-perturbative coupling
+1396:## Part E. The redesign (23–25 September)
+1402:### E1. The spherical null-Hessian identity turned the failure into a design rule
+1438:### E2. Inherited mechanism elements that the design did not need
+1477:### E3. Two kinematic readings of the packet's motion
+1505:### E4. The advantage metric was ill-posed and insensitive
+1539:### E5. The throat metric was a two-ended wormhole that needs a topology change
+1607:### E6. A gate pass in one symmetry reduction did not survive a change of embedding
+1635:### E7. A gate passed by raising an amplitude hid a large cost and side effects
+1682:### E8. Node sampling missed Type IV bands (recurrence count for P01 §2e)
+1697:### E9. Gate domains that stop short of the structure
+1714:### E10. The "Casimir sector plus positive mass" idea
+1750:### E11. The front light surface: the known warp-drive horizon problem
+1790:### E12. A fix tuned at one speed failed at higher speeds
+1809:### E13. Occupant quantities were missing from the audit set
+1837:### E14. Reduced-dimension audits missed the lapse cavity
+1859:### E15. The in-principle exclusion of quantum sources came last
+1909:### E16. Premature locking of the design record
+1929:### E17. Numerical diagnostics at degenerate or near-vacuum points
+1960:### E18. A schedule was optimized before the class-level termination decision
+1987:## Part F. Counter-evidence: practices followed that did not help, or misled
+2011:## Part G. User corrections visible in the record
+2043:## Part H. Recurring lessons across the window
+2092:## Closing table
+

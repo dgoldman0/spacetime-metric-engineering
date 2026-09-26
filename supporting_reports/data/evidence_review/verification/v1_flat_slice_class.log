@@ -1,0 +1,198 @@
+
+=== Step 0: engine validation ===
+  [PASS] Schwarzschild (Painleve-Gullstrand, flat slices, beta=sqrt(2M/r)): G_ab = 0  (symbolic)
+  [PASS]   control: spacetime is curved, R^t_(rtr) = B**2/r**2 = 2M/r^3  (symbolic)
+  [PASS] FRW: G_tt = 3H^2  (symbolic + exact rational probe)
+  [PASS] FRW: G_xx/a^2 = -(2 a_tt/a + H^2)  (symbolic + exact rational probe)
+  [PASS] FRW dust a=t^(2/3): rho = 3H^2/8pi = 1/(6*pi*tp**2), p = 0 rho  (symbolic)
+  [PASS] FRW radiation a=t^(1/2): rho = 3H^2/8pi = 3/(32*pi*tp**2), p = 1/3 rho  (symbolic)
+  [PASS] FRW de Sitter a=exp(H0 t): rho = 3H^2/8pi = 3*H0**2/(8*pi), p = -1 rho  (symbolic)
+  [PASS] Alcubierre metric (beta^x = Bx(t,x,y,z)): G(n,n) = -(Bx_y^2 + Bx_z^2)/4  (symbolic + exact rational probe)
+  [PASS] Alcubierre 1994 eq. (19), tanh profile (v_s=3/2, sigma=8, R=1), 4 random events: max relative difference 8.21e-39  (mpmath 40 digits)
+  (step0: 1.4 s)
+
+=== Item 1: complete C0 tensor (A = 1) ===
+  [PASS] 8 pi T_nn equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_nz equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_nr equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_zz equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_rr equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_pp equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_zr equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_np equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_zp equals the table entry  (symbolic + exact rational probe)
+  [PASS] 8 pi T_rp equals the table entry  (symbolic + exact rational probe)
+  [PASS] null sum 8 pi (rho + p_z) = Lap_perp(alpha)/alpha - s^2  (symbolic + exact rational probe)
+  [PASS] null sum 8 pi (rho + p_r) = (alpha_zz + alpha_r/r)/alpha + Q  (symbolic + exact rational probe)
+  [PASS] null sum 8 pi (rho + p_phi) = (alpha_rr + alpha_zz)/alpha - s^2/2 + Q  (symbolic + exact rational probe)
+  [PASS] compact flux form: 8 pi T_nr = d_r K - (1/2) d_z s  (K = beta_z/alpha, s = beta_r/alpha)  (symbolic + exact rational probe)
+  [PASS] negative control: T_nz with the opposite sign is rejected  (symbolic (expected nonzero))
+  [PASS] negative control: T_zr without the s*K term is rejected  (symbolic (expected nonzero))
+  (item1: 1.1 s)
+
+=== Item 2: I1 energy density, A = 1 and A != 1 ===
+  [PASS] A = 1: rho = -(beta_r/alpha)^2/32pi (any alpha(t,z,r), beta(t,z,r))  (symbolic + exact rational probe)
+  [PASS] K_zz(hat) = (beta_z + beta A_z/A - A_t/A)/alpha  (symbolic + exact rational probe)
+  [PASS] K_zr(hat) = A beta_r/(2 alpha)  (symbolic + exact rational probe)
+  [PASS] K_rr = K_phiphi = K_zphi = K_rphi = 0  (symbolic + exact rational probe)
+  [PASS] convention check: K = -nabla_mu n^mu  (symbolic + exact rational probe)
+  [PASS] 3R of A^2 dz^2 + dr^2 + r^2 dphi^2 equals -2 Lap_perp(A)/A (A_z, A_t drop out)  (symbolic + exact rational probe)
+  [PASS] Hamiltonian constraint 16 pi rho = 3R + K^2 - K_ij K^ij (engine vs ADM)  (symbolic + exact rational probe)
+  [PASS] A != 1: rho = -(A beta_r/alpha)^2/32pi - Lap_perp(A)/(8 pi A), exact  (symbolic + exact rational probe)
+  [PASS] the report form -(A beta_r/alpha)^2/32pi alone misses -Lap_perp(A)/(8 pi A)  (symbolic (expected nonzero))
+  [PASS] A = A0(t,z): rho = -(A0 beta_r/alpha)^2/32pi exactly (report form holds)  (symbolic + exact rational probe)
+  (item2: 3.2 s)
+
+=== Item 3: I2 pure-lapse identity and I18 directional form ===
+  [PASS] uniform shift b(t), lapse alpha(t,x,y,z): rho = 0  (symbolic + exact rational probe)
+  [PASS]   j_i = 0 (all three components)  (symbolic + exact rational probe)
+  [PASS]   8 pi T_ij = (delta_ij Lap(alpha) - d_i d_j alpha)/alpha (all six components)  (symbolic)
+  [PASS] I18: 8 pi T(n+e, n+e) = (|e|^2 Lap(alpha) - e.Hess(alpha).e)/alpha; |e|=1 gives (Lap - d_e^2) alpha / alpha  (symbolic + exact rational probe)
+  [PASS]   e = e_z: 8 pi T(n+e_z, n+e_z) = (alpha_xx + alpha_yy)/alpha (transverse Laplacian)  (symbolic + exact rational probe)
+  [PASS] extension: Killing shift b(t) + Omega(t) x x (translation plus rigid rotation): the same pure-lapse tensor, rho = j = 0  (symbolic at a generic point)
+  [PASS] hypothesis check: shift uniform only at one instant (beta_z = beta_r = 0 on the slice, beta_zt, beta_rt free): rho = j = 0 (Type I) but 8piT_rr gains beta_zt/alpha^2 and 8piT_zr gains -beta_rt/(2 alpha^2)  (symbolic)
+  [PASS] C0, beta = beta(t): rho = j_z = j_r = 0  (symbolic + exact rational probe)
+  [PASS]   radial light: 8 pi T(n+e_r) = (alpha_zz + alpha_r/r)/alpha  (symbolic + exact rational probe)
+  [PASS]   axial light: 8 pi T(n+e_z) = (alpha_rr + alpha_r/r)/alpha  (symbolic + exact rational probe)
+  [PASS]   azimuthal light: 8 pi T(n+e_phi) = (alpha_rr + alpha_zz)/alpha  (symbolic + exact rational probe)
+  [PASS]   shear stress 8 pi T_zr = -alpha_rz/alpha  (symbolic + exact rational probe)
+  [PASS] on the axis, axial light: 8 pi T = 2 alpha_rr/alpha, i.e. T(k,k) = alpha_rr/(4 pi alpha)  (symbolic limit)
+  [PASS] radial null geodesic of a static pure-lapse region: k = (E/alpha)(n+e_r) is affine  (symbolic geodesic equation)
+  [PASS]   T(k,k) dlambda = (E/8pi) alpha_r/(r alpha^2) dr  (symbolic + exact rational probe)
+  (item3: 9.1 s)
+
+=== Item 4: lapse-only NEC lemma ===
+  [PASS] direction sum: alpha * sum_i 8 pi T(n+e_i, n+e_i) = 2 Lap(alpha) (Komar integrand)  (symbolic + exact rational probe)
+  [PASS] alpha = 1 - M/R: 8 pi T tangential = M/(Z**2*(M - Z)), radial = -2*M/(Z**2*(M - Z))  (symbolic)
+  [PASS] Plummer lapse 1 - M/sqrt(R^2+a^2): Lap(alpha) = 3Ma^2/(R^2+a^2)^(5/2) > 0 and tangential 8 pi alpha T = M(2a^2 - R^2)/(R^2+a^2)^(5/2) < 0 for R > sqrt(2) a  (symbolic)
+  [PASS]   Komar mass of the Plummer lapse (M=0.3, a=1): 0.3  (mpmath quadrature)
+  [PASS] Gaussian dip (lambda=1/2): int Lap(alpha) d^3x = 0; Lap(alpha) at R=0: 3, at R=2: -5*exp(-4)  (symbolic)
+  [PASS] Rindler lapse 1 + g x: pure-lapse stress vanishes identically (NEC holds, alpha non-constant)  (symbolic)
+  [PASS] lapse 1 + R^2: 8 pi T_ij = 4 delta_ij/alpha, every null energy strictly positive  (symbolic)
+  [PASS] C0 with beta = sinh u(z), alpha = cosh u(z) = sqrt(1+beta^2): Riemann = 0 (flat, T = 0) while alpha is non-constant and -> 1 where beta -> 0  (symbolic (all Riemann components))
+  [PASS] interior Schwarzschild star (M=1/5, R=1) in flat slices: perfect fluid rho=3M/4piR^3, TOV p, rho+p>0 (strict NEC), non-uniform shift, lapse alpha(0)=0.661895003862225 < alpha(R)=1; r=3/10: alpha=0.683391; r=3/5: alpha=0.755828; r=9/10: alpha=0.913167  (mpmath 40 digits, eigen-decomposition)
+  (item4: 1.8 s)
+
+=== Item 5: I3, I26, I20 ===
+  [PASS] I3: alpha(t), beta(t) => every Riemann component vanishes  (symbolic (all R^a_bcd))
+  [PASS] I3: T = int alpha dt, X = z + int beta dt pulls -dT^2 + dX^2 back to the C0 line element  (symbolic)
+  [PASS] Eulerian acceleration (C0A): a^t = 0  (symbolic + exact rational probe)
+  [PASS]   a(e_z) = d_z(ln alpha)/A  (frame component A*(a^z + beta a^t))  (symbolic + exact rational probe)
+  [PASS]   a(e_r) = d_r ln alpha  (symbolic + exact rational probe)
+  [PASS]   a(e_phi) = 0  (symbolic + exact rational probe)
+  [PASS] remark (stretch): uniform alpha(t), beta(t), A(t) give a product with Gaussian curvature K = d_t(A_t/alpha)/(alpha A); flat iff A_t/alpha is constant  (symbolic + exact rational probe)
+  [PASS] I26: carried worldline dz/dt = v in a compartment (alpha_c, beta=-v): dtau/dt = alpha_c, dtau/dz = alpha_c/v  (symbolic)
+  [PASS] I20: light along z moves at dz/dt = -beta +/- alpha/A (solutions [-beta - alpha/A, -beta + alpha/A])  (symbolic)
+  [PASS] I20: static observer d_t is timelike iff g_tt = -alpha^2 + A^2 beta^2 < 0, i.e. alpha > A|beta|  (symbolic)
+  (item5: 1.6 s)
+
+=== Item 6: I4 product (service-region) identity, I4c ===
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_nn = K_S  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_zz = -K_S  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_rr = -K  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_pp = -K  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_nz = 0  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_nr = 0  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_np = 0  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_zr = 0  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_zp = 0  (symbolic + exact rational probe)
+  [PASS] product of a general 2D Lorentzian metric with dr^2 + C(r)^2 dphi^2: 8 pi T_rp = 0  (symbolic + exact rational probe)
+  [PASS] I4c: K = -alpha_zz/alpha - n(beta_z/alpha) + (beta_z/alpha)^2  (symbolic + exact rational probe)
+  [PASS] sign convention: de Sitter_2 (alpha = cos z) has K = 1 > 0  (symbolic)
+  [PASS] spherical analogue (round sphere radius R0): rho = -p_l = 1/(8 pi R0^2)  (symbolic)
+  [PASS] null energy 8 pi T(n+e,n+e) = (K_S - K)(1 - e_z^2): along-track zero, minimum min(0, K_S - K)  (symbolic)
+  (item6: 2.1 s)
+
+=== Item 7: I5/I5c exact fluxes, I6 shear identity ===
+  [PASS] I5c: 8 pi T_nz = -(1/2r) d_r(r beta_r/alpha)  (symbolic + exact rational probe)
+  [PASS] I5c: 8 pi T_nr = (1/2alpha^2) d_z(alpha beta_r) - (beta_z/alpha) d_r ln alpha  (symbolic + exact rational probe)
+  [PASS] I5: where beta_r = 0 on a neighbourhood, 8 pi T_nr = -beta_z a_r/alpha exactly and 8 pi(rho+p_r) = a_r/r - K exactly (K = service curvature at that radius)  (symbolic)
+  [PASS] I6: 8 pi T(n+e_z, n+e_z) = -(beta_r^2 + Lap_perp beta)  (symbolic + exact rational probe)
+  [PASS] I6: 8 pi T(n-e_z, n-e_z) = -(beta_r^2 - Lap_perp beta)  (symbolic + exact rational probe)
+  [PASS] I6 coupling: 8 pi T_nr = beta_rz/2 (alpha = 1)  (symbolic + exact rational probe)
+  [PASS] I6 coupling: 8 pi T_zr = -(beta_rt - beta beta_rz)/2 + beta_r beta_z (alpha = 1)  (symbolic + exact rational probe)
+  [PASS] block lemma: on an invariant (n,e) plane, discriminant = T(n+e,n+e) T(n-e,n-e) (complex pair iff the two null energies have opposite signs)  (symbolic)
+  [PASS] static shear layer beta = exp(-(r-2)^2)/3 (plane invariant) at r=3.5 where |Lap beta| > beta_r^2: T_nr = 0.0, T_zr = 0.0, type IV  (mpmath eigen)
+      beta = 21/10 + 4(r-1)z - (r-1)^2 at (z=0,r=1): T(k+)T(k-) = -4.0, eigenvalues ['-4.092', '1.762', '2.331', '0.0']
+      beta = 1/2 + 4(r-1)z - (r-1)^2 at (z=0,r=1): T(k+)T(k-) = -4.0, eigenvalues ['(0.4239 - 2.13j)', '(-0.8477 + 1.702e-41j)', '(0.4239 + 2.13j)', '0.0']
+  [PASS] I6 Type IV clause FALSE in general: beta = 2.1 + 4(r-1)z - (r-1)^2 (alpha = 1, static) has opposite along-track null energies at (z=0, r=1) yet is Type I; with 0.5 in place of 2.1 it is Type IV  (mpmath eigen)
+  [PASS] stretch: 8 pi T_nz = -(1/(2 r A^2)) d_r(r A^2 * A beta_r/alpha) (proper shear A beta_r/alpha)  (symbolic + exact rational probe)
+  (item7: 0.5 s)
+
+=== Item 8: I7 doubly warped Hessian identity ===
+  [PASS] 8 pi T(k+,k+) = -Hess(A)(k,k)/A - Hess(C)(k,k)/C, k+ = n + e_r  (symbolic + exact rational probe)
+  [PASS] 8 pi T(k-,k-) = -Hess(A)(k,k)/A - Hess(C)(k,k)/C, k- = n - e_r  (symbolic + exact rational probe)
+  [PASS] C = r: -Hess(r)(k,k)/r = alpha_r/(r alpha)  (symbolic + exact rational probe)
+  [PASS] z and phi decouple: T_nz = T_zr = T_nphi = T_rphi = T_zphi = 0  (symbolic + exact rational probe)
+  [PASS] split T(k+,k+) - T(k-,k-) = -4[Hess A(n,e_r)/A + Hess C(n,e_r)/C] (mixed Hessian)  (symbolic + exact rational probe)
+  [PASS] static fields: the two radial null energies coincide  (symbolic)
+  (item8: 0.4 s)
+
+=== Item 9: I8 lapse envelope ===
+  [PASS] (n,r) block: 64 pi^2 Delta_nr = [(alpha_zz + alpha_r/r)/alpha + Q]^2 - [d_z(alpha beta_r)/alpha^2 - 2 beta_z alpha_r/alpha^2]^2  (symbolic + exact rational probe)
+  [PASS] not necessary: alpha=1.5, a_r=1, beta_z=1, convexity c=2 at r=1: envelope ratio 2r|beta_z|/alpha = 1.333 > 1, exact |a_r/r - K| = 2.556 > 2|beta_z a_r|/alpha = 1.333; T_nz = 0.0, T_zr = 0.0; type I  (mpmath eigen)
+  [PASS] not sufficient: alpha=10, a_r=1, beta_z=0.1, concavity c=-1 at r=1: envelope ratio = 0.02 < 1, exact |a_r/r - K| = 0.0001 < 2|beta_z a_r|/alpha = 0.02; type IV  (mpmath eigen)
+  [PASS] not sufficient, mildest case (no convexity, uniform beta_z = 1, r a_r = 1): alpha = 2.1, 2.3, 2.5 give ['IV', 'IV', 'I']; the envelope admits alpha > 2, the exact threshold is 1 + sqrt(2) = 2.41421  (mpmath eigen)
+  [PASS] not necessary without convexity: same family at alpha = 0.5 (x = 2, inside the window (0.414, 2.414)) -> IV; alpha = 0.3 (x = 3.33, envelope ratio 6.7) -> I  (mpmath eigen)
+      coupled example alpha = 2 + r, beta = 0.45z - 0.15(r-1) - 0.425(r-1)^2 + 0.75(r-1)z at (z=0, r=1): Delta_nr = 0.07412, Delta_nz = 0.009173, envelope ratio 0.3, eigenvalues ['(0.1605 - 0.07058j)', '(0.1605 + 0.07058j)', '(0.3226 - 7.864e-43j)', '-0.02312']
+  [PASS] coupling decides: envelope satisfied (ratio 0.3) and both 2x2 sub-block discriminants positive, yet the full (n,z,r) block is Type IV  (mpmath eigen)
+  [PASS] criterion: Type IV iff the discriminant of det(T^a_b - lambda) on the (n,z,r) block is negative (here -1.945e-5)  (symbolic discriminant, evaluated)
+  (item9: 0.5 s)
+
+=== Item 10: I9 conformal rise ===
+  [PASS] a_r = b_r: 8 pi T_nr = d_z(alpha A beta_r)/(2 alpha^2 A) - n(d_r ln A)  (symbolic + exact rational probe)
+  [PASS] a_r = b_r: 8 pi T_nz = -(1/(2rA^2)) d_r(r A^3 beta_r/alpha)  (symbolic + exact rational probe)
+  [PASS] static rise profile, beta_r = 0: T_nr = 0 and T_nz = 0 under any moving shift beta(t,z)  (symbolic + exact rational probe)
+  [PASS] beta_r != 0 across the rise: radial flux is present  (symbolic (expected nonzero))
+  [PASS] time-dependent rise phi(t,r), beta_r = 0: 8 pi T_nr = -d_t d_r phi / alpha (nonzero)  (symbolic + exact rational probe)
+  [PASS] constant conformal factor e^(2 phi) rescales the service curvature by e^(-2 phi)  (symbolic + exact rational probe)
+  (item10: 9.2 s)
+
+=== Item 11: I10 static energy and Komar balances ===
+  [PASS] rho sqrt(gamma) = -(1/8pi) d_r(r d_r A)  (symbolic + exact rational probe)
+  [PASS] no flux: j_z = j_r = 0  (symbolic + exact rational probe)
+  [PASS] 4 pi alpha (rho + sum p) = D^2 alpha (Laplace-Beltrami of gamma)  (symbolic + exact rational probe)
+  [PASS] per z-slice energy balance int rho sqrt(gamma) dr = 0 for A = 1 + 0.7 exp(-r^2-z^2): max |.| = 2.86e-46  (mpmath quadrature)
+  [PASS] Komar balance int D^2 alpha sqrt(gamma) d^3x = 0 for a lapse ring maximum (log alpha = 1.3 exp(-(r-2)^2-z^2)) on a stretched slice: -1.12e-14 against a scale 282.02  (scipy 2D quadrature, float64)
+  [PASS] lapse maximum: D^2 alpha < 0 on top (r=2: -38.164), > 0 on the flank (r=3.5: 2.957)  (direct evaluation)
+  (item11: 24.6 s)
+
+=== Item 12: I11 speed scaling ===
+  [PASS] exact: fields (c alpha(ct,x), c beta(ct,x)) give the identical orthonormal tensor at (t,x) as (alpha, beta) at (ct,x): t -> ct is an isometry  (symbolic, all 10 components, jet scaling)
+  [PASS] same-time scaling (alpha,beta) -> (c alpha, c beta): only 8piT_rr = 8piT_phiphi change, by -(1-1/c) d_t(beta_z/alpha)/alpha, and 8piT_zr, by +(1-1/c) d_t(beta_r/alpha)/(2 alpha)  (symbolic, all 10 components)
+  [PASS] steady lane 2.1c -> 10c (lapse and shift x 100/21, pattern speed x 100/21): tensors at equal comoving points agree to 1.03e-40  (mpmath 40 digits)
+      ramp: image mismatch 1.03e-40; design-minus-old at the same stage: rr -0.043769, pp -0.043769, zr 0.039392
+  [PASS] ramp (tau = 1.5): the time-compressed image matches the old ramp to 1.03e-40; the design ramp (same duration) differs only in ['pp', 'rr', 'zr'], exactly by the acceleration terms -(1-1/c) alpha^-1 d_t|_zeta K and (1-1/c) alpha^-1 d_t|_zeta s / 2 (residual 5.09e-41)  (mpmath 40 digits)
+  (item12: 2.7 s)
+
+=== Item 13: general 3+1 lemmas ===
+  [PASS] (a) five random tensors with j = 0 are Type I; rho = S = 0, j = e_x is Type IV  (mpmath eigen)
+  [PASS] (a) static diagonal slice, lapse alpha(t,x,y,z): j = 0, 8 pi rho = 3R/2, 8 pi S_ij = 3G_ij + (gamma_ij D^2 alpha - D_i D_j alpha)/alpha  (symbolic)
+  [PASS] (b) 8 pi j = -curl(omega)/(2 alpha) - (sigma - theta 1).grad(alpha)/alpha^2, omega = curl beta (unit lapse: 8 pi j = -curl curl beta / 2)  (symbolic, general alpha(t,x), beta^i(t,x))
+  [PASS] (b) rigid rotation Omega x x: sigma = 0, theta = 0, curl omega = 0, hence j = 0 for any lapse  (symbolic)
+  [PASS] (c,d) Shoshany-Snodgrass eq. 4.3: 16 pi rho = [theta^2 - sigma:sigma]/alpha^2  (symbolic + exact rational probe)
+  [PASS] (c) SSV: theta^2 - sigma:sigma = div(beta theta - (beta.grad)beta) - omega.omega/2  (symbolic + exact rational probe)
+  [PASS] (d) one-component shift beta(t,x,y,z) e_z: theta^2 - sigma:sigma = -|grad_perp beta|^2/2, so rho = -|grad_perp beta|^2/(32 pi alpha^2)  (symbolic + exact rational probe)
+  [PASS] (c) localized general shift (Gaussians): int rho d^3x = -7.630615667184e-02, -(1/32pi) int omega^2 = -7.630615667184e-02  (spectral quadrature, float64)
+  [PASS] (c) radial shift beta(r) r_hat, unit lapse: 8 pi rho = (1/r^2) d_r(r beta^2)  (symbolic + exact rational probe)
+  [PASS] (c) with beta = sqrt(2m/r), m = M r^3/(r^2+a^2)^(3/2) (beta ~ r^(-1/2)): omega = 0 but int rho d^3x = 1/3 = M > 0, so the fall-off o(r^(-1/2)) is necessary  (symbolic integral)
+      powers of v per component: nn:[2], nz:[1], nr:[1], np:[], zz:[0, 2], zr:[0, 2], zp:[], rr:[0, 2], rp:[], pp:[0, 2]
+  [PASS] (e) pattern moving at v with lapse profile fixed and shift v*b: rho ~ v^2, fluxes ~ v, stresses = v^0 (lapse) + v^2 parts  (symbolic polynomial degree in v)
+  (item13: 9.5 s)
+
+=== Summary of checks ===
+  Step 0  : 9/9 checks as expected
+  Item 1  : 16/16 checks as expected
+  Item 2  : 10/10 checks as expected
+  Item 3  : 15/15 checks as expected
+  Item 4  : 9/9 checks as expected
+  Item 5  : 10/10 checks as expected
+  Item 6  : 14/14 checks as expected
+  Item 7  : 11/11 checks as expected
+  Item 8  : 6/6 checks as expected
+  Item 9  : 7/7 checks as expected
+  Item 10 : 6/6 checks as expected
+  Item 11 : 6/6 checks as expected
+  Item 12 : 4/4 checks as expected
+  Item 13 : 11/11 checks as expected
+  total: 134/134 as expected; runtime 67.6 s

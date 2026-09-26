@@ -1,0 +1,249 @@
+v4_source_physics.py  --  sections: qi casimir fphi anomaly scaling q1 q2 q3 q4 q5 q6 q7 q8 q9 q10 q11 q12 q13  (scipy 1.16.2 constants, l_P = 1.616255e-35 m)
+
+=== qi ===
+[PASS] I21-QI :: g^2 is a normalized Gaussian
+[PASS] I21-QI :: g^2 has standard deviation tau0 (variance tau0^2; the paper's text says 'variance tau0')  --  <tau^2> = tau0**2
+[PASS] I21-QI :: int g''^2 dtau = 3/(16 tau0^4)  --  3/(16*tau0**4)
+[PASS] I21-QI :: Eq. (III.10) with Gaussian -> -(u.k)^2/(64 pi^2 tau0^4)  [Eq. (III.13)]  --  -1/(64*pi**2*tau0**4)
+[PASS] I21-QI :: angular + alpha integrals give the 1/(12 pi^3) prefactor of Eq. (III.10)  --  1/(12*pi**3)
+[PASS] I21-QI :: Parseval step: (1/12pi^3) int_0^inf u^4|g^|^2 du = (1/12pi^2) int g''^2
+[PASS] I21-QI :: N >= 64 pi^2 d tau0^4 (L/l_P)^2  (d in c^4/(G L^2), tau0 in L/c)  --  N_min = 64*pi**2*L**2*c**3*d*tau0hat**4/(G*hbar)
+[PASS] I21-QI :: Q = 64 pi^2 d tau0^4 at the governing point, zone 'service region' (f=0.1)  --  central 0.00522, rounding range [0.00461,0.00589], stated 0.0051
+[PASS] I21-QI :: Q = 64 pi^2 d tau0^4 at the governing point, zone 'inner band' (f=0.1)  --  central 0.00522, rounding range [0.00461,0.00589], stated 0.0051
+[PASS] I21-QI :: Q = 64 pi^2 d tau0^4 at the governing point, zone 'sheath rise' (f=0.1)  --  central 0.00729, rounding range [0.00622,0.00851], stated 0.0065
+[PASS] I21-QI :: Q = 64 pi^2 d tau0^4 at the governing point, zone 'sheath plateau' (f=0.1)  --  central 0.00815, rounding range [0.00729,0.00909], stated 0.0077
+[PASS] I21-QI :: Q = 64 pi^2 d tau0^4 at the governing point, zone 'outer falls' (f=0.1)  --  central 0.0147, rounding range [0.0134,0.016], stated 0.013
+[PASS] I21-QI :: faint-tail row is NOT reproducible from pointwise inputs (window-averaged deficit needed)  --  pointwise formula gives 18.2 vs stated 3.0e-2
+[PASS] I21-QI :: recorded normalization: 1/sqrt(eta) = 203.6 l_P ('204 l_P')  --  203.582
+[PASS] I21-QI :: field-count table column f=0.1 is N = Q (L/l_P)^2 with a single Q  --  common Q interval [0.01334, 0.01345]  (l_P = 1.616255e-35 m, scipy 1.16.2 constants)
+[PASS] I21-QI :: field-count table column f=0.01 is N = Q (L/l_P)^2 with a single Q  --  common Q interval [3.004e-06, 3.244e-06]  (l_P = 1.616255e-35 m, scipy 1.16.2 constants)
+[PASS] I21-QI :: stated Q = 0.013 (f = 0.1) is the rounded table value (intervals overlap)  --  table-implied Q in [0.01334, 0.01345]
+[PASS] I21-QI :: stated Q = 3e-6 (f = 0.01) is the rounded table value (zone table: 3.1e-6)  --  table-implied Q in [3.004e-06, 3.244e-06]
+[PASS] I21-QI :: consistency: Q(0.01) >= 1e-4 Q(0.1) (window constraint tightens with f)  --  3.1e-6 >= 1.3e-6
+[PASS] I21-QI :: l* = sqrt(Q) L: 0.116 L at f=0.1  --  0.1162
+[PASS] I21-QI :: l* with the faint tail (Q=0.030): 0.17 L  --  0.1732
+[PASS] I21-QI :: l* at f=0.01 (Q=3.1e-6): 0.0018 L  --  0.00176
+[PASS] I21-QI :: L <= 52 um / sqrt(Q) (f=0.1)  --  4.475e-04 m vs stated 4.50e-04 m
+[PASS] I21-QI :: L <= 52 um / sqrt(Q) (tail)  --  3.002e-04 m vs stated 3.00e-04 m
+[PASS] I21-QI :: L <= 52 um / sqrt(Q) (f=0.01)  --  2.953e-02 m vs stated 2.90e-02 m
+[PASS] I21-QI :: note: reduced-Planck-mass reading changes l* by sqrt(8 pi)  --  sqrt(8 pi) = 5.013
+    (1.0 s)
+
+=== casimir ===
+[PASS] I21-Casimir :: transverse-momentum integral per mode = -M^3/(12 pi)  --  -M**3/(12*pi)
+[PASS] I21-Casimir :: EM (perfect conductors): E/A = -pi^2 hbar c/(720 a^3)  --  -pi**2/(720*a**3)
+[PASS] I21-Casimir :: scalar, Dirichlet (or Neumann): E/A = -pi^2 hbar c/(1440 a^3)  --  -pi**2/(1440*a**3)
+[PASS] I21-Casimir :: scattering formula, Dirichlet r=-1 at a=1.0: -pi^2/(1440 a^3)  --  -0.0068538919452
+[PASS] I21-Casimir :: scattering formula, Dirichlet r=-1 at a=0.37: -pi^2/(1440 a^3)  --  -0.135310681405
+[PASS] I21-Casimir :: EM: rho = -C, p_perp = -3C, p_par = +C  --  rho=-pi**2/(720*a**4), p_perp=-pi**2/(240*a**4), p_par=pi**2/(720*a**4)
+[PASS] I21-Casimir :: scalar(conformal): rho = -C, p_perp = -3C, p_par = +C  --  rho=-pi**2/(1440*a**4), p_perp=-pi**2/(480*a**4), p_par=pi**2/(1440*a**4)
+[PASS] I21-Casimir :: EM null deficit along the normal = pi^2 hbar c/(180 a^4)
+[PASS] I21-Casimir :: conformal scalar null deficit along the normal = pi^2 hbar c/(360 a^4)
+[PASS] I21-Casimir :: matches Garattini (1)-(4) and MTY (tau = 3p = -3rho = 3pi^2 hbar/720 s^4)
+[PASS] I21-Casimir :: matching gap a = 0.58 sqrt(l_P L) with the EM value and d_peak = 0.48  --  (pi^2/(180*0.48))^(1/4) = 0.58136; scalar value would give 0.4889
+[PASS] I21-Casimir :: gap table row 204 l_P  --  a=1.342e-34 m, a/lambdabar_C=3.475e-22, 2 pi hbar c/a=9.238e+27 eV
+[PASS] I21-Casimir :: gap table row 1 um  --  a=2.337e-21 m, a/lambdabar_C=6.053e-09, 2 pi hbar c/a=5.305e+14 eV
+[PASS] I21-Casimir :: gap table row 1 mm  --  a=7.391e-20 m, a/lambdabar_C=1.914e-07, 2 pi hbar c/a=1.678e+13 eV
+[PASS] I21-Casimir :: gap table row 1 m  --  a=2.337e-18 m, a/lambdabar_C=6.053e-06, 2 pi hbar c/a=5.305e+11 eV
+[PASS] I21-Casimir :: gap table row 1 km  --  a=7.391e-17 m, a/lambdabar_C=1.914e-04, 2 pi hbar c/a=1.678e+10 eV
+[PASS] I21-Casimir :: NR ratio = (90 k/(pi^2 alpha)) (a/lambdabar_C)^2  --  90*a**2*c**2*k*m**2/(pi**2*alpha*hbar**2)
+[PASS] I21-Casimir :: 90/(pi^2 alpha) = 1250  --  1249.6
+[PASS] I21-Casimir :: NR regime boundary a_c = sqrt(3 pi^3/alpha) k lambdabar_C = 113 k lambdabar_C  --  sqrt(3 pi^3/alpha) = 112.90
+[PASS] I21-Casimir :: Vlasov k->0: NR limit gives 4 pi n e^2/m
+[PASS] I21-Casimir :: Vlasov k->0: UR limit gives (4 alpha/3 pi) c^2 k_F^2
+[PASS] I21-Casimir :: UR energy density = hbar c k_F^4/(4 pi^2), n = k_F^3/(3 pi^2)
+[PASS] I21-Casimir :: UR ratio = (405 pi/2) k^3/alpha^2 = 1.2e7 k^3, independent of the gap  --  405*pi*k**3/(2*alpha**2) = 1.1947e+07 k^3
+[PASS] I21-Casimir :: regimes meet within a factor 4/3 (report: 'within 1.4'); NR ratio at boundary 1.59e7 k^3  --  NR/UR at a_c = 4/3; NR = 1.5929e+07 k^3
+[PASS] I21-Casimir :: UR regime for every rail below 3.5e14 m (~2300 AU) (k = 1)  --  L_max = 3.480e+14 m = 2326 AU
+    (0.5 s)
+
+=== fphi ===
+[PASS] I21-FphiR :: metric field equation: EL_Phi[sqrt(-g) F R] = -2 sqrt(-g) E^a_a with E_ab = F G_ab + g_ab box F - nabla_a nabla_b F
+[PASS] I21-FphiR :: metric field equation: EL_Lam[sqrt(-g) F R] = -2 sqrt(-g) E^a_a with E_ab = F G_ab + g_ab box F - nabla_a nabla_b F
+[PASS] I21-FphiR :: metric field equation: EL_Psi[sqrt(-g) F R] = -2 sqrt(-g) E^a_a with E_ab = F G_ab + g_ab box F - nabla_a nabla_b F
+[PASS] I21-FphiR :: k = (e^{-2Phi}, e^{-Phi-Lam},0,0) is null and affinely geodesic
+[PASS] I21-FphiR :: k^a k^b nabla_a nabla_b F = d^2F/dlambda^2 along the affine null geodesic
+[PASS] I21-FphiR :: k^a k^b E_ab = F G(k,k) - F''  (g(k,k)=0 kills the box term)
+[PASS] I21-FphiR :: => F'' = 8 pi T(k,k) F - 8 pi[(k.dphi)^2 + T^m(k,k)] <= 8 pi T(k,k) F  (T := G/8pi)  --  healthy kinetic term gives T^phi(k,k) = (k.dphi)^2 >= 0; NEC matter gives T^m(k,k) >= 0
+[PASS] I21-FphiR :: [Poschl-Teller V0=0.5 (1 bound state)] zero count of psi = number of bound states  --  zeros=1, bound states=1, eigenvalues=[-0.134]
+[PASS] I21-FphiR :: [Poschl-Teller V0=0.5 (1 bound state)] every admissible F (F''<=qF, F'(entry)<=0) vanishes by psi's first zero  --  max(lambda_F=0 - lambda_psi=0) = -1.149e-01
+[PASS] I21-FphiR :: [Poschl-Teller V0=0.5 (1 bound state)] Wronskian F'psi - F psi' is non-increasing while psi > 0  --  W(start)=0.00e+00, W(end)=-3.54e-02
+[PASS] I21-FphiR :: [Poschl-Teller V0=3.75 (2 bound states)] zero count of psi = number of bound states  --  zeros=2, bound states=2, eigenvalues=[-2.25, -0.25]
+[PASS] I21-FphiR :: [Poschl-Teller V0=3.75 (2 bound states)] every admissible F (F''<=qF, F'(entry)<=0) vanishes by psi's first zero  --  max(lambda_F=0 - lambda_psi=0) = -3.695e-02
+[PASS] I21-FphiR :: [Poschl-Teller V0=3.75 (2 bound states)] Wronskian F'psi - F psi' is non-increasing while psi > 0  --  W(start)=0.00e+00, W(end)=-3.54e-02
+[PASS] I21-FphiR :: [Poschl-Teller V0=12 (3 bound states)] zero count of psi = number of bound states  --  zeros=3, bound states=3, eigenvalues=[-9.0002, -4.0005, -1.0005]
+[PASS] I21-FphiR :: [Poschl-Teller V0=12 (3 bound states)] every admissible F (F''<=qF, F'(entry)<=0) vanishes by psi's first zero  --  max(lambda_F=0 - lambda_psi=0) = -3.129e-02
+[PASS] I21-FphiR :: [Poschl-Teller V0=12 (3 bound states)] Wronskian F'psi - F psi' is non-increasing while psi > 0  --  W(start)=0.00e+00, W(end)=-3.54e-02
+[PASS] I21-FphiR :: [positive core + negative falls (lapse-hill-like)] zero count of psi = number of bound states  --  zeros=2, bound states=2, eigenvalues=[-2.9608, -2.9608]
+[PASS] I21-FphiR :: [positive core + negative falls (lapse-hill-like)] every admissible F (F''<=qF, F'(entry)<=0) vanishes by psi's first zero  --  max(lambda_F=0 - lambda_psi=0) = -6.029e-03
+[PASS] I21-FphiR :: [positive core + negative falls (lapse-hill-like)] Wronskian F'psi - F psi' is non-increasing while psi > 0  --  W(start)=0.00e+00, W(end)=-3.54e-02
+[PASS] I21-FphiR :: [purely positive q (no bound state)] zero count of psi = number of bound states  --  zeros=0, bound states=0, eigenvalues=[]
+[PASS] I21-FphiR :: complete ray with a bound state: no entry data keep F'' = qF positive (Allegretto-Piepenbrink)  --  13 entry slopes in [-1, 2] from the flat past, integrated to lambda = 400
+[PASS] I21-FphiR :: a ray segment entering inside the structure with F' = +5 keeps F > 0 (flat-past entry is a real hypothesis)  --  min F = 1.000
+[PASS] I21-FphiR :: zero count is invariant under lambda -> c lambda, 8piT(k,k) -> 8piT(k,k)/c^2 (normalization of k, scale L)  --  counts for c = 1, 3, 1/4: [2, 2, 2]
+[PASS] I21-FphiR :: lemma: F>0 and F''<=0 on a semi-infinite flat past force F'(entry) <= 0  --  F(lam) <= F(lam1) + F'(lam1)(lam-lam1) -> -inf as lam -> -inf if F'(lam1) > 0
+    (42.7 s)
+
+=== anomaly ===
+[PASS] I22-anomaly :: (c W^2 - a E)/16pi^2 with (a,c)=(1/360,1/120) = (Riem^2 - Ric^2)/2880pi^2 [Ford-Roman Eq.(10)]
+[PASS] I22-anomaly :: Ricci-flat trace, scalar: (c-a) K/16pi^2  --  = K * 1/(2880*pi**2)
+[PASS] I22-anomaly :: Ricci-flat trace, Weyl: (c-a) K/16pi^2  --  = K * 7/(11520*pi**2)
+[PASS] I22-anomaly :: Ricci-flat trace, Maxwell: (c-a) K/16pi^2  --  = K * -13/(2880*pi**2)
+[PASS] I22-anomaly :: trace of H^(1)_mu nu [Ford-Roman Eq.(11)] = -6 box R
+[PASS] I22-anomaly :: S2xS2: W^2 from the Weyl tensor equals Riem^2 - 2Ric^2 + R^2/3
+[PASS] I22-anomaly :: S2xS2: int E = 32 pi^2 chi = 128 pi^2
+[PASS] I22-anomaly :: S1xS3 is conformally flat with vanishing Euler density (W^2 = E = 0)
+[PASS] I22-anomaly :: Euler-Maclaurin series vs direct sum: Theta0(S^2 scalars) (tau=0.004)  --  rel.err=1.18e-15
+[PASS] I22-anomaly :: Euler-Maclaurin series vs direct sum: D^2 on S^2 (tau=0.004)  --  rel.err=6.48e-16
+[PASS] I22-anomaly :: S^2 scalar trace ~ 1/tau + 1/3 (a1 = R/6)
+[PASS] I22-anomaly :: S^2 Dirac trace ~ 2/tau - 1/3 (a1 = tr(R/6 - R/4))
+[PASS] I22-anomaly :: S^2 1-form trace ~ 2/tau - 4/3 (a1 = tr(R/6) - Ric)
+[PASS] I22-anomaly :: 2D: scalar B2 on S^2 = 1/3 = (1/24pi) int R  -> <T> = +R/24pi (MMP F.29: T = c R/24pi)
+[PASS] I22-anomaly :: 2D: Dirac -B2[D^2] = 1/3 -> c = 1 for a complex (Dirac) fermion (MMP eq. 5.25 uses c = q)
+[PASS] I22-anomaly :: S^3 1-form spectrum check: Weyl term 3 sqrt(pi)/4 tau^-3/2 and a1 term -3 sqrt(pi)/4 tau^-1/2
+[PASS] I22-anomaly :: Euler-Maclaurin series vs direct sum: S^3 coexact 1-forms (tau=0.004)  --  rel.err=1.16e-31
+[PASS] I22-anomaly :: Euler-Maclaurin series vs direct sum: S^3 conformal scalar (tau=0.004)  --  rel.err=1.15e-31
+[PASS] I22-anomaly :: Euler-Maclaurin series vs direct sum: S^3 Dirac (4-spinor), half-integer midpoint sum (tau=0.004)  --  rel.err=1.16e-31
+[PASS] I22-anomaly :: S^3 conformal scalar trace = (sqrt(pi)/4) tau^-3/2 exactly (Weyl term, a1 = 0)
+[PASS] I22-anomaly :: S^3 Dirac (4-spinor) trace = 4 w tau^-3/2 - 2 w tau^-1/2, w = sqrt(pi)/4 (Weyl term, Lichnerowicz a1)
+[PASS] I22-anomaly :: spectral (zeta) computation on S2xS2 and S1xS3: conformal scalar (a, c, d)  --  solution [{a: 1/360, c: 1/120, d: 0}]; report value (a,c) = (1/360, 1/120)
+[PASS] I22-anomaly :: spectral (zeta) computation on S2xS2 and S1xS3: Weyl fermion (half of Dirac) (a, c, d)  --  solution [{a: 11/720, c: 1/40, d: 0}]; report value (a,c) = (11/720, 1/40)
+[PASS] I22-anomaly :: spectral (zeta) computation on S2xS2 and S1xS3: Maxwell (with 2 FP ghosts) (a, c, d)  --  solution [{a: 31/180, c: 1/10, d: 0}]; report value (a,c) = (31/180, 1/10)
+[PASS] I22-anomaly :: S2xS2 heat coefficients  --  B4 scalar=(r1**4 + r2**4)/(90*r1**2*r2**2), B4[D^2]=-r1**2/(15*r2**2) + 1/9 - r2**2/(15*r1**2), B4 Maxwell=2*r1**2/(15*r2**2) - 10/9 + 2*r2**2/(15*r1**2)
+[PASS] I22-anomaly :: photon/demand ratio 0.74 (l_P/L)^2 -> 1.9e-70 at L = 1 m  --  0.743 * l_P^2 = 1.941e-70
+[PASS] I22-anomaly :: unit conversion: trace 1.33 hbar c/L^4 at 1 m  --  4.205e-26 vs 4.2e-26
+[PASS] I22-anomaly :: unit conversion: stress 1.79 c^4/(G L^2) at 1 m  --  2.166e+44 vs 2.2e+44
+[PASS] I22-anomaly :: equality scale sqrt(0.74) - sqrt(1.64) Planck lengths ('0.9-1.3')
+[PASS] I22-anomaly :: neutrino reduced Compton wavelength at 0.1 eV  --  1.973e-06 m
+[PASS] I22-anomaly :: neutrino reduced Compton wavelength at 0.01 eV  --  1.973e-05 m
+    (17.7 s)
+
+=== scaling ===
+[PASS] I25-scaling :: fixed shape g(x/L): L^2 R(L xhat) = R_hat(xhat) (scalar curvature ~ 1/L^2)  --  max rel. deviation 7.43e-29
+[PASS] I25-scaling :: fixed shape g(x/L): L^2 G(n,n)(L xhat) = G_hat(n,n)(xhat) (orthonormal demand ~ 1/L^2)  --  max rel. deviation 2.46e-26
+[PASS] I25-scaling :: energy unit = stress unit x L^3 = c^4 L/G
+[PASS] I25-scaling :: energy per unit length = c^4/G (mass per length c^2/G), scale free
+[PASS] I25-scaling :: stress in Planck density units = (l_P/L)^2; hbar c/L^4 = (l_P/L)^4 rho_P
+[PASS] I25-scaling :: quantum/classical stress ratio (hbar c/L^4)/(c^4/(G L^2)) = (l_P/L)^2
+[PASS] I25-scaling :: c^4/G = 1.21e44 N; D-lap peak 2.9 -> 3.5e44 Pa at L = 1 m  --  c^4/G = 1.2103e+44
+[PASS] I25-scaling :: rail unit at recorded normalization = 3.3e-33 m  --  3.290e-33 m
+[PASS] I25-scaling :: horizon temperature scale: kappa 7.55 -> 2.75 mK at 1 m, 2.75 uK at 1 km (hbar c kappa/(2 pi k_B L))  --  2.7516e-03 K
+[PASS] I25-scaling :: energy ratio 150 kg at 3.29e-33 m -> 2.3e4 solar masses at 1 m (energy ~ L)
+    (70.6 s)
+
+=== q1 ===
+[PASS] Q1 :: rho (2D, orthonormal) from the Weyl-transformation law = report's formula
+[PASS] Q1 :: p (2D, orthonormal) from the Weyl-transformation law = report's formula
+[PASS] Q1 :: trace -rho + p = (c/24 pi) R_2 with R_2 = -2 A''/A  --  R_2 = -2*Derivative(A(l), (l, 2))/A(l)
+[PASS] Q1 :: 2D conservation p' + a'(rho+p) = 0
+[PASS] Q1 :: 4D static conservation p_r' + a'(rho+p_r) + 2(R'/R)(p_r - p_t) = 0 with p_t = 0
+[PASS] Q1 :: 2D thermal energy density = (pi c/6) T^2 (derived)
+[PASS] Q1 :: Rindler (A = kappa x): conformal vacuum = -(thermal at T_loc = 1/(2 pi x)), rho = p
+[PASS] Q1 :: AdS2 with its full optical length pi*ell: rho = -p = c/(24 pi ell^2) (T ~ g, MMP App. F)
+[PASS] Q1 :: flat strip ground state: E0 = -pi c/(24 L) (Dirichlet scalar, c=1; MMP eq.(5.25) for fermions)
+[PASS] Q1 :: strip energy density at L equals cylinder energy density -pi c/(6 C^2) at C = 2L
+[PASS] Q1 :: Killing energy: int rho_Q A 4 pi R^2 dl = eta c[-pi/(24 L_opt) + (1/24pi) int A(2a''+a'^2) dl]  --  integrand identity; int dl/A = L_opt gives the -pi/(24 L_opt) term
+    (0.4 s)
+
+=== q2 ===
+[PASS] Q2 :: rho_Q - p_rQ = eta c (a'' + a'^2)/(48 pi^2 R^2)
+[PASS] Q2 :: independent of L_opt (state-independent: the state part is traceless in 2D)
+[PASS] Q2 :: rho + p_r = eta c/(4 pi R^2)[-pi/(12 L^2 A^2) + a''/(12 pi)]: more negative as L shrinks
+    (0.0 s)
+
+=== q3 ===
+[PASS] Q3 :: net radial force of the fields on a thin reflector = -4 pi R^2 [p_r]_-^+
+[PASS] Q3 :: internal wall between equal-optical, equal-c compartments: zero net load
+[PASS] Q3 :: outer end load: Casimir part grows as N^2  --  end load = -aprime**2*c*eta/(24*pi) - pi*N**2*c*eta/(24*A**2*L**2)
+[PASS] Q3 :: fourfold shortening multiplies the Casimir part by 16
+[PASS] Q3 :: sum_j c_j L_j invariant under repartition at the same population; sum_j c_j grows
+    (0.1 s)
+
+=== q4 ===
+[PASS] Q4 :: 8 pi (rho + p_r) = (2/R)(a'R' - R'') for the static spherical metric
+[PASS] Q4 :: pointwise identity (4pi/k) W R^2 H_rem = C W/A^2 - (W a')' - W R R''/k  (integrates to Q4)
+[PASS] Q4 :: H_Q = (k/4pi R^2)(a'' - C/A^2), k = eta c/12pi, C = 4pi^2/L_opt^2 = closed-loop Casimir + anomaly
+[PASS] Q4 :: AdS2 x S2 positive control: S/D = 4 exactly  --  L_opt=pi*ell, S=8/ell, D=2/ell
+[PASS] Q4 :: global time rescaling A -> lambda A leaves S and D unchanged
+    (2.4 s)
+
+=== q5 ===
+[PASS] Q5 :: trace -rho + p_r + 2 p_t = conformal-scalar anomaly (Riem^2 - Ric^2)/2880pi^2 on R^{1,1} x S^2  --  anomaly = 1/(1440*pi**2*R**4)
+[PASS] Q5 :: W^2 on R^{1,1} x S^2 = 4/(3 R^4) (not conformally flat)
+[PASS] Q5 :: log(R/a0) coefficient fixed by c = 1/120: mixed diag(2,2,-2,-2)/(2880 pi^2 R^4) = report's (-2,2,-2) in (rho,p_r,p_t)  --  X^a_b R^4 = (4/3, 4/3, -4/3, same)
+[PASS] Q5 :: variation tensor X^a_b = -8 Z^a_b on R^{1,1} x S^2  --  Z^a_b R^4 = [-1/6, -1/6, 1/6, 1/6]
+[PASS] Q5 :: => anomalous-scaling coefficient alpha = c/16pi^2 = 1/(1920 pi^2): agrees with Kontou 2405.05963 (57)-(58)  --  Graham-Olum 0705.3193 quote a = 1/(2880 pi^2) for the same eq. (3): a factor 3/2 smaller (literature discrepancy)
+[PASS] Q5 :: radial null projection rho + p_r = 0
+[PASS] Q5 :: angular null projection rho + p_t = K(1 - 4 log(R/a0)) < 0  iff  log(R/a0) > 1/4
+[PASS] Q5 :: T(ell0) = T(1) - 2(ell0 - 1) H with H = K(1,-1,1) (cylinder form of the shift law)
+[PASS] Q5 :: the most general boost-invariant homogeneous tensor with this trace is T_part + x(-1,1,-1): a0 absorbs x  --  the renormalization length a0 is scheme data; the log coefficient and the trace are universal
+    (2.3 s)
+
+=== q6 ===
+[PASS] Q6 :: Dirichlet wall: (rho, p_r, p_t) = b (1/6, 1/2, -1/6)
+[PASS] Q6 :: improved tensor with phi = x h(t,x): T_tt = b/6, T_xx = b/2 at the wall (b = (d_x phi)^2)
+[PASS] Q6 :: E_int(1+1, Dirichlet, m=0.7, d=1.3) = -(m/2pi) sum K1(2nmd)/n  --  -0.0209562949481
+[PASS] Q6 :: E_int(1+1, Dirichlet, m=2.0, d=0.4) = -(m/2pi) sum K1(2nmd)/n  --  -0.0822495118975
+[PASS] Q6 :: E_int(1+1, Dirichlet, m=0.05, d=3.0) = -(m/2pi) sum K1(2nmd)/n  --  -0.033316717238
+[PASS] Q6 :: massless limit (d = 1): E_int -> -pi/(24 d), the 1+1 Dirichlet strip value of Q1  --  E_int(m=1e-7) = -0.1308996689, -pi/24 = -0.1308996939
+[PASS] Q6 :: KK masses on R^{1,1} x S^2 with xi = 1/6: m_j^2 = (j(j+1) + 1/3)/R^2
+[PASS] Q6 :: d|F|/|E| = 1 + z K0(z)/K1(z) per summand (z = 2 n m d) and > 1
+[PASS] Q6 :: DEC direct support: holding energy >= d|F|  =>  E_int + d|F_int| > 0  --  sum of summands each with d|F_n| > |E_n| and E_n < 0
+    (65.4 s)
+
+=== q7 ===
+[PASS] Q7 :: orientation sum: (rho, p_r, p_t) = (-C_r-2C_t, -3C_r+2C_t, C_r-2C_t)
+[PASS] Q7 :: radial and angular null stresses -4C_r and -4C_t
+[PASS] Q7 :: C = eta pi^2/(720 d^4) is the EM cell weight (section 2 derivation, eta converts hbar c/L^4)
+[PASS] Q7 :: DEC holder: energy density >= |normal stress| = 3C per cell -> 3(C_r+2C_t); cell total >= 2(C_r+2C_t)
+    (0.0 s)
+
+=== q8 ===
+[PASS] Q8 :: u_E = (Q_L^2+Q_R^2)/2R^4 + Q_L Q_R/R^4 = E^2/2 (Heaviside-Lorentz, Q = R^2 E)
+[PASS] Q8 :: cross term = half of the local field energy when Q_L = Q_R
+[PASS] Q8 :: Gaussian units: u = E^2/8pi -> cross term Q_L Q_R/(4 pi R^4) with Q the charge
+[PASS] Q8 :: static Maxwell stress divergence = -rho_q E (Gauss: rho_q = Q'/R^2)
+    (0.0 s)
+
+=== q9 ===
+[PASS] Q9 :: E_I (r1 r2 = 1) = -pi^2/(1440 a^3) and F = 3|E_I|/a = -dE_I/da
+[PASS] Q9 :: mode problem in x = l/a depends only on (kappa a, q = g v^2 a^2, s = d/a) -> E_I = -e(q,s)/a^3  --  a^2 * g v^2 b(l/d)^2 = q b(x/s)^2 and (kappa a)^2; the Lifshitz integral kappa^2 dkappa -> a^-3
+[PASS] Q9 :: virtual work: h_I = -a^3 int(rho+p) = 4e - 2 q de/dq
+[PASS] Q9 :: h_chi = a^3 * 2 v^2 I/d = 2 q I/(g s); both h_I and h_chi scale as eta/a^3  --  I = int b'^2 du = 3.026461769
+    (2.1 s)
+
+=== q10 ===
+[PASS] Q10 :: K^t_t = f'/(2 sqrt f), K^theta_theta = sqrt(f)/r
+[PASS] Q10 :: sigma = (sqrt f_in - sqrt f_out)/(4 pi r)
+[PASS] Q10 :: p = (f_out'/sqrt f_out - f_in'/sqrt f_in)/(16 pi) - sigma/2
+[PASS] Q10 :: inner shell (weak field): tension Q^2/(16 pi a^3)  --  p_in = -Q**2/(16*pi*a**3) (per unit epsilon)
+[PASS] Q10 :: outer shell (weak field): compression Q^2/(16 pi b^3)
+[PASS] Q10 :: DEC on both shells: U_E/(M_in + M_out) <= 2(b-a)/(b+a)  --  U_E = Q**2*(-a + b)/(2*a*b)
+[PASS] Q10 :: y = 4 pi r sigma: y' = -4 pi (sigma + 2p), y'' = 8 pi (1 + 2 eta)(sigma + p)/r  (eta = dp/dsigma)
+[PASS] Q10 :: shell potential V = (f_in+f_out)/2 - y^2/4 - (f_in-f_out)^2/(4y^2) from y = sqrt(f_in+adot^2) - sqrt(f_out+adot^2)
+    (1.3 s)
+
+=== q11 ===
+[PASS] Q11 :: magnetic pressure: normal stress for a tangential field = B^2/(8 pi) (Gaussian)
+[PASS] Q11 :: Gaussian B^2/8pi = SI B^2/(2 mu0): 1 T <-> 1e4 G gives 3.98e5 J/m^3 both ways  --  3.9789e+05 J/m^3
+[PASS] Q11 :: straight section: int sigma_hoop dV = 2 p V_s
+[PASS] Q11 :: racetrack (two legs L, two semicircular bends radius a): V_s/V_core = 1/(1 + pi a/L)
+[PASS] Q11 :: E_sleeve >= 2E/(3k(1 + pi a/L)) [hoop virial + p = E/3V + stress <= k * energy]  --  geometry factor is design-specific
+[PASS] Q11 :: sphere (Bousso benchmark): tau = pR/2, E_wall >= 4 pi R^2 tau = E_gamma/2 with p = E_gamma/3V
+    (0.0 s)
+
+=== q12 ===
+[PASS] Q12 :: Maxwell: T_ij = u(delta_ij - 2 b_i b_j) for |b| = 1
+[PASS] Q12 :: sheet: rho = sigma, T_ij = -u(delta_ij - a_i a_j)
+[PASS] Q12 :: string: rho = mu, T_ij = -u s_i s_j
+[PASS] Q12 :: transverse sheet + hoop field, unit energies: (u,p_z,p_th,p_n) = (2,1,-2,0)
+[PASS] Q12 :: H <= 2kE_m, H <= kE_m + E_other, E_total >= H(1+k)/(2k) (200k random admissible states, k<=1)  --  max violation -2.11e-03
+    (2.7 s)
+
+=== q13 ===
+[PASS] Q13 :: C_J/delta_s = (c^5/G) Chat/deltahat, independent of L_g
+[PASS] Q13 :: C_J delta_s/hbar = (L_g/l_P)^2 Chat deltahat
+[PASS] Q13 :: c^5/G = 3.63e52 W  --  3.6283e+52 W
+    (0.0 s)
+
+SUMMARY: 192 passed, 0 failed, total 192  (209.3 s)

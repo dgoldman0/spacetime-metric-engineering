@@ -1,0 +1,337 @@
+class-S Einstein tensor built in 2.5 s
+
+==============================================================================
+STEP 0. Validation of the Einstein-tensor engines   [t = 2.6 s]
+==============================================================================
+[PASS] S0: MTW convention: round S^2 of radius r0 has Ricci scalar +2/r0^2
+[PASS] S0: Painleve-Gullstrand Schwarzschild (alpha=1, beta=sqrt(2M/r), A=1, B=r^2): G_mu nu = 0
+[PASS] S0: jet engine on PG Schwarzschild: rho = j = p_l = p_Omega = 0
+[PASS] S0: FRW k=+1, generic a(t): Friedmann equations, isotropic pressure, j = 0
+[PASS] S0: FRW k=+0, generic a(t): Friedmann equations, isotropic pressure, j = 0
+[PASS] S0: FRW k=-1, generic a(t): Friedmann equations, isotropic pressure, j = 0
+[PASS] S0: FRW dust a = t^(2/3): rho = 1/(6 pi t^2), p_l = p_Omega = 0, j = 0
+[PASS] S0: Ellis throat: rho = p_l = -a^2/(8 pi (l^2+a^2)^2), p_Omega = +a^2/(8 pi (l^2+a^2)^2), j = 0
+[PASS] S0: Morris-Thorne: rho = b'/(8 pi r^2)
+[PASS] S0: Morris-Thorne: radial tension tau = -p_r = [b/r - 2(r-b)Phi']/(8 pi r^2)
+[PASS] S0: Morris-Thorne: p_t = (r/2)[(rho - tau)Phi' - tau'] - tau
+[PASS] S0: Morris-Thorne throat b(r0) = r0: rho + p_r = rho - tau = (b'(r0) - 1)/(8 pi r0^2), negative under flare-out b'(r0) < 1
+[PASS] S0: Morris-Thorne throat: tension tau(r0) = 1/(8 pi r0^2) for finite Phi'
+[PASS] S0: Reissner-Nordstrom: rho = -p_r = p_t = Q^2/(8 pi r^4)
+[PASS] S0: de Sitter static patch: rho = -p_r = -p_t = 3H^2/(8 pi) > 0
+[PASS] S0: jet engine = explicit engine on a random polynomial class-S metric (rational point, 60 digits)
+[PASS] S0: contracted Bianchi identity nabla_mu G^mu_nu = 0 for the general class-S jet tensor  (random-exact x3, all four components, third-order jets)
+[PASS] S0: negative control: nabla_mu R^mu_l != 0 but equals d_l R/2 (the test discriminates)
+
+==============================================================================
+I1. Warped-product Einstein tensor   [t = 11.0 s]
+==============================================================================
+[PASS] I1: G_ab = -(2/R) Hess_ab R + g_ab[(2/R) box R + ((grad R)^2 - 1)/R^2] for (a,b) = (t,t)  (random-exact x4 + symbolic)
+[PASS] I1: G_ab = -(2/R) Hess_ab R + g_ab[(2/R) box R + ((grad R)^2 - 1)/R^2] for (a,b) = (t,l)  (random-exact x4 + symbolic)
+[PASS] I1: G_ab = -(2/R) Hess_ab R + g_ab[(2/R) box R + ((grad R)^2 - 1)/R^2] for (a,b) = (l,l)  (random-exact x4 + symbolic)
+[PASS] I1: G^theta_theta = box R/R - K, K = Gaussian curvature of the quotient (MTW: Ric_ab = K g_ab)  (random-exact x4 + symbolic)
+[PASS] I1: G^phi_phi = G^theta_theta  (random-exact x4 + symbolic)
+[PASS] I1: components G_{a theta}, G_{a phi}, G_{theta phi} vanish
+
+==============================================================================
+I2. Radial null energy is the null Hessian of the areal radius   [t = 11.8 s]
+==============================================================================
+[PASS] I2: G(k,k) = -(2/R) k^a k^b nabla_a nabla_b R, k = n+e_l  (random-exact x4 + symbolic)
+[PASS] I2: G(k,k) = -(2/R) k^a k^b nabla_a nabla_b R, k = n-e_l  (random-exact x4 + symbolic)
+[PASS] I2: k = F (d_t + v+ d_l) is null for arbitrary F(t,l)
+[PASS] I2: radial null curves are pregeodesics: nabla_k k = kappa k (v+)
+[PASS] I2: k(k(R)) = Hess(k,k) + kappa k(R); affine (kappa = 0): 8 pi T(k,k) = -(2/R) d^2R/dlambda^2 (v+)  (random-exact x3 + symbolic)
+[PASS] I2: equivalently Raychaudhuri: k(theta) = -theta^2/2 - 8 pi T(k,k) + kappa theta, theta = 2k(R)/R (v+)  (random-exact x3 + symbolic)
+[PASS] I2: k = F (d_t + v- d_l) is null for arbitrary F(t,l)
+[PASS] I2: radial null curves are pregeodesics: nabla_k k = kappa k (v-)
+[PASS] I2: k(k(R)) = Hess(k,k) + kappa k(R); affine (kappa = 0): 8 pi T(k,k) = -(2/R) d^2R/dlambda^2 (v-)  (random-exact x3 + symbolic)
+[PASS] I2: equivalently Raychaudhuri: k(theta) = -theta^2/2 - 8 pi T(k,k) + kappa theta, theta = 2k(R)/R (v-)  (random-exact x3 + symbolic)
+
+==============================================================================
+I3. Radial discriminant equals the product of the radial null energies   [t = 14.0 s]
+==============================================================================
+[PASS] I3: jet engine: T(n+e_l,n+e_l) = rho + p_l - 2 j_l with j_l = -T(e_l,n)  (random-exact x4 + symbolic)
+[PASS] I3: jet engine: T(n-e_l,n-e_l) = rho + p_l + 2 j_l  (random-exact x4 + symbolic)
+[PASS] I3: rho + p = [T(k+,k+) + T(k-,k-)]/2 and j = [T(k-,k-) - T(k+,k+)]/4  (random-exact x4 + symbolic)
+[PASS] I3: Delta = (rho + p)^2 - 4 j^2 = T(k+,k+) T(k-,k-)  (random-exact x4 + symbolic)
+[PASS] I3: mixed radial block T^a_b has real eigenvalues iff Delta >= 0 (discriminant of its characteristic polynomial = Delta)  (random-exact x4 + symbolic)
+[PASS] I3: radial boost by rapidity eta: T(k+-,k+-) -> exp(+-2 eta) T(k+-,k+-), so Delta is boost invariant
+[PASS] I3: Type I rest frame, either enthalpy sign: rho_rest = (rho - p + sgn(h) sqrt(Delta))/2, v = 2j/(h + sgn(h) sqrt(Delta)) = tanh(eta) (h = rho + p)
+[PASS] I3: Delta = 0 with j != 0: double eigenvalue and rank(T - lambda) = 1, a Jordan block (Type II)
+
+==============================================================================
+I4. Constant areal radius: exact, boost-invariant string cloud   [t = 15.0 s]
+==============================================================================
+[PASS] I4: R constant (alpha, beta, A arbitrary): rho = 1/(8 pi R^2)  (random-exact x4 + symbolic)
+[PASS] I4: R constant: p_l = -1/(8 pi R^2)  (random-exact x4 + symbolic)
+[PASS] I4: R constant: j_l = 0  (random-exact x4 + symbolic)
+[PASS] I4: R constant: p_Omega = -K/(8 pi)  (random-exact x4 + symbolic)
+[PASS] I4: R constant: rho + p_Omega = (1/R^2 - K)/(8 pi)  (random-exact x4 + symbolic)
+[PASS] I4: R constant: quotient block G_ab = -g_ab/R^2, identical in every radially boosted frame
+[PASS] I4: control: Nariai dS2 x S2 (N = cos(sqrt(Lambda) l), K = +Lambda, R^2 = 1/Lambda) gives T = -(Lambda/8 pi) g
+[PASS] I4: control: Bertotti-Robinson AdS2 x S2 (N = cosh(l/Q), K = -1/Q^2, R = Q) gives rho = -p_l = p_Omega = 1/(8 pi Q^2)
+
+==============================================================================
+I5. Radial null speeds   [t = 15.2 s]
+==============================================================================
+[PASS] I5: g(d_t + v d_l, d_t + v d_l) = -alpha^2 + A (v + beta)^2  (random-exact x4 + symbolic)
+[PASS] I5: factorization A (v - v+)(v - v-) = -alpha^2 + A (v + beta)^2 with v+- = -beta +- alpha/sqrt(A)  (random-exact x4 + symbolic)
+[PASS] I5: v+ v- = g_tt/A  (random-exact x4 + symbolic)
+[PASS] I5: v+ + v- = -2 beta  (random-exact x4 + symbolic)
+[PASS] I5: if d_t R = 0: (grad R)^2 = -(d_l R)^2 g_tt/(A alpha^2), so g_tt > 0 on a flank <=> trapped spheres  (random-exact x4 + symbolic)
+
+==============================================================================
+I6. Packet norm and clock   [t = 15.3 s]
+==============================================================================
+[PASS] I6: comoving v = -beta: norm = -alpha^2, so dtau/dt = alpha  (random-exact x4 + symbolic)
+[NOTE] I6: timelike <=> norm < 0 <=> (v - v+)(v - v-) < 0 <=> v- < v < v+ (A > 0, factorization in I5); dtau/dt = sqrt(-norm).
+
+==============================================================================
+I7. Shift re-match algebra   [t = 15.3 s]
+==============================================================================
+[PASS] I7: delta beta = -gW (v + beta) gives v + beta_new = (1 - gW)(v + beta)  (random-exact x4 + symbolic)
+[PASS] I7: |1 - gW| < 1 <=> 0 < gW < 2; comoving match (v + beta_new = 0) at gW = 1
+[PASS] I7: CORRECTION: the Eulerian-frame tensor depends on undifferentiated beta in class S (d rho/d beta != 0)  (counterexample at random rational jets)
+[PASS] I7: CORRECTED STATEMENT: written with normal derivatives n = (d_t - beta d_l)/alpha of the fields, rho, j, p_l, p_Omega contain no undifferentiated beta
+[PASS] I7: even with alpha, A, B independent of l, beta enters p_Omega through n(d_l beta) = (d_t d_l beta - beta d_l^2 beta)/alpha  (counterexample at random rational jets)
+[PASS] I7: with alpha, A, B independent of l, rho, j, p_l are free of undifferentiated beta (K, and with it n(d_l beta), enters only p_Omega)
+[PASS] I7: example: static Ellis slice with uniform shift b0 has rho depending on b0  (rho = (b0*l - 1)*(b0*l + 1)/(8*pi*(l**2 + 1)**2))
+
+==============================================================================
+I8. Coordinate-normalized null energy carries alpha^2   [t = 15.8 s]
+==============================================================================
+[PASS] I8: k^t = 1: k+- = alpha (n +- e_l)
+[PASS] I8: T(k+,k+)/alpha^2 = rho + p_l - 2 j_l  (random-exact x3 + symbolic)
+[PASS] I8: T(k-,k-)/alpha^2 = rho + p_l + 2 j_l  (random-exact x3 + symbolic)
+
+==============================================================================
+I9. Uniform slowdown at a static-enthalpy zero   [t = 16.4 s]
+==============================================================================
+[PASS] I9: rho_kappa = rho_0 + kappa^2 (rho_1 - rho_0) (family alpha(kt,l), A(kt,l), B(kt,l), kappa beta(kt,l))  (random-exact x3 + symbolic)
+[PASS] I9: pl_kappa = pl_0 + kappa^2 (pl_1 - pl_0) (family alpha(kt,l), A(kt,l), B(kt,l), kappa beta(kt,l))  (random-exact x3 + symbolic)
+[PASS] I9: pO_kappa = pO_0 + kappa^2 (pO_1 - pO_0) (family alpha(kt,l), A(kt,l), B(kt,l), kappa beta(kt,l))  (random-exact x3 + symbolic)
+[PASS] I9: j_kappa = kappa j_1  (random-exact x3 + symbolic)
+[PASS] I9: static control (frozen phase, zero shift) has j_0 = 0  (random-exact x4 + symbolic)
+[PASS] I9: at h_0 = 0: Delta_kappa = (kappa^2 h_2)^2 - 4 (kappa j_1)^2 = kappa^2 (kappa^2 h_2^2 - 4 j_1^2)  (random-exact x4 + symbolic)
+[PASS] I9: threshold: kappa^2 h_2^2 - 4 j_1^2 = h_2^2 (kappa - kappa_c)(kappa + kappa_c), kappa_c = 2|j_1|/|h_2|, so Delta_kappa < 0 exactly for 0 < kappa < kappa_c when j_1 != 0  (random-exact x4 + symbolic)
+[PASS] I9: with h_0 = s x near the root (h_2, j_1 frozen): the Type IV interval has width 4 kappa |j_1|/|s| (layer width proportional to kappa)
+[PASS] I9: |Im lambda| = sqrt(-Delta_kappa)/2 = kappa sqrt(4 j_1^2 - kappa^2 h_2^2)/2 at the root (proportional to kappa as kappa -> 0)
+
+==============================================================================
+I10. Null expansions of the symmetry spheres   [t = 16.9 s]
+==============================================================================
+[PASS] I10: exact expansion q^mn nabla_m K_n of the round sphere along K+ = d_t + v+ d_l equals the proxy 2(d_t R + v+ d_l R)/R  (random-exact x4 + symbolic)
+[PASS] I10: exact expansion q^mn nabla_m K_n of the round sphere along K- = d_t + v- d_l equals the proxy 2(d_t R + v- d_l R)/R  (random-exact x4 + symbolic)
+[PASS] I10: theta+ theta- = -(4 alpha^2/R^2)(grad R)^2  (random-exact x4 + symbolic)
+[PASS] I10: R constant: theta+ = theta- = 0
+[NOTE] I10: K+- = alpha(n +- e_l) are future directed (K^t = 1, g^tt = -1/alpha^2); both theta < 0 is the definition of a trapped sphere.
+
+==============================================================================
+I11. Radial light paths do not involve the areal radius   [t = 17.1 s]
+==============================================================================
+[PASS] I11: Gamma^a_bc (a,b,c in {t,l}) are B-free and Gamma^A_bc = 0: radial geodesics are geodesics of the quotient
+[PASS] I11: v+- = -beta +- alpha/sqrt(A) are B-free, so d(delta l)/dt = (d_l v+-) delta l is B-free
+[PASS] I11: SCOPE: the areal expansion 2 k(R)/R of the same rays depends on B
+
+==============================================================================
+I12. Areal flux of a radial string cloud   [t = 17.1 s]
+==============================================================================
+[PASS] I12: T_ab = -mu g_ab, T^A_B = p_Omega delta^A_B: nabla_mu T^mu_a = -(1/R^2) d_a(mu R^2) - (2 p_Omega/R) d_a R
+[NOTE] I12: with p_Omega = 0, conservation <=> d_a(mu R^2) = 0 on the quotient.
+[PASS] I12: geometric string flux of any class-S metric: 8 pi R^2 (rho - p_l)/2 = 1 - (grad R)^2 - R box R  (random-exact x3 + symbolic)
+
+==============================================================================
+I13. Join regularity: principal part and cusp scaling   [t = 17.2 s]
+==============================================================================
+[PASS] I13: second-derivative jets absent from (rho, j, p_l, p_Omega): exactly alpha_tt, alpha_tl, beta_tt  (absent = ['al_11', 'al_20', 'be_20'])
+[PASS] I13: static region: the second radial derivative of gamma_ll = A never appears (A is a radial-gauge function there)  (absent among static second derivatives = ['A_02'])
+[PASS] I13: denominators contain undifferentiated fields only; the tensor is linear in second derivatives
+[PASS] I13: every term has total derivative weight 0 (the 1/R^2 sphere term) or 2
+[PASS] I13: B = (1 + l^2)(1 + c d^p), d = l > 0 (p = 1/2, 3/2, 5/2): rho - rho[c=0] = -p(p-1) c d^(p-2)/(8 pi) + o(d^(p-2))
+[PASS] I13: sampled p_Omega at the join, B, spatial cusp d^(1/2)  (difference ratio per step halving 2.82847, expected 2.82843)
+[PASS] I13: sampled p_Omega at the join, B, spatial kink d^1  (difference ratio per step halving 2.0, expected 2.00000)
+[PASS] I13: sampled p_Omega at the join, alpha, spatial kink d^1  (difference ratio per step halving 2.0, expected 2.00000)
+[PASS] I13: sampled p_Omega at the join, beta, spatial kink d^1  (difference ratio per step halving 2.0, expected 2.00000)
+[PASS] I13: sampled p_Omega at the join, B, time kink  (difference ratio per step halving 2.0, expected 2.00000)
+[PASS] I13: sampled p_Omega at the join, A, time kink  (difference ratio per step halving 2.0, expected 2.00000)
+[PASS] I13: sampled p_Omega at the join, static A, spatial cusp d^(1/2) (milder: d^(-1/2))  (difference ratio per step halving 1.414214, expected 1.41421)
+[PASS] I13: sampled p_Omega at the join, B, C2 join d^3 (first-order sampling error)  (difference ratio per step halving 0.4999979, expected 0.50000)
+[PASS] I13: sampled p_Omega at the join, smooth non-polynomial B (second-order sampling error)  (difference ratio per step halving 0.25, expected 0.25000)
+[PASS] I13: sampled p_Omega at the join, alpha, time kink  (bounded: sampled p_Omega 0.02627443714 -> 0.02627443714)
+[PASS] I13: sampled p_Omega at the join, beta, time kink  (bounded: sampled p_Omega 0.03557076667 -> 0.03557076667)
+
+==============================================================================
+I14. Lapse-only dynamics carry no Eulerian energy flux   [t = 17.8 s]
+==============================================================================
+[PASS] I14: beta = 0 and d_t A = d_t B = 0, alpha(t,l) arbitrary: j_l = 0  (random-exact x4 + symbolic)
+[PASS] I14: same hypotheses: rho contains no lapse jets (rho = 3R/(16 pi) of the static slice)
+[PASS] I14: no symmetry: -alpha(t,x,y,z)^2 dt^2 + h1 dx^2 + h2 dy^2 + h3 dz^2 with static h_i gives G_0i = R_0i = 0
+
+==============================================================================
+I15. Divergence does not fix the algebraic type   [t = 17.9 s]
+==============================================================================
+[PASS] I15: Minkowski: constant T1 = diag(rho,p,p,p) (Type I) and T1 + S, S_01 = -j (constant), are both divergence-free; for rho=1, p=0, j=1 the second has a complex eigenpair (Type IV)
+[PASS] I15: Minkowski, T = (e+/r^2) k+ k+ + (e-/r^2) k- k-: divergence-free for every e+-, and T(k+,k+) T(k-,k-) = 16 e+ e-/r^4 (Type I, II or IV by the signs alone)
+
+==============================================================================
+I16. Static source decomposition   [t = 18.0 s]
+==============================================================================
+[PASS] I16: static, any radial gauge (gamma_ll = A, s = proper distance, lapse N): 8 pi rho = W - 2Z  (random-exact x4 + symbolic)
+[PASS] I16: 8 pi p_r = -W + 2Y  (random-exact x4 + symbolic)
+[PASS] I16: 8 pi p_t = Z + Y + X  (random-exact x4 + symbolic)
+[PASS] I16: static: j_l = 0  (random-exact x4 + symbolic)
+[PASS] I16: report gauge ds^2 = -N^2 dt^2 + dl^2 + R^2 dOmega^2: 8 pi (rho,p_r,p_t) = W(1,-1,0) + Z(-2,0,1) + Y(0,2,1) + X(0,0,1)
+[PASS] I16: W = 2 m/R^3 with the Misner-Sharp mass m = (R/2)(1 - (grad R)^2)  (random-exact x4 + symbolic)
+[PASS] I16: W - 2Z = 3R/2, the scalar curvature of the static slice over 2 (Hamiltonian constraint)  (random-exact x4 + symbolic)
+[PASS] I16: radial null energy 8 pi (rho + p_r) = 2(Y - Z)  (random-exact x4 + symbolic)
+[PASS] I16: CORRECTION: angular null energy 8 pi (rho + p_t) = W - Z + Y + X, so W is null-neutral only radially  (random-exact x4 + symbolic)
+[PASS] I16: control flat (R = l, N = 1): 8 pi (rho, p_r, p_t) = (0, 0, 0)
+[PASS] I16: control cylinder (R = Rb, N = 1): 8 pi (rho, p_r, p_t) = (Rb**(-2), -1/Rb**2, 0)
+[PASS] I16: control de Sitter static patch (R = sin(Hl)/H, N = cos(Hl)): 8 pi (rho, p_r, p_t) = (3*H**2, -3*H**2, -3*H**2)
+
+==============================================================================
+I17. Tension and opening are separate duties   [t = 18.4 s]
+==============================================================================
+[PASS] I17: at R' = 0 (any lapse, any radial gauge): p_r = -1/(8 pi R^2)  (random-exact x4 + symbolic)
+[PASS] I17: at R' = 0: rho + p_r = -R_ss/(4 pi R)  (random-exact x4 + symbolic)
+[PASS] I17: static radial null energy: 8 pi (rho + p_r) = -(2/R)(R_ss - N_s R_s/N)  (random-exact x4 + symbolic)
+[PASS] I17: static: T(k+,k+) = T(k-,k-) = rho + p_r  (random-exact x4 + symbolic)
+[PASS] I17: CORRECTION: a strict minimum need not have R'' > 0; R = R0 + l^4 gives rho + p_r = -3 l^2/(pi (R0 + l^4)): zero at the throat, negative on both sides  (rho + p_r = -3*l**2/(pi*(R0 + l**4)))
+
+==============================================================================
+I18. Flare-out identity and the opening bound   [t = 18.6 s]
+==============================================================================
+[PASS] I18: static, any radial gauge: d/ds (R_s/N) = -(4 pi R/N)(rho + p_r)  (random-exact x4 + symbolic)
+[PASS] I18: report gauge (l proper distance, lapse N): (R'/N)' = -(4 pi R/N)(rho + p_r)  (random-exact x4 + symbolic)
+[PASS] I18: Ellis (N = 1): 4 pi Int_0^oo R [-(rho + p_r)] dl = 1 on each side  (value 1)
+[PASS] I18: R^2 = l^2 + 1, N = 1(1 + 3/10 e^(-(l-0)^2)): 4 pi Int_0^oo (R/N)(rho + p_r) dl = -1/N_inf and B_- >= 1/N_inf  (signed -1.0, B_- 1.0, sign changes 0)
+[PASS] I18: R^2 = l^2 + 1, N = 1(1 - 1/2 e^(-(l-0)^2)): 4 pi Int_0^oo (R/N)(rho + p_r) dl = -1/N_inf and B_- >= 1/N_inf  (signed -1.0, B_- 1.0, sign changes 0)
+[PASS] I18: R^2 = l^2 + 1, N = 2(1 + 3/10 e^(-(l-0)^2)): 4 pi Int_0^oo (R/N)(rho + p_r) dl = -1/N_inf and B_- >= 1/N_inf  (signed -0.5, B_- 0.5, sign changes 0)
+[PASS] I18: R^2 = l^2 + 1, N = 1(1 - 4/5 e^(-(l-2)^2)): 4 pi Int_0^oo (R/N)(rho + p_r) dl = -1/N_inf and B_- >= 1/N_inf  (signed -1.0, B_- 4.497301542192776, sign changes 2)
+[PASS] I18: Schwarzschild exterior (proper radial derivative dr/ds = sqrt(f), N = sqrt(f)): R_s/N = 1 identically
+[NOTE] I18: integrating the identity: 4 pi Int (R/N)[-(rho + p_r)] ds = Delta(R_s/N); hence B_- >= Delta(R_s/N) on any interval.
+[PASS] I18: static radial null ray with unit Killing energy: T(k,k) = (rho + p_r)/N^2 and dR/dlambda = R_s/N  (random-exact x4 + symbolic)
+[PASS] I18: time-dependent generalization (any spherical metric): along an affine radial null geodesic 4 pi Int R T(k,k) dlambda = -Delta(dR/dlambda); RK4 on a metric with alpha, beta, A, B all (t,l)-dependent  (invariant spread 2.17e-13 while dR/dlambda changes by 1.851)
+
+==============================================================================
+I19. Clock identity (static Tolman/Komar form)   [t = 87.1 s]
+==============================================================================
+[PASS] I19: static, any radial gauge: d/ds(R^2 N_s) = 4 pi R^2 N (rho + p_r + 2 p_t)  (random-exact x4 + symbolic)
+[PASS] I19: report gauge: (R^2 N')' = 4 pi R^2 N (rho + p_r + 2 p_t)  (random-exact x4 + symbolic)
+[PASS] I19: at N_s = 0: 4 pi N (rho + p_r + 2 p_t) = N_ss (negative at a nondegenerate lapse maximum)  (random-exact x4 + symbolic)
+[PASS] I19: potential-dominated source T = -V g: rho + p_r + 2 p_t = -2V, rho + p_r = rho + p_t = 0
+
+==============================================================================
+I20. Static conservation (anisotropic TOV)   [t = 87.2 s]
+==============================================================================
+[PASS] I20: d_s p_r + (N_s/N)(rho + p_r) + 2(R_s/R)(p_r - p_t) = 0 for every static class-S Einstein tensor  (random-exact x3 + symbolic)
+
+==============================================================================
+I21. Ellis closed form and tail   [t = 87.3 s]
+==============================================================================
+[NOTE] I21: closed form verified in STEP 0 (explicit engine).
+[PASS] I21: two-ended tail of the orthonormal Frobenius norm beyond L: 2 Int_L^oo |T|_F 4 pi R^2 dl = 2a arctan(a/L)  (value 2*a*atan(a/L))
+[PASS] I21: constant jacket B = (l^2 + a^2) c^2: rho R^2 -> (1 - c^2)/(8 pi), p_l R^2 -> -(1 - c^2)/(8 pi), p_Omega R^2 -> 0
+
+==============================================================================
+I22. Static implies Type I; extension to stationary regions   [t = 87.8 s]
+==============================================================================
+[PASS] I22: static (beta = 0, no t-dependence): j_l = 0, so T is diagonal in the static frame  (random-exact x4 + symbolic)
+[PASS] I22: stationary with shift (no t-dependence, beta(l) arbitrary): G(xi, zeta) = 0, xi = d_t, zeta orthogonal to xi  (random-exact x3 + symbolic)
+[PASS] I22: g(zeta,zeta) = g_tt det(g_quotient): zeta is spacelike where xi is timelike and timelike where xi is spacelike  (random-exact x4 + symbolic)
+[NOTE] I22: so (xi, zeta) normalized is an orthonormal radial frame with T(xi,zeta) = 0 wherever g_tt != 0: the radial block is diagonal there, Delta = (T(u,u) + T(s,s))^2 >= 0 (Type I).
+
+==============================================================================
+I23. Canonical condensates supply no null deficit   [t = 87.9 s]
+==============================================================================
+[PASS] I23: charged scalar phi = f(l) e^(-i w t) with radial electric field, static background: (rho, p_r, p_t) = (K+D+V+E, K+D-V-E, K-D-V+E), j = 0; K = (w + q Phi)^2 f^2/N^2, D = f_s^2, E = E_r^2/(8 pi)
+[PASS] I23: radial null stress 2(K+D) and angular null stress 2(K+E), both independent of V and nonnegative
+[PASS] I23: time-dependent minimally coupled scalar, kinetic sign eps: T(k,k) = eps (k.dphi)^2 for both radial null k, so Delta >= 0 (never radial Type IV) and sgn(rho + p_l) = eps
+[PASS] I23: same scalar: p_l - p_Omega = eps (e_l.dphi)^2, so the sign of p_l - p_Omega is also tied to eps  (random-exact x4 + symbolic)
+[PASS] I23: CORRECTION: where d phi is null and nonzero, T(k+,k+) = 0 != T(k-,k-) and j != 0: Delta = 0 with a Jordan block (Type II); "boost-diagonalizable" holds only where d phi is non-null
+[NOTE] I23: any NEC-satisfying tensor has T(k+,k+), T(k-,k-) >= 0, hence Delta >= 0 (I3): radial Type IV requires radial NEC violation.
+
+==============================================================================
+I24. Minimal Type I regulator   [t = 89.1 s]
+==============================================================================
+[PASS] I24: reg = max(0, 2|j| - |h|), delta rho = delta p = sgn(h) reg/2 gives |h_new| = 2|j|: Delta = 0 and a Jordan block (Type II) whenever j != 0
+[NOTE] I24: minimality: |h + dh| >= 2|j| forces |dh| >= 2|j| - |h| (triangle inequality); dh = sgn(h) reg attains it.
+[PASS] I24: CORNER CASE: at h = 0, j != 0 the prescription gives delta rho = delta p = sgn(0) reg/2 = 0 and leaves Delta = -4j^2 < 0; a sign must be chosen there (either sign attains the minimum 2|j|)
+[PASS] I24: safety factor s: |h_new| - 2|j| = (s - 1)(2|j| - |h|), so s > 1 gives Delta > 0 (Type I) and s = 1 gives Delta = 0  (random-exact x4 + symbolic)
+
+==============================================================================
+I25. Heat-mode speed and the Type I margin   [t = 89.1 s]
+==============================================================================
+[PASS] I25: D = (rho + p)^2 (1 - v_q^2), v_q = 2 j/|rho + p|
+[PASS] I25: for a Type I block boosted by eta from its rest frame: v_q = tanh(2 eta), twice the rest-frame rapidity
+
+==============================================================================
+I26. Boosted infrastructure preserves the discriminant   [t = 89.2 s]
+==============================================================================
+[PASS] I26: boost by psi: E, P each gain D = h_b sinh^2 psi, j_b = (h_b/2) sinh 2 psi, Delta = h_b^2 unchanged
+[PASS] I26: |2 j_b/h_b| <= c for j_b = J c^2 h_b^2/(J^2 + c^2 h_b^2) (since J^2 + c^2 h_b^2 - 2|J| c |h_b| = (|J| - c|h_b|)^2), and c = 2v_max/(1 - v_max^2) = sinh(2 artanh v_max), so |v| <= v_max
+
+==============================================================================
+I27. Areal-gauge mass relations   [t = 89.4 s]
+==============================================================================
+[PASS] I27: areal gauge, time dependent: E = m_r/(4 pi r^2)
+[PASS] I27: d_r log alpha = (m + 4 pi r^3 P_r)/(r (r - 2m)) holds with time dependence
+[PASS] I27: d_t m = -4 pi r^2 alpha sqrt(f) J, J the outward Eulerian energy flux
+[PASS] I27: angular equation 8 pi P_t = f(nu_rr + nu_r^2 + nu_r/r) + f_r(nu_r + 1/r)/2 + (f_tt - f_t nu_t - 3 f_t^2/(2f))/(2 alpha^2 f)
+[PASS] I27: second time derivatives appear only in P_t (E, P_r, J contain none)
+[PASS] I27: static class S: Misner-Sharp m = (R/2)[1 - (d_l R)^2/gamma_ll] (the report's m_b)  (random-exact x4 + symbolic)
+[PASS] I27: general class S: m = (R/2)[1 + (n R)^2 - (e_l R)^2]; the m_b formula needs n(R) = 0  (random-exact x4 + symbolic)
+[PASS] I27: Misner-Sharp gradient d_a m = 4 pi R^2 (T^b_a d_b R - T^c_c d_a R) (quotient trace), general class S  (random-exact x3)
+
+==============================================================================
+I28. Onset obstruction (areal gauge)   [t = 90.0 s]
+==============================================================================
+[PASS] I28: log f = log f_i + a u^n, t = tau0 u + O(u^2), lapse change O(u^(n-1)): time part of 8 pi P_t,G = n(n-1) a u^(n-2)/(2 alpha_i^2 tau0^2) + ..., J = j_* u^(n-1) + ..., j_* = n sqrt(f_i) a/(8 pi r alpha_i tau0)  (n = 3, 4, 9)
+[PASS] I28: registered moving family: j_b = J - J^3/(c^2 h^2) + ..., D = J^2/h + O(J^4): its stress response starts at u^(2n-2)
+[NOTE] I28: the obstruction compares an angular demand at u^(n-2) with a family whose angular stress starts at u^(2n-2); a family whose stresses respond linearly to the geometric acceleration removes it (see md).
+
+==============================================================================
+One-space I24 (knobs_one_space.md 3.1): cross-check of the same identities   [t = 90.7 s]
+==============================================================================
+[PASS] X24: 8 pi T(k,k) = -(2/R) k^a k^b nabla_a nabla_b R for radial null k (k = n + e_l)  (random-exact x4 + symbolic)
+[PASS] X24: Delta_rad = (rho + p_l)^2 - 4 j_l^2 = T(k+,k+) T(k-,k-) on the class-S tensor  (random-exact x3 + symbolic)
+[PASS] X24: static region with LAPSE A (proper distance l): (R'/A)' = -(4 pi R/A)(rho + p_l)  (random-exact x4 + symbolic)
+[PASS] X24: string boost invariance: at constant R the quotient block is -g_ab/(8 pi R^2)
+[PASS] X24: NOTATION: reading A as gamma_ll (unit lapse), (R_l/A)_l = -(4 pi R/A)(rho + p_l) is false  (counterexample at random rational jets)
+[PASS] X24: with A = gamma_ll and unit lapse the correct form is (R_l/sqrt(A))_l = -4 pi R sqrt(A)(rho + p_l)  (random-exact x4 + symbolic)
+
+==============================================================================
+SUMMARY   [t = 91.4 s]
+==============================================================================
+S0     18/ 18 checks pass
+I1      6/  6 checks pass
+I2     10/ 10 checks pass
+I3      8/  8 checks pass
+I4      8/  8 checks pass
+I5      5/  5 checks pass
+I6      1/  1 checks pass
+I7      7/  7 checks pass
+I8      3/  3 checks pass
+I9      9/  9 checks pass
+I10     4/  4 checks pass
+I11     3/  3 checks pass
+I12     2/  2 checks pass
+I13    16/ 16 checks pass
+I14     3/  3 checks pass
+I15     2/  2 checks pass
+I16    12/ 12 checks pass
+I17     5/  5 checks pass
+I18    10/ 10 checks pass
+I19     4/  4 checks pass
+I20     1/  1 checks pass
+I21     2/  2 checks pass
+I22     3/  3 checks pass
+I23     5/  5 checks pass
+I24     3/  3 checks pass
+I25     2/  2 checks pass
+I26     2/  2 checks pass
+I27     8/  8 checks pass
+I28     2/  2 checks pass
+X24     6/  6 checks pass
+
+TOTAL: 170/170 checks pass; runtime 91.4 s
+exit 0
